@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Risk Tiering Calculator | PALO Framework</title>
+    <meta name="description"
+        content="Classify AI use cases into risk tiers (Minimal, Limited, High, Unacceptable) per EU AI Act and PALO Framework Section 3.3">
+
+    <!-- SEO Meta Tags -->
+    <meta name="keywords"
+        content="AI risk assessment, EU AI Act risk tiers, AI compliance, high-risk AI, AI governance, PALO framework">
+    <meta name="author" content="PALO Framework">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://paloframework.org/PALO_RiskTiering.html">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://paloframework.org/PALO_RiskTiering.html">
+    <meta property="og:title" content="AI Risk Tiering Calculator | PALO Framework">
+    <meta property="og:description"
+        content="Classify AI use cases into EU AI Act risk tiers (Minimal, Limited, High, Unacceptable) and get compliance requirements.">
+    <meta property="og:image" content="https://paloframework.org/assets/og-risk-calculator.png">
+    <meta property="og:site_name" content="PALO Framework">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="AI Risk Tiering Calculator | PALO Framework">
+    <meta name="twitter:description"
+        content="Classify AI use cases into EU AI Act risk tiers and get compliance requirements.">
+    <meta name="twitter:image" content="https://paloframework.org/assets/og-risk-calculator.png">
+
+    <link rel="icon" type="image/webp" href="assets/logo.webp">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-primary: #21808D;
+            --color-primary-light: #2A9BAA;
+            --color-primary-dark: #1A666F;
+            --color-text: #1E293B;
+            --color-text-secondary: #64748B;
+            --color-background: #FFFFFF;
+            --color-surface: #F8FAFC;
+            --color-border: #E2E8F0;
+            --color-success: #10B981;
+            --color-warning: #F59E0B;
+            --color-error: #DC2626;
+            --color-unacceptable: #7C2D12;
+            --color-high: #EA580C;
+            --color-limited: #CA8A04;
+            --color-minimal: #16A34A;
+            --radius-base: 12px;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        *:focus-visible {
+            outline: 3px solid var(--color-primary);
+            outline-offset: 2px;
+        }
+
+        button,
+        a,
+        input,
+        select,
+        textarea {
+            min-height: 44px;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: linear-gradient(135deg, #f0f9fa 0%, #e8f4f5 100%);
+            min-height: 100vh;
+            color: var(--color-text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        /* Skip Link */
+        .skip-link {
+            position: absolute;
+            left: -9999px;
+            top: auto;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+            z-index: 9999;
+            background: var(--color-primary);
+            color: white;
+            padding: 12px;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+
+        .skip-link:focus {
+            left: 16px;
+            width: auto;
+            height: auto;
+        }
+
+        /* Navigation */
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 24px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: var(--radius-base);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 24px;
+        }
+
+        .nav img {
+            height: 40px;
+        }
+
+        .nav-title {
+            flex: 1;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--color-primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 8px;
+        }
+
+        .nav-link {
+            padding: 8px 16px;
+            background: var(--color-surface);
+            color: var(--color-text);
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .nav-link:hover {
+            background: var(--color-primary);
+            color: white;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 40px 24px;
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            border-radius: var(--radius-base);
+            color: white;
+            margin-bottom: 24px;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+
+        .header p {
+            font-size: 16px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Wizard Container */
+        .wizard {
+            background: var(--color-background);
+            border-radius: var(--radius-base);
+            box-shadow: var(--shadow-md);
+            overflow: hidden;
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            display: flex;
+            background: var(--color-surface);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .progress-step {
+            flex: 1;
+            padding: 16px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--color-text-secondary);
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .progress-step.active {
+            color: var(--color-primary);
+            background: rgba(33, 128, 141, 0.1);
+        }
+
+        .progress-step.completed {
+            color: var(--color-success);
+            background: rgba(16, 185, 129, 0.1);
+        }
+
+        .progress-step::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: transparent;
+            transition: background 0.3s;
+        }
+
+        .progress-step.active::after {
+            background: var(--color-primary);
+        }
+
+        .progress-step.completed::after {
+            background: var(--color-success);
+        }
+
+        /* Step Content */
+        .step-content {
+            padding: 32px;
+            display: none;
+        }
+
+        .step-content.active {
+            display: block;
+        }
+
+        .step-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--color-text);
+        }
+
+        .step-description {
+            color: var(--color-text-secondary);
+            margin-bottom: 24px;
+        }
+
+        /* Option Cards */
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 12px;
+        }
+
+        .option-card {
+            padding: 16px;
+            border: 2px solid var(--color-border);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+        }
+
+        .option-card:hover {
+            border-color: var(--color-primary);
+            background: rgba(33, 128, 141, 0.05);
+        }
+
+        .option-card.selected {
+            border-color: var(--color-primary);
+            background: rgba(33, 128, 141, 0.1);
+        }
+
+        .option-card .icon {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .option-card .label {
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        /* Navigation Buttons */
+        .step-navigation {
+            display: flex;
+            justify-content: space-between;
+            padding: 24px 32px;
+            border-top: 1px solid var(--color-border);
+            background: var(--color-surface);
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: var(--color-primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--color-primary-dark);
+        }
+
+        .btn-primary:disabled {
+            background: var(--color-border);
+            cursor: not-allowed;
+        }
+
+        .btn-secondary {
+            background: var(--color-surface);
+            color: var(--color-text);
+            border: 1px solid var(--color-border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--color-border);
+        }
+
+        /* Results Section */
+        .results {
+            display: none;
+            padding: 32px;
+        }
+
+        .results.active {
+            display: block;
+        }
+
+        .risk-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 20px 32px;
+            border-radius: 12px;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .risk-badge.unacceptable {
+            background: rgba(124, 45, 18, 0.15);
+            color: var(--color-unacceptable);
+            border: 2px solid var(--color-unacceptable);
+        }
+
+        .risk-badge.high {
+            background: rgba(234, 88, 12, 0.15);
+            color: var(--color-high);
+            border: 2px solid var(--color-high);
+        }
+
+        .risk-badge.limited {
+            background: rgba(202, 138, 4, 0.15);
+            color: var(--color-limited);
+            border: 2px solid var(--color-limited);
+        }
+
+        .risk-badge.minimal {
+            background: rgba(22, 163, 74, 0.15);
+            color: var(--color-minimal);
+            border: 2px solid var(--color-minimal);
+        }
+
+        .requirements-section {
+            margin-top: 24px;
+        }
+
+        .requirements-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .requirement-card {
+            padding: 16px;
+            background: var(--color-surface);
+            border-radius: 10px;
+            margin-bottom: 12px;
+            border-left: 4px solid var(--color-primary);
+        }
+
+        .requirement-card h4 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .requirement-card p {
+            font-size: 13px;
+            color: var(--color-text-secondary);
+        }
+
+        .eu-act-reference {
+            margin-top: 24px;
+            padding: 16px;
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            border-radius: 10px;
+            color: white;
+        }
+
+        .eu-act-reference h4 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .eu-act-reference p {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 24px;
+            color: var(--color-text-secondary);
+            font-size: 13px;
+            margin-top: 24px;
+        }
+
+        .footer a {
+            color: var(--color-primary);
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            .options-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .header h1 {
+                font-size: 24px;
+            }
+
+            .progress-step {
+                font-size: 12px;
+                padding: 12px 8px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <div class="container">
+        <!-- Navigation -->
+        <nav class="nav" role="navigation" aria-label="Main navigation">
+            <a href="index.html">
+                <img src="assets/logo.webp" alt="PALO Logo">
+            </a>
+            <span class="nav-title">⚖️ Risk Tiering Calculator</span>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link" aria-label="Return to homepage">🏠 Home</a>
+                <a href="PALO_FRIA.html" class="nav-link" aria-label="Open FRIA tool">🛡️ FRIA</a>
+                <a href="PALO_ModelCanvasAI.html" class="nav-link" aria-label="Open Model Canvas">🎨 Canvas</a>
+            </div>
+        </nav>
+
+        <!-- Header -->
+        <header class="header" role="banner">
+            <h1 id="main-content" tabindex="-1">⚖️ AI Risk Tiering Calculator</h1>
+            <p>Classify your AI use case into risk tiers per EU AI Act and PALO Framework Section 3.3. Get instant
+                guidance on compliance requirements.</p>
+        </header>
+
+        <!-- Wizard -->
+        <main class="wizard" role="main">
+            <!-- Progress Bar -->
+            <div class="progress-bar" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="4">
+                <div class="progress-step active" data-step="1">Step 1: Sector</div>
+                <div class="progress-step" data-step="2">Step 2: AI Function</div>
+                <div class="progress-step" data-step="3">Step 3: Autonomy</div>
+                <div class="progress-step" data-step="4">Results</div>
+            </div>
+
+            <!-- Step 1: Sector -->
+            <div class="step-content active" data-step="1">
+                <h2 class="step-title">Select Your Sector</h2>
+                <p class="step-description">Choose the industry where your AI system will be deployed.</p>
+
+                <div class="options-grid" role="radiogroup" aria-label="Select sector">
+                    <div class="option-card" data-value="healthcare" tabindex="0" role="radio" aria-checked="false">
+                        <div class="icon">🏥</div>
+                        <div class="label">Healthcare</div>
+                    </div>
+                    <div class="option-card" data-value="hr" tabindex="0" role="radio" aria-checked="false">
+                        <div class="icon">👥</div>
+                        <div class="label">HR / Recruitment</div>
+                    </div>
+                    <div class="option-card" data-value="finance" tabindex="0" role="radio" aria-checked="false">
+                        <div class="icon">🏦</div>
+                        <div class="label">Finance / Banking</div>
+                    </div>
+                    <div class="option-card" data-value="infrastructure" tabindex="0" role="radio" aria-checked="false">
+                        <div class="icon">🏗️</div>
+                        <div class="label">Critical Infrastructure</div>
+                    </div>
+                    <div class="option-card" data-value="legal" tabindex="0" role="radio" aria-checked="false">
+                        <div class="icon">⚖️</div>
+                        <div class="label">Legal / Justice</div>
+                    </div>
+                    <div class="option-card" data-value="public" tabindex="0" role="radio" aria-checked="false">
+                        <div class="icon">🏛️</div>
+                        <div class="label">Public Sector</div>
+                    </div>
+                    <div class="option-card" data-value="education" tabindex="0" role="radio" aria-checked="false">
+                        <div class="icon">🎓</div>
+                        <div class="label">Education</div>
+                    </div>
+                    <div class="option-card" data-value="retail" tabindex="0" role="radio" aria-checked="false">
+                        <div class="icon">🛒</div>
+                        <div class="label">Retail / E-commerce</div>
+                    </div>
+                    <div class="option-card" data-value="marketing" tabindex="0" role="radio" aria-checked="false">
+                        <div class="icon">📢</div>
+                        <div class="label">Marketing / Advertising</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2: AI Function -->
+            <div class="step-content" data-step="2">
+                <h2 class="step-title">Select AI Function</h2>
+                <p class="step-description">What is the primary function of your AI system?</p>
+
+                <div class="options-grid" role="radiogroup" aria-label="Select AI function">
+                    <div class="option-card" data-value="chatbot" tabindex="0" role="radio" aria-checked="false">
+                        <div class="icon">💬</div>
+                        <div class="label">Chatbot / Virtual Assistant</div>
+                    </div>
+                    <div class="option-card" data-value="biometric" tabindex="0" role="radio" aria-checked="false">
+                        <div class="icon">👁️</div>
+                        <div class="label">Biometric Recognition</div>
+                    </div>
+                    <div class="option-card" data-value="credit_scoring" tabindex="0" role="radio" aria-checked="false">
+                        <div class="icon">💳</div>
+                        <div class="label">Credit Scoring</div>
+                    </div>
+                    <div class="option-card" data-value="cv_screening" tabindex="0" role="radio" aria-checked="false">
+                        <div class="icon">📄</div>
+                        <div class="label">CV / Resume Screening</div>
+                    </div>
+                    <div class="option-card" data-value="medical_diagnosis" tabindex="0" role="radio"
+                        aria-checked="false">
+                        <div class="icon">🩺</div>
+                        <div class="label">Medical Diagnosis</div>
+                    </div>
+                    <div class="option-card" data-value="content_generation" tabindex="0" role="radio"
+                        aria-checked="false">
+                        <div class="icon">✍️</div>
+                        <div class="label">Content Generation</div>
+                    </div>
+                    <div class="option-card" data-value="recommendation" tabindex="0" role="radio" aria-checked="false">
+                        <div class="icon">🎯</div>
+                        <div class="label">Recommendation Engine</div>
+                    </div>
+                    <div class="option-card" data-value="predictive_policing" tabindex="0" role="radio"
+                        aria-checked="false">
+                        <div class="icon">🚨</div>
+                        <div class="label">Predictive Policing</div>
+                    </div>
+                    <div class="option-card" data-value="social_scoring" tabindex="0" role="radio" aria-checked="false">
+                        <div class="icon">📊</div>
+                        <div class="label">Social Scoring</div>
+                    </div>
+                    <div class="option-card" data-value="fraud_detection" tabindex="0" role="radio"
+                        aria-checked="false">
+                        <div class="icon">🔍</div>
+                        <div class="label">Fraud Detection</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3: Autonomy Level -->
+            <div class="step-content" data-step="3">
+                <h2 class="step-title">Select Autonomy Level</h2>
+                <p class="step-description">How much decision-making authority does the AI have?</p>
+
+                <div class="options-grid" role="radiogroup" aria-label="Select autonomy level">
+                    <div class="option-card" data-value="assistant" tabindex="0" role="radio" aria-checked="false">
+                        <div class="icon">🤝</div>
+                        <div class="label">Human Assistant</div>
+                        <p style="font-size: 12px; color: var(--color-text-secondary); margin-top: 8px;">AI provides
+                            suggestions, human makes all decisions</p>
+                    </div>
+                    <div class="option-card" data-value="hitl" tabindex="0" role="radio" aria-checked="false">
+                        <div class="icon">👤</div>
+                        <div class="label">Human-in-the-Loop</div>
+                        <p style="font-size: 12px; color: var(--color-text-secondary); margin-top: 8px;">AI makes
+                            decisions, human reviews critical ones</p>
+                    </div>
+                    <div class="option-card" data-value="autonomous" tabindex="0" role="radio" aria-checked="false">
+                        <div class="icon">🤖</div>
+                        <div class="label">Autonomous Decision</div>
+                        <p style="font-size: 12px; color: var(--color-text-secondary); margin-top: 8px;">AI makes
+                            decisions without human intervention</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results -->
+            <div class="results" data-step="4">
+                <div id="resultContent"></div>
+            </div>
+
+            <!-- Navigation -->
+            <div class="step-navigation">
+                <button class="btn btn-secondary" id="prevBtn" onclick="previousStep()" disabled>← Previous</button>
+                <button class="btn btn-primary" id="nextBtn" onclick="nextStep()" disabled>Next →</button>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer" role="contentinfo">
+            <p>© 2025 PALO Framework. All rights reserved.</p>
+            <p style="margin-top: 8px;">
+                <a href="index.html">Home</a> |
+                <a href="PALO_FRIA.html">FRIA</a> |
+                <a href="PALO_ModelCanvasAI.html">Model Canvas</a> |
+                <a href="PALO_KPIGenerator.html">KPI Generator</a> |
+                <a href="accessibility.html">Accessibility</a>
+            </p>
+            <p style="margin-top: 8px; font-size: 11px; opacity: 0.7;">✓ EN 301549 Compliant | WCAG 2.1 AA | GDPR
+                Compliant</p>
+        </footer>
+    </div>
+
+    <script>
+        // State
+        let currentStep = 1;
+        const selections = {
+            sector: null,
+            function: null,
+            autonomy: null
+        };
+
+        // Risk Decision Matrix (based on PALO Section 3.3 & EU AI Act)
+        const riskMatrix = {
+            unacceptable: [
+                { function: 'social_scoring', sector: '*' },
+                { function: 'predictive_policing', sector: '*' }
+            ],
+            high: [
+                { function: 'cv_screening', sector: 'hr' },
+                { function: 'cv_screening', sector: '*' },
+                { function: 'credit_scoring', sector: 'finance' },
+                { function: 'credit_scoring', sector: '*' },
+                { function: 'medical_diagnosis', sector: 'healthcare' },
+                { function: 'medical_diagnosis', sector: '*' },
+                { function: 'biometric', sector: '*' },
+                { function: 'fraud_detection', sector: 'finance', autonomy: 'autonomous' }
+            ],
+            limited: [
+                { function: 'chatbot', sector: '*' },
+                { function: 'content_generation', sector: '*' },
+                { function: 'recommendation', sector: '*' }
+            ]
+        };
+
+        // Requirements by risk tier
+        const requirements = {
+            unacceptable: {
+                badge: '⛔ UNACCEPTABLE RISK',
+                class: 'unacceptable',
+                message: 'This AI application is prohibited under the EU AI Act.',
+                documents: [],
+                euReference: 'Article 5 - Prohibited Artificial Intelligence Practices'
+            },
+            high: {
+                badge: '🔴 HIGH RISK',
+                class: 'high',
+                message: 'This AI system requires comprehensive compliance measures.',
+                documents: [
+                    { name: 'PALO Comprehensive Impact Assessment', description: 'Full risk assessment per Phase 2 of PALO lifecycle' },
+                    { name: 'Risk Mitigation Plan', description: 'Documented strategies to address identified risks' },
+                    { name: 'Technical Documentation', description: 'Complete system documentation per Annex IV' },
+                    { name: 'Human Oversight Protocol', description: 'Procedures ensuring appropriate human control' },
+                    { name: 'Audit Trail System', description: 'Logging and monitoring capabilities' }
+                ],
+                euReference: 'Annex III - High-Risk AI Systems'
+            },
+            limited: {
+                badge: '🟡 LIMITED RISK',
+                class: 'limited',
+                message: 'This AI system has transparency obligations.',
+                documents: [
+                    { name: 'Transparency Declaration', description: 'Clear disclosure that users are interacting with AI' },
+                    { name: 'User Notification Protocol', description: 'How users are informed about AI involvement' },
+                    { name: 'PALO Ethical Screening Questionnaire', description: 'Basic ethical review per Phase 1' }
+                ],
+                euReference: 'Article 52 - Transparency Obligations'
+            },
+            minimal: {
+                badge: '🟢 MINIMAL RISK',
+                class: 'minimal',
+                message: 'This AI system has no specific regulatory requirements, but PALO best practices are recommended.',
+                documents: [
+                    { name: 'PALO Ethical Screening Questionnaire', description: 'Recommended ethical review per Phase 1' },
+                    { name: 'Voluntary Code of Conduct', description: 'Optional adherence to AI ethics guidelines' }
+                ],
+                euReference: 'Article 69 - Codes of Conduct'
+            }
+        };
+
+        // Calculate risk tier
+        function calculateRiskTier() {
+            const { sector, function: func, autonomy } = selections;
+
+            // Check unacceptable
+            for (const rule of riskMatrix.unacceptable) {
+                if (rule.function === func && (rule.sector === '*' || rule.sector === sector)) {
+                    return 'unacceptable';
+                }
+            }
+
+            // Check high risk
+            for (const rule of riskMatrix.high) {
+                if (rule.function === func && (rule.sector === '*' || rule.sector === sector)) {
+                    if (rule.autonomy && rule.autonomy !== autonomy) continue;
+                    return 'high';
+                }
+            }
+
+            // Check limited risk
+            for (const rule of riskMatrix.limited) {
+                if (rule.function === func && (rule.sector === '*' || rule.sector === sector)) {
+                    return 'limited';
+                }
+            }
+
+            // Autonomy level can elevate risk
+            if (autonomy === 'autonomous') {
+                return 'limited'; // At minimum limited if autonomous
+            }
+
+            return 'minimal';
+        }
+
+        // Render results
+        function renderResults() {
+            const tier = calculateRiskTier();
+            const req = requirements[tier];
+
+            let html = `
+                <div class="risk-badge ${req.class}">
+                    ${req.badge}
+                </div>
+                <p style="font-size: 16px; color: var(--color-text-secondary); margin-bottom: 24px;">
+                    ${req.message}
+                </p>
+
+                <div style="background: var(--color-surface); padding: 16px; border-radius: 10px; margin-bottom: 24px;">
+                    <strong>Your Selection:</strong>
+                    <p style="font-size: 14px; color: var(--color-text-secondary); margin-top: 8px;">
+                        Sector: <strong>${selections.sector}</strong> | 
+                        Function: <strong>${selections.function}</strong> | 
+                        Autonomy: <strong>${selections.autonomy}</strong>
+                    </p>
+                </div>
+            `;
+
+            if (tier === 'unacceptable') {
+                html += `
+                    <div style="background: rgba(124, 45, 18, 0.1); border: 2px solid var(--color-unacceptable); padding: 20px; border-radius: 10px;">
+                        <h3 style="color: var(--color-unacceptable); margin-bottom: 8px;">⛔ Prohibited Application</h3>
+                        <p style="font-size: 14px;">This type of AI system is explicitly prohibited under the EU AI Act and cannot be deployed in the European Union. Consider alternative approaches that do not fall under prohibited categories.</p>
+                    </div>
+                `;
+            } else {
+                html += `
+                    <div class="requirements-section">
+                        <h3 class="requirements-title">📋 Required Documentation</h3>
+                        ${req.documents.map(doc => `
+                            <div class="requirement-card">
+                                <h4>${doc.name}</h4>
+                                <p>${doc.description}</p>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+            }
+
+            html += `
+                <div class="eu-act-reference">
+                    <h4>🇪🇺 EU AI Act Reference</h4>
+                    <p>${req.euReference}</p>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn btn-primary" onclick="downloadReport()">📥 Download Report</button>
+                    <button class="btn btn-secondary" onclick="startOver()">🔄 Start Over</button>
+                    <a href="PALO_FRIA.html" class="btn btn-secondary" style="text-decoration: none;">🛡️ Start FRIA Assessment</a>
+                </div>
+            `;
+
+            document.getElementById('resultContent').innerHTML = html;
+        }
+
+        // Download report
+        function downloadReport() {
+            const tier = calculateRiskTier();
+            const req = requirements[tier];
+
+            let report = `# PALO Risk Tiering Assessment Report\n\n`;
+            report += `**Generated:** ${new Date().toISOString().slice(0, 10)}\n\n`;
+            report += `## Assessment Summary\n\n`;
+            report += `- **Sector:** ${selections.sector}\n`;
+            report += `- **AI Function:** ${selections.function}\n`;
+            report += `- **Autonomy Level:** ${selections.autonomy}\n\n`;
+            report += `## Risk Classification\n\n`;
+            report += `**${req.badge}**\n\n`;
+            report += `${req.message}\n\n`;
+            report += `## Required Documentation\n\n`;
+            req.documents.forEach(doc => {
+                report += `### ${doc.name}\n${doc.description}\n\n`;
+            });
+            report += `## EU AI Act Reference\n\n${req.euReference}\n\n`;
+            report += `---\n*Generated by PALO Framework Risk Tiering Calculator*\n`;
+
+            const blob = new Blob([report], { type: 'text/markdown' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `palo-risk-assessment-${new Date().toISOString().slice(0, 10)}.md`;
+            link.click();
+        }
+
+        // Start over
+        function startOver() {
+            currentStep = 1;
+            selections.sector = null;
+            selections.function = null;
+            selections.autonomy = null;
+
+            document.querySelectorAll('.option-card').forEach(card => {
+                card.classList.remove('selected');
+                card.setAttribute('aria-checked', 'false');
+            });
+
+            updateUI();
+        }
+
+        // Navigation
+        function nextStep() {
+            if (currentStep < 4) {
+                currentStep++;
+                if (currentStep === 4) {
+                    renderResults();
+                }
+                updateUI();
+            }
+        }
+
+        function previousStep() {
+            if (currentStep > 1) {
+                currentStep--;
+                updateUI();
+            }
+        }
+
+        function updateUI() {
+            // Update progress bar
+            document.querySelectorAll('.progress-step').forEach(step => {
+                const stepNum = parseInt(step.dataset.step);
+                step.classList.remove('active', 'completed');
+                if (stepNum === currentStep) {
+                    step.classList.add('active');
+                } else if (stepNum < currentStep) {
+                    step.classList.add('completed');
+                }
+            });
+
+            // Update step content
+            document.querySelectorAll('.step-content, .results').forEach(content => {
+                content.classList.remove('active');
+            });
+
+            if (currentStep === 4) {
+                document.querySelector('.results').classList.add('active');
+            } else {
+                document.querySelector(`.step-content[data-step="${currentStep}"]`).classList.add('active');
+            }
+
+            // Update buttons
+            document.getElementById('prevBtn').disabled = currentStep === 1;
+
+            const nextBtn = document.getElementById('nextBtn');
+            if (currentStep === 4) {
+                nextBtn.style.display = 'none';
+            } else {
+                nextBtn.style.display = 'block';
+                nextBtn.disabled = !isStepComplete(currentStep);
+                nextBtn.textContent = currentStep === 3 ? 'Calculate Risk →' : 'Next →';
+            }
+        }
+
+        function isStepComplete(step) {
+            if (step === 1) return selections.sector !== null;
+            if (step === 2) return selections.function !== null;
+            if (step === 3) return selections.autonomy !== null;
+            return true;
+        }
+
+        // Initialize option cards
+        document.querySelectorAll('.option-card').forEach(card => {
+            card.addEventListener('click', function () {
+                const parent = this.closest('.step-content');
+                const step = parseInt(parent.dataset.step);
+
+                // Remove selection from siblings
+                parent.querySelectorAll('.option-card').forEach(c => {
+                    c.classList.remove('selected');
+                    c.setAttribute('aria-checked', 'false');
+                });
+
+                // Select this card
+                this.classList.add('selected');
+                this.setAttribute('aria-checked', 'true');
+
+                // Store selection
+                const value = this.dataset.value;
+                if (step === 1) selections.sector = value;
+                if (step === 2) selections.function = value;
+                if (step === 3) selections.autonomy = value;
+
+                updateUI();
+            });
+
+            // Keyboard support
+            card.addEventListener('keydown', function (e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    this.click();
+                }
+            });
+        });
+
+        // Initial UI state
+        updateUI();
+    </script>
+</body>
+
+</html>

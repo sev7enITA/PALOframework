@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PALO Framework | Principled AI Lifecycle Orchestration</title>
+    <meta name="description"
+        content="PALO Framework - A comprehensive methodology for Principled AI Lifecycle Orchestration in Business. Aligning AI governance with ISO 42001, EU AI Act, and OECD principles for responsible AI.">
+
+    <!-- SEO and Trust Meta Tags -->
+    <meta name="keywords"
+        content="AI governance, AI ethics, responsible AI, ISO 42001, EU AI Act, OECD AI principles, AI lifecycle, AI risk management, PALO framework, AI compliance">
+    <meta name="author" content="PALO Framework">
+    <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow">
+    <link rel="canonical" href="https://paloframework.org/">
+
+    <!-- Organization/Business Identity -->
+    <meta name="classification" content="Business, Technology, AI Governance">
+    <meta name="category" content="Technology/Software/AI Ethics">
+    <meta name="rating" content="General">
+    <meta name="distribution" content="Global">
+    <meta name="revisit-after" content="7 days">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://paloframework.org/">
+    <meta property="og:title" content="PALO Framework | Principled AI Lifecycle Orchestration">
+    <meta property="og:description"
+        content="A comprehensive methodology for responsible AI governance aligned with ISO 42001, EU AI Act, and OECD principles.">
+    <meta property="og:image" content="https://paloframework.org/assets/logo.webp">
+    <meta property="og:site_name" content="PALO Framework">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://paloframework.org/">
+    <meta name="twitter:title" content="PALO Framework | Principled AI Lifecycle Orchestration">
+    <meta name="twitter:description"
+        content="A comprehensive methodology for responsible AI governance aligned with ISO 42001, EU AI Act, and OECD principles.">
+    <meta name="twitter:image" content="https://paloframework.org/assets/logo.webp">
+
+    <!-- Security and Trust Headers (via meta) -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/webp" href="assets/logo.webp">
+    <link rel="apple-touch-icon" href="assets/logo.webp">
+
+    <!-- RSS Feed -->
+    <link rel="alternate" type="application/rss+xml" title="PALO Framework News"
+        href="https://paloframework.org/feed.xml">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Custom Config for Tailwind colors matching PALO identity -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        palo: {
+                            teal: '#0d9488', // Teal-600
+                            dark: '#0f172a', // Slate-900
+                            light: '#f1f5f9', // Slate-100
+                            accent: '#f59e0b', // Amber-500
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        /* Glassmorphism for Nav */
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+        }
+
+        /* EN 301549 / WCAG 2.1 Focus Visible Styles */
+        *:focus-visible {
+            outline: 3px solid #0d9488;
+            outline-offset: 2px;
+        }
+
+        /* Ensure minimum touch target size of 44x44px */
+        button,
+        a,
+        input,
+        select,
+        textarea {
+            min-height: 44px;
+        }
+
+        /* Reduced motion for vestibular disorders */
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body class="text-slate-800 bg-white font-sans antialiased">
+
+    <!-- Skip Link for Accessibility -->
+    <a href="#main-content"
+        class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:bg-palo-teal focus:text-white focus:px-4 focus:py-2 focus:rounded-lg focus:shadow-lg focus:outline-none">
+        Skip to main content
+    </a>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-nav transition-all duration-300" id="navbar" role="navigation"
+        aria-label="Main navigation">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center gap-3">
+                    <!-- LOGO SECTION: Using PALO logo -->
+                    <img src="assets/logo.webp" alt="PALO Logo" class="w-10 h-10 rounded-lg shadow-md object-cover"
+                        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+
+                    <!-- Fallback Logo if image fails -->
+                    <div
+                        class="w-10 h-10 bg-palo-teal text-white rounded-lg hidden items-center justify-center font-bold text-xl shadow-lg">
+                        P</div>
+
+                    <span class="font-bold text-xl tracking-tight text-slate-800">PALO <span
+                            class="text-palo-teal">Framework</span></span>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#about" class="text-slate-600 hover:text-palo-teal font-medium transition-colors">Why
+                        PALO?</a>
+                    <a href="#principles"
+                        class="text-slate-600 hover:text-palo-teal font-medium transition-colors">Principles</a>
+                    <a href="#lifecycle" class="text-slate-600 hover:text-palo-teal font-medium transition-colors">The
+                        Lifecycle</a>
+                    <a href="#contact"
+                        class="text-slate-600 hover:text-palo-teal font-medium transition-colors">Contact</a>
+                    <a href="feed.xml"
+                        class="bg-palo-teal text-white px-4 py-2 rounded-full font-medium hover:bg-teal-700 transition-all shadow-md transform hover:-translate-y-0.5 flex items-center gap-2"
+                        aria-label="Subscribe to RSS Feed">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                            fill="currentColor">
+                            <circle cx="6.18" cy="17.82" r="2.18" />
+                            <path
+                                d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z" />
+                        </svg>
+                        RSS
+                    </a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-slate-600 hover:text-palo-teal focus:outline-none"
+                        aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobile-menu">
+                        <i class="fa-solid fa-bars text-2xl" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Panel -->
+        <div class="md:hidden hidden bg-white border-t border-slate-100" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 shadow-lg">
+                <a href="#about"
+                    class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-palo-teal hover:bg-slate-50">Why
+                    PALO?</a>
+                <a href="#principles"
+                    class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-palo-teal hover:bg-slate-50">Principles</a>
+                <a href="#lifecycle"
+                    class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-palo-teal hover:bg-slate-50">The
+                    Lifecycle</a>
+                <a href="#contact"
+                    class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-palo-teal hover:bg-slate-50">Contact</a>
+                <div class="border-t border-slate-200 my-2 pt-2">
+                    <span class="block px-3 py-1 text-xs font-bold text-slate-500 uppercase">Toolkit</span>
+                </div>
+                <a href="PALO_FRIA.html"
+                    class="block px-3 py-2 rounded-md text-base font-medium text-amber-600 font-bold">🛡️ FRIA
+                    Assessment</a>
+                <a href="PALO_ModelCanvasAI.html"
+                    class="block px-3 py-2 rounded-md text-base font-medium text-palo-teal font-bold">🎨 Model
+                    Canvas</a>
+                <a href="PALO_RiskTiering.html"
+                    class="block px-3 py-2 rounded-md text-base font-medium text-yellow-600 font-bold">⚖️ Risk
+                    Calculator</a>
+                <a href="PALO_KPIGenerator.html"
+                    class="block px-3 py-2 rounded-md text-base font-medium text-purple-600 font-bold">📊 KPI
+                    Generator</a>
+                <a href="PALO_HumanAgencyRiskMap.html"
+                    class="block px-3 py-2 rounded-md text-base font-medium text-rose-600 font-bold">🧠 Agency Risk
+                    Map</a>
+                <a href="PALO_TechTrends2026.html"
+                    class="block px-3 py-2 rounded-md text-base font-medium text-indigo-600 font-bold">📊 2026 Tech
+                    Trends</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <main id="main-content" role="main">
+        <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+            <!-- Background Decor -->
+            <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-teal-100 rounded-full blur-3xl opacity-50"
+                aria-hidden="true"></div>
+            <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-72 h-72 bg-blue-100 rounded-full blur-3xl opacity-50"
+                aria-hidden="true">
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="text-center max-w-4xl mx-auto">
+                    <div
+                        class="inline-flex items-center px-4 py-2 rounded-full bg-teal-50 border border-teal-300 text-teal-800 text-sm font-semibold mb-8 animate-fade-in-up">
+                        <span class="flex h-2 w-2 rounded-full bg-palo-teal mr-2"></span>
+                        Version 1.0 Available Now
+                    </div>
+                    <h1 class="text-5xl md:text-7xl font-extrabold text-slate-900 tracking-tight leading-tight mb-8">
+                        Orchestrating AI with <br>
+                        <span
+                            class="text-transparent bg-clip-text bg-gradient-to-r from-palo-teal to-blue-600">Principled
+                            Responsibility</span>
+                    </h1>
+                    <p class="mt-4 text-xl text-slate-600 mb-10 max-w-2xl mx-auto leading-relaxed">
+                        Move beyond "ROI Myopia". The PALO Framework integrates ISO 42001 standards, OECD principles,
+                        and
+                        the EU AI Act into a unified operational model for business.
+                    </p>
+                    <div class="flex flex-col sm:flex-row justify-center gap-4">
+                        <a href="#demo"
+                            class="px-8 py-4 bg-teal-700 text-white rounded-lg font-bold text-lg shadow-lg hover:bg-teal-800 transition-all transform hover:-translate-y-1">
+                            Watch Demo
+                        </a>
+                        <a href="PALO_ModelCanvasAI.html"
+                            class="px-8 py-4 bg-slate-800 text-white rounded-lg font-bold text-lg shadow-lg hover:bg-palo-teal transition-all transform hover:-translate-y-1">
+                            <i class="fa-solid fa-palette mr-2" aria-hidden="true"></i>Model Canvas
+                        </a>
+                        <a href="PALO_FRIA.html"
+                            class="px-8 py-4 bg-amber-700 text-white rounded-lg font-bold text-lg shadow-lg hover:bg-amber-800 transition-all transform hover:-translate-y-1">
+                            <i class="fa-solid fa-shield-halved mr-2" aria-hidden="true"></i>FRIA
+                        </a>
+                    </div>
+                    <div class="flex flex-col sm:flex-row justify-center gap-4 mt-4">
+                        <a href="PALO_RiskTiering.html"
+                            class="px-6 py-3 bg-white text-slate-700 border-2 border-slate-200 rounded-lg font-semibold shadow-sm hover:border-palo-teal hover:text-palo-teal transition-all">
+                            <i class="fa-solid fa-scale-balanced mr-2" aria-hidden="true"></i>Risk Calculator
+                        </a>
+                        <a href="PALO_KPIGenerator.html"
+                            class="px-6 py-3 bg-white text-slate-700 border-2 border-slate-200 rounded-lg font-semibold shadow-sm hover:border-palo-teal hover:text-palo-teal transition-all">
+                            <i class="fa-solid fa-chart-line mr-2" aria-hidden="true"></i>KPI Generator
+                        </a>
+                        <a href="PALO_ComparisonTool.html"
+                            class="px-6 py-3 bg-white text-slate-700 border-2 border-slate-200 rounded-lg font-semibold shadow-sm hover:border-palo-teal hover:text-palo-teal transition-all">
+                            <i class="fa-solid fa-code-compare mr-2" aria-hidden="true"></i>Compare Tool
+                        </a>
+                        <a href="PALO_HumanAgencyRiskMap.html"
+                            class="px-6 py-3 bg-rose-600 text-white border-2 border-rose-600 rounded-lg font-semibold shadow-sm hover:bg-rose-700 hover:border-rose-700 transition-all">
+                            <i class="fa-solid fa-brain mr-2" aria-hidden="true"></i>Human Agency Risk Map
+                        </a>
+                        <a href="PALO_TechTrends2026.html"
+                            class="px-6 py-3 bg-indigo-600 text-white border-2 border-indigo-600 rounded-lg font-semibold shadow-sm hover:bg-indigo-700 hover:border-indigo-700 transition-all">
+                            <i class="fa-solid fa-chart-line mr-2" aria-hidden="true"></i>2026 Tech Trends
+                        </a>
+                    </div>
+
+                    <!-- Trust Badges -->
+                    <div
+                        class="mt-12 pt-8 border-t border-slate-100 flex flex-wrap justify-center gap-8 transition-all duration-500">
+                        <div class="flex items-center gap-2 font-semibold text-slate-600"><i
+                                class="fa-solid fa-check-circle"></i> ISO 42001 Aligned</div>
+                        <div class="flex items-center gap-2 font-semibold text-slate-600"><i
+                                class="fa-solid fa-check-circle"></i> EU AI Act Ready</div>
+                        <div class="flex items-center gap-2 font-semibold text-slate-600"><i
+                                class="fa-solid fa-check-circle"></i> OECD Principles</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- The Problem (ROI Myopia) -->
+        <section id="about" class="py-24 bg-slate-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                    <div class="relative">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-r from-teal-500 to-blue-600 rounded-2xl transform rotate-3 opacity-20">
+                        </div>
+                        <div class="relative bg-white p-8 rounded-2xl shadow-xl border border-slate-100">
+                            <div class="flex items-center mb-6">
+                                <div
+                                    class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center text-red-500 text-2xl mr-4">
+                                    <i class="fa-solid fa-glasses"></i>
+                                </div>
+                                <h2 class="text-2xl font-bold text-slate-800">The Problem: "ROI Myopia"</h2>
+                            </div>
+                            <p class="text-slate-600 mb-6">
+                                Traditional frameworks focus narrowly on immediate financial returns, ignoring the
+                                "hidden
+                                iceberg" of risks: algorithmic bias, reputational damage, and regulatory penalties.
+                            </p>
+                            <ul class="space-y-3">
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-xmark text-red-500 mt-1 mr-3"></i>
+                                    <span class="text-slate-700">Ignoring long-term ethical debt</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-xmark text-red-500 mt-1 mr-3"></i>
+                                    <span class="text-slate-700">Lack of standardized governance</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-xmark text-red-500 mt-1 mr-3"></i>
+                                    <span class="text-slate-700">Reactive instead of proactive compliance</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div>
+                        <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
+                            Why PALO? <br>
+                            <span class="text-palo-teal">Principled. Actionable. Live.</span>
+                        </h2>
+                        <p class="text-lg text-slate-600 mb-8">
+                            PALO isn't just a checklist. It's a comprehensive <strong>Lifecycle Orchestration</strong>
+                            paradigm. We convert abstract ethical principles into concrete KPIs, decision gates, and
+                            operational realities.
+                        </p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div class="flex flex-col">
+                                <span class="text-4xl font-bold text-palo-teal mb-2">360°</span>
+                                <span class="text-sm font-semibold text-slate-500 uppercase">Evaluation</span>
+                                <p class="text-sm text-slate-600 mt-1">Ethical, Technical, Business & Legal.</p>
+                            </div>
+                            <div class="flex flex-col">
+                                <span class="text-4xl font-bold text-blue-600 mb-2">5</span>
+                                <span class="text-sm font-semibold text-slate-500 uppercase">Phases</span>
+                                <p class="text-sm text-slate-600 mt-1">From Ideation to Decommissioning.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- NEW SECTION: PALO IN ACTION (Video & Animation) -->
+        <section id="demo" class="py-24 bg-slate-900 text-white relative">
+            <div
+                class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10">
+            </div>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="text-center mb-12">
+                    <span class="text-palo-teal font-bold tracking-wider uppercase text-sm">See It In Action</span>
+                    <h2 class="text-3xl md:text-4xl font-bold mt-2">The Framework Explained</h2>
+                    <p class="mt-4 text-slate-600 max-w-2xl mx-auto">Discover how PALO integrates ancient wisdom with
+                        modern
+                        AI governance.</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <!-- Video Container -->
+                    <div
+                        class="rounded-2xl overflow-hidden shadow-2xl border border-slate-700 transform hover:scale-[1.01] transition-transform duration-300">
+                        <div class="relative pb-[56.25%] h-0">
+                            <iframe class="absolute top-0 left-0 w-full h-full"
+                                src="https://www.youtube.com/embed/7Zvq78Pc8zU?rel=0"
+                                title="The PALO Framework Feature Trailer" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+                            </iframe>
+                        </div>
+                    </div>
+
+                    <!-- Animated Process Flow -->
+                    <div class="space-y-8">
+                        <div class="flex items-start space-x-4 animate-fade-in-up" style="animation-delay: 0.1s;">
+                            <div
+                                class="flex-shrink-0 w-10 h-10 bg-palo-teal rounded-full flex items-center justify-center font-bold">
+                                1</div>
+                            <div>
+                                <h3 class="text-xl font-bold text-white">Ideation & Screening</h3>
+                                <p class="text-slate-600 mt-1">Before coding, we screen for ethical red flags. Is
+                                    the
+                                    project aligned with human values?</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4 animate-fade-in-up" style="animation-delay: 0.2s;">
+                            <div
+                                class="flex-shrink-0 w-10 h-10 bg-slate-700 rounded-full flex items-center justify-center font-bold border border-slate-600">
+                                2</div>
+                            <div>
+                                <h3 class="text-xl font-bold text-white">Ethical KPIs</h3>
+                                <p class="text-slate-600 mt-1">We translate "fairness" into measurable metrics like
+                                    Demographic Parity Difference.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4 animate-fade-in-up" style="animation-delay: 0.3s;">
+                            <div
+                                class="flex-shrink-0 w-10 h-10 bg-slate-700 rounded-full flex items-center justify-center font-bold border border-slate-600">
+                                3</div>
+                            <div>
+                                <h3 class="text-xl font-bold text-white">Responsible Deployment</h3>
+                                <p class="text-slate-600 mt-1">Continuous monitoring ensures the AI remains aligned
+                                    with
+                                    its
+                                    original ethical intent.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Core Principles Grid -->
+        <section id="principles" class="py-24 bg-white relative overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="text-center mb-16">
+                    <span class="text-teal-700 font-bold tracking-wider uppercase text-sm">Core Tenets</span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mt-2">Built on Universal Values</h2>
+                    <p class="mt-4 text-slate-600 max-w-2xl mx-auto">PALO synthesizes global standards into actionable
+                        business logic.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Card 1 -->
+                    <div
+                        class="group p-8 rounded-2xl bg-white border border-slate-100 shadow-lg hover:shadow-xl hover:border-teal-200 transition-all duration-300">
+                        <div
+                            class="w-14 h-14 bg-teal-50 rounded-xl flex items-center justify-center text-palo-teal text-2xl mb-6 group-hover:bg-palo-teal group-hover:text-white transition-colors">
+                            <i class="fa-solid fa-scale-balanced"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800 mb-3">Fairness & Non-Discrimination</h3>
+                        <p class="text-slate-600 leading-relaxed">
+                            Proactive bias detection and mitigation strategies embedded from the very first data
+                            collection
+                            phase.
+                        </p>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div
+                        class="group p-8 rounded-2xl bg-white border border-slate-100 shadow-lg hover:shadow-xl hover:border-teal-200 transition-all duration-300">
+                        <div
+                            class="w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600 text-2xl mb-6 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                            <i class="fa-solid fa-users-viewfinder"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800 mb-3">Human Agency & Oversight</h3>
+                        <p class="text-slate-600 leading-relaxed">
+                            Ensuring AI empowers humans. Implementing "Human-in-the-loop" protocols for critical
+                            decisions.
+                        </p>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div
+                        class="group p-8 rounded-2xl bg-white border border-slate-100 shadow-lg hover:shadow-xl hover:border-teal-200 transition-all duration-300">
+                        <div
+                            class="w-14 h-14 bg-amber-50 rounded-xl flex items-center justify-center text-amber-500 text-2xl mb-6 group-hover:bg-amber-600 group-hover:text-white transition-colors">
+                            <i class="fa-solid fa-leaf"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800 mb-3">Societal & Environmental Well-being</h3>
+                        <p class="text-slate-600 leading-relaxed">
+                            Moving beyond "do no harm" to actively measuring carbon footprints and societal impact.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- The 5 Phases Roadmap -->
+        <section id="lifecycle" class="py-24 bg-slate-50 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-slate-900">The PALO Lifecycle</h2>
+                    <p class="mt-4 text-slate-600 max-w-2xl mx-auto">A structured roadmap from ideation to responsible
+                        retirement.</p>
+                </div>
+
+                <div class="relative">
+                    <!-- Connecting Line (Desktop) -->
+                    <div class="hidden md:block absolute top-1/2 left-0 w-full h-1 bg-slate-300 -translate-y-1/2 z-0">
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-5 gap-8 relative z-10">
+                        <!-- Phase 1 -->
+                        <div class="flex flex-col items-center text-center group">
+                            <div
+                                class="w-12 h-12 bg-white group-hover:bg-palo-teal group-hover:text-white transition-colors rounded-full flex items-center justify-center font-bold text-lg mb-4 border-4 border-slate-200 shadow-sm z-10">
+                                1</div>
+                            <h3 class="font-bold text-lg mb-2 text-slate-800">Ideation & Screening</h3>
+                            <p class="text-sm text-slate-500">Ethical red flags check & strategic alignment.</p>
+                        </div>
+                        <!-- Phase 2 -->
+                        <div class="flex flex-col items-center text-center group">
+                            <div
+                                class="w-12 h-12 bg-white group-hover:bg-palo-teal group-hover:text-white transition-colors rounded-full flex items-center justify-center font-bold text-lg mb-4 border-4 border-slate-200 shadow-sm z-10">
+                                2</div>
+                            <h3 class="font-bold text-lg mb-2 text-slate-800">Assessment & Planning</h3>
+                            <p class="text-sm text-slate-500">ISO 42005 Impact Assessment & Risk Tiering.</p>
+                        </div>
+                        <!-- Phase 3 -->
+                        <div class="flex flex-col items-center text-center group">
+                            <div
+                                class="w-12 h-12 bg-white group-hover:bg-palo-teal group-hover:text-white transition-colors rounded-full flex items-center justify-center font-bold text-lg mb-4 border-4 border-slate-200 shadow-sm z-10">
+                                3</div>
+                            <h3 class="font-bold text-lg mb-2 text-slate-800">Dev & Validation</h3>
+                            <p class="text-sm text-slate-500">Ethical-by-design & bias mitigation.</p>
+                        </div>
+                        <!-- Phase 4 -->
+                        <div class="flex flex-col items-center text-center group">
+                            <div
+                                class="w-12 h-12 bg-white group-hover:bg-palo-teal group-hover:text-white transition-colors rounded-full flex items-center justify-center font-bold text-lg mb-4 border-4 border-slate-200 shadow-sm z-10">
+                                4</div>
+                            <h3 class="font-bold text-lg mb-2 text-slate-800">Deployment</h3>
+                            <p class="text-sm text-slate-500">Continuous monitoring & feedback loops.</p>
+                        </div>
+                        <!-- Phase 5 -->
+                        <div class="flex flex-col items-center text-center group">
+                            <div
+                                class="w-12 h-12 bg-white group-hover:bg-palo-teal group-hover:text-white transition-colors rounded-full flex items-center justify-center font-bold text-lg mb-4 border-4 border-slate-200 shadow-sm z-10">
+                                5</div>
+                            <h3 class="font-bold text-lg mb-2 text-slate-800">Decommissioning</h3>
+                            <p class="text-sm text-slate-500">Responsible end-of-life & data disposal.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MODEL CANVAS AI SECTION -->
+        <section id="model-canvas"
+            class="py-24 bg-gradient-to-br from-palo-teal to-teal-800 text-white relative overflow-hidden">
+            <!-- Decoration -->
+            <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10">
+            </div>
+
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="text-center mb-12">
+                    <div
+                        class="inline-block bg-white/20 backdrop-blur-sm px-4 py-1 rounded-full text-sm font-semibold mb-6">
+                        ✨ New Tool Available
+                    </div>
+                    <h2 class="text-4xl md:text-5xl font-extrabold mb-4">PALO Model Canvas AI</h2>
+                    <p class="text-xl text-teal-100 max-w-3xl mx-auto">
+                        A comprehensive evaluation framework for responsible AI use cases. Assess risks, ensure
+                        compliance,
+                        and make informed decisions aligned with global standards.
+                    </p>
+                </div>
+
+                <!-- Features Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                    <div
+                        class="bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/20 hover:bg-white/20 transition-all">
+                        <div class="text-3xl mb-4">🎯</div>
+                        <h3 class="text-lg font-bold mb-2">Strategic Alignment</h3>
+                        <p class="text-teal-100 text-sm">Evaluate AI projects against organizational objectives and
+                            societal
+                            well-being.</p>
+                    </div>
+                    <div
+                        class="bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/20 hover:bg-white/20 transition-all">
+                        <div class="text-3xl mb-4">⚖️</div>
+                        <h3 class="text-lg font-bold mb-2">Risk Assessment</h3>
+                        <p class="text-teal-100 text-sm">Dynamic benchmarking based on EU AI Act risk tiers and PALO
+                            framework metrics.</p>
+                    </div>
+                    <div
+                        class="bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/20 hover:bg-white/20 transition-all">
+                        <div class="text-3xl mb-4">📊</div>
+                        <h3 class="text-lg font-bold mb-2">Integrated KPIs</h3>
+                        <p class="text-teal-100 text-sm">Track technical, business, and ethical KPIs with real-time
+                            compliance scoring.</p>
+                    </div>
+                    <div
+                        class="bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/20 hover:bg-white/20 transition-all">
+                        <div class="text-3xl mb-4">🛡️</div>
+                        <h3 class="text-lg font-bold mb-2">Standards Mapping</h3>
+                        <p class="text-teal-100 text-sm">Aligned with ISO 42001, ISO 42005, OECD AI Principles, and NIST
+                            AI
+                            RMF.</p>
+                    </div>
+                </div>
+
+                <!-- CTA -->
+                <div class="text-center">
+                    <a href="PALO_ModelCanvasAI.html"
+                        class="inline-flex items-center bg-white text-teal-800 font-bold text-lg px-8 py-4 rounded-full hover:bg-teal-50 hover:scale-105 transition-all shadow-2xl">
+                        <i class="fa-solid fa-rocket mr-3"></i>
+                        Launch Model Canvas
+                    </a>
+                    <p class="mt-4 text-teal-200 text-sm">Free to use • No registration required • Export your analysis
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- NEW SECTION: FRIA TOOL -->
+        <section id="fria"
+            class="py-24 bg-gradient-to-br from-slate-800 via-slate-900 to-slate-950 text-white relative overflow-hidden">
+            <!-- Background Pattern -->
+            <div class="absolute inset-0 opacity-10">
+                <div class="absolute top-0 left-0 w-96 h-96 bg-amber-600 rounded-full filter blur-3xl"></div>
+                <div class="absolute bottom-0 right-0 w-80 h-80 bg-red-500 rounded-full filter blur-3xl"></div>
+            </div>
+
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="text-center mb-12">
+                    <div
+                        class="inline-block bg-slate-700 px-4 py-1 rounded-full text-sm font-semibold mb-6 text-yellow-300">
+                        🛡️ EU AI Act Compliant
+                    </div>
+                    <h2 class="text-4xl md:text-5xl font-extrabold mb-4">Fundamental Rights Impact Assessment</h2>
+                    <p class="text-xl text-gray-100 max-w-3xl mx-auto">
+                        The mandatory assessment tool for high-risk AI systems under EU AI Act Article 27.
+                        Evaluate impacts on all 51 fundamental rights from the EU Charter.
+                    </p>
+                </div>
+
+                <!-- What is FRIA -->
+                <div class="bg-white/5 backdrop-blur-md rounded-2xl p-8 border border-white/10 mb-12">
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-2xl font-bold mb-4 text-yellow-300">What is FRIA?</h3>
+                            <p class="text-slate-300 mb-4">
+                                A <strong>Fundamental Rights Impact Assessment (FRIA)</strong> is a systematic
+                                evaluation
+                                required under Article 27 of the EU AI Act for deployers of high-risk AI systems.
+                            </p>
+                            <p class="text-slate-300">
+                                It identifies, analyzes, and documents how an AI system may affect the fundamental
+                                rights
+                                enshrined in the EU Charter, including dignity, privacy, non-discrimination, and fair
+                                trial.
+                            </p>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold mb-4 text-amber-500">Why is it mandatory?</h3>
+                            <ul class="space-y-3 text-slate-300">
+                                <li class="flex items-start gap-3">
+                                    <span class="text-amber-500">⚖️</span>
+                                    <span><strong>Legal Requirement:</strong> EU AI Act Article 27 mandates FRIA for
+                                        high-risk systems</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="text-amber-500">🏛️</span>
+                                    <span><strong>Public Sector:</strong> Required for public authorities and critical
+                                        services</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="text-amber-500">📋</span>
+                                    <span><strong>Accountability:</strong> Documents due diligence and risk mitigation
+                                        efforts</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Features Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                    <div
+                        class="bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/20 hover:bg-white/20 transition-all">
+                        <div class="text-3xl mb-4">📜</div>
+                        <h3 class="text-lg font-bold mb-2">51 EU Charter Rights</h3>
+                        <p class="text-slate-300 text-sm">Complete coverage of all fundamental rights from the EU
+                            Charter of
+                            Fundamental Rights.</p>
+                    </div>
+                    <div
+                        class="bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/20 hover:bg-white/20 transition-all">
+                        <div class="text-3xl mb-4">🎯</div>
+                        <h3 class="text-lg font-bold mb-2">Scenario-Based Analysis</h3>
+                        <p class="text-slate-300 text-sm">Identify up to 5 impact scenarios with affected groups and
+                            root
+                            cause analysis.</p>
+                    </div>
+                    <div
+                        class="bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/20 hover:bg-white/20 transition-all">
+                        <div class="text-3xl mb-4">📊</div>
+                        <h3 class="text-lg font-bold mb-2">Risk Prioritization</h3>
+                        <p class="text-slate-300 text-sm">Automatic severity × likelihood calculation with visual risk
+                            matrix.</p>
+                    </div>
+                    <div
+                        class="bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/20 hover:bg-white/20 transition-all">
+                        <div class="text-3xl mb-4">📥</div>
+                        <h3 class="text-lg font-bold mb-2">Import & Export</h3>
+                        <p class="text-slate-300 text-sm">Save your assessment, resume later, or download a
+                            comprehensive
+                            report.</p>
+                    </div>
+                </div>
+
+                <!-- CTA -->
+                <div class="text-center">
+                    <a href="PALO_FRIA.html"
+                        class="inline-flex items-center bg-amber-500 text-slate-900 font-bold text-lg px-8 py-4 rounded-full hover:bg-amber-400 hover:scale-105 transition-all shadow-2xl">
+                        <i class="fa-solid fa-shield-halved mr-3"></i>
+                        Start FRIA Assessment
+                    </a>
+                    <p class="mt-4 text-slate-600 text-sm">Free online tool • Client-side processing • Your data stays
+                        local
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- NEW SECTION: CONTACT FORM -->
+        <section id="contact" class="py-24 bg-white border-t border-slate-100">
+            <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- NEW SECTION: CONTACT (UPDATED) -->
+                <section id="contact" class="py-24 bg-white border-t border-slate-100">
+                    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div class="text-center mb-12">
+                            <h2 class="text-3xl font-bold text-slate-900">Get in Touch</h2>
+                            <p class="mt-4 text-slate-600">Interested in adopting the PALO Framework? Connect with us
+                                directly.</p>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <!-- Email Card -->
+                            <a href="mailto:info@paloframework.org"
+                                class="group flex flex-col items-center p-10 bg-slate-50 rounded-2xl border border-slate-200 hover:border-palo-teal hover:shadow-lg transition-all duration-300">
+                                <div
+                                    class="w-16 h-16 bg-white rounded-full flex items-center justify-center text-3xl text-palo-teal shadow-sm mb-6 group-hover:scale-110 transition-transform">
+                                    <i class="fa-solid fa-envelope"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-slate-800 mb-2">Email Us</h3>
+                                <p class="text-slate-500 mb-4 text-sm">For general inquiries and implementation support.
+                                </p>
+                                <span
+                                    class="text-teal-700 font-bold group-hover:underline">info@paloframework.org</span>
+                            </a>
+
+                            <!-- LinkedIn Card -->
+                            <a href="https://www.linkedin.com/in/fdegni/" target="_blank" rel="noopener noreferrer"
+                                class="group flex flex-col items-center p-10 bg-slate-50 rounded-2xl border border-slate-200 hover:border-[#0077b5] hover:shadow-lg transition-all duration-300">
+                                <div
+                                    class="w-16 h-16 bg-white rounded-full flex items-center justify-center text-3xl text-[#0077b5] shadow-sm mb-6 group-hover:scale-110 transition-transform">
+                                    <i class="fa-brands fa-linkedin"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-slate-800 mb-2">Connect on LinkedIn</h3>
+                                <p class="text-slate-500 mb-4 text-sm">Follow Fabrizio Degni for updates and insights.
+                                </p>
+                                <span class="text-[#0077b5] font-bold group-hover:underline">View Profile <i
+                                        class="fa-solid fa-arrow-up-right-from-square ml-1 text-xs"></i></span>
+                            </a>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Changelog Section -->
+                <section id="changelog" class="py-16 bg-slate-100">
+                    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div class="text-center mb-12">
+                            <h2 class="text-3xl font-extrabold text-slate-800 mb-4">📋 Changelog</h2>
+                            <p class="text-slate-600">Recent updates and new features</p>
+                        </div>
+
+                        <div class="space-y-6">
+                            <!-- January 2026 Entry -->
+                            <div class="bg-white rounded-xl p-6 shadow-sm border-2 border-rose-200">
+                                <div class="flex items-center gap-3 mb-4">
+                                    <span class="bg-rose-600 text-white text-xs font-bold px-3 py-1 rounded-full">2026
+                                        SPOTLIGHT</span>
+                                    <span class="text-lg font-bold text-slate-800">January 2026</span>
+                                </div>
+                                <ul class="space-y-3 text-slate-600">
+                                    <li class="flex items-start gap-3">
+                                        <span class="text-rose-600">🧠</span>
+                                        <span><strong>Human Agency Risk Map:</strong> New observatory tracking 18
+                                            activities
+                                            humans are delegating to AI, with PALO mitigation strategies and
+                                            psychological
+                                            impact analysis for the age of automation</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <span class="text-indigo-600">📊</span>
+                                        <span><strong>2026 Tech Trends Observatory:</strong> Comprehensive analysis of
+                                            technology predictions from McKinsey, BCG, Accenture, PwC, EY, KPMG, and
+                                            Gartner with PALO governance impact assessments</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <!-- December 2025 Entry -->
+                            <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-200">
+                                <div class="flex items-center gap-3 mb-4">
+                                    <span
+                                        class="bg-amber-700 text-white text-xs font-bold px-3 py-1 rounded-full">NEW</span>
+                                    <span class="text-lg font-bold text-slate-800">December 2025</span>
+                                </div>
+                                <ul class="space-y-3 text-slate-600">
+                                    <li class="flex items-start gap-3">
+                                        <span class="text-palo-teal">⚖️</span>
+                                        <span><strong>Risk Tiering Calculator:</strong> 3-step wizard to classify AI use
+                                            cases into EU AI Act risk tiers (Minimal, Limited, High, Unacceptable) with
+                                            required documentation guidance</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <span class="text-palo-teal">📊</span>
+                                        <span><strong>KPI Generator:</strong> Generate personalized Technical, Business,
+                                            and Ethical KPIs based on PALO Table 2 with export to CSV/Markdown</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <span class="text-palo-teal">🛡️</span>
+                                        <span><strong>FRIA Module:</strong> Interactive Fundamental Rights Impact
+                                            Assessment
+                                            tool for EU AI Act Article 27 compliance with 51 EU Charter rights, scenario
+                                            analysis, and risk matrix</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <span class="text-palo-teal">♿</span>
+                                        <span><strong>Accessibility:</strong> Full WCAG 2.1 AA and EN 301549 compliance
+                                            across all pages with accessibility statement</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <span class="text-palo-teal">🔍</span>
+                                        <span><strong>SEO & Trust:</strong> Enhanced meta tags, Open Graph, robots.txt,
+                                            sitemap.xml, and security.txt for better categorization</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <span class="text-palo-teal">📡</span>
+                                        <span><strong>RSS Feed:</strong> Subscribe to PALO news and updates via RSS at
+                                            <a href="feed.xml"
+                                                class="text-palo-teal hover:underline">feed.xml</a></span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-200">
+                                <div class="flex items-center gap-3 mb-4">
+                                    <span
+                                        class="bg-teal-700 text-white text-xs font-bold px-3 py-1 rounded-full">UPDATE</span>
+                                    <span class="text-lg font-bold text-slate-800">November 2025</span>
+                                </div>
+                                <ul class="space-y-3 text-slate-600">
+                                    <li class="flex items-start gap-3">
+                                        <span class="text-palo-teal">🎨</span>
+                                        <span><strong>Model Canvas AI:</strong> Enhanced wizard mode, use case
+                                            templates,
+                                            import/export functionality, and dynamic risk assessment</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <span class="text-palo-teal">⚖️</span>
+                                        <span><strong>Comparison Tool:</strong> Side-by-side assessment comparison with
+                                            visual scoring</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <span class="text-palo-teal">📱</span>
+                                        <span><strong>Responsive Design:</strong> Mobile-optimized layouts across all
+                                            tools</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-200">
+                                <div class="flex items-center gap-3 mb-4">
+                                    <span
+                                        class="bg-slate-500 text-white text-xs font-bold px-3 py-1 rounded-full">LAUNCH</span>
+                                    <span class="text-lg font-bold text-slate-800">October 2025</span>
+                                </div>
+                                <ul class="space-y-3 text-slate-600">
+                                    <li class="flex items-start gap-3">
+                                        <span class="text-palo-teal">🚀</span>
+                                        <span><strong>Initial Launch:</strong> PALO Framework website with Model Canvas
+                                            AI
+                                            tool for responsible AI governance</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <span class="text-palo-teal">📚</span>
+                                        <span><strong>Documentation:</strong> PALO Principles, Lifecycle stages, and KPI
+                                            framework</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-50 border-t border-slate-200 pt-16 pb-8" role="contentinfo">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-8">
+                <div class="flex items-center gap-2 mb-4 md:mb-0">
+                    <img src="assets/logo.webp" alt="PALO Logo" class="w-8 h-8 rounded bg-palo-teal"
+                        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                    <div class="w-8 h-8 bg-palo-teal text-white rounded hidden items-center justify-center font-bold">
+                        P</div>
+                    <span class="font-bold text-lg text-slate-800">PALO Framework</span>
+                </div>
+                <div class="flex gap-6 text-sm text-slate-600 mb-4 md:mb-0 flex-wrap justify-center">
+                    <a href="privacy-policy.html" class="hover:text-palo-teal transition-colors">Privacy
+                        Policy</a>
+                    <a href="security-policy.html" class="hover:text-palo-teal transition-colors">Security
+                        Policy</a>
+                    <a href="accessibility.html" class="hover:text-palo-teal transition-colors">Accessibility</a>
+                    <a href="mailto:info@paloframework.org" class="hover:text-palo-teal transition-colors">Contact</a>
+                    <a href="feed.xml" class="hover:text-palo-teal transition-colors flex items-center gap-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                            fill="currentColor">
+                            <circle cx="6.18" cy="17.82" r="2.18" />
+                            <path
+                                d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z" />
+                        </svg>
+                        RSS Feed
+                    </a>
+                </div>
+            </div>
+
+            <!-- Accessibility & Compliance -->
+            <div
+                class="flex flex-col md:flex-row justify-center items-center gap-6 py-6 border-t border-slate-200 mb-6">
+                <a href="https://www.w3.org/WAI/WCAG21/quickref/" target="_blank" rel="noopener noreferrer"
+                    class="flex items-center gap-3 px-4 py-2 bg-white rounded-lg border border-slate-200 hover:border-palo-teal transition-colors"
+                    aria-label="Learn about WCAG 2.1 Level AA accessibility guidelines">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                        stroke="#21808D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        aria-hidden="true">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 16v-4"></path>
+                        <path d="M12 8h.01"></path>
+                    </svg>
+                    <div class="text-left">
+                        <div class="text-xs font-semibold text-teal-700">WCAG 2.1 Level AA</div>
+                        <div class="text-xs text-slate-500">Accessibility Compliant</div>
+                    </div>
+                </a>
+                <div class="flex items-center gap-3 px-4 py-2 bg-white rounded-lg border border-slate-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+                        stroke="#21808D" stroke-width="2" aria-hidden="true">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                    </svg>
+                    <div class="text-left">
+                        <div class="text-xs font-semibold text-teal-700">GDPR Compliant</div>
+                        <div class="text-xs text-slate-500">Privacy Protected</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center text-slate-500 text-sm border-t border-slate-200 pt-6">
+                © 2025 Fabrizio Degni & PALO Framework. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // 1. Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // 2. Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('shadow-md');
+            } else {
+                nav.classList.remove('shadow-md');
+            }
+        });
+    </script>
+
+    <!-- JSON-LD Structured Data for Organization -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "PALO Framework",
+        "alternateName": "Principled AI Lifecycle Orchestration",
+        "url": "https://paloframework.org",
+        "logo": "https://paloframework.org/assets/logo.webp",
+        "description": "PALO Framework provides a comprehensive methodology for responsible AI governance, aligning AI lifecycle management with ISO 42001, EU AI Act, and OECD AI principles.",
+        "sameAs": [],
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "customer support",
+            "email": "info@paloframework.org",
+            "availableLanguage": ["English", "Italian"]
+        },
+        "foundingDate": "2025",
+        "knowsAbout": [
+            "AI Governance",
+            "AI Ethics",
+            "ISO 42001",
+            "EU AI Act",
+            "OECD AI Principles",
+            "Responsible AI",
+            "AI Risk Management"
+        ]
+    }
+    </script>
+
+    <!-- JSON-LD for WebSite -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "PALO Framework",
+        "url": "https://paloframework.org",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://paloframework.org/?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
+</body>
+
+</html>
