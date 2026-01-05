@@ -26,7 +26,22 @@
 
 ## 🌟 Overview
 
-PALO (Principled AI Lifecycle Orchestration) is an open-source framework designed to help organizations navigate the complexities of AI governance, ethics, and compliance. Built with the EU AI Act in mind, PALO provides practical tools, assessments, and resources for responsible AI deployment.
+PALO (Principled AI Lifecycle Orchestration) is an open-source framework designed to help organizations navigate the complexities of AI governance, ethics, and compliance. Built with the EU AI Act in mind, PALO provides practical tools, assessments, and resources for responsible AI deployment. the PALO framework for AI ethics and governance is a distinct initiative primarily associated with AI ethics and governance expert Fabrizio Degni. It is not directly synonymous with the AI risk management frameworks offered by any other cybersecurity company like Palo Alto Networks, which focuses more specifically on securing AI systems against cyber threats and building AI-driven security offerings.
+
+## Holistic Integration: 
+It covers a wide range of considerations, including fairness, bias, sustainability, human agency, and legal contexts, rather than addressing them in isolation.
+
+## End-to-End Lifecycle Coverage: 
+The framework goes beyond mere AI deployment, encompassing the entire lifecycle from initial ideation, development, deployment, continuous monitoring, evolution, and eventual decommissioning.
+
+## Standards Alignment: 
+It harmonizes with and acts as a practical crosswalk for major global standards and regulations, such as ISO, IEEE, the OECD AI Principles, and the EU AI Act.
+
+## KPI-Driven and Measurable: The framework focuses on measurable Key Performance Indicators (KPIs) to ensure accountability and track the real-world performance and ethical impact of AI systems.
+
+## Prioritizes Responsibility: It utilizes a "PALO Business Model Canvas" that reframes AI planning to prioritize principled responsibility over immediate ROI, helping organizations assess ethical, legal, and technical risks before building AI initiatives.
+Operationalization: The goal is to provide a traceable and auditable methodology for organizations to operationalize their AI governance and risk management
+
 
 ### Why PALO?
 
@@ -104,17 +119,12 @@ palo/
 │
 ├── 📂 assets/                       # Static assets
 │   ├── logo.webp
-│   └── FRIA09-12_new.xlsx
 │
 ├── 📂 framework/                    # Framework documentation
-│   └── ThePALOFramework_v1.pdf
+│   └── TBR
 │
 ├── 📂 insights/                     # Research & data sources
-│   ├── toptrends2026.txt
-│   ├── mckinsey-technology-trends-outlook-2025.pdf
-│   ├── gartner-2026-top-tech-trends.pdf
-│   ├── bcg-geopolitical-forces-2026.pdf
-│   └── accenture-macro-brief-2026.pdf
+│   ├── ...
 │
 ├── 📂 json/                         # Data exports
 │   └── palo-canvas-template.json
@@ -219,14 +229,15 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 📞 Contact
 
 - 🌐 Website: [paloframework.org](https://paloframework.org)
-- 📧 Email: contact@paloframework.org
-- 🐦 Twitter: [@PALOFramework](https://twitter.com/PALOFramework)
+- 🐦 Linkedin: [Fabrizio Degni - Linkedin](https://www.linkedin.com/in/fdegni/)
+- 📧 Email: info@paloframework.org
+- 🐦 X: [@PALOFramework](https://www.X.com/fabrizio_degni)
 
 ---
 
 <div align="center">
 
-**Made with ❤️ for responsible AI governance**
+**Made with ❤️ for an ethical and responsible AI governance**
 
 [![Star this repo](https://img.shields.io/github/stars/paloframework/palo?style=social)](https://github.com/paloframework/palo)
 
