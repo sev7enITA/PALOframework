@@ -1,6 +1,6 @@
 /* =============================================
    PALO-AM: Agentic Governance Modality
-   Stylesheet — June 2026
+   Stylesheet - June 2026
    ============================================= */
 
 :root {
@@ -36,7 +36,7 @@ body{
 .skip-link:focus{left:16px;top:16px;}
 .container{max-width:1200px;margin:0 auto;padding:0 24px;}
 
-/* ── Top Bar ── */
+/* -- Top Bar -- */
 .palo-topbar{
     position:fixed;top:0;left:0;right:0;z-index:1100;
     display:flex;align-items:center;justify-content:space-between;
@@ -51,7 +51,7 @@ body{
 .palo-topbar .palo-brand img{width:24px;height:24px;border-radius:4px;}
 .palo-topbar .palo-links{display:flex;gap:1.2rem;align-items:center;}
 
-/* ── Section Nav ── */
+/* -- Section Nav -- */
 .section-nav{
     position:fixed;top:38px;left:0;right:0;z-index:1000;
     background:rgba(15,23,42,.95);backdrop-filter:blur(12px);
@@ -68,7 +68,7 @@ body{
 }
 .section-nav a:hover{background:rgba(99,102,241,.15);color:var(--am-accent-light);}
 
-/* ── Hero ── */
+/* -- Hero -- */
 .hero{
     padding:118px 0 60px;text-align:center;position:relative;overflow:hidden;
 }
@@ -120,7 +120,7 @@ body{
 .stat-box .stat-val{font-size:1.5rem;font-weight:800;color:var(--am-accent-light);display:block;}
 .stat-box .stat-label{font-size:.63rem;color:var(--am-text-muted);text-transform:uppercase;letter-spacing:.5px;}
 
-/* ── Sections ── */
+/* -- Sections -- */
 .section{padding:76px 0;position:relative;}
 .section-alt{background:var(--am-surface-2);}
 .section-header{text-align:center;margin-bottom:44px;}
@@ -132,7 +132,7 @@ body{
 .section-header h2{font-size:clamp(22px,3vw,34px);font-weight:800;color:#fff;margin-bottom:8px;}
 .section-header .section-desc{color:var(--am-text-muted);font-size:14px;max-width:650px;margin:0 auto;}
 
-/* ── Five Object Cards ── */
+/* -- Five Object Cards -- */
 .objects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px;}
 .object-card{
     background:var(--am-glass);border:1px solid var(--am-border);
@@ -149,7 +149,7 @@ body{
 .object-card h3{color:#fff;font-size:1rem;font-weight:700;margin-bottom:6px;}
 .object-card p{color:var(--am-text-muted);font-size:.84rem;}
 
-/* ── Matrix ── */
+/* -- Matrix -- */
 .matrix-container{
     background:var(--am-glass);border:1px solid var(--am-border);
     border-radius:16px;padding:28px;overflow-x:auto;
@@ -192,7 +192,7 @@ body{
 .legend-dot.t4{background:rgba(148,163,184,.3);}
 .legend-dot.tp{background:rgba(239,68,68,.7);border:1px solid #ef4444;}
 
-/* ── Phase Lifecycle ── */
+/* -- Phase Lifecycle -- */
 .phases-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;}
 .phase-card{
     background:var(--am-glass);border:1px solid var(--am-border);
@@ -216,7 +216,7 @@ body{
     font-size:.72rem;color:var(--am-text-muted);margin-top:10px;text-align:left;
 }
 
-/* ── KPI Table ── */
+/* -- KPI Table -- */
 .data-table-wrapper{overflow-x:auto;margin:20px 0;border-radius:12px;border:1px solid var(--am-border);}
 .data-table{width:100%;border-collapse:collapse;font-size:.81rem;}
 .data-table thead{background:rgba(99,102,241,.12);}
@@ -239,7 +239,7 @@ body{
 .cat-decom{background:rgba(148,163,184,.12);color:#cbd5e1;}
 .cat-agency{background:rgba(168,85,247,.15);color:#d8b4fe;}
 
-/* ── Engineering Controls ── */
+/* -- Engineering Controls -- */
 .controls-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;}
 .control-card{
     background:var(--am-glass);border:1px solid var(--am-border);
@@ -254,7 +254,7 @@ body{
     font-size:.76rem;color:var(--am-text);margin-top:8px;font-style:italic;
 }
 
-/* ── Scenarios ── */
+/* -- Scenarios -- */
 .scenario-grid{display:grid;gap:14px;}
 .scenario-card{
     background:var(--am-glass);border:1px solid var(--am-border);
@@ -277,7 +277,7 @@ body{
     font-size:.78rem;color:var(--am-text);margin-top:6px;
 }
 
-/* ── Standards Crosswalk ── */
+/* -- Standards Crosswalk -- */
 .crosswalk-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;}
 .crosswalk-card{
     background:var(--am-glass);border:1px solid var(--am-border);
@@ -290,7 +290,7 @@ body{
     padding:6px 10px;border-radius:0 6px 6px 0;font-size:.76rem;color:var(--am-text);
 }
 
-/* ── Roadmap ── */
+/* -- Roadmap -- */
 .roadmap-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;}
 .roadmap-card{
     background:var(--am-glass);border:1px solid var(--am-border);
@@ -303,7 +303,7 @@ body{
 }
 .roadmap-card p{color:var(--am-text-muted);font-size:.78rem;}
 
-/* ── Coming Soon Banner ── */
+/* -- Coming Soon Banner -- */
 .coming-soon{
     background:linear-gradient(135deg,rgba(99,102,241,.1),rgba(13,148,136,.08));
     border:1px solid rgba(99,102,241,.2);border-radius:16px;
@@ -312,7 +312,7 @@ body{
 .coming-soon h3{color:var(--am-accent-light);font-size:1.2rem;margin-bottom:10px;}
 .coming-soon p{color:var(--am-text-muted);font-size:.9rem;max-width:600px;margin:0 auto 20px;}
 
-/* ── PALO Phase Grid (reuse) ── */
+/* -- PALO Phase Grid (reuse) -- */
 .palo-phase-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin-top:20px;}
 .palo-phase-item{
     background:rgba(13,148,136,.06);border:1px solid rgba(13,148,136,.15);
@@ -327,7 +327,7 @@ body{
 .palo-phase-item h4{color:var(--am-text);font-size:.82rem;font-weight:700;margin-bottom:.3rem;}
 .palo-phase-item p{color:var(--am-text-muted);font-size:.73rem;}
 
-/* ── Footer ── */
+/* -- Footer -- */
 .palo-footer{
     background:#0f172a;border-top:3px solid var(--am-accent);
     padding:3rem 0 1.5rem;text-align:center;
@@ -340,7 +340,7 @@ body{
 .palo-footer .footer-nav a:hover{color:var(--am-primary);}
 .palo-footer .footer-copy{color:#475569;font-size:.73rem;}
 
-/* ── Responsive ── */
+/* -- Responsive -- */
 @media(max-width:768px){
     .palo-topbar .palo-links{display:none;}
     .section-nav a:not(:first-child){display:none;}

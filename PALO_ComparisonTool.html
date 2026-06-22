@@ -441,23 +441,23 @@
                 <img src="assets/logo.webp" alt="PALO Logo">
             </a>
             <div>
-                <h1 id="main-content" tabindex="-1">📊 PALO Assessment Comparison Tool</h1>
+                <h1 id="main-content" tabindex="-1">PALO Assessment Comparison Tool</h1>
                 <p>Upload and compare multiple PALO assessments to track progress and identify remediation priorities
                 </p>
             </div>
-            <a href="index.html" class="nav-link" aria-label="Return to homepage">← Home</a>
-            <a href="PALO_ModelCanvasAI.html" class="nav-link" aria-label="Go to Model Canvas">← Back to Canvas</a>
+            <a href="index.html" class="nav-link" aria-label="Return to homepage"><- Home</a>
+            <a href="PALO_ModelCanvasAI.html" class="nav-link" aria-label="Go to Model Canvas"><- Back to Canvas</a>
         </nav>
 
         <main role="main">
 
             <div class="upload-section">
-                <h2>📁 Upload Assessments</h2>
+                <h2>Upload Assessments</h2>
                 <p style="margin-bottom: var(--space-16); color: var(--color-text-secondary); font-size: 14px;">
                     Upload 2 or more JSON files exported from the PALO Model Canvas to compare assessments over time.
                 </p>
                 <div class="upload-area" id="uploadArea">
-                    <div class="upload-icon">📤</div>
+                    <div class="upload-icon"></div>
                     <p><strong>Drop JSON files here</strong> or click to browse</p>
                     <p style="font-size: 12px; color: var(--color-text-secondary); margin-top: 8px;">
                         Supports multiple files for trend analysis
@@ -467,17 +467,17 @@
                 <div class="uploaded-files" id="uploadedFiles"></div>
                 <div style="margin-top: var(--space-16); display: flex; gap: var(--space-12);">
                     <button class="btn btn-primary" id="analyzeBtn" disabled onclick="analyzeAssessments()">
-                        🔍 Analyze & Compare
+                         Analyze & Compare
                     </button>
-                    <button class="btn btn-secondary" onclick="clearFiles()">🗑️ Clear All</button>
+                    <button class="btn btn-secondary" onclick="clearFiles()">Clear All</button>
                 </div>
             </div>
 
             <div id="resultsSection" class="hidden">
                 <div class="executive-summary">
                     <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <h2>📋 Executive Summary</h2>
-                        <button class="btn btn-primary" onclick="exportSummary()">📥 Export Summary</button>
+                        <h2>Executive Summary</h2>
+                        <button class="btn btn-primary" onclick="exportSummary()">Export Summary</button>
                     </div>
 
                     <div class="progress-indicator" id="overallTrend">
@@ -493,7 +493,7 @@
                     </div>
 
                     <div class="remediation-section" id="remediationSection">
-                        <h3>🔧 Recommended Remediations (PALO Framework)</h3>
+                        <h3>Recommended Remediations (PALO Framework)</h3>
                         <div id="remediationList">
                             <!-- Populated by JS -->
                         </div>
@@ -501,7 +501,7 @@
                 </div>
 
                 <div class="chart-container">
-                    <h2 style="margin-bottom: var(--space-16);">📈 Dimension Score Comparison</h2>
+                    <h2 style="margin-bottom: var(--space-16);">Dimension Score Comparison</h2>
                     <div class="bar-chart" id="dimensionChart">
                         <!-- Populated by JS -->
                     </div>
@@ -511,7 +511,7 @@
                 </div>
 
                 <div class="chart-container">
-                    <h2 style="margin-bottom: var(--space-16);">🏛️ Framework Alignment Comparison</h2>
+                    <h2 style="margin-bottom: var(--space-16);">Framework Alignment Comparison</h2>
                     <div class="bar-chart" id="frameworkChart">
                         <!-- Populated by JS -->
                     </div>
@@ -594,9 +594,8 @@
             const container = document.getElementById('uploadedFiles');
             container.innerHTML = uploadedAssessments.map((a, i) => `
                 <div class="file-chip">
-                    <span style="color: ${colors[i % colors.length]};">●</span>
                     ${a.filename}
-                    <span class="remove" onclick="removeFile(${i})">×</span>
+                    <span class="remove" onclick="removeFile(${i})">x</span>
                 </div>
             `).join('');
             document.getElementById('analyzeBtn').disabled = uploadedAssessments.length < 2;
@@ -619,7 +618,7 @@
             // Sort by timestamp
             uploadedAssessments.sort((a, b) =>
                 new Date(a.data.metadata.timestamp) - new Date(b.data.metadata.timestamp)
-            );
+);
 
             document.getElementById('resultsSection').classList.remove('hidden');
 
@@ -638,16 +637,16 @@
 
             let icon, text, cssClass;
             if (diff > 5) {
-                icon = '📈';
+                icon = '';
                 text = `+${diff}% improvement`;
                 cssClass = 'trend-up';
             } else if (diff < -5) {
-                icon = '📉';
+                icon = '';
                 text = `${diff}% regression`;
                 cssClass = 'trend-down';
             } else {
-                icon = '➡️';
-                text = 'Stable (±5%)';
+                icon = '';
+                text = 'Stable (+/-5%)';
                 cssClass = 'trend-neutral';
             }
 
@@ -655,7 +654,7 @@
                 <div class="overall-trend">${icon}</div>
                 <div style="font-size: 20px; font-weight: 600;" class="${cssClass}">${text}</div>
                 <div style="font-size: 14px; color: var(--color-text-secondary); margin-top: 8px;">
-                    Overall Score: ${first}% → ${last}% over ${uploadedAssessments.length} assessments
+                    Overall Score: ${first}% -> ${last}% over ${uploadedAssessments.length} assessments
                 </div>
             `;
         }
@@ -864,7 +863,7 @@
 
             if (remediations.length === 0) {
                 document.getElementById('remediationSection').innerHTML = `
-                    <h3>✅ Excellent Compliance Status</h3>
+                    <h3>Excellent Compliance Status</h3>
                     <p style="color: var(--color-success);">All dimension scores are above 50%. Continue monitoring and improving.</p>
                 `;
                 document.getElementById('remediationSection').style.background = 'rgba(16, 185, 129, 0.1)';
@@ -890,7 +889,7 @@
             let report = '# PALO Assessment Comparison - Executive Summary\n\n';
             report += `**Generated:** ${new Date().toLocaleString()}\n\n`;
             report += `**Assessments Compared:** ${uploadedAssessments.length}\n\n`;
-            report += `**Period:** ${new Date(first.metadata.timestamp).toLocaleDateString()} → ${new Date(last.metadata.timestamp).toLocaleDateString()}\n\n`;
+            report += `**Period:** ${new Date(first.metadata.timestamp).toLocaleDateString()} -> ${new Date(last.metadata.timestamp).toLocaleDateString()}\n\n`;
             report += '---\n\n';
 
             // Overall trend
@@ -908,7 +907,7 @@
                 const f = first.scores.dimensions[dim] || 0;
                 const l = last.scores.dimensions[dim] || 0;
                 const d = l - f;
-                const trend = d > 5 ? '📈' : d < -5 ? '📉' : '➡️';
+                const trend = d > 5 ? '' : d < -5 ? '' : '';
                 report += `| ${dimLabels[i]} | ${f}% | ${l}% | ${d >= 0 ? '+' : ''}${d}% | ${trend} |\n`;
             });
 
@@ -937,7 +936,7 @@
 
     <footer class="footer" role="contentinfo"
         style="text-align: center; padding: 24px; margin-top: 24px; color: #64748B; font-size: 13px; border-top: 1px solid #E2E8F0;">
-        <p>© 2025 PALO Framework. All rights reserved.</p>
+        <p>Copyright 2025 PALO Framework. All rights reserved.</p>
         <p style="margin-top: 8px;">
             <a href="index.html" style="color: #21808D; text-decoration: none;">Home</a> |
             <a href="PALO_FRIA.html" style="color: #21808D; text-decoration: none;">FRIA</a> |
@@ -945,7 +944,7 @@
             <a href="accessibility.html" style="color: #21808D; text-decoration: none;">Accessibility</a> |
             <a href="privacy-policy.html" style="color: #21808D; text-decoration: none;">Privacy Policy</a>
         </p>
-        <p style="margin-top: 8px; font-size: 11px; opacity: 0.7;">✓ EN 301549 Compliant | WCAG 2.1 AA | GDPR Compliant
+        <p style="margin-top: 8px; font-size: 11px; opacity: 0.7;">EN 301549 Compliant | WCAG 2.1 AA | GDPR Compliant
         </p>
     </footer>
     </div>

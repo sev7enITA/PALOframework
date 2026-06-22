@@ -461,18 +461,18 @@
             <a href="index.html">
                 <img src="assets/logo.webp" alt="PALO Logo">
             </a>
-            <span class="nav-title">📊 KPI Generator</span>
+            <span class="nav-title">KPI Generator</span>
             <div class="nav-links">
-                <a href="index.html" class="nav-link" aria-label="Return to homepage">🏠 Home</a>
-                <a href="PALO_FRIA.html" class="nav-link" aria-label="Open FRIA tool">🛡️ FRIA</a>
-                <a href="PALO_RiskTiering.html" class="nav-link" aria-label="Open Risk Calculator">⚖️ Risk</a>
-                <a href="PALO_ModelCanvasAI.html" class="nav-link" aria-label="Open Model Canvas">🎨 Canvas</a>
+                <a href="index.html" class="nav-link" aria-label="Return to homepage">Home</a>
+                <a href="PALO_FRIA.html" class="nav-link" aria-label="Open FRIA tool">FRIA</a>
+                <a href="PALO_RiskTiering.html" class="nav-link" aria-label="Open Risk Calculator">Risk</a>
+                <a href="PALO_ModelCanvasAI.html" class="nav-link" aria-label="Open Model Canvas">Canvas</a>
             </div>
         </nav>
 
         <!-- Header -->
         <header class="header" role="banner">
-            <h1 id="main-content" tabindex="-1">📊 PALO KPI Generator</h1>
+            <h1 id="main-content" tabindex="-1">PALO KPI Generator</h1>
             <p>Generate a personalized list of Technical, Business, and Ethical KPIs for your AI project based on PALO
                 Framework Table 2 (KPI Compendium).</p>
         </header>
@@ -483,7 +483,7 @@
             <section class="filters" aria-label="KPI Filters">
                 <div class="filters-grid">
                     <div class="filter-group">
-                        <label for="modelType">🤖 Model Type</label>
+                        <label for="modelType">Model Type</label>
                         <select id="modelType">
                             <option value="">Select model type...</option>
                             <option value="generative">Generative AI / LLM</option>
@@ -495,7 +495,7 @@
                         </select>
                     </div>
                     <div class="filter-group">
-                        <label for="objective">🎯 Primary Objective</label>
+                        <label for="objective">Primary Objective</label>
                         <select id="objective">
                             <option value="">Select objective...</option>
                             <option value="efficiency">Operational Efficiency</option>
@@ -506,7 +506,7 @@
                         </select>
                     </div>
                     <div class="filter-group">
-                        <label for="sector">🏢 Sector</label>
+                        <label for="sector">Sector</label>
                         <select id="sector">
                             <option value="">Select sector...</option>
                             <option value="finance">Finance / Banking</option>
@@ -519,17 +519,17 @@
                     </div>
                 </div>
                 <button class="generate-btn" onclick="generateKPIs()" id="generateBtn">
-                    🚀 Generate KPIs
+                     Generate KPIs
                 </button>
             </section>
 
             <!-- Dashboard -->
             <section class="dashboard" id="dashboard" aria-label="Generated KPIs">
                 <div class="dashboard-header">
-                    <h2 class="dashboard-title">📋 Your Personalized KPIs</h2>
+                    <h2 class="dashboard-title">Your Personalized KPIs</h2>
                     <div class="export-buttons">
-                        <button class="btn btn-secondary" onclick="exportCSV()">📥 Export CSV</button>
-                        <button class="btn btn-primary" onclick="exportMarkdown()">📄 Export Markdown</button>
+                        <button class="btn btn-secondary" onclick="exportCSV()">Export CSV</button>
+                        <button class="btn btn-primary" onclick="exportMarkdown()">Export Markdown</button>
                     </div>
                 </div>
 
@@ -537,7 +537,7 @@
                     <!-- Technical KPIs -->
                     <div class="kpi-column technical">
                         <div class="kpi-column-header">
-                            🔧 Technical KPIs
+                             Technical KPIs
                             <span class="kpi-count" id="technicalCount">0</span>
                         </div>
                         <div class="kpi-list" id="technicalList"></div>
@@ -546,7 +546,7 @@
                     <!-- Business KPIs -->
                     <div class="kpi-column business">
                         <div class="kpi-column-header">
-                            💼 Business KPIs
+                             Business KPIs
                             <span class="kpi-count" id="businessCount">0</span>
                         </div>
                         <div class="kpi-list" id="businessList"></div>
@@ -555,7 +555,7 @@
                     <!-- Ethical KPIs -->
                     <div class="kpi-column ethical">
                         <div class="kpi-column-header">
-                            ⚖️ Ethical KPIs
+                             Ethical KPIs
                             <span class="kpi-count" id="ethicalCount">0</span>
                         </div>
                         <div class="kpi-list" id="ethicalList"></div>
@@ -566,7 +566,7 @@
 
         <!-- Footer -->
         <footer class="footer" role="contentinfo">
-            <p>© 2025 PALO Framework. All rights reserved.</p>
+            <p>Copyright 2025 PALO Framework. All rights reserved.</p>
             <p style="margin-top: 8px;">
                 <a href="index.html">Home</a> |
                 <a href="PALO_FRIA.html">FRIA</a> |
@@ -574,7 +574,7 @@
                 <a href="PALO_ModelCanvasAI.html">Model Canvas</a> |
                 <a href="accessibility.html">Accessibility</a>
             </p>
-            <p style="margin-top: 8px; font-size: 11px; opacity: 0.7;">✓ EN 301549 Compliant | WCAG 2.1 AA | GDPR
+            <p style="margin-top: 8px; font-size: 11px; opacity: 0.7;">EN 301549 Compliant | WCAG 2.1 AA | GDPR
                 Compliant</p>
         </footer>
     </div>
@@ -595,7 +595,7 @@
                 category: "Technical",
                 tags: ["classification", "nlp", "all"],
                 definition: "Harmonic mean of precision and recall, balancing false positives and negatives",
-                measurement: "2 × (Precision × Recall) / (Precision + Recall)"
+                measurement: "2 x (Precision x Recall) / (Precision + Recall)"
             },
             {
                 name: "Hallucination Rate",
@@ -651,7 +651,7 @@
                 category: "Technical",
                 tags: ["timeseries"],
                 definition: "Mean Absolute Percentage Error for time series predictions",
-                measurement: "Average of |Actual - Predicted| / Actual × 100%"
+                measurement: "Average of |Actual - Predicted| / Actual x 100%"
             },
 
             // Business KPIs
@@ -660,7 +660,7 @@
                 category: "Business",
                 tags: ["all", "revenue", "cost"],
                 definition: "Financial return generated by AI investment relative to its cost",
-                measurement: "(AI-attributable gains - AI costs) / AI costs × 100%"
+                measurement: "(AI-attributable gains - AI costs) / AI costs x 100%"
             },
             {
                 name: "Cost Savings",
@@ -681,14 +681,14 @@
                 category: "Business",
                 tags: ["customer", "efficiency"],
                 definition: "Percentage of user tasks successfully completed by AI",
-                measurement: "Completed tasks / Total attempted tasks × 100%"
+                measurement: "Completed tasks / Total attempted tasks x 100%"
             },
             {
                 name: "Adoption Rate",
                 category: "Business",
                 tags: ["all"],
                 definition: "Percentage of target users actively using the AI system",
-                measurement: "Active users / Total target users × 100%"
+                measurement: "Active users / Total target users x 100%"
             },
             {
                 name: "Time-to-Value",
@@ -709,14 +709,14 @@
                 category: "Business",
                 tags: ["efficiency", "cost"],
                 definition: "Percentage of process steps automated by AI",
-                measurement: "Automated steps / Total process steps × 100%"
+                measurement: "Automated steps / Total process steps x 100%"
             },
             {
                 name: "Employee Productivity Gain",
                 category: "Business",
                 tags: ["efficiency", "hr"],
                 definition: "Increase in output per employee with AI assistance",
-                measurement: "(Post-AI output - Pre-AI output) / Pre-AI output × 100%"
+                measurement: "(Post-AI output - Pre-AI output) / Pre-AI output x 100%"
             },
 
             // Ethical KPIs
@@ -760,7 +760,7 @@
                 category: "Ethical",
                 tags: ["all", "safety"],
                 definition: "Percentage of AI decisions overridden by human operators",
-                measurement: "Overridden decisions / Total AI decisions × 100%"
+                measurement: "Overridden decisions / Total AI decisions x 100%"
             },
             {
                 name: "Privacy Compliance Score",
@@ -774,7 +774,7 @@
                 category: "Ethical",
                 tags: ["all", "customer"],
                 definition: "Percentage of data subjects with verified consent",
-                measurement: "Verified consents / Total data subjects × 100%"
+                measurement: "Verified consents / Total data subjects x 100%"
             },
             {
                 name: "Adverse Impact Ratio",
@@ -833,9 +833,9 @@
                 <div class="kpi-card">
                     <div class="kpi-name">${kpi.name}</div>
                     <div class="kpi-definition">${kpi.definition}</div>
-                    <div class="kpi-measurement"><strong>📐 How to Measure:</strong> ${kpi.measurement}</div>
+                    <div class="kpi-measurement"><strong>How to Measure:</strong> ${kpi.measurement}</div>
                 </div>
-            `).join('') || '<div class="empty-state"><div class="empty-state-icon">📭</div>No technical KPIs match</div>';
+            `).join('') || '<div class="empty-state"><div class="empty-state-icon"></div>No technical KPIs match</div>';
 
             // Business
             document.getElementById('businessCount').textContent = generatedKPIs.business.length;
@@ -843,9 +843,9 @@
                 <div class="kpi-card">
                     <div class="kpi-name">${kpi.name}</div>
                     <div class="kpi-definition">${kpi.definition}</div>
-                    <div class="kpi-measurement"><strong>📐 How to Measure:</strong> ${kpi.measurement}</div>
+                    <div class="kpi-measurement"><strong>How to Measure:</strong> ${kpi.measurement}</div>
                 </div>
-            `).join('') || '<div class="empty-state"><div class="empty-state-icon">📭</div>No business KPIs match</div>';
+            `).join('') || '<div class="empty-state"><div class="empty-state-icon"></div>No business KPIs match</div>';
 
             // Ethical
             document.getElementById('ethicalCount').textContent = generatedKPIs.ethical.length;
@@ -853,9 +853,9 @@
                 <div class="kpi-card">
                     <div class="kpi-name">${kpi.name}</div>
                     <div class="kpi-definition">${kpi.definition}</div>
-                    <div class="kpi-measurement"><strong>📐 How to Measure:</strong> ${kpi.measurement}</div>
+                    <div class="kpi-measurement"><strong>How to Measure:</strong> ${kpi.measurement}</div>
                 </div>
-            `).join('') || '<div class="empty-state"><div class="empty-state-icon">📭</div>No ethical KPIs match</div>';
+            `).join('') || '<div class="empty-state"><div class="empty-state-icon"></div>No ethical KPIs match</div>';
         }
 
         function exportCSV() {
@@ -883,17 +883,17 @@
             md += `**Generated:** ${new Date().toISOString().slice(0, 10)}\n\n`;
             md += `**Filters:** Model Type: ${document.getElementById('modelType').value}, Objective: ${document.getElementById('objective').value}, Sector: ${document.getElementById('sector').value}\n\n`;
 
-            md += `## 🔧 Technical KPIs (${generatedKPIs.technical.length})\n\n`;
+            md += `##  Technical KPIs (${generatedKPIs.technical.length})\n\n`;
             generatedKPIs.technical.forEach(kpi => {
                 md += `### ${kpi.name}\n- **Definition:** ${kpi.definition}\n- **Measurement:** ${kpi.measurement}\n\n`;
             });
 
-            md += `## 💼 Business KPIs (${generatedKPIs.business.length})\n\n`;
+            md += `##  Business KPIs (${generatedKPIs.business.length})\n\n`;
             generatedKPIs.business.forEach(kpi => {
                 md += `### ${kpi.name}\n- **Definition:** ${kpi.definition}\n- **Measurement:** ${kpi.measurement}\n\n`;
             });
 
-            md += `## ⚖️ Ethical KPIs (${generatedKPIs.ethical.length})\n\n`;
+            md += `##  Ethical KPIs (${generatedKPIs.ethical.length})\n\n`;
             generatedKPIs.ethical.forEach(kpi => {
                 md += `### ${kpi.name}\n- **Definition:** ${kpi.definition}\n- **Measurement:** ${kpi.measurement}\n\n`;
             });

@@ -124,39 +124,39 @@ You can also open `index.html` directly in a browser, although serving locally i
 
 ```text
 PALOframework/
-├── index.html                         # Homepage
-├── PALO_FRIA.html                     # FRIA Assessment
-├── PALO_RiskTiering.html              # EU AI Act Risk Tiering Calculator
-├── PALO_KPIGenerator.html             # KPI Generator
-├── PALO_ModelCanvasAI.html            # AI Model Canvas
-├── PALO_ComparisonTool.html           # Governance framework comparison
-├── PALO_HumanAgencyRiskMap.html       # Human Agency Observatory (EN)
-├── PALO_HumanAgencyRiskMap_IT.html    # Human Agency Observatory (IT)
-├── PALO_TechTrends2026.html           # 2026 Tech Trends Observatory
-├── PALO_AuditBench.html               # AuditBench Explorer
-├── PALO_PoisoningStudy.html           # Data Poisoning Governance module
-├── PALO_VibeCoding.html               # AI-assisted development governance
-├── PALO_AgenticGovernance.html        # PALO-AM Agentic Governance
-├── PALO_CompanionApp.html             # Mobile app landing page
-├── PALO_Community.html                # Community and advisory board
-├── AppStoreListing.md                 # Store listing copy and source notes
-├── PALOFrameworkV2.pdf                # Framework v2 documentation
-├── ThePALOFramework_*.pdf             # PALO v1 paper
-├── assets/                            # Static assets and templates
-├── framework/                         # Framework documentation archive
-├── insights/                          # Research sources and supporting material
-├── json/                              # Canvas/data exports
-├── sitemap.xml                        # Search sitemap
-├── feed.xml                           # RSS feed
-├── accessibility.html                 # Accessibility statement
-├── privacy-policy.html                # Privacy policy
-├── security-policy.html               # Security policy
-├── README.md
-├── CHANGELOG.md
-├── CONTRIBUTING.md
-├── CODE_OF_CONDUCT.md
-├── SECURITY.md
-└── LICENSE
+|-- index.html                         # Homepage
+|-- PALO_FRIA.html                     # FRIA Assessment
+|-- PALO_RiskTiering.html              # EU AI Act Risk Tiering Calculator
+|-- PALO_KPIGenerator.html             # KPI Generator
+|-- PALO_ModelCanvasAI.html            # AI Model Canvas
+|-- PALO_ComparisonTool.html           # Governance framework comparison
+|-- PALO_HumanAgencyRiskMap.html       # Human Agency Observatory (EN)
+|-- PALO_HumanAgencyRiskMap_IT.html    # Human Agency Observatory (IT)
+|-- PALO_TechTrends2026.html           # 2026 Tech Trends Observatory
+|-- PALO_AuditBench.html               # AuditBench Explorer
+|-- PALO_PoisoningStudy.html           # Data Poisoning Governance module
+|-- PALO_VibeCoding.html               # AI-assisted development governance
+|-- PALO_AgenticGovernance.html        # PALO-AM Agentic Governance
+|-- PALO_CompanionApp.html             # Mobile app landing page
+|-- PALO_Community.html                # Community and advisory board
+|-- AppStoreListing.md                 # Store listing copy and source notes
+|-- PALOFrameworkV2.pdf                # Framework v2 documentation
+|-- ThePALOFramework_*.pdf             # PALO v1 paper
+|-- assets/                            # Static assets and templates
+|-- framework/                         # Framework documentation archive
+|-- insights/                          # Research sources and supporting material
+|-- json/                              # Canvas/data exports
+|-- sitemap.xml                        # Search sitemap
+|-- feed.xml                           # RSS feed
+|-- accessibility.html                 # Accessibility statement
+|-- privacy-policy.html                # Privacy policy
+|-- security-policy.html               # Security policy
+|-- README.md
+|-- CHANGELOG.md
+|-- CONTRIBUTING.md
+|-- CODE_OF_CONDUCT.md
+|-- SECURITY.md
++-- LICENSE
 ```
 
 ## Documentation

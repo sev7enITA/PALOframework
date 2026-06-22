@@ -45,4 +45,4 @@ Questa e una versione standalone del sito PALO Framework.
 
 ---
 
-© 2026 PALO Framework - Principled AI Lifecycle Orchestration
+Copyright 2026 PALO Framework - Principled AI Lifecycle Orchestration
