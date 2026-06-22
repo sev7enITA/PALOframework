@@ -450,6 +450,8 @@
             }
         }
     </style>
+    <link rel="stylesheet" href="assets/palo-icons.css">
+    <script src="assets/palo-icons.js"></script>
 </head>
 
 <body>
@@ -461,18 +463,18 @@
             <a href="index.html">
                 <img src="assets/logo.webp" alt="PALO Logo">
             </a>
-            <span class="nav-title">KPI Generator</span>
+            <span class="nav-title"><span data-palo-icon=chart class=palo-icon-inline></span>KPI Generator</span>
             <div class="nav-links">
-                <a href="index.html" class="nav-link" aria-label="Return to homepage">Home</a>
-                <a href="PALO_FRIA.html" class="nav-link" aria-label="Open FRIA tool">FRIA</a>
-                <a href="PALO_RiskTiering.html" class="nav-link" aria-label="Open Risk Calculator">Risk</a>
-                <a href="PALO_ModelCanvasAI.html" class="nav-link" aria-label="Open Model Canvas">Canvas</a>
+                <a href="index.html" class="nav-link" aria-label="Return to homepage"><span data-palo-icon=home class=palo-icon-inline></span>Home</a>
+                <a href="PALO_FRIA.html" class="nav-link" aria-label="Open FRIA tool"><span data-palo-icon=shield class=palo-icon-inline></span>FRIA</a>
+                <a href="PALO_RiskTiering.html" class="nav-link" aria-label="Open Risk Calculator"><span data-palo-icon=scale class=palo-icon-inline></span>Risk</a>
+                <a href="PALO_ModelCanvasAI.html" class="nav-link" aria-label="Open Model Canvas"><span data-palo-icon=palette class=palo-icon-inline></span>Canvas</a>
             </div>
         </nav>
 
         <!-- Header -->
         <header class="header" role="banner">
-            <h1 id="main-content" tabindex="-1">PALO KPI Generator</h1>
+            <h1 id="main-content" tabindex="-1"><span data-palo-icon=chart class=palo-icon-inline></span>PALO KPI Generator</h1>
             <p>Generate a personalized list of Technical, Business, and Ethical KPIs for your AI project based on PALO
                 Framework Table 2 (KPI Compendium).</p>
         </header>
@@ -483,7 +485,7 @@
             <section class="filters" aria-label="KPI Filters">
                 <div class="filters-grid">
                     <div class="filter-group">
-                        <label for="modelType">Model Type</label>
+                        <label for="modelType"><span data-palo-icon=robot class=palo-icon-inline></span>Model Type</label>
                         <select id="modelType">
                             <option value="">Select model type...</option>
                             <option value="generative">Generative AI / LLM</option>
@@ -495,7 +497,7 @@
                         </select>
                     </div>
                     <div class="filter-group">
-                        <label for="objective">Primary Objective</label>
+                        <label for="objective"><span data-palo-icon=target class=palo-icon-inline></span>Primary Objective</label>
                         <select id="objective">
                             <option value="">Select objective...</option>
                             <option value="efficiency">Operational Efficiency</option>
@@ -506,7 +508,7 @@
                         </select>
                     </div>
                     <div class="filter-group">
-                        <label for="sector">Sector</label>
+                        <label for="sector"><span data-palo-icon=building class=palo-icon-inline></span>Sector</label>
                         <select id="sector">
                             <option value="">Select sector...</option>
                             <option value="finance">Finance / Banking</option>
@@ -519,17 +521,17 @@
                     </div>
                 </div>
                 <button class="generate-btn" onclick="generateKPIs()" id="generateBtn">
-                     Generate KPIs
+                     <span data-palo-icon=rocket class=palo-icon-inline></span>Generate KPIs
                 </button>
             </section>
 
             <!-- Dashboard -->
             <section class="dashboard" id="dashboard" aria-label="Generated KPIs">
                 <div class="dashboard-header">
-                    <h2 class="dashboard-title">Your Personalized KPIs</h2>
+                    <h2 class="dashboard-title"><span data-palo-icon=clipboard class=palo-icon-inline></span>Your Personalized KPIs</h2>
                     <div class="export-buttons">
-                        <button class="btn btn-secondary" onclick="exportCSV()">Export CSV</button>
-                        <button class="btn btn-primary" onclick="exportMarkdown()">Export Markdown</button>
+                        <button class="btn btn-secondary" onclick="exportCSV()"><span data-palo-icon=download class=palo-icon-inline></span>Export CSV</button>
+                        <button class="btn btn-primary" onclick="exportMarkdown()"><span data-palo-icon=file class=palo-icon-inline></span>Export Markdown</button>
                     </div>
                 </div>
 
@@ -537,7 +539,7 @@
                     <!-- Technical KPIs -->
                     <div class="kpi-column technical">
                         <div class="kpi-column-header">
-                             Technical KPIs
+                             <span data-palo-icon=wrench class=palo-icon-inline></span>Technical KPIs
                             <span class="kpi-count" id="technicalCount">0</span>
                         </div>
                         <div class="kpi-list" id="technicalList"></div>
@@ -546,7 +548,7 @@
                     <!-- Business KPIs -->
                     <div class="kpi-column business">
                         <div class="kpi-column-header">
-                             Business KPIs
+                             <span data-palo-icon=money class=palo-icon-inline></span>Business KPIs
                             <span class="kpi-count" id="businessCount">0</span>
                         </div>
                         <div class="kpi-list" id="businessList"></div>
@@ -555,7 +557,7 @@
                     <!-- Ethical KPIs -->
                     <div class="kpi-column ethical">
                         <div class="kpi-column-header">
-                             Ethical KPIs
+                             <span data-palo-icon=scale class=palo-icon-inline></span>Ethical KPIs
                             <span class="kpi-count" id="ethicalCount">0</span>
                         </div>
                         <div class="kpi-list" id="ethicalList"></div>
@@ -568,10 +570,10 @@
         <footer class="footer" role="contentinfo">
             <p>Copyright 2025 PALO Framework. All rights reserved.</p>
             <p style="margin-top: 8px;">
-                <a href="index.html">Home</a> |
-                <a href="PALO_FRIA.html">FRIA</a> |
+                <a href="index.html"><span data-palo-icon=home class=palo-icon-inline></span>Home</a> |
+                <a href="PALO_FRIA.html"><span data-palo-icon=shield class=palo-icon-inline></span>FRIA</a> |
                 <a href="PALO_RiskTiering.html">Risk Calculator</a> |
-                <a href="PALO_ModelCanvasAI.html">Model Canvas</a> |
+                <a href="PALO_ModelCanvasAI.html"><span data-palo-icon=palette class=palo-icon-inline></span>Model Canvas</a> |
                 <a href="accessibility.html">Accessibility</a>
             </p>
             <p style="margin-top: 8px; font-size: 11px; opacity: 0.7;">EN 301549 Compliant | WCAG 2.1 AA | GDPR
@@ -833,9 +835,9 @@
                 <div class="kpi-card">
                     <div class="kpi-name">${kpi.name}</div>
                     <div class="kpi-definition">${kpi.definition}</div>
-                    <div class="kpi-measurement"><strong>How to Measure:</strong> ${kpi.measurement}</div>
+                    <div class="kpi-measurement"><strong><span data-palo-icon=chart class=palo-icon-inline></span>How to Measure:</strong> ${kpi.measurement}</div>
                 </div>
-            `).join('') || '<div class="empty-state"><div class="empty-state-icon"></div>No technical KPIs match</div>';
+            `).join('') || '<div class="empty-state"><div class="empty-state-icon" data-palo-icon=folder></div>No technical KPIs match</div>';
 
             // Business
             document.getElementById('businessCount').textContent = generatedKPIs.business.length;
@@ -843,9 +845,9 @@
                 <div class="kpi-card">
                     <div class="kpi-name">${kpi.name}</div>
                     <div class="kpi-definition">${kpi.definition}</div>
-                    <div class="kpi-measurement"><strong>How to Measure:</strong> ${kpi.measurement}</div>
+                    <div class="kpi-measurement"><strong><span data-palo-icon=chart class=palo-icon-inline></span>How to Measure:</strong> ${kpi.measurement}</div>
                 </div>
-            `).join('') || '<div class="empty-state"><div class="empty-state-icon"></div>No business KPIs match</div>';
+            `).join('') || '<div class="empty-state"><div class="empty-state-icon" data-palo-icon=folder></div>No business KPIs match</div>';
 
             // Ethical
             document.getElementById('ethicalCount').textContent = generatedKPIs.ethical.length;
@@ -853,9 +855,9 @@
                 <div class="kpi-card">
                     <div class="kpi-name">${kpi.name}</div>
                     <div class="kpi-definition">${kpi.definition}</div>
-                    <div class="kpi-measurement"><strong>How to Measure:</strong> ${kpi.measurement}</div>
+                    <div class="kpi-measurement"><strong><span data-palo-icon=chart class=palo-icon-inline></span>How to Measure:</strong> ${kpi.measurement}</div>
                 </div>
-            `).join('') || '<div class="empty-state"><div class="empty-state-icon"></div>No ethical KPIs match</div>';
+            `).join('') || '<div class="empty-state"><div class="empty-state-icon" data-palo-icon=folder></div>No ethical KPIs match</div>';
         }
 
         function exportCSV() {

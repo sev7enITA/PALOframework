@@ -478,6 +478,8 @@
             }
         }
     </style>
+    <link rel="stylesheet" href="assets/palo-icons.css">
+    <script src="assets/palo-icons.js"></script>
 </head>
 
 <body>
@@ -489,17 +491,17 @@
             <a href="index.html">
                 <img src="assets/logo.webp" alt="PALO Logo">
             </a>
-            <span class="nav-title">Risk Tiering Calculator</span>
+            <span class="nav-title"><span data-palo-icon=scale class=palo-icon-inline></span>Risk Tiering Calculator</span>
             <div class="nav-links">
-                <a href="index.html" class="nav-link" aria-label="Return to homepage">Home</a>
-                <a href="PALO_FRIA.html" class="nav-link" aria-label="Open FRIA tool">FRIA</a>
-                <a href="PALO_ModelCanvasAI.html" class="nav-link" aria-label="Open Model Canvas">Canvas</a>
+                <a href="index.html" class="nav-link" aria-label="Return to homepage"><span data-palo-icon=home class=palo-icon-inline></span>Home</a>
+                <a href="PALO_FRIA.html" class="nav-link" aria-label="Open FRIA tool"><span data-palo-icon=shield class=palo-icon-inline></span>FRIA</a>
+                <a href="PALO_ModelCanvasAI.html" class="nav-link" aria-label="Open Model Canvas"><span data-palo-icon=palette class=palo-icon-inline></span>Canvas</a>
             </div>
         </nav>
 
         <!-- Header -->
         <header class="header" role="banner">
-            <h1 id="main-content" tabindex="-1">AI Risk Tiering Calculator</h1>
+            <h1 id="main-content" tabindex="-1"><span data-palo-icon=scale class=palo-icon-inline></span>AI Risk Tiering Calculator</h1>
             <p>Classify your AI use case into risk tiers per EU AI Act and PALO Framework Section 3.3. Get instant
                 guidance on compliance requirements.</p>
         </header>
@@ -511,7 +513,7 @@
                 <div class="progress-step active" data-step="1">Step 1: Sector</div>
                 <div class="progress-step" data-step="2">Step 2: AI Function</div>
                 <div class="progress-step" data-step="3">Step 3: Autonomy</div>
-                <div class="progress-step" data-step="4">Results</div>
+                <div class="progress-step" data-step="4"><span data-palo-icon=trophy class=palo-icon-inline></span>Results</div>
             </div>
 
             <!-- Step 1: Sector -->
@@ -655,9 +657,9 @@
         <footer class="footer" role="contentinfo">
             <p>Copyright 2025 PALO Framework. All rights reserved.</p>
             <p style="margin-top: 8px;">
-                <a href="index.html">Home</a> |
-                <a href="PALO_FRIA.html">FRIA</a> |
-                <a href="PALO_ModelCanvasAI.html">Model Canvas</a> |
+                <a href="index.html"><span data-palo-icon=home class=palo-icon-inline></span>Home</a> |
+                <a href="PALO_FRIA.html"><span data-palo-icon=shield class=palo-icon-inline></span>FRIA</a> |
+                <a href="PALO_ModelCanvasAI.html"><span data-palo-icon=palette class=palo-icon-inline></span>Model Canvas</a> |
                 <a href="PALO_KPIGenerator.html">KPI Generator</a> |
                 <a href="accessibility.html">Accessibility</a>
             </p>
@@ -793,7 +795,7 @@
                 <div style="background: var(--color-surface); padding: 16px; border-radius: 10px; margin-bottom: 24px;">
                     <strong>Your Selection:</strong>
                     <p style="font-size: 14px; color: var(--color-text-secondary); margin-top: 8px;">
-                        Sector: <strong>${selections.sector}</strong> |
+                        <span data-palo-icon=building class=palo-icon-inline></span>Sector: <strong>${selections.sector}</strong> |
                         Function: <strong>${selections.function}</strong> |
                         Autonomy: <strong>${selections.autonomy}</strong>
                     </p>
@@ -803,14 +805,14 @@
             if (tier === 'unacceptable') {
                 html += `
                     <div style="background: rgba(124, 45, 18, 0.1); border: 2px solid var(--color-unacceptable); padding: 20px; border-radius: 10px;">
-                        <h3 style="color: var(--color-unacceptable); margin-bottom: 8px;">Prohibited Application</h3>
+                        <h3 style="color: var(--color-unacceptable); margin-bottom: 8px;"><span data-palo-icon=warning class=palo-icon-inline></span>Prohibited Application</h3>
                         <p style="font-size: 14px;">This type of AI system is explicitly prohibited under the EU AI Act and cannot be deployed in the European Union. Consider alternative approaches that do not fall under prohibited categories.</p>
                     </div>
                 `;
             } else {
                 html += `
                     <div class="requirements-section">
-                        <h3 class="requirements-title">Required Documentation</h3>
+                        <h3 class="requirements-title"><span data-palo-icon=clipboard class=palo-icon-inline></span>Required Documentation</h3>
                         ${req.documents.map(doc => `
                             <div class="requirement-card">
                                 <h4>${doc.name}</h4>
@@ -823,14 +825,14 @@
 
             html += `
                 <div class="eu-act-reference">
-                    <h4>EU AI Act Reference</h4>
+                    <h4><span data-palo-icon=scale class=palo-icon-inline></span>EU AI Act Reference</h4>
                     <p>${req.euReference}</p>
                 </div>
 
                 <div class="action-buttons">
-                    <button class="btn btn-primary" onclick="downloadReport()">Download Report</button>
-                    <button class="btn btn-secondary" onclick="startOver()">Start Over</button>
-                    <a href="PALO_FRIA.html" class="btn btn-secondary" style="text-decoration: none;">Start FRIA Assessment</a>
+                    <button class="btn btn-primary" onclick="downloadReport()"><span data-palo-icon=download class=palo-icon-inline></span>Download Report</button>
+                    <button class="btn btn-secondary" onclick="startOver()"><span data-palo-icon=refresh class=palo-icon-inline></span>Start Over</button>
+                    <a href="PALO_FRIA.html" class="btn btn-secondary" style="text-decoration: none;"><span data-palo-icon=shield class=palo-icon-inline></span>Start FRIA Assessment</a>
                 </div>
             `;
 

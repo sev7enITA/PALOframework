@@ -1,0 +1,64 @@
+.palo-svg-icon,
+[data-palo-icon] > .palo-svg-icon {
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+    vertical-align: -0.15em;
+    flex: 0 0 auto;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+[data-palo-icon],
+.palo-icon-inline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: -0.15em;
+}
+
+.palo-icon-inline {
+    margin-right: 0.38em;
+}
+
+.palo-icon-after {
+    margin-left: 0.38em;
+}
+
+.palo-icon-large,
+.text-3xl[data-palo-icon],
+.text-4xl[data-palo-icon],
+.feature-icon[data-palo-icon],
+.scenario-icon[data-palo-icon],
+.theme-icon[data-palo-icon],
+.platform-icon[data-palo-icon],
+.tool-icon[data-palo-icon],
+.blindspot-icon[data-palo-icon],
+.upload-icon[data-palo-icon],
+.empty-state-icon[data-palo-icon],
+.icon[data-palo-icon] {
+    line-height: 1;
+}
+
+.palo-icon-large .palo-svg-icon,
+.text-3xl[data-palo-icon] .palo-svg-icon,
+.text-4xl[data-palo-icon] .palo-svg-icon,
+.feature-icon[data-palo-icon] .palo-svg-icon,
+.scenario-icon[data-palo-icon] .palo-svg-icon,
+.theme-icon[data-palo-icon] .palo-svg-icon,
+.platform-icon[data-palo-icon] .palo-svg-icon,
+.tool-icon[data-palo-icon] .palo-svg-icon,
+.blindspot-icon[data-palo-icon] .palo-svg-icon,
+.upload-icon[data-palo-icon] .palo-svg-icon,
+.empty-state-icon[data-palo-icon] .palo-svg-icon,
+.icon[data-palo-icon] .palo-svg-icon {
+    width: 1.1em;
+    height: 1.1em;
+}
+
+.palo-icon-muted {
+    opacity: 0.75;
+}

@@ -426,6 +426,8 @@
             margin-left: auto;
         }
     </style>
+    <link rel="stylesheet" href="assets/palo-icons.css">
+    <script src="assets/palo-icons.js"></script>
 </head>
 
 <body>
@@ -441,7 +443,7 @@
                 <img src="assets/logo.webp" alt="PALO Logo">
             </a>
             <div>
-                <h1 id="main-content" tabindex="-1">PALO Assessment Comparison Tool</h1>
+                <h1 id="main-content" tabindex="-1"><span data-palo-icon=chart class=palo-icon-inline></span>PALO Assessment Comparison Tool</h1>
                 <p>Upload and compare multiple PALO assessments to track progress and identify remediation priorities
                 </p>
             </div>
@@ -452,12 +454,12 @@
         <main role="main">
 
             <div class="upload-section">
-                <h2>Upload Assessments</h2>
+                <h2><span data-palo-icon=folder class=palo-icon-inline></span>Upload Assessments</h2>
                 <p style="margin-bottom: var(--space-16); color: var(--color-text-secondary); font-size: 14px;">
                     Upload 2 or more JSON files exported from the PALO Model Canvas to compare assessments over time.
                 </p>
                 <div class="upload-area" id="uploadArea">
-                    <div class="upload-icon"></div>
+                    <div class="upload-icon" data-palo-icon=upload></div>
                     <p><strong>Drop JSON files here</strong> or click to browse</p>
                     <p style="font-size: 12px; color: var(--color-text-secondary); margin-top: 8px;">
                         Supports multiple files for trend analysis
@@ -467,17 +469,17 @@
                 <div class="uploaded-files" id="uploadedFiles"></div>
                 <div style="margin-top: var(--space-16); display: flex; gap: var(--space-12);">
                     <button class="btn btn-primary" id="analyzeBtn" disabled onclick="analyzeAssessments()">
-                         Analyze & Compare
+                         <span data-palo-icon=search class=palo-icon-inline></span>Analyze & Compare
                     </button>
-                    <button class="btn btn-secondary" onclick="clearFiles()">Clear All</button>
+                    <button class="btn btn-secondary" onclick="clearFiles()"><span data-palo-icon=trash class=palo-icon-inline></span>Clear All</button>
                 </div>
             </div>
 
             <div id="resultsSection" class="hidden">
                 <div class="executive-summary">
                     <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <h2>Executive Summary</h2>
-                        <button class="btn btn-primary" onclick="exportSummary()">Export Summary</button>
+                        <h2><span data-palo-icon=clipboard class=palo-icon-inline></span>Executive Summary</h2>
+                        <button class="btn btn-primary" onclick="exportSummary()"><span data-palo-icon=download class=palo-icon-inline></span>Export Summary</button>
                     </div>
 
                     <div class="progress-indicator" id="overallTrend">
@@ -493,7 +495,7 @@
                     </div>
 
                     <div class="remediation-section" id="remediationSection">
-                        <h3>Recommended Remediations (PALO Framework)</h3>
+                        <h3><span data-palo-icon=wrench class=palo-icon-inline></span>Recommended Remediations (PALO Framework)</h3>
                         <div id="remediationList">
                             <!-- Populated by JS -->
                         </div>
@@ -501,7 +503,7 @@
                 </div>
 
                 <div class="chart-container">
-                    <h2 style="margin-bottom: var(--space-16);">Dimension Score Comparison</h2>
+                    <h2 style="margin-bottom: var(--space-16);"><span data-palo-icon=chart class=palo-icon-inline></span>Dimension Score Comparison</h2>
                     <div class="bar-chart" id="dimensionChart">
                         <!-- Populated by JS -->
                     </div>
@@ -511,7 +513,7 @@
                 </div>
 
                 <div class="chart-container">
-                    <h2 style="margin-bottom: var(--space-16);">Framework Alignment Comparison</h2>
+                    <h2 style="margin-bottom: var(--space-16);"><span data-palo-icon=bank class=palo-icon-inline></span>Framework Alignment Comparison</h2>
                     <div class="bar-chart" id="frameworkChart">
                         <!-- Populated by JS -->
                     </div>
@@ -637,15 +639,15 @@
 
             let icon, text, cssClass;
             if (diff > 5) {
-                icon = '';
+                icon = paloIcon('trend-up');
                 text = `+${diff}% improvement`;
                 cssClass = 'trend-up';
             } else if (diff < -5) {
-                icon = '';
+                icon = paloIcon('trend-down');
                 text = `${diff}% regression`;
                 cssClass = 'trend-down';
             } else {
-                icon = '';
+                icon = paloIcon('trend-flat');
                 text = 'Stable (+/-5%)';
                 cssClass = 'trend-neutral';
             }
@@ -776,11 +778,11 @@
                                 <span class="score-value">${d.metadata.phase}</span>
                             </div>
                             <div class="score-row">
-                                <span class="score-label">Risk Tier</span>
+                                <span class="score-label"><span data-palo-icon=warning class=palo-icon-inline></span>Risk Tier</span>
                                 <span class="score-value">${d.configuration.riskTier || 'N/A'}</span>
                             </div>
                             <div class="score-row">
-                                <span class="score-label">Use Case</span>
+                                <span class="score-label"><span data-palo-icon=folder class=palo-icon-inline></span>Use Case</span>
                                 <span class="score-value">${d.configuration.useCaseCategory || 'N/A'}</span>
                             </div>
                         </div>
@@ -863,7 +865,7 @@
 
             if (remediations.length === 0) {
                 document.getElementById('remediationSection').innerHTML = `
-                    <h3>Excellent Compliance Status</h3>
+                    <h3><span data-palo-icon=check class=palo-icon-inline></span>Excellent Compliance Status</h3>
                     <p style="color: var(--color-success);">All dimension scores are above 50%. Continue monitoring and improving.</p>
                 `;
                 document.getElementById('remediationSection').style.background = 'rgba(16, 185, 129, 0.1)';
@@ -938,11 +940,11 @@
         style="text-align: center; padding: 24px; margin-top: 24px; color: #64748B; font-size: 13px; border-top: 1px solid #E2E8F0;">
         <p>Copyright 2025 PALO Framework. All rights reserved.</p>
         <p style="margin-top: 8px;">
-            <a href="index.html" style="color: #21808D; text-decoration: none;">Home</a> |
-            <a href="PALO_FRIA.html" style="color: #21808D; text-decoration: none;">FRIA</a> |
-            <a href="PALO_ModelCanvasAI.html" style="color: #21808D; text-decoration: none;">Model Canvas</a> |
+            <a href="index.html" style="color: #21808D; text-decoration: none;"><span data-palo-icon=home class=palo-icon-inline></span>Home</a> |
+            <a href="PALO_FRIA.html" style="color: #21808D; text-decoration: none;"><span data-palo-icon=shield class=palo-icon-inline></span>FRIA</a> |
+            <a href="PALO_ModelCanvasAI.html" style="color: #21808D; text-decoration: none;"><span data-palo-icon=palette class=palo-icon-inline></span>Model Canvas</a> |
             <a href="accessibility.html" style="color: #21808D; text-decoration: none;">Accessibility</a> |
-            <a href="privacy-policy.html" style="color: #21808D; text-decoration: none;">Privacy Policy</a>
+            <a href="privacy-policy.html" style="color: #21808D; text-decoration: none;"><span data-palo-icon=lock class=palo-icon-inline></span>Privacy Policy</a>
         </p>
         <p style="margin-top: 8px; font-size: 11px; opacity: 0.7;">EN 301549 Compliant | WCAG 2.1 AA | GDPR Compliant
         </p>

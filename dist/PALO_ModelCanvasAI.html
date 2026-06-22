@@ -906,6 +906,8 @@
             margin-top: var(--space-4);
         }
     </style>
+    <link rel="stylesheet" href="assets/palo-icons.css">
+    <script src="assets/palo-icons.js"></script>
 </head>
 
 <body>
@@ -962,14 +964,13 @@
                 </div>
             </div>
             <div class="export-options">
-                <button class="btn btn-secondary" onclick="downloadTemplate()">Download Template</button>
-                <button class="btn btn-secondary" onclick="document.getElementById('importFile').click()">Import
-                    JSON</button>
+                <button class="btn btn-secondary" onclick="downloadTemplate()"><span data-palo-icon=clipboard class=palo-icon-inline></span>Download Template</button>
+                <button class="btn btn-secondary" onclick="document.getElementById('importFile').click()"><span data-palo-icon=folder class=palo-icon-inline></span>Import JSON</button>
                 <input type="file" id="importFile" accept=".json" style="display: none;" onchange="importData(event)">
-                <button class="btn btn-primary" onclick="exportData()">Export JSON</button>
-                <button class="btn btn-primary" onclick="generateReport()">Generate Report</button>
+                <button class="btn btn-primary" onclick="exportData()"><span data-palo-icon=save class=palo-icon-inline></span>Export JSON</button>
+                <button class="btn btn-primary" onclick="generateReport()"><span data-palo-icon=file class=palo-icon-inline></span>Generate Report</button>
                 <a href="PALO_ComparisonTool.html" class="btn btn-primary"
-                    style="text-decoration: none; display: inline-block;">Compare</a>
+                    style="text-decoration: none; display: inline-block;"><span data-palo-icon=chart class=palo-icon-inline></span>Compare</a>
             </div>
         </div>
 
@@ -978,7 +979,7 @@
             <div class="wizard-progress">
                 <div class="wizard-step active" onclick="goToWizardStep(1)">
                     <div class="step-number">1</div>
-                    <div class="step-label">Project Info</div>
+                    <div class="step-label"><span data-palo-icon=target class=palo-icon-inline></span>Project Info</div>
                 </div>
                 <div class="wizard-step" onclick="goToWizardStep(2)">
                     <div class="step-number">2</div>
@@ -986,7 +987,7 @@
                 </div>
                 <div class="wizard-step" onclick="goToWizardStep(3)">
                     <div class="step-number">3</div>
-                    <div class="step-label">Users & Governance</div>
+                    <div class="step-label"><span data-palo-icon=users class=palo-icon-inline></span>Users & Governance</div>
                 </div>
                 <div class="wizard-step" onclick="goToWizardStep(4)">
                     <div class="step-number">4</div>
@@ -994,7 +995,7 @@
                 </div>
                 <div class="wizard-step" onclick="goToWizardStep(5)">
                     <div class="step-number">5</div>
-                    <div class="step-label">Configuration</div>
+                    <div class="step-label"><span data-palo-icon=wrench class=palo-icon-inline></span>Configuration</div>
                 </div>
                 <div class="wizard-step" onclick="goToWizardStep(6)">
                     <div class="step-number">6</div>
@@ -1010,7 +1011,7 @@
                         your assessment and align it with your business strategy.</p>
 
                     <div class="wizard-field">
-                        <label for="wiz_projectName">Project Name *</label>
+                        <label for="wiz_projectName"><span data-palo-icon=target class=palo-icon-inline></span>Project Name *</label>
                         <input type="text" id="wiz_projectName" class="select" data-wizard-field="projectName"
                             placeholder="e.g., Customer Service AI Assistant" style="width: 100%;">
                         <div class="helper-text">Give your AI project a clear, descriptive name</div>
@@ -1034,7 +1035,7 @@
 
                 <!-- Step 2: Data & Model -->
                 <div class="wizard-section" data-step="2">
-                    <h3>Data & Model Details</h3>
+                    <h3><span data-palo-icon=palette class=palo-icon-inline></span>Data & Model Details</h3>
                     <p class="section-description">Describe how your AI system handles data and what type of model it
                         uses. This is critical for privacy and transparency assessments.</p>
 
@@ -1064,7 +1065,7 @@
 
                 <!-- Step 3: Users & Governance -->
                 <div class="wizard-section" data-step="3">
-                    <h3>Users & Governance</h3>
+                    <h3><span data-palo-icon=users class=palo-icon-inline></span>Users & Governance</h3>
                     <p class="section-description">Identify who interacts with the AI system and how governance is
                         structured.</p>
 
@@ -1093,7 +1094,7 @@
 
                 <!-- Step 4: KPIs -->
                 <div class="wizard-section" data-step="4">
-                    <h3>Key Performance Indicators</h3>
+                    <h3><span data-palo-icon=chart class=palo-icon-inline></span>Key Performance Indicators</h3>
                     <p class="section-description">Set measurable targets for your AI system. These KPIs help track
                         compliance and performance over time.</p>
 
@@ -1127,12 +1128,12 @@
 
                 <!-- Step 5: Configuration -->
                 <div class="wizard-section" data-step="5">
-                    <h3>Risk Configuration</h3>
+                    <h3><span data-palo-icon=wrench class=palo-icon-inline></span>Risk Configuration</h3>
                     <p class="section-description">Configure risk classification and select applicable ethical
                         principles.</p>
 
                     <div class="wizard-field">
-                        <label>Risk Tier (EU AI Act)</label>
+                        <label><span data-palo-icon=warning class=palo-icon-inline></span>Risk Tier (EU AI Act)</label>
                         <select id="wiz_riskTier" class="select" data-wizard-config="riskTier" style="width: 100%;">
                             <option value="">Select risk tier...</option>
                             <option value="minimal">Minimal Risk</option>
@@ -1196,7 +1197,7 @@
 
                 <!-- Step 6: Review -->
                 <div class="wizard-section" data-step="6">
-                    <h3>Review & Complete</h3>
+                    <h3><span data-palo-icon=target class=palo-icon-inline></span>Review & Complete</h3>
                     <p class="section-description">Review your assessment summary. You can switch to Expert Mode to make
                         detailed adjustments or export your data.</p>
 
@@ -1244,11 +1245,11 @@
                 <!-- Main Canvas Area -->
                 <div>
                     <!-- Context Section -->
-                    <h2 style="margin-bottom: var(--space-16); font-size: 18px; color: var(--color-text);">Context &
+                    <h2 style="margin-bottom: var(--space-16); font-size: 18px; color: var(--color-text);"><span data-palo-icon=clipboard class=palo-icon-inline></span>Context &
                         Strategy</h2>
                     <div class="canvas-grid">
                         <div class="canvas-section">
-                            <h3>Project Name</h3>
+                            <h3><span data-palo-icon=target class=palo-icon-inline></span>Project Name</h3>
                             <textarea id="projectName" placeholder="Enter project name, department, and date..."
                                 data-field="projectName"></textarea>
                             <div class="palo-tips">
@@ -1423,7 +1424,7 @@
                                 show:  On Target | Close | Needs Improvement</p>
                         </div>
 
-                        <h3 style="margin-bottom: var(--space-16);">Technical KPIs
+                        <h3 style="margin-bottom: var(--space-16);"><span data-palo-icon=wrench class=palo-icon-inline></span>Technical KPIs
                             <span
                                 style="font-size: 11px; font-weight: 400; color: var(--color-text-secondary); margin-left: 8px;">->
                                 Impacts: Transparency & Safety</span>
@@ -1577,7 +1578,7 @@
 
             <!-- Dynamic Risk Assessment Dashboard -->
             <div class="insights-panel" id="riskDashboard">
-                <h3>PALO Risk Assessment Dashboard</h3>
+                <h3><span data-palo-icon=chart class=palo-icon-inline></span>PALO Risk Assessment Dashboard</h3>
                 <p style="font-size: 12px; color: var(--color-text-secondary); margin-bottom: var(--space-16);">
                     Dynamic assessment based on your inputs. Complete more fields for accurate scoring.
                 </p>
@@ -1732,7 +1733,7 @@
                     style="margin-top: var(--space-16); padding: var(--space-12); background: var(--color-background); border-radius: var(--radius-base); border-left: 3px solid var(--color-warning); display: none;">
                     <div
                         style="font-size: 12px; font-weight: 600; color: var(--color-warning); margin-bottom: var(--space-4);">
-                         Recommendations</div>
+                         <span data-palo-icon=warning class=palo-icon-inline></span>Recommendations</div>
                     <ul id="recommendationsList"
                         style="font-size: 11px; color: var(--color-text-secondary); margin: 0; padding-left: 16px; line-height: 1.6;">
                     </ul>
@@ -1742,10 +1743,10 @@
 
         <!-- Sidebar -->
         <div class="sidebar">
-            <h2>Configuration</h2>
+            <h2><span data-palo-icon=wrench class=palo-icon-inline></span>Configuration</h2>
 
             <div class="sidebar-section">
-                <label class="sidebar-label">Risk Tier (EU AI Act)</label>
+                <label class="sidebar-label"><span data-palo-icon=warning class=palo-icon-inline></span>Risk Tier (EU AI Act)</label>
                 <select id="riskTier" class="select" data-field="riskTier">
                     <option value="">Select risk tier...</option>
                     <option value="minimal">Minimal Risk</option>
@@ -1839,7 +1840,7 @@
                 </div>
                 <div
                     style="font-size: 10px; color: var(--color-text-secondary); margin-top: var(--space-8); padding: 6px; background: var(--color-background); border-radius: 4px;">
-                    <strong>Impact:</strong> Principles contribute 30% to each dimension score + 70% to OECD Alignment
+                    <strong>Impact:</strong> <span data-palo-icon=shield class=palo-icon-inline></span>Principles contribute 30% to each dimension score + 70% to OECD Alignment
                 </div>
             </div>
 
@@ -1875,7 +1876,7 @@
     <div id="paloModal" class="modal">
         <div class="modal-content">
             <span class="modal-close" onclick="closePALOModal()">&times;</span>
-            <h2 style="margin-bottom: var(--space-16);">PALO Framework Guide</h2>
+            <h2 style="margin-bottom: var(--space-16);"><span data-palo-icon=book class=palo-icon-inline></span>PALO Framework Guide</h2>
             <div class="tab-buttons">
                 <button class="tab-btn active" onclick="switchTab(event, 'phases')">5 Phases</button>
                 <button class="tab-btn" onclick="switchTab(event, 'principles')">7 Principles</button>
@@ -2012,7 +2013,7 @@
     <div id="complianceModal" class="modal">
         <div class="modal-content">
             <span class="modal-close" onclick="closeComplianceModal()">&times;</span>
-            <h2 style="margin-bottom: var(--space-16);">Standards Compliance Matrix</h2>
+            <h2 style="margin-bottom: var(--space-16);"><span data-palo-icon=bank class=palo-icon-inline></span>Standards Compliance Matrix</h2>
             <table style="width: 100%; border-collapse: collapse; font-size: 12px;">
                 <thead>
                     <tr style="background: var(--color-background); border-bottom: 2px solid var(--color-border);">
@@ -2728,7 +2729,7 @@
                     <div style="margin-bottom: 8px;">
                         ${data.alerts.map(a => `<div style="margin: 2px 0;">${a}</div>`).join('')}
                     </div>
-                    <div style="font-weight: 600; margin-bottom: 4px;">Key Requirements:</div>
+                    <div style="font-weight: 600; margin-bottom: 4px;"><span data-palo-icon=clipboard class=palo-icon-inline></span>Key Requirements:</div>
                     <ul style="margin: 0; padding-left: 16px; color: var(--color-text-secondary);">
                         ${data.requirements.map(r => `<li style="margin: 2px 0;">${r}</li>`).join('')}
                     </ul>
@@ -3291,19 +3292,19 @@
             document.getElementById('wizardSummary').innerHTML = `
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
                     <div>
-                        <div style="font-weight: 600; margin-bottom: 4px;">Project</div>
+                        <div style="font-weight: 600; margin-bottom: 4px;"><span data-palo-icon=target class=palo-icon-inline></span>Project</div>
                         <div style="font-size: 14px;">${projectName}</div>
                     </div>
                     <div>
-                        <div style="font-weight: 600; margin-bottom: 4px;">Risk Tier</div>
+                        <div style="font-weight: 600; margin-bottom: 4px;"><span data-palo-icon=warning class=palo-icon-inline></span>Risk Tier</div>
                         <div style="font-size: 14px;">${riskTier}</div>
                     </div>
                     <div>
-                        <div style="font-weight: 600; margin-bottom: 4px;">Use Case</div>
+                        <div style="font-weight: 600; margin-bottom: 4px;"><span data-palo-icon=folder class=palo-icon-inline></span>Use Case</div>
                         <div style="font-size: 14px;">${useCase}</div>
                     </div>
                     <div>
-                        <div style="font-weight: 600; margin-bottom: 4px;">Completion</div>
+                        <div style="font-weight: 600; margin-bottom: 4px;"><span data-palo-icon=check class=palo-icon-inline></span>Completion</div>
                         <div style="font-size: 14px;">${principlesCount}/7 Principles - ${kpisCount} KPIs</div>
                     </div>
                 </div>
@@ -3339,8 +3340,8 @@
         role="contentinfo">
         <p style="margin-bottom: 8px;">Copyright 2024 PALO Framework. All rights reserved.</p>
         <p style="margin-bottom: 8px;">
-            <a href="index.html" style="color: var(--color-primary); text-decoration: none;">Home</a> |
-            <a href="PALO_FRIA.html" style="color: var(--color-primary); text-decoration: none;">FRIA</a> |
+            <a href="index.html" style="color: var(--color-primary); text-decoration: none;"><span data-palo-icon=home class=palo-icon-inline></span>Home</a> |
+            <a href="PALO_FRIA.html" style="color: var(--color-primary); text-decoration: none;"><span data-palo-icon=shield class=palo-icon-inline></span>FRIA</a> |
             <a href="privacy-policy.html" style="color: var(--color-primary); text-decoration: none;">Privacy</a> |
             <a href="security-policy.html" style="color: var(--color-primary); text-decoration: none;">Security</a>
         </p>

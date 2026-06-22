@@ -487,6 +487,8 @@
             padding: 24px;
         }
     </style>
+    <link rel="stylesheet" href="assets/palo-icons.css">
+    <script src="assets/palo-icons.js"></script>
 </head>
 
 <body>
@@ -507,21 +509,21 @@
             </a>
             <div style="display: flex; gap: 8px; align-items: center;">
                 <a href="index.html" class="btn btn-secondary" style="text-decoration: none;"
-                    aria-label="Return to home page">Home</a>
+                    aria-label="Return to home page"><span data-palo-icon=home class=palo-icon-inline></span>Home</a>
                 <a href="PALO_ModelCanvasAI.html" class="btn btn-secondary" style="text-decoration: none;"
-                    aria-label="Open Model Canvas tool">Canvas</a>
+                    aria-label="Open Model Canvas tool"><span data-palo-icon=palette class=palo-icon-inline></span>Canvas</a>
             </div>
         </nav>
 
         <!-- Header -->
         <header class="header" role="banner">
             <img src="assets/logo.webp" alt="" aria-hidden="true">
-            <h1 id="main-content" tabindex="-1">FRIA - Fundamental Rights Impact Assessment</h1>
+            <h1 id="main-content" tabindex="-1"><span data-palo-icon=shield class=palo-icon-inline></span>FRIA - Fundamental Rights Impact Assessment</h1>
             <div class="header-actions" role="group" aria-label="Assessment actions">
                 <button class="btn btn-secondary" onclick="downloadTemplate()" aria-label="Download blank template">
                     Template</button>
                 <button class="btn btn-secondary" onclick="document.getElementById('importFile').click()"
-                    aria-label="Import saved assessment">Import</button>
+                    aria-label="Import saved assessment"><span data-palo-icon=folder class=palo-icon-inline></span>Import</button>
                 <input type="file" id="importFile" accept=".json" onchange="importData(event)"
                     aria-label="Select file to import">
                 <button class="btn btn-primary" onclick="exportData()" aria-label="Export current assessment">
@@ -534,7 +536,7 @@
             <div style="display: flex; justify-content: space-between; align-items: start; cursor: pointer;"
                 onclick="toggleIntro()">
                 <div>
-                    <h2 style="font-size: 20px; margin-bottom: 8px; color: var(--color-primary);">What is FRIA and
+                    <h2 style="font-size: 20px; margin-bottom: 8px; color: var(--color-primary);"><span data-palo-icon=book class=palo-icon-inline></span>What is FRIA and
                         How to Use This Tool</h2>
                     <p style="color: var(--color-text-secondary); font-size: 14px; margin: 0;">Click to expand the guide
                     </p>
@@ -544,7 +546,7 @@
             <div id="introContent" style="display: block; margin-top: 20px;">
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
                     <div>
-                        <h3 style="font-size: 16px; margin-bottom: 12px; color: var(--color-text);">What is FRIA?
+                        <h3 style="font-size: 16px; margin-bottom: 12px; color: var(--color-text);"><span data-palo-icon=shield class=palo-icon-inline></span>What is FRIA?
                         </h3>
                         <p style="font-size: 14px; color: var(--color-text-secondary); margin-bottom: 12px;">
                             A <strong>Fundamental Rights Impact Assessment (FRIA)</strong> is a mandatory evaluation
@@ -562,7 +564,7 @@
                         </div>
                     </div>
                     <div>
-                        <h3 style="font-size: 16px; margin-bottom: 12px; color: var(--color-text);">How to Use This
+                        <h3 style="font-size: 16px; margin-bottom: 12px; color: var(--color-text);"><span data-palo-icon=clipboard class=palo-icon-inline></span>How to Use This
                             Tool</h3>
                         <ol style="font-size: 14px; color: var(--color-text-secondary); padding-left: 20px;">
                             <li style="margin-bottom: 8px;"><strong>Step 1 - Context:</strong> Enter AI system details
@@ -582,7 +584,7 @@
                 </div>
                 <div
                     style="margin-top: 16px; padding: 16px; background: rgba(245, 158, 11, 0.1); border-radius: 8px; border-left: 4px solid var(--color-warning);">
-                    <strong style="color: var(--color-warning);">Important:</strong>
+                    <strong style="color: var(--color-warning);"><span data-palo-icon=warning class=palo-icon-inline></span>Important:</strong>
                     <span style="color: var(--color-text-secondary); font-size: 14px;">
                         This tool processes all data locally in your browser. No information is sent to any server.
                         Use the <strong>Export</strong> button to save your progress and <strong>Import</strong> to
@@ -626,11 +628,11 @@
         <div class="main-content">
             <!-- Step 1: Context -->
             <div class="step-content active" data-step="1">
-                <h2 class="step-title">AI System Context</h2>
+                <h2 class="step-title"><span data-palo-icon=clipboard class=palo-icon-inline></span>AI System Context</h2>
                 <p class="step-description">Provide information about the AI system being assessed.</p>
 
                 <div class="tip-box">
-                     <strong>Tip:</strong> This assessment is required under EU AI Act Article 27 for high-risk AI
+                     <strong><span data-palo-icon=lightbulb class=palo-icon-inline></span>Tip:</strong> This assessment is required under EU AI Act Article 27 for high-risk AI
                     systems deployed by public authorities or private entities providing public services.
                 </div>
 
@@ -684,7 +686,7 @@
 
             <!-- Step 2: Checklist (placeholder - will expand) -->
             <div class="step-content" data-step="2">
-                <h2 class="step-title">Context Analysis Checklist</h2>
+                <h2 class="step-title"><span data-palo-icon=check class=palo-icon-inline></span>Context Analysis Checklist</h2>
                 <p class="step-description">Answer these questions about your AI system's governance, data, and
                     oversight.</p>
 
@@ -693,7 +695,7 @@
 
             <!-- Step 3: Scenarios -->
             <div class="step-content" data-step="3">
-                <h2 class="step-title">Impact Scenarios</h2>
+                <h2 class="step-title"><span data-palo-icon=warning class=palo-icon-inline></span>Impact Scenarios</h2>
                 <p class="step-description">Identify up to 5 scenarios where the AI system could negatively affect
                     fundamental rights.</p>
 
@@ -703,7 +705,7 @@
 
             <!-- Step 4: Assessment -->
             <div class="step-content" data-step="4">
-                <h2 class="step-title">Severity & Likelihood Assessment</h2>
+                <h2 class="step-title"><span data-palo-icon=chart class=palo-icon-inline></span>Severity & Likelihood Assessment</h2>
                 <p class="step-description">Assess the severity and likelihood of each identified impact.</p>
 
                 <div id="assessmentContainer"></div>
@@ -711,7 +713,7 @@
 
             <!-- Step 5: Mitigation -->
             <div class="step-content" data-step="5">
-                <h2 class="step-title">Mitigation Measures</h2>
+                <h2 class="step-title"><span data-palo-icon=wrench class=palo-icon-inline></span>Mitigation Measures</h2>
                 <p class="step-description">Document existing and planned measures to mitigate identified risks.</p>
 
                 <div id="mitigationContainer"></div>
@@ -719,7 +721,7 @@
 
             <!-- Step 6: Decision -->
             <div class="step-content" data-step="6">
-                <h2 class="step-title">Deployment Decision</h2>
+                <h2 class="step-title"><span data-palo-icon=target class=palo-icon-inline></span>Deployment Decision</h2>
                 <p class="step-description">Review your assessment and make a deployment decision.</p>
 
                 <div id="summaryContainer"></div>
@@ -734,7 +736,7 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label>Deployment Decision</label>
+                    <label><span data-palo-icon=target class=palo-icon-inline></span>Deployment Decision</label>
                     <select id="deploymentDecision">
                         <option value="">Select decision...</option>
                         <option value="proceed">Proceed - Acceptable risk level</option>
@@ -749,7 +751,7 @@
                 </div>
 
                 <div style="margin-top: 24px;">
-                    <button class="btn btn-primary" onclick="generateReport()">Generate Report</button>
+                    <button class="btn btn-primary" onclick="generateReport()"><span data-palo-icon=file class=palo-icon-inline></span>Generate Report</button>
                 </div>
             </div>
 
@@ -764,8 +766,8 @@
         <footer class="footer" role="contentinfo">
             <p>FRIA Tool based on EU AI Act Article 27 requirements</p>
             <p>
-                <a href="index.html">Home</a> |
-                <a href="PALO_ModelCanvasAI.html">Model Canvas</a> |
+                <a href="index.html"><span data-palo-icon=home class=palo-icon-inline></span>Home</a> |
+                <a href="PALO_ModelCanvasAI.html"><span data-palo-icon=palette class=palo-icon-inline></span>Model Canvas</a> |
                 <a href="privacy-policy.html">Privacy</a> |
                 <a href="security-policy.html">Security</a>
             </p>
@@ -1146,7 +1148,7 @@
 
             container.innerHTML = `
             <div class="tip-box" style="margin-bottom: 20px;">
-                <strong>Assessment Summary</strong>
+                <strong><span data-palo-icon=chart class=palo-icon-inline></span>Assessment Summary</strong>
                 <ul style="margin: 8px 0 0 16px;">
                     <li>AI System: <strong>${friaData.context.systemName || 'Not specified'}</strong></li>
                     <li>Scenarios analyzed: <strong>${friaData.scenarios.length}</strong></li>
