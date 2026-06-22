@@ -18,6 +18,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link rel="stylesheet" href="vibe-coding/style.css">
+    <link rel="stylesheet" href="assets/palo-icons.css">
+    <script src="assets/palo-icons.js"></script>
 </head>
 <body>
 <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -26,26 +28,26 @@
 <div class="palo-topbar">
   <a href="index.html" class="palo-brand"><img src="assets/logo.webp" alt="PALO" onerror="this.style.display='none'">PALO FRAMEWORK</a>
   <div class="palo-links">
-    <a href="index.html">Home</a>
-    <a href="PALO_ModelCanvasAI.html">Model Canvas</a>
-    <a href="PALO_FRIA.html">FRIA</a>
-    <a href="PALO_AuditBench.html">AuditBench</a>
+    <a href="index.html"><span data-palo-icon=home class=palo-icon-inline></span>Home</a>
+    <a href="PALO_ModelCanvasAI.html"><span data-palo-icon=palette class=palo-icon-inline></span>Model Canvas</a>
+    <a href="PALO_FRIA.html"><span data-palo-icon=shield class=palo-icon-inline></span>FRIA</a>
+    <a href="PALO_AuditBench.html"><span data-palo-icon=search class=palo-icon-inline></span>AuditBench</a>
     <a href="PALO_PoisoningStudy.html">Poisoning Study</a>
     <a href="PALO_TechTrends2026.html">Tech Trends</a>
-    <a href="PALO_Community.html">Community</a>
+    <a href="PALO_Community.html"><span data-palo-icon=users class=palo-icon-inline></span>Community</a>
   </div>
 </div>
 
 <!-- Section Nav -->
 <nav class="section-nav">
-  <div class="nav-brand">AI-ASSISTED DEV GOVERNANCE</div>
+  <div class="nav-brand"><span data-palo-icon=lock class=palo-icon-inline></span>AI-ASSISTED DEV GOVERNANCE</div>
   <div class="nav-links">
     <a href="#categories">Categories</a>
     <a href="#three-layers">Three Layers</a>
     <a href="#controls">Controls</a>
     <a href="#gates">Decision Gates</a>
     <a href="#kpis">KPIs</a>
-    <a href="#principles">Principles</a>
+    <a href="#principles"><span data-palo-icon=shield class=palo-icon-inline></span>Principles</a>
     <a href="#platforms">Platforms</a>
   </div>
 </nav>
@@ -195,7 +197,7 @@
         <table class="data-table">
           <thead><tr><th>Evidence Object</th><th>Purpose</th><th>Owner</th></tr></thead>
           <tbody>
-            <tr><td>Business need record</td><td>Establish the origin and purpose of the software initiative.</td><td>Use Case Owner / Product Owner</td></tr>
+            <tr><td>Business need record</td><td>Establish the origin and purpose of the software initiative.</td><td><span data-palo-icon=folder class=palo-icon-inline></span>Use Case Owner / Product Owner</td></tr>
             <tr><td>AI-assisted functional analysis record</td><td>Show what AI helped infer and what humans validated.</td><td>Business Analyst / Product Owner</td></tr>
             <tr><td>Prototype register</td><td>Prevent PoCs from becoming unmanaged production systems.</td><td>Innovation Lead / CIO</td></tr>
             <tr><td>AI session metadata</td><td>Identify AI tool, model, user, repository and session scope.</td><td>CAIO / CISO</td></tr>
@@ -348,42 +350,42 @@
 
     <div class="platform-grid">
       <div class="platform-card">
-        <div class="platform-icon"></div>
+        <div class="platform-icon" data-palo-icon=wrench></div>
         <div>
           <h4>AI Control Plane / Evidence Layer</h4>
           <p>Inventory AI tools, agents, prompts, policies, runtime evidence and audit trails.</p>
         </div>
       </div>
       <div class="platform-card">
-        <div class="platform-icon"></div>
+        <div class="platform-icon" data-palo-icon=scale></div>
         <div>
           <h4>AI Governance & Registry</h4>
           <p>Maintain use case registry, risk classification, assessment evidence, and policy mapping.</p>
         </div>
       </div>
       <div class="platform-card">
-        <div class="platform-icon"></div>
+        <div class="platform-icon" data-palo-icon=shield></div>
         <div>
           <h4>AI Security / Agent Governance</h4>
           <p>Detect prompt injection, data leakage, excessive agency, unsafe tool use and shadow AI.</p>
         </div>
       </div>
       <div class="platform-card">
-        <div class="platform-icon"></div>
+        <div class="platform-icon" data-palo-icon=palette></div>
         <div>
           <h4>AI Gateways / LLM Control Plane</h4>
           <p>Route model calls, enforce policy, log usage, apply DLP and manage model access.</p>
         </div>
       </div>
       <div class="platform-card">
-        <div class="platform-icon"></div>
+        <div class="platform-icon" data-palo-icon=palette></div>
         <div>
           <h4>Monitoring & Observability</h4>
           <p>Trace prompts, evals, model outputs, drift, cost and reliability.</p>
         </div>
       </div>
       <div class="platform-card">
-        <div class="platform-icon"></div>
+        <div class="platform-icon" data-palo-icon=code></div>
         <div>
           <h4>Vibe Coding Platforms</h4>
           <p>Provide AI-assisted code generation, app generation, prototyping or full-stack scaffolding.</p>
@@ -409,11 +411,11 @@ function showTab(tabId) {
 <div class="container">
   <div class="footer-brand"><img src="assets/logo.webp" alt="PALO" onerror="this.style.display='none'"><span>PALO Framework</span></div>
   <div class="footer-nav">
-    <a href="index.html">Home</a><a href="PALO_ModelCanvasAI.html">Model Canvas</a><a href="PALO_FRIA.html">FRIA</a>
-    <a href="PALO_RiskTiering.html">Risk Calculator</a><a href="PALO_KPIGenerator.html">KPI Generator</a>
-    <a href="PALO_AuditBench.html">AuditBench</a><a href="PALO_PoisoningStudy.html">Poisoning Study</a>
-    <a href="PALO_TechTrends2026.html">Tech Trends</a><a href="PALO_HumanAgencyRiskMap.html">Agency Risk Map</a>
-    <a href="PALO_Community.html">Community</a><a href="privacy-policy.html">Privacy</a><a href="accessibility.html">Accessibility</a>
+    <a href="index.html"><span data-palo-icon=home class=palo-icon-inline></span>Home</a><a href="PALO_ModelCanvasAI.html"><span data-palo-icon=palette class=palo-icon-inline></span>Model Canvas</a><a href="PALO_FRIA.html"><span data-palo-icon=shield class=palo-icon-inline></span>FRIA</a>
+    <a href="PALO_RiskTiering.html">Risk Calculator</a><a href="PALO_KPIGenerator.html"><span data-palo-icon=chart class=palo-icon-inline></span>KPI Generator</a>
+    <a href="PALO_AuditBench.html"><span data-palo-icon=search class=palo-icon-inline></span>AuditBench</a><a href="PALO_PoisoningStudy.html">Poisoning Study</a>
+    <a href="PALO_TechTrends2026.html">Tech Trends</a><a href="PALO_HumanAgencyRiskMap.html"><span data-palo-icon=brain class=palo-icon-inline></span>Agency Risk Map</a>
+    <a href="PALO_Community.html"><span data-palo-icon=users class=palo-icon-inline></span>Community</a><a href="privacy-policy.html">Privacy</a><a href="accessibility.html">Accessibility</a>
   </div>
   <div class="footer-copy">&copy; 2026 Fabrizio Degni &amp; PALO Framework. All Rights Reserved.</div>
 </div>

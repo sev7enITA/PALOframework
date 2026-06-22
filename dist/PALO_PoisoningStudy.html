@@ -97,6 +97,8 @@
   .palo-phase-grid { grid-template-columns: 1fr 1fr; }
 }
 </style>
+    <link rel="stylesheet" href="assets/palo-icons.css">
+    <script src="assets/palo-icons.js"></script>
 </head>
 <body>
 
@@ -107,18 +109,18 @@
     PALO FRAMEWORK
   </a>
   <div class="palo-links">
-    <a href="index.html">Home</a>
-    <a href="PALO_ModelCanvasAI.html">Model Canvas</a>
-    <a href="PALO_FRIA.html">FRIA</a>
-    <a href="PALO_AuditBench.html">AuditBench</a>
+    <a href="index.html"><span data-palo-icon=home class=palo-icon-inline></span>Home</a>
+    <a href="PALO_ModelCanvasAI.html"><span data-palo-icon=palette class=palo-icon-inline></span>Model Canvas</a>
+    <a href="PALO_FRIA.html"><span data-palo-icon=shield class=palo-icon-inline></span>FRIA</a>
+    <a href="PALO_AuditBench.html"><span data-palo-icon=search class=palo-icon-inline></span>AuditBench</a>
     <a href="PALO_TechTrends2026.html">Tech Trends</a>
-    <a href="PALO_Community.html">Community</a>
+    <a href="PALO_Community.html"><span data-palo-icon=users class=palo-icon-inline></span>Community</a>
   </div>
 </div>
 
 <!-- Navigation -->
 <nav id="main-nav">
-  <div class="nav-brand">POISONING STUDY</div>
+  <div class="nav-brand"><span data-palo-icon=poison class=palo-icon-inline></span>POISONING STUDY</div>
   <div class="nav-links">
     <a href="#arsenal">Arsenal</a>
     <a href="#evidence">Evidence</a>
@@ -189,7 +191,7 @@
     </div>
     <div class="arsenal-grid">
       <div class="tool-card" data-category="tarpit">
-        <div class="tool-header"><div class="tool-icon"></div><div class="tool-badge tarpit">TARPIT</div></div>
+        <div class="tool-header"><div class="tool-icon" data-palo-icon=globe></div><div class="tool-badge tarpit">TARPIT</div></div>
         <h3>Miasma</h3>
         <p class="tool-lang">Written in Rust</p>
         <p>Acts as a reverse proxy that transforms websites into "poison pits." When an AI crawler enters, it is trapped in an infinite loop of self-referential links and corrupted training data. A documented case shows Facebook's crawler trapped for <strong>8+ consecutive hours</strong>, consuming resources to generate unusable data.</p>
@@ -200,7 +202,7 @@
         </div>
       </div>
       <div class="tool-card" data-category="tarpit">
-        <div class="tool-header"><div class="tool-icon"></div><div class="tool-badge tarpit">TARPIT</div></div>
+        <div class="tool-header"><div class="tool-icon" data-palo-icon=poison></div><div class="tool-badge tarpit">TARPIT</div></div>
         <h3>Nepenthes</h3>
         <p class="tool-lang">Named after the carnivorous plant</p>
         <p>Follows the same philosophy as Miasma: lures crawlers into procedurally generated pages filled with nonsensical text. The "pitcher plant" approach attracts bots with apparently legitimate content, then degrades the quality of the collected dataset through semantic noise injection.</p>
@@ -211,7 +213,7 @@
         </div>
       </div>
       <div class="tool-card" data-category="poison">
-        <div class="tool-header"><div class="tool-icon"></div><div class="tool-badge poison">DATA POISON</div></div>
+        <div class="tool-header"><div class="tool-icon" data-palo-icon=palette></div><div class="tool-badge poison">DATA POISON</div></div>
         <h3>Nightshade</h3>
         <p class="tool-lang">University of Chicago</p>
         <p>Adds imperceptible perturbations to images that cause AI models to misassociate concepts during training - a "dog" becomes a "cat," a "handbag" becomes a "toaster." Research shows as few as <strong>250 poisoned documents</strong> (0.00016% of training data) can plant backdoors in LLMs.</p>
@@ -222,7 +224,7 @@
         </div>
       </div>
       <div class="tool-card" data-category="cloak">
-        <div class="tool-header"><div class="tool-icon"></div><div class="tool-badge cloak">STYLE CLOAK</div></div>
+        <div class="tool-header"><div class="tool-icon" data-palo-icon=brain></div><div class="tool-badge cloak">STYLE CLOAK</div></div>
         <h3>Glaze</h3>
         <p class="tool-lang">University of Chicago</p>
         <p>Protects artistic style by adding human-imperceptible modifications that prevent AI models from learning an artist's unique aesthetic. Creates smooth, globally coherent spectral energy shifts detectable via frequency-domain analysis.</p>
@@ -233,7 +235,7 @@
         </div>
       </div>
       <div class="tool-card" data-category="labyrinth">
-        <div class="tool-header"><div class="tool-icon"></div><div class="tool-badge labyrinth">LABYRINTH</div></div>
+        <div class="tool-header"><div class="tool-icon" data-palo-icon=rocket></div><div class="tool-badge labyrinth">LABYRINTH</div></div>
         <h3>Cloudflare AI Labyrinth</h3>
         <p class="tool-lang">Enterprise-grade - launched March 2025</p>
         <p>Silently redirects unauthorized bots into AI-generated decoy page networks. Embedded invisible links act as next-generation honeypots. Interactions feed ML models to refine bot detection across Cloudflare's entire network. Available on <strong>all plans including Free</strong>.</p>
@@ -244,7 +246,7 @@
         </div>
       </div>
       <div class="tool-card" data-category="testing">
-        <div class="tool-header"><div class="tool-icon"></div><div class="tool-badge testing">TESTING</div></div>
+        <div class="tool-header"><div class="tool-icon" data-palo-icon=palette></div><div class="tool-badge testing">TESTING</div></div>
         <h3>AttackAI</h3>
         <p class="tool-lang">Academic Research Tool</p>
         <p>Simulates data poisoning attacks to test AI model robustness. Enables red-teaming of training pipelines, fine-tuning processes, and RAG systems. Essential for compliance with EU AI Act Article 15 cybersecurity requirements.</p>
@@ -419,7 +421,7 @@
       <p>Data poisoning by content owners occupies a legal grey zone. It could be interpreted as:</p>
       <div class="paradox-sides">
         <div class="paradox-left">
-          <h4>Legitimate Self-Defense</h4>
+          <h4><span data-palo-icon=shield class=palo-icon-inline></span>Legitimate Self-Defense</h4>
           <ul>
             <li>A <strong>technical protection measure</strong> (TPM) analogous to DRM</li>
             <li>Exercise of the <strong>TDM opt-out right</strong> under EU DSM Directive Art. 4</li>
@@ -427,7 +429,7 @@
           </ul>
         </div>
         <div class="paradox-right">
-          <h4>Potential Illegality</h4>
+          <h4><span data-palo-icon=scale class=palo-icon-inline></span>Potential Illegality</h4>
           <ul>
             <li><strong>Computer fraud</strong> - serving poisoned data could constitute deceptive manipulation</li>
             <li><strong>Sabotage</strong> - deliberately degrading third-party systems</li>
@@ -455,7 +457,7 @@
       <p>This study directly informs the following PALO governance mechanisms:</p>
       <ul>
         <li><strong>Phase 1 - Ideation & Screening:</strong> Data source risk assessment must now include poisoning threat modeling. The five detection strategies (S1-S5) from this study should be incorporated into the initial screening checklist.</li>
-        <li><strong>Phase 2 - Assessment & Planning:</strong> Risk Tiering calculations must account for data supply chain vulnerabilities. High-risk systems relying on web-scraped data inherit elevated risk scores.</li>
+        <li><strong>Phase 2 - Assessment & Planning:</strong> <span data-palo-icon=warning class=palo-icon-inline></span>Risk Tiering calculations must account for data supply chain vulnerabilities. High-risk systems relying on web-scraped data inherit elevated risk scores.</li>
         <li><strong>Phase 3 - Development & Validation:</strong> Training pipeline hardening against adversarial data is now a mandatory validation gate. The LightShed framework and semantic coherence analysis should be integrated into data quality pipelines.</li>
         <li><strong>Phase 4 - Deployment & Monitoring:</strong> Continuous monitoring must include data provenance tracking and poisoning detection for systems using RAG or continuous learning architectures.</li>
         <li><strong>Phase 5 - Decommissioning:</strong> Poisoned data contamination assessment before model retirement to prevent propagation to successor systems.</li>
@@ -584,15 +586,15 @@
       <span>PALO Framework</span>
     </div>
     <div class="footer-nav">
-      <a href="index.html">Home</a>
-      <a href="PALO_ModelCanvasAI.html">Model Canvas</a>
-      <a href="PALO_FRIA.html">FRIA</a>
+      <a href="index.html"><span data-palo-icon=home class=palo-icon-inline></span>Home</a>
+      <a href="PALO_ModelCanvasAI.html"><span data-palo-icon=palette class=palo-icon-inline></span>Model Canvas</a>
+      <a href="PALO_FRIA.html"><span data-palo-icon=shield class=palo-icon-inline></span>FRIA</a>
       <a href="PALO_RiskTiering.html">Risk Calculator</a>
-      <a href="PALO_KPIGenerator.html">KPI Generator</a>
-      <a href="PALO_AuditBench.html">AuditBench</a>
+      <a href="PALO_KPIGenerator.html"><span data-palo-icon=chart class=palo-icon-inline></span>KPI Generator</a>
+      <a href="PALO_AuditBench.html"><span data-palo-icon=search class=palo-icon-inline></span>AuditBench</a>
       <a href="PALO_TechTrends2026.html">Tech Trends</a>
-      <a href="PALO_HumanAgencyRiskMap.html">Agency Risk Map</a>
-      <a href="PALO_Community.html">Community</a>
+      <a href="PALO_HumanAgencyRiskMap.html"><span data-palo-icon=brain class=palo-icon-inline></span>Agency Risk Map</a>
+      <a href="PALO_Community.html"><span data-palo-icon=users class=palo-icon-inline></span>Community</a>
       <a href="privacy-policy.html">Privacy</a>
       <a href="accessibility.html">Accessibility</a>
     </div>

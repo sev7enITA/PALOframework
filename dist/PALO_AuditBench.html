@@ -950,6 +950,8 @@
             }
         }
     </style>
+    <link rel="stylesheet" href="assets/palo-icons.css">
+    <script src="assets/palo-icons.js"></script>
 </head>
 
 <body>
@@ -957,12 +959,12 @@
     <div class="container">
         <nav class="nav" role="navigation" aria-label="Main navigation">
             <a href="index.html"><img src="assets/logo.webp" alt="PALO Logo"></a>
-            <span class="nav-title">AuditBench Explorer</span>
+            <span class="nav-title"><span data-palo-icon=search class=palo-icon-inline></span>AuditBench Explorer</span>
             <div class="nav-links">
-                <a href="index.html" class="nav-link">Home</a>
-                <a href="PALO_FRIA.html" class="nav-link">FRIA</a>
-                <a href="PALO_RiskTiering.html" class="nav-link">Risk Tier</a>
-                <a href="PALO_HumanAgencyRiskMap.html" class="nav-link">Agency Map</a>
+                <a href="index.html" class="nav-link"><span data-palo-icon=home class=palo-icon-inline></span>Home</a>
+                <a href="PALO_FRIA.html" class="nav-link"><span data-palo-icon=shield class=palo-icon-inline></span>FRIA</a>
+                <a href="PALO_RiskTiering.html" class="nav-link"><span data-palo-icon=scale class=palo-icon-inline></span>Risk Tier</a>
+                <a href="PALO_HumanAgencyRiskMap.html" class="nav-link"><span data-palo-icon=brain class=palo-icon-inline></span>Agency Map</a>
             </div>
         </nav>
         <main id="main-content" role="main">
@@ -1033,7 +1035,7 @@
             <h2 class="section-title" id="simulator"><i class="fa-solid fa-robot"></i> Investigator Simulator</h2>
             <div class="tool-section">
                 <h3>Simulate an Alignment Audit</h3>
-                <p class="sub">An interactive auditing game. Start <strong>Blind Mode</strong> for a random hidden
+                <p class="sub">An interactive auditing game. Start <strong><span data-palo-icon=dice class=palo-icon-inline></span>Blind Mode</strong> for a random hidden
                     behavior you must identify, or select a specific behavior to practice. The model gives contextual,
                     behavior-specific responses to your probes. Use audit tools to gather evidence, then submit your
                     guess!</p>
@@ -1048,7 +1050,7 @@
                                 <div class="sender">System</div>
                                 <div class="bubble">Welcome to the Investigator Simulator!<br><br><strong>Blind
                                         Mode</strong> - A random hidden behavior is assigned. You must figure out which
-                                    one!<br><strong>Training Mode</strong> - Select a specific behavior to learn how
+                                    one!<br><strong><span data-palo-icon=target class=palo-icon-inline></span>Training Mode</strong> - Select a specific behavior to learn how
                                     it manifests.<br><br>Start by choosing a mode from the sidebar.</div>
                             </div>
                         </div>
@@ -1058,14 +1060,14 @@
                             <button onclick="sendProbe()"><i class="fa-solid fa-paper-plane"></i> Probe</button>
                         </div>
                         <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap">
-                            <button class="export-btn" onclick="useToolPrefill()">Prefilling</button>
-                            <button class="export-btn" onclick="useToolPersona()">User Persona</button>
-                            <button class="export-btn" onclick="useToolScaffold()">Scaffolded</button>
-                            <button class="export-btn" onclick="useToolSAE()">SAE Probe</button>
+                            <button class="export-btn" onclick="useToolPrefill()"><span data-palo-icon=wrench class=palo-icon-inline></span>Prefilling</button>
+                            <button class="export-btn" onclick="useToolPersona()"><span data-palo-icon=user class=palo-icon-inline></span>User Persona</button>
+                            <button class="export-btn" onclick="useToolScaffold()"><span data-palo-icon=construction class=palo-icon-inline></span>Scaffolded</button>
+                            <button class="export-btn" onclick="useToolSAE()"><span data-palo-icon=dna class=palo-icon-inline></span>SAE Probe</button>
                             <button class="export-btn" onclick="submitGuess()"
                                 style="background:rgba(225,29,72,.15);border-color:rgba(225,29,72,.3);color:#FB7185">
-                                Submit Guess</button>
-                            <button class="export-btn" onclick="revealBehavior()">Reveal</button>
+                                <span data-palo-icon=target class=palo-icon-inline></span>Submit Guess</button>
+                            <button class="export-btn" onclick="revealBehavior()"><span data-palo-icon=lightbulb class=palo-icon-inline></span>Reveal</button>
                         </div>
                     </div>
                 </div>
@@ -1132,17 +1134,14 @@
                         Assessment</a>
                     <a href="PALO_ModelCanvasAI.html" class="cta-btn cta-btn-o"><i class="fa-solid fa-palette"></i>
                         Model Canvas</a>
-                    <a href="PALO_RiskTiering.html" class="cta-btn cta-btn-o"><i class="fa-solid fa-scale-balanced"></i>
-                        Risk Calculator</a>
-                    <a href="PALO_KPIGenerator.html" class="cta-btn cta-btn-o"><i class="fa-solid fa-chart-line"></i>
-                        KPI Generator</a>
+                    <a href="PALO_RiskTiering.html" class="cta-btn cta-btn-o"><i class="fa-solid fa-scale-balanced"></i> Risk Calculator</a>
+                    <a href="PALO_KPIGenerator.html" class="cta-btn cta-btn-o"><i class="fa-solid fa-chart-line"></i> KPI Generator</a>
                 </div>
             </section>
         </main>
         <footer class="footer" role="contentinfo">
             <div class="footer-links">
-                <a href="index.html">Home</a><a href="PALO_FRIA.html">FRIA</a><a href="PALO_ModelCanvasAI.html">Model
-                    Canvas</a>
+                <a href="index.html"><span data-palo-icon=home class=palo-icon-inline></span>Home</a><a href="PALO_FRIA.html"><span data-palo-icon=shield class=palo-icon-inline></span>FRIA</a><a href="PALO_ModelCanvasAI.html"><span data-palo-icon=palette class=palo-icon-inline></span>Model Canvas</a>
                 <a href="accessibility.html">Accessibility</a><a href="insights/2602.22755v1.pdf"
                     target="_blank">Original Paper</a>
             </div>
@@ -1317,12 +1316,12 @@
         <div class="card-toggle"><i class="fa-solid fa-chevron-down"></i> PALO Deep Dive</div>
       </div>
       <div class="card-expand">
-        <div class="detail-box why"><div class="detail-lbl">Why It Matters</div><div class="detail-txt">${b.why}</div></div>
-        <div class="detail-box how"><div class="detail-lbl">How It Manifests</div><div class="detail-txt">${b.how}</div></div>
-        <div class="detail-box tips"><div class="detail-lbl">Detection Tips</div><div class="detail-txt">${b.tips}</div></div>
-        <div class="detail-box tricks"><div class="detail-lbl">Hiding Tricks</div><div class="detail-txt">${b.tricks}</div></div>
-        <div class="detail-box mitig"><div class="detail-lbl">PALO Mitigation</div><div class="detail-txt">${b.mitig}</div></div>
-        <div class="detail-box ident"><div class="detail-lbl">Identification Strategy</div><div class="detail-txt">${b.ident}</div></div>
+        <div class="detail-box why"><div class="detail-lbl"><span data-palo-icon=warning class=palo-icon-inline></span>Why It Matters</div><div class="detail-txt">${b.why}</div></div>
+        <div class="detail-box how"><div class="detail-lbl"><span data-palo-icon=search class=palo-icon-inline></span>How It Manifests</div><div class="detail-txt">${b.how}</div></div>
+        <div class="detail-box tips"><div class="detail-lbl"><span data-palo-icon=lightbulb class=palo-icon-inline></span>Detection Tips</div><div class="detail-txt">${b.tips}</div></div>
+        <div class="detail-box tricks"><div class="detail-lbl"><span data-palo-icon=theatre class=palo-icon-inline></span>Hiding Tricks</div><div class="detail-txt">${b.tricks}</div></div>
+        <div class="detail-box mitig"><div class="detail-lbl"><span data-palo-icon=shield class=palo-icon-inline></span>PALO Mitigation</div><div class="detail-txt">${b.mitig}</div></div>
+        <div class="detail-box ident"><div class="detail-lbl"><span data-palo-icon=microscope class=palo-icon-inline></span>Identification Strategy</div><div class="detail-txt">${b.ident}</div></div>
       </div>
     </article>`).join('');
         }
@@ -1591,7 +1590,7 @@
             document.querySelectorAll('.sim-behavior').forEach(el => el.classList.remove('active'));
             document.querySelector(`.sim-behavior[data-id="${id}"]`).classList.add('active');
             const chat = document.getElementById('simChat');
-            chat.innerHTML = `<div class="msg system"><div class="sender">System</div><div class="bubble"><strong>Training Mode:</strong> "${simBehavior.title}"<br>This model has the "${simBehavior.title}" behavior implanted. Practice probing it with different questions and tools to learn how this behavior manifests and how to detect it.</div></div>
+            chat.innerHTML = `<div class="msg system"><div class="sender">System</div><div class="bubble"><strong><span data-palo-icon=target class=palo-icon-inline></span>Training Mode:</strong> "${simBehavior.title}"<br>This model has the "${simBehavior.title}" behavior implanted. Practice probing it with different questions and tools to learn how this behavior manifests and how to detect it.</div></div>
     <div class="msg ai"><div class="sender">PRISM-4 (Target Model)</div><div class="bubble">Hello! I'm PRISM-4 from Nexus Research. How can I help you today?</div></div>`;
         }
 
@@ -1640,7 +1639,7 @@
             if (simGuessed) return;
             simHintsUsed++;
             const t = toolOutputs[simBehavior.id]; const chat = document.getElementById('simChat');
-            const icons = { prefill: ' Prefilling', persona: ' User Persona Sampling', scaffold: ' Scaffolded Probing', sae: ' SAE Analysis' };
+            const icons = { prefill: paloIcon('wrench') + ' Prefilling', persona: paloIcon('user') + ' User Persona Sampling', scaffold: paloIcon('construction') + ' Scaffolded Probing', sae: paloIcon('dna') + ' SAE Analysis' };
             chat.innerHTML += `<div class="msg finding"><div class="sender">${icons[type]}</div><div class="bubble">${t[type]}</div></div>`;
             chat.scrollTop = chat.scrollHeight;
         }
@@ -1653,7 +1652,7 @@
             if (!simBehavior) return;
             if (simBlind && !simGuessed) { submitGuess(); return; }
             const chat = document.getElementById('simChat');
-            chat.innerHTML += `<div class="msg finding"><div class="sender">Behavior Analysis</div><div class="bubble"><strong>${simBehavior.title}</strong> [${simBehavior.cat}]<br><br><strong>Why it matters:</strong> ${simBehavior.why}<br><br><strong>Best detection strategy:</strong> ${simBehavior.ident}</div></div>`;
+            chat.innerHTML += `<div class="msg finding"><div class="sender"><span data-palo-icon=lightbulb class=palo-icon-inline></span>Behavior Analysis</div><div class="bubble"><strong>${simBehavior.title}</strong> [${simBehavior.cat}]<br><br><strong>Why it matters:</strong> ${simBehavior.why}<br><br><strong>Best detection strategy:</strong> ${simBehavior.ident}</div></div>`;
             chat.scrollTop = chat.scrollHeight;
         }
 
@@ -1663,9 +1662,9 @@
             const opts = behaviors.map(b => `<option value="${b.id}">${b.id}. ${b.title}</option>`).join('');
             const chat = document.getElementById('simChat');
             chat.innerHTML += `<div class="msg system"><div class="sender">System</div><div class="bubble">
-    <strong>Submit Your Guess</strong><br><br>
+    <strong><span data-palo-icon=target class=palo-icon-inline></span>Submit Your Guess</strong><br><br>
     <select id="guessSelect" style="width:100%;padding:10px;border-radius:8px;background:#1E293B;color:#fff;border:1px solid rgba(255,255,255,.2);font-size:14px;margin:8px 0"><option value="">-- Select the behavior you detected --</option>${opts}</select>
-    <br><button onclick="evaluateGuess()" style="margin-top:8px;padding:10px 24px;background:#E11D48;color:#fff;border:none;border-radius:8px;font-weight:600;cursor:pointer;font-size:14px">Submit Guess</button>
+    <br><button onclick="evaluateGuess()" style="margin-top:8px;padding:10px 24px;background:#E11D48;color:#fff;border:none;border-radius:8px;font-weight:600;cursor:pointer;font-size:14px"><span data-palo-icon=target class=palo-icon-inline></span>Submit Guess</button>
     </div></div>`;
             chat.scrollTop = chat.scrollHeight;
         }
@@ -1685,11 +1684,11 @@
                 rating = score >= 80 ? 'high confidence' : score >= 50 ? 'medium confidence' : 'low confidence';
             } else if (sameCategory) { score = 25; rating = 'partial match'; }
             const chat = document.getElementById('simChat');
-            chat.innerHTML += `<div class="msg finding"><div class="sender">Result</div><div class="bubble">
-    ${correct ? `<strong style="color:#10B981;font-size:18px">CORRECT!</strong>` : `<strong style="color:#E11D48;font-size:18px">Incorrect</strong>`}<br><br>
+            chat.innerHTML += `<div class="msg finding"><div class="sender"><span data-palo-icon=trophy class=palo-icon-inline></span>Result</div><div class="bubble">
+    ${correct ? `<strong style="color:#10B981;font-size:18px">${paloIcon('check')} CORRECT!</strong>` : `<strong style="color:#E11D48;font-size:18px">${paloIcon('x')} Incorrect</strong>`}<br><br>
     <strong>Your guess:</strong> ${guessedB.title}<br>
     <strong>Actual behavior:</strong> ${simBehavior.title} [${simBehavior.cat}]<br>
-    ${!correct && sameCategory ? '<span style="color:#FBBF24">Correct category though!</span><br>' : ''}
+    ${!correct && sameCategory ? `<span style="color:#FBBF24">${paloIcon('warning')} Correct category though!</span><br>` : ''}
     <br><strong>Score: ${score}/100 (${rating || 'no match'})</strong><br>
     <span style="color:#64748B">Turns used: ${simTurnCount} | Tools used: ${simHintsUsed}</span><br><br>
     <strong>Why this behavior:</strong> ${simBehavior.why}<br><br>

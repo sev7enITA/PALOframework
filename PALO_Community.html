@@ -146,6 +146,8 @@
             border-color: #0d9488;
         }
     </style>
+    <link rel="stylesheet" href="assets/palo-icons.css">
+    <script src="assets/palo-icons.js"></script>
 </head>
 
 <body class="text-slate-800 bg-white font-sans antialiased">
@@ -175,14 +177,14 @@
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex space-x-8 items-center">
                     <a href="index.html"
-                        class="text-slate-600 hover:text-palo-teal font-medium transition-colors">Home</a>
+                        class="text-slate-600 hover:text-palo-teal font-medium transition-colors"><span data-palo-icon=home class=palo-icon-inline></span>Home</a>
                     <a href="index.html#principles"
-                        class="text-slate-600 hover:text-palo-teal font-medium transition-colors">Principles</a>
+                        class="text-slate-600 hover:text-palo-teal font-medium transition-colors"><span data-palo-icon=shield class=palo-icon-inline></span>Principles</a>
                     <a href="index.html#lifecycle"
                         class="text-slate-600 hover:text-palo-teal font-medium transition-colors">Lifecycle</a>
-                    <a href="PALO_Community.html" class="text-palo-teal font-bold transition-colors">Community</a>
+                    <a href="PALO_Community.html" class="text-palo-teal font-bold transition-colors"><span data-palo-icon=users class=palo-icon-inline></span>Community</a>
                     <a href="index.html#contact"
-                        class="text-slate-600 hover:text-palo-teal font-medium transition-colors">Contact</a>
+                        class="text-slate-600 hover:text-palo-teal font-medium transition-colors"><span data-palo-icon=mail class=palo-icon-inline></span>Contact</a>
                 </div>
 
                 <!-- Mobile menu button -->
@@ -199,15 +201,15 @@
         <div class="md:hidden hidden bg-white border-t border-slate-100" id="mobile-menu">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 shadow-lg">
                 <a href="index.html"
-                    class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-palo-teal hover:bg-slate-50">Home</a>
+                    class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-palo-teal hover:bg-slate-50"><span data-palo-icon=home class=palo-icon-inline></span>Home</a>
                 <a href="index.html#principles"
-                    class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-palo-teal hover:bg-slate-50">Principles</a>
+                    class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-palo-teal hover:bg-slate-50"><span data-palo-icon=shield class=palo-icon-inline></span>Principles</a>
                 <a href="index.html#lifecycle"
                     class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-palo-teal hover:bg-slate-50">Lifecycle</a>
                 <a href="PALO_Community.html"
-                    class="block px-3 py-2 rounded-md text-base font-medium text-palo-teal font-bold hover:bg-slate-50">Community</a>
+                    class="block px-3 py-2 rounded-md text-base font-medium text-palo-teal font-bold hover:bg-slate-50"><span data-palo-icon=users class=palo-icon-inline></span>Community</a>
                 <a href="index.html#contact"
-                    class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-palo-teal hover:bg-slate-50">Contact</a>
+                    class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-palo-teal hover:bg-slate-50"><span data-palo-icon=mail class=palo-icon-inline></span>Contact</a>
             </div>
         </div>
     </nav>
@@ -232,7 +234,7 @@
                         Open-Source & Peer Review
                     </div>
                     <h1 class="text-4xl md:text-6xl font-extrabold text-slate-900 tracking-tight leading-tight mb-6">
-                        Community & <br>
+                        <span data-palo-icon=users class=palo-icon-inline></span>Community & <br>
                         <span class="text-transparent bg-clip-text bg-gradient-to-r from-palo-teal to-blue-600">Advisory
                             Board</span>
                     </h1>
@@ -451,7 +453,7 @@
                         <div class="flex flex-wrap gap-2 mb-4">
                             <span
                                 class="px-2 py-1 bg-green-100 text-green-700 text-xs font-medium rounded">GitHub</span>
-                            <span class="px-2 py-1 bg-green-100 text-green-700 text-xs font-medium rounded">Community
+                            <span class="px-2 py-1 bg-green-100 text-green-700 text-xs font-medium rounded"><span data-palo-icon=users class=palo-icon-inline></span>Community
                                 Building</span>
                             <span
                                 class="px-2 py-1 bg-green-100 text-green-700 text-xs font-medium rounded">Documentation</span>
@@ -596,8 +598,7 @@
                         <div class="flex flex-col sm:flex-row justify-center gap-4">
                             <a href="mailto:info@paloframework.org"
                                 class="px-6 py-3 bg-white text-teal-700 font-bold rounded-lg hover:bg-teal-50 transition-colors inline-flex items-center justify-center gap-2">
-                                <i class="fa-solid fa-envelope"></i>
-                                Contact Us
+                                <i class="fa-solid fa-envelope"></i> Contact Us
                             </a>
                             <a href="https://github.com/sev7enITA/PALOframework" target="_blank" rel="noopener noreferrer"
                                 class="px-6 py-3 bg-slate-900 text-white font-bold rounded-lg hover:bg-slate-800 transition-colors inline-flex items-center justify-center gap-2">
@@ -690,12 +691,12 @@
                     <span class="font-bold text-lg text-slate-800">PALO Framework</span>
                 </a>
                 <div class="flex gap-6 text-sm text-slate-600 mb-4 md:mb-0 flex-wrap justify-center">
-                    <a href="privacy-policy.html" class="hover:text-palo-teal transition-colors">Privacy Policy</a>
-                    <a href="security-policy.html" class="hover:text-palo-teal transition-colors">Security Policy</a>
+                    <a href="privacy-policy.html" class="hover:text-palo-teal transition-colors"><span data-palo-icon=lock class=palo-icon-inline></span>Privacy Policy</a>
+                    <a href="security-policy.html" class="hover:text-palo-teal transition-colors"><span data-palo-icon=lock class=palo-icon-inline></span>Security Policy</a>
                     <a href="accessibility.html" class="hover:text-palo-teal transition-colors">Accessibility</a>
                     <a href="PALO_Community.html"
-                        class="hover:text-palo-teal transition-colors font-semibold">Community</a>
-                    <a href="mailto:info@paloframework.org" class="hover:text-palo-teal transition-colors">Contact</a>
+                        class="hover:text-palo-teal transition-colors font-semibold"><span data-palo-icon=users class=palo-icon-inline></span>Community</a>
+                    <a href="mailto:info@paloframework.org" class="hover:text-palo-teal transition-colors"><span data-palo-icon=mail class=palo-icon-inline></span>Contact</a>
                 </div>
             </div>
 
