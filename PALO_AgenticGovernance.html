@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PALO-AM: Agentic Governance Modality | PALO Framework</title>
+<meta name="description" content="PALO-AM is the agentic extension of the PALO Framework. It introduces delegated-action governance for AI agents: five object cards, action-space matrix, five-phase lifecycle overlay, KPI/KRI registry and engineering control layer.">
+<meta name="keywords" content="agentic AI governance, PALO-AM, delegated action governance, AI agents, IMDA MGF, EU AI Act, ISO 42001, PALO Framework, autonomous AI, agent identity, agent authority">
+<meta name="author" content="PALO Framework">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://paloframework.org/PALO_AgenticGovernance.html">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://paloframework.org/PALO_AgenticGovernance.html">
+<meta property="og:title" content="PALO-AM: Agentic Governance Modality | PALO Framework">
+<meta property="og:description" content="Delegated-action governance for AI agents: five object cards, action-space matrix, lifecycle overlay, KPI/KRI registry.">
+<meta property="og:image" content="https://paloframework.org/assets/logo.webp">
+<link rel="icon" type="image/webp" href="assets/logo.webp">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="agentic/style.css">
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<div class="palo-topbar">
+  <a href="index.html" class="palo-brand"><img src="assets/logo.webp" alt="PALO" onerror="this.style.display='none'"> PALO FRAMEWORK</a>
+  <div class="palo-links">
+    <a href="index.html">Home</a>
+    <a href="PALO_ModelCanvasAI.html">Model Canvas</a>
+    <a href="PALO_FRIA.html">FRIA</a>
+    <a href="PALO_VibeCoding.html">AI Dev Gov.</a>
+    <a href="PALO_PoisoningStudy.html">Poisoning Study</a>
+    <a href="PALO_TechTrends2026.html">Tech Trends</a>
+    <a href="PALO_Community.html">Community</a>
+  </div>
+</div>
+
+<nav class="section-nav">
+  <div class="nav-brand">🤖 PALO-AM</div>
+  <a href="#objects">Five Objects</a>
+  <a href="#matrix">Risk Matrix</a>
+  <a href="#lifecycle">Lifecycle</a>
+  <a href="#controls">Controls</a>
+  <a href="#kpis">KPIs</a>
+  <a href="#scenarios">Scenarios</a>
+  <a href="#standards">Standards</a>
+</nav>
+
+<main id="main-content">
+
+<!-- ═══ HERO ═══ -->
+<header class="hero">
+<div class="container">
+  <div class="hero-badge">PALO-AM v2.0 — JUNE 2026</div>
+  <h1>Agentic Governance Modality<br><span class="gradient-text">From Model Governance to Delegated-Action Governance</span></h1>
+  <p class="hero-subtitle">PALO-AM is the agentic extension of the PALO Framework. It introduces a new layer of governance objects, control domains and evidence artefacts specifically designed for AI systems that select tools, write to systems, trigger workflows and act autonomously on behalf of the organization.</p>
+  <div class="hero-meta">
+    <div class="author-card"><div class="author-avatar">FD</div><div><strong>Fabrizio Degni</strong><span>Chief AI Officer</span></div></div>
+    <div class="hero-stats">
+      <div class="stat-box"><span class="stat-val">5</span><span class="stat-label">Object Cards</span></div>
+      <div class="stat-box"><span class="stat-val">4</span><span class="stat-label">Risk Tiers</span></div>
+      <div class="stat-box"><span class="stat-val">11</span><span class="stat-label">KPIs / KRIs</span></div>
+      <div class="stat-box"><span class="stat-val">5</span><span class="stat-label">Lifecycle Gates</span></div>
+    </div>
+  </div>
+</div>
+</header>
+
+<!-- ═══ CONCEPT SHIFT ═══ -->
+<section class="section">
+<div class="container">
+  <div class="section-header">
+    <span class="section-number">PALO-AM</span>
+    <h2>The Governance Shift</h2>
+    <p class="section-desc">Model governance asks whether the model behaves responsibly. Delegated-action governance asks whether the authority delegated to the system has been justified, bounded, monitored and evidenced.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:20px;align-items:center;max-width:900px;margin:0 auto;">
+    <div style="background:var(--am-glass);border:1px solid var(--am-border);border-radius:14px;padding:24px;text-align:center;">
+      <div style="font-size:2rem;margin-bottom:10px;">🧠</div>
+      <h3 style="color:#fff;font-size:.95rem;margin-bottom:8px;">Model Governance</h3>
+      <p style="color:var(--am-text-muted);font-size:.82rem;">Does the model behave responsibly? Accuracy, bias, explainability, robustness, privacy, data lineage, output safety.</p>
+    </div>
+    <div style="text-align:center;color:var(--am-accent-light);font-size:1.8rem;">→</div>
+    <div style="background:linear-gradient(135deg,rgba(99,102,241,.12),rgba(13,148,136,.08));border:1px solid rgba(99,102,241,.25);border-radius:14px;padding:24px;text-align:center;">
+      <div style="font-size:2rem;margin-bottom:10px;">⚡</div>
+      <h3 style="color:#fff;font-size:.95rem;margin-bottom:8px;">Delegated-Action Governance</h3>
+      <p style="color:var(--am-text-muted);font-size:.82rem;">Is the delegated authority justified, bounded, monitored and evidenced? Identity, permissions, tools, memory, autonomy, checkpoints.</p>
+    </div>
+  </div>
+  <p style="text-align:center;color:var(--am-text-muted);font-size:.85rem;margin-top:24px;max-width:700px;margin-left:auto;margin-right:auto;"><em>A hallucinated sentence can mislead. A hallucinated tool call can alter a customer record, leak sensitive data, trigger a transaction or damage an operational environment.</em></p>
+</div>
+</section>
+
+<!-- ═══ FIVE OBJECTS ═══ -->
+<section id="objects" class="section section-alt">
+<div class="container">
+  <div class="section-header">
+    <span class="section-number">01</span>
+    <h2>Five Operational Object Cards</h2>
+    <p class="section-desc">Each object is a governance domain that can be documented, implemented, tested and audited. Together they translate PALO-AM from a concept into a working operational model.</p>
+  </div>
+  <div class="objects-grid">
+    <div class="object-card">
+      <div class="object-num">1</div>
+      <h3>Agent Identity Profile</h3>
+      <p>Defines <em>who or what</em> the agent is inside the enterprise environment. Records the agent identifier, cryptographic provenance, accountable human owner, business unit, topology, credential lifecycle, data clearance and revocation procedure. Eliminates anonymous or shared AI execution contexts and provides the basis for attribution.</p>
+    </div>
+    <div class="object-card">
+      <div class="object-num">2</div>
+      <h3>Agent Authority Profile</h3>
+      <p>Defines <em>what the agent may do</em>. Lists permitted tools, environments, data classes, read/write/delete privileges, financial thresholds, approval requirements, external endpoints, multi-agent coordination rules and abort conditions. The enforceable contract between the business and the agentic system.</p>
+    </div>
+    <div class="object-card">
+      <div class="object-num">3</div>
+      <h3>Agentic Risk Matrix</h3>
+      <p>Determines the <em>risk tier</em> by examining action-space impact, autonomy level, reversibility, data sensitivity, third-party dependency, speed/volume and multi-agent complexity. Acts as the routing mechanism for required controls and decision gates.</p>
+    </div>
+    <div class="object-card">
+      <div class="object-num">4</div>
+      <h3>Agentic Control Layer</h3>
+      <p>Implements <em>structural safeguards</em> around the agent: policy-as-code, API gateway constraints, token scopes, rate limits, schema validation, tool allow-lists, sandboxing, circuit breakers, human checkpoints and change-management rules.</p>
+    </div>
+    <div class="object-card">
+      <div class="object-num">5</div>
+      <h3>Agentic Evidence Layer</h3>
+      <p>Captures <em>auditable execution evidence</em> without relying on private model chain-of-thought: planning artifacts, tool calls, structured inputs/outputs, policy decisions, human approvals, overrides, anomalies, incidents, KPI values and decommissioning proofs.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ═══ ENGINEERING CONTROLS ═══ -->
+<section class="section">
+<div class="container">
+  <div class="section-header">
+    <span class="section-number">02</span>
+    <h2>Engineering Control Layer</h2>
+    <p class="section-desc">PALO-AM treats governance as an enforceable architecture, not a policy statement. The language model is treated as an untrusted reasoning engine for purposes of authority. The model may propose an action; the orchestration layer decides whether it is allowed.</p>
+  </div>
+  <div class="controls-grid">
+    <div class="control-card">
+      <h4>Why Prompt-Layer Safeguards Are Insufficient</h4>
+      <p>A prompt instruction such as "do not access confidential data" is not equivalent to an access control. It can be misunderstood, bypassed, or contradicted. In agentic systems, the consequence is not merely an unsafe response — it may be an unauthorized action.</p>
+      <div class="control-rule">High-impact actions require deterministic controls.</div>
+    </div>
+    <div class="control-card">
+      <h4>Cryptographic Identity &amp; Zero-Trust</h4>
+      <p>Every agent execution must carry a verifiable identity. Tool calls must include signed identity headers. Credentials must be short-lived, rotated and centrally managed. No agent may share credentials with another agent or a human user.</p>
+      <div class="control-rule">Zero-trust: no implicit trust for any agent action.</div>
+    </div>
+    <div class="control-card">
+      <h4>Tool Allow-Lists &amp; Schema Validation</h4>
+      <p>Agents may only call tools explicitly listed in their Authority Profile. Each tool call must conform to a validated schema. Unrecognized tool calls must be blocked at the orchestration layer before execution.</p>
+      <div class="control-rule">Block first, allow explicitly.</div>
+    </div>
+    <div class="control-card">
+      <h4>Human-in-the-Loop Checkpoints (HITL)</h4>
+      <p>Human checkpoints must be designed structurally, not optionally. High-stakes or irreversible actions require explicit human approval via a decision packet — not a vague approval button. Approval telemetry must be measured against the Automation Bias Index (ABI).</p>
+      <div class="control-rule">Meaningful oversight, not rubber-stamping.</div>
+    </div>
+    <div class="control-card">
+      <h4>Circuit Breakers &amp; Abort Conditions</h4>
+      <p>Each agent must have defined safe-state, rollback path and stop conditions. Circuit breakers must interrupt cascading failures in multi-agent topologies. Abort conditions must be tested in Phase 3 and validated against the CECR metric in Phase 4.</p>
+      <div class="control-rule">Design for safe failure, not only for success.</div>
+    </div>
+    <div class="control-card">
+      <h4>OpenTelemetry Observability</h4>
+      <p>All tool calls, approval events, policy decisions and anomalies must feed into a tamper-evident audit endpoint (SIEM, OpenTelemetry collector or governance dashboard). Evidence must be structured and machine-readable for KPI measurement.</p>
+      <div class="control-rule">If it is not observed, it is not governed.</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ═══ RISK MATRIX ═══ -->
+<section id="matrix" class="section section-alt">
+<div class="container">
+  <div class="section-header">
+    <span class="section-number">03</span>
+    <h2>Action-Space vs Autonomy Matrix</h2>
+    <p class="section-desc">The primary PALO-AM routing instrument. Examines two dimensions: <strong>what can the agent change</strong> (action-space impact) and <strong>how independently can it decide</strong> (autonomy level). Any increase in autonomy or action-space after approval triggers Phase 2 reassessment.</p>
+  </div>
+  <div class="matrix-container">
+    <div style="text-align:center;margin-bottom:16px;font-size:.8rem;color:var(--am-text-muted);">
+      <strong style="color:var(--am-text);">↕ Autonomy Level</strong> (rows) &nbsp;×&nbsp; <strong style="color:var(--am-text);">→ Action-Space Impact</strong> (columns)
+    </div>
+    <div class="matrix-grid">
+      <div class="matrix-header"></div>
+      <div class="matrix-header">Low Impact<br><span style="font-weight:400;font-size:.65rem;">(read-only, reversible)</span></div>
+      <div class="matrix-header">Medium Impact<br><span style="font-weight:400;font-size:.65rem;">(internal write)</span></div>
+      <div class="matrix-header">High Impact<br><span style="font-weight:400;font-size:.65rem;">(cross-system)</span></div>
+      <div class="matrix-header">Critical Impact<br><span style="font-weight:400;font-size:.65rem;">(financial/safety/legal)</span></div>
+      <div class="matrix-label">High Autonomy</div>
+      <div class="matrix-cell tier-2">Tier 2</div>
+      <div class="matrix-cell tier-1">Tier 1</div>
+      <div class="matrix-cell tier-1">Tier 1</div>
+      <div class="matrix-cell tier-prohibited">PROHIBITED</div>
+      <div class="matrix-label">Medium Autonomy</div>
+      <div class="matrix-cell tier-3">Tier 3</div>
+      <div class="matrix-cell tier-2">Tier 2</div>
+      <div class="matrix-cell tier-1">Tier 1</div>
+      <div class="matrix-cell tier-1">Tier 1</div>
+      <div class="matrix-label">Low Autonomy</div>
+      <div class="matrix-cell tier-3">Tier 3</div>
+      <div class="matrix-cell tier-3">Tier 3</div>
+      <div class="matrix-cell tier-2">Tier 2</div>
+      <div class="matrix-cell tier-2">Tier 2</div>
+      <div class="matrix-label">Supervised</div>
+      <div class="matrix-cell tier-4">Tier 4</div>
+      <div class="matrix-cell tier-4">Tier 4</div>
+      <div class="matrix-cell tier-3">Tier 3</div>
+      <div class="matrix-cell tier-3">Tier 3</div>
+    </div>
+    <div class="matrix-legend">
+      <div class="legend-item"><div class="legend-dot t1"></div>Tier 1 — Maximum Controls</div>
+      <div class="legend-item"><div class="legend-dot t2"></div>Tier 2 — Controlled</div>
+      <div class="legend-item"><div class="legend-dot t3"></div>Tier 3 — Supervised</div>
+      <div class="legend-item"><div class="legend-dot t4"></div>Tier 4 — Monitored</div>
+      <div class="legend-item"><div class="legend-dot tp"></div>Prohibited / Redesign Required</div>
+    </div>
+  </div>
+  <div style="margin-top:20px;background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.2);border-radius:10px;padding:16px;font-size:.82rem;color:var(--am-text-muted);">
+    ⚠️ <strong style="color:#fca5a5;">Prohibited tier:</strong> Open-ended judgment combined with production, financial, physical, legal or safety-critical write authority. The use case must be redesigned into deterministic workflow, reduced authority or human-operated execution.
+  </div>
+</div>
+</section>
+
+<!-- ═══ LIFECYCLE ═══ -->
+<section id="lifecycle" class="section">
+<div class="container">
+  <div class="section-header">
+    <span class="section-number">04</span>
+    <h2>PALO Five-Phase Lifecycle Overlay</h2>
+    <p class="section-desc">PALO-AM does not create a parallel lifecycle. It overlays agentic controls onto the existing PALO five-phase architecture. Governance is embedded across the full system lifecycle, not concentrated at a single checkpoint.</p>
+  </div>
+  <div class="phases-grid">
+    <div class="phase-card">
+      <div class="phase-num">1</div>
+      <h4>Ideation &amp; Agentic Screening</h4>
+      <div class="phase-q">"Is an agent actually necessary?"</div>
+      <p>Could a deterministic workflow, conventional automation or human-controlled assistant achieve the same value with lower risk?</p>
+      <div class="phase-gate">Gate: Proceed only if delegated action is justified and action-space is bounded.</div>
+    </div>
+    <div class="phase-card">
+      <div class="phase-num">2</div>
+      <h4>Assessment &amp; Planning</h4>
+      <div class="phase-q">"What authority is being delegated?"</div>
+      <p>Complete Agent Identity Profile, Agent Authority Profile, AI System Impact Assessment, threat model, HITL design and KPI framework.</p>
+      <div class="phase-gate">Gate: Proceed only if all five objects are documented and residual risk is accepted by the correct governance body.</div>
+    </div>
+    <div class="phase-card">
+      <div class="phase-num">3</div>
+      <h4>Development &amp; Validation</h4>
+      <div class="phase-q">"Have structural controls been tested, not merely described?"</div>
+      <p>Tool schema validation, sandbox tests, agentic red-team report, policy-as-code bundle and control test evidence.</p>
+      <div class="phase-gate">Gate: Proceed only if critical vulnerabilities are closed and approval gates cannot be bypassed.</div>
+    </div>
+    <div class="phase-card">
+      <div class="phase-num">4</div>
+      <h4>Ethical Deployment &amp; Monitoring</h4>
+      <div class="phase-q">"Can the organization observe, interrupt and evidence the agent?"</div>
+      <p>Shadow-mode, phased rollout, runtime monitoring dashboard, incident playbook, override telemetry and KPI baseline.</p>
+      <div class="phase-gate">Gate: Proceed only with phased rollout, active monitoring and an accountable decision to expand authority.</div>
+    </div>
+    <div class="phase-card">
+      <div class="phase-num">5</div>
+      <h4>Continuous Improvement &amp; Decommissioning</h4>
+      <div class="phase-q">"Can the agent be retired without leaving hidden authority?"</div>
+      <p>Tradecraft audit, credential revocation log, memory retention/deletion record and decommissioning certificate.</p>
+      <div class="phase-gate">Gate: Close only after credentials are revoked, logs are archived and manual fallback has been validated.</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ═══ KPI/KRI ═══ -->
+<section id="kpis" class="section section-alt">
+<div class="container">
+  <div class="section-header">
+    <span class="section-number">05</span>
+    <h2>KPI / KRI Registry for Agentic AI</h2>
+    <p class="section-desc">PALO-AM extends the PALO KPI compendium with indicators specific to delegated action. The goal: measure whether the organization can bound, observe, interrupt, recover from and retire autonomous behavior.</p>
+  </div>
+  <div class="data-table-wrapper">
+    <table class="data-table">
+      <thead>
+        <tr><th>Metric</th><th>Category</th><th>Measurement</th><th>Governance Rationale</th><th>Phase</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Human Override Rate (HOR)</td><td><span class="cat-badge cat-oversight">Oversight</span></td><td>Overrides ÷ total action checkpoints</td><td>Detects rubber-stamping or unusual intervention patterns.</td><td>4</td></tr>
+        <tr><td>Review-Time Distribution (RTD)</td><td><span class="cat-badge cat-oversight">Oversight</span></td><td>Median and distribution of review time by action complexity</td><td>Flags superficial validation or alert fatigue.</td><td>4</td></tr>
+        <tr><td>Automation Bias Index (ABI)</td><td><span class="cat-badge cat-oversight">Behavioral</span></td><td>Composite of approval speed, rationale quality, dismissal clustering</td><td>Measures whether human oversight remains meaningful.</td><td>4/5</td></tr>
+        <tr><td>Tool Call Error Rate (TCER)</td><td><span class="cat-badge cat-technical">Technical</span></td><td>Malformed + hallucinated + unauthorized calls ÷ total calls</td><td>Detects semantic misalignment, poor schemas or tool-use drift.</td><td>3/4</td></tr>
+        <tr><td>Agent Identity Sprawl Index (AISI)</td><td><span class="cat-badge cat-security">Security</span></td><td>Unregistered identities ÷ total detected identities</td><td>Detects shadow agents, rogue subprocesses or unmanaged credentials.</td><td>4/5</td></tr>
+        <tr><td>Multi-Agent Conflict Rate (MACR)</td><td><span class="cat-badge cat-systemic">Systemic</span></td><td>Terminated/deadlocked workflows ÷ total multi-agent runs</td><td>Detects goal conflict, message loops or coordination failure.</td><td>3/4</td></tr>
+        <tr><td>Mean Time to Intervention (MTTI)</td><td><span class="cat-badge cat-technical">Response</span></td><td>Time from anomaly detection to human or automated intervention</td><td>Measures whether control is operationally real.</td><td>4</td></tr>
+        <tr><td>Cascading Error Containment Rate (CECR)</td><td><span class="cat-badge cat-systemic">Systemic</span></td><td>Contained cascade events ÷ total cascade events</td><td>Shows whether circuit breakers stop downstream propagation.</td><td>3/4</td></tr>
+        <tr><td>Agent Identity Revocation Time (AIRT)</td><td><span class="cat-badge cat-decom">Decommission</span></td><td>Time from decommission trigger to confirmed credential revocation</td><td>Validates retirement and shadow-agent prevention.</td><td>5</td></tr>
+        <tr><td>Tradecraft Degradation Score (TDS)</td><td><span class="cat-badge cat-agency">Human Agency</span></td><td>Score from manual drills, fallback proficiency and skill-retention audits</td><td>Measures human resilience and dependency risk.</td><td>4/5</td></tr>
+        <tr><td>Policy Violation Rate per 1k Actions (PVR)</td><td><span class="cat-badge cat-security">Governance</span></td><td>Violations of authority, data classification or compliance boundaries ÷ 1,000 actions</td><td>Signals control design failure or misuse.</td><td>4</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="text-align:center;color:var(--am-text-muted);font-size:.82rem;margin-top:16px;"><em>No single metric is decisive. Interpret HOR, RTD, ABI and sampled audit results as a pattern, not in isolation.</em></p>
+</div>
+</section>
+
+<!-- ═══ SCENARIOS ═══ -->
+<section id="scenarios" class="section">
+<div class="container">
+  <div class="section-header">
+    <span class="section-number">06</span>
+    <h2>Worked Scenarios</h2>
+    <p class="section-desc">Concrete examples of PALO-AM applied to real enterprise agent configurations. Each shows the same pattern: define identity, bound authority, score risk, design controls, capture evidence, plan decommissioning.</p>
+  </div>
+  <div class="scenario-grid">
+    <div class="scenario-card">
+      <div class="scenario-icon">💻</div>
+      <div>
+        <h4>Software Engineering Agent</h4>
+        <div class="scenario-tier" style="color:#fcd34d;">Tier 2 initially — Tier 1 if production deployment or protected branch write access is added</div>
+        <p>Inspects repository issues, writes code to non-protected branches, runs tests and opens pull requests.</p>
+        <p><strong>Controls:</strong> Restrict write to non-protected branches; deny secret access; require human approval for PR creation; log diffs, tests, tool calls and failed access attempts.</p>
+        <div class="scenario-lesson">A productivity tool becomes a deployment actor if authority expands. The matrix must be recalculated whenever the agent obtains new write or deployment privileges.</div>
+      </div>
+    </div>
+    <div class="scenario-card">
+      <div class="scenario-icon">📦</div>
+      <div>
+        <h4>Procurement Vendor Shortlisting Agent</h4>
+        <div class="scenario-tier" style="color:#fcd34d;">Tier 2 (draft only) — Tier 1 if it can send offers or trigger contracts</div>
+        <p>Analyzes supplier proposals, ranks vendors and prepares negotiation questions.</p>
+        <p><strong>Controls:</strong> Separate ranking from final decision; audit fairness signals; prohibit direct vendor communication without approval; preserve scoring rationale and conflict-of-interest checks.</p>
+        <div class="scenario-lesson">Agentic procurement raises fairness and accountability risks. The agent should support deliberation, not silently replace governance judgement.</div>
+      </div>
+    </div>
+    <div class="scenario-card">
+      <div class="scenario-icon">💰</div>
+      <div>
+        <h4>Finance Payment Recommendation Agent</h4>
+        <div class="scenario-tier" style="color:#fcd34d;">Tier 2 for recommendations — Prohibited for autonomous payment execution</div>
+        <p>Reads invoices, detects anomalies and recommends payment release.</p>
+        <p><strong>Controls:</strong> Read-only invoice access; no direct payment execution; dual approval for thresholds; anomaly escalation; strict evidence logging and revocation tests.</p>
+        <div class="scenario-lesson">Payment authority must never be hidden inside model autonomy. Financial execution demands deterministic workflow and human authorization.</div>
+      </div>
+    </div>
+    <div class="scenario-card">
+      <div class="scenario-icon">🤝</div>
+      <div>
+        <h4>Customer Support Refund Agent</h4>
+        <div class="scenario-tier" style="color:#fcd34d;">Tier 2 — Controlled</div>
+        <p>Retrieves order status, drafts refund recommendations, sends support summaries, requests human approval.</p>
+        <p><strong>Controls:</strong> Denied: refund execution above EUR 50; modification of customer master data; access to payment card data. HITL checkpoints for any refund above EUR 50, legal threats, vulnerable-customer flags.</p>
+        <div class="scenario-lesson">Authority scope must be written explicitly. If the profile does not permit it, the orchestration layer must block it regardless of what the model proposes.</div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ═══ STANDARDS CROSSWALK ═══ -->
+<section id="standards" class="section section-alt">
+<div class="container">
+  <div class="section-header">
+    <span class="section-number">07</span>
+    <h2>Standards Alignment</h2>
+    <p class="section-desc">PALO-AM is designed as an operational extension that translates global governance standards into PALO-compatible lifecycle phases, templates, matrices, KPIs and evidence gates.</p>
+  </div>
+  <div class="crosswalk-grid">
+    <div class="crosswalk-card">
+      <h4>IMDA MGF v1.5 (2026)</h4>
+      <div class="cw-concern">Assess upfront, meaningful human accountability, technical controls, end-user responsibility.</div>
+      <div class="cw-artifact">Matrix + Authority Profile → Identity Profile + HITL → Engineering Control Layer → Tradecraft preservation + training.</div>
+    </div>
+    <div class="crosswalk-card">
+      <h4>ISO/IEC 42001:2023</h4>
+      <div class="cw-concern">AI management system, risk treatment, operational control, monitoring and improvement.</div>
+      <div class="cw-artifact">Agentic risk treatment plan, authority controls, monitoring dashboard, management review.</div>
+    </div>
+    <div class="crosswalk-card">
+      <h4>ISO/IEC 42005:2025</h4>
+      <div class="cw-concern">AI system impact assessment and documentation of impacts on individuals, groups and society.</div>
+      <div class="cw-artifact">Agentic AI System Impact Assessment with action-space, autonomy, reversibility and tradecraft sections.</div>
+    </div>
+    <div class="crosswalk-card">
+      <h4>EU AI Act (2024/1689)</h4>
+      <div class="cw-concern">Risk classification, prohibited-practice screening, high-risk obligations, post-market monitoring.</div>
+      <div class="cw-artifact">Phase 1 legal screening, Phase 2 documentation, Phase 4 telemetry, incident and change records.</div>
+    </div>
+    <div class="crosswalk-card">
+      <h4>NIST AI RMF 1.0</h4>
+      <div class="cw-concern">Govern, Map, Measure and Manage AI risks.</div>
+      <div class="cw-artifact">Govern with object cards; Map with matrix; Measure with KPI/KRI registry; Manage with controls and decommissioning.</div>
+    </div>
+    <div class="crosswalk-card">
+      <h4>GDPR</h4>
+      <div class="cw-concern">Purpose limitation, data minimization, access control, retention, deletion or anonymization.</div>
+      <div class="cw-artifact">Data scope in Authority Profile, memory governance, retention schedule, data deletion/anonymization records.</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ═══ COMING SOON ═══ -->
+<section class="section">
+<div class="container">
+  <div class="coming-soon">
+    <h3>🚀 Roadmap: Interactive Matrix Simulator</h3>
+    <p>The next PALO-AM releases focus on turning the Action-Space vs Autonomy Matrix into an interactive governance workflow: tier routing, control recommendations, evidence artifacts, KPI recommendations and decision gate outputs.</p>
+    <div class="roadmap-grid" style="max-width:900px;margin:0 auto;">
+      <div class="roadmap-card"><div class="roadmap-ver">v2.1</div><p>Simulator MVP with interactive risk inputs, automatic tier assignment and exportable assessment summary.</p></div>
+      <div class="roadmap-card"><div class="roadmap-ver">v2.2</div><p>Evidence and governance board packs with decision logs, KPI/KRI registers and audit-ready summaries.</p></div>
+      <div class="roadmap-card"><div class="roadmap-ver">v2.3</div><p>Scenario library, multilingual coverage and worked examples for enterprise agent configurations.</p></div>
+      <div class="roadmap-card"><div class="roadmap-ver">v2.4</div><p>Policy-as-code snippets and starter configurations for agentic control enforcement.</p></div>
+      <div class="roadmap-card"><div class="roadmap-ver">v3.0</div><p>Integration layer for governance workflows, issue trackers, GRC platforms and documentation systems.</p></div>
+    </div>
+  </div>
+</div>
+</section>
+
+</main>
+
+<!-- PALO Footer -->
+<div class="palo-footer">
+<div class="container">
+  <div class="footer-brand"><img src="assets/logo.webp" alt="PALO" onerror="this.style.display='none'"><span>PALO Framework</span></div>
+  <div class="footer-nav">
+    <a href="index.html">Home</a>
+    <a href="PALO_ModelCanvasAI.html">Model Canvas</a>
+    <a href="PALO_FRIA.html">FRIA</a>
+    <a href="PALO_RiskTiering.html">Risk Calculator</a>
+    <a href="PALO_KPIGenerator.html">KPI Generator</a>
+    <a href="PALO_AuditBench.html">AuditBench</a>
+    <a href="PALO_VibeCoding.html">AI Dev Governance</a>
+    <a href="PALO_PoisoningStudy.html">Poisoning Study</a>
+    <a href="PALO_TechTrends2026.html">Tech Trends</a>
+    <a href="PALO_HumanAgencyRiskMap.html">Agency Risk Map</a>
+    <a href="PALO_Community.html">Community</a>
+    <a href="privacy-policy.html">Privacy</a>
+    <a href="accessibility.html">Accessibility</a>
+  </div>
+  <div class="footer-copy">&copy; 2026 Fabrizio Degni &amp; PALO Framework. All Rights Reserved. &bull; PALO-AM v2.0 &bull; June 2026</div>
+</div>
+</div>
+
+</body>
+</html>

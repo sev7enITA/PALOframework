@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mappa dei Rischi per l'Autonomia Umana | PALO Framework</title>
+    <meta name="description"
+        content="Osservatorio sulle 18 attività che gli umani stanno delegando all'AI nel 2026, con strategie di mitigazione PALO e analisi dell'impatto psicologico.">
+    <meta name="keywords"
+        content="autonomia umana, impatto AI, automazione AI, atrofia cognitiva, PALO framework, governance AI 2026">
+    <meta name="author" content="PALO Framework">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://paloframework.org/PALO_HumanAgencyRiskMap_IT.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://paloframework.org/PALO_HumanAgencyRiskMap_IT.html">
+    <meta property="og:title"
+        content="Mappa dei Rischi per l'Autonomia Umana | 18 Cose che l'AI Farà per gli Umani nel 2026">
+    <meta property="og:description"
+        content="Osservatorio sull'impatto dell'AI sull'autonomia umana con strategie di mitigazione.">
+    <meta property="og:image" content="https://paloframework.org/assets/logo.webp">
+    <meta property="og:locale" content="it_IT">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Mappa dei Rischi per l'Autonomia Umana | PALO Framework">
+    <meta name="twitter:description"
+        content="18 Cose che gli Umani Smetteranno di Fare da Soli nell'Era dell'AI - Gennaio 2026">
+
+    <link rel="icon" type="image/webp" href="assets/logo.webp">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --color-primary: #21808D;
+            --color-primary-dark: #1A666F;
+            --color-accent: #E11D48;
+            --color-text: #1E293B;
+            --color-text-secondary: #64748B;
+            --color-surface: #F8FAFC;
+            --color-border: #E2E8F0;
+            --cognitive: #8B5CF6;
+            --behavioral: #3B82F6;
+            --social: #10B981;
+            --professional: #F59E0B;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        *:focus-visible {
+            outline: 3px solid var(--color-primary);
+            outline-offset: 2px;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            min-height: 100vh;
+            color: var(--color-text);
+        }
+
+        .skip-link {
+            position: absolute;
+            left: -9999px;
+            background: var(--color-primary);
+            color: white;
+            padding: 12px;
+        }
+
+        .skip-link:focus {
+            left: 16px;
+            top: 16px;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 24px;
+            background: rgba(255, 255, 255, 0.95);
+            max-width: 1400px;
+            margin: 0 auto 24px;
+            border-radius: 12px;
+        }
+
+        .nav img {
+            height: 40px;
+        }
+
+        .nav-title {
+            flex: 1;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--color-accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 8px;
+        }
+
+        .nav-link {
+            padding: 8px 16px;
+            background: var(--color-surface);
+            color: var(--color-text);
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-link:hover {
+            background: var(--color-primary);
+            color: white;
+        }
+
+        .lang-switch {
+            background: var(--color-accent);
+            color: white;
+        }
+
+        .lang-switch:hover {
+            background: #BE123C;
+            color: white;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 60px 24px;
+            background: linear-gradient(135deg, rgba(225, 29, 72, 0.1) 0%, rgba(33, 128, 141, 0.1) 100%);
+            border-radius: 24px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--color-accent);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 {
+            font-size: clamp(32px, 5vw, 56px);
+            font-weight: 800;
+            color: white;
+            margin-bottom: 16px;
+            line-height: 1.1;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(90deg, var(--color-accent), var(--color-primary));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #94A3B8;
+            max-width: 700px;
+            margin: 0 auto 32px;
+            line-height: 1.7;
+        }
+
+        .intro-quote {
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 4px solid var(--color-accent);
+            padding: 24px;
+            border-radius: 0 12px 12px 0;
+            margin-bottom: 40px;
+        }
+
+        .intro-quote p {
+            color: #CBD5E1;
+            font-size: 16px;
+            font-style: italic;
+        }
+
+        .section-title {
+            color: white;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-title i {
+            color: var(--color-accent);
+        }
+
+        .category-tabs {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+            min-height: 44px;
+        }
+
+        .tab[data-category="all"] {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .tab[data-category="cognitive"] {
+            background: rgba(139, 92, 246, 0.2);
+            color: #A78BFA;
+            border-color: rgba(139, 92, 246, 0.3);
+        }
+
+        .tab[data-category="behavioral"] {
+            background: rgba(59, 130, 246, 0.2);
+            color: #60A5FA;
+            border-color: rgba(59, 130, 246, 0.3);
+        }
+
+        .tab[data-category="social"] {
+            background: rgba(16, 185, 129, 0.2);
+            color: #34D399;
+            border-color: rgba(16, 185, 129, 0.3);
+        }
+
+        .tab[data-category="professional"] {
+            background: rgba(245, 158, 11, 0.2);
+            color: #FBBF24;
+            border-color: rgba(245, 158, 11, 0.3);
+        }
+
+        .tab.active,
+        .tab:hover {
+            transform: scale(1.05);
+            opacity: 1;
+        }
+
+        .tab:not(.active) {
+            opacity: 0.7;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 24px;
+            margin-bottom: 60px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 24px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .card-number {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .card[data-category="cognitive"] .card-number {
+            background: rgba(139, 92, 246, 0.2);
+            color: #A78BFA;
+        }
+
+        .card[data-category="behavioral"] .card-number {
+            background: rgba(59, 130, 246, 0.2);
+            color: #60A5FA;
+        }
+
+        .card[data-category="social"] .card-number {
+            background: rgba(16, 185, 129, 0.2);
+            color: #34D399;
+        }
+
+        .card[data-category="professional"] .card-number {
+            background: rgba(245, 158, 11, 0.2);
+            color: #FBBF24;
+        }
+
+        .card-title {
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        .card-category {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 4px;
+        }
+
+        .card[data-category="cognitive"] .card-category {
+            color: #A78BFA;
+        }
+
+        .card[data-category="behavioral"] .card-category {
+            color: #60A5FA;
+        }
+
+        .card[data-category="social"] .card-category {
+            color: #34D399;
+        }
+
+        .card[data-category="professional"] .card-category {
+            color: #FBBF24;
+        }
+
+        .card-body {
+            color: #94A3B8;
+            font-size: 14px;
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+
+        .card-expand {
+            display: none;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .card.expanded .card-expand {
+            display: block;
+        }
+
+        .mitigation {
+            background: rgba(33, 128, 141, 0.1);
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 12px;
+        }
+
+        .mitigation-label {
+            color: var(--color-primary);
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .mitigation-text {
+            color: #CBD5E1;
+            font-size: 13px;
+        }
+
+        .psych {
+            background: rgba(225, 29, 72, 0.1);
+            border-radius: 8px;
+            padding: 12px;
+        }
+
+        .psych-label {
+            color: var(--color-accent);
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .psych-text {
+            color: #CBD5E1;
+            font-size: 13px;
+        }
+
+        .card-toggle {
+            color: var(--color-primary);
+            font-size: 13px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .card.expanded .card-toggle i {
+            transform: rotate(180deg);
+        }
+
+        .palo-cta {
+            background: linear-gradient(135deg, var(--color-primary) 0%, #155E63 100%);
+            border-radius: 24px;
+            padding: 48px;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .palo-cta h2 {
+            color: white;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .palo-cta p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 16px;
+            margin-bottom: 32px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn {
+            padding: 14px 28px;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            min-height: 44px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .cta-btn-primary {
+            background: white;
+            color: var(--color-primary);
+        }
+
+        .cta-btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .cta-btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px 24px;
+            color: #64748B;
+            font-size: 13px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer a {
+            color: var(--color-primary);
+            text-decoration: none;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .category-tabs {
+                justify-content: center;
+            }
+
+            .hero {
+                padding: 40px 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <a href="#main-content" class="skip-link">Vai al contenuto principale</a>
+
+    <div class="container">
+        <nav class="nav" role="navigation" aria-label="Navigazione principale">
+            <a href="index.html"><img src="assets/logo.webp" alt="Logo PALO"></a>
+            <span class="nav-title">🧠 Mappa Rischi Autonomia Umana</span>
+            <div class="nav-links">
+                <a href="PALO_HumanAgencyRiskMap.html" class="nav-link lang-switch">🇬🇧 English</a>
+                <a href="index.html" class="nav-link">🏠 Home</a>
+                <a href="PALO_FRIA.html" class="nav-link">🛡️ FRIA</a>
+            </div>
+        </nav>
+
+        <main id="main-content" role="main">
+            <section class="hero">
+                <div class="hero-badge"><i class="fa-solid fa-eye"></i> Osservatorio Gennaio 2026</div>
+                <h1>18 Cose che gli Umani <span>Smetteranno di Fare</span> da Soli</h1>
+                <p>Gli esperti di AI hanno identificato attività critiche che gli umani stanno sempre più delegando
+                    all'intelligenza artificiale. Questo osservatorio monitora l'impatto sull'autonomia umana e fornisce
+                    strategie di mitigazione allineate a PALO.</p>
+            </section>
+
+            <div class="intro-quote">
+                <p>"Il rischio più grande non è che l'AI diventi troppo intelligente, ma che noi diventiamo troppo
+                    dipendenti. L'autonomia umana deve essere preservata attraverso una progettazione consapevole e una
+                    vigilanza continua."</p>
+            </div>
+
+            <h2 class="section-title"><i class="fa-solid fa-layer-group"></i> Categorie di Impatto</h2>
+
+            <div class="category-tabs" role="tablist">
+                <button class="tab active" data-category="all" role="tab" aria-selected="true">Tutte (18)</button>
+                <button class="tab" data-category="cognitive" role="tab" aria-selected="false">🧠 Cognitive (5)</button>
+                <button class="tab" data-category="behavioral" role="tab" aria-selected="false">🚗 Comportamentali
+                    (4)</button>
+                <button class="tab" data-category="social" role="tab" aria-selected="false">💬 Sociali (5)</button>
+                <button class="tab" data-category="professional" role="tab" aria-selected="false">💼 Professionali
+                    (4)</button>
+            </div>
+
+            <div class="cards-grid" id="cardsGrid"></div>
+
+            <section class="palo-cta">
+                <h2>Proteggi l'Autonomia Umana con PALO</h2>
+                <p>Usa gli strumenti del Framework PALO per valutare i sistemi AI rispetto ai requisiti di supervisione
+                    umana e garantire un deployment responsabile.</p>
+                <div class="cta-buttons">
+                    <a href="PALO_FRIA.html" class="cta-btn cta-btn-primary"><i class="fa-solid fa-shield-halved"></i>
+                        Valutazione FRIA</a>
+                    <a href="PALO_RiskTiering.html" class="cta-btn cta-btn-secondary"><i
+                            class="fa-solid fa-scale-balanced"></i> Calcolatore Rischi</a>
+                    <a href="PALO_ModelCanvasAI.html" class="cta-btn cta-btn-secondary"><i
+                            class="fa-solid fa-palette"></i> Model Canvas</a>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer" role="contentinfo">
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="PALO_FRIA.html">FRIA</a>
+                <a href="PALO_ModelCanvasAI.html">Model Canvas</a>
+                <a href="accessibility.html">Accessibilità</a>
+            </div>
+            <p>© 2026 PALO Framework. Tutti i diritti riservati. | ✓ WCAG 2.1 AA</p>
+        </footer>
+    </div>
+
+    <script>
+        const items = [
+            { id: 1, title: "Memorizzare Informazioni", category: "cognitive", body: "La conoscenza sarà sempre accessibile; le persone si affideranno meno alla memoria e più alla comprensione, interpretazione e applicazione delle informazioni nel contesto.", mitigation: "Implementare 'Zone di Esercizio Cognitivo' - periodi designati per l'apprendimento basato sulla memoria senza assistenza AI.", psych: "La formazione della memoria rafforza i percorsi neurali. La pratica regolare del richiamo mantiene la flessibilità cognitiva e riduce i pattern di dipendenza." },
+            { id: 2, title: "Guidare Veicoli", category: "behavioral", body: "I sistemi autonomi gestiranno la maggior parte dei veicoli, riducendo significativamente gli incidenti causati da errore umano e migliorando il flusso del traffico.", mitigation: "Mantenere protocolli Human-in-the-Loop per casi limite. Richiedere certificazione periodica di guida manuale.", psych: "La guida coinvolge consapevolezza spaziale, decision-making e abilità motorie. Preservare un certo controllo manuale mantiene questi percorsi cognitivi." },
+            { id: 3, title: "Cercare Informazioni", category: "cognitive", body: "I sistemi forniranno risposte rilevanti prima ancora che le domande vengano poste, usando contesto, comportamento e intelligenza predittiva.", mitigation: "Progettare la ricerca AI per mostrare le catene di ragionamento. Incoraggiare la valutazione critica delle informazioni fornite dall'AI.", psych: "La ricerca di informazioni sviluppa capacità di ricerca e pensiero critico. L'eccessiva dipendenza dalle risposte push-based può atrofizzare le capacità di indagine." },
+            { id: 4, title: "Prendere Decisioni di Routine", category: "behavioral", body: "Gli algoritmi assisteranno le scelte quotidiane su denaro, salute e lavoro, offrendo guida basata sui dati.", mitigation: "Implementare 'Trasparenza Decisionale' - l'AI deve spiegare il suo ragionamento. Riservare l'autorità finale agli umani.", psych: "Il decision-making è un'abilità allenabile. L'esercizio regolare previene la fatica decisionale mantenendo l'autonomia." },
+            { id: 5, title: "Eseguire Lavori Ripetitivi", category: "professional", body: "L'automazione gestirà i compiti di routine più velocemente e senza affaticamento, permettendo di concentrarsi sul lavoro creativo e strategico.", mitigation: "Ruotare gli umani attraverso i ruoli automatizzati periodicamente per mantenere la comprensione operativa.", psych: "Alcuni compiti ripetitivi forniscono sollievo dallo stress e senso di realizzazione. Bilanciare automazione con attività significative." },
+            { id: 6, title: "Gestire le Finanze", category: "behavioral", body: "I sistemi ottimizzeranno automaticamente spese, risparmi, investimenti, reagendo in tempo reale ai cambiamenti di reddito.", mitigation: "Richiedere approvazione umana per decisioni finanziarie importanti. Fornire educazione finanziaria insieme all'automazione.", psych: "L'agency finanziaria è legata al senso di controllo e riduzione dell'ansia. Mantenere visibilità e comprensione dei flussi finanziari." },
+            { id: 7, title: "Faccende Domestiche", category: "behavioral", body: "L'assistenza robotica diventerà normale, gestendo pulizia, manutenzione e cura quotidiana in background.", mitigation: "Preservare alcuni compiti domestici manuali come opportunità di mindfulness e attività fisica.", psych: "Le faccende domestiche forniscono routine, movimento fisico e senso di controllo ambientale. L'automazione completa può aumentare il comportamento sedentario." },
+            { id: 8, title: "Scrivere Contenuti Social", category: "social", body: "Gli strumenti AI genereranno post, didascalie e risposte personalizzate adattate allo stile individuale e al pubblico.", mitigation: "Richiedere disclosure dei contenuti generati da AI. Incoraggiare l'espressione personale autentica insieme alle bozze AI.", psych: "L'auto-espressione attraverso la scrittura supporta la formazione dell'identità e l'elaborazione emotiva. L'assistenza AI dovrebbe migliorare, non sostituire." },
+            { id: 9, title: "Programmare Software di Routine", category: "professional", body: "L'AI gestirà debugging, codice standard e costruzione di applicazioni da descrizioni in linguaggio naturale.", mitigation: "Gli sviluppatori devono comprendere e revisionare il codice generato da AI. Mantenere l'educazione fondamentale alla programmazione.", psych: "Il problem-solving attraverso il codice sviluppa il pensiero logico. Usare l'AI come assistente didattico piuttosto che sostituto." },
+            { id: 10, title: "Eseguire Analisi Dati", category: "cognitive", body: "L'AI processerà automaticamente dataset, identificherà pattern, genererà report e fornirà insight.", mitigation: "Gli umani mantengono i ruoli di interpretazione e decisione strategica. L'AI spiega la metodologia in modo trasparente.", psych: "Il pensiero analitico richiede pratica. Mantenere il coinvolgimento umano nell'interpretazione dei dati per preservare le capacità di analisi critica." },
+            { id: 11, title: "Gestire il Servizio Clienti", category: "social", body: "Chatbot intelligenti gestiranno richieste, reclami e supporto con risposte naturali e consapevoli del contesto.", mitigation: "Garantire facile escalation agli umani. Monitorare situazioni emotive che richiedono empatia umana.", psych: "La connessione umana nelle interazioni di servizio costruisce fiducia. Alcune interazioni beneficiano della presenza umana autentica." },
+            { id: 12, title: "Tradurre Lingue", category: "social", body: "La traduzione AI in tempo reale diventerà fluida attraverso voce, testo e video, eliminando la necessità di interpreti umani.", mitigation: "Preservare traduttori umani per sfumature culturali, contesti sensibili e controllo qualità.", psych: "L'apprendimento delle lingue migliora la flessibilità cognitiva. La traduzione AI dovrebbe complementare, non eliminare, lo sviluppo multilingue." },
+            { id: 13, title: "Pianificare Viaggi", category: "professional", body: "Gli agenti AI ottimizzeranno percorsi, prenotazioni di voli, alloggi e attività basandosi su preferenze e condizioni in tempo reale.", mitigation: "Presentare opzioni piuttosto che decisioni. Permettere override umano e preferenze di esplorazione.", psych: "La pianificazione di viaggi coinvolge creatività e anticipazione. Preservare elementi di scoperta e scelta personale nel viaggio." },
+            { id: 14, title: "Diagnosticare Condizioni Mediche", category: "cognitive", body: "Strumenti AI analizzeranno sintomi, scansioni e dati sanitari per fornire diagnosi iniziali.", mitigation: "AI come supporto decisionale clinico, non sostituto. I medici umani mantengono l'autorità diagnostica.", psych: "La relazione medico-paziente coinvolge fiducia e comunicazione. L'AI dovrebbe migliorare, non sostituire, il giudizio clinico umano." },
+            { id: 15, title: "Modificare Foto e Video", category: "social", body: "L'AI generativa migliorerà, ritoccherà e creerà media di qualità professionale da input semplici.", mitigation: "Mantenere standard di autenticità. Dichiarare le manipolazioni AI. Preservare l'editing creativo come competenza.", psych: "L'editing creativo sviluppa giudizio estetico e competenze tecniche. Usare l'AI per accelerare, non eliminare, l'apprendimento creativo." },
+            { id: 16, title: "Programmare Appuntamenti", category: "professional", body: "Assistenti intelligenti coordineranno calendari tra fusi orari, suggeriranno orari ottimali e riprogrammeranno dinamicamente.", mitigation: "Preservare il controllo umano sulle priorità. L'AI dovrebbe proporre, gli umani disporre.", psych: "La gestione del tempo riflette valori personali. Mantenere agency sulle decisioni di programmazione accettando assistenza logistica." },
+            { id: 17, title: "Consulenza Legale/Finanziaria Base", category: "cognitive", body: "L'AI analizzerà leggi, contratti e regolamenti per offrire guida personalizzata su questioni di routine.", mitigation: "Confini chiari tra guida AI e consulenza professionale. Esperti umani per situazioni complesse.", psych: "Comprendere le basi legali/finanziarie supporta la cittadinanza informata. L'AI dovrebbe educare, non solo rispondere." },
+            { id: 18, title: "Cucinare Pasti Semplici", category: "social", body: "Robot avanzati ed elettrodomestici guidati da AI prepareranno pasti personalizzati e nutrienti su richiesta.", mitigation: "Preservare la cucina come pratica culturale, attività familiare ed espressione creativa.", psych: "Cucinare coinvolge molteplici sensi, fornisce realizzazione e supporta relazioni sane con il cibo." }
+        ];
+
+        const categoryLabels = {
+            cognitive: "Cognitiva",
+            behavioral: "Comportamentale",
+            social: "Sociale",
+            professional: "Professionale"
+        };
+
+        function renderCards(filter = 'all') {
+            const grid = document.getElementById('cardsGrid');
+            const filtered = filter === 'all' ? items : items.filter(i => i.category === filter);
+            grid.innerHTML = filtered.map(item => `
+                <article class="card" data-category="${item.category}" data-id="${item.id}" tabindex="0" role="button" aria-expanded="false">
+                    <div class="card-header">
+                        <div class="card-number">${item.id}</div>
+                        <div>
+                            <div class="card-title">${item.title}</div>
+                            <div class="card-category">${categoryLabels[item.category]}</div>
+                        </div>
+                    </div>
+                    <div class="card-body">${item.body}</div>
+                    <div class="card-toggle"><i class="fa-solid fa-chevron-down"></i> Vedi Mitigazione PALO</div>
+                    <div class="card-expand">
+                        <div class="mitigation"><div class="mitigation-label">🛡️ Mitigazione PALO</div><div class="mitigation-text">${item.mitigation}</div></div>
+                        <div class="psych"><div class="psych-label">🧠 Prospettiva Psicologica</div><div class="psych-text">${item.psych}</div></div>
+                    </div>
+                </article>
+            `).join('');
+
+            document.querySelectorAll('.card').forEach(card => {
+                card.addEventListener('click', () => {
+                    card.classList.toggle('expanded');
+                    card.setAttribute('aria-expanded', card.classList.contains('expanded'));
+                });
+                card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); card.click(); } });
+            });
+        }
+
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.tab').forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
+                tab.classList.add('active');
+                tab.setAttribute('aria-selected', 'true');
+                renderCards(tab.dataset.category);
+            });
+        });
+
+        renderCards();
+    </script>
+</body>
+
+</html>

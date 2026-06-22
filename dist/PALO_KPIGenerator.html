@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KPI Generator | PALO Framework</title>
+    <meta name="description"
+        content="Generate personalized Technical, Business, and Ethical KPIs for your AI project based on PALO Framework Table 2">
+
+    <!-- SEO Meta Tags -->
+    <meta name="keywords"
+        content="AI KPIs, AI metrics, AI performance measurement, ethical AI metrics, AI governance KPIs, PALO framework">
+    <meta name="author" content="PALO Framework">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://paloframework.org/PALO_KPIGenerator.html">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://paloframework.org/PALO_KPIGenerator.html">
+    <meta property="og:title" content="AI KPI Generator | PALO Framework">
+    <meta property="og:description"
+        content="Generate personalized Technical, Business, and Ethical KPIs for your AI project with export to CSV/Markdown.">
+    <meta property="og:image" content="https://paloframework.org/assets/og-kpi-generator.png">
+    <meta property="og:site_name" content="PALO Framework">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="AI KPI Generator | PALO Framework">
+    <meta name="twitter:description" content="Generate personalized AI performance metrics with export functionality.">
+    <meta name="twitter:image" content="https://paloframework.org/assets/og-kpi-generator.png">
+
+    <link rel="icon" type="image/webp" href="assets/logo.webp">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-primary: #21808D;
+            --color-primary-light: #2A9BAA;
+            --color-primary-dark: #1A666F;
+            --color-text: #1E293B;
+            --color-text-secondary: #64748B;
+            --color-background: #FFFFFF;
+            --color-surface: #F8FAFC;
+            --color-border: #E2E8F0;
+            --color-success: #10B981;
+            --color-warning: #F59E0B;
+            --color-error: #DC2626;
+            --color-technical: #3B82F6;
+            --color-business: #8B5CF6;
+            --color-ethical: #10B981;
+            --radius-base: 12px;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        *:focus-visible {
+            outline: 3px solid var(--color-primary);
+            outline-offset: 2px;
+        }
+
+        button,
+        a,
+        input,
+        select,
+        textarea {
+            min-height: 44px;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: linear-gradient(135deg, #f0f9fa 0%, #e8f4f5 100%);
+            min-height: 100vh;
+            color: var(--color-text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        /* Skip Link */
+        .skip-link {
+            position: absolute;
+            left: -9999px;
+            top: auto;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+            z-index: 9999;
+            background: var(--color-primary);
+            color: white;
+            padding: 12px;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+
+        .skip-link:focus {
+            left: 16px;
+            width: auto;
+            height: auto;
+        }
+
+        /* Navigation */
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 24px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: var(--radius-base);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 24px;
+        }
+
+        .nav img {
+            height: 40px;
+        }
+
+        .nav-title {
+            flex: 1;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--color-primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 8px;
+        }
+
+        .nav-link {
+            padding: 8px 16px;
+            background: var(--color-surface);
+            color: var(--color-text);
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .nav-link:hover {
+            background: var(--color-primary);
+            color: white;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 40px 24px;
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            border-radius: var(--radius-base);
+            color: white;
+            margin-bottom: 24px;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+
+        .header p {
+            font-size: 16px;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Filter Section */
+        .filters {
+            background: var(--color-background);
+            border-radius: var(--radius-base);
+            padding: 24px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 24px;
+        }
+
+        .filters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .filter-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--color-text);
+        }
+
+        .filter-group select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid var(--color-border);
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: inherit;
+            background: var(--color-background);
+            cursor: pointer;
+            transition: border-color 0.2s;
+        }
+
+        .filter-group select:hover {
+            border-color: var(--color-primary);
+        }
+
+        .filter-group select:focus {
+            border-color: var(--color-primary);
+            outline: none;
+        }
+
+        .generate-btn {
+            display: block;
+            width: 100%;
+            padding: 16px;
+            margin-top: 20px;
+            background: var(--color-primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .generate-btn:hover {
+            background: var(--color-primary-dark);
+        }
+
+        /* Results Dashboard */
+        .dashboard {
+            display: none;
+        }
+
+        .dashboard.active {
+            display: block;
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .dashboard-title {
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .export-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: var(--color-primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--color-primary-dark);
+        }
+
+        .btn-secondary {
+            background: var(--color-surface);
+            color: var(--color-text);
+            border: 1px solid var(--color-border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--color-border);
+        }
+
+        /* KPI Columns */
+        .kpi-columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        @media (max-width: 900px) {
+            .kpi-columns {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .kpi-column {
+            background: var(--color-background);
+            border-radius: var(--radius-base);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+        }
+
+        .kpi-column-header {
+            padding: 16px 20px;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .kpi-column.technical .kpi-column-header {
+            background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%);
+        }
+
+        .kpi-column.business .kpi-column-header {
+            background: linear-gradient(135deg, #6d28d9 0%, #8b5cf6 100%);
+        }
+
+        .kpi-column.ethical .kpi-column-header {
+            background: linear-gradient(135deg, #047857 0%, #10b981 100%);
+        }
+
+        .kpi-count {
+            margin-left: auto;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 13px;
+        }
+
+        .kpi-list {
+            padding: 12px;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        .kpi-card {
+            padding: 16px;
+            background: var(--color-surface);
+            border-radius: 10px;
+            margin-bottom: 12px;
+            border-left: 4px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .kpi-card:hover {
+            box-shadow: var(--shadow-sm);
+            transform: translateY(-2px);
+        }
+
+        .technical .kpi-card {
+            border-left-color: var(--color-technical);
+        }
+
+        .business .kpi-card {
+            border-left-color: var(--color-business);
+        }
+
+        .ethical .kpi-card {
+            border-left-color: var(--color-ethical);
+        }
+
+        .kpi-name {
+            font-weight: 600;
+            font-size: 15px;
+            margin-bottom: 6px;
+            color: var(--color-text);
+        }
+
+        .kpi-definition {
+            font-size: 13px;
+            color: var(--color-text-secondary);
+            margin-bottom: 10px;
+        }
+
+        .kpi-measurement {
+            font-size: 12px;
+            padding: 8px 12px;
+            background: var(--color-background);
+            border-radius: 6px;
+            color: var(--color-text-secondary);
+        }
+
+        .kpi-measurement strong {
+            color: var(--color-text);
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            color: var(--color-text-secondary);
+        }
+
+        .empty-state-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 24px;
+            color: var(--color-text-secondary);
+            font-size: 13px;
+            margin-top: 24px;
+        }
+
+        .footer a {
+            color: var(--color-primary);
+            text-decoration: none;
+        }
+
+        @media (max-width: 640px) {
+            .nav-links {
+                display: none;
+            }
+
+            .header h1 {
+                font-size: 24px;
+            }
+
+            .filters-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <div class="container">
+        <!-- Navigation -->
+        <nav class="nav" role="navigation" aria-label="Main navigation">
+            <a href="index.html">
+                <img src="assets/logo.webp" alt="PALO Logo">
+            </a>
+            <span class="nav-title">📊 KPI Generator</span>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link" aria-label="Return to homepage">🏠 Home</a>
+                <a href="PALO_FRIA.html" class="nav-link" aria-label="Open FRIA tool">🛡️ FRIA</a>
+                <a href="PALO_RiskTiering.html" class="nav-link" aria-label="Open Risk Calculator">⚖️ Risk</a>
+                <a href="PALO_ModelCanvasAI.html" class="nav-link" aria-label="Open Model Canvas">🎨 Canvas</a>
+            </div>
+        </nav>
+
+        <!-- Header -->
+        <header class="header" role="banner">
+            <h1 id="main-content" tabindex="-1">📊 PALO KPI Generator</h1>
+            <p>Generate a personalized list of Technical, Business, and Ethical KPIs for your AI project based on PALO
+                Framework Table 2 (KPI Compendium).</p>
+        </header>
+
+        <!-- Main Content -->
+        <main role="main">
+            <!-- Filters -->
+            <section class="filters" aria-label="KPI Filters">
+                <div class="filters-grid">
+                    <div class="filter-group">
+                        <label for="modelType">🤖 Model Type</label>
+                        <select id="modelType">
+                            <option value="">Select model type...</option>
+                            <option value="generative">Generative AI / LLM</option>
+                            <option value="classification">Classification / Regression</option>
+                            <option value="recommendation">Recommendation Engine</option>
+                            <option value="cv">Computer Vision</option>
+                            <option value="nlp">NLP / NLU</option>
+                            <option value="timeseries">Time Series / Forecasting</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="objective">🎯 Primary Objective</label>
+                        <select id="objective">
+                            <option value="">Select objective...</option>
+                            <option value="efficiency">Operational Efficiency</option>
+                            <option value="customer">Customer Experience</option>
+                            <option value="safety">Safety / Security</option>
+                            <option value="revenue">Revenue Growth</option>
+                            <option value="cost">Cost Reduction</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="sector">🏢 Sector</label>
+                        <select id="sector">
+                            <option value="">Select sector...</option>
+                            <option value="finance">Finance / Banking</option>
+                            <option value="healthcare">Healthcare</option>
+                            <option value="retail">Retail / E-commerce</option>
+                            <option value="manufacturing">Manufacturing</option>
+                            <option value="hr">HR / Recruitment</option>
+                            <option value="general">General / Other</option>
+                        </select>
+                    </div>
+                </div>
+                <button class="generate-btn" onclick="generateKPIs()" id="generateBtn">
+                    🚀 Generate KPIs
+                </button>
+            </section>
+
+            <!-- Dashboard -->
+            <section class="dashboard" id="dashboard" aria-label="Generated KPIs">
+                <div class="dashboard-header">
+                    <h2 class="dashboard-title">📋 Your Personalized KPIs</h2>
+                    <div class="export-buttons">
+                        <button class="btn btn-secondary" onclick="exportCSV()">📥 Export CSV</button>
+                        <button class="btn btn-primary" onclick="exportMarkdown()">📄 Export Markdown</button>
+                    </div>
+                </div>
+
+                <div class="kpi-columns">
+                    <!-- Technical KPIs -->
+                    <div class="kpi-column technical">
+                        <div class="kpi-column-header">
+                            🔧 Technical KPIs
+                            <span class="kpi-count" id="technicalCount">0</span>
+                        </div>
+                        <div class="kpi-list" id="technicalList"></div>
+                    </div>
+
+                    <!-- Business KPIs -->
+                    <div class="kpi-column business">
+                        <div class="kpi-column-header">
+                            💼 Business KPIs
+                            <span class="kpi-count" id="businessCount">0</span>
+                        </div>
+                        <div class="kpi-list" id="businessList"></div>
+                    </div>
+
+                    <!-- Ethical KPIs -->
+                    <div class="kpi-column ethical">
+                        <div class="kpi-column-header">
+                            ⚖️ Ethical KPIs
+                            <span class="kpi-count" id="ethicalCount">0</span>
+                        </div>
+                        <div class="kpi-list" id="ethicalList"></div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer" role="contentinfo">
+            <p>© 2025 PALO Framework. All rights reserved.</p>
+            <p style="margin-top: 8px;">
+                <a href="index.html">Home</a> |
+                <a href="PALO_FRIA.html">FRIA</a> |
+                <a href="PALO_RiskTiering.html">Risk Calculator</a> |
+                <a href="PALO_ModelCanvasAI.html">Model Canvas</a> |
+                <a href="accessibility.html">Accessibility</a>
+            </p>
+            <p style="margin-top: 8px; font-size: 11px; opacity: 0.7;">✓ EN 301549 Compliant | WCAG 2.1 AA | GDPR
+                Compliant</p>
+        </footer>
+    </div>
+
+    <script>
+        // KPI Database (based on PALO Framework Table 2)
+        const kpiDatabase = [
+            // Technical KPIs
+            {
+                name: "Model Accuracy",
+                category: "Technical",
+                tags: ["classification", "cv", "nlp", "all"],
+                definition: "Percentage of correct predictions out of total predictions made",
+                measurement: "(TP + TN) / (TP + TN + FP + FN)"
+            },
+            {
+                name: "F1 Score",
+                category: "Technical",
+                tags: ["classification", "nlp", "all"],
+                definition: "Harmonic mean of precision and recall, balancing false positives and negatives",
+                measurement: "2 × (Precision × Recall) / (Precision + Recall)"
+            },
+            {
+                name: "Hallucination Rate",
+                category: "Technical",
+                tags: ["generative", "nlp"],
+                definition: "Percentage of factually incorrect or fabricated outputs from generative AI",
+                measurement: "Manual review + automated fact-checking on sample set"
+            },
+            {
+                name: "Latency (P95)",
+                category: "Technical",
+                tags: ["all", "efficiency", "customer"],
+                definition: "95th percentile response time for model inference",
+                measurement: "Time in milliseconds for 95% of requests"
+            },
+            {
+                name: "Throughput",
+                category: "Technical",
+                tags: ["all", "efficiency"],
+                definition: "Number of predictions per second the system can handle",
+                measurement: "Requests per second (RPS) at target latency"
+            },
+            {
+                name: "Model Drift Score",
+                category: "Technical",
+                tags: ["all", "safety"],
+                definition: "Statistical measure of how model performance changes over time",
+                measurement: "KL Divergence or PSI between baseline and current distributions"
+            },
+            {
+                name: "BLEU Score",
+                category: "Technical",
+                tags: ["generative", "nlp"],
+                definition: "Measures quality of machine-generated text vs reference text",
+                measurement: "Geometric mean of n-gram precision scores"
+            },
+            {
+                name: "Mean Average Precision (mAP)",
+                category: "Technical",
+                tags: ["cv", "recommendation"],
+                definition: "Average precision across all classes for ranking/retrieval tasks",
+                measurement: "Mean of AP across all classes/queries"
+            },
+            {
+                name: "Recall@K",
+                category: "Technical",
+                tags: ["recommendation", "nlp"],
+                definition: "Proportion of relevant items found in top K recommendations",
+                measurement: "Relevant items in top K / Total relevant items"
+            },
+            {
+                name: "MAPE (Forecasting Error)",
+                category: "Technical",
+                tags: ["timeseries"],
+                definition: "Mean Absolute Percentage Error for time series predictions",
+                measurement: "Average of |Actual - Predicted| / Actual × 100%"
+            },
+
+            // Business KPIs
+            {
+                name: "Return on AI Investment (ROAI)",
+                category: "Business",
+                tags: ["all", "revenue", "cost"],
+                definition: "Financial return generated by AI investment relative to its cost",
+                measurement: "(AI-attributable gains - AI costs) / AI costs × 100%"
+            },
+            {
+                name: "Cost Savings",
+                category: "Business",
+                tags: ["all", "cost", "efficiency"],
+                definition: "Reduction in operational costs attributed to AI automation",
+                measurement: "Pre-AI costs - Post-AI costs (normalized)"
+            },
+            {
+                name: "Customer Satisfaction (CSAT)",
+                category: "Business",
+                tags: ["customer", "all"],
+                definition: "Customer rating of AI-powered experience",
+                measurement: "Survey score (1-5) or NPS for AI touchpoints"
+            },
+            {
+                name: "Task Completion Rate",
+                category: "Business",
+                tags: ["customer", "efficiency"],
+                definition: "Percentage of user tasks successfully completed by AI",
+                measurement: "Completed tasks / Total attempted tasks × 100%"
+            },
+            {
+                name: "Adoption Rate",
+                category: "Business",
+                tags: ["all"],
+                definition: "Percentage of target users actively using the AI system",
+                measurement: "Active users / Total target users × 100%"
+            },
+            {
+                name: "Time-to-Value",
+                category: "Business",
+                tags: ["all", "efficiency"],
+                definition: "Time from AI deployment to measurable business value",
+                measurement: "Days/weeks from go-live to target ROI achievement"
+            },
+            {
+                name: "Revenue per AI-Interaction",
+                category: "Business",
+                tags: ["revenue", "customer", "retail"],
+                definition: "Average revenue generated per AI-assisted customer interaction",
+                measurement: "Total AI-attributed revenue / Number of AI interactions"
+            },
+            {
+                name: "Process Automation Rate",
+                category: "Business",
+                tags: ["efficiency", "cost"],
+                definition: "Percentage of process steps automated by AI",
+                measurement: "Automated steps / Total process steps × 100%"
+            },
+            {
+                name: "Employee Productivity Gain",
+                category: "Business",
+                tags: ["efficiency", "hr"],
+                definition: "Increase in output per employee with AI assistance",
+                measurement: "(Post-AI output - Pre-AI output) / Pre-AI output × 100%"
+            },
+
+            // Ethical KPIs
+            {
+                name: "Demographic Parity Difference",
+                category: "Ethical",
+                tags: ["all", "hr", "finance"],
+                definition: "Difference in positive outcome rates across demographic groups",
+                measurement: "|P(Y=1|A=0) - P(Y=1|A=1)| < threshold (typically 0.1)"
+            },
+            {
+                name: "Equalized Odds Ratio",
+                category: "Ethical",
+                tags: ["all", "hr", "finance"],
+                definition: "Whether true/false positive rates are equal across groups",
+                measurement: "Ratio of TPR/FPR between protected groups"
+            },
+            {
+                name: "Explainability Score",
+                category: "Ethical",
+                tags: ["all", "safety"],
+                definition: "Degree to which model decisions can be explained to stakeholders",
+                measurement: "LIME/SHAP coverage + human comprehension test scores"
+            },
+            {
+                name: "Carbon Footprint",
+                category: "Ethical",
+                tags: ["generative", "all"],
+                definition: "CO2 emissions from model training and inference",
+                measurement: "kg CO2e per training run / per 1M inferences"
+            },
+            {
+                name: "Transparency Index",
+                category: "Ethical",
+                tags: ["all", "customer"],
+                definition: "Completeness of disclosures about AI involvement to users",
+                measurement: "Checklist score: data usage, AI decision-making, opt-out options"
+            },
+            {
+                name: "Human Override Rate",
+                category: "Ethical",
+                tags: ["all", "safety"],
+                definition: "Percentage of AI decisions overridden by human operators",
+                measurement: "Overridden decisions / Total AI decisions × 100%"
+            },
+            {
+                name: "Privacy Compliance Score",
+                category: "Ethical",
+                tags: ["all", "healthcare", "finance"],
+                definition: "Adherence to privacy regulations (GDPR, HIPAA, etc.)",
+                measurement: "Audit checklist score + data minimization metrics"
+            },
+            {
+                name: "Consent Verification Rate",
+                category: "Ethical",
+                tags: ["all", "customer"],
+                definition: "Percentage of data subjects with verified consent",
+                measurement: "Verified consents / Total data subjects × 100%"
+            },
+            {
+                name: "Adverse Impact Ratio",
+                category: "Ethical",
+                tags: ["hr", "finance"],
+                definition: "Ratio of selection rates between protected and unprotected groups",
+                measurement: "Selection rate of protected group / Selection rate of majority group"
+            },
+            {
+                name: "Model Attack Resistance",
+                category: "Ethical",
+                tags: ["safety", "all"],
+                definition: "Robustness against adversarial attacks and data poisoning",
+                measurement: "Accuracy drop under attack scenarios (%)"
+            }
+        ];
+
+        let generatedKPIs = { technical: [], business: [], ethical: [] };
+
+        function generateKPIs() {
+            const modelType = document.getElementById('modelType').value;
+            const objective = document.getElementById('objective').value;
+            const sector = document.getElementById('sector').value;
+
+            if (!modelType || !objective || !sector) {
+                alert('Please select all filters to generate KPIs');
+                return;
+            }
+
+            // Filter KPIs based on selections
+            const relevantKPIs = kpiDatabase.filter(kpi => {
+                const matchesModel = kpi.tags.includes(modelType) || kpi.tags.includes('all');
+                const matchesObjective = kpi.tags.includes(objective) || kpi.tags.includes('all');
+                const matchesSector = kpi.tags.includes(sector) || kpi.tags.includes('all') || !kpi.tags.some(t => ['finance', 'healthcare', 'retail', 'manufacturing', 'hr', 'general'].includes(t));
+
+                return matchesModel || matchesObjective || matchesSector;
+            });
+
+            // Categorize KPIs
+            generatedKPIs = {
+                technical: relevantKPIs.filter(k => k.category === 'Technical'),
+                business: relevantKPIs.filter(k => k.category === 'Business'),
+                ethical: relevantKPIs.filter(k => k.category === 'Ethical')
+            };
+
+            // Render results
+            renderKPIs();
+            document.getElementById('dashboard').classList.add('active');
+            document.getElementById('dashboard').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function renderKPIs() {
+            // Technical
+            document.getElementById('technicalCount').textContent = generatedKPIs.technical.length;
+            document.getElementById('technicalList').innerHTML = generatedKPIs.technical.map(kpi => `
+                <div class="kpi-card">
+                    <div class="kpi-name">${kpi.name}</div>
+                    <div class="kpi-definition">${kpi.definition}</div>
+                    <div class="kpi-measurement"><strong>📐 How to Measure:</strong> ${kpi.measurement}</div>
+                </div>
+            `).join('') || '<div class="empty-state"><div class="empty-state-icon">📭</div>No technical KPIs match</div>';
+
+            // Business
+            document.getElementById('businessCount').textContent = generatedKPIs.business.length;
+            document.getElementById('businessList').innerHTML = generatedKPIs.business.map(kpi => `
+                <div class="kpi-card">
+                    <div class="kpi-name">${kpi.name}</div>
+                    <div class="kpi-definition">${kpi.definition}</div>
+                    <div class="kpi-measurement"><strong>📐 How to Measure:</strong> ${kpi.measurement}</div>
+                </div>
+            `).join('') || '<div class="empty-state"><div class="empty-state-icon">📭</div>No business KPIs match</div>';
+
+            // Ethical
+            document.getElementById('ethicalCount').textContent = generatedKPIs.ethical.length;
+            document.getElementById('ethicalList').innerHTML = generatedKPIs.ethical.map(kpi => `
+                <div class="kpi-card">
+                    <div class="kpi-name">${kpi.name}</div>
+                    <div class="kpi-definition">${kpi.definition}</div>
+                    <div class="kpi-measurement"><strong>📐 How to Measure:</strong> ${kpi.measurement}</div>
+                </div>
+            `).join('') || '<div class="empty-state"><div class="empty-state-icon">📭</div>No ethical KPIs match</div>';
+        }
+
+        function exportCSV() {
+            const allKPIs = [
+                ...generatedKPIs.technical,
+                ...generatedKPIs.business,
+                ...generatedKPIs.ethical
+            ];
+
+            let csv = 'Category,KPI Name,Definition,Measurement\n';
+            allKPIs.forEach(kpi => {
+                csv += `"${kpi.category}","${kpi.name}","${kpi.definition}","${kpi.measurement}"\n`;
+            });
+
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `palo-kpis-${new Date().toISOString().slice(0, 10)}.csv`;
+            link.click();
+        }
+
+        function exportMarkdown() {
+            let md = `# PALO KPI Report\n\n`;
+            md += `**Generated:** ${new Date().toISOString().slice(0, 10)}\n\n`;
+            md += `**Filters:** Model Type: ${document.getElementById('modelType').value}, Objective: ${document.getElementById('objective').value}, Sector: ${document.getElementById('sector').value}\n\n`;
+
+            md += `## 🔧 Technical KPIs (${generatedKPIs.technical.length})\n\n`;
+            generatedKPIs.technical.forEach(kpi => {
+                md += `### ${kpi.name}\n- **Definition:** ${kpi.definition}\n- **Measurement:** ${kpi.measurement}\n\n`;
+            });
+
+            md += `## 💼 Business KPIs (${generatedKPIs.business.length})\n\n`;
+            generatedKPIs.business.forEach(kpi => {
+                md += `### ${kpi.name}\n- **Definition:** ${kpi.definition}\n- **Measurement:** ${kpi.measurement}\n\n`;
+            });
+
+            md += `## ⚖️ Ethical KPIs (${generatedKPIs.ethical.length})\n\n`;
+            generatedKPIs.ethical.forEach(kpi => {
+                md += `### ${kpi.name}\n- **Definition:** ${kpi.definition}\n- **Measurement:** ${kpi.measurement}\n\n`;
+            });
+
+            md += `---\n*Generated by PALO Framework KPI Generator*\n`;
+
+            const blob = new Blob([md], { type: 'text/markdown' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `palo-kpis-${new Date().toISOString().slice(0, 10)}.md`;
+            link.click();
+        }
+    </script>
+</body>
+
+</html>

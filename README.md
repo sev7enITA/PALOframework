@@ -1,246 +1,232 @@
-<div align="center">
+# PALO Framework
 
-# 🛡️ PALO Framework
-
-### **Principled AI Lifecycle Orchestration**
+**Principled AI Lifecycle Orchestration**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![EU AI Act](https://img.shields.io/badge/EU%20AI%20Act-Compliant-success)](https://artificialintelligenceact.eu/)
+[![EU AI Act](https://img.shields.io/badge/EU%20AI%20Act-aligned-success)](https://eur-lex.europa.eu/eli/reg/2024/1689/oj)
 [![WCAG 2.1 AA](https://img.shields.io/badge/WCAG%202.1-AA-green)](https://www.w3.org/WAI/WCAG21/quickref/)
-[![Website](https://img.shields.io/badge/Website-Live-21808D)](https://paloframework.org)
-[![Stars](https://img.shields.io/github/stars/paloframework/palo?style=social)](https://github.com/paloframework/palo)
+[![Website](https://img.shields.io/badge/Website-paloframework.org-21808D)](https://paloframework.org)
+[![GitHub](https://img.shields.io/badge/GitHub-sev7enITA%2FPALOframework-black)](https://github.com/sev7enITA/PALOframework)
 
-<br />
+PALO is an open-source framework and toolkit for operational AI governance. It helps teams translate principles, laws, and standards into lifecycle decisions, risk assessments, evidence artifacts, KPIs/KRIs, and repeatable governance gates.
 
-<img src="assets/logo.webp" alt="PALO Framework Logo" width="200">
-
-<br />
-
-**The comprehensive framework for responsible AI governance in business**
-
-[🌐 Live Website](https://paloframework.org) · [📖 Documentation](#documentation) · [🛠️ Tools](#interactive-tools) · [🗺️ Roadmap](#roadmap)
-
-</div>
+- Website: [paloframework.org](https://paloframework.org)
+- Android: [P.A.L.O. Framework Toolbox on Google Play](https://play.google.com/store/apps/details?id=com.fabriziodegni.paloframework)
+- iOS/iPadOS: [P.A.L.O. Framework Toolbox on the App Store](https://apps.apple.com/it/app/p-a-l-o-framework-toolbox/id6761771299)
+- Documentation: [PALOFrameworkV2.pdf](PALOFrameworkV2.pdf), [PALO v1 paper](ThePALOFramework_%20A_Paradigm_for_Principled_AI_Lifecycle_OrchestrationInBusiness%20v1%20Feb%202026.pdf), and the interactive modules in this repository
 
 ---
 
-## 🌟 Overview
+## Overview
 
-PALO (Principled AI Lifecycle Orchestration) is an open-source framework designed to help organizations navigate the complexities of AI governance, ethics, and compliance. Built with the EU AI Act in mind, PALO provides practical tools, assessments, and resources for responsible AI deployment. the PALO framework for AI ethics and governance is a distinct initiative primarily associated with AI ethics and governance expert Fabrizio Degni. It is not directly synonymous with the AI risk management frameworks offered by any other cybersecurity company like Palo Alto Networks, which focuses more specifically on securing AI systems against cyber threats and building AI-driven security offerings.
+PALO (Principled AI Lifecycle Orchestration) is designed for organizations that need practical AI governance across the full lifecycle: ideation, risk classification, design, development, deployment, monitoring, incident response, and decommissioning.
 
-## Holistic Integration: 
-It covers a wide range of considerations, including fairness, bias, sustainability, human agency, and legal contexts, rather than addressing them in isolation.
+The framework is aligned with major AI governance references including:
 
-## End-to-End Lifecycle Coverage: 
-The framework goes beyond mere AI deployment, encompassing the entire lifecycle from initial ideation, development, deployment, continuous monitoring, evolution, and eventual decommissioning.
+- EU AI Act
+- ISO/IEC 42001 and ISO/IEC 42005
+- NIST AI RMF
+- OECD AI Principles
+- UNESCO Recommendation on the Ethics of AI
+- IMDA Model AI Governance Framework for Generative AI, where relevant to agentic AI
 
-## Standards Alignment: 
-It harmonizes with and acts as a practical crosswalk for major global standards and regulations, such as ISO, IEEE, the OECD AI Principles, and the EU AI Act.
+PALO is not a certification body and does not provide legal advice. It is a practical pre-screening, documentation, and governance support toolkit.
 
-## KPI-Driven and Measurable: 
-The framework focuses on measurable Key Performance Indicators (KPIs) to ensure accountability and track the real-world performance and ethical impact of AI systems.
+## Why PALO?
 
-## Prioritizes Responsibility: 
-It utilizes a "PALO Business Model Canvas" that reframes AI planning to prioritize principled responsibility over immediate ROI, helping organizations assess ethical, legal, and technical risks before building AI initiatives.
-Operationalization: The goal is to provide a traceable and auditable methodology for organizations to operationalize their AI governance and risk management
+| Governance challenge | PALO response |
+| --- | --- |
+| EU AI Act classification uncertainty | Risk Tiering Calculator and FRIA workflow |
+| Fundamental rights documentation gaps | Interactive FRIA Assessment and evidence prompts |
+| Weak traceability between principles and controls | Lifecycle gates, KPIs/KRIs, and evidence artifacts |
+| Human agency erosion | Human Agency Risk Map and mitigation guidance |
+| Hidden or deceptive model behavior | AuditBench Explorer and alignment self-assessment |
+| Data poisoning and integrity risks | Poisoning Boomerang module and Article 10/15 guidance |
+| AI-assisted development risks | AI Dev Governance extension for coding assistants and rapid prototyping |
+| Agentic systems and delegated action | PALO-AM Agentic Governance Modality v2.0 |
 
+## Current Modules
 
-### Why PALO?
+| Module | Description | Status |
+| --- | --- | --- |
+| [FRIA Assessment](PALO_FRIA.html) | Fundamental Rights Impact Assessment wizard for EU AI Act Article 27 preparation | Live |
+| [Risk Tiering Calculator](PALO_RiskTiering.html) | EU AI Act risk classification workflow | Live |
+| [KPI Generator](PALO_KPIGenerator.html) | AI governance metrics aligned with PALO dimensions | Live |
+| [AI Model Canvas](PALO_ModelCanvasAI.html) | Visual planning canvas for responsible AI use cases | Live |
+| [Framework Comparison](PALO_ComparisonTool.html) | Compare governance frameworks and standards | Live |
+| [Human Agency Risk Map](PALO_HumanAgencyRiskMap.html) | Observatory on 18 activities humans increasingly delegate to AI | Live |
+| [Human Agency Risk Map IT](PALO_HumanAgencyRiskMap_IT.html) | Italian version of the Human Agency observatory | Live |
+| [2026 Tech Trends Observatory](PALO_TechTrends2026.html) | Analysis of major consulting-firm technology outlooks and governance blind spots | Live |
+| [AuditBench Explorer](PALO_AuditBench.html) | Interactive exploration of 14 hidden AI behaviors from AuditBench with PALO mitigations | Live |
+| [The Poisoning Boomerang](PALO_PoisoningStudy.html) | Data poisoning governance module with detection strategies and lifecycle controls | Live |
+| [AI Dev Governance](PALO_VibeCoding.html) | Security and governance extension for AI-assisted software development environments | Live |
+| [PALO-AM Agentic Governance](PALO_AgenticGovernance.html) | PALO extension for AI agents, delegated authority, action-space control, and agentic evidence | Live |
+| [Companion App](PALO_CompanionApp.html) | Mobile overview page for Android and iOS/iPadOS apps | Live |
 
-| Challenge | PALO Solution |
-|-----------|---------------|
-| 🏛️ EU AI Act compliance uncertainty | Step-by-step FRIA assessment tool |
-| ⚖️ AI risk classification confusion | Interactive Risk Tiering Calculator |
-| 📊 Governance metrics gaps | AI KPI Generator with PALO-aligned metrics |
-| 🧠 Human agency erosion concerns | Human Agency Risk Map observatory |
-| 📈 Industry trends blind spots | 2026 Tech Trends Observatory with gap analysis |
+## Mobile Companion App
 
----
+The P.A.L.O. Framework Toolbox brings the core governance tools to mobile:
 
-## ✨ Features
+- Android: [Google Play](https://play.google.com/store/apps/details?id=com.fabriziodegni.paloframework)
+- iOS/iPadOS: [App Store](https://apps.apple.com/it/app/p-a-l-o-framework-toolbox/id6761771299)
 
-### 📚 Framework Documentation
-- Complete PALO Framework v1.0 PDF (108 pages)
-- Governance principles and implementation guidelines
-- EU AI Act alignment matrix
+The app is designed as a privacy-first pre-screening companion for AI governance work. Store listings describe offline use, local-first operation, no data collection, and mobile features such as Evidence Vault, biometric protection, PDF report generation, and direct access to PALO web modules.
 
-### 🛠️ Interactive Tools
+## Recent Releases
 
-| Tool | Description | Status |
-|------|-------------|--------|
-| [🛡️ FRIA Assessment](PALO_FRIA.html) | Fundamental Rights Impact Assessment wizard | ✅ Live |
-| [⚖️ Risk Tiering Calculator](PALO_RiskTiering.html) | Classify AI use cases into EU AI Act risk tiers | ✅ Live |
-| [📊 KPI Generator](PALO_KPIGenerator.html) | Generate AI governance KPIs aligned with PALO | ✅ Live |
-| [🎨 Model Canvas](PALO_ModelCanvasAI.html) | Visual AI project planning canvas | ✅ Live |
-| [🔄 Compare Tool](PALO_ComparisonTool.html) | Compare AI governance frameworks | ✅ Live |
+| Date | Release | Highlights |
+| --- | --- | --- |
+| 2026-06-22 | v2.0.1 - Documentation Sync | README roadmap, CHANGELOG, homepage changelog, RSS and release metadata aligned |
+| 2026-06-22 | v2.0.0 - PALO-AM | Agentic Governance Modality for AI agents: identity, authority, risk matrix, control layer, evidence layer, action-space/autonomy matrix, KPI/KRI registry |
+| 2026-05-15 | v1.8.0 - AI Dev Governance | Governance extension for AI-assisted software development, rapid prototyping, vibe coding, coding assistants, controlled environments, and evidence trails |
+| 2026-04-08 | v1.7.1 - iOS/iPadOS App | App Store release for iPhone and iPad with Evidence Vault, biometric protection, PDF reports, and direct access to PALO web modules |
+| 2026-03-25 | v1.7.0 - Poisoning Boomerang | Data poisoning module covering Miasma, Nepenthes, Nightshade, Glaze, Cloudflare AI Labyrinth, AttackAI, detection strategies, and EU AI Act Article 10/15 implications |
+| 2026-03-12 | v1.6.0 - Android App | Google Play release of the offline, privacy-first P.A.L.O. Framework Toolbox |
+| 2026-03-03 | v1.5.0 - AuditBench Explorer | Interactive analysis of 14 hidden behaviors and alignment auditing techniques |
 
-### 🔭 Observatories (January 2026)
+See [CHANGELOG.md](CHANGELOG.md) for the full release history.
 
-| Observatory | Description |
-|-------------|-------------|
-| [🧠 Human Agency Risk Map](PALO_HumanAgencyRiskMap.html) | 18 activities humans are delegating to AI, with mitigation strategies |
-| [📊 2026 Tech Trends](PALO_TechTrends2026.html) | Analysis of 7 consulting firms' predictions with PALO governance gaps |
+## Recognition And Public References
 
----
+PALO has been discussed in public AI governance and responsible innovation contexts, including:
 
-## 🚀 Quick Start
+- A Reuters-distributed announcement referenced by the [World AI Council](https://www.linkedin.com/posts/world-ai-council_at-the-world-ai-council-we-are-incredibly-activity-7438233663349133312-9akN)
+- Coverage of the P.A.L.O. Framework Toolbox 2.0 and Human Economic Forum context by [Rivista AI](https://www.rivista.ai/2026/03/25/p-a-l-o-framework-toolbox-2-0-governance-in-your-pocket-o-lillusione-portatile-del-controllo-algoritmico/)
+- Reference to "The PALO Framework for AI Corporate Governance" in the 2026 special issue index of [Rivista Corporate Governance](https://images.rivistacorporategovernance.it/f/indici/NumeroStraordinario_2026_tUAZh_RCG.pdf)
 
-### Option 1: Visit the Live Website
-Simply navigate to [paloframework.org](https://paloframework.org)
+These references are useful context, but the repository remains the source for the open toolkit and implementation artifacts.
 
-### Option 2: Run Locally
+## Quick Start
+
+### Use the live website
+
+Open [paloframework.org](https://paloframework.org) and choose a module from the toolkit.
+
+### Run locally
+
+This is a static HTML project. No build step is required.
 
 ```bash
-# Clone the repository
-git clone https://github.com/paloframework/palo.git
-
-# Navigate to directory
-cd palo
-
-# Open in browser (no build required - static HTML)
-open index.html
-# or
+git clone https://github.com/sev7enITA/PALOframework.git
+cd PALOframework
 python3 -m http.server 8000
 ```
 
----
+Then open:
 
-## 📁 Repository Structure
-
-```
-palo/
-├── 📄 index.html                    # Homepage
-├── 🛡️ PALO_FRIA.html               # FRIA Assessment Tool
-├── ⚖️ PALO_RiskTiering.html        # Risk Tiering Calculator
-├── 📊 PALO_KPIGenerator.html       # KPI Generator
-├── 🎨 PALO_ModelCanvasAI.html      # AI Model Canvas
-├── 🔄 PALO_ComparisonTool.html     # Framework Comparison
-├── 🧠 PALO_HumanAgencyRiskMap.html # Human Agency Observatory (EN)
-├── 🧠 PALO_HumanAgencyRiskMap_IT.html # Human Agency Observatory (IT)
-├── 📈 PALO_TechTrends2026.html     # 2026 Tech Trends Observatory
-│
-├── 📂 assets/                       # Static assets
-│   ├── logo.webp
-│
-├── 📂 framework/                    # Framework documentation
-│   └── TBR
-│
-├── 📂 insights/                     # Research & data sources
-│   ├── ...
-│
-├── 📂 json/                         # Data exports
-│   └── palo-canvas-template.json
-│
-├── 📂 .github/                      # GitHub configurations
-│   ├── workflows/
-│   │   └── deploy.yml
-│   ├── ISSUE_TEMPLATE/
-│   └── PULL_REQUEST_TEMPLATE.md
-│
-├── 📄 robots.txt                    # SEO
-├── 📄 sitemap.xml                   # SEO
-├── 📄 feed.xml                      # RSS Feed
-├── 📄 accessibility.html            # Accessibility statement
-├── 📄 privacy-policy.html           # Privacy policy
-├── 📄 security-policy.html          # Security policy
-│
-├── 📄 README.md                     # This file
-├── 📄 CONTRIBUTING.md               # Contribution guidelines
-├── 📄 CHANGELOG.md                  # Version history
-├── 📄 LICENSE                       # MIT License
-└── 📄 SECURITY.md                   # Security policy
+```text
+http://localhost:8000
 ```
 
----
+You can also open `index.html` directly in a browser, although serving locally is recommended for consistent asset behavior.
 
-## 📊 2026 Tech Trends Analysis
+## Repository Structure
 
-Our latest observatory analyzes predictions from **7 leading consulting firms**:
+```text
+PALOframework/
+├── index.html                         # Homepage
+├── PALO_FRIA.html                     # FRIA Assessment
+├── PALO_RiskTiering.html              # EU AI Act Risk Tiering Calculator
+├── PALO_KPIGenerator.html             # KPI Generator
+├── PALO_ModelCanvasAI.html            # AI Model Canvas
+├── PALO_ComparisonTool.html           # Governance framework comparison
+├── PALO_HumanAgencyRiskMap.html       # Human Agency Observatory (EN)
+├── PALO_HumanAgencyRiskMap_IT.html    # Human Agency Observatory (IT)
+├── PALO_TechTrends2026.html           # 2026 Tech Trends Observatory
+├── PALO_AuditBench.html               # AuditBench Explorer
+├── PALO_PoisoningStudy.html           # Data Poisoning Governance module
+├── PALO_VibeCoding.html               # AI-assisted development governance
+├── PALO_AgenticGovernance.html        # PALO-AM Agentic Governance
+├── PALO_CompanionApp.html             # Mobile app landing page
+├── PALO_Community.html                # Community and advisory board
+├── AppStoreListing.md                 # Store listing copy and source notes
+├── PALOFrameworkV2.pdf                # Framework v2 documentation
+├── ThePALOFramework_*.pdf             # PALO v1 paper
+├── assets/                            # Static assets and templates
+├── framework/                         # Framework documentation archive
+├── insights/                          # Research sources and supporting material
+├── json/                              # Canvas/data exports
+├── sitemap.xml                        # Search sitemap
+├── feed.xml                           # RSS feed
+├── accessibility.html                 # Accessibility statement
+├── privacy-policy.html                # Privacy policy
+├── security-policy.html               # Security policy
+├── README.md
+├── CHANGELOG.md
+├── CONTRIBUTING.md
+├── CODE_OF_CONDUCT.md
+├── SECURITY.md
+└── LICENSE
+```
 
-| Firm | Report | Key Focus |
-|------|--------|-----------|
-| McKinsey | Tech Trends Outlook 2025 | Agentic AI, 13 frontier trends |
-| BCG | Geopolitical Forces 2026 | 6 competitive arenas |
-| Accenture | Macro Brief 2026 | AI productivity divide |
-| PwC | AI Business Predictions | Responsible AI, ROI focus |
-| EY | Megatrends 2026 | Human-machine hybrid era |
-| KPMG | CEO Outlook 2025 | AI adoption, workforce |
-| Gartner | Top 10 Tech Trends | Security, multiagent systems |
+## Documentation
 
-### 🧊 Under the Iceberg: Governance Gaps
+Primary framework documents and artifacts:
 
-PALO reveals what mainstream consulting narratives miss:
+- [PALOFrameworkV2.pdf](PALOFrameworkV2.pdf)
+- [The PALO Framework v1 paper, Feb 2026](ThePALOFramework_%20A_Paradigm_for_Principled_AI_Lifecycle_OrchestrationInBusiness%20v1%20Feb%202026.pdf)
+- [PALO-AM Agentic Governance page](PALO_AgenticGovernance.html)
+- [PALO-AM standalone document](insights/PALO-AM_Agentic_Governance_Modality_v2_Standalone_Document.docx)
+- [FRIA worksheet](assets/FRIA09-12_new.xlsx)
+- [PALO Canvas JSON template](json/palo-canvas-2025-12-17.json)
 
-| Governance Area | Industry Coverage | PALO Insight |
-|-----------------|-------------------|--------------|
-| Human Agency | 28% | Only EY/PwC address oversight |
-| AI Ethics | 14% | Only PwC operationalizes ethics |
-| Explainability | 28% | No EU AI Act transparency guidance |
-| Regulatory Compliance | 42% | Treated as barrier, not opportunity |
+## Contributing
 
----
+Contributions are welcome. Useful areas include:
 
-## 🤝 Contributing
+- Improving regulatory mappings and citations
+- Reviewing controls and KPIs/KRIs
+- Adding examples and worked case studies
+- Translating modules
+- Improving accessibility and mobile behavior
+- Adding tests/checklists for generated reports
 
-We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md).
+Please read [CONTRIBUTING.md](CONTRIBUTING.md), [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md), and [SECURITY.md](SECURITY.md) before opening issues or pull requests.
 
-### Ways to Contribute
+## Roadmap
 
-- 🐛 Report bugs and issues
-- 💡 Suggest new features or tools
-- 📝 Improve documentation
-- 🌍 Add translations (Italian version available)
-- 🔧 Submit pull requests
+Current baseline: v2.0.1, released 2026-06-22. The functional framework baseline is v2.0.0.
 
----
+Completed in H1 2026:
 
-## 📋 Roadmap
+| Area | Status |
+| --- | --- |
+| Human Agency Risk Map | Complete |
+| 2026 Tech Trends Observatory | Complete |
+| Community and Advisory Board page | Complete |
+| AuditBench Explorer | Complete |
+| Android companion app | Complete |
+| iOS/iPadOS companion app | Complete |
+| Poisoning Boomerang module | Complete |
+| AI-assisted development governance extension | Complete |
+| PALO-AM Agentic Governance Modality v2.0 | Complete |
+| Documentation and release hygiene sync | Complete |
 
-### Q1 2026
-- [x] Human Agency Risk Map
-- [x] 2026 Tech Trends Observatory
-- [ ] Italian localization for all tools
-- [ ] Dark mode theme
+Planned roadmap:
 
-### Q2 2026
-- [ ] AI Incident Database integration
-- [ ] Automated FRIA report generation
-- [ ] API for tool integrations
+| Target | Focus | Planned scope |
+| --- | --- | --- |
+| v2.1 | PALO-AM Simulator MVP | Interactive Action-Space vs Autonomy inputs, tier routing, control recommendations, and exportable assessment summary |
+| v2.2 | Evidence and governance board packs | Exportable evidence bundles, governance board templates, decision logs, KPI/KRI registers, and audit-ready summaries |
+| v2.3 | Multilingual and use-case expansion | Broader localization and worked examples for procurement, HR, finance, public-sector, and software-delivery use cases |
+| v3.0 | Integration layer | API and integration patterns for enterprise governance workflows, issue trackers, GRC platforms, and documentation systems |
 
-### Q3 2026
-- [ ] Mobile-responsive redesign
-- [ ] Multi-language support (DE, FR, ES)
-- [ ] Community forum
+Exploratory items:
 
----
+- HarmonyOS Next feasibility for the mobile companion app
+- Policy-as-code snippets for agentic controls and AI-assisted development environments
+- Lightweight test suites for generated governance reports and evidence exports
 
-## 📜 License
+## Disclaimer
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+PALO is an educational, governance-support, and pre-screening toolkit. It does not provide legal advice, does not certify compliance, and does not replace professional legal, technical, security, or conformity-assessment review.
 
----
+## License
 
-## 🙏 Acknowledgments
+This project is licensed under the MIT License. See [LICENSE](LICENSE).
 
-- EU AI Act working groups for regulatory guidance
-- Open-source community for inspiration
-- All contributors and users of the PALO Framework
+## Contact
 
----
-
-## 📞 Contact
-
-- 🌐 Website: [paloframework.org](https://paloframework.org)
-- 🐦 Linkedin: [Fabrizio Degni - Linkedin](https://www.linkedin.com/in/fdegni/)
-- 📧 Email: info@paloframework.org
-- 🐦 X: [@PALOFramework](https://www.X.com/fabrizio_degni)
-
----
-
-<div align="center">
-
-**Made with ❤️ for an ethical and responsible AI governance**
-
-[![Star this repo](https://img.shields.io/github/stars/paloframework/palo?style=social)](https://github.com/paloframework/palo)
-
-</div>
+- Website: [paloframework.org](https://paloframework.org)
+- Email: contact@paloframework.org
+- GitHub: [sev7enITA/PALOframework](https://github.com/sev7enITA/PALOframework)

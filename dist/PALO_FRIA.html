@@ -1,0 +1,1306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FRIA - Fundamental Rights Impact Assessment | PALO Framework</title>
+    <meta name="description"
+        content="Interactive Fundamental Rights Impact Assessment tool aligned with EU AI Act Article 27">
+    <link rel="icon" type="image/webp" href="assets/logo.webp">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-primary: #21808D;
+            --color-primary-light: #2A9BAA;
+            --color-primary-dark: #1A666F;
+            --color-text: #1E293B;
+            --color-text-secondary: #64748B;
+            --color-background: #FFFFFF;
+            --color-surface: #F8FAFC;
+            --color-border: #E2E8F0;
+            --color-success: #10B981;
+            --color-warning: #F59E0B;
+            --color-error: #C0152F;
+            --radius-base: 12px;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* EN 301549 / WCAG 2.1 Focus Visible Styles */
+        *:focus-visible {
+            outline: 3px solid var(--color-primary);
+            outline-offset: 2px;
+        }
+
+        /* Minimum touch target size */
+        button,
+        a,
+        input,
+        select,
+        textarea {
+            min-height: 44px;
+        }
+
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: linear-gradient(135deg, #f0f9fa 0%, #e8f4f5 100%);
+            min-height: 100vh;
+            color: var(--color-text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 20px 24px;
+            background: var(--color-background);
+            border-radius: var(--radius-base);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 24px;
+        }
+
+        .header img {
+            height: 44px;
+        }
+
+        .header h1 {
+            font-size: 22px;
+            color: var(--color-primary);
+            flex: 1;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn {
+            padding: 10px 18px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-primary {
+            background: var(--color-primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--color-primary-dark);
+        }
+
+        .btn-secondary {
+            background: var(--color-surface);
+            color: var(--color-text);
+            border: 1px solid var(--color-border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--color-border);
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            background: var(--color-background);
+            padding: 20px 24px;
+            border-radius: var(--radius-base);
+            margin-bottom: 24px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .progress-steps {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .progress-steps::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 40px;
+            right: 40px;
+            height: 3px;
+            background: var(--color-border);
+        }
+
+        .progress-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+            cursor: pointer;
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--color-surface);
+            border: 3px solid var(--color-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--color-text-secondary);
+            transition: all 0.3s;
+        }
+
+        .progress-step.active .step-number {
+            background: var(--color-primary);
+            border-color: var(--color-primary);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .progress-step.completed .step-number {
+            background: var(--color-success);
+            border-color: var(--color-success);
+            color: white;
+        }
+
+        .step-label {
+            margin-top: 8px;
+            font-size: 11px;
+            color: var(--color-text-secondary);
+            text-align: center;
+            max-width: 80px;
+        }
+
+        .progress-step.active .step-label {
+            color: var(--color-primary);
+            font-weight: 600;
+        }
+
+        /* Main Content */
+        .main-content {
+            background: var(--color-background);
+            border-radius: var(--radius-base);
+            padding: 32px;
+            box-shadow: var(--shadow-sm);
+            min-height: 500px;
+        }
+
+        .step-content {
+            display: none;
+        }
+
+        .step-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .step-title {
+            font-size: 24px;
+            margin-bottom: 8px;
+            color: var(--color-text);
+        }
+
+        .step-description {
+            color: var(--color-text-secondary);
+            margin-bottom: 24px;
+            font-size: 15px;
+        }
+
+        /* Form Elements */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--color-text);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: inherit;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(33, 128, 141, 0.1);
+        }
+
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .helper-text {
+            font-size: 12px;
+            color: var(--color-text-secondary);
+            margin-top: 4px;
+        }
+
+        /* Checklist */
+        .checklist-item {
+            padding: 16px;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            margin-bottom: 12px;
+            background: var(--color-surface);
+        }
+
+        .checklist-question {
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .checklist-options {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .checklist-options label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            font-weight: normal;
+        }
+
+        .tip-box {
+            background: rgba(33, 128, 141, 0.08);
+            border-left: 4px solid var(--color-primary);
+            padding: 12px 16px;
+            border-radius: 0 8px 8px 0;
+            margin: 16px 0;
+            font-size: 13px;
+        }
+
+        /* Navigation */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 1px solid var(--color-border);
+        }
+
+        /* Scenario Cards */
+        .scenario-card {
+            border: 2px solid var(--color-border);
+            border-radius: var(--radius-base);
+            padding: 20px;
+            margin-bottom: 16px;
+            background: var(--color-surface);
+        }
+
+        .scenario-card.active {
+            border-color: var(--color-primary);
+            background: white;
+        }
+
+        .scenario-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .scenario-title {
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        /* Risk Matrix */
+        .risk-matrix {
+            display: grid;
+            grid-template-columns: auto repeat(3, 1fr);
+            gap: 4px;
+            margin: 24px 0;
+        }
+
+        .risk-cell {
+            padding: 12px;
+            text-align: center;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .risk-low {
+            background: #D1FAE5;
+            color: #065F46;
+        }
+
+        .risk-medium {
+            background: #FEF3C7;
+            color: #92400E;
+        }
+
+        .risk-high {
+            background: #FECACA;
+            color: #991B1B;
+        }
+
+        .risk-critical {
+            background: #7F1D1D;
+            color: white;
+        }
+
+        .risk-header {
+            background: var(--color-primary);
+            color: white;
+            font-weight: 600;
+        }
+
+        /* Rights Selector */
+        .rights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 8px;
+            max-height: 400px;
+            overflow-y: auto;
+            padding: 8px;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+        }
+
+        .right-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 12px;
+            border: 1px solid var(--color-border);
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            transition: all 0.2s;
+        }
+
+        .right-item:hover {
+            background: var(--color-surface);
+        }
+
+        .right-item.selected {
+            background: rgba(33, 128, 141, 0.1);
+            border-color: var(--color-primary);
+        }
+
+        .right-item input {
+            margin: 0;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 24px;
+            color: var(--color-text-secondary);
+            font-size: 13px;
+        }
+
+        .footer a {
+            color: var(--color-primary);
+            text-decoration: none;
+        }
+
+        /* Hidden file input */
+        #importFile {
+            display: none;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.open {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: var(--radius-base);
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            padding: 24px;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="#main-content" class="skip-link"
+        style="position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden; z-index: 9999; background: var(--color-primary); color: white; padding: 12px; text-decoration: none;"
+        onfocus="this.style.left='16px'; this.style.width='auto'; this.style.height='auto';"
+        onblur="this.style.left='-9999px'; this.style.width='1px'; this.style.height='1px';">Skip to main content</a>
+
+    <div class="container">
+        <!-- Navigation Bar -->
+        <nav role="navigation" aria-label="Main navigation"
+            style="display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: var(--color-background); border-radius: var(--radius-base); margin-bottom: 16px; border: 1px solid var(--color-border);">
+            <a href="index.html"
+                style="display: flex; align-items: center; gap: 8px; text-decoration: none; color: var(--color-text);"
+                aria-label="Go to PALO Framework homepage">
+                <img src="assets/logo.webp" alt="PALO Logo" style="height: 36px; width: auto;">
+                <span style="font-weight: 600; font-size: 14px;">PALO Framework</span>
+            </a>
+            <div style="display: flex; gap: 8px; align-items: center;">
+                <a href="index.html" class="btn btn-secondary" style="text-decoration: none;"
+                    aria-label="Return to home page">🏠 Home</a>
+                <a href="PALO_ModelCanvasAI.html" class="btn btn-secondary" style="text-decoration: none;"
+                    aria-label="Open Model Canvas tool">🎨 Canvas</a>
+            </div>
+        </nav>
+
+        <!-- Header -->
+        <header class="header" role="banner">
+            <img src="assets/logo.webp" alt="" aria-hidden="true">
+            <h1 id="main-content" tabindex="-1">🛡️ FRIA - Fundamental Rights Impact Assessment</h1>
+            <div class="header-actions" role="group" aria-label="Assessment actions">
+                <button class="btn btn-secondary" onclick="downloadTemplate()" aria-label="Download blank template">📋
+                    Template</button>
+                <button class="btn btn-secondary" onclick="document.getElementById('importFile').click()"
+                    aria-label="Import saved assessment">📂 Import</button>
+                <input type="file" id="importFile" accept=".json" onchange="importData(event)"
+                    aria-label="Select file to import">
+                <button class="btn btn-primary" onclick="exportData()" aria-label="Export current assessment">💾
+                    Export</button>
+            </div>
+        </header>
+
+        <!-- Introduction Section -->
+        <div class="main-content" style="margin-bottom: 24px; padding: 24px;">
+            <div style="display: flex; justify-content: space-between; align-items: start; cursor: pointer;"
+                onclick="toggleIntro()">
+                <div>
+                    <h2 style="font-size: 20px; margin-bottom: 8px; color: var(--color-primary);">📖 What is FRIA and
+                        How to Use This Tool</h2>
+                    <p style="color: var(--color-text-secondary); font-size: 14px; margin: 0;">Click to expand the guide
+                    </p>
+                </div>
+                <span id="introToggle" style="font-size: 24px; color: var(--color-primary);">▲</span>
+            </div>
+            <div id="introContent" style="display: block; margin-top: 20px;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+                    <div>
+                        <h3 style="font-size: 16px; margin-bottom: 12px; color: var(--color-text);">🛡️ What is FRIA?
+                        </h3>
+                        <p style="font-size: 14px; color: var(--color-text-secondary); margin-bottom: 12px;">
+                            A <strong>Fundamental Rights Impact Assessment (FRIA)</strong> is a mandatory evaluation
+                            under
+                            <strong>EU AI Act Article 27</strong> for deployers of high-risk AI systems. It
+                            systematically
+                            identifies how an AI system may affect the 51 fundamental rights enshrined in the EU
+                            Charter.
+                        </p>
+                        <div class="tip-box" style="margin: 12px 0;">
+                            <strong>Who must conduct FRIA?</strong><br>
+                            • Public authorities deploying high-risk AI<br>
+                            • Private entities providing public services<br>
+                            • Any deployer of Annex III high-risk AI systems
+                        </div>
+                    </div>
+                    <div>
+                        <h3 style="font-size: 16px; margin-bottom: 12px; color: var(--color-text);">📋 How to Use This
+                            Tool</h3>
+                        <ol style="font-size: 14px; color: var(--color-text-secondary); padding-left: 20px;">
+                            <li style="margin-bottom: 8px;"><strong>Step 1 - Context:</strong> Enter AI system details
+                                and classification</li>
+                            <li style="margin-bottom: 8px;"><strong>Step 2 - Checklist:</strong> Answer governance and
+                                compliance questions</li>
+                            <li style="margin-bottom: 8px;"><strong>Step 3 - Scenarios:</strong> Identify potential
+                                negative impact scenarios</li>
+                            <li style="margin-bottom: 8px;"><strong>Step 4 - Assessment:</strong> Rate severity and
+                                likelihood of each impact</li>
+                            <li style="margin-bottom: 8px;"><strong>Step 5 - Mitigation:</strong> Document risk
+                                mitigation measures</li>
+                            <li style="margin-bottom: 8px;"><strong>Step 6 - Decision:</strong> Make deployment decision
+                                and generate report</li>
+                        </ol>
+                    </div>
+                </div>
+                <div
+                    style="margin-top: 16px; padding: 16px; background: rgba(245, 158, 11, 0.1); border-radius: 8px; border-left: 4px solid var(--color-warning);">
+                    <strong style="color: var(--color-warning);">⚠️ Important:</strong>
+                    <span style="color: var(--color-text-secondary); font-size: 14px;">
+                        This tool processes all data locally in your browser. No information is sent to any server.
+                        Use the <strong>Export</strong> button to save your progress and <strong>Import</strong> to
+                        resume later.
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Progress -->
+        <div class="progress-container">
+            <div class="progress-steps" id="progressSteps">
+                <div class="progress-step active" onclick="goToStep(1)">
+                    <div class="step-number">1</div>
+                    <div class="step-label">Context</div>
+                </div>
+                <div class="progress-step" onclick="goToStep(2)">
+                    <div class="step-number">2</div>
+                    <div class="step-label">Checklist</div>
+                </div>
+                <div class="progress-step" onclick="goToStep(3)">
+                    <div class="step-number">3</div>
+                    <div class="step-label">Scenarios</div>
+                </div>
+                <div class="progress-step" onclick="goToStep(4)">
+                    <div class="step-number">4</div>
+                    <div class="step-label">Assessment</div>
+                </div>
+                <div class="progress-step" onclick="goToStep(5)">
+                    <div class="step-number">5</div>
+                    <div class="step-label">Mitigation</div>
+                </div>
+                <div class="progress-step" onclick="goToStep(6)">
+                    <div class="step-number">6</div>
+                    <div class="step-label">Decision</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Step 1: Context -->
+            <div class="step-content active" data-step="1">
+                <h2 class="step-title">📋 AI System Context</h2>
+                <p class="step-description">Provide information about the AI system being assessed.</p>
+
+                <div class="tip-box">
+                    💡 <strong>Tip:</strong> This assessment is required under EU AI Act Article 27 for high-risk AI
+                    systems deployed by public authorities or private entities providing public services.
+                </div>
+
+                <div class="form-group">
+                    <label>AI System Name *</label>
+                    <input type="text" id="systemName" placeholder="e.g., Customer Risk Scoring System">
+                </div>
+                <div class="form-group">
+                    <label>Deployer Organization *</label>
+                    <input type="text" id="deployerOrg" placeholder="Organization deploying the AI system">
+                </div>
+                <div class="form-group">
+                    <label>AI System Description *</label>
+                    <textarea id="systemDescription"
+                        placeholder="Describe the AI system, its purpose, and how it will be used..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label>AI Act Risk Classification</label>
+                    <select id="riskClass">
+                        <option value="">Select classification...</option>
+                        <option value="high">High-Risk (Annex III)</option>
+                        <option value="limited">Limited Risk</option>
+                        <option value="minimal">Minimal Risk</option>
+                    </select>
+                    <div class="helper-text">FRIA is mandatory for high-risk AI systems under Article 27</div>
+                </div>
+                <div class="form-group">
+                    <label>Intended Use Context</label>
+                    <select id="useContext">
+                        <option value="">Select context...</option>
+                        <option value="employment">Employment & HR</option>
+                        <option value="education">Education & Training</option>
+                        <option value="public">Public Services</option>
+                        <option value="law">Law Enforcement</option>
+                        <option value="migration">Migration & Border</option>
+                        <option value="justice">Justice & Democracy</option>
+                        <option value="healthcare">Healthcare</option>
+                        <option value="finance">Financial Services</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Assessment Date</label>
+                    <input type="date" id="assessmentDate">
+                </div>
+                <div class="form-group">
+                    <label>Assessor Name</label>
+                    <input type="text" id="assessorName" placeholder="Name of person conducting assessment">
+                </div>
+            </div>
+
+            <!-- Step 2: Checklist (placeholder - will expand) -->
+            <div class="step-content" data-step="2">
+                <h2 class="step-title">✅ Context Analysis Checklist</h2>
+                <p class="step-description">Answer these questions about your AI system's governance, data, and
+                    oversight.</p>
+
+                <div id="checklistContainer"></div>
+            </div>
+
+            <!-- Step 3: Scenarios -->
+            <div class="step-content" data-step="3">
+                <h2 class="step-title">⚠️ Impact Scenarios</h2>
+                <p class="step-description">Identify up to 5 scenarios where the AI system could negatively affect
+                    fundamental rights.</p>
+
+                <div id="scenariosContainer"></div>
+                <button class="btn btn-secondary" onclick="addScenario()" id="addScenarioBtn">+ Add Scenario</button>
+            </div>
+
+            <!-- Step 4: Assessment -->
+            <div class="step-content" data-step="4">
+                <h2 class="step-title">📊 Severity & Likelihood Assessment</h2>
+                <p class="step-description">Assess the severity and likelihood of each identified impact.</p>
+
+                <div id="assessmentContainer"></div>
+            </div>
+
+            <!-- Step 5: Mitigation -->
+            <div class="step-content" data-step="5">
+                <h2 class="step-title">🛠️ Mitigation Measures</h2>
+                <p class="step-description">Document existing and planned measures to mitigate identified risks.</p>
+
+                <div id="mitigationContainer"></div>
+            </div>
+
+            <!-- Step 6: Decision -->
+            <div class="step-content" data-step="6">
+                <h2 class="step-title">🎯 Deployment Decision</h2>
+                <p class="step-description">Review your assessment and make a deployment decision.</p>
+
+                <div id="summaryContainer"></div>
+
+                <div class="form-group">
+                    <label>Confidence in Assessment</label>
+                    <select id="confidenceLevel">
+                        <option value="">Select...</option>
+                        <option value="high">High - Based on extensive research and stakeholder input</option>
+                        <option value="medium">Medium - Some areas need further investigation</option>
+                        <option value="low">Low - Significant uncertainties remain</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Deployment Decision</label>
+                    <select id="deploymentDecision">
+                        <option value="">Select decision...</option>
+                        <option value="proceed">✅ Proceed - Acceptable risk level</option>
+                        <option value="conditional">⏸️ Conditional - Proceed with additional measures</option>
+                        <option value="halt">❌ Halt - Unacceptable fundamental rights risk</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Decision Rationale</label>
+                    <textarea id="decisionRationale"
+                        placeholder="Document the reasoning for your decision..."></textarea>
+                </div>
+
+                <div style="margin-top: 24px;">
+                    <button class="btn btn-primary" onclick="generateReport()">📄 Generate Report</button>
+                </div>
+            </div>
+
+            <!-- Navigation -->
+            <div class="nav-buttons">
+                <button class="btn btn-secondary" id="prevBtn" onclick="prevStep()">← Previous</button>
+                <span id="stepIndicator">Step 1 of 6</span>
+                <button class="btn btn-primary" id="nextBtn" onclick="nextStep()">Next →</button>
+            </div>
+        </div>
+
+        <footer class="footer" role="contentinfo">
+            <p>FRIA Tool based on EU AI Act Article 27 requirements</p>
+            <p>
+                <a href="index.html">Home</a> |
+                <a href="PALO_ModelCanvasAI.html">Model Canvas</a> |
+                <a href="privacy-policy.html">Privacy</a> |
+                <a href="security-policy.html">Security</a>
+            </p>
+            <p style="margin-top: 12px; font-size: 11px; opacity: 0.8;">
+                <span style="display: inline-flex; align-items: center; gap: 4px;">
+                    ✓ WCAG 2.1 AA Compliant
+                </span> |
+                <span>GDPR Compliant</span>
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // FRIA Data Store
+        const friaData = {
+            context: {},
+            checklist: {},
+            scenarios: [],
+            assessments: {},
+            mitigations: {},
+            decision: {}
+        };
+
+        let currentStep = 1;
+        const totalSteps = 6;
+
+        // 51 Fundamental Rights from EU Charter
+        const fundamentalRights = [
+            { id: 'dignity', name: 'Right to human dignity', article: 'Art. 1', absolute: false },
+            { id: 'life', name: 'Right to Life', article: 'Art. 2', absolute: true },
+            { id: 'integrity', name: 'Right to Integrity of the person', article: 'Art. 3', absolute: false },
+            { id: 'torture', name: 'Prohibition of torture and inhuman treatment', article: 'Art. 4', absolute: true },
+            { id: 'slavery', name: 'Prohibition of slavery and forced labour', article: 'Art. 5', absolute: true },
+            { id: 'liberty', name: 'Right to liberty and security', article: 'Art. 6', absolute: false },
+            { id: 'privacy', name: 'Right to respect for private and family life', article: 'Art. 7', absolute: false },
+            { id: 'dataprotection', name: 'Right to personal data protection', article: 'Art. 8', absolute: false },
+            { id: 'marriage', name: 'Right to marry and found a family', article: 'Art. 9', absolute: false },
+            { id: 'thought', name: 'Freedom of thought, conscience and religion', article: 'Art. 10', absolute: false },
+            { id: 'expression', name: 'Right to freedom of expression and information', article: 'Art. 11', absolute: false },
+            { id: 'assembly', name: 'Right to freedom of assembly and association', article: 'Art. 12', absolute: false },
+            { id: 'arts', name: 'Freedom of the arts and sciences', article: 'Art. 13', absolute: false },
+            { id: 'education', name: 'Right to Education', article: 'Art. 14', absolute: false },
+            { id: 'occupation', name: 'Freedom to choose an occupation', article: 'Art. 15', absolute: false },
+            { id: 'business', name: 'Freedom to conduct a business', article: 'Art. 16', absolute: false },
+            { id: 'property', name: 'Right to Property', article: 'Art. 17', absolute: false },
+            { id: 'asylum', name: 'Right to Asylum', article: 'Art. 18', absolute: false },
+            { id: 'removal', name: 'Protection in event of removal/expulsion', article: 'Art. 19', absolute: false },
+            { id: 'equality', name: 'Equality before the law', article: 'Art. 20', absolute: false },
+            { id: 'nondiscrimination', name: 'Right to Non-Discrimination', article: 'Art. 21', absolute: false },
+            { id: 'diversity', name: 'Cultural, religious and linguistic diversity', article: 'Art. 22', absolute: false },
+            { id: 'gender', name: 'Gender equality', article: 'Art. 23', absolute: false },
+            { id: 'children', name: 'Rights of the child', article: 'Art. 24', absolute: false },
+            { id: 'elderly', name: 'Rights of the elderly', article: 'Art. 25', absolute: false },
+            { id: 'disability', name: 'Integration of persons with disabilities', article: 'Art. 26', absolute: false },
+            { id: 'workerinfo', name: "Workers' right to information", article: 'Art. 27', absolute: false },
+            { id: 'collective', name: 'Right of Collective bargaining', article: 'Art. 28', absolute: false },
+            { id: 'placement', name: 'Right of Access to Placement Services', article: 'Art. 29', absolute: false },
+            { id: 'dismissal', name: 'Protection against unjustified dismissal', article: 'Art. 30', absolute: false },
+            { id: 'working', name: 'Fair and just working conditions', article: 'Art. 31', absolute: false },
+            { id: 'childlabour', name: 'Prohibition of child labour', article: 'Art. 32', absolute: false },
+            { id: 'family', name: 'Family and professional life', article: 'Art. 33', absolute: false },
+            { id: 'socialsecurity', name: 'Social security and social assistance', article: 'Art. 34', absolute: false },
+            { id: 'healthcare', name: 'Health Care', article: 'Art. 35', absolute: false },
+            { id: 'services', name: 'Access to services of general economic interest', article: 'Art. 36', absolute: false },
+            { id: 'environment', name: 'Environmental protection', article: 'Art. 37', absolute: false },
+            { id: 'consumer', name: 'Consumer protection', article: 'Art. 38', absolute: false },
+            { id: 'voteeu', name: 'Vote in European Parliament elections', article: 'Art. 39', absolute: false },
+            { id: 'votemunicipal', name: 'Vote in municipal elections', article: 'Art. 40', absolute: false },
+            { id: 'goodadmin', name: 'Right to good administration', article: 'Art. 41', absolute: false },
+            { id: 'documents', name: 'Access to documents', article: 'Art. 42', absolute: false },
+            { id: 'ombudsman', name: 'Refer matters to the Ombudsman', article: 'Art. 43', absolute: false },
+            { id: 'petition', name: 'Petition the European Parliament', article: 'Art. 44', absolute: false },
+            { id: 'movement', name: 'Freedom of movement and residence', article: 'Art. 45', absolute: false },
+            { id: 'consular', name: 'Diplomatic and consular protection', article: 'Art. 46', absolute: false },
+            { id: 'remedy', name: 'Right to effective remedy and fair trial', article: 'Art. 47', absolute: false },
+            { id: 'innocence', name: 'Presumption of innocence', article: 'Art. 48', absolute: false },
+            { id: 'legality', name: 'Legality of criminal offences', article: 'Art. 49', absolute: false },
+            { id: 'doublejeopardy', name: 'Right not to be tried twice (ne bis in idem)', article: 'Art. 50', absolute: true }
+        ];
+
+        // Checklist questions
+        const checklistQuestions = [
+            { id: 'q1', category: 'System', question: 'Is the AI system classified as high-risk under the AI Act?', guidance: 'Refer to Annex III of the AI Act for high-risk classifications.' },
+            { id: 'q2', category: 'System', question: 'Has the AI system been developed by a third party?', guidance: 'If yes, ensure contractual arrangements address fundamental rights risks.' },
+            { id: 'q3', category: 'System', question: 'Does the AI system have CE marking (if required)?', guidance: 'CE marking indicates conformity with EU requirements.' },
+            { id: 'q4', category: 'Data', question: 'Are you confident that training data is representative?', guidance: 'Consider if training data reflects the diversity of the population.' },
+            { id: 'q5', category: 'Data', question: 'Will you process personal data?', guidance: 'If yes, ensure GDPR compliance.' },
+            { id: 'q6', category: 'Data', question: 'Is data processing compliant with GDPR?', guidance: 'Consider lawful basis, data minimization, purpose limitation.' },
+            { id: 'q7', category: 'Data', question: 'Is the level of accuracy acceptable for the use case?', guidance: 'Higher stakes decisions require higher accuracy.' },
+            { id: 'q8', category: 'Governance', question: 'Are roles and responsibilities clearly defined?', guidance: 'Clear accountability is essential for AI governance.' },
+            { id: 'q9', category: 'Governance', question: 'Has the provider shared fundamental rights risk information?', guidance: 'Providers should disclose known risks.' },
+            { id: 'q10', category: 'Governance', question: 'Do you have monitoring procedures for fundamental rights?', guidance: 'Art 27(1)(f) requires ongoing monitoring.' },
+            { id: 'q11', category: 'Governance', question: 'Can you explain AI decisions to affected persons?', guidance: 'Art 86 requires explanations for AI-based decisions.' },
+            { id: 'q12', category: 'Oversight', question: 'Have you assigned human oversight responsibilities?', guidance: 'Art 26(2) requires human oversight assignment.' },
+            { id: 'q13', category: 'Oversight', question: 'Are oversight staff adequately trained?', guidance: 'Training should cover AI risks and decision-making.' },
+            { id: 'q14', category: 'Oversight', question: 'Have you ensured sufficient AI literacy for staff?', guidance: 'Art 4 requires AI literacy measures.' },
+            { id: 'q15', category: 'Oversight', question: 'If used in employment, have you informed workers?', guidance: 'Art 26(7) requires worker information.' }
+        ];
+
+        // Toggle introduction section
+        function toggleIntro() {
+            const content = document.getElementById('introContent');
+            const toggle = document.getElementById('introToggle');
+            if (content.style.display === 'none') {
+                content.style.display = 'block';
+                toggle.textContent = '▲';
+            } else {
+                content.style.display = 'none';
+                toggle.textContent = '▼';
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function () {
+            renderChecklist();
+            addScenario(); // Add first scenario
+            updateNavigation();
+        });
+
+        function renderChecklist() {
+            const container = document.getElementById('checklistContainer');
+            let html = '';
+            let currentCategory = '';
+
+            checklistQuestions.forEach(q => {
+                if (q.category !== currentCategory) {
+                    if (currentCategory) html += '</div>';
+                    html += `<h3 style="margin: 20px 0 12px; color: var(--color-primary);">${q.category}</h3><div>`;
+                    currentCategory = q.category;
+                }
+                html += `
+                <div class="checklist-item">
+                    <div class="checklist-question">${q.question}</div>
+                    <div class="helper-text" style="margin-bottom: 8px;">${q.guidance}</div>
+                    <div class="checklist-options">
+                        <label><input type="radio" name="${q.id}" value="yes"> Yes</label>
+                        <label><input type="radio" name="${q.id}" value="no"> No</label>
+                        <label><input type="radio" name="${q.id}" value="partial"> Partially</label>
+                        <label><input type="radio" name="${q.id}" value="na"> N/A</label>
+                    </div>
+                </div>
+            `;
+            });
+            html += '</div>';
+            container.innerHTML = html;
+        }
+
+        function addScenario() {
+            if (friaData.scenarios.length >= 5) {
+                alert('Maximum 5 scenarios allowed.');
+                return;
+            }
+            const scenarioNum = friaData.scenarios.length + 1;
+            friaData.scenarios.push({ id: scenarioNum, rights: [] });
+            renderScenarios();
+        }
+
+        function renderScenarios() {
+            const container = document.getElementById('scenariosContainer');
+            let html = '';
+
+            friaData.scenarios.forEach((scenario, idx) => {
+                html += `
+                <div class="scenario-card" id="scenario${idx + 1}">
+                    <div class="scenario-header">
+                        <span class="scenario-title">Scenario ${idx + 1}</span>
+                        ${idx > 0 ? `<button class="btn btn-secondary" onclick="removeScenario(${idx})" style="padding: 4px 8px;">✕ Remove</button>` : ''}
+                    </div>
+                    <div class="form-group">
+                        <label>How can this AI system negatively affect people?</label>
+                        <textarea id="scenario${idx + 1}_impact" placeholder="Describe the potential negative impact scenario..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>What drives this negative outcome?</label>
+                        <textarea id="scenario${idx + 1}_driver" placeholder="e.g., data quality issues, model bias, context of use..." style="min-height: 60px;"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Which groups are affected?</label>
+                        <input type="text" id="scenario${idx + 1}_groups" placeholder="e.g., job applicants, welfare recipients, migrants...">
+                    </div>
+                    <div class="form-group">
+                        <label>Select affected fundamental rights:</label>
+                        <div class="rights-grid" id="rights${idx + 1}">
+                            ${fundamentalRights.map(r => `
+                                <label class="right-item">
+                                    <input type="checkbox" name="scenario${idx + 1}_rights" value="${r.id}">
+                                    <span>${r.absolute ? '⚠️ ' : ''}${r.name}</span>
+                                </label>
+                            `).join('')}
+                        </div>
+                        <div class="helper-text">⚠️ indicates absolute rights that cannot be limited</div>
+                    </div>
+                </div>
+            `;
+            });
+
+            container.innerHTML = html;
+            document.getElementById('addScenarioBtn').style.display = friaData.scenarios.length >= 5 ? 'none' : 'inline-block';
+        }
+
+        function removeScenario(idx) {
+            friaData.scenarios.splice(idx, 1);
+            renderScenarios();
+        }
+
+        // Navigation
+        function goToStep(step) {
+            if (step < 1 || step > totalSteps) return;
+            saveCurrentStep();
+            currentStep = step;
+            updateNavigation();
+
+            document.querySelectorAll('.step-content').forEach(el => el.classList.remove('active'));
+            document.querySelector(`.step-content[data-step="${step}"]`).classList.add('active');
+
+            document.querySelectorAll('.progress-step').forEach((el, idx) => {
+                el.classList.remove('active', 'completed');
+                if (idx + 1 === step) el.classList.add('active');
+                else if (idx + 1 < step) el.classList.add('completed');
+            });
+
+            if (step === 4) renderAssessment();
+            if (step === 5) renderMitigation();
+            if (step === 6) renderSummary();
+        }
+
+        function nextStep() {
+            if (currentStep < totalSteps) goToStep(currentStep + 1);
+        }
+
+        function prevStep() {
+            if (currentStep > 1) goToStep(currentStep - 1);
+        }
+
+        function updateNavigation() {
+            document.getElementById('prevBtn').disabled = currentStep === 1;
+            document.getElementById('nextBtn').textContent = currentStep === totalSteps ? '✅ Complete' : 'Next →';
+            document.getElementById('stepIndicator').textContent = `Step ${currentStep} of ${totalSteps}`;
+        }
+
+        function saveCurrentStep() {
+            // Save context
+            if (currentStep === 1) {
+                friaData.context = {
+                    systemName: document.getElementById('systemName')?.value || '',
+                    deployerOrg: document.getElementById('deployerOrg')?.value || '',
+                    systemDescription: document.getElementById('systemDescription')?.value || '',
+                    riskClass: document.getElementById('riskClass')?.value || '',
+                    useContext: document.getElementById('useContext')?.value || '',
+                    assessmentDate: document.getElementById('assessmentDate')?.value || '',
+                    assessorName: document.getElementById('assessorName')?.value || ''
+                };
+            }
+            // Save checklist
+            if (currentStep === 2) {
+                checklistQuestions.forEach(q => {
+                    const selected = document.querySelector(`input[name="${q.id}"]:checked`);
+                    if (selected) friaData.checklist[q.id] = selected.value;
+                });
+            }
+            // Save scenarios
+            if (currentStep === 3) {
+                friaData.scenarios.forEach((s, idx) => {
+                    s.impact = document.getElementById(`scenario${idx + 1}_impact`)?.value || '';
+                    s.driver = document.getElementById(`scenario${idx + 1}_driver`)?.value || '';
+                    s.groups = document.getElementById(`scenario${idx + 1}_groups`)?.value || '';
+                    s.rights = [];
+                    document.querySelectorAll(`input[name="scenario${idx + 1}_rights"]:checked`).forEach(cb => {
+                        s.rights.push(cb.value);
+                    });
+                });
+            }
+        }
+
+        function renderAssessment() {
+            saveCurrentStep();
+            const container = document.getElementById('assessmentContainer');
+            let html = '';
+
+            friaData.scenarios.forEach((scenario, sIdx) => {
+                if (scenario.rights && scenario.rights.length > 0) {
+                    html += `<h3 style="margin: 20px 0 12px;">Scenario ${sIdx + 1}: ${scenario.impact?.substring(0, 50) || 'Untitled'}...</h3>`;
+
+                    scenario.rights.forEach(rightId => {
+                        const right = fundamentalRights.find(r => r.id === rightId);
+                        html += `
+                        <div class="scenario-card">
+                            <strong>${right?.absolute ? '⚠️ ' : ''}${right?.name} (${right?.article})</strong>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px;">
+                                <div class="form-group" style="margin-bottom: 0;">
+                                    <label style="font-size: 12px;">Interference Level</label>
+                                    <select id="assess_s${sIdx}_${rightId}_interference" style="font-size: 13px;">
+                                        <option value="">Select...</option>
+                                        <option value="low">Low interference</option>
+                                        <option value="medium">Medium interference</option>
+                                        <option value="high">High interference</option>
+                                    </select>
+                                </div>
+                                <div class="form-group" style="margin-bottom: 0;">
+                                    <label style="font-size: 12px;">Likelihood</label>
+                                    <select id="assess_s${sIdx}_${rightId}_likelihood" style="font-size: 13px;">
+                                        <option value="">Select...</option>
+                                        <option value="low">Low (unlikely)</option>
+                                        <option value="medium">Medium (possible)</option>
+                                        <option value="high">High (very likely)</option>
+                                    </select>
+                                </div>
+                                <div class="form-group" style="margin-bottom: 0;">
+                                    <label style="font-size: 12px;">Gravity of Harm</label>
+                                    <select id="assess_s${sIdx}_${rightId}_gravity" style="font-size: 13px;">
+                                        <option value="">Select...</option>
+                                        <option value="low">Low gravity</option>
+                                        <option value="medium">Medium gravity</option>
+                                        <option value="high">High gravity</option>
+                                    </select>
+                                </div>
+                                <div class="form-group" style="margin-bottom: 0;">
+                                    <label style="font-size: 12px;">Reversibility</label>
+                                    <select id="assess_s${sIdx}_${rightId}_reversibility" style="font-size: 13px;">
+                                        <option value="">Select...</option>
+                                        <option value="low">Easy to reverse</option>
+                                        <option value="medium">Somewhat reversible</option>
+                                        <option value="high">Irreversible</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    });
+                }
+            });
+
+            if (!html) html = '<p class="tip-box">No rights selected in scenarios. Go back to Step 3 to select affected fundamental rights.</p>';
+            container.innerHTML = html;
+        }
+
+        function renderMitigation() {
+            const container = document.getElementById('mitigationContainer');
+            let html = '';
+
+            friaData.scenarios.forEach((scenario, sIdx) => {
+                if (scenario.rights && scenario.rights.length > 0) {
+                    html += `
+                    <div class="scenario-card">
+                        <strong>Scenario ${sIdx + 1}: ${scenario.impact?.substring(0, 50) || 'Untitled'}...</strong>
+                        <div class="form-group" style="margin-top: 12px;">
+                            <label>Current Mitigation Measures</label>
+                            <textarea id="mitigation_s${sIdx}_current" placeholder="List measures already in place..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Additional Measures Needed</label>
+                            <textarea id="mitigation_s${sIdx}_additional" placeholder="List additional measures that should be implemented..."></textarea>
+                        </div>
+                    </div>
+                `;
+                }
+            });
+
+            if (!html) html = '<p class="tip-box">No scenarios with rights selected. Complete previous steps first.</p>';
+            container.innerHTML = html;
+        }
+
+        function renderSummary() {
+            saveCurrentStep();
+            const container = document.getElementById('summaryContainer');
+
+            let totalRights = 0;
+            let absoluteRights = 0;
+            friaData.scenarios.forEach(s => {
+                if (s.rights) {
+                    totalRights += s.rights.length;
+                    s.rights.forEach(r => {
+                        const right = fundamentalRights.find(fr => fr.id === r);
+                        if (right?.absolute) absoluteRights++;
+                    });
+                }
+            });
+
+            container.innerHTML = `
+            <div class="tip-box" style="margin-bottom: 20px;">
+                <strong>📊 Assessment Summary</strong>
+                <ul style="margin: 8px 0 0 16px;">
+                    <li>AI System: <strong>${friaData.context.systemName || 'Not specified'}</strong></li>
+                    <li>Scenarios analyzed: <strong>${friaData.scenarios.length}</strong></li>
+                    <li>Fundamental rights assessed: <strong>${totalRights}</strong></li>
+                    <li>Absolute rights at risk: <strong style="color: ${absoluteRights > 0 ? 'var(--color-error)' : 'var(--color-success)'};">${absoluteRights}</strong></li>
+                </ul>
+            </div>
+            ${absoluteRights > 0 ? `
+                <div class="tip-box" style="background: rgba(192, 21, 47, 0.08); border-left-color: var(--color-error);">
+                    ⚠️ <strong>Warning:</strong> Your assessment involves absolute rights (e.g., right to life, prohibition of torture). These rights cannot be limited and require the highest level of scrutiny.
+                </div>
+            ` : ''}
+        `;
+        }
+
+        // Import/Export
+        function exportData() {
+            saveCurrentStep();
+            const exportPayload = {
+                version: '1.0',
+                type: 'FRIA Assessment',
+                timestamp: new Date().toISOString(),
+                ...friaData
+            };
+
+            const blob = new Blob([JSON.stringify(exportPayload, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `fria-assessment-${new Date().toISOString().slice(0, 10)}.json`;
+            a.click();
+        }
+
+        function importData(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                try {
+                    const imported = JSON.parse(e.target.result);
+                    if (confirm('Import will replace current data. Continue?')) {
+                        Object.assign(friaData, {
+                            context: imported.context || {},
+                            checklist: imported.checklist || {},
+                            scenarios: imported.scenarios || [],
+                            assessments: imported.assessments || {},
+                            mitigations: imported.mitigations || {},
+                            decision: imported.decision || {}
+                        });
+                        populateFromData();
+                        alert('✅ Data imported successfully!');
+                    }
+                } catch (err) {
+                    alert('❌ Error importing file: ' + err.message);
+                }
+                event.target.value = '';
+            };
+            reader.readAsText(file);
+        }
+
+        function populateFromData() {
+            // Populate context
+            if (friaData.context) {
+                Object.keys(friaData.context).forEach(key => {
+                    const el = document.getElementById(key);
+                    if (el) el.value = friaData.context[key];
+                });
+            }
+            // Populate checklist
+            Object.keys(friaData.checklist).forEach(key => {
+                const radio = document.querySelector(`input[name="${key}"][value="${friaData.checklist[key]}"]`);
+                if (radio) radio.checked = true;
+            });
+            // Render scenarios
+            if (friaData.scenarios.length > 0) {
+                renderScenarios();
+                friaData.scenarios.forEach((s, idx) => {
+                    if (document.getElementById(`scenario${idx + 1}_impact`)) document.getElementById(`scenario${idx + 1}_impact`).value = s.impact || '';
+                    if (document.getElementById(`scenario${idx + 1}_driver`)) document.getElementById(`scenario${idx + 1}_driver`).value = s.driver || '';
+                    if (document.getElementById(`scenario${idx + 1}_groups`)) document.getElementById(`scenario${idx + 1}_groups`).value = s.groups || '';
+                    if (s.rights) {
+                        s.rights.forEach(r => {
+                            const cb = document.querySelector(`input[name="scenario${idx + 1}_rights"][value="${r}"]`);
+                            if (cb) cb.checked = true;
+                        });
+                    }
+                });
+            }
+        }
+
+        function downloadTemplate() {
+            const template = {
+                _instructions: "FRIA Assessment Template - Fill in the fields and import into the online tool",
+                version: "1.0",
+                type: "FRIA Assessment Template",
+                context: {
+                    systemName: "",
+                    deployerOrg: "",
+                    systemDescription: "",
+                    riskClass: "",
+                    useContext: "",
+                    assessmentDate: "",
+                    assessorName: ""
+                },
+                scenarios: [
+                    { id: 1, impact: "", driver: "", groups: "", rights: [] }
+                ]
+            };
+
+            const blob = new Blob([JSON.stringify(template, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'fria-template.json';
+            a.click();
+        }
+
+        function generateReport() {
+            saveCurrentStep();
+            let report = '# Fundamental Rights Impact Assessment Report\n\n';
+            report += `**Generated:** ${new Date().toLocaleString()}\n\n`;
+            report += '---\n\n';
+            report += '## 1. AI System Information\n\n';
+            report += `- **System Name:** ${friaData.context.systemName || 'N/A'}\n`;
+            report += `- **Deployer:** ${friaData.context.deployerOrg || 'N/A'}\n`;
+            report += `- **Description:** ${friaData.context.systemDescription || 'N/A'}\n`;
+            report += `- **Risk Classification:** ${friaData.context.riskClass || 'N/A'}\n`;
+            report += `- **Use Context:** ${friaData.context.useContext || 'N/A'}\n`;
+            report += `- **Assessment Date:** ${friaData.context.assessmentDate || 'N/A'}\n`;
+            report += `- **Assessor:** ${friaData.context.assessorName || 'N/A'}\n\n`;
+
+            report += '## 2. Impact Scenarios\n\n';
+            friaData.scenarios.forEach((s, idx) => {
+                report += `### Scenario ${idx + 1}\n`;
+                report += `**Impact:** ${s.impact || 'N/A'}\n`;
+                report += `**Driver:** ${s.driver || 'N/A'}\n`;
+                report += `**Affected Groups:** ${s.groups || 'N/A'}\n`;
+                report += `**Affected Rights:** ${s.rights?.map(r => fundamentalRights.find(fr => fr.id === r)?.name).join(', ') || 'None'}\n\n`;
+            });
+
+            report += '## 3. Decision\n\n';
+            report += `**Confidence Level:** ${document.getElementById('confidenceLevel')?.value || 'N/A'}\n`;
+            report += `**Deployment Decision:** ${document.getElementById('deploymentDecision')?.value || 'N/A'}\n`;
+            report += `**Rationale:** ${document.getElementById('decisionRationale')?.value || 'N/A'}\n`;
+
+            const blob = new Blob([report], { type: 'text/markdown' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `fria-report-${new Date().toISOString().slice(0, 10)}.md`;
+            a.click();
+        }
+    </script>
+</body>
+
+</html>

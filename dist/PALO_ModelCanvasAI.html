@@ -1,0 +1,3353 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PALO AI Business Model Canvas</title>
+    <style>
+        :root {
+            --color-primary: #2180A0;
+            --color-primary-hover: #1c74a0;
+            --color-primary-active: #1a6894;
+            --color-secondary: rgba(94, 82, 64, 0.12);
+            --color-border: rgba(94, 82, 64, 0.2);
+            --color-background: #fcfcf9;
+            --color-surface: #fffffe;
+            --color-text: #133452;
+            --color-text-secondary: #626c71;
+            --color-success: #208081;
+            --color-warning: #a84b2f;
+            --color-error: #c0152f;
+            --color-info: #626c71;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.04);
+            --radius-base: 8px;
+            --space-8: 8px;
+            --space-12: 12px;
+            --space-16: 16px;
+            --space-24: 24px;
+            --space-32: 32px;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --color-background: #1f2121;
+                --color-surface: #262828;
+                --color-text: #f5f5f5;
+                --color-text-secondary: #a7a9a9;
+                --color-primary: #32b8c6;
+                --color-primary-hover: #2da6b2;
+                --color-border: rgba(167, 169, 169, 0.3);
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* EN 301549 / WCAG 2.1 Focus Visible Styles */
+        *:focus-visible {
+            outline: 3px solid var(--color-primary);
+            outline-offset: 2px;
+        }
+
+        /* Minimum touch target size (44x44px) */
+        button,
+        a,
+        input,
+        select,
+        textarea {
+            min-height: 44px;
+        }
+
+        /* Reduced motion support for vestibular disorders */
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        html,
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #f0f9fa 0%, #e8f4f5 100%);
+            color: var(--color-text);
+            line-height: 1.5;
+            min-height: 100vh;
+        }
+
+        body {
+            padding: var(--space-16);
+        }
+
+        .header {
+            margin-bottom: var(--space-32);
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: var(--space-8);
+            color: var(--color-text);
+        }
+
+        .header p {
+            color: var(--color-text-secondary);
+            font-size: 14px;
+        }
+
+        .controls {
+            display: flex;
+            gap: var(--space-16);
+            margin-bottom: var(--space-24);
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .phase-selector {
+            display: flex;
+            gap: var(--space-8);
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: var(--space-8) var(--space-16);
+            border: none;
+            border-radius: var(--radius-base);
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 150ms;
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-8);
+        }
+
+        .btn-primary {
+            background: var(--color-primary);
+            color: #fcfcf9;
+            border: 1px solid var(--color-primary);
+        }
+
+        .btn-primary:hover {
+            background: var(--color-primary-hover);
+        }
+
+        .btn-secondary {
+            background: var(--color-secondary);
+            color: var(--color-text);
+            border: 1px solid var(--color-border);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(94, 82, 64, 0.2);
+        }
+
+        .btn-secondary.active {
+            background: var(--color-primary);
+            color: #fcfcf9;
+        }
+
+        .container-main {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .canvas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: var(--space-16);
+            margin-bottom: var(--space-32);
+        }
+
+        .canvas-section {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-base);
+            padding: var(--space-16);
+            box-shadow: var(--shadow-sm);
+            transition: all 150ms;
+            position: relative;
+        }
+
+        .canvas-section:hover {
+            box-shadow: var(--shadow-md);
+            border-color: var(--color-primary);
+        }
+
+        .canvas-section h3 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: var(--space-12);
+            color: var(--color-text);
+            display: flex;
+            align-items: center;
+            gap: var(--space-8);
+        }
+
+        .section-icon {
+            font-size: 16px;
+            width: 24px;
+            text-align: center;
+        }
+
+        .canvas-section textarea {
+            width: 100%;
+            height: 120px;
+            padding: var(--space-8);
+            border: 1px solid var(--color-border);
+            border-radius: calc(var(--radius-base) - 2px);
+            background: var(--color-background);
+            color: var(--color-text);
+            font-family: inherit;
+            font-size: 13px;
+            resize: vertical;
+        }
+
+        .canvas-section textarea:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(33, 128, 141, 0.1);
+        }
+
+        .palo-tips {
+            background: linear-gradient(135deg, rgba(33, 128, 141, 0.08) 0%, rgba(50, 184, 198, 0.08) 100%);
+            border-left: 3px solid var(--color-primary);
+            padding: var(--space-12);
+            border-radius: calc(var(--radius-base) - 2px);
+            margin-top: var(--space-12);
+            font-size: 12px;
+        }
+
+        .palo-tips strong {
+            color: var(--color-primary);
+            display: block;
+            margin-bottom: var(--space-4);
+        }
+
+        .palo-tips p {
+            margin: var(--space-4) 0;
+            color: var(--color-text-secondary);
+        }
+
+        .sidebar {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-base);
+            padding: var(--space-16);
+            box-shadow: var(--shadow-sm);
+            position: sticky;
+            top: 20px;
+        }
+
+        .sidebar h2 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: var(--space-16);
+            color: var(--color-text);
+        }
+
+        .sidebar-section {
+            margin-bottom: var(--space-16);
+        }
+
+        .sidebar-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--color-text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: var(--space-8);
+            display: block;
+        }
+
+        .select,
+        .input {
+            width: 100%;
+            padding: var(--space-8);
+            border: 1px solid var(--color-border);
+            border-radius: calc(var(--radius-base) - 2px);
+            background: var(--color-background);
+            color: var(--color-text);
+            font-size: 13px;
+            font-family: inherit;
+        }
+
+        .select:focus,
+        .input:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(33, 128, 141, 0.1);
+        }
+
+        .risk-indicator {
+            padding: var(--space-8) var(--space-12);
+            border-radius: calc(var(--radius-base) - 2px);
+            font-size: 12px;
+            font-weight: 600;
+            text-align: center;
+            margin-top: var(--space-8);
+        }
+
+        .risk-minimal {
+            background: rgba(32, 128, 129, 0.15);
+            color: var(--color-success);
+            border: 1px solid var(--color-success);
+        }
+
+        .risk-limited {
+            background: rgba(230, 129, 97, 0.15);
+            color: var(--color-warning);
+            border: 1px solid var(--color-warning);
+        }
+
+        .risk-high {
+            background: rgba(192, 21, 47, 0.15);
+            color: var(--color-error);
+            border: 1px solid var(--color-error);
+        }
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-12);
+            margin-top: var(--space-16);
+        }
+
+        .kpi-card {
+            background: var(--color-background);
+            padding: var(--space-12);
+            border-radius: calc(var(--radius-base) - 2px);
+            border: 1px solid var(--color-border);
+        }
+
+        .kpi-card label {
+            display: block;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--color-text-secondary);
+            text-transform: uppercase;
+            margin-bottom: var(--space-4);
+            letter-spacing: 0.5px;
+        }
+
+        .kpi-card input {
+            width: 100%;
+            padding: var(--space-6);
+            border: 1px solid var(--color-border);
+            border-radius: calc(var(--radius-base) - 3px);
+            font-size: 12px;
+            background: var(--color-surface);
+            color: var(--color-text);
+        }
+
+        .kpi-card input:focus {
+            outline: none;
+            border-color: var(--color-primary);
+        }
+
+        .governance-checklist {
+            margin-top: var(--space-12);
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-8);
+            padding: var(--space-8);
+            margin-bottom: var(--space-8);
+            background: var(--color-background);
+            border-radius: calc(var(--radius-base) - 2px);
+            border: 1px solid var(--color-border);
+        }
+
+        .checklist-item input[type="checkbox"] {
+            margin-top: 3px;
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
+
+        .checklist-item label {
+            font-size: 12px;
+            color: var(--color-text);
+            cursor: pointer;
+            flex: 1;
+        }
+
+        .footer-actions {
+            display: flex;
+            gap: var(--space-12);
+            margin-top: var(--space-24);
+            flex-wrap: wrap;
+        }
+
+        .btn-icon::before {
+            display: inline-block;
+            margin-right: 4px;
+        }
+
+        @media (max-width: 768px) {
+            .canvas-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                position: static;
+                margin-top: var(--space-24);
+            }
+
+            body {
+                padding: var(--space-12);
+            }
+
+            .header h1 {
+                font-size: 22px;
+            }
+
+            .controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .phase-selector {
+                width: 100%;
+            }
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            animation: fadeIn 150ms;
+        }
+
+        .modal.open {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .modal-content {
+            background-color: var(--color-surface);
+            padding: var(--space-24);
+            border-radius: var(--radius-base);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            max-height: 80vh;
+            overflow-y: auto;
+            width: 90%;
+            max-width: 600px;
+        }
+
+        .modal-close {
+            float: right;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--color-text-secondary);
+        }
+
+        .modal-close:hover {
+            color: var(--color-text);
+        }
+
+        .tab-buttons {
+            display: flex;
+            gap: var(--space-8);
+            margin-bottom: var(--space-16);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .tab-btn {
+            padding: var(--space-8) var(--space-12);
+            background: none;
+            border: none;
+            border-bottom: 2px solid transparent;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--color-text-secondary);
+            transition: all 150ms;
+        }
+
+        .tab-btn.active {
+            color: var(--color-primary);
+            border-bottom-color: var(--color-primary);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .status-ongoing {
+            background: rgba(33, 128, 141, 0.15);
+            color: var(--color-success);
+        }
+
+        .status-review {
+            background: rgba(230, 129, 97, 0.15);
+            color: var(--color-warning);
+        }
+
+        .status-approved {
+            background: rgba(32, 128, 129, 0.15);
+            color: var(--color-success);
+        }
+
+        .palo-principle-card {
+            background: var(--color-background);
+            padding: var(--space-12);
+            border-radius: calc(var(--radius-base) - 2px);
+            border-left: 3px solid var(--color-primary);
+            margin-bottom: var(--space-12);
+        }
+
+        .palo-principle-card strong {
+            display: block;
+            margin-bottom: var(--space-4);
+            color: var(--color-primary);
+            font-size: 13px;
+        }
+
+        .palo-principle-card p {
+            font-size: 12px;
+            color: var(--color-text-secondary);
+            margin: 0;
+        }
+
+        .compliance-tracker {
+            margin-top: var(--space-16);
+        }
+
+        .compliance-row {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: var(--space-12);
+            padding: var(--space-8);
+            background: var(--color-background);
+            border-radius: calc(var(--radius-base) - 2px);
+            margin-bottom: var(--space-8);
+            border: 1px solid var(--color-border);
+        }
+
+        .compliance-label {
+            font-size: 12px;
+            color: var(--color-text);
+            font-weight: 500;
+        }
+
+        .compliance-progress {
+            height: 20px;
+            background: var(--color-border);
+            border-radius: 2px;
+            overflow: hidden;
+            margin-top: 4px;
+        }
+
+        .compliance-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-success) 100%);
+            transition: width 300ms;
+        }
+
+        .insights-panel {
+            background: linear-gradient(135deg, rgba(33, 128, 141, 0.08) 0%, rgba(50, 184, 198, 0.08) 100%);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-base);
+            padding: var(--space-16);
+            margin-top: var(--space-24);
+        }
+
+        .insights-panel h3 {
+            color: var(--color-primary);
+            margin-bottom: var(--space-12);
+            font-size: 15px;
+        }
+
+        .insight-item {
+            margin-bottom: var(--space-12);
+            padding-bottom: var(--space-12);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .insight-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .insight-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--color-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: var(--space-4);
+        }
+
+        .insight-text {
+            font-size: 12px;
+            color: var(--color-text-secondary);
+            line-height: 1.4;
+        }
+
+        .export-options {
+            display: flex;
+            gap: var(--space-8);
+            flex-wrap: wrap;
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Custom Tooltip styles for KPI rows */
+        .tooltip-row {
+            cursor: help;
+            position: relative;
+        }
+
+        .tooltip-row:hover {
+            background: rgba(33, 128, 141, 0.08);
+        }
+
+        .info-icon {
+            font-size: 10px;
+            color: var(--color-primary);
+            margin-left: 4px;
+            opacity: 0.7;
+            cursor: help;
+        }
+
+        .tooltip-row:hover .info-icon {
+            opacity: 1;
+        }
+
+        /* Custom CSS Tooltip */
+        .tooltip-row::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--color-text);
+            color: var(--color-background);
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 11px;
+            line-height: 1.4;
+            white-space: normal;
+            width: max-content;
+            max-width: 300px;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.2s, visibility 0.2s;
+            pointer-events: none;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            text-align: left;
+        }
+
+        .tooltip-row:hover::after {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Arrow for tooltip */
+        .tooltip-row::before {
+            content: '';
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(8px);
+            border: 6px solid transparent;
+            border-top-color: var(--color-text);
+            z-index: 1001;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.2s, visibility 0.2s;
+        }
+
+        .tooltip-row:hover::before {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* KPI Status Indicators */
+        .kpi-status {
+            font-size: 12px;
+            margin-left: 4px;
+        }
+
+        .kpi-card.on-target {
+            border-left: 3px solid var(--color-success);
+        }
+
+        .kpi-card.close-target {
+            border-left: 3px solid var(--color-warning);
+        }
+
+        .kpi-card.off-target {
+            border-left: 3px solid var(--color-error);
+        }
+
+        /* Mode Toggle */
+        .mode-toggle {
+            display: flex;
+            gap: 0;
+            background: var(--color-secondary);
+            border-radius: var(--radius-base);
+            padding: 3px;
+        }
+
+        .mode-toggle button {
+            padding: 8px 16px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 500;
+            border-radius: 6px;
+            transition: all 0.2s;
+            color: var(--color-text-secondary);
+        }
+
+        .mode-toggle button.active {
+            background: var(--color-primary);
+            color: white;
+        }
+
+        /* Wizard Mode Styles */
+        .wizard-container {
+            display: none;
+        }
+
+        .wizard-container.active {
+            display: block;
+        }
+
+        .expert-container.hidden {
+            display: none;
+        }
+
+        .wizard-progress {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: var(--space-24);
+            position: relative;
+        }
+
+        .wizard-progress::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 40px;
+            right: 40px;
+            height: 3px;
+            background: var(--color-border);
+            z-index: 0;
+        }
+
+        .wizard-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+            cursor: pointer;
+        }
+
+        .wizard-step .step-number {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--color-secondary);
+            border: 3px solid var(--color-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--color-text-secondary);
+            transition: all 0.3s;
+        }
+
+        .wizard-step.active .step-number {
+            background: var(--color-primary);
+            border-color: var(--color-primary);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .wizard-step.completed .step-number {
+            background: var(--color-success);
+            border-color: var(--color-success);
+            color: white;
+        }
+
+        .wizard-step .step-label {
+            margin-top: var(--space-8);
+            font-size: 11px;
+            color: var(--color-text-secondary);
+            text-align: center;
+            max-width: 80px;
+        }
+
+        .wizard-step.active .step-label {
+            color: var(--color-primary);
+            font-weight: 600;
+        }
+
+        .wizard-content {
+            background: var(--color-background);
+            border-radius: var(--radius-base);
+            padding: var(--space-24);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            min-height: 400px;
+        }
+
+        .wizard-section {
+            display: none;
+        }
+
+        .wizard-section.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .wizard-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: var(--space-24);
+            padding-top: var(--space-16);
+            border-top: 1px solid var(--color-border);
+        }
+
+        .wizard-nav button {
+            padding: 12px 32px;
+            font-size: 14px;
+        }
+
+        .wizard-section h3 {
+            font-size: 20px;
+            margin-bottom: var(--space-8);
+            color: var(--color-text);
+        }
+
+        .wizard-section .section-description {
+            color: var(--color-text-secondary);
+            font-size: 14px;
+            margin-bottom: var(--space-24);
+            line-height: 1.6;
+        }
+
+        .wizard-field {
+            margin-bottom: var(--space-24);
+        }
+
+        .wizard-field label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: var(--space-8);
+            color: var(--color-text);
+        }
+
+        .wizard-field .helper-text {
+            font-size: 12px;
+            color: var(--color-text-secondary);
+            margin-top: var(--space-4);
+        }
+    </style>
+</head>
+
+<body>
+    <a href="#main-content" class="skip-link"
+        style="position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden;">Skip to main
+        content</a>
+
+    <div class="container-main">
+        <!-- Navigation Bar -->
+        <nav role="navigation" aria-label="Main navigation"
+            style="display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: var(--color-surface); border-radius: var(--radius-base); margin-bottom: 16px; border: 1px solid var(--color-border);">
+            <a href="index.html"
+                style="display: flex; align-items: center; gap: 8px; text-decoration: none; color: var(--color-text);"
+                aria-label="Go to PALO Framework homepage">
+                <img src="assets/logo.webp" alt="PALO Logo" style="height: 36px; width: auto;">
+                <span style="font-weight: 600; font-size: 14px;">PALO Framework</span>
+            </a>
+            <div style="display: flex; gap: 8px; align-items: center;">
+                <a href="index.html" class="btn btn-secondary"
+                    style="text-decoration: none; display: inline-flex; align-items: center; gap: 6px;"
+                    aria-label="Return to home page">
+                    🏠 <span>Home</span>
+                </a>
+                <a href="PALO_FRIA.html" class="btn btn-secondary"
+                    style="text-decoration: none; display: inline-flex; align-items: center; gap: 6px;"
+                    aria-label="Open FRIA assessment tool">
+                    🛡️ <span>FRIA</span>
+                </a>
+            </div>
+        </nav>
+
+        <header class="header" style="display: flex; align-items: center; gap: 16px;" role="banner">
+            <img src="assets/logo.webp" alt="" style="height: 48px; width: auto;" aria-hidden="true">
+            <div style="flex: 1;">
+                <h1 id="main-content" tabindex="-1">PALO AI Business Model Canvas</h1>
+                <p>Comprehensive evaluation framework for responsible AI use cases aligned with PALO principles</p>
+            </div>
+            <div class="mode-toggle" id="modeToggle" role="group" aria-label="Select mode">
+                <button class="active" data-mode="expert" onclick="setMode('expert')" aria-pressed="true">🔧 Expert
+                    Mode</button>
+                <button data-mode="wizard" onclick="setMode('wizard')" aria-pressed="false">🧙 Wizard Mode</button>
+            </div>
+        </header>
+
+        <div class="controls">
+            <div>
+                <label class="sidebar-label">PALO Phase</label>
+                <div class="phase-selector" id="phaseSelector">
+                    <button class="btn btn-secondary active" data-phase="1">1. Ideation</button>
+                    <button class="btn btn-secondary" data-phase="2">2. Assessment</button>
+                    <button class="btn btn-secondary" data-phase="3">3. Development</button>
+                    <button class="btn btn-secondary" data-phase="4">4. Deployment</button>
+                    <button class="btn btn-secondary" data-phase="5">5. Decommissioning</button>
+                </div>
+            </div>
+            <div class="export-options">
+                <button class="btn btn-secondary" onclick="downloadTemplate()">📋 Download Template</button>
+                <button class="btn btn-secondary" onclick="document.getElementById('importFile').click()">📂 Import
+                    JSON</button>
+                <input type="file" id="importFile" accept=".json" style="display: none;" onchange="importData(event)">
+                <button class="btn btn-primary" onclick="exportData()">💾 Export JSON</button>
+                <button class="btn btn-primary" onclick="generateReport()">📄 Generate Report</button>
+                <a href="PALO_ComparisonTool.html" class="btn btn-primary"
+                    style="text-decoration: none; display: inline-block;">📊 Compare</a>
+            </div>
+        </div>
+
+        <!-- WIZARD MODE -->
+        <div id="wizardContainer" class="wizard-container">
+            <div class="wizard-progress">
+                <div class="wizard-step active" onclick="goToWizardStep(1)">
+                    <div class="step-number">1</div>
+                    <div class="step-label">Project Info</div>
+                </div>
+                <div class="wizard-step" onclick="goToWizardStep(2)">
+                    <div class="step-number">2</div>
+                    <div class="step-label">Data & Model</div>
+                </div>
+                <div class="wizard-step" onclick="goToWizardStep(3)">
+                    <div class="step-number">3</div>
+                    <div class="step-label">Users & Governance</div>
+                </div>
+                <div class="wizard-step" onclick="goToWizardStep(4)">
+                    <div class="step-number">4</div>
+                    <div class="step-label">KPIs</div>
+                </div>
+                <div class="wizard-step" onclick="goToWizardStep(5)">
+                    <div class="step-number">5</div>
+                    <div class="step-label">Configuration</div>
+                </div>
+                <div class="wizard-step" onclick="goToWizardStep(6)">
+                    <div class="step-number">6</div>
+                    <div class="step-label">Review</div>
+                </div>
+            </div>
+
+            <div class="wizard-content">
+                <!-- Step 1: Project Info -->
+                <div class="wizard-section active" data-step="1">
+                    <h3>📌 Let's start with your project</h3>
+                    <p class="section-description">Tell us about your AI project. This information helps contextualize
+                        your assessment and align it with your business strategy.</p>
+
+                    <div class="wizard-field">
+                        <label for="wiz_projectName">Project Name *</label>
+                        <input type="text" id="wiz_projectName" class="select" data-wizard-field="projectName"
+                            placeholder="e.g., Customer Service AI Assistant" style="width: 100%;">
+                        <div class="helper-text">Give your AI project a clear, descriptive name</div>
+                    </div>
+
+                    <div class="wizard-field">
+                        <label for="wiz_problemStatement">Problem Statement *</label>
+                        <textarea id="wiz_problemStatement" class="select" data-wizard-field="problemStatement"
+                            placeholder="What problem does this AI system solve? Who benefits from it?"
+                            style="width: 100%; height: 100px;"></textarea>
+                        <div class="helper-text">Describe the business challenge this AI addresses</div>
+                    </div>
+
+                    <div class="wizard-field">
+                        <label for="wiz_strategicAlignment">Strategic Alignment</label>
+                        <textarea id="wiz_strategicAlignment" class="select" data-wizard-field="strategicAlignment"
+                            placeholder="How does this align with your organization's AI strategy and goals?"
+                            style="width: 100%; height: 80px;"></textarea>
+                    </div>
+                </div>
+
+                <!-- Step 2: Data & Model -->
+                <div class="wizard-section" data-step="2">
+                    <h3>🎛️ Data & Model Details</h3>
+                    <p class="section-description">Describe how your AI system handles data and what type of model it
+                        uses. This is critical for privacy and transparency assessments.</p>
+
+                    <div class="wizard-field">
+                        <label for="wiz_dataGovernance">Data Governance & Privacy</label>
+                        <textarea id="wiz_dataGovernance" class="select" data-wizard-field="dataGovernance" placeholder="• What data sources are used?
+• Is personal data involved?
+• How is consent managed?
+• Data minimization applied?" style="width: 100%; height: 120px;"></textarea>
+                    </div>
+
+                    <div class="wizard-field">
+                        <label for="wiz_modelTransparency">Model Transparency & Robustness</label>
+                        <textarea id="wiz_modelTransparency" class="select" data-wizard-field="modelTransparency"
+                            placeholder="• Black Box or Explainable (XAI)?
+• Architecture documented?
+• Guardrails against adversarial attacks?" style="width: 100%; height: 100px;"></textarea>
+                    </div>
+
+                    <div class="wizard-field">
+                        <label for="wiz_selectedWorkflow">AI Workflow Type</label>
+                        <textarea id="wiz_selectedWorkflow" class="select" data-wizard-field="selectedWorkflow"
+                            placeholder="Describe the workflow: Classification, Generation, Recommendation, Prediction, etc."
+                            style="width: 100%; height: 80px;"></textarea>
+                    </div>
+                </div>
+
+                <!-- Step 3: Users & Governance -->
+                <div class="wizard-section" data-step="3">
+                    <h3>👥 Users & Governance</h3>
+                    <p class="section-description">Identify who interacts with the AI system and how governance is
+                        structured.</p>
+
+                    <div class="wizard-field">
+                        <label for="wiz_endUsers">End Users</label>
+                        <textarea id="wiz_endUsers" class="select" data-wizard-field="endUsers" placeholder="• Who uses this system?
+• What decisions do they make based on AI output?
+• Are vulnerable groups affected?" style="width: 100%; height: 100px;"></textarea>
+                    </div>
+
+                    <div class="wizard-field">
+                        <label for="wiz_governanceRoles">Governance Roles</label>
+                        <textarea id="wiz_governanceRoles" class="select" data-wizard-field="governanceRoles"
+                            placeholder="• Who is accountable for AI decisions?
+• Who monitors the system?
+• Escalation process?" style="width: 100%; height: 100px;"></textarea>
+                    </div>
+
+                    <div class="wizard-field">
+                        <label for="wiz_redFlags">Potential Red Flags</label>
+                        <textarea id="wiz_redFlags" class="select" data-wizard-field="redFlags" placeholder="• Bias concerns?
+• Safety risks?
+• Ethical considerations?" style="width: 100%; height: 80px;"></textarea>
+                    </div>
+                </div>
+
+                <!-- Step 4: KPIs -->
+                <div class="wizard-section" data-step="4">
+                    <h3>📊 Key Performance Indicators</h3>
+                    <p class="section-description">Set measurable targets for your AI system. These KPIs help track
+                        compliance and performance over time.</p>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                        <div class="wizard-field">
+                            <label>F1-Score (%)</label>
+                            <input type="number" id="wiz_kpiF1" class="select" data-wizard-kpi="kpiF1"
+                                placeholder="Target ≥90%" min="0" max="100" style="width: 100%;">
+                            <div class="helper-text">Model accuracy metric</div>
+                        </div>
+                        <div class="wizard-field">
+                            <label>Fairness Score (0-1)</label>
+                            <input type="number" id="wiz_kpiFairness" class="select" data-wizard-kpi="kpiFairness"
+                                placeholder="Target ≥0.95" min="0" max="1" step="0.01" style="width: 100%;">
+                            <div class="helper-text">Equal treatment across groups</div>
+                        </div>
+                        <div class="wizard-field">
+                            <label>Privacy Incidents</label>
+                            <input type="number" id="wiz_kpiPrivacy" class="select" data-wizard-kpi="kpiPrivacy"
+                                placeholder="Target: 0" min="0" style="width: 100%;">
+                            <div class="helper-text">Data breaches count</div>
+                        </div>
+                        <div class="wizard-field">
+                            <label>System Uptime (%)</label>
+                            <input type="number" id="wiz_kpiUptime" class="select" data-wizard-kpi="kpiUptime"
+                                placeholder="Target ≥99.9%" min="0" max="100" step="0.1" style="width: 100%;">
+                            <div class="helper-text">Availability metric</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 5: Configuration -->
+                <div class="wizard-section" data-step="5">
+                    <h3>⚙️ Risk Configuration</h3>
+                    <p class="section-description">Configure risk classification and select applicable ethical
+                        principles.</p>
+
+                    <div class="wizard-field">
+                        <label>Risk Tier (EU AI Act)</label>
+                        <select id="wiz_riskTier" class="select" data-wizard-config="riskTier" style="width: 100%;">
+                            <option value="">Select risk tier...</option>
+                            <option value="minimal">Minimal Risk</option>
+                            <option value="limited">Limited Risk</option>
+                            <option value="high">High Risk</option>
+                            <option value="unacceptable">Unacceptable Risk</option>
+                        </select>
+                    </div>
+
+                    <div class="wizard-field">
+                        <label>AI Use Case Category</label>
+                        <select id="wiz_useCaseCategory" class="select" data-wizard-config="useCaseCategory"
+                            style="width: 100%;">
+                            <option value="">Select category...</option>
+                            <option value="hiring">Hiring & HR</option>
+                            <option value="lending">Lending & Finance</option>
+                            <option value="healthcare">Healthcare & Diagnostics</option>
+                            <option value="content">Content Generation</option>
+                            <option value="recommendation">Recommendation Systems</option>
+                            <option value="autonomous">Autonomous Systems</option>
+                            <option value="monitoring">Monitoring & Surveillance</option>
+                            <option value="education">Education & Assessment</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="wizard-field">
+                        <label>PALO Ethical Principles (check all that apply)</label>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px;">
+                            <label style="font-weight: normal; display: flex; align-items: center; gap: 8px;">
+                                <input type="checkbox" id="wiz_principle1" data-wizard-principle="principle1"> Fairness
+                                & Non-Discrimination
+                            </label>
+                            <label style="font-weight: normal; display: flex; align-items: center; gap: 8px;">
+                                <input type="checkbox" id="wiz_principle2" data-wizard-principle="principle2">
+                                Transparency & Explainability
+                            </label>
+                            <label style="font-weight: normal; display: flex; align-items: center; gap: 8px;">
+                                <input type="checkbox" id="wiz_principle3" data-wizard-principle="principle3">
+                                Accountability & Responsibility
+                            </label>
+                            <label style="font-weight: normal; display: flex; align-items: center; gap: 8px;">
+                                <input type="checkbox" id="wiz_principle4" data-wizard-principle="principle4"> Privacy &
+                                Data Governance
+                            </label>
+                            <label style="font-weight: normal; display: flex; align-items: center; gap: 8px;">
+                                <input type="checkbox" id="wiz_principle5" data-wizard-principle="principle5"> Safety &
+                                Robustness
+                            </label>
+                            <label style="font-weight: normal; display: flex; align-items: center; gap: 8px;">
+                                <input type="checkbox" id="wiz_principle6" data-wizard-principle="principle6"> Human
+                                Agency & Oversight
+                            </label>
+                            <label style="font-weight: normal; display: flex; align-items: center; gap: 8px;">
+                                <input type="checkbox" id="wiz_principle7" data-wizard-principle="principle7"> Societal
+                                & Environmental Well-being
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 6: Review -->
+                <div class="wizard-section" data-step="6">
+                    <h3>🎯 Review & Complete</h3>
+                    <p class="section-description">Review your assessment summary. You can switch to Expert Mode to make
+                        detailed adjustments or export your data.</p>
+
+                    <div id="wizardSummary"
+                        style="background: var(--color-secondary); padding: 16px; border-radius: 8px; margin-bottom: 16px;">
+                        <!-- Populated by JS -->
+                    </div>
+
+                    <div class="wizard-field">
+                        <label>Gate Decision</label>
+                        <select id="wiz_gateDecision" class="select" data-wizard-config="gateDecision"
+                            style="width: 100%;">
+                            <option value="">Select decision...</option>
+                            <option value="go">✅ GO - Proceed to next phase</option>
+                            <option value="conditional">⏸️ CONDITIONAL - Proceed with revisions</option>
+                            <option value="nogo">❌ NO-GO - Halt development</option>
+                        </select>
+                    </div>
+
+                    <div class="wizard-field">
+                        <label>Decision Rationale</label>
+                        <textarea id="wiz_decisionRationale" class="select" data-wizard-field="decisionRationale"
+                            placeholder="Document the reasoning for your gate decision..."
+                            style="width: 100%; height: 80px;"></textarea>
+                    </div>
+                </div>
+
+                <!-- Wizard Navigation -->
+                <div class="wizard-nav">
+                    <button class="btn btn-secondary" id="wizPrevBtn" onclick="wizardPrev()" disabled>←
+                        Previous</button>
+                    <div style="display: flex; gap: 8px; align-items: center;">
+                        <button class="btn btn-secondary" onclick="resetForm()" style="padding: 8px 12px;">🔄
+                            Reset</button>
+                        <span id="wizStepIndicator" style="color: var(--color-text-secondary);">Step 1 of 6</span>
+                    </div>
+                    <button class="btn btn-primary" id="wizNextBtn" onclick="wizardNext()">Next →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- EXPERT MODE (existing content) -->
+        <div id="expertContainer" class="expert-container">
+            <div style="display: grid; grid-template-columns: 1fr 320px; gap: var(--space-24);">
+                <!-- Main Canvas Area -->
+                <div>
+                    <!-- Context Section -->
+                    <h2 style="margin-bottom: var(--space-16); font-size: 18px; color: var(--color-text);">📋 Context &
+                        Strategy</h2>
+                    <div class="canvas-grid">
+                        <div class="canvas-section">
+                            <h3><span class="section-icon">📌</span>Project Name</h3>
+                            <textarea id="projectName" placeholder="Enter project name, department, and date..."
+                                data-field="projectName"></textarea>
+                            <div class="palo-tips">
+                                <strong>PALO Tip:</strong>
+                                <p>Start with a clear project identifier including the owning department and date for
+                                    tracking purposes.</p>
+                            </div>
+                        </div>
+
+                        <div class="canvas-section">
+                            <h3><span class="section-icon">🎯</span>Strategic Alignment</h3>
+                            <textarea id="strategicAlignment"
+                                placeholder="How does this AI support organizational objectives?"
+                                data-field="strategicAlignment"></textarea>
+                            <div class="palo-tips">
+                                <strong>PALO Principle: Societal Well-being</strong>
+                                <p>Does this align with both business goals AND societal well-being objectives? Evaluate
+                                    sustainable value creation.</p>
+                            </div>
+                        </div>
+
+                        <div class="canvas-section">
+                            <h3><span class="section-icon">⚙️</span>Problem Statement</h3>
+                            <textarea id="problemStatement" placeholder="What operational pain point does this solve?"
+                                data-field="problemStatement"></textarea>
+                            <div class="palo-tips">
+                                <strong>PALO Tip:</strong>
+                                <p>Define measurable inefficiencies and ethical risks being addressed. Quantify the
+                                    problem.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="canvas-section">
+                            <h3><span class="section-icon">🔄</span>Selected Workflow</h3>
+                            <textarea id="selectedWorkflow"
+                                placeholder="Which process is being automated? Where is human-in-the-loop?"
+                                data-field="selectedWorkflow"></textarea>
+                            <div class="palo-tips">
+                                <strong>PALO Principle: Human Agency</strong>
+                                <p>Specify where human oversight occurs. Does the AI augment or replace human
+                                    decision-making?</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Core Inputs & Data -->
+                    <h2 style="margin: var(--space-32) 0 var(--space-16); font-size: 18px; color: var(--color-text);">🔧
+                        Core Inputs & Data</h2>
+                    <div class="canvas-grid">
+                        <div class="canvas-section">
+                            <h3><span class="section-icon">🛡️</span>Data Governance & Privacy</h3>
+                            <textarea id="dataGovernance" placeholder="• PII/Sensitive data? GDPR compliance?
+• Is data representative? Bias testing?
+• Data minimization applied?" data-field="dataGovernance"></textarea>
+                            <div class="palo-tips">
+                                <strong>PALO Principle: Privacy & Non-Discrimination</strong>
+                                <p>Assess data representativeness for fairness across demographic groups. Document
+                                    consent
+                                    mechanisms.</p>
+                            </div>
+                        </div>
+
+                        <div class="canvas-section">
+                            <h3><span class="section-icon">🎛️</span>Model Transparency & Robustness</h3>
+                            <textarea id="modelTransparency" placeholder="• Black Box or Explainable (XAI)?
+• Architecture documented?
+• Guardrails against adversarial attacks?" data-field="modelTransparency"></textarea>
+                            <div class="palo-tips">
+                                <strong>PALO Principle: Transparency & Safety</strong>
+                                <p>Is model explainability appropriate for the risk level? Document known limitations
+                                    and
+                                    failure modes.</p>
+                            </div>
+                        </div>
+
+                        <div class="canvas-section">
+                            <h3><span class="section-icon">💎</span>Value Proposition</h3>
+                            <textarea id="valueProposition" placeholder="• Expected ROI and efficiency gains?
+• Positive societal impact?
+• How does this build trust?" data-field="valueProposition"></textarea>
+                            <div class="palo-tips">
+                                <strong>PALO Tip: Holistic Value</strong>
+                                <p>Balance business metrics (ROI) with ethical value (fairness, trust, societal
+                                    benefit).
+                                    Avoid ROI myopia.</p>
+                            </div>
+                        </div>
+
+                        <div class="canvas-section">
+                            <h3><span class="section-icon">🌱</span>Security & Environment</h3>
+                            <textarea id="securityEnvironment" placeholder="• Secure by design?
+• Energy consumption estimate?
+• Carbon footprint (training/inference)?" data-field="securityEnvironment"></textarea>
+                            <div class="palo-tips">
+                                <strong>PALO Principle: Environmental Sustainability</strong>
+                                <p>Calculate energy consumption per inference. Consider lifecycle environmental impact
+                                    and
+                                    carbon offset strategies.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Core Value & Systems -->
+                    <h2 style="margin: var(--space-32) 0 var(--space-16); font-size: 18px; color: var(--color-text);">👥
+                        Users & Stakeholders</h2>
+                    <div class="canvas-grid">
+                        <div class="canvas-section">
+                            <h3><span class="section-icon">👤</span>End Users & Vulnerable Groups</h3>
+                            <textarea id="endUsers" placeholder="• Who interacts with the AI?
+• Are minors or marginalized groups impacted?
+• Does AI empower or diminish autonomy?" data-field="endUsers"></textarea>
+                            <div class="palo-tips">
+                                <strong>PALO Principle: Human-Centricity</strong>
+                                <p>Identify vulnerable populations. Assess whether AI enhances or restricts their agency
+                                    and
+                                    dignity.</p>
+                            </div>
+                        </div>
+
+                        <div class="canvas-section">
+                            <h3><span class="section-icon">🏛️</span>Team & Governance Roles</h3>
+                            <textarea id="governanceRoles" placeholder="• Use Case Owner (Business Lead)?
+• AI Governance Board (approval authority)?
+• AI Ethicist (bias audit)?
+• Data Protection Officer?" data-field="governanceRoles"></textarea>
+                            <div class="palo-tips">
+                                <strong>PALO Principle: Accountability</strong>
+                                <p>Define clear roles, responsibilities, and accountability structures. Document RACI
+                                    matrix.</p>
+                            </div>
+                        </div>
+
+                        <div class="canvas-section">
+                            <h3><span class="section-icon">⚠️</span>Ethical Screening Red Flags</h3>
+                            <textarea id="redFlags" placeholder="• Could cause physical/psychological harm?
+• Could discriminate or exclude groups?
+• High Risk under EU AI Act?
+• Requires Phase 2 Assessment?" data-field="redFlags"></textarea>
+                            <div class="palo-tips">
+                                <strong>PALO Phase 1 Gate:</strong>
+                                <p>If YES to any: trigger comprehensive Phase 2 assessment. Document rationale for
+                                    Go/No-Go
+                                    decision.</p>
+                            </div>
+                        </div>
+
+                        <div class="canvas-section">
+                            <h3><span class="section-icon">✅</span>Compliance & Dependencies</h3>
+                            <textarea id="compliance" placeholder="• EU AI Act compliance?
+• GDPR, ISO 42001 alignment?
+• Data availability & legal rights?
+• Third-party vendor risks?" data-field="compliance"></textarea>
+                            <div class="palo-tips">
+                                <strong>PALO Dimension: Legal Conformity</strong>
+                                <p>Map to relevant standards: ISO 42001, ISO 42005, OECD AI Principles, EU AI Act, NIST
+                                    AI
+                                    RMF.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- KPIs Section -->
+                    <h2 style="margin: var(--space-32) 0 var(--space-16); font-size: 18px; color: var(--color-text);">📊
+                        PALO Integrated KPIs</h2>
+                    <div class="canvas-section" style="padding: var(--space-16);">
+                        <div class="palo-tips" style="margin-bottom: var(--space-16);">
+                            <strong>💡 How KPIs Impact Your Score</strong>
+                            <p>These KPIs directly influence your PALO Dimension Scores and Framework Alignment. Each
+                                KPI
+                                has a target value - meeting targets increases your compliance score. Status indicators
+                                show: 🟢 On Target | 🟡 Close | 🔴 Needs Improvement</p>
+                        </div>
+
+                        <h3 style="margin-bottom: var(--space-16);"><span class="section-icon">📈</span>Technical KPIs
+                            <span
+                                style="font-size: 11px; font-weight: 400; color: var(--color-text-secondary); margin-left: 8px;">→
+                                Impacts: Transparency & Safety</span>
+                        </h3>
+                        <div class="kpi-grid">
+                            <div class="kpi-card" id="kpiF1Card">
+                                <label>F1-Score (%) <span class="kpi-status" id="kpiF1Status"></span></label>
+                                <input type="number" id="kpiF1" placeholder="Target ≥90%" data-kpi="f1" min="0"
+                                    max="100">
+                                <small style="color: var(--color-text-secondary); font-size: 10px;">Model accuracy.
+                                    Higher =
+                                    better predictions.</small>
+                            </div>
+                            <div class="kpi-card" id="kpiDriftCard">
+                                <label>Model Drift Rate (%) <span class="kpi-status" id="kpiDriftStatus"></span></label>
+                                <input type="number" id="kpiDrift" placeholder="Target ≤5%" data-kpi="drift" min="0"
+                                    max="100">
+                                <small style="color: var(--color-text-secondary); font-size: 10px;">Performance
+                                    degradation
+                                    over time. Lower = more stable.</small>
+                            </div>
+                            <div class="kpi-card" id="kpiUptimeCard">
+                                <label>System Uptime (%) <span class="kpi-status" id="kpiUptimeStatus"></span></label>
+                                <input type="number" id="kpiUptime" placeholder="Target ≥99.9%" data-kpi="uptime"
+                                    min="0" max="100" step="0.1">
+                                <small style="color: var(--color-text-secondary); font-size: 10px;">System availability.
+                                    Critical for reliability.</small>
+                            </div>
+                            <div class="kpi-card" id="kpiAdversarialCard">
+                                <label>Adversarial Resilience (%) <span class="kpi-status"
+                                        id="kpiAdversarialStatus"></span></label>
+                                <input type="number" id="kpiAdversarial" placeholder="Target ≥99%"
+                                    data-kpi="adversarial" min="0" max="100">
+                                <small style="color: var(--color-text-secondary); font-size: 10px;">Resistance to
+                                    malicious
+                                    inputs. Security measure.</small>
+                            </div>
+                        </div>
+
+                        <h3 style="margin: var(--space-16) 0 var(--space-8);"><span
+                                class="section-icon">💼</span>Business
+                            KPIs
+                            <span
+                                style="font-size: 11px; font-weight: 400; color: var(--color-text-secondary); margin-left: 8px;">→
+                                Impacts: ISO 42001 Alignment</span>
+                        </h3>
+                        <div class="kpi-grid">
+                            <div class="kpi-card" id="kpiROICard">
+                                <label>ROI (%) <span class="kpi-status" id="kpiROIStatus"></span></label>
+                                <input type="number" id="kpiROI" placeholder="Target ≥20%" data-kpi="roi" min="0">
+                                <small style="color: var(--color-text-secondary); font-size: 10px;">Return on
+                                    investment.
+                                    Business value justification.</small>
+                            </div>
+                            <div class="kpi-card" id="kpiAdoptionCard">
+                                <label>Adoption Rate (%) <span class="kpi-status" id="kpiAdoptionStatus"></span></label>
+                                <input type="number" id="kpiAdoption" placeholder="Target ≥70%" data-kpi="adoption"
+                                    min="0" max="100">
+                                <small style="color: var(--color-text-secondary); font-size: 10px;">User uptake rate.
+                                    Measures acceptance.</small>
+                            </div>
+                            <div class="kpi-card" id="kpiCSATCard">
+                                <label>CSAT Score (%) <span class="kpi-status" id="kpiCSATStatus"></span></label>
+                                <input type="number" id="kpiCSAT" placeholder="Target ≥85%" data-kpi="csat" min="0"
+                                    max="100">
+                                <small style="color: var(--color-text-secondary); font-size: 10px;">Customer
+                                    satisfaction.
+                                    User experience quality.</small>
+                            </div>
+                            <div class="kpi-card" id="kpiCostSavingsCard">
+                                <label>Cost Savings ($K)</label>
+                                <input type="number" id="kpiCostSavings" placeholder="Annual savings"
+                                    data-kpi="costSavings">
+                                <small style="color: var(--color-text-secondary); font-size: 10px;">Economic benefit.
+                                    Document for business case.</small>
+                            </div>
+                        </div>
+
+                        <h3 style="margin: var(--space-16) 0 var(--space-8);"><span
+                                class="section-icon">⚖️</span>Ethical
+                            KPIs
+                            <span
+                                style="font-size: 11px; font-weight: 400; color: var(--color-text-secondary); margin-left: 8px;">→
+                                Impacts: Fairness, Data Governance, Environment</span>
+                        </h3>
+                        <div class="kpi-grid">
+                            <div class="kpi-card" id="kpiFairnessCard">
+                                <label>Fairness Score (0-1) <span class="kpi-status"
+                                        id="kpiFairnessStatus"></span></label>
+                                <input type="number" id="kpiFairness" placeholder="Target ≥0.95" data-kpi="fairness"
+                                    min="0" max="1" step="0.01">
+                                <small style="color: var(--color-text-secondary); font-size: 10px;">Equal treatment
+                                    across
+                                    groups. 1.0 = perfect fairness.</small>
+                            </div>
+                            <div class="kpi-card" id="kpiExplainabilityCard">
+                                <label>Explainability Score (1-5) <span class="kpi-status"
+                                        id="kpiExplainabilityStatus"></span></label>
+                                <input type="number" id="kpiExplainability" placeholder="Target ≥4.0"
+                                    data-kpi="explainability" min="1" max="5" step="0.1">
+                                <small style="color: var(--color-text-secondary); font-size: 10px;">User understanding
+                                    of AI
+                                    decisions. Transparency measure.</small>
+                            </div>
+                            <div class="kpi-card" id="kpiPrivacyCard">
+                                <label>Privacy Incidents <span class="kpi-status" id="kpiPrivacyStatus"></span></label>
+                                <input type="number" id="kpiPrivacy" placeholder="Target: 0" data-kpi="privacy" min="0">
+                                <small style="color: var(--color-text-secondary); font-size: 10px;">Data breaches or
+                                    violations. Zero is ideal.</small>
+                            </div>
+                            <div class="kpi-card" id="kpiEnergyCard">
+                                <label>Energy per Query (Wh) <span class="kpi-status"
+                                        id="kpiEnergyStatus"></span></label>
+                                <input type="number" id="kpiEnergy" placeholder="Track & minimize" data-kpi="energy"
+                                    min="0" step="0.001">
+                                <small style="color: var(--color-text-secondary); font-size: 10px;">Environmental
+                                    impact.
+                                    Lower = more sustainable.</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feedback & Stakeholders -->
+            <h2 style="margin: var(--space-32) 0 var(--space-16); font-size: 18px; color: var(--color-text);">🔗
+                Stakeholders & Feedback</h2>
+            <div class="canvas-grid">
+                <div class="canvas-section">
+                    <h3><span class="section-icon">📢</span>Stakeholders & Feedback Loops</h3>
+                    <textarea id="stakeholders" placeholder="• Feedback mechanisms for error reporting?
+• Community consultation?
+• Regular user feedback collection?" data-field="stakeholders"></textarea>
+                    <div class="palo-tips">
+                        <strong>PALO Principle: Accountability</strong>
+                        <p>Establish channels for continuous feedback. Create redress mechanisms for users harmed by
+                            AI.</p>
+                    </div>
+                </div>
+
+                <div class="canvas-section">
+                    <h3><span class="section-icon">💰</span>Cost & Sustainability</h3>
+                    <textarea id="costSustainability" placeholder="• Total Cost of Ownership (TCO)?
+• Compliance and audit costs?
+• Decommissioning plan and data disposal?" data-field="costSustainability"></textarea>
+                    <div class="palo-tips">
+                        <strong>PALO Phase 5: Decommissioning</strong>
+                        <p>Plan end-of-life: secure data disposal, anonymization, stakeholder notification,
+                            dependency mitigation.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dynamic Risk Assessment Dashboard -->
+            <div class="insights-panel" id="riskDashboard">
+                <h3>📊 PALO Risk Assessment Dashboard</h3>
+                <p style="font-size: 12px; color: var(--color-text-secondary); margin-bottom: var(--space-16);">
+                    Dynamic assessment based on your inputs. Complete more fields for accurate scoring.
+                </p>
+
+                <!-- Overall Risk Level Indicator -->
+                <div id="overallRiskIndicator"
+                    style="padding: var(--space-16); border-radius: var(--radius-base); margin-bottom: var(--space-16); text-align: center; background: var(--color-background); border: 2px dashed var(--color-border);">
+                    <div style="font-size: 32px; margin-bottom: var(--space-8);">⚪</div>
+                    <div style="font-size: 14px; font-weight: 600; color: var(--color-text);">INCOMPLETE</div>
+                    <div style="font-size: 11px; color: var(--color-text-secondary); margin-top: 4px;">Fill in the
+                        canvas fields to calculate risk</div>
+                </div>
+
+                <!-- Overall Score Display -->
+                <div
+                    style="display: flex; justify-content: space-between; align-items: center; padding: var(--space-12); background: var(--color-background); border-radius: var(--radius-base); margin-bottom: var(--space-16); border: 1px solid var(--color-border);">
+                    <div>
+                        <div
+                            style="font-size: 11px; font-weight: 600; color: var(--color-text-secondary); text-transform: uppercase;">
+                            Overall Compliance Score</div>
+                        <div id="overallScoreValue"
+                            style="font-size: 28px; font-weight: 700; color: var(--color-primary);">
+                            --</div>
+                    </div>
+                    <div id="completionBadge"
+                        style="padding: 4px 12px; border-radius: 12px; font-size: 11px; font-weight: 600; background: var(--color-secondary); color: var(--color-text-secondary);">
+                        0% Complete
+                    </div>
+                </div>
+
+                <!-- Dimension Scores -->
+                <div
+                    style="font-size: 12px; font-weight: 600; color: var(--color-text); margin-bottom: var(--space-8); text-transform: uppercase;">
+                    PALO Dimension Scores</div>
+                <div class="compliance-tracker">
+                    <div class="compliance-row tooltip-row"
+                        data-tooltip="📝 Impacted by: Data Governance & Privacy, Compliance, Project Name | ✅ Principle: Privacy & Data Governance | 📊 KPI: Privacy Incidents">
+                        <div>
+                            <div class="compliance-label">Data Governance & Privacy <span class="info-icon">ⓘ</span>
+                            </div>
+                            <div class="compliance-progress">
+                                <div class="compliance-bar" id="dataGovernanceBar" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                        <span id="dataGovernanceScore"
+                            style="font-size: 12px; font-weight: 600; color: var(--color-text-secondary);">0%</span>
+                    </div>
+                    <div class="compliance-row tooltip-row"
+                        data-tooltip="📝 Impacted by: Model Transparency, Value Proposition | ✅ Principles: Transparency & Explainability, Safety & Robustness | 📊 KPIs: F1-Score, Drift Rate, Adversarial Resilience">
+                        <div>
+                            <div class="compliance-label">Transparency & Safety <span class="info-icon">ⓘ</span>
+                            </div>
+                            <div class="compliance-progress">
+                                <div class="compliance-bar" id="transparencyBar" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                        <span id="transparencyScore"
+                            style="font-size: 12px; font-weight: 600; color: var(--color-text-secondary);">0%</span>
+                    </div>
+                    <div class="compliance-row tooltip-row"
+                        data-tooltip="📝 Impacted by: Selected Workflow, End Users, Governance Roles | ✅ Principle: Human Agency & Oversight">
+                        <div>
+                            <div class="compliance-label">Human Agency & Oversight <span class="info-icon">ⓘ</span>
+                            </div>
+                            <div class="compliance-progress">
+                                <div class="compliance-bar" id="humanAgencyBar" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                        <span id="humanAgencyScore"
+                            style="font-size: 12px; font-weight: 600; color: var(--color-text-secondary);">0%</span>
+                    </div>
+                    <div class="compliance-row tooltip-row"
+                        data-tooltip="📝 Impacted by: Red Flags, Governance Roles, Strategic Alignment | ✅ Principles: Fairness & Non-Discrimination, Accountability | 📊 KPI: Fairness Score">
+                        <div>
+                            <div class="compliance-label">Fairness & Accountability <span class="info-icon">ⓘ</span>
+                            </div>
+                            <div class="compliance-progress">
+                                <div class="compliance-bar" id="fairnessBar" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                        <span id="fairnessScore"
+                            style="font-size: 12px; font-weight: 600; color: var(--color-text-secondary);">0%</span>
+                    </div>
+                    <div class="compliance-row tooltip-row"
+                        data-tooltip="📝 Impacted by: Security & Environment, Cost & Sustainability, Problem Statement | ✅ Principle: Societal & Environmental Well-being | 📊 KPI: Energy per Query">
+                        <div>
+                            <div class="compliance-label">Environmental Sustainability <span class="info-icon">ⓘ</span>
+                            </div>
+                            <div class="compliance-progress">
+                                <div class="compliance-bar" id="environmentBar" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                        <span id="environmentScore"
+                            style="font-size: 12px; font-weight: 600; color: var(--color-text-secondary);">0%</span>
+                    </div>
+                </div>
+
+                <!-- Framework Alignment -->
+                <div
+                    style="font-size: 12px; font-weight: 600; color: var(--color-text); margin: var(--space-16) 0 var(--space-8); text-transform: uppercase;">
+                    Framework Alignment</div>
+                <div class="compliance-tracker">
+                    <div class="compliance-row tooltip-row"
+                        data-tooltip="📝 Impacted by: Text field completion (40%) + Selected Ethical Principles (30%) + Configuration Risk Tier/Use Case/Gate Decision (30%)">
+                        <div>
+                            <div class="compliance-label">ISO 42001 Alignment <span class="info-icon">ⓘ</span></div>
+                            <div class="compliance-progress">
+                                <div class="compliance-bar" id="iso42001Bar" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                        <span id="iso42001Score"
+                            style="font-size: 12px; font-weight: 600; color: var(--color-text-secondary);">0%</span>
+                    </div>
+                    <div class="compliance-row tooltip-row"
+                        data-tooltip="📝 Impacted by: Average of Data Governance + Fairness + Human Agency scores">
+                        <div>
+                            <div class="compliance-label">ISO 42005 Impact Assessment <span class="info-icon">ⓘ</span>
+                            </div>
+                            <div class="compliance-progress">
+                                <div class="compliance-bar" id="iso42005Bar" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                        <span id="iso42005Score"
+                            style="font-size: 12px; font-weight: 600; color: var(--color-text-secondary);">0%</span>
+                    </div>
+                    <div class="compliance-row tooltip-row"
+                        data-tooltip="📝 Impacted by: Selected Ethical Principles (70%) + Filled KPIs (30%)">
+                        <div>
+                            <div class="compliance-label">OECD AI Principles <span class="info-icon">ⓘ</span></div>
+                            <div class="compliance-progress">
+                                <div class="compliance-bar" id="oecdBar" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                        <span id="oecdScore"
+                            style="font-size: 12px; font-weight: 600; color: var(--color-text-secondary);">0%</span>
+                    </div>
+                    <div class="compliance-row tooltip-row"
+                        data-tooltip="📝 Requires Risk Tier selection. Impacted by: Configuration (30%) + Data Governance (30%) + Transparency (20%) + Human Agency (20%)">
+                        <div>
+                            <div class="compliance-label">EU AI Act Readiness <span class="info-icon">ⓘ</span></div>
+                            <div class="compliance-progress">
+                                <div class="compliance-bar" id="euAIActBar" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                        <span id="euAIActScore"
+                            style="font-size: 12px; font-weight: 600; color: var(--color-text-secondary);">0%</span>
+                    </div>
+                </div>
+
+                <!-- Risk Recommendations -->
+                <div id="riskRecommendations"
+                    style="margin-top: var(--space-16); padding: var(--space-12); background: var(--color-background); border-radius: var(--radius-base); border-left: 3px solid var(--color-warning); display: none;">
+                    <div
+                        style="font-size: 12px; font-weight: 600; color: var(--color-warning); margin-bottom: var(--space-4);">
+                        ⚠️ Recommendations</div>
+                    <ul id="recommendationsList"
+                        style="font-size: 11px; color: var(--color-text-secondary); margin: 0; padding-left: 16px; line-height: 1.6;">
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h2>⚙️ Configuration</h2>
+
+            <div class="sidebar-section">
+                <label class="sidebar-label">Risk Tier (EU AI Act)</label>
+                <select id="riskTier" class="select" data-field="riskTier">
+                    <option value="">Select risk tier...</option>
+                    <option value="minimal">Minimal Risk</option>
+                    <option value="limited">Limited Risk</option>
+                    <option value="high">High Risk</option>
+                    <option value="unacceptable">Unacceptable Risk</option>
+                </select>
+                <div
+                    style="font-size: 10px; color: var(--color-text-secondary); margin-top: var(--space-4); line-height: 1.4;">
+                    <strong>Impact:</strong> Activates EU AI Act Readiness score. Higher risk = stricter compliance
+                    requirements.
+                </div>
+                <div id="riskIndicator" style="margin-top: var(--space-8);"></div>
+            </div>
+
+            <div class="sidebar-section">
+                <label class="sidebar-label">AI Use Case Category</label>
+                <select id="useCaseCategory" class="select" data-field="useCaseCategory">
+                    <option value="">Select category...</option>
+                    <option value="hiring">Hiring & HR</option>
+                    <option value="lending">Lending & Finance</option>
+                    <option value="healthcare">Healthcare & Diagnostics</option>
+                    <option value="content">Content Generation</option>
+                    <option value="recommendation">Recommendation Systems</option>
+                    <option value="autonomous">Autonomous Systems</option>
+                    <option value="monitoring">Monitoring & Surveillance</option>
+                    <option value="education">Education & Assessment</option>
+                    <option value="other">Other</option>
+                </select>
+                <!-- Dynamic Use Case Insights -->
+                <div id="useCaseInsights" style="margin-top: var(--space-8); display: none;">
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <label class="sidebar-label">PALO Ethical Principles</label>
+                <div
+                    style="font-size: 11px; color: var(--color-text-secondary); margin-bottom: var(--space-8); line-height: 1.4;">
+                    ✅ Check each principle your AI system <strong>addresses</strong>. Each principle impacts specific
+                    dimension scores (shown in parentheses).
+                </div>
+                <div class="governance-checklist">
+                    <div class="checklist-item" title="Check if your AI treats all user groups fairly without bias">
+                        <input type="checkbox" id="principle1" data-principle="fairness" data-field="principle1">
+                        <label for="principle1">Fairness & Non-Discrimination</label>
+                        <span style="font-size: 9px; color: var(--color-primary); display: block; margin-left: 20px;">→
+                            Fairness Score</span>
+                    </div>
+                    <div class="checklist-item" title="Check if AI decisions can be explained and understood by users">
+                        <input type="checkbox" id="principle2" data-principle="transparency" data-field="principle2">
+                        <label for="principle2">Transparency & Explainability</label>
+                        <span style="font-size: 9px; color: var(--color-primary); display: block; margin-left: 20px;">→
+                            Transparency Score</span>
+                    </div>
+                    <div class="checklist-item"
+                        title="Check if there are clear roles and responsibilities for AI governance">
+                        <input type="checkbox" id="principle3" data-principle="accountability" data-field="principle3">
+                        <label for="principle3">Accountability & Responsibility</label>
+                        <span style="font-size: 9px; color: var(--color-primary); display: block; margin-left: 20px;">→
+                            Fairness Score</span>
+                    </div>
+                    <div class="checklist-item"
+                        title="Check if data is collected, stored, and processed following privacy regulations">
+                        <input type="checkbox" id="principle4" data-principle="privacy" data-field="principle4">
+                        <label for="principle4">Privacy & Data Governance</label>
+                        <span style="font-size: 9px; color: var(--color-primary); display: block; margin-left: 20px;">→
+                            Data
+                            Governance Score</span>
+                    </div>
+                    <div class="checklist-item" title="Check if the AI system is tested for reliability and security">
+                        <input type="checkbox" id="principle5" data-principle="safety" data-field="principle5">
+                        <label for="principle5">Safety & Robustness</label>
+                        <span style="font-size: 9px; color: var(--color-primary); display: block; margin-left: 20px;">→
+                            Transparency Score</span>
+                    </div>
+                    <div class="checklist-item"
+                        title="Check if humans can intervene, override, or stop the AI when needed">
+                        <input type="checkbox" id="principle6" data-principle="humanAgency" data-field="principle6">
+                        <label for="principle6">Human Agency & Oversight</label>
+                        <span style="font-size: 9px; color: var(--color-primary); display: block; margin-left: 20px;">→
+                            Human Agency Score</span>
+                    </div>
+                    <div class="checklist-item"
+                        title="Check if environmental impact and broader societal effects are considered">
+                        <input type="checkbox" id="principle7" data-principle="societalWellbeing"
+                            data-field="principle7">
+                        <label for="principle7">Societal & Environmental Well-being</label>
+                        <span style="font-size: 9px; color: var(--color-primary); display: block; margin-left: 20px;">→
+                            Environment Score</span>
+                    </div>
+                </div>
+                <div
+                    style="font-size: 10px; color: var(--color-text-secondary); margin-top: var(--space-8); padding: 6px; background: var(--color-background); border-radius: 4px;">
+                    <strong>Impact:</strong> Principles contribute 30% to each dimension score + 70% to OECD Alignment
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <label class="sidebar-label">Gate Decision</label>
+                <select id="gateDecision" class="select" data-field="gateDecision">
+                    <option value="">Select decision...</option>
+                    <option value="go">✅ GO - Proceed</option>
+                    <option value="conditional">⏸️ CONDITIONAL - Revise</option>
+                    <option value="nogo">❌ NO-GO - Halt</option>
+                </select>
+            </div>
+
+            <div class="sidebar-section">
+                <label class="sidebar-label">Decision Rationale</label>
+                <textarea class="select" id="decisionRationale" placeholder="Document the gate decision reasoning..."
+                    data-field="decisionRationale"
+                    style="height: 80px; padding: var(--space-8); font-family: inherit;"></textarea>
+            </div>
+
+            <div class="footer-actions">
+                <button class="btn btn-primary btn-icon" onclick="showPALOGuidance()" style="width: 100%;">📖 PALO
+                    Guide</button>
+                <button class="btn btn-secondary btn-icon" onclick="showComplianceMatrix()" style="width: 100%;">🗂️
+                    Standards Map</button>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div> <!-- End expertContainer -->
+
+    <!-- PALO Guidance Modal -->
+    <div id="paloModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closePALOModal()">&times;</span>
+            <h2 style="margin-bottom: var(--space-16);">📖 PALO Framework Guide</h2>
+            <div class="tab-buttons">
+                <button class="tab-btn active" onclick="switchTab(event, 'phases')">5 Phases</button>
+                <button class="tab-btn" onclick="switchTab(event, 'principles')">7 Principles</button>
+                <button class="tab-btn" onclick="switchTab(event, 'dimensions')">5 Dimensions</button>
+                <button class="tab-btn" onclick="switchTab(event, 'standards')">Standards</button>
+            </div>
+
+            <div id="phases" class="tab-content active">
+                <h3 style="margin-bottom: var(--space-12); color: var(--color-primary);">PALO 5-Phase Lifecycle</h3>
+                <div class="palo-principle-card">
+                    <strong>Phase 1: Ideation & Ethical Screening</strong>
+                    <p>Problem definition, high-level solution proposal, initial ethical review using PALO screening
+                        questionnaire. Output: Go/No-Go/Revise decision.</p>
+                </div>
+                <div class="palo-principle-card">
+                    <strong>Phase 2: Comprehensive Assessment & Planning</strong>
+                    <p>Detailed risk assessment (ISO 42001), AI system impact assessment (ISO 42005), business case
+                        validation, ethical deep dive, mitigation planning. Output: Major Go/No-Go/Revise gate.</p>
+                </div>
+                <div class="palo-principle-card">
+                    <strong>Phase 3: Responsible Development & Validation</strong>
+                    <p>Ethical-by-design implementation, continuous testing against all KPIs, comprehensive
+                        documentation. Output: Validated AI system MVP, validation report.</p>
+                </div>
+                <div class="palo-principle-card">
+                    <strong>Phase 4: Ethical Deployment & Monitoring</strong>
+                    <p>Final Go/No-Go decision, controlled rollout, continuous KPI monitoring, feedback mechanisms,
+                        incident response. Output: Deployed system, monitoring dashboards.</p>
+                </div>
+                <div class="palo-principle-card">
+                    <strong>Phase 5: Continuous Improvement & Decommissioning</strong>
+                    <p>Regular audits, model retraining, adaptive governance, responsible decommissioning. Output:
+                        Updated versions, decommissioning plan.</p>
+                </div>
+            </div>
+
+            <div id="principles" class="tab-content">
+                <h3 style="margin-bottom: var(--space-12); color: var(--color-primary);">PALO 7 Core Ethical Principles
+                </h3>
+                <div class="palo-principle-card">
+                    <strong>1. Principled Fairness & Non-Discrimination</strong>
+                    <p>Ensure equitable treatment, avoid unjust bias, actively mitigate discriminatory outcomes across
+                        demographic groups.</p>
+                </div>
+                <div class="palo-principle-card">
+                    <strong>2. Principled Transparency & Explainability</strong>
+                    <p>Decision-making processes must be understandable to stakeholders. Promote explainable AI (XAI)
+                        and clear documentation.</p>
+                </div>
+                <div class="palo-principle-card">
+                    <strong>3. Principled Accountability & Responsibility</strong>
+                    <p>Clear human responsibility for AI development, deployment, and outcomes. Establish audit trails
+                        and redress mechanisms.</p>
+                </div>
+                <div class="palo-principle-card">
+                    <strong>4. Principled Privacy & Data Governance</strong>
+                    <p>Adhere to data protection principles, respect individual rights, practice data minimization and
+                        purpose limitation.</p>
+                </div>
+                <div class="palo-principle-card">
+                    <strong>5. Principled Safety & Robustness</strong>
+                    <p>Engineer systems to be reliable, secure, and resilient. Prevent unintentional harm under expected
+                        and adversarial conditions.</p>
+                </div>
+                <div class="palo-principle-card">
+                    <strong>6. Principled Human Agency & Oversight</strong>
+                    <p>Preserve human autonomy. Ensure meaningful human oversight, especially for high-stakes decisions.
+                        AI should augment, not replace.</p>
+                </div>
+                <div class="palo-principle-card">
+                    <strong>7. Principled Societal & Environmental Well-being</strong>
+                    <p>Contribute positively to society. Promote inclusivity, reduce inequality, minimize environmental
+                        impact. Align with SDGs.</p>
+                </div>
+            </div>
+
+            <div id="dimensions" class="tab-content">
+                <h3 style="margin-bottom: var(--space-12); color: var(--color-primary);">PALO 5 Evaluation Dimensions
+                </h3>
+                <div class="palo-principle-card">
+                    <strong>1. Ethical Integrity</strong>
+                    <p>Assessment against all 7 ethical principles. Focus on fairness, transparency, accountability,
+                        privacy, safety, human agency, and societal impact.</p>
+                </div>
+                <div class="palo-principle-card">
+                    <strong>2. Technical Robustness & Safety</strong>
+                    <p>Accuracy, reliability, security, resilience. Quality of data, appropriateness of algorithms,
+                        rigor of validation. Protection against adversarial attacks.</p>
+                </div>
+                <div class="palo-principle-card">
+                    <strong>3. Business Value & Feasibility</strong>
+                    <p>ROI analysis, strategic alignment, operational efficiency, customer impact. Technical
+                        feasibility, data availability, infrastructure, team capacity.</p>
+                </div>
+                <div class="palo-principle-card">
+                    <strong>4. Legal & Regulatory Conformity</strong>
+                    <p>Compliance with GDPR, EU AI Act, ISO 42001/42005, OECD AI Principles, NIST AI RMF,
+                        industry-specific regulations.</p>
+                </div>
+                <div class="palo-principle-card">
+                    <strong>5. Socio-Environmental Impact</strong>
+                    <p>Effects on employment, societal equity, public trust, democratic processes. Energy consumption,
+                        carbon footprint, environmental lifecycle impact.</p>
+                </div>
+            </div>
+
+            <div id="standards" class="tab-content">
+                <h3 style="margin-bottom: var(--space-12); color: var(--color-primary);">PALO Standards Alignment</h3>
+                <div class="palo-principle-card">
+                    <strong>ISO/IEC 42001: AI Management System (AIMS)</strong>
+                    <p>PALO operationalizes ISO 42001 requirements throughout its lifecycle phases, particularly in risk
+                        assessment (6.1), risk treatment (6.1.3), and continuous improvement.</p>
+                </div>
+                <div class="palo-principle-card">
+                    <strong>ISO/IEC 42005: AI System Impact Assessment</strong>
+                    <p>PALO mandates comprehensive AIIAs in Phase 2, assessing impacts on individuals, groups, and
+                        society. Covers intended, unintended, and foreseeable misuse scenarios.</p>
+                </div>
+                <div class="palo-principle-card">
+                    <strong>OECD AI Principles</strong>
+                    <p>PALO aligns with all 5 OECD principles: Inclusive growth; Human-centered values & fairness;
+                        Transparency & explainability; Robustness, security & safety; Accountability.</p>
+                </div>
+                <div class="palo-principle-card">
+                    <strong>EU AI Act & NIST AI RMF</strong>
+                    <p>PALO's risk tiering methodology maps to EU AI Act categories (Minimal, Limited, High,
+                        Unacceptable). PALO operationalizes NIST RMF's Govern, Map, Measure, Manage functions.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Compliance Matrix Modal -->
+    <div id="complianceModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeComplianceModal()">&times;</span>
+            <h2 style="margin-bottom: var(--space-16);">🗂️ Standards Compliance Matrix</h2>
+            <table style="width: 100%; border-collapse: collapse; font-size: 12px;">
+                <thead>
+                    <tr style="background: var(--color-background); border-bottom: 2px solid var(--color-border);">
+                        <th style="padding: var(--space-8); text-align: left; font-weight: 600;">Standard / Framework
+                        </th>
+                        <th style="padding: var(--space-8); text-align: center; font-weight: 600;">PALO Mapping</th>
+                        <th style="padding: var(--space-8); text-align: left; font-weight: 600;">Key Requirement</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="border-bottom: 1px solid var(--color-border);">
+                        <td style="padding: var(--space-8);">ISO 42001 (AIMS)</td>
+                        <td style="padding: var(--space-8); text-align: center;"><span
+                                class="status-badge status-approved">✓ Full</span></td>
+                        <td style="padding: var(--space-8);">Risk assessment, risk treatment, compliance documentation
+                            throughout all 5 phases.</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--color-border);">
+                        <td style="padding: var(--space-8);">ISO 42005 (AIIA)</td>
+                        <td style="padding: var(--space-8); text-align: center;"><span
+                                class="status-badge status-approved">✓ Full</span></td>
+                        <td style="padding: var(--space-8);">Comprehensive impact assessment on individuals, groups,
+                            society. Phase 2 mandatory.</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--color-border);">
+                        <td style="padding: var(--space-8);">OECD AI Principles</td>
+                        <td style="padding: var(--space-8); text-align: center;"><span
+                                class="status-badge status-approved">✓ Full</span></td>
+                        <td style="padding: var(--space-8);">5 OECD principles operationalized across PALO dimensions
+                            and KPIs.</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--color-border);">
+                        <td style="padding: var(--space-8);">EU AI Act</td>
+                        <td style="padding: var(--space-8); text-align: center;"><span
+                                class="status-badge status-ongoing">⊙ Aligned</span></td>
+                        <td style="padding: var(--space-8);">Risk tiering (Minimal-Unacceptable) maps to EU AI Act
+                            categories. High-risk requirements enforced.</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--color-border);">
+                        <td style="padding: var(--space-8);">NIST AI RMF</td>
+                        <td style="padding: var(--space-8); text-align: center;"><span
+                                class="status-badge status-ongoing">⊙ Aligned</span></td>
+                        <td style="padding: var(--space-8);">Govern, Map, Measure, Manage functions integrated across
+                            PALO lifecycle.</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: var(--space-8);">GDPR & Privacy Laws</td>
+                        <td style="padding: var(--space-8); text-align: center;"><span
+                                class="status-badge status-approved">✓ Full</span></td>
+                        <td style="padding: var(--space-8);">Privacy dimension assessed in Phase 1, detailed in Phase 2,
+                            monitored Phases 4-5.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        // Data persistence
+        const data = {};
+        let currentPhase = 1;
+
+        // Load data - now starts fresh on each page load (no localStorage caching)
+        function loadData() {
+            // Clear any cached data from previous sessions
+            localStorage.removeItem('paloCanvasData');
+            // Start with empty form
+            Object.keys(data).forEach(key => delete data[key]);
+        }
+
+        // Save data to memory only (not to localStorage)
+        function saveData() {
+            const formElements = document.querySelectorAll('[data-field]');
+            formElements.forEach(el => {
+                if (el.type === 'checkbox') {
+                    data[el.id] = el.checked;
+                } else {
+                    data[el.id] = el.value;
+                }
+            });
+            // Data is kept in memory only, not persisted to localStorage
+        }
+
+        // Populate form from data
+        function populateForm() {
+            Object.keys(data).forEach(key => {
+                const el = document.getElementById(key);
+                if (el) {
+                    if (el.type === 'checkbox') {
+                        el.checked = data[key];
+                    } else {
+                        el.value = data[key];
+                    }
+                }
+            });
+        }
+
+        // Auto-save on input
+        document.addEventListener('input', saveData);
+        document.addEventListener('change', saveData);
+
+        // Phase selector
+        document.querySelectorAll('.phase-selector button').forEach(btn => {
+            btn.addEventListener('click', function () {
+                document.querySelectorAll('.phase-selector button').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                currentPhase = parseInt(this.dataset.phase);
+                updatePhaseContext();
+            });
+        });
+
+        function updatePhaseContext() {
+            const phaseGuidance = {
+                1: 'Phase 1: Ideation & Ethical Screening - Initial concept evaluation',
+                2: 'Phase 2: Comprehensive Assessment & Planning - Deep risk and impact analysis',
+                3: 'Phase 3: Responsible Development - Build with ethics embedded',
+                4: 'Phase 4: Ethical Deployment - Monitor and respond',
+                5: 'Phase 5: Continuous Improvement - Audit, update, and decommission'
+            };
+            console.log(phaseGuidance[currentPhase]);
+        }
+
+        // Risk tier indicator
+        document.getElementById('riskTier').addEventListener('change', function () {
+            const indicator = document.getElementById('riskIndicator');
+            const value = this.value;
+            let html = '';
+            if (value === 'minimal') html = '<div class="risk-indicator risk-minimal">✓ MINIMAL RISK</div>';
+            else if (value === 'limited') html = '<div class="risk-indicator risk-limited">⚠ LIMITED RISK</div>';
+            else if (value === 'high') html = '<div class="risk-indicator risk-high">⛔ HIGH RISK - Phase 2 Required</div>';
+            indicator.innerHTML = html;
+            saveData();
+        });
+
+        // Export JSON - Enhanced with KPIs and scores
+        function exportData() {
+            // Collect all KPI values
+            const kpiData = {};
+            document.querySelectorAll('[data-kpi]').forEach(el => {
+                kpiData[el.id] = el.value ? parseFloat(el.value) : null;
+            });
+
+            // Collect ethical principles
+            const principles = {};
+            for (let i = 1; i <= 7; i++) {
+                const el = document.getElementById('principle' + i);
+                principles['principle' + i] = el ? el.checked : false;
+            }
+
+            // Calculate current scores
+            const scores = getCurrentScores();
+
+            // Configuration
+            const config = {
+                riskTier: document.getElementById('riskTier')?.value || '',
+                useCaseCategory: document.getElementById('useCaseCategory')?.value || '',
+                gateDecision: document.getElementById('gateDecision')?.value || ''
+            };
+
+            const exportPayload = {
+                metadata: {
+                    version: '1.0',
+                    timestamp: new Date().toISOString(),
+                    phase: currentPhase,
+                    projectName: data.projectName || 'Unnamed Project'
+                },
+                configuration: config,
+                canvas: data,
+                kpis: kpiData,
+                principles: principles,
+                scores: scores
+            };
+
+            const dataStr = JSON.stringify(exportPayload, null, 2);
+            const dataBlob = new Blob([dataStr], { type: 'application/json' });
+            const url = URL.createObjectURL(dataBlob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `palo-canvas-${new Date().toISOString().slice(0, 10)}.json`;
+            link.click();
+        }
+
+        // Get current calculated scores
+        function getCurrentScores() {
+            return {
+                dimensions: {
+                    dataGovernance: parseInt(document.getElementById('dataGovernanceScore')?.textContent) || 0,
+                    transparency: parseInt(document.getElementById('transparencyScore')?.textContent) || 0,
+                    humanAgency: parseInt(document.getElementById('humanAgencyScore')?.textContent) || 0,
+                    fairness: parseInt(document.getElementById('fairnessScore')?.textContent) || 0,
+                    environment: parseInt(document.getElementById('environmentScore')?.textContent) || 0
+                },
+                frameworks: {
+                    iso42001: parseInt(document.getElementById('iso42001Score')?.textContent) || 0,
+                    iso42005: parseInt(document.getElementById('iso42005Score')?.textContent) || 0,
+                    oecd: parseInt(document.getElementById('oecdScore')?.textContent) || 0,
+                    euAIAct: parseInt(document.getElementById('euAIActScore')?.textContent) || 0
+                },
+                overall: parseInt(document.getElementById('overallScoreValue')?.textContent) || 0
+            };
+        }
+
+        // Generate Report - Enhanced with KPIs and scores
+        function generateReport() {
+            const scores = getCurrentScores();
+            const config = {
+                riskTier: document.getElementById('riskTier')?.value || 'Not set',
+                useCaseCategory: document.getElementById('useCaseCategory')?.value || 'Not set',
+                gateDecision: document.getElementById('gateDecision')?.value || 'Not set'
+            };
+
+            let report = '# PALO AI Business Model Canvas Report\n\n';
+            report += `**Generated:** ${new Date().toLocaleString()}\n\n`;
+            report += `**Project:** ${data.projectName || 'Unnamed Project'}\n\n`;
+            report += `**Current Phase:** ${currentPhase}\n\n`;
+            report += '---\n\n';
+
+            // Configuration
+            report += '## Configuration\n\n';
+            report += `- **Risk Tier:** ${config.riskTier}\n`;
+            report += `- **Use Case Category:** ${config.useCaseCategory}\n`;
+            report += `- **Gate Decision:** ${config.gateDecision}\n\n`;
+
+            // Scores Summary
+            report += '## PALO Dimension Scores\n\n';
+            report += `| Dimension | Score |\n|-----------|-------|\n`;
+            report += `| Data Governance & Privacy | ${scores.dimensions.dataGovernance}% |\n`;
+            report += `| Transparency & Safety | ${scores.dimensions.transparency}% |\n`;
+            report += `| Human Agency & Oversight | ${scores.dimensions.humanAgency}% |\n`;
+            report += `| Fairness & Accountability | ${scores.dimensions.fairness}% |\n`;
+            report += `| Environmental Sustainability | ${scores.dimensions.environment}% |\n\n`;
+
+            report += '## Framework Alignment\n\n';
+            report += `| Framework | Score |\n|-----------|-------|\n`;
+            report += `| ISO 42001 | ${scores.frameworks.iso42001}% |\n`;
+            report += `| ISO 42005 | ${scores.frameworks.iso42005}% |\n`;
+            report += `| OECD AI Principles | ${scores.frameworks.oecd}% |\n`;
+            report += `| EU AI Act Readiness | ${scores.frameworks.euAIAct}% |\n\n`;
+
+            // KPIs
+            report += '## KPI Values\n\n';
+            report += '### Technical KPIs\n';
+            const kpiF1 = document.getElementById('kpiF1')?.value || 'N/A';
+            const kpiDrift = document.getElementById('kpiDrift')?.value || 'N/A';
+            const kpiUptime = document.getElementById('kpiUptime')?.value || 'N/A';
+            const kpiAdversarial = document.getElementById('kpiAdversarial')?.value || 'N/A';
+            report += `- F1-Score: ${kpiF1}%\n`;
+            report += `- Model Drift Rate: ${kpiDrift}%\n`;
+            report += `- System Uptime: ${kpiUptime}%\n`;
+            report += `- Adversarial Resilience: ${kpiAdversarial}%\n\n`;
+
+            report += '### Ethical KPIs\n';
+            const kpiFairness = document.getElementById('kpiFairness')?.value || 'N/A';
+            const kpiPrivacy = document.getElementById('kpiPrivacy')?.value || 'N/A';
+            const kpiEnergy = document.getElementById('kpiEnergy')?.value || 'N/A';
+            report += `- Fairness Score: ${kpiFairness}\n`;
+            report += `- Privacy Incidents: ${kpiPrivacy}\n`;
+            report += `- Energy per Query: ${kpiEnergy} Wh\n\n`;
+
+            // Canvas Data
+            report += '---\n\n## Canvas Details\n\n';
+            Object.keys(data).forEach(key => {
+                if (data[key] && typeof data[key] === 'string' && data[key].length > 0) {
+                    report += `### ${key}\n${data[key]}\n\n`;
+                }
+            });
+
+            const reportBlob = new Blob([report], { type: 'text/markdown' });
+            const url = URL.createObjectURL(reportBlob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `palo-report-${new Date().toISOString().slice(0, 10)}.md`;
+            link.click();
+        }
+
+        // Download empty template for offline completion
+        function downloadTemplate() {
+            const template = {
+                _instructions: {
+                    description: "PALO AI Business Model Canvas - Offline Template",
+                    howToUse: [
+                        "1. Fill in the fields below with your AI project details",
+                        "2. Save this file with your changes",
+                        "3. Go to the PALO Model Canvas online tool",
+                        "4. Click '📂 Import JSON' to load your data",
+                        "5. Review and adjust scores, then export for analysis"
+                    ],
+                    tips: [
+                        "Use descriptive text in canvas fields for higher scores",
+                        "Fields with 50+ characters get maximum credit",
+                        "Check applicable ethical principles",
+                        "Fill KPI values to track performance metrics"
+                    ]
+                },
+                metadata: {
+                    version: "1.0",
+                    timestamp: new Date().toISOString(),
+                    phase: 1,
+                    projectName: "Your Project Name"
+                },
+                configuration: {
+                    riskTier: "",
+                    useCaseCategory: "",
+                    gateDecision: "",
+                    _options: {
+                        riskTier: ["minimal", "limited", "high", "unacceptable"],
+                        useCaseCategory: ["hiring", "lending", "healthcare", "content", "recommendation", "autonomous", "monitoring", "education", "other"],
+                        gateDecision: ["go", "conditional", "nogo"]
+                    }
+                },
+                canvas: {
+                    projectName: "",
+                    strategicAlignment: "",
+                    problemStatement: "",
+                    selectedWorkflow: "",
+                    dataGovernance: "",
+                    modelTransparency: "",
+                    valueProposition: "",
+                    securityEnvironment: "",
+                    endUsers: "",
+                    governanceRoles: "",
+                    redFlags: "",
+                    compliance: "",
+                    stakeholders: "",
+                    costSustainability: "",
+                    decisionRationale: ""
+                },
+                kpis: {
+                    _description: "Fill numeric values. Leave null if not applicable.",
+                    kpiF1: null,
+                    kpiDrift: null,
+                    kpiUptime: null,
+                    kpiAdversarial: null,
+                    kpiROI: null,
+                    kpiAdoption: null,
+                    kpiCSAT: null,
+                    kpiCostSavings: null,
+                    kpiFairness: null,
+                    kpiExplainability: null,
+                    kpiPrivacy: null,
+                    kpiEnergy: null
+                },
+                principles: {
+                    _description: "Set to true if your AI system addresses this principle",
+                    principle1_fairness: false,
+                    principle2_transparency: false,
+                    principle3_accountability: false,
+                    principle4_privacy: false,
+                    principle5_safety: false,
+                    principle6_humanAgency: false,
+                    principle7_societalWellbeing: false
+                }
+            };
+
+            const dataStr = JSON.stringify(template, null, 2);
+            const dataBlob = new Blob([dataStr], { type: 'application/json' });
+            const url = URL.createObjectURL(dataBlob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `palo-canvas-template.json`;
+            link.click();
+        }
+
+        // Import JSON data from file
+        function importData(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                try {
+                    const imported = JSON.parse(e.target.result);
+
+                    // Confirm import
+                    if (!confirm('Import will replace all current data. Continue?')) {
+                        event.target.value = '';
+                        return;
+                    }
+
+                    // Import canvas data
+                    if (imported.canvas) {
+                        Object.keys(imported.canvas).forEach(key => {
+                            const el = document.querySelector(`[data-field="${key}"]`);
+                            if (el) {
+                                el.value = imported.canvas[key] || '';
+                                data[key] = imported.canvas[key] || '';
+                            }
+                        });
+                    }
+
+                    // Import configuration
+                    if (imported.configuration) {
+                        if (imported.configuration.riskTier) {
+                            document.getElementById('riskTier').value = imported.configuration.riskTier;
+                            data.riskTier = imported.configuration.riskTier;
+                        }
+                        if (imported.configuration.useCaseCategory) {
+                            document.getElementById('useCaseCategory').value = imported.configuration.useCaseCategory;
+                            data.useCaseCategory = imported.configuration.useCaseCategory;
+                        }
+                        if (imported.configuration.gateDecision) {
+                            document.getElementById('gateDecision').value = imported.configuration.gateDecision;
+                            data.gateDecision = imported.configuration.gateDecision;
+                        }
+                    }
+
+                    // Import KPIs
+                    if (imported.kpis) {
+                        Object.keys(imported.kpis).forEach(key => {
+                            if (key.startsWith('_')) return; // Skip instructions
+                            const el = document.getElementById(key);
+                            if (el && imported.kpis[key] !== null) {
+                                el.value = imported.kpis[key];
+                            }
+                        });
+                    }
+
+                    // Import principles
+                    if (imported.principles) {
+                        // Handle both old and new format
+                        for (let i = 1; i <= 7; i++) {
+                            const el = document.getElementById('principle' + i);
+                            if (el) {
+                                // Try new format first (principle1_fairness)
+                                const newKey = Object.keys(imported.principles).find(k => k.startsWith('principle' + i));
+                                // Or old format (principle1: true)
+                                const oldKey = 'principle' + i;
+
+                                if (newKey && imported.principles[newKey] === true) {
+                                    el.checked = true;
+                                } else if (imported.principles[oldKey] === true) {
+                                    el.checked = true;
+                                } else {
+                                    el.checked = false;
+                                }
+                            }
+                        }
+                    }
+
+                    // Import phase
+                    if (imported.metadata?.phase) {
+                        currentPhase = imported.metadata.phase;
+                        document.querySelectorAll('.phase-selector button').forEach(btn => {
+                            btn.classList.toggle('active', parseInt(btn.dataset.phase) === currentPhase);
+                        });
+                        updatePhaseContext();
+                    }
+
+                    // Save to localStorage and recalculate
+                    saveData();
+                    calculateRiskAssessment();
+                    updateUseCaseInsights();
+
+                    alert('✅ Data imported successfully!');
+                } catch (err) {
+                    alert('❌ Error importing file: ' + err.message);
+                }
+
+                // Reset file input
+                event.target.value = '';
+            };
+            reader.readAsText(file);
+        }
+
+        // Reset
+        function resetForm() {
+            if (confirm('Reset all data? This cannot be undone.')) {
+                // Clear all text fields and checkboxes (expert mode)
+                document.querySelectorAll('[data-field]').forEach(el => {
+                    if (el.type === 'checkbox') el.checked = false;
+                    else el.value = '';
+                });
+                // Clear all KPI inputs
+                document.querySelectorAll('[data-kpi]').forEach(el => {
+                    el.value = '';
+                });
+                // Clear select elements
+                document.querySelectorAll('select').forEach(el => {
+                    el.selectedIndex = 0;
+                });
+
+                // Clear wizard mode fields
+                document.querySelectorAll('[data-wizard-field]').forEach(el => {
+                    el.value = '';
+                });
+                document.querySelectorAll('[data-wizard-kpi]').forEach(el => {
+                    el.value = '';
+                });
+                document.querySelectorAll('[data-wizard-config]').forEach(el => {
+                    el.selectedIndex = 0;
+                });
+                document.querySelectorAll('[data-wizard-principle]').forEach(el => {
+                    el.checked = false;
+                });
+
+                // Reset wizard to step 1
+                currentWizardStep = 1;
+                goToWizardStep(1);
+
+                // Clear localStorage and data object
+                localStorage.removeItem('paloCanvasData');
+                Object.keys(data).forEach(key => delete data[key]);
+
+                // Recalculate scores (should all be 0 now)
+                calculateRiskAssessment();
+                updateUseCaseInsights();
+            }
+        }
+
+        // PALO Modal
+        function showPALOGuidance() {
+            document.getElementById('paloModal').classList.add('open');
+        }
+
+        function closePALOModal() {
+            document.getElementById('paloModal').classList.remove('open');
+        }
+
+        // Compliance Modal
+        function showComplianceMatrix() {
+            document.getElementById('complianceModal').classList.add('open');
+        }
+
+        function closeComplianceModal() {
+            document.getElementById('complianceModal').classList.remove('open');
+        }
+
+        // Tab switching
+        function switchTab(e, tabName) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            e.target.classList.add('active');
+            document.getElementById(tabName).classList.add('active');
+        }
+
+        // Close modals on outside click
+        window.addEventListener('click', function (e) {
+            const paloModal = document.getElementById('paloModal');
+            const complianceModal = document.getElementById('complianceModal');
+            if (e.target === paloModal) paloModal.classList.remove('open');
+            if (e.target === complianceModal) complianceModal.classList.remove('open');
+        });
+
+        // ===== USE CASE CATEGORY INSIGHTS =====
+        const useCaseInsightsData = {
+            hiring: {
+                riskLevel: 'high',
+                title: '🔴 High-Risk AI (EU AI Act)',
+                alerts: [
+                    '⚠️ EU AI Act: Classified as HIGH-RISK system',
+                    '⚠️ GDPR Art. 22: Automated decision-making restrictions',
+                    '⚠️ High bias risk: Gender, age, ethnicity discrimination'
+                ],
+                requirements: [
+                    'Mandatory human oversight for final decisions',
+                    'Bias testing across protected groups',
+                    'Transparent criteria disclosure to candidates',
+                    'Right to explanation of automated decisions'
+                ],
+                standards: ['ISO 42001', 'ISO 42005', 'EU AI Act Annex III']
+            },
+            lending: {
+                riskLevel: 'high',
+                title: '🔴 High-Risk AI (EU AI Act)',
+                alerts: [
+                    '⚠️ EU AI Act: Classified as HIGH-RISK for creditworthiness',
+                    '⚠️ Fair Lending Laws: Equal Credit Opportunity Act',
+                    '⚠️ Discrimination risk: Race, income, geography'
+                ],
+                requirements: [
+                    'Explainable credit decisions',
+                    'Adverse action notices with reasons',
+                    'Regular fair lending audits',
+                    'Alternative data source validation'
+                ],
+                standards: ['ISO 42001', 'ECOA', 'EU AI Act Annex III', 'GDPR']
+            },
+            healthcare: {
+                riskLevel: 'high',
+                title: '🔴 High-Risk AI (Medical Device)',
+                alerts: [
+                    '⚠️ EU AI Act: HIGH-RISK for medical diagnostics',
+                    '⚠️ MDR/IVDR: May require CE marking as medical device',
+                    '⚠️ Patient safety: Critical accuracy requirements'
+                ],
+                requirements: [
+                    'Clinical validation studies',
+                    'FDA/CE certification if diagnostic',
+                    'Explainability for healthcare providers',
+                    'Audit trail for all predictions',
+                    'Human-in-the-loop for critical decisions'
+                ],
+                standards: ['ISO 42001', 'MDR 2017/745', 'FDA AI/ML Guidance', 'HIPAA']
+            },
+            content: {
+                riskLevel: 'limited',
+                title: '🟡 Limited Risk (Transparency Required)',
+                alerts: [
+                    '⚠️ EU AI Act: Transparency obligations apply',
+                    '⚠️ Deepfake disclosure requirements',
+                    '⚠️ Copyright and IP infringement risks'
+                ],
+                requirements: [
+                    'Label AI-generated content clearly',
+                    'Disclose AI involvement to users',
+                    'Content moderation for harmful outputs',
+                    'Training data provenance documentation'
+                ],
+                standards: ['EU AI Act Art. 50', 'DSA', 'Copyright Directive']
+            },
+            recommendation: {
+                riskLevel: 'limited',
+                title: '🟡 Limited Risk (DSA Obligations)',
+                alerts: [
+                    '⚠️ Digital Services Act: Recommender transparency',
+                    '⚠️ Filter bubble and polarization concerns',
+                    '⚠️ User manipulation and dark patterns'
+                ],
+                requirements: [
+                    'Explain recommendation criteria to users',
+                    'Offer non-profiled alternative options',
+                    'Track amplification of harmful content',
+                    'Regular algorithmic audits for VLOPs'
+                ],
+                standards: ['DSA Art. 27', 'EU AI Act', 'P2B Regulation']
+            },
+            autonomous: {
+                riskLevel: 'high',
+                title: '🔴 High-Risk AI (Safety-Critical)',
+                alerts: [
+                    '⚠️ EU AI Act: HIGH-RISK for safety components',
+                    '⚠️ Product liability implications',
+                    '⚠️ Critical safety and reliability requirements'
+                ],
+                requirements: [
+                    'Extensive safety validation and testing',
+                    'Fail-safe mechanisms and redundancy',
+                    'Real-time monitoring and logging',
+                    'Clear liability assignment',
+                    'Human override capabilities'
+                ],
+                standards: ['ISO 42001', 'ISO 26262', 'EU AI Act Annex III', 'Machinery Directive']
+            },
+            monitoring: {
+                riskLevel: 'high',
+                title: '🔴 High-Risk / Potentially Prohibited',
+                alerts: [
+                    '🚫 EU AI Act: Some uses PROHIBITED (social scoring, real-time biometric ID)',
+                    '⚠️ GDPR: Special categories data processing',
+                    '⚠️ Fundamental rights: Privacy, non-discrimination'
+                ],
+                requirements: [
+                    'Legal basis assessment (GDPR Art. 6 & 9)',
+                    'Data Protection Impact Assessment mandatory',
+                    'Proportionality and necessity analysis',
+                    'Strict access controls and retention limits'
+                ],
+                standards: ['EU AI Act Art. 5', 'GDPR', 'LED', 'ECHR']
+            },
+            education: {
+                riskLevel: 'high',
+                title: '🔴 High-Risk AI (EU AI Act)',
+                alerts: [
+                    '⚠️ EU AI Act: HIGH-RISK for educational access',
+                    '⚠️ Bias in grading affects life opportunities',
+                    '⚠️ Children data: Enhanced protection required'
+                ],
+                requirements: [
+                    'Human review of consequential decisions',
+                    'Bias testing for demographic groups',
+                    'Parental consent for minors',
+                    'Appeal mechanisms for affected students'
+                ],
+                standards: ['ISO 42001', 'EU AI Act Annex III', 'GDPR Art. 8', 'COPPA']
+            },
+            other: {
+                riskLevel: 'minimal',
+                title: '🟢 Risk Assessment Required',
+                alerts: [
+                    'ℹ️ Conduct specific risk assessment for your use case',
+                    'ℹ️ Consider if it falls under EU AI Act Annex III'
+                ],
+                requirements: [
+                    'Document the specific use case',
+                    'Assess potential harms and affected groups',
+                    'Determine applicable regulations',
+                    'Apply proportionate governance measures'
+                ],
+                standards: ['ISO 42001', 'OECD AI Principles']
+            }
+        };
+
+        function updateUseCaseInsights() {
+            const category = document.getElementById('useCaseCategory').value;
+            const insightsEl = document.getElementById('useCaseInsights');
+
+            if (!category || !useCaseInsightsData[category]) {
+                insightsEl.style.display = 'none';
+                return;
+            }
+
+            const data = useCaseInsightsData[category];
+            const bgColor = data.riskLevel === 'high' ? 'rgba(192, 21, 47, 0.08)' :
+                data.riskLevel === 'limited' ? 'rgba(245, 158, 11, 0.08)' :
+                    'rgba(16, 185, 129, 0.08)';
+            const borderColor = data.riskLevel === 'high' ? 'var(--color-error)' :
+                data.riskLevel === 'limited' ? 'var(--color-warning)' :
+                    'var(--color-success)';
+
+            insightsEl.innerHTML = `
+                <div style="background: ${bgColor}; border-left: 3px solid ${borderColor}; padding: 10px; border-radius: 4px; font-size: 11px;">
+                    <div style="font-weight: 600; margin-bottom: 6px;">${data.title}</div>
+                    <div style="margin-bottom: 8px;">
+                        ${data.alerts.map(a => `<div style="margin: 2px 0;">${a}</div>`).join('')}
+                    </div>
+                    <div style="font-weight: 600; margin-bottom: 4px;">📋 Key Requirements:</div>
+                    <ul style="margin: 0; padding-left: 16px; color: var(--color-text-secondary);">
+                        ${data.requirements.map(r => `<li style="margin: 2px 0;">${r}</li>`).join('')}
+                    </ul>
+                    <div style="margin-top: 8px; font-size: 10px; color: var(--color-text-secondary);">
+                        <strong>Standards:</strong> ${data.standards.join(', ')}
+                    </div>
+                </div>
+            `;
+            insightsEl.style.display = 'block';
+        }
+
+        // Add event listener for use case category
+        document.getElementById('useCaseCategory').addEventListener('change', function () {
+            updateUseCaseInsights();
+            saveData();
+        });
+
+        // ===== DYNAMIC RISK ASSESSMENT =====
+        function calculateRiskAssessment() {
+            const textFields = [
+                'projectName', 'strategicAlignment', 'problemStatement', 'selectedWorkflow',
+                'dataGovernance', 'modelTransparency', 'valueProposition', 'securityEnvironment',
+                'endUsers', 'governanceRoles', 'redFlags', 'compliance', 'stakeholders', 'costSustainability'
+            ];
+
+            const kpiFields = [
+                { id: 'kpiF1', target: 90, weight: 1 },
+                { id: 'kpiDrift', target: 5, inverted: true, weight: 1 },
+                { id: 'kpiUptime', target: 99.9, weight: 0.5 },
+                { id: 'kpiAdversarial', target: 99, weight: 0.5 },
+                { id: 'kpiROI', target: 20, weight: 0.5 },
+                { id: 'kpiAdoption', target: 70, weight: 0.5 },
+                { id: 'kpiCSAT', target: 85, weight: 0.5 },
+                { id: 'kpiFairness', target: 0.95, weight: 2 },
+                { id: 'kpiExplainability', target: 4, weight: 1 },
+                { id: 'kpiPrivacy', target: 0, inverted: true, isZeroGood: true, weight: 2 }
+            ];
+
+            const principleCheckboxes = [
+                'principle1', 'principle2', 'principle3', 'principle4',
+                'principle5', 'principle6', 'principle7'
+            ];
+
+            // Calculate text field completion (50 chars = meaningful content)
+            let filledFields = 0;
+            let totalFields = textFields.length;
+            textFields.forEach(id => {
+                const el = document.getElementById(id);
+                if (el && el.value && el.value.trim().length >= 30) filledFields++;
+            });
+            const textCompletion = (filledFields / totalFields) * 100;
+
+            // Calculate KPI scores
+            let kpiScore = 0;
+            let kpiWeight = 0;
+            let kpisFilled = 0;
+            kpiFields.forEach(kpi => {
+                const el = document.getElementById(kpi.id);
+                if (el && el.value !== '') {
+                    kpisFilled++;
+                    const val = parseFloat(el.value);
+                    let score = 0;
+                    if (kpi.isZeroGood) {
+                        score = val === 0 ? 100 : Math.max(0, 100 - (val * 20));
+                    } else if (kpi.inverted) {
+                        score = val <= kpi.target ? 100 : Math.max(0, 100 - ((val - kpi.target) * 10));
+                    } else {
+                        score = val >= kpi.target ? 100 : (val / kpi.target) * 100;
+                    }
+                    kpiScore += Math.min(100, score) * kpi.weight;
+                    kpiWeight += kpi.weight;
+                }
+            });
+            const kpiCompletion = kpiWeight > 0 ? kpiScore / kpiWeight : 0;
+
+            // Calculate principles coverage
+            let principlesChecked = 0;
+            principleCheckboxes.forEach(id => {
+                const el = document.getElementById(id);
+                if (el && el.checked) principlesChecked++;
+            });
+            const principleScore = (principlesChecked / principleCheckboxes.length) * 100;
+
+            // Check configuration settings
+            const riskTier = document.getElementById('riskTier')?.value || '';
+            const useCaseCategory = document.getElementById('useCaseCategory')?.value || '';
+            const gateDecision = document.getElementById('gateDecision')?.value || '';
+
+            let configScore = 0;
+            if (riskTier) configScore += 33;
+            if (useCaseCategory) configScore += 33;
+            if (gateDecision) configScore += 34;
+
+            // Calculate dimension scores with expanded field mappings
+            const dataGovernanceScore = calculateDimensionScore(
+                ['dataGovernance', 'compliance', 'projectName'],
+                ['principle4'],
+                kpiFields.filter(k => k.id === 'kpiPrivacy')
+            );
+            const transparencyScore = calculateDimensionScore(
+                ['modelTransparency', 'valueProposition'],
+                ['principle2', 'principle5'],
+                kpiFields.filter(k => ['kpiF1', 'kpiDrift', 'kpiAdversarial'].includes(k.id))
+            );
+            const humanAgencyScore = calculateDimensionScore(
+                ['selectedWorkflow', 'endUsers', 'governanceRoles'],
+                ['principle6'],
+                []
+            );
+            const fairnessScore = calculateDimensionScore(
+                ['redFlags', 'governanceRoles', 'strategicAlignment'],
+                ['principle1', 'principle3'],
+                kpiFields.filter(k => k.id === 'kpiFairness')
+            );
+            const environmentScore = calculateDimensionScore(
+                ['securityEnvironment', 'costSustainability', 'problemStatement'],
+                ['principle7'],
+                kpiFields.filter(k => k.id === 'kpiEnergy')
+            );
+
+            // Calculate framework alignment - ensure they start at 0
+            // ISO 42001: weighted average of text completion, principles, and config (all components must exist)
+            const hasAnyInput = textCompletion > 0 || principleScore > 0 || configScore > 0;
+            const iso42001Score = hasAnyInput ? Math.round((textCompletion * 0.4 + principleScore * 0.3 + configScore * 0.3)) : 0;
+
+            // ISO 42005: average of related dimension scores (only if dimensions have scores)
+            const iso42005Score = Math.round((dataGovernanceScore + fairnessScore + humanAgencyScore) / 3);
+
+            // OECD: principles-driven (requires principles checked)
+            const oecdScore = Math.round(principleScore * 0.7 + (kpiCompletion * 0.3));
+
+            // EU AI Act: requires Risk Tier to be selected to activate
+            const euAIActScore = riskTier
+                ? Math.round((configScore * 0.3 + dataGovernanceScore * 0.3 + transparencyScore * 0.2 + humanAgencyScore * 0.2))
+                : 0;
+
+            // Calculate overall score (only meaningful if there's input)
+            const overallCompletion = Math.round((textCompletion + (kpisFilled > 0 ? 20 : 0) + (principlesChecked > 0 ? 20 : 0) + configScore * 0.4) / 2);
+            const overallScore = hasAnyInput ? Math.round((dataGovernanceScore + transparencyScore + humanAgencyScore + fairnessScore + environmentScore) / 5) : 0;
+
+            // Update UI
+            updateProgressBar('dataGovernanceBar', 'dataGovernanceScore', dataGovernanceScore);
+            updateProgressBar('transparencyBar', 'transparencyScore', transparencyScore);
+            updateProgressBar('humanAgencyBar', 'humanAgencyScore', humanAgencyScore);
+            updateProgressBar('fairnessBar', 'fairnessScore', fairnessScore);
+            updateProgressBar('environmentBar', 'environmentScore', environmentScore);
+
+            updateProgressBar('iso42001Bar', 'iso42001Score', iso42001Score);
+            updateProgressBar('iso42005Bar', 'iso42005Score', iso42005Score);
+            updateProgressBar('oecdBar', 'oecdScore', oecdScore);
+            updateProgressBar('euAIActBar', 'euAIActScore', euAIActScore);
+
+            // Update overall score and risk indicator
+            const scoreEl = document.getElementById('overallScoreValue');
+            const badgeEl = document.getElementById('completionBadge');
+            const indicatorEl = document.getElementById('overallRiskIndicator');
+
+            if (overallCompletion < 20) {
+                scoreEl.textContent = '--';
+                indicatorEl.innerHTML = `
+                    <div style="font-size: 32px; margin-bottom: var(--space-8);">⚪</div>
+                    <div style="font-size: 14px; font-weight: 600; color: var(--color-text);">INCOMPLETE</div>
+                    <div style="font-size: 11px; color: var(--color-text-secondary); margin-top: 4px;">Fill in more fields to calculate risk</div>
+                `;
+                indicatorEl.style.background = 'var(--color-background)';
+                indicatorEl.style.border = '2px dashed var(--color-border)';
+            } else {
+                scoreEl.textContent = overallScore + '%';
+                if (overallScore >= 80) {
+                    indicatorEl.innerHTML = `
+                        <div style="font-size: 32px; margin-bottom: var(--space-8);">🟢</div>
+                        <div style="font-size: 14px; font-weight: 600; color: var(--color-success);">LOW RISK</div>
+                        <div style="font-size: 11px; color: var(--color-text-secondary); margin-top: 4px;">Well-aligned with PALO principles</div>
+                    `;
+                    indicatorEl.style.background = 'rgba(32, 128, 129, 0.1)';
+                    indicatorEl.style.border = '2px solid var(--color-success)';
+                } else if (overallScore >= 50) {
+                    indicatorEl.innerHTML = `
+                        <div style="font-size: 32px; margin-bottom: var(--space-8);">🟡</div>
+                        <div style="font-size: 14px; font-weight: 600; color: var(--color-warning);">MEDIUM RISK</div>
+                        <div style="font-size: 11px; color: var(--color-text-secondary); margin-top: 4px;">Some areas need improvement</div>
+                    `;
+                    indicatorEl.style.background = 'rgba(168, 75, 47, 0.1)';
+                    indicatorEl.style.border = '2px solid var(--color-warning)';
+                } else {
+                    indicatorEl.innerHTML = `
+                        <div style="font-size: 32px; margin-bottom: var(--space-8);">🔴</div>
+                        <div style="font-size: 14px; font-weight: 600; color: var(--color-error);">HIGH RISK</div>
+                        <div style="font-size: 11px; color: var(--color-text-secondary); margin-top: 4px;">Significant gaps require attention</div>
+                    `;
+                    indicatorEl.style.background = 'rgba(192, 21, 47, 0.1)';
+                    indicatorEl.style.border = '2px solid var(--color-error)';
+                }
+            }
+
+            badgeEl.textContent = overallCompletion + '% Complete';
+
+            // Update recommendations
+            updateRecommendations(dataGovernanceScore, transparencyScore, humanAgencyScore, fairnessScore, environmentScore, principlesChecked, riskTier);
+
+            // Update KPI status indicators
+            updateKPIStatuses();
+        }
+
+        // Update KPI visual status indicators
+        function updateKPIStatuses() {
+            const kpiTargets = {
+                kpiF1: { target: 90, type: 'higher', close: 80 },
+                kpiDrift: { target: 5, type: 'lower', close: 10 },
+                kpiUptime: { target: 99.9, type: 'higher', close: 99 },
+                kpiAdversarial: { target: 99, type: 'higher', close: 95 },
+                kpiROI: { target: 20, type: 'higher', close: 10 },
+                kpiAdoption: { target: 70, type: 'higher', close: 50 },
+                kpiCSAT: { target: 85, type: 'higher', close: 70 },
+                kpiFairness: { target: 0.95, type: 'higher', close: 0.85 },
+                kpiExplainability: { target: 4, type: 'higher', close: 3 },
+                kpiPrivacy: { target: 0, type: 'zero', close: 2 },
+                kpiEnergy: { target: 0.1, type: 'lower', close: 0.5 }
+            };
+
+            Object.keys(kpiTargets).forEach(kpiId => {
+                const input = document.getElementById(kpiId);
+                const statusEl = document.getElementById(kpiId + 'Status');
+                const cardEl = document.getElementById(kpiId + 'Card');
+
+                if (!input || !statusEl || !cardEl) return;
+
+                // Clear existing classes
+                cardEl.classList.remove('on-target', 'close-target', 'off-target');
+
+                if (input.value === '') {
+                    statusEl.textContent = '';
+                    return;
+                }
+
+                const value = parseFloat(input.value);
+                const config = kpiTargets[kpiId];
+                let status = 'off-target';
+                let icon = '🔴';
+
+                if (config.type === 'higher') {
+                    if (value >= config.target) {
+                        status = 'on-target';
+                        icon = '🟢';
+                    } else if (value >= config.close) {
+                        status = 'close-target';
+                        icon = '🟡';
+                    }
+                } else if (config.type === 'lower') {
+                    if (value <= config.target) {
+                        status = 'on-target';
+                        icon = '🟢';
+                    } else if (value <= config.close) {
+                        status = 'close-target';
+                        icon = '🟡';
+                    }
+                } else if (config.type === 'zero') {
+                    if (value === 0) {
+                        status = 'on-target';
+                        icon = '🟢';
+                    } else if (value <= config.close) {
+                        status = 'close-target';
+                        icon = '🟡';
+                    }
+                }
+
+                statusEl.textContent = icon;
+                cardEl.classList.add(status);
+            });
+        }
+
+        function calculateDimensionScore(textFieldIds, principleIds, kpiConfigs) {
+            let totalScore = 0;
+            let componentsEvaluated = 0;
+
+            // Text fields contribute up to 60 points (primary driver)
+            if (textFieldIds.length > 0) {
+                let textScore = 0;
+                textFieldIds.forEach(id => {
+                    const el = document.getElementById(id);
+                    if (el && el.value) {
+                        const len = el.value.trim().length;
+                        if (len >= 50) {
+                            textScore += 100; // Comprehensive content
+                        } else if (len >= 20) {
+                            textScore += 70; // Good content
+                        } else if (len > 0) {
+                            textScore += 40; // Some content
+                        }
+                    }
+                });
+                totalScore += (textScore / textFieldIds.length) * 0.6;
+                componentsEvaluated++;
+            }
+
+            // Principles contribute up to 30 points
+            if (principleIds.length > 0) {
+                let principleScore = 0;
+                principleIds.forEach(id => {
+                    const el = document.getElementById(id);
+                    if (el && el.checked) {
+                        principleScore += 100;
+                    }
+                });
+                totalScore += (principleScore / principleIds.length) * 0.3;
+                componentsEvaluated++;
+            }
+
+            // KPIs contribute up to 10 points (bonus)
+            if (kpiConfigs.length > 0) {
+                let kpiScore = 0;
+                let kpisWithValues = 0;
+                kpiConfigs.forEach(kpi => {
+                    const el = document.getElementById(kpi.id);
+                    if (el && el.value !== '') {
+                        kpisWithValues++;
+                        const val = parseFloat(el.value);
+                        if (kpi.isZeroGood) {
+                            kpiScore += val === 0 ? 100 : Math.max(0, 100 - (val * 25));
+                        } else if (kpi.inverted) {
+                            kpiScore += val <= kpi.target ? 100 : Math.max(0, 100 - ((val - kpi.target) * 15));
+                        } else {
+                            kpiScore += Math.min(100, (val / kpi.target) * 100);
+                        }
+                    }
+                });
+                if (kpisWithValues > 0) {
+                    totalScore += (kpiScore / kpisWithValues) * 0.1;
+                }
+            }
+
+            // If no text fields provided, adjust calculation
+            if (textFieldIds.length === 0 && principleIds.length > 0) {
+                // Recalculate with principles as main driver
+                let principleScore = 0;
+                principleIds.forEach(id => {
+                    const el = document.getElementById(id);
+                    if (el && el.checked) principleScore += 100;
+                });
+                totalScore = (principleScore / principleIds.length);
+            }
+
+            return Math.round(Math.min(100, totalScore));
+        }
+
+        function updateProgressBar(barId, scoreId, value) {
+            const bar = document.getElementById(barId);
+            const scoreEl = document.getElementById(scoreId);
+            if (bar) bar.style.width = value + '%';
+            if (scoreEl) scoreEl.textContent = value + '%';
+        }
+
+        function updateRecommendations(dataGov, transparency, humanAgency, fairness, environment, principles, riskTier) {
+            const recommendations = [];
+
+            if (dataGov < 50) recommendations.push('Strengthen data governance documentation and privacy controls');
+            if (transparency < 50) recommendations.push('Improve model transparency and explainability documentation');
+            if (humanAgency < 50) recommendations.push('Define clear human oversight protocols and escalation paths');
+            if (fairness < 50) recommendations.push('Conduct and document bias testing and fairness audits');
+            if (environment < 50) recommendations.push('Assess and document environmental impact and sustainability measures');
+            if (principles < 4) recommendations.push('Review and confirm alignment with more PALO ethical principles');
+            if (!riskTier) recommendations.push('Select an EU AI Act risk tier classification');
+
+            const recPanel = document.getElementById('riskRecommendations');
+            const recList = document.getElementById('recommendationsList');
+
+            if (recommendations.length > 0) {
+                recPanel.style.display = 'block';
+                recList.innerHTML = recommendations.map(r => `<li>${r}</li>`).join('');
+            } else {
+                recPanel.style.display = 'none';
+            }
+        }
+
+        // Hook into existing auto-save to update risk assessment
+        const originalSaveData = saveData;
+        saveData = function () {
+            originalSaveData();
+            calculateRiskAssessment();
+        };
+
+        // ===== WIZARD MODE FUNCTIONS =====
+        let currentWizardStep = 1;
+        const totalWizardSteps = 6;
+
+        function setMode(mode) {
+            const expertContainer = document.getElementById('expertContainer');
+            const wizardContainer = document.getElementById('wizardContainer');
+            const modeButtons = document.querySelectorAll('.mode-toggle button');
+
+            modeButtons.forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.mode === mode);
+            });
+
+            if (mode === 'wizard') {
+                expertContainer.classList.add('hidden');
+                wizardContainer.classList.add('active');
+                syncExpertToWizard();
+                updateWizardProgress();
+            } else {
+                expertContainer.classList.remove('hidden');
+                wizardContainer.classList.remove('active');
+                syncWizardToExpert();
+            }
+        }
+
+        function goToWizardStep(step) {
+            if (step < 1 || step > totalWizardSteps) return;
+
+            // Sync current step data before moving
+            syncWizardToExpert();
+
+            currentWizardStep = step;
+            updateWizardProgress();
+
+            // Update sections
+            document.querySelectorAll('.wizard-section').forEach(section => {
+                section.classList.toggle('active', parseInt(section.dataset.step) === step);
+            });
+
+            // Update navigation buttons
+            document.getElementById('wizPrevBtn').disabled = step === 1;
+            document.getElementById('wizNextBtn').textContent = step === totalWizardSteps ? '✅ Complete' : 'Next →';
+            document.getElementById('wizStepIndicator').textContent = `Step ${step} of ${totalWizardSteps}`;
+
+            // Update summary on review step
+            if (step === 6) {
+                updateWizardSummary();
+            }
+        }
+
+        function wizardNext() {
+            if (currentWizardStep === totalWizardSteps) {
+                // Complete - switch to expert mode
+                syncWizardToExpert();
+                saveData();
+                calculateRiskAssessment();
+                alert('✅ Assessment complete! Switching to Expert Mode for detailed review.');
+                setMode('expert');
+            } else {
+                goToWizardStep(currentWizardStep + 1);
+            }
+        }
+
+        function wizardPrev() {
+            if (currentWizardStep > 1) {
+                goToWizardStep(currentWizardStep - 1);
+            }
+        }
+
+        function updateWizardProgress() {
+            document.querySelectorAll('.wizard-step').forEach((step, index) => {
+                const stepNum = index + 1;
+                step.classList.remove('active', 'completed');
+                if (stepNum === currentWizardStep) {
+                    step.classList.add('active');
+                } else if (stepNum < currentWizardStep) {
+                    step.classList.add('completed');
+                }
+            });
+        }
+
+        function syncWizardToExpert() {
+            // Sync text fields
+            document.querySelectorAll('[data-wizard-field]').forEach(wizField => {
+                const fieldName = wizField.dataset.wizardField;
+                const expertField = document.querySelector(`[data-field="${fieldName}"]`);
+                if (expertField) {
+                    expertField.value = wizField.value;
+                    data[fieldName] = wizField.value;
+                }
+            });
+
+            // Sync KPIs
+            document.querySelectorAll('[data-wizard-kpi]').forEach(wizField => {
+                const kpiId = wizField.dataset.wizardKpi;
+                const expertField = document.getElementById(kpiId);
+                if (expertField && wizField.value) {
+                    expertField.value = wizField.value;
+                }
+            });
+
+            // Sync config (selects)
+            document.querySelectorAll('[data-wizard-config]').forEach(wizField => {
+                const configName = wizField.dataset.wizardConfig;
+                const expertField = document.getElementById(configName);
+                if (expertField) {
+                    expertField.value = wizField.value;
+                    data[configName] = wizField.value;
+                }
+            });
+
+            // Sync principles
+            document.querySelectorAll('[data-wizard-principle]').forEach(wizField => {
+                const principleId = wizField.dataset.wizardPrinciple;
+                const expertField = document.getElementById(principleId);
+                if (expertField) {
+                    expertField.checked = wizField.checked;
+                }
+            });
+
+            saveData();
+            calculateRiskAssessment();
+            updateUseCaseInsights();
+        }
+
+        function syncExpertToWizard() {
+            // Sync text fields
+            document.querySelectorAll('[data-wizard-field]').forEach(wizField => {
+                const fieldName = wizField.dataset.wizardField;
+                const expertField = document.querySelector(`[data-field="${fieldName}"]`);
+                if (expertField) {
+                    wizField.value = expertField.value;
+                }
+            });
+
+            // Sync KPIs
+            document.querySelectorAll('[data-wizard-kpi]').forEach(wizField => {
+                const kpiId = wizField.dataset.wizardKpi;
+                const expertField = document.getElementById(kpiId);
+                if (expertField) {
+                    wizField.value = expertField.value;
+                }
+            });
+
+            // Sync config
+            document.querySelectorAll('[data-wizard-config]').forEach(wizField => {
+                const configName = wizField.dataset.wizardConfig;
+                const expertField = document.getElementById(configName);
+                if (expertField) {
+                    wizField.value = expertField.value;
+                }
+            });
+
+            // Sync principles
+            document.querySelectorAll('[data-wizard-principle]').forEach(wizField => {
+                const principleId = wizField.dataset.wizardPrinciple;
+                const expertField = document.getElementById(principleId);
+                if (expertField) {
+                    wizField.checked = expertField.checked;
+                }
+            });
+        }
+
+        function updateWizardSummary() {
+            const projectName = document.getElementById('wiz_projectName')?.value || 'Not specified';
+            const riskTier = document.getElementById('wiz_riskTier')?.value || 'Not selected';
+            const useCase = document.getElementById('wiz_useCaseCategory')?.value || 'Not selected';
+
+            let principlesCount = 0;
+            document.querySelectorAll('[data-wizard-principle]').forEach(p => {
+                if (p.checked) principlesCount++;
+            });
+
+            let kpisCount = 0;
+            document.querySelectorAll('[data-wizard-kpi]').forEach(k => {
+                if (k.value) kpisCount++;
+            });
+
+            document.getElementById('wizardSummary').innerHTML = `
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                    <div>
+                        <div style="font-weight: 600; margin-bottom: 4px;">📌 Project</div>
+                        <div style="font-size: 14px;">${projectName}</div>
+                    </div>
+                    <div>
+                        <div style="font-weight: 600; margin-bottom: 4px;">⚠️ Risk Tier</div>
+                        <div style="font-size: 14px;">${riskTier}</div>
+                    </div>
+                    <div>
+                        <div style="font-weight: 600; margin-bottom: 4px;">📂 Use Case</div>
+                        <div style="font-size: 14px;">${useCase}</div>
+                    </div>
+                    <div>
+                        <div style="font-weight: 600; margin-bottom: 4px;">✅ Completion</div>
+                        <div style="font-size: 14px;">${principlesCount}/7 Principles • ${kpisCount} KPIs</div>
+                    </div>
+                </div>
+                <div style="margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--color-border);">
+                    <div style="font-size: 12px; color: var(--color-text-secondary);">
+                        💡 Click "Complete" to finish the wizard and view your full assessment in Expert Mode.
+                    </div>
+                </div>
+            `;
+        }
+
+        // Add input listeners for wizard fields to sync in real-time
+        document.querySelectorAll('[data-wizard-field], [data-wizard-kpi], [data-wizard-config], [data-wizard-principle]').forEach(field => {
+            field.addEventListener('change', () => {
+                syncWizardToExpert();
+            });
+            if (field.tagName === 'TEXTAREA' || field.tagName === 'INPUT') {
+                field.addEventListener('input', () => {
+                    syncWizardToExpert();
+                });
+            }
+        });
+
+        // Initialize
+        loadData();
+        updatePhaseContext();
+        calculateRiskAssessment();
+        updateUseCaseInsights();
+    </script>
+
+    <footer
+        style="text-align: center; padding: 24px; margin-top: 32px; color: var(--color-text-secondary); font-size: 13px; border-top: 1px solid var(--color-border);"
+        role="contentinfo">
+        <p style="margin-bottom: 8px;">© 2024 PALO Framework. All rights reserved.</p>
+        <p style="margin-bottom: 8px;">
+            <a href="index.html" style="color: var(--color-primary); text-decoration: none;">Home</a> |
+            <a href="PALO_FRIA.html" style="color: var(--color-primary); text-decoration: none;">FRIA</a> |
+            <a href="privacy-policy.html" style="color: var(--color-primary); text-decoration: none;">Privacy</a> |
+            <a href="security-policy.html" style="color: var(--color-primary); text-decoration: none;">Security</a>
+        </p>
+        <p style="font-size: 11px; opacity: 0.7;">✓ WCAG 2.1 AA Compliant | GDPR Compliant</p>
+    </footer>
+</body>
+
+</html>

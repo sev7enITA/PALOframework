@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accessibility Statement | PALO Framework</title>
+    <meta name="description"
+        content="PALO Framework's commitment to digital accessibility and compliance with EN 301549 and WCAG 2.1 Level AA standards.">
+    <link rel="icon" type="image/webp" href="assets/logo.webp">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-primary: #21808D;
+            --color-primary-light: #2A9BAA;
+            --color-text: #1E293B;
+            --color-text-secondary: #64748B;
+            --color-background: #FFFFFF;
+            --color-surface: #F8FAFC;
+            --color-border: #E2E8F0;
+            --color-success: #10B981;
+            --radius-base: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: linear-gradient(135deg, #f0f9fa 0%, #e8f4f5 100%);
+            min-height: 100vh;
+            color: var(--color-text);
+            line-height: 1.7;
+        }
+
+        /* Focus visible styles for keyboard navigation - EN 301549 requirement */
+        *:focus-visible {
+            outline: 3px solid var(--color-primary);
+            outline-offset: 2px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 20px 24px;
+            background: var(--color-background);
+            border-radius: var(--radius-base);
+            margin-bottom: 24px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+        }
+
+        .header img {
+            height: 40px;
+        }
+
+        .header h1 {
+            font-size: 20px;
+            color: var(--color-primary);
+            flex: 1;
+        }
+
+        .nav-link {
+            padding: 10px 18px;
+            background: var(--color-primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+
+        .nav-link:hover {
+            background: var(--color-primary-light);
+        }
+
+        .content {
+            background: var(--color-background);
+            border-radius: var(--radius-base);
+            padding: 40px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+        }
+
+        h1 {
+            font-size: 32px;
+            margin-bottom: 16px;
+            color: var(--color-text);
+        }
+
+        h2 {
+            font-size: 22px;
+            margin-top: 32px;
+            margin-bottom: 16px;
+            color: var(--color-text);
+            border-bottom: 2px solid var(--color-border);
+            padding-bottom: 8px;
+        }
+
+        h3 {
+            font-size: 18px;
+            margin-top: 24px;
+            margin-bottom: 12px;
+            color: var(--color-text);
+        }
+
+        p {
+            margin-bottom: 16px;
+            color: var(--color-text-secondary);
+        }
+
+        ul,
+        ol {
+            margin-bottom: 16px;
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 8px;
+            color: var(--color-text-secondary);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 6px 14px;
+            background: var(--color-success);
+            color: white;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+
+        .badge-secondary {
+            background: var(--color-primary);
+        }
+
+        .compliance-box {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid var(--color-success);
+            border-radius: var(--radius-base);
+            padding: 24px;
+            margin: 24px 0;
+        }
+
+        .compliance-box h3 {
+            color: var(--color-success);
+            margin-top: 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        th {
+            background: var(--color-surface);
+            font-weight: 600;
+            color: var(--color-text);
+        }
+
+        td {
+            color: var(--color-text-secondary);
+        }
+
+        .contact-box {
+            background: var(--color-surface);
+            border-radius: var(--radius-base);
+            padding: 20px;
+            margin-top: 24px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 24px;
+            color: var(--color-text-secondary);
+            font-size: 13px;
+            margin-top: 24px;
+        }
+
+        .footer a {
+            color: var(--color-primary);
+            text-decoration: none;
+        }
+
+        .last-updated {
+            font-size: 14px;
+            color: var(--color-text-secondary);
+            margin-bottom: 24px;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="#main-content" class="skip-link"
+        style="position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden; z-index: 9999; background: var(--color-primary); color: white; padding: 12px; text-decoration: none;"
+        onfocus="this.style.left='16px'; this.style.width='auto'; this.style.height='auto';"
+        onblur="this.style.left='-9999px'; this.style.width='1px'; this.style.height='1px';">Skip to main content</a>
+
+    <div class="container">
+        <nav class="header" role="navigation" aria-label="Page navigation">
+            <a href="index.html" style="display: flex; align-items: center; gap: 8px; text-decoration: none;">
+                <img src="assets/logo.webp" alt="PALO Logo">
+            </a>
+            <h1>♿ Accessibility Statement</h1>
+            <a href="index.html" class="nav-link" aria-label="Return to homepage">← Home</a>
+        </nav>
+
+        <main class="content" role="main" id="main-content">
+            <h1 tabindex="-1">Accessibility Statement</h1>
+            <p class="last-updated">
+                <span class="badge">EN 301549 Compliant</span>
+                <span class="badge badge-secondary">WCAG 2.1 Level AA</span>
+                Last updated: December 19, 2025
+            </p>
+
+            <div class="compliance-box">
+                <h3>✓ Compliance Status</h3>
+                <p style="margin-bottom: 0;">PALO Framework is committed to ensuring digital accessibility for people
+                    with disabilities. We are continually improving the user experience for everyone and applying the
+                    relevant accessibility standards.</p>
+            </div>
+
+            <h2>Standards Compliance</h2>
+            <p>PALO Framework website and tools conform to:</p>
+            <ul>
+                <li><strong>EN 301549 V3.2.1 (2021-03)</strong> - European accessibility requirements for ICT products
+                    and services</li>
+                <li><strong>Web Content Accessibility Guidelines (WCAG) 2.1 Level AA</strong> - W3C Recommendation</li>
+                <li><strong>European Accessibility Act (EAA)</strong> - Directive (EU) 2019/882</li>
+            </ul>
+
+            <h2>Accessibility Features</h2>
+            <p>We have implemented the following accessibility features across all pages:</p>
+
+            <h3>Perceivable</h3>
+            <ul>
+                <li>Text alternatives for all non-text content (images, icons)</li>
+                <li>Color contrast ratio of at least 4.5:1 for normal text</li>
+                <li>Content can be resized up to 200% without loss of functionality</li>
+                <li>Information is not conveyed by color alone</li>
+            </ul>
+
+            <h3>Operable</h3>
+            <ul>
+                <li>All functionality available via keyboard navigation</li>
+                <li>Visible focus indicators for keyboard users</li>
+                <li>Skip navigation links on all pages</li>
+                <li>No keyboard traps</li>
+                <li>Sufficient time to complete forms and assessments</li>
+            </ul>
+
+            <h3>Understandable</h3>
+            <ul>
+                <li>Page language is programmatically determinable (lang="en")</li>
+                <li>Consistent navigation and identification across pages</li>
+                <li>Clear labels and instructions for all form inputs</li>
+                <li>Error messages and suggestions provided</li>
+            </ul>
+
+            <h3>Robust</h3>
+            <ul>
+                <li>Valid HTML5 markup</li>
+                <li>Proper use of ARIA landmarks and roles</li>
+                <li>Compatible with assistive technologies (screen readers, voice control)</li>
+            </ul>
+
+            <h2>Accessibility Features by Tool</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col">Tool</th>
+                        <th scope="col">Accessibility Features</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Homepage</td>
+                        <td>Skip links, semantic headings, ARIA landmarks, keyboard navigation</td>
+                    </tr>
+                    <tr>
+                        <td>Model Canvas AI</td>
+                        <td>Form labels, keyboard-accessible wizard, progress indicators, focus management</td>
+                    </tr>
+                    <tr>
+                        <td>FRIA Assessment</td>
+                        <td>Step-by-step guidance, form validation, export options</td>
+                    </tr>
+                    <tr>
+                        <td>Comparison Tool</td>
+                        <td>Data tables with proper headers, file upload with keyboard access</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Assistive Technology Compatibility</h2>
+            <p>PALO Framework has been tested with:</p>
+            <ul>
+                <li>VoiceOver (macOS/iOS)</li>
+                <li>NVDA (Windows)</li>
+                <li>Keyboard-only navigation</li>
+                <li>High contrast mode</li>
+                <li>Screen magnification (up to 400%)</li>
+            </ul>
+
+            <h2>Known Limitations</h2>
+            <p>We are aware of the following accessibility limitations and are working to address them:</p>
+            <ul>
+                <li>Some dynamically generated charts may not be fully accessible to screen readers - we provide
+                    alternative text descriptions</li>
+                <li>PDF exports are currently not fully tagged for accessibility - we recommend using the JSON/Markdown
+                    export options</li>
+            </ul>
+
+            <h2>Feedback and Contact</h2>
+            <p>We welcome your feedback on the accessibility of PALO Framework. Please let us know if you encounter
+                accessibility barriers:</p>
+
+            <div class="contact-box">
+                <p><strong>📧 Email:</strong> <a href="mailto:info@paloframework.org">info@paloframework.org</a></p>
+                <p><strong>🌐 Website:</strong> <a href="https://paloframework.org">https://paloframework.org</a></p>
+                <p style="margin-bottom: 0;"><strong>⏱️ Response Time:</strong> We aim to respond to accessibility
+                    feedback within 5 business days.</p>
+            </div>
+
+            <h2>Enforcement Procedure</h2>
+            <p>If you are not satisfied with our response to your accessibility concern, you may contact the relevant
+                national enforcement body in your EU Member State, as designated under Directive (EU) 2016/2102.</p>
+
+            <h2>Technical Specifications</h2>
+            <p>Accessibility of PALO Framework relies on the following technologies:</p>
+            <ul>
+                <li>HTML5</li>
+                <li>WAI-ARIA 1.2</li>
+                <li>CSS3</li>
+                <li>JavaScript (ES6+)</li>
+            </ul>
+            <p>These technologies are relied upon for conformance with the accessibility standards used.</p>
+
+            <p style="margin-top: 32px; font-style: italic; color: var(--color-text-secondary);">
+                This statement was created on December 19, 2025 and is reviewed annually.
+            </p>
+        </main>
+
+        <footer class="footer" role="contentinfo">
+            <p>© 2025 PALO Framework. All rights reserved.</p>
+            <p>
+                <a href="index.html">Home</a> |
+                <a href="PALO_FRIA.html">FRIA</a> |
+                <a href="PALO_ModelCanvasAI.html">Model Canvas</a> |
+                <a href="privacy-policy.html">Privacy Policy</a> |
+                <a href="security-policy.html">Security Policy</a>
+            </p>
+            <p style="margin-top: 8px; font-size: 11px; opacity: 0.7;">✓ EN 301549 Compliant | WCAG 2.1 AA | GDPR
+                Compliant</p>
+        </footer>
+    </div>
+</body>
+
+</html>

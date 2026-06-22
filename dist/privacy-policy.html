@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy | PALO Framework</title>
+    <meta name="description" content="PALO Framework Privacy Policy - How we handle your data in compliance with GDPR.">
+    <link rel="icon" type="image/webp" href="assets/logo.webp">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-primary: #21808D;
+            --color-primary-light: #2A9BAA;
+            --color-text: #1E293B;
+            --color-text-secondary: #64748B;
+            --color-background: #FFFFFF;
+            --color-border: #E2E8F0;
+            --color-success: #10B981;
+            --color-warning: #F59E0B;
+            --color-error: #C0152F;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            min-height: 100vh;
+            color: var(--color-text);
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 40px;
+            padding: 24px;
+            background: var(--color-background);
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .header img {
+            height: 48px;
+            width: auto;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            color: var(--color-primary);
+        }
+
+        .nav-link {
+            margin-left: auto;
+            padding: 10px 20px;
+            background: var(--color-primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+
+        .nav-link:hover {
+            background: var(--color-primary-light);
+        }
+
+        .content {
+            background: var(--color-background);
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 8px;
+            color: var(--color-text);
+        }
+
+        h2 {
+            font-size: 20px;
+            margin-top: 32px;
+            margin-bottom: 16px;
+            color: var(--color-primary);
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--color-border);
+        }
+
+        h3 {
+            font-size: 16px;
+            margin-top: 24px;
+            margin-bottom: 12px;
+            color: var(--color-text);
+        }
+
+        p {
+            margin-bottom: 16px;
+            color: var(--color-text-secondary);
+        }
+
+        ul,
+        ol {
+            margin-bottom: 16px;
+            padding-left: 24px;
+            color: var(--color-text-secondary);
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .last-updated {
+            font-size: 14px;
+            color: var(--color-text-secondary);
+            margin-bottom: 32px;
+        }
+
+        .highlight-box {
+            background: rgba(33, 128, 141, 0.08);
+            border-left: 4px solid var(--color-primary);
+            padding: 16px 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 24px 0;
+        }
+
+        .highlight-box.success {
+            background: rgba(16, 185, 129, 0.08);
+            border-left-color: var(--color-success);
+        }
+
+        .contact-box {
+            background: var(--color-background);
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 24px 0;
+        }
+
+        .contact-box strong {
+            color: var(--color-primary);
+        }
+
+        a {
+            color: var(--color-primary);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            background: var(--color-primary);
+            color: white;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+            margin-right: 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        th {
+            background: var(--color-primary);
+            color: white;
+            font-weight: 500;
+        }
+
+        tr:hover {
+            background: rgba(33, 128, 141, 0.04);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 24px;
+            color: var(--color-text-secondary);
+            font-size: 14px;
+        }
+
+        .toc {
+            background: var(--color-background);
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 24px 0;
+        }
+
+        .toc h3 {
+            margin-top: 0;
+            margin-bottom: 12px;
+        }
+
+        .toc ul {
+            margin-bottom: 0;
+        }
+
+        .toc a {
+            color: var(--color-text-secondary);
+        }
+    </style>
+</head>
+
+<body>
+    <a href="#main-content" class="skip-link"
+        style="position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden;">Skip to main
+        content</a>
+
+    <div class="container">
+        <nav class="header" role="navigation" aria-label="Page navigation">
+            <a href="index.html" style="display: flex; align-items: center; gap: 8px; text-decoration: none;">
+                <img src="assets/logo.webp" alt="PALO Logo">
+            </a>
+            <div>
+                <h1>🔐 Privacy Policy</h1>
+            </div>
+            <a href="index.html" class="nav-link" aria-label="Return to homepage">← Home</a>
+        </nav>
+
+        <main class="content" role="main">
+            <h1 id="main-content" tabindex="-1">PALO Framework Privacy Policy</h1>
+            <p class="last-updated">
+                <span class="badge">GDPR Compliant</span>
+                <span class="badge">ePrivacy Aligned</span>
+                <span class="badge" style="background: #10B981;">WCAG 2.1 AA</span>
+                Last updated: December 17, 2024
+            </p>
+
+            <div class="toc">
+                <h3>📋 Table of Contents</h3>
+                <ul>
+                    <li><a href="#intro">1. Introduction</a></li>
+                    <li><a href="#controller">2. Data Controller</a></li>
+                    <li><a href="#data-collected">3. Data We Collect</a></li>
+                    <li><a href="#legal-basis">4. Legal Basis for Processing</a></li>
+                    <li><a href="#how-we-use">5. How We Use Your Data</a></li>
+                    <li><a href="#data-sharing">6. Data Sharing & Transfers</a></li>
+                    <li><a href="#retention">7. Data Retention</a></li>
+                    <li><a href="#your-rights">8. Your Rights Under GDPR</a></li>
+                    <li><a href="#cookies">9. Cookies & Tracking</a></li>
+                    <li><a href="#children">10. Children's Privacy</a></li>
+                    <li><a href="#changes">11. Changes to This Policy</a></li>
+                    <li><a href="#contact">12. Contact Us</a></li>
+                </ul>
+            </div>
+
+            <h2 id="intro">1. Introduction</h2>
+            <p>Welcome to PALO Framework ("we," "our," or "us"). We are committed to protecting your privacy and
+                ensuring you have a positive experience when using our website and tools.</p>
+            <p>This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit
+                our website <a href="https://paloframework.org">paloframework.org</a> and use our services, in
+                compliance with the General Data Protection Regulation (GDPR - EU 2016/679) and other applicable data
+                protection laws.</p>
+
+            <div class="highlight-box success">
+                <strong>🛡️ Privacy by Design:</strong>
+                <p style="margin-bottom: 0; margin-top: 8px;">PALO Framework tools are designed with privacy at their
+                    core. All data processing in our Model Canvas AI tool happens <strong>locally in your
+                        browser</strong>. We do not collect, store, or have access to the assessments you create.</p>
+            </div>
+
+            <h2 id="controller">2. Data Controller</h2>
+            <p>For the purposes of GDPR, the Data Controller is:</p>
+            <div class="contact-box">
+                <p><strong>Organization:</strong> PALO Framework</p>
+                <p><strong>Website:</strong> <a href="https://paloframework.org">https://paloframework.org</a></p>
+                <p><strong>Email:</strong> <a href="mailto:info@paloframework.org">info@paloframework.org</a></p>
+                <p style="margin-bottom: 0;"><strong>Country:</strong> Italy (European Union)</p>
+            </div>
+
+            <h2 id="data-collected">3. Data We Collect</h2>
+
+            <h3>3.1 Data We DO NOT Collect</h3>
+            <p>We want to be clear about what we <strong>do not</strong> collect:</p>
+            <ul>
+                <li>❌ Personal data entered in the Model Canvas AI tool (processed locally only)</li>
+                <li>❌ AI assessment data or scores</li>
+                <li>❌ Account information (we don't have user accounts)</li>
+                <li>❌ Payment information</li>
+                <li>❌ Precise location data</li>
+            </ul>
+
+            <h3>3.2 Data We May Collect</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Data Type</th>
+                        <th>Description</th>
+                        <th>Purpose</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Server Logs</strong></td>
+                        <td>IP address, browser type, pages visited, timestamps</td>
+                        <td>Security, analytics, troubleshooting</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Contact Form Data</strong></td>
+                        <td>Email, name, message content (if you contact us)</td>
+                        <td>Respond to inquiries</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cookie Data</strong></td>
+                        <td>Session identifiers, preferences</td>
+                        <td>Essential website functionality</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2 id="legal-basis">4. Legal Basis for Processing</h2>
+            <p>In accordance with GDPR Article 6, we process personal data only when we have a valid legal basis:</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Legal Basis</th>
+                        <th>GDPR Article</th>
+                        <th>When We Use It</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Consent</strong></td>
+                        <td>Art. 6(1)(a)</td>
+                        <td>Newsletter subscription, non-essential cookies</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Legitimate Interest</strong></td>
+                        <td>Art. 6(1)(f)</td>
+                        <td>Website security, analytics, fraud prevention</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Contract</strong></td>
+                        <td>Art. 6(1)(b)</td>
+                        <td>Responding to your inquiries</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Legal Obligation</strong></td>
+                        <td>Art. 6(1)(c)</td>
+                        <td>Compliance with applicable laws</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2 id="how-we-use">5. How We Use Your Data</h2>
+            <p>When we do collect data, we use it for:</p>
+            <ul>
+                <li><strong>Website Operation:</strong> Ensuring the website functions properly</li>
+                <li><strong>Security:</strong> Protecting against malicious attacks and abuse</li>
+                <li><strong>Analytics:</strong> Understanding how visitors use our site (anonymized)</li>
+                <li><strong>Communication:</strong> Responding to inquiries you send us</li>
+                <li><strong>Improvement:</strong> Enhancing our services based on usage patterns</li>
+            </ul>
+
+            <h2 id="data-sharing">6. Data Sharing & Transfers</h2>
+
+            <h3>6.1 Who We Share Data With</h3>
+            <p>We do not sell your personal data. We may share data with:</p>
+            <ul>
+                <li><strong>Hosting Providers:</strong> Infrastructure necessary to operate the website</li>
+                <li><strong>Analytics Services:</strong> Anonymized usage statistics only</li>
+                <li><strong>Legal Authorities:</strong> When required by law</li>
+            </ul>
+
+            <h3>6.2 International Transfers</h3>
+            <p>If we transfer data outside the European Economic Area (EEA), we ensure appropriate safeguards are in
+                place, such as:</p>
+            <ul>
+                <li>EU Standard Contractual Clauses (SCCs)</li>
+                <li>Adequacy decisions by the European Commission</li>
+                <li>Other approved transfer mechanisms under GDPR Chapter V</li>
+            </ul>
+
+            <h2 id="retention">7. Data Retention</h2>
+            <p>We retain personal data only as long as necessary for the purposes outlined in this policy:</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Data Type</th>
+                        <th>Retention Period</th>
+                        <th>Reason</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Server Logs</td>
+                        <td>30 days</td>
+                        <td>Security monitoring</td>
+                    </tr>
+                    <tr>
+                        <td>Contact Messages</td>
+                        <td>2 years</td>
+                        <td>Record of communications</td>
+                    </tr>
+                    <tr>
+                        <td>Analytics Data</td>
+                        <td>26 months</td>
+                        <td>Trend analysis</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2 id="your-rights">8. Your Rights Under GDPR</h2>
+            <p>Under GDPR, you have the following rights regarding your personal data:</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Right</th>
+                        <th>GDPR Article</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Access</strong></td>
+                        <td>Art. 15</td>
+                        <td>Obtain a copy of your personal data</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Rectification</strong></td>
+                        <td>Art. 16</td>
+                        <td>Correct inaccurate personal data</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Erasure</strong></td>
+                        <td>Art. 17</td>
+                        <td>"Right to be forgotten" - delete your data</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Restriction</strong></td>
+                        <td>Art. 18</td>
+                        <td>Limit how we use your data</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Portability</strong></td>
+                        <td>Art. 20</td>
+                        <td>Receive data in a machine-readable format</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Object</strong></td>
+                        <td>Art. 21</td>
+                        <td>Object to processing based on legitimate interest</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Withdraw Consent</strong></td>
+                        <td>Art. 7(3)</td>
+                        <td>Withdraw previously given consent</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>To exercise any of these rights, please contact us at <a
+                    href="mailto:info@paloframework.org">info@paloframework.org</a>. We will respond within
+                <strong>30 days</strong> as required by GDPR.
+            </p>
+
+            <div class="highlight-box">
+                <strong>📋 Right to Lodge a Complaint:</strong>
+                <p style="margin-bottom: 0; margin-top: 8px;">You have the right to lodge a complaint with a supervisory
+                    authority. In Italy, this is the <strong>Garante per la protezione dei dati personali</strong> (<a
+                        href="https://www.garanteprivacy.it">www.garanteprivacy.it</a>).</p>
+            </div>
+
+            <h2 id="cookies">9. Cookies & Tracking</h2>
+
+            <h3>9.1 What Are Cookies?</h3>
+            <p>Cookies are small text files stored on your device when you visit a website. They help websites remember
+                your preferences and improve your experience.</p>
+
+            <h3>9.2 Cookies We Use</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Cookie Type</th>
+                        <th>Purpose</th>
+                        <th>Duration</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Essential</strong></td>
+                        <td>Required for website functionality</td>
+                        <td>Session</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Preferences</strong></td>
+                        <td>Remember your settings</td>
+                        <td>1 year</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>9.3 Managing Cookies</h3>
+            <p>You can control cookies through your browser settings. Note that disabling certain cookies may affect
+                website functionality.</p>
+
+            <h2 id="children">10. Children's Privacy</h2>
+            <p>Our website is not intended for children under 16 years of age. We do not knowingly collect personal data
+                from children. If you believe we have collected data from a child, please contact us immediately at <a
+                    href="mailto:info@paloframework.org">info@paloframework.org</a>.</p>
+
+            <h2 id="changes">11. Changes to This Policy</h2>
+            <p>We may update this Privacy Policy from time to time. We will notify you of any significant changes by:
+            </p>
+            <ul>
+                <li>Posting the new policy on this page</li>
+                <li>Updating the "Last updated" date at the top</li>
+                <li>For significant changes, providing a more prominent notice</li>
+            </ul>
+            <p>We encourage you to review this policy periodically.</p>
+
+            <h2 id="contact">12. Contact Us</h2>
+            <p>If you have questions about this Privacy Policy or wish to exercise your rights, please contact us:</p>
+            <div class="contact-box">
+                <p><strong>📧 Privacy Inquiries:</strong> <a
+                        href="mailto:info@paloframework.org">info@paloframework.org</a></p>
+                <p><strong>🔒 Security Issues:</strong> <a
+                        href="mailto:info@paloframework.org">info@paloframework.org</a></p>
+                <p><strong>📬 General Contact:</strong> <a
+                        href="mailto:info@paloframework.org">info@paloframework.org</a></p>
+                <p style="margin-bottom: 0;"><strong>🌐 Website:</strong> <a
+                        href="https://paloframework.org">https://paloframework.org</a></p>
+            </div>
+
+            <p style="margin-top: 32px; font-style: italic; color: var(--color-text-secondary);">
+                This Privacy Policy was developed in compliance with the General Data Protection Regulation (GDPR - EU
+                2016/679), the ePrivacy Directive (EU 2002/58/EC), and Italian Legislative Decree 196/2003 as amended by
+                Legislative Decree 101/2018.
+            </p>
+        </main>
+
+        <footer class="footer" role="contentinfo">
+            <p>© 2024 PALO Framework. All rights reserved.</p>
+            <p>
+                <a href="index.html">Home</a> |
+                <a href="PALO_FRIA.html">FRIA</a> |
+                <a href="PALO_ModelCanvasAI.html">Model Canvas</a> |
+                <a href="security-policy.html">Security Policy</a>
+            </p>
+            <p style="margin-top: 8px; font-size: 12px; opacity: 0.7;">✓ WCAG 2.1 AA Compliant</p>
+        </footer>
+    </div>
+</body>
+
+</html>

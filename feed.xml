@@ -5,8 +5,8 @@
         <link>https://paloframework.org</link>
         <description>Latest updates, tools, and insights from the PALO Framework - Principled AI Lifecycle Orchestration for responsible AI governance.</description>
         <language>en</language>
-        <lastBuildDate>Fri, 20 Dec 2025 05:30:00 +0100</lastBuildDate>
-        <pubDate>Fri, 20 Dec 2025 05:30:00 +0100</pubDate>
+        <lastBuildDate>Mon, 22 Jun 2026 12:30:00 +0200</lastBuildDate>
+        <pubDate>Mon, 22 Jun 2026 12:30:00 +0200</pubDate>
         <ttl>60</ttl>
         <atom:link href="https://paloframework.org/feed.xml" rel="self" type="application/rss+xml"/>
         <image>
@@ -14,74 +14,125 @@
             <title>PALO Framework</title>
             <link>https://paloframework.org</link>
         </image>
-        <copyright>© 2025 PALO Framework. All rights reserved.</copyright>
-        <managingEditor>info@paloframework.org (PALO Framework)</managingEditor>
-        <webMaster>info@paloframework.org (PALO Framework)</webMaster>
+        <copyright>© 2026 PALO Framework. All rights reserved.</copyright>
+        <managingEditor>contact@paloframework.org (PALO Framework)</managingEditor>
+        <webMaster>contact@paloframework.org (PALO Framework)</webMaster>
         <category>AI Governance</category>
         <category>Responsible AI</category>
         <category>EU AI Act</category>
 
-        <!-- News Items -->
         <item>
-            <title>🆕 Risk Tiering Calculator - Classify AI Systems per EU AI Act</title>
+            <title>PALO v2.0.1 - Documentation and Roadmap Sync</title>
+            <link>https://paloframework.org/#changelog</link>
+            <description><![CDATA[Documentation sync release aligning README, roadmap, CHANGELOG, sitemap, RSS feed, mobile store links, and homepage release notes with the current PALO Framework state.]]></description>
+            <pubDate>Mon, 22 Jun 2026 12:30:00 +0200</pubDate>
+            <guid isPermaLink="true">https://paloframework.org/#changelog-v2-0-1</guid>
+            <dc:creator>PALO Framework</dc:creator>
+            <category>Documentation</category>
+            <category>Roadmap</category>
+        </item>
+
+        <item>
+            <title>PALO-AM v2.0 - Agentic Governance Modality</title>
+            <link>https://paloframework.org/PALO_AgenticGovernance.html</link>
+            <description><![CDATA[PALO-AM extends the PALO Framework to AI agents and delegated-action systems, with governance objects for identity, authority, risk, controls, evidence, an Action-Space vs Autonomy Matrix, lifecycle overlay, KPI/KRI registry, and worked enterprise scenarios.]]></description>
+            <pubDate>Mon, 22 Jun 2026 12:00:00 +0200</pubDate>
+            <guid isPermaLink="true">https://paloframework.org/PALO_AgenticGovernance.html</guid>
+            <dc:creator>PALO Framework</dc:creator>
+            <category>Agentic AI</category>
+            <category>AI Governance</category>
+        </item>
+
+        <item>
+            <title>AI Dev Governance - Controls for AI-Assisted Software Development</title>
+            <link>https://paloframework.org/PALO_VibeCoding.html</link>
+            <description><![CDATA[New PALO extension for AI-assisted software delivery, rapid prototyping, vibe coding, and coding assistants. The module introduces functional intent, controlled environments, evidence and assurance layers, decision gates, and KPIs/KRIs.]]></description>
+            <pubDate>Fri, 15 May 2026 12:00:00 +0200</pubDate>
+            <guid isPermaLink="true">https://paloframework.org/PALO_VibeCoding.html</guid>
+            <dc:creator>PALO Framework</dc:creator>
+            <category>Software Governance</category>
+            <category>Security</category>
+        </item>
+
+        <item>
+            <title>P.A.L.O. Framework Toolbox Available on iOS and iPadOS</title>
+            <link>https://apps.apple.com/it/app/p-a-l-o-framework-toolbox/id6761771299</link>
+            <description><![CDATA[The P.A.L.O. Framework Toolbox companion app is available on the App Store for iPhone and iPad, with Evidence Vault, biometric protection, PDF report generation, and direct access to PALO web modules.]]></description>
+            <pubDate>Wed, 08 Apr 2026 12:00:00 +0200</pubDate>
+            <guid isPermaLink="true">https://apps.apple.com/it/app/p-a-l-o-framework-toolbox/id6761771299</guid>
+            <dc:creator>PALO Framework</dc:creator>
+            <category>Mobile App</category>
+        </item>
+
+        <item>
+            <title>The Poisoning Boomerang - Data Poisoning Governance Module</title>
+            <link>https://paloframework.org/PALO_PoisoningStudy.html</link>
+            <description><![CDATA[New research module analyzing the data poisoning ecosystem, detection strategies, EU AI Act Article 10 and 15 implications, and PALO lifecycle controls for data integrity governance.]]></description>
+            <pubDate>Wed, 25 Mar 2026 12:00:00 +0100</pubDate>
+            <guid isPermaLink="true">https://paloframework.org/PALO_PoisoningStudy.html</guid>
+            <dc:creator>PALO Framework</dc:creator>
+            <category>Data Governance</category>
+            <category>AI Security</category>
+        </item>
+
+        <item>
+            <title>P.A.L.O. Framework Toolbox Available on Google Play</title>
+            <link>https://play.google.com/store/apps/details?id=com.fabriziodegni.paloframework</link>
+            <description><![CDATA[The Android companion app brings the PALO Framework Toolbox to mobile devices as an offline, privacy-first pre-screening toolkit for AI governance workflows.]]></description>
+            <pubDate>Thu, 12 Mar 2026 12:00:00 +0100</pubDate>
+            <guid isPermaLink="true">https://play.google.com/store/apps/details?id=com.fabriziodegni.paloframework</guid>
+            <dc:creator>PALO Framework</dc:creator>
+            <category>Mobile App</category>
+        </item>
+
+        <item>
+            <title>AuditBench Explorer - Hidden AI Behavior Deep Dive</title>
+            <link>https://paloframework.org/PALO_AuditBench.html</link>
+            <description><![CDATA[AuditBench Explorer provides an interactive deep-dive into 14 hidden AI behaviors, auditing techniques, investigator simulations, and PALO-aligned mitigation strategies.]]></description>
+            <pubDate>Tue, 03 Mar 2026 12:00:00 +0100</pubDate>
+            <guid isPermaLink="true">https://paloframework.org/PALO_AuditBench.html</guid>
+            <dc:creator>PALO Framework</dc:creator>
+            <category>AI Alignment</category>
+            <category>AI Auditing</category>
+        </item>
+
+        <item>
+            <title>2026 Tech Trends Observatory</title>
+            <link>https://paloframework.org/PALO_TechTrends2026.html</link>
+            <description><![CDATA[The 2026 Tech Trends Observatory compares major consulting-firm technology outlooks and highlights AI governance gaps through a PALO lens.]]></description>
+            <pubDate>Sun, 04 Jan 2026 12:00:00 +0100</pubDate>
+            <guid isPermaLink="true">https://paloframework.org/PALO_TechTrends2026.html</guid>
+            <dc:creator>PALO Framework</dc:creator>
+            <category>Trends</category>
+            <category>AI Governance</category>
+        </item>
+
+        <item>
+            <title>Human Agency Risk Map</title>
+            <link>https://paloframework.org/PALO_HumanAgencyRiskMap.html</link>
+            <description><![CDATA[The Human Agency Risk Map tracks 18 activities humans increasingly delegate to AI, with psychological impact analysis and mitigation strategies.]]></description>
+            <pubDate>Fri, 02 Jan 2026 12:00:00 +0100</pubDate>
+            <guid isPermaLink="true">https://paloframework.org/PALO_HumanAgencyRiskMap.html</guid>
+            <dc:creator>PALO Framework</dc:creator>
+            <category>Human Agency</category>
+        </item>
+
+        <item>
+            <title>Risk Tiering Calculator</title>
             <link>https://paloframework.org/PALO_RiskTiering.html</link>
-            <description>New tool released! The Risk Tiering Calculator helps you classify AI use cases into EU AI Act risk tiers (Minimal, Limited, High, Unacceptable) with a simple 3-step wizard. Get instant guidance on required documentation and compliance requirements based on PALO Framework Section 3.3.</description>
-            <pubDate>Fri, 20 Dec 2025 05:00:00 +0100</pubDate>
+            <description><![CDATA[The Risk Tiering Calculator helps classify AI use cases into EU AI Act risk tiers and provides documentation guidance for governance teams.]]></description>
+            <pubDate>Wed, 17 Dec 2025 12:00:00 +0100</pubDate>
             <guid isPermaLink="true">https://paloframework.org/PALO_RiskTiering.html</guid>
             <dc:creator>PALO Framework</dc:creator>
-            <category>Tools</category>
             <category>EU AI Act</category>
         </item>
 
         <item>
-            <title>📊 KPI Generator - Personalized AI Metrics Dashboard</title>
-            <link>https://paloframework.org/PALO_KPIGenerator.html</link>
-            <description>Generate personalized Technical, Business, and Ethical KPIs for your AI projects. Based on PALO Framework Table 2, this tool provides 30+ metrics with definitions and measurement guidance. Export to CSV or Markdown for your data science teams.</description>
-            <pubDate>Fri, 20 Dec 2025 04:00:00 +0100</pubDate>
-            <guid isPermaLink="true">https://paloframework.org/PALO_KPIGenerator.html</guid>
-            <dc:creator>PALO Framework</dc:creator>
-            <category>Tools</category>
-            <category>Metrics</category>
-        </item>
-
-        <item>
-            <title>🛡️ FRIA Module - Fundamental Rights Impact Assessment</title>
-            <link>https://paloframework.org/PALO_FRIA.html</link>
-            <description>The interactive Fundamental Rights Impact Assessment tool is now available. Evaluate AI systems against all 51 EU Charter fundamental rights as required by EU AI Act Article 27. Includes scenario analysis, risk matrix visualization, and comprehensive reporting.</description>
-            <pubDate>Thu, 19 Dec 2025 12:00:00 +0100</pubDate>
-            <guid isPermaLink="true">https://paloframework.org/PALO_FRIA.html</guid>
-            <dc:creator>PALO Framework</dc:creator>
-            <category>Tools</category>
-            <category>Compliance</category>
-        </item>
-
-        <item>
-            <title>♿ Full Accessibility Compliance Achieved (WCAG 2.1 AA)</title>
-            <link>https://paloframework.org/accessibility.html</link>
-            <description>PALO Framework website now fully complies with WCAG 2.1 Level AA, EN 301549 V3.2.1, and European Accessibility Act requirements. All pages include skip links, ARIA landmarks, focus indicators, and reduced motion support.</description>
-            <pubDate>Thu, 19 Dec 2025 10:00:00 +0100</pubDate>
-            <guid isPermaLink="true">https://paloframework.org/accessibility.html</guid>
-            <dc:creator>PALO Framework</dc:creator>
-            <category>Accessibility</category>
-        </item>
-
-        <item>
-            <title>🎨 Model Canvas AI - Visual AI Governance Tool</title>
-            <link>https://paloframework.org/PALO_ModelCanvasAI.html</link>
-            <description>The PALO Model Canvas provides a visual framework for AI governance. Document your AI systems across all PALO dimensions including Purpose, Data, Technical, Business, and Ethics. Export to JSON, PNG, or Markdown.</description>
-            <pubDate>Sat, 15 Nov 2025 09:00:00 +0100</pubDate>
-            <guid isPermaLink="true">https://paloframework.org/PALO_ModelCanvasAI.html</guid>
-            <dc:creator>PALO Framework</dc:creator>
-            <category>Tools</category>
-            <category>Governance</category>
-        </item>
-
-        <item>
-            <title>🚀 PALO Framework Website Launch</title>
+            <title>PALO Framework Website Launch</title>
             <link>https://paloframework.org/</link>
-            <description>Welcome to the PALO Framework - Principled AI Lifecycle Orchestration. Our comprehensive methodology integrates ISO 42001 standards, OECD AI principles, and the EU AI Act into a unified operational model for responsible AI governance in business.</description>
-            <pubDate>Tue, 01 Oct 2025 10:00:00 +0100</pubDate>
-            <guid isPermaLink="true">https://paloframework.org/launch-2025</guid>
+            <description><![CDATA[Initial launch of the PALO Framework website and core toolkit for responsible AI governance.]]></description>
+            <pubDate>Mon, 01 Dec 2025 12:00:00 +0100</pubDate>
+            <guid isPermaLink="true">https://paloframework.org/</guid>
             <dc:creator>PALO Framework</dc:creator>
             <category>Announcements</category>
         </item>
