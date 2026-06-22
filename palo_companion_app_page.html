@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P.A.L.O. Framework Toolbox App - Governance in Your Pocket</title>
+    <style>
+        :root {
+            --primary-color: #0f172a;
+            --secondary-color: #3b82f6;
+            --accent-color: #10b981;
+            --bg-color: #f8fafc;
+            --text-color: #334155;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        .hero-section {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: #cbd5e1;
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+
+        .badge {
+            background-color: rgba(59, 130, 246, 0.2);
+            color: #60a5fa;
+            padding: 8px 16px;
+            border-radius: 999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 20px;
+            border: 1px solid rgba(59, 130, 246, 0.4);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            border: 1px solid #e2e8f0;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .feature-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .app-store-btn {
+            display: inline-flex;
+            align-items: center;
+            background-color: transparent;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            border: 2px solid white;
+            transition: all 0.2s ease;
+        }
+
+        .app-store-btn:hover {
+            background-color: white;
+            color: var(--primary-color);
+        }
+
+        .app-store-btn svg {
+            margin-right: 12px;
+            width: 24px;
+            height: 24px;
+        }
+
+        .store-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .privacy-banner {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 16px;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .privacy-banner h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .privacy-banner p {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        .disclaimer {
+            font-size: 0.875rem;
+            color: #64748b;
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .mockup-container {
+            margin-top: 40px;
+        }
+
+        .mockup-img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 24px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            border: 8px solid #1e293b;
+            background: #1e293b;
+        }
+    </style>
+</head>
+
+<body>
+
+    <section class="hero-section">
+        <span class="badge">New Release v2.0</span>
+        <h1 class="hero-title">P.A.L.O. Framework Toolbox</h1>
+        <p class="hero-subtitle">Governance in your pocket. A completely offline, privacy-first companion app for
+            preliminary AI compliance self-assessment against the EU AI Act, ISO 42001, and NIST AI RMF.</p>
+
+        <div class="store-buttons">
+            <a href="https://play.google.com/store/apps/details?id=com.fabriziodegni.paloframework" class="app-store-btn"
+                target="_blank">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                        d="M17.523 15.3414C17.523 15.3414 16.3242 16.0357 15.176 16.7119C15.1119 16.7495 15.0267 16.7032 15.0267 16.6277V7.37192C15.0267 7.29649 15.1119 7.25016 15.176 7.28779C16.3242 7.96395 17.523 8.65823 17.523 8.65823C17.5855 8.69443 17.5855 8.78443 17.523 8.82063L15.176 10.1802L12.551 12L15.176 13.8198L17.523 15.1794C17.5855 15.2156 17.5855 15.3056 17.523 15.3414ZM2.87189 21.0336C2.65863 20.8258 2.53696 20.4851 2.53696 20.0219V3.97772C2.53696 3.51457 2.65863 3.17387 2.87189 2.96603L11.751 11.2359L2.87189 21.0336ZM13.4143 12.8021L12.607 12.0538L3.8188 20.1983C4.12871 20.4284 4.54285 20.5186 4.96564 20.4079L13.4143 12.8021ZM3.8188 3.80133L12.607 11.9458L13.4143 11.1975L4.96564 3.59168C4.54285 3.48102 4.12871 3.57116 3.8188 3.80133ZM18.724 16.0357C19.2616 15.7243 19.6108 15.1583 19.6108 14.5361V9.46356C19.6108 8.84135 19.2616 8.27538 18.724 7.96395L14.394 5.45663C14.394 5.45663 14.3934 5.4563 14.3917 5.45529L13.8291 5.92348L15.9388 9.88219L18.0645 11.1147C18.17 11.1758 18.17 11.3259 18.0645 11.3871L15.9388 12.6196L13.8291 16.5783L14.3917 17.0465C14.3934 17.0455 14.394 17.0452 14.394 17.0452L18.724 16.0357Z" />
+                </svg>
+                Get it on Google Play
+            </a>
+            <a href="https://apps.apple.com/it/app/p-a-l-o-framework-toolbox/id6761771299" class="app-store-btn"
+                target="_blank">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                        d="M16.365 1.43c0 1.14-.47 2.2-1.23 3.02-.8.86-2.11 1.53-3.21 1.44-.15-1.09.42-2.24 1.15-3.03.81-.88 2.22-1.55 3.29-1.43zM20.87 17.25c-.5 1.16-.74 1.68-1.39 2.71-.9 1.37-2.16 3.08-3.73 3.1-1.39.02-1.75-.91-3.65-.9-1.89.01-2.29.92-3.68.9-1.57-.02-2.77-1.56-3.67-2.93-2.52-3.86-2.78-8.39-1.23-10.8 1.1-1.71 2.84-2.71 4.48-2.71 1.67 0 2.72.92 4.1.92 1.34 0 2.16-.92 4.09-.92 1.46 0 3.01.8 4.11 2.17-3.61 1.98-3.03 7.13.57 8.46z" />
+                </svg>
+                Download on the App Store
+            </a>
+        </div>
+    </section>
+
+    <div class="container">
+        <div style="text-align: center;">
+            <h2 style="font-size: 2.5rem; color: var(--primary-color);">8 Professional Assessment Tools</h2>
+            <p style="font-size: 1.2rem; color: var(--text-color); max-width: 800px; margin: 0 auto;">Version 2.0 brings
+                the complete PALO Framework ecosystem natively to Android, iPhone and iPad.</p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <span class="feature-icon">⚖️</span>
+                <h3 class="feature-title">Risk Tiering & FRIA</h3>
+                <p>Execute EU AI Act Article 27 Fundamental Rights Impact Assessments and instantly classify your AI
+                    systems with our interactive 4-tier decision tree wizard.</p>
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-icon">📋</span>
+                <h3 class="feature-title">Interactive Audit Checklists</h3>
+                <p>Track compliance progress locally with persistent audit templates aligned to the AI Act, ISO/IEC
+                    42001, and the NIST AI RMF.</p>
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-icon">📄</span>
+                <h3 class="feature-title">Automated Dossier Export</h3>
+                <p>Autonomously generate professional PDF Conformity Dossiers and Markdown reports directly from your
+                    offline assessment data.</p>
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-icon">🔐</span>
+                <h3 class="feature-title">Evidence Vault</h3>
+                <p>Store your sensitive compliance data in an encrypted (SQLCipher) local SQLite database, protected by
+                    device biometrics with an immutable audit trail.</p>
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-icon">🔍</span>
+                <h3 class="feature-title">AuditBench Explorer</h3>
+                <p>Act as an AI investigator with our offline simulator, pre-loaded with prompts and scenarios to
+                    uncover 14 hidden non-compliant AI behaviors.</p>
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-icon">📈</span>
+                <h3 class="feature-title">KPI Generator & Canvas</h3>
+                <p>Design measurable Business, Technical, and Ethical KPIs. Map out capabilities visually with the
+                    interactive AI Model Canvas.</p>
+            </div>
+        </div>
+
+        <div class="privacy-banner">
+            <h2>100% Offline & Privacy-First</h2>
+            <p>P.A.L.O. Framework Toolbox requires <strong>ZERO internet permissions</strong>. It contains no analytics,
+                no trackers, and no external API calls. Your sensitive compliance assessments and corporate technical
+                documentation never leave your pocket.</p>
+        </div>
+
+        <p class="disclaimer">
+            <strong>DISCLAIMER:</strong> This application is an independent educational tool developed by Fabrizio
+            Degni. It is <strong>NOT</strong> affiliated with, endorsed by, or representative of the European Union, the
+            European Commission, or any government entity. This tool is designed for <em>preliminary
+                self-assessment</em> only and does not provide legal advice or certify compliance. For official
+            regulatory conformity, consult qualified legal counsel and reference the <a
+                href="https://eur-lex.europa.eu/eli/reg/2024/1689/oj" target="_blank"
+                style="color: var(--secondary-color);">official regulation text</a>.
+        </p>
+    </div>
+
+</body>
+
+</html>

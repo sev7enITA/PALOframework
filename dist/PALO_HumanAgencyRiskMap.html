@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Human Agency Risk Map | PALO Framework</title>
+    <meta name="description"
+        content="Observatory tracking 18 activities humans are delegating to AI in 2026, with PALO mitigation strategies and psychological impact analysis.">
+    <meta name="keywords"
+        content="human agency, AI impact, AI automation, cognitive atrophy, PALO framework, AI governance 2026">
+    <meta name="author" content="PALO Framework">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://paloframework.org/PALO_HumanAgencyRiskMap.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://paloframework.org/PALO_HumanAgencyRiskMap.html">
+    <meta property="og:title" content="Human Agency Risk Map | 18 Things AI Will Do For Humans in 2026">
+    <meta property="og:description"
+        content="Observatory tracking AI's impact on human autonomy with mitigation strategies.">
+    <meta property="og:image" content="https://paloframework.org/assets/logo.webp">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Human Agency Risk Map | PALO Framework">
+    <meta name="twitter:description"
+        content="18 Things Humans Will Stop Doing Themselves in the Age of AI - January 2026">
+
+    <link rel="icon" type="image/webp" href="assets/logo.webp">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --color-primary: #21808D;
+            --color-primary-dark: #1A666F;
+            --color-accent: #E11D48;
+            --color-text: #1E293B;
+            --color-text-secondary: #64748B;
+            --color-surface: #F8FAFC;
+            --color-border: #E2E8F0;
+            --cognitive: #8B5CF6;
+            --behavioral: #3B82F6;
+            --social: #10B981;
+            --professional: #F59E0B;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        *:focus-visible {
+            outline: 3px solid var(--color-primary);
+            outline-offset: 2px;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            min-height: 100vh;
+            color: var(--color-text);
+        }
+
+        .skip-link {
+            position: absolute;
+            left: -9999px;
+            background: var(--color-primary);
+            color: white;
+            padding: 12px;
+        }
+
+        .skip-link:focus {
+            left: 16px;
+            top: 16px;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 24px;
+            background: rgba(255, 255, 255, 0.95);
+            max-width: 1400px;
+            margin: 0 auto 24px;
+            border-radius: 12px;
+        }
+
+        .nav img {
+            height: 40px;
+        }
+
+        .nav-title {
+            flex: 1;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--color-accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 8px;
+        }
+
+        .nav-link {
+            padding: 8px 16px;
+            background: var(--color-surface);
+            color: var(--color-text);
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-link:hover {
+            background: var(--color-primary);
+            color: white;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 60px 24px;
+            background: linear-gradient(135deg, rgba(225, 29, 72, 0.1) 0%, rgba(33, 128, 141, 0.1) 100%);
+            border-radius: 24px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--color-accent);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 {
+            font-size: clamp(32px, 5vw, 56px);
+            font-weight: 800;
+            color: white;
+            margin-bottom: 16px;
+            line-height: 1.1;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(90deg, var(--color-accent), var(--color-primary));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #94A3B8;
+            max-width: 700px;
+            margin: 0 auto 32px;
+            line-height: 1.7;
+        }
+
+        .intro-quote {
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 4px solid var(--color-accent);
+            padding: 24px;
+            border-radius: 0 12px 12px 0;
+            margin-bottom: 40px;
+        }
+
+        .intro-quote p {
+            color: #CBD5E1;
+            font-size: 16px;
+            font-style: italic;
+        }
+
+        .section-title {
+            color: white;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-title i {
+            color: var(--color-accent);
+        }
+
+        .category-tabs {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+            min-height: 44px;
+        }
+
+        .tab[data-category="all"] {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .tab[data-category="cognitive"] {
+            background: rgba(139, 92, 246, 0.2);
+            color: #A78BFA;
+            border-color: rgba(139, 92, 246, 0.3);
+        }
+
+        .tab[data-category="behavioral"] {
+            background: rgba(59, 130, 246, 0.2);
+            color: #60A5FA;
+            border-color: rgba(59, 130, 246, 0.3);
+        }
+
+        .tab[data-category="social"] {
+            background: rgba(16, 185, 129, 0.2);
+            color: #34D399;
+            border-color: rgba(16, 185, 129, 0.3);
+        }
+
+        .tab[data-category="professional"] {
+            background: rgba(245, 158, 11, 0.2);
+            color: #FBBF24;
+            border-color: rgba(245, 158, 11, 0.3);
+        }
+
+        .tab.active,
+        .tab:hover {
+            transform: scale(1.05);
+            opacity: 1;
+        }
+
+        .tab:not(.active) {
+            opacity: 0.7;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 24px;
+            margin-bottom: 60px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 24px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .card-number {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .card[data-category="cognitive"] .card-number {
+            background: rgba(139, 92, 246, 0.2);
+            color: #A78BFA;
+        }
+
+        .card[data-category="behavioral"] .card-number {
+            background: rgba(59, 130, 246, 0.2);
+            color: #60A5FA;
+        }
+
+        .card[data-category="social"] .card-number {
+            background: rgba(16, 185, 129, 0.2);
+            color: #34D399;
+        }
+
+        .card[data-category="professional"] .card-number {
+            background: rgba(245, 158, 11, 0.2);
+            color: #FBBF24;
+        }
+
+        .card-title {
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        .card-category {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 4px;
+        }
+
+        .card[data-category="cognitive"] .card-category {
+            color: #A78BFA;
+        }
+
+        .card[data-category="behavioral"] .card-category {
+            color: #60A5FA;
+        }
+
+        .card[data-category="social"] .card-category {
+            color: #34D399;
+        }
+
+        .card[data-category="professional"] .card-category {
+            color: #FBBF24;
+        }
+
+        .card-body {
+            color: #94A3B8;
+            font-size: 14px;
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+
+        .card-expand {
+            display: none;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .card.expanded .card-expand {
+            display: block;
+        }
+
+        .mitigation {
+            background: rgba(33, 128, 141, 0.1);
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 12px;
+        }
+
+        .mitigation-label {
+            color: var(--color-primary);
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .mitigation-text {
+            color: #CBD5E1;
+            font-size: 13px;
+        }
+
+        .psych {
+            background: rgba(225, 29, 72, 0.1);
+            border-radius: 8px;
+            padding: 12px;
+        }
+
+        .psych-label {
+            color: var(--color-accent);
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .psych-text {
+            color: #CBD5E1;
+            font-size: 13px;
+        }
+
+        .card-toggle {
+            color: var(--color-primary);
+            font-size: 13px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .card.expanded .card-toggle i {
+            transform: rotate(180deg);
+        }
+
+        .palo-cta {
+            background: linear-gradient(135deg, var(--color-primary) 0%, #155E63 100%);
+            border-radius: 24px;
+            padding: 48px;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .palo-cta h2 {
+            color: white;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .palo-cta p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 16px;
+            margin-bottom: 32px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn {
+            padding: 14px 28px;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            min-height: 44px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .cta-btn-primary {
+            background: white;
+            color: var(--color-primary);
+        }
+
+        .cta-btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .cta-btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px 24px;
+            color: #64748B;
+            font-size: 13px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer a {
+            color: var(--color-primary);
+            text-decoration: none;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .category-tabs {
+                justify-content: center;
+            }
+
+            .hero {
+                padding: 40px 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <div class="container">
+        <nav class="nav" role="navigation" aria-label="Main navigation">
+            <a href="index.html"><img src="assets/logo.webp" alt="PALO Logo"></a>
+            <span class="nav-title">🧠 Human Agency Risk Map</span>
+            <div class="nav-links">
+                <a href="PALO_HumanAgencyRiskMap_IT.html" class="nav-link"
+                    style="background: #E11D48; color: white;">🇮🇹 Italiano</a>
+                <a href="index.html" class="nav-link">🏠 Home</a>
+                <a href="PALO_FRIA.html" class="nav-link">🛡️ FRIA</a>
+                <a href="PALO_RiskTiering.html" class="nav-link">⚖️ Risk Tier</a>
+            </div>
+        </nav>
+
+        <main id="main-content" role="main">
+            <section class="hero">
+                <div class="hero-badge"><i class="fa-solid fa-eye"></i> January 2026 Observatory</div>
+                <h1>18 Things Humans Will <span>Stop Doing</span> Themselves</h1>
+                <p>AI experts have identified critical activities that humans are increasingly delegating to artificial
+                    intelligence. This observatory tracks the impact on human agency and provides PALO-aligned
+                    mitigation strategies.</p>
+            </section>
+
+            <div class="intro-quote">
+                <p>"The greatest risk is not that AI will become too intelligent, but that we will become too dependent.
+                    Human agency must be preserved through conscious design and continuous vigilance."</p>
+            </div>
+
+            <h2 class="section-title"><i class="fa-solid fa-layer-group"></i> Impact Categories</h2>
+
+            <div class="category-tabs" role="tablist">
+                <button class="tab active" data-category="all" role="tab" aria-selected="true">All (18)</button>
+                <button class="tab" data-category="cognitive" role="tab" aria-selected="false">🧠 Cognitive (5)</button>
+                <button class="tab" data-category="behavioral" role="tab" aria-selected="false">🚗 Behavioral
+                    (4)</button>
+                <button class="tab" data-category="social" role="tab" aria-selected="false">💬 Social (5)</button>
+                <button class="tab" data-category="professional" role="tab" aria-selected="false">💼 Professional
+                    (4)</button>
+            </div>
+
+            <div class="cards-grid" id="cardsGrid"></div>
+
+            <section class="palo-cta">
+                <h2>Protect Human Agency with PALO</h2>
+                <p>Use PALO Framework tools to assess AI systems for human oversight requirements and ensure responsible
+                    deployment.</p>
+                <div class="cta-buttons">
+                    <a href="PALO_FRIA.html" class="cta-btn cta-btn-primary"><i class="fa-solid fa-shield-halved"></i>
+                        FRIA Assessment</a>
+                    <a href="PALO_RiskTiering.html" class="cta-btn cta-btn-secondary"><i
+                            class="fa-solid fa-scale-balanced"></i> Risk Calculator</a>
+                    <a href="PALO_ModelCanvasAI.html" class="cta-btn cta-btn-secondary"><i
+                            class="fa-solid fa-palette"></i> Model Canvas</a>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer" role="contentinfo">
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="PALO_FRIA.html">FRIA</a>
+                <a href="PALO_ModelCanvasAI.html">Model Canvas</a>
+                <a href="accessibility.html">Accessibility</a>
+            </div>
+            <p>© 2026 PALO Framework. All rights reserved. | ✓ WCAG 2.1 AA</p>
+        </footer>
+    </div>
+
+    <script>
+        const items = [
+            { id: 1, title: "Memorising Information", category: "cognitive", body: "Knowledge will always be accessible; people will rely less on recall and more on understanding, interpretation, and applying information in context.", mitigation: "Implement 'Cognitive Exercise Zones' - designated periods for memory-based learning without AI assistance.", psych: "Memory formation strengthens neural pathways. Regular recall practice maintains cognitive flexibility and reduces dependency patterns." },
+            { id: 2, title: "Driving Vehicles", category: "behavioral", body: "Autonomous systems will handle most vehicles, significantly reducing accidents caused by human error while improving traffic flow.", mitigation: "Maintain Human-in-the-Loop protocols for edge cases. Require periodic manual driving certification.", psych: "Driving engages spatial awareness, decision-making, and motor skills. Preserving some manual control maintains these cognitive pathways." },
+            { id: 3, title: "Searching for Information", category: "cognitive", body: "Systems will deliver relevant answers before questions are asked, using context, behavior, and predictive intelligence.", mitigation: "Design AI search to show reasoning chains. Encourage critical evaluation of AI-provided information.", psych: "Information seeking develops research skills and critical thinking. Over-reliance on push-based answers may atrophy inquiry skills." },
+            { id: 4, title: "Making Routine Decisions", category: "behavioral", body: "Algorithms will assist everyday choices in money, health, and work, offering data-driven guidance.", mitigation: "Implement 'Decision Transparency' - AI must explain its reasoning. Reserve final authority for humans.", psych: "Decision-making is a trainable skill. Regular exercise prevents decision fatigue while maintaining autonomy." },
+            { id: 5, title: "Performing Repetitive Work", category: "professional", body: "Automation will manage routine tasks faster without fatigue, allowing focus on creative and strategic work.", mitigation: "Rotate humans through automated roles periodically to maintain operational understanding.", psych: "Some repetitive tasks provide stress relief and sense of accomplishment. Balance automation with purposeful activity." },
+            { id: 6, title: "Managing Finances", category: "behavioral", body: "Systems will automatically optimise spending, saving, investing, reacting in real time to income changes.", mitigation: "Require human approval for major financial decisions. Provide financial literacy alongside automation.", psych: "Financial agency is linked to sense of control and reduced anxiety. Maintain visibility and understanding of financial flows." },
+            { id: 7, title: "Household Chores", category: "behavioral", body: "Robotic assistance will become normal, handling cleaning, maintenance, and daily upkeep in the background.", mitigation: "Preserve some manual household tasks as mindfulness opportunities and physical activity.", psych: "Household tasks provide routine, physical movement, and sense of environmental control. Complete automation may increase sedentary behavior." },
+            { id: 8, title: "Writing Social Content", category: "social", body: "AI tools will generate personalised posts, captions, and responses tailored to individual style and audience.", mitigation: "Require disclosure of AI-generated content. Encourage authentic personal expression alongside AI drafts.", psych: "Self-expression through writing supports identity formation and emotional processing. AI assistance should enhance, not replace." },
+            { id: 9, title: "Coding Routine Software", category: "professional", body: "AI will handle debugging, standard code, and building applications from natural language descriptions.", mitigation: "Developers must understand and review AI-generated code. Maintain foundational programming education.", psych: "Problem-solving through code develops logical thinking. Use AI as teaching assistant rather than replacement." },
+            { id: 10, title: "Performing Data Analysis", category: "cognitive", body: "AI will automatically process datasets, identify patterns, generate reports, and provide insights.", mitigation: "Humans retain interpretation and strategic decision roles. AI explains methodology transparently.", psych: "Analytical thinking requires practice. Maintain human engagement with data interpretation to preserve critical analysis skills." },
+            { id: 11, title: "Handling Customer Service", category: "social", body: "Intelligent chatbots will manage queries, complaints, and support requests with natural, context-aware responses.", mitigation: "Ensure easy escalation to humans. Monitor for emotional situations requiring human empathy.", psych: "Human connection in service interactions builds trust. Some interactions benefit from authentic human presence." },
+            { id: 12, title: "Translating Languages", category: "social", body: "Real-time AI translation will become seamless across speech, text, and video, eliminating need for human interpreters.", mitigation: "Preserve human translators for cultural nuance, sensitive contexts, and quality assurance.", psych: "Language learning enhances cognitive flexibility. AI translation should complement, not eliminate, multilingual development." },
+            { id: 13, title: "Planning Travel", category: "professional", body: "AI agents will optimise routes, book flights, accommodations, and activities based on preferences and real-time conditions.", mitigation: "Present options rather than decisions. Allow human override and exploration preferences.", psych: "Trip planning engages creativity and anticipation. Preserve elements of discovery and personal choice in travel." },
+            { id: 14, title: "Diagnosing Medical Conditions", category: "cognitive", body: "AI-powered tools will analyse symptoms, scans, and health data to provide initial diagnoses.", mitigation: "AI as clinical decision support, not replacement. Human physicians retain diagnostic authority.", psych: "Doctor-patient relationship involves trust and communication. AI should enhance, not replace, human clinical judgment." },
+            { id: 15, title: "Editing Photos & Videos", category: "social", body: "Generative AI will enhance, retouch, and create professional-quality media from simple inputs.", mitigation: "Maintain authenticity standards. Disclose AI manipulation. Preserve creative editing as skill.", psych: "Creative editing develops aesthetic judgment and technical skills. Use AI to accelerate, not eliminate, creative learning." },
+            { id: 16, title: "Scheduling Appointments", category: "professional", body: "Intelligent assistants will coordinate calendars across time zones, suggest optimal times, and reschedule dynamically.", mitigation: "Preserve human control over priorities. AI should propose, humans dispose.", psych: "Time management reflects personal values. Maintain agency over schedule decisions while accepting logistical assistance." },
+            { id: 17, title: "Basic Legal/Financial Advice", category: "cognitive", body: "AI will scan laws, contracts, regulations to offer tailored guidance on routine matters.", mitigation: "Clear boundaries between AI guidance and professional advice. Human experts for complex situations.", psych: "Understanding legal/financial basics supports informed citizenship. AI should educate, not just answer." },
+            { id: 18, title: "Cooking Simple Meals", category: "social", body: "Advanced robots and AI-guided appliances will prepare personalised, nutritious meals on demand.", mitigation: "Preserve cooking as cultural practice, family activity, and creative expression.", psych: "Cooking engages multiple senses, provides accomplishment, and supports healthy relationships with food." }
+        ];
+
+        function renderCards(filter = 'all') {
+            const grid = document.getElementById('cardsGrid');
+            const filtered = filter === 'all' ? items : items.filter(i => i.category === filter);
+            grid.innerHTML = filtered.map(item => `
+                <article class="card" data-category="${item.category}" data-id="${item.id}" tabindex="0" role="button" aria-expanded="false">
+                    <div class="card-header">
+                        <div class="card-number">${item.id}</div>
+                        <div>
+                            <div class="card-title">${item.title}</div>
+                            <div class="card-category">${item.category}</div>
+                        </div>
+                    </div>
+                    <div class="card-body">${item.body}</div>
+                    <div class="card-toggle"><i class="fa-solid fa-chevron-down"></i> View PALO Mitigation</div>
+                    <div class="card-expand">
+                        <div class="mitigation"><div class="mitigation-label">🛡️ PALO Mitigation</div><div class="mitigation-text">${item.mitigation}</div></div>
+                        <div class="psych"><div class="psych-label">🧠 Psychological Perspective</div><div class="psych-text">${item.psych}</div></div>
+                    </div>
+                </article>
+            `).join('');
+
+            document.querySelectorAll('.card').forEach(card => {
+                card.addEventListener('click', () => {
+                    card.classList.toggle('expanded');
+                    card.setAttribute('aria-expanded', card.classList.contains('expanded'));
+                });
+                card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); card.click(); } });
+            });
+        }
+
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.tab').forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
+                tab.classList.add('active');
+                tab.setAttribute('aria-selected', 'true');
+                renderCards(tab.dataset.category);
+            });
+        });
+
+        renderCards();
+    </script>
+</body>
+
+</html>

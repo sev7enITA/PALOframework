@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PALO Assessment Comparison Tool</title>
+    <link rel="icon" type="image/x-icon" href="assets/logo.webp">
+    <style>
+        :root {
+            --color-primary: #21808D;
+            --color-primary-light: #2A9BAA;
+            --color-secondary: #F1F5F9;
+            --color-text: #1E293B;
+            --color-text-secondary: #64748B;
+            --color-background: #FFFFFF;
+            --color-border: #E2E8F0;
+            --color-success: #10B981;
+            --color-warning: #F59E0B;
+            --color-error: #C0152F;
+            --space-4: 4px;
+            --space-8: 8px;
+            --space-12: 12px;
+            --space-16: 16px;
+            --space-24: 24px;
+            --space-32: 32px;
+            --radius-base: 8px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* EN 301549 / WCAG 2.1 Focus Visible Styles */
+        *:focus-visible {
+            outline: 3px solid var(--color-primary);
+            outline-offset: 2px;
+        }
+
+        /* Minimum touch target size */
+        button,
+        a,
+        input,
+        select,
+        textarea {
+            min-height: 44px;
+        }
+
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #f0f9fa 0%, #e8f4f5 100%);
+            min-height: 100vh;
+            color: var(--color-text);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: var(--space-24);
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: var(--space-32);
+            padding: var(--space-24);
+            background: var(--color-background);
+            border-radius: var(--radius-base);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .header img {
+            height: 48px;
+            width: auto;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            color: var(--color-primary);
+        }
+
+        .header p {
+            font-size: 14px;
+            color: var(--color-text-secondary);
+        }
+
+        .nav-link {
+            margin-left: auto;
+            padding: 10px 20px;
+            background: var(--color-primary);
+            color: white;
+            text-decoration: none;
+            border-radius: var(--radius-base);
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+
+        .nav-link:hover {
+            background: var(--color-primary-light);
+        }
+
+        .upload-section {
+            background: var(--color-background);
+            padding: var(--space-24);
+            border-radius: var(--radius-base);
+            margin-bottom: var(--space-24);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .upload-section h2 {
+            font-size: 18px;
+            margin-bottom: var(--space-16);
+            color: var(--color-text);
+        }
+
+        .upload-area {
+            border: 2px dashed var(--color-border);
+            border-radius: var(--radius-base);
+            padding: var(--space-32);
+            text-align: center;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .upload-area:hover,
+        .upload-area.dragover {
+            border-color: var(--color-primary);
+            background: rgba(33, 128, 141, 0.05);
+        }
+
+        .upload-area input {
+            display: none;
+        }
+
+        .upload-icon {
+            font-size: 48px;
+            margin-bottom: var(--space-16);
+        }
+
+        .uploaded-files {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-12);
+            margin-top: var(--space-16);
+        }
+
+        .file-chip {
+            display: flex;
+            align-items: center;
+            gap: var(--space-8);
+            padding: 8px 12px;
+            background: var(--color-secondary);
+            border-radius: 20px;
+            font-size: 13px;
+        }
+
+        .file-chip .remove {
+            cursor: pointer;
+            color: var(--color-error);
+            font-weight: bold;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: var(--radius-base);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: var(--color-primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--color-primary-light);
+        }
+
+        .btn-primary:disabled {
+            background: var(--color-border);
+            cursor: not-allowed;
+        }
+
+        .btn-secondary {
+            background: var(--color-secondary);
+            color: var(--color-text);
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-16);
+            margin-bottom: var(--space-24);
+        }
+
+        .assessment-card {
+            background: var(--color-background);
+            border-radius: var(--radius-base);
+            padding: var(--space-16);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .assessment-card h3 {
+            font-size: 14px;
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-8);
+        }
+
+        .assessment-card .project-name {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: var(--space-4);
+        }
+
+        .assessment-card .timestamp {
+            font-size: 12px;
+            color: var(--color-text-secondary);
+        }
+
+        .score-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--space-8) 0;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .score-row:last-child {
+            border-bottom: none;
+        }
+
+        .score-label {
+            font-size: 13px;
+            color: var(--color-text);
+        }
+
+        .score-value {
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .trend-up {
+            color: var(--color-success);
+        }
+
+        .trend-down {
+            color: var(--color-error);
+        }
+
+        .trend-neutral {
+            color: var(--color-text-secondary);
+        }
+
+        .executive-summary {
+            background: var(--color-background);
+            border-radius: var(--radius-base);
+            padding: var(--space-24);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            margin-bottom: var(--space-24);
+        }
+
+        .executive-summary h2 {
+            font-size: 20px;
+            margin-bottom: var(--space-16);
+            display: flex;
+            align-items: center;
+            gap: var(--space-8);
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-16);
+            margin-bottom: var(--space-24);
+        }
+
+        .summary-stat {
+            text-align: center;
+            padding: var(--space-16);
+            background: var(--color-secondary);
+            border-radius: var(--radius-base);
+        }
+
+        .summary-stat .value {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--color-primary);
+        }
+
+        .summary-stat .label {
+            font-size: 12px;
+            color: var(--color-text-secondary);
+            text-transform: uppercase;
+            margin-top: var(--space-4);
+        }
+
+        .remediation-section {
+            background: rgba(245, 158, 11, 0.1);
+            border-left: 4px solid var(--color-warning);
+            padding: var(--space-16);
+            border-radius: var(--radius-base);
+            margin-top: var(--space-16);
+        }
+
+        .remediation-section h3 {
+            font-size: 16px;
+            margin-bottom: var(--space-12);
+            color: var(--color-warning);
+        }
+
+        .remediation-item {
+            padding: var(--space-8) 0;
+            border-bottom: 1px dashed var(--color-border);
+            font-size: 14px;
+        }
+
+        .remediation-item:last-child {
+            border-bottom: none;
+        }
+
+        .progress-indicator {
+            text-align: center;
+            padding: var(--space-16);
+            background: var(--color-secondary);
+            border-radius: var(--radius-base);
+            margin-bottom: var(--space-16);
+        }
+
+        .overall-trend {
+            font-size: 48px;
+            margin-bottom: var(--space-8);
+        }
+
+        .chart-container {
+            background: var(--color-background);
+            border-radius: var(--radius-base);
+            padding: var(--space-24);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            margin-bottom: var(--space-24);
+        }
+
+        .bar-chart {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-12);
+        }
+
+        .bar-row {
+            display: flex;
+            align-items: center;
+            gap: var(--space-12);
+        }
+
+        .bar-label {
+            width: 180px;
+            font-size: 13px;
+            flex-shrink: 0;
+        }
+
+        .bar-container {
+            flex: 1;
+            display: flex;
+            gap: 4px;
+            height: 24px;
+        }
+
+        .bar {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.5s ease;
+            position: relative;
+        }
+
+        .bar span {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 11px;
+            color: white;
+            font-weight: 600;
+        }
+
+        .legend {
+            display: flex;
+            gap: var(--space-16);
+            margin-top: var(--space-16);
+            justify-content: center;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-8);
+            font-size: 12px;
+        }
+
+        .legend-color {
+            width: 16px;
+            height: 16px;
+            border-radius: 4px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .export-btn {
+            margin-left: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Skip Link for Accessibility -->
+    <a href="#main-content" class="skip-link"
+        style="position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden; z-index: 9999; background: var(--color-primary); color: white; padding: 12px; text-decoration: none; border-radius: 4px;"
+        onfocus="this.style.left='16px'; this.style.width='auto'; this.style.height='auto';"
+        onblur="this.style.left='-9999px'; this.style.width='1px'; this.style.height='1px';">Skip to main content</a>
+
+    <div class="container">
+        <nav class="header" role="navigation" aria-label="Page navigation">
+            <a href="index.html" style="display: flex; align-items: center;">
+                <img src="assets/logo.webp" alt="PALO Logo">
+            </a>
+            <div>
+                <h1 id="main-content" tabindex="-1">📊 PALO Assessment Comparison Tool</h1>
+                <p>Upload and compare multiple PALO assessments to track progress and identify remediation priorities
+                </p>
+            </div>
+            <a href="index.html" class="nav-link" aria-label="Return to homepage">← Home</a>
+            <a href="PALO_ModelCanvasAI.html" class="nav-link" aria-label="Go to Model Canvas">← Back to Canvas</a>
+        </nav>
+
+        <main role="main">
+
+            <div class="upload-section">
+                <h2>📁 Upload Assessments</h2>
+                <p style="margin-bottom: var(--space-16); color: var(--color-text-secondary); font-size: 14px;">
+                    Upload 2 or more JSON files exported from the PALO Model Canvas to compare assessments over time.
+                </p>
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-icon">📤</div>
+                    <p><strong>Drop JSON files here</strong> or click to browse</p>
+                    <p style="font-size: 12px; color: var(--color-text-secondary); margin-top: 8px;">
+                        Supports multiple files for trend analysis
+                    </p>
+                    <input type="file" id="fileInput" accept=".json" multiple>
+                </div>
+                <div class="uploaded-files" id="uploadedFiles"></div>
+                <div style="margin-top: var(--space-16); display: flex; gap: var(--space-12);">
+                    <button class="btn btn-primary" id="analyzeBtn" disabled onclick="analyzeAssessments()">
+                        🔍 Analyze & Compare
+                    </button>
+                    <button class="btn btn-secondary" onclick="clearFiles()">🗑️ Clear All</button>
+                </div>
+            </div>
+
+            <div id="resultsSection" class="hidden">
+                <div class="executive-summary">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <h2>📋 Executive Summary</h2>
+                        <button class="btn btn-primary" onclick="exportSummary()">📥 Export Summary</button>
+                    </div>
+
+                    <div class="progress-indicator" id="overallTrend">
+                        <!-- Populated by JS -->
+                    </div>
+
+                    <div class="summary-grid" id="summaryStats">
+                        <!-- Populated by JS -->
+                    </div>
+
+                    <div id="detailedAnalysis">
+                        <!-- Populated by JS -->
+                    </div>
+
+                    <div class="remediation-section" id="remediationSection">
+                        <h3>🔧 Recommended Remediations (PALO Framework)</h3>
+                        <div id="remediationList">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chart-container">
+                    <h2 style="margin-bottom: var(--space-16);">📈 Dimension Score Comparison</h2>
+                    <div class="bar-chart" id="dimensionChart">
+                        <!-- Populated by JS -->
+                    </div>
+                    <div class="legend" id="chartLegend">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <div class="chart-container">
+                    <h2 style="margin-bottom: var(--space-16);">🏛️ Framework Alignment Comparison</h2>
+                    <div class="bar-chart" id="frameworkChart">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <div class="comparison-grid" id="assessmentCards">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+    </div>
+
+    <script>
+        let uploadedAssessments = [];
+        const colors = ['#21808D', '#10B981', '#F59E0B', '#8B5CF6', '#EC4899'];
+
+        // File upload handling
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('fileInput');
+
+        uploadArea.addEventListener('click', () => fileInput.click());
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+        });
+        uploadArea.addEventListener('dragleave', () => uploadArea.classList.remove('dragover'));
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            handleFiles(e.dataTransfer.files);
+        });
+        fileInput.addEventListener('change', (e) => handleFiles(e.target.files));
+
+        function handleFiles(files) {
+            Array.from(files).forEach(file => {
+                if (file.type === 'application/json' || file.name.endsWith('.json')) {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        try {
+                            const data = JSON.parse(e.target.result);
+                            // Validate it's a PALO export
+                            if (data.metadata || data.canvas || data.scores) {
+                                uploadedAssessments.push({
+                                    filename: file.name,
+                                    data: normalizeData(data)
+                                });
+                                updateFileList();
+                            } else {
+                                alert(`${file.name} doesn't appear to be a valid PALO export.`);
+                            }
+                        } catch (err) {
+                            alert(`Error parsing ${file.name}: ${err.message}`);
+                        }
+                    };
+                    reader.readAsText(file);
+                }
+            });
+        }
+
+        function normalizeData(data) {
+            // Handle both old and new export formats
+            return {
+                metadata: data.metadata || {
+                    timestamp: data.timestamp || new Date().toISOString(),
+                    phase: data.phase || 1,
+                    projectName: data.canvas?.projectName || 'Unknown Project'
+                },
+                configuration: data.configuration || {},
+                canvas: data.canvas || {},
+                kpis: data.kpis || {},
+                principles: data.principles || {},
+                scores: data.scores || {
+                    dimensions: { dataGovernance: 0, transparency: 0, humanAgency: 0, fairness: 0, environment: 0 },
+                    frameworks: { iso42001: 0, iso42005: 0, oecd: 0, euAIAct: 0 },
+                    overall: 0
+                }
+            };
+        }
+
+        function updateFileList() {
+            const container = document.getElementById('uploadedFiles');
+            container.innerHTML = uploadedAssessments.map((a, i) => `
+                <div class="file-chip">
+                    <span style="color: ${colors[i % colors.length]};">●</span>
+                    ${a.filename}
+                    <span class="remove" onclick="removeFile(${i})">×</span>
+                </div>
+            `).join('');
+            document.getElementById('analyzeBtn').disabled = uploadedAssessments.length < 2;
+        }
+
+        function removeFile(index) {
+            uploadedAssessments.splice(index, 1);
+            updateFileList();
+        }
+
+        function clearFiles() {
+            uploadedAssessments = [];
+            updateFileList();
+            document.getElementById('resultsSection').classList.add('hidden');
+        }
+
+        function analyzeAssessments() {
+            if (uploadedAssessments.length < 2) return;
+
+            // Sort by timestamp
+            uploadedAssessments.sort((a, b) =>
+                new Date(a.data.metadata.timestamp) - new Date(b.data.metadata.timestamp)
+            );
+
+            document.getElementById('resultsSection').classList.remove('hidden');
+
+            renderOverallTrend();
+            renderSummaryStats();
+            renderDimensionChart();
+            renderFrameworkChart();
+            renderAssessmentCards();
+            renderRemediations();
+        }
+
+        function renderOverallTrend() {
+            const first = uploadedAssessments[0].data.scores.overall;
+            const last = uploadedAssessments[uploadedAssessments.length - 1].data.scores.overall;
+            const diff = last - first;
+
+            let icon, text, cssClass;
+            if (diff > 5) {
+                icon = '📈';
+                text = `+${diff}% improvement`;
+                cssClass = 'trend-up';
+            } else if (diff < -5) {
+                icon = '📉';
+                text = `${diff}% regression`;
+                cssClass = 'trend-down';
+            } else {
+                icon = '➡️';
+                text = 'Stable (±5%)';
+                cssClass = 'trend-neutral';
+            }
+
+            document.getElementById('overallTrend').innerHTML = `
+                <div class="overall-trend">${icon}</div>
+                <div style="font-size: 20px; font-weight: 600;" class="${cssClass}">${text}</div>
+                <div style="font-size: 14px; color: var(--color-text-secondary); margin-top: 8px;">
+                    Overall Score: ${first}% → ${last}% over ${uploadedAssessments.length} assessments
+                </div>
+            `;
+        }
+
+        function renderSummaryStats() {
+            const first = uploadedAssessments[0].data;
+            const last = uploadedAssessments[uploadedAssessments.length - 1].data;
+
+            const dimensions = ['dataGovernance', 'transparency', 'humanAgency', 'fairness', 'environment'];
+            let improved = 0, declined = 0, stable = 0;
+
+            dimensions.forEach(dim => {
+                const diff = (last.scores.dimensions[dim] || 0) - (first.scores.dimensions[dim] || 0);
+                if (diff > 5) improved++;
+                else if (diff < -5) declined++;
+                else stable++;
+            });
+
+            document.getElementById('summaryStats').innerHTML = `
+                <div class="summary-stat">
+                    <div class="value">${uploadedAssessments.length}</div>
+                    <div class="label">Assessments</div>
+                </div>
+                <div class="summary-stat">
+                    <div class="value" style="color: var(--color-success);">${improved}</div>
+                    <div class="label">Improved Dimensions</div>
+                </div>
+                <div class="summary-stat">
+                    <div class="value" style="color: var(--color-error);">${declined}</div>
+                    <div class="label">Declined Dimensions</div>
+                </div>
+                <div class="summary-stat">
+                    <div class="value">${stable}</div>
+                    <div class="label">Stable Dimensions</div>
+                </div>
+            `;
+        }
+
+        function renderDimensionChart() {
+            const dimensions = [
+                { key: 'dataGovernance', label: 'Data Governance & Privacy' },
+                { key: 'transparency', label: 'Transparency & Safety' },
+                { key: 'humanAgency', label: 'Human Agency & Oversight' },
+                { key: 'fairness', label: 'Fairness & Accountability' },
+                { key: 'environment', label: 'Environmental Sustainability' }
+            ];
+
+            let html = '';
+            dimensions.forEach(dim => {
+                html += `
+                    <div class="bar-row">
+                        <div class="bar-label">${dim.label}</div>
+                        <div class="bar-container">
+                            ${uploadedAssessments.map((a, i) => {
+                    const value = a.data.scores.dimensions[dim.key] || 0;
+                    return `<div class="bar" style="width: ${value}%; background: ${colors[i % colors.length]};">
+                                        <span>${value}%</span>
+                                    </div>`;
+                }).join('')}
+                        </div>
+                    </div>
+                `;
+            });
+
+            document.getElementById('dimensionChart').innerHTML = html;
+
+            // Render legend
+            document.getElementById('chartLegend').innerHTML = uploadedAssessments.map((a, i) => `
+                <div class="legend-item">
+                    <div class="legend-color" style="background: ${colors[i % colors.length]};"></div>
+                    ${a.data.metadata.projectName || 'Assessment ' + (i + 1)} (${new Date(a.data.metadata.timestamp).toLocaleDateString()})
+                </div>
+            `).join('');
+        }
+
+        function renderFrameworkChart() {
+            const frameworks = [
+                { key: 'iso42001', label: 'ISO 42001 Alignment' },
+                { key: 'iso42005', label: 'ISO 42005 Impact Assessment' },
+                { key: 'oecd', label: 'OECD AI Principles' },
+                { key: 'euAIAct', label: 'EU AI Act Readiness' }
+            ];
+
+            let html = '';
+            frameworks.forEach(fw => {
+                html += `
+                    <div class="bar-row">
+                        <div class="bar-label">${fw.label}</div>
+                        <div class="bar-container">
+                            ${uploadedAssessments.map((a, i) => {
+                    const value = a.data.scores.frameworks[fw.key] || 0;
+                    return `<div class="bar" style="width: ${value}%; background: ${colors[i % colors.length]};">
+                                        <span>${value}%</span>
+                                    </div>`;
+                }).join('')}
+                        </div>
+                    </div>
+                `;
+            });
+
+            document.getElementById('frameworkChart').innerHTML = html;
+        }
+
+        function renderAssessmentCards() {
+            document.getElementById('assessmentCards').innerHTML = uploadedAssessments.map((a, i) => {
+                const d = a.data;
+                return `
+                    <div class="assessment-card" style="border-top: 4px solid ${colors[i % colors.length]};">
+                        <h3>Assessment ${i + 1}</h3>
+                        <div class="project-name">${d.metadata.projectName || 'Unnamed Project'}</div>
+                        <div class="timestamp">${new Date(d.metadata.timestamp).toLocaleString()}</div>
+                        <div style="margin-top: var(--space-12);">
+                            <div class="score-row">
+                                <span class="score-label">Overall Score</span>
+                                <span class="score-value">${d.scores.overall}%</span>
+                            </div>
+                            <div class="score-row">
+                                <span class="score-label">Phase</span>
+                                <span class="score-value">${d.metadata.phase}</span>
+                            </div>
+                            <div class="score-row">
+                                <span class="score-label">Risk Tier</span>
+                                <span class="score-value">${d.configuration.riskTier || 'N/A'}</span>
+                            </div>
+                            <div class="score-row">
+                                <span class="score-label">Use Case</span>
+                                <span class="score-value">${d.configuration.useCaseCategory || 'N/A'}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function renderRemediations() {
+            const last = uploadedAssessments[uploadedAssessments.length - 1].data;
+            const remediations = [];
+
+            // Analyze scores and suggest PALO-aligned remediations
+            const dims = last.scores.dimensions;
+
+            if (dims.dataGovernance < 50) {
+                remediations.push({
+                    area: 'Data Governance & Privacy',
+                    score: dims.dataGovernance,
+                    actions: [
+                        'Document data lineage and processing activities',
+                        'Implement privacy-by-design principles',
+                        'Conduct Data Protection Impact Assessment (DPIA)',
+                        'Review data retention and minimization policies'
+                    ]
+                });
+            }
+
+            if (dims.transparency < 50) {
+                remediations.push({
+                    area: 'Transparency & Safety',
+                    score: dims.transparency,
+                    actions: [
+                        'Implement model explainability (SHAP, LIME)',
+                        'Create user-facing documentation of AI capabilities',
+                        'Establish model monitoring and drift detection',
+                        'Document model limitations and known failure modes'
+                    ]
+                });
+            }
+
+            if (dims.humanAgency < 50) {
+                remediations.push({
+                    area: 'Human Agency & Oversight',
+                    score: dims.humanAgency,
+                    actions: [
+                        'Define human-in-the-loop intervention points',
+                        'Create escalation procedures for AI decisions',
+                        'Implement override mechanisms for operators',
+                        'Establish regular human review of AI outputs'
+                    ]
+                });
+            }
+
+            if (dims.fairness < 50) {
+                remediations.push({
+                    area: 'Fairness & Accountability',
+                    score: dims.fairness,
+                    actions: [
+                        'Conduct bias testing across protected groups',
+                        'Implement fairness metrics monitoring',
+                        'Define clear accountability roles (RACI)',
+                        'Create appeal/redress mechanisms for affected users'
+                    ]
+                });
+            }
+
+            if (dims.environment < 50) {
+                remediations.push({
+                    area: 'Environmental Sustainability',
+                    score: dims.environment,
+                    actions: [
+                        'Measure and track energy consumption per inference',
+                        'Optimize model efficiency (quantization, pruning)',
+                        'Consider carbon offset strategies',
+                        'Document environmental impact in sustainability reports'
+                    ]
+                });
+            }
+
+            if (remediations.length === 0) {
+                document.getElementById('remediationSection').innerHTML = `
+                    <h3>✅ Excellent Compliance Status</h3>
+                    <p style="color: var(--color-success);">All dimension scores are above 50%. Continue monitoring and improving.</p>
+                `;
+                document.getElementById('remediationSection').style.background = 'rgba(16, 185, 129, 0.1)';
+                document.getElementById('remediationSection').style.borderColor = 'var(--color-success)';
+            } else {
+                document.getElementById('remediationList').innerHTML = remediations.map(r => `
+                    <div class="remediation-item">
+                        <div style="font-weight: 600; margin-bottom: 4px;">
+                            ${r.area} <span style="color: var(--color-error);">(${r.score}%)</span>
+                        </div>
+                        <ul style="margin: 4px 0 0 16px; font-size: 13px; color: var(--color-text-secondary);">
+                            ${r.actions.map(a => `<li>${a}</li>`).join('')}
+                        </ul>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function exportSummary() {
+            const first = uploadedAssessments[0].data;
+            const last = uploadedAssessments[uploadedAssessments.length - 1].data;
+
+            let report = '# PALO Assessment Comparison - Executive Summary\n\n';
+            report += `**Generated:** ${new Date().toLocaleString()}\n\n`;
+            report += `**Assessments Compared:** ${uploadedAssessments.length}\n\n`;
+            report += `**Period:** ${new Date(first.metadata.timestamp).toLocaleDateString()} → ${new Date(last.metadata.timestamp).toLocaleDateString()}\n\n`;
+            report += '---\n\n';
+
+            // Overall trend
+            const overallDiff = last.scores.overall - first.scores.overall;
+            report += '## Overall Trend\n\n';
+            report += `| Metric | First | Latest | Change |\n|--------|-------|--------|--------|\n`;
+            report += `| Overall Score | ${first.scores.overall}% | ${last.scores.overall}% | ${overallDiff >= 0 ? '+' : ''}${overallDiff}% |\n\n`;
+
+            // Dimension changes
+            report += '## Dimension Score Changes\n\n';
+            report += `| Dimension | First | Latest | Change | Trend |\n|-----------|-------|--------|--------|-------|\n`;
+            const dims = ['dataGovernance', 'transparency', 'humanAgency', 'fairness', 'environment'];
+            const dimLabels = ['Data Governance', 'Transparency', 'Human Agency', 'Fairness', 'Environment'];
+            dims.forEach((dim, i) => {
+                const f = first.scores.dimensions[dim] || 0;
+                const l = last.scores.dimensions[dim] || 0;
+                const d = l - f;
+                const trend = d > 5 ? '📈' : d < -5 ? '📉' : '➡️';
+                report += `| ${dimLabels[i]} | ${f}% | ${l}% | ${d >= 0 ? '+' : ''}${d}% | ${trend} |\n`;
+            });
+
+            report += '\n---\n\n';
+            report += '## Recommended Remediations\n\n';
+
+            dims.forEach((dim, i) => {
+                const score = last.scores.dimensions[dim] || 0;
+                if (score < 50) {
+                    report += `### ${dimLabels[i]} (${score}%)\n\n`;
+                    report += `- Priority: HIGH\n`;
+                    report += `- Focus on improving this dimension before next assessment\n\n`;
+                }
+            });
+
+            const blob = new Blob([report], { type: 'text/markdown' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `palo-comparison-${new Date().toISOString().slice(0, 10)}.md`;
+            link.click();
+        }
+    </script>
+
+    </main>
+
+    <footer class="footer" role="contentinfo"
+        style="text-align: center; padding: 24px; margin-top: 24px; color: #64748B; font-size: 13px; border-top: 1px solid #E2E8F0;">
+        <p>© 2025 PALO Framework. All rights reserved.</p>
+        <p style="margin-top: 8px;">
+            <a href="index.html" style="color: #21808D; text-decoration: none;">Home</a> |
+            <a href="PALO_FRIA.html" style="color: #21808D; text-decoration: none;">FRIA</a> |
+            <a href="PALO_ModelCanvasAI.html" style="color: #21808D; text-decoration: none;">Model Canvas</a> |
+            <a href="accessibility.html" style="color: #21808D; text-decoration: none;">Accessibility</a> |
+            <a href="privacy-policy.html" style="color: #21808D; text-decoration: none;">Privacy Policy</a>
+        </p>
+        <p style="margin-top: 8px; font-size: 11px; opacity: 0.7;">✓ EN 301549 Compliant | WCAG 2.1 AA | GDPR Compliant
+        </p>
+    </footer>
+    </div>
+</body>
+
+</html>
