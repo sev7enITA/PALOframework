@@ -44,11 +44,11 @@ The PALO Framework website implements the following security measures:
 
 ### Technical Controls
 
-- ✅ HTTPS-only access
-- ✅ Security headers (CSP, X-Frame-Options, etc.)
-- ✅ No server-side data storage (static site)
-- ✅ No external tracking or analytics
-- ✅ Subresource Integrity (SRI) for CDN resources
+- HTTPS-only access
+- Security headers (CSP, X-Frame-Options, etc.)
+- No server-side data storage (static site)
+- No external tracking or analytics
+- Subresource Integrity (SRI) for CDN resources
 
 ### Data Privacy
 
@@ -74,4 +74,4 @@ We believe in responsible disclosure and will:
 
 ---
 
-Thank you for helping keep PALO Framework and its users safe! 🛡️
+Thank you for helping keep PALO Framework and its users safe!

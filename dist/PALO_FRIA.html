@@ -507,24 +507,24 @@
             </a>
             <div style="display: flex; gap: 8px; align-items: center;">
                 <a href="index.html" class="btn btn-secondary" style="text-decoration: none;"
-                    aria-label="Return to home page">🏠 Home</a>
+                    aria-label="Return to home page">Home</a>
                 <a href="PALO_ModelCanvasAI.html" class="btn btn-secondary" style="text-decoration: none;"
-                    aria-label="Open Model Canvas tool">🎨 Canvas</a>
+                    aria-label="Open Model Canvas tool">Canvas</a>
             </div>
         </nav>
 
         <!-- Header -->
         <header class="header" role="banner">
             <img src="assets/logo.webp" alt="" aria-hidden="true">
-            <h1 id="main-content" tabindex="-1">🛡️ FRIA - Fundamental Rights Impact Assessment</h1>
+            <h1 id="main-content" tabindex="-1">FRIA - Fundamental Rights Impact Assessment</h1>
             <div class="header-actions" role="group" aria-label="Assessment actions">
-                <button class="btn btn-secondary" onclick="downloadTemplate()" aria-label="Download blank template">📋
+                <button class="btn btn-secondary" onclick="downloadTemplate()" aria-label="Download blank template">
                     Template</button>
                 <button class="btn btn-secondary" onclick="document.getElementById('importFile').click()"
-                    aria-label="Import saved assessment">📂 Import</button>
+                    aria-label="Import saved assessment">Import</button>
                 <input type="file" id="importFile" accept=".json" onchange="importData(event)"
                     aria-label="Select file to import">
-                <button class="btn btn-primary" onclick="exportData()" aria-label="Export current assessment">💾
+                <button class="btn btn-primary" onclick="exportData()" aria-label="Export current assessment">
                     Export</button>
             </div>
         </header>
@@ -534,17 +534,17 @@
             <div style="display: flex; justify-content: space-between; align-items: start; cursor: pointer;"
                 onclick="toggleIntro()">
                 <div>
-                    <h2 style="font-size: 20px; margin-bottom: 8px; color: var(--color-primary);">📖 What is FRIA and
+                    <h2 style="font-size: 20px; margin-bottom: 8px; color: var(--color-primary);">What is FRIA and
                         How to Use This Tool</h2>
                     <p style="color: var(--color-text-secondary); font-size: 14px; margin: 0;">Click to expand the guide
                     </p>
                 </div>
-                <span id="introToggle" style="font-size: 24px; color: var(--color-primary);">▲</span>
+                <span id="introToggle" style="font-size: 24px; color: var(--color-primary);">Collapse</span>
             </div>
             <div id="introContent" style="display: block; margin-top: 20px;">
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
                     <div>
-                        <h3 style="font-size: 16px; margin-bottom: 12px; color: var(--color-text);">🛡️ What is FRIA?
+                        <h3 style="font-size: 16px; margin-bottom: 12px; color: var(--color-text);">What is FRIA?
                         </h3>
                         <p style="font-size: 14px; color: var(--color-text-secondary); margin-bottom: 12px;">
                             A <strong>Fundamental Rights Impact Assessment (FRIA)</strong> is a mandatory evaluation
@@ -556,13 +556,13 @@
                         </p>
                         <div class="tip-box" style="margin: 12px 0;">
                             <strong>Who must conduct FRIA?</strong><br>
-                            • Public authorities deploying high-risk AI<br>
-                            • Private entities providing public services<br>
-                            • Any deployer of Annex III high-risk AI systems
+                            - Public authorities deploying high-risk AI<br>
+                            - Private entities providing public services<br>
+                            - Any deployer of Annex III high-risk AI systems
                         </div>
                     </div>
                     <div>
-                        <h3 style="font-size: 16px; margin-bottom: 12px; color: var(--color-text);">📋 How to Use This
+                        <h3 style="font-size: 16px; margin-bottom: 12px; color: var(--color-text);">How to Use This
                             Tool</h3>
                         <ol style="font-size: 14px; color: var(--color-text-secondary); padding-left: 20px;">
                             <li style="margin-bottom: 8px;"><strong>Step 1 - Context:</strong> Enter AI system details
@@ -582,7 +582,7 @@
                 </div>
                 <div
                     style="margin-top: 16px; padding: 16px; background: rgba(245, 158, 11, 0.1); border-radius: 8px; border-left: 4px solid var(--color-warning);">
-                    <strong style="color: var(--color-warning);">⚠️ Important:</strong>
+                    <strong style="color: var(--color-warning);">Important:</strong>
                     <span style="color: var(--color-text-secondary); font-size: 14px;">
                         This tool processes all data locally in your browser. No information is sent to any server.
                         Use the <strong>Export</strong> button to save your progress and <strong>Import</strong> to
@@ -626,11 +626,11 @@
         <div class="main-content">
             <!-- Step 1: Context -->
             <div class="step-content active" data-step="1">
-                <h2 class="step-title">📋 AI System Context</h2>
+                <h2 class="step-title">AI System Context</h2>
                 <p class="step-description">Provide information about the AI system being assessed.</p>
 
                 <div class="tip-box">
-                    💡 <strong>Tip:</strong> This assessment is required under EU AI Act Article 27 for high-risk AI
+                     <strong>Tip:</strong> This assessment is required under EU AI Act Article 27 for high-risk AI
                     systems deployed by public authorities or private entities providing public services.
                 </div>
 
@@ -684,7 +684,7 @@
 
             <!-- Step 2: Checklist (placeholder - will expand) -->
             <div class="step-content" data-step="2">
-                <h2 class="step-title">✅ Context Analysis Checklist</h2>
+                <h2 class="step-title">Context Analysis Checklist</h2>
                 <p class="step-description">Answer these questions about your AI system's governance, data, and
                     oversight.</p>
 
@@ -693,7 +693,7 @@
 
             <!-- Step 3: Scenarios -->
             <div class="step-content" data-step="3">
-                <h2 class="step-title">⚠️ Impact Scenarios</h2>
+                <h2 class="step-title">Impact Scenarios</h2>
                 <p class="step-description">Identify up to 5 scenarios where the AI system could negatively affect
                     fundamental rights.</p>
 
@@ -703,7 +703,7 @@
 
             <!-- Step 4: Assessment -->
             <div class="step-content" data-step="4">
-                <h2 class="step-title">📊 Severity & Likelihood Assessment</h2>
+                <h2 class="step-title">Severity & Likelihood Assessment</h2>
                 <p class="step-description">Assess the severity and likelihood of each identified impact.</p>
 
                 <div id="assessmentContainer"></div>
@@ -711,7 +711,7 @@
 
             <!-- Step 5: Mitigation -->
             <div class="step-content" data-step="5">
-                <h2 class="step-title">🛠️ Mitigation Measures</h2>
+                <h2 class="step-title">Mitigation Measures</h2>
                 <p class="step-description">Document existing and planned measures to mitigate identified risks.</p>
 
                 <div id="mitigationContainer"></div>
@@ -719,7 +719,7 @@
 
             <!-- Step 6: Decision -->
             <div class="step-content" data-step="6">
-                <h2 class="step-title">🎯 Deployment Decision</h2>
+                <h2 class="step-title">Deployment Decision</h2>
                 <p class="step-description">Review your assessment and make a deployment decision.</p>
 
                 <div id="summaryContainer"></div>
@@ -737,9 +737,9 @@
                     <label>Deployment Decision</label>
                     <select id="deploymentDecision">
                         <option value="">Select decision...</option>
-                        <option value="proceed">✅ Proceed - Acceptable risk level</option>
-                        <option value="conditional">⏸️ Conditional - Proceed with additional measures</option>
-                        <option value="halt">❌ Halt - Unacceptable fundamental rights risk</option>
+                        <option value="proceed">Proceed - Acceptable risk level</option>
+                        <option value="conditional">Conditional - Proceed with additional measures</option>
+                        <option value="halt">Halt - Unacceptable fundamental rights risk</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -749,15 +749,15 @@
                 </div>
 
                 <div style="margin-top: 24px;">
-                    <button class="btn btn-primary" onclick="generateReport()">📄 Generate Report</button>
+                    <button class="btn btn-primary" onclick="generateReport()">Generate Report</button>
                 </div>
             </div>
 
             <!-- Navigation -->
             <div class="nav-buttons">
-                <button class="btn btn-secondary" id="prevBtn" onclick="prevStep()">← Previous</button>
+                <button class="btn btn-secondary" id="prevBtn" onclick="prevStep()"><- Previous</button>
                 <span id="stepIndicator">Step 1 of 6</span>
-                <button class="btn btn-primary" id="nextBtn" onclick="nextStep()">Next →</button>
+                <button class="btn btn-primary" id="nextBtn" onclick="nextStep()">Next -></button>
             </div>
         </div>
 
@@ -771,7 +771,7 @@
             </p>
             <p style="margin-top: 12px; font-size: 11px; opacity: 0.8;">
                 <span style="display: inline-flex; align-items: center; gap: 4px;">
-                    ✓ WCAG 2.1 AA Compliant
+                     WCAG 2.1 AA Compliant
                 </span> |
                 <span>GDPR Compliant</span>
             </p>
@@ -871,10 +871,10 @@
             const toggle = document.getElementById('introToggle');
             if (content.style.display === 'none') {
                 content.style.display = 'block';
-                toggle.textContent = '▲';
+                toggle.textContent = 'Collapse';
             } else {
                 content.style.display = 'none';
-                toggle.textContent = '▼';
+                toggle.textContent = 'Expand';
             }
         }
 
@@ -901,10 +901,10 @@
                     <div class="checklist-question">${q.question}</div>
                     <div class="helper-text" style="margin-bottom: 8px;">${q.guidance}</div>
                     <div class="checklist-options">
-                        <label><input type="radio" name="${q.id}" value="yes"> Yes</label>
-                        <label><input type="radio" name="${q.id}" value="no"> No</label>
-                        <label><input type="radio" name="${q.id}" value="partial"> Partially</label>
-                        <label><input type="radio" name="${q.id}" value="na"> N/A</label>
+                        <label><input type="radio" name="${q.id}" value="yes">Yes</label>
+                        <label><input type="radio" name="${q.id}" value="no">No</label>
+                        <label><input type="radio" name="${q.id}" value="partial">Partially</label>
+                        <label><input type="radio" name="${q.id}" value="na">N/A</label>
                     </div>
                 </div>
             `;
@@ -932,7 +932,7 @@
                 <div class="scenario-card" id="scenario${idx + 1}">
                     <div class="scenario-header">
                         <span class="scenario-title">Scenario ${idx + 1}</span>
-                        ${idx > 0 ? `<button class="btn btn-secondary" onclick="removeScenario(${idx})" style="padding: 4px 8px;">✕ Remove</button>` : ''}
+                        ${idx > 0 ? `<button class="btn btn-secondary" onclick="removeScenario(${idx})" style="padding: 4px 8px;">Remove</button>` : ''}
                     </div>
                     <div class="form-group">
                         <label>How can this AI system negatively affect people?</label>
@@ -952,11 +952,11 @@
                             ${fundamentalRights.map(r => `
                                 <label class="right-item">
                                     <input type="checkbox" name="scenario${idx + 1}_rights" value="${r.id}">
-                                    <span>${r.absolute ? '⚠️ ' : ''}${r.name}</span>
+                                    <span>${r.absolute ? ' ' : ''}${r.name}</span>
                                 </label>
                             `).join('')}
                         </div>
-                        <div class="helper-text">⚠️ indicates absolute rights that cannot be limited</div>
+                        <div class="helper-text">indicates absolute rights that cannot be limited</div>
                     </div>
                 </div>
             `;
@@ -973,7 +973,7 @@
 
         // Navigation
         function goToStep(step) {
-            if (step < 1 || step > totalSteps) return;
+            if (step < 1 || step >totalSteps) return;
             saveCurrentStep();
             currentStep = step;
             updateNavigation();
@@ -997,12 +997,12 @@
         }
 
         function prevStep() {
-            if (currentStep > 1) goToStep(currentStep - 1);
+            if (currentStep >1) goToStep(currentStep - 1);
         }
 
         function updateNavigation() {
             document.getElementById('prevBtn').disabled = currentStep === 1;
-            document.getElementById('nextBtn').textContent = currentStep === totalSteps ? '✅ Complete' : 'Next →';
+            document.getElementById('nextBtn').textContent = currentStep === totalSteps ? ' Complete' : 'Next ->';
             document.getElementById('stepIndicator').textContent = `Step ${currentStep} of ${totalSteps}`;
         }
 
@@ -1053,7 +1053,7 @@
                         const right = fundamentalRights.find(r => r.id === rightId);
                         html += `
                         <div class="scenario-card">
-                            <strong>${right?.absolute ? '⚠️ ' : ''}${right?.name} (${right?.article})</strong>
+                            <strong>${right?.absolute ? ' ' : ''}${right?.name} (${right?.article})</strong>
                             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px;">
                                 <div class="form-group" style="margin-bottom: 0;">
                                     <label style="font-size: 12px;">Interference Level</label>
@@ -1146,17 +1146,17 @@
 
             container.innerHTML = `
             <div class="tip-box" style="margin-bottom: 20px;">
-                <strong>📊 Assessment Summary</strong>
+                <strong>Assessment Summary</strong>
                 <ul style="margin: 8px 0 0 16px;">
                     <li>AI System: <strong>${friaData.context.systemName || 'Not specified'}</strong></li>
                     <li>Scenarios analyzed: <strong>${friaData.scenarios.length}</strong></li>
                     <li>Fundamental rights assessed: <strong>${totalRights}</strong></li>
-                    <li>Absolute rights at risk: <strong style="color: ${absoluteRights > 0 ? 'var(--color-error)' : 'var(--color-success)'};">${absoluteRights}</strong></li>
+                    <li>Absolute rights at risk: <strong style="color: ${absoluteRights >0 ? 'var(--color-error)' : 'var(--color-success)'};">${absoluteRights}</strong></li>
                 </ul>
             </div>
             ${absoluteRights > 0 ? `
                 <div class="tip-box" style="background: rgba(192, 21, 47, 0.08); border-left-color: var(--color-error);">
-                    ⚠️ <strong>Warning:</strong> Your assessment involves absolute rights (e.g., right to life, prohibition of torture). These rights cannot be limited and require the highest level of scrutiny.
+                     <strong>Warning:</strong> Your assessment involves absolute rights (e.g., right to life, prohibition of torture). These rights cannot be limited and require the highest level of scrutiny.
                 </div>
             ` : ''}
         `;
@@ -1198,10 +1198,10 @@
                             decision: imported.decision || {}
                         });
                         populateFromData();
-                        alert('✅ Data imported successfully!');
+                        alert(' Data imported successfully!');
                     }
                 } catch (err) {
-                    alert('❌ Error importing file: ' + err.message);
+                    alert(' Error importing file: ' + err.message);
                 }
                 event.target.value = '';
             };

@@ -1,8 +1,8 @@
 # Contributing to PALO Framework
 
-First off, thank you for considering contributing to PALO! 🎉
+First off, thank you for considering contributing to PALO!
 
-## 📋 Table of Contents
+##  Table of Contents
 
 - [Code of Conduct](#code-of-conduct)
 - [How Can I Contribute?](#how-can-i-contribute)
@@ -12,15 +12,15 @@ First off, thank you for considering contributing to PALO! 🎉
 
 ---
 
-## 📜 Code of Conduct
+##  Code of Conduct
 
 This project adheres to the Contributor Covenant [Code of Conduct](CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code. Please report unacceptable behavior to conduct@paloframework.org.
 
 ---
 
-## 🤔 How Can I Contribute?
+##  How Can I Contribute?
 
-### 🐛 Reporting Bugs
+###  Reporting Bugs
 
 Before creating bug reports, please check existing issues. When you create a bug report, include as many details as possible:
 
@@ -31,7 +31,7 @@ Before creating bug reports, please check existing issues. When you create a bug
 - **Include screenshots if applicable**
 - **Note your browser and version**
 
-### 💡 Suggesting Enhancements
+###  Suggesting Enhancements
 
 Enhancement suggestions are tracked as GitHub issues. When creating an enhancement suggestion:
 
@@ -40,18 +40,18 @@ Enhancement suggestions are tracked as GitHub issues. When creating an enhanceme
 - **Explain why this enhancement would be useful**
 - **List any similar features in other projects if applicable**
 
-### 📝 Documentation
+###  Documentation
 
 - Fix typos or clarify language
 - Add missing documentation
 - Improve code comments
 - Write tutorials or guides
 
-### 🌍 Translations
+###  Translations
 
 We welcome translations! Currently available:
-- 🇬🇧 English (default)
-- 🇮🇹 Italian (partial)
+- English (default)
+- Italian (partial)
 
 To add a new language:
 1. Copy the English version of the file
@@ -61,7 +61,7 @@ To add a new language:
 
 ---
 
-## 💻 Development Setup
+##  Development Setup
 
 ### Prerequisites
 
@@ -88,7 +88,7 @@ open http://localhost:8000
 
 ---
 
-## 🎨 Style Guidelines
+##  Style Guidelines
 
 ### HTML
 
@@ -114,14 +114,14 @@ open http://localhost:8000
 ### Accessibility
 
 All contributions must maintain WCAG 2.1 AA compliance:
-- ✅ Color contrast ratio ≥ 4.5:1
-- ✅ Keyboard navigable
-- ✅ Screen reader compatible
-- ✅ Focus indicators visible
+- Color contrast ratio >= 4.5:1
+- Keyboard navigable
+- Screen reader compatible
+- Focus indicators visible
 
 ---
 
-## 🔄 Pull Request Process
+##  Pull Request Process
 
 1. **Fork** the repository
 2. **Create** a feature branch (`git checkout -b feature/AmazingFeature`)
@@ -143,14 +143,14 @@ All contributions must maintain WCAG 2.1 AA compliance:
 1. Maintainers will review your PR
 2. Address any requested changes
 3. Once approved, your PR will be merged
-4. Celebrate! 🎉
+4. Celebrate!
 
 ---
 
-## ❓ Questions?
+##  Questions?
 
 Feel free to open an issue with the tag `question` or reach out to the maintainers.
 
 ---
 
-**Thank you for contributing to responsible AI governance! 🛡️**
+**Thank you for contributing to responsible AI governance! **

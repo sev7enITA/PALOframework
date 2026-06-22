@@ -64,7 +64,7 @@ and this project follows Semantic Versioning where practical.
 
 ### Added
 
-- **P.A.L.O. Companion App — iOS/iPadOS Release**
+- **P.A.L.O. Companion App - iOS/iPadOS Release**
   - App Store listing added for the P.A.L.O. Framework Toolbox
   - Universal iPhone and iPad support
   - Evidence Vault, biometric protection, PDF report generation, and direct access to PALO web modules
@@ -99,7 +99,7 @@ and this project follows Semantic Versioning where practical.
 
 ### Added
 
-- **P.A.L.O. Companion App — Android Launch on Google Play**
+- **P.A.L.O. Companion App - Android Launch on Google Play**
   - Official public release of the P.A.L.O. Framework Toolbox for Android devices
   - Available on the [Google Play Store](https://play.google.com/store/apps/details?id=com.fabriziodegni.paloframework)
   - Offline, privacy-first AI governance pre-screening toolkit

@@ -927,12 +927,12 @@
                 <a href="index.html" class="btn btn-secondary"
                     style="text-decoration: none; display: inline-flex; align-items: center; gap: 6px;"
                     aria-label="Return to home page">
-                    🏠 <span>Home</span>
+                     <span>Home</span>
                 </a>
                 <a href="PALO_FRIA.html" class="btn btn-secondary"
                     style="text-decoration: none; display: inline-flex; align-items: center; gap: 6px;"
                     aria-label="Open FRIA assessment tool">
-                    🛡️ <span>FRIA</span>
+                     <span>FRIA</span>
                 </a>
             </div>
         </nav>
@@ -944,9 +944,9 @@
                 <p>Comprehensive evaluation framework for responsible AI use cases aligned with PALO principles</p>
             </div>
             <div class="mode-toggle" id="modeToggle" role="group" aria-label="Select mode">
-                <button class="active" data-mode="expert" onclick="setMode('expert')" aria-pressed="true">🔧 Expert
+                <button class="active" data-mode="expert" onclick="setMode('expert')" aria-pressed="true">Expert
                     Mode</button>
-                <button data-mode="wizard" onclick="setMode('wizard')" aria-pressed="false">🧙 Wizard Mode</button>
+                <button data-mode="wizard" onclick="setMode('wizard')" aria-pressed="false">Wizard Mode</button>
             </div>
         </header>
 
@@ -962,14 +962,14 @@
                 </div>
             </div>
             <div class="export-options">
-                <button class="btn btn-secondary" onclick="downloadTemplate()">📋 Download Template</button>
-                <button class="btn btn-secondary" onclick="document.getElementById('importFile').click()">📂 Import
+                <button class="btn btn-secondary" onclick="downloadTemplate()">Download Template</button>
+                <button class="btn btn-secondary" onclick="document.getElementById('importFile').click()">Import
                     JSON</button>
                 <input type="file" id="importFile" accept=".json" style="display: none;" onchange="importData(event)">
-                <button class="btn btn-primary" onclick="exportData()">💾 Export JSON</button>
-                <button class="btn btn-primary" onclick="generateReport()">📄 Generate Report</button>
+                <button class="btn btn-primary" onclick="exportData()">Export JSON</button>
+                <button class="btn btn-primary" onclick="generateReport()">Generate Report</button>
                 <a href="PALO_ComparisonTool.html" class="btn btn-primary"
-                    style="text-decoration: none; display: inline-block;">📊 Compare</a>
+                    style="text-decoration: none; display: inline-block;">Compare</a>
             </div>
         </div>
 
@@ -1005,7 +1005,7 @@
             <div class="wizard-content">
                 <!-- Step 1: Project Info -->
                 <div class="wizard-section active" data-step="1">
-                    <h3>📌 Let's start with your project</h3>
+                    <h3>Let's start with your project</h3>
                     <p class="section-description">Tell us about your AI project. This information helps contextualize
                         your assessment and align it with your business strategy.</p>
 
@@ -1034,24 +1034,24 @@
 
                 <!-- Step 2: Data & Model -->
                 <div class="wizard-section" data-step="2">
-                    <h3>🎛️ Data & Model Details</h3>
+                    <h3>Data & Model Details</h3>
                     <p class="section-description">Describe how your AI system handles data and what type of model it
                         uses. This is critical for privacy and transparency assessments.</p>
 
                     <div class="wizard-field">
                         <label for="wiz_dataGovernance">Data Governance & Privacy</label>
-                        <textarea id="wiz_dataGovernance" class="select" data-wizard-field="dataGovernance" placeholder="• What data sources are used?
-• Is personal data involved?
-• How is consent managed?
-• Data minimization applied?" style="width: 100%; height: 120px;"></textarea>
+                        <textarea id="wiz_dataGovernance" class="select" data-wizard-field="dataGovernance" placeholder="- What data sources are used?
+- Is personal data involved?
+- How is consent managed?
+- Data minimization applied?" style="width: 100%; height: 120px;"></textarea>
                     </div>
 
                     <div class="wizard-field">
                         <label for="wiz_modelTransparency">Model Transparency & Robustness</label>
                         <textarea id="wiz_modelTransparency" class="select" data-wizard-field="modelTransparency"
-                            placeholder="• Black Box or Explainable (XAI)?
-• Architecture documented?
-• Guardrails against adversarial attacks?" style="width: 100%; height: 100px;"></textarea>
+                            placeholder="- Black Box or Explainable (XAI)?
+- Architecture documented?
+- Guardrails against adversarial attacks?" style="width: 100%; height: 100px;"></textarea>
                     </div>
 
                     <div class="wizard-field">
@@ -1064,36 +1064,36 @@
 
                 <!-- Step 3: Users & Governance -->
                 <div class="wizard-section" data-step="3">
-                    <h3>👥 Users & Governance</h3>
+                    <h3>Users & Governance</h3>
                     <p class="section-description">Identify who interacts with the AI system and how governance is
                         structured.</p>
 
                     <div class="wizard-field">
                         <label for="wiz_endUsers">End Users</label>
-                        <textarea id="wiz_endUsers" class="select" data-wizard-field="endUsers" placeholder="• Who uses this system?
-• What decisions do they make based on AI output?
-• Are vulnerable groups affected?" style="width: 100%; height: 100px;"></textarea>
+                        <textarea id="wiz_endUsers" class="select" data-wizard-field="endUsers" placeholder="- Who uses this system?
+- What decisions do they make based on AI output?
+- Are vulnerable groups affected?" style="width: 100%; height: 100px;"></textarea>
                     </div>
 
                     <div class="wizard-field">
                         <label for="wiz_governanceRoles">Governance Roles</label>
                         <textarea id="wiz_governanceRoles" class="select" data-wizard-field="governanceRoles"
-                            placeholder="• Who is accountable for AI decisions?
-• Who monitors the system?
-• Escalation process?" style="width: 100%; height: 100px;"></textarea>
+                            placeholder="- Who is accountable for AI decisions?
+- Who monitors the system?
+- Escalation process?" style="width: 100%; height: 100px;"></textarea>
                     </div>
 
                     <div class="wizard-field">
                         <label for="wiz_redFlags">Potential Red Flags</label>
-                        <textarea id="wiz_redFlags" class="select" data-wizard-field="redFlags" placeholder="• Bias concerns?
-• Safety risks?
-• Ethical considerations?" style="width: 100%; height: 80px;"></textarea>
+                        <textarea id="wiz_redFlags" class="select" data-wizard-field="redFlags" placeholder="- Bias concerns?
+- Safety risks?
+- Ethical considerations?" style="width: 100%; height: 80px;"></textarea>
                     </div>
                 </div>
 
                 <!-- Step 4: KPIs -->
                 <div class="wizard-section" data-step="4">
-                    <h3>📊 Key Performance Indicators</h3>
+                    <h3>Key Performance Indicators</h3>
                     <p class="section-description">Set measurable targets for your AI system. These KPIs help track
                         compliance and performance over time.</p>
 
@@ -1101,13 +1101,13 @@
                         <div class="wizard-field">
                             <label>F1-Score (%)</label>
                             <input type="number" id="wiz_kpiF1" class="select" data-wizard-kpi="kpiF1"
-                                placeholder="Target ≥90%" min="0" max="100" style="width: 100%;">
+                                placeholder="Target >=90%" min="0" max="100" style="width: 100%;">
                             <div class="helper-text">Model accuracy metric</div>
                         </div>
                         <div class="wizard-field">
                             <label>Fairness Score (0-1)</label>
                             <input type="number" id="wiz_kpiFairness" class="select" data-wizard-kpi="kpiFairness"
-                                placeholder="Target ≥0.95" min="0" max="1" step="0.01" style="width: 100%;">
+                                placeholder="Target >=0.95" min="0" max="1" step="0.01" style="width: 100%;">
                             <div class="helper-text">Equal treatment across groups</div>
                         </div>
                         <div class="wizard-field">
@@ -1119,7 +1119,7 @@
                         <div class="wizard-field">
                             <label>System Uptime (%)</label>
                             <input type="number" id="wiz_kpiUptime" class="select" data-wizard-kpi="kpiUptime"
-                                placeholder="Target ≥99.9%" min="0" max="100" step="0.1" style="width: 100%;">
+                                placeholder="Target >=99.9%" min="0" max="100" step="0.1" style="width: 100%;">
                             <div class="helper-text">Availability metric</div>
                         </div>
                     </div>
@@ -1127,7 +1127,7 @@
 
                 <!-- Step 5: Configuration -->
                 <div class="wizard-section" data-step="5">
-                    <h3>⚙️ Risk Configuration</h3>
+                    <h3>Risk Configuration</h3>
                     <p class="section-description">Configure risk classification and select applicable ethical
                         principles.</p>
 
@@ -1163,7 +1163,7 @@
                         <label>PALO Ethical Principles (check all that apply)</label>
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px;">
                             <label style="font-weight: normal; display: flex; align-items: center; gap: 8px;">
-                                <input type="checkbox" id="wiz_principle1" data-wizard-principle="principle1"> Fairness
+                                <input type="checkbox" id="wiz_principle1" data-wizard-principle="principle1">Fairness
                                 & Non-Discrimination
                             </label>
                             <label style="font-weight: normal; display: flex; align-items: center; gap: 8px;">
@@ -1175,19 +1175,19 @@
                                 Accountability & Responsibility
                             </label>
                             <label style="font-weight: normal; display: flex; align-items: center; gap: 8px;">
-                                <input type="checkbox" id="wiz_principle4" data-wizard-principle="principle4"> Privacy &
+                                <input type="checkbox" id="wiz_principle4" data-wizard-principle="principle4">Privacy &
                                 Data Governance
                             </label>
                             <label style="font-weight: normal; display: flex; align-items: center; gap: 8px;">
-                                <input type="checkbox" id="wiz_principle5" data-wizard-principle="principle5"> Safety &
+                                <input type="checkbox" id="wiz_principle5" data-wizard-principle="principle5">Safety &
                                 Robustness
                             </label>
                             <label style="font-weight: normal; display: flex; align-items: center; gap: 8px;">
-                                <input type="checkbox" id="wiz_principle6" data-wizard-principle="principle6"> Human
+                                <input type="checkbox" id="wiz_principle6" data-wizard-principle="principle6">Human
                                 Agency & Oversight
                             </label>
                             <label style="font-weight: normal; display: flex; align-items: center; gap: 8px;">
-                                <input type="checkbox" id="wiz_principle7" data-wizard-principle="principle7"> Societal
+                                <input type="checkbox" id="wiz_principle7" data-wizard-principle="principle7">Societal
                                 & Environmental Well-being
                             </label>
                         </div>
@@ -1196,7 +1196,7 @@
 
                 <!-- Step 6: Review -->
                 <div class="wizard-section" data-step="6">
-                    <h3>🎯 Review & Complete</h3>
+                    <h3>Review & Complete</h3>
                     <p class="section-description">Review your assessment summary. You can switch to Expert Mode to make
                         detailed adjustments or export your data.</p>
 
@@ -1210,9 +1210,9 @@
                         <select id="wiz_gateDecision" class="select" data-wizard-config="gateDecision"
                             style="width: 100%;">
                             <option value="">Select decision...</option>
-                            <option value="go">✅ GO - Proceed to next phase</option>
-                            <option value="conditional">⏸️ CONDITIONAL - Proceed with revisions</option>
-                            <option value="nogo">❌ NO-GO - Halt development</option>
+                            <option value="go">GO - Proceed to next phase</option>
+                            <option value="conditional">CONDITIONAL - Proceed with revisions</option>
+                            <option value="nogo">NO-GO - Halt development</option>
                         </select>
                     </div>
 
@@ -1226,14 +1226,14 @@
 
                 <!-- Wizard Navigation -->
                 <div class="wizard-nav">
-                    <button class="btn btn-secondary" id="wizPrevBtn" onclick="wizardPrev()" disabled>←
+                    <button class="btn btn-secondary" id="wizPrevBtn" onclick="wizardPrev()" disabled><-
                         Previous</button>
                     <div style="display: flex; gap: 8px; align-items: center;">
-                        <button class="btn btn-secondary" onclick="resetForm()" style="padding: 8px 12px;">🔄
+                        <button class="btn btn-secondary" onclick="resetForm()" style="padding: 8px 12px;">
                             Reset</button>
                         <span id="wizStepIndicator" style="color: var(--color-text-secondary);">Step 1 of 6</span>
                     </div>
-                    <button class="btn btn-primary" id="wizNextBtn" onclick="wizardNext()">Next →</button>
+                    <button class="btn btn-primary" id="wizNextBtn" onclick="wizardNext()">Next -></button>
                 </div>
             </div>
         </div>
@@ -1244,11 +1244,11 @@
                 <!-- Main Canvas Area -->
                 <div>
                     <!-- Context Section -->
-                    <h2 style="margin-bottom: var(--space-16); font-size: 18px; color: var(--color-text);">📋 Context &
+                    <h2 style="margin-bottom: var(--space-16); font-size: 18px; color: var(--color-text);">Context &
                         Strategy</h2>
                     <div class="canvas-grid">
                         <div class="canvas-section">
-                            <h3><span class="section-icon">📌</span>Project Name</h3>
+                            <h3>Project Name</h3>
                             <textarea id="projectName" placeholder="Enter project name, department, and date..."
                                 data-field="projectName"></textarea>
                             <div class="palo-tips">
@@ -1259,7 +1259,7 @@
                         </div>
 
                         <div class="canvas-section">
-                            <h3><span class="section-icon">🎯</span>Strategic Alignment</h3>
+                            <h3>Strategic Alignment</h3>
                             <textarea id="strategicAlignment"
                                 placeholder="How does this AI support organizational objectives?"
                                 data-field="strategicAlignment"></textarea>
@@ -1271,7 +1271,7 @@
                         </div>
 
                         <div class="canvas-section">
-                            <h3><span class="section-icon">⚙️</span>Problem Statement</h3>
+                            <h3>Problem Statement</h3>
                             <textarea id="problemStatement" placeholder="What operational pain point does this solve?"
                                 data-field="problemStatement"></textarea>
                             <div class="palo-tips">
@@ -1283,7 +1283,7 @@
                         </div>
 
                         <div class="canvas-section">
-                            <h3><span class="section-icon">🔄</span>Selected Workflow</h3>
+                            <h3>Selected Workflow</h3>
                             <textarea id="selectedWorkflow"
                                 placeholder="Which process is being automated? Where is human-in-the-loop?"
                                 data-field="selectedWorkflow"></textarea>
@@ -1296,14 +1296,14 @@
                     </div>
 
                     <!-- Core Inputs & Data -->
-                    <h2 style="margin: var(--space-32) 0 var(--space-16); font-size: 18px; color: var(--color-text);">🔧
+                    <h2 style="margin: var(--space-32) 0 var(--space-16); font-size: 18px; color: var(--color-text);">
                         Core Inputs & Data</h2>
                     <div class="canvas-grid">
                         <div class="canvas-section">
-                            <h3><span class="section-icon">🛡️</span>Data Governance & Privacy</h3>
-                            <textarea id="dataGovernance" placeholder="• PII/Sensitive data? GDPR compliance?
-• Is data representative? Bias testing?
-• Data minimization applied?" data-field="dataGovernance"></textarea>
+                            <h3>Data Governance & Privacy</h3>
+                            <textarea id="dataGovernance" placeholder="- PII/Sensitive data? GDPR compliance?
+- Is data representative? Bias testing?
+- Data minimization applied?" data-field="dataGovernance"></textarea>
                             <div class="palo-tips">
                                 <strong>PALO Principle: Privacy & Non-Discrimination</strong>
                                 <p>Assess data representativeness for fairness across demographic groups. Document
@@ -1313,10 +1313,10 @@
                         </div>
 
                         <div class="canvas-section">
-                            <h3><span class="section-icon">🎛️</span>Model Transparency & Robustness</h3>
-                            <textarea id="modelTransparency" placeholder="• Black Box or Explainable (XAI)?
-• Architecture documented?
-• Guardrails against adversarial attacks?" data-field="modelTransparency"></textarea>
+                            <h3>Model Transparency & Robustness</h3>
+                            <textarea id="modelTransparency" placeholder="- Black Box or Explainable (XAI)?
+- Architecture documented?
+- Guardrails against adversarial attacks?" data-field="modelTransparency"></textarea>
                             <div class="palo-tips">
                                 <strong>PALO Principle: Transparency & Safety</strong>
                                 <p>Is model explainability appropriate for the risk level? Document known limitations
@@ -1326,10 +1326,10 @@
                         </div>
 
                         <div class="canvas-section">
-                            <h3><span class="section-icon">💎</span>Value Proposition</h3>
-                            <textarea id="valueProposition" placeholder="• Expected ROI and efficiency gains?
-• Positive societal impact?
-• How does this build trust?" data-field="valueProposition"></textarea>
+                            <h3>Value Proposition</h3>
+                            <textarea id="valueProposition" placeholder="- Expected ROI and efficiency gains?
+- Positive societal impact?
+- How does this build trust?" data-field="valueProposition"></textarea>
                             <div class="palo-tips">
                                 <strong>PALO Tip: Holistic Value</strong>
                                 <p>Balance business metrics (ROI) with ethical value (fairness, trust, societal
@@ -1339,10 +1339,10 @@
                         </div>
 
                         <div class="canvas-section">
-                            <h3><span class="section-icon">🌱</span>Security & Environment</h3>
-                            <textarea id="securityEnvironment" placeholder="• Secure by design?
-• Energy consumption estimate?
-• Carbon footprint (training/inference)?" data-field="securityEnvironment"></textarea>
+                            <h3>Security & Environment</h3>
+                            <textarea id="securityEnvironment" placeholder="- Secure by design?
+- Energy consumption estimate?
+- Carbon footprint (training/inference)?" data-field="securityEnvironment"></textarea>
                             <div class="palo-tips">
                                 <strong>PALO Principle: Environmental Sustainability</strong>
                                 <p>Calculate energy consumption per inference. Consider lifecycle environmental impact
@@ -1353,14 +1353,14 @@
                     </div>
 
                     <!-- Core Value & Systems -->
-                    <h2 style="margin: var(--space-32) 0 var(--space-16); font-size: 18px; color: var(--color-text);">👥
+                    <h2 style="margin: var(--space-32) 0 var(--space-16); font-size: 18px; color: var(--color-text);">
                         Users & Stakeholders</h2>
                     <div class="canvas-grid">
                         <div class="canvas-section">
-                            <h3><span class="section-icon">👤</span>End Users & Vulnerable Groups</h3>
-                            <textarea id="endUsers" placeholder="• Who interacts with the AI?
-• Are minors or marginalized groups impacted?
-• Does AI empower or diminish autonomy?" data-field="endUsers"></textarea>
+                            <h3>End Users & Vulnerable Groups</h3>
+                            <textarea id="endUsers" placeholder="- Who interacts with the AI?
+- Are minors or marginalized groups impacted?
+- Does AI empower or diminish autonomy?" data-field="endUsers"></textarea>
                             <div class="palo-tips">
                                 <strong>PALO Principle: Human-Centricity</strong>
                                 <p>Identify vulnerable populations. Assess whether AI enhances or restricts their agency
@@ -1370,11 +1370,11 @@
                         </div>
 
                         <div class="canvas-section">
-                            <h3><span class="section-icon">🏛️</span>Team & Governance Roles</h3>
-                            <textarea id="governanceRoles" placeholder="• Use Case Owner (Business Lead)?
-• AI Governance Board (approval authority)?
-• AI Ethicist (bias audit)?
-• Data Protection Officer?" data-field="governanceRoles"></textarea>
+                            <h3>Team & Governance Roles</h3>
+                            <textarea id="governanceRoles" placeholder="- Use Case Owner (Business Lead)?
+- AI Governance Board (approval authority)?
+- AI Ethicist (bias audit)?
+- Data Protection Officer?" data-field="governanceRoles"></textarea>
                             <div class="palo-tips">
                                 <strong>PALO Principle: Accountability</strong>
                                 <p>Define clear roles, responsibilities, and accountability structures. Document RACI
@@ -1383,11 +1383,11 @@
                         </div>
 
                         <div class="canvas-section">
-                            <h3><span class="section-icon">⚠️</span>Ethical Screening Red Flags</h3>
-                            <textarea id="redFlags" placeholder="• Could cause physical/psychological harm?
-• Could discriminate or exclude groups?
-• High Risk under EU AI Act?
-• Requires Phase 2 Assessment?" data-field="redFlags"></textarea>
+                            <h3>Ethical Screening Red Flags</h3>
+                            <textarea id="redFlags" placeholder="- Could cause physical/psychological harm?
+- Could discriminate or exclude groups?
+- High Risk under EU AI Act?
+- Requires Phase 2 Assessment?" data-field="redFlags"></textarea>
                             <div class="palo-tips">
                                 <strong>PALO Phase 1 Gate:</strong>
                                 <p>If YES to any: trigger comprehensive Phase 2 assessment. Document rationale for
@@ -1397,11 +1397,11 @@
                         </div>
 
                         <div class="canvas-section">
-                            <h3><span class="section-icon">✅</span>Compliance & Dependencies</h3>
-                            <textarea id="compliance" placeholder="• EU AI Act compliance?
-• GDPR, ISO 42001 alignment?
-• Data availability & legal rights?
-• Third-party vendor risks?" data-field="compliance"></textarea>
+                            <h3>Compliance & Dependencies</h3>
+                            <textarea id="compliance" placeholder="- EU AI Act compliance?
+- GDPR, ISO 42001 alignment?
+- Data availability & legal rights?
+- Third-party vendor risks?" data-field="compliance"></textarea>
                             <div class="palo-tips">
                                 <strong>PALO Dimension: Legal Conformity</strong>
                                 <p>Map to relevant standards: ISO 42001, ISO 42005, OECD AI Principles, EU AI Act, NIST
@@ -1412,26 +1412,26 @@
                     </div>
 
                     <!-- KPIs Section -->
-                    <h2 style="margin: var(--space-32) 0 var(--space-16); font-size: 18px; color: var(--color-text);">📊
+                    <h2 style="margin: var(--space-32) 0 var(--space-16); font-size: 18px; color: var(--color-text);">
                         PALO Integrated KPIs</h2>
                     <div class="canvas-section" style="padding: var(--space-16);">
                         <div class="palo-tips" style="margin-bottom: var(--space-16);">
-                            <strong>💡 How KPIs Impact Your Score</strong>
+                            <strong>How KPIs Impact Your Score</strong>
                             <p>These KPIs directly influence your PALO Dimension Scores and Framework Alignment. Each
                                 KPI
                                 has a target value - meeting targets increases your compliance score. Status indicators
-                                show: 🟢 On Target | 🟡 Close | 🔴 Needs Improvement</p>
+                                show:  On Target | Close | Needs Improvement</p>
                         </div>
 
-                        <h3 style="margin-bottom: var(--space-16);"><span class="section-icon">📈</span>Technical KPIs
+                        <h3 style="margin-bottom: var(--space-16);">Technical KPIs
                             <span
-                                style="font-size: 11px; font-weight: 400; color: var(--color-text-secondary); margin-left: 8px;">→
+                                style="font-size: 11px; font-weight: 400; color: var(--color-text-secondary); margin-left: 8px;">->
                                 Impacts: Transparency & Safety</span>
                         </h3>
                         <div class="kpi-grid">
                             <div class="kpi-card" id="kpiF1Card">
                                 <label>F1-Score (%) <span class="kpi-status" id="kpiF1Status"></span></label>
-                                <input type="number" id="kpiF1" placeholder="Target ≥90%" data-kpi="f1" min="0"
+                                <input type="number" id="kpiF1" placeholder="Target >=90%" data-kpi="f1" min="0"
                                     max="100">
                                 <small style="color: var(--color-text-secondary); font-size: 10px;">Model accuracy.
                                     Higher =
@@ -1439,7 +1439,7 @@
                             </div>
                             <div class="kpi-card" id="kpiDriftCard">
                                 <label>Model Drift Rate (%) <span class="kpi-status" id="kpiDriftStatus"></span></label>
-                                <input type="number" id="kpiDrift" placeholder="Target ≤5%" data-kpi="drift" min="0"
+                                <input type="number" id="kpiDrift" placeholder="Target <=5%" data-kpi="drift" min="0"
                                     max="100">
                                 <small style="color: var(--color-text-secondary); font-size: 10px;">Performance
                                     degradation
@@ -1447,7 +1447,7 @@
                             </div>
                             <div class="kpi-card" id="kpiUptimeCard">
                                 <label>System Uptime (%) <span class="kpi-status" id="kpiUptimeStatus"></span></label>
-                                <input type="number" id="kpiUptime" placeholder="Target ≥99.9%" data-kpi="uptime"
+                                <input type="number" id="kpiUptime" placeholder="Target >=99.9%" data-kpi="uptime"
                                     min="0" max="100" step="0.1">
                                 <small style="color: var(--color-text-secondary); font-size: 10px;">System availability.
                                     Critical for reliability.</small>
@@ -1455,7 +1455,7 @@
                             <div class="kpi-card" id="kpiAdversarialCard">
                                 <label>Adversarial Resilience (%) <span class="kpi-status"
                                         id="kpiAdversarialStatus"></span></label>
-                                <input type="number" id="kpiAdversarial" placeholder="Target ≥99%"
+                                <input type="number" id="kpiAdversarial" placeholder="Target >=99%"
                                     data-kpi="adversarial" min="0" max="100">
                                 <small style="color: var(--color-text-secondary); font-size: 10px;">Resistance to
                                     malicious
@@ -1463,31 +1463,30 @@
                             </div>
                         </div>
 
-                        <h3 style="margin: var(--space-16) 0 var(--space-8);"><span
-                                class="section-icon">💼</span>Business
+                        <h3 style="margin: var(--space-16) 0 var(--space-8);">Business
                             KPIs
                             <span
-                                style="font-size: 11px; font-weight: 400; color: var(--color-text-secondary); margin-left: 8px;">→
+                                style="font-size: 11px; font-weight: 400; color: var(--color-text-secondary); margin-left: 8px;">->
                                 Impacts: ISO 42001 Alignment</span>
                         </h3>
                         <div class="kpi-grid">
                             <div class="kpi-card" id="kpiROICard">
                                 <label>ROI (%) <span class="kpi-status" id="kpiROIStatus"></span></label>
-                                <input type="number" id="kpiROI" placeholder="Target ≥20%" data-kpi="roi" min="0">
+                                <input type="number" id="kpiROI" placeholder="Target >=20%" data-kpi="roi" min="0">
                                 <small style="color: var(--color-text-secondary); font-size: 10px;">Return on
                                     investment.
                                     Business value justification.</small>
                             </div>
                             <div class="kpi-card" id="kpiAdoptionCard">
                                 <label>Adoption Rate (%) <span class="kpi-status" id="kpiAdoptionStatus"></span></label>
-                                <input type="number" id="kpiAdoption" placeholder="Target ≥70%" data-kpi="adoption"
+                                <input type="number" id="kpiAdoption" placeholder="Target >=70%" data-kpi="adoption"
                                     min="0" max="100">
                                 <small style="color: var(--color-text-secondary); font-size: 10px;">User uptake rate.
                                     Measures acceptance.</small>
                             </div>
                             <div class="kpi-card" id="kpiCSATCard">
                                 <label>CSAT Score (%) <span class="kpi-status" id="kpiCSATStatus"></span></label>
-                                <input type="number" id="kpiCSAT" placeholder="Target ≥85%" data-kpi="csat" min="0"
+                                <input type="number" id="kpiCSAT" placeholder="Target >=85%" data-kpi="csat" min="0"
                                     max="100">
                                 <small style="color: var(--color-text-secondary); font-size: 10px;">Customer
                                     satisfaction.
@@ -1502,18 +1501,17 @@
                             </div>
                         </div>
 
-                        <h3 style="margin: var(--space-16) 0 var(--space-8);"><span
-                                class="section-icon">⚖️</span>Ethical
+                        <h3 style="margin: var(--space-16) 0 var(--space-8);">Ethical
                             KPIs
                             <span
-                                style="font-size: 11px; font-weight: 400; color: var(--color-text-secondary); margin-left: 8px;">→
+                                style="font-size: 11px; font-weight: 400; color: var(--color-text-secondary); margin-left: 8px;">->
                                 Impacts: Fairness, Data Governance, Environment</span>
                         </h3>
                         <div class="kpi-grid">
                             <div class="kpi-card" id="kpiFairnessCard">
                                 <label>Fairness Score (0-1) <span class="kpi-status"
                                         id="kpiFairnessStatus"></span></label>
-                                <input type="number" id="kpiFairness" placeholder="Target ≥0.95" data-kpi="fairness"
+                                <input type="number" id="kpiFairness" placeholder="Target >=0.95" data-kpi="fairness"
                                     min="0" max="1" step="0.01">
                                 <small style="color: var(--color-text-secondary); font-size: 10px;">Equal treatment
                                     across
@@ -1522,7 +1520,7 @@
                             <div class="kpi-card" id="kpiExplainabilityCard">
                                 <label>Explainability Score (1-5) <span class="kpi-status"
                                         id="kpiExplainabilityStatus"></span></label>
-                                <input type="number" id="kpiExplainability" placeholder="Target ≥4.0"
+                                <input type="number" id="kpiExplainability" placeholder="Target >=4.0"
                                     data-kpi="explainability" min="1" max="5" step="0.1">
                                 <small style="color: var(--color-text-secondary); font-size: 10px;">User understanding
                                     of AI
@@ -1549,14 +1547,14 @@
             </div>
 
             <!-- Feedback & Stakeholders -->
-            <h2 style="margin: var(--space-32) 0 var(--space-16); font-size: 18px; color: var(--color-text);">🔗
+            <h2 style="margin: var(--space-32) 0 var(--space-16); font-size: 18px; color: var(--color-text);">
                 Stakeholders & Feedback</h2>
             <div class="canvas-grid">
                 <div class="canvas-section">
-                    <h3><span class="section-icon">📢</span>Stakeholders & Feedback Loops</h3>
-                    <textarea id="stakeholders" placeholder="• Feedback mechanisms for error reporting?
-• Community consultation?
-• Regular user feedback collection?" data-field="stakeholders"></textarea>
+                    <h3>Stakeholders & Feedback Loops</h3>
+                    <textarea id="stakeholders" placeholder="- Feedback mechanisms for error reporting?
+- Community consultation?
+- Regular user feedback collection?" data-field="stakeholders"></textarea>
                     <div class="palo-tips">
                         <strong>PALO Principle: Accountability</strong>
                         <p>Establish channels for continuous feedback. Create redress mechanisms for users harmed by
@@ -1565,10 +1563,10 @@
                 </div>
 
                 <div class="canvas-section">
-                    <h3><span class="section-icon">💰</span>Cost & Sustainability</h3>
-                    <textarea id="costSustainability" placeholder="• Total Cost of Ownership (TCO)?
-• Compliance and audit costs?
-• Decommissioning plan and data disposal?" data-field="costSustainability"></textarea>
+                    <h3>Cost & Sustainability</h3>
+                    <textarea id="costSustainability" placeholder="- Total Cost of Ownership (TCO)?
+- Compliance and audit costs?
+- Decommissioning plan and data disposal?" data-field="costSustainability"></textarea>
                     <div class="palo-tips">
                         <strong>PALO Phase 5: Decommissioning</strong>
                         <p>Plan end-of-life: secure data disposal, anonymization, stakeholder notification,
@@ -1579,7 +1577,7 @@
 
             <!-- Dynamic Risk Assessment Dashboard -->
             <div class="insights-panel" id="riskDashboard">
-                <h3>📊 PALO Risk Assessment Dashboard</h3>
+                <h3>PALO Risk Assessment Dashboard</h3>
                 <p style="font-size: 12px; color: var(--color-text-secondary); margin-bottom: var(--space-16);">
                     Dynamic assessment based on your inputs. Complete more fields for accurate scoring.
                 </p>
@@ -1587,7 +1585,7 @@
                 <!-- Overall Risk Level Indicator -->
                 <div id="overallRiskIndicator"
                     style="padding: var(--space-16); border-radius: var(--radius-base); margin-bottom: var(--space-16); text-align: center; background: var(--color-background); border: 2px dashed var(--color-border);">
-                    <div style="font-size: 32px; margin-bottom: var(--space-8);">⚪</div>
+                    <div style="font-size: 32px; margin-bottom: var(--space-8);"></div>
                     <div style="font-size: 14px; font-weight: 600; color: var(--color-text);">INCOMPLETE</div>
                     <div style="font-size: 11px; color: var(--color-text-secondary); margin-top: 4px;">Fill in the
                         canvas fields to calculate risk</div>
@@ -1616,9 +1614,9 @@
                     PALO Dimension Scores</div>
                 <div class="compliance-tracker">
                     <div class="compliance-row tooltip-row"
-                        data-tooltip="📝 Impacted by: Data Governance & Privacy, Compliance, Project Name | ✅ Principle: Privacy & Data Governance | 📊 KPI: Privacy Incidents">
+                        data-tooltip=" Impacted by: Data Governance & Privacy, Compliance, Project Name | Principle: Privacy & Data Governance | KPI: Privacy Incidents">
                         <div>
-                            <div class="compliance-label">Data Governance & Privacy <span class="info-icon">ⓘ</span>
+                            <div class="compliance-label">Data Governance & Privacy
                             </div>
                             <div class="compliance-progress">
                                 <div class="compliance-bar" id="dataGovernanceBar" style="width: 0%;"></div>
@@ -1628,9 +1626,9 @@
                             style="font-size: 12px; font-weight: 600; color: var(--color-text-secondary);">0%</span>
                     </div>
                     <div class="compliance-row tooltip-row"
-                        data-tooltip="📝 Impacted by: Model Transparency, Value Proposition | ✅ Principles: Transparency & Explainability, Safety & Robustness | 📊 KPIs: F1-Score, Drift Rate, Adversarial Resilience">
+                        data-tooltip=" Impacted by: Model Transparency, Value Proposition | Principles: Transparency & Explainability, Safety & Robustness | KPIs: F1-Score, Drift Rate, Adversarial Resilience">
                         <div>
-                            <div class="compliance-label">Transparency & Safety <span class="info-icon">ⓘ</span>
+                            <div class="compliance-label">Transparency & Safety
                             </div>
                             <div class="compliance-progress">
                                 <div class="compliance-bar" id="transparencyBar" style="width: 0%;"></div>
@@ -1640,9 +1638,9 @@
                             style="font-size: 12px; font-weight: 600; color: var(--color-text-secondary);">0%</span>
                     </div>
                     <div class="compliance-row tooltip-row"
-                        data-tooltip="📝 Impacted by: Selected Workflow, End Users, Governance Roles | ✅ Principle: Human Agency & Oversight">
+                        data-tooltip=" Impacted by: Selected Workflow, End Users, Governance Roles | Principle: Human Agency & Oversight">
                         <div>
-                            <div class="compliance-label">Human Agency & Oversight <span class="info-icon">ⓘ</span>
+                            <div class="compliance-label">Human Agency & Oversight
                             </div>
                             <div class="compliance-progress">
                                 <div class="compliance-bar" id="humanAgencyBar" style="width: 0%;"></div>
@@ -1652,9 +1650,9 @@
                             style="font-size: 12px; font-weight: 600; color: var(--color-text-secondary);">0%</span>
                     </div>
                     <div class="compliance-row tooltip-row"
-                        data-tooltip="📝 Impacted by: Red Flags, Governance Roles, Strategic Alignment | ✅ Principles: Fairness & Non-Discrimination, Accountability | 📊 KPI: Fairness Score">
+                        data-tooltip=" Impacted by: Red Flags, Governance Roles, Strategic Alignment | Principles: Fairness & Non-Discrimination, Accountability | KPI: Fairness Score">
                         <div>
-                            <div class="compliance-label">Fairness & Accountability <span class="info-icon">ⓘ</span>
+                            <div class="compliance-label">Fairness & Accountability
                             </div>
                             <div class="compliance-progress">
                                 <div class="compliance-bar" id="fairnessBar" style="width: 0%;"></div>
@@ -1664,9 +1662,9 @@
                             style="font-size: 12px; font-weight: 600; color: var(--color-text-secondary);">0%</span>
                     </div>
                     <div class="compliance-row tooltip-row"
-                        data-tooltip="📝 Impacted by: Security & Environment, Cost & Sustainability, Problem Statement | ✅ Principle: Societal & Environmental Well-being | 📊 KPI: Energy per Query">
+                        data-tooltip=" Impacted by: Security & Environment, Cost & Sustainability, Problem Statement | Principle: Societal & Environmental Well-being | KPI: Energy per Query">
                         <div>
-                            <div class="compliance-label">Environmental Sustainability <span class="info-icon">ⓘ</span>
+                            <div class="compliance-label">Environmental Sustainability
                             </div>
                             <div class="compliance-progress">
                                 <div class="compliance-bar" id="environmentBar" style="width: 0%;"></div>
@@ -1683,9 +1681,9 @@
                     Framework Alignment</div>
                 <div class="compliance-tracker">
                     <div class="compliance-row tooltip-row"
-                        data-tooltip="📝 Impacted by: Text field completion (40%) + Selected Ethical Principles (30%) + Configuration Risk Tier/Use Case/Gate Decision (30%)">
+                        data-tooltip=" Impacted by: Text field completion (40%) + Selected Ethical Principles (30%) + Configuration Risk Tier/Use Case/Gate Decision (30%)">
                         <div>
-                            <div class="compliance-label">ISO 42001 Alignment <span class="info-icon">ⓘ</span></div>
+                            <div class="compliance-label">ISO 42001 Alignment </div>
                             <div class="compliance-progress">
                                 <div class="compliance-bar" id="iso42001Bar" style="width: 0%;"></div>
                             </div>
@@ -1694,9 +1692,9 @@
                             style="font-size: 12px; font-weight: 600; color: var(--color-text-secondary);">0%</span>
                     </div>
                     <div class="compliance-row tooltip-row"
-                        data-tooltip="📝 Impacted by: Average of Data Governance + Fairness + Human Agency scores">
+                        data-tooltip=" Impacted by: Average of Data Governance + Fairness + Human Agency scores">
                         <div>
-                            <div class="compliance-label">ISO 42005 Impact Assessment <span class="info-icon">ⓘ</span>
+                            <div class="compliance-label">ISO 42005 Impact Assessment
                             </div>
                             <div class="compliance-progress">
                                 <div class="compliance-bar" id="iso42005Bar" style="width: 0%;"></div>
@@ -1706,9 +1704,9 @@
                             style="font-size: 12px; font-weight: 600; color: var(--color-text-secondary);">0%</span>
                     </div>
                     <div class="compliance-row tooltip-row"
-                        data-tooltip="📝 Impacted by: Selected Ethical Principles (70%) + Filled KPIs (30%)">
+                        data-tooltip=" Impacted by: Selected Ethical Principles (70%) + Filled KPIs (30%)">
                         <div>
-                            <div class="compliance-label">OECD AI Principles <span class="info-icon">ⓘ</span></div>
+                            <div class="compliance-label">OECD AI Principles </div>
                             <div class="compliance-progress">
                                 <div class="compliance-bar" id="oecdBar" style="width: 0%;"></div>
                             </div>
@@ -1717,9 +1715,9 @@
                             style="font-size: 12px; font-weight: 600; color: var(--color-text-secondary);">0%</span>
                     </div>
                     <div class="compliance-row tooltip-row"
-                        data-tooltip="📝 Requires Risk Tier selection. Impacted by: Configuration (30%) + Data Governance (30%) + Transparency (20%) + Human Agency (20%)">
+                        data-tooltip=" Requires Risk Tier selection. Impacted by: Configuration (30%) + Data Governance (30%) + Transparency (20%) + Human Agency (20%)">
                         <div>
-                            <div class="compliance-label">EU AI Act Readiness <span class="info-icon">ⓘ</span></div>
+                            <div class="compliance-label">EU AI Act Readiness </div>
                             <div class="compliance-progress">
                                 <div class="compliance-bar" id="euAIActBar" style="width: 0%;"></div>
                             </div>
@@ -1734,7 +1732,7 @@
                     style="margin-top: var(--space-16); padding: var(--space-12); background: var(--color-background); border-radius: var(--radius-base); border-left: 3px solid var(--color-warning); display: none;">
                     <div
                         style="font-size: 12px; font-weight: 600; color: var(--color-warning); margin-bottom: var(--space-4);">
-                        ⚠️ Recommendations</div>
+                         Recommendations</div>
                     <ul id="recommendationsList"
                         style="font-size: 11px; color: var(--color-text-secondary); margin: 0; padding-left: 16px; line-height: 1.6;">
                     </ul>
@@ -1744,7 +1742,7 @@
 
         <!-- Sidebar -->
         <div class="sidebar">
-            <h2>⚙️ Configuration</h2>
+            <h2>Configuration</h2>
 
             <div class="sidebar-section">
                 <label class="sidebar-label">Risk Tier (EU AI Act)</label>
@@ -1786,48 +1784,48 @@
                 <label class="sidebar-label">PALO Ethical Principles</label>
                 <div
                     style="font-size: 11px; color: var(--color-text-secondary); margin-bottom: var(--space-8); line-height: 1.4;">
-                    ✅ Check each principle your AI system <strong>addresses</strong>. Each principle impacts specific
+                     Check each principle your AI system <strong>addresses</strong>. Each principle impacts specific
                     dimension scores (shown in parentheses).
                 </div>
                 <div class="governance-checklist">
                     <div class="checklist-item" title="Check if your AI treats all user groups fairly without bias">
                         <input type="checkbox" id="principle1" data-principle="fairness" data-field="principle1">
                         <label for="principle1">Fairness & Non-Discrimination</label>
-                        <span style="font-size: 9px; color: var(--color-primary); display: block; margin-left: 20px;">→
+                        <span style="font-size: 9px; color: var(--color-primary); display: block; margin-left: 20px;">->
                             Fairness Score</span>
                     </div>
                     <div class="checklist-item" title="Check if AI decisions can be explained and understood by users">
                         <input type="checkbox" id="principle2" data-principle="transparency" data-field="principle2">
                         <label for="principle2">Transparency & Explainability</label>
-                        <span style="font-size: 9px; color: var(--color-primary); display: block; margin-left: 20px;">→
+                        <span style="font-size: 9px; color: var(--color-primary); display: block; margin-left: 20px;">->
                             Transparency Score</span>
                     </div>
                     <div class="checklist-item"
                         title="Check if there are clear roles and responsibilities for AI governance">
                         <input type="checkbox" id="principle3" data-principle="accountability" data-field="principle3">
                         <label for="principle3">Accountability & Responsibility</label>
-                        <span style="font-size: 9px; color: var(--color-primary); display: block; margin-left: 20px;">→
+                        <span style="font-size: 9px; color: var(--color-primary); display: block; margin-left: 20px;">->
                             Fairness Score</span>
                     </div>
                     <div class="checklist-item"
                         title="Check if data is collected, stored, and processed following privacy regulations">
                         <input type="checkbox" id="principle4" data-principle="privacy" data-field="principle4">
                         <label for="principle4">Privacy & Data Governance</label>
-                        <span style="font-size: 9px; color: var(--color-primary); display: block; margin-left: 20px;">→
+                        <span style="font-size: 9px; color: var(--color-primary); display: block; margin-left: 20px;">->
                             Data
                             Governance Score</span>
                     </div>
                     <div class="checklist-item" title="Check if the AI system is tested for reliability and security">
                         <input type="checkbox" id="principle5" data-principle="safety" data-field="principle5">
                         <label for="principle5">Safety & Robustness</label>
-                        <span style="font-size: 9px; color: var(--color-primary); display: block; margin-left: 20px;">→
+                        <span style="font-size: 9px; color: var(--color-primary); display: block; margin-left: 20px;">->
                             Transparency Score</span>
                     </div>
                     <div class="checklist-item"
                         title="Check if humans can intervene, override, or stop the AI when needed">
                         <input type="checkbox" id="principle6" data-principle="humanAgency" data-field="principle6">
                         <label for="principle6">Human Agency & Oversight</label>
-                        <span style="font-size: 9px; color: var(--color-primary); display: block; margin-left: 20px;">→
+                        <span style="font-size: 9px; color: var(--color-primary); display: block; margin-left: 20px;">->
                             Human Agency Score</span>
                     </div>
                     <div class="checklist-item"
@@ -1835,7 +1833,7 @@
                         <input type="checkbox" id="principle7" data-principle="societalWellbeing"
                             data-field="principle7">
                         <label for="principle7">Societal & Environmental Well-being</label>
-                        <span style="font-size: 9px; color: var(--color-primary); display: block; margin-left: 20px;">→
+                        <span style="font-size: 9px; color: var(--color-primary); display: block; margin-left: 20px;">->
                             Environment Score</span>
                     </div>
                 </div>
@@ -1849,9 +1847,9 @@
                 <label class="sidebar-label">Gate Decision</label>
                 <select id="gateDecision" class="select" data-field="gateDecision">
                     <option value="">Select decision...</option>
-                    <option value="go">✅ GO - Proceed</option>
-                    <option value="conditional">⏸️ CONDITIONAL - Revise</option>
-                    <option value="nogo">❌ NO-GO - Halt</option>
+                    <option value="go">GO - Proceed</option>
+                    <option value="conditional">CONDITIONAL - Revise</option>
+                    <option value="nogo">NO-GO - Halt</option>
                 </select>
             </div>
 
@@ -1863,9 +1861,9 @@
             </div>
 
             <div class="footer-actions">
-                <button class="btn btn-primary btn-icon" onclick="showPALOGuidance()" style="width: 100%;">📖 PALO
+                <button class="btn btn-primary btn-icon" onclick="showPALOGuidance()" style="width: 100%;">PALO
                     Guide</button>
-                <button class="btn btn-secondary btn-icon" onclick="showComplianceMatrix()" style="width: 100%;">🗂️
+                <button class="btn btn-secondary btn-icon" onclick="showComplianceMatrix()" style="width: 100%;">
                     Standards Map</button>
             </div>
         </div>
@@ -1877,7 +1875,7 @@
     <div id="paloModal" class="modal">
         <div class="modal-content">
             <span class="modal-close" onclick="closePALOModal()">&times;</span>
-            <h2 style="margin-bottom: var(--space-16);">📖 PALO Framework Guide</h2>
+            <h2 style="margin-bottom: var(--space-16);">PALO Framework Guide</h2>
             <div class="tab-buttons">
                 <button class="tab-btn active" onclick="switchTab(event, 'phases')">5 Phases</button>
                 <button class="tab-btn" onclick="switchTab(event, 'principles')">7 Principles</button>
@@ -2014,7 +2012,7 @@
     <div id="complianceModal" class="modal">
         <div class="modal-content">
             <span class="modal-close" onclick="closeComplianceModal()">&times;</span>
-            <h2 style="margin-bottom: var(--space-16);">🗂️ Standards Compliance Matrix</h2>
+            <h2 style="margin-bottom: var(--space-16);">Standards Compliance Matrix</h2>
             <table style="width: 100%; border-collapse: collapse; font-size: 12px;">
                 <thead>
                     <tr style="background: var(--color-background); border-bottom: 2px solid var(--color-border);">
@@ -2028,42 +2026,42 @@
                     <tr style="border-bottom: 1px solid var(--color-border);">
                         <td style="padding: var(--space-8);">ISO 42001 (AIMS)</td>
                         <td style="padding: var(--space-8); text-align: center;"><span
-                                class="status-badge status-approved">✓ Full</span></td>
+                                class="status-badge status-approved">Full</span></td>
                         <td style="padding: var(--space-8);">Risk assessment, risk treatment, compliance documentation
                             throughout all 5 phases.</td>
                     </tr>
                     <tr style="border-bottom: 1px solid var(--color-border);">
                         <td style="padding: var(--space-8);">ISO 42005 (AIIA)</td>
                         <td style="padding: var(--space-8); text-align: center;"><span
-                                class="status-badge status-approved">✓ Full</span></td>
+                                class="status-badge status-approved">Full</span></td>
                         <td style="padding: var(--space-8);">Comprehensive impact assessment on individuals, groups,
                             society. Phase 2 mandatory.</td>
                     </tr>
                     <tr style="border-bottom: 1px solid var(--color-border);">
                         <td style="padding: var(--space-8);">OECD AI Principles</td>
                         <td style="padding: var(--space-8); text-align: center;"><span
-                                class="status-badge status-approved">✓ Full</span></td>
+                                class="status-badge status-approved">Full</span></td>
                         <td style="padding: var(--space-8);">5 OECD principles operationalized across PALO dimensions
                             and KPIs.</td>
                     </tr>
                     <tr style="border-bottom: 1px solid var(--color-border);">
                         <td style="padding: var(--space-8);">EU AI Act</td>
                         <td style="padding: var(--space-8); text-align: center;"><span
-                                class="status-badge status-ongoing">⊙ Aligned</span></td>
+                                class="status-badge status-ongoing">Aligned</span></td>
                         <td style="padding: var(--space-8);">Risk tiering (Minimal-Unacceptable) maps to EU AI Act
                             categories. High-risk requirements enforced.</td>
                     </tr>
                     <tr style="border-bottom: 1px solid var(--color-border);">
                         <td style="padding: var(--space-8);">NIST AI RMF</td>
                         <td style="padding: var(--space-8); text-align: center;"><span
-                                class="status-badge status-ongoing">⊙ Aligned</span></td>
+                                class="status-badge status-ongoing">Aligned</span></td>
                         <td style="padding: var(--space-8);">Govern, Map, Measure, Manage functions integrated across
                             PALO lifecycle.</td>
                     </tr>
                     <tr>
                         <td style="padding: var(--space-8);">GDPR & Privacy Laws</td>
                         <td style="padding: var(--space-8); text-align: center;"><span
-                                class="status-badge status-approved">✓ Full</span></td>
+                                class="status-badge status-approved">Full</span></td>
                         <td style="padding: var(--space-8);">Privacy dimension assessed in Phase 1, detailed in Phase 2,
                             monitored Phases 4-5.</td>
                     </tr>
@@ -2142,9 +2140,9 @@
             const indicator = document.getElementById('riskIndicator');
             const value = this.value;
             let html = '';
-            if (value === 'minimal') html = '<div class="risk-indicator risk-minimal">✓ MINIMAL RISK</div>';
-            else if (value === 'limited') html = '<div class="risk-indicator risk-limited">⚠ LIMITED RISK</div>';
-            else if (value === 'high') html = '<div class="risk-indicator risk-high">⛔ HIGH RISK - Phase 2 Required</div>';
+            if (value === 'minimal') html = '<div class="risk-indicator risk-minimal">MINIMAL RISK</div>';
+            else if (value === 'limited') html = '<div class="risk-indicator risk-limited">LIMITED RISK</div>';
+            else if (value === 'high') html = '<div class="risk-indicator risk-high">HIGH RISK - Phase 2 Required</div>';
             indicator.innerHTML = html;
             saveData();
         });
@@ -2299,7 +2297,7 @@
                         "1. Fill in the fields below with your AI project details",
                         "2. Save this file with your changes",
                         "3. Go to the PALO Model Canvas online tool",
-                        "4. Click '📂 Import JSON' to load your data",
+                        "4. Click ' Import JSON' to load your data",
                         "5. Review and adjust scores, then export for analysis"
                     ],
                     tips: [
@@ -2439,7 +2437,7 @@
                             const el = document.getElementById('principle' + i);
                             if (el) {
                                 // Try new format first (principle1_fairness)
-                                const newKey = Object.keys(imported.principles).find(k => k.startsWith('principle' + i));
+                                const newKey = Object.keys(imported.principles).find(k =>k.startsWith('principle' + i));
                                 // Or old format (principle1: true)
                                 const oldKey = 'principle' + i;
 
@@ -2468,9 +2466,9 @@
                     calculateRiskAssessment();
                     updateUseCaseInsights();
 
-                    alert('✅ Data imported successfully!');
+                    alert(' Data imported successfully!');
                 } catch (err) {
-                    alert('❌ Error importing file: ' + err.message);
+                    alert(' Error importing file: ' + err.message);
                 }
 
                 // Reset file input
@@ -2562,11 +2560,11 @@
         const useCaseInsightsData = {
             hiring: {
                 riskLevel: 'high',
-                title: '🔴 High-Risk AI (EU AI Act)',
+                title: ' High-Risk AI (EU AI Act)',
                 alerts: [
-                    '⚠️ EU AI Act: Classified as HIGH-RISK system',
-                    '⚠️ GDPR Art. 22: Automated decision-making restrictions',
-                    '⚠️ High bias risk: Gender, age, ethnicity discrimination'
+                    ' EU AI Act: Classified as HIGH-RISK system',
+                    ' GDPR Art. 22: Automated decision-making restrictions',
+                    ' High bias risk: Gender, age, ethnicity discrimination'
                 ],
                 requirements: [
                     'Mandatory human oversight for final decisions',
@@ -2578,11 +2576,11 @@
             },
             lending: {
                 riskLevel: 'high',
-                title: '🔴 High-Risk AI (EU AI Act)',
+                title: ' High-Risk AI (EU AI Act)',
                 alerts: [
-                    '⚠️ EU AI Act: Classified as HIGH-RISK for creditworthiness',
-                    '⚠️ Fair Lending Laws: Equal Credit Opportunity Act',
-                    '⚠️ Discrimination risk: Race, income, geography'
+                    ' EU AI Act: Classified as HIGH-RISK for creditworthiness',
+                    ' Fair Lending Laws: Equal Credit Opportunity Act',
+                    ' Discrimination risk: Race, income, geography'
                 ],
                 requirements: [
                     'Explainable credit decisions',
@@ -2594,11 +2592,11 @@
             },
             healthcare: {
                 riskLevel: 'high',
-                title: '🔴 High-Risk AI (Medical Device)',
+                title: ' High-Risk AI (Medical Device)',
                 alerts: [
-                    '⚠️ EU AI Act: HIGH-RISK for medical diagnostics',
-                    '⚠️ MDR/IVDR: May require CE marking as medical device',
-                    '⚠️ Patient safety: Critical accuracy requirements'
+                    ' EU AI Act: HIGH-RISK for medical diagnostics',
+                    ' MDR/IVDR: May require CE marking as medical device',
+                    ' Patient safety: Critical accuracy requirements'
                 ],
                 requirements: [
                     'Clinical validation studies',
@@ -2611,11 +2609,11 @@
             },
             content: {
                 riskLevel: 'limited',
-                title: '🟡 Limited Risk (Transparency Required)',
+                title: ' Limited Risk (Transparency Required)',
                 alerts: [
-                    '⚠️ EU AI Act: Transparency obligations apply',
-                    '⚠️ Deepfake disclosure requirements',
-                    '⚠️ Copyright and IP infringement risks'
+                    ' EU AI Act: Transparency obligations apply',
+                    ' Deepfake disclosure requirements',
+                    ' Copyright and IP infringement risks'
                 ],
                 requirements: [
                     'Label AI-generated content clearly',
@@ -2627,11 +2625,11 @@
             },
             recommendation: {
                 riskLevel: 'limited',
-                title: '🟡 Limited Risk (DSA Obligations)',
+                title: ' Limited Risk (DSA Obligations)',
                 alerts: [
-                    '⚠️ Digital Services Act: Recommender transparency',
-                    '⚠️ Filter bubble and polarization concerns',
-                    '⚠️ User manipulation and dark patterns'
+                    ' Digital Services Act: Recommender transparency',
+                    ' Filter bubble and polarization concerns',
+                    ' User manipulation and dark patterns'
                 ],
                 requirements: [
                     'Explain recommendation criteria to users',
@@ -2643,11 +2641,11 @@
             },
             autonomous: {
                 riskLevel: 'high',
-                title: '🔴 High-Risk AI (Safety-Critical)',
+                title: ' High-Risk AI (Safety-Critical)',
                 alerts: [
-                    '⚠️ EU AI Act: HIGH-RISK for safety components',
-                    '⚠️ Product liability implications',
-                    '⚠️ Critical safety and reliability requirements'
+                    ' EU AI Act: HIGH-RISK for safety components',
+                    ' Product liability implications',
+                    ' Critical safety and reliability requirements'
                 ],
                 requirements: [
                     'Extensive safety validation and testing',
@@ -2660,11 +2658,11 @@
             },
             monitoring: {
                 riskLevel: 'high',
-                title: '🔴 High-Risk / Potentially Prohibited',
+                title: ' High-Risk / Potentially Prohibited',
                 alerts: [
-                    '🚫 EU AI Act: Some uses PROHIBITED (social scoring, real-time biometric ID)',
-                    '⚠️ GDPR: Special categories data processing',
-                    '⚠️ Fundamental rights: Privacy, non-discrimination'
+                    ' EU AI Act: Some uses PROHIBITED (social scoring, real-time biometric ID)',
+                    ' GDPR: Special categories data processing',
+                    ' Fundamental rights: Privacy, non-discrimination'
                 ],
                 requirements: [
                     'Legal basis assessment (GDPR Art. 6 & 9)',
@@ -2676,11 +2674,11 @@
             },
             education: {
                 riskLevel: 'high',
-                title: '🔴 High-Risk AI (EU AI Act)',
+                title: ' High-Risk AI (EU AI Act)',
                 alerts: [
-                    '⚠️ EU AI Act: HIGH-RISK for educational access',
-                    '⚠️ Bias in grading affects life opportunities',
-                    '⚠️ Children data: Enhanced protection required'
+                    ' EU AI Act: HIGH-RISK for educational access',
+                    ' Bias in grading affects life opportunities',
+                    ' Children data: Enhanced protection required'
                 ],
                 requirements: [
                     'Human review of consequential decisions',
@@ -2692,10 +2690,10 @@
             },
             other: {
                 riskLevel: 'minimal',
-                title: '🟢 Risk Assessment Required',
+                title: ' Risk Assessment Required',
                 alerts: [
-                    'ℹ️ Conduct specific risk assessment for your use case',
-                    'ℹ️ Consider if it falls under EU AI Act Annex III'
+                    ' Conduct specific risk assessment for your use case',
+                    ' Consider if it falls under EU AI Act Annex III'
                 ],
                 requirements: [
                     'Document the specific use case',
@@ -2730,7 +2728,7 @@
                     <div style="margin-bottom: 8px;">
                         ${data.alerts.map(a => `<div style="margin: 2px 0;">${a}</div>`).join('')}
                     </div>
-                    <div style="font-weight: 600; margin-bottom: 4px;">📋 Key Requirements:</div>
+                    <div style="font-weight: 600; margin-bottom: 4px;">Key Requirements:</div>
                     <ul style="margin: 0; padding-left: 16px; color: var(--color-text-secondary);">
                         ${data.requirements.map(r => `<li style="margin: 2px 0;">${r}</li>`).join('')}
                     </ul>
@@ -2829,27 +2827,27 @@
                 ['dataGovernance', 'compliance', 'projectName'],
                 ['principle4'],
                 kpiFields.filter(k => k.id === 'kpiPrivacy')
-            );
+);
             const transparencyScore = calculateDimensionScore(
                 ['modelTransparency', 'valueProposition'],
                 ['principle2', 'principle5'],
                 kpiFields.filter(k => ['kpiF1', 'kpiDrift', 'kpiAdversarial'].includes(k.id))
-            );
+);
             const humanAgencyScore = calculateDimensionScore(
                 ['selectedWorkflow', 'endUsers', 'governanceRoles'],
                 ['principle6'],
                 []
-            );
+);
             const fairnessScore = calculateDimensionScore(
                 ['redFlags', 'governanceRoles', 'strategicAlignment'],
                 ['principle1', 'principle3'],
                 kpiFields.filter(k => k.id === 'kpiFairness')
-            );
+);
             const environmentScore = calculateDimensionScore(
                 ['securityEnvironment', 'costSustainability', 'problemStatement'],
                 ['principle7'],
                 kpiFields.filter(k => k.id === 'kpiEnergy')
-            );
+);
 
             // Calculate framework alignment - ensure they start at 0
             // ISO 42001: weighted average of text completion, principles, and config (all components must exist)
@@ -2891,7 +2889,7 @@
             if (overallCompletion < 20) {
                 scoreEl.textContent = '--';
                 indicatorEl.innerHTML = `
-                    <div style="font-size: 32px; margin-bottom: var(--space-8);">⚪</div>
+                    <div style="font-size: 32px; margin-bottom: var(--space-8);"></div>
                     <div style="font-size: 14px; font-weight: 600; color: var(--color-text);">INCOMPLETE</div>
                     <div style="font-size: 11px; color: var(--color-text-secondary); margin-top: 4px;">Fill in more fields to calculate risk</div>
                 `;
@@ -2901,7 +2899,7 @@
                 scoreEl.textContent = overallScore + '%';
                 if (overallScore >= 80) {
                     indicatorEl.innerHTML = `
-                        <div style="font-size: 32px; margin-bottom: var(--space-8);">🟢</div>
+                        <div style="font-size: 32px; margin-bottom: var(--space-8);"></div>
                         <div style="font-size: 14px; font-weight: 600; color: var(--color-success);">LOW RISK</div>
                         <div style="font-size: 11px; color: var(--color-text-secondary); margin-top: 4px;">Well-aligned with PALO principles</div>
                     `;
@@ -2909,7 +2907,7 @@
                     indicatorEl.style.border = '2px solid var(--color-success)';
                 } else if (overallScore >= 50) {
                     indicatorEl.innerHTML = `
-                        <div style="font-size: 32px; margin-bottom: var(--space-8);">🟡</div>
+                        <div style="font-size: 32px; margin-bottom: var(--space-8);"></div>
                         <div style="font-size: 14px; font-weight: 600; color: var(--color-warning);">MEDIUM RISK</div>
                         <div style="font-size: 11px; color: var(--color-text-secondary); margin-top: 4px;">Some areas need improvement</div>
                     `;
@@ -2917,7 +2915,7 @@
                     indicatorEl.style.border = '2px solid var(--color-warning)';
                 } else {
                     indicatorEl.innerHTML = `
-                        <div style="font-size: 32px; margin-bottom: var(--space-8);">🔴</div>
+                        <div style="font-size: 32px; margin-bottom: var(--space-8);"></div>
                         <div style="font-size: 14px; font-weight: 600; color: var(--color-error);">HIGH RISK</div>
                         <div style="font-size: 11px; color: var(--color-text-secondary); margin-top: 4px;">Significant gaps require attention</div>
                     `;
@@ -2969,31 +2967,31 @@
                 const value = parseFloat(input.value);
                 const config = kpiTargets[kpiId];
                 let status = 'off-target';
-                let icon = '🔴';
+                let icon = '';
 
                 if (config.type === 'higher') {
                     if (value >= config.target) {
                         status = 'on-target';
-                        icon = '🟢';
+                        icon = '';
                     } else if (value >= config.close) {
                         status = 'close-target';
-                        icon = '🟡';
+                        icon = '';
                     }
                 } else if (config.type === 'lower') {
                     if (value <= config.target) {
                         status = 'on-target';
-                        icon = '🟢';
+                        icon = '';
                     } else if (value <= config.close) {
                         status = 'close-target';
-                        icon = '🟡';
+                        icon = '';
                     }
                 } else if (config.type === 'zero') {
                     if (value === 0) {
                         status = 'on-target';
-                        icon = '🟢';
+                        icon = '';
                     } else if (value <= config.close) {
                         status = 'close-target';
-                        icon = '🟡';
+                        icon = '';
                     }
                 }
 
@@ -3007,7 +3005,7 @@
             let componentsEvaluated = 0;
 
             // Text fields contribute up to 60 points (primary driver)
-            if (textFieldIds.length > 0) {
+            if (textFieldIds.length >0) {
                 let textScore = 0;
                 textFieldIds.forEach(id => {
                     const el = document.getElementById(id);
@@ -3057,7 +3055,7 @@
                         }
                     }
                 });
-                if (kpisWithValues > 0) {
+                if (kpisWithValues >0) {
                     totalScore += (kpiScore / kpisWithValues) * 0.1;
                 }
             }
@@ -3097,7 +3095,7 @@
             const recPanel = document.getElementById('riskRecommendations');
             const recList = document.getElementById('recommendationsList');
 
-            if (recommendations.length > 0) {
+            if (recommendations.length >0) {
                 recPanel.style.display = 'block';
                 recList.innerHTML = recommendations.map(r => `<li>${r}</li>`).join('');
             } else {
@@ -3138,7 +3136,7 @@
         }
 
         function goToWizardStep(step) {
-            if (step < 1 || step > totalWizardSteps) return;
+            if (step < 1 || step >totalWizardSteps) return;
 
             // Sync current step data before moving
             syncWizardToExpert();
@@ -3153,7 +3151,7 @@
 
             // Update navigation buttons
             document.getElementById('wizPrevBtn').disabled = step === 1;
-            document.getElementById('wizNextBtn').textContent = step === totalWizardSteps ? '✅ Complete' : 'Next →';
+            document.getElementById('wizNextBtn').textContent = step === totalWizardSteps ? ' Complete' : 'Next ->';
             document.getElementById('wizStepIndicator').textContent = `Step ${step} of ${totalWizardSteps}`;
 
             // Update summary on review step
@@ -3168,7 +3166,7 @@
                 syncWizardToExpert();
                 saveData();
                 calculateRiskAssessment();
-                alert('✅ Assessment complete! Switching to Expert Mode for detailed review.');
+                alert(' Assessment complete! Switching to Expert Mode for detailed review.');
                 setMode('expert');
             } else {
                 goToWizardStep(currentWizardStep + 1);
@@ -3293,25 +3291,25 @@
             document.getElementById('wizardSummary').innerHTML = `
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
                     <div>
-                        <div style="font-weight: 600; margin-bottom: 4px;">📌 Project</div>
+                        <div style="font-weight: 600; margin-bottom: 4px;">Project</div>
                         <div style="font-size: 14px;">${projectName}</div>
                     </div>
                     <div>
-                        <div style="font-weight: 600; margin-bottom: 4px;">⚠️ Risk Tier</div>
+                        <div style="font-weight: 600; margin-bottom: 4px;">Risk Tier</div>
                         <div style="font-size: 14px;">${riskTier}</div>
                     </div>
                     <div>
-                        <div style="font-weight: 600; margin-bottom: 4px;">📂 Use Case</div>
+                        <div style="font-weight: 600; margin-bottom: 4px;">Use Case</div>
                         <div style="font-size: 14px;">${useCase}</div>
                     </div>
                     <div>
-                        <div style="font-weight: 600; margin-bottom: 4px;">✅ Completion</div>
-                        <div style="font-size: 14px;">${principlesCount}/7 Principles • ${kpisCount} KPIs</div>
+                        <div style="font-weight: 600; margin-bottom: 4px;">Completion</div>
+                        <div style="font-size: 14px;">${principlesCount}/7 Principles - ${kpisCount} KPIs</div>
                     </div>
                 </div>
                 <div style="margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--color-border);">
                     <div style="font-size: 12px; color: var(--color-text-secondary);">
-                        💡 Click "Complete" to finish the wizard and view your full assessment in Expert Mode.
+                         Click "Complete" to finish the wizard and view your full assessment in Expert Mode.
                     </div>
                 </div>
             `;
@@ -3339,14 +3337,14 @@
     <footer
         style="text-align: center; padding: 24px; margin-top: 32px; color: var(--color-text-secondary); font-size: 13px; border-top: 1px solid var(--color-border);"
         role="contentinfo">
-        <p style="margin-bottom: 8px;">© 2024 PALO Framework. All rights reserved.</p>
+        <p style="margin-bottom: 8px;">Copyright 2024 PALO Framework. All rights reserved.</p>
         <p style="margin-bottom: 8px;">
             <a href="index.html" style="color: var(--color-primary); text-decoration: none;">Home</a> |
             <a href="PALO_FRIA.html" style="color: var(--color-primary); text-decoration: none;">FRIA</a> |
             <a href="privacy-policy.html" style="color: var(--color-primary); text-decoration: none;">Privacy</a> |
             <a href="security-policy.html" style="color: var(--color-primary); text-decoration: none;">Security</a>
         </p>
-        <p style="font-size: 11px; opacity: 0.7;">✓ WCAG 2.1 AA Compliant | GDPR Compliant</p>
+        <p style="font-size: 11px; opacity: 0.7;">WCAG 2.1 AA Compliant | GDPR Compliant</p>
     </footer>
 </body>
 

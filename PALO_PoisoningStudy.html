@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Poisoning Boomerang — PALO Framework Module</title>
+<title>The Poisoning Boomerang - PALO Framework Module</title>
 <meta name="description" content="A comprehensive PALO Framework study on web data poisoning tools, detection strategies, and their implications for AI governance. By Fabrizio Degni, Chief AI Officer.">
 <meta name="keywords" content="data poisoning, AI governance, EU AI Act, web crawling, adversarial ML, tarpit defense, Nightshade, content integrity, PALO Framework">
 <meta name="author" content="PALO Framework">
@@ -11,7 +11,7 @@
 <link rel="canonical" href="https://paloframework.org/PALO_PoisoningStudy.html">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://paloframework.org/PALO_PoisoningStudy.html">
-<meta property="og:title" content="The Poisoning Boomerang — PALO Framework">
+<meta property="og:title" content="The Poisoning Boomerang - PALO Framework">
 <meta property="og:description" content="When Defending Against AI Crawlers Becomes a Threat to Model Governance. A PALO Framework research module.">
 <meta property="og:image" content="https://paloframework.org/assets/logo.webp">
 <link rel="icon" type="image/webp" href="assets/logo.webp">
@@ -54,7 +54,7 @@
 .palo-governance-banner p { color: #b0b0c0; font-size: .92rem; margin-bottom: .8rem; }
 .palo-governance-banner ul { list-style: none; padding: 0; }
 .palo-governance-banner li { padding: .4rem 0 .4rem 1.5rem; position: relative; color: #b0b0c0; font-size: .9rem; }
-.palo-governance-banner li::before { content: '✓'; position: absolute; left: 0; color: #0d9488; font-weight: 700; }
+.palo-governance-banner li::before { content: ''; position: absolute; left: 0; color: #0d9488; font-weight: 700; }
 
 /* PALO Phase Mapping */
 .palo-phase-grid {
@@ -118,7 +118,7 @@
 
 <!-- Navigation -->
 <nav id="main-nav">
-  <div class="nav-brand">⚗️ POISONING STUDY</div>
+  <div class="nav-brand">POISONING STUDY</div>
   <div class="nav-links">
     <a href="#arsenal">Arsenal</a>
     <a href="#evidence">Evidence</a>
@@ -133,7 +133,7 @@
 <header id="hero">
   <div class="hero-particles" id="particles"></div>
   <div class="hero-content">
-    <div class="hero-badge">PALO FRAMEWORK MODULE — RESEARCH PUBLICATION — MARCH 2026</div>
+    <div class="hero-badge">PALO FRAMEWORK MODULE - RESEARCH PUBLICATION - MARCH 2026</div>
     <h1>The Poisoning <span class="gradient-text">Boomerang</span></h1>
     <p class="hero-subtitle">When Defending Against AI Crawlers Becomes a Threat to Model Governance</p>
     <div class="hero-meta">
@@ -162,7 +162,7 @@
   <div class="container">
     <div class="abstract-box">
       <h2>Abstract</h2>
-      <p>In recent months, the debate over intellectual property in the AI era has taken a disturbing turn. The frontier of defense for publishers, artists, and developers has shifted from passive tools — <code>robots.txt</code>, IP blocking, copyright litigation — to <strong>active offensive measures</strong>. Tools like <em>Miasma</em>, <em>Nepenthes</em>, <em>Nightshade</em>, and <em>Cloudflare AI Labyrinth</em> are redefining the rules of engagement, moving the needle from <em>denial of access</em> to <strong>deliberate contamination of the future of AI models</strong>.</p>
+      <p>In recent months, the debate over intellectual property in the AI era has taken a disturbing turn. The frontier of defense for publishers, artists, and developers has shifted from passive tools - <code>robots.txt</code>, IP blocking, copyright litigation - to <strong>active offensive measures</strong>. Tools like <em>Miasma</em>, <em>Nepenthes</em>, <em>Nightshade</em>, and <em>Cloudflare AI Labyrinth</em> are redefining the rules of engagement, moving the needle from <em>denial of access</em> to <strong>deliberate contamination of the future of AI models</strong>.</p>
       <p>This study provides a comprehensive analysis of the data poisoning ecosystem, presents five concrete detection strategies for identifying poisoned web sources, examines the regulatory implications under the EU AI Act (Articles 10 & 15), and proposes an ethical framework for navigating this emerging "data war."</p>
       <div class="keywords">
         <span class="keyword">Data Poisoning</span>
@@ -189,7 +189,7 @@
     </div>
     <div class="arsenal-grid">
       <div class="tool-card" data-category="tarpit">
-        <div class="tool-header"><div class="tool-icon">🦠</div><div class="tool-badge tarpit">TARPIT</div></div>
+        <div class="tool-header"><div class="tool-icon"></div><div class="tool-badge tarpit">TARPIT</div></div>
         <h3>Miasma</h3>
         <p class="tool-lang">Written in Rust</p>
         <p>Acts as a reverse proxy that transforms websites into "poison pits." When an AI crawler enters, it is trapped in an infinite loop of self-referential links and corrupted training data. A documented case shows Facebook's crawler trapped for <strong>8+ consecutive hours</strong>, consuming resources to generate unusable data.</p>
@@ -200,7 +200,7 @@
         </div>
       </div>
       <div class="tool-card" data-category="tarpit">
-        <div class="tool-header"><div class="tool-icon">🪴</div><div class="tool-badge tarpit">TARPIT</div></div>
+        <div class="tool-header"><div class="tool-icon"></div><div class="tool-badge tarpit">TARPIT</div></div>
         <h3>Nepenthes</h3>
         <p class="tool-lang">Named after the carnivorous plant</p>
         <p>Follows the same philosophy as Miasma: lures crawlers into procedurally generated pages filled with nonsensical text. The "pitcher plant" approach attracts bots with apparently legitimate content, then degrades the quality of the collected dataset through semantic noise injection.</p>
@@ -211,10 +211,10 @@
         </div>
       </div>
       <div class="tool-card" data-category="poison">
-        <div class="tool-header"><div class="tool-icon">🌙</div><div class="tool-badge poison">DATA POISON</div></div>
+        <div class="tool-header"><div class="tool-icon"></div><div class="tool-badge poison">DATA POISON</div></div>
         <h3>Nightshade</h3>
         <p class="tool-lang">University of Chicago</p>
-        <p>Adds imperceptible perturbations to images that cause AI models to misassociate concepts during training — a "dog" becomes a "cat," a "handbag" becomes a "toaster." Research shows as few as <strong>250 poisoned documents</strong> (0.00016% of training data) can plant backdoors in LLMs.</p>
+        <p>Adds imperceptible perturbations to images that cause AI models to misassociate concepts during training - a "dog" becomes a "cat," a "handbag" becomes a "toaster." Research shows as few as <strong>250 poisoned documents</strong> (0.00016% of training data) can plant backdoors in LLMs.</p>
         <div class="tool-details">
           <div class="detail"><span class="label">Attack Vector</span><span class="value">Adversarial perturbations in feature space</span></div>
           <div class="detail"><span class="label">Detection Evasion</span><span class="value">Imperceptible to human vision</span></div>
@@ -222,7 +222,7 @@
         </div>
       </div>
       <div class="tool-card" data-category="cloak">
-        <div class="tool-header"><div class="tool-icon">🎨</div><div class="tool-badge cloak">STYLE CLOAK</div></div>
+        <div class="tool-header"><div class="tool-icon"></div><div class="tool-badge cloak">STYLE CLOAK</div></div>
         <h3>Glaze</h3>
         <p class="tool-lang">University of Chicago</p>
         <p>Protects artistic style by adding human-imperceptible modifications that prevent AI models from learning an artist's unique aesthetic. Creates smooth, globally coherent spectral energy shifts detectable via frequency-domain analysis.</p>
@@ -233,18 +233,18 @@
         </div>
       </div>
       <div class="tool-card" data-category="labyrinth">
-        <div class="tool-header"><div class="tool-icon">🌀</div><div class="tool-badge labyrinth">LABYRINTH</div></div>
+        <div class="tool-header"><div class="tool-icon"></div><div class="tool-badge labyrinth">LABYRINTH</div></div>
         <h3>Cloudflare AI Labyrinth</h3>
-        <p class="tool-lang">Enterprise-grade — launched March 2025</p>
+        <p class="tool-lang">Enterprise-grade - launched March 2025</p>
         <p>Silently redirects unauthorized bots into AI-generated decoy page networks. Embedded invisible links act as next-generation honeypots. Interactions feed ML models to refine bot detection across Cloudflare's entire network. Available on <strong>all plans including Free</strong>.</p>
         <div class="tool-details">
           <div class="detail"><span class="label">Attack Vector</span><span class="value">AI-generated decoy page networks</span></div>
           <div class="detail"><span class="label">Scale</span><span class="value">Billions of blocked requests network-wide</span></div>
-          <div class="detail"><span class="label">Strategy</span><span class="value">Silent redirection — no alert to bot operator</span></div>
+          <div class="detail"><span class="label">Strategy</span><span class="value">Silent redirection - no alert to bot operator</span></div>
         </div>
       </div>
       <div class="tool-card" data-category="testing">
-        <div class="tool-header"><div class="tool-icon">🧪</div><div class="tool-badge testing">TESTING</div></div>
+        <div class="tool-header"><div class="tool-icon"></div><div class="tool-badge testing">TESTING</div></div>
         <h3>AttackAI</h3>
         <p class="tool-lang">Academic Research Tool</p>
         <p>Simulates data poisoning attacks to test AI model robustness. Enables red-teaming of training pipelines, fine-tuning processes, and RAG systems. Essential for compliance with EU AI Act Article 15 cybersecurity requirements.</p>
@@ -271,11 +271,11 @@
         <thead><tr><th>Metric</th><th>Value</th><th>Source / Year</th><th>Implication</th></tr></thead>
         <tbody>
           <tr><td>News sites blocking AI bots via robots.txt</td><td class="highlight-val">~79%</td><td>ALM Corp, 2025</td><td>Majority of premium content already off-limits to crawlers</td></tr>
-          <tr><td>AI bot requests ignoring robots.txt</td><td class="highlight-val">>13%</td><td>Industry Analysis, 2025</td><td>robots.txt is voluntary — significant non-compliance</td></tr>
+          <tr><td>AI bot requests ignoring robots.txt</td><td class="highlight-val">>13%</td><td>Industry Analysis, 2025</td><td>robots.txt is voluntary - significant non-compliance</td></tr>
           <tr><td>Public datasets with poisoned samples</td><td class="highlight-val">~32%</td><td>WiFi Talents Research, 2025</td><td>Open-source ecosystem heavily contaminated</td></tr>
           <tr><td>Organizations experiencing AI data poisoning</td><td class="highlight-val">26%</td><td>SC World / US-UK Study, 2025</td><td>Over 1 in 4 organizations already affected</td></tr>
-          <tr><td>Model accuracy degradation from poisoned data</td><td class="highlight-val">5–15%</td><td>SQ Magazine, 2025</td><td>Measurable performance impact on benchmarks</td></tr>
-          <tr><td>Harmful output increase (healthcare/code)</td><td class="highlight-val">12–30%+</td><td>SQ Magazine, 2025</td><td>Critical safety risk in sensitive domains</td></tr>
+          <tr><td>Model accuracy degradation from poisoned data</td><td class="highlight-val">5-15%</td><td>SQ Magazine, 2025</td><td>Measurable performance impact on benchmarks</td></tr>
+          <tr><td>Harmful output increase (healthcare/code)</td><td class="highlight-val">12-30%+</td><td>SQ Magazine, 2025</td><td>Critical safety risk in sensitive domains</td></tr>
           <tr><td>Minimum poisoned docs to plant LLM backdoor</td><td class="highlight-val">~250</td><td>SQ Magazine, 2025</td><td>Extremely low barrier (0.00016% of training data)</td></tr>
           <tr><td>Commercial sites with advanced bot detection</td><td class="highlight-val">~50%</td><td>Industry Reports, 2025</td><td>Bot management now mainstream infrastructure</td></tr>
           <tr><td>LightShed Nightshade detection accuracy</td><td class="highlight-val">99.98%</td><td>USENIX / Cambridge, 2025</td><td>Image poisoning detectable via spectral analysis</td></tr>
@@ -283,7 +283,7 @@
       </table>
     </div>
     <div class="evidence-callout">
-      <div class="callout-icon">⚠️</div>
+
       <div>
         <h4>The Asymmetry Problem</h4>
         <p>Large AI companies (OpenAI, Google, Meta) possess sophisticated data sanitization pipelines capable of filtering poisoned data at petabyte scale. The real victims are <strong>smaller models, emerging competitors, and the open-source research community</strong>, which lack equivalent defenses. The poisoning war disproportionately damages the innovation ecosystem it claims to protect.</p>
@@ -304,7 +304,7 @@
       <div class="strategy-card">
         <div class="strategy-num">S1</div>
         <h3>Crawler Policy & Directive Analysis</h3>
-        <p class="strategy-category">Passive · Low Cost · High Coverage</p>
+        <p class="strategy-category">Passive - Low Cost - High Coverage</p>
         <div class="strategy-body">
           <p>Analyze <code>robots.txt</code>, <code>ai.txt</code>, and HTTP headers to fingerprint a site's posture toward AI crawlers.</p>
           <h4>Key Indicators</h4>
@@ -319,7 +319,7 @@
       <div class="strategy-card">
         <div class="strategy-num">S2</div>
         <h3>Honeypot & Hidden Link Detection</h3>
-        <p class="strategy-category">Active · Medium Cost · High Precision</p>
+        <p class="strategy-category">Active - Medium Cost - High Precision</p>
         <div class="strategy-body">
           <p>Detect invisible traps embedded in HTML designed to lure automated crawlers into tarpit infrastructure.</p>
           <h4>Key Indicators</h4>
@@ -334,7 +334,7 @@
       <div class="strategy-card">
         <div class="strategy-num">S3</div>
         <h3>Content Coherence & Semantic Analysis</h3>
-        <p class="strategy-category">Active · High Cost · High Accuracy</p>
+        <p class="strategy-category">Active - High Cost - High Accuracy</p>
         <div class="strategy-body">
           <p>Evaluate whether page content exhibits patterns consistent with procedurally generated "poison" text designed to degrade AI training quality.</p>
           <h4>Key Indicators</h4>
@@ -349,7 +349,7 @@
       <div class="strategy-card">
         <div class="strategy-num">S4</div>
         <h3>HTTP Behavioral Fingerprinting</h3>
-        <p class="strategy-category">Passive · Low Cost · Medium Accuracy</p>
+        <p class="strategy-category">Passive - Low Cost - Medium Accuracy</p>
         <div class="strategy-body">
           <p>Analyze HTTP response behavior for signatures of tarpit infrastructure, bot management systems, and deliberate crawler manipulation.</p>
           <h4>Key Indicators</h4>
@@ -364,7 +364,7 @@
       <div class="strategy-card">
         <div class="strategy-num">S5</div>
         <h3>Image Perturbation & Spectral Analysis</h3>
-        <p class="strategy-category">Active · High Cost · Very High Precision</p>
+        <p class="strategy-category">Active - High Cost - Very High Precision</p>
         <div class="strategy-body">
           <p>Detect Nightshade/Glaze adversarial perturbations in images using frequency-domain analysis.</p>
           <h4>Key Indicators</h4>
@@ -387,11 +387,11 @@
     <div class="section-header">
       <span class="section-number">04</span>
       <h2>The EU AI Act & The Governance Black Hole</h2>
-      <p class="section-desc">How existing regulation addresses — and fails to address — the data poisoning phenomenon</p>
+      <p class="section-desc">How existing regulation addresses - and fails to address - the data poisoning phenomenon</p>
     </div>
     <div class="governance-grid">
       <div class="gov-card">
-        <h3>Article 10 — Data Governance</h3>
+        <h3>Article 10 - Data Governance</h3>
         <div class="article-badge">HIGH-RISK AI SYSTEMS</div>
         <p>Mandates that training, validation, and testing datasets must be subject to appropriate governance practices. Datasets must be:</p>
         <ul>
@@ -402,7 +402,7 @@
         <div class="gap-callout"><strong>The Gap:</strong> Article 10 focuses on the <em>provider's</em> data management obligations but does not address scenarios where the data <em>source itself</em> is deliberately poisoned.</div>
       </div>
       <div class="gov-card">
-        <h3>Article 15 — Robustness & Cybersecurity</h3>
+        <h3>Article 15 - Robustness & Cybersecurity</h3>
         <div class="article-badge">EXPLICIT MENTION</div>
         <p>Explicitly names "attacks trying to manipulate the training data set" (data poisoning) as a threat. Providers must implement technical solutions to:</p>
         <ul>
@@ -419,7 +419,7 @@
       <p>Data poisoning by content owners occupies a legal grey zone. It could be interpreted as:</p>
       <div class="paradox-sides">
         <div class="paradox-left">
-          <h4>🛡️ Legitimate Self-Defense</h4>
+          <h4>Legitimate Self-Defense</h4>
           <ul>
             <li>A <strong>technical protection measure</strong> (TPM) analogous to DRM</li>
             <li>Exercise of the <strong>TDM opt-out right</strong> under EU DSM Directive Art. 4</li>
@@ -427,11 +427,11 @@
           </ul>
         </div>
         <div class="paradox-right">
-          <h4>⚔️ Potential Illegality</h4>
+          <h4>Potential Illegality</h4>
           <ul>
-            <li><strong>Computer fraud</strong> — serving poisoned data could constitute deceptive manipulation</li>
-            <li><strong>Sabotage</strong> — deliberately degrading third-party systems</li>
-            <li><strong>Product liability</strong> — if poisoned content causes downstream harm</li>
+            <li><strong>Computer fraud</strong> - serving poisoned data could constitute deceptive manipulation</li>
+            <li><strong>Sabotage</strong> - deliberately degrading third-party systems</li>
+            <li><strong>Product liability</strong> - if poisoned content causes downstream harm</li>
           </ul>
         </div>
       </div>
@@ -454,11 +454,11 @@
       <p>The PALO Framework recognizes data poisoning as a <strong>cross-cutting risk</strong> that touches every phase of the AI lifecycle. Unlike reactive approaches that address poisoning only at the training stage, PALO embeds data integrity checks from ideation through decommissioning.</p>
       <p>This study directly informs the following PALO governance mechanisms:</p>
       <ul>
-        <li><strong>Phase 1 — Ideation & Screening:</strong> Data source risk assessment must now include poisoning threat modeling. The five detection strategies (S1–S5) from this study should be incorporated into the initial screening checklist.</li>
-        <li><strong>Phase 2 — Assessment & Planning:</strong> Risk Tiering calculations must account for data supply chain vulnerabilities. High-risk systems relying on web-scraped data inherit elevated risk scores.</li>
-        <li><strong>Phase 3 — Development & Validation:</strong> Training pipeline hardening against adversarial data is now a mandatory validation gate. The LightShed framework and semantic coherence analysis should be integrated into data quality pipelines.</li>
-        <li><strong>Phase 4 — Deployment & Monitoring:</strong> Continuous monitoring must include data provenance tracking and poisoning detection for systems using RAG or continuous learning architectures.</li>
-        <li><strong>Phase 5 — Decommissioning:</strong> Poisoned data contamination assessment before model retirement to prevent propagation to successor systems.</li>
+        <li><strong>Phase 1 - Ideation & Screening:</strong> Data source risk assessment must now include poisoning threat modeling. The five detection strategies (S1-S5) from this study should be incorporated into the initial screening checklist.</li>
+        <li><strong>Phase 2 - Assessment & Planning:</strong> Risk Tiering calculations must account for data supply chain vulnerabilities. High-risk systems relying on web-scraped data inherit elevated risk scores.</li>
+        <li><strong>Phase 3 - Development & Validation:</strong> Training pipeline hardening against adversarial data is now a mandatory validation gate. The LightShed framework and semantic coherence analysis should be integrated into data quality pipelines.</li>
+        <li><strong>Phase 4 - Deployment & Monitoring:</strong> Continuous monitoring must include data provenance tracking and poisoning detection for systems using RAG or continuous learning architectures.</li>
+        <li><strong>Phase 5 - Decommissioning:</strong> Poisoned data contamination assessment before model retirement to prevent propagation to successor systems.</li>
       </ul>
     </div>
 
@@ -468,7 +468,7 @@
       <p>Organizations deploying high-risk AI systems under the EU AI Act must now consider the following data poisoning governance requirements as part of their PALO-aligned compliance strategy:</p>
       <ul>
         <li><strong>Article 10 Compliance:</strong> Document data provenance and implement poisoning detection in the data governance framework described in Section 04 of this study.</li>
-        <li><strong>Article 15 Compliance:</strong> Implement at least 3 of the 5 detection strategies (S1–S5) as part of your cybersecurity and robustness measures.</li>
+        <li><strong>Article 15 Compliance:</strong> Implement at least 3 of the 5 detection strategies (S1-S5) as part of your cybersecurity and robustness measures.</li>
         <li><strong>FRIA Integration:</strong> Data poisoning scenarios should be included as impact scenarios in Fundamental Rights Impact Assessments, particularly for healthcare and critical infrastructure AI systems.</li>
         <li><strong>KPI Tracking:</strong> Use the PALO KPI Generator to define measurable data integrity KPIs including poisoning detection rate, data provenance coverage, and supply chain audit frequency.</li>
       </ul>
@@ -489,7 +489,7 @@
       <div class="palo-phase-item">
         <div class="phase-num">3</div>
         <h4>Development</h4>
-        <p>Mandatory S1–S5 detection gates in training pipelines</p>
+        <p>Mandatory S1-S5 detection gates in training pipelines</p>
       </div>
       <div class="palo-phase-item">
         <div class="phase-num">4</div>
@@ -519,10 +519,10 @@
         <h3>Collateral Poisoning</h3>
         <p>Data poisoning is not surgical. When a website publishes corrupted data to "punish" Big Tech crawlers, that data inevitably enters:</p>
         <ul>
-          <li><strong>Open-source datasets</strong> — Common Crawl, LAION, The Pile</li>
-          <li><strong>Academic research</strong> — university projects training on public web data</li>
-          <li><strong>Startup innovation</strong> — emerging companies building ethical AI products</li>
-          <li><strong>Search indices</strong> — potentially degrading traditional search quality</li>
+          <li><strong>Open-source datasets</strong> - Common Crawl, LAION, The Pile</li>
+          <li><strong>Academic research</strong> - university projects training on public web data</li>
+          <li><strong>Startup innovation</strong> - emerging companies building ethical AI products</li>
+          <li><strong>Search indices</strong> - potentially degrading traditional search quality</li>
         </ul>
         <p class="risk-conclusion">The "poison pit" does not distinguish between an aggressor and a small developer using public datasets for legitimate research.</p>
       </div>
@@ -571,7 +571,7 @@
         <div class="pillar"><span class="pillar-num">3</span><h4>Global Coordination</h4><p>International cooperation on data integrity standards</p></div>
         <div class="pillar"><span class="pillar-num">4</span><h4>Technical Tooling</h4><p>Open-source scanning infrastructure for continuous monitoring of web data health</p></div>
       </div>
-      <p class="final-statement">This study and the companion <strong>Venom Map Scanner</strong> application represent an initial contribution to pillar four — the development of practical, open tools for assessing data poisoning risk at scale. The fight for data integrity is a fight for the future of trustworthy AI.</p>
+      <p class="final-statement">This study and the companion <strong>Venom Map Scanner</strong> application represent an initial contribution to pillar four - the development of practical, open tools for assessing data poisoning risk at scale. The fight for data integrity is a fight for the future of trustworthy AI.</p>
     </div>
   </div>
 </section>
@@ -596,7 +596,7 @@
       <a href="privacy-policy.html">Privacy</a>
       <a href="accessibility.html">Accessibility</a>
     </div>
-    <div class="footer-copy">© 2026 Fabrizio Degni & PALO Framework. All Rights Reserved.</div>
+    <div class="footer-copy">Copyright 2026 Fabrizio Degni & PALO Framework. All Rights Reserved.</div>
   </div>
 </div>
 

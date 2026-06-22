@@ -205,7 +205,7 @@ code { font-family: 'JetBrains Mono', monospace; background: rgba(139,92,246,.15
 .strategy-body h4 { color: #a78bfa; font-size: .9rem; text-transform: uppercase; letter-spacing: 1px; margin: 1.5rem 0 .8rem; }
 .strategy-body ul { list-style: none; padding: 0; }
 .strategy-body li { padding: .4rem 0 .4rem 1.5rem; position: relative; color: #b0b0c0; font-size: .9rem; }
-.strategy-body li::before { content: '›'; position: absolute; left: 0; color: #a78bfa; font-weight: 700; }
+.strategy-body li::before { content: '>'; position: absolute; left: 0; color: #a78bfa; font-weight: 700; }
 .strategy-body p { color: #9090a0; font-size: .9rem; }
 
 /* === GOVERNANCE === */
@@ -224,7 +224,7 @@ code { font-family: 'JetBrains Mono', monospace; background: rgba(139,92,246,.15
 }
 .gov-card ul { list-style: none; padding: 0; margin: .8rem 0 1.2rem; }
 .gov-card li { padding: .3rem 0 .3rem 1.3rem; position: relative; color: #b0b0c0; font-size: .9rem; }
-.gov-card li::before { content: '•'; position: absolute; left: 0; color: #a78bfa; }
+.gov-card li::before { content: '-'; position: absolute; left: 0; color: #a78bfa; }
 .gap-callout {
   background: rgba(239,68,68,.06);
   border-left: 3px solid rgba(239,68,68,.4);
@@ -270,7 +270,7 @@ code { font-family: 'JetBrains Mono', monospace; background: rgba(139,92,246,.15
 .ethics-card h3 { font-size: 1.2rem; margin-bottom: 1rem; }
 .ethics-card ul { list-style: none; padding: 0; margin: .5rem 0 1rem; }
 .ethics-card li { padding: .3rem 0 .3rem 1.3rem; position: relative; color: #b0b0c0; font-size: .88rem; }
-.ethics-card li::before { content: '▸'; position: absolute; left: 0; color: inherit; }
+.ethics-card li::before { content: '>'; position: absolute; left: 0; color: inherit; }
 .risk-conclusion { font-weight: 600; color: #e0e0e8; font-size: .9rem; padding-top: .5rem; border-top: 1px solid rgba(255,255,255,.08); margin-top: 1rem; }
 
 /* === CONCLUSION === */
