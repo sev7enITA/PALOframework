@@ -80,6 +80,7 @@ The app is designed as a privacy-first pre-screening companion for AI governance
 
 | Date | Release | Highlights |
 | --- | --- | --- |
+| 2026-07-11 | v2.3.0 - Workspace UI Refresh | New PolicyWatcher-inspired command bar, workspace hero, mobile navigation, compact footer, shared Community shell, and removal of non-essential compliance badges from the main UI |
 | 2026-07-11 | v2.2.1 - PolicyWatcher Ecosystem Link | Added PolicyWatcher as a cited external monitoring companion for public policy changes, source QA, methodology, and post-deployment context |
 | 2026-07-11 | v2.2.0 - Guided Assessment and Evidence Hub | Start Here entries, Assessment Path with local JSON/Markdown evidence bundle export, Regulatory Watch 2026, Documentation Hub, unified v2.1 shell, and Proof & Community media kit |
 | 2026-07-11 | v2.1.0 - Regulatory Readiness and Trust Foundations | Article 27/50 wording review, accessibility status, privacy/security policy refresh, public recognition page, SEO metadata and sitemap alignment |
@@ -209,7 +210,7 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md), [CODE_OF_CONDUCT.md](CODE_OF_CON
 
 ## Roadmap
 
-Current baseline: v2.2.1, released 2026-07-11. This patch release adds a cited PolicyWatcher ecosystem link and post-deployment monitoring context on top of the v2.2.0 guided assessment and evidence hub.
+Current baseline: v2.3.0, released 2026-07-11. This release refreshes the public workspace UI and navigation around the v2.2.x guided assessment, evidence hub, and PolicyWatcher ecosystem link.
 
 Completed in H1 2026:
 
@@ -227,14 +228,15 @@ Completed in H1 2026:
 | Documentation and release hygiene sync | Complete |
 | Regulatory readiness and trust foundations | Complete |
 | Guided assessment and evidence hub | Complete |
+| Workspace UI and navigation refresh | Complete |
 
 Planned roadmap:
 
 | Target | Focus | Planned scope |
 | --- | --- | --- |
-| v2.3 | PALO-AM Simulator MVP | Interactive Action-Space vs Autonomy inputs, tier routing, control recommendations, and exportable assessment summary |
-| v2.4 | Evidence and governance board packs | Board templates, decision logs, KPI/KRI registers, review packets, and audit-ready summaries built on the evidence bundle format |
-| v2.5 | Multilingual and use-case expansion | Broader localization and worked examples for procurement, HR, finance, public-sector, and software-delivery use cases |
+| v2.4 | PALO-AM Simulator MVP | Interactive Action-Space vs Autonomy inputs, tier routing, control recommendations, and exportable assessment summary |
+| v2.5 | Evidence and governance board packs | Board templates, decision logs, KPI/KRI registers, review packets, and audit-ready summaries built on the evidence bundle format |
+| v2.6 | Multilingual and use-case expansion | Broader localization and worked examples for procurement, HR, finance, public-sector, and software-delivery use cases |
 | v3.0 | Integration layer | API and integration patterns for enterprise governance workflows, issue trackers, GRC platforms, and documentation systems |
 
 Exploratory items:

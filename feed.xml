@@ -22,6 +22,17 @@
         <category>EU AI Act</category>
 
         <item>
+            <title>PALO v2.3.0 - Workspace UI Refresh</title>
+            <link>https://paloframework.org/</link>
+            <description><![CDATA[PALO v2.3.0 refreshes the public workspace with a compact command bar, operational hero, mobile navigation, shared Community shell, and a simpler footer without non-essential compliance badges.]]></description>
+            <pubDate>Sat, 11 Jul 2026 16:00:00 +0200</pubDate>
+            <guid isPermaLink="true">https://paloframework.org/#release-v2-3-0</guid>
+            <dc:creator>PALO Framework</dc:creator>
+            <category>UI and UX</category>
+            <category>Accessibility</category>
+        </item>
+
+        <item>
             <title>PALO v2.2.1 - PolicyWatcher Ecosystem Link</title>
             <link>https://paloframework.org/PALO_DocumentationHub.html#policywatcher</link>
             <description><![CDATA[PALO v2.2.1 connects the framework to PolicyWatcher as a separate civic-tech companion for public privacy-policy and terms-of-service monitoring, source QA, confidence methodology, and post-deployment context.]]></description>
