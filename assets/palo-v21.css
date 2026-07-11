@@ -17,7 +17,7 @@
 
 * { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; scroll-padding-top: 88px; }
 
 body.palo-v21 {
     margin: 0;
@@ -517,4 +517,118 @@ body.palo-v21 textarea:focus-visible {
     .palo-home #poisoning-study,
     .palo-home #contact,
     .palo-home #changelog { padding-top: 54px !important; padding-bottom: 54px !important; }
+}
+
+/* Theory to practice value proposition */
+.palo-practice-section {
+    padding: 92px 0 76px;
+    background: #eaf3f5;
+    border-top: 1px solid var(--palo-line);
+    border-bottom: 1px solid var(--palo-line);
+    scroll-margin-top: 88px;
+}
+
+.palo-practice-intro {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 36px;
+}
+
+.palo-practice-intro h2 {
+    max-width: 720px;
+    margin: 0;
+    color: var(--palo-ink);
+    font-size: clamp(2.2rem, 4vw, 4rem);
+    line-height: 1;
+}
+
+.palo-practice-intro .palo-lead { max-width: 760px; margin-bottom: 0; }
+.palo-practice-intro .palo-btn { flex: 0 0 auto; }
+
+.palo-practice-rail {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 42px 0 24px;
+    color: var(--palo-ink-soft);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.palo-practice-rail span { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
+.palo-practice-rail strong { color: var(--palo-teal); }
+.palo-practice-rail i { flex: 1; height: 1px; min-width: 14px; background: var(--palo-teal); opacity: 0.45; }
+
+.palo-practice-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+    gap: 24px;
+    align-items: stretch;
+}
+
+.palo-practice-steps {
+    padding: 8px 28px;
+    background: var(--palo-white);
+    border: 1px solid var(--palo-line);
+    border-radius: 8px;
+    box-shadow: var(--palo-shadow);
+}
+
+.palo-practice-step {
+    display: grid;
+    grid-template-columns: 48px minmax(0, 1fr);
+    gap: 18px;
+    padding: 24px 0;
+    border-bottom: 1px solid var(--palo-line);
+}
+
+.palo-practice-step:last-child { border-bottom: 0; }
+.palo-practice-number { color: var(--palo-gold); font: 800 1rem ui-monospace, SFMono-Regular, Consolas, monospace; }
+.palo-practice-step h3 { margin: 0; color: var(--palo-ink); font-size: 1.15rem; }
+.palo-practice-step p { margin: 7px 0 12px; color: var(--palo-muted); font-size: 0.93rem; line-height: 1.55; }
+
+.palo-module-links { display: flex; flex-wrap: wrap; gap: 5px 16px; }
+.palo-module-links a { color: var(--palo-teal-dark) !important; font-size: 0.82rem; font-weight: 800; text-decoration: none; }
+.palo-module-links a::after { content: " ->"; color: var(--palo-gold); }
+.palo-module-links a:hover { color: var(--palo-teal) !important; text-decoration: underline; text-underline-offset: 3px; }
+
+.palo-practice-output {
+    padding: 30px;
+    color: var(--palo-white);
+    background: var(--palo-ink);
+    border-radius: 8px;
+    box-shadow: 0 16px 30px rgba(16, 42, 67, 0.16);
+}
+
+.palo-practice-output .palo-card-kicker { color: #79d8d2; }
+.palo-practice-output h3 { max-width: 360px; margin: 8px 0 24px; color: var(--palo-white); font-size: 1.7rem; line-height: 1.15; }
+.palo-practice-output ul { margin: 0; padding: 0; list-style: none; }
+.palo-practice-output li { display: grid; grid-template-columns: 24px minmax(0, 1fr); gap: 10px; padding: 15px 0; border-top: 1px solid rgba(255, 255, 255, 0.2); }
+.palo-practice-output li > .palo-svg-icon { margin-top: 2px; color: #79d8d2; }
+.palo-practice-output li strong,
+.palo-practice-output li small { display: block; }
+.palo-practice-output li strong { font-size: 0.95rem; }
+.palo-practice-output li small { margin-top: 3px; color: #c8d8e4; font-size: 0.82rem; line-height: 1.45; }
+.palo-practice-proof { display: flex; gap: 10px; margin-top: 20px; padding-top: 18px; color: #e4edf2; border-top: 1px solid rgba(255, 255, 255, 0.25); font-size: 0.86rem; line-height: 1.5; }
+.palo-practice-proof .palo-svg-icon { flex: 0 0 auto; color: var(--palo-gold); }
+
+@media (max-width: 840px) {
+    .palo-practice-section { padding: 88px 0 54px; }
+    .palo-practice-intro { display: block; }
+    .palo-practice-intro .palo-btn { margin-top: 22px; }
+    .palo-practice-rail { align-items: flex-start; flex-wrap: wrap; gap: 8px 12px; margin-top: 30px; }
+    .palo-practice-rail i { display: none; }
+    .palo-practice-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 560px) {
+    .palo-practice-intro .palo-btn { width: 100%; }
+    .palo-practice-steps { padding: 4px 18px; }
+    .palo-practice-step { grid-template-columns: 34px minmax(0, 1fr); gap: 10px; padding: 20px 0; }
+    .palo-practice-step h3 { font-size: 1.05rem; }
+    .palo-practice-step p { font-size: 0.88rem; }
+    .palo-practice-output { padding: 24px 20px; }
 }

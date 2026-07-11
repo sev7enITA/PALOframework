@@ -7,6 +7,20 @@ and this project follows Semantic Versioning where practical.
 
 ---
 
+## [2.3.1] - 2026-07-11
+
+### Added
+
+- **Theory to Practice value proposition**
+  - Added a dedicated homepage operating loop that explains how PALO moves from a use-case question to classification, impact assessment, controls, KPI/KRI, evidence, and review
+  - Connected the operating loop to the available PALO modules: Model Canvas, Human Agency Risk Map, Tech Trends Observatory, Risk Tiering, Framework Comparison, Regulatory Watch, FRIA, PALO-AM, Vibe Coding Governance, AuditBench, Poisoning Boomerang, KPI/KRI Generator, Assessment Path, Documentation Hub, and P.A.L.O. Toolbox
+  - Made the practical outputs explicit: decision record, impact and control record, KPI/KRI register, and versioned JSON or Markdown evidence bundle
+
+### Changed
+
+- Pointed the primary Start here navigation to the theory-to-practice value proposition
+- Updated the public release marker to v2.3.1 on the homepage and Community shell
+
 ## [2.3.0] - 2026-07-11
 
 ### Changed

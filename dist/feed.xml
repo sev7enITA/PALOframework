@@ -5,8 +5,8 @@
         <link>https://paloframework.org</link>
         <description>Latest updates, tools, and insights from the PALO Framework - Principled AI Lifecycle Orchestration for responsible AI governance.</description>
         <language>en</language>
-        <lastBuildDate>Sat, 11 Jul 2026 14:00:00 +0200</lastBuildDate>
-        <pubDate>Sat, 11 Jul 2026 14:00:00 +0200</pubDate>
+        <lastBuildDate>Sat, 11 Jul 2026 18:00:00 +0200</lastBuildDate>
+        <pubDate>Sat, 11 Jul 2026 18:00:00 +0200</pubDate>
         <ttl>60</ttl>
         <atom:link href="https://paloframework.org/feed.xml" rel="self" type="application/rss+xml"/>
         <image>
@@ -20,6 +20,17 @@
         <category>AI Governance</category>
         <category>Responsible AI</category>
         <category>EU AI Act</category>
+
+        <item>
+            <title>PALO v2.3.1 - From Theory to Practice</title>
+            <link>https://paloframework.org/#theory-to-practice</link>
+            <description><![CDATA[PALO v2.3.1 makes the operating path explicit: frame the use case, classify the case, assess impacts and delegated action, design controls, measure KPI/KRI, and export evidence for review.]]></description>
+            <pubDate>Sat, 11 Jul 2026 18:00:00 +0200</pubDate>
+            <guid isPermaLink="true">https://paloframework.org/#release-v2-3-1</guid>
+            <dc:creator>PALO Framework</dc:creator>
+            <category>Operationalization</category>
+            <category>Assessment</category>
+        </item>
 
         <item>
             <title>PALO v2.3.0 - Workspace UI Refresh</title>

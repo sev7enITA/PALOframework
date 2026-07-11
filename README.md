@@ -80,6 +80,7 @@ The app is designed as a privacy-first pre-screening companion for AI governance
 
 | Date | Release | Highlights |
 | --- | --- | --- |
+| 2026-07-11 | v2.3.1 - Theory to Practice | Dedicated operating loop connecting all core PALO modules to concrete decisions, controls, KPI/KRI, evidence, and review outputs |
 | 2026-07-11 | v2.3.0 - Workspace UI Refresh | New PolicyWatcher-inspired command bar, workspace hero, mobile navigation, compact footer, shared Community shell, and removal of non-essential compliance badges from the main UI |
 | 2026-07-11 | v2.2.1 - PolicyWatcher Ecosystem Link | Added PolicyWatcher as a cited external monitoring companion for public policy changes, source QA, methodology, and post-deployment context |
 | 2026-07-11 | v2.2.0 - Guided Assessment and Evidence Hub | Start Here entries, Assessment Path with local JSON/Markdown evidence bundle export, Regulatory Watch 2026, Documentation Hub, unified v2.1 shell, and Proof & Community media kit |
@@ -210,7 +211,7 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md), [CODE_OF_CONDUCT.md](CODE_OF_CON
 
 ## Roadmap
 
-Current baseline: v2.3.0, released 2026-07-11. This release refreshes the public workspace UI and navigation around the v2.2.x guided assessment, evidence hub, and PolicyWatcher ecosystem link.
+Current baseline: v2.3.1, released 2026-07-11. This release makes the theory-to-practice operating loop the primary value proposition and connects the available PALO modules to concrete governance outputs.
 
 Completed in H1 2026:
 
@@ -229,6 +230,7 @@ Completed in H1 2026:
 | Regulatory readiness and trust foundations | Complete |
 | Guided assessment and evidence hub | Complete |
 | Workspace UI and navigation refresh | Complete |
+| Theory-to-practice operating loop | Complete |
 
 Planned roadmap:
 
