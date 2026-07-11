@@ -5,8 +5,8 @@
         <link>https://paloframework.org</link>
         <description>Latest updates, tools, and insights from the PALO Framework - Principled AI Lifecycle Orchestration for responsible AI governance.</description>
         <language>en</language>
-        <lastBuildDate>Sat, 11 Jul 2026 12:00:00 +0200</lastBuildDate>
-        <pubDate>Sat, 11 Jul 2026 12:00:00 +0200</pubDate>
+        <lastBuildDate>Sat, 11 Jul 2026 14:00:00 +0200</lastBuildDate>
+        <pubDate>Sat, 11 Jul 2026 14:00:00 +0200</pubDate>
         <ttl>60</ttl>
         <atom:link href="https://paloframework.org/feed.xml" rel="self" type="application/rss+xml"/>
         <image>
@@ -20,6 +20,17 @@
         <category>AI Governance</category>
         <category>Responsible AI</category>
         <category>EU AI Act</category>
+
+        <item>
+            <title>PALO v2.2.0 - Guided Assessment and Evidence Hub</title>
+            <link>https://paloframework.org/PALO_AssessmentPath.html</link>
+            <description><![CDATA[PALO v2.2.0 adds clear Start Here entries, a guided Assessment Path, local JSON and Markdown evidence bundle export, Regulatory Watch 2026, a web-native Documentation Hub, and a Proof and Community media kit.]]></description>
+            <pubDate>Sat, 11 Jul 2026 14:00:00 +0200</pubDate>
+            <guid isPermaLink="true">https://paloframework.org/#release-v2-2-0</guid>
+            <dc:creator>PALO Framework</dc:creator>
+            <category>Assessment</category>
+            <category>Documentation</category>
+        </item>
 
         <item>
             <title>PALO v2.1.0 - Regulatory Readiness and Trust Foundations</title>

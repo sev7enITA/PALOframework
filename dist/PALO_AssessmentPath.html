@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PALO Assessment Path | Guided AI Governance Evidence</title>
+    <meta name="description" content="Use the PALO Assessment Path to classify an AI use case, assess contextual impacts, route to controls, and export a local evidence bundle.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://paloframework.org/PALO_AssessmentPath.html">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://paloframework.org/PALO_AssessmentPath.html">
+    <meta property="og:title" content="PALO Assessment Path | Guided AI Governance Evidence">
+    <meta property="og:description" content="A guided route from a use-case question to a local PALO evidence bundle.">
+    <meta property="og:image" content="https://paloframework.org/assets/logo.webp">
+    <meta property="og:site_name" content="PALO Framework">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" type="image/webp" href="assets/logo.webp">
+    <link rel="stylesheet" href="assets/palo-icons.css">
+    <link rel="stylesheet" href="assets/palo-v21.css">
+    <script src="assets/palo-icons.js"></script>
+    <script src="assets/palo-v21.js"></script>
+</head>
+<body class="palo-v21">
+    <a class="palo-skip-link" href="#main-content">Skip to main content</a>
+    <header class="palo-site-header">
+        <div class="palo-shell palo-header-inner">
+            <a class="palo-brand" href="index.html"><img src="assets/logo.webp" alt="PALO">PALO FRAMEWORK</a>
+            <button class="palo-menu-toggle" type="button" data-palo-menu-toggle aria-expanded="false" aria-controls="palo-primary-nav" aria-label="Open navigation">
+                <span data-palo-icon="menu" aria-hidden="true"></span>
+            </button>
+            <nav class="palo-nav" id="palo-primary-nav" aria-label="Primary navigation">
+                <a href="index.html">Home</a>
+                <a href="PALO_AssessmentPath.html" aria-current="page">Assessment Path</a>
+                <a href="PALO_RegulatoryWatch.html">Regulatory Watch</a>
+                <a href="PALO_DocumentationHub.html">Documentation</a>
+                <a href="PALO_Recognition.html">Recognition</a>
+                <a href="PALO_Community.html">Community</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content" class="palo-main">
+        <section class="palo-hero">
+            <div class="palo-shell">
+                <p class="palo-eyebrow">PALO v2.2.0 guided workflow</p>
+                <h1>PALO Assessment Path</h1>
+                <p>One guided route from a use-case question to an evidence bundle. Start with the context, route the work to the right PALO modules, and keep a local record of the decision.</p>
+                <div class="palo-actions">
+                    <a class="palo-btn" href="#assessment-form"><span data-palo-icon="clipboard" aria-hidden="true"></span>Start an assessment</a>
+                    <a class="palo-btn palo-btn-secondary" href="PALO_RegulatoryWatch.html"><span data-palo-icon="scale" aria-hidden="true"></span>Check Regulatory Watch</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="palo-section">
+            <div class="palo-shell">
+                <p class="palo-status"><span data-palo-icon="check" aria-hidden="true"></span>Local-first assessment</p>
+                <h2>Five linked governance gates</h2>
+                <p class="palo-lead">The path is a routing and evidence aid. It does not certify compliance or replace a legal, technical, or fundamental-rights review.</p>
+                <div class="palo-flow" aria-label="PALO Assessment Path stages">
+                    <article class="palo-step"><span class="palo-step-number">01</span><h3>Risk Tiering</h3><p>Describe the system and its intended use.</p></article>
+                    <article class="palo-step"><span class="palo-step-number">02</span><h3>Contextual FRIA</h3><p>Route fundamental-rights questions when the context calls for them.</p></article>
+                    <article class="palo-step"><span class="palo-step-number">03</span><h3>Controls</h3><p>Identify oversight, transparency, data, and incident controls.</p></article>
+                    <article class="palo-step"><span class="palo-step-number">04</span><h3>KPI and KRI</h3><p>Turn the governance intent into measurable follow-up.</p></article>
+                    <article class="palo-step"><span class="palo-step-number">05</span><h3>Evidence bundle</h3><p>Export the route, readiness, sources, and disclaimer.</p></article>
+                </div>
+            </div>
+        </section>
+
+        <section class="palo-section" id="assessment-form">
+            <div class="palo-shell">
+                <p class="palo-eyebrow">Step 1 to 4</p>
+                <h2>Classify the case and build the route</h2>
+                <p class="palo-lead">The form runs in your browser. No answer is sent to a server and no account is needed.</p>
+                <form class="palo-form" id="palo-assessment-form">
+                    <div class="palo-form-grid">
+                        <div class="palo-field">
+                            <label for="system-name">System or project name</label>
+                            <input id="system-name" name="systemName" type="text" required placeholder="For example: Hiring assistant">
+                        </div>
+                        <div class="palo-field">
+                            <label for="organization">Organization</label>
+                            <input id="organization" name="organization" type="text" placeholder="Team, company, or public body">
+                        </div>
+                        <div class="palo-field">
+                            <label for="deployer-role">Deployer context</label>
+                            <select id="deployer-role" name="deployerRole">
+                                <option value="private-deployer">Private deployer</option>
+                                <option value="public-authority">Public authority</option>
+                                <option value="public-service-provider">Provider of a public service</option>
+                                <option value="credit-insurance">Credit or insurance deployer</option>
+                                <option value="provider">Provider or developer</option>
+                                <option value="other">Other or still unknown</option>
+                            </select>
+                        </div>
+                        <div class="palo-field">
+                            <label for="sector">Sector</label>
+                            <input id="sector" name="sector" type="text" placeholder="For example: HR, finance, health, public services">
+                        </div>
+                        <div class="palo-field palo-field-full">
+                            <label for="use-case">Intended use and affected people</label>
+                            <textarea id="use-case" name="useCase" placeholder="What does the system do, who uses it, and who may be affected?"></textarea>
+                        </div>
+                        <div class="palo-field">
+                            <label for="risk-tier">Initial risk tier</label>
+                            <select id="risk-tier" name="riskTier">
+                                <option value="unknown">Not classified yet</option>
+                                <option value="minimal">Minimal or no risk</option>
+                                <option value="limited">Limited risk</option>
+                                <option value="high">Potentially high-risk</option>
+                                <option value="unacceptable">Potentially prohibited</option>
+                            </select>
+                        </div>
+                        <div class="palo-field">
+                            <label for="article-27">Article 27 FRIA scope</label>
+                            <select id="article-27" name="article27Scope">
+                                <option value="unknown">Unknown or to be checked</option>
+                                <option value="yes">Likely in scope</option>
+                                <option value="no">Not currently in scope</option>
+                            </select>
+                        </div>
+                        <fieldset class="palo-fieldset palo-field-full">
+                            <legend>Additional routing signals</legend>
+                            <div class="palo-checks">
+                                <label class="palo-check" for="agentic"><input id="agentic" name="agentic" type="checkbox"> This system can take delegated actions or use tools</label>
+                                <label class="palo-check" for="ai-assisted"><input id="ai-assisted" name="aiAssisted" type="checkbox"> The system is being built with AI-assisted development</label>
+                            </div>
+                        </fieldset>
+                        <fieldset class="palo-fieldset palo-field-full">
+                            <legend>Evidence readiness</legend>
+                            <div class="palo-checks">
+                                <label class="palo-check" for="data-governance"><input id="data-governance" name="dataGovernance" type="checkbox"> Data governance and provenance</label>
+                                <label class="palo-check" for="human-oversight"><input id="human-oversight" name="humanOversight" type="checkbox"> Human oversight and escalation</label>
+                                <label class="palo-check" for="monitoring"><input id="monitoring" name="monitoring" type="checkbox"> Monitoring and change control</label>
+                                <label class="palo-check" for="incident-response"><input id="incident-response" name="incidentResponse" type="checkbox"> Incident response and remediation</label>
+                                <label class="palo-check" for="transparency"><input id="transparency" name="transparency" type="checkbox"> Transparency and user information</label>
+                            </div>
+                        </fieldset>
+                        <div class="palo-form-actions">
+                            <button class="palo-btn" type="submit"><span data-palo-icon="rocket" aria-hidden="true"></span>Build my route</button>
+                            <button class="palo-btn palo-btn-muted" type="reset" id="reset-assessment">Clear form</button>
+                        </div>
+                    </div>
+                </form>
+
+                <section class="palo-results" id="assessment-results" aria-live="polite" tabindex="-1">
+                    <h2>Your PALO route</h2>
+                    <p id="results-intro" class="palo-lead"></p>
+                    <div class="palo-results-grid">
+                        <div>
+                            <h3>Recommended next steps</h3>
+                            <ul class="palo-route" id="route-list"></ul>
+                            <div class="palo-actions">
+                                <button class="palo-btn" type="button" id="download-json"><span data-palo-icon="download" aria-hidden="true"></span>Download JSON</button>
+                                <button class="palo-btn palo-btn-secondary" type="button" id="download-markdown"><span data-palo-icon="file" aria-hidden="true"></span>Download Markdown</button>
+                            </div>
+                        </div>
+                        <div>
+                            <h3>Bundle preview</h3>
+                            <pre class="palo-output" id="bundle-preview"></pre>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="palo-note"><strong>Use the route as a starting point.</strong> The export includes PALO version, route logic, evidence readiness, official source links, and a plain-language disclaimer so the next reviewer can see what was assessed and what remains open.</div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="palo-footer">
+        <div class="palo-shell">
+            <p>Copyright <span data-current-year>2026</span> PALO Framework. Governance support for real-world AI decisions.</p>
+            <div class="palo-footer-links">
+                <a href="PALO_RiskTiering.html">Risk Tiering</a>
+                <a href="PALO_FRIA.html">FRIA</a>
+                <a href="PALO_KPIGenerator.html">KPI Generator</a>
+                <a href="PALO_DocumentationHub.html">Documentation Hub</a>
+                <a href="privacy-policy.html">Privacy</a>
+                <a href="security-policy.html">Security</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        (function () {
+            var form = document.getElementById('palo-assessment-form');
+            var results = document.getElementById('assessment-results');
+            var routeList = document.getElementById('route-list');
+            var preview = document.getElementById('bundle-preview');
+            var intro = document.getElementById('results-intro');
+            var bundle = null;
+            var sourceLinks = [
+                'https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai',
+                'https://digital-strategy.ec.europa.eu/en/policies/guidelines-ai-high-risk-systems',
+                'https://digital-strategy.ec.europa.eu/en/faqs/signing-code-practice-transparency-ai-generated-content',
+                'https://eur-lex.europa.eu/eli/reg/2024/1689/oj/eng'
+            ];
+            var routeLinks = {
+                'Risk Tiering': 'PALO_RiskTiering.html',
+                'Contextual FRIA': 'PALO_FRIA.html',
+                'Agentic governance': 'PALO_AgenticGovernance.html',
+                'AI Dev Governance': 'PALO_VibeCoding.html',
+                'Controls and KPI/KRI': 'PALO_KPIGenerator.html',
+                'Documentation Hub': 'PALO_DocumentationHub.html'
+            };
+            var esc = function (value) {
+                return String(value == null ? '' : value).replace(/[&<>"']/g, function (char) {
+                    return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char];
+                });
+            };
+            var value = function (name) {
+                var field = form.elements[name];
+                return field && field.type === 'checkbox' ? field.checked : (field ? field.value : '');
+            };
+            var routeReason = function (name) {
+                var reasons = {
+                    'Risk Tiering': 'Confirm the initial classification against the system purpose, affected people, and prohibited-practice questions.',
+                    'Contextual FRIA': 'Check Article 27 scope and document fundamental-rights impacts for the deployment context.',
+                    'Agentic governance': 'Map delegated authority, tools, action space, autonomy, controls, and agentic evidence.',
+                    'AI Dev Governance': 'Review functional intent, controlled environments, review gates, and evidence for AI-assisted development.',
+                    'Controls and KPI/KRI': 'Choose measurable controls and indicators for ongoing governance and review.',
+                    'Documentation Hub': 'Read the web-native guidance and keep the primary framework documents with the assessment record.'
+                };
+                return reasons[name];
+            };
+            var markdown = function (data) {
+                var a = data.assessment;
+                var lines = [
+                    '# PALO Evidence Bundle',
+                    '',
+                    '- Format: ' + data.formatVersion,
+                    '- PALO release: ' + data.paloRelease,
+                    '- Generated: ' + data.generatedAt,
+                    '',
+                    '## Assessment',
+                    '',
+                    '- System: ' + (a.systemName || 'Not provided'),
+                    '- Organization: ' + (a.organization || 'Not provided'),
+                    '- Deployer context: ' + a.deployerRole,
+                    '- Sector: ' + (a.sector || 'Not provided'),
+                    '- Intended use: ' + (a.useCase || 'Not provided').replace(/\r?\n/g, ' '),
+                    '- Initial risk tier: ' + a.riskTier,
+                    '- Article 27 scope: ' + a.article27Scope,
+                    '- Delegated actions or tools: ' + (a.agentic ? 'Yes' : 'No'),
+                    '- AI-assisted development: ' + (a.aiAssisted ? 'Yes' : 'No'),
+                    '',
+                    '## Recommended route',
+                    ''
+                ];
+                data.route.forEach(function (item) { lines.push('- **' + item.name + '**: ' + item.reason); });
+                lines.push('', '## Evidence readiness', '');
+                Object.keys(data.evidenceReadiness).forEach(function (key) {
+                    lines.push('- ' + key + ': ' + (data.evidenceReadiness[key] ? 'Ready or started' : 'Open'));
+                });
+                lines.push('', '## Sources', '');
+                data.sources.forEach(function (source) { lines.push('- ' + source); });
+                lines.push('', '## Disclaimer', '', data.disclaimer, '');
+                return lines.join('\n');
+            };
+
+            form.addEventListener('submit', function (event) {
+                event.preventDefault();
+                var role = value('deployerRole');
+                var article27 = value('article27Scope');
+                var roleNeedsFria = ['public-authority', 'public-service-provider', 'credit-insurance'].indexOf(role) !== -1;
+                var route = [{ name: 'Risk Tiering', reason: routeReason('Risk Tiering') }];
+                if (article27 !== 'no' || roleNeedsFria) route.push({ name: 'Contextual FRIA', reason: routeReason('Contextual FRIA') });
+                if (value('agentic')) route.push({ name: 'Agentic governance', reason: routeReason('Agentic governance') });
+                if (value('aiAssisted')) route.push({ name: 'AI Dev Governance', reason: routeReason('AI Dev Governance') });
+                route.push({ name: 'Controls and KPI/KRI', reason: routeReason('Controls and KPI/KRI') });
+                route.push({ name: 'Documentation Hub', reason: routeReason('Documentation Hub') });
+                var evidence = {
+                    'Data governance and provenance': value('dataGovernance'),
+                    'Human oversight and escalation': value('humanOversight'),
+                    'Monitoring and change control': value('monitoring'),
+                    'Incident response and remediation': value('incidentResponse'),
+                    'Transparency and user information': value('transparency')
+                };
+                bundle = {
+                    formatVersion: 'PALO Evidence Bundle 0.1',
+                    paloRelease: '2.2.0',
+                    generatedAt: new Date().toISOString(),
+                    assessment: {
+                        systemName: value('systemName'),
+                        organization: value('organization'),
+                        deployerRole: role,
+                        sector: value('sector'),
+                        useCase: value('useCase'),
+                        riskTier: value('riskTier'),
+                        article27Scope: article27,
+                        agentic: value('agentic'),
+                        aiAssisted: value('aiAssisted')
+                    },
+                    route: route,
+                    evidenceReadiness: evidence,
+                    sources: sourceLinks,
+                    disclaimer: 'PALO is an educational governance-support and pre-screening toolkit. This bundle is not a certification, legal opinion, or determination of compliance. Verify current law, guidance, standards, and sector obligations before relying on the assessment.'
+                };
+                routeList.innerHTML = route.map(function (item) {
+                    var href = routeLinks[item.name];
+                    return '<li><span data-palo-icon="check" aria-hidden="true"></span><div><strong>' + (href ? '<a href="' + href + '">' + esc(item.name) + '</a>' : esc(item.name)) + '</strong><br><span class="palo-small">' + esc(item.reason) + '</span></div></li>';
+                }).join('');
+                intro.textContent = 'The route for "' + value('systemName') + '" has ' + route.length + ' linked steps. Review each result with the people responsible for the system.';
+                preview.textContent = JSON.stringify(bundle, null, 2);
+                results.classList.add('is-visible');
+                results.focus();
+                if (window.paloRenderIcons) window.paloRenderIcons(results);
+            });
+
+            document.getElementById('download-json').addEventListener('click', function () {
+                if (!bundle) return;
+                window.paloDownload('palo-evidence-bundle.json', JSON.stringify(bundle, null, 2), 'application/json;charset=utf-8');
+            });
+            document.getElementById('download-markdown').addEventListener('click', function () {
+                if (!bundle) return;
+                window.paloDownload('palo-evidence-bundle.md', markdown(bundle), 'text/markdown;charset=utf-8');
+            });
+            document.getElementById('reset-assessment').addEventListener('click', function () {
+                results.classList.remove('is-visible');
+                bundle = null;
+            });
+        }());
+    </script>
+</body>
+</html>
