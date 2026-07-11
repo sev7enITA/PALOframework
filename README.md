@@ -144,7 +144,7 @@ PALOframework/
 |-- PALO_VibeCoding.html               # AI-assisted development governance
 |-- PALO_AgenticGovernance.html        # PALO-AM Agentic Governance
 |-- PALO_CompanionApp.html             # Mobile app landing page
-|-- PALO_Community.html                # Community and advisory board
+|-- PALO_Community.html                # Community and open collaboration
 |-- PALO_Recognition.html              # Public references and source notes
 |-- PALO_AssessmentPath.html           # Guided assessment and evidence bundle export
 |-- PALO_RegulatoryWatch.html           # Dated regulatory watchlist and sources
@@ -207,7 +207,7 @@ Completed in H1 2026:
 | --- | --- |
 | Human Agency Risk Map | Complete |
 | 2026 Tech Trends Observatory | Complete |
-| Community and Advisory Board page | Complete |
+| Community and open collaboration page | Complete |
 | AuditBench Explorer | Complete |
 | Android companion app | Complete |
 | iOS/iPadOS companion app | Complete |
