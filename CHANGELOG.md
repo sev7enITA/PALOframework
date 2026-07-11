@@ -7,6 +7,19 @@ and this project follows Semantic Versioning where practical.
 
 ---
 
+## [2.2.1] - 2026-07-11
+
+### Added
+
+- **PolicyWatcher ecosystem link**
+  - Added PolicyWatcher as a separate civic-tech monitoring companion for public privacy-policy and terms-of-service changes
+  - Added links to the PolicyWatcher Observatory, timeline, confidence methodology, and Trust & Quality materials
+  - Added an explicit integration boundary: PolicyWatcher signals can inform monitoring, but do not replace original sources, official requirements, human review, or legal advice
+
+### Changed
+
+- Added PolicyWatcher references to the homepage, Assessment Path, Regulatory Watch, Documentation Hub, Recognition page, README, and release feed
+
 ## [2.2.0] - 2026-07-11
 
 ### Added
