@@ -147,7 +147,9 @@
         }
     </style>
     <link rel="stylesheet" href="assets/palo-icons.css">
+    <link rel="stylesheet" href="assets/palo-v21.css">
     <script src="assets/palo-icons.js"></script>
+    <script src="assets/palo-v21.js"></script>
 </head>
 
 <body class="text-slate-800 bg-white font-sans antialiased">
@@ -158,62 +160,30 @@
         Skip to main content
     </a>
 
-    <!-- Navigation -->
-    <nav class="fixed w-full z-50 glass-nav transition-all duration-300" id="navbar" role="navigation"
-        aria-label="Main navigation">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <a href="index.html" class="flex items-center gap-3">
-                    <!-- LOGO SECTION -->
-                    <img src="assets/logo.webp" alt="PALO Logo" class="w-10 h-10 rounded-lg shadow-md object-cover"
-                        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-                    <div
-                        class="w-10 h-10 bg-palo-teal text-white rounded-lg hidden items-center justify-center font-bold text-xl shadow-lg">
-                        P</div>
-                    <span class="font-bold text-xl tracking-tight text-slate-800">PALO <span
-                            class="text-palo-teal">Framework</span></span>
-                </a>
-
-                <!-- Desktop Menu -->
-                <div class="hidden md:flex space-x-8 items-center">
-                    <a href="index.html"
-                        class="text-slate-600 hover:text-palo-teal font-medium transition-colors"><span data-palo-icon=home class=palo-icon-inline></span>Home</a>
-                    <a href="index.html#principles"
-                        class="text-slate-600 hover:text-palo-teal font-medium transition-colors"><span data-palo-icon=shield class=palo-icon-inline></span>Principles</a>
-                    <a href="index.html#lifecycle"
-                        class="text-slate-600 hover:text-palo-teal font-medium transition-colors">Lifecycle</a>
-                    <a href="PALO_Community.html" class="text-palo-teal font-bold transition-colors"><span data-palo-icon=users class=palo-icon-inline></span>Community</a>
-                    <a href="index.html#contact"
-                        class="text-slate-600 hover:text-palo-teal font-medium transition-colors"><span data-palo-icon=mail class=palo-icon-inline></span>Contact</a>
-                </div>
-
-                <!-- Mobile menu button -->
-                <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-btn" class="text-slate-600 hover:text-palo-teal focus:outline-none"
-                        aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobile-menu">
-                        <i class="fa-solid fa-bars text-2xl" aria-hidden="true"></i>
-                    </button>
-                </div>
+    <!-- PALO command bar -->
+    <header class="palo-command-bar" id="navbar">
+        <div class="palo-command-inner">
+            <a class="palo-command-brand" href="index.html" aria-label="PALO Framework home">
+                <img src="assets/logo.webp" alt="PALO">
+                <span><strong>PALO</strong><small>Framework</small></span>
+            </a>
+            <div class="palo-command-context">
+                <span class="palo-command-kicker">Open AI governance toolkit</span>
+                <span class="palo-command-release">v2.3.0</span>
             </div>
+            <button class="palo-command-toggle" type="button" data-palo-menu-toggle aria-expanded="false" aria-controls="palo-community-nav" aria-label="Open main navigation">
+                <span data-palo-icon="menu" aria-hidden="true"></span>
+            </button>
+            <nav class="palo-command-nav" id="palo-community-nav" aria-label="Main navigation">
+                <a class="palo-command-link" href="index.html#start-here"><span data-palo-icon="target" aria-hidden="true"></span>Start here</a>
+                <a class="palo-command-link" href="PALO_AssessmentPath.html"><span data-palo-icon="clipboard" aria-hidden="true"></span>Assess</a>
+                <a class="palo-command-link" href="PALO_RegulatoryWatch.html"><span data-palo-icon="scale" aria-hidden="true"></span>Observe</a>
+                <a class="palo-command-link" href="PALO_DocumentationHub.html"><span data-palo-icon="book" aria-hidden="true"></span>Docs</a>
+                <a class="palo-command-link is-active" href="PALO_Community.html"><span data-palo-icon="users" aria-hidden="true"></span>Community</a>
+                <a class="palo-command-action" href="PALO_CompanionApp.html"><span data-palo-icon="mobile" aria-hidden="true"></span>Toolbox</a>
+            </nav>
         </div>
-
-        <!-- Mobile Menu Panel -->
-        <div class="md:hidden hidden bg-white border-t border-slate-100" id="mobile-menu">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 shadow-lg">
-                <a href="index.html"
-                    class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-palo-teal hover:bg-slate-50"><span data-palo-icon=home class=palo-icon-inline></span>Home</a>
-                <a href="index.html#principles"
-                    class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-palo-teal hover:bg-slate-50"><span data-palo-icon=shield class=palo-icon-inline></span>Principles</a>
-                <a href="index.html#lifecycle"
-                    class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-palo-teal hover:bg-slate-50">Lifecycle</a>
-                <a href="PALO_Community.html"
-                    class="block px-3 py-2 rounded-md text-base font-medium text-palo-teal font-bold hover:bg-slate-50"><span data-palo-icon=users class=palo-icon-inline></span>Community</a>
-                <a href="index.html#contact"
-                    class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-palo-teal hover:bg-slate-50"><span data-palo-icon=mail class=palo-icon-inline></span>Contact</a>
-            </div>
-        </div>
-    </nav>
-
+    </header>
     <!-- Main Content -->
     <main id="main-content" role="main">
 
@@ -530,25 +500,11 @@
 
     <!-- Scripts -->
     <script>
-        // Mobile Menu Toggle
-        const btn = document.getElementById('mobile-menu-btn');
-        const menu = document.getElementById('mobile-menu');
-
-        btn.addEventListener('click', () => {
-            menu.classList.toggle('hidden');
-        });
-
-        // Navbar Scroll Effect
-        window.addEventListener('scroll', () => {
-            const nav = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                nav.classList.add('shadow-md');
-            } else {
-                nav.classList.remove('shadow-md');
-            }
+        window.addEventListener('scroll', function () {
+            var nav = document.getElementById('navbar');
+            if (nav) nav.classList.toggle('is-scrolled', window.scrollY > 8);
         });
     </script>
-
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">
     {

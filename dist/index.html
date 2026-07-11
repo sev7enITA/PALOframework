@@ -154,9 +154,10 @@
     <link rel="stylesheet" href="assets/palo-icons.css">
     <link rel="stylesheet" href="assets/palo-v21.css">
     <script src="assets/palo-icons.js"></script>
+    <script src="assets/palo-v21.js"></script>
 </head>
 
-<body class="text-slate-800 bg-white font-sans antialiased">
+<body class="palo-home text-slate-800 bg-white font-sans antialiased">
 
     <!-- Skip Link for Accessibility -->
     <a href="#main-content"
@@ -164,223 +165,82 @@
         Skip to main content
     </a>
 
-    <!-- Navigation -->
-    <nav class="fixed w-full z-50 glass-nav transition-all duration-300" id="navbar" role="navigation"
-        aria-label="Main navigation">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <div class="flex items-center gap-3">
-                    <!-- LOGO SECTION: Using PALO logo -->
-                    <img src="assets/logo.webp" alt="PALO Logo" class="w-10 h-10 rounded-lg shadow-md object-cover"
-                        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-
-                    <!-- Fallback Logo if image fails -->
-                    <div
-                        class="w-10 h-10 bg-palo-teal text-white rounded-lg hidden items-center justify-center font-bold text-xl shadow-lg">
-                        P</div>
-
-                    <span class="font-bold text-xl tracking-tight text-slate-800">PALO <span
-                            class="text-palo-teal">Framework</span></span>
-                </div>
-
-                <!-- Desktop Menu -->
-                <div class="hidden md:flex space-x-8 items-center">
-                    <a href="#about" class="text-slate-600 hover:text-palo-teal font-medium transition-colors">Why
-                        PALO?</a>
-                    <a href="#principles"
-                        class="text-slate-600 hover:text-palo-teal font-medium transition-colors"><span data-palo-icon=shield class=palo-icon-inline></span>Principles</a>
-                    <a href="#lifecycle" class="text-slate-600 hover:text-palo-teal font-medium transition-colors">The
-                        Lifecycle</a>
-                    <a href="PALO_PoisoningStudy.html"
-                        class="text-slate-600 hover:text-palo-teal font-medium transition-colors"><span data-palo-icon=poison class=palo-icon-inline></span>Poisoning Study</a>
-                    <a href="PALO_VibeCoding.html"
-                        class="text-slate-600 hover:text-palo-teal font-medium transition-colors">AI Dev Gov.</a>
-                    <a href="PALO_AgenticGovernance.html"
-                        class="text-slate-600 hover:text-palo-teal font-medium transition-colors"><span data-palo-icon=robot class=palo-icon-inline></span>PALO-AM</a>
-                    <a href="PALO_AssessmentPath.html"
-                        class="text-slate-600 hover:text-palo-teal font-medium transition-colors">Assessment Path</a>
-                    <a href="PALO_RegulatoryWatch.html"
-                        class="text-slate-600 hover:text-palo-teal font-medium transition-colors">Regulatory Watch</a>
-                    <a href="PALO_Community.html"
-                        class="text-slate-600 hover:text-palo-teal font-medium transition-colors"><span data-palo-icon=users class=palo-icon-inline></span>Community</a>
-                    <a href="#contact"
-                        class="text-slate-600 hover:text-palo-teal font-medium transition-colors"><span data-palo-icon=mail class=palo-icon-inline></span>Contact</a>
-                    <a href="feed.xml"
-                        class="bg-palo-teal text-white px-4 py-2 rounded-full font-medium hover:bg-teal-700 transition-all shadow-md transform hover:-translate-y-0.5 flex items-center gap-2"
-                        aria-label="Subscribe to RSS Feed">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
-                            fill="currentColor">
-                            <circle cx="6.18" cy="17.82" r="2.18" />
-                            <path
-                                d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z" />
-                        </svg>
-                        RSS
-                    </a>
-                </div>
-
-                <!-- Mobile menu button -->
-                <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-btn" class="text-slate-600 hover:text-palo-teal focus:outline-none"
-                        aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobile-menu">
-                        <i class="fa-solid fa-bars text-2xl" aria-hidden="true"></i>
-                    </button>
-                </div>
+    <!-- PALO command bar -->
+    <header class="palo-command-bar" id="navbar">
+        <div class="palo-command-inner">
+            <a class="palo-command-brand" href="index.html" aria-label="PALO Framework home">
+                <img src="assets/logo.webp" alt="PALO">
+                <span><strong>PALO</strong><small>Framework</small></span>
+            </a>
+            <div class="palo-command-context">
+                <span class="palo-command-kicker">Open AI governance toolkit</span>
+                <span class="palo-command-release">v2.3.0</span>
             </div>
+            <button class="palo-command-toggle" type="button" data-palo-menu-toggle aria-expanded="false" aria-controls="palo-home-nav" aria-label="Open main navigation">
+                <span data-palo-icon="menu" aria-hidden="true"></span>
+            </button>
+            <nav class="palo-command-nav" id="palo-home-nav" aria-label="Main navigation">
+                <a class="palo-command-link is-active" href="#start-here"><span data-palo-icon="target" aria-hidden="true"></span>Start here</a>
+                <a class="palo-command-link" href="PALO_AssessmentPath.html"><span data-palo-icon="clipboard" aria-hidden="true"></span>Assess</a>
+                <a class="palo-command-link" href="PALO_RegulatoryWatch.html"><span data-palo-icon="scale" aria-hidden="true"></span>Observe</a>
+                <a class="palo-command-link" href="PALO_DocumentationHub.html"><span data-palo-icon="book" aria-hidden="true"></span>Docs</a>
+                <a class="palo-command-link" href="PALO_Community.html"><span data-palo-icon="users" aria-hidden="true"></span>Community</a>
+                <a class="palo-command-action" href="PALO_CompanionApp.html"><span data-palo-icon="mobile" aria-hidden="true"></span>Toolbox</a>
+            </nav>
         </div>
-
-        <!-- Mobile Menu Panel -->
-        <div class="md:hidden hidden bg-white border-t border-slate-100" id="mobile-menu">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 shadow-lg">
-                <a href="#about"
-                    class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-palo-teal hover:bg-slate-50">Why
-                    PALO?</a>
-                <a href="#principles"
-                    class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-palo-teal hover:bg-slate-50"><span data-palo-icon=shield class=palo-icon-inline></span>Principles</a>
-                <a href="#lifecycle"
-                    class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-palo-teal hover:bg-slate-50">The
-                    Lifecycle</a>
-                <a href="PALO_Community.html"
-                    class="block px-3 py-2 rounded-md text-base font-medium text-palo-teal font-bold hover:bg-slate-50">
-                    <span data-palo-icon=users class=palo-icon-inline></span>Community</a>
-                <a href="#contact"
-                    class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-palo-teal hover:bg-slate-50"><span data-palo-icon=mail class=palo-icon-inline></span>Contact</a>
-                <div class="border-t border-slate-200 my-2 pt-2">
-                    <span class="block px-3 py-1 text-xs font-bold text-slate-500 uppercase">Toolkit</span>
-                </div>
-                <a href="PALO_FRIA.html"
-                    class="block px-3 py-2 rounded-md text-base font-medium text-amber-600 font-bold">FRIA
-                    Assessment</a>
-                <a href="PALO_ModelCanvasAI.html"
-                    class="block px-3 py-2 rounded-md text-base font-medium text-palo-teal font-bold"><span data-palo-icon=palette class=palo-icon-inline></span>Model Canvas</a>
-                <a href="PALO_RiskTiering.html"
-                    class="block px-3 py-2 rounded-md text-base font-medium text-yellow-600 font-bold">Risk
-                    Calculator</a>
-                <a href="PALO_KPIGenerator.html"
-                    class="block px-3 py-2 rounded-md text-base font-medium text-purple-600 font-bold">KPI
-                    Generator</a>
-                <a href="PALO_HumanAgencyRiskMap.html"
-                    class="block px-3 py-2 rounded-md text-base font-medium text-rose-600 font-bold"><span data-palo-icon=brain class=palo-icon-inline></span>Agency Risk
-                    Map</a>
-                <a href="PALO_TechTrends2026.html"
-                    class="block px-3 py-2 rounded-md text-base font-medium text-indigo-600 font-bold">2026 Tech
-                    Trends</a>
-                <a href="PALO_AuditBench.html"
-                    class="block px-3 py-2 rounded-md text-base font-medium text-red-600 font-bold">AuditBench
-                    Explorer</a>
-                <a href="PALO_PoisoningStudy.html"
-                    class="block px-3 py-2 rounded-md text-base font-medium text-violet-600 font-bold">Poisoning
-                    Study</a>
-                <a href="PALO_VibeCoding.html"
-                    class="block px-3 py-2 rounded-md text-base font-medium text-emerald-600 font-bold">AI Dev
-                    Governance</a>
-                <a href="PALO_AgenticGovernance.html"
-                    class="block px-3 py-2 rounded-md text-base font-medium text-indigo-600 font-bold"><span data-palo-icon=robot class=palo-icon-inline></span>PALO-AM
-                    Agentic</a>
-                <a href="PALO_AssessmentPath.html"
-                    class="block px-3 py-2 rounded-md text-base font-medium text-palo-teal font-bold">Assessment Path</a>
-                <a href="PALO_RegulatoryWatch.html"
-                    class="block px-3 py-2 rounded-md text-base font-medium text-amber-600 font-bold">Regulatory Watch 2026</a>
-                <a href="PALO_DocumentationHub.html"
-                    class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 font-bold">Documentation Hub</a>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
+    </header>
+    <!-- Workspace hero -->
     <main id="main-content" role="main">
-        <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
-            <!-- Background Decor -->
-            <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-teal-100 rounded-full blur-3xl opacity-50"
-                aria-hidden="true"></div>
-            <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-72 h-72 bg-blue-100 rounded-full blur-3xl opacity-50"
-                aria-hidden="true">
-            </div>
-
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <div class="text-center max-w-4xl mx-auto">
-                    <div
-                        class="inline-flex items-center px-4 py-2 rounded-full bg-teal-50 border border-teal-300 text-teal-800 text-sm font-semibold mb-8 animate-fade-in-up">
-                        <span class="flex h-2 w-2 rounded-full bg-palo-teal mr-2"></span>
-                        Version 1.0 Available Now
+        <section class="palo-home-hero">
+            <div class="palo-shell palo-home-hero-grid">
+                <div class="palo-home-hero-copy">
+                    <p class="palo-eyebrow">Principled AI Lifecycle Orchestration</p>
+                    <h1>PALO Framework</h1>
+                    <p class="palo-home-hero-title">A working system for responsible AI decisions.</p>
+                    <p class="palo-home-hero-lead">Classify the case, assess impacts, choose controls, and keep the evidence connected from ideation to monitoring.</p>
+                    <div class="palo-actions">
+                        <a class="palo-btn" href="PALO_AssessmentPath.html"><span data-palo-icon="rocket" aria-hidden="true"></span>Start the Assessment Path</a>
+                        <a class="palo-btn palo-btn-secondary" href="PALO_DocumentationHub.html"><span data-palo-icon="book" aria-hidden="true"></span>Read the Documentation Hub</a>
                     </div>
-                    <h1 class="text-5xl md:text-7xl font-extrabold text-slate-900 tracking-tight leading-tight mb-8">
-                        Orchestrating AI with <br>
-                        <span
-                            class="text-transparent bg-clip-text bg-gradient-to-r from-palo-teal to-blue-600">Principled
-                            Responsibility</span>
-                    </h1>
-                    <p class="mt-4 text-xl text-slate-600 mb-10 max-w-2xl mx-auto leading-relaxed">
-                        Move beyond "ROI Myopia". The PALO Framework integrates ISO 42001 standards, OECD principles,
-                        and
-                        the EU AI Act into a unified operational model for business.
-                    </p>
-                    <div class="flex flex-col sm:flex-row justify-center gap-4">
-                        <a href="#demo"
-                            class="px-8 py-4 bg-teal-700 text-white rounded-lg font-bold text-lg shadow-lg hover:bg-teal-800 transition-all transform hover:-translate-y-1">
-                            Watch Demo
-                        </a>
-                        <a href="PALO_ModelCanvasAI.html"
-                            class="px-8 py-4 bg-slate-800 text-white rounded-lg font-bold text-lg shadow-lg hover:bg-palo-teal transition-all transform hover:-translate-y-1">
-                            <i class="fa-solid fa-palette mr-2" aria-hidden="true"></i>Model Canvas
-                        </a>
-                        <a href="PALO_FRIA.html"
-                            class="px-8 py-4 bg-amber-700 text-white rounded-lg font-bold text-lg shadow-lg hover:bg-amber-800 transition-all transform hover:-translate-y-1">
-                            <i class="fa-solid fa-shield-halved mr-2" aria-hidden="true"></i>FRIA
-                        </a>
-                    </div>
-                    <div class="flex flex-col sm:flex-row justify-center gap-4 mt-4">
-                        <a href="PALO_RiskTiering.html"
-                            class="px-6 py-3 bg-white text-slate-700 border-2 border-slate-200 rounded-lg font-semibold shadow-sm hover:border-palo-teal hover:text-palo-teal transition-all">
-                            <i class="fa-solid fa-scale-balanced mr-2" aria-hidden="true"></i> Risk Calculator
-                        </a>
-                        <a href="PALO_KPIGenerator.html"
-                            class="px-6 py-3 bg-white text-slate-700 border-2 border-slate-200 rounded-lg font-semibold shadow-sm hover:border-palo-teal hover:text-palo-teal transition-all">
-                            <i class="fa-solid fa-chart-line mr-2" aria-hidden="true"></i> KPI Generator
-                        </a>
-                        <a href="PALO_ComparisonTool.html"
-                            class="px-6 py-3 bg-white text-slate-700 border-2 border-slate-200 rounded-lg font-semibold shadow-sm hover:border-palo-teal hover:text-palo-teal transition-all">
-                            <i class="fa-solid fa-code-compare mr-2" aria-hidden="true"></i>Compare Tool
-                        </a>
-                        <a href="PALO_HumanAgencyRiskMap.html"
-                            class="px-6 py-3 bg-rose-600 text-white border-2 border-rose-600 rounded-lg font-semibold shadow-sm hover:bg-rose-700 hover:border-rose-700 transition-all">
-                            <i class="fa-solid fa-brain mr-2" aria-hidden="true"></i> Human Agency Risk Map
-                        </a>
-                        <a href="PALO_TechTrends2026.html"
-                            class="px-6 py-3 bg-indigo-600 text-white border-2 border-indigo-600 rounded-lg font-semibold shadow-sm hover:bg-indigo-700 hover:border-indigo-700 transition-all">
-                            <i class="fa-solid fa-chart-line mr-2" aria-hidden="true"></i> 2026 Tech Trends
-                        </a>
-                        <a href="PALO_AuditBench.html"
-                            class="px-6 py-3 bg-red-600 text-white border-2 border-red-600 rounded-lg font-semibold shadow-sm hover:bg-red-700 hover:border-red-700 transition-all">
-                            <i class="fa-solid fa-microscope mr-2" aria-hidden="true"></i> AuditBench Explorer
-                        </a>
-                        <a href="PALO_PoisoningStudy.html"
-                            class="px-6 py-3 bg-violet-600 text-white border-2 border-violet-600 rounded-lg font-semibold shadow-sm hover:bg-violet-700 hover:border-violet-700 transition-all">
-                            <i class="fa-solid fa-flask mr-2" aria-hidden="true"></i> Poisoning Study
-                        </a>
-                        <a href="PALO_VibeCoding.html"
-                            class="px-6 py-3 bg-emerald-600 text-white border-2 border-emerald-600 rounded-lg font-semibold shadow-sm hover:bg-emerald-700 hover:border-emerald-700 transition-all">
-                            <i class="fa-solid fa-lock mr-2" aria-hidden="true"></i> AI Dev Governance
-                        </a>
-                    </div>
-
-                    <!-- Trust Badges -->
-                    <div
-                        class="mt-12 pt-8 border-t border-slate-100 flex flex-wrap justify-center gap-8 transition-all duration-500">
-                        <div class="flex items-center gap-2 font-semibold text-slate-600"><i
-                                class="fa-solid fa-check-circle"></i> ISO 42001 Aligned</div>
-                        <div class="flex items-center gap-2 font-semibold text-slate-600"><i
-                                class="fa-solid fa-check-circle"></i> EU AI Act Ready</div>
-                        <div class="flex items-center gap-2 font-semibold text-slate-600"><i
-                                class="fa-solid fa-check-circle"></i> OECD Principles</div>
+                    <div class="palo-home-status" aria-label="PALO release status">
+                        <span><i class="palo-status-dot"></i>Open source</span>
+                        <span><i class="palo-status-dot is-teal"></i>Local-first tools</span>
+                        <span><i class="palo-status-dot is-gold"></i>Reviewed July 2026</span>
                     </div>
                 </div>
+                <aside class="palo-home-workspace" aria-label="PALO workspace entry points">
+                    <div class="palo-home-workspace-head">
+                        <div>
+                            <span class="palo-card-kicker">Command center</span>
+                            <h2>What are you working on?</h2>
+                        </div>
+                        <span class="palo-home-version">v2.3.0</span>
+                    </div>
+                    <a class="palo-workspace-row" href="PALO_RiskTiering.html">
+                        <span class="palo-workspace-icon" data-palo-icon="scale" aria-hidden="true"></span>
+                        <span><strong>Classify the case</strong><small>Risk Tiering and initial routing</small></span>
+                        <span class="palo-workspace-arrow" data-palo-icon="arrow-right" aria-hidden="true"></span>
+                    </a>
+                    <a class="palo-workspace-row" href="PALO_AssessmentPath.html">
+                        <span class="palo-workspace-icon" data-palo-icon="shield" aria-hidden="true"></span>
+                        <span><strong>Assess impacts</strong><small>FRIA context and evidence path</small></span>
+                        <span class="palo-workspace-arrow" data-palo-icon="arrow-right" aria-hidden="true"></span>
+                    </a>
+                    <a class="palo-workspace-row" href="PALO_AssessmentPath.html">
+                        <span class="palo-workspace-icon" data-palo-icon="download" aria-hidden="true"></span>
+                        <span><strong>Build the evidence</strong><small>Controls, KPI/KRI, JSON and Markdown export</small></span>
+                        <span class="palo-workspace-arrow" data-palo-icon="arrow-right" aria-hidden="true"></span>
+                    </a>
+                    <div class="palo-home-workspace-foot"><span data-palo-icon="globe" aria-hidden="true"></span><a href="PALO_RegulatoryWatch.html">Regulatory Watch 2026</a><span>official sources</span></div>
+                </aside>
             </div>
         </section>
+
 
         <!-- PALO v2.2 Guided Entry -->
         <section id="start-here" class="palo-section">
             <div class="palo-shell">
-                <p class="palo-eyebrow">PALO v2.2.0</p>
+                <p class="palo-eyebrow">PALO v2.3.0</p>
                 <h2>Start here</h2>
                 <p class="palo-lead">Three clear entries for the first governance conversation. Choose a starting point, then keep the decision connected to evidence.</p>
                 <div class="palo-grid">
@@ -1226,8 +1086,8 @@
                                     </li>
                                     <li class="flex items-start gap-3">
                                         <span class="text-palo-teal" data-palo-icon=accessibility></span>
-                                        <span><strong>Accessibility:</strong> Review in progress against WCAG 2.1 AA
-                                            and EN 301549, with a public accessibility statement</span>
+                                        <span><strong>Accessibility:</strong> Public accessibility statement and review
+                                            status, with the detailed policy available in the footer</span>
                                     </li>
                                     <li class="flex items-start gap-3">
                                         <span class="text-palo-teal" data-palo-icon=search></span>
@@ -1295,17 +1155,17 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-slate-50 border-t border-slate-200 pt-16 pb-8" role="contentinfo">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row justify-between items-center mb-8">
-                <div class="flex items-center gap-2 mb-4 md:mb-0">
+    <footer class="palo-home-footer" role="contentinfo">
+        <div class="palo-home-footer-inner">
+            <div class="palo-home-footer-row">
+                <div class="palo-home-footer-brand">
                     <img src="assets/logo.webp" alt="PALO Logo" class="w-8 h-8 rounded bg-palo-teal"
                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
                     <div class="w-8 h-8 bg-palo-teal text-white rounded hidden items-center justify-center font-bold">
                         P</div>
-                    <span class="font-bold text-lg text-slate-800">PALO Framework</span>
+                    <span>PALO Framework</span>
                 </div>
-                <div class="flex gap-6 text-sm text-slate-600 mb-4 md:mb-0 flex-wrap justify-center">
+                <div class="palo-home-footer-links">
                     <a href="privacy-policy.html" class="hover:text-palo-teal transition-colors">Privacy
                         Policy</a>
                     <a href="security-policy.html" class="hover:text-palo-teal transition-colors">Security
@@ -1334,38 +1194,7 @@
                 </div>
             </div>
 
-            <!-- Accessibility & Compliance -->
-            <div
-                class="flex flex-col md:flex-row justify-center items-center gap-6 py-6 border-t border-slate-200 mb-6">
-                <a href="https://www.w3.org/WAI/WCAG21/quickref/" target="_blank" rel="noopener noreferrer"
-                    class="flex items-center gap-3 px-4 py-2 bg-white rounded-lg border border-slate-200 hover:border-palo-teal transition-colors"
-                    aria-label="Learn about WCAG 2.1 Level AA accessibility guidelines">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
-                        stroke="#21808D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        aria-hidden="true">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <path d="M12 16v-4"></path>
-                        <path d="M12 8h.01"></path>
-                    </svg>
-                    <div class="text-left">
-                        <div class="text-xs font-semibold text-teal-700">WCAG 2.1 Level AA target</div>
-                        <div class="text-xs text-slate-500">Review in progress</div>
-                    </div>
-                </a>
-                <div class="flex items-center gap-3 px-4 py-2 bg-white rounded-lg border border-slate-200">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
-                        stroke="#21808D" stroke-width="2" aria-hidden="true">
-                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                    </svg>
-                    <div class="text-left">
-                        <div class="text-xs font-semibold text-teal-700">Privacy information</div>
-                        <div class="text-xs text-slate-500">Local-first tools</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="text-center text-slate-500 text-sm border-t border-slate-200 pt-6">
+            <div class="palo-home-footer-legal">
                 Copyright 2025-2026 Fabrizio Degni & PALO Framework. All Rights Reserved.
             </div>
         </div>
@@ -1373,25 +1202,11 @@
 
     <!-- Scripts -->
     <script>
-        // 1. Mobile Menu Toggle
-        const btn = document.getElementById('mobile-menu-btn');
-        const menu = document.getElementById('mobile-menu');
-
-        btn.addEventListener('click', () => {
-            menu.classList.toggle('hidden');
-        });
-
-        // 2. Navbar Scroll Effect
-        window.addEventListener('scroll', () => {
-            const nav = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                nav.classList.add('shadow-md');
-            } else {
-                nav.classList.remove('shadow-md');
-            }
+        window.addEventListener('scroll', function () {
+            var nav = document.getElementById('navbar');
+            if (nav) nav.classList.toggle('is-scrolled', window.scrollY > 8);
         });
     </script>
-
     <!-- JSON-LD Structured Data for Organization -->
     <script type="application/ld+json">
     {

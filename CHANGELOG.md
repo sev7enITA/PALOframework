@@ -7,6 +7,23 @@ and this project follows Semantic Versioning where practical.
 
 ---
 
+## [2.3.0] - 2026-07-11
+
+### Changed
+
+- **Workspace UI refresh**
+  - Replaced the crowded homepage toolbar with a compact command bar organized around Start here, Assess, Observe, Docs, Community, and Toolbox
+  - Replaced the marketing-first hero with a workspace entry view and three operational routes
+  - Added responsive mobile navigation with clear touch targets and no horizontal overflow
+  - Simplified the homepage footer to policy, resource, contact, and RSS links
+  - Removed the non-essential WCAG target badge and privacy-status card from the primary interface; accessibility and privacy remain available as policy pages
+  - Applied the command bar to the Community page and aligned the public shell with the PolicyWatcher workspace language
+
+### Fixed
+
+- Prevented top navigation wrapping and overlapping at desktop widths
+- Removed the legacy homepage mobile-menu script that could target missing navigation nodes after the shell refresh
+
 ## [2.2.1] - 2026-07-11
 
 ### Added
