@@ -4,7 +4,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![EU AI Act](https://img.shields.io/badge/EU%20AI%20Act-aligned-success)](https://eur-lex.europa.eu/eli/reg/2024/1689/oj)
-[![WCAG 2.1 AA](https://img.shields.io/badge/WCAG%202.1-AA-green)](https://www.w3.org/WAI/WCAG21/quickref/)
+[![WCAG 2.1 AA target](https://img.shields.io/badge/WCAG%202.1-AA%20target-yellow)](https://www.w3.org/WAI/WCAG21/quickref/)
 [![Website](https://img.shields.io/badge/Website-paloframework.org-21808D)](https://paloframework.org)
 [![GitHub](https://img.shields.io/badge/GitHub-sev7enITA%2FPALOframework-black)](https://github.com/sev7enITA/PALOframework)
 
@@ -62,6 +62,7 @@ PALO is not a certification body and does not provide legal advice. It is a prac
 | [AI Dev Governance](PALO_VibeCoding.html) | Security and governance extension for AI-assisted software development environments | Live |
 | [PALO-AM Agentic Governance](PALO_AgenticGovernance.html) | PALO extension for AI agents, delegated authority, action-space control, and agentic evidence | Live |
 | [Companion App](PALO_CompanionApp.html) | Mobile overview page for Android and iOS/iPadOS apps | Live |
+| [Recognition and Sources](PALO_Recognition.html) | Public references, primary sources, and verification notes | Live |
 
 ## Mobile Companion App
 
@@ -76,6 +77,7 @@ The app is designed as a privacy-first pre-screening companion for AI governance
 
 | Date | Release | Highlights |
 | --- | --- | --- |
+| 2026-07-11 | v2.1.0 - Regulatory Readiness and Trust Foundations | Article 27/50 wording review, accessibility status, privacy/security policy refresh, public recognition page, SEO metadata and sitemap alignment |
 | 2026-06-22 | v2.0.1 - Documentation Sync | README roadmap, CHANGELOG, homepage changelog, RSS and release metadata aligned |
 | 2026-06-22 | v2.0.0 - PALO-AM | Agentic Governance Modality for AI agents: identity, authority, risk matrix, control layer, evidence layer, action-space/autonomy matrix, KPI/KRI registry |
 | 2026-05-15 | v1.8.0 - AI Dev Governance | Governance extension for AI-assisted software development, rapid prototyping, vibe coding, coding assistants, controlled environments, and evidence trails |
@@ -139,6 +141,7 @@ PALOframework/
 |-- PALO_AgenticGovernance.html        # PALO-AM Agentic Governance
 |-- PALO_CompanionApp.html             # Mobile app landing page
 |-- PALO_Community.html                # Community and advisory board
+|-- PALO_Recognition.html              # Public references and source notes
 |-- AppStoreListing.md                 # Store listing copy and source notes
 |-- PALOFrameworkV2.pdf                # Framework v2 documentation
 |-- ThePALOFramework_*.pdf             # PALO v1 paper
@@ -185,7 +188,7 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md), [CODE_OF_CONDUCT.md](CODE_OF_CON
 
 ## Roadmap
 
-Current baseline: v2.0.1, released 2026-06-22. The functional framework baseline is v2.0.0.
+Current baseline: v2.1.0, released 2026-07-11. The functional framework baseline remains v2.0.0, with v2.1.0 adding regulatory-readiness and trust foundations.
 
 Completed in H1 2026:
 
@@ -201,14 +204,15 @@ Completed in H1 2026:
 | AI-assisted development governance extension | Complete |
 | PALO-AM Agentic Governance Modality v2.0 | Complete |
 | Documentation and release hygiene sync | Complete |
+| Regulatory readiness and trust foundations | Complete |
 
 Planned roadmap:
 
 | Target | Focus | Planned scope |
 | --- | --- | --- |
-| v2.1 | PALO-AM Simulator MVP | Interactive Action-Space vs Autonomy inputs, tier routing, control recommendations, and exportable assessment summary |
-| v2.2 | Evidence and governance board packs | Exportable evidence bundles, governance board templates, decision logs, KPI/KRI registers, and audit-ready summaries |
-| v2.3 | Multilingual and use-case expansion | Broader localization and worked examples for procurement, HR, finance, public-sector, and software-delivery use cases |
+| v2.2 | PALO-AM Simulator MVP | Interactive Action-Space vs Autonomy inputs, tier routing, control recommendations, and exportable assessment summary |
+| v2.3 | Evidence and governance board packs | Exportable evidence bundles, governance board templates, decision logs, KPI/KRI registers, and audit-ready summaries |
+| v2.4 | Multilingual and use-case expansion | Broader localization and worked examples for procurement, HR, finance, public-sector, and software-delivery use cases |
 | v3.0 | Integration layer | API and integration patterns for enterprise governance workflows, issue trackers, GRC platforms, and documentation systems |
 
 Exploratory items:

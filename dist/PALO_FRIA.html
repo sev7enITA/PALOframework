@@ -6,7 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FRIA - Fundamental Rights Impact Assessment | PALO Framework</title>
     <meta name="description"
-        content="Interactive Fundamental Rights Impact Assessment tool aligned with EU AI Act Article 27">
+        content="Interactive Fundamental Rights Impact Assessment tool for Article 27 readiness and voluntary governance pre-screening.">
+    <link rel="canonical" href="https://paloframework.org/PALO_FRIA.html">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://paloframework.org/PALO_FRIA.html">
+    <meta property="og:title" content="FRIA Assessment | PALO Framework">
+    <meta property="og:description" content="Prepare Article 27 readiness evidence and assess fundamental-rights impacts before AI deployment.">
+    <meta property="og:image" content="https://paloframework.org/assets/logo.webp">
     <link rel="icon" type="image/webp" href="assets/logo.webp">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -518,7 +524,7 @@
         <!-- Header -->
         <header class="header" role="banner">
             <img src="assets/logo.webp" alt="" aria-hidden="true">
-            <h1 id="main-content" tabindex="-1"><span data-palo-icon=shield class=palo-icon-inline></span>FRIA - Fundamental Rights Impact Assessment</h1>
+            <h1 id="page-title" tabindex="-1"><span data-palo-icon=shield class=palo-icon-inline></span>FRIA - Fundamental Rights Impact Assessment</h1>
             <div class="header-actions" role="group" aria-label="Assessment actions">
                 <button class="btn btn-secondary" onclick="downloadTemplate()" aria-label="Download blank template">
                     Template</button>
@@ -530,6 +536,8 @@
                     Export</button>
             </div>
         </header>
+
+        <main id="main-content">
 
         <!-- Introduction Section -->
         <div class="main-content" style="margin-bottom: 24px; padding: 24px;">
@@ -549,18 +557,17 @@
                         <h3 style="font-size: 16px; margin-bottom: 12px; color: var(--color-text);"><span data-palo-icon=shield class=palo-icon-inline></span>What is FRIA?
                         </h3>
                         <p style="font-size: 14px; color: var(--color-text-secondary); margin-bottom: 12px;">
-                            A <strong>Fundamental Rights Impact Assessment (FRIA)</strong> is a mandatory evaluation
-                            under
-                            <strong>EU AI Act Article 27</strong> for deployers of high-risk AI systems. It
-                            systematically
-                            identifies how an AI system may affect the 51 fundamental rights enshrined in the EU
-                            Charter.
+                            A <strong>Fundamental Rights Impact Assessment (FRIA)</strong> is an Article 27 assessment
+                            for certain deployers of high-risk AI systems under Article 6(2). It helps identify how an
+                            AI system may affect the fundamental rights protected by the EU Charter in its specific
+                            deployment context.
                         </p>
                         <div class="tip-box" style="margin: 12px 0;">
                             <strong>Who must conduct FRIA?</strong><br>
-                            - Public authorities deploying high-risk AI<br>
+                            - Public authorities deploying in-scope high-risk AI<br>
                             - Private entities providing public services<br>
-                            - Any deployer of Annex III high-risk AI systems
+                            - Deployers of in-scope creditworthiness and life or health insurance risk systems<br>
+                            - Other organizations using this tool voluntarily as a readiness assessment
                         </div>
                     </div>
                     <div>
@@ -590,6 +597,13 @@
                         Use the <strong>Export</strong> button to save your progress and <strong>Import</strong> to
                         resume later.
                     </span>
+                </div>
+                <div class="tip-box" style="margin-top: 16px;">
+                    <strong><span data-palo-icon=warning class=palo-icon-inline></span>Regulatory status, reviewed 11 July 2026:</strong>
+                    The European Commission currently indicates that Annex III high-risk rules apply from 2 December
+                    2027 and product-embedded high-risk rules from 2 August 2028. This tool is a governance-support
+                    and pre-screening resource, not legal advice or a compliance certification.
+                    <a href="https://digital-strategy.ec.europa.eu/en/policies/guidelines-ai-high-risk-systems" target="_blank" rel="noopener noreferrer">Review the current Commission guidance</a>.
                 </div>
             </div>
         </div>
@@ -632,35 +646,36 @@
                 <p class="step-description">Provide information about the AI system being assessed.</p>
 
                 <div class="tip-box">
-                     <strong><span data-palo-icon=lightbulb class=palo-icon-inline></span>Tip:</strong> This assessment is required under EU AI Act Article 27 for high-risk AI
-                    systems deployed by public authorities or private entities providing public services.
+                     <strong><span data-palo-icon=lightbulb class=palo-icon-inline></span>Tip:</strong> Use this assessment to prepare evidence before deployment. Article 27 applies to
+                    specific in-scope deployers, including public authorities, public-service providers, and certain
+                    creditworthiness and insurance use cases.
                 </div>
 
                 <div class="form-group">
-                    <label>AI System Name *</label>
+                    <label for="systemName">AI System Name *</label>
                     <input type="text" id="systemName" placeholder="e.g., Customer Risk Scoring System">
                 </div>
                 <div class="form-group">
-                    <label>Deployer Organization *</label>
+                    <label for="deployerOrg">Deployer Organization *</label>
                     <input type="text" id="deployerOrg" placeholder="Organization deploying the AI system">
                 </div>
                 <div class="form-group">
-                    <label>AI System Description *</label>
+                    <label for="systemDescription">AI System Description *</label>
                     <textarea id="systemDescription"
                         placeholder="Describe the AI system, its purpose, and how it will be used..."></textarea>
                 </div>
                 <div class="form-group">
-                    <label>AI Act Risk Classification</label>
+                    <label for="riskClass">AI Act Risk Classification</label>
                     <select id="riskClass">
                         <option value="">Select classification...</option>
                         <option value="high">High-Risk (Annex III)</option>
                         <option value="limited">Limited Risk</option>
                         <option value="minimal">Minimal Risk</option>
                     </select>
-                    <div class="helper-text">FRIA is mandatory for high-risk AI systems under Article 27</div>
+                    <div class="helper-text">FRIA supports Article 27 readiness. A legal obligation applies only to deployers within its scope.</div>
                 </div>
                 <div class="form-group">
-                    <label>Intended Use Context</label>
+                    <label for="useContext">Intended Use Context</label>
                     <select id="useContext">
                         <option value="">Select context...</option>
                         <option value="employment">Employment & HR</option>
@@ -675,11 +690,11 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label>Assessment Date</label>
+                    <label for="assessmentDate">Assessment Date</label>
                     <input type="date" id="assessmentDate">
                 </div>
                 <div class="form-group">
-                    <label>Assessor Name</label>
+                    <label for="assessorName">Assessor Name</label>
                     <input type="text" id="assessorName" placeholder="Name of person conducting assessment">
                 </div>
             </div>
@@ -727,7 +742,7 @@
                 <div id="summaryContainer"></div>
 
                 <div class="form-group">
-                    <label>Confidence in Assessment</label>
+                    <label for="confidenceLevel">Confidence in Assessment</label>
                     <select id="confidenceLevel">
                         <option value="">Select...</option>
                         <option value="high">High - Based on extensive research and stakeholder input</option>
@@ -736,7 +751,7 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label><span data-palo-icon=target class=palo-icon-inline></span>Deployment Decision</label>
+                    <label for="deploymentDecision"><span data-palo-icon=target class=palo-icon-inline></span>Deployment Decision</label>
                     <select id="deploymentDecision">
                         <option value="">Select decision...</option>
                         <option value="proceed">Proceed - Acceptable risk level</option>
@@ -745,7 +760,7 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label>Decision Rationale</label>
+                    <label for="decisionRationale">Decision Rationale</label>
                     <textarea id="decisionRationale"
                         placeholder="Document the reasoning for your decision..."></textarea>
                 </div>
@@ -763,6 +778,8 @@
             </div>
         </div>
 
+        </main>
+
         <footer class="footer" role="contentinfo">
             <p>FRIA Tool based on EU AI Act Article 27 requirements</p>
             <p>
@@ -773,9 +790,9 @@
             </p>
             <p style="margin-top: 12px; font-size: 11px; opacity: 0.8;">
                 <span style="display: inline-flex; align-items: center; gap: 4px;">
-                     WCAG 2.1 AA Compliant
+                     Accessibility review in progress | WCAG 2.1 AA target
                 </span> |
-                <span>GDPR Compliant</span>
+                <span>Privacy information</span>
             </p>
         </footer>
     </div>
@@ -937,15 +954,15 @@
                         ${idx > 0 ? `<button class="btn btn-secondary" onclick="removeScenario(${idx})" style="padding: 4px 8px;">Remove</button>` : ''}
                     </div>
                     <div class="form-group">
-                        <label>How can this AI system negatively affect people?</label>
+                        <label for="scenario${idx + 1}_impact">How can this AI system negatively affect people?</label>
                         <textarea id="scenario${idx + 1}_impact" placeholder="Describe the potential negative impact scenario..."></textarea>
                     </div>
                     <div class="form-group">
-                        <label>What drives this negative outcome?</label>
+                        <label for="scenario${idx + 1}_driver">What drives this negative outcome?</label>
                         <textarea id="scenario${idx + 1}_driver" placeholder="e.g., data quality issues, model bias, context of use..." style="min-height: 60px;"></textarea>
                     </div>
                     <div class="form-group">
-                        <label>Which groups are affected?</label>
+                        <label for="scenario${idx + 1}_groups">Which groups are affected?</label>
                         <input type="text" id="scenario${idx + 1}_groups" placeholder="e.g., job applicants, welfare recipients, migrants...">
                     </div>
                     <div class="form-group">
@@ -1058,7 +1075,7 @@
                             <strong>${right?.absolute ? ' ' : ''}${right?.name} (${right?.article})</strong>
                             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px;">
                                 <div class="form-group" style="margin-bottom: 0;">
-                                    <label style="font-size: 12px;">Interference Level</label>
+                                    <label style="font-size: 12px;" for="assess_s${sIdx}_${rightId}_interference">Interference Level</label>
                                     <select id="assess_s${sIdx}_${rightId}_interference" style="font-size: 13px;">
                                         <option value="">Select...</option>
                                         <option value="low">Low interference</option>
@@ -1067,7 +1084,7 @@
                                     </select>
                                 </div>
                                 <div class="form-group" style="margin-bottom: 0;">
-                                    <label style="font-size: 12px;">Likelihood</label>
+                                    <label style="font-size: 12px;" for="assess_s${sIdx}_${rightId}_likelihood">Likelihood</label>
                                     <select id="assess_s${sIdx}_${rightId}_likelihood" style="font-size: 13px;">
                                         <option value="">Select...</option>
                                         <option value="low">Low (unlikely)</option>
@@ -1076,7 +1093,7 @@
                                     </select>
                                 </div>
                                 <div class="form-group" style="margin-bottom: 0;">
-                                    <label style="font-size: 12px;">Gravity of Harm</label>
+                                    <label style="font-size: 12px;" for="assess_s${sIdx}_${rightId}_gravity">Gravity of Harm</label>
                                     <select id="assess_s${sIdx}_${rightId}_gravity" style="font-size: 13px;">
                                         <option value="">Select...</option>
                                         <option value="low">Low gravity</option>
@@ -1085,7 +1102,7 @@
                                     </select>
                                 </div>
                                 <div class="form-group" style="margin-bottom: 0;">
-                                    <label style="font-size: 12px;">Reversibility</label>
+                                    <label style="font-size: 12px;" for="assess_s${sIdx}_${rightId}_reversibility">Reversibility</label>
                                     <select id="assess_s${sIdx}_${rightId}_reversibility" style="font-size: 13px;">
                                         <option value="">Select...</option>
                                         <option value="low">Easy to reverse</option>
@@ -1114,11 +1131,11 @@
                     <div class="scenario-card">
                         <strong>Scenario ${sIdx + 1}: ${scenario.impact?.substring(0, 50) || 'Untitled'}...</strong>
                         <div class="form-group" style="margin-top: 12px;">
-                            <label>Current Mitigation Measures</label>
+                            <label for="mitigation_s${sIdx}_current">Current Mitigation Measures</label>
                             <textarea id="mitigation_s${sIdx}_current" placeholder="List measures already in place..."></textarea>
                         </div>
                         <div class="form-group">
-                            <label>Additional Measures Needed</label>
+                            <label for="mitigation_s${sIdx}_additional">Additional Measures Needed</label>
                             <textarea id="mitigation_s${sIdx}_additional" placeholder="List additional measures that should be implemented..."></textarea>
                         </div>
                     </div>

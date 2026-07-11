@@ -1,0 +1,4 @@
+Contact: mailto:info@paloframework.org
+Policy: https://paloframework.org/security-policy.html
+Canonical: https://paloframework.org/.well-known/security.txt
+Expires: 2027-07-11T00:00:00.000Z
