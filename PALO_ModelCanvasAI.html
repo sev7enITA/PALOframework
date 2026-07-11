@@ -5,6 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PALO AI Business Model Canvas</title>
+    <meta name="description" content="Plan AI use cases with the PALO Business Model Canvas, governance prompts, evidence fields, and exportable outputs.">
+    <link rel="canonical" href="https://paloframework.org/PALO_ModelCanvasAI.html">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://paloframework.org/PALO_ModelCanvasAI.html">
+    <meta property="og:title" content="PALO AI Business Model Canvas">
+    <meta property="og:description" content="Plan AI use cases with governance prompts, evidence fields, and exportable outputs.">
+    <meta property="og:image" content="https://paloframework.org/assets/logo.webp">
     <style>
         :root {
             --color-primary: #2180A0;
@@ -942,7 +949,7 @@
         <header class="header" style="display: flex; align-items: center; gap: 16px;" role="banner">
             <img src="assets/logo.webp" alt="" style="height: 48px; width: auto;" aria-hidden="true">
             <div style="flex: 1;">
-                <h1 id="main-content" tabindex="-1">PALO AI Business Model Canvas</h1>
+                <h1 id="page-title" tabindex="-1">PALO AI Business Model Canvas</h1>
                 <p>Comprehensive evaluation framework for responsible AI use cases aligned with PALO principles</p>
             </div>
             <div class="mode-toggle" id="modeToggle" role="group" aria-label="Select mode">
@@ -951,6 +958,8 @@
                 <button data-mode="wizard" onclick="setMode('wizard')" aria-pressed="false">Wizard Mode</button>
             </div>
         </header>
+
+        <main id="main-content">
 
         <div class="controls">
             <div>
@@ -1100,25 +1109,25 @@
 
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
                         <div class="wizard-field">
-                            <label>F1-Score (%)</label>
+                            <label for="wiz_kpiF1">F1-Score (%)</label>
                             <input type="number" id="wiz_kpiF1" class="select" data-wizard-kpi="kpiF1"
                                 placeholder="Target >=90%" min="0" max="100" style="width: 100%;">
                             <div class="helper-text">Model accuracy metric</div>
                         </div>
                         <div class="wizard-field">
-                            <label>Fairness Score (0-1)</label>
+                            <label for="wiz_kpiFairness">Fairness Score (0-1)</label>
                             <input type="number" id="wiz_kpiFairness" class="select" data-wizard-kpi="kpiFairness"
                                 placeholder="Target >=0.95" min="0" max="1" step="0.01" style="width: 100%;">
                             <div class="helper-text">Equal treatment across groups</div>
                         </div>
                         <div class="wizard-field">
-                            <label>Privacy Incidents</label>
+                            <label for="wiz_kpiPrivacy">Privacy Incidents</label>
                             <input type="number" id="wiz_kpiPrivacy" class="select" data-wizard-kpi="kpiPrivacy"
                                 placeholder="Target: 0" min="0" style="width: 100%;">
                             <div class="helper-text">Data breaches count</div>
                         </div>
                         <div class="wizard-field">
-                            <label>System Uptime (%)</label>
+                            <label for="wiz_kpiUptime">System Uptime (%)</label>
                             <input type="number" id="wiz_kpiUptime" class="select" data-wizard-kpi="kpiUptime"
                                 placeholder="Target >=99.9%" min="0" max="100" step="0.1" style="width: 100%;">
                             <div class="helper-text">Availability metric</div>
@@ -1133,7 +1142,7 @@
                         principles.</p>
 
                     <div class="wizard-field">
-                        <label><span data-palo-icon=warning class=palo-icon-inline></span>Risk Tier (EU AI Act)</label>
+                        <label for="wiz_riskTier"><span data-palo-icon=warning class=palo-icon-inline></span>Risk Tier (EU AI Act)</label>
                         <select id="wiz_riskTier" class="select" data-wizard-config="riskTier" style="width: 100%;">
                             <option value="">Select risk tier...</option>
                             <option value="minimal">Minimal Risk</option>
@@ -1144,7 +1153,7 @@
                     </div>
 
                     <div class="wizard-field">
-                        <label>AI Use Case Category</label>
+                        <label for="wiz_useCaseCategory">AI Use Case Category</label>
                         <select id="wiz_useCaseCategory" class="select" data-wizard-config="useCaseCategory"
                             style="width: 100%;">
                             <option value="">Select category...</option>
@@ -1207,7 +1216,7 @@
                     </div>
 
                     <div class="wizard-field">
-                        <label>Gate Decision</label>
+                        <label for="wiz_gateDecision">Gate Decision</label>
                         <select id="wiz_gateDecision" class="select" data-wizard-config="gateDecision"
                             style="width: 100%;">
                             <option value="">Select decision...</option>
@@ -1218,7 +1227,7 @@
                     </div>
 
                     <div class="wizard-field">
-                        <label>Decision Rationale</label>
+                        <label for="wiz_decisionRationale">Decision Rationale</label>
                         <textarea id="wiz_decisionRationale" class="select" data-wizard-field="decisionRationale"
                             placeholder="Document the reasoning for your gate decision..."
                             style="width: 100%; height: 80px;"></textarea>
@@ -1431,7 +1440,7 @@
                         </h3>
                         <div class="kpi-grid">
                             <div class="kpi-card" id="kpiF1Card">
-                                <label>F1-Score (%) <span class="kpi-status" id="kpiF1Status"></span></label>
+                                <label for="kpiF1">F1-Score (%) <span class="kpi-status" id="kpiF1Status"></span></label>
                                 <input type="number" id="kpiF1" placeholder="Target >=90%" data-kpi="f1" min="0"
                                     max="100">
                                 <small style="color: var(--color-text-secondary); font-size: 10px;">Model accuracy.
@@ -1439,7 +1448,7 @@
                                     better predictions.</small>
                             </div>
                             <div class="kpi-card" id="kpiDriftCard">
-                                <label>Model Drift Rate (%) <span class="kpi-status" id="kpiDriftStatus"></span></label>
+                                <label for="kpiDrift">Model Drift Rate (%) <span class="kpi-status" id="kpiDriftStatus"></span></label>
                                 <input type="number" id="kpiDrift" placeholder="Target <=5%" data-kpi="drift" min="0"
                                     max="100">
                                 <small style="color: var(--color-text-secondary); font-size: 10px;">Performance
@@ -1447,14 +1456,14 @@
                                     over time. Lower = more stable.</small>
                             </div>
                             <div class="kpi-card" id="kpiUptimeCard">
-                                <label>System Uptime (%) <span class="kpi-status" id="kpiUptimeStatus"></span></label>
+                                <label for="kpiUptime">System Uptime (%) <span class="kpi-status" id="kpiUptimeStatus"></span></label>
                                 <input type="number" id="kpiUptime" placeholder="Target >=99.9%" data-kpi="uptime"
                                     min="0" max="100" step="0.1">
                                 <small style="color: var(--color-text-secondary); font-size: 10px;">System availability.
                                     Critical for reliability.</small>
                             </div>
                             <div class="kpi-card" id="kpiAdversarialCard">
-                                <label>Adversarial Resilience (%) <span class="kpi-status"
+                                <label for="kpiAdversarial">Adversarial Resilience (%) <span class="kpi-status"
                                         id="kpiAdversarialStatus"></span></label>
                                 <input type="number" id="kpiAdversarial" placeholder="Target >=99%"
                                     data-kpi="adversarial" min="0" max="100">
@@ -1472,21 +1481,21 @@
                         </h3>
                         <div class="kpi-grid">
                             <div class="kpi-card" id="kpiROICard">
-                                <label>ROI (%) <span class="kpi-status" id="kpiROIStatus"></span></label>
+                                <label for="kpiROI">ROI (%) <span class="kpi-status" id="kpiROIStatus"></span></label>
                                 <input type="number" id="kpiROI" placeholder="Target >=20%" data-kpi="roi" min="0">
                                 <small style="color: var(--color-text-secondary); font-size: 10px;">Return on
                                     investment.
                                     Business value justification.</small>
                             </div>
                             <div class="kpi-card" id="kpiAdoptionCard">
-                                <label>Adoption Rate (%) <span class="kpi-status" id="kpiAdoptionStatus"></span></label>
+                                <label for="kpiAdoption">Adoption Rate (%) <span class="kpi-status" id="kpiAdoptionStatus"></span></label>
                                 <input type="number" id="kpiAdoption" placeholder="Target >=70%" data-kpi="adoption"
                                     min="0" max="100">
                                 <small style="color: var(--color-text-secondary); font-size: 10px;">User uptake rate.
                                     Measures acceptance.</small>
                             </div>
                             <div class="kpi-card" id="kpiCSATCard">
-                                <label>CSAT Score (%) <span class="kpi-status" id="kpiCSATStatus"></span></label>
+                                <label for="kpiCSAT">CSAT Score (%) <span class="kpi-status" id="kpiCSATStatus"></span></label>
                                 <input type="number" id="kpiCSAT" placeholder="Target >=85%" data-kpi="csat" min="0"
                                     max="100">
                                 <small style="color: var(--color-text-secondary); font-size: 10px;">Customer
@@ -1494,7 +1503,7 @@
                                     User experience quality.</small>
                             </div>
                             <div class="kpi-card" id="kpiCostSavingsCard">
-                                <label>Cost Savings ($K)</label>
+                                <label for="kpiCostSavings">Cost Savings ($K)</label>
                                 <input type="number" id="kpiCostSavings" placeholder="Annual savings"
                                     data-kpi="costSavings">
                                 <small style="color: var(--color-text-secondary); font-size: 10px;">Economic benefit.
@@ -1510,7 +1519,7 @@
                         </h3>
                         <div class="kpi-grid">
                             <div class="kpi-card" id="kpiFairnessCard">
-                                <label>Fairness Score (0-1) <span class="kpi-status"
+                                <label for="kpiFairness">Fairness Score (0-1) <span class="kpi-status"
                                         id="kpiFairnessStatus"></span></label>
                                 <input type="number" id="kpiFairness" placeholder="Target >=0.95" data-kpi="fairness"
                                     min="0" max="1" step="0.01">
@@ -1519,7 +1528,7 @@
                                     groups. 1.0 = perfect fairness.</small>
                             </div>
                             <div class="kpi-card" id="kpiExplainabilityCard">
-                                <label>Explainability Score (1-5) <span class="kpi-status"
+                                <label for="kpiExplainability">Explainability Score (1-5) <span class="kpi-status"
                                         id="kpiExplainabilityStatus"></span></label>
                                 <input type="number" id="kpiExplainability" placeholder="Target >=4.0"
                                     data-kpi="explainability" min="1" max="5" step="0.1">
@@ -1528,13 +1537,13 @@
                                     decisions. Transparency measure.</small>
                             </div>
                             <div class="kpi-card" id="kpiPrivacyCard">
-                                <label>Privacy Incidents <span class="kpi-status" id="kpiPrivacyStatus"></span></label>
+                                <label for="kpiPrivacy">Privacy Incidents <span class="kpi-status" id="kpiPrivacyStatus"></span></label>
                                 <input type="number" id="kpiPrivacy" placeholder="Target: 0" data-kpi="privacy" min="0">
                                 <small style="color: var(--color-text-secondary); font-size: 10px;">Data breaches or
                                     violations. Zero is ideal.</small>
                             </div>
                             <div class="kpi-card" id="kpiEnergyCard">
-                                <label>Energy per Query (Wh) <span class="kpi-status"
+                                <label for="kpiEnergy">Energy per Query (Wh) <span class="kpi-status"
                                         id="kpiEnergyStatus"></span></label>
                                 <input type="number" id="kpiEnergy" placeholder="Track & minimize" data-kpi="energy"
                                     min="0" step="0.001">
@@ -1746,7 +1755,7 @@
             <h2><span data-palo-icon=wrench class=palo-icon-inline></span>Configuration</h2>
 
             <div class="sidebar-section">
-                <label class="sidebar-label"><span data-palo-icon=warning class=palo-icon-inline></span>Risk Tier (EU AI Act)</label>
+                <label class="sidebar-label" for="riskTier"><span data-palo-icon=warning class=palo-icon-inline></span>Risk Tier (EU AI Act)</label>
                 <select id="riskTier" class="select" data-field="riskTier">
                     <option value="">Select risk tier...</option>
                     <option value="minimal">Minimal Risk</option>
@@ -1763,7 +1772,7 @@
             </div>
 
             <div class="sidebar-section">
-                <label class="sidebar-label">AI Use Case Category</label>
+                <label class="sidebar-label" for="useCaseCategory">AI Use Case Category</label>
                 <select id="useCaseCategory" class="select" data-field="useCaseCategory">
                     <option value="">Select category...</option>
                     <option value="hiring">Hiring & HR</option>
@@ -1845,7 +1854,7 @@
             </div>
 
             <div class="sidebar-section">
-                <label class="sidebar-label">Gate Decision</label>
+                <label class="sidebar-label" for="gateDecision">Gate Decision</label>
                 <select id="gateDecision" class="select" data-field="gateDecision">
                     <option value="">Select decision...</option>
                     <option value="go">GO - Proceed</option>
@@ -1855,7 +1864,7 @@
             </div>
 
             <div class="sidebar-section">
-                <label class="sidebar-label">Decision Rationale</label>
+                <label class="sidebar-label" for="decisionRationale">Decision Rationale</label>
                 <textarea class="select" id="decisionRationale" placeholder="Document the gate decision reasoning..."
                     data-field="decisionRationale"
                     style="height: 80px; padding: var(--space-8); font-family: inherit;"></textarea>
@@ -3335,17 +3344,19 @@
         updateUseCaseInsights();
     </script>
 
+        </main>
+
     <footer
         style="text-align: center; padding: 24px; margin-top: 32px; color: var(--color-text-secondary); font-size: 13px; border-top: 1px solid var(--color-border);"
         role="contentinfo">
-        <p style="margin-bottom: 8px;">Copyright 2024 PALO Framework. All rights reserved.</p>
+        <p style="margin-bottom: 8px;">Copyright 2026 PALO Framework. All rights reserved.</p>
         <p style="margin-bottom: 8px;">
             <a href="index.html" style="color: var(--color-primary); text-decoration: none;"><span data-palo-icon=home class=palo-icon-inline></span>Home</a> |
             <a href="PALO_FRIA.html" style="color: var(--color-primary); text-decoration: none;"><span data-palo-icon=shield class=palo-icon-inline></span>FRIA</a> |
             <a href="privacy-policy.html" style="color: var(--color-primary); text-decoration: none;">Privacy</a> |
             <a href="security-policy.html" style="color: var(--color-primary); text-decoration: none;">Security</a>
         </p>
-        <p style="font-size: 11px; opacity: 0.7;">WCAG 2.1 AA Compliant | GDPR Compliant</p>
+        <p style="font-size: 11px; opacity: 0.7;">Accessibility review in progress | WCAG 2.1 AA target</p>
     </footer>
 </body>
 

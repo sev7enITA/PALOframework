@@ -7,6 +7,25 @@ and this project follows Semantic Versioning where practical.
 
 ---
 
+## [2.1.0] - 2026-07-11
+
+### Added
+
+- **Recognition and source notes page**
+  - Added `PALO_Recognition.html` with public references, primary sources, link review date, and verification notes
+
+### Changed
+
+- Corrected the Risk Tiering transparency reference from Article 52 to Article 50
+- Reframed FRIA copy as Article 27 readiness and pre-screening for in-scope deployers and use cases
+- Added current Commission timeline notes for high-risk AI implementation and linked the official guidance
+- Updated privacy, security, and accessibility statements with July 2026 review status
+- Replaced unverified WCAG/GDPR compliance badges with review status and privacy information labels
+- Completed SEO description, canonical, and Open Graph metadata for previously incomplete pages
+- Added Recognition to the homepage footer, README module list, sitemap, RSS feed, and release metadata
+
+---
+
 ## [2.0.1] - 2026-06-22
 
 ### Changed

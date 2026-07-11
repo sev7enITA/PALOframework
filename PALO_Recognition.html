@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recognition & Sources | PALO Framework</title>
+    <meta name="description" content="Public references, primary sources, and verification notes for the PALO Framework and P.A.L.O. Framework Toolbox.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://paloframework.org/PALO_Recognition.html">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://paloframework.org/PALO_Recognition.html">
+    <meta property="og:title" content="Recognition & Sources | PALO Framework">
+    <meta property="og:description" content="Public references, primary sources, and verification notes for the PALO Framework.">
+    <meta property="og:image" content="https://paloframework.org/assets/logo.webp">
+    <meta property="og:site_name" content="PALO Framework">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Recognition & Sources | PALO Framework">
+    <meta name="twitter:description" content="Public references, primary sources, and verification notes for the PALO Framework.">
+    <meta name="twitter:image" content="https://paloframework.org/assets/logo.webp">
+    <link rel="icon" type="image/webp" href="assets/logo.webp">
+    <link rel="stylesheet" href="assets/palo-icons.css">
+    <script src="assets/palo-icons.js"></script>
+    <style>
+        :root {
+            --ink: #102a43;
+            --muted: #52616b;
+            --line: #d9e2ec;
+            --surface: #f7fafc;
+            --teal: #147d8b;
+            --teal-dark: #0b3c49;
+            --gold: #d69e2e;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            color: var(--ink);
+            background: #ffffff;
+            font-family: Inter, Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        a { color: var(--teal-dark); }
+        a:hover { color: var(--teal); }
+
+        .skip-link {
+            position: absolute;
+            left: -999px;
+            top: 0;
+            background: #ffffff;
+            color: var(--ink);
+            padding: 10px 14px;
+            z-index: 10;
+        }
+
+        .skip-link:focus { left: 16px; top: 16px; }
+
+        .site-header {
+            background: var(--teal-dark);
+            color: #ffffff;
+            border-bottom: 4px solid var(--gold);
+        }
+
+        .shell {
+            width: min(1120px, calc(100% - 40px));
+            margin: 0 auto;
+        }
+
+        .nav {
+            min-height: 76px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: #ffffff;
+            font-size: 0.92rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-decoration: none;
+        }
+
+        .brand img { width: 34px; height: 34px; object-fit: contain; }
+
+        .nav-links { display: flex; flex-wrap: wrap; gap: 18px; }
+        .nav-links a { color: #d9f3f4; text-decoration: none; font-size: 0.9rem; }
+        .nav-links a:hover { color: #ffffff; }
+
+        .hero { padding: 76px 0 64px; }
+        .eyebrow {
+            margin: 0 0 16px;
+            color: var(--gold);
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        h1, h2, h3 { line-height: 1.2; }
+        h1 { max-width: 760px; margin: 0; font-size: clamp(2.2rem, 5vw, 4.4rem); letter-spacing: 0; }
+        .hero p:last-child { max-width: 720px; margin: 24px 0 0; color: #d9f3f4; font-size: 1.12rem; }
+
+        main { padding: 56px 0 72px; }
+        .section { padding: 44px 0; border-top: 1px solid var(--line); }
+        .section:first-child { padding-top: 0; border-top: 0; }
+        h2 { margin: 0 0 12px; font-size: clamp(1.55rem, 3vw, 2.3rem); }
+        .intro { max-width: 800px; margin: 0; color: var(--muted); }
+
+        .references {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 22px;
+            margin-top: 28px;
+        }
+
+        .reference {
+            padding: 24px 0;
+            border-top: 3px solid var(--teal);
+        }
+
+        .reference h3 { margin: 0 0 10px; font-size: 1.18rem; }
+        .reference p { margin: 0 0 14px; color: var(--muted); }
+        .reference a { font-weight: 700; }
+
+        .source-note {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 24px;
+            align-items: start;
+            margin-top: 28px;
+            padding: 28px;
+            background: var(--surface);
+            border-left: 4px solid var(--gold);
+        }
+
+        .source-note p { margin: 0; color: var(--muted); }
+        .source-note .palo-svg-icon { color: var(--teal); }
+
+        .source-list { margin: 22px 0 0; padding-left: 20px; }
+        .source-list li { margin: 8px 0; }
+
+        .status {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--teal-dark);
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        footer {
+            padding: 32px 0;
+            background: #102a43;
+            color: #d9e2ec;
+            font-size: 0.88rem;
+        }
+
+        footer p { margin: 0; }
+        footer a { color: #b6e3e7; }
+
+        @media (max-width: 720px) {
+            .nav { align-items: flex-start; flex-direction: column; padding: 18px 0; }
+            .references { grid-template-columns: 1fr; }
+            .source-note { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+
+<body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <header class="site-header">
+        <div class="shell nav">
+            <a class="brand" href="index.html"><img src="assets/logo.webp" alt="PALO">PALO FRAMEWORK</a>
+            <nav class="nav-links" aria-label="Primary navigation">
+                <a href="index.html">Home</a>
+                <a href="PALO_Community.html">Community</a>
+                <a href="PALO_CompanionApp.html">Mobile App</a>
+                <a href="https://github.com/sev7enITA/PALOframework" target="_blank" rel="noopener noreferrer">GitHub</a>
+            </nav>
+        </div>
+        <div class="shell hero">
+            <p class="eyebrow">Public references and source notes</p>
+            <h1>Recognition should be traceable.</h1>
+            <p>PALO is an open framework. This page distinguishes primary implementation sources from independent public references and records the date on which links were reviewed.</p>
+        </div>
+    </header>
+
+    <main id="main-content" class="shell">
+        <section class="section">
+            <p class="status"><span data-palo-icon=check class="palo-icon-inline"></span>Links reviewed on 11 July 2026</p>
+            <h2>Public references</h2>
+            <p class="intro">The following sources provide public context about PALO and its creator. They retain their own editorial responsibility; inclusion here does not imply endorsement or replace the framework documentation.</p>
+            <div class="references">
+                <article class="reference">
+                    <h3>World AI Council</h3>
+                    <p>A public World AI Council post refers to PALO and notes recognition through Reuters coverage.</p>
+                    <a href="https://www.linkedin.com/posts/world-ai-council_at-the-world-ai-council-we-are-incredibly-activity-7438233663349133312-9akN" target="_blank" rel="noopener noreferrer">Read the public reference</a>
+                </article>
+                <article class="reference">
+                    <h3>Rivista AI</h3>
+                    <p>Rivista AI covered the P.A.L.O. Framework Toolbox 2.0 in the context of governance and the Human Economic Forum.</p>
+                    <a href="https://www.rivista.ai/2026/03/25/p-a-l-o-framework-toolbox-2-0-governance-in-your-pocket-o-lillusione-portatile-del-controllo-algoritmico/" target="_blank" rel="noopener noreferrer">Read the article</a>
+                </article>
+                <article class="reference">
+                    <h3>Rivista Corporate Governance</h3>
+                    <p>The 2026 special issue index includes a reference to "The PALO Framework for AI Corporate Governance."</p>
+                    <a href="https://images.rivistacorporategovernance.it/f/indici/NumeroStraordinario_2026_tUAZh_RCG.pdf" target="_blank" rel="noopener noreferrer">Open the special issue index</a>
+                </article>
+                <article class="reference">
+                    <h3>Human Economic Forum</h3>
+                    <p>The Human Economic Forum 2025 programme lists Fabrizio Degni as creator of the PALO Framework.</p>
+                    <a href="https://www.humaneconomicforum.org/documents/programma_9-dic-2025.pdf" target="_blank" rel="noopener noreferrer">Open the programme</a>
+                </article>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Primary sources</h2>
+            <p class="intro">For the method, controls, interactive tools, and release history, these are the authoritative PALO sources.</p>
+            <div class="source-note">
+                <div>
+                    <p><strong>Source of truth.</strong> The open repository and framework documents describe the implementation. Regulatory links should always be checked against the official source because guidance and application dates can change.</p>
+                    <ul class="source-list">
+                        <li><a href="https://github.com/sev7enITA/PALOframework" target="_blank" rel="noopener noreferrer">PALO Framework GitHub repository</a></li>
+                        <li><a href="PALO_AgenticGovernance.html">PALO-AM Agentic Governance Modality</a></li>
+                        <li><a href="PALO_RiskTiering.html">Risk Tiering Calculator</a> and <a href="PALO_FRIA.html">FRIA Assessment</a></li>
+                        <li><a href="https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai" target="_blank" rel="noopener noreferrer">European Commission AI Act information</a></li>
+                    </ul>
+                </div>
+                <span data-palo-icon=book class="palo-icon-inline"></span>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Verification note</h2>
+            <p class="intro">PALO is an educational, governance-support, and pre-screening toolkit. It does not certify compliance or provide legal advice. Each assessment must be reviewed against the applicable law, sector requirements, and deployment context.</p>
+        </section>
+    </main>
+
+    <footer>
+        <div class="shell">
+            <p>Copyright 2026 PALO Framework. <a href="privacy-policy.html">Privacy</a> | <a href="accessibility.html">Accessibility</a> | <a href="security-policy.html">Security</a></p>
+        </div>
+    </footer>
+</body>
+
+</html>
