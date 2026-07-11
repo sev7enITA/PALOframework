@@ -80,6 +80,7 @@ The app is designed as a privacy-first pre-screening companion for AI governance
 
 | Date | Release | Highlights |
 | --- | --- | --- |
+| 2026-07-11 | v2.2.1 - PolicyWatcher Ecosystem Link | Added PolicyWatcher as a cited external monitoring companion for public policy changes, source QA, methodology, and post-deployment context |
 | 2026-07-11 | v2.2.0 - Guided Assessment and Evidence Hub | Start Here entries, Assessment Path with local JSON/Markdown evidence bundle export, Regulatory Watch 2026, Documentation Hub, unified v2.1 shell, and Proof & Community media kit |
 | 2026-07-11 | v2.1.0 - Regulatory Readiness and Trust Foundations | Article 27/50 wording review, accessibility status, privacy/security policy refresh, public recognition page, SEO metadata and sitemap alignment |
 | 2026-06-22 | v2.0.1 - Documentation Sync | README roadmap, CHANGELOG, homepage changelog, RSS and release metadata aligned |
@@ -184,6 +185,15 @@ Primary framework documents and artifacts:
 - [PALO Assessment Path](PALO_AssessmentPath.html) for a guided local evidence bundle
 - [Regulatory Watch 2026](PALO_RegulatoryWatch.html) for dated official-source checks
 
+## Related Ecosystem
+
+[PolicyWatcher](https://policywatcher.online/) is a separate civic-tech portal by Fabrizio Degni for monitoring public privacy policies and terms of service, mapping policy changes, and exposing methodology and source-quality context. It complements the PALO lifecycle at Deployment and Monitoring, but it is not a PALO module, legal certification, or replacement for official sources.
+
+- [PolicyWatcher Observatory](https://policywatcher.online/observatory)
+- [PolicyWatcher Timeline](https://policywatcher.online/timeline)
+- [PolicyWatcher Confidence Methodology](https://policywatcher.online/methodology/confidence)
+- [PolicyWatcher Trust and Quality](https://policywatcher.online/trust)
+
 ## Contributing
 
 Contributions are welcome. Useful areas include:
@@ -199,7 +209,7 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md), [CODE_OF_CONDUCT.md](CODE_OF_CON
 
 ## Roadmap
 
-Current baseline: v2.2.0, released 2026-07-11. This release adds guided assessment, evidence export, a dated regulatory watchlist, web-native documentation, and a unified entry shell on top of the v2.1.0 regulatory-readiness foundations.
+Current baseline: v2.2.1, released 2026-07-11. This patch release adds a cited PolicyWatcher ecosystem link and post-deployment monitoring context on top of the v2.2.0 guided assessment and evidence hub.
 
 Completed in H1 2026:
 

@@ -22,6 +22,17 @@
         <category>EU AI Act</category>
 
         <item>
+            <title>PALO v2.2.1 - PolicyWatcher Ecosystem Link</title>
+            <link>https://paloframework.org/PALO_DocumentationHub.html#policywatcher</link>
+            <description><![CDATA[PALO v2.2.1 connects the framework to PolicyWatcher as a separate civic-tech companion for public privacy-policy and terms-of-service monitoring, source QA, confidence methodology, and post-deployment context.]]></description>
+            <pubDate>Sat, 11 Jul 2026 15:00:00 +0200</pubDate>
+            <guid isPermaLink="true">https://paloframework.org/#release-v2-2-1</guid>
+            <dc:creator>PALO Framework</dc:creator>
+            <category>Policy Monitoring</category>
+            <category>Ecosystem</category>
+        </item>
+
+        <item>
             <title>PALO v2.2.0 - Guided Assessment and Evidence Hub</title>
             <link>https://paloframework.org/PALO_AssessmentPath.html</link>
             <description><![CDATA[PALO v2.2.0 adds clear Start Here entries, a guided Assessment Path, local JSON and Markdown evidence bundle export, Regulatory Watch 2026, a web-native Documentation Hub, and a Proof and Community media kit.]]></description>
