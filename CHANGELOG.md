@@ -187,9 +187,8 @@ and this project follows Semantic Versioning where practical.
 
 ### Added
 
-- **Community & Advisory Board Page**
-  - Dedicated page for collaborators, advisors, and partners
-  - Advisory Board featuring Alessandro Simonetta, Federica Maria Rita Livelli, and Gianfabio Palmerini
+- **Community & Open Collaboration Page**
+  - Dedicated page for open collaboration, contributors, and partners
   - Open collaboration roles for contributors and reviewers
   - Partners and partnerships section for academic, industry, and standards-body collaborations
 
