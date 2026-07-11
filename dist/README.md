@@ -63,6 +63,9 @@ PALO is not a certification body and does not provide legal advice. It is a prac
 | [PALO-AM Agentic Governance](PALO_AgenticGovernance.html) | PALO extension for AI agents, delegated authority, action-space control, and agentic evidence | Live |
 | [Companion App](PALO_CompanionApp.html) | Mobile overview page for Android and iOS/iPadOS apps | Live |
 | [Recognition and Sources](PALO_Recognition.html) | Public references, primary sources, and verification notes | Live |
+| [PALO Assessment Path](PALO_AssessmentPath.html) | Guided route from risk tiering to contextual FRIA, controls, KPI/KRI, and a local evidence bundle | Live |
+| [Regulatory Watch 2026](PALO_RegulatoryWatch.html) | Dated AI Act watchlist with Article 4, Article 50, high-risk milestones, and official sources | Live |
+| [Documentation Hub](PALO_DocumentationHub.html) | Web-native lifecycle documentation, module index, primary documents, and source links | Live |
 
 ## Mobile Companion App
 
@@ -77,6 +80,7 @@ The app is designed as a privacy-first pre-screening companion for AI governance
 
 | Date | Release | Highlights |
 | --- | --- | --- |
+| 2026-07-11 | v2.2.0 - Guided Assessment and Evidence Hub | Start Here entries, Assessment Path with local JSON/Markdown evidence bundle export, Regulatory Watch 2026, Documentation Hub, unified v2.1 shell, and Proof & Community media kit |
 | 2026-07-11 | v2.1.0 - Regulatory Readiness and Trust Foundations | Article 27/50 wording review, accessibility status, privacy/security policy refresh, public recognition page, SEO metadata and sitemap alignment |
 | 2026-06-22 | v2.0.1 - Documentation Sync | README roadmap, CHANGELOG, homepage changelog, RSS and release metadata aligned |
 | 2026-06-22 | v2.0.0 - PALO-AM | Agentic Governance Modality for AI agents: identity, authority, risk matrix, control layer, evidence layer, action-space/autonomy matrix, KPI/KRI registry |
@@ -142,6 +146,9 @@ PALOframework/
 |-- PALO_CompanionApp.html             # Mobile app landing page
 |-- PALO_Community.html                # Community and advisory board
 |-- PALO_Recognition.html              # Public references and source notes
+|-- PALO_AssessmentPath.html           # Guided assessment and evidence bundle export
+|-- PALO_RegulatoryWatch.html           # Dated regulatory watchlist and sources
+|-- PALO_DocumentationHub.html          # Web-native documentation index
 |-- AppStoreListing.md                 # Store listing copy and source notes
 |-- PALOFrameworkV2.pdf                # Framework v2 documentation
 |-- ThePALOFramework_*.pdf             # PALO v1 paper
@@ -164,6 +171,8 @@ PALOframework/
 
 ## Documentation
 
+The [Documentation Hub](PALO_DocumentationHub.html) is the web-native entry point for the lifecycle, modules, source set, and contribution links. It is designed to be readable and indexable; the PDF remains the stable primary download record.
+
 Primary framework documents and artifacts:
 
 - [PALOFrameworkV2.pdf](PALOFrameworkV2.pdf)
@@ -172,6 +181,8 @@ Primary framework documents and artifacts:
 - [PALO-AM standalone document](insights/PALO-AM_Agentic_Governance_Modality_v2_Standalone_Document.docx)
 - [FRIA worksheet](assets/FRIA09-12_new.xlsx)
 - [PALO Canvas JSON template](json/palo-canvas-2025-12-17.json)
+- [PALO Assessment Path](PALO_AssessmentPath.html) for a guided local evidence bundle
+- [Regulatory Watch 2026](PALO_RegulatoryWatch.html) for dated official-source checks
 
 ## Contributing
 
@@ -188,7 +199,7 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md), [CODE_OF_CONDUCT.md](CODE_OF_CON
 
 ## Roadmap
 
-Current baseline: v2.1.0, released 2026-07-11. The functional framework baseline remains v2.0.0, with v2.1.0 adding regulatory-readiness and trust foundations.
+Current baseline: v2.2.0, released 2026-07-11. This release adds guided assessment, evidence export, a dated regulatory watchlist, web-native documentation, and a unified entry shell on top of the v2.1.0 regulatory-readiness foundations.
 
 Completed in H1 2026:
 
@@ -205,14 +216,15 @@ Completed in H1 2026:
 | PALO-AM Agentic Governance Modality v2.0 | Complete |
 | Documentation and release hygiene sync | Complete |
 | Regulatory readiness and trust foundations | Complete |
+| Guided assessment and evidence hub | Complete |
 
 Planned roadmap:
 
 | Target | Focus | Planned scope |
 | --- | --- | --- |
-| v2.2 | PALO-AM Simulator MVP | Interactive Action-Space vs Autonomy inputs, tier routing, control recommendations, and exportable assessment summary |
-| v2.3 | Evidence and governance board packs | Exportable evidence bundles, governance board templates, decision logs, KPI/KRI registers, and audit-ready summaries |
-| v2.4 | Multilingual and use-case expansion | Broader localization and worked examples for procurement, HR, finance, public-sector, and software-delivery use cases |
+| v2.3 | PALO-AM Simulator MVP | Interactive Action-Space vs Autonomy inputs, tier routing, control recommendations, and exportable assessment summary |
+| v2.4 | Evidence and governance board packs | Board templates, decision logs, KPI/KRI registers, review packets, and audit-ready summaries built on the evidence bundle format |
+| v2.5 | Multilingual and use-case expansion | Broader localization and worked examples for procurement, HR, finance, public-sector, and software-delivery use cases |
 | v3.0 | Integration layer | API and integration patterns for enterprise governance workflows, issue trackers, GRC platforms, and documentation systems |
 
 Exploratory items:

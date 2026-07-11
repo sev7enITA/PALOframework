@@ -20,6 +20,7 @@
     <meta name="twitter:image" content="https://paloframework.org/assets/logo.webp">
     <link rel="icon" type="image/webp" href="assets/logo.webp">
     <link rel="stylesheet" href="assets/palo-icons.css">
+    <link rel="stylesheet" href="assets/palo-v21.css">
     <script src="assets/palo-icons.js"></script>
     <style>
         :root {
@@ -173,27 +174,33 @@
     </style>
 </head>
 
-<body>
-    <a class="skip-link" href="#main-content">Skip to main content</a>
-    <header class="site-header">
-        <div class="shell nav">
-            <a class="brand" href="index.html"><img src="assets/logo.webp" alt="PALO">PALO FRAMEWORK</a>
-            <nav class="nav-links" aria-label="Primary navigation">
+<body class="palo-v21">
+    <a class="palo-skip-link" href="#main-content">Skip to main content</a>
+    <header class="palo-site-header">
+        <div class="palo-shell palo-header-inner">
+            <a class="palo-brand" href="index.html"><img src="assets/logo.webp" alt="PALO">PALO FRAMEWORK</a>
+            <button class="palo-menu-toggle" type="button" data-palo-menu-toggle aria-expanded="false" aria-controls="palo-recognition-nav" aria-label="Open navigation">
+                <span data-palo-icon="menu" aria-hidden="true"></span>
+            </button>
+            <nav class="palo-nav" id="palo-recognition-nav" aria-label="Primary navigation">
                 <a href="index.html">Home</a>
+                <a href="PALO_AssessmentPath.html">Assessment Path</a>
+                <a href="PALO_RegulatoryWatch.html">Regulatory Watch</a>
+                <a href="PALO_DocumentationHub.html">Documentation</a>
+                <a href="PALO_Recognition.html" aria-current="page">Recognition</a>
                 <a href="PALO_Community.html">Community</a>
-                <a href="PALO_CompanionApp.html">Mobile App</a>
                 <a href="https://github.com/sev7enITA/PALOframework" target="_blank" rel="noopener noreferrer">GitHub</a>
             </nav>
         </div>
-        <div class="shell hero">
+        <div class="palo-shell palo-hero">
             <p class="eyebrow">Public references and source notes</p>
             <h1>Recognition should be traceable.</h1>
             <p>PALO is an open framework. This page distinguishes primary implementation sources from independent public references and records the date on which links were reviewed.</p>
         </div>
     </header>
 
-    <main id="main-content" class="shell">
-        <section class="section">
+    <main id="main-content" class="palo-main">
+        <section class="palo-section">
             <p class="status"><span data-palo-icon=check class="palo-icon-inline"></span>Links reviewed on 11 July 2026</p>
             <h2>Public references</h2>
             <p class="intro">The following sources provide public context about PALO and its creator. They retain their own editorial responsibility; inclusion here does not imply endorsement or replace the framework documentation.</p>
@@ -221,7 +228,7 @@
             </div>
         </section>
 
-        <section class="section">
+        <section class="palo-section">
             <h2>Primary sources</h2>
             <p class="intro">For the method, controls, interactive tools, and release history, these are the authoritative PALO sources.</p>
             <div class="source-note">
@@ -238,17 +245,50 @@
             </div>
         </section>
 
-        <section class="section">
+        <section class="palo-section">
             <h2>Verification note</h2>
             <p class="intro">PALO is an educational, governance-support, and pre-screening toolkit. It does not certify compliance or provide legal advice. Each assessment must be reviewed against the applicable law, sector requirements, and deployment context.</p>
         </section>
+
+        <section class="palo-section">
+            <h2>Media kit and community links</h2>
+            <p class="intro">Use these links to verify the open project, share the framework, or access the mobile companion apps.</p>
+            <div class="references">
+                <article class="reference">
+                    <h3>Open repository</h3>
+                    <p>Source code, interactive modules, documentation, releases, and contribution history.</p>
+                    <a href="https://github.com/sev7enITA/PALOframework" target="_blank" rel="noopener noreferrer">Open PALO on GitHub</a>
+                </article>
+                <article class="reference">
+                    <h3>Android toolbox</h3>
+                    <p>P.A.L.O. Framework Toolbox for Android, with local-first governance workflows.</p>
+                    <a href="https://play.google.com/store/apps/details?id=com.fabriziodegni.paloframework" target="_blank" rel="noopener noreferrer">Open Google Play listing</a>
+                </article>
+                <article class="reference">
+                    <h3>iOS and iPadOS toolbox</h3>
+                    <p>P.A.L.O. Framework Toolbox for iPhone and iPad.</p>
+                    <a href="https://apps.apple.com/it/app/p-a-l-o-framework-toolbox/id6761771299" target="_blank" rel="noopener noreferrer">Open App Store listing</a>
+                </article>
+                <article class="reference">
+                    <h3>Media assets</h3>
+                    <p>Use the framework logo and primary documentation when preparing a reference or announcement.</p>
+                    <a href="assets/logo.webp">Open framework logo</a> | <a href="PALOFrameworkV2.pdf">Open framework PDF</a>
+                </article>
+                <article class="reference">
+                    <h3>Community</h3>
+                    <p>Meet the community and advisory board around the open framework.</p>
+                    <a href="PALO_Community.html">Open community page</a>
+                </article>
+            </div>
+        </section>
     </main>
 
-    <footer>
-        <div class="shell">
+    <footer class="palo-footer">
+        <div class="palo-shell">
             <p>Copyright 2026 PALO Framework. <a href="privacy-policy.html">Privacy</a> | <a href="accessibility.html">Accessibility</a> | <a href="security-policy.html">Security</a></p>
         </div>
     </footer>
+    <script src="assets/palo-v21.js"></script>
 </body>
 
 </html>

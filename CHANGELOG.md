@@ -7,6 +7,30 @@ and this project follows Semantic Versioning where practical.
 
 ---
 
+## [2.2.0] - 2026-07-11
+
+### Added
+
+- **PALO Assessment Path**
+  - Added three guided entry points: classify the case, assess impacts, and build the evidence
+  - Added routing from Risk Tiering to contextual FRIA, controls, KPI/KRI, PALO-AM, and AI Dev Governance when signals apply
+  - Added local JSON and Markdown evidence bundle export with PALO version, route, evidence readiness, official sources, and disclaimer
+- **Regulatory Watch 2026**
+  - Added dated status cards for Article 4 AI literacy, GPAI milestones, Article 50 transparency, and current high-risk implementation guidance
+  - Added official Commission and EUR-Lex source links and an explicit review-date disclaimer
+- **Documentation Hub**
+  - Added indexable web-native lifecycle documentation, interactive module directory, primary document links, source set, and contribution links
+- **Proof and Community media kit**
+  - Added public links for the Android and iOS/iPadOS companion apps, GitHub, framework image, PDF, and community page
+- **Unified v2.2 shell assets**
+  - Added responsive shared CSS and JavaScript for navigation, local downloads, current year labels, and Documentation Hub filtering
+
+### Changed
+
+- Added Start Here, Regulatory Watch, Assessment Path, Documentation Hub, and Proof & Community sections to the homepage
+- Updated README, sitemap, RSS feed, and release history for v2.2.0
+- Updated the roadmap to place PALO-AM Simulator after the guided evidence workflow
+
 ## [2.1.0] - 2026-07-11
 
 ### Added

@@ -1,5 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
   <symbol id="palo-icon-generic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v8M8 12h8"/></symbol>
+  <symbol id="palo-icon-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
   <symbol id="palo-icon-home" viewBox="0 0 24 24"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10.5V20h13v-9.5"/><path d="M10 20v-5h4v5"/></symbol>
   <symbol id="palo-icon-shield" viewBox="0 0 24 24"><path d="M12 3 20 6v6c0 4.5-3.1 7.5-8 9-4.9-1.5-8-4.5-8-9V6l8-3Z"/><path d="m8.5 12 2.2 2.2 4.8-5"/></symbol>
   <symbol id="palo-icon-scale" viewBox="0 0 24 24"><path d="M12 3v18M5 6h14M7 6l-4 7h8L7 6ZM17 6l-4 7h8l-4-7Z"/><path d="M8 21h8"/></symbol>
