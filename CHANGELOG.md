@@ -7,6 +7,72 @@ and this project follows Semantic Versioning where practical.
 
 ---
 
+## [2.4.0] - 2026-07-12
+
+### Added
+
+- Added PALO Spotlight, a local ER-aware platform search across modules, guide decisions, artifacts, actors, controls, sources, stakeholder intents, and weighted relationships
+- Added deterministic intent scoring, six-phase route tracing, relation traversal, operational starter questions, keyboard navigation, and reusable `PALO_SPOTLIGHT.open(query)` integration for a future conversational assistant
+
+- Added a pinned Node toolchain for HTML, links, fragments, canonicals, sitemap, RSS, release metadata, and browser smoke validation
+- Added an explicit public-file allowlist and deterministic root-to-`dist` build with SHA-256 exactness verification
+- Added `release-manifest.json`, portable `_headers`, hosting guidance, and P0 lateral analysis
+- Added PALO case-file and evidence-bundle v1 schemas with valid/invalid fixtures, migration guidance, source freshness fields, and incident/material-change gate triggers
+- Added a local-only browser API for case create, validate, import, export, merge, board pack, and cross-module handoff while preserving unknown fields
+- Added case import/resume and handoff to Stakeholder Onboarding and Assessment Path, including board-review Markdown output
+- Added the embedded PALO-AM Simulator MVP with deterministic tiering, control/evidence/KPI recommendations, JSON/Markdown export, and case linkage
+- Added critical P1 browser flows and P1 lateral analysis
+- Added P2 structured control, KPI/KRI, decision-gate and source starter libraries with cross-reference validation
+- Added six educational Case File worked examples, five operational templates, a PolicyWatcher signal contract, vendor-neutral connector patterns, and non-production policy-as-code examples
+- Added P2 dependency/license inventory, publication hygiene, module contracts, deterministic publication coverage, and lateral analysis
+- Added the public Platform Map with honest Implemented, Foundation, and Research states; P0-P3 lateral impact panels; stakeholder-intent navigation; and a synchronized table fallback
+- Added navigation entities and weighted navigation relations to the Operationalization Explorer with a dedicated graph mode, destination properties, fallback coverage, and P3 browser tests
+- Added Platform Map links to the homepage, shared navigation, Documentation Hub, sitemap, RSS, release manifest, README, and deterministic publication allowlist
+- Added P3 lateral analysis and the required desktop, mobile, navigation-graph, and PALO-AM Simulator screenshots
+- Added the v2.4.0 PolicyWatcher maintenance integration: a local Assessment Path signal receiver, pending-human-review Case File mapping, live Platform Map/Explorer destination, and exact import/boundary tests
+
+### Changed
+
+- Updated AJV to 8.20.0 after the final dependency audit, removing the reported moderate ReDoS advisory from the validation toolchain
+- Unified all shared `palo-v21.css` and `palo-v21.js` cache keys on release v2.4.0
+- Changed GitHub Pages CI to fail on validation errors and deploy only the generated `dist` artifact
+- Upgraded Assessment Path exports to evidence-bundle v1 and connected onboarding, assessment, simulator, and board review through one portable local case
+- Corrected the mobile Explorer navigation landing so it remains hash-free, opens on the visible graph, and focuses the Navigation mode control
+- Raised Explorer mode, phase, relationship, inspector, semantic-search, and result targets to a 44px minimum
+- Offset focused PALO-AM results below both fixed navigation bars and added keyboard-focusable, text-labelled mobile scroll affordances to the matrix and KPI/KRI registry
+- Standardized PolicyWatcher links on `https://www.policywatcher.online/`, retained the local schema as the contract, and made additive signal fields forward-compatible without changing the `1.0.0` format
+
+## [2.3.2] - 2026-07-11
+
+### Fixed
+
+- Unified the homepage Toolbox, AuditBench, and Poisoning Study entry bands around the shared PALO workspace pattern
+- Restored cold-load and direct-file styling for the homepage lifecycle and proof metrics using local CSS
+- Rebuilt the Companion App page on the shared shell with valid section navigation and operational lifecycle routes
+- Linked the homepage five-phase proof point to the lifecycle and synchronized changed public files with `dist/`
+- Restored the PALO-AM `Controls` navigation target and completed a 27-page internal and external link audit
+
+### Added
+
+- **Stakeholder onboarding**
+  - Added a three-step, plain-language onboarding for decision, working context, and material signals
+  - Added deterministic routing that returns exactly one primary action, one evidence artifact, and no more than two contextual PALO modules
+  - Added personalized six-phase routes for executive, governance, product, engineering, public-sector, procurement, audit, assurance, and research perspectives
+  - Added local JSON and Markdown route exports without accounts, analytics, or transmission of onboarding answers
+  - Added resume, restart, change-answer, and explore-all paths using session-local storage with a graceful storage fallback
+  - Connected the result to the weighted ER workflow and 3D knowledge graph with phase, module, camera, inspector, and URL synchronization
+
+### Changed
+
+- Made Stakeholder Onboarding the primary Start here, hero, command-center, and theory-to-practice entry from the homepage
+- Updated the public release marker to v2.3.2 on the homepage, Explorer, and Community shell
+- Added canonical, Open Graph, Twitter, robots, and WebApplication metadata for the Operationalization Explorer
+
+### Accessibility
+
+- Used native fieldsets, legends, radio buttons, and checkboxes with text progress, 44px controls, visible focus, preserved answers, intentional result focus, reduced motion, and a semantic WebGL fallback
+- Verified responsive onboarding and Explorer behavior across desktop, tablet, and mobile layouts
+
 ## [2.3.1] - 2026-07-11
 
 ### Added

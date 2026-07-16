@@ -1,0 +1,9 @@
+{
+  "format": "evidence",
+  "schemaVersion": "1",
+  "bundleId": "x",
+  "generatedAt": "not-a-date",
+  "artifacts": [{ "artifactId": "", "title": "", "kind": "", "status": "complete" }],
+  "sourceRegistry": [],
+  "freshness": { "evaluatedAt": "today", "status": "fresh" }
+}

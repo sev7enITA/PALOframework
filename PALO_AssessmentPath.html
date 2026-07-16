@@ -16,9 +16,11 @@
     <meta name="twitter:card" content="summary_large_image">
     <link rel="icon" type="image/webp" href="assets/logo.webp">
     <link rel="stylesheet" href="assets/palo-icons.css">
-    <link rel="stylesheet" href="assets/palo-v21.css">
+    <link rel="stylesheet" href="assets/palo-v21.css?v=2.4.1">
     <script src="assets/palo-icons.js"></script>
-    <script src="assets/palo-v21.js"></script>
+    <script src="assets/palo-v21.js?v=2.4.1"></script>
+    <script src="assets/palo-case-file.js?v=2.4.1"></script>
+    <script src="assets/palo-policywatcher-signal.js?v=2.4.1"></script>
 </head>
 <body class="palo-v21">
     <a class="palo-skip-link" href="#main-content">Skip to main content</a>
@@ -33,6 +35,7 @@
                 <a href="PALO_AssessmentPath.html" aria-current="page">Assessment Path</a>
                 <a href="PALO_RegulatoryWatch.html">Regulatory Watch</a>
                 <a href="PALO_DocumentationHub.html">Documentation</a>
+                <a href="PALO_PlatformMap.html">Platform Map</a>
                 <a href="PALO_Recognition.html">Recognition</a>
                 <a href="PALO_Community.html">Community</a>
             </nav>
@@ -64,15 +67,40 @@
                     <article class="palo-step"><span class="palo-step-number">04</span><h3>KPI and KRI</h3><p>Turn the governance intent into measurable follow-up.</p></article>
                     <article class="palo-step"><span class="palo-step-number">05</span><h3>Evidence bundle</h3><p>Export the route, readiness, sources, and disclaimer.</p></article>
                 </div>
-                <div class="palo-note"><strong>Optional monitoring companion.</strong> After deployment, use <a href="https://policywatcher.online/" target="_blank" rel="noopener noreferrer">PolicyWatcher</a> to follow public privacy-policy and terms-of-service changes that may affect the operating context. Keep the original source and human review in the PALO evidence record.</div>
+                <div class="palo-note"><strong>Optional monitoring companion.</strong> After deployment, use <a href="https://www.policywatcher.online/" target="_blank" rel="noopener noreferrer">PolicyWatcher</a> to follow public privacy-policy and terms-of-service changes that may affect the operating context. Keep the original source and human review in the PALO evidence record.</div>
             </div>
         </section>
 
         <section class="palo-section" id="assessment-form">
             <div class="palo-shell">
-                <p class="palo-eyebrow">Step 1 to 4</p>
+                <p class="palo-eyebrow">Case workspace · Step 1 to 4</p>
                 <h2>Classify the case and build the route</h2>
                 <p class="palo-lead">The form runs in your browser. No answer is sent to a server and no account is needed.</p>
+                <div class="palo-note" id="case-workspace-status" role="status" aria-live="polite"><strong>No case loaded.</strong> Start below or import a PALO case/evidence JSON file.</div>
+                <div class="palo-actions">
+                    <label class="palo-btn palo-btn-secondary" for="assessment-import"><span data-palo-icon="upload" aria-hidden="true"></span>Import JSON</label>
+                    <input id="assessment-import" type="file" accept="application/json,.json" hidden>
+                    <button class="palo-btn palo-btn-muted" type="button" id="resume-local-case">Resume local case</button>
+                </div>
+                <section class="palo-signal-import" aria-labelledby="policywatcher-import-title">
+                    <div>
+                        <p class="palo-card-kicker">External monitoring companion · local receiver</p>
+                        <h3 id="policywatcher-import-title">PolicyWatcher monitoring signal</h3>
+                        <p>Import a structured observation locally. PALO preserves the complete signal and flags Measure and Prove for accountable review; confidence does not determine legal significance or control effectiveness.</p>
+                    </div>
+                    <div class="palo-actions">
+                        <label class="palo-btn" for="policywatcher-signal-import"><span data-palo-icon="upload" aria-hidden="true"></span>Import signal JSON</label>
+                        <input id="policywatcher-signal-import" type="file" accept="application/json,.json" hidden>
+                        <a class="palo-btn palo-btn-secondary" href="schemas/policywatcher-signal.schema.json">Signal schema</a>
+                    </div>
+                    <div class="palo-signal-links" aria-label="PolicyWatcher resources">
+                        <a href="https://www.policywatcher.online/" target="_blank" rel="noopener noreferrer">PolicyWatcher</a>
+                        <a href="https://www.policywatcher.online/observatory" target="_blank" rel="noopener noreferrer">Observatory</a>
+                        <a href="https://www.policywatcher.online/methodology/confidence" target="_blank" rel="noopener noreferrer">Confidence methodology</a>
+                        <a href="https://www.policywatcher.online/trust" target="_blank" rel="noopener noreferrer">Trust &amp; Quality</a>
+                    </div>
+                    <div class="palo-signal-review" id="policywatcher-import-status" role="status" aria-live="polite"><strong>No signal imported.</strong> PolicyWatcher remains separate from PALO and no case data is sent to the portal.</div>
+                </section>
                 <form class="palo-form" id="palo-assessment-form">
                     <div class="palo-form-grid">
                         <div class="palo-field">
@@ -154,6 +182,8 @@
                             <div class="palo-actions">
                                 <button class="palo-btn" type="button" id="download-json"><span data-palo-icon="download" aria-hidden="true"></span>Download JSON</button>
                                 <button class="palo-btn palo-btn-secondary" type="button" id="download-markdown"><span data-palo-icon="file" aria-hidden="true"></span>Download Markdown</button>
+                                <button class="palo-btn palo-btn-secondary" type="button" id="download-board-pack"><span data-palo-icon="file" aria-hidden="true"></span>Board pack</button>
+                                <button class="palo-btn palo-btn-muted" type="button" id="handoff-simulator">Open in PALO-AM</button>
                             </div>
                         </div>
                         <div>
@@ -182,7 +212,7 @@
         </div>
     </footer>
 
-    <script>
+    <script type="text/plain" id="legacy-assessment-path-script">
         (function () {
             var form = document.getElementById('palo-assessment-form');
             var results = document.getElementById('assessment-results');
@@ -322,5 +352,6 @@
             });
         }());
     </script>
+    <script src="assets/palo-assessment-path.js?v=2.4.1"></script>
 </body>
 </html>

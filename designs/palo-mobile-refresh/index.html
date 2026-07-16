@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b3c49">
+  <meta name="description" content="PALO Mobile — a local-first field console for AI governance decisions, evidence, and lifecycle work.">
+  <title>PALO Mobile · Governance field console</title>
+  <link rel="icon" href="assets/logo.webp" type="image/webp">
+  <link rel="stylesheet" href="assets/styles.css">
+  <script src="assets/app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#app-main">Skip to workspace</a>
+
+  <svg class="icon-sprite" aria-hidden="true">
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1Z"/></symbol>
+    <symbol id="i-cases" viewBox="0 0 24 24"><path d="M4 6.5h6l2 2h8v10.5a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8.5a2 2 0 0 1 2-2Z"/><path d="M2 11h20"/></symbol>
+    <symbol id="i-evidence" viewBox="0 0 24 24"><path d="M6 2h9l4 4v16H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Z"/><path d="M14 2v5h5M8 13h7M8 17h7M8 9h2"/></symbol>
+    <symbol id="i-library" viewBox="0 0 24 24"><path d="M4 3h5v18H4zM10 3h5v18h-5zM16 5h4v16h-4z"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></symbol>
+    <symbol id="i-back" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></symbol>
+    <symbol id="i-more" viewBox="0 0 24 24"><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3 2.5 20h19Z"/><path d="M12 9v5m0 3h.01"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 16V4m-5 5 5-5 5 5M4 15v5h16v-5"/></symbol>
+    <symbol id="i-note" viewBox="0 0 24 24"><path d="M5 3h14v18H5zM8 8h8M8 12h8M8 16h5"/></symbol>
+    <symbol id="i-link" viewBox="0 0 24 24"><path d="m10 13 4-4m-7 8H5a4 4 0 0 1 0-8h4m6 0h4a4 4 0 0 1 0 8h-4"/></symbol>
+    <symbol id="i-test" viewBox="0 0 24 24"><path d="M9 3v5l-5 9a3 3 0 0 0 2.6 4h10.8a3 3 0 0 0 2.6-4l-5-9V3M8 14h8M8 3h8"/></symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 2 4 5v6c0 5 3.4 9.2 8 11 4.6-1.8 8-6 8-11V5Z"/><path d="m8.5 12 2.2 2.2 4.8-5"/></symbol>
+  </svg>
+
+  <div class="review-canvas">
+    <main class="device" aria-label="PALO Mobile prototype">
+      <div class="app-shell">
+        <header class="app-header" data-standard-header>
+          <div class="brand-lockup">
+            <img src="assets/logo.webp" alt="">
+            <div><strong>PALO</strong><span>Mobile workspace</span></div>
+          </div>
+          <div class="header-actions">
+            <span class="local-signal"><i></i>Local only</span>
+            <button class="icon-button" type="button" data-open-sheet="settings-sheet" aria-label="Open profile and settings">
+              <svg><use href="#i-user"></use></svg>
+            </button>
+          </div>
+        </header>
+
+        <header class="detail-header" data-detail-header hidden>
+          <button class="icon-button light" type="button" data-back aria-label="Back to cases"><svg><use href="#i-back"></use></svg></button>
+          <div><span>Case workspace</span><strong>Customer Support Copilot</strong></div>
+          <button class="icon-button light" type="button" data-open-sheet="case-actions-sheet" aria-label="More case actions"><svg><use href="#i-more"></use></svg></button>
+        </header>
+
+        <div class="workspace-context" data-context-bar>
+          <span>Northstar / AI Governance</span>
+          <strong>Customer Support Copilot</strong>
+        </div>
+
+        <div id="app-main" class="app-main" tabindex="-1">
+          <section class="view is-active" id="today-view" data-view="today" aria-labelledby="today-title">
+            <header class="page-intro reveal">
+              <p class="eyebrow">Wednesday · 15 July</p>
+              <h1 id="today-title">Good morning, Maya.</h1>
+              <p>One decision gate needs your attention today.</p>
+            </header>
+
+            <article class="focus-case reveal delay-1">
+              <div class="focus-head">
+                <div>
+                  <p class="micro-label">Continue your case</p>
+                  <h2>Customer Support Copilot</h2>
+                </div>
+                <span class="status status-progress">In progress</span>
+              </div>
+              <div class="phase-summary">
+                <span>03 / 06</span>
+                <div><strong>Assess</strong><small>68% readiness</small></div>
+                <div class="ring" role="img" aria-label="68 percent ready"><span>68</span></div>
+              </div>
+              <ol class="gate-rail">
+                <li class="done"><i><svg><use href="#i-check"></use></svg></i><span>Frame</span></li>
+                <li class="done"><i><svg><use href="#i-check"></use></svg></i><span>Classify</span></li>
+                <li class="current" aria-current="step"><i>3</i><span>Assess</span></li>
+                <li><i>4</i><span>Control</span></li>
+                <li><i>5</i><span>Measure</span></li>
+                <li><i>6</i><span>Prove</span></li>
+              </ol>
+              <div class="gate-question">
+                <div class="gate-number">G3</div>
+                <div>
+                  <p class="micro-label">Current decision gate</p>
+                  <h3>Are impacts, rights and human oversight conditions understood?</h3>
+                  <dl class="compact-meta">
+                    <div><dt>Owner</dt><dd>Maya Chen</dd></div>
+                    <div><dt>Review</dt><dd>18 Jul 2026</dd></div>
+                  </dl>
+                </div>
+              </div>
+              <button class="primary-action" type="button" data-open-case>Continue assessment <svg><use href="#i-arrow"></use></svg></button>
+              <button class="text-action" type="button" data-open-sheet="gate-sheet">Review gate requirements</button>
+            </article>
+
+            <section class="attention reveal delay-2" aria-labelledby="attention-title">
+              <div class="section-heading"><div><p class="micro-label">Priority queue</p><h2 id="attention-title">Attention needed</h2></div><span>3 items</span></div>
+              <div class="task-list">
+                <button type="button" class="task-row" data-open-sheet="evidence-sheet">
+                  <span class="task-icon warning"><svg><use href="#i-alert"></use></svg></span>
+                  <span><strong>FRIA note needs review</strong><small>Assess · due in 3 days</small></span>
+                  <svg class="chevron"><use href="#i-chevron"></use></svg>
+                </button>
+                <button type="button" class="task-row" data-open-case>
+                  <span class="task-icon"><svg><use href="#i-user"></use></svg></span>
+                  <span><strong>Assign test evidence owner</strong><small>Control · unresolved</small></span>
+                  <svg class="chevron"><use href="#i-chevron"></use></svg>
+                </button>
+                <button type="button" class="task-row" data-nav-target="evidence">
+                  <span class="task-icon danger"><svg><use href="#i-evidence"></use></svg></span>
+                  <span><strong>2 evidence items missing</strong><small>Before Gate 3 review</small></span>
+                  <svg class="chevron"><use href="#i-chevron"></use></svg>
+                </button>
+              </div>
+            </section>
+
+            <button class="quick-start reveal delay-3" type="button" data-start-assessment>
+              <span class="quick-symbol"><svg><use href="#i-plus"></use></svg></span>
+              <span><span class="micro-label">Quick start</span><strong>Start a new assessment</strong><small>Tell us what you need to govern. We’ll recommend a route.</small></span>
+              <svg class="chevron"><use href="#i-chevron"></use></svg>
+            </button>
+
+            <div class="trust-note"><svg><use href="#i-shield"></use></svg><p><strong>Preliminary assessment</strong><br>Stored locally on this device. PALO supports accountable decisions; it does not certify compliance.</p></div>
+          </section>
+
+          <section class="view" id="cases-view" data-view="cases" aria-labelledby="cases-title" hidden>
+            <header class="page-intro compact">
+              <p class="eyebrow">Portfolio</p>
+              <h1 id="cases-title">Cases</h1>
+              <p>Track ownership, gates and evidence readiness.</p>
+            </header>
+            <label class="search-field">
+              <svg><use href="#i-search"></use></svg><span class="sr-only">Search cases</span>
+              <input type="search" data-case-search placeholder="Search case or owner">
+            </label>
+            <div class="segmented" role="group" aria-label="Filter cases">
+              <button type="button" class="is-active" data-case-filter="all" aria-pressed="true">All <span>3</span></button>
+              <button type="button" data-case-filter="active" aria-pressed="false">Active <span>2</span></button>
+              <button type="button" data-case-filter="archived" aria-pressed="false">Archived <span>1</span></button>
+            </div>
+            <div class="case-list" data-case-list>
+              <button class="case-row featured" type="button" data-case-state="active" data-search-value="customer support copilot maya chen product trust" data-open-case>
+                <span class="case-top"><span class="status status-progress">In progress</span><small>Updated today</small></span>
+                <strong>Customer Support Copilot</strong>
+                <span class="case-owner">Product Trust · Maya Chen</span>
+                <span class="case-progress"><span><i data-progress="68"></i></span><b>68%</b></span>
+                <span class="case-footer"><span><em>03</em> Assess</span><span>6 / 9 evidence ready</span></span>
+              </button>
+              <button class="case-row" type="button" data-case-state="active" data-search-value="vendor scoring assistant luca ferri procurement risk">
+                <span class="case-top"><span class="status status-ready">Ready for review</span><small>Updated 12 Jul</small></span>
+                <strong>Vendor Scoring Assistant</strong>
+                <span class="case-owner">Procurement Risk · Luca Ferri</span>
+                <span class="case-progress"><span><i data-progress="92"></i></span><b>92%</b></span>
+                <span class="case-footer"><span><em>06</em> Prove &amp; Review</span><span>11 / 12 evidence ready</span></span>
+              </button>
+              <button class="case-row" type="button" data-case-state="archived" data-search-value="cv screening pilot people operations archived amira khan">
+                <span class="case-top"><span class="status status-archived">Archived</span><small>Updated 28 Jun</small></span>
+                <strong>CV Screening Pilot</strong>
+                <span class="case-owner">People Operations · Amira Khan</span>
+                <span class="case-progress"><span><i data-progress="100"></i></span><b>100%</b></span>
+                <span class="case-footer"><span><em>06</em> Review complete</span><span>14 / 14 evidence ready</span></span>
+              </button>
+            </div>
+            <p class="empty-state" data-case-empty hidden>No cases match this search.</p>
+            <button class="secondary-action full" type="button" data-start-assessment><svg><use href="#i-plus"></use></svg> Start a new assessment</button>
+          </section>
+
+          <section class="view detail-view" id="case-detail-view" data-view="case-detail" aria-labelledby="case-detail-title" hidden>
+            <div class="detail-status-line"><span class="status status-progress">In progress</span><span>Case PALO-26-041 · v1.4</span></div>
+            <header class="case-title-block">
+              <p class="eyebrow">Current phase · 03 Assess</p>
+              <h1 id="case-detail-title">Customer Support Copilot</h1>
+              <p>Internal assistant that drafts support replies from approved knowledge sources. A human agent reviews every response.</p>
+            </header>
+            <section class="live-gate">
+              <div class="live-gate-top"><span>Decision gate 3 of 6</span><b>68% ready</b></div>
+              <h2>Are impacts, rights and human oversight conditions understood?</h2>
+              <p>Complete the FRIA note and confirm escalation authority before review.</p>
+              <div class="gate-owner"><span><small>Accountable owner</small><strong>Maya Chen</strong></span><span><small>Review date</small><strong>18 Jul 2026</strong></span></div>
+              <button class="primary-action" type="button" data-open-sheet="gate-sheet">Continue assessment <svg><use href="#i-arrow"></use></svg></button>
+            </section>
+            <ol class="vertical-rail">
+              <li class="done"><i><svg><use href="#i-check"></use></svg></i><div><span>01 · Frame</span><strong>Purpose and ownership recorded</strong></div><em>Complete</em></li>
+              <li class="done"><i><svg><use href="#i-check"></use></svg></i><div><span>02 · Classify</span><strong>Limited-risk route justified</strong></div><em>Complete</em></li>
+              <li class="current"><i>3</i><div><span>03 · Assess</span><strong>Impacts and oversight conditions</strong></div><em>Current</em></li>
+              <li><i>4</i><div><span>04 · Control</span><strong>Owned, testable mitigations</strong></div><em>Next</em></li>
+              <li><i>5</i><div><span>05 · Measure</span><strong>KPI/KRI monitoring set</strong></div></li>
+              <li><i>6</i><div><span>06 · Prove &amp; Review</span><strong>Reconstruct and review decision</strong></div></li>
+            </ol>
+            <section class="workspace-section">
+              <div class="section-heading"><div><p class="micro-label">Rationale</p><h2>Decision record</h2></div><span class="count">4</span></div>
+              <button class="artifact-row" type="button"><span class="artifact-mark teal">DR</span><span><strong>Proceed to controlled pilot</strong><small>Decision · Maya Chen · v1.2</small></span><svg class="chevron"><use href="#i-chevron"></use></svg></button>
+              <button class="artifact-row" type="button"><span class="artifact-mark">MC</span><span><strong>AI Model Canvas</strong><small>Frame artifact · approved</small></span><svg class="chevron"><use href="#i-chevron"></use></svg></button>
+            </section>
+            <section class="workspace-section">
+              <div class="section-heading"><div><p class="micro-label">Required for Gate 3</p><h2>Open evidence</h2></div><button class="inline-add" type="button" data-open-sheet="evidence-sheet"><svg><use href="#i-plus"></use></svg> Add</button></div>
+              <button class="artifact-row" type="button" data-open-sheet="evidence-sheet"><span class="artifact-mark gold">FR</span><span><strong>FRIA note</strong><small>Needs review · v0.3</small></span><span class="dot-label warning">Review</span></button>
+              <button class="artifact-row" type="button" data-open-sheet="evidence-sheet"><span class="artifact-mark red">OA</span><span><strong>Oversight authority matrix</strong><small>Evidence owner not assigned</small></span><span class="dot-label danger">Missing</span></button>
+            </section>
+            <section class="workspace-section">
+              <div class="section-heading"><div><p class="micro-label">Mitigation</p><h2>Assigned controls</h2></div><span class="count">3</span></div>
+              <div class="control-row"><span><b>CTRL-HO-04</b><strong>Human response approval</strong></span><em>Operating</em></div>
+              <div class="control-row"><span><b>CTRL-DQ-02</b><strong>Approved source boundary</strong></span><em>Test due</em></div>
+              <div class="control-row"><span><b>CTRL-ES-03</b><strong>Escalation to specialist</strong></span><em>Draft</em></div>
+            </section>
+            <section class="workspace-section activity-section">
+              <div class="section-heading"><div><p class="micro-label">Audit trail</p><h2>Recent activity</h2></div></div>
+              <ol class="activity-list">
+                <li><i></i><div><strong>Risk tier report approved</strong><span>Luca Ferri · 12 Jul, 16:42</span></div></li>
+                <li><i></i><div><strong>FRIA note updated to v0.3</strong><span>Maya Chen · 12 Jul, 10:18</span></div></li>
+                <li><i></i><div><strong>Control test assigned</strong><span>System · 11 Jul, 14:06</span></div></li>
+              </ol>
+            </section>
+            <div class="portable-note"><svg><use href="#i-link"></use></svg><p><strong>Portable Case File</strong><br>Versioned local handoff for PALO Web · schema 1.0</p><button type="button" data-toast="Case File export prepared locally">Prepare</button></div>
+          </section>
+
+          <section class="view" id="evidence-view" data-view="evidence" aria-labelledby="evidence-title" hidden>
+            <header class="page-intro compact evidence-intro">
+              <div><p class="eyebrow">Local vault</p><h1 id="evidence-title">Evidence</h1><p>Readiness across 3 active cases.</p></div>
+              <button class="small-action" type="button" data-open-sheet="evidence-sheet"><svg><use href="#i-plus"></use></svg> Add</button>
+            </header>
+            <section class="readiness-panel" aria-labelledby="readiness-title">
+              <div class="readiness-head"><div><p class="micro-label">Evidence readiness</p><h2 id="readiness-title">26 artifacts tracked</h2></div><span>73%</span></div>
+              <div class="readiness-bar"><i></i><i></i><i></i></div>
+              <dl class="readiness-counts">
+                <div class="complete"><dt>Complete</dt><dd>19</dd></div>
+                <div class="review"><dt>Needs review</dt><dd>5</dd></div>
+                <div class="missing"><dt>Missing</dt><dd>2</dd></div>
+              </dl>
+            </section>
+            <div class="segmented evidence-filter" role="group" aria-label="Filter evidence">
+              <button type="button" class="is-active" data-evidence-filter="all" aria-pressed="true">All</button>
+              <button type="button" data-evidence-filter="review" aria-pressed="false">Needs review</button>
+              <button type="button" data-evidence-filter="complete" aria-pressed="false">Complete</button>
+            </div>
+            <div class="evidence-list">
+              <button class="evidence-row" type="button" data-evidence-state="review" data-open-sheet="evidence-sheet">
+                <span class="artifact-mark gold">FR</span><span><strong>FRIA note</strong><small>Customer Support Copilot · Assess</small><em>Maya Chen · v0.3 · 12 Jul</em></span><span class="integrity"><i class="review"></i>Review</span>
+              </button>
+              <button class="evidence-row" type="button" data-evidence-state="complete">
+                <span class="artifact-mark teal">RT</span><span><strong>Risk tier report</strong><small>Customer Support Copilot · Classify</small><em>Luca Ferri · v1.0 · 12 Jul</em></span><span class="integrity"><i></i>Local</span>
+              </button>
+              <button class="evidence-row" type="button" data-evidence-state="complete">
+                <span class="artifact-mark teal">MC</span><span><strong>AI Model Canvas</strong><small>Customer Support Copilot · Frame</small><em>Maya Chen · v1.2 · 08 Jul</em></span><span class="integrity"><i></i>Local</span>
+              </button>
+              <button class="evidence-row" type="button" data-evidence-state="review">
+                <span class="artifact-mark gold">CT</span><span><strong>Control test: source boundary</strong><small>Vendor Scoring Assistant · Control</small><em>QA Team · v0.8 · 10 Jul</em></span><span class="integrity"><i class="review"></i>Review</span>
+              </button>
+              <button class="evidence-row" type="button" data-evidence-state="complete">
+                <span class="artifact-mark teal">KR</span><span><strong>KPI/KRI set</strong><small>Vendor Scoring Assistant · Measure</small><em>Risk Ops · v1.1 · 09 Jul</em></span><span class="integrity"><i></i>Local</span>
+              </button>
+              <button class="evidence-row" type="button" data-evidence-state="complete">
+                <span class="artifact-mark teal">RN</span><span><strong>Quarterly review note</strong><small>CV Screening Pilot · Prove &amp; Review</small><em>Amira Khan · v2.0 · 28 Jun</em></span><span class="integrity"><i></i>Local</span>
+              </button>
+            </div>
+            <div class="bundle-banner"><div><span class="micro-label">Interoperability</span><strong>PALO Evidence Bundle</strong><p>Portable, versioned handoff for Web review.</p></div><button type="button" data-toast="Evidence Bundle export prepared locally">Prepare</button></div>
+          </section>
+
+          <section class="view" id="library-view" data-view="library" aria-labelledby="library-title" hidden>
+            <header class="page-intro compact">
+              <p class="eyebrow">Methods &amp; tools</p>
+              <h1 id="library-title">Library</h1>
+              <p>Use the lifecycle to find the right instrument.</p>
+            </header>
+            <label class="search-field">
+              <svg><use href="#i-search"></use></svg><span class="sr-only">Search library</span>
+              <input type="search" data-library-search placeholder="Search tools and guidance">
+            </label>
+            <div class="library-groups" data-library-groups>
+              <section class="library-phase" data-library-group>
+                <header><span>01</span><div><strong>Frame</strong><small>What are we building, for whom and why?</small></div></header>
+                <button type="button" data-search-value="ai model canvas purpose scope ownership"><span><strong>AI Model Canvas</strong><small>Structure purpose, scope, owners and assumptions</small></span><em>Core</em></button>
+              </section>
+              <section class="library-phase" data-library-group>
+                <header><span>02</span><div><strong>Classify</strong><small>What route and scrutiny apply?</small></div></header>
+                <button type="button" data-search-value="risk tiering classification route"><span><strong>Risk Tiering</strong><small>Justify the case route and obligations</small></span><em>Core</em></button>
+                <button type="button" data-search-value="regulatory watch policy signal regulation"><span><strong>Regulatory Watch</strong><small>Review current policy signals and sources</small></span><em>Signal</em></button>
+              </section>
+              <section class="library-phase" data-library-group>
+                <header><span>03</span><div><strong>Assess</strong><small>What impacts, rights and authority exist?</small></div></header>
+                <button type="button" data-search-value="fria fundamental rights impact assessment"><span><strong>FRIA</strong><small>Assess fundamental-rights impact scenarios</small></span><em>Strong</em></button>
+                <button type="button" data-search-value="palo-am agentic governance modality authority"><span><strong>PALO-AM</strong><small>Map delegated authority and action space</small></span><em>Strong</em></button>
+                <button type="button" data-search-value="assessment path contextual readiness sources"><span><strong>Assessment Path</strong><small>Connect context, route, readiness and sources</small></span><em>Core</em></button>
+              </section>
+              <section class="library-phase" data-library-group>
+                <header><span>04</span><div><strong>Control</strong><small>Which controls make risk governable?</small></div></header>
+                <button type="button" data-search-value="vibe coding governance development controls"><span><strong>Vibe Coding Governance</strong><small>Set boundaries for AI-assisted development</small></span><em>Strong</em></button>
+                <button type="button" data-search-value="auditbench testing hidden behaviour"><span><strong>AuditBench</strong><small>Exercise evidence-led investigation</small></span><em>Strong</em></button>
+                <button type="button" data-search-value="poisoning boomerang integrity provenance threat"><span><strong>Poisoning Boomerang</strong><small>Frame data and model integrity threats</small></span><em>Context</em></button>
+              </section>
+              <section class="library-phase" data-library-group>
+                <header><span>05</span><div><strong>Measure</strong><small>How will change and drift be observed?</small></div></header>
+                <button type="button" data-search-value="kpi kri generator metric monitoring"><span><strong>KPI/KRI Generator</strong><small>Define accountable, measurable indicators</small></span><em>Core</em></button>
+              </section>
+              <section class="library-phase" data-library-group>
+                <header><span>06</span><div><strong>Prove &amp; Review</strong><small>Can the decision be reconstructed?</small></div></header>
+                <button type="button" data-search-value="documentation hub evidence lifecycle guidance"><span><strong>Documentation Hub</strong><small>Connect evidence to guidance and sources</small></span><em>Strong</em></button>
+              </section>
+            </div>
+            <p class="empty-state" data-library-empty hidden>No tools match this search.</p>
+            <section class="about-links" aria-label="About and settings">
+              <button type="button" data-open-sheet="settings-sheet"><span><svg><use href="#i-lock"></use></svg><span><strong>Privacy &amp; local storage</strong><small>Stored locally on this device</small></span></span><svg class="chevron"><use href="#i-chevron"></use></svg></button>
+              <button type="button" data-open-sheet="methodology-sheet"><span><svg><use href="#i-shield"></use></svg><span><strong>Methodology &amp; boundaries</strong><small>Decision support, not certification</small></span></span><svg class="chevron"><use href="#i-chevron"></use></svg></button>
+              <button type="button" data-open-sheet="app-info-sheet"><span><svg><use href="#i-evidence"></use></svg><span><strong>App information</strong><small>PALO Mobile prototype · 2.4.0</small></span></span><svg class="chevron"><use href="#i-chevron"></use></svg></button>
+            </section>
+          </section>
+        </div>
+
+        <nav class="bottom-nav" aria-label="Primary navigation" data-bottom-nav>
+          <button type="button" class="is-active" data-nav="today" aria-current="page"><svg><use href="#i-home"></use></svg><span>Today</span></button>
+          <button type="button" data-nav="cases"><svg><use href="#i-cases"></use></svg><span>Cases</span></button>
+          <button type="button" data-nav="evidence"><svg><use href="#i-evidence"></use></svg><span>Evidence</span><i>2</i></button>
+          <button type="button" data-nav="library"><svg><use href="#i-library"></use></svg><span>Library</span></button>
+        </nav>
+      </div>
+    </main>
+
+    <aside class="review-pane" aria-label="Prototype overview">
+      <div class="review-brand"><img src="assets/logo.webp" alt=""><div><strong>PALO MOBILE</strong><span>Experience review · v2.4</span></div></div>
+      <p class="review-kicker">Governance field console</p>
+      <h2>Decisions first.<br>Evidence in context.</h2>
+      <p class="review-copy">A local-first companion that turns the six-phase PALO lifecycle into the next accountable action.</p>
+      <div class="review-callout">
+        <span>Signature interaction</span>
+        <strong>Live decision-gate rail</strong>
+        <p>Every case connects phase, question, owner, evidence need and next action.</p>
+      </div>
+      <ol class="review-map">
+        <li class="active" data-review-map="today"><span>01</span><div><strong>Today</strong><small>Decision queue</small></div></li>
+        <li data-review-map="cases"><span>02</span><div><strong>Cases</strong><small>Lifecycle workspace</small></div></li>
+        <li data-review-map="evidence"><span>03</span><div><strong>Evidence</strong><small>Readiness &amp; handoff</small></div></li>
+        <li data-review-map="library"><span>04</span><div><strong>Library</strong><small>Phase-based tools</small></div></li>
+      </ol>
+      <div class="review-trust"><svg><use href="#i-lock"></use></svg><div><strong>Local-first prototype</strong><span>No network or external runtime dependencies</span></div></div>
+    </aside>
+  </div>
+
+  <div class="overlay" data-overlay hidden></div>
+
+  <section class="sheet" id="evidence-sheet" role="dialog" aria-modal="true" aria-labelledby="evidence-sheet-title" hidden>
+    <div class="sheet-handle"></div>
+    <header><div><p class="micro-label">Offline-first capture</p><h2 id="evidence-sheet-title">Add evidence</h2></div><button class="icon-button" type="button" data-close-sheet aria-label="Close"><svg><use href="#i-x"></use></svg></button></header>
+    <p>Choose how to add a local artifact to the current case.</p>
+    <div class="sheet-options">
+      <button type="button" data-evidence-choice="Capture note"><svg><use href="#i-note"></use></svg><span><strong>Capture note</strong><small>Write an observation or rationale</small></span><svg class="chevron"><use href="#i-chevron"></use></svg></button>
+      <button type="button" data-evidence-choice="Import file"><svg><use href="#i-upload"></use></svg><span><strong>Import file</strong><small>Select a document from this device</small></span><svg class="chevron"><use href="#i-chevron"></use></svg></button>
+      <button type="button" data-evidence-choice="Link decision"><svg><use href="#i-link"></use></svg><span><strong>Link decision</strong><small>Connect an existing decision record</small></span><svg class="chevron"><use href="#i-chevron"></use></svg></button>
+      <button type="button" data-evidence-choice="Record test"><svg><use href="#i-test"></use></svg><span><strong>Record test</strong><small>Capture method, result and reviewer</small></span><svg class="chevron"><use href="#i-chevron"></use></svg></button>
+    </div>
+    <div class="sheet-form" data-evidence-form hidden>
+      <button class="text-action back-choice" type="button" data-back-evidence><svg><use href="#i-back"></use></svg> Change type</button>
+      <label>Artifact title<input type="text" data-evidence-title value="Gate 3 review note"></label>
+      <label>Case<select><option>Customer Support Copilot</option><option>Vendor Scoring Assistant</option></select></label>
+      <label>Phase<select><option>Assess</option><option>Control</option><option>Measure</option><option>Prove &amp; Review</option></select></label>
+      <p class="storage-line"><svg><use href="#i-lock"></use></svg> Stored locally on this device</p>
+      <button class="primary-action" type="button" data-save-evidence>Save evidence</button>
+    </div>
+  </section>
+
+  <section class="sheet" id="gate-sheet" role="dialog" aria-modal="true" aria-labelledby="gate-sheet-title" hidden>
+    <div class="sheet-handle"></div>
+    <header><div><p class="micro-label">Gate 03 · Assess</p><h2 id="gate-sheet-title">Review requirements</h2></div><button class="icon-button" type="button" data-close-sheet aria-label="Close"><svg><use href="#i-x"></use></svg></button></header>
+    <div class="gate-sheet-question"><span>Decision question</span><strong>Are impacts, rights and human oversight conditions understood?</strong></div>
+    <ul class="requirements">
+      <li class="done"><svg><use href="#i-check"></use></svg><span><strong>Impact scenarios documented</strong><small>FRIA note · v0.3</small></span></li>
+      <li class="done"><svg><use href="#i-check"></use></svg><span><strong>Risk route justified</strong><small>Risk tier report · approved</small></span></li>
+      <li><svg><use href="#i-clock"></use></svg><span><strong>Oversight authority confirmed</strong><small>Owner evidence missing</small></span></li>
+      <li><svg><use href="#i-clock"></use></svg><span><strong>FRIA note reviewed</strong><small>Due 18 Jul · Maya Chen</small></span></li>
+    </ul>
+    <button class="primary-action" type="button" data-close-sheet data-toast="Assessment checklist opened">Continue checklist</button>
+  </section>
+
+  <section class="sheet" id="settings-sheet" role="dialog" aria-modal="true" aria-labelledby="settings-title" hidden>
+    <div class="sheet-handle"></div>
+    <header><div><p class="micro-label">Profile &amp; trust</p><h2 id="settings-title">Maya Chen</h2></div><button class="icon-button" type="button" data-close-sheet aria-label="Close"><svg><use href="#i-x"></use></svg></button></header>
+    <div class="profile-card"><span>MC</span><div><strong>Maya Chen</strong><small>AI Governance Lead · Northstar</small></div></div>
+    <div class="settings-state"><svg><use href="#i-lock"></use></svg><div><strong>Stored locally on this device</strong><p>Assessment data stays in this local prototype. No analytics or external service calls.</p></div></div>
+    <div class="settings-rows"><button type="button"><span>Workspace</span><strong>Northstar / AI Governance</strong></button><button type="button"><span>Portable artifacts</span><strong>Case File · Evidence Bundle</strong></button><button type="button"><span>Prototype version</span><strong>2.4.0</strong></button></div>
+    <p class="boundary-copy">PALO supports governance preparation and accountable review. It does not provide legal advice, certify compliance, or replace responsible owners.</p>
+  </section>
+
+  <section class="sheet compact-sheet" id="case-actions-sheet" role="dialog" aria-modal="true" aria-labelledby="case-actions-title" hidden>
+    <div class="sheet-handle"></div><header><h2 id="case-actions-title">Case actions</h2><button class="icon-button" type="button" data-close-sheet aria-label="Close"><svg><use href="#i-x"></use></svg></button></header>
+    <div class="sheet-options"><button type="button" data-toast="Case File export prepared locally" data-close-sheet><svg><use href="#i-upload"></use></svg><span><strong>Prepare Case File</strong><small>Versioned Web handoff</small></span></button><button type="button" data-open-sheet="evidence-sheet"><svg><use href="#i-plus"></use></svg><span><strong>Add evidence</strong><small>Attach to current phase</small></span></button></div>
+  </section>
+
+  <section class="sheet compact-sheet" id="methodology-sheet" role="dialog" aria-modal="true" aria-labelledby="methodology-title" hidden>
+    <div class="sheet-handle"></div><header><div><p class="micro-label">Product boundary</p><h2 id="methodology-title">Methodology &amp; boundaries</h2></div><button class="icon-button" type="button" data-close-sheet aria-label="Close"><svg><use href="#i-x"></use></svg></button></header><p>PALO structures governance work across Frame, Classify, Assess, Control, Measure and Prove &amp; Review.</p><div class="settings-state"><svg><use href="#i-shield"></use></svg><div><strong>Decision support, not certification</strong><p>Outputs remain preliminary until verified by accountable owners against applicable sources and organizational controls.</p></div></div>
+  </section>
+
+  <section class="sheet compact-sheet" id="app-info-sheet" role="dialog" aria-modal="true" aria-labelledby="app-info-title" hidden>
+    <div class="sheet-handle"></div><header><div><p class="micro-label">PALO Mobile</p><h2 id="app-info-title">Prototype 2.4.0</h2></div><button class="icon-button" type="button" data-close-sheet aria-label="Close"><svg><use href="#i-x"></use></svg></button></header><div class="profile-card app-card"><img src="assets/logo.webp" alt="PALO logo"><div><strong>Governance field console</strong><small>Implementation-ready responsive prototype</small></div></div><p>Case File schema 1.0 · Evidence Bundle schema 1.0<br>Designed for mobile ↔ Web interoperability.</p>
+  </section>
+
+  <section class="assessment-flow" role="dialog" aria-modal="true" aria-labelledby="flow-title" data-assessment-flow hidden>
+    <header class="flow-header">
+      <button class="icon-button light" type="button" data-flow-cancel aria-label="Cancel new assessment"><svg><use href="#i-x"></use></svg></button>
+      <div><span data-flow-step-label>Step 1 of 3</span><div class="flow-progress"><i></i><i></i><i></i></div></div>
+      <span class="local-signal inverse"><i></i>Local</span>
+    </header>
+    <div class="flow-body">
+      <section data-flow-step="1">
+        <p class="eyebrow">Find your PALO path</p><h1 id="flow-title">What do you need to do?</h1><p>Choose the intent that best describes your next governance decision.</p>
+        <div class="intent-options" role="group" aria-label="Assessment intent">
+          <button type="button" aria-pressed="false" data-intent="Frame a new use case" data-route="Frame" data-module="AI Model Canvas"><span>01</span><span class="intent-copy"><strong>Frame a new use case</strong><small>Clarify purpose, scope and ownership</small></span><i><svg><use href="#i-check"></use></svg></i></button>
+          <button type="button" aria-pressed="false" data-intent="Assess an existing system" data-route="Assess" data-module="Assessment Path"><span>03</span><span class="intent-copy"><strong>Assess an existing system</strong><small>Route impacts, rights and controls</small></span><i><svg><use href="#i-check"></use></svg></i></button>
+          <button type="button" aria-pressed="false" data-intent="Prepare evidence and review" data-route="Prove &amp; Review" data-module="Documentation Hub"><span>06</span><span class="intent-copy"><strong>Prepare evidence / review</strong><small>Reconstruct a decision and close gaps</small></span><i><svg><use href="#i-check"></use></svg></i></button>
+        </div>
+      </section>
+      <section data-flow-step="2" hidden>
+        <p class="eyebrow">Case context</p><h1>Name the system.</h1><p>This creates the minimum context needed to recommend a starting route.</p>
+        <div class="flow-fields"><label>System name<input type="text" data-system-name placeholder="e.g. Claims Triage Assistant" autocomplete="off"></label><fieldset><legend>Your role</legend><div class="choice-grid" data-role-choices><button type="button" data-choice="Product owner">Product owner</button><button type="button" data-choice="Governance lead">Governance lead</button><button type="button" data-choice="Reviewer">Reviewer</button></div></fieldset><fieldset><legend>Deployment stage</legend><div class="choice-grid" data-stage-choices><button type="button" data-choice="Concept">Concept</button><button type="button" data-choice="Pilot">Pilot</button><button type="button" data-choice="Live">Live</button></div></fieldset></div>
+      </section>
+      <section data-flow-step="3" hidden>
+        <p class="eyebrow">Recommended starting route</p><h1>Your first accountable step.</h1><p>Based on your intent and context, PALO recommends:</p>
+        <article class="route-result"><span class="route-phase" data-result-phase>01 · Frame</span><h2 data-result-module>AI Model Canvas</h2><p data-result-copy>Define purpose, users, scope, owners and assumptions before classification.</p><dl><div><dt>Case</dt><dd data-result-name>Untitled system</dd></div><div><dt>Owner role</dt><dd data-result-role>Not set</dd></div><div><dt>Stage</dt><dd data-result-stage>Not set</dd></div></dl><div class="route-next"><span>First gate question</span><strong data-result-question>What are we building, for whom, and why?</strong></div></article>
+        <div class="trust-note flow-trust"><svg><use href="#i-lock"></use></svg><p>This case will be stored locally on this device and can later be prepared as a portable Case File.</p></div>
+      </section>
+      <section class="flow-complete" data-flow-step="complete" hidden>
+        <span class="complete-mark"><svg><use href="#i-check"></use></svg></span><p class="eyebrow">Case created locally</p><h1 data-complete-title>New case is ready.</h1><p>Your recommended route and first decision gate have been added to Today.</p><div class="complete-summary"><span>Starting phase</span><strong data-complete-route>Frame · AI Model Canvas</strong><small>Preliminary assessment · local only</small></div><button class="primary-action" type="button" data-flow-finish>Go to Today <svg><use href="#i-arrow"></use></svg></button>
+      </section>
+    </div>
+    <footer class="flow-footer" data-flow-footer>
+      <button class="secondary-action" type="button" data-flow-back disabled><svg><use href="#i-back"></use></svg> Back</button>
+      <button class="primary-action" type="button" data-flow-next disabled>Continue <svg><use href="#i-arrow"></use></svg></button>
+    </footer>
+  </section>
+
+  <div class="toast" role="status" aria-live="polite" data-toast-box hidden><svg><use href="#i-check"></use></svg><span></span></div>
+</body>
+</html>

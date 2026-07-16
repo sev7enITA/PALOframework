@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paloframework.org/schemas/palo-agentic-interface.schema.json",
+  "title": "PALO Agentic Interface Configuration",
+  "type": "object",
+  "required": [
+    "format",
+    "schemaVersion",
+    "agentId",
+    "identity",
+    "authority",
+    "delegation",
+    "evidence"
+  ],
+  "properties": {
+    "format": { "const": "palo-agentic-interface" },
+    "schemaVersion": { "const": "1.0.0" },
+    "agentId": { "type": "string", "pattern": "^agent-[a-zA-Z0-9][a-zA-Z0-9-]{5,63}$" },
+    "identity": {
+      "type": "object",
+      "required": ["role", "lineage", "baseModel", "systemPromptHash"],
+      "properties": {
+        "role": { "type": "string", "minLength": 1, "maxLength": 100 },
+        "lineage": { "type": "string", "minLength": 1 },
+        "baseModel": { "type": "string", "minLength": 1 },
+        "systemPromptHash": { "type": "string", "pattern": "^[a-fA-F0-9]{64}$" },
+        "temperature": { "type": "number", "minimum": 0, "maximum": 2 }
+      },
+      "additionalProperties": false
+    },
+    "authority": {
+      "type": "object",
+      "required": ["allowedTools", "externalNetwork", "readScopes", "writeScopes"],
+      "properties": {
+        "allowedTools": { "type": "array", "items": { "type": "string" } },
+        "externalNetwork": { "type": "boolean" },
+        "readScopes": { "type": "array", "items": { "type": "string" } },
+        "writeScopes": { "type": "array", "items": { "type": "string" } }
+      },
+      "additionalProperties": false
+    },
+    "delegation": {
+      "type": "object",
+      "required": ["maxSubagents", "allowedSubagentRoles", "requireHumanValidation"],
+      "properties": {
+        "maxSubagents": { "type": "integer", "minimum": 0 },
+        "allowedSubagentRoles": { "type": "array", "items": { "type": "string" } },
+        "requireHumanValidation": { "type": "boolean" }
+      },
+      "additionalProperties": false
+    },
+    "evidence": {
+      "type": "object",
+      "required": ["signKeyHash", "auditTrailPath"],
+      "properties": {
+        "signKeyHash": { "type": "string", "pattern": "^[a-fA-F0-9]{64}$" },
+        "auditTrailPath": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

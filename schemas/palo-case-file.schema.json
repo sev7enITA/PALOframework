@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paloframework.org/schemas/palo-case-file.schema.json",
+  "title": "PALO Case File",
+  "type": "object",
+  "required": ["format", "schemaVersion", "caseId", "title", "status", "createdAt", "updatedAt", "context", "assessments", "evidence", "sources", "incidents", "handoffs"],
+  "properties": {
+    "format": { "const": "palo-case-file" },
+    "schemaVersion": { "const": "1.0.0" },
+    "caseId": { "type": "string", "pattern": "^case-[a-z0-9][a-z0-9-]{5,63}$" },
+    "title": { "type": "string", "minLength": 1, "maxLength": 200 },
+    "status": { "enum": ["draft", "active", "review", "closed", "reopened"] },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "updatedAt": { "type": "string", "format": "date-time" },
+    "owner": { "type": "string", "maxLength": 200 },
+    "context": { "type": "object" },
+    "assessments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["assessmentId", "module", "recordedAt", "data"],
+        "properties": {
+          "assessmentId": { "type": "string", "minLength": 1 },
+          "module": { "type": "string", "minLength": 1 },
+          "recordedAt": { "type": "string", "format": "date-time" },
+          "data": { "type": "object" }
+        },
+        "additionalProperties": true
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["evidenceId", "title", "kind", "status", "recordedAt"],
+        "properties": {
+          "evidenceId": { "type": "string", "minLength": 1 },
+          "title": { "type": "string", "minLength": 1 },
+          "kind": { "type": "string", "minLength": 1 },
+          "status": { "enum": ["open", "draft", "ready", "verified", "superseded"] },
+          "recordedAt": { "type": "string", "format": "date-time" },
+          "content": {}
+        },
+        "additionalProperties": true
+      }
+    },
+    "sources": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/source" }
+    },
+    "incidents": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["incidentId", "triggerId", "occurredAt", "summary", "reopenGates"],
+        "properties": {
+          "incidentId": { "type": "string", "minLength": 1 },
+          "triggerId": { "type": "string", "minLength": 1 },
+          "occurredAt": { "type": "string", "format": "date-time" },
+          "summary": { "type": "string", "minLength": 1 },
+          "reopenGates": { "type": "array", "items": { "type": "string" }, "minItems": 1, "uniqueItems": true }
+        },
+        "additionalProperties": true
+      }
+    },
+    "handoffs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["handoffId", "from", "to", "createdAt"],
+        "properties": {
+          "handoffId": { "type": "string", "minLength": 1 },
+          "from": { "type": "string", "minLength": 1 },
+          "to": { "type": "string", "minLength": 1 },
+          "createdAt": { "type": "string", "format": "date-time" }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "$defs": {
+    "source": {
+      "type": "object",
+      "required": ["sourceId", "title", "url", "sourceType", "publisher", "checkedAt", "freshness"],
+      "properties": {
+        "sourceId": { "type": "string", "minLength": 1 },
+        "title": { "type": "string", "minLength": 1 },
+        "url": { "type": "string", "format": "uri" },
+        "sourceType": { "enum": ["official", "standard", "organizational", "research", "monitoring-signal"] },
+        "publisher": { "type": "string", "minLength": 1 },
+        "checkedAt": { "type": "string", "format": "date-time" },
+        "freshness": {
+          "type": "object",
+          "required": ["status", "reviewIntervalDays", "nextReviewAt"],
+          "properties": {
+            "status": { "enum": ["current", "review-due", "stale", "superseded", "unknown"] },
+            "reviewIntervalDays": { "type": "integer", "minimum": 1, "maximum": 3650 },
+            "nextReviewAt": { "type": "string", "format": "date-time" },
+            "supersededBy": { "type": "string", "format": "uri" }
+          },
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

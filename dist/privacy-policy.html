@@ -247,7 +247,7 @@
             <div>
                 <div class="header-title"><span data-palo-icon=lock class=palo-icon-inline></span>Privacy Policy</div>
             </div>
-            <a href="index.html" class="nav-link" aria-label="Return to homepage"><- Home</a>
+            <a href="index.html" class="nav-link" aria-label="Return to homepage">&larr; Home</a>
         </nav>
 
         <main class="content" role="main">
@@ -255,7 +255,7 @@
             <p class="last-updated">
                 <span class="badge">Privacy information</span>
                 <span class="badge">Local-first tools</span>
-                Last reviewed: July 11, 2026
+                Last reviewed: July 15, 2026
             </p>
 
             <div class="toc">
@@ -278,17 +278,20 @@
 
             <h2 id="intro">1. Introduction</h2>
             <p>Welcome to PALO Framework ("we," "our," or "us"). We are committed to protecting your privacy and
-                ensuring you have a positive experience when using our website and tools.</p>
+                ensuring you have a positive experience when using our website, web tools and Android application.</p>
             <p>This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit
-                our website <a href="https://paloframework.org">paloframework.org</a> and use our services, in
+                our website <a href="https://paloframework.org">paloframework.org</a>, use our web tools or use the
+                P.A.L.O. Framework Toolbox Android app (<code>com.fabriziodegni.paloframework</code>), in
                 compliance with the General Data Protection Regulation (GDPR - EU 2016/679) and other applicable data
-                protection laws. This notice describes the current website implementation and is not legal advice.</p>
+                protection laws. This notice describes the current website and mobile implementations and is not legal
+                advice.</p>
 
             <div class="highlight-box success">
                 <strong><span data-palo-icon=shield class=palo-icon-inline></span>Privacy by Design:</strong>
                 <p style="margin-bottom: 0; margin-top: 8px;">PALO Framework tools are designed with privacy at their
-                    core. All data processing in our Model Canvas AI tool happens <strong>locally in your
-                        browser</strong>. We do not collect, store, or have access to the assessments you create.</p>
+                    core. Model Canvas processing happens <strong>locally in your browser</strong>. Android app cases,
+                    assessments and evidence metadata are processed <strong>locally on your device</strong>. We do not
+                    collect, store, or have access to the governance content you create.</p>
             </div>
 
             <h2 id="controller">2. Data Controller</h2>
@@ -306,13 +309,53 @@
             <p>We want to be clear about what we <strong>do not</strong> collect:</p>
             <ul>
                 <li>Personal data entered in the Model Canvas AI tool (processed locally only)</li>
-                <li>AI assessment data or scores</li>
+                <li>Android app cases, assessment data, scores or evidence metadata</li>
                 <li>Account information (we don't have user accounts)</li>
                 <li>Payment information</li>
                 <li>Precise location data</li>
             </ul>
 
-            <h3>3.2 Data We May Collect</h3>
+            <h3>3.2 Android App Local Processing</h3>
+            <p>The P.A.L.O. Framework Toolbox Android app is designed to operate without an account and without the
+                Android INTERNET permission. The app does not automatically transmit app content to PALO or to third
+                parties.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Local Data or Operation</th>
+                        <th>How It Is Used</th>
+                        <th>Developer Access</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Cases, assessments, evidence metadata and settings</strong></td>
+                        <td>Stored in local application storage and SQLite to provide the governance workflow.</td>
+                        <td>None</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Documents selected by you</strong></td>
+                        <td>Accessed through the Android document picker only after your explicit selection.</td>
+                        <td>None</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Biometric operation</strong></td>
+                        <td>Performed by Android device security to support local evidence signing. The app does not
+                            receive raw fingerprint or other raw biometric data.</td>
+                        <td>None</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Case File and Evidence Bundle exports</strong></td>
+                        <td>Created locally and passed to the Android share sheet only when you explicitly request an
+                            export. You choose the destination and recipient.</td>
+                        <td>None, unless you independently choose a PALO contact address as the recipient</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>Uninstalling the app or clearing its storage removes app-managed local data. Files that you previously
+                exported remain in the destination you selected and must be deleted there separately.</p>
+
+            <h3>3.3 Website Data We May Collect</h3>
             <table>
                 <thead>
                     <tr>
@@ -386,7 +429,10 @@
             <h2 id="data-sharing">6. Data Sharing & Transfers</h2>
 
             <h3>6.1 Who We Share Data With</h3>
-            <p>We do not sell your personal data. We may share data with:</p>
+            <p>We do not sell your personal data. The Android app does not automatically share locally stored app
+                content. If you explicitly use Android's share sheet, Android sends the selected export to the
+                destination you choose under that destination provider's terms. For website operations, we may share
+                data with:</p>
             <ul>
                 <li><strong>Hosting Providers:</strong> Infrastructure necessary to operate the website</li>
                 <li><strong>Technical resource providers:</strong> Google Fonts, cdnjs, and Tailwind CDN are used on
@@ -425,6 +471,11 @@
                         <td><span data-palo-icon=mail class=palo-icon-inline></span>Contact Messages</td>
                         <td>2 years</td>
                         <td>Record of communications</td>
+                    </tr>
+                    <tr>
+                        <td>Android App Local Data</td>
+                        <td>Until you delete it, clear app storage or uninstall the app</td>
+                        <td>Provide the locally stored governance workspace</td>
                     </tr>
                 </tbody>
             </table>
@@ -501,6 +552,8 @@
             <p>PALO does not intentionally set cookies for advertising, behavioural profiling, or product analytics.
                 Hosting and third-party resource providers may apply their own technical cookies or similar technologies;
                 please review their notices for current details.</p>
+            <p>The P.A.L.O. Framework Toolbox Android app does not use cookies, advertising identifiers, analytics or
+                tracking SDKs.</p>
 
             <h3>9.3 Managing Cookies</h3>
             <p>You can control cookies through your browser settings. Note that disabling certain cookies may affect
@@ -530,6 +583,8 @@
                         href="mailto:info@paloframework.org">info@paloframework.org</a></p>
                 <p><strong><span data-palo-icon=mail class=palo-icon-inline></span>General Contact:</strong> <a
                         href="mailto:info@paloframework.org">info@paloframework.org</a></p>
+                <p><strong><span data-palo-icon=mail class=palo-icon-inline></span>Android App Support:</strong> <a
+                        href="mailto:io@fabriziodegni.com">io@fabriziodegni.com</a></p>
                 <p style="margin-bottom: 0;"><strong><span data-palo-icon=globe class=palo-icon-inline></span>Website:</strong> <a
                         href="https://paloframework.org">https://paloframework.org</a></p>
             </div>

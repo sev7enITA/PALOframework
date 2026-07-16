@@ -41,9 +41,7 @@
         content="A comprehensive methodology for responsible AI governance aligned with ISO 42001, EU AI Act, and OECD principles.">
     <meta name="twitter:image" content="https://paloframework.org/assets/logo.webp">
 
-    <!-- Security and Trust Headers (via meta) -->
-    <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+    <!-- Referrer policy is valid in markup; response security headers live in _headers. -->
     <meta name="referrer" content="strict-origin-when-cross-origin">
 
     <!-- Favicon -->
@@ -152,9 +150,9 @@
         }
     </style>
     <link rel="stylesheet" href="assets/palo-icons.css">
-    <link rel="stylesheet" href="assets/palo-v21.css?v=2.3.1">
+    <link rel="stylesheet" href="assets/palo-v21.css?v=2.4.1">
     <script src="assets/palo-icons.js"></script>
-    <script src="assets/palo-v21.js"></script>
+    <script src="assets/palo-v21.js?v=2.4.1"></script>
 </head>
 
 <body class="palo-home text-slate-800 bg-white font-sans antialiased">
@@ -174,16 +172,17 @@
             </a>
             <div class="palo-command-context">
                 <span class="palo-command-kicker">Open AI governance toolkit</span>
-                <span class="palo-command-release">v2.3.1</span>
+                <span class="palo-command-release">v2.4.0</span>
             </div>
             <button class="palo-command-toggle" type="button" data-palo-menu-toggle aria-expanded="false" aria-controls="palo-home-nav" aria-label="Open main navigation">
                 <span data-palo-icon="menu" aria-hidden="true"></span>
             </button>
             <nav class="palo-command-nav" id="palo-home-nav" aria-label="Main navigation">
-                <a class="palo-command-link is-active" href="#theory-to-practice"><span data-palo-icon="target" aria-hidden="true"></span>Start here</a>
+                <a class="palo-command-link is-active" href="designs/theory-to-practice-infographic/#onboarding"><span data-palo-icon="target" aria-hidden="true"></span>Start here</a>
                 <a class="palo-command-link" href="PALO_AssessmentPath.html"><span data-palo-icon="clipboard" aria-hidden="true"></span>Assess</a>
                 <a class="palo-command-link" href="PALO_RegulatoryWatch.html"><span data-palo-icon="scale" aria-hidden="true"></span>Observe</a>
                 <a class="palo-command-link" href="PALO_DocumentationHub.html"><span data-palo-icon="book" aria-hidden="true"></span>Docs</a>
+                <a class="palo-command-link" href="PALO_PlatformMap.html"><span data-palo-icon="target" aria-hidden="true"></span>Map</a>
                 <a class="palo-command-link" href="PALO_Community.html"><span data-palo-icon="users" aria-hidden="true"></span>Community</a>
                 <a class="palo-command-action" href="PALO_CompanionApp.html"><span data-palo-icon="mobile" aria-hidden="true"></span>Toolbox</a>
             </nav>
@@ -197,10 +196,11 @@
                     <p class="palo-eyebrow">Principled AI Lifecycle Orchestration</p>
                     <h1>PALO Framework</h1>
                     <p class="palo-home-hero-title">A working system for responsible AI decisions.</p>
-                    <p class="palo-home-hero-lead">Classify the case, assess impacts, choose controls, and keep the evidence connected from ideation to monitoring.</p>
+                    <p class="palo-home-hero-lead">Classify the case, assess impacts, choose controls, and keep the evidence connected from ideation to monitoring. Three short questions create a practical route for your role and decision.</p>
                     <div class="palo-actions">
-                        <a class="palo-btn" href="PALO_AssessmentPath.html"><span data-palo-icon="rocket" aria-hidden="true"></span>Start the Assessment Path</a>
+                        <a class="palo-btn" href="designs/theory-to-practice-infographic/#onboarding"><span data-palo-icon="rocket" aria-hidden="true"></span>Find your PALO path</a>
                         <a class="palo-btn palo-btn-secondary" href="PALO_DocumentationHub.html"><span data-palo-icon="book" aria-hidden="true"></span>Read the Documentation Hub</a>
+                        <a class="palo-btn palo-btn-secondary" href="PALO_PlatformMap.html"><span data-palo-icon="target" aria-hidden="true"></span>Open Platform Map</a>
                     </div>
                     <div class="palo-home-status" aria-label="PALO release status">
                         <span><i class="palo-status-dot"></i>Open source</span>
@@ -214,19 +214,19 @@
                             <span class="palo-card-kicker">Command center</span>
                             <h2>What are you working on?</h2>
                         </div>
-                        <span class="palo-home-version">v2.3.1</span>
+                        <span class="palo-home-version">v2.4.0</span>
                     </div>
-                    <a class="palo-workspace-row" href="PALO_RiskTiering.html">
+                    <a class="palo-workspace-row" href="designs/theory-to-practice-infographic/?intent=classify#onboarding">
                         <span class="palo-workspace-icon" data-palo-icon="scale" aria-hidden="true"></span>
                         <span><strong>Classify the case</strong><small>Risk Tiering and initial routing</small></span>
                         <span class="palo-workspace-arrow" data-palo-icon="arrow-right" aria-hidden="true"></span>
                     </a>
-                    <a class="palo-workspace-row" href="PALO_AssessmentPath.html">
+                    <a class="palo-workspace-row" href="designs/theory-to-practice-infographic/?intent=assess#onboarding">
                         <span class="palo-workspace-icon" data-palo-icon="shield" aria-hidden="true"></span>
                         <span><strong>Assess impacts</strong><small>FRIA context and evidence path</small></span>
                         <span class="palo-workspace-arrow" data-palo-icon="arrow-right" aria-hidden="true"></span>
                     </a>
-                    <a class="palo-workspace-row" href="PALO_AssessmentPath.html">
+                    <a class="palo-workspace-row" href="designs/theory-to-practice-infographic/?intent=prove#onboarding">
                         <span class="palo-workspace-icon" data-palo-icon="download" aria-hidden="true"></span>
                         <span><strong>Build the evidence</strong><small>Controls, KPI/KRI, JSON and Markdown export</small></span>
                         <span class="palo-workspace-arrow" data-palo-icon="arrow-right" aria-hidden="true"></span>
@@ -246,7 +246,7 @@
                         <h2>From theory to practice</h2>
                         <p class="palo-lead">PALO operationalizes responsible AI governance by turning principles into decisions, controls, measurements, and evidence that a team can use.</p>
                     </div>
-                    <a class="palo-btn" href="PALO_AssessmentPath.html"><span data-palo-icon="rocket" aria-hidden="true"></span>Start the operating path</a>
+                    <a class="palo-btn" href="designs/theory-to-practice-infographic/#onboarding"><span data-palo-icon="rocket" aria-hidden="true"></span>Find your operating path</a>
                 </div>
 
                 <div class="palo-practice-rail" aria-label="PALO operating loop">
@@ -336,25 +336,25 @@
         <!-- PALO v2.2 Guided Entry -->
         <section id="start-here" class="palo-section">
             <div class="palo-shell">
-                <p class="palo-eyebrow">PALO v2.3.1</p>
+                <p class="palo-eyebrow">PALO v2.4.0</p>
                 <h2>Start here</h2>
                 <p class="palo-lead">Three clear entries for the first governance conversation. Choose a starting point, then keep the decision connected to evidence.</p>
                 <div class="palo-grid">
                     <article class="palo-card">
                         <p class="palo-card-kicker">01 Classify</p>
-                        <h3>Classifica il caso</h3>
+                        <h3>Classify the case</h3>
                         <p>Translate purpose, actor, context, and affected people into an initial risk route.</p>
                         <div class="palo-actions"><a class="palo-btn" href="PALO_RiskTiering.html"><span data-palo-icon="scale" aria-hidden="true"></span>Open Risk Tiering</a></div>
                     </article>
                     <article class="palo-card">
                         <p class="palo-card-kicker">02 Assess</p>
-                        <h3>Valuta impatti</h3>
+                        <h3>Assess impacts</h3>
                         <p>Use the guided path to check Article 27 context and fundamental-rights questions.</p>
                         <div class="palo-actions"><a class="palo-btn" href="PALO_AssessmentPath.html"><span data-palo-icon="shield" aria-hidden="true"></span>Start Assessment Path</a></div>
                     </article>
                     <article class="palo-card">
                         <p class="palo-card-kicker">03 Evidence</p>
-                        <h3>Costruisci l'evidenza</h3>
+                        <h3>Build the evidence</h3>
                         <p>Route the work to controls and KPI/KRI, then export a versioned local evidence bundle.</p>
                         <div class="palo-actions"><a class="palo-btn" href="PALO_AssessmentPath.html"><span data-palo-icon="download" aria-hidden="true"></span>Build the bundle</a></div>
                     </article>
@@ -384,10 +384,16 @@
                         <div class="palo-actions"><a class="palo-btn" href="PALO_DocumentationHub.html"><span data-palo-icon="book" aria-hidden="true"></span>Open Documentation Hub</a></div>
                     </article>
                     <article class="palo-card">
+                        <p class="palo-card-kicker">Platform Map</p>
+                        <h2>Navigate by decision</h2>
+                        <p>See implemented, foundation, and research states; follow stakeholder intent to a module and the artifact it should produce.</p>
+                        <div class="palo-actions"><a class="palo-btn" href="PALO_PlatformMap.html"><span data-palo-icon="target" aria-hidden="true"></span>Open Platform Map</a></div>
+                    </article>
+                    <article class="palo-card">
                         <p class="palo-card-kicker">Proof and Community</p>
                         <h2>See the public record</h2>
                         <p>Review public references, the Human Economic Forum context, app store links, source notes, and the media kit. PolicyWatcher adds an external policy-monitoring companion.</p>
-                        <div class="palo-actions"><a class="palo-btn" href="PALO_Recognition.html"><span data-palo-icon="trophy" aria-hidden="true"></span>Open Recognition</a><a class="palo-btn palo-btn-secondary" href="PALO_Community.html">Community</a><a class="palo-btn palo-btn-secondary" href="https://policywatcher.online/" target="_blank" rel="noopener noreferrer">PolicyWatcher</a></div>
+                        <div class="palo-actions"><a class="palo-btn" href="PALO_Recognition.html"><span data-palo-icon="trophy" aria-hidden="true"></span>Open Recognition</a><a class="palo-btn palo-btn-secondary" href="PALO_Community.html">Community</a><a class="palo-btn palo-btn-secondary" href="https://www.policywatcher.online/" target="_blank" rel="noopener noreferrer">PolicyWatcher</a></div>
                     </article>
                 </div>
             </div>
@@ -440,17 +446,17 @@
                             paradigm. We convert abstract ethical principles into concrete KPIs, decision gates, and
                             operational realities.
                         </p>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                            <div class="flex flex-col">
-                                <span class="text-4xl font-bold text-palo-teal mb-2">360 deg</span>
-                                <span class="text-sm font-semibold text-slate-500 uppercase">Evaluation</span>
-                                <p class="text-sm text-slate-600 mt-1">Ethical, Technical, Business & Legal.</p>
+                        <div class="palo-proof-pair" aria-label="PALO framework coverage">
+                            <div class="palo-proof-metric">
+                                <strong>360 deg</strong>
+                                <span>Evaluation</span>
+                                <p>Ethical, technical, business, and legal.</p>
                             </div>
-                            <div class="flex flex-col">
-                                <span class="text-4xl font-bold text-blue-600 mb-2">5</span>
-                                <span class="text-sm font-semibold text-slate-500 uppercase">Phases</span>
-                                <p class="text-sm text-slate-600 mt-1">From Ideation to Decommissioning.</p>
-                            </div>
+                            <a class="palo-proof-metric palo-proof-link" href="#lifecycle" aria-label="Explore the five phases of the PALO lifecycle">
+                                <strong>5</strong>
+                                <span>Phases <i data-palo-icon="arrow-right" aria-hidden="true"></i></span>
+                                <p>From ideation to decommissioning.</p>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -581,62 +587,63 @@
             </div>
         </section>
 
-        <!-- The 5 Phases Roadmap -->
-        <section id="lifecycle" class="py-24 bg-slate-50 relative">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold text-slate-900">The PALO Lifecycle</h2>
-                    <p class="mt-4 text-slate-600 max-w-2xl mx-auto">A structured roadmap from ideation to responsible
-                        retirement.</p>
-                </div>
-
-                <div class="relative">
-                    <!-- Connecting Line (Desktop) -->
-                    <div class="hidden md:block absolute top-1/2 left-0 w-full h-1 bg-slate-300 -translate-y-1/2 z-0">
+        <!-- The five-phase PALO operating lifecycle -->
+        <section id="lifecycle" class="palo-lifecycle-section" aria-labelledby="lifecycle-title">
+            <div class="palo-shell">
+                <header class="palo-lifecycle-header">
+                    <div>
+                        <p class="palo-eyebrow">Five accountable decisions</p>
+                        <h2 id="lifecycle-title">The PALO Lifecycle</h2>
                     </div>
+                    <p>A structured roadmap from ideation to responsible retirement. Each phase produces the context and evidence needed by the next.</p>
+                </header>
 
-                    <div class="grid grid-cols-1 md:grid-cols-5 gap-8 relative z-10">
-                        <!-- Phase 1 -->
-                        <div class="flex flex-col items-center text-center group">
-                            <div
-                                class="w-12 h-12 bg-white group-hover:bg-palo-teal group-hover:text-white transition-colors rounded-full flex items-center justify-center font-bold text-lg mb-4 border-4 border-slate-200 shadow-sm z-10">
-                                1</div>
-                            <h3 class="font-bold text-lg mb-2 text-slate-800">Ideation & Screening</h3>
-                            <p class="text-sm text-slate-500">Ethical red flags check & strategic alignment.</p>
-                        </div>
-                        <!-- Phase 2 -->
-                        <div class="flex flex-col items-center text-center group">
-                            <div
-                                class="w-12 h-12 bg-white group-hover:bg-palo-teal group-hover:text-white transition-colors rounded-full flex items-center justify-center font-bold text-lg mb-4 border-4 border-slate-200 shadow-sm z-10">
-                                2</div>
-                            <h3 class="font-bold text-lg mb-2 text-slate-800">Assessment & Planning</h3>
-                            <p class="text-sm text-slate-500">ISO 42005 Impact Assessment & Risk Tiering.</p>
-                        </div>
-                        <!-- Phase 3 -->
-                        <div class="flex flex-col items-center text-center group">
-                            <div
-                                class="w-12 h-12 bg-white group-hover:bg-palo-teal group-hover:text-white transition-colors rounded-full flex items-center justify-center font-bold text-lg mb-4 border-4 border-slate-200 shadow-sm z-10">
-                                3</div>
-                            <h3 class="font-bold text-lg mb-2 text-slate-800">Dev & Validation</h3>
-                            <p class="text-sm text-slate-500">Ethical-by-design & bias mitigation.</p>
-                        </div>
-                        <!-- Phase 4 -->
-                        <div class="flex flex-col items-center text-center group">
-                            <div
-                                class="w-12 h-12 bg-white group-hover:bg-palo-teal group-hover:text-white transition-colors rounded-full flex items-center justify-center font-bold text-lg mb-4 border-4 border-slate-200 shadow-sm z-10">
-                                4</div>
-                            <h3 class="font-bold text-lg mb-2 text-slate-800">Deployment</h3>
-                            <p class="text-sm text-slate-500">Continuous monitoring & feedback loops.</p>
-                        </div>
-                        <!-- Phase 5 -->
-                        <div class="flex flex-col items-center text-center group">
-                            <div
-                                class="w-12 h-12 bg-white group-hover:bg-palo-teal group-hover:text-white transition-colors rounded-full flex items-center justify-center font-bold text-lg mb-4 border-4 border-slate-200 shadow-sm z-10">
-                                5</div>
-                            <h3 class="font-bold text-lg mb-2 text-slate-800">Decommissioning</h3>
-                            <p class="text-sm text-slate-500">Responsible end-of-life & data disposal.</p>
-                        </div>
-                    </div>
+                <ol class="palo-lifecycle-list" aria-label="Five phases of the PALO Lifecycle">
+                    <li class="palo-lifecycle-step is-current">
+                        <span class="palo-lifecycle-marker" aria-hidden="true">1</span>
+                        <article class="palo-lifecycle-card">
+                            <p class="palo-lifecycle-label">Frame the purpose</p>
+                            <h3>Ideation &amp; Screening</h3>
+                            <p>Ethical red flags check &amp; strategic alignment.</p>
+                        </article>
+                    </li>
+                    <li class="palo-lifecycle-step">
+                        <span class="palo-lifecycle-marker" aria-hidden="true">2</span>
+                        <article class="palo-lifecycle-card">
+                            <p class="palo-lifecycle-label">Set the route</p>
+                            <h3>Assessment &amp; Planning</h3>
+                            <p>ISO 42005 Impact Assessment &amp; Risk Tiering.</p>
+                        </article>
+                    </li>
+                    <li class="palo-lifecycle-step">
+                        <span class="palo-lifecycle-marker" aria-hidden="true">3</span>
+                        <article class="palo-lifecycle-card">
+                            <p class="palo-lifecycle-label">Build the controls</p>
+                            <h3>Dev &amp; Validation</h3>
+                            <p>Ethical-by-design &amp; bias mitigation.</p>
+                        </article>
+                    </li>
+                    <li class="palo-lifecycle-step">
+                        <span class="palo-lifecycle-marker" aria-hidden="true">4</span>
+                        <article class="palo-lifecycle-card">
+                            <p class="palo-lifecycle-label">Monitor the system</p>
+                            <h3>Deployment</h3>
+                            <p>Continuous monitoring &amp; feedback loops.</p>
+                        </article>
+                    </li>
+                    <li class="palo-lifecycle-step">
+                        <span class="palo-lifecycle-marker" aria-hidden="true">5</span>
+                        <article class="palo-lifecycle-card">
+                            <p class="palo-lifecycle-label">Close responsibly</p>
+                            <h3>Decommissioning</h3>
+                            <p>Responsible end-of-life &amp; data disposal.</p>
+                        </article>
+                    </li>
+                </ol>
+
+                <div class="palo-lifecycle-action">
+                    <p>Not sure where your work should enter the lifecycle?</p>
+                    <a class="palo-btn palo-btn-secondary" href="designs/theory-to-practice-infographic/#onboarding"><span data-palo-icon="target" aria-hidden="true"></span>Find your PALO path</a>
                 </div>
             </div>
         </section>
@@ -819,159 +826,69 @@
             </div>
         </section>
 
-        <!-- NEW SECTION: COMPANION APP -->
-        <section id="companion-app" class="py-24 bg-white relative overflow-hidden text-center">
-            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <div class="inline-block bg-blue-100 text-blue-700 px-4 py-1 rounded-full text-sm font-bold mb-6">
-                     <span data-palo-icon=mobile class=palo-icon-inline></span>New Release v2.0
-                </div>
-                <h2 class="text-4xl md:text-5xl font-extrabold mb-4 text-slate-900">P.A.L.O. Framework Toolbox</h2>
-                <p class="text-xl text-slate-600 max-w-3xl mx-auto mb-10">
-                    Governance in your pocket. A completely offline, privacy-first companion app for preliminary AI
-                    compliance self-assessment against the EU AI Act, ISO 42001, and NIST AI RMF.
-                </p>
-                <div class="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6">
-                    <a href="PALO_CompanionApp.html"
-                        class="inline-flex items-center bg-blue-600 text-white font-bold text-lg px-8 py-4 rounded-full hover:bg-blue-700 hover:scale-105 transition-all shadow-xl">
-                        <i class="fa-solid fa-mobile-screen mr-3"></i>
-                        Explore Features
-                    </a>
-                    <a href="https://play.google.com/store/apps/details?id=com.fabriziodegni.paloframework"
-                        target="_blank"
-                        class="inline-flex items-center bg-slate-900 text-white font-bold text-lg px-8 py-4 rounded-full hover:bg-slate-800 hover:scale-105 transition-all shadow-xl">
-                        <i class="fa-brands fa-google-play mr-3"></i>
-                        Get it on Google Play
-                    </a>
-                    <a href="https://apps.apple.com/it/app/p-a-l-o-framework-toolbox/id6761771299"
-                        target="_blank"
-                        class="inline-flex items-center bg-slate-900 text-white font-bold text-lg px-8 py-4 rounded-full hover:bg-slate-800 hover:scale-105 transition-all shadow-xl">
-                        <i class="fa-brands fa-apple mr-3"></i>
-                        Download on the App Store
-                    </a>
-                </div>
+        <section id="companion-app" class="palo-module-band palo-module-toolbox" aria-labelledby="toolbox-title">
+            <div class="palo-shell palo-module-layout">
+                <header class="palo-module-summary">
+                    <p class="palo-module-meta"><span data-palo-icon="mobile" aria-hidden="true"></span>Mobile toolbox <strong>Available</strong></p>
+                    <h2 id="toolbox-title">P.A.L.O. Framework Toolbox</h2>
+                    <p>Carry a private, offline pre-screening workspace for responsible AI decisions across Android, iPhone, and iPad.</p>
+                    <div class="palo-module-actions">
+                        <a class="palo-btn" href="PALO_CompanionApp.html"><span data-palo-icon="arrow-right" aria-hidden="true"></span>Open Toolbox details</a>
+                        <a class="palo-store-link" href="https://play.google.com/store/apps/details?id=com.fabriziodegni.paloframework" target="_blank" rel="noopener noreferrer">Google Play</a>
+                        <a class="palo-store-link" href="https://apps.apple.com/it/app/p-a-l-o-framework-toolbox/id6761771299" target="_blank" rel="noopener noreferrer">App Store</a>
+                    </div>
+                    <p class="palo-module-trust">Offline by design. Preliminary self-assessment only; no compliance certification or legal advice.</p>
+                </header>
+                <ul class="palo-module-capabilities" aria-label="Toolbox capabilities">
+                    <li><span data-palo-icon="scale" aria-hidden="true"></span><strong>Risk and impact screening</strong><small>Risk Tiering and FRIA preparation.</small></li>
+                    <li><span data-palo-icon="clipboard" aria-hidden="true"></span><strong>Audit-ready checklists</strong><small>Local progress across major governance references.</small></li>
+                    <li><span data-palo-icon="file" aria-hidden="true"></span><strong>Evidence and reports</strong><small>Evidence Vault, PDF dossiers, and Markdown export.</small></li>
+                    <li><span data-palo-icon="search" aria-hidden="true"></span><strong>Specialist tools</strong><small>AuditBench, KPI Generator, and Model Canvas access.</small></li>
+                </ul>
             </div>
         </section>
 
-        <!-- NEW SECTION: AUDITBENCH EXPLORER -->
-        <section id="auditbench"
-            class="py-24 bg-gradient-to-br from-red-950 via-slate-900 to-slate-950 text-white relative overflow-hidden">
-            <div class="absolute inset-0 opacity-10">
-                <div class="absolute top-0 right-0 w-96 h-96 bg-red-600 rounded-full filter blur-3xl"></div>
-                <div class="absolute bottom-0 left-0 w-80 h-80 bg-teal-500 rounded-full filter blur-3xl"></div>
-            </div>
-            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <div class="text-center mb-12">
-                    <div class="inline-block bg-red-900 px-4 py-1 rounded-full text-sm font-semibold mb-6 text-red-300">
-                         <span data-palo-icon=microscope class=palo-icon-inline></span>Research Deep Dive - February 2026
+        <section id="auditbench" class="palo-module-band palo-module-audit" aria-labelledby="auditbench-title">
+            <div class="palo-shell palo-module-layout">
+                <header class="palo-module-summary">
+                    <p class="palo-module-meta"><span data-palo-icon="search" aria-hidden="true"></span>Alignment research <strong>Interactive</strong></p>
+                    <h2 id="auditbench-title">AuditBench Explorer</h2>
+                    <p>Investigate hidden model behaviors, practice alignment auditing, and turn findings into PALO-aligned mitigation evidence.</p>
+                    <div class="palo-module-actions">
+                        <a class="palo-btn" href="PALO_AuditBench.html"><span data-palo-icon="arrow-right" aria-hidden="true"></span>Open AuditBench Explorer</a>
                     </div>
-                    <h2 class="text-4xl md:text-5xl font-extrabold mb-4"><span data-palo-icon=search class=palo-icon-inline></span>AuditBench Explorer</h2>
-                    <p class="text-xl text-slate-300 max-w-3xl mx-auto">
-                        Interactive analysis of 14 hidden AI behaviors from the AuditBench alignment auditing benchmark.
-                        Discover how models conceal misaligned behaviors - and how the PALO Framework helps detect,
-                        assess, and mitigate them.
-                    </p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-                    <div
-                        class="bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/20 hover:bg-white/20 transition-all">
-                        <div class="text-3xl mb-4" data-palo-icon=generic></div>
-                        <h3 class="text-lg font-bold mb-2">14 Hidden Behaviors</h3>
-                        <p class="text-slate-300 text-sm">From sycophancy and flattery to secret geopolitical loyalties
-                            and anti-regulation bias - each analyzed through the PALO lens.</p>
-                    </div>
-                    <div
-                        class="bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/20 hover:bg-white/20 transition-all">
-                        <div class="text-3xl mb-4" data-palo-icon=bank></div>
-                        <h3 class="text-lg font-bold mb-2">Investigator Simulator</h3>
-                        <p class="text-slate-300 text-sm">Practice alignment auditing techniques with an interactive
-                            simulator using prefilling, persona sampling, and SAE probes.</p>
-                    </div>
-                    <div
-                        class="bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/20 hover:bg-white/20 transition-all">
-                        <div class="text-3xl mb-4" data-palo-icon=wrench></div>
-                        <h3 class="text-lg font-bold mb-2">Self-Assessment Tool</h3>
-                        <p class="text-slate-300 text-sm">Evaluate your AI system's auditing readiness with a
-                            14-point checklist and radar chart visualization.</p>
-                    </div>
-                    <div
-                        class="bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/20 hover:bg-white/20 transition-all">
-                        <div class="text-3xl mb-4" data-palo-icon=file></div>
-                        <h3 class="text-lg font-bold mb-2">Export & Share</h3>
-                        <p class="text-slate-300 text-sm">Download comprehensive reports with PALO-aligned
-                            mitigation strategies for all 14 hidden behavior categories.</p>
-                    </div>
-                </div>
-
-                <div class="text-center">
-                    <a href="PALO_AuditBench.html"
-                        class="inline-flex items-center bg-red-500 text-white font-bold text-lg px-8 py-4 rounded-full hover:bg-red-400 hover:scale-105 transition-all shadow-2xl">
-                        <i class="fa-solid fa-microscope mr-3"></i>
-                        Explore AuditBench
-                    </a>
-                    <p class="mt-4 text-slate-500 text-sm">Based on Sheshadri et al. (2026) - Interactive tools - Free
-                        to use
-                    </p>
-                </div>
+                    <p class="palo-module-trust">Based on the AuditBench alignment auditing benchmark by Sheshadri et al. (2026).</p>
+                </header>
+                <ul class="palo-module-capabilities" aria-label="AuditBench Explorer capabilities">
+                    <li><span data-palo-icon="search" aria-hidden="true"></span><strong>14 hidden behaviors</strong><small>Inspect concealment, sycophancy, and policy bias.</small></li>
+                    <li><span data-palo-icon="target" aria-hidden="true"></span><strong>Investigator simulator</strong><small>Practice prefilling, persona sampling, and probes.</small></li>
+                    <li><span data-palo-icon="clipboard" aria-hidden="true"></span><strong>Readiness assessment</strong><small>Use a 14-point checklist and radar view.</small></li>
+                    <li><span data-palo-icon="file" aria-hidden="true"></span><strong>Exportable findings</strong><small>Record mitigations for each behavior category.</small></li>
+                </ul>
             </div>
         </section>
 
-        <!-- NEW SECTION: POISONING STUDY MODULE -->
-        <section id="poisoning-study"
-            class="py-24 bg-gradient-to-br from-violet-950 via-slate-900 to-slate-950 text-white relative overflow-hidden">
-            <div class="absolute inset-0 opacity-10">
-                <div class="absolute top-0 left-0 w-96 h-96 bg-purple-600 rounded-full filter blur-3xl"></div>
-                <div class="absolute bottom-0 right-0 w-80 h-80 bg-pink-500 rounded-full filter blur-3xl"></div>
-            </div>
-            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <div class="text-center mb-12">
-                    <div class="inline-block bg-violet-900 px-4 py-1 rounded-full text-sm font-semibold mb-6 text-violet-300">
-                         <span data-palo-icon=poison class=palo-icon-inline></span>Research Publication - March 2026
+        <section id="poisoning-study" class="palo-module-band palo-module-poisoning" aria-labelledby="poisoning-title">
+            <div class="palo-shell palo-module-layout">
+                <header class="palo-module-summary">
+                    <p class="palo-module-meta"><span data-palo-icon="poison" aria-hidden="true"></span>Governance study <strong>March 2026</strong></p>
+                    <h2 id="poisoning-title">The Poisoning Boomerang</h2>
+                    <p>Examine when crawler defenses become model-governance risks, with practical detection routes and lifecycle controls.</p>
+                    <div class="palo-module-actions">
+                        <a class="palo-btn" href="PALO_PoisoningStudy.html"><span data-palo-icon="arrow-right" aria-hidden="true"></span>Open Poisoning Study</a>
                     </div>
-                    <h2 class="text-4xl md:text-5xl font-extrabold mb-4">The Poisoning Boomerang</h2>
-                    <p class="text-xl text-slate-300 max-w-3xl mx-auto">
-                        When Defending Against AI Crawlers Becomes a Threat to Model Governance. A comprehensive analysis of the data poisoning ecosystem with detection strategies and governance implications.
-                    </p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-                    <div class="bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/20 hover:bg-white/20 transition-all">
-                        <div class="text-3xl mb-4" data-palo-icon=wrench></div>
-                        <h3 class="text-lg font-bold mb-2">6 Poisoning Tools</h3>
-                        <p class="text-slate-300 text-sm">From Miasma and Nepenthes tarpits to Nightshade adversarial perturbations and Cloudflare AI Labyrinth - the full arsenal analyzed.</p>
-                    </div>
-                    <div class="bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/20 hover:bg-white/20 transition-all">
-                        <div class="text-3xl mb-4" data-palo-icon=search></div>
-                        <h3 class="text-lg font-bold mb-2">5 Detection Strategies</h3>
-                        <p class="text-slate-300 text-sm">Actionable methodologies from crawler policy analysis to spectral fingerprinting - practical tools for data integrity defense.</p>
-                    </div>
-                    <div class="bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/20 hover:bg-white/20 transition-all">
-                        <div class="text-3xl mb-4" data-palo-icon=scale></div>
-                        <h3 class="text-lg font-bold mb-2">EU AI Act Analysis</h3>
-                        <p class="text-slate-300 text-sm">Deep dive into Articles 10 & 15 governance gaps - the legal paradox of defensive poisoning vs. offensive sabotage.</p>
-                    </div>
-                    <div class="bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/20 hover:bg-white/20 transition-all">
-                        <div class="text-3xl mb-4" data-palo-icon=palette></div>
-                        <h3 class="text-lg font-bold mb-2">PALO Governance</h3>
-                        <p class="text-slate-300 text-sm">Full PALO lifecycle integration - data poisoning threat modeling mapped across all 5 governance phases.</p>
-                    </div>
-                </div>
-
-                <div class="text-center">
-                    <a href="PALO_PoisoningStudy.html"
-                        class="inline-flex items-center bg-violet-500 text-white font-bold text-lg px-8 py-4 rounded-full hover:bg-violet-400 hover:scale-105 transition-all shadow-2xl">
-                        <i class="fa-solid fa-flask mr-3"></i>
-                        Explore the Study
-                    </a>
-                    <p class="mt-4 text-slate-500 text-sm">By Fabrizio Degni, Chief AI Officer - Research & Governance Analysis
-                    </p>
-                </div>
+                    <p class="palo-module-trust">Research and governance analysis by Fabrizio Degni, covering EU AI Act Articles 10 and 15.</p>
+                </header>
+                <ul class="palo-module-capabilities" aria-label="Poisoning Study capabilities">
+                    <li><span data-palo-icon="wrench" aria-hidden="true"></span><strong>6 poisoning tools</strong><small>Compare tarpits, perturbations, and labyrinths.</small></li>
+                    <li><span data-palo-icon="search" aria-hidden="true"></span><strong>5 detection strategies</strong><small>Move from policy analysis to spectral checks.</small></li>
+                    <li><span data-palo-icon="scale" aria-hidden="true"></span><strong>Regulatory analysis</strong><small>Understand data integrity and resilience tensions.</small></li>
+                    <li><span data-palo-icon="palette" aria-hidden="true"></span><strong>Lifecycle controls</strong><small>Map poisoning risks across all five PALO phases.</small></li>
+                </ul>
             </div>
         </section>
 
         <!-- NEW SECTION: CONTACT FORM -->
-        <section id="contact" class="py-24 bg-white border-t border-slate-100">
-            <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
                 <!-- NEW SECTION: CONTACT (UPDATED) -->
                 <section id="contact" class="py-24 bg-white border-t border-slate-100">
                     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1029,6 +946,14 @@
                                     <span class="text-lg font-bold text-slate-800">July 2026</span>
                                 </div>
                                 <ul class="space-y-3 text-slate-600">
+                                    <li class="flex items-start gap-3" id="release-v2-4-0">
+                                        <span class="text-teal-700" data-palo-icon=shield></span>
+                                        <span><strong>v2.4.0 - Reliable Operational Evidence:</strong> Added deterministic publication, interoperable local case/evidence files, import/resume handoffs, board packs, the PALO-AM Simulator MVP, and critical browser flows.</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <span class="text-teal-700" data-palo-icon=target></span>
+                                        <span><strong>v2.3.2 - Stakeholder Onboarding:</strong> Added a three-question local onboarding route, personalized module guidance, local JSON and Markdown export, and a guided handoff into the weighted workflow and 3D operational graph.</span>
+                                    </li>
                                     <li class="flex items-start gap-3">
                                         <span class="text-teal-700" data-palo-icon=target></span>
                                         <span><strong>v2.3.1 - From Theory to Practice:</strong> Added the operating loop that connects all core PALO modules to concrete decisions, controls, KPI/KRI, evidence bundles, and review.</span>
@@ -1281,6 +1206,8 @@
                         class="hover:text-palo-teal transition-colors font-semibold">Regulatory Watch</a>
                     <a href="PALO_DocumentationHub.html"
                         class="hover:text-palo-teal transition-colors font-semibold">Documentation</a>
+                    <a href="PALO_PlatformMap.html"
+                        class="hover:text-palo-teal transition-colors font-semibold">Platform Map</a>
                     <a href="mailto:info@paloframework.org" class="hover:text-palo-teal transition-colors"><span data-palo-icon=mail class=palo-icon-inline></span>Contact</a>
                     <a href="feed.xml" class="hover:text-palo-teal transition-colors flex items-center gap-1">
                         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"

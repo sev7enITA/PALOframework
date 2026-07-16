@@ -1,0 +1,108 @@
+{
+  "format": "palo-control-library",
+  "schemaVersion": "1.0.0",
+  "status": "educational-non-production",
+  "updatedAt": "2026-07-12",
+  "disclaimer": "These starter controls are educational examples for tailoring. They are not production-ready safeguards, legal advice, certification criteria, or evidence that risk is acceptable.",
+  "controls": [
+    {
+      "controlId": "ctrl-purpose-boundary",
+      "title": "Document purpose and prohibited uses",
+      "objective": "Keep intended outcomes, affected people, authority and prohibited uses explicit and reviewable.",
+      "controlType": "directive",
+      "lifecycleGates": ["frame", "classify"],
+      "evidenceKinds": ["approved-purpose-record", "stakeholder-map"],
+      "indicatorIds": ["kri-scope-change-rate"],
+      "sourceIds": ["src-nist-ai-rmf", "src-oecd-ai-principles"],
+      "templateIds": ["tpl-board-review", "tpl-procurement"]
+    },
+    {
+      "controlId": "ctrl-data-provenance",
+      "title": "Record data provenance and permitted use",
+      "objective": "Trace material data sources, permissions, quality limits and sensitivity decisions.",
+      "controlType": "preventive",
+      "lifecycleGates": ["assess", "control"],
+      "evidenceKinds": ["data-inventory", "provenance-record", "quality-test"],
+      "indicatorIds": ["kpi-provenance-coverage", "kri-sensitive-data-events"],
+      "sourceIds": ["src-nist-ai-rmf", "src-eu-ai-act"],
+      "templateIds": ["tpl-procurement", "tpl-red-team-evidence"]
+    },
+    {
+      "controlId": "ctrl-human-review",
+      "title": "Define meaningful human review",
+      "objective": "Give named reviewers sufficient information, authority, time and escalation paths to change outcomes.",
+      "controlType": "preventive",
+      "lifecycleGates": ["control", "prove"],
+      "evidenceKinds": ["review-procedure", "override-log", "training-record"],
+      "indicatorIds": ["kpi-review-completion", "kri-override-failure-rate"],
+      "sourceIds": ["src-nist-ai-rmf", "src-oecd-ai-principles", "src-eu-ai-act"],
+      "templateIds": ["tpl-board-review", "tpl-incident-response"]
+    },
+    {
+      "controlId": "ctrl-third-party-due-diligence",
+      "title": "Perform risk-based third-party due diligence",
+      "objective": "Record supplier capabilities, limitations, dependencies, change notices, audit rights and exit options.",
+      "controlType": "preventive",
+      "lifecycleGates": ["classify", "assess", "control"],
+      "evidenceKinds": ["supplier-questionnaire", "contract-control-matrix", "exit-plan"],
+      "indicatorIds": ["kpi-vendor-evidence-coverage"],
+      "sourceIds": ["src-iso-42001", "src-nist-ai-rmf"],
+      "templateIds": ["tpl-procurement"]
+    },
+    {
+      "controlId": "ctrl-adversarial-testing",
+      "title": "Test misuse and failure scenarios",
+      "objective": "Exercise credible abuse, unsafe-output, security and recovery scenarios before and after material change.",
+      "controlType": "detective",
+      "lifecycleGates": ["assess", "measure", "prove"],
+      "evidenceKinds": ["test-plan", "test-result", "residual-risk-record"],
+      "indicatorIds": ["kri-critical-test-failure-rate"],
+      "sourceIds": ["src-nist-genai-profile", "src-owasp-llm-top10"],
+      "templateIds": ["tpl-red-team-evidence"]
+    },
+    {
+      "controlId": "ctrl-incident-response",
+      "title": "Operate incident and escalation response",
+      "objective": "Detect, contain, document, communicate and learn from material failures and near misses.",
+      "controlType": "corrective",
+      "lifecycleGates": ["control", "measure", "prove"],
+      "evidenceKinds": ["incident-record", "containment-log", "post-incident-review"],
+      "indicatorIds": ["kpi-incident-triage-time", "kri-sensitive-data-events"],
+      "sourceIds": ["src-nist-ai-rmf", "src-iso-42001"],
+      "templateIds": ["tpl-incident-response", "tpl-board-review"]
+    },
+    {
+      "controlId": "ctrl-change-gate",
+      "title": "Gate material model and workflow changes",
+      "objective": "Reassess purpose, authority, data, controls and evidence before material changes enter use.",
+      "controlType": "preventive",
+      "lifecycleGates": ["classify", "assess", "prove"],
+      "evidenceKinds": ["change-record", "impact-delta", "approval-record"],
+      "indicatorIds": ["kri-scope-change-rate", "kpi-review-completion"],
+      "sourceIds": ["src-nist-ai-rmf", "src-iso-42001"],
+      "templateIds": ["tpl-board-review"]
+    },
+    {
+      "controlId": "ctrl-decision-trace",
+      "title": "Maintain decision and evidence traceability",
+      "objective": "Connect accountable decisions to inputs, controls, exceptions, evidence and source status.",
+      "controlType": "detective",
+      "lifecycleGates": ["measure", "prove"],
+      "evidenceKinds": ["decision-log", "evidence-index", "exception-record"],
+      "indicatorIds": ["kpi-review-completion", "kpi-provenance-coverage"],
+      "sourceIds": ["src-nist-ai-rmf", "src-eu-ai-act"],
+      "templateIds": ["tpl-board-review", "tpl-contribution-starter"]
+    },
+    {
+      "controlId": "ctrl-agentic-authority",
+      "title": "Enforce agentic authority and delegation constraints",
+      "objective": "Limit tool access, define subagent boundaries, and intercept high-risk action claims in autonomous AI workflows.",
+      "controlType": "preventive",
+      "lifecycleGates": ["assess", "control"],
+      "evidenceKinds": ["agentic-interface-config", "signed-execution-log", "human-override-record"],
+      "indicatorIds": ["kpi-review-completion", "kri-scope-change-rate"],
+      "sourceIds": ["src-nist-ai-rmf", "src-iso-42001"],
+      "templateIds": ["tpl-board-review"]
+    }
+  ]
+}
