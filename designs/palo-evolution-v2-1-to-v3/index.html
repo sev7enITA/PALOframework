@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="An animated six-release view of PALO's evolution from trusted regulatory guidance to enterprise evidence continuity.">
+  <title>PALO evolution: v2.1 to v3.0</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --ink: #071923;
+      --ink-deep: #041017;
+      --surface: #102a36;
+      --surface-2: #153541;
+      --line: #35515c;
+      --text: #f4f8f9;
+      --muted: #a9bec5;
+      --teal: #48c9c4;
+      --teal-soft: #a3e6e2;
+      --gold: #e0b24e;
+      --gold-soft: #f4d991;
+      --red: #e36363;
+      --slide-w: 1600px;
+      --slide-h: 900px;
+      --scale: 1;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body { margin: 0; min-height: 100%; background: #020a0f; }
+
+    body {
+      min-height: 100vh;
+      overflow: hidden;
+      color: var(--text);
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      letter-spacing: 0;
+    }
+
+    button { font: inherit; }
+
+    .viewport {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+
+    .slide {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: var(--slide-w);
+      height: var(--slide-h);
+      overflow: hidden;
+      transform: translate(-50%, -50%) scale(var(--scale));
+      transform-origin: center;
+      background: var(--ink);
+      box-shadow: 0 28px 80px rgba(0,0,0,.42);
+      isolation: isolate;
+    }
+
+    .slide::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      border: 1px solid rgba(255,255,255,.08);
+      pointer-events: none;
+    }
+
+    .topbar {
+      height: 106px;
+      padding: 24px 46px 16px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255,255,255,.11);
+      background: rgba(4,16,23,.74);
+    }
+
+    .brand { display: flex; align-items: center; gap: 15px; min-width: 310px; }
+    .brand img { width: 56px; height: 56px; object-fit: contain; }
+    .brand-name { margin: 3px 0 2px; font-size: 20px; font-weight: 760; }
+    .brand-sub { margin: 0; color: var(--muted); font-size: 11px; text-transform: uppercase; font-weight: 700; }
+
+    .legend {
+      display: flex;
+      gap: 22px;
+      align-items: center;
+      margin-top: 14px;
+      padding: 0;
+      list-style: none;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .legend span { display: inline-flex; align-items: center; gap: 8px; }
+    .legend i { width: 9px; height: 9px; background: var(--teal); border: 1px solid var(--teal-soft); }
+    .legend .current i { background: var(--text); border-color: var(--teal); box-shadow: 0 0 0 3px rgba(72,201,196,.18); }
+    .legend .roadmap i { background: var(--gold); border-color: var(--gold-soft); }
+
+    .heading {
+      height: 143px;
+      padding: 25px 46px 17px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 30px;
+      align-items: end;
+    }
+
+    .eyebrow {
+      margin: 0 0 8px;
+      color: var(--teal-soft);
+      font-size: 13px;
+      line-height: 1;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    h1 { margin: 0; max-width: 1140px; font-size: 41px; line-height: 1.04; font-weight: 760; }
+    .support { margin: 8px 0 0; color: var(--muted); font-size: 16px; line-height: 1.35; }
+
+    .proofs { display: flex; gap: 24px; padding-bottom: 3px; }
+    .proof { min-width: 102px; padding-left: 12px; border-left: 2px solid var(--teal); }
+    .proof strong { display: block; color: var(--text); font-size: 22px; line-height: 1; }
+    .proof span { display: block; margin-top: 5px; color: var(--muted); font-size: 10px; line-height: 1.25; text-transform: uppercase; font-weight: 700; }
+
+    .scenario-command {
+      width: 485px;
+      padding: 10px 0 2px 15px;
+      border-left: 3px solid var(--red);
+    }
+
+    .scenario-label { margin: 0 0 4px; color: var(--red); font-size: 10px; font-weight: 850; text-transform: uppercase; }
+    .scenario-text { margin: 0; color: #dbe7e9; font-size: 13px; line-height: 1.28; font-weight: 650; }
+    .mode-actions { display: flex; align-items: center; gap: 10px; margin-top: 9px; }
+    .mode-control { display: flex; border: 1px solid #49636d; border-radius: 4px; overflow: hidden; }
+    .mode-button {
+      min-height: 34px;
+      padding: 0 13px;
+      border: 0;
+      border-right: 1px solid #49636d;
+      background: #0f2a35;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 11px;
+      font-weight: 800;
+    }
+    .mode-button:last-child { border-right: 0; }
+    .mode-button[aria-pressed="true"] { background: var(--teal); color: var(--ink-deep); }
+    .mode-button:focus-visible, .start-guide:focus-visible, .guide-next:focus-visible, .function-link:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+    .start-guide, .guide-next {
+      min-height: 36px;
+      padding: 0 14px;
+      border: 1px solid var(--teal);
+      border-radius: 4px;
+      background: transparent;
+      color: var(--teal-soft);
+      cursor: pointer;
+      font-size: 11px;
+      font-weight: 820;
+    }
+    .start-guide:hover, .guide-next:hover { background: var(--teal); color: var(--ink-deep); }
+
+    .heading .proofs { display: none; }
+
+    .timeline {
+      position: relative;
+      height: 362px;
+      padding: 38px 46px 0;
+    }
+
+    .thread {
+      position: absolute;
+      top: 69px;
+      left: 116px;
+      right: 116px;
+      height: 4px;
+      background: #2a424c;
+    }
+
+    .thread-fill {
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: var(--thread-progress, 0%);
+      background: var(--teal);
+      box-shadow: 0 0 12px rgba(72,201,196,.82), 0 0 30px rgba(72,201,196,.24);
+      transition: width 720ms cubic-bezier(.22,.8,.28,1), background-color 300ms ease;
+    }
+
+    .thread-roadmap {
+      position: absolute;
+      inset: 0 auto 0 60%;
+      width: var(--roadmap-progress, 0%);
+      background: var(--gold);
+      box-shadow: 0 0 12px rgba(224,178,78,.76), 0 0 30px rgba(224,178,78,.2);
+      transition: width 720ms cubic-bezier(.22,.8,.28,1);
+    }
+
+    .milestones {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .milestone {
+      position: relative;
+      min-width: 0;
+      height: 302px;
+      padding: 49px 16px 14px;
+      border: 1px solid #2e4a56;
+      border-top: 3px solid var(--accent);
+      background: rgba(12,38,49,.94);
+      opacity: .28;
+      transform: translateY(10px);
+      transition: opacity 420ms ease, transform 520ms ease, border-color 320ms ease, background-color 320ms ease, box-shadow 320ms ease;
+    }
+
+    .milestone.released, .milestone.current { --accent: var(--teal); }
+    .milestone.roadmap { --accent: var(--gold); }
+
+    .milestone[data-state="past"] { opacity: .74; transform: translateY(0); }
+    .milestone[data-state="active"] {
+      opacity: 1;
+      transform: translateY(0);
+      border-color: var(--accent);
+      background: var(--surface-2);
+      box-shadow: 0 14px 34px rgba(0,0,0,.28), 0 0 0 1px color-mix(in srgb, var(--accent) 34%, transparent);
+    }
+
+    .node {
+      position: absolute;
+      top: -27px;
+      left: 50%;
+      width: 26px;
+      height: 26px;
+      display: grid;
+      place-items: center;
+      transform: translateX(-50%);
+      border: 4px solid var(--ink);
+      background: #29444e;
+      box-shadow: 0 0 0 2px #3c5964;
+      color: transparent;
+      font-size: 10px;
+      font-weight: 800;
+      transition: background-color 320ms ease, box-shadow 320ms ease, color 320ms ease;
+    }
+
+    .milestone[data-state="past"] .node,
+    .milestone[data-state="active"] .node { background: var(--accent); color: var(--ink-deep); box-shadow: 0 0 0 2px var(--accent), 0 0 20px color-mix(in srgb, var(--accent) 70%, transparent); }
+
+    .meta { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
+    .version { color: var(--accent); font-size: 13px; font-weight: 850; text-transform: uppercase; }
+    .status { color: var(--muted); font-size: 9px; line-height: 1.2; font-weight: 800; text-transform: uppercase; }
+    .current .status { color: var(--teal-soft); }
+    .roadmap .status { color: var(--gold-soft); }
+
+    .milestone h2 { display: flex; align-items: center; gap: 8px; margin: 11px 0 12px; font-size: 21px; line-height: 1; font-weight: 790; }
+    .milestone h2 svg { width: 20px; height: 20px; flex: 0 0 auto; fill: none; stroke: var(--accent); stroke-width: 1.8; stroke-linecap: square; stroke-linejoin: miter; }
+    .milestone ul { margin: 0; padding: 0; list-style: none; color: #d8e4e7; font-size: 13px; line-height: 1.3; }
+    .milestone li { position: relative; margin: 0 0 7px; padding-left: 12px; }
+    .milestone li::before { content: ""; position: absolute; left: 0; top: .48em; width: 4px; height: 4px; background: var(--accent); }
+    .milestone.current ul { font-size: 12px; line-height: 1.22; }
+    .milestone.current li { margin-bottom: 5px; }
+
+    .outcome {
+      position: absolute;
+      left: 16px;
+      right: 16px;
+      bottom: 14px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(255,255,255,.12);
+      color: var(--accent);
+      font-size: 10px;
+      line-height: 1.2;
+      font-weight: 850;
+      text-transform: uppercase;
+    }
+
+    .guide-panel { display: none; }
+
+    .slide[data-mode="guided"] .timeline { padding-top: 29px; }
+    .slide[data-mode="guided"] .thread { top: 55px; }
+    .slide[data-mode="guided"] .milestone {
+      height: 82px;
+      padding: 28px 12px 9px;
+      transform: translateY(4px);
+    }
+    .slide[data-mode="guided"] .milestone[data-state="past"],
+    .slide[data-mode="guided"] .milestone[data-state="active"] { transform: translateY(0); }
+    .slide[data-mode="guided"] .milestone .meta { align-items: center; }
+    .slide[data-mode="guided"] .milestone .status { font-size: 8px; }
+    .slide[data-mode="guided"] .milestone h2 { margin: 7px 0 0; font-size: 14px; }
+    .slide[data-mode="guided"] .milestone h2 svg { display: none; }
+    .slide[data-mode="guided"] .milestone ul,
+    .slide[data-mode="guided"] .milestone .outcome { display: none; }
+    .slide[data-mode="guided"] .node { top: -20px; }
+
+    .slide[data-mode="guided"] .guide-panel {
+      position: relative;
+      display: grid;
+      grid-template-columns: 36% 64%;
+      min-height: 215px;
+      margin-top: 17px;
+      border: 1px solid #35515c;
+      border-top: 3px solid var(--guide-accent, var(--teal));
+      background: #0b222c;
+      box-shadow: 0 12px 28px rgba(0,0,0,.22);
+    }
+
+    .slide[data-mode="guided"] .guide-panel::before {
+      content: "";
+      position: absolute;
+      top: -20px;
+      left: var(--guide-anchor, 8.33%);
+      width: 2px;
+      height: 18px;
+      background: var(--guide-accent, var(--teal));
+      box-shadow: 0 0 12px color-mix(in srgb, var(--guide-accent, var(--teal)) 60%, transparent);
+    }
+
+    .guide-decision { padding: 18px 20px; border-right: 1px solid #35515c; }
+    .guide-step { margin: 0 0 6px; color: var(--guide-accent, var(--teal)); font-size: 10px; font-weight: 850; text-transform: uppercase; }
+    .guide-decision h3 { margin: 0; font-size: 23px; line-height: 1.05; }
+    .guide-question { margin: 8px 0 0; color: var(--text); font-size: 15px; line-height: 1.28; font-weight: 700; }
+    .guide-why { margin: 11px 0 0; padding-left: 10px; border-left: 2px solid var(--red); color: var(--muted); font-size: 11px; line-height: 1.35; }
+    .guide-why strong { color: #e8f0f2; }
+
+    .guide-operation { min-width: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+    .guide-field { min-width: 0; padding: 14px 16px 10px; border-right: 1px solid rgba(255,255,255,.09); border-bottom: 1px solid rgba(255,255,255,.09); }
+    .guide-field:nth-child(2n) { border-right: 0; }
+    .guide-field:nth-child(n+3) { border-bottom: 0; }
+    .guide-field-label { display: block; margin-bottom: 5px; color: var(--muted); font-size: 9px; font-weight: 850; text-transform: uppercase; }
+    .guide-field p { margin: 0; color: #dbe7e9; font-size: 12px; line-height: 1.3; }
+    .guide-artifact { color: var(--guide-accent, var(--teal-soft)) !important; font-weight: 800; }
+    .guide-links { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 8px; }
+    .function-link { color: var(--teal-soft); font-size: 10px; font-weight: 800; text-decoration: underline; text-underline-offset: 3px; }
+    .guide-command-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 9px; }
+    .guide-next { flex: 0 0 auto; background: var(--guide-accent, var(--teal)); color: var(--ink-deep); }
+    .guide-next.roadmap { border-color: var(--gold); background: var(--gold); }
+    .guide-next:disabled { opacity: .5; cursor: default; }
+
+    .value-band {
+      height: 190px;
+      padding: 15px 46px 0;
+      background: rgba(4,16,23,.52);
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+
+    .value-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+    .value-label { margin: 0; color: var(--muted); font-size: 11px; font-weight: 800; text-transform: uppercase; }
+    .progress-text { color: var(--text); font: 700 12px ui-monospace, SFMono-Regular, Consolas, monospace; }
+
+    .spine { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); margin: 0; padding: 0; list-style: none; }
+    .spine-step {
+      position: relative;
+      min-width: 0;
+      padding: 11px 26px 11px 12px;
+      border-top: 2px solid #314d58;
+      color: #78919a;
+      font-size: 12px;
+      line-height: 1.2;
+      font-weight: 730;
+      transition: color 280ms ease, border-color 280ms ease, background-color 280ms ease;
+    }
+
+    .spine-step::after { content: "→"; position: absolute; right: 8px; top: 8px; color: #526b74; font-size: 18px; }
+    .spine-step:last-child::after { display: none; }
+    .spine-step.past { color: #b9cccc; border-color: var(--teal); }
+    .spine-step.active { color: var(--text); border-color: var(--step-accent); background: rgba(255,255,255,.055); }
+    .spine-step:nth-child(-n+4) { --step-accent: var(--teal); }
+    .spine-step:nth-child(n+5) { --step-accent: var(--gold); }
+
+    .closing-row { display: grid; grid-template-columns: 1fr auto; gap: 28px; align-items: end; margin-top: 15px; }
+    .closing {
+      margin: 0;
+      padding-left: 14px;
+      border-left: 3px solid var(--red);
+      color: #b8c9ce;
+      font-size: 20px;
+      line-height: 1.2;
+      font-weight: 700;
+      transition: color 400ms ease, text-shadow 400ms ease;
+    }
+
+    .slide.is-final .closing { color: var(--text); text-shadow: 0 0 22px rgba(255,255,255,.13); }
+
+    .controls { display: flex; align-items: center; gap: 8px; }
+    .control {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      padding: 0;
+      border: 1px solid #49636d;
+      border-radius: 4px;
+      background: #0f2a35;
+      color: var(--text);
+      cursor: pointer;
+    }
+
+    .control:hover { border-color: var(--teal); background: #153945; }
+    .control:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+    .control:disabled { opacity: .35; cursor: default; }
+    .control svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: square; stroke-linejoin: miter; }
+    .control.primary { border-color: var(--teal); color: var(--teal-soft); }
+    .play-icon.pause path.play, .play-icon.play path.pause { display: none; }
+    .mobile-progress { display: none; }
+
+    .mobile-only { display: none; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
+    }
+
+    @media (max-width: 799px) {
+      body { overflow: auto; padding-bottom: calc(74px + env(safe-area-inset-bottom)); background: var(--ink); }
+      .viewport { display: block; width: 100%; height: auto; min-height: 100vh; overflow: visible; }
+      .slide { position: relative; left: auto; top: auto; width: 100%; height: auto; min-height: 100vh; overflow: visible; transform: none; box-shadow: none; }
+      .slide::before { position: fixed; }
+      .topbar { height: auto; min-height: 86px; padding: 17px 18px 14px; align-items: center; }
+      .brand { min-width: 0; gap: 10px; }
+      .brand img { width: 43px; height: 43px; }
+      .brand-name { margin-top: 0; font-size: 16px; }
+      .brand-sub { font-size: 9px; }
+      .legend { display: grid; gap: 5px; margin: 0; font-size: 9px; }
+      .heading { height: auto; padding: 22px 18px 20px; display: block; }
+      .eyebrow { font-size: 11px; }
+      h1 { font-size: 30px; line-height: 1.08; }
+      .support { margin-top: 10px; font-size: 15px; }
+      .proofs { margin-top: 20px; gap: 0; border-top: 1px solid rgba(255,255,255,.1); }
+      .proof { flex: 1; min-width: 0; margin-top: 12px; padding: 0 9px; border-left-width: 1px; }
+      .proof:first-child { padding-left: 0; border: 0; }
+      .proof strong { font-size: 18px; }
+      .proof span { font-size: 8px; }
+      .scenario-command { width: auto; margin-top: 18px; padding-top: 2px; }
+      .scenario-text { font-size: 12px; }
+      .mode-actions { align-items: stretch; }
+      .mode-control { flex: 1; }
+      .mode-button { flex: 1; min-height: 44px; padding: 0 8px; }
+      .start-guide { min-height: 44px; }
+      .timeline { height: auto; padding: 16px 18px 0 44px; }
+      .thread { top: 39px; bottom: 26px; left: 23px; right: auto; width: 3px; height: auto; }
+      .thread-fill { width: 100%; height: var(--thread-progress, 0%); transition-property: height; }
+      .thread-roadmap { inset: 60% 0 auto 0; width: 100%; height: var(--roadmap-progress, 0%); transition-property: height; }
+      .milestones { display: grid; grid-template-columns: 1fr; gap: 12px; }
+      .milestone { min-height: 0; height: auto; padding: 17px 16px 15px; scroll-margin: 18px 0 86px; opacity: .3; transform: translateX(8px); }
+      .milestone[data-state="past"], .milestone[data-state="active"] { transform: translateX(0); }
+      .node { top: 22px; left: -23px; width: 21px; height: 21px; border-width: 3px; font-size: 8px; }
+      .milestone h2 { margin: 8px 0 10px; font-size: 20px; }
+      .milestone ul { font-size: 13px; }
+      .milestone.current ul { font-size: 13px; line-height: 1.3; }
+      .outcome { position: static; margin-top: 10px; }
+      .slide[data-mode="guided"] .timeline { padding-top: 16px; }
+      .slide[data-mode="guided"] .thread { top: 39px; }
+      .slide[data-mode="guided"] .milestone { height: 76px; padding: 17px 16px 11px; }
+      .slide[data-mode="guided"] .milestone h2 { margin-top: 6px; font-size: 15px; }
+      .slide[data-mode="guided"] .node { top: 22px; }
+      .slide[data-mode="guided"] .guide-panel {
+        grid-template-columns: 1fr;
+        min-height: 0;
+        margin: 0;
+        scroll-margin: 12px 0 86px;
+      }
+      .slide[data-mode="guided"] .guide-panel::before { display: none; }
+      .guide-decision { padding: 15px 16px 13px; border-right: 0; border-bottom: 1px solid #35515c; }
+      .guide-decision h3 { font-size: 21px; }
+      .guide-question { font-size: 14px; }
+      .guide-why { margin-top: 9px; }
+      .guide-field { padding: 12px 13px 10px; }
+      .guide-field p { font-size: 11px; }
+      .guide-command-row { display: block; }
+      .guide-command-row .guide-field-label { margin-bottom: 6px; }
+      .guide-next { width: 100%; min-height: 44px; max-width: none; }
+      .value-band { height: auto; min-height: 190px; padding: 20px 18px 22px; }
+      .spine { display: none; }
+      .mobile-only { display: block; }
+      .mobile-value { margin: 8px 0 0; color: var(--step-accent, var(--teal-soft)); font-size: 16px; line-height: 1.3; font-weight: 760; }
+      .closing-row { display: flex; flex-direction: column; align-items: stretch; gap: 18px; margin-top: 20px; }
+      .closing { font-size: 19px; }
+      .controls {
+        position: fixed;
+        z-index: 20;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        justify-content: center;
+        min-height: 66px;
+        padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
+        border-top: 1px solid #49636d;
+        background: #041017;
+        box-shadow: 0 -12px 28px rgba(0,0,0,.34);
+      }
+      .control { width: 46px; height: 46px; }
+      .mobile-progress {
+        display: block;
+        min-width: 50px;
+        margin-right: 6px;
+        color: var(--text);
+        font: 800 12px ui-monospace, SFMono-Regular, Consolas, monospace;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="viewport">
+    <article class="slide" data-mode="guided" aria-labelledby="slide-title">
+      <header class="topbar">
+        <div class="brand">
+          <img src="assets/logo.webp" alt="PALO Framework logo">
+          <div><p class="brand-name">PALO Framework</p><p class="brand-sub">Principled AI Lifecycle Orchestration</p></div>
+        </div>
+        <p class="sr-only" id="legend-title">Release status legend</p>
+        <ul class="legend">
+          <li><span><i></i>Released</span></li>
+          <li><span class="current"><i></i>Current</span></li>
+          <li><span class="roadmap"><i></i>Roadmap</span></li>
+        </ul>
+      </header>
+
+      <section class="heading">
+        <div>
+          <p class="eyebrow">Evolution · v2.1.0 → v3.0 roadmap</p>
+          <h1 id="slide-title">PALO became an operating system for accountable AI decisions.</h1>
+          <p class="support">Follow one policy change from trusted source to accountable enterprise handoff.</p>
+        </div>
+        <aside class="scenario-command" aria-label="Guided case scenario">
+          <p class="scenario-label">Scenario · one continuous case</p>
+          <p class="scenario-text">A provider changes a public policy that may affect an AI use case already in operation.</p>
+          <div class="mode-actions">
+            <div class="mode-control" role="group" aria-label="View mode">
+              <button class="mode-button" id="guided-mode" type="button" aria-pressed="true">Guided</button>
+              <button class="mode-button" id="timeline-mode" type="button" aria-pressed="false">Timeline</button>
+            </div>
+            <button class="start-guide" id="start-guide" type="button">Start guided case</button>
+          </div>
+        </aside>
+        <div class="proofs" role="group" aria-label="Current release proof">
+          <div class="proof"><strong>28</strong><span>Public pages</span></div>
+          <div class="proof"><strong>117</strong><span>Allowlisted files</span></div>
+          <div class="proof"><strong>0</strong><span>Known dependency vulnerabilities</span></div>
+        </div>
+      </section>
+
+      <section class="timeline" aria-label="Six release milestones">
+        <div class="thread" aria-hidden="true"><div class="thread-fill"></div><div class="thread-roadmap"></div></div>
+        <div class="milestones">
+          <article class="milestone released" data-step="0">
+            <span class="node">1</span>
+            <div class="meta"><span class="version">v2.1</span><span class="status">Released</span></div>
+            <h2><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3 20 6v6c0 4.5-3.1 7.5-8 9-4.9-1.5-8-4.5-8-9V6l8-3Z"/><path d="m8.5 12 2.2 2.2 4.8-5"/></svg>TRUST</h2>
+            <ul><li>Regulatory readiness</li><li>Recognition &amp; source notes</li><li>Honest privacy / accessibility status</li></ul>
+            <p class="outcome">Outcome · Verified context</p>
+          </article>
+          <article class="milestone released" data-step="1">
+            <span class="node">2</span>
+            <div class="meta"><span class="version">v2.2</span><span class="status">Released</span></div>
+            <h2><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M9 4h6l1 2h3v15H5V6h3l1-2Z"/><path d="M9 10h6M9 14h6M9 18h4"/></svg>EVIDENCE</h2>
+            <ul><li>Assessment Path</li><li>Regulatory Watch + Documentation Hub</li><li>PolicyWatcher monitoring companion</li></ul>
+            <p class="outcome">Outcome · Versioned evidence route</p>
+          </article>
+          <article class="milestone released" data-step="2">
+            <span class="node">3</span>
+            <div class="meta"><span class="version">v2.3</span><span class="status">Released</span></div>
+            <h2><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M9 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM3 20a6 6 0 0 1 12 0"/><path d="M17 10a2.5 2.5 0 1 0 0-5M17 14a5 5 0 0 1 4 5"/></svg>EXPERIENCE</h2>
+            <ul><li>Workspace UI + practice loop</li><li>Stakeholder onboarding</li><li>Weighted ER workflow + 3D Explorer</li></ul>
+            <p class="outcome">Outcome · One guided entry</p>
+          </article>
+          <article class="milestone current" data-step="3">
+            <span class="node">4</span>
+            <div class="meta"><span class="version">v2.4</span><span class="status">Current</span></div>
+            <h2><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 8 12 4l8 4-8 4-8-4Z"/><path d="M4 8v8l8 4 8-4V8M12 12v8"/></svg>PLATFORM</h2>
+            <ul><li>Deterministic release + Platform Map</li><li>Case File + Evidence Bundle</li><li>Simulator, controls, KPI/KRI, templates</li><li>Local signal import + human review</li></ul>
+            <p class="outcome">Outcome · Portable governance record</p>
+          </article>
+          <article class="milestone roadmap" data-step="4">
+            <span class="node">5</span>
+            <div class="meta"><span class="version">v2.5-2.6</span><span class="status">Roadmap</span></div>
+            <h2><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 21V5l7-3 7 3v16"/><path d="M9 21v-5h6v5M9 7h.01M12 7h.01M15 7h.01M9 11h.01M12 11h.01M15 11h.01"/></svg>SCALE</h2>
+            <ul><li>Board &amp; governance packs</li><li>Multilingual architecture</li><li>Sector / use-case libraries</li></ul>
+            <p class="outcome">Outcome · Repeatable adoption</p>
+          </article>
+          <article class="milestone roadmap" data-step="5">
+            <span class="node">6</span>
+            <div class="meta"><span class="version">v3.0</span><span class="status">Roadmap</span></div>
+            <h2><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m8 8-4 4 4 4M16 8l4 4-4 4M13 5l-2 14"/></svg>INTEGRATE</h2>
+            <ul><li>Module contract API</li><li>GRC + issue-tracker patterns</li><li>Document systems + policy-as-code handoff</li></ul>
+            <p class="outcome">Outcome · Enterprise evidence continuity</p>
+          </article>
+        </div>
+        <section class="guide-panel" id="guide-panel" aria-labelledby="guide-title">
+          <div class="guide-decision">
+            <p class="guide-step" id="guide-step">Step 1 of 6 · v2.1 Trust</p>
+            <h3 id="guide-title">Verify the context</h3>
+            <p class="guide-question" id="guide-question">Is the source current and attributable?</p>
+            <p class="guide-why"><strong>Why this matters:</strong> <span id="guide-why">A stale or unattributed source can reopen the wrong decision.</span></p>
+          </div>
+          <div class="guide-operation">
+            <div class="guide-field"><span class="guide-field-label">What to do</span><p id="guide-action"></p></div>
+            <div class="guide-field"><span class="guide-field-label">PALO functions</span><p id="guide-functions"></p><div class="guide-links" id="guide-links"></div></div>
+            <div class="guide-field"><span class="guide-field-label">Artifact produced</span><p class="guide-artifact" id="guide-artifact"></p></div>
+            <div class="guide-field">
+              <span class="guide-field-label">Next handoff</span><p id="guide-handoff"></p>
+              <div class="guide-command-row"><span class="guide-field-label">Next decision</span><button class="guide-next" id="guide-next" type="button">Capture the signal →</button></div>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <footer class="value-band">
+        <div class="value-header"><p class="value-label" id="spine-title">Evidence value spine</p><output class="progress-text" id="progress" aria-live="polite">1 / 6</output></div>
+        <ol class="spine">
+          <li class="spine-step">Official sources</li><li class="spine-step">Evidence route</li><li class="spine-step">Guided stakeholder path</li><li class="spine-step">Portable Case File</li><li class="spine-step">Governance packs</li><li class="spine-step">Enterprise handoff</li>
+        </ol>
+        <p class="mobile-value mobile-only" id="mobile-value">Official sources → Verified context</p>
+        <div class="closing-row">
+          <p class="closing">One case. One evidence thread. <strong>Human accountability at every gate.</strong></p>
+          <div class="controls" role="group" aria-label="Animation controls">
+            <span class="mobile-progress" id="mobile-progress" aria-hidden="true">1 / 6</span>
+            <button class="control" id="restart" type="button" aria-label="Restart" title="Restart"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 11a8 8 0 1 1 2.3 5.7L4 19v-6h6"/></svg></button>
+            <button class="control" id="previous" type="button" aria-label="Previous milestone" title="Previous milestone"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m15 5-7 7 7 7"/></svg></button>
+            <button class="control primary" id="play" type="button" aria-label="Pause autoplay" title="Pause autoplay" aria-pressed="false"><svg class="play-icon pause" aria-hidden="true" viewBox="0 0 24 24"><path class="play" d="m8 5 11 7-11 7z" fill="currentColor" stroke="none"/><path class="pause" d="M8 5v14M16 5v14"/></svg></button>
+            <button class="control" id="next" type="button" aria-label="Next milestone" title="Next milestone"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></svg></button>
+          </div>
+        </div>
+      </footer>
+      <p class="sr-only" id="announcement" aria-live="polite"></p>
+    </article>
+  </main>
+
+  <script>
+    (() => {
+      const slide = document.querySelector('.slide');
+      const timeline = document.querySelector('.timeline');
+      const milestones = [...document.querySelectorAll('.milestone')];
+      const spine = [...document.querySelectorAll('.spine-step')];
+      const progress = document.getElementById('progress');
+      const mobileProgress = document.getElementById('mobile-progress');
+      const announcement = document.getElementById('announcement');
+      const mobileValue = document.getElementById('mobile-value');
+      const playButton = document.getElementById('play');
+      const playIcon = playButton.querySelector('.play-icon');
+      const previousButton = document.getElementById('previous');
+      const nextButton = document.getElementById('next');
+      const restartButton = document.getElementById('restart');
+      const guidedModeButton = document.getElementById('guided-mode');
+      const timelineModeButton = document.getElementById('timeline-mode');
+      const startGuideButton = document.getElementById('start-guide');
+      const guidePanel = document.getElementById('guide-panel');
+      const guideStep = document.getElementById('guide-step');
+      const guideTitle = document.getElementById('guide-title');
+      const guideQuestion = document.getElementById('guide-question');
+      const guideWhy = document.getElementById('guide-why');
+      const guideAction = document.getElementById('guide-action');
+      const guideFunctions = document.getElementById('guide-functions');
+      const guideArtifact = document.getElementById('guide-artifact');
+      const guideHandoff = document.getElementById('guide-handoff');
+      const guideLinks = document.getElementById('guide-links');
+      const guideNext = document.getElementById('guide-next');
+      const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+      const mobileViewport = matchMedia('(max-width: 799px)');
+      const labels = ['Official sources → Verified context', 'Evidence route → Versioned evidence', 'Guided stakeholder path → One entry', 'Portable Case File → Governance record', 'Governance packs → Repeatable adoption', 'Enterprise handoff → Evidence continuity'];
+      const guideData = [
+        {
+          version: 'v2.1 Trust', title: 'Verify the context', question: 'Is the source current and attributable?',
+          action: 'Check the official source, review date, recognition notes and trust boundaries.',
+          functions: 'Official sources · Recognition and source notes · Trust status',
+          artifact: 'Verified context record', handoff: 'Monitor the provider policy for relevant change.',
+          why: 'A stale or unattributed source can reopen the wrong decision.', next: 'Capture the signal →',
+          links: [['Open Recognition notes', '../../PALO_Recognition.html']]
+        },
+        {
+          version: 'v2.2 Evidence', title: 'Capture the signal', question: 'What changed and why could it matter?',
+          action: 'Review the PolicyWatcher observation, primary policy, confidence rationale and current regulatory documentation.',
+          functions: 'PolicyWatcher · Regulatory Watch · Documentation Hub',
+          artifact: 'Versioned monitoring signal pending human review', handoff: 'Route the signal to an accountable stakeholder.',
+          why: 'A detected change is evidence to inspect, not an automatic legal conclusion.', next: 'Choose the accountable route →',
+          links: [['Open Regulatory Watch', '../../PALO_RegulatoryWatch.html'], ['Open Documentation Hub', '../../PALO_DocumentationHub.html']]
+        },
+        {
+          version: 'v2.3 Experience', title: 'Choose the route', question: 'Who owns the decision and which gate must reopen?',
+          action: 'Use Stakeholder Onboarding, then inspect the weighted workflow and Explorer route.',
+          functions: 'Stakeholder Onboarding · Weighted workflow · 3D Explorer',
+          artifact: 'Guided route, named owner and expected artifact', handoff: 'Open or resume the same Case File.',
+          why: 'A signal without an owner or gate becomes untracked operational drift.', next: 'Operate the case →',
+          links: [['Open Stakeholder Onboarding', '../theory-to-practice-infographic/index.html']]
+        },
+        {
+          version: 'v2.4 Platform', title: 'Operate the case', question: 'Which assessment, controls and evidence must change?',
+          action: 'Import locally, reopen Measure and Prove, then update assessment, controls, KPI/KRI and agentic review where relevant.',
+          functions: 'Assessment Path · Case File · Evidence Bundle · PALO-AM · Control and KPI/KRI libraries',
+          artifact: 'Updated portable Case File and Evidence Bundle', handoff: 'Prepare the evidence for review and approval.',
+          why: 'One portable record keeps the signal, decisions and changed controls reconstructable.', next: 'Scale the review →',
+          links: [['Open Assessment Path', '../../PALO_AssessmentPath.html'], ['Open PALO-AM', '../../PALO_AgenticGovernance.html']]
+        },
+        {
+          version: 'v2.5-v2.6 Scale · Roadmap', title: 'Scale the review', question: 'How will different decision bodies review the same evidence?',
+          action: 'Generate governance and board packs, then apply multilingual and sector-specific views.',
+          functions: 'Governance packs · Board packs · Multilingual architecture · Sector libraries',
+          artifact: 'Audience-specific review pack from one Case File', handoff: 'Hand approved work to enterprise systems.',
+          why: 'Different views must not create competing versions of the decision record.', next: 'Prepare enterprise handoff →', links: []
+        },
+        {
+          version: 'v3.0 Integrate · Roadmap', title: 'Integrate without losing accountability', question: 'How can systems exchange status without automating judgment?',
+          action: 'Use module contracts and governed GRC, issue-tracker, document-system and policy-as-code handoffs.',
+          functions: 'Module contracts · GRC and issue patterns · Document systems · Policy-as-code handoff',
+          artifact: 'Versioned enterprise handoff with owner, provenance and decision boundary', handoff: 'Close the loop with human approval at every gate.',
+          why: 'System interoperability must preserve provenance and accountable decision rights.', next: 'Restart guided case ↺', links: []
+        }
+      ];
+      let step = 0;
+      let mode = 'guided';
+      let timer = null;
+      let playing = false;
+      let autoplayCompleted = false;
+
+      function fitSlide() {
+        if (innerWidth < 800) {
+          document.documentElement.style.setProperty('--scale', 1);
+          return;
+        }
+        const scale = Math.min(innerWidth / 1600, innerHeight / 900);
+        document.documentElement.style.setProperty('--scale', scale.toFixed(4));
+      }
+
+      function placeGuidePanel() {
+        if (mode === 'guided' && mobileViewport.matches) milestones[step].after(guidePanel);
+        else timeline.append(guidePanel);
+      }
+
+      function renderGuide() {
+        const data = guideData[step];
+        const roadmap = step >= 4;
+        guideStep.textContent = `Step ${step + 1} of 6 · ${data.version}`;
+        guideTitle.textContent = data.title;
+        guideQuestion.textContent = data.question;
+        guideWhy.textContent = data.why;
+        guideAction.textContent = data.action;
+        guideFunctions.textContent = data.functions;
+        guideArtifact.textContent = data.artifact;
+        guideHandoff.textContent = data.handoff;
+        guideNext.textContent = data.next;
+        guideNext.classList.toggle('roadmap', roadmap);
+        guideLinks.replaceChildren(...data.links.map(([label, href]) => {
+          const link = document.createElement('a');
+          link.className = 'function-link';
+          link.href = href;
+          link.textContent = label;
+          return link;
+        }));
+        slide.style.setProperty('--guide-accent', roadmap ? 'var(--gold)' : 'var(--teal)');
+        slide.style.setProperty('--guide-anchor', `${((step + .5) / milestones.length) * 100}%`);
+        placeGuidePanel();
+      }
+
+      function orientActiveMilestone() {
+        if (!mobileViewport.matches || reducedMotion.matches) return;
+        const active = milestones[step];
+        requestAnimationFrame(() => {
+          const controlsHeight = document.querySelector('.controls').getBoundingClientRect().height;
+          const cardTop = active.getBoundingClientRect().top + scrollY;
+          const contentBottom = mode === 'guided' ? guidePanel.getBoundingClientRect().bottom + scrollY : active.getBoundingClientRect().bottom + scrollY;
+          const contentHeight = contentBottom - cardTop;
+          const availableHeight = innerHeight - controlsHeight;
+          const centeredTop = Math.max(0, cardTop - Math.max(12, (availableHeight - contentHeight) / 2));
+          scrollTo({ top: centeredTop, behavior: 'smooth' });
+        });
+      }
+
+      function paint(announce = false, orient = false) {
+        milestones.forEach((item, index) => item.dataset.state = index < step ? 'past' : index === step ? 'active' : 'future');
+        spine.forEach((item, index) => item.className = `spine-step ${index < step ? 'past' : index === step ? 'active' : ''}`);
+        const percentage = step === 0 ? 0 : `${(step / (milestones.length - 1)) * 100}%`;
+        slide.style.setProperty('--thread-progress', percentage);
+        slide.style.setProperty('--roadmap-progress', step < 4 ? '0%' : `${(step - 3) * 20}%`);
+        slide.classList.toggle('is-final', step === 5);
+        progress.textContent = `${step + 1} / ${milestones.length}`;
+        mobileProgress.textContent = `${step + 1} / ${milestones.length}`;
+        mobileValue.textContent = labels[step];
+        previousButton.disabled = step === 0;
+        nextButton.disabled = step === milestones.length - 1;
+        renderGuide();
+        if (announce) announcement.textContent = mode === 'guided' ? `Guided step ${step + 1} of 6: ${guideData[step].title}. ${guideData[step].question}` : `Milestone ${step + 1} of 6: ${milestones[step].querySelector('.version').textContent} ${milestones[step].querySelector('h2').textContent}.`;
+        if (orient) orientActiveMilestone();
+      }
+
+      function setPlaying(value) {
+        playing = value && mode === 'timeline' && step < milestones.length - 1 && !reducedMotion.matches;
+        playButton.setAttribute('aria-pressed', String(playing));
+        const idleLabel = mode === 'guided' ? 'Play timeline autoplay' : 'Play autoplay';
+        playButton.setAttribute('aria-label', playing ? 'Pause autoplay' : idleLabel);
+        playButton.title = playing ? 'Pause autoplay' : idleLabel;
+        playIcon.classList.toggle('pause', playing);
+        playIcon.classList.toggle('play', !playing);
+        clearTimeout(timer);
+        timer = null;
+        if (playing) schedule();
+      }
+
+      function schedule() {
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+          if (!playing) return;
+          if (step < milestones.length - 1) {
+            step += 1;
+            paint(true, true);
+            schedule();
+          } else {
+            autoplayCompleted = true;
+            setPlaying(false);
+          }
+        }, 1100);
+      }
+
+      function go(nextStep, announce = true) {
+        step = Math.max(0, Math.min(milestones.length - 1, nextStep));
+        setPlaying(false);
+        paint(announce, true);
+      }
+
+      function setMode(nextMode, announce = true) {
+        mode = nextMode === 'timeline' ? 'timeline' : 'guided';
+        slide.dataset.mode = mode;
+        guidedModeButton.setAttribute('aria-pressed', String(mode === 'guided'));
+        timelineModeButton.setAttribute('aria-pressed', String(mode === 'timeline'));
+        setPlaying(false);
+        paint(announce, true);
+      }
+
+      previousButton.addEventListener('click', () => go(step - 1));
+      nextButton.addEventListener('click', () => go(step + 1));
+      restartButton.addEventListener('click', () => {
+        step = 0;
+        autoplayCompleted = false;
+        paint(true, true);
+        setPlaying(mode === 'timeline');
+      });
+      playButton.addEventListener('click', () => {
+        if (mode === 'guided') setMode('timeline', false);
+        if (step === milestones.length - 1) step = 0;
+        paint(true, true);
+        setPlaying(!playing);
+      });
+      guidedModeButton.addEventListener('click', () => setMode('guided'));
+      timelineModeButton.addEventListener('click', () => setMode('timeline'));
+      startGuideButton.addEventListener('click', () => {
+        step = 0;
+        autoplayCompleted = false;
+        setMode('guided', false);
+        paint(true, true);
+      });
+      guideNext.addEventListener('click', () => go(step === milestones.length - 1 ? 0 : step + 1));
+
+      addEventListener('keydown', event => {
+        if (event.target.matches('button')) return;
+        if (event.code === 'Space') { event.preventDefault(); playButton.click(); }
+        if (event.code === 'ArrowRight') { event.preventDefault(); go(step + 1); }
+        if (event.code === 'ArrowLeft') { event.preventDefault(); go(step - 1); }
+        if (event.code === 'Home') { event.preventDefault(); restartButton.click(); }
+      });
+
+      reducedMotion.addEventListener('change', event => {
+        if (event.matches) {
+          setPlaying(false);
+          paint();
+        }
+      });
+
+      addEventListener('resize', () => { fitSlide(); placeGuidePanel(); });
+      fitSlide();
+      paint();
+      setPlaying(false);
+      window.__PALO_EVOLUTION__ = { get step() { return step; }, get mode() { return mode; }, get playing() { return playing; }, get autoplayCompleted() { return autoplayCompleted; }, go, setMode, restart: () => restartButton.click() };
+    })();
+  </script>
+</body>
+</html>

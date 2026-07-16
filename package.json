@@ -1,0 +1,25 @@
+{
+  "name": "palo-platform",
+  "version": "2.4.1",
+  "private": true,
+  "description": "Deterministic validation, publication, and browser smoke tooling for the PALO static platform.",
+  "type": "module",
+  "engines": {
+    "node": ">=20 <25"
+  },
+  "scripts": {
+    "validate": "node scripts/validate.mjs --root .",
+    "validate:dist": "node scripts/validate.mjs --root dist --built",
+    "build": "node scripts/build.mjs",
+    "build:check": "node scripts/build.mjs --check",
+    "smoke": "node scripts/browser-smoke.mjs",
+    "p0": "npm run validate && npm run build && npm run validate:dist && npm run build:check && npm run smoke"
+  },
+  "devDependencies": {
+    "ajv": "8.20.0",
+    "ajv-formats": "3.0.1",
+    "fast-xml-parser": "5.10.0",
+    "html-validate": "11.5.5",
+    "playwright": "1.61.1"
+  }
+}

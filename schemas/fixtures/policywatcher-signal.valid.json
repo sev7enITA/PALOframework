@@ -1,0 +1,24 @@
+{
+  "format": "palo-policywatcher-signal",
+  "schemaVersion": "1.0.0",
+  "signalId": "signal-example-guidance-update",
+  "observedAt": "2026-07-12T08:00:00Z",
+  "source": {
+    "sourceId": "src-nist-ai-rmf",
+    "title": "Illustrative source-page update",
+    "url": "https://www.nist.gov/itl/ai-risk-management-framework",
+    "publisher": "US National Institute of Standards and Technology",
+    "checkedAt": "2026-07-12T08:00:00Z"
+  },
+  "summary": "Educational fixture representing a detected guidance-page change; a human must inspect the authoritative source.",
+  "changeType": "guidance",
+  "subjects": ["risk-management", "source-freshness"],
+  "jurisdictions": ["US"],
+  "confidence": { "level": "medium", "score": 0.7, "rationale": "Page metadata changed, but policy significance has not been reviewed." },
+  "authority": {
+    "status": "non-authoritative-monitoring-signal",
+    "disclaimer": "This signal is not an authoritative publication, legal interpretation, or determination of applicability."
+  },
+  "suggestedHandoff": { "module": "PALO_RegulatoryWatch", "eventName": "palo:policywatcher:signal", "reviewGateIds": ["measure", "prove"] },
+  "extensions": { "policyWatcherRecord": { "retained": true, "note": "Unknown additive fields remain attached to the complete signal." } }
+}

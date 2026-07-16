@@ -66,6 +66,8 @@ PALO is not a certification body and does not provide legal advice. It is a prac
 | [PALO Assessment Path](PALO_AssessmentPath.html) | Guided route from risk tiering to contextual FRIA, controls, KPI/KRI, and a local evidence bundle | Live |
 | [Regulatory Watch 2026](PALO_RegulatoryWatch.html) | Dated AI Act watchlist with Article 4, Article 50, high-risk milestones, and official sources | Live |
 | [Documentation Hub](PALO_DocumentationHub.html) | Web-native lifecycle documentation, module index, primary documents, and source links | Live |
+| [Platform Map](PALO_PlatformMap.html) | Operational status, stakeholder-intent routes, modules, artifacts, research boundaries, and accessible table navigation | Live |
+| [Operationalization Explorer / Stakeholder Onboarding](designs/theory-to-practice-infographic/) | Three-step local stakeholder routing into the six-phase weighted workflow and interactive 3D knowledge graph | Live |
 
 ## Mobile Companion App
 
@@ -80,6 +82,8 @@ The app is designed as a privacy-first pre-screening companion for AI governance
 
 | Date | Release | Highlights |
 | --- | --- | --- |
+| 2026-07-12 | v2.4.0 - Reliable Operational Evidence | Deterministic publication, local evidence workflows, P2 adoption foundations, the public Platform Map, and Explorer navigation mode |
+| 2026-07-11 | v2.3.2 - Stakeholder Onboarding | Three plain-language questions, deterministic stakeholder routes, local JSON/Markdown export, guided handoff into the weighted workflow and 3D operational graph, plus cross-page module and Companion App coherence fixes |
 | 2026-07-11 | v2.3.1 - Theory to Practice | Dedicated operating loop connecting all core PALO modules to concrete decisions, controls, KPI/KRI, evidence, and review outputs |
 | 2026-07-11 | v2.3.0 - Workspace UI Refresh | New PolicyWatcher-inspired command bar, workspace hero, mobile navigation, compact footer, shared Community shell, and removal of non-essential compliance badges from the main UI |
 | 2026-07-11 | v2.2.1 - PolicyWatcher Ecosystem Link | Added PolicyWatcher as a cited external monitoring companion for public policy changes, source QA, methodology, and post-deployment context |
@@ -109,7 +113,7 @@ These references are useful context, but the repository remains the source for t
 
 ### Use the live website
 
-Open [paloframework.org](https://paloframework.org) and choose a module from the toolkit.
+Open the [PALO Stakeholder Onboarding](https://paloframework.org/designs/theory-to-practice-infographic/#onboarding). Three questions identify one practical next action, the artifact it produces, and the relevant PALO modules. Experienced users can still open any module directly from [paloframework.org](https://paloframework.org).
 
 ### Run locally
 
@@ -152,6 +156,9 @@ PALOframework/
 |-- PALO_AssessmentPath.html           # Guided assessment and evidence bundle export
 |-- PALO_RegulatoryWatch.html           # Dated regulatory watchlist and sources
 |-- PALO_DocumentationHub.html          # Web-native documentation index
+|-- PALO_PlatformMap.html               # Operational platform status and navigation map
+|-- designs/
+|   +-- theory-to-practice-infographic/ # Stakeholder onboarding, weighted workflow, and 3D Explorer
 |-- AppStoreListing.md                 # Store listing copy and source notes
 |-- PALOFrameworkV2.pdf                # Framework v2 documentation
 |-- ThePALOFramework_*.pdf             # PALO v1 paper
@@ -189,12 +196,15 @@ Primary framework documents and artifacts:
 
 ## Related Ecosystem
 
-[PolicyWatcher](https://policywatcher.online/) is a separate civic-tech portal by Fabrizio Degni for monitoring public privacy policies and terms of service, mapping policy changes, and exposing methodology and source-quality context. It complements the PALO lifecycle at Deployment and Monitoring, but it is not a PALO module, legal certification, or replacement for official sources.
+[PolicyWatcher](https://www.policywatcher.online/) is a separate civic-tech portal by Fabrizio Degni for monitoring public privacy policies and terms of service, mapping policy changes, and exposing methodology and source-quality context. It complements the PALO lifecycle at Deployment and Monitoring, but it is not a PALO module, legal certification, or replacement for official sources.
 
-- [PolicyWatcher Observatory](https://policywatcher.online/observatory)
-- [PolicyWatcher Timeline](https://policywatcher.online/timeline)
-- [PolicyWatcher Confidence Methodology](https://policywatcher.online/methodology/confidence)
-- [PolicyWatcher Trust and Quality](https://policywatcher.online/trust)
+Assessment Path can import a versioned `palo-policywatcher-signal` JSON file locally. The complete observation is preserved as a non-authoritative monitoring source pending human review; no assessment or Case File data is submitted to PolicyWatcher.
+
+- [PolicyWatcher Observatory](https://www.policywatcher.online/observatory)
+- [PolicyWatcher Timeline](https://www.policywatcher.online/timeline)
+- [PolicyWatcher Confidence Methodology](https://www.policywatcher.online/methodology/confidence)
+- [PolicyWatcher Trust and Quality](https://www.policywatcher.online/trust)
+- [Local PolicyWatcher signal schema](schemas/policywatcher-signal.schema.json)
 
 ## Contributing
 
@@ -211,7 +221,7 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md), [CODE_OF_CONDUCT.md](CODE_OF_CON
 
 ## Roadmap
 
-Current baseline: v2.3.1, released 2026-07-11. This release makes the theory-to-practice operating loop the primary value proposition and connects the available PALO modules to concrete governance outputs.
+Current baseline: v2.4.0, released 2026-07-12. This release adds deterministic publication and validation, interoperable local evidence workflows, structured adoption foundations, and a public platform/navigation map with an Explorer navigation mode.
 
 Completed in H1 2026:
 
@@ -231,6 +241,9 @@ Completed in H1 2026:
 | Guided assessment and evidence hub | Complete |
 | Workspace UI and navigation refresh | Complete |
 | Theory-to-practice operating loop | Complete |
+| Stakeholder onboarding and Operationalization Explorer | Complete |
+| Release reliability foundation | Complete |
+| Operational platform and research map | Complete |
 
 Planned roadmap:
 

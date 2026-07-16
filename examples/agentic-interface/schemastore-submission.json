@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "name": "PALO Agentic Interface",
+  "description": "Programmatic configuration schema for AI Agent Identity, Authority limits, Delegation parameters, and Cryptographic Evidence keys.",
+  "fileMatch": [
+    "*.palo.json",
+    "palo-agent.json"
+  ],
+  "url": "https://paloframework.org/schemas/palo-agentic-interface.schema.json"
+}

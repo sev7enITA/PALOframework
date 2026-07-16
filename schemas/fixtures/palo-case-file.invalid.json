@@ -1,0 +1,15 @@
+{
+  "format": "palo-case-file",
+  "schemaVersion": "2.0.0",
+  "caseId": "bad",
+  "title": "",
+  "status": "finished",
+  "createdAt": "yesterday",
+  "updatedAt": "2026-07-12T09:00:00.000Z",
+  "context": {},
+  "assessments": [],
+  "evidence": [],
+  "sources": [],
+  "incidents": [],
+  "handoffs": []
+}

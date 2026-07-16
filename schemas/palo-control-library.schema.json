@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paloframework.org/schemas/palo-control-library.schema.json",
+  "title": "PALO Control Library",
+  "type": "object",
+  "required": ["format", "schemaVersion", "status", "updatedAt", "disclaimer", "controls"],
+  "properties": {
+    "format": { "const": "palo-control-library" },
+    "schemaVersion": { "const": "1.0.0" },
+    "status": { "const": "educational-non-production" },
+    "updatedAt": { "type": "string", "format": "date" },
+    "disclaimer": { "type": "string", "minLength": 20 },
+    "controls": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["controlId", "title", "objective", "controlType", "lifecycleGates", "evidenceKinds", "indicatorIds", "sourceIds", "templateIds"],
+        "properties": {
+          "controlId": { "type": "string", "pattern": "^ctrl-[a-z0-9-]+$" },
+          "title": { "type": "string", "minLength": 1 },
+          "objective": { "type": "string", "minLength": 1 },
+          "controlType": { "enum": ["preventive", "detective", "corrective", "directive"] },
+          "lifecycleGates": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string" } },
+          "evidenceKinds": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string" } },
+          "indicatorIds": { "type": "array", "uniqueItems": true, "items": { "type": "string" } },
+          "sourceIds": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string" } },
+          "templateIds": { "type": "array", "uniqueItems": true, "items": { "type": "string" } }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

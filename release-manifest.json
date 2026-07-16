@@ -1,0 +1,76 @@
+{
+  "schemaVersion": "1.0.0",
+  "release": {
+    "version": "2.4.1",
+    "date": "2026-07-17",
+    "status": "stable"
+  },
+  "sharedAssets": {
+    "version": "2.4.1",
+    "files": [
+      "assets/palo-v21.css",
+      "assets/palo-v21.js"
+    ]
+  },
+  "components": {
+    "web": {
+      "version": "2.4.1",
+      "date": "2026-07-17"
+    },
+    "framework": {
+      "version": "2.0.0",
+      "date": "2026-06-22"
+    },
+    "mobileAndroid": {
+      "version": "2.0.0",
+      "date": "2026-03-09"
+    },
+    "mobileIos": {
+      "version": "1.7.1",
+      "date": "2026-04-08"
+    }
+  },
+  "modules": {
+    "agenticGovernance": {
+      "version": "2.4.1",
+      "date": "2026-07-17"
+    },
+    "stakeholderOnboarding": {
+      "version": "2.4.0",
+      "date": "2026-07-12"
+    },
+    "assessmentPath": {
+      "version": "2.4.0",
+      "date": "2026-07-12"
+    },
+    "operationalEvidenceCore": {
+      "version": "1.0.0",
+      "date": "2026-07-12"
+    },
+    "adoptionIntegrationLayer": {
+      "version": "1.0.0",
+      "date": "2026-07-12"
+    },
+    "platformMap": {
+      "version": "1.0.0",
+      "date": "2026-07-12"
+    },
+    "operationalizationExplorer": {
+      "version": "2.4.0",
+      "date": "2026-07-12"
+    },
+    "policyWatcherSignalReceiver": {
+      "version": "1.0.0",
+      "date": "2026-07-12"
+    },
+    "vibeCoding": {
+      "version": "1.8.0",
+      "date": "2026-05-15"
+    }
+  },
+  "publication": {
+    "source": "root authoring files",
+    "artifact": "dist",
+    "buildCommand": "npm run build"
+  }
+}

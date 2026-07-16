@@ -19,7 +19,9 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link rel="stylesheet" href="agentic/style.css">
     <link rel="stylesheet" href="assets/palo-icons.css">
-    <script src="assets/palo-icons.js"></script>
+<script src="assets/palo-icons.js"></script>
+<script src="assets/palo-v21.js?v=2.4.1"></script>
+<script src="assets/palo-case-file.js?v=2.4.1"></script>
 </head>
 <body>
 <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -27,24 +29,28 @@
 <div class="palo-topbar">
   <a href="index.html" class="palo-brand"><img src="assets/logo.webp" alt="PALO" onerror="this.style.display='none'">PALO FRAMEWORK</a>
   <div class="palo-links">
-    <a href="index.html"><span data-palo-icon=home class=palo-icon-inline></span>Home</a>
-    <a href="PALO_ModelCanvasAI.html"><span data-palo-icon=palette class=palo-icon-inline></span>Model Canvas</a>
-    <a href="PALO_FRIA.html"><span data-palo-icon=shield class=palo-icon-inline></span>FRIA</a>
-    <a href="PALO_VibeCoding.html">AI Dev Gov.</a>
-    <a href="PALO_PoisoningStudy.html"><span data-palo-icon=poison class=palo-icon-inline></span>Poisoning Study</a>
-    <a href="PALO_TechTrends2026.html">Tech Trends</a>
-    <a href="PALO_Community.html"><span data-palo-icon=users class=palo-icon-inline></span>Community</a>
+    <a href="index.html"><span data-palo-icon="home" class="palo-icon-inline"></span>Home</a>
+    <a href="PALO_ModelCanvasAI.html"><span data-palo-icon="palette" class="palo-icon-inline"></span>Model Canvas</a>
+    <a href="PALO_FRIA.html"><span data-palo-icon="shield" class="palo-icon-inline"></span>FRIA</a>
+    <a href="PALO_AuditBench.html"><span data-palo-icon="search" class="palo-icon-inline"></span>AuditBench</a>
+    <a href="PALO_VibeCoding.html"><span data-palo-icon="lock" class="palo-icon-inline"></span>AI Dev Gov.</a>
+    <a href="PALO_AgenticGovernance.html"><span data-palo-icon="robot" class="palo-icon-inline"></span>PALO-AM</a>
+    <a href="PALO_PoisoningStudy.html"><span data-palo-icon="microscope" class="palo-icon-inline"></span>Poisoning Study</a>
+    <a href="PALO_TechTrends2026.html"><span data-palo-icon="chart" class="palo-icon-inline"></span>Tech Trends</a>
+    <a href="PALO_Community.html"><span data-palo-icon="users" class="palo-icon-inline"></span>Community</a>
   </div>
 </div>
 
 <nav class="section-nav">
   <div class="nav-brand"><span data-palo-icon=robot class=palo-icon-inline></span>PALO-AM</div>
   <a href="#objects">Five Objects</a>
+  <a href="#simulator">Simulator</a>
   <a href="#matrix">Risk Matrix</a>
   <a href="#lifecycle">Lifecycle</a>
   <a href="#controls">Controls</a>
   <a href="#kpis">KPIs</a>
   <a href="#scenarios">Scenarios</a>
+  <a href="#agentic-interface">Agentic Interface</a>
   <a href="#standards">Standards</a>
 </nav>
 
@@ -76,7 +82,7 @@
     <h2>The Governance Shift</h2>
     <p class="section-desc">Model governance asks whether the model behaves responsibly. Delegated-action governance asks whether the authority delegated to the system has been justified, bounded, monitored and evidenced.</p>
   </div>
-  <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:20px;align-items:center;max-width:900px;margin:0 auto;">
+  <div class="governance-shift">
     <div style="background:var(--am-glass);border:1px solid var(--am-border);border-radius:14px;padding:24px;text-align:center;">
       <div style="font-size:2rem;margin-bottom:10px;"></div>
       <h3 style="color:#fff;font-size:.95rem;margin-bottom:8px;">Model Governance</h3>
@@ -90,6 +96,40 @@
     </div>
   </div>
   <p style="text-align:center;color:var(--am-text-muted);font-size:.85rem;margin-top:24px;max-width:700px;margin-left:auto;margin-right:auto;"><em>A hallucinated sentence can mislead. A hallucinated tool call can alter a customer record, leak sensitive data, trigger a transaction or damage an operational environment.</em></p>
+</div>
+</section>
+
+<!-- === PALO-AM SIMULATOR === -->
+<section id="simulator" class="section section-alt">
+<div class="container">
+  <div class="section-header">
+    <span class="section-number">P1 MVP</span>
+    <h2>PALO-AM Simulator</h2>
+    <p class="section-desc">Route a delegated-action configuration to a governance tier and a practical control, evidence, and KPI/KRI starting set. Results are educational governance support, not legal advice, certification, or a compliance determination.</p>
+  </div>
+  <div class="simulator-shell">
+    <form id="palo-am-form" class="simulator-form">
+      <div class="simulator-heading"><h3>Authority profile</h3><p id="simulator-case-status">No case linked yet.</p></div>
+      <div class="simulator-fields">
+        <label>Action space<select name="actionSpace"><option value="read">Read only</option><option value="internal">Internal write</option><option value="cross-system">Cross-system action</option><option value="critical">Financial, safety, legal, or physical action</option></select></label>
+        <label>Autonomy<select name="autonomy"><option value="supervised">Human executes each action</option><option value="low">Agent proposes, human approves</option><option value="medium">Agent acts within bounded rules</option><option value="high">Agent selects and executes independently</option></select></label>
+        <label>Reversibility<select name="reversibility"><option value="reversible">Fully reversible</option><option value="partial">Partially reversible</option><option value="irreversible">Irreversible or hard to remedy</option></select></label>
+        <label>Data sensitivity<select name="dataSensitivity"><option value="public">Public or synthetic</option><option value="internal">Internal</option><option value="sensitive">Personal or commercially sensitive</option><option value="restricted">Special-category, secret, or highly restricted</option></select></label>
+        <label>Potential impact<select name="impact"><option value="low">Low and localized</option><option value="moderate">Material operational impact</option><option value="high">Consequential impact on people or services</option><option value="severe">Safety, rights, livelihood, or systemic impact</option></select></label>
+      </div>
+      <div class="simulator-actions"><button class="simulator-primary" type="submit">Calculate tier</button><button class="simulator-secondary" type="reset">Reset</button></div>
+    </form>
+    <section id="simulator-result" class="simulator-result" tabindex="-1" aria-live="polite" hidden>
+      <div class="tier-summary"><div><span>Deterministic route</span><h3 id="simulator-tier"></h3></div><p id="simulator-rationale"></p></div>
+      <div class="recommendation-grid">
+        <div><h4>Controls</h4><ul id="simulator-controls"></ul></div>
+        <div><h4>Evidence</h4><ul id="simulator-evidence"></ul></div>
+        <div><h4>KPI / KRI</h4><ul id="simulator-kpis"></ul></div>
+      </div>
+      <div class="simulator-actions"><button class="simulator-primary" type="button" id="simulator-save-case">Save to case</button><button class="simulator-secondary" type="button" id="simulator-json">Export JSON</button><button class="simulator-secondary" type="button" id="simulator-markdown">Export Markdown</button><button class="simulator-secondary" type="button" id="simulator-handoff">Continue in Assessment Path</button></div>
+      <p class="simulator-disclaimer">This result is a transparent routing aid. It does not decide whether a use case is lawful, prohibited, compliant, certified, or acceptable to a specific organization.</p>
+    </section>
+  </div>
 </div>
 </section>
 
@@ -132,7 +172,7 @@
 </section>
 
 <!-- === ENGINEERING CONTROLS === -->
-<section class="section">
+<section id="controls" class="section">
 <div class="container">
   <div class="section-header">
     <span class="section-number">02</span>
@@ -182,9 +222,10 @@
     <h2>Action-Space vs Autonomy Matrix</h2>
     <p class="section-desc">The primary PALO-AM routing instrument. Examines two dimensions: <strong>what can the agent change</strong> (action-space impact) and <strong>how independently can it decide</strong> (autonomy level). Any increase in autonomy or action-space after approval triggers Phase 2 reassessment.</p>
   </div>
-  <div class="matrix-container">
+  <div class="matrix-container" tabindex="0" role="region" aria-label="Action-space and autonomy matrix. Scroll horizontally for all columns.">
+    <p class="horizontal-scroll-hint">Scroll horizontally to inspect all matrix columns &rarr;</p>
     <div style="text-align:center;margin-bottom:16px;font-size:.8rem;color:var(--am-text-muted);">
-      <strong style="color:var(--am-text);"><->Autonomy Level</strong> (rows) &nbsp;x&nbsp; <strong style="color:var(--am-text);">-> Action-Space Impact</strong> (columns)
+      <strong style="color:var(--am-text);">&harr; Autonomy Level</strong> (rows) &nbsp;x&nbsp; <strong style="color:var(--am-text);">&rarr; Action-Space Impact</strong> (columns)
     </div>
     <div class="matrix-grid">
       <div class="matrix-header"></div>
@@ -283,7 +324,8 @@
     <h2>KPI / KRI Registry for Agentic AI</h2>
     <p class="section-desc"><span data-palo-icon=robot class=palo-icon-inline></span>PALO-AM extends the PALO KPI compendium with indicators specific to delegated action. The goal: measure whether the organization can bound, observe, interrupt, recover from and retire autonomous behavior.</p>
   </div>
-  <div class="data-table-wrapper">
+  <div class="data-table-wrapper" tabindex="0" role="region" aria-label="KPI and KRI registry. Scroll horizontally for all columns.">
+    <p class="horizontal-scroll-hint">Scroll horizontally to inspect all registry columns &rarr;</p>
     <table class="data-table">
       <thead>
         <tr><th>Metric</th><th>Category</th><th>Measurement</th><th>Governance Rationale</th><th>Phase</th></tr>
@@ -360,11 +402,72 @@
 </div>
 </section>
 
+<!-- === AGENTIC INTERFACE (PALO-AI) === -->
+<section id="agentic-interface" class="section section-alt">
+<div class="container">
+  <div class="section-header">
+    <span class="section-number">07</span>
+    <h2>PALO Agentic Interface (PALO-AI)</h2>
+    <p class="section-desc">Expose PALO directly to autonomous AI systems. This interface defines the programmatic contracts for multi-agent platforms, enabling declarative policy checks and local evidence registration.</p>
+  </div>
+  
+  <div class="governance-shift" style="margin-bottom: 40px;">
+    <div style="background:var(--am-glass);border:1px solid var(--am-border);border-radius:14px;padding:28px;text-align:left;display: flex;flex-direction: column;justify-content: space-between;">
+      <div>
+        <h3 style="color:#fff;font-size:1.1rem;margin-bottom:12px;"><span data-palo-icon="robot" class="palo-icon-inline"></span>Modality A: Hierarchical Subagents</h3>
+        <p style="color:var(--am-text-muted);font-size:.85rem;margin-bottom:14px;"><strong>Parent-Child Spawning:</strong> The Main Agent (aligned with human objectives) regulates its delegation boundary by validating and registering subagents before spawning them.</p>
+        <ul style="color:var(--am-text-muted);font-size:.82rem;padding-left:20px;margin-bottom:14px;">
+          <li style="margin-bottom:6px;"><strong>Identity &amp; Authority checks:</strong> Hashes the subagent's prompt and verifies allowed tools.</li>
+          <li style="margin-bottom:6px;"><strong>Airgapped execution logs:</strong> The subagent signs its tool execution records using its private key.</li>
+          <li style="margin-bottom:6px;"><strong>Checkpoints:</strong> Evidence handback is required before reporting the results to the parent.</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div style="text-align:center;color:var(--am-accent-light);font-size:1.8rem;align-self:center;">&amp;</div>
+    
+    <div style="background:var(--am-glass);border:1px solid var(--am-border);border-radius:14px;padding:28px;text-align:left;display: flex;flex-direction: column;justify-content: space-between;">
+      <div>
+        <h3 style="color:#fff;font-size:1.1rem;margin-bottom:12px;"><span data-palo-icon="users" class="palo-icon-inline"></span>Modality B: Collaborative Agent Teams</h3>
+        <p style="color:var(--am-text-muted);font-size:.85rem;margin-bottom:14px;"><strong>P2P Task Claims:</strong> A centralized gatekeeper intercepts task claims and executions on the Shared Task List, dynamically managing risk thresholds.</p>
+        <ul style="color:var(--am-text-muted);font-size:.82rem;padding-left:20px;margin-bottom:14px;">
+          <li style="margin-bottom:6px;"><strong>Middleware interception:</strong> Verifies teammate capabilities against task requirements.</li>
+          <li style="margin-bottom:6px;"><strong>Human-in-the-loop triggers:</strong> Escalates high-risk claims to the mobile app for human review.</li>
+          <li style="margin-bottom:6px;"><strong>Cryptographic Ledger:</strong> Logs task claims, execution signatures, and approvals to local SQLite.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div style="background:var(--am-surface-2);border:1px solid var(--am-border);border-radius:14px;padding:32px;margin-top:24px;">
+    <h3 style="color:#fff;font-size:1.2rem;margin-bottom:16px;"><span data-palo-icon="wrench" class="palo-icon-inline"></span>Developer Integration Specs</h3>
+    <p style="color:var(--am-text-muted);font-size:.88rem;margin-bottom:20px;">Use the schemas, OPA policies, and MCP server tools to connect PALO to your agent workflows:</p>
+    <div class="scenario-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));gap:20px;">
+      <div style="background:rgba(255,255,255,0.02);padding:18px;border-radius:8px;border:1px solid var(--am-border);">
+        <h4 style="color:#fff;font-size:.9rem;margin-bottom:8px;">JSON Governance Schema</h4>
+        <p style="color:var(--am-text-muted);font-size:.78rem;margin-bottom:12px;">Define Identity and Authority boundaries for your agents using the JSON schema contract.</p>
+        <a href="schemas/palo-agentic-interface.schema.json" class="palo-btn palo-btn-secondary" style="font-size:.75rem;padding:6px 12px;min-height:30px;"><span data-palo-icon="file" class="palo-icon-inline"></span>Open Schema</a>
+      </div>
+      <div style="background:rgba(255,255,255,0.02);padding:18px;border-radius:8px;border:1px solid var(--am-border);">
+        <h4 style="color:#fff;font-size:.9rem;margin-bottom:8px;">Policy-as-Code (Rego)</h4>
+        <p style="color:var(--am-text-muted);font-size:.78rem;margin-bottom:12px;">Write declarative, executable policies to evaluate delegation hierarchies and task claims.</p>
+        <a href="examples/policy-as-code/agent-delegation.rego" class="palo-btn palo-btn-secondary" style="font-size:.75rem;padding:6px 12px;min-height:30px;"><span data-palo-icon="shield" class="palo-icon-inline"></span>Open Policy</a>
+      </div>
+      <div style="background:rgba(255,255,255,0.02);padding:18px;border-radius:8px;border:1px solid var(--am-border);">
+        <h4 style="color:#fff;font-size:.9rem;margin-bottom:8px;">Model Context Protocol</h4>
+        <p style="color:var(--am-text-muted);font-size:.78rem;margin-bottom:12px;">Deploy the PALO MCP Server definition to expose compliance tools directly to your agents.</p>
+        <a href="examples/agentic-interface/mcp-server-spec.json" class="palo-btn palo-btn-secondary" style="font-size:.75rem;padding:6px 12px;min-height:30px;"><span data-palo-icon="target" class="palo-icon-inline"></span>Open MCP Spec</a>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
 <!-- === STANDARDS CROSSWALK === -->
 <section id="standards" class="section section-alt">
 <div class="container">
   <div class="section-header">
-    <span class="section-number">07</span>
+    <span class="section-number">08</span>
     <h2>Standards Alignment</h2>
     <p class="section-desc"><span data-palo-icon=robot class=palo-icon-inline></span>PALO-AM is designed as an operational extension that translates global governance standards into PALO-compatible lifecycle phases, templates, matrices, KPIs and evidence gates.</p>
   </div>
@@ -403,15 +506,14 @@
 </div>
 </section>
 
-<!-- === COMING SOON === -->
+<!-- === DELIVERY STATUS === -->
 <section class="section">
 <div class="container">
   <div class="coming-soon">
-    <h3><span data-palo-icon=rocket class=palo-icon-inline></span>Roadmap: Interactive Matrix Simulator</h3>
-    <p>The next PALO-AM releases focus on turning the Action-Space vs Autonomy Matrix into an interactive governance workflow: tier routing, control recommendations, evidence artifacts, KPI recommendations and decision gate outputs.</p>
+    <h3><span data-palo-icon=rocket class=palo-icon-inline></span>Simulator foundation delivered</h3>
+    <p>The P1 MVP provides local deterministic routing, recommendations, portable exports, and case-file handoff. Scenario libraries, integrations, and production policy enforcement remain later-phase work.</p>
     <div class="roadmap-grid" style="max-width:900px;margin:0 auto;">
-      <div class="roadmap-card"><div class="roadmap-ver">v2.1</div><p>Simulator MVP with interactive risk inputs, automatic tier assignment and exportable assessment summary.</p></div>
-      <div class="roadmap-card"><div class="roadmap-ver">v2.2</div><p>Evidence and governance board packs with decision logs, KPI/KRI registers and audit-ready summaries.</p></div>
+      <div class="roadmap-card"><div class="roadmap-ver">Delivered</div><p>Simulator MVP, evidence recommendations, case handoff, and board-review Markdown.</p></div>
       <div class="roadmap-card"><div class="roadmap-ver">v2.3</div><p>Scenario library, multilingual coverage and worked examples for enterprise agent configurations.</p></div>
       <div class="roadmap-card"><div class="roadmap-ver">v2.4</div><p>Policy-as-code snippets and starter configurations for agentic control enforcement.</p></div>
       <div class="roadmap-card"><div class="roadmap-ver">v3.0</div><p>Integration layer for governance workflows, issue trackers, GRC platforms and documentation systems.</p></div>
@@ -445,5 +547,6 @@
 </div>
 </div>
 
+<script src="assets/palo-am-simulator.js?v=2.4.1"></script>
 </body>
 </html>

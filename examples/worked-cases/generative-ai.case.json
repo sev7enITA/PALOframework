@@ -1,0 +1,29 @@
+{
+  "format": "palo-case-file",
+  "schemaVersion": "1.0.0",
+  "caseId": "case-generative-support-drafts",
+  "title": "Worked case: generative customer-support drafts",
+  "status": "draft",
+  "createdAt": "2026-07-12T08:00:00Z",
+  "updatedAt": "2026-07-12T08:00:00Z",
+  "owner": "Educational example owner",
+  "context": {
+    "domain": "generative-ai",
+    "scenario": "A language model drafts support replies; staff approve every response and sensitive account actions remain outside the model workflow.",
+    "exampleStatus": "educational-non-production",
+    "sourceStatus": "References were recorded as starter sources, not as proof of control sufficiency or regulatory coverage.",
+    "limitations": "Fictional model, prompts, retrieval corpus and user population; no empirical quality or harm evaluation is supplied.",
+    "p2References": {
+      "controlIds": ["ctrl-data-provenance", "ctrl-human-review", "ctrl-adversarial-testing", "ctrl-incident-response"],
+      "indicatorIds": ["kpi-provenance-coverage", "kpi-review-completion", "kri-critical-test-failure-rate"],
+      "gateIds": ["assess", "control", "measure", "prove"],
+      "sourceIds": ["src-nist-genai-profile", "src-owasp-llm-top10"],
+      "templateIds": ["tpl-red-team-evidence", "tpl-incident-response", "tpl-board-review"]
+    }
+  },
+  "assessments": [{ "assessmentId": "assessment-generative-1", "module": "P2 worked case", "recordedAt": "2026-07-12T08:00:00Z", "data": { "decision": "proceed-with-conditions", "conditions": ["Reviewer can edit or reject", "Test high-impact topics", "Monitor source-grounding failures"] } }],
+  "evidence": [{ "evidenceId": "evidence-generative-red-team", "title": "Illustrative red-team evidence record", "kind": "test-result", "status": "draft", "recordedAt": "2026-07-12T08:00:00Z", "content": { "notProductionEvidence": true } }],
+  "sources": [{ "sourceId": "src-nist-genai-profile", "title": "Artificial Intelligence Risk Management Framework: Generative Artificial Intelligence Profile", "url": "https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-generative-artificial-intelligence", "sourceType": "official", "publisher": "US National Institute of Standards and Technology", "checkedAt": "2026-07-12T08:00:00Z", "freshness": { "status": "current", "reviewIntervalDays": 90, "nextReviewAt": "2026-10-10T08:00:00Z" } }],
+  "incidents": [],
+  "handoffs": []
+}

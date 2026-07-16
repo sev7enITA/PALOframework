@@ -1,0 +1,32 @@
+{
+  "format": "palo-agentic-interface",
+  "schemaVersion": "1.0.0",
+  "agentId": "agent-support-copilot-sub-1",
+  "identity": {
+    "role": "Customer Support subagent",
+    "lineage": "com.fabriziodegni.paloframework.agents.support-copilot.sub-1",
+    "baseModel": "gemini-2.5-flash",
+    "systemPromptHash": "a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f61234",
+    "temperature": 0.2
+  },
+  "authority": {
+    "allowedTools": [
+      "read_file",
+      "search_web"
+    ],
+    "externalNetwork": false,
+    "readScopes": [
+      "/workspace/support-docs"
+    ],
+    "writeScopes": []
+  },
+  "delegation": {
+    "maxSubagents": 0,
+    "allowedSubagentRoles": [],
+    "requireHumanValidation": true
+  },
+  "evidence": {
+    "signKeyHash": "e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6",
+    "auditTrailPath": "/workspace/audit.log"
+  }
+}

@@ -1,4 +1,15 @@
 (function () {
+    var paloShellScript = document.currentScript;
+
+    function loadSpotlight() {
+        if (window.PALO_SPOTLIGHT || document.querySelector('script[data-palo-spotlight-loader]')) return;
+        var source = paloShellScript && paloShellScript.src ? new URL('palo-spotlight.js', paloShellScript.src).href : 'assets/palo-spotlight.js';
+        var script = document.createElement('script');
+        script.src = source;
+        script.setAttribute('data-palo-spotlight-loader', 'true');
+        document.head.appendChild(script);
+    }
+
     function boot() {
         document.querySelectorAll('[data-palo-menu-toggle]').forEach(function (button) {
             var menuId = button.getAttribute('aria-controls');
@@ -35,6 +46,8 @@
                 if (empty) empty.classList.toggle('is-visible', visible === 0);
             });
         }
+
+        loadSpotlight();
     }
 
     window.paloDownload = function (name, content, type) {

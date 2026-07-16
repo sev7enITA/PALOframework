@@ -1,0 +1,29 @@
+{
+  "format": "palo-case-file",
+  "schemaVersion": "1.0.0",
+  "caseId": "case-public-service-triage",
+  "title": "Worked case: public-service inquiry triage",
+  "status": "draft",
+  "createdAt": "2026-07-12T08:00:00Z",
+  "updatedAt": "2026-07-12T08:00:00Z",
+  "owner": "Educational example owner",
+  "context": {
+    "domain": "public-service",
+    "scenario": "A service desk classifies incoming inquiries for routing; it cannot determine eligibility, priority rights, sanctions or access to benefits.",
+    "exampleStatus": "educational-non-production",
+    "sourceStatus": "References support educational prompts only and do not determine public-law, accessibility or due-process obligations.",
+    "limitations": "Fictional service, populations and thresholds; community participation and impact evidence are absent.",
+    "p2References": {
+      "controlIds": ["ctrl-purpose-boundary", "ctrl-human-review", "ctrl-incident-response", "ctrl-decision-trace"],
+      "indicatorIds": ["kpi-review-completion", "kpi-incident-triage-time", "kri-override-failure-rate"],
+      "gateIds": ["frame", "assess", "control", "measure", "prove"],
+      "sourceIds": ["src-nist-ai-rmf", "src-oecd-ai-principles"],
+      "templateIds": ["tpl-incident-response", "tpl-board-review"]
+    }
+  },
+  "assessments": [{ "assessmentId": "assessment-public-service-1", "module": "P2 worked case", "recordedAt": "2026-07-12T08:00:00Z", "data": { "decision": "hold", "conditions": ["Test language and accessibility coverage", "Create manual bypass", "Consult affected service users"] } }],
+  "evidence": [{ "evidenceId": "evidence-public-service-override", "title": "Illustrative manual-bypass test", "kind": "test-result", "status": "open", "recordedAt": "2026-07-12T08:00:00Z", "content": { "testNeeded": true } }],
+  "sources": [{ "sourceId": "src-nist-ai-rmf", "title": "AI Risk Management Framework", "url": "https://www.nist.gov/itl/ai-risk-management-framework", "sourceType": "official", "publisher": "US National Institute of Standards and Technology", "checkedAt": "2026-07-12T08:00:00Z", "freshness": { "status": "current", "reviewIntervalDays": 90, "nextReviewAt": "2026-10-10T08:00:00Z" } }],
+  "incidents": [],
+  "handoffs": []
+}
