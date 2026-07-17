@@ -17,7 +17,9 @@ export function parseAllowedHosts(value) {
 
 export function createAuthenticatedMcpApp({ runtime, token, host = "127.0.0.1", allowedHosts = [], exposedTools }) {
   if (!token || Buffer.byteLength(token) < 24) throw new Error("PALO_MCP_HTTP_TOKEN must contain at least 24 bytes");
-  if (["0.0.0.0", "::"].includes(host) && allowedHosts.length === 0) throw new Error("PALO_MCP_ALLOWED_HOSTS is required when MCP binds to a non-local interface");
+  const normalizedHost = String(host).trim().toLowerCase();
+  const isLoopback = ["127.0.0.1", "localhost", "::1"].includes(normalizedHost);
+  if (!isLoopback && allowedHosts.length === 0) throw new Error("PALO_MCP_ALLOWED_HOSTS is required when MCP binds to a non-local interface");
   const app = createMcpExpressApp({ host, ...(allowedHosts.length ? { allowedHosts } : {}) });
   app.get("/health", (_request, response) => response.json({ status: "ok", service: "palo-mcp-streamable-http", version: "2.4.1", releaseStatus: "developer-preview", productionUse: false }));
   app.all("/mcp", async (request, response) => {
