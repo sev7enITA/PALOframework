@@ -6,7 +6,7 @@ on:
       - 'packages/n8n-nodes-palo-ai/**'
       - '.github/workflows/n8n-node-ci.yml'
   push:
-    branches: [main, agent/palo-ai-developer-preview]
+    branches: [main]
     paths:
       - 'packages/n8n-nodes-palo-ai/**'
       - '.github/workflows/n8n-node-ci.yml'

@@ -21,14 +21,14 @@
     "p0": "npm run validate:agentic && npm run validate && npm run build && npm run validate:dist && npm run build:check && npm run smoke"
   },
   "devDependencies": {
-    "ajv": "8.20.0",
-    "ajv-formats": "3.0.1",
     "fast-xml-parser": "5.10.0",
     "html-validate": "11.5.5",
     "playwright": "1.61.1"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "1.29.0",
+    "ajv": "8.20.0",
+    "ajv-formats": "3.0.1",
     "better-sqlite3": "12.11.1",
     "zod": "4.4.3"
   }

@@ -136,7 +136,7 @@
       <label>Import trusted agent profile<input id="am-profile-import" type="file" accept="application/json,.json"></label>
       <label>Import policy decision<input id="am-decision-import" type="file" accept="application/json,.json" multiple></label>
       <label>Import approval packet<input id="am-approval-import" type="file" accept="application/json,.json"></label>
-      <label>Gateway URL<input id="am-gateway-url" type="url" value="http://127.0.0.1:8787" autocomplete="url"></label>
+      <label>Gateway URL<input id="am-gateway-url" type="url" value="https://governance.paloframework.org/gateway" autocomplete="url"></label>
       <label>Gateway bearer token<input id="am-gateway-token" type="password" autocomplete="off"></label>
       <label>Resolver identity<input id="am-resolver" type="text" autocomplete="email" placeholder="reviewer@example.org"></label>
       <label style="grid-column:1/-1;">Decision rationale<textarea id="am-rationale" rows="3" maxlength="4000" placeholder="Explain why this exact Action Claim is approved or denied."></textarea></label>
@@ -148,7 +148,7 @@
       <button class="simulator-secondary" type="button" id="am-export-contracts">Export profile &amp; decisions</button>
     </div>
     <pre id="am-runtime-status" tabindex="0" aria-live="polite" style="white-space:pre-wrap;overflow:auto;max-height:320px;">No runtime contract loaded.</pre>
-    <p class="simulator-disclaimer"><strong>Developer preview:</strong> the bearer token is only a coarse developer control and does not authenticate an accountable reviewer or separate administrative roles. The current approval packet does not provide all context required for a consequential human decision. Use only isolated test data and a localhost test runtime.</p>
+    <p class="simulator-disclaimer"><strong>Developer preview:</strong> the online endpoint is Internet-reachable but is not production-ready. Its bearer token is only a coarse developer control and does not authenticate an accountable reviewer or separate administrative roles. Use isolated test data and non-consequential tools. For a local evaluation, replace the URL with <code>http://127.0.0.1:8787</code>.</p>
   </div>
 </div>
 </section>
@@ -432,6 +432,10 @@
   </div>
   <div class="simulator-disclaimer" style="margin-bottom:24px;padding:18px;border:1px solid var(--am-border);border-radius:10px;">
     <strong>Developer Preview · Not for production authorization.</strong> PALO-AI v2.4.1 includes a JSON governance schema, draft Rego policies, proposed and executable reference MCP tools, and non-production n8n and Dify examples. Runtime enforcement, production cryptographic evidence, meaningful authenticated mobile approvals, production connectors, exactly-once execution, and collaborative-agent-team runtime semantics remain under development. An <code>allowed</code> preview response is not proof that an action is safe, lawful, currently authorized, successfully executed, or durably evidenced.
+  </div>
+  <div style="display:flex;flex-wrap:wrap;gap:12px;margin-bottom:28px;">
+    <a href="PALO_AIGovernance.html" class="palo-btn"><span data-palo-icon="robot" class="palo-icon-inline"></span>Open the PALO-AI Governance Hub</a>
+    <a href="docs/palo-ai-adoption-paths.md" class="palo-btn palo-btn-secondary">Choose an adoption path</a>
   </div>
   
   <div class="governance-shift" style="margin-bottom: 40px;">

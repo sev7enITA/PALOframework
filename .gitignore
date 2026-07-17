@@ -54,6 +54,8 @@ temp/
 .cache/
 .parcel-cache/
 .tools/
+__pycache__/
+*.pyc
 
 # Test coverage
 coverage/

@@ -12,6 +12,7 @@ PALO-AI v2.4.1 publishes governance contracts and a non-production reference run
 - OPA outages and malformed initial claims are designed to return denial. Cached-decision expiry, exactly-once execution, cross-state atomicity, and decision provenance still require hardening.
 - Tool arguments are schema-validated and their canonical digest is verified. Evidence is redacted; secrets must never be admitted by a tool argument schema.
 - The default gateway binds to `127.0.0.1`. The included bearer token is a developer control only and does not provide principal identity, role separation, workload identity, reviewer authentication, administrative authorization, rotation, rate limiting, or TLS termination.
+- For remote clients, use the repository's VPS topology and public HTTPS Gateway/MCP endpoints; `127.0.0.1` remains only the local default or a VPS-local administration binding.
 
 ## Canonical contracts
 

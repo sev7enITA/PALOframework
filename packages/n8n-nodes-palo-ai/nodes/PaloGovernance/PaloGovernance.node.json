@@ -6,14 +6,14 @@
   "resources": {
     "primaryDocumentation": [
       {
-        "url": "https://github.com/sev7enITA/PALOframework/blob/agent/palo-ai-developer-preview/packages/n8n-nodes-palo-ai/README.md"
+        "url": "https://github.com/sev7enITA/PALOframework/blob/main/packages/n8n-nodes-palo-ai/README.md"
       }
     ],
     "generic": [
       {
         "label": "PALO-AI architecture preview",
         "icon": "🌐",
-        "url": "https://github.com/sev7enITA/PALOframework/blob/agent/palo-ai-developer-preview/docs/palo-ai-n8n-governance-control-plane.md"
+        "url": "https://github.com/sev7enITA/PALOframework/blob/main/docs/palo-ai-governance-integration-guide.md"
       }
     ]
   }
