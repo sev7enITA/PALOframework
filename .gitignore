@@ -53,6 +53,7 @@ temp/
 # Cache
 .cache/
 .parcel-cache/
+.tools/
 
 # Test coverage
 coverage/

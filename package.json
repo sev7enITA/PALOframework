@@ -9,11 +9,16 @@
   },
   "scripts": {
     "validate": "node scripts/validate.mjs --root .",
+    "validate:agentic": "node scripts/validate-agentic.mjs && node --test packages/palo-mcp-server/*.test.js && python3 -m unittest examples/agentic-interface/integrations/dify/test_palo_dify_tool.py",
+    "opa:install": "node scripts/install-opa.mjs",
+    "palo:mcp": "node packages/palo-mcp-server/index.js",
+    "palo:mcp:http": "node packages/palo-mcp-server/http.js",
+    "palo:gateway": "node packages/palo-mcp-server/gateway.js",
     "validate:dist": "node scripts/validate.mjs --root dist --built",
     "build": "node scripts/build.mjs",
     "build:check": "node scripts/build.mjs --check",
     "smoke": "node scripts/browser-smoke.mjs",
-    "p0": "npm run validate && npm run build && npm run validate:dist && npm run build:check && npm run smoke"
+    "p0": "npm run validate:agentic && npm run validate && npm run build && npm run validate:dist && npm run build:check && npm run smoke"
   },
   "devDependencies": {
     "ajv": "8.20.0",
@@ -21,5 +26,10 @@
     "fast-xml-parser": "5.10.0",
     "html-validate": "11.5.5",
     "playwright": "1.61.1"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.29.0",
+    "better-sqlite3": "12.11.1",
+    "zod": "4.4.3"
   }
 }

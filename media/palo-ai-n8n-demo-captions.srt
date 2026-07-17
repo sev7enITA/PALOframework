@@ -1,0 +1,69 @@
+1
+00:00:00,000 --> 00:00:13,000
+AI agents can choose operational tools. But autonomy is not authority.
+PALO-AI makes authority, policy, oversight and evidence visible.
+
+2
+00:00:13,000 --> 00:00:26,000
+Pattern A: a Visual Governance Decision Gate normalizes each proposed action
+and exposes Allowed, Approval Required and Denied outcomes.
+
+3
+00:00:26,000 --> 00:00:39,000
+The current visual gate is useful and testable, but advisory:
+a workflow editor can still remove it.
+
+4
+00:00:39,000 --> 00:00:52,000
+Pattern B: the Governed Executor keeps credentials behind PALO
+and accepts only registered executors with schema-valid arguments.
+
+5
+00:00:52,000 --> 00:01:05,000
+Policy runs outside the model. A one-time capability is consumed
+before an allowlisted executor performs the action.
+
+6
+00:01:05,000 --> 00:01:18,000
+Pattern C: human approval is bound to the digest
+of one exact, immutable Action Claim.
+
+7
+00:01:18,000 --> 00:01:31,000
+The backend revalidates the same claim before secure resume.
+Authenticated mobile delivery remains under development.
+
+8
+00:01:31,000 --> 00:01:44,000
+Pattern D: Workflow Admission assesses workflow JSON, hosts,
+destructive operations and missing governance coverage.
+
+9
+00:01:44,000 --> 00:01:57,000
+Instance-level blocking and versioned workflow admission
+are specified future capabilities, not current claims.
+
+10
+00:01:57,000 --> 00:02:10,000
+The installable alpha runs in n8n 2.30.7 with encrypted credentials
+and three visible decision outputs.
+
+11
+00:02:10,000 --> 00:02:23,000
+It creates Action Claim 1.1, adds n8n execution metadata,
+preserves immutable approval resume and fails closed.
+
+12
+00:02:23,000 --> 00:02:36,000
+In the live test, the authenticated PALO gateway denied
+an action whose agent profile was deliberately missing.
+
+13
+00:02:36,000 --> 00:02:49,000
+n8n routed the decision to Denied with authorized set to false.
+A successful denial is meaningful preview evidence.
+
+14
+00:02:49,000 --> 00:03:00,000
+Developer preview: challenge the contracts with safe workflows.
+n8n orchestrates. PALO governs whether it is authorized.

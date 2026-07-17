@@ -1,0 +1,66 @@
+{
+    "name": "n8n-nodes-palo-ai",
+    "version": "0.1.0",
+    "description": "Developer-preview governance gate for n8n agentic workflows using PALO-AI contracts.",
+    "license": "MIT",
+    "homepage": "https://github.com/sev7enITA/PALOframework/blob/agent/palo-ai-developer-preview/docs/palo-ai-n8n-governance-control-plane.md",
+    "keywords": [
+        "n8n-community-node-package",
+        "n8n",
+        "palo",
+        "governance",
+        "agentic-ai",
+        "human-in-the-loop",
+        "opa",
+        "mcp"
+    ],
+    "author": {
+        "name": "Fabrizio Degni",
+        "email": "5058737+sev7enITA@users.noreply.github.com"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/sev7enITA/PALOframework.git",
+        "directory": "packages/n8n-nodes-palo-ai"
+    },
+    "bugs": {
+        "url": "https://github.com/sev7enITA/PALOframework/issues"
+    },
+   "scripts": {
+		"build": "n8n-node build",
+		"build:watch": "tsc --watch",
+		"dev": "n8n-node dev",
+		"lint": "n8n-node lint",
+		"lint:fix": "n8n-node lint --fix",
+		"test": "node test/paloUtils.test.cjs && node test/package.test.cjs",
+		"verify": "npm run lint && npm run build && npm run test",
+		"package:check": "npm pack --dry-run",
+		"release": "n8n-node release",
+		"prepublishOnly": "npm run verify && n8n-node prerelease"
+	},
+    "files": [
+        "dist",
+        "README.md",
+        "LICENSE"
+    ],
+    "n8n": {
+        "n8nNodesApiVersion": 1,
+        "strict": true,
+        "credentials": [
+            "dist/credentials/PaloApi.credentials.js"
+        ],
+        "nodes": [
+            "dist/nodes/PaloGovernance/PaloGovernance.node.js"
+        ]
+    },
+    "devDependencies": {
+        "@n8n/node-cli": "0.39.3",
+        "eslint": "9.32.0",
+        "prettier": "3.6.2",
+        "release-it": "^19.0.4",
+        "typescript": "5.9.2"
+    },
+    "peerDependencies": {
+        "n8n-workflow": "*"
+    }
+}

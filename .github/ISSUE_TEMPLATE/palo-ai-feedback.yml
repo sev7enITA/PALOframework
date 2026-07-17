@@ -1,0 +1,51 @@
+name: PALO-AI architecture feedback
+description: Challenge the contracts, n8n patterns, enforcement boundary or developer experience.
+title: "[PALO-AI feedback] "
+labels: ["palo-ai", "feedback"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for reviewing the developer preview. Do not include credentials, personal data, production payloads or proprietary workflow exports.
+  - type: dropdown
+    id: perspective
+    attributes:
+      label: Perspective
+      options:
+        - n8n builder
+        - AI or platform engineer
+        - Security engineer
+        - Governance, risk or compliance
+        - Researcher or policy author
+    validations:
+      required: true
+  - type: dropdown
+    id: pattern
+    attributes:
+      label: Pattern reviewed
+      options:
+        - Visual Governance Decision Gate
+        - Governed Executor
+        - Digest-Bound Human Approval
+        - Workflow Admission
+        - Cross-cutting architecture
+    validations:
+      required: true
+  - type: textarea
+    id: observation
+    attributes:
+      label: Observation or gap
+      description: What is unclear, unsafe, difficult to integrate or missing?
+    validations:
+      required: true
+  - type: textarea
+    id: recommendation
+    attributes:
+      label: Suggested improvement or test
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safety confirmation
+      options:
+        - label: I have not included secrets, personal data or production payloads.
+          required: true

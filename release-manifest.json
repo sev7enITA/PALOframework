@@ -3,7 +3,7 @@
   "release": {
     "version": "2.4.1",
     "date": "2026-07-17",
-    "status": "stable"
+    "status": "developer-preview"
   },
   "sharedAssets": {
     "version": "2.4.1",
@@ -22,8 +22,8 @@
       "date": "2026-06-22"
     },
     "mobileAndroid": {
-      "version": "2.0.0",
-      "date": "2026-03-09"
+      "version": "2.4.1",
+      "date": "2026-07-17"
     },
     "mobileIos": {
       "version": "1.7.1",
@@ -35,13 +35,48 @@
       "version": "2.4.1",
       "date": "2026-07-17"
     },
+    "agenticRuntime": {
+      "version": "1.1.0",
+      "date": "2026-07-17",
+      "status": "prototype",
+      "productionUse": false
+    },
+    "agenticRemoteMcp": {
+      "version": "1.0.0",
+      "transport": "authenticated-streamable-http",
+      "date": "2026-07-17",
+      "status": "prototype",
+      "productionUse": false
+    },
+    "agenticCapabilityMatrix": {
+      "version": "1.0.0",
+      "date": "2026-07-17",
+      "status": "developer-preview"
+    },
+    "agenticConnectorGateway": {
+      "version": "1.0.0",
+      "date": "2026-07-17",
+      "status": "prototype",
+      "productionUse": false
+    },
+    "n8nGovernanceControlPlane": {
+      "version": "0.1.0",
+      "date": "2026-07-17",
+      "status": "installable-alpha",
+      "productionUse": false,
+      "documentation": "docs/palo-ai-n8n-governance-control-plane.md",
+      "package": "packages/n8n-nodes-palo-ai",
+      "npmPublished": false,
+      "n8nVerified": false,
+      "testedWith": "n8n 2.30.7"
+    },
     "stakeholderOnboarding": {
       "version": "2.4.0",
       "date": "2026-07-12"
     },
     "assessmentPath": {
-      "version": "2.4.0",
-      "date": "2026-07-12"
+      "version": "2.4.1",
+      "date": "2026-07-17"
     },
     "operationalEvidenceCore": {
       "version": "1.0.0",
@@ -71,6 +106,40 @@
   "publication": {
     "source": "root authoring files",
     "artifact": "dist",
-    "buildCommand": "npm run build"
+    "buildCommand": "npm run build",
+    "architecturePreview": {
+      "status": "source-ready",
+      "architecture": "docs/palo-ai-n8n-governance-control-plane.md",
+      "publicationStatus": "docs/palo-ai-n8n-publication-status.md",
+      "communityDiscussion": "docs/community/n8n-architecture-preview-post.md",
+      "heroInfographic": "assets/palo-ai-n8n-scenarios/palo-ai-n8n-governance-hero.png",
+      "heroInfographicRefresh": "assets/palo-ai-n8n-scenarios/palo-ai-n8n-governance-hero-v2.png",
+      "patternScreens": [
+        "assets/palo-ai-n8n-scenarios/pattern-a-visual-governance-gate.png",
+        "assets/palo-ai-n8n-scenarios/pattern-b-governed-executor.png",
+        "assets/palo-ai-n8n-scenarios/pattern-c-secure-human-approval.png",
+        "assets/palo-ai-n8n-scenarios/pattern-d-workflow-admission.png"
+      ],
+      "demoVideo": {
+        "path": "media/palo-ai-n8n-architecture-preview-3min.mp4",
+        "captions": "media/palo-ai-n8n-demo-captions.srt",
+        "status": "recorded-developer-preview"
+      },
+      "installablePackage": {
+        "name": "n8n-nodes-palo-ai",
+        "version": "0.1.0",
+        "path": "packages/n8n-nodes-palo-ai",
+        "status": "local-alpha",
+        "npmPublished": false
+      },
+      "gates": {
+        "architectureCommit": "ready",
+        "communityDiscussion": "draft-ready-not-posted",
+        "designPartners": "recruiting",
+        "realN8nInstallation": "required-before-npm",
+        "npmPublication": "deferred",
+        "n8nTemplatesOrConnector": "deferred"
+      }
+    }
   }
 }

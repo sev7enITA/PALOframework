@@ -1,63 +1,70 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://paloframework.org/schemas/palo-agentic-interface.schema.json",
-  "title": "PALO Agentic Interface Configuration",
+  "title": "PALO Agent Profile",
+  "description": "Versioned authority-profile contract intended for registration by a governance administrator. The v2.4.1 reference runtime does not authenticate that administrative role or attest the profile publisher. The profile never contains signing secrets.",
   "type": "object",
-  "required": [
-    "format",
-    "schemaVersion",
-    "agentId",
-    "identity",
-    "authority",
-    "delegation",
-    "evidence"
-  ],
+  "required": ["format", "schemaVersion", "profileVersion", "agentId", "identity", "authority", "delegation", "evidence"],
   "properties": {
     "format": { "const": "palo-agentic-interface" },
-    "schemaVersion": { "const": "1.0.0" },
+    "schemaVersion": { "const": "1.1.0" },
+    "profileVersion": { "type": "string", "pattern": "^[1-9][0-9]*\\.[0-9]+\\.[0-9]+$" },
     "agentId": { "type": "string", "pattern": "^agent-[a-zA-Z0-9][a-zA-Z0-9-]{5,63}$" },
+    "status": { "enum": ["active", "suspended", "retired"], "default": "active" },
     "identity": {
       "type": "object",
       "required": ["role", "lineage", "baseModel", "systemPromptHash"],
       "properties": {
         "role": { "type": "string", "minLength": 1, "maxLength": 100 },
-        "lineage": { "type": "string", "minLength": 1 },
-        "baseModel": { "type": "string", "minLength": 1 },
-        "systemPromptHash": { "type": "string", "pattern": "^[a-fA-F0-9]{64}$" },
+        "lineage": { "type": "string", "minLength": 1, "maxLength": 500 },
+        "baseModel": { "type": "string", "minLength": 1, "maxLength": 200 },
+        "systemPromptHash": { "type": "string", "pattern": "^sha256:[a-fA-F0-9]{64}$" },
         "temperature": { "type": "number", "minimum": 0, "maximum": 2 }
       },
       "additionalProperties": false
     },
     "authority": {
       "type": "object",
-      "required": ["allowedTools", "externalNetwork", "readScopes", "writeScopes"],
+      "required": ["allowedTools", "allowedOperations", "externalNetwork", "readScopes", "writeScopes", "argumentSchemas", "requireVibeGate"],
       "properties": {
-        "allowedTools": { "type": "array", "items": { "type": "string" } },
+        "allowedTools": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+        "allowedOperations": { "type": "array", "uniqueItems": true, "items": { "enum": ["read", "create", "update", "delete", "execute", "delegate"] } },
         "externalNetwork": { "type": "boolean" },
-        "readScopes": { "type": "array", "items": { "type": "string" } },
-        "writeScopes": { "type": "array", "items": { "type": "string" } }
+        "allowedNetworkHosts": { "type": "array", "uniqueItems": true, "items": { "type": "string", "pattern": "^(\\*|[a-zA-Z0-9.-]+)$" } },
+        "readScopes": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+        "writeScopes": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+        "argumentSchemas": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": { "type": "object" }
+        },
+        "requireVibeGate": { "type": "boolean" }
       },
       "additionalProperties": false
     },
     "delegation": {
       "type": "object",
-      "required": ["maxSubagents", "allowedSubagentRoles", "requireHumanValidation"],
+      "required": ["maxDepth", "maxSubagents", "allowedSubagentRoles", "requireHumanValidation"],
       "properties": {
-        "maxSubagents": { "type": "integer", "minimum": 0 },
-        "allowedSubagentRoles": { "type": "array", "items": { "type": "string" } },
+        "maxDepth": { "type": "integer", "minimum": 0, "maximum": 20 },
+        "maxSubagents": { "type": "integer", "minimum": 0, "maximum": 1000 },
+        "allowedSubagentRoles": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
         "requireHumanValidation": { "type": "boolean" }
       },
       "additionalProperties": false
     },
     "evidence": {
       "type": "object",
-      "required": ["signKeyHash", "auditTrailPath"],
+      "required": ["keyId", "algorithm", "auditTrailId", "redactFields"],
       "properties": {
-        "signKeyHash": { "type": "string", "pattern": "^[a-fA-F0-9]{64}$" },
-        "auditTrailPath": { "type": "string", "minLength": 1 }
+        "keyId": { "type": "string", "pattern": "^key-[a-zA-Z0-9._-]{3,100}$" },
+        "algorithm": { "const": "HMAC-SHA256" },
+        "auditTrailId": { "type": "string", "pattern": "^ledger-[a-zA-Z0-9._-]{3,100}$" },
+        "redactFields": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1 } }
       },
       "additionalProperties": false
-    }
+    },
+    "metadata": { "type": "object", "additionalProperties": true }
   },
   "additionalProperties": false
 }

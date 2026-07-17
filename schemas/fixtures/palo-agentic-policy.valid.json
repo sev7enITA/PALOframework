@@ -1,0 +1,11 @@
+{
+  "format": "palo-agentic-policy",
+  "schemaVersion": "1.0.0",
+  "policyId": "policy-agentic-governance",
+  "policyVersion": "1.1.0",
+  "status": "active",
+  "regoPackage": "palo.agentic.governance",
+  "entrypoint": "action_decision",
+  "bundleDigest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "metadata": { "inputSchemaVersion": "1.0.0" }
+}

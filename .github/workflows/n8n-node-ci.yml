@@ -1,0 +1,32 @@
+name: Validate PALO n8n community node
+
+on:
+  pull_request:
+    paths:
+      - 'packages/n8n-nodes-palo-ai/**'
+      - '.github/workflows/n8n-node-ci.yml'
+  push:
+    branches: [main, agent/palo-ai-developer-preview]
+    paths:
+      - 'packages/n8n-nodes-palo-ai/**'
+      - '.github/workflows/n8n-node-ci.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: packages/n8n-nodes-palo-ai
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: packages/n8n-nodes-palo-ai/package-lock.json
+      - run: npm ci
+      - run: npm run verify
+      - run: npm pack --dry-run

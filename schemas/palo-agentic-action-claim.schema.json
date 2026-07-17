@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paloframework.org/schemas/palo-agentic-action-claim.schema.json",
+  "title": "PALO Agentic Action Claim",
+  "description": "Developer-preview interoperability contract for a proposed agent action. Schema validity is not authorization, safety evidence, legal approval, or proof of execution.",
+  "type": "object",
+  "required": ["format", "schemaVersion", "claimId", "agentId", "caseId", "action", "requestedScopes", "externalNetwork", "delegation", "requestedAt", "expiresAt", "nonce", "idempotencyKey", "sequenceNumber"],
+  "properties": {
+    "format": { "const": "palo-agentic-action-claim" },
+    "schemaVersion": { "const": "1.1.0" },
+    "claimId": { "type": "string", "pattern": "^claim-[a-f0-9-]{36}$" },
+    "agentId": { "type": "string", "pattern": "^agent-[a-zA-Z0-9][a-zA-Z0-9-]{5,63}$" },
+    "caseId": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "action": {
+      "type": "object",
+      "required": ["tool", "operation", "resource", "path", "networkIntent", "arguments", "argumentsDigest", "argumentSchemaDigest"],
+      "properties": {
+        "tool": { "type": "string", "minLength": 1, "maxLength": 200 },
+        "operation": { "enum": ["read", "create", "update", "delete", "execute", "delegate"] },
+        "resource": { "type": "string", "minLength": 1, "maxLength": 1000 },
+        "path": { "type": "string", "minLength": 1, "maxLength": 1000, "pattern": "^/" },
+        "networkIntent": { "enum": ["none", "read", "write", "bidirectional"] },
+        "networkHost": { "type": "string", "minLength": 1, "maxLength": 253, "pattern": "^[a-z0-9.-]+$" },
+        "arguments": { "type": "object", "maxProperties": 100, "additionalProperties": true },
+        "argumentsDigest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+        "argumentSchemaDigest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" }
+      },
+      "additionalProperties": false
+    },
+    "requestedScopes": {
+      "type": "object",
+      "required": ["read", "write"],
+      "properties": {
+        "read": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+        "write": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1 } }
+      },
+      "additionalProperties": false
+    },
+    "externalNetwork": { "type": "boolean" },
+    "delegation": {
+      "type": "object",
+      "required": ["depth", "subagentCount"],
+      "properties": {
+        "depth": { "type": "integer", "minimum": 0 },
+        "subagentCount": { "type": "integer", "minimum": 0 },
+        "parentAgentId": { "type": "string", "pattern": "^agent-[a-zA-Z0-9][a-zA-Z0-9-]{5,63}$" },
+        "requestedSubagentRole": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
+    },
+    "requestedAt": { "type": "string", "format": "date-time" },
+    "expiresAt": { "type": "string", "format": "date-time" },
+    "nonce": { "type": "string", "pattern": "^[a-zA-Z0-9_-]{16,128}$" },
+    "idempotencyKey": { "type": "string", "pattern": "^[a-zA-Z0-9._:-]{16,200}$" },
+    "sequenceNumber": { "type": "integer", "minimum": 1, "maximum": 9007199254740991 },
+    "metadata": { "type": "object", "additionalProperties": true }
+  },
+  "additionalProperties": false
+}

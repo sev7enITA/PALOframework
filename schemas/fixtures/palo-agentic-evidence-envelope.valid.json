@@ -1,0 +1,18 @@
+{
+  "format": "palo-agentic-evidence-envelope",
+  "schemaVersion": "1.0.0",
+  "eventId": "event-44444444-4444-4444-8444-444444444444",
+  "caseId": "case-runtime-example",
+  "agentId": "agent-support-copilot-sub-1",
+  "claimId": "claim-11111111-1111-4111-8111-111111111111",
+  "decisionId": "decision-22222222-2222-4222-8222-222222222222",
+  "approvalId": "approval-33333333-3333-4333-8333-333333333333",
+  "outcome": "pending_approval",
+  "recordedAt": "2026-07-17T10:00:01Z",
+  "redactedPayload": { "resource": "/workspace/support-docs/runbook.md" },
+  "payloadDigest": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+  "previousEventDigest": null,
+  "keyId": "key-support-2026",
+  "algorithm": "HMAC-SHA256",
+  "signature": "hmac-sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+}

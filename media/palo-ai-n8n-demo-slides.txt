@@ -1,0 +1,7 @@
+00:00–00:26 — Pattern A: Visual Governance Decision Gate
+00:26–00:52 — Pattern B: Governed Executor
+00:52–01:18 — Pattern C: Digest-Bound Human Approval
+01:18–01:44 — Pattern D: Workflow Admission
+01:44–02:10 — Real n8n workflow and three outputs
+02:10–02:36 — Real PALO node configuration
+02:36–03:00 — Real fail-closed Denied runtime result and invitation

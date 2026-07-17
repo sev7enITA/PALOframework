@@ -32,6 +32,12 @@ jobs:
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
 
+      - name: Install checksum-verified OPA
+        run: npm run opa:install
+
+      - name: Validate agentic contracts, policy, runtime, protocol, and connectors
+        run: npm run validate:agentic
+
       - name: Validate authoring source
         run: npm run validate
 
