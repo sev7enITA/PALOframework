@@ -1,0 +1,15 @@
+{
+  "format": "palo-agentic-policy-decision",
+  "schemaVersion": "1.0.0",
+  "decisionId": "decision-22222222-2222-4222-8222-222222222222",
+  "claimId": "claim-11111111-1111-4111-8111-111111111111",
+  "agentId": "agent-support-copilot-sub-1",
+  "status": "pending_approval",
+  "reasons": ["human validation is required"],
+  "policyVersion": "palo-agentic-governance/1.0.0",
+  "profileVersion": "1.0.0",
+  "claimDigest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "decidedAt": "2026-07-17T10:00:01Z",
+  "approvalId": "approval-33333333-3333-4333-8333-333333333333",
+  "obligations": ["obtain_bound_human_approval"]
+}

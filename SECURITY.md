@@ -4,6 +4,8 @@
 
 | Version | Supported          |
 | ------- | ------------------ |
+| 2.4.x website and static tools | :white_check_mark: |
+| 2.4.1 PALO-AI developer preview runtime | :x: non-production |
 | 1.3.x   | :white_check_mark: |
 | 1.2.x   | :white_check_mark: |
 | 1.1.x   | :x:                |
@@ -12,6 +14,14 @@
 ## Reporting a Vulnerability
 
 We take the security of PALO Framework seriously. If you believe you have found a security vulnerability, please report it to us as described below.
+
+## PALO-AI developer-preview boundary
+
+PALO-AI v2.4.1 runtime code, remote MCP transport, approval clients, HMAC/SQLite evidence flow, Vibe Gate, and n8n/Dify examples are published for developer evaluation and are not supported for production authorization or consequential tool execution.
+
+Known preview limitations are documented in `packages/palo-mcp-server/README.md`, `examples/agentic-interface/README.md`, and `agentic/capability-matrix.json`. In particular, the preview does not provide production identity-aware RBAC, exactly-once execution, atomic runtime/evidence state, trusted reviewer authentication, KMS/HSM lifecycle, unavoidable pre-tool enforcement, production connectors, or collaborative-agent-team runtime semantics.
+
+Security researchers may report additional issues through the private process below. Do not test the preview against systems, accounts, data, or tools you do not own or have explicit authorization to assess.
 
 ### Please do NOT:
 

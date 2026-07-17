@@ -1,77 +1,37 @@
 {
-  "mcpVersion": "1.0.0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "protocol": "Model Context Protocol",
+  "protocolRevision": "2025-06-18",
   "name": "palo-governance-server",
-  "version": "1.0.0",
-  "description": "Programmatic Model Context Protocol (MCP) server for PALO Agentic Interface (PALO-AI) execution, compliance, and evidence tracking.",
+  "version": "2.4.1",
+  "releaseStatus": "developer-preview",
+  "productionUse": false,
+  "disclaimer": "Reference MCP contract and implementation for isolated evaluation only. It is not a production authorization service, trusted execution boundary, exactly-once executor, authenticated approval service, compliance certification, or production evidence platform.",
+  "implementations": {
+    "stdio": "packages/palo-mcp-server/index.js",
+    "authenticatedStreamableHttp": "packages/palo-mcp-server/http.js",
+    "connectorRestGateway": "packages/palo-mcp-server/gateway.js"
+  },
+  "persistence": "Prototype SQLite WAL store with FULL synchronous commits and append-only evidence triggers; cross-state atomicity, backup, retention, and tamper-resistant anchoring are not provided.",
+  "authentication": "A shared bearer token is mandatory for Streamable HTTP and REST testing. It does not provide principal identity, RBAC, administrative authorization, reviewer authentication, rotation, rate limiting, or TLS termination.",
+  "environment": {
+    "PALO_OPA_URL": "Required for reference evaluation; absence or outage returns a denial response.",
+    "PALO_DATA_DIR": "Private runtime directory containing palo-agentic.sqlite.",
+    "PALO_HMAC_KEYS_JSON": "Protected keyId-to-secret map; each secret must contain at least 32 bytes.",
+    "PALO_MCP_HTTP_TOKEN": "Bearer token of at least 24 bytes for Streamable HTTP.",
+    "PALO_GATEWAY_TOKEN": "Bearer token of at least 24 bytes for the connector REST gateway."
+  },
   "tools": [
-    {
-      "name": "palo_register_agent",
-      "description": "Register an agent's Identity and Authority Limits inside the local PALO Case File.",
-      "inputSchema": {
-        "type": "object",
-        "required": [
-          "caseId",
-          "agentId",
-          "role",
-          "baseModel",
-          "systemPromptHash",
-          "allowedTools",
-          "readScopes",
-          "writeScopes"
-        ],
-        "properties": {
-          "caseId": { "type": "string", "description": "The unique case file ID." },
-          "agentId": { "type": "string", "description": "The unique agent identifier." },
-          "role": { "type": "string", "description": "The role name of the agent (e.g. Lead, Subagent, Auditor)." },
-          "baseModel": { "type": "string", "description": "The underlying LLM model (e.g. gemini-2.5-flash)." },
-          "systemPromptHash": { "type": "string", "description": "SHA-256 hash of the system instructions." },
-          "allowedTools": { "type": "array", "items": { "type": "string" }, "description": "List of allowed tools." },
-          "readScopes": { "type": "array", "items": { "type": "string" }, "description": "Permitted directory read scopes." },
-          "writeScopes": { "type": "array", "items": { "type": "string" }, "description": "Permitted directory write scopes." }
-        }
-      }
-    },
-    {
-      "name": "palo_verify_action_authority",
-      "description": "Intercept and check if a proposed agent tool execution complies with PALO authority matrix and policy boundaries.",
-      "inputSchema": {
-        "type": "object",
-        "required": [
-          "caseId",
-          "agentId",
-          "proposedTool",
-          "arguments"
-        ],
-        "properties": {
-          "caseId": { "type": "string", "description": "The unique case file ID." },
-          "agentId": { "type": "string", "description": "The unique agent identifier." },
-          "proposedTool": { "type": "string", "description": "The tool name that the agent proposes to execute." },
-          "arguments": { "type": "object", "description": "Parameters for the proposed tool call." }
-        }
-      }
-    },
-    {
-      "name": "palo_submit_evidence",
-      "description": "Submit a signed evidence artifact (execution log, audit trail entry) to the active PALO Case File.",
-      "inputSchema": {
-        "type": "object",
-        "required": [
-          "caseId",
-          "artifactId",
-          "title",
-          "kind",
-          "content",
-          "signature"
-        ],
-        "properties": {
-          "caseId": { "type": "string", "description": "The unique case file ID." },
-          "artifactId": { "type": "string", "description": "Unique evidence identifier." },
-          "title": { "type": "string", "description": "Descriptive title of the evidence." },
-          "kind": { "type": "string", "description": "The evidence type (e.g. test, note, canvas, sign-log)." },
-          "content": { "type": "string", "description": "Detailed log or payload to store." },
-          "signature": { "type": "string", "description": "Cryptographic signature generated by the agent's private key." }
-        }
-      }
-    }
+    { "name": "palo_register_agent", "contract": "locally registered versioned agent and authority profile; publisher identity is not authenticated" },
+    { "name": "palo_register_policy", "contract": "locally registered versioned OPA policy manifest; bundle attestation is not provided" },
+    { "name": "palo_get_registry", "contract": "secret-free registry inventory" },
+    { "name": "palo_verify_action_authority", "contract": "normalized Action Claim and bound approval" },
+    { "name": "palo_request_approval", "contract": "exact-digest approval request" },
+    { "name": "palo_get_approval_status", "contract": "single approval state" },
+    { "name": "palo_list_approvals", "contract": "approval work queue" },
+    { "name": "palo_resolve_approval", "contract": "one terminal transition with a caller-supplied identity label and rationale" },
+    { "name": "palo_submit_evidence", "contract": "prototype signed execution-evidence submission that assumes a trusted caller" },
+    { "name": "palo_verify_evidence", "contract": "HMAC envelope verification" },
+    { "name": "palo_verify_ledger", "contract": "complete signature and hash-chain verification" }
   ]
 }

@@ -1,0 +1,24 @@
+# PALO-AI for n8n — Three-Minute Architecture Preview Demo
+
+Target length: three minutes.
+
+Language: English.
+Release status: developer preview.
+
+## Narration
+
+AI agents can now choose and call operational tools inside visual automation platforms. But autonomy is not authority. PALO-AI is an emerging governance control plane for n8n and similar platforms. It is designed to make four things visible: who may act, which policy applies, when a human must decide, and what evidence remains afterward.
+
+The first pattern is the Visual Governance Decision Gate. Before a tool call, n8n submits a normalized Action Claim containing the agent, operation, resource, path, network intent, host, arguments and expiry. PALO returns one of three explicit outcomes: allowed, approval required, or denied. The current alpha implements this visible gate, but it remains advisory because a workflow editor could remove it.
+
+The second pattern is the Governed Executor. This is the stronger enforcement target. The agent never receives operational credentials and cannot name an arbitrary tool. It calls a registered PALO executor with schema-valid arguments. Policy is evaluated outside the model, a short-lived capability is consumed once, and only then may an allowlisted executor perform the action and report the outcome.
+
+The third pattern is Digest-Bound Human Approval. Approval is not attached to a vague intent. It is bound to the digest of one immutable claim. PALO Web or Mobile shows the exact action, scope, host and expiry. After an authenticated reviewer approves or denies, the backend revalidates the same claim before issuing a one-time resume signal. Secure mobile delivery and reviewer identity are still under development.
+
+The fourth pattern is Workflow Admission. PALO assesses workflow JSON before activation or execution. It can identify ungoverned tools, code nodes, external hosts, destructive operations and missing authority profiles. The future enforced profile will bind approval to a versioned workflow digest and block incomplete coverage at instance level. This pattern is specified, not yet implemented.
+
+Here is the installable alpha running in n8n 2.30.7. The package uses an encrypted PALO credential and exposes Allowed, Approval Required and Denied outputs directly on the canvas. It creates the PALO Action Claim 1.1 contract, adds n8n execution metadata, preserves the exact claim for approval resume, and fails closed when the gateway response is unavailable or malformed.
+
+In the real runtime test, the node called the authenticated local PALO gateway. Because the agent profile was deliberately missing, PALO denied the action and n8n routed the result to the Denied output with authorized set to false. That successful denial is the evidence we want at this stage.
+
+This is a developer preview, not a production security boundary or verified n8n connector. We are inviting n8n builders, security engineers, policy authors and design partners to challenge the contracts using safe, non-production workflows. n8n orchestrates what automation does. PALO governs whether it is authorized to do it.

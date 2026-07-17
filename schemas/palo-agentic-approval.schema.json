@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paloframework.org/schemas/palo-agentic-approval.schema.json",
+  "title": "PALO Human Approval",
+  "description": "Developer-preview approval-state contract. The v2.4.1 reference clients do not provide authenticated reviewer identity or all context required for a consequential human decision.",
+  "type": "object",
+  "required": ["format", "schemaVersion", "approvalId", "claimId", "claimDigest", "caseId", "agentId", "status", "requestedBy", "requestedAt", "expiresAt"],
+  "properties": {
+    "format": { "const": "palo-agentic-approval" },
+    "schemaVersion": { "const": "1.0.0" },
+    "approvalId": { "type": "string", "pattern": "^approval-[a-f0-9-]{36}$" },
+    "claimId": { "type": "string", "pattern": "^claim-[a-f0-9-]{36}$" },
+    "claimDigest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+    "caseId": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "agentId": { "type": "string", "pattern": "^agent-[a-zA-Z0-9][a-zA-Z0-9-]{5,63}$" },
+    "status": { "enum": ["pending", "approved", "denied", "expired", "cancelled"] },
+    "requestedBy": { "type": "string", "minLength": 1 },
+    "requestedAt": { "type": "string", "format": "date-time" },
+    "expiresAt": { "type": "string", "format": "date-time" },
+    "resolvedBy": { "type": "string", "minLength": 1 },
+    "resolvedAt": { "type": "string", "format": "date-time" },
+    "rationale": { "type": "string", "maxLength": 4000 }
+  },
+  "allOf": [
+    { "if": { "properties": { "status": { "enum": ["approved", "denied", "cancelled"] } }, "required": ["status"] }, "then": { "properties": { "resolvedBy": {}, "resolvedAt": {}, "rationale": {} }, "required": ["resolvedBy", "resolvedAt", "rationale"] } }
+  ],
+  "additionalProperties": false
+}

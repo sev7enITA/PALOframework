@@ -1,0 +1,48 @@
+name: PALO-AI design-partner interest
+description: Propose a safe, non-production evaluation of governed agentic automation.
+title: "[PALO-AI design partner] "
+labels: ["palo-ai", "design-partner"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This intake is for architecture and alpha evaluation only. Do not share credentials, client names, sensitive data or production workflow exports.
+  - type: input
+    id: role
+    attributes:
+      label: Your role and team type
+      placeholder: Platform engineer at an internal automation team
+    validations:
+      required: true
+  - type: textarea
+    id: use_case
+    attributes:
+      label: Safe evaluation use case
+      description: Describe one non-production agent and one mock or reversible tool action.
+    validations:
+      required: true
+  - type: checkboxes
+    id: interests
+    attributes:
+      label: Areas you want to evaluate
+      options:
+        - label: Authority profile and Action Claim mapping
+        - label: OPA policy and denial behavior
+        - label: Human approval and immutable resume
+        - label: Evidence and replay protection
+        - label: n8n node and workflow ergonomics
+  - type: textarea
+    id: success
+    attributes:
+      label: Evaluation success criteria
+    validations:
+      required: true
+  - type: checkboxes
+    id: boundaries
+    attributes:
+      label: Evaluation boundaries
+      options:
+        - label: I understand this is a non-production developer preview.
+          required: true
+        - label: The evaluation will not use sensitive data or production credentials.
+          required: true

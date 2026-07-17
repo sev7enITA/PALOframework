@@ -1,0 +1,79 @@
+{
+  "name": "PALO-AI Visual Governance Gate — Developer Preview",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "manual-trigger",
+      "name": "When clicking Execute workflow",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [260, 300]
+    },
+    {
+      "parameters": {
+        "operation": "propose",
+        "caseId": "case-safe-local-demo",
+        "agentId": "agent-safe-local-demo",
+        "proposedTool": "mock_create_issue",
+        "actionOperation": "create",
+        "resource": "mock:issue",
+        "path": "/issues",
+        "networkIntent": "none",
+        "arguments": "{\"title\":\"Review PALO governance design\"}",
+        "argumentSchema": "{\"type\":\"object\",\"required\":[\"title\"],\"properties\":{\"title\":{\"type\":\"string\"}},\"additionalProperties\":false}",
+        "readScopes": "[]",
+        "writeScopes": "[\"issue:create\"]",
+        "sequenceNumber": 1,
+        "expirySeconds": 300
+      },
+      "id": "palo-governance",
+      "name": "PALO Governance",
+      "type": "n8n-nodes-palo-ai.paloGovernance",
+      "typeVersion": 1,
+      "position": [560, 300]
+    },
+    {
+      "parameters": {},
+      "id": "allowed-outcome",
+      "name": "Allowed — Mock Only",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [900, 180]
+    },
+    {
+      "parameters": {},
+      "id": "approval-outcome",
+      "name": "Approval Required",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [900, 300]
+    },
+    {
+      "parameters": {},
+      "id": "denied-outcome",
+      "name": "Denied — Stop",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [900, 420]
+    }
+  ],
+  "connections": {
+    "When clicking Execute workflow": {
+      "main": [[{ "node": "PALO Governance", "type": "main", "index": 0 }]]
+    },
+    "PALO Governance": {
+      "main": [
+        [{ "node": "Allowed — Mock Only", "type": "main", "index": 0 }],
+        [{ "node": "Approval Required", "type": "main", "index": 0 }],
+        [{ "node": "Denied — Stop", "type": "main", "index": 0 }]
+      ]
+    }
+  },
+  "settings": { "executionOrder": "v1" },
+  "meta": {
+    "templateCredsSetupCompleted": false,
+    "paloReleaseStatus": "developer-preview",
+    "productionUse": false
+  },
+  "tags": []
+}
