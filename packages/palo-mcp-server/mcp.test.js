@@ -17,6 +17,12 @@ const expectedTools = [
 test("remote MCP binding requires an explicit host allowlist", () => {
   assert.deepEqual(parseAllowedHosts("governance.example.org, localhost,governance.example.org"), ["governance.example.org", "localhost"]);
   assert.throws(() => createAuthenticatedMcpApp({ runtime: {}, token: "test-streamable-http-token-32-bytes", host: "0.0.0.0" }), /allowed_hosts/i);
+  assert.throws(() => createAuthenticatedMcpApp({ runtime: {}, token: "test-streamable-http-token-32-bytes", host: "192.0.2.10" }), /allowed_hosts/i);
+  assert.throws(() => createAuthenticatedMcpApp({ runtime: {}, token: "test-streamable-http-token-32-bytes", host: "203.0.113.10" }), /allowed_hosts/i);
+  for (const host of ["127.0.0.1", "localhost", "LOCALHOST", "::1"]) {
+    assert.doesNotThrow(() => createAuthenticatedMcpApp({ runtime: {}, token: "test-streamable-http-token-32-bytes", host }));
+  }
+  assert.doesNotThrow(() => createAuthenticatedMcpApp({ runtime: {}, token: "test-streamable-http-token-32-bytes", host: "192.0.2.10", allowedHosts: ["governance.example.org"] }));
 });
 
 test("remote MCP can expose a least-privilege tool subset", async (t) => {

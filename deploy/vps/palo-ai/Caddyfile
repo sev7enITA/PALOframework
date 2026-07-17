@@ -28,14 +28,14 @@
 	}
 
 	@blockedGateway {
-		path /gateway/v1/agents/* /gateway/v1/policies/* /gateway/v1/approvals/resolve /gateway/v1/evidence
+		path /gateway/v1/agents/* /gateway/v1/policies/* /gateway/v1/approvals /gateway/v1/approvals/resolve /gateway/v1/evidence
 	}
 	handle @blockedGateway {
 		respond "Not found" 404
 	}
 
 	@publicGateway {
-		path /gateway/health /gateway/v1/registry /gateway/v1/actions/verify /gateway/v1/approvals /gateway/v1/approvals/* /gateway/v1/evidence/verify-ledger
+		path /gateway/health /gateway/v1/registry /gateway/v1/actions/verify /gateway/v1/approvals/* /gateway/v1/evidence/verify-ledger
 	}
 	handle @publicGateway {
 		uri strip_prefix /gateway
