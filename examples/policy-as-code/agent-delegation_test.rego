@@ -105,6 +105,15 @@ test_network_intent_mismatch_is_denied if {
 	claim := object.union(base_claim, {"externalNetwork": true})
 	decision := governance.action_decision with input as object.union(base_input, {"claim": claim})
 	decision.status == "denied"
+	decision.reasons == ["policy input is missing or malformed"]
+}
+
+test_inverse_network_intent_mismatch_is_denied if {
+	action := object.union(base_claim.action, {"networkIntent": "read", "networkHost": "example.com"})
+	claim := object.union(base_claim, {"externalNetwork": false, "action": action})
+	decision := governance.action_decision with input as object.union(base_input, {"claim": claim})
+	decision.status == "denied"
+	decision.reasons == ["policy input is missing or malformed"]
 }
 
 test_vibe_gate_required_for_coding_agent if {

@@ -44,14 +44,16 @@ function isNewer(next, current) {
   return false;
 }
 
-function redact(value, fields) {
-  const sensitive = new Set(["authorization", "cookie", "password", "secret", "token", "apiKey", "privateKey", ...fields].map((key) => key.toLowerCase()));
+function redact(value, fields = []) {
+  const extraFields = Array.isArray(fields) ? fields : [];
+  const sensitive = new Set(["authorization", "cookie", "password", "secret", "token", "apiKey", "privateKey", ...extraFields].map((key) => key.toLowerCase()));
   if (Array.isArray(value)) return value.map((item) => redact(item, fields));
   if (!value || typeof value !== "object") return value;
   return Object.fromEntries(Object.entries(value).map(([key, item]) => [key, sensitive.has(key.toLowerCase()) ? "[REDACTED]" : redact(item, fields)]));
 }
 
 export function normalizeActionClaim(input) {
+  if (!input || typeof input !== "object" || Array.isArray(input)) throw new Error("Action Claim must be an object");
   const claim = clone(input);
   if (!claim?.action) throw new Error("Action Claim is missing action");
   claim.action.resource = String(claim.action.resource || "").trim();
@@ -262,11 +264,12 @@ export class GovernanceRuntime {
     return decision;
   }
 
-  async requestApproval(inputClaim, claimDigest, requestedBy = inputClaim.agentId, ttlSeconds = 900) {
+  async requestApproval(inputClaim, claimDigest, requestedBy, ttlSeconds = 900) {
     const claim = normalizeActionClaim(inputClaim); const digest = claimDigest || sha256(claim);
     const existing = this.db.prepare("SELECT approval_json FROM approvals WHERE claim_digest = ? AND status = 'pending'").get(digest);
     if (existing) return parse(existing.approval_json);
-    const approval = { format: "palo-agentic-approval", schemaVersion: "1.0.0", approvalId: id("approval"), claimId: claim.claimId, claimDigest: digest, caseId: claim.caseId, agentId: claim.agentId, status: "pending", requestedBy, requestedAt: nowIso(), expiresAt: new Date(Date.now() + Math.max(30, Math.min(ttlSeconds, 86400)) * 1000).toISOString() };
+    const resolvedRequestedBy = requestedBy ?? claim.agentId;
+    const approval = { format: "palo-agentic-approval", schemaVersion: "1.0.0", approvalId: id("approval"), claimId: claim.claimId, claimDigest: digest, caseId: claim.caseId, agentId: claim.agentId, status: "pending", requestedBy: resolvedRequestedBy, requestedAt: nowIso(), expiresAt: new Date(Date.now() + Math.max(30, Math.min(ttlSeconds, 86400)) * 1000).toISOString() };
     assertSchema("palo-agentic-approval", approval);
     this.db.prepare("INSERT INTO approvals VALUES (?, ?, ?, ?, ?, ?)").run(approval.approvalId, approval.claimId, approval.claimDigest, approval.status, JSON.stringify(approval), nowIso());
     return approval;

@@ -22,7 +22,7 @@ input_valid if {
 	input.policy.status == "active"
 	input.policy.entrypoint == "action_decision"
 	input.claim.action.networkIntent in {"none", "read", "write", "bidirectional"}
-	input.claim.externalNetwork == input.claim.action.networkIntent != "none"
+	input.claim.externalNetwork == (input.claim.action.networkIntent != "none")
 	is_object(input.claim.action.arguments)
 	is_number(input.claim.sequenceNumber)
 	is_string(input.claim.idempotencyKey)

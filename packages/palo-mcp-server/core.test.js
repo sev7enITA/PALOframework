@@ -79,6 +79,24 @@ test("approval is immutable and bound to the exact Action Claim", async (t) => {
   await assert.rejects(() => runtime.resolveApproval(approval.approvalId, "denied", "reviewer", "changed mind"), /terminal state/);
 });
 
+test("approval validation precedes default requester resolution", async (t) => {
+  const { runtime } = await fixture(t);
+  await assert.rejects(() => runtime.requestApproval(undefined), /Action Claim must be an object/);
+  const claim = makeClaim(1);
+  const approval = await runtime.requestApproval(claim);
+  assert.equal(approval.requestedBy, claim.agentId);
+});
+
+test("legacy missing redaction fields do not interrupt evidence recording", async (t) => {
+  const { runtime } = await fixture(t); const claim = makeClaim(1);
+  const decision = await runtime.verifyAction(claim);
+  const row = runtime.db.prepare("SELECT profile_json FROM profiles WHERE case_id = ? AND agent_id = ? AND is_current = 1").get(claim.caseId, claim.agentId);
+  const legacyProfile = JSON.parse(row.profile_json); legacyProfile.evidence.redactFields = null;
+  runtime.db.prepare("UPDATE profiles SET profile_json = ? WHERE case_id = ? AND agent_id = ? AND is_current = 1").run(JSON.stringify(legacyProfile), claim.caseId, claim.agentId);
+  const evidence = runtime.recordEvidence({ claim, decision, outcome: "pending_approval", payload: { token: "sensitive", result: "recorded" } });
+  assert.deepEqual(evidence.redactedPayload, { token: "[REDACTED]", result: "recorded" });
+});
+
 test("E2E register → deny → approval → execute → sign → persist → verify", async (t) => {
   const { runtime } = await fixture(t, false); await runtime.registerAgent("case-runtime-test", profile);
   const denied = await runtime.verifyAction(makeClaim(1, { action: { ...makeClaim().action, tool: "shell" } }));
