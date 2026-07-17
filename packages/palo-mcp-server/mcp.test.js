@@ -7,12 +7,29 @@ import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js";
 import { StreamableHTTPClientTransport } from "@modelcontextprotocol/sdk/client/streamableHttp.js";
 import { GovernanceRuntime } from "./core.js";
-import { createAuthenticatedMcpApp } from "./http.js";
+import { createAuthenticatedMcpApp, parseAllowedHosts } from "./http.js";
 
 const expectedTools = [
   "palo_get_approval_status", "palo_get_registry", "palo_list_approvals", "palo_register_agent", "palo_register_policy",
   "palo_request_approval", "palo_resolve_approval", "palo_submit_evidence", "palo_verify_action_authority", "palo_verify_evidence", "palo_verify_ledger"
 ];
+
+test("remote MCP binding requires an explicit host allowlist", () => {
+  assert.deepEqual(parseAllowedHosts("governance.example.org, localhost,governance.example.org"), ["governance.example.org", "localhost"]);
+  assert.throws(() => createAuthenticatedMcpApp({ runtime: {}, token: "test-streamable-http-token-32-bytes", host: "0.0.0.0" }), /allowed_hosts/i);
+});
+
+test("remote MCP can expose a least-privilege tool subset", async (t) => {
+  const dataDir = await mkdtemp(path.join(os.tmpdir(), "palo-http-subset-")); const runtime = new GovernanceRuntime({ dataDir }); const token = "test-streamable-http-token-32-bytes";
+  const exposedTools = ["palo_get_registry", "palo_verify_action_authority"];
+  const app = createAuthenticatedMcpApp({ runtime, token, exposedTools }); const listener = await new Promise((resolve) => { const server = app.listen(0, "127.0.0.1", () => resolve(server)); });
+  t.after(async () => { await new Promise((resolve) => listener.close(resolve)); runtime.close(); await rm(dataDir, { recursive: true, force: true }); });
+  const endpoint = new URL(`http://127.0.0.1:${listener.address().port}/mcp`);
+  const transport = new StreamableHTTPClientTransport(endpoint, { requestInit: { headers: { Authorization: `Bearer ${token}` } } });
+  const client = new Client({ name: "palo-http-subset-test", version: "1.0.0" });
+  try { await client.connect(transport); const response = await client.listTools(); assert.deepEqual(response.tools.map((tool) => tool.name).sort(), exposedTools); }
+  finally { await client.close(); }
+});
 
 test("stdio MCP server advertises the complete governance toolkit", async () => {
   const transport = new StdioClientTransport({ command: process.execPath, args: ["packages/palo-mcp-server/index.js"], cwd: process.cwd(), stderr: "pipe", env: { ...process.env, PALO_DATA_DIR: path.join(os.tmpdir(), `palo-stdio-${crypto.randomUUID()}`) } });

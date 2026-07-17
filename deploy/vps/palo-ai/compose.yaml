@@ -1,0 +1,149 @@
+name: palo-ai-governance
+
+services:
+  opa:
+    image: ${OPA_IMAGE:-openpolicyagent/opa:1.17.0-static}
+    command:
+      - run
+      - --server
+      - --addr=0.0.0.0:8181
+      - --log-format=json
+      - --log-level=info
+      - /policy/agent-delegation.rego
+    restart: unless-stopped
+    read_only: true
+    cap_drop: [ALL]
+    cap_add: [SETUID, SETGID]
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+      - ../../../examples/policy-as-code/agent-delegation.rego:/policy/agent-delegation.rego:ro
+    networks: [backend]
+    healthcheck:
+      test: ["CMD", "/opa", "eval", "--data", "/policy/agent-delegation.rego", "data.palo.agentic.governance"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  palo-gateway:
+    build:
+      context: ../../..
+      dockerfile: deploy/vps/palo-ai/Dockerfile
+    command: ["node", "packages/palo-mcp-server/gateway.js"]
+    restart: unless-stopped
+    read_only: true
+    cap_drop: [ALL]
+    cap_add: [SETUID, SETGID]
+    security_opt:
+      - no-new-privileges:true
+    tmpfs:
+      - /tmp:size=32m,mode=1777
+    environment:
+      PALO_GATEWAY_HOST: 0.0.0.0
+      PALO_GATEWAY_PORT: 8787
+      PALO_GATEWAY_TOKEN_FILE: /run/secrets/palo_gateway_token
+      PALO_HMAC_KEYS_JSON_FILE: /run/secrets/palo_hmac_keys
+      PALO_OPA_URL: http://opa:8181
+      PALO_DATA_DIR: /var/lib/palo
+    secrets:
+      - palo_gateway_token
+      - palo_hmac_keys
+    volumes:
+      - palo_data:/var/lib/palo
+    ports:
+      - 127.0.0.1:8787:8787
+    networks: [backend]
+    depends_on:
+      opa:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:8787/health').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+
+  palo-mcp:
+    build:
+      context: ../../..
+      dockerfile: deploy/vps/palo-ai/Dockerfile
+    command: ["node", "packages/palo-mcp-server/http.js"]
+    restart: unless-stopped
+    read_only: true
+    cap_drop: [ALL]
+    security_opt:
+      - no-new-privileges:true
+    tmpfs:
+      - /tmp:size=32m,mode=1777
+    environment:
+      PALO_MCP_HTTP_HOST: 0.0.0.0
+      PALO_MCP_HTTP_PORT: 8788
+      PALO_MCP_ALLOWED_HOSTS: ${PALO_DOMAIN},127.0.0.1,localhost
+      PALO_MCP_EXPOSED_TOOLS: palo_get_registry,palo_verify_action_authority,palo_request_approval,palo_get_approval_status,palo_verify_evidence,palo_verify_ledger
+      PALO_MCP_HTTP_TOKEN_FILE: /run/secrets/palo_mcp_token
+      PALO_HMAC_KEYS_JSON_FILE: /run/secrets/palo_hmac_keys
+      PALO_OPA_URL: http://opa:8181
+      PALO_DATA_DIR: /var/lib/palo
+    secrets:
+      - palo_mcp_token
+      - palo_hmac_keys
+    volumes:
+      - palo_data:/var/lib/palo
+    networks: [backend]
+    depends_on:
+      palo-gateway:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:8788/health',{headers:{Host:'127.0.0.1'}}).then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+
+  caddy:
+    image: ${CADDY_IMAGE:-caddy:2.11.4-alpine}
+    restart: unless-stopped
+    cap_drop: [ALL]
+    cap_add:
+      - NET_BIND_SERVICE
+    security_opt:
+      - no-new-privileges:true
+    environment:
+      PALO_DOMAIN: ${PALO_DOMAIN}
+      ACME_EMAIL: ${ACME_EMAIL}
+    ports:
+      - 80:80
+      - 443:443
+      - 443:443/udp
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    networks: [edge, backend]
+    depends_on:
+      palo-mcp:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://127.0.0.1:2019/config/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+secrets:
+  palo_gateway_token:
+    file: ./secrets/gateway-token
+  palo_mcp_token:
+    file: ./secrets/mcp-token
+  palo_hmac_keys:
+    file: ./secrets/hmac-keys.json
+
+volumes:
+  palo_data:
+  caddy_data:
+  caddy_config:
+
+networks:
+  edge:
+  backend:
+    internal: true

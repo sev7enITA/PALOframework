@@ -40,14 +40,28 @@ The package is intentionally not published to npm until the local install and ru
 
 ## PALO Gateway prerequisite
 
+For n8n Cloud or remote integrations, deploy the reference stack on a VPS and use the authenticated HTTPS Gateway URL described in the [online VPS deployment guide](https://github.com/sev7enITA/PALOframework/blob/main/docs/palo-ai-vps-deployment.md). The commands below are only for isolated local package evaluation.
+
 From the PALO repository root:
 
 ```bash
 npm ci
 npm run opa:install
+```
+
+Start OPA in a first terminal:
+
+```bash
+.tools/opa/opa run --server --addr 127.0.0.1:8181 \
+  examples/policy-as-code/agent-delegation.rego
+```
+
+Start the gateway in a second terminal:
+
+```bash
+export PALO_OPA_URL='http://127.0.0.1:8181'
 export PALO_GATEWAY_TOKEN='replace-with-at-least-24-random-characters'
-export PALO_HMAC_KEYS='preview-key-id:replace-with-a-long-random-secret'
-export PALO_ACTIVE_HMAC_KEY_ID='preview-key-id'
+export PALO_HMAC_KEYS_JSON='{"key-support-2026":"replace-with-at-least-32-bytes-of-secret-material"}'
 npm run palo:gateway
 ```
 
@@ -57,7 +71,7 @@ The reference gateway and its SQLite ledger are developer-preview components. Th
 
 Create an **PALO API** credential in n8n:
 
-- **Gateway URL:** for example `http://127.0.0.1:8787` in an isolated local setup;
+- **Gateway URL:** for example `https://governance.paloframework.org/gateway` online, or `http://127.0.0.1:8787` only in an isolated local setup;
 - **Bearer Token:** the same `PALO_GATEWAY_TOKEN` used by the gateway.
 
 The credential test calls the authenticated `/v1/registry` endpoint. Raw secrets are never placed in node output.
@@ -90,9 +104,10 @@ Compatibility is evidence from the documented test run, not a support guarantee.
 
 ## Public architecture
 
-- [PALO-AI governance control plane for n8n](https://github.com/sev7enITA/PALOframework/blob/agent/palo-ai-developer-preview/docs/palo-ai-n8n-governance-control-plane.md)
-- [Capability matrix](https://github.com/sev7enITA/PALOframework/blob/agent/palo-ai-developer-preview/agentic/capability-matrix.json)
-- [Launch and design-partner playbook](https://github.com/sev7enITA/PALOframework/blob/agent/palo-ai-developer-preview/docs/palo-ai-n8n-launch-playbook.md)
+- [PALO-AI integration guide](https://github.com/sev7enITA/PALOframework/blob/main/docs/palo-ai-governance-integration-guide.md)
+- [PALO-AI governance control plane for n8n](https://github.com/sev7enITA/PALOframework/blob/main/docs/palo-ai-n8n-governance-control-plane.md)
+- [Capability matrix](https://github.com/sev7enITA/PALOframework/blob/main/agentic/capability-matrix.json)
+- [Launch and design-partner playbook](https://github.com/sev7enITA/PALOframework/blob/main/docs/palo-ai-n8n-launch-playbook.md)
 
 ## Feedback
 

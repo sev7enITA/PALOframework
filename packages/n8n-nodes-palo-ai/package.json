@@ -3,7 +3,7 @@
     "version": "0.1.0",
     "description": "Developer-preview governance gate for n8n agentic workflows using PALO-AI contracts.",
     "license": "MIT",
-    "homepage": "https://github.com/sev7enITA/PALOframework/blob/agent/palo-ai-developer-preview/docs/palo-ai-n8n-governance-control-plane.md",
+    "homepage": "https://github.com/sev7enITA/PALOframework/blob/main/docs/palo-ai-governance-integration-guide.md",
     "keywords": [
         "n8n-community-node-package",
         "n8n",

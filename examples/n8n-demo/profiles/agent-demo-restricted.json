@@ -1,0 +1,43 @@
+{
+  "format": "palo-agentic-interface",
+  "schemaVersion": "1.1.0",
+  "profileVersion": "1.0.0",
+  "agentId": "agent-demo-restricted",
+  "status": "active",
+  "identity": {
+    "role": "Restricted agent attempting an unauthorized action",
+    "lineage": "com.fabriziodegni.paloframework.demo.restricted",
+    "baseModel": "demo-model",
+    "systemPromptHash": "sha256:a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f61234",
+    "temperature": 0.2
+  },
+  "authority": {
+    "allowedTools": ["read_file"],
+    "allowedOperations": ["read"],
+    "externalNetwork": false,
+    "allowedNetworkHosts": [],
+    "readScopes": ["/workspace/support-docs"],
+    "writeScopes": [],
+    "requireVibeGate": false,
+    "argumentSchemas": {
+      "read_file": {
+        "type": "object",
+        "required": ["path"],
+        "properties": { "path": { "type": "string" } },
+        "additionalProperties": false
+      }
+    }
+  },
+  "delegation": {
+    "maxDepth": 0,
+    "maxSubagents": 0,
+    "allowedSubagentRoles": [],
+    "requireHumanValidation": false
+  },
+  "evidence": {
+    "keyId": "key-support-2026",
+    "algorithm": "HMAC-SHA256",
+    "auditTrailId": "ledger-n8n-demo",
+    "redactFields": ["customerEmail", "accessToken"]
+  }
+}
