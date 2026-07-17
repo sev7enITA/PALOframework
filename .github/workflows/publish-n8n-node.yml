@@ -1,0 +1,33 @@
+name: Publish PALO n8n community node
+
+on:
+  push:
+    tags:
+      - 'n8n-node-v*'
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment: npm
+    defaults:
+      run:
+        working-directory: packages/n8n-nodes-palo-ai
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          registry-url: https://registry.npmjs.org
+          cache: npm
+          cache-dependency-path: packages/n8n-nodes-palo-ai/package-lock.json
+      - run: npm install --global npm@latest
+      - run: npm ci
+      - run: npm run verify
+      - run: npm publish --access public --provenance
+
+# Do not create an n8n-node-v* tag until the package has passed a disposable
+# instance install/runtime test and npm trusted publishing is configured.

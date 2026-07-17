@@ -59,6 +59,17 @@
       "status": "prototype",
       "productionUse": false
     },
+    "n8nGovernanceControlPlane": {
+      "version": "0.1.0",
+      "date": "2026-07-17",
+      "status": "installable-alpha",
+      "productionUse": false,
+      "documentation": "docs/palo-ai-n8n-governance-control-plane.md",
+      "package": "packages/n8n-nodes-palo-ai",
+      "npmPublished": false,
+      "n8nVerified": false,
+      "testedWith": "n8n 2.30.7"
+    },
     "stakeholderOnboarding": {
       "version": "2.4.0",
       "date": "2026-07-12"

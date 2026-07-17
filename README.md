@@ -34,6 +34,19 @@ PALO is not a certification body and does not provide legal advice. It is a prac
 
 > **PALO-AI v2.4.1 developer preview:** the agentic contracts, reference MCP server, draft Rego policies, approval clients, evidence ledger, and n8n/Dify examples are published for evaluation and interoperability feedback. They are not a production authorization service, an unavoidable tool-execution boundary, a compliance certification, or a replacement for organization-owned identity, access control, key management, monitoring, backup, retention, legal review, and security assurance. Runtime enforcement, cryptographic evidence hardening, meaningful mobile approval workflows, production connectors, and collaborative-agent-team execution remain under development.
 
+### PALO-AI for agentic automation platforms
+
+> **PALO-AI is an emerging governance control plane for n8n and agentic automation platforms, designed to make authority, policy enforcement, human oversight and cryptographic evidence visible and enforceable.**
+
+n8n orchestrates what automation does. PALO governs whether an identified agent or automation is authorized to do it. The proposed integration combines four complementary patterns: a visible decision gate, an enforced governed executor, digest-bound human approval, and workflow admission controls. Only the decision and approval-contract prototypes are available in v2.4.1; unavoidable execution and instance-level admission remain specified roadmap capabilities.
+
+- [PALO-AI n8n governance control-plane architecture](docs/palo-ai-n8n-governance-control-plane.md)
+- [Presentation and launch playbook](docs/palo-ai-n8n-launch-playbook.md)
+- [Current n8n developer-preview example](examples/agentic-interface/integrations/n8n/)
+- [Installable n8n alpha package](packages/n8n-nodes-palo-ai/)
+- [n8n alpha test report](docs/palo-ai-n8n-alpha-test-report.md)
+- [Evidence-based capability matrix](agentic/capability-matrix.json)
+
 ## Why PALO?
 
 | Governance challenge | PALO response |

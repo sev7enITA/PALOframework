@@ -7,6 +7,21 @@ and this project follows Semantic Versioning where practical.
 
 ---
 
+## [Unreleased]
+
+### Added
+
+- Added the PALO-AI governance control-plane architecture for n8n and similar agentic automation platforms, with explicit enforcement classes for the Visual Decision Gate, Governed Executor, Digest-Bound Approval, and Workflow Admission patterns
+- Added four presentation-ready PALO-AI/n8n workflow screens illustrating the visual insertion point and enforcement boundary of each architecture pattern
+- Added a public presentation and launch playbook with audience-specific positioning, demo guidance, claim discipline, staged promotion, and design-partner outreach material
+- Added an n8n integration boundary document separating the current decision-node prototype from the planned installable connector and enforced self-hosted/OEM components
+- Added the installable `n8n-nodes-palo-ai` 0.1.0 alpha package, encrypted gateway credentials, three-way decision routing, immutable approval resume, CI and deferred provenance publishing workflow
+- Added a real n8n 2.30.7 tarball install/runtime test report, safe workflow template, community discussion draft, and feedback/design-partner issue forms
+
+### Changed
+
+- Positioned PALO-AI as an emerging governance control plane while retaining developer-preview disclaimers and avoiding claims of certified, production-ready, biometric, exactly-once, or unavoidable enforcement
+
 ## [2.4.1] - 2026-07-17
 
 **Release status: Developer Preview — not approved for production authorization or consequential tool execution.**
