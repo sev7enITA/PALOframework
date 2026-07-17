@@ -45,6 +45,9 @@ n8n orchestrates what automation does. PALO governs whether an identified agent 
 - [Current n8n developer-preview example](examples/agentic-interface/integrations/n8n/)
 - [Installable n8n alpha package](packages/n8n-nodes-palo-ai/)
 - [n8n alpha test report](docs/palo-ai-n8n-alpha-test-report.md)
+- [Architecture preview publication status and staged release gates](docs/palo-ai-n8n-publication-status.md)
+- [Four-pattern hero infographic](assets/palo-ai-n8n-scenarios/palo-ai-n8n-governance-hero.png)
+- [Three-minute architecture-preview demo](media/palo-ai-n8n-architecture-preview-3min.mp4)
 - [Evidence-based capability matrix](agentic/capability-matrix.json)
 
 ## Why PALO?

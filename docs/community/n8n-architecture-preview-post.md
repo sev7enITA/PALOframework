@@ -34,6 +34,10 @@ Architecture, capability matrix and package source:
 
 https://github.com/sev7enITA/PALOframework/tree/agent/palo-ai-developer-preview
 
+Three-minute architecture preview: `media/palo-ai-n8n-architecture-preview-3min.mp4` (script and storyboard in `media/`).
+
 We are also looking for a small number of design partners with one safe, non-production workflow and one mock or reversible tool action. Please use the repository feedback/design-partner templates and do not share secrets or production data.
+
+The intake questions and safety boundaries are collected in [`docs/community/palo-ai-feedback-design-partner-form.md`](../community/palo-ai-feedback-design-partner-form.md). This post is an invitation to discuss the architecture, not a request for n8n verification or connector review.
 
 **n8n orchestrates what automation does. PALO governs whether it is authorized to do it.**
