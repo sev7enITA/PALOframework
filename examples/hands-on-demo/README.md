@@ -1,6 +1,6 @@
 # PALO-AI hands-on demo — no slides
 
-This runbook is designed for a **30–35 minute live session**. The audience sees a real n8n canvas, an authenticated PALO Gateway, an OPA/Rego decision, a human approval, a mock execution, signed evidence, replay protection and ledger verification.
+This runbook is designed for a **30–35 minute live session**. The audience first sees what happens when an agent calls a tool **without PALO**, then compares it with the same proposal through a real n8n governance gate, an authenticated PALO Gateway, an OPA/Rego decision, a human approval, a mock execution, signed evidence, replay protection and ledger verification.
 
 The scenario is deliberately safe: a fictional support assistant asks to read a synthetic refund-policy document. No payment, customer system or production tool is called.
 
@@ -10,12 +10,13 @@ The scenario is deliberately safe: a fictional support assistant asks to read a 
 
 ## What the audience should learn
 
-1. The agent does not decide its own authority.
-2. The Action Claim makes intent inspectable: tool, operation, resource, path, network intent, arguments, nonce and sequence.
-3. Policy has three visible outcomes: allowed, approval required or denied.
-4. Approval binds to the digest of one immutable claim, not to a vague task.
-5. Execution occurs only after an allowed decision.
-6. Evidence is redacted, signed and appended to a verifiable ledger.
+1. Without a governance gate, possession of a tool or credential is enough for the mock action to execute.
+2. With PALO, the agent does not decide its own authority.
+3. The Action Claim makes intent inspectable: tool, operation, resource, path, network intent, arguments, nonce and sequence.
+4. Policy has three visible outcomes: allowed, approval required or denied.
+5. Approval binds to the digest of one immutable claim, not to a vague task.
+6. Execution occurs only after an allowed decision.
+7. Evidence is redacted, signed and appended to a verifiable ledger.
 
 ## Tonight: one-time preparation
 
@@ -30,11 +31,13 @@ npm run verify
 cd ../..
 ```
 
-Confirm Docker Desktop and the local n8n instance are running. The existing n8n workflow is:
+Confirm Docker Desktop and the local n8n instance are running. The comparison workflow for the live session is:
 
 ```text
-examples/n8n-demo/PALO-AI-three-outcomes-demo.json
+examples/hands-on-demo/PALO-AI-before-after-governance-demo.json
 ```
+
+The original three-outcome workflow remains available at `examples/n8n-demo/PALO-AI-three-outcomes-demo.json`.
 
 In n8n, configure the `PALO API` credential with:
 
@@ -87,23 +90,23 @@ Restart Terminal B with a new `PALO_DATA_DIR` after rehearsal. Seed the n8n prof
 
 ## Live session choreography
 
-### 0:00–3:00 — Begin on the n8n canvas
+### 0:00–5:00 — Begin with “without PALO” versus “with PALO”
 
-Open `PALO-AI — Three Governance Outcomes`. Do not begin with the website or a diagram.
+Open `PALO-AI — Without Governance vs Governed Action`. Do not begin with the website or a diagram.
 
 Say:
 
-> “This workflow represents an agent that wants to use operational tools. The key question is not only what the model can do, but what it is authorized to do here and now.”
+> “Both branches begin with the same agent intention. On the upper branch the tool is connected directly, so possession becomes permission. On the lower branch PALO asks whether this exact action is authorized here and now.”
 
-Ask someone in the audience to predict the outcome of the three branches. Execute the workflow once. Show:
+Ask someone in the audience to predict both outcomes. Execute the workflow once. Show:
 
-- green: low-risk read is within autonomous authority;
-- amber: the same read requires a human for the supervised profile;
-- red: the delete action is outside authority.
+- upper branch: the mock tool executes immediately, with no authority decision;
+- lower branch: the supervised profile stops at `Approval Required`;
+- the three PALO outputs remain visibly available for allow, approval or deny.
 
 Do not describe the node as an unavoidable production boundary. State that this is a developer preview using mock actions.
 
-### 3:00–8:00 — Inspect one Action Claim
+### 5:00–9:00 — Inspect one Action Claim
 
 Open the output of the amber PALO node. Point to:
 
@@ -118,7 +121,7 @@ Say:
 
 > “The governance decision is made over this exact claim, not over the natural-language intention alone.”
 
-### 8:00–12:00 — Move to the practical support case
+### 9:00–13:00 — Move to the practical support case
 
 In Terminal C run:
 
@@ -127,17 +130,17 @@ export PALO_GATEWAY_TOKEN='palo-demo-only-gateway-token-32-bytes'
 npm run demo:hands-on
 ```
 
-The script first registers a versioned authority profile. Let the audience read the authority line: `read_file`, `read`, `/workspace/support-docs`, human validation required.
+The script first performs a direct mock read of a synthetic finance document. Point out the five lines showing what is absent: no profile check, no policy decision, no approval and no signed evidence. It then registers a versioned authority profile. Let the audience read the authority line: `read_file`, `read`, `/workspace/support-docs`, human validation required.
 
-### 12:00–16:00 — Show default deny
+### 13:00–17:00 — Show default deny
 
-The first request asks for `/finance/private`, which is outside the registered scope. Pause on the red decision.
+The governed request asks for the same synthetic finance area, `/finance/private`, which is outside the registered scope. Pause on the red decision.
 
 Say:
 
-> “The tool itself is valid, but authority is contextual. A valid tool call outside its registered scope is still denied.”
+> “Without PALO the direct mock tool just read this area. With PALO the tool is valid, but authority is contextual: the same access is outside the support agent’s registered scope and is denied.”
 
-### 16:00–22:00 — Human approval of the immutable claim
+### 17:00–23:00 — Human approval of the immutable claim
 
 The second request is within scope and returns `pending_approval`. Read the claim ID and digest aloud. Before pressing Enter, ask a participant to act as reviewer and confirm:
 
@@ -152,7 +155,7 @@ Say:
 
 > “Approval is not permission for the agent in general. It is permission for this immutable action claim.”
 
-### 22:00–27:00 — Execute, sign and persist
+### 23:00–28:00 — Execute, sign and persist
 
 The mock executor reads `refund-policy.txt` only after PALO returns `allowed`. Show:
 
@@ -162,7 +165,7 @@ The mock executor reads `refund-policy.txt` only after PALO returns `allowed`. S
 - fictional customer email replaced by `[REDACTED]`;
 - append-only ledger head.
 
-### 27:00–30:00 — Replay attack and verification
+### 28:00–32:00 — Replay attack and verification
 
 The script creates a different claim reusing the approved nonce. PALO denies it as a replay, then verifies the ledger chain.
 
