@@ -1,0 +1,126 @@
+{
+  "name": "PALO-AI — Without Governance vs Governed Action",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "8fc4301d-abd7-4dd1-bf19-d95b274c2267",
+      "name": "Run Before / After Demo",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [-800, 80]
+    },
+    {
+      "parameters": {},
+      "id": "b821f2a2-1b60-4169-814e-45dac663f438",
+      "name": "WITHOUT PALO — Agent Proposal",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [-500, -160]
+    },
+    {
+      "parameters": {},
+      "id": "9dc89021-148c-486e-a990-5966e1520c70",
+      "name": "Direct Mock Tool — Executes Immediately",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [-100, -160]
+    },
+    {
+      "parameters": {
+        "operation": "propose",
+        "caseId": "case-n8n-demo",
+        "agentId": "agent-demo-supervised",
+        "proposedTool": "read_file",
+        "actionOperation": "read",
+        "resource": "file:support-knowledge",
+        "path": "/workspace/support-docs/refund-policy.txt",
+        "networkIntent": "none",
+        "arguments": "{\"path\":\"/workspace/support-docs/refund-policy.txt\"}",
+        "argumentSchema": "{\"type\":\"object\",\"required\":[\"path\"],\"properties\":{\"path\":{\"type\":\"string\"}},\"additionalProperties\":false}",
+        "readScopes": "[\"/workspace/support-docs\"]",
+        "writeScopes": "[]",
+        "sequenceNumber": 1,
+        "expirySeconds": 300
+      },
+      "id": "a318304b-71be-410f-9476-c19d42f37f16",
+      "name": "WITH PALO — Governance Gate",
+      "type": "n8n-nodes-palo-ai.paloGovernance",
+      "typeVersion": 1,
+      "position": [-500, 240]
+    },
+    {
+      "parameters": {},
+      "id": "36df9fcf-ee52-4036-b748-0ccb83ac01cc",
+      "name": "Allowed — Governed Execution Path",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [-40, 120]
+    },
+    {
+      "parameters": {},
+      "id": "0e66e7aa-ce08-4a46-9581-75fa6de9d750",
+      "name": "Approval Required — Stop and Review",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [-40, 240]
+    },
+    {
+      "parameters": {},
+      "id": "8affd126-3438-4179-85b5-ab52dcffbe87",
+      "name": "Denied — Tool Does Not Execute",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [-40, 360]
+    },
+    {
+      "parameters": {
+        "content": "## WITHOUT PALO\nThe agent proposal reaches the mock tool directly. There is no authority profile, policy decision, approval binding or signed evidence.",
+        "height": 170,
+        "width": 620,
+        "color": 4
+      },
+      "id": "c7df25e8-9b9c-45b1-9e45-4f25d63ba57a",
+      "name": "Without PALO Explanation",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [-670, -400]
+    },
+    {
+      "parameters": {
+        "content": "## WITH PALO\nThe same proposal becomes an Action Claim and must pass authority, policy and — for this profile — human approval before the protected execution path.",
+        "height": 190,
+        "width": 700,
+        "color": 5
+      },
+      "id": "cc72e224-c4a3-4bb0-988c-bcc5149d75e4",
+      "name": "With PALO Explanation",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [-670, 500]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Run Before / After Demo": {
+      "main": [[
+        { "node": "WITHOUT PALO — Agent Proposal", "type": "main", "index": 0 },
+        { "node": "WITH PALO — Governance Gate", "type": "main", "index": 0 }
+      ]]
+    },
+    "WITHOUT PALO — Agent Proposal": {
+      "main": [[{ "node": "Direct Mock Tool — Executes Immediately", "type": "main", "index": 0 }]]
+    },
+    "WITH PALO — Governance Gate": {
+      "main": [
+        [{ "node": "Allowed — Governed Execution Path", "type": "main", "index": 0 }],
+        [{ "node": "Approval Required — Stop and Review", "type": "main", "index": 0 }],
+        [{ "node": "Denied — Tool Does Not Execute", "type": "main", "index": 0 }]
+      ]
+    }
+  },
+  "active": false,
+  "settings": { "executionOrder": "v1" },
+  "versionId": "31c1ec12-313d-4bf9-94a0-70bc4683dff7",
+  "meta": { "templateCredsSetupCompleted": false },
+  "tags": []
+}

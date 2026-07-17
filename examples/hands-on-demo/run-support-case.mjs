@@ -65,14 +65,14 @@ async function seedN8nProfiles() {
   console.log(`${colors.green}n8n demo profiles are ready.${colors.reset}`);
 }
 
-function makeClaim({ agentId, caseId, sequenceNumber, requestedScope, nonce = randomBytes(24).toString("base64url") }) {
+function makeClaim({ agentId, caseId, sequenceNumber, requestedScope, documentPath = "/workspace/support-docs/refund-policy.txt", nonce = randomBytes(24).toString("base64url") }) {
   const argumentSchema = {
     type: "object",
     required: ["path"],
     properties: { path: { type: "string" } },
     additionalProperties: false
   };
-  const argumentsValue = { path: "/workspace/support-docs/refund-policy.txt" };
+  const argumentsValue = { path: documentPath };
   const requestedAt = new Date();
   return {
     format: "palo-agentic-action-claim",
@@ -124,6 +124,15 @@ async function runSupportCase() {
   console.log(`Gateway: ${gatewayUrl}`);
   console.log(`Case: ${caseId}`);
 
+  headline(0, "WITHOUT PALO — the agent calls the tool directly");
+  const unrestrictedDocument = await readFile(path.join(repositoryRoot, "examples/hands-on-demo/restricted-finance-note.txt"), "utf8");
+  console.log(`${colors.red}Direct mock tool executed: true${colors.reset}`);
+  console.log(`Result: ${unrestrictedDocument.split("\n").slice(0, 3).join(" ")}`);
+  console.log("Authority profile checked: no");
+  console.log("Policy decision: none");
+  console.log("Human approval: none");
+  console.log("Signed evidence: none");
+
   headline(1, "Register a trusted authority profile");
   const registration = await gateway("/v1/agents/register", { method: "POST", body: { caseId, profile } });
   console.log(`Agent: ${registration.profile.agentId}`);
@@ -131,7 +140,7 @@ async function runSupportCase() {
   console.log("Authority: read_file + read + /workspace/support-docs; human validation required");
 
   headline(2, "Attempt an action outside the registered scope");
-  const outsideScopeClaim = makeClaim({ agentId, caseId, sequenceNumber: 1, requestedScope: "/finance/private" });
+  const outsideScopeClaim = makeClaim({ agentId, caseId, sequenceNumber: 1, requestedScope: "/finance/private", documentPath: "/finance/private/restricted-finance-note.txt" });
   const denied = await gateway("/v1/actions/verify", { method: "POST", body: { claim: outsideScopeClaim } });
   decision("PALO decision", denied);
 
