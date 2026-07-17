@@ -10,7 +10,7 @@ export class PaloApi implements ICredentialType {
 	displayName = 'PALO API';
 	icon = 'file:palo.svg' as const;
 	documentationUrl =
-		'https://github.com/sev7enITA/PALOframework/blob/agent/palo-ai-developer-preview/examples/agentic-interface/runtime/README.md';
+		'https://github.com/sev7enITA/PALOframework/blob/agent/palo-ai-developer-preview/packages/n8n-nodes-palo-ai/README.md';
 
 	properties: INodeProperties[] = [
 		{

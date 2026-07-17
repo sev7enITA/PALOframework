@@ -32,7 +32,7 @@
 		"dev": "n8n-node dev",
 		"lint": "n8n-node lint",
 		"lint:fix": "n8n-node lint --fix",
-		"test": "node test/paloUtils.test.cjs",
+		"test": "node test/paloUtils.test.cjs && node test/package.test.cjs",
 		"verify": "npm run lint && npm run build && npm run test",
 		"package:check": "npm pack --dry-run",
 		"release": "n8n-node release",
