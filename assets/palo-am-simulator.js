@@ -45,7 +45,9 @@
     var rationale = "Matrix route: " + input.autonomy + " autonomy with " + input.actionSpace + " action space.";
     if (escalations.length) rationale += " Escalated for " + escalations.join(", ") + ".";
     if (tier === 0) rationale += " Open-ended high autonomy combined with critical action authority requires redesign in this routing model.";
-    return { format: "palo-am-simulator-result", schemaVersion: "1.0.0", generatedAt: new Date().toISOString(), inputs: input, tier: tier, tierLabel: labels[tier], rationale: rationale, recommendations: { controls: unique(controls), evidence: unique(evidence), kpiKri: unique(kpis) }, disclaimer: api.disclaimer };
+    var generatedAt = new Date().toISOString();
+    var runId = "palo-am-" + generatedAt.replace(/[^0-9]/g, "").slice(0, 17) + "-" + (window.crypto && window.crypto.randomUUID ? window.crypto.randomUUID().slice(0, 8) : Math.random().toString(36).slice(2, 10));
+    return { format: "palo-am-simulator-result", schemaVersion: "1.0.0", runId: runId, generatedAt: generatedAt, inputs: input, tier: tier, tierLabel: labels[tier], rationale: rationale, recommendations: { controls: unique(controls), evidence: unique(evidence), kpiKri: unique(kpis) }, disclaimer: api.disclaimer };
   }
 
   function list(id, items) { var target = document.getElementById(id); target.innerHTML = ""; items.forEach(function (item) { var li = document.createElement("li"); li.textContent = item; target.appendChild(li); }); }
@@ -64,7 +66,14 @@
   }
 
   function toBundle() {
-    return { format: "palo-evidence-bundle", schemaVersion: "1.0.0", bundleId: "bundle-palo-am-" + String(Date.parse(result.generatedAt)), caseId: caseFile ? caseFile.caseId : undefined, generatedAt: result.generatedAt, assessment: { module: "palo-am-simulator", tier: result.tierLabel, inputs: result.inputs }, artifacts: [{ artifactId: "palo-am-simulator-result", title: "PALO-AM simulator result", kind: "agentic-risk-route", status: "ready", content: result }], sourceRegistry: caseFile ? caseFile.sources : [], freshness: { evaluatedAt: result.generatedAt, status: caseFile && caseFile.sources.length ? "current" : "unknown" }, disclaimer: result.disclaimer };
+    var sources = caseFile ? caseFile.sources : [];
+    var freshnessOrder = { superseded: 4, stale: 3, "review-due": 2, unknown: 1, current: 0 };
+    var freshness = sources.length ? sources.reduce(function (worst, source) {
+      var status = source.freshness && source.freshness.status || "unknown";
+      if (source.freshness && Date.parse(source.freshness.nextReviewAt) <= Date.parse(result.generatedAt) && status === "current") status = "review-due";
+      return freshnessOrder[status] > freshnessOrder[worst] ? status : worst;
+    }, "current") : "unknown";
+    return { format: "palo-evidence-bundle", schemaVersion: "1.0.0", bundleId: "bundle-" + result.runId, caseId: caseFile ? caseFile.caseId : undefined, generatedAt: result.generatedAt, assessment: { module: "palo-am-simulator", runId: result.runId, tier: result.tierLabel, inputs: result.inputs }, artifacts: [{ artifactId: result.runId + "-result", title: "PALO-AM simulator result", kind: "agentic-risk-route", status: "ready", content: result }, { artifactId: result.runId + "-runtime-contracts", title: "PALO-AI runtime profile and policy decisions", kind: "agentic-runtime-exchange", status: "review", content: window.PALOAMContracts ? window.PALOAMContracts.snapshot() : null }], sourceRegistry: sources, freshness: { evaluatedAt: result.generatedAt, status: freshness }, disclaimer: result.disclaimer };
   }
 
   function markdown() {
@@ -82,10 +91,16 @@
     caseFile = api.merge(caseFile, {
       status: "active",
       context: { agentic: true },
-      assessments: [{ assessmentId: "palo-am-simulator-current", module: "palo-am-simulator", recordedAt: result.generatedAt, data: result }],
-      evidence: [{ evidenceId: "palo-am-simulator-result", title: "PALO-AM simulator result", kind: "agentic-risk-route", status: "ready", recordedAt: result.generatedAt, content: result }]
+      assessments: [{ assessmentId: result.runId, module: "palo-am-simulator", recordedAt: result.generatedAt, data: result }],
+      evidence: [{ evidenceId: result.runId + "-result", title: "PALO-AM simulator result", kind: "agentic-risk-route", status: "ready", recordedAt: result.generatedAt, content: result }]
     });
-    api.save(caseFile);
+    var saved = api.save(caseFile);
+    if (!saved.ok) {
+      caseStatus.textContent = "The result could not be saved locally. Export it before leaving this page.";
+      caseStatus.setAttribute("role", "alert");
+      document.documentElement.setAttribute("data-simulator-case", "error");
+      return null;
+    }
     caseStatus.textContent = "Linked to " + caseFile.title + " (" + caseFile.caseId + ").";
     document.documentElement.setAttribute("data-simulator-case", "saved");
     return caseFile;
@@ -96,7 +111,7 @@
   document.getElementById("simulator-save-case").addEventListener("click", saveToCase);
   document.getElementById("simulator-json").addEventListener("click", function () { if (!result) return; var content = api.exportJSON(toBundle()); document.documentElement.setAttribute("data-simulator-download", "json"); window.paloDownload("palo-am-simulator.json", content, "application/json;charset=utf-8"); });
   document.getElementById("simulator-markdown").addEventListener("click", function () { if (!result) return; document.documentElement.setAttribute("data-simulator-download", "markdown"); window.paloDownload("palo-am-simulator.md", markdown(), "text/markdown;charset=utf-8"); });
-  document.getElementById("simulator-handoff").addEventListener("click", function () { var saved = saveToCase(); if (!saved) return; var handoff = api.handoff(saved, "palo-am-simulator", "assessment-path", { assessmentId: "palo-am-simulator-current" }); if (handoff.ok) window.location.href = "PALO_AssessmentPath.html?handoff=palo-am#assessment-form"; });
+  document.getElementById("simulator-handoff").addEventListener("click", function () { var saved = saveToCase(); if (!saved) return; var handoff = api.handoff(saved, "palo-am-simulator", "assessment-path", { assessmentId: result.runId }); if (handoff.ok) window.location.href = "PALO_AssessmentPath.html?handoff=palo-am#assessment-form"; else { caseStatus.textContent = "The handoff could not be persisted. Export the case before continuing."; caseStatus.setAttribute("role", "alert"); } });
 
   var handoff = api.consumeHandoff("palo-am-simulator");
   caseFile = handoff ? handoff.caseFile : api.load();

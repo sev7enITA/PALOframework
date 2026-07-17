@@ -44,7 +44,7 @@
 
   function sources(stamp) {
     var next = new Date(Date.parse(stamp) + 90 * 86400000).toISOString();
-    return sourceTemplates.map(function (source) { return Object.assign({}, source, { sourceType: "official", checkedAt: stamp, freshness: { status: "current", reviewIntervalDays: 90, nextReviewAt: next } }); });
+    return sourceTemplates.map(function (source) { return Object.assign({}, source, { sourceType: "official", checkedAt: stamp, freshness: { status: "unknown", reviewIntervalDays: 90, nextReviewAt: next } }); });
   }
 
   function buildRoute(assessment) {
@@ -80,9 +80,9 @@
       assessment: assessment,
       route: route,
       evidenceReadiness: readiness,
-      artifacts: [{ artifactId: "assessment-route", title: "Assessment Path route", kind: "assessment-route", status: "ready", content: { route: route, evidenceReadiness: readiness } }],
+      artifacts: [{ artifactId: "assessment-route-" + String(Date.parse(stamp)), title: "Assessment Path route", kind: "assessment-route", status: "ready", content: { route: route, evidenceReadiness: readiness } }],
       sourceRegistry: sourceRegistry,
-      freshness: { evaluatedAt: stamp, status: "current" },
+      freshness: { evaluatedAt: stamp, status: "unknown" },
       disclaimer: api.disclaimer
     };
   }
@@ -137,12 +137,17 @@
       title: assessment.systemName || caseFile.title,
       status: "active",
       context: { organization: assessment.organization, sector: assessment.sector, intendedUse: assessment.useCase },
-      assessments: [{ assessmentId: "assessment-path-current", module: "assessment-path", recordedAt: stamp, data: { assessment: assessment, route: route, evidenceReadiness: bundle.evidenceReadiness, bundleId: bundle.bundleId } }],
-      evidence: [{ evidenceId: "assessment-route", title: "Assessment Path route", kind: "assessment-route", status: "ready", recordedAt: stamp, content: bundle.artifacts[0].content }],
+      assessments: [{ assessmentId: "assessment-path-" + String(Date.parse(stamp)), module: "assessment-path", recordedAt: stamp, data: { assessment: assessment, route: route, evidenceReadiness: bundle.evidenceReadiness, bundleId: bundle.bundleId } }],
+      evidence: [{ evidenceId: bundle.artifacts[0].artifactId, title: "Assessment Path route", kind: "assessment-route", status: "ready", recordedAt: stamp, content: bundle.artifacts[0].content }],
       sources: bundle.sourceRegistry,
       latestEvidenceBundle: bundle
     });
-    api.save(caseFile);
+    var saved = api.save(caseFile);
+    if (!saved.ok) {
+      status.innerHTML = "<strong>Save failed.</strong> Export the assessment before leaving this page.";
+      document.documentElement.setAttribute("data-assessment-case", "error");
+      return;
+    }
     renderBundle();
   }
 
@@ -173,7 +178,8 @@
     api.import(file).then(function (result) {
       var incoming = result.type === api.formats.evidenceBundle ? api.bundleToCase(result.document) : result.document;
       caseFile = api.load() ? api.merge(api.load(), incoming) : incoming;
-      api.save(caseFile);
+      var saved = api.save(caseFile);
+      if (!saved.ok) throw new Error("The file is valid but the local Case File could not be saved.");
       restore(caseFile, false);
       status.innerHTML = "<strong>Import complete.</strong> " + esc(caseFile.title) + (result.migrated ? " · legacy bundle migrated to v1." : " · v1 validated.");
       document.documentElement.setAttribute("data-assessment-import", "pass");
@@ -206,7 +212,7 @@
   document.getElementById("download-json").addEventListener("click", function () { if (bundle) { document.documentElement.setAttribute("data-assessment-download", "json"); window.paloDownload("palo-evidence-bundle-v1.json", api.exportJSON(bundle), "application/json;charset=utf-8"); } });
   document.getElementById("download-markdown").addEventListener("click", function () { if (bundle) { document.documentElement.setAttribute("data-assessment-download", "markdown"); window.paloDownload("palo-evidence-bundle-v1.md", bundleMarkdown(bundle), "text/markdown;charset=utf-8"); } });
   document.getElementById("download-board-pack").addEventListener("click", function () { if (caseFile) { document.documentElement.setAttribute("data-board-pack", "generated"); window.paloDownload("palo-board-review-pack.md", api.boardPack(caseFile), "text/markdown;charset=utf-8"); } });
-  document.getElementById("handoff-simulator").addEventListener("click", function () { if (!caseFile) return; var handoff = api.handoff(caseFile, "assessment-path", "palo-am-simulator", { assessmentId: "assessment-path-current" }); if (handoff.ok) window.location.href = "PALO_AgenticGovernance.html?handoff=assessment#simulator"; });
+  document.getElementById("handoff-simulator").addEventListener("click", function () { if (!caseFile) return; var latest = caseFile.assessments.slice().reverse().find(function (item) { return item.module === "assessment-path"; }); var handoff = api.handoff(caseFile, "assessment-path", "palo-am-simulator", { assessmentId: latest ? latest.assessmentId : null }); if (handoff.ok) window.location.href = "PALO_AgenticGovernance.html?handoff=assessment#simulator"; else status.innerHTML = "<strong>Handoff failed.</strong> Export the case before continuing."; });
 
   var handoff = api.consumeHandoff("assessment-path");
   restore(handoff ? handoff.caseFile : api.load(), false);

@@ -7,6 +7,48 @@ and this project follows Semantic Versioning where practical.
 
 ---
 
+## [2.4.1] - 2026-07-17
+
+**Release status: Developer Preview — not approved for production authorization or consequential tool execution.**
+
+This release publishes contracts and a reference implementation for evaluation. Runtime enforcement, cryptographic evidence hardening, authenticated human approval, production connectors, and collaborative agent-team execution remain under development. The included bearer-token transports, SQLite/HMAC components, Vibe Gate metadata, Web/Android approval clients, and n8n/Dify integrations are prototypes and must not be represented as production security controls.
+
+### Added
+
+- Added an experimental bearer-authenticated MCP Streamable HTTP transport using the official SDK, with protocol parity across eleven stdio/remote tools
+- Added a reference SQLite WAL registry and append-only evidence-ledger prototype for agents, authorities, policies, replay state, approvals, decisions and signed events
+- Added normalized Action Claims with path, host, network intent, validated arguments, nonce, idempotency key and monotonic sequence number
+- Added prototype Web and Android Approval Inbox clients, PALO-AM profile/decision exchange, and a demonstrative Vibe Coding claim-metadata gate
+- Added an honest public machine-readable capability matrix and an in-process register → deny → approval → execute → sign → persist → verify acceptance test
+- Added the non-production PALO governance MCP reference server, expanded from its initial seven-tool baseline to eleven tools for registry, policy, approval, evidence and ledger operations
+- Added canonical, interoperable JSON contracts for agent profiles, action claims, policy decisions, approvals, and HMAC-signed evidence envelopes
+- Added an experimental localhost governance gateway for non-production Dify, n8n, and workflow examples; policy and signing secrets remain server-side
+- Added a persistent approval state machine with expiry, single terminal resolution, exact claim-digest binding, accountable resolver identity, and rationale
+- Added an append-only SQLite evidence-ledger prototype with UUID event IDs, secret-field redaction, HMAC-SHA256 signatures, previous-event hash chaining and immutable update/delete triggers
+- Added pinned, checksum-verified OPA installation, Rego v1 compilation and policy tests, MCP protocol smoke tests, runtime security tests, connector tests, and CI enforcement
+
+### Changed
+
+- Replaced legacy Rego syntax and permissive delegation shortcuts with fail-closed checks for registered tools, operations, read/write scopes, network access, hosts, delegation depth, subagent count, roles, and human validation
+- Replaced local Dify and n8n allowlists, mock signatures, and second-based evidence IDs with canonical claims evaluated by the trusted PALO gateway
+- Changed agent profiles so they reference only a key ID and algorithm; signing secrets can no longer be embedded or derived from public configuration
+- Preserved every PALO-AM and Assessment Path run as a unique historical record and calculate source freshness from recorded source state instead of marking every export current
+- Made Case File merge linear for identified arrays, reject cross-case merges, require strict RFC 3339 timestamps, and surface save or handoff persistence failures before navigation
+
+### Security
+
+- Added nonce replay detection, immutable claim-ID checks, constant-time signature and gateway-token comparisons, authenticated gateway access, request-size limits, redaction defaults, atomic registry writes, and fail-closed OPA outage behavior
+- Prevented raw tool arguments, access tokens, passwords, cookies, API keys, and private keys from entering agentic decision evidence
+
+### Known developer-preview limitations
+
+- A single bearer token does not provide principal identity, role separation, reviewer authentication, administrative authorization, rotation, or production transport security
+- The reference executor is not an exactly-once execution engine; cached decisions, action expiry, state/evidence atomicity, and decision provenance require further hardening before real tool use
+- Approval clients demonstrate state transitions but do not yet provide sufficient human-readable action context or an enterprise reviewer identity lifecycle
+- Vibe Gate metadata is a self-attested demonstration and is not a trusted signed attestation or an unavoidable pre-tool-call proxy
+- Collaborative Agent Teams remain specified only; Team Registry, Shared Task Claims, peer coordination, leases, conflict handling, and team-level evidence are not implemented
+- n8n and Dify artifacts are non-production examples and do not provide a certified end-to-end approval-resume or execution connector
+
 ## [2.4.0] - 2026-07-12
 
 ### Added

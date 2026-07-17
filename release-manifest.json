@@ -3,7 +3,7 @@
   "release": {
     "version": "2.4.1",
     "date": "2026-07-17",
-    "status": "stable"
+    "status": "developer-preview"
   },
   "sharedAssets": {
     "version": "2.4.1",
@@ -22,8 +22,8 @@
       "date": "2026-06-22"
     },
     "mobileAndroid": {
-      "version": "2.0.0",
-      "date": "2026-03-09"
+      "version": "2.4.1",
+      "date": "2026-07-17"
     },
     "mobileIos": {
       "version": "1.7.1",
@@ -35,13 +35,37 @@
       "version": "2.4.1",
       "date": "2026-07-17"
     },
+    "agenticRuntime": {
+      "version": "1.1.0",
+      "date": "2026-07-17",
+      "status": "prototype",
+      "productionUse": false
+    },
+    "agenticRemoteMcp": {
+      "version": "1.0.0",
+      "transport": "authenticated-streamable-http",
+      "date": "2026-07-17",
+      "status": "prototype",
+      "productionUse": false
+    },
+    "agenticCapabilityMatrix": {
+      "version": "1.0.0",
+      "date": "2026-07-17",
+      "status": "developer-preview"
+    },
+    "agenticConnectorGateway": {
+      "version": "1.0.0",
+      "date": "2026-07-17",
+      "status": "prototype",
+      "productionUse": false
+    },
     "stakeholderOnboarding": {
       "version": "2.4.0",
       "date": "2026-07-12"
     },
     "assessmentPath": {
-      "version": "2.4.0",
-      "date": "2026-07-12"
+      "version": "2.4.1",
+      "date": "2026-07-17"
     },
     "operationalEvidenceCore": {
       "version": "1.0.0",

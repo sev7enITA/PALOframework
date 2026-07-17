@@ -32,6 +32,8 @@ The framework is aligned with major AI governance references including:
 
 PALO is not a certification body and does not provide legal advice. It is a practical pre-screening, documentation, and governance support toolkit.
 
+> **PALO-AI v2.4.1 developer preview:** the agentic contracts, reference MCP server, draft Rego policies, approval clients, evidence ledger, and n8n/Dify examples are published for evaluation and interoperability feedback. They are not a production authorization service, an unavoidable tool-execution boundary, a compliance certification, or a replacement for organization-owned identity, access control, key management, monitoring, backup, retention, legal review, and security assurance. Runtime enforcement, cryptographic evidence hardening, meaningful mobile approval workflows, production connectors, and collaborative-agent-team execution remain under development.
+
 ## Why PALO?
 
 | Governance challenge | PALO response |
@@ -61,7 +63,7 @@ PALO is not a certification body and does not provide legal advice. It is a prac
 | [The Poisoning Boomerang](PALO_PoisoningStudy.html) | Data poisoning governance module with detection strategies and lifecycle controls | Live |
 | [AI Dev Governance](PALO_VibeCoding.html) | Security and governance extension for AI-assisted software development environments | Live |
 | [PALO-AM Agentic Governance](PALO_AgenticGovernance.html) | PALO extension for AI agents, delegated authority, action-space control, and agentic evidence | Live |
-| [Companion App](PALO_CompanionApp.html) | Mobile overview page for Android and iOS/iPadOS apps | Live |
+| [Mobile Toolbox](PALO_CompanionApp.html) | Mobile workspace overview for Android and iOS/iPadOS apps | Live |
 | [Recognition and Sources](PALO_Recognition.html) | Public references, primary sources, and verification notes | Live |
 | [PALO Assessment Path](PALO_AssessmentPath.html) | Guided route from risk tiering to contextual FRIA, controls, KPI/KRI, and a local evidence bundle | Live |
 | [Regulatory Watch 2026](PALO_RegulatoryWatch.html) | Dated AI Act watchlist with Article 4, Article 50, high-risk milestones, and official sources | Live |
@@ -69,19 +71,20 @@ PALO is not a certification body and does not provide legal advice. It is a prac
 | [Platform Map](PALO_PlatformMap.html) | Operational status, stakeholder-intent routes, modules, artifacts, research boundaries, and accessible table navigation | Live |
 | [Operationalization Explorer / Stakeholder Onboarding](designs/theory-to-practice-infographic/) | Three-step local stakeholder routing into the six-phase weighted workflow and interactive 3D knowledge graph | Live |
 
-## Mobile Companion App
+## Mobile Toolbox
 
 The P.A.L.O. Framework Toolbox brings the core governance tools to mobile:
 
 - Android: [Google Play](https://play.google.com/store/apps/details?id=com.fabriziodegni.paloframework)
 - iOS/iPadOS: [App Store](https://apps.apple.com/it/app/p-a-l-o-framework-toolbox/id6761771299)
 
-The app is designed as a privacy-first pre-screening companion for AI governance work. Store listings describe offline use, local-first operation, no data collection, and mobile features such as Evidence Vault, biometric protection, PDF report generation, and direct access to PALO web modules.
+The app is designed as a privacy-first mobile workspace for contextual AI governance work. Store listings describe offline use, local-first operation, no data collection, and mobile features such as Evidence Vault, biometric protection, PDF report generation, and direct access to PALO web modules.
 
 ## Recent Releases
 
 | Date | Release | Highlights |
 | --- | --- | --- |
+| 2026-07-17 | v2.4.1 - PALO-AI Developer Preview | Versioned agentic contracts, reference MCP transports, draft Rego v1 policies, prototype approval and evidence flows, and non-production n8n/Dify examples |
 | 2026-07-12 | v2.4.0 - Reliable Operational Evidence | Deterministic publication, local evidence workflows, P2 adoption foundations, the public Platform Map, and Explorer navigation mode |
 | 2026-07-11 | v2.3.2 - Stakeholder Onboarding | Three plain-language questions, deterministic stakeholder routes, local JSON/Markdown export, guided handoff into the weighted workflow and 3D operational graph, plus cross-page module and Companion App coherence fixes |
 | 2026-07-11 | v2.3.1 - Theory to Practice | Dedicated operating loop connecting all core PALO modules to concrete decisions, controls, KPI/KRI, evidence, and review outputs |
@@ -117,7 +120,7 @@ Open the [PALO Stakeholder Onboarding](https://paloframework.org/designs/theory-
 
 ### Run locally
 
-This is a static HTML project. No build step is required.
+The website remains static. The optional, non-production PALO-AI reference runtime uses Node.js 20+ and OPA.
 
 ```bash
 git clone https://github.com/sev7enITA/PALOframework.git
@@ -132,6 +135,27 @@ http://localhost:8000
 ```
 
 You can also open `index.html` directly in a browser, although serving locally is recommended for consistent asset behavior.
+
+### Evaluate the PALO-AI reference runtime
+
+The commands below are for isolated development and testing only. Do not connect this preview to production agents, sensitive data, privileged tools, or consequential decisions.
+
+```bash
+npm ci
+npm run opa:install
+export PALO_OPA_URL=http://127.0.0.1:8181
+export PALO_HMAC_KEYS_JSON='{"key-support-2026":"replace-with-a-secret-from-your-secret-manager"}'
+npm run palo:mcp
+```
+
+For the non-production Dify or n8n examples, start the localhost gateway in a separate process. The bearer token is only a coarse developer control: it does not provide principal identity, role separation, administrative authorization, reviewer authentication, or production secret lifecycle. Do not commit these values or expose the gateway publicly.
+
+```bash
+export PALO_GATEWAY_TOKEN='replace-with-at-least-24-random-characters'
+npm run palo:gateway
+```
+
+The canonical contracts are under `schemas/`; executable runtime code is under `packages/palo-mcp-server/`; the synchronized MCP catalog and connector examples are under `examples/agentic-interface/`.
 
 ## Repository Structure
 
@@ -221,7 +245,7 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md), [CODE_OF_CONDUCT.md](CODE_OF_CON
 
 ## Roadmap
 
-Current baseline: v2.4.0, released 2026-07-12. This release adds deterministic publication and validation, interoperable local evidence workflows, structured adoption foundations, and a public platform/navigation map with an Explorer navigation mode.
+Current baseline: v2.4.1 developer preview, released 2026-07-17. It publishes canonical contracts, a reference MCP toolkit, draft OPA/Rego evaluation, prototype approval and evidence flows, and non-production connector examples for developer feedback.
 
 Completed in H1 2026:
 
@@ -231,8 +255,8 @@ Completed in H1 2026:
 | 2026 Tech Trends Observatory | Complete |
 | Community and open collaboration page | Complete |
 | AuditBench Explorer | Complete |
-| Android companion app | Complete |
-| iOS/iPadOS companion app | Complete |
+| Android mobile toolbox | Complete |
+| iOS/iPadOS mobile toolbox | Complete |
 | Poisoning Boomerang module | Complete |
 | AI-assisted development governance extension | Complete |
 | PALO-AM Agentic Governance Modality v2.0 | Complete |
@@ -244,25 +268,27 @@ Completed in H1 2026:
 | Stakeholder onboarding and Operationalization Explorer | Complete |
 | Release reliability foundation | Complete |
 | Operational platform and research map | Complete |
+| PALO-AI contracts and reference runtime | Developer preview |
 
 Planned roadmap:
 
 | Target | Focus | Planned scope |
 | --- | --- | --- |
-| v2.4 | PALO-AM Simulator MVP | Interactive Action-Space vs Autonomy inputs, tier routing, control recommendations, and exportable assessment summary |
 | v2.5 | Evidence and governance board packs | Board templates, decision logs, KPI/KRI registers, review packets, and audit-ready summaries built on the evidence bundle format |
 | v2.6 | Multilingual and use-case expansion | Broader localization and worked examples for procurement, HR, finance, public-sector, and software-delivery use cases |
 | v3.0 | Integration layer | API and integration patterns for enterprise governance workflows, issue trackers, GRC platforms, and documentation systems |
 
 Exploratory items:
 
-- HarmonyOS Next feasibility for the mobile companion app
-- Policy-as-code snippets for agentic controls and AI-assisted development environments
+- HarmonyOS Next feasibility for the mobile toolbox
+- Mobile push delivery for remote approval requests; the current runtime supports MCP and authenticated local-gateway approval resolution without claiming a remote notification service
 - Lightweight test suites for generated governance reports and evidence exports
 
 ## Disclaimer
 
 PALO is an educational, governance-support, and pre-screening toolkit. It does not provide legal advice, does not certify compliance, and does not replace professional legal, technical, security, or conformity-assessment review.
+
+PALO-AI v2.4.1 is explicitly non-production. An `allowed` preview decision must not be treated as proof that an action is safe, lawful, correctly authorized, successfully executed, or durably evidenced. Deployers remain responsible for independent threat modelling, authenticated identities and roles, least privilege, policy ownership, exactly-once execution, trusted approval context, key custody and rotation, observability, incident response, backup, retention, and validation against their real tools and environments.
 
 ## License
 

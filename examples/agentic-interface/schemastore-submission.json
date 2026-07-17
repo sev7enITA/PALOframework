@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "name": "PALO Agentic Interface",
-  "description": "Programmatic configuration schema for AI Agent Identity, Authority limits, Delegation parameters, and Cryptographic Evidence keys.",
+  "description": "Developer-preview configuration schema for AI agent identity, authority limits, delegation parameters, and non-secret evidence key references. Schema validity is not production authorization or compliance certification.",
   "fileMatch": [
     "*.palo.json",
     "palo-agent.json"

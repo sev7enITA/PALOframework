@@ -32,7 +32,9 @@
 
   function now() { return new Date().toISOString(); }
   function isObject(value) { return Boolean(value) && typeof value === "object" && !Array.isArray(value); }
-  function isDate(value) { return typeof value === "string" && !Number.isNaN(Date.parse(value)); }
+  function isDate(value) {
+    return typeof value === "string" && /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{1,9})?(?:Z|[+-]\d{2}:\d{2})$/.test(value) && !Number.isNaN(Date.parse(value));
+  }
   function error(path, message) { return { path: path, message: message }; }
 
   function validateSource(source, path, errors) {
@@ -173,10 +175,13 @@
       var identity = ARRAY_IDS[key];
       if (!identity) return clone(base).concat(clone(incoming));
       var output = clone(base);
+      var positions = new Map();
+      output.forEach(function (item, index) { if (item && item[identity] != null) positions.set(item[identity], index); });
       incoming.forEach(function (item) {
-        var index = output.findIndex(function (candidate) { return candidate && item && candidate[identity] === item[identity]; });
+        var index = item && positions.has(item[identity]) ? positions.get(item[identity]) : -1;
         if (index === -1) output.push(clone(item));
         else output[index] = mergeValue(output[index], item, "");
+        if (index === -1 && item && item[identity] != null) positions.set(item[identity], output.length - 1);
       });
       return output;
     }
@@ -193,6 +198,7 @@
     var right = clone(incoming);
     if (right && right.format === BUNDLE_FORMAT) right = bundleToCase(right);
     if (!left) left = createCase({ title: right && right.title });
+    if (right && right.caseId && left.caseId && right.caseId !== left.caseId) throw new Error("Cannot merge different PALO cases (" + left.caseId + " and " + right.caseId + ")");
     var result = mergeValue(left, right, "");
     result.updatedAt = now();
     var validation = validateCase(result);
@@ -242,9 +248,10 @@
     var record = { handoffId: id("handoff", from + "-" + to), from: from, to: to, createdAt: now(), detail: clone(detail || {}) };
     var updated = merge(caseFile, { handoffs: [record] });
     var payload = { contractVersion: VERSION, from: from, to: to, createdAt: record.createdAt, caseFile: updated };
+    var saved = save(updated);
+    if (!saved.ok) return { ok: false, caseFile: updated, errors: saved.errors };
     try { global.sessionStorage.setItem(HANDOFF_KEY, JSON.stringify(payload)); }
     catch (storageError) { return { ok: false, caseFile: updated, errors: [error("storage", storageError.message)] }; }
-    save(updated);
     return { ok: true, caseFile: updated, payload: payload };
   }
 
@@ -254,8 +261,9 @@
       if (!raw) return null;
       var payload = JSON.parse(raw);
       if (payload.contractVersion !== VERSION || (target && payload.to !== target) || !validateCase(payload.caseFile).valid) return null;
+      var saved = save(payload.caseFile);
+      if (!saved.ok) return null;
       global.sessionStorage.removeItem(HANDOFF_KEY);
-      save(payload.caseFile);
       return payload;
     } catch (storageError) { return null; }
   }
