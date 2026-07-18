@@ -105,6 +105,7 @@ The app is designed as a privacy-first mobile workspace for contextual AI govern
 
 | Date | Release | Highlights |
 | --- | --- | --- |
+| 2026-07-18 | v2.5.0 - Full-Cycle Agentic Assurance | Effect Contracts, one-time execution capabilities, trusted receipts, authoritative outcome attestations, held assurance incidents, crash recovery, and the n8n Governed Action preview |
 | 2026-07-17 | v2.4.1 - PALO-AI Developer Preview | Versioned agentic contracts, reference MCP transports, draft Rego v1 policies, prototype approval and evidence flows, and non-production n8n/Dify examples |
 | 2026-07-12 | v2.4.0 - Reliable Operational Evidence | Deterministic publication, local evidence workflows, P2 adoption foundations, the public Platform Map, and Explorer navigation mode |
 | 2026-07-11 | v2.3.2 - Stakeholder Onboarding | Three plain-language questions, deterministic stakeholder routes, local JSON/Markdown export, guided handoff into the weighted workflow and 3D operational graph, plus cross-page module and Companion App coherence fixes |
