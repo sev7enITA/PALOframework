@@ -1,205 +1,109 @@
-# PALO-AI hands-on demo — no slides
+# PALO-AI v2.5 hands-on demo — permission is not correctness
 
-This runbook is designed for a **30–35 minute live session**. The audience first sees what happens when an agent calls a tool **without PALO**, then compares it with the same proposal through a real n8n governance gate, an authenticated PALO Gateway, an OPA/Rego decision, a human approval, a mock execution, signed evidence, replay protection and ledger verification.
+This no-slides demonstration compares a direct agent tool call with full-cycle assurance over a synthetic multi-tenant catalog. It uses no production system, personal data or consequential action.
 
-The scenario is deliberately safe: a fictional support assistant asks to read a synthetic refund-policy document. No payment, customer system or production tool is called.
+## What the audience sees
 
-## The story in one sentence
+1. **Without PALO:** the agent has a tool, so the update executes. There is no authority decision and nobody verifies whether the catalog now reflects the intended result.
+2. **With PALO:** the same intent becomes Action Claim 1.2 plus an Effect Contract.
+3. Policy requests human approval for the exact immutable claim.
+4. PALO issues and consumes a one-time capability, then invokes its trusted synthetic executor.
+5. A separate verifier reads authoritative post-state.
+6. The outcome is `verified`, `mismatch` or `inconclusive`—not merely `allowed`.
+7. Mismatch and uncertainty open an Assurance Incident and hold the affected resource.
 
-> An agent may propose an action, but PALO decides whether the exact tool, scope and arguments are within authority, whether a human must approve, and what evidence must be retained before execution is allowed.
+## Start the environment
 
-## What the audience should learn
-
-1. Without a governance gate, possession of a tool or credential is enough for the mock action to execute.
-2. With PALO, the agent does not decide its own authority.
-3. The Action Claim makes intent inspectable: tool, operation, resource, path, network intent, arguments, nonce and sequence.
-4. Policy has three visible outcomes: allowed, approval required or denied.
-5. Approval binds to the digest of one immutable claim, not to a vague task.
-6. Execution occurs only after an allowed decision.
-7. Evidence is redacted, signed and appended to a verifiable ledger.
-
-## Tonight: one-time preparation
-
-From the repository root:
-
-```bash
-npm ci
-npm run opa:install
-cd packages/n8n-nodes-palo-ai
-npm ci
-npm run verify
-cd ../..
-```
-
-Confirm Docker Desktop and the local n8n instance are running. The comparison workflow for the live session is:
-
-```text
-examples/hands-on-demo/PALO-AI-before-after-governance-demo.json
-```
-
-The original three-outcome workflow remains available at `examples/n8n-demo/PALO-AI-three-outcomes-demo.json`.
-
-In n8n, configure the `PALO API` credential with:
-
-- Gateway URL from Docker: `http://host.docker.internal:8787`
-- Bearer token: the same local-only token used below
-
-Do not use a production token or production data during the session.
-
-## Tomorrow: start the live environment
-
-Use three terminal tabs.
-
-### Terminal A — OPA/Rego
+Terminal A:
 
 ```bash
 cd /path/to/PALO
+npm ci
+npm run opa:install
 .tools/opa/opa run --server --addr=127.0.0.1:8181 \
   examples/policy-as-code/agent-delegation.rego
 ```
 
-### Terminal B — PALO Gateway
-
-Use these values only for the isolated demonstration:
+Terminal B:
 
 ```bash
 cd /path/to/PALO
 export PALO_OPA_URL='http://127.0.0.1:8181'
 export PALO_GATEWAY_TOKEN='palo-demo-only-gateway-token-32-bytes'
-export PALO_HMAC_KEYS_JSON='{"key-support-2026":"palo-demo-only-signing-secret-material-32-bytes"}'
-export PALO_DATA_DIR="${TMPDIR:-/tmp}/palo-ai-demo-$(date +%s)"
+export PALO_HMAC_KEYS_JSON='{"key-catalog-demo":"palo-demo-only-signing-secret-material-32-bytes"}'
+export PALO_ENABLE_DEMO_CATALOG='true'
+export PALO_DATA_DIR="${TMPDIR:-/tmp}/palo-assurance-demo-$(date +%s)"
 npm run palo:gateway
 ```
 
-### Terminal C — pre-seed n8n and rehearse
+Terminal C:
 
 ```bash
 cd /path/to/PALO
 export PALO_GATEWAY_TOKEN='palo-demo-only-gateway-token-32-bytes'
-npm run demo:n8n:seed
-npm run demo:hands-on -- --auto-approve
-```
-
-The rehearsal must end with:
-
-```text
-Demo complete: deny → approval → allow → mock execute → sign → persist → replay deny → verify.
-```
-
-Restart Terminal B with a new `PALO_DATA_DIR` after rehearsal. Seed the n8n profiles once more, then do not execute the workflow until the live session.
-
-## Live session choreography
-
-### 0:00–5:00 — Begin with “without PALO” versus “with PALO”
-
-Open `PALO-AI — Without Governance vs Governed Action`. Do not begin with the website or a diagram.
-
-Say:
-
-> “Both branches begin with the same agent intention. On the upper branch the tool is connected directly, so possession becomes permission. On the lower branch PALO asks whether this exact action is authorized here and now.”
-
-Ask someone in the audience to predict both outcomes. Execute the workflow once. Show:
-
-- upper branch: the mock tool executes immediately, with no authority decision;
-- lower branch: the supervised profile stops at `Approval Required`;
-- the three PALO outputs remain visibly available for allow, approval or deny.
-
-Do not describe the node as an unavoidable production boundary. State that this is a developer preview using mock actions.
-
-### 5:00–9:00 — Inspect one Action Claim
-
-Open the output of the amber PALO node. Point to:
-
-- `agentId` and `caseId`;
-- tool, operation, resource and normalized path;
-- network intent;
-- canonical argument and schema digests;
-- nonce, idempotency key, sequence number and expiry;
-- workflow and execution metadata.
-
-Say:
-
-> “The governance decision is made over this exact claim, not over the natural-language intention alone.”
-
-### 9:00–13:00 — Move to the practical support case
-
-In Terminal C run:
-
-```bash
-export PALO_GATEWAY_TOKEN='palo-demo-only-gateway-token-32-bytes'
 npm run demo:hands-on
 ```
 
-The script first performs a direct mock read of a synthetic finance document. Point out the five lines showing what is absent: no profile check, no policy decision, no approval and no signed evidence. It then registers a versioned authority profile. Let the audience read the authority line: `read_file`, `read`, `/workspace/support-docs`, human validation required.
+Use `--auto-approve` for rehearsal. Use a fresh Gateway data directory for every complete run because replay sequence state is persistent.
 
-### 13:00–17:00 — Show default deny
+## Three practical runs
 
-The governed request asks for the same synthetic finance area, `/finance/private`, which is outside the registered scope. Pause on the red decision.
+### Verified outcome
 
-Say:
+```bash
+npm run demo:hands-on -- --auto-approve
+```
 
-> “Without PALO the direct mock tool just read this area. With PALO the tool is valid, but authority is contextual: the same access is outside the support agent’s registered scope and is denied.”
+Expected ending: signed receipt, `verified` attestation, valid ledger and no incident.
 
-### 17:00–23:00 — Human approval of the immutable claim
+### Authorized, but wrong
 
-The second request is within scope and returns `pending_approval`. Read the claim ID and digest aloud. Before pressing Enter, ask a participant to act as reviewer and confirm:
+Restart Terminal B with a fresh `PALO_DATA_DIR`, then run:
 
-- exact tool: `read_file`;
-- exact scope: `/workspace/support-docs`;
-- no external network;
-- synthetic document only.
+```bash
+npm run demo:hands-on -- --auto-approve --wrong-effect
+```
 
-Press Enter. The script records reviewer identity and rationale, then resubmits the same claim and approval ID.
+The executor intentionally writes price `130` although the Effect Contract requires `120`. Policy authorization succeeds, but the verifier emits `mismatch`, creates an incident and applies a resource hold.
 
-Say:
+### Stale state before execution
 
-> “Approval is not permission for the agent in general. It is permission for this immutable action claim.”
+Restart the Gateway again, then run:
 
-### 23:00–28:00 — Execute, sign and persist
+```bash
+npm run demo:hands-on -- --auto-approve --stale-state
+```
 
-The mock executor reads `refund-policy.txt` only after PALO returns `allowed`. Show:
+The authoritative catalog version no longer matches the proposal. PALO revokes the capability and prevents the tool call before execution.
 
-- execution result;
-- evidence event ID;
-- HMAC signature prefix;
-- fictional customer email replaced by `[REDACTED]`;
-- append-only ledger head.
+## n8n visual demonstration
 
-### 28:00–32:00 — Replay attack and verification
+Build package 0.2:
 
-The script creates a different claim reusing the approved nonce. PALO denies it as a replay, then verifies the ledger chain.
+```bash
+cd packages/n8n-nodes-palo-ai
+npm ci
+npm run verify
+npm pack
+```
 
-Close with:
+Install the generated tarball in a disposable self-hosted n8n instance and import:
 
-> “PALO separates proposal, authority, approval, execution and evidence. The visible node is the user experience; the trusted profile, policy engine and protected execution path are the control plane.”
+```text
+examples/n8n-demo/PALO-AI-full-cycle-assurance-demo.json
+```
 
-## Audience hands-on prompts
+Configure `PALO API` with:
 
-If time allows, ask participants to change one thing at a time and predict the result before running:
+- Gateway URL from n8n Docker: `http://host.docker.internal:8787`
+- Bearer token: `palo-demo-only-gateway-token-32-bytes`
 
-1. Change the requested scope to `/legal/private` — expected: denied.
-2. Change the profile to `requireHumanValidation: false` — expected: allowed when all other authority checks pass.
-3. Change `networkIntent` to `write` without an allowed host — expected: denied.
-4. Reuse a nonce with a new claim ID — expected: denied as replay.
-5. Remove OPA or use a malformed input — expected: fail closed.
+The first run routes to Review Required. Resolve its approval through the demo API or PALO review surface, then change the node operation to **Resume Approved Action** and paste the exact claim and approval ID. Never regenerate the claim after approval.
 
-Use a new `PALO_DATA_DIR` for each complete rehearsal so the n8n sequence numbers start from one.
+## Presenter close
 
-## Recovery plan if a live component fails
+> Authorization answers whether an action may be attempted. PALO full-cycle assurance adds a different question: did the protected action actually produce the declared effect? The answer is independently observable as verified, mismatched or inconclusive.
 
-- **n8n unavailable:** run `npm run demo:hands-on`; it still demonstrates the authenticated gateway, policy, approval, evidence and ledger path.
-- **OPA unavailable:** show the fail-closed decision, explain why it is correct, restart Terminal A, and rerun with a fresh demo process.
-- **Gateway port occupied:** run `lsof -nP -iTCP:8787 -sTCP:LISTEN`, stop the old demo process, then restart.
-- **Replay/sequence error during rehearsal:** restart the gateway with a new `PALO_DATA_DIR` and reseed profiles.
-- **Network unavailable:** the entire demo is local and needs no external API.
+## Safety boundary
 
-## Non-negotiable disclaimer
-
-This is a developer preview for isolated evaluation. The shared bearer-token gateway, local HMAC key, mock executor and manual reviewer are not a production identity, key-management, authorization or approval boundary. Production adoption still requires workload identity, RBAC, protected credentials, tenant isolation, KMS/HSM, high availability and independent security assessment.
-
-## n8n operational references
-
-- [Export and import workflows](https://docs.n8n.io/workflows/export-import/)
-- [Install community nodes through the n8n GUI](https://docs.n8n.io/integrations/community-nodes/installation/gui-install/)
-- [Run n8n with Docker](https://docs.n8n.io/hosting/installation/docker/)
-- [Run the n8n security audit](https://docs.n8n.io/hosting/securing/security-audit/)
+The shared token, SQLite database, environment HMAC key and in-memory catalog are demonstration mechanisms. Do not expose them to production traffic or real data. Production use requires workload identity, scoped RBAC, protected connectors, KMS/HSM, durable distributed processing, HA, monitoring and independent security review.

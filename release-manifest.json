@@ -1,12 +1,12 @@
 {
   "schemaVersion": "1.0.0",
   "release": {
-    "version": "2.4.1",
-    "date": "2026-07-17",
+    "version": "2.5.0",
+    "date": "2026-07-18",
     "status": "developer-preview"
   },
   "sharedAssets": {
-    "version": "2.4.1",
+    "version": "2.5.0",
     "files": [
       "assets/palo-v21.css",
       "assets/palo-v21.js"
@@ -14,8 +14,8 @@
   },
   "components": {
     "web": {
-      "version": "2.4.1",
-      "date": "2026-07-17"
+      "version": "2.5.0",
+      "date": "2026-07-18"
     },
     "framework": {
       "version": "2.0.0",
@@ -32,12 +32,12 @@
   },
   "modules": {
     "agenticGovernance": {
-      "version": "2.4.1",
-      "date": "2026-07-17"
+      "version": "2.5.0",
+      "date": "2026-07-18"
     },
     "agenticRuntime": {
-      "version": "1.1.0",
-      "date": "2026-07-17",
+      "version": "1.2.0",
+      "date": "2026-07-18",
       "status": "prototype",
       "productionUse": false
     },
@@ -49,20 +49,20 @@
       "productionUse": false
     },
     "agenticCapabilityMatrix": {
-      "version": "1.0.0",
-      "date": "2026-07-17",
+      "version": "1.1.0",
+      "date": "2026-07-18",
       "status": "developer-preview"
     },
     "agenticConnectorGateway": {
-      "version": "1.0.0",
-      "date": "2026-07-17",
+      "version": "1.1.0",
+      "date": "2026-07-18",
       "status": "prototype",
       "productionUse": false
     },
     "n8nGovernanceControlPlane": {
-      "version": "0.1.0",
-      "date": "2026-07-17",
-      "status": "installable-alpha",
+      "version": "0.2.0",
+      "date": "2026-07-18",
+      "status": "full-cycle-developer-preview",
       "productionUse": false,
       "documentation": "docs/palo-ai-n8n-governance-control-plane.md",
       "package": "packages/n8n-nodes-palo-ai",
@@ -116,6 +116,7 @@
       "communityMarketEntry": "docs/palo-ai-community-and-market-entry.md",
       "architecture": "docs/palo-ai-n8n-governance-control-plane.md",
       "integrationGuide": "docs/palo-ai-governance-integration-guide.md",
+      "fullCycleAssurance": "docs/palo-ai-full-cycle-assurance.md",
       "technicalAssessment": "docs/palo-ai-v2.4.1-technical-assessment.md",
       "vpsDeployment": "docs/palo-ai-vps-deployment.md",
       "publicationStatus": "docs/palo-ai-n8n-publication-status.md",
@@ -135,9 +136,9 @@
       },
       "installablePackage": {
         "name": "n8n-nodes-palo-ai",
-        "version": "0.1.0",
+        "version": "0.2.0",
         "path": "packages/n8n-nodes-palo-ai",
-        "status": "local-alpha",
+        "status": "full-cycle-local-preview",
         "npmPublished": false
       },
       "gates": {

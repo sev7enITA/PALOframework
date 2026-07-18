@@ -1,10 +1,10 @@
 # PALO-AI Governance Control Plane for n8n and Agentic Automation Platforms
 
-Status: architecture preview for PALO-AI v2.4.1. The patterns in this document include both implemented prototypes and specified future capabilities. They must not be represented as a production authorization boundary until the acceptance criteria in the public capability matrix are met.
+Status: architecture preview updated for the PALO-AI v2.5 full-cycle developer preview. The patterns include implemented reference prototypes and future production controls; none is represented as production-ready.
 
 > **PALO-AI is an emerging governance control plane for n8n and agentic automation platforms, designed to make authority, policy enforcement, human oversight and cryptographic evidence visible and enforceable.**
 
-For runnable setup, platform-specific adapter guidance and current limitations, use the [PALO-AI Governance Integration Guide](palo-ai-governance-integration-guide.md). The security and production-readiness findings are recorded in the [v2.4.1 Technical Assessment](palo-ai-v2.4.1-technical-assessment.md).
+For runnable setup and current limitations, use the [PALO-AI Governance Integration Guide](palo-ai-governance-integration-guide.md) and [Full-Cycle Assurance Guide](palo-ai-full-cycle-assurance.md). The v2.4.1 technical assessment remains the production-readiness baseline.
 
 ## Product boundary
 
@@ -41,7 +41,7 @@ The node submits a canonical Action Claim to the trusted PALO Gateway. It expose
 
 ### Pattern B — PALO Governed Executor
 
-**Enforcement class:** target runtime-enforcement pattern; currently specified.
+**Enforcement class:** implemented reference prototype in v2.5; production hardening and connector certification remain open.
 
 ![Pattern B — PALO Governed Executor](../assets/palo-ai-n8n-scenarios/pattern-b-governed-executor.png)
 

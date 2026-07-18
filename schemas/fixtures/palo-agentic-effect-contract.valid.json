@@ -1,0 +1,20 @@
+{
+  "format": "palo-agentic-effect-contract",
+  "schemaVersion": "1.0.0",
+  "effectContractId": "effect-00000000-0000-0000-0000-000000000001",
+  "resourceSelector": {
+    "resource": "catalog:item",
+    "path": "/tenants/tenant-a/items/item-1",
+    "tenantId": "tenant-a"
+  },
+  "preconditions": [
+    { "predicateId": "predicate-version-current", "path": "/version", "operator": "equals", "value": 3 }
+  ],
+  "expectedEffects": [
+    { "predicateId": "predicate-price-updated", "path": "/price", "operator": "changedTo", "value": 120 }
+  ],
+  "forbiddenEffects": [
+    { "predicateId": "predicate-tenant-changed", "path": "/tenantId", "operator": "changedTo", "value": "tenant-b" }
+  ],
+  "verification": { "windowSeconds": 30, "onInconclusive": "hold_and_review", "maxAttempts": 1 }
+}

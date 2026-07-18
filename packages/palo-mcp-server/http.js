@@ -21,7 +21,7 @@ export function createAuthenticatedMcpApp({ runtime, token, host = "127.0.0.1", 
   const isLoopback = ["127.0.0.1", "localhost", "::1"].includes(normalizedHost);
   if (!isLoopback && allowedHosts.length === 0) throw new Error("PALO_MCP_ALLOWED_HOSTS is required when MCP binds to a non-local interface");
   const app = createMcpExpressApp({ host, ...(allowedHosts.length ? { allowedHosts } : {}) });
-  app.get("/health", (_request, response) => response.json({ status: "ok", service: "palo-mcp-streamable-http", version: "2.4.1", releaseStatus: "developer-preview", productionUse: false }));
+  app.get("/health", (_request, response) => response.json({ status: "ok", service: "palo-mcp-streamable-http", version: "2.5.0", releaseStatus: "developer-preview", assuranceCycle: "full-cycle", productionUse: false }));
   app.all("/mcp", async (request, response) => {
     if (!authorized(request.headers.authorization, token)) return response.status(401).set("WWW-Authenticate", "Bearer").json({ jsonrpc: "2.0", error: { code: -32001, message: "Unauthorized" }, id: null });
     if (request.method !== "POST") return response.status(405).json({ jsonrpc: "2.0", error: { code: -32000, message: "Method not allowed" }, id: null });

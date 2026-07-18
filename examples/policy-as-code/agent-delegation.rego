@@ -7,7 +7,20 @@ import rego.v1
 # locally registered profile, but production publisher identity and policy attestation
 # remain the responsibility of the adopting organization.
 
-policy_version := "palo-agentic-governance/1.1.0"
+policy_version := "palo-agentic-governance/1.2.0"
+
+claim_contract_valid if {
+	input.claim.schemaVersion == "1.1.0"
+}
+
+claim_contract_valid if {
+	input.claim.schemaVersion == "1.2.0"
+	is_object(input.claim.effectContract)
+	input.claim.effectContract.format == "palo-agentic-effect-contract"
+	input.claim.effectContract.schemaVersion == "1.0.0"
+	input.claim.effectContract.resourceSelector.resource == input.claim.action.resource
+	input.claim.effectContract.resourceSelector.path == input.claim.action.path
+}
 
 input_valid if {
 	is_object(input)
@@ -17,7 +30,7 @@ input_valid if {
 	is_string(input.claim_digest)
 	is_string(input.now)
 	input.claim.format == "palo-agentic-action-claim"
-	input.claim.schemaVersion == "1.1.0"
+	claim_contract_valid
 	input.profile.format == "palo-agentic-interface"
 	input.policy.status == "active"
 	input.policy.entrypoint == "action_decision"
@@ -144,7 +157,7 @@ action_decision := {
 action_decision := {
 	"status": "allowed",
 	"reasons": ["action is within the registered authority profile"],
-	"obligations": ["record_execution_outcome"],
+	"obligations": ["record_execution_outcome", "verify_declared_effects"],
 	"policyVersion": policy_version,
 } if {
 	input_valid

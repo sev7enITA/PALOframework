@@ -1,6 +1,6 @@
 # PALO-AI n8n architecture preview — publication status
 
-**Release:** 2.4.1 developer preview
+**Release:** 2.5 full-cycle developer preview
 **Status:** architecture source and evaluation assets published on the repository `main` branch; no npm publication, n8n verification request, or template submission is implied by this file.
 
 This checklist is the hand-off record for the staged launch requested for PALO-AI as a governance layer for n8n. It deliberately separates assets that can be shared now from the gates that require real, repeatable n8n testing.
@@ -16,7 +16,7 @@ This checklist is the hand-off record for the staged launch requested for PALO-A
 | Three-minute demo | [`palo-ai-n8n-architecture-preview-3min.mp4`](../media/palo-ai-n8n-architecture-preview-3min.mp4) | recorded | Demonstrates a developer-preview flow using safe, non-production semantics. |
 | Captions and script | [`media/`](../media/) | ready | Narration and accessibility source for the demo. |
 | Community discussion | [`n8n-architecture-preview-post.md`](community/n8n-architecture-preview-post.md) | draft-ready | Invite architecture feedback; explicitly not a verification request. |
-| Installable alpha | [`packages/n8n-nodes-palo-ai/`](../packages/n8n-nodes-palo-ai/) | local tarball tested | `0.1.0` builds and was sideloaded into a disposable self-hosted n8n 2.30.7 instance. |
+| Installable preview | [`packages/n8n-nodes-palo-ai/`](../packages/n8n-nodes-palo-ai/) | 0.2 build/lint/package gates passed | `0.2.0` adds the full-cycle node; the earlier `0.1.0` was sideloaded into n8n 2.30.7, while 0.2 still requires a fresh real-canvas validation before publication. |
 
 ## Release gates
 
@@ -37,7 +37,7 @@ npm run verify
 npm pack
 ```
 
-Use a disposable n8n profile and mock data. Do not use production credentials, personal data, irreversible actions, or a publicly reachable preview gateway. The visual node is removable and therefore advisory unless an adopter supplies an unavoidable governed executor or admission hook.
+Use a disposable n8n profile and synthetic data. The decision-only node remains advisory. The 0.2 Governed Action node calls the PALO-owned executor path, but the workflow is still bypassable if another node retains direct target credentials.
 
 ## Claim boundary
 

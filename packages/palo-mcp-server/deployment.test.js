@@ -30,6 +30,11 @@ test("public Caddy routes do not expose approval enumeration", async () => {
   assert.ok(publicPaths.includes("/gateway/v1/approvals/*"), "individual approval status reads remain reachable");
   assert.ok(!publicPaths.includes("/gateway/v1/approvals"), "approval enumeration must not be public");
   assert.ok(blockedPaths.includes("/gateway/v1/approvals"), "approval enumeration is explicitly rejected");
+  assert.ok(publicPaths.includes("/gateway/v1/actions/execute"), "governed execution remains reachable through the authenticated gateway");
+  assert.ok(publicPaths.includes("/gateway/v1/executions/*"), "individual execution status remains reachable");
+  assert.ok(!publicPaths.includes("/gateway/v1/incidents"), "incident enumeration must not be public");
+  assert.ok(blockedPaths.includes("/gateway/v1/incidents"), "incident enumeration is explicitly rejected");
+  assert.ok(blockedPaths.includes("/gateway/v1/incidents/resolve"), "incident mutation is not exposed by the public reverse proxy");
 });
 
 test("palo-mcp retains only the capabilities required to drop privileges", async () => {

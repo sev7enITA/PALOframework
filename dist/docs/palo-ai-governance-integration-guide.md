@@ -1,6 +1,6 @@
 # PALO-AI Governance Integration Guide
 
-Status: developer-preview integration guide for PALO-AI v2.4.1, updated 17 July 2026.
+Status: full-cycle developer-preview integration guide for PALO-AI v2.5, updated 18 July 2026.
 
 > **Do not use this release as a production authorization boundary.** The current implementation is intended for isolated evaluation with mock or non-consequential tools. It does not yet provide production workload identity, reviewer authentication, unavoidable execution, distributed exactly-once semantics, KMS/HSM-backed keys, high availability, or connector certification.
 
@@ -9,41 +9,43 @@ Status: developer-preview integration guide for PALO-AI v2.4.1, updated 17 July 
 This guide explains how to connect PALO-AI to n8n and analogous agentic automation platforms while preserving one portable governance lifecycle:
 
 ```text
-identify -> normalize -> evaluate -> approve when required -> execute -> record -> verify
+identify -> normalize -> evaluate -> approve -> capability -> execute -> receipt -> observe -> verify effect -> escalate
 ```
 
-The orchestration platform remains responsible for workflow execution. PALO-AI is responsible for deciding whether an identified agent may perform a particular normalized action under a registered authority profile and policy.
+The orchestration platform remains responsible for workflow coordination. For protected actions, PALO-AI owns the governed call to a registered executor and asks a separately registered verifier whether authoritative state satisfies the immutable Effect Contract.
 
 Choose the audience-specific starting point in the [PALO-AI adoption paths](palo-ai-adoption-paths.md). Deployment decisions are covered by the [cloud reference architecture](palo-ai-cloud-reference-architecture.md); external review and scale gates are covered by the [security assurance plan](palo-ai-security-assurance-and-scale.md).
 
 ## Current release assessment
 
-PALO-AI v2.4.1 contains a credible governance reference core, but not yet a complete production control plane.
+PALO-AI v2.5 contains a working full-cycle reference core, but not yet a production control plane.
 
 | Capability | Current evidence | Status | What is still required |
 |---|---|---|---|
-| Canonical Action Claim | Versioned JSON Schema, normalization, argument and schema digests | Implemented | Compatibility and migration policy across releases |
+| Canonical Action Claim and Effect Contract | Action Claim 1.1 compatibility, Action Claim 1.2, closed predicate DSL and resource binding | Implemented | Domain predicate packs and interoperability validation |
 | Rego enforcement | Rego v1 policy, input schema, default deny, OPA tests | Implemented | Signed bundles, controlled promotion, provenance and rollback |
 | MCP | Official-SDK stdio server and authenticated Streamable HTTP prototype | Implemented / prototype | Workload identity, TLS boundary, RBAC, rotation and rate limiting |
 | Trusted registry | Versioned agent profiles and policies in SQLite | Prototype | Administrative authorization, publisher signatures, backup and recovery |
 | Replay controls | Nonce, idempotency key and monotonic sequence checks | Prototype | Distributed atomic consumption and exactly-once execution semantics |
-| Evidence | HMAC signatures, canonicalization, SQLite WAL and append-only hash chain | Prototype | KMS/HSM, key rotation, durable outbox, retention and external anchoring |
+| Governed execution | One-time capability, registered in-process executor, signed receipt and idempotent retry behavior | Prototype | Workload identity, attestation, distributed durable jobs and connector certification |
+| Outcome assurance | Authoritative pre/post reads, verified/mismatch/inconclusive attestation, incident and resource hold | Prototype | Production verifier ecosystem, HA, retry schedules and enterprise incident integration |
+| Evidence | Runtime-generated HMAC receipts/attestations, canonicalization, SQLite WAL and append-only hash chain | Prototype | KMS/HSM, key rotation, durable distributed outbox, retention and external anchoring |
 | Human approval | Digest-bound state machine and exact-claim re-evaluation | Prototype | Authenticated reviewers, secure notification, one-time resume and separation of duties |
-| n8n integration | Installable alpha node with allowed, approval and denied outputs | Prototype | Governed executor, workflow admission, staging E2E, npm provenance and n8n verification |
+| n8n integration | Package 0.2 with decision-only and full-cycle governed-action nodes | Prototype | Real 0.2 sideload test, workflow admission, npm provenance and n8n verification |
 | Dify integration | Authenticated Python example | Prototype | Packaged adapter or Agent Strategy, lifecycle tests and production credentials |
 | Other platforms | Portable adapter contract | Specified | Platform-specific implementations and tests |
 
-The authoritative status is the [public capability matrix](../agentic/capability-matrix.json). A feature is production-ready only when that matrix explicitly says `production-ready`. The evidence and findings behind this conclusion are recorded in the [v2.4.1 technical assessment](palo-ai-v2.4.1-technical-assessment.md).
+The authoritative status is the [public capability matrix](../agentic/capability-matrix.json). A feature is production-ready only when that matrix explicitly says `production-ready`. The v2.4.1 assessment remains the baseline; the implemented v2.5 delta is documented in the [full-cycle assurance guide](palo-ai-full-cycle-assurance.md).
 
 ### Security blockers identified in this assessment
 
 The following are release blockers for consequential or production use, even where an underlying primitive is marked implemented:
 
 1. The reference policy checks declared scopes but does not yet prove that every effective resource/path in the action and its arguments is contained by those scopes.
-2. An existing `allowed` decision can currently be returned before claim expiry and current authority/policy are revalidated. An allow must never be treated as a reusable authorization capability.
-3. The visual n8n gate is optional; the governed executor and workflow-admission layers are still specified only.
+2. The reference capability and executor are local/in-process; multi-replica leasing, connector workload identity and binary attestation are not implemented.
+3. The original visual n8n gate remains optional. Package 0.2 provides a governed-action client, but workflow admission and elimination of every alternate credential path remain adopter responsibilities.
 4. One shared bearer token currently spans registry administration, agent verification, approval resolution and evidence submission. Production requires principal identity, RBAC and separation of duties.
-5. The preview evidence endpoint can sign a caller-supplied outcome/decision pair without proving that the trusted runtime executed the action. Outcome evidence must originate from the governed executor and transactional outbox.
+5. Caller-supplied REST evidence is disabled by default, but the deprecated local MCP compatibility tool remains and must not be exposed as a production ingestion path.
 6. The approval record is digest-bound but does not yet provide a complete, meaningful, signed action presentation and authenticated reviewer journey.
 7. The registry records a policy digest, but the preview runtime does not attest that the OPA bundle actually evaluated is that registered bundle.
 

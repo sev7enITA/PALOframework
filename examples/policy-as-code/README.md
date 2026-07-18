@@ -1,6 +1,6 @@
 # PALO policy as code — Developer Preview
 
-`agent-delegation.rego` is a draft v2.4.1 reference policy for canonical PALO-AI claims. It uses Rego v1 syntax and demonstrates checks for agent identity, profile state, tool and operation allowlists, read and write scopes, external-network authority, target host, delegation depth, subagent count, requested role, and exact human approval binding. `agent-delegation_test.rego` covers allowed, pending, forged-approval, scope, network, and tool cases.
+`agent-delegation.rego` is the draft v2.5 reference policy for canonical PALO-AI claims. It uses Rego v1 syntax and demonstrates checks for agent identity, profile state, tool and operation allowlists, read and write scopes, external-network authority, target host, delegation depth, subagent count, requested role, exact human approval binding, and the presence of a resource-bound Effect Contract for Action Claim 1.2. `agent-delegation_test.rego` covers allowed, pending, forged approval, scope, network, tool, Vibe Gate and fail-closed 1.2 cases.
 
 This policy is not a production authorization policy, legal determination, security certification, or substitute for organization-specific policy ownership and testing. Passing the included tests establishes only the behavior of the included examples.
 

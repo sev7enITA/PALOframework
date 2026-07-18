@@ -1,14 +1,14 @@
 # PALO-AI Adoption Paths
 
-Status: audience guide for the PALO-AI v2.4.1 developer preview, updated 17 July 2026.
+Status: audience guide for the PALO-AI v2.5 full-cycle developer preview, updated 18 July 2026.
 
 > Do not use this preview as a production authorization boundary. Use isolated data, mock or reversible actions, short-lived preview credentials, and an accountable test owner.
 
 PALO-AI gives code-first teams, visual workflow builders, and rapid prototypers one shared governance lifecycle:
 
 ```text
-propose -> normalize -> evaluate -> approve when required
-        -> execute through a governed path -> record -> verify
+propose -> normalize -> evaluate -> approve -> capability
+        -> execute -> receipt -> observe -> verify effect -> escalate
 ```
 
 The integration surface changes by audience. The security invariant does not: a workflow is not enforced when the protected tool or credential remains reachable around PALO.
@@ -18,7 +18,7 @@ The integration surface changes by audience. The security invariant does not: a 
 | Path | Best starting surface | First safe outcome | Current release status |
 |---|---|---|---|
 | Code-first developer | JSON Schema, MCP, gateway, OPA/Rego | One mock tool call is normalized, denied by default, then allowed by a pinned profile and policy | Contracts implemented; runtime components remain preview/prototype |
-| No-code / low-code builder | n8n native nodes or local alpha package | One workflow visibly routes Allowed, Approval Required and Denied | Local alpha; unpublished and unverified |
+| No-code / low-code builder | n8n package 0.2 | One synthetic action visibly routes Verified, Review Required, Denied or Execution Failed | Local full-cycle preview; unpublished and unverified |
 | Rapid prototyper / business maker | Copilot Studio or a comparable MCP-capable platform | One reversible action is exposed through a deliberately narrow PALO tool set | Integration guidance; no certified connector |
 
 ## Path 1: code-first developer

@@ -10,8 +10,9 @@ import { GovernanceRuntime } from "./core.js";
 import { createAuthenticatedMcpApp, parseAllowedHosts } from "./http.js";
 
 const expectedTools = [
-  "palo_get_approval_status", "palo_get_registry", "palo_list_approvals", "palo_register_agent", "palo_register_policy",
-  "palo_request_approval", "palo_resolve_approval", "palo_submit_evidence", "palo_verify_action_authority", "palo_verify_evidence", "palo_verify_ledger"
+  "palo_execute_governed_action", "palo_get_approval_status", "palo_get_execution_status", "palo_get_incident", "palo_get_registry", "palo_list_approvals", "palo_list_incidents",
+  "palo_register_agent", "palo_register_executor", "palo_register_policy", "palo_register_verifier", "palo_request_approval", "palo_resolve_approval", "palo_resolve_incident",
+  "palo_submit_evidence", "palo_verify_action_authority", "palo_verify_evidence", "palo_verify_ledger", "palo_verify_outcome"
 ];
 
 test("remote MCP binding requires an explicit host allowlist", () => {

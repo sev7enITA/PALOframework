@@ -26,6 +26,35 @@ and this project follows Semantic Versioning where practical.
 
 - Positioned PALO-AI as an emerging governance control plane while retaining developer-preview disclaimers and avoiding claims of certified, production-ready, biometric, exactly-once, or unavoidable enforcement
 
+## [2.5.0] - 2026-07-18
+
+**Release status: Full-Cycle Developer Preview — isolated evaluation only.**
+
+### Added
+
+- Added Action Claim 1.2 and immutable Effect Contracts for authoritative preconditions, expected effects, forbidden effects and inconclusive handling
+- Added signed one-time Execution Capabilities bound to the exact claim, decision, tenant, resource, executor and verifier
+- Added operator-provisioned trusted executor and verifier registries, signed Execution Receipts and signed Outcome Attestations
+- Added `verified`, `mismatch` and `inconclusive` outcome semantics so an allowed action is no longer confused with a correct result
+- Added held Assurance Incidents with explicit acknowledge/resolve transitions; compensating actions remain separately governed claims
+- Expanded the MCP toolkit from eleven to nineteen tools and added full-cycle REST execution, outcome and incident endpoints
+- Added `n8n-nodes-palo-ai` 0.2 with the PALO Governed Action node and four visible outputs: Verified, Review Required, Denied and Execution Failed
+- Added a synthetic multi-tenant catalog demo covering verified effect, stale-state prevention and authorized-but-wrong mismatch detection
+- Added automated tests for capability replay resistance, idempotent retries, signed receipts, outcome verification, incident holds and ledger integrity
+
+### Changed
+
+- Disabled caller-supplied REST execution evidence by default; governed execution now generates receipt and outcome evidence inside the trusted runtime
+- Updated the reference Rego policy to accept Action Claim 1.2 only when a bound Effect Contract is present
+- Retained Action Claim 1.1 and the original n8n decision-only node for migration compatibility
+
+### Known developer-preview limitations
+
+- SQLite, shared bearer tokens, environment HMAC keys and in-process connector handlers are not production infrastructure
+- External tools cannot join the local database transaction; exactly-once behavior depends on connector idempotency and is not universally claimed
+- Executor and verifier workloads are not attested, mobile reviewer identity remains a prototype, and multi-replica durable recovery is not implemented
+- Production adoption still requires workload identity, scoped RBAC, KMS/HSM, PostgreSQL and durable queues, HA, observability and independent security assessment
+
 ## [2.4.1] - 2026-07-17
 
 **Release status: Developer Preview — not approved for production authorization or consequential tool execution.**
