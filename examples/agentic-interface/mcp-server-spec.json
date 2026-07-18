@@ -3,10 +3,10 @@
   "protocol": "Model Context Protocol",
   "protocolRevision": "2025-06-18",
   "name": "palo-governance-server",
-  "version": "2.4.1",
+  "version": "2.5.0",
   "releaseStatus": "developer-preview",
   "productionUse": false,
-  "disclaimer": "Reference MCP contract and implementation for isolated evaluation only. It is not a production authorization service, trusted execution boundary, exactly-once executor, authenticated approval service, compliance certification, or production evidence platform.",
+  "disclaimer": "Full-cycle developer-preview contract for isolated evaluation only. It demonstrates trusted in-process executor and verifier boundaries but is not an audited production authorization service, universal exactly-once executor, authenticated approval service, compliance certification, or production evidence platform.",
   "implementations": {
     "stdio": "packages/palo-mcp-server/index.js",
     "authenticatedStreamableHttp": "packages/palo-mcp-server/http.js",
@@ -24,14 +24,22 @@
   "tools": [
     { "name": "palo_register_agent", "contract": "locally registered versioned agent and authority profile; publisher identity is not authenticated" },
     { "name": "palo_register_policy", "contract": "locally registered versioned OPA policy manifest; bundle attestation is not provided" },
+    { "name": "palo_register_executor", "contract": "versioned executor manifest; executable handler is operator-provisioned" },
+    { "name": "palo_register_verifier", "contract": "versioned authoritative verifier manifest; handler is operator-provisioned" },
     { "name": "palo_get_registry", "contract": "secret-free registry inventory" },
     { "name": "palo_verify_action_authority", "contract": "normalized Action Claim and bound approval" },
+    { "name": "palo_execute_governed_action", "contract": "Action Claim 1.2 execution through one-time capability, receipt and outcome verification" },
+    { "name": "palo_get_execution_status", "contract": "governed execution, receipt, attestation and linked incident" },
+    { "name": "palo_verify_outcome", "contract": "authoritative effect re-verification" },
     { "name": "palo_request_approval", "contract": "exact-digest approval request" },
     { "name": "palo_get_approval_status", "contract": "single approval state" },
     { "name": "palo_list_approvals", "contract": "approval work queue" },
     { "name": "palo_resolve_approval", "contract": "one terminal transition with a caller-supplied identity label and rationale" },
-    { "name": "palo_submit_evidence", "contract": "prototype signed execution-evidence submission that assumes a trusted caller" },
+    { "name": "palo_submit_evidence", "contract": "deprecated local compatibility path; governed execution produces trusted evidence internally" },
     { "name": "palo_verify_evidence", "contract": "HMAC envelope verification" },
-    { "name": "palo_verify_ledger", "contract": "complete signature and hash-chain verification" }
+    { "name": "palo_verify_ledger", "contract": "complete signature and hash-chain verification" },
+    { "name": "palo_list_incidents", "contract": "assurance incident work queue" },
+    { "name": "palo_get_incident", "contract": "single mismatch or inconclusive incident" },
+    { "name": "palo_resolve_incident", "contract": "acknowledge or resolve without implicit rollback" }
   ]
 }

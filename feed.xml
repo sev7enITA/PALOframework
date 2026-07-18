@@ -5,8 +5,8 @@
         <link>https://paloframework.org</link>
         <description>Latest updates, tools, and insights from the PALO Framework - Principled AI Lifecycle Orchestration for responsible AI governance.</description>
         <language>en</language>
-        <lastBuildDate>Thu, 16 Jul 2026 23:30:00 +0200</lastBuildDate>
-        <pubDate>Thu, 16 Jul 2026 23:30:00 +0200</pubDate>
+        <lastBuildDate>Sat, 18 Jul 2026 21:00:00 +0200</lastBuildDate>
+        <pubDate>Sat, 18 Jul 2026 21:00:00 +0200</pubDate>
         <ttl>60</ttl>
         <atom:link href="https://paloframework.org/feed.xml" rel="self" type="application/rss+xml"/>
         <image>
@@ -20,6 +20,17 @@
         <category>AI Governance</category>
         <category>Responsible AI</category>
         <category>EU AI Act</category>
+        <item>
+            <title>PALO v2.5.0 - Full-Cycle Agentic Assurance Developer Preview</title>
+            <link>https://paloframework.org/PALO_AIGovernance.html</link>
+            <description><![CDATA[PALO-AI v2.5 extends governance beyond pre-execution permission with Action Claim 1.2, Effect Contracts, one-time capabilities, trusted Execution Receipts, authoritative Outcome Attestations and held Assurance Incidents. The release remains an isolated developer preview and is not a production authorization service.]]></description>
+            <pubDate>Sat, 18 Jul 2026 21:00:00 +0200</pubDate>
+            <guid isPermaLink="true">https://paloframework.org/PALO_AIGovernance.html</guid>
+            <dc:creator>PALO Framework</dc:creator>
+            <category>Agentic AI</category>
+            <category>Outcome Assurance</category>
+            <category>Governed Execution</category>
+        </item>
         
         <item>
             <title>PALO v2.4.1 - PALO-AI Developer Preview</title>

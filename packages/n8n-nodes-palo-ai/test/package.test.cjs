@@ -14,11 +14,15 @@ function assert(condition, message) {
 }
 
 assert(manifest.name === 'n8n-nodes-palo-ai', 'package name must remain stable');
-assert(manifest.version === '0.1.0', 'preview package version must remain 0.1.0');
+assert(manifest.version === '0.2.0', 'full-cycle preview package version must remain 0.2.0');
 assert(manifest.n8n?.strict === true, 'n8n strict package metadata is required');
 assert(
 	manifest.n8n?.nodes?.includes('dist/nodes/PaloGovernance/PaloGovernance.node.js'),
 	'compiled governance node must be registered in package metadata',
+);
+assert(
+	manifest.n8n?.nodes?.includes('dist/nodes/PaloGovernedAction/PaloGovernedAction.node.js'),
+	'compiled governed-action node must be registered in package metadata',
 );
 assert(
 	manifest.n8n?.credentials?.includes('dist/credentials/PaloApi.credentials.js'),
@@ -30,6 +34,8 @@ assert(distManifest.version === manifest.version, 'dist manifest must match pack
 for (const file of [
 	'dist/nodes/PaloGovernance/PaloGovernance.node.js',
 	'dist/nodes/PaloGovernance/PaloGovernance.node.json',
+	'dist/nodes/PaloGovernedAction/PaloGovernedAction.node.js',
+	'dist/nodes/PaloGovernedAction/PaloGovernedAction.node.json',
 	'dist/credentials/PaloApi.credentials.js',
 	'README.md',
 	'LICENSE',

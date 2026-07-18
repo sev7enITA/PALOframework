@@ -51,7 +51,7 @@ test_valid_claim_waits_for_human if {
 		"status": "pending_approval",
 		"reasons": ["human validation is required for this exact action claim"],
 		"obligations": ["obtain_bound_human_approval"],
-		"policyVersion": "palo-agentic-governance/1.1.0",
+		"policyVersion": "palo-agentic-governance/1.2.0",
 	}
 }
 
@@ -130,4 +130,22 @@ test_valid_vibe_gate_allows_policy_progress if {
 	claim := object.union(base_claim, {"metadata": metadata})
 	decision := governance.action_decision with input as object.union(base_input, {"profile": profile, "claim": claim})
 	decision.status == "pending_approval"
+}
+
+test_action_claim_1_2_with_bound_effect_contract_progresses if {
+	effect_contract := {
+		"format": "palo-agentic-effect-contract",
+		"schemaVersion": "1.0.0",
+		"resourceSelector": {"resource": base_claim.action.resource, "path": base_claim.action.path},
+	}
+	claim := object.union(base_claim, {"schemaVersion": "1.2.0", "effectContract": effect_contract})
+	decision := governance.action_decision with input as object.union(base_input, {"claim": claim})
+	decision.status == "pending_approval"
+}
+
+test_action_claim_1_2_without_effect_contract_fails_closed if {
+	claim := object.union(base_claim, {"schemaVersion": "1.2.0"})
+	decision := governance.action_decision with input as object.union(base_input, {"claim": claim})
+	decision.status == "denied"
+	decision.reasons == ["policy input is missing or malformed"]
 }

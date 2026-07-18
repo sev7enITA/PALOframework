@@ -7,7 +7,7 @@
   "required": ["format", "schemaVersion", "claimId", "agentId", "caseId", "action", "requestedScopes", "externalNetwork", "delegation", "requestedAt", "expiresAt", "nonce", "idempotencyKey", "sequenceNumber"],
   "properties": {
     "format": { "const": "palo-agentic-action-claim" },
-    "schemaVersion": { "const": "1.1.0" },
+    "schemaVersion": { "enum": ["1.1.0", "1.2.0"] },
     "claimId": { "type": "string", "pattern": "^claim-[a-f0-9-]{36}$" },
     "agentId": { "type": "string", "pattern": "^agent-[a-zA-Z0-9][a-zA-Z0-9-]{5,63}$" },
     "caseId": { "type": "string", "minLength": 1, "maxLength": 128 },
@@ -53,7 +53,14 @@
     "nonce": { "type": "string", "pattern": "^[a-zA-Z0-9_-]{16,128}$" },
     "idempotencyKey": { "type": "string", "pattern": "^[a-zA-Z0-9._:-]{16,200}$" },
     "sequenceNumber": { "type": "integer", "minimum": 1, "maximum": 9007199254740991 },
+    "effectContract": { "$ref": "palo-agentic-effect-contract.schema.json" },
     "metadata": { "type": "object", "additionalProperties": true }
   },
+  "allOf": [
+    {
+      "if": { "properties": { "schemaVersion": { "const": "1.2.0" } }, "required": ["schemaVersion"] },
+      "then": { "properties": { "effectContract": { "$ref": "palo-agentic-effect-contract.schema.json" } }, "required": ["effectContract"] }
+    }
+  ],
   "additionalProperties": false
 }

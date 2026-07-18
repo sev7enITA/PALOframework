@@ -16,9 +16,9 @@
     <meta name="twitter:card" content="summary_large_image">
     <link rel="icon" type="image/webp" href="assets/logo.webp">
     <link rel="stylesheet" href="assets/palo-icons.css">
-    <link rel="stylesheet" href="assets/palo-v21.css?v=2.4.1-a2554859">
+    <link rel="stylesheet" href="assets/palo-v21.css?v=2.5.0-a2554859">
     <script src="assets/palo-icons.js"></script>
-    <script src="assets/palo-v21.js?v=2.4.1"></script>
+    <script src="assets/palo-v21.js?v=2.5.0"></script>
 </head>
 <body class="palo-v21">
     <a class="palo-skip-link" href="#main-content">Skip to main content</a>
@@ -44,16 +44,17 @@
             <div class="palo-shell palo-ai-hero-grid">
                 <div>
                     <div class="palo-ai-status-line" aria-label="Release status">
-                        <span class="palo-ai-chip palo-ai-chip-preview">v2.4.1 developer preview</span>
+                        <span class="palo-ai-chip palo-ai-chip-preview">v2.5 full-cycle developer preview</span>
                         <span class="palo-ai-chip">Internet-reachable evaluation endpoints</span>
                     </div>
-                    <p class="palo-eyebrow">Governance before execution</p>
-                    <h1>Make agent authority visible, testable, and reviewable.</h1>
-                    <p class="palo-ai-hero-lead">PALO-AI is an emerging governance control plane for n8n and agentic automation platforms, designed to make authority, policy enforcement, human oversight and cryptographic evidence visible and enforceable.</p>
+                    <p class="palo-eyebrow">Governance before, during and after execution</p>
+                    <h1>Make agent authority—and its real-world effect—verifiable.</h1>
+                    <p class="palo-ai-hero-lead">PALO-AI is an emerging governance control plane for n8n and agentic automation platforms. It binds explicit authority and policy to a one-time execution capability, a trusted receipt and verification that the action produced the declared effect.</p>
                     <p class="palo-ai-boundary"><strong>Current boundary:</strong> this release is for interoperability evaluation with isolated data and non-consequential tools. It is not a production authorization service, certification, or independently assessed security boundary.</p>
                     <div class="palo-actions">
                         <a class="palo-btn" href="#choose-path">Choose your path</a>
                         <a class="palo-btn palo-btn-secondary" href="docs/palo-ai-governance-integration-guide.md">Read the integration guide</a>
+                        <a class="palo-btn palo-btn-secondary" href="docs/palo-ai-full-cycle-assurance.md">Explore full-cycle assurance</a>
                     </div>
                 </div>
                 <figure class="palo-ai-control-plane" aria-labelledby="control-plane-caption">
@@ -65,13 +66,14 @@
                             <li><span>01</span>Normalize claim</li>
                             <li><span>02</span>Evaluate policy</li>
                             <li><span>03</span>Approve if required</li>
-                            <li><span>04</span>Record evidence</li>
+                            <li><span>04</span>Execute through capability</li>
+                            <li><span>05</span>Verify the effect</li>
                         </ol>
                     </div>
                     <div class="palo-ai-arrow" aria-hidden="true">→</div>
                     <div class="palo-ai-outcomes">
-                        <span class="is-allow">Allowed</span>
-                        <span class="is-review">Approval required</span>
+                        <span class="is-allow">Verified</span>
+                        <span class="is-review">Review required</span>
                         <span class="is-deny">Denied</span>
                     </div>
                     <figcaption id="control-plane-caption">A policy decision is only authoritative when protected execution cannot bypass the governed path.</figcaption>
@@ -98,9 +100,9 @@
                     <article class="palo-ai-route">
                         <div class="palo-ai-route-number">02 / VISUAL</div>
                         <h3>No-code / low-code builder</h3>
-                        <p>Place a visible decision gate in n8n, then graduate from an advisory branch to a PALO-owned execution path.</p>
+                        <p>Use the visual decision gate for comparison, then move the protected action into the PALO Governed Action node and verify its outcome.</p>
                         <dl>
-                            <div><dt>First move</dt><dd>Run the three-outcome n8n demo against an isolated, reversible workflow.</dd></div>
+                            <div><dt>First move</dt><dd>Run the synthetic catalog demo and compare verified, mismatched and inconclusive outcomes.</dd></div>
                             <div><dt>Use</dt><dd>Local alpha node or native HTTP, Switch and Wait nodes.</dd></div>
                         </dl>
                         <div class="palo-actions"><a class="palo-btn" href="docs/palo-ai-adoption-paths.md#path-2-no-code--low-code-builder">Open visual-builder path</a></div>
@@ -129,8 +131,10 @@
                     <li><span>03</span><strong>Evaluate</strong><small>Schema, registry and Rego policy fail closed on malformed or missing context.</small></li>
                     <li><span>04</span><strong>Approve</strong><small>When required, a reviewer resolves the exact immutable claim.</small></li>
                     <li><span>05</span><strong>Execute</strong><small>The protected credential or tool is reachable only through the governed path.</small></li>
-                    <li><span>06</span><strong>Record</strong><small>Proposal, decision, approval, execution attempt and outcome are persisted separately.</small></li>
-                    <li><span>07</span><strong>Verify</strong><small>Signatures and ledger continuity are checked against the recorded evidence.</small></li>
+                    <li><span>06</span><strong>Receipt</strong><small>The trusted executor records what was actually attempted without accepting caller-supplied success claims.</small></li>
+                    <li><span>07</span><strong>Observe</strong><small>A separately registered verifier retrieves authoritative post-state.</small></li>
+                    <li><span>08</span><strong>Verify effect</strong><small>Expected and forbidden effects resolve to verified, mismatch or inconclusive.</small></li>
+                    <li><span>09</span><strong>Escalate</strong><small>Mismatch and uncertainty create a resource hold and a reviewable assurance incident.</small></li>
                 </ol>
             </div>
         </section>
@@ -232,7 +236,7 @@
 
     <footer class="palo-footer">
         <div class="palo-shell">
-            <p>PALO-AI v2.4.1 is a developer preview published for evaluation and interoperability feedback.</p>
+            <p>PALO-AI v2.5 is a full-cycle developer preview published for isolated evaluation and interoperability feedback.</p>
             <div class="palo-footer-links"><a href="PALO_DocumentationHub.html">Documentation</a><a href="PALO_AgenticGovernance.html">PALO-AM</a><a href="SECURITY.md">Security policy</a><a href="privacy-policy.html">Privacy</a><a href="PALO_Community.html">Community</a></div>
         </div>
     </footer>

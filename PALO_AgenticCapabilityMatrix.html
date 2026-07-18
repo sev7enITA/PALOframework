@@ -4,14 +4,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>PALO-AI Developer Preview Capability Matrix</title>
-  <meta name="description" content="Honest implementation status and non-production boundaries for the PALO-AI v2.4.1 developer preview.">
+  <meta name="description" content="Honest implementation status and non-production boundaries for the PALO-AI v2.5 full-cycle developer preview.">
   <link rel="canonical" href="https://paloframework.org/PALO_AgenticCapabilityMatrix.html">
-    <link rel="stylesheet" href="assets/palo-v21.css?v=2.4.1-a2554859">
+    <link rel="stylesheet" href="assets/palo-v21.css?v=2.5.0-a2554859">
 </head>
 <body class="palo-v21">
 <main id="main-content" class="palo-page-shell">
   <section class="palo-hero">
-    <p class="palo-eyebrow">PALO-AI · v2.4.1 · Developer Preview</p>
+    <p class="palo-eyebrow">PALO-AI · v2.5 · Full-Cycle Developer Preview</p>
     <h1>Agentic capability matrix</h1>
     <p>This matrix separates specified, prototype, implemented, and production-ready capabilities. No PALO-AI runtime capability is represented as production-ready in this release.</p>
     <p><strong>Safety boundary:</strong> this developer preview is not a production authorization service, security boundary, compliance certification, or substitute for organization-owned identity, access control, key management, monitoring, backup, retention, legal review, and security assurance.</p>
@@ -20,12 +20,17 @@
   <section class="palo-section">
     <div class="palo-table-wrap">
       <table>
-        <thead><tr><th>Capability</th><th>Status</th><th>Available evidence</th><th>Not included in v2.4.1</th></tr></thead>
+        <thead><tr><th>Capability</th><th>Status</th><th>Available evidence</th><th>Not included in v2.5</th></tr></thead>
         <tbody>
-          <tr><td>Official MCP SDK · stdio</td><td>Implemented</td><td>11-tool protocol test</td><td>Production process isolation and deployment assurance</td></tr>
+          <tr><td>Official MCP SDK · stdio</td><td>Implemented</td><td>19-tool protocol test</td><td>Production process isolation and deployment assurance</td></tr>
           <tr><td>Authenticated Streamable HTTP MCP</td><td>Prototype</td><td>Anonymous denial and authenticated protocol test</td><td>Principal RBAC, workload identity, TLS termination, token rotation and rate limiting</td></tr>
           <tr><td>Versioned agent, authority and policy registry</td><td>Prototype</td><td>SQLite records and semantic-version checks</td><td>Administrative authorization, publisher signatures, backup and recovery</td></tr>
-          <tr><td>Canonical Action Claims</td><td>Implemented</td><td>Versioned schema, normalization and argument validation</td><td>Adopter-specific production tool schemas and interoperability certification</td></tr>
+          <tr><td>Canonical Action Claims</td><td>Implemented</td><td>Action Claim 1.1 compatibility and Action Claim 1.2 Effect Contract binding</td><td>Adopter-specific production tool schemas and interoperability certification</td></tr>
+          <tr><td>Effect Contract predicate DSL</td><td>Implemented</td><td>Closed JSON-Pointer predicates and schema validation</td><td>Domain-specific predicate packs and formal-methods verification</td></tr>
+          <tr><td>One-time execution capability</td><td>Prototype</td><td>Claim, tenant, resource, executor and verifier binding with replay tests</td><td>Distributed capability service and workload identity</td></tr>
+          <tr><td>Trusted Execution Receipt</td><td>Prototype</td><td>Runtime-generated signed receipt and idempotent retry tests</td><td>Connector binary/workload attestation and universal exactly-once guarantees</td></tr>
+          <tr><td>Authoritative outcome verification</td><td>Prototype</td><td>Verified, mismatch and inconclusive test scenarios</td><td>Production connector certification, HA and distributed recovery</td></tr>
+          <tr><td>Assurance Incident lifecycle</td><td>Prototype</td><td>Resource hold, human resolution and ledger evidence</td><td>Enterprise incident integrations and production approval identity</td></tr>
           <tr><td>OPA Rego v1 default deny</td><td>Implemented</td><td>Positive and negative reference-policy tests</td><td>Signed policy distribution, bundle attestation and highly available OPA</td></tr>
           <tr><td>HMAC evidence signatures</td><td>Prototype</td><td>Canonicalization and signature verification tests</td><td>KMS/HSM integration, key rotation and external anchoring</td></tr>
           <tr><td>Replay protection</td><td>Prototype</td><td>Nonce, idempotency-key and sequence tests</td><td>Production-grade exactly-once execution and distributed coordination</td></tr>
@@ -35,8 +40,8 @@
           <tr><td>Vibe Coding pre-tool gate</td><td>Prototype</td><td>Metadata demonstration and reference Rego rule</td><td>Trusted gate attestation and an unavoidable tool-execution proxy</td></tr>
           <tr><td>Hierarchical subagents</td><td>Prototype</td><td>Profiles, limits and parent metadata</td><td>Trusted spawning, lineage verification and evidence handback</td></tr>
           <tr><td>Collaborative agent teams</td><td>Specified</td><td>Architecture and governance model</td><td>Team registry, shared task claims, peer assignment, leases and team evidence</td></tr>
-          <tr><td>n8n and Dify integrations</td><td>Prototype</td><td>Non-production claim-submission examples</td><td>Production credentials, retry/resume, packaging and connector certification</td></tr>
-          <tr><td>Governance E2E</td><td>Prototype</td><td>In-process automated acceptance scenario</td><td>Distributed staging validation with production identity, tools, mobile review, observability and recovery</td></tr>
+          <tr><td>n8n and Dify integrations</td><td>Prototype</td><td>n8n package 0.2 with decision-only and full-cycle visual nodes</td><td>npm publication, n8n verification, production credentials and connector certification</td></tr>
+          <tr><td>Governance E2E</td><td>Prototype</td><td>Authorize, approve, capability, execute, receipt, verify, mismatch, incident and ledger tests</td><td>Distributed staging validation with production identity, tools, mobile review, observability and recovery</td></tr>
         </tbody>
       </table>
     </div>

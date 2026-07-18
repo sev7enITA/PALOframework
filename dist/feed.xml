@@ -5,8 +5,8 @@
         <link>https://paloframework.org</link>
         <description>Latest updates, tools, and insights from the PALO Framework - Principled AI Lifecycle Orchestration for responsible AI governance.</description>
         <language>en</language>
-        <lastBuildDate>Thu, 16 Jul 2026 23:30:00 +0200</lastBuildDate>
-        <pubDate>Thu, 16 Jul 2026 23:30:00 +0200</pubDate>
+        <lastBuildDate>Sat, 18 Jul 2026 21:00:00 +0200</lastBuildDate>
+        <pubDate>Sat, 18 Jul 2026 21:00:00 +0200</pubDate>
         <ttl>60</ttl>
         <atom:link href="https://paloframework.org/feed.xml" rel="self" type="application/rss+xml"/>
         <image>
@@ -20,12 +20,23 @@
         <category>AI Governance</category>
         <category>Responsible AI</category>
         <category>EU AI Act</category>
+        <item>
+            <title>PALO v2.5.0 - Full-Cycle Agentic Assurance Developer Preview</title>
+            <link>https://paloframework.org/PALO_AIGovernance.html</link>
+            <description><![CDATA[PALO-AI v2.5 extends governance beyond pre-execution permission with Action Claim 1.2, Effect Contracts, one-time capabilities, trusted Execution Receipts, authoritative Outcome Attestations and held Assurance Incidents. The release remains an isolated developer preview and is not a production authorization service.]]></description>
+            <pubDate>Sat, 18 Jul 2026 21:00:00 +0200</pubDate>
+            <guid isPermaLink="true">https://paloframework.org/PALO_AIGovernance.html</guid>
+            <dc:creator>PALO Framework</dc:creator>
+            <category>Agentic AI</category>
+            <category>Outcome Assurance</category>
+            <category>Governed Execution</category>
+        </item>
         
         <item>
-            <title>PALO v2.4.1 - PALO Agentic Interface (PALO-AI)</title>
+            <title>PALO v2.4.1 - PALO-AI Developer Preview</title>
             <link>https://paloframework.org/PALO_AgenticGovernance.html#agentic-interface</link>
-            <description><![CDATA[PALO v2.4.1 introduces the PALO Agentic Interface (PALO-AI), a programmatic framework enabling autonomous AI agents and collaborative agent teams to integrate directly with PALO governance. Includes Model Context Protocol (MCP) tool schemas, Policy-as-Code Rego policies, and direct Case File evidence submission.]]></description>
-            <pubDate>Thu, 16 Jul 2026 23:30:00 +0200</pubDate>
+            <description><![CDATA[PALO v2.4.1 is a developer preview of versioned agentic governance contracts, a non-production MCP reference server, draft Rego v1 policies, prototype approval and evidence flows, and non-production n8n/Dify examples. It is not a production authorization service; runtime enforcement, cryptographic evidence hardening, authenticated mobile approvals, production connectors, and collaborative-agent-team execution remain under development.]]></description>
+            <pubDate>Fri, 17 Jul 2026 12:00:00 +0200</pubDate>
             <guid isPermaLink="true">https://paloframework.org/PALO_AgenticGovernance.html#agentic-interface</guid>
             <dc:creator>PALO Framework</dc:creator>
             <category>Agentic AI</category>

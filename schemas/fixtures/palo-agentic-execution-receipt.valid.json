@@ -1,0 +1,19 @@
+{
+  "format": "palo-agentic-execution-receipt",
+  "schemaVersion": "1.0.0",
+  "executionId": "execution-00000000-0000-0000-0000-000000000001",
+  "capabilityId": "capability-00000000-0000-0000-0000-000000000001",
+  "claimId": "claim-00000000-0000-0000-0000-000000000001",
+  "claimDigest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "executorId": "executor-catalog-demo",
+  "status": "succeeded",
+  "startedAt": "2026-07-18T10:00:01Z",
+  "completedAt": "2026-07-18T10:00:02Z",
+  "preStateDigest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "resourceVersion": "3",
+  "requestDigest": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+  "resultDigest": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+  "keyId": "key-catalog-demo",
+  "algorithm": "HMAC-SHA256",
+  "signature": "hmac-sha256:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+}

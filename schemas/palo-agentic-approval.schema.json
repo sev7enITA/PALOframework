@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://paloframework.org/schemas/palo-agentic-approval.schema.json",
   "title": "PALO Human Approval",
-  "description": "Developer-preview approval-state contract. The v2.4.1 reference clients do not provide authenticated reviewer identity or all context required for a consequential human decision.",
+  "description": "Developer-preview approval-state contract. The v2.5 reference clients do not provide production reviewer identity, device attestation or all context required for a consequential human decision.",
   "type": "object",
   "required": ["format", "schemaVersion", "approvalId", "claimId", "claimDigest", "caseId", "agentId", "status", "requestedBy", "requestedAt", "expiresAt"],
   "properties": {

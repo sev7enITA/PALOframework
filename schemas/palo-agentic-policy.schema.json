@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://paloframework.org/schemas/palo-agentic-policy.schema.json",
   "title": "PALO Policy Registration",
-  "description": "Developer-preview policy-manifest contract. The v2.4.1 reference runtime does not authenticate the publisher or attest that the active OPA bundle matches this manifest.",
+  "description": "Developer-preview policy-manifest contract. The v2.5 reference runtime does not authenticate the publisher or attest that the active OPA bundle matches this manifest.",
   "type": "object",
   "required": ["format", "schemaVersion", "policyId", "policyVersion", "status", "regoPackage", "entrypoint", "bundleDigest"],
   "properties": {
