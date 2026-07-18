@@ -1,4 +1,4 @@
-# Hostinger deployment — PALO Web v2.4.1
+# Hostinger deployment — PALO Web v2.5.0
 
 The canonical deploy input is the `dist/` directory produced by:
 
@@ -28,7 +28,8 @@ Upload the ZIP contents (not the enclosing folder) with an FTP client to `public
 ## Post-deploy checks
 
 ```sh
-curl -fsSL https://paloframework.org/ | grep -F "v2.4.1 - PALO-AI Developer Preview"
+curl -fsSL https://paloframework.org/ | grep -F "v2.5.0 - Full-Cycle Agentic Assurance"
+curl -fsSI https://paloframework.org/docs/palo-ai-full-cycle-assurance.md
 curl -fsSI https://paloframework.org/assets/palo-ai-n8n-scenarios/palo-ai-n8n-governance-hero-v2.png
 curl -fsSI https://paloframework.org/media/palo-ai-n8n-architecture-preview-3min.mp4
 curl -fsSL https://paloframework.org/.well-known/security.txt
