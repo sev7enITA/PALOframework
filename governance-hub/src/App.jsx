@@ -134,7 +134,7 @@ function Shell({ role, onRoleChange, view, onViewChange, children }) {
           ))}
         </nav>
         <div className="sidebar-brand">
-          <img src="/logo.webp" alt="PALO Framework" />
+          <img src={`${import.meta.env.BASE_URL}logo.webp`} alt="PALO Framework" />
         </div>
         <div className="profile-menu">
           <div className="avatar">SK</div>
