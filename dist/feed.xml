@@ -5,8 +5,8 @@
         <link>https://paloframework.org</link>
         <description>Latest updates, tools, and insights from the PALO Framework - Principled AI Lifecycle Orchestration for responsible AI governance.</description>
         <language>en</language>
-        <lastBuildDate>Sat, 18 Jul 2026 21:00:00 +0200</lastBuildDate>
-        <pubDate>Sat, 18 Jul 2026 21:00:00 +0200</pubDate>
+        <lastBuildDate>Sun, 19 Jul 2026 12:00:00 +0200</lastBuildDate>
+        <pubDate>Sun, 19 Jul 2026 12:00:00 +0200</pubDate>
         <ttl>60</ttl>
         <atom:link href="https://paloframework.org/feed.xml" rel="self" type="application/rss+xml"/>
         <image>
@@ -20,6 +20,17 @@
         <category>AI Governance</category>
         <category>Responsible AI</category>
         <category>EU AI Act</category>
+        <item>
+            <title>PALO-AI Governance Hub - Guided Product Prototype</title>
+            <link>https://paloframework.org/governance-hub/</link>
+            <description><![CDATA[A white, role-adaptive PALO-AI workspace now translates the same agentic governance state into an Executive cockpit and a Technical workbench. The interactive prototype includes an eight-step builder, portfolio signals, approvals, incident handling and full-cycle execution traces. It remains an evaluation interface, not a production authorization service.]]></description>
+            <pubDate>Sun, 19 Jul 2026 12:00:00 +0200</pubDate>
+            <guid isPermaLink="true">https://paloframework.org/governance-hub/</guid>
+            <dc:creator>PALO Framework</dc:creator>
+            <category>Agentic AI</category>
+            <category>Product Design</category>
+            <category>Governance UX</category>
+        </item>
         <item>
             <title>PALO v2.5.0 - Full-Cycle Agentic Assurance Developer Preview</title>
             <link>https://paloframework.org/PALO_AIGovernance.html</link>

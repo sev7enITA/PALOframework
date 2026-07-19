@@ -949,6 +949,27 @@ body.palo-v21 textarea:focus-visible {
     .palo-lifecycle-action .palo-btn { width: 100%; }
 }
 
+/* PALO-AI Governance Hub preview */
+.palo-ai-hub-preview { background: #f8fbfc; border-top: 1px solid var(--palo-line); border-bottom: 1px solid var(--palo-line); }
+.palo-ai-hub-grid { display: grid; grid-template-columns: minmax(360px, .78fr) minmax(520px, 1.22fr); gap: clamp(34px, 6vw, 82px); align-items: center; }
+.palo-ai-hub-copy h2 { max-width: 720px; }
+.palo-ai-hub-benefits { display: grid; gap: 0; margin: 26px 0; padding: 0; border-top: 1px solid var(--palo-line); list-style: none; }
+.palo-ai-hub-benefits li { display: grid; grid-template-columns: 145px minmax(0, 1fr); gap: 18px; padding: 15px 0; border-bottom: 1px solid var(--palo-line); }
+.palo-ai-hub-benefits strong { color: var(--palo-ink); }
+.palo-ai-hub-benefits span { color: var(--palo-muted); font-size: .9rem; line-height: 1.55; }
+.palo-ai-hub-figure { margin: 0; padding: 10px; background: #fff; border: 1px solid var(--palo-line); border-radius: 12px; box-shadow: var(--palo-shadow); }
+.palo-ai-hub-figure img { display: block; width: 100%; height: auto; border-radius: 7px; }
+.palo-ai-hub-figure figcaption { padding: 12px 8px 4px; color: var(--palo-muted); font-size: .78rem; line-height: 1.5; }
+
+@media (max-width: 1040px) {
+    .palo-ai-hub-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 640px) {
+    .palo-ai-hub-benefits li { grid-template-columns: 1fr; gap: 5px; }
+    .palo-ai-hub-figure { padding: 5px; }
+}
+
 @media (prefers-reduced-motion: reduce) {
     .palo-lifecycle-marker,
     .palo-lifecycle-card { transition: none !important; }

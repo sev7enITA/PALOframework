@@ -3,7 +3,7 @@
   "schemaVersion": "1.0.0",
   "release": "2.5.0",
   "releaseStatus": "developer-preview",
-  "updatedAt": "2026-07-18",
+  "updatedAt": "2026-07-19",
   "statusVocabulary": [
     "specified",
     "prototype",
@@ -36,6 +36,7 @@
     { "id": "n8n-governed-executor", "status": "prototype", "note": "Package 0.2 adds a PALO Governed Action node with Verified, Review Required, Denied and Execution Failed outputs backed by the v2.5 runtime; it is unpublished and not n8n-verified." },
     { "id": "n8n-secure-approval-resume", "status": "specified", "note": "The exact-claim approval contract is prototyped; authenticated reviewer delivery and one-time backend-controlled n8n resume are not implemented." },
     { "id": "n8n-workflow-admission", "status": "specified", "note": "Workflow assessment, digest registration and activation/pre-execution enforcement hooks are architected but not implemented." },
-    { "id": "governance-e2e", "status": "prototype", "note": "Automated tests cover authorize, approval, one-time execution, signed receipt, verified effect, stale-state prevention, mismatch incident, inconclusive verification and ledger integrity; distributed production staging remains incomplete." }
+    { "id": "governance-e2e", "status": "prototype", "note": "Automated tests cover authorize, approval, one-time execution, signed receipt, verified effect, stale-state prevention, mismatch incident, inconclusive verification and ledger integrity; distributed production staging remains incomplete." },
+    { "id": "governance-hub-gui", "status": "prototype", "note": "A white role-adaptive Executive and Technical interface demonstrates guided authority setup, portfolio signals, decision queues, execution traces, approvals and incidents with realistic evaluation data. It is not yet connected to production identity, tenant authorization, managed keys or an independently assessed runtime boundary." }
   ]
 }
