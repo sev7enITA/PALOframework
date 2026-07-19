@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://paloframework.org/schemas/palo-agentic-interface.schema.json",
   "title": "PALO Agent Profile",
-  "description": "Versioned authority-profile contract intended for registration by a governance administrator. The v2.4.1 reference runtime does not authenticate that administrative role or attest the profile publisher. The profile never contains signing secrets.",
+  "description": "Versioned authority-profile contract intended for registration by a governance administrator. The v2.5 reference runtime does not authenticate that administrative role or attest the profile publisher. The profile never contains signing secrets.",
   "type": "object",
   "required": ["format", "schemaVersion", "profileVersion", "agentId", "identity", "authority", "delegation", "evidence"],
   "properties": {

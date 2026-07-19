@@ -2,6 +2,7 @@
 
 const {
 	assertImmutableClaim,
+	assuranceOutput,
 	canonicalize,
 	decisionOutput,
 	normalizeBaseUrl,
@@ -35,6 +36,11 @@ equal(sha256(left), sha256(right), 'stable digest');
 equal(decisionOutput({ status: 'allowed' }), 0, 'allow output');
 equal(decisionOutput({ status: 'pending_approval' }), 1, 'approval output');
 equal(decisionOutput({ status: 'denied' }), 2, 'deny output');
+equal(assuranceOutput({ status: 'verified' }), 0, 'verified output');
+equal(assuranceOutput({ status: 'review_required' }), 1, 'review output');
+equal(assuranceOutput({ status: 'execution_unknown' }), 1, 'unknown execution output');
+equal(assuranceOutput({ status: 'denied' }), 2, 'assurance deny output');
+equal(assuranceOutput({ status: 'execution_failed' }), 3, 'failed execution output');
 
 const claim = {
 	format: 'palo-agentic-action-claim',

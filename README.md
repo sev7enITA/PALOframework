@@ -38,9 +38,14 @@ PALO is not a certification body and does not provide legal advice. It is a prac
 
 > **PALO-AI is an emerging governance control plane for n8n and agentic automation platforms, designed to make authority, policy enforcement, human oversight and cryptographic evidence visible and enforceable.**
 
+Start from the [web-native PALO-AI Governance hub](PALO_AIGovernance.html), then choose the [code-first, no-code/low-code, or rapid-prototyping adoption path](docs/palo-ai-adoption-paths.md). The same contracts can be evaluated locally, through the online developer-preview endpoint, or against the documented hybrid/cloud target architecture.
+
 n8n orchestrates what automation does. PALO governs whether an identified agent or automation is authorized to do it. The proposed integration combines four complementary patterns: a visible decision gate, an enforced governed executor, digest-bound human approval, and workflow admission controls. Only the decision and approval-contract prototypes are available in v2.4.1; unavoidable execution and instance-level admission remain specified roadmap capabilities.
 
 - [PALO-AI n8n governance control-plane architecture](docs/palo-ai-n8n-governance-control-plane.md)
+- [PALO-AI cloud reference architecture](docs/palo-ai-cloud-reference-architecture.md)
+- [PALO-AI security assurance and scale plan](docs/palo-ai-security-assurance-and-scale.md)
+- [PALO-AI community and market-entry plan](docs/palo-ai-community-and-market-entry.md)
 - [Presentation and launch playbook](docs/palo-ai-n8n-launch-playbook.md)
 - [Current n8n developer-preview example](examples/agentic-interface/integrations/n8n/)
 - [Installable n8n alpha package](packages/n8n-nodes-palo-ai/)
@@ -100,6 +105,7 @@ The app is designed as a privacy-first mobile workspace for contextual AI govern
 
 | Date | Release | Highlights |
 | --- | --- | --- |
+| 2026-07-18 | v2.5.0 - Full-Cycle Agentic Assurance | Effect Contracts, one-time execution capabilities, trusted receipts, authoritative outcome attestations, held assurance incidents, crash recovery, and the n8n Governed Action preview |
 | 2026-07-17 | v2.4.1 - PALO-AI Developer Preview | Versioned agentic contracts, reference MCP transports, draft Rego v1 policies, prototype approval and evidence flows, and non-production n8n/Dify examples |
 | 2026-07-12 | v2.4.0 - Reliable Operational Evidence | Deterministic publication, local evidence workflows, P2 adoption foundations, the public Platform Map, and Explorer navigation mode |
 | 2026-07-11 | v2.3.2 - Stakeholder Onboarding | Three plain-language questions, deterministic stakeholder routes, local JSON/Markdown export, guided handoff into the weighted workflow and 3D operational graph, plus cross-page module and Companion App coherence fixes |
@@ -155,6 +161,8 @@ You can also open `index.html` directly in a browser, although serving locally i
 ### Evaluate the PALO-AI reference runtime
 
 The commands below are for isolated development and testing only. Do not connect this preview to production agents, sensitive data, privileged tools, or consequential decisions.
+
+Remote n8n and MCP clients must use the [PALO-AI Online VPS Deployment](docs/palo-ai-vps-deployment.md), which exposes authenticated HTTPS endpoints while keeping OPA on a private container network. The `127.0.0.1` commands below are only a laptop-development option.
 
 ```bash
 npm ci
@@ -228,6 +236,9 @@ Primary framework documents and artifacts:
 - [PALOFrameworkV2.pdf](PALOFrameworkV2.pdf)
 - [The PALO Framework v1 paper, Feb 2026](ThePALOFramework_%20A_Paradigm_for_Principled_AI_Lifecycle_OrchestrationInBusiness%20v1%20Feb%202026.pdf)
 - [PALO-AM Agentic Governance page](PALO_AgenticGovernance.html)
+- [PALO-AI Governance Integration Guide](docs/palo-ai-governance-integration-guide.md)
+- [PALO-AI v2.4.1 Technical Assessment](docs/palo-ai-v2.4.1-technical-assessment.md)
+- [PALO-AI Online VPS Deployment](docs/palo-ai-vps-deployment.md)
 - [PALO-AM standalone document](insights/PALO-AM_Agentic_Governance_Modality_v2_Standalone_Document.docx)
 - [FRIA worksheet](assets/FRIA09-12_new.xlsx)
 - [PALO Canvas JSON template](json/palo-canvas-2025-12-17.json)

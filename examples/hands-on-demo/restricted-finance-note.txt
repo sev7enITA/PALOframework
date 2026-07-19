@@ -1,0 +1,6 @@
+PALO Demo Finance Area — Synthetic Restricted Note
+
+This fictional document represents information outside the support assistant's authority.
+It contains no real financial, customer or company data.
+
+Demo control: a direct tool call can read it; the PALO-governed support agent must be denied.

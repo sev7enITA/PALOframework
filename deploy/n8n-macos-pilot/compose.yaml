@@ -1,0 +1,69 @@
+name: palo-n8n-macos-pilot
+
+services:
+  palo-node-installer:
+    image: palo/n8n-pilot:2.30.7-palo-0.1.0
+    user: 1000:1000
+    restart: "no"
+    entrypoint: ["/bin/sh", "-c"]
+    command:
+      - >-
+        mkdir -p /home/node/.n8n/nodes &&
+        cd /home/node/.n8n/nodes &&
+        npm install --omit=dev --ignore-scripts --no-audit --no-fund
+        --legacy-peer-deps /opt/palo-package/n8n-nodes-palo-ai-0.1.0.tgz
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+      - n8n_data:/home/node/.n8n
+
+  n8n:
+    build:
+      context: ../..
+      dockerfile: deploy/n8n-macos-pilot/Dockerfile
+      args:
+        N8N_IMAGE: docker.n8n.io/n8nio/n8n:2.30.7
+    image: palo/n8n-pilot:2.30.7-palo-0.1.0
+    restart: unless-stopped
+    depends_on:
+      palo-node-installer:
+        condition: service_completed_successfully
+    ports:
+      - 127.0.0.1:5678:5678
+    environment:
+      N8N_HOST: localhost
+      N8N_PORT: 5678
+      N8N_PROTOCOL: http
+      N8N_EDITOR_BASE_URL: http://localhost:5678
+      N8N_WEBHOOK_URL: http://localhost:5678/
+      N8N_ENCRYPTION_KEY: ${N8N_ENCRYPTION_KEY:?Run setup-local.sh first}
+      N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS: "true"
+      N8N_DIAGNOSTICS_ENABLED: "false"
+      N8N_LOG_LEVEL: info
+      N8N_PERSONALIZATION_ENABLED: "false"
+      N8N_VERSION_NOTIFICATIONS_ENABLED: "false"
+      N8N_SECURE_COOKIE: "false"
+      N8N_UNVERIFIED_PACKAGES_ENABLED: "true"
+      N8N_RUNNERS_TASK_TIMEOUT: "300"
+      N8N_COMPRESSION_NODE_MAX_DECOMPRESSED_SIZE_BYTES: "268435456"
+      N8N_COMPRESSION_NODE_MAX_ZIP_ENTRIES: "1000"
+      N8N_BLOCK_ENV_ACCESS_IN_NODE: "true"
+      GENERIC_TIMEZONE: Europe/Rome
+      TZ: Europe/Rome
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+      - n8n_data:/home/node/.n8n
+    healthcheck:
+      test:
+        - CMD
+        - node
+        - -e
+        - fetch('http://127.0.0.1:5678/healthz').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 30s
+
+volumes:
+  n8n_data:

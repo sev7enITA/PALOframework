@@ -1,0 +1,22 @@
+{
+  "format": "palo-agentic-execution-capability",
+  "schemaVersion": "1.0.0",
+  "capabilityId": "capability-00000000-0000-0000-0000-000000000001",
+  "claimId": "claim-00000000-0000-0000-0000-000000000001",
+  "claimDigest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "decisionId": "decision-00000000-0000-0000-0000-000000000001",
+  "caseId": "case-catalog-demo",
+  "agentId": "agent-catalog-demo",
+  "executorId": "executor-catalog-demo",
+  "verifierId": "verifier-catalog-demo",
+  "resource": "catalog:item",
+  "path": "/tenants/tenant-a/items/item-1",
+  "tenantId": "tenant-a",
+  "issuedAt": "2026-07-18T10:00:00Z",
+  "expiresAt": "2026-07-18T10:01:00Z",
+  "singleUse": true,
+  "status": "issued",
+  "keyId": "key-catalog-demo",
+  "algorithm": "HMAC-SHA256",
+  "signature": "hmac-sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+}

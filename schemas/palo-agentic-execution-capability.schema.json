@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paloframework.org/schemas/palo-agentic-execution-capability.schema.json",
+  "title": "PALO One-Time Execution Capability",
+  "description": "Server-side developer-preview capability binding one authorized claim to one executor and verifier.",
+  "type": "object",
+  "required": ["format", "schemaVersion", "capabilityId", "claimId", "claimDigest", "decisionId", "caseId", "agentId", "executorId", "verifierId", "resource", "path", "issuedAt", "expiresAt", "singleUse", "status", "keyId", "algorithm", "signature"],
+  "properties": {
+    "format": { "const": "palo-agentic-execution-capability" },
+    "schemaVersion": { "const": "1.0.0" },
+    "capabilityId": { "type": "string", "pattern": "^capability-[a-f0-9-]{36}$" },
+    "claimId": { "type": "string", "pattern": "^claim-[a-f0-9-]{36}$" },
+    "claimDigest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+    "decisionId": { "type": "string", "pattern": "^decision-[a-f0-9-]{36}$" },
+    "caseId": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "agentId": { "type": "string", "pattern": "^agent-[a-zA-Z0-9][a-zA-Z0-9-]{5,63}$" },
+    "executorId": { "type": "string", "pattern": "^executor-[a-zA-Z0-9][a-zA-Z0-9._-]{2,100}$" },
+    "verifierId": { "type": "string", "pattern": "^verifier-[a-zA-Z0-9][a-zA-Z0-9._-]{2,100}$" },
+    "resource": { "type": "string", "minLength": 1, "maxLength": 1000 },
+    "path": { "type": "string", "pattern": "^/", "maxLength": 1000 },
+    "tenantId": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "issuedAt": { "type": "string", "format": "date-time" },
+    "expiresAt": { "type": "string", "format": "date-time" },
+    "singleUse": { "const": true },
+    "status": { "enum": ["issued", "consumed", "expired", "revoked"] },
+    "keyId": { "type": "string", "pattern": "^key-[a-zA-Z0-9._-]{3,100}$" },
+    "algorithm": { "const": "HMAC-SHA256" },
+    "signature": { "type": "string", "pattern": "^hmac-sha256:[a-f0-9]{64}$" }
+  },
+  "additionalProperties": false
+}

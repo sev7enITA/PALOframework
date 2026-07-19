@@ -1,0 +1,14 @@
+{
+  "node": "n8n-nodes-palo-ai.paloGovernedAction",
+  "nodeVersion": "1.0",
+  "codexVersion": "1.0",
+  "categories": ["AI", "Development", "Developer Tools"],
+  "resources": {
+    "primaryDocumentation": [
+      { "url": "https://github.com/sev7enITA/PALOframework/blob/main/packages/n8n-nodes-palo-ai/README.md" }
+    ],
+    "generic": [
+      { "label": "PALO-AI full-cycle assurance", "icon": "🌐", "url": "https://github.com/sev7enITA/PALOframework/blob/main/docs/palo-ai-full-cycle-assurance.md" }
+    ]
+  }
+}

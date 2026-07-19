@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PALO-AI Governance | Developer Preview</title>
+    <meta name="description" content="Explore PALO-AI governance contracts, n8n integration, local and cloud deployment paths, security boundaries, and adoption guides for code-first, no-code, and rapid-prototyping teams.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://paloframework.org/PALO_AIGovernance.html">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://paloframework.org/PALO_AIGovernance.html">
+    <meta property="og:title" content="PALO-AI Governance | Developer Preview">
+    <meta property="og:description" content="A visible governance control plane for n8n and agentic automation platforms, published for evaluation and design-partner feedback.">
+    <meta property="og:image" content="https://paloframework.org/assets/logo.webp">
+    <meta property="og:site_name" content="PALO Framework">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" type="image/webp" href="assets/logo.webp">
+    <link rel="stylesheet" href="assets/palo-icons.css">
+    <link rel="stylesheet" href="assets/palo-v21.css?v=2.5.0-a2554859">
+    <script src="assets/palo-icons.js"></script>
+    <script src="assets/palo-v21.js?v=2.5.0"></script>
+</head>
+<body class="palo-v21">
+    <a class="palo-skip-link" href="#main-content">Skip to main content</a>
+    <header class="palo-site-header">
+        <div class="palo-shell palo-header-inner">
+            <a class="palo-brand" href="index.html"><img src="assets/logo.webp" alt="PALO">PALO FRAMEWORK</a>
+            <button class="palo-menu-toggle" type="button" data-palo-menu-toggle aria-expanded="false" aria-controls="palo-primary-nav" aria-label="Open navigation">
+                <span data-palo-icon="menu" aria-hidden="true"></span>
+            </button>
+            <nav class="palo-nav" id="palo-primary-nav" aria-label="Primary navigation">
+                <a href="index.html">Home</a>
+                <a href="PALO_AssessmentPath.html">Assessment Path</a>
+                <a href="PALO_AgenticGovernance.html">PALO-AM</a>
+                <a href="PALO_AIGovernance.html" aria-current="page">PALO-AI</a>
+                <a href="PALO_DocumentationHub.html">Documentation</a>
+                <a href="PALO_Community.html">Community</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content" class="palo-main palo-ai-main">
+        <section class="palo-ai-hero">
+            <div class="palo-shell palo-ai-hero-grid">
+                <div>
+                    <div class="palo-ai-status-line" aria-label="Release status">
+                        <span class="palo-ai-chip palo-ai-chip-preview">v2.5 full-cycle developer preview</span>
+                        <span class="palo-ai-chip">Internet-reachable evaluation endpoints</span>
+                    </div>
+                    <p class="palo-eyebrow">Governance before, during and after execution</p>
+                    <h1>Make agent authority—and its real-world effect—verifiable.</h1>
+                    <p class="palo-ai-hero-lead">PALO-AI is an emerging governance control plane for n8n and agentic automation platforms. It binds explicit authority and policy to a one-time execution capability, a trusted receipt and verification that the action produced the declared effect.</p>
+                    <p class="palo-ai-boundary"><strong>Current boundary:</strong> this release is for interoperability evaluation with isolated data and non-consequential tools. It is not a production authorization service, certification, or independently assessed security boundary.</p>
+                    <div class="palo-actions">
+                        <a class="palo-btn" href="#choose-path">Choose your path</a>
+                        <a class="palo-btn palo-btn-secondary" href="docs/palo-ai-governance-integration-guide.md">Read the integration guide</a>
+                        <a class="palo-btn palo-btn-secondary" href="docs/palo-ai-full-cycle-assurance.md">Explore full-cycle assurance</a>
+                    </div>
+                </div>
+                <figure class="palo-ai-control-plane" aria-labelledby="control-plane-caption">
+                    <div class="palo-ai-proposal"><span>Agent / workflow</span><strong>Action proposal</strong></div>
+                    <div class="palo-ai-arrow" aria-hidden="true">→</div>
+                    <div class="palo-ai-core">
+                        <span class="palo-ai-core-label">PALO-AI control path</span>
+                        <ol>
+                            <li><span>01</span>Normalize claim</li>
+                            <li><span>02</span>Evaluate policy</li>
+                            <li><span>03</span>Approve if required</li>
+                            <li><span>04</span>Execute through capability</li>
+                            <li><span>05</span>Verify the effect</li>
+                        </ol>
+                    </div>
+                    <div class="palo-ai-arrow" aria-hidden="true">→</div>
+                    <div class="palo-ai-outcomes">
+                        <span class="is-allow">Verified</span>
+                        <span class="is-review">Review required</span>
+                        <span class="is-deny">Denied</span>
+                    </div>
+                    <figcaption id="control-plane-caption">A policy decision is only authoritative when protected execution cannot bypass the governed path.</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <section class="palo-section" id="choose-path">
+            <div class="palo-shell">
+                <p class="palo-eyebrow">Start from your working context</p>
+                <h2>Three routes into the same governance contract</h2>
+                <p class="palo-lead">Choose how you build. PALO-AI keeps the Action Claim, policy decision, approval and evidence vocabulary consistent across the routes.</p>
+                <div class="palo-ai-routes">
+                    <article class="palo-ai-route">
+                        <div class="palo-ai-route-number">01 / CODE</div>
+                        <h3>Code-first developer</h3>
+                        <p>Integrate JSON Schema, MCP, OPA/Rego, CI gates and a brokered executor into an application or agent runtime.</p>
+                        <dl>
+                            <div><dt>First move</dt><dd>Validate a canonical Action Claim and force one mock tool through the governed path.</dd></div>
+                            <div><dt>Use</dt><dd>SDK contracts, stdio or remote MCP, Rego tests, gateway adapter.</dd></div>
+                        </dl>
+                        <div class="palo-actions"><a class="palo-btn" href="docs/palo-ai-adoption-paths.md#path-1-code-first-developer">Open code-first path</a></div>
+                    </article>
+                    <article class="palo-ai-route">
+                        <div class="palo-ai-route-number">02 / VISUAL</div>
+                        <h3>No-code / low-code builder</h3>
+                        <p>Use the visual decision gate for comparison, then move the protected action into the PALO Governed Action node and verify its outcome.</p>
+                        <dl>
+                            <div><dt>First move</dt><dd>Run the synthetic catalog demo and compare verified, mismatched and inconclusive outcomes.</dd></div>
+                            <div><dt>Use</dt><dd>Local alpha node or native HTTP, Switch and Wait nodes.</dd></div>
+                        </dl>
+                        <div class="palo-actions"><a class="palo-btn" href="docs/palo-ai-adoption-paths.md#path-2-no-code--low-code-builder">Open visual-builder path</a></div>
+                    </article>
+                    <article class="palo-ai-route">
+                        <div class="palo-ai-route-number">03 / RAPID</div>
+                        <h3>Rapid prototyper</h3>
+                        <p>Connect Copilot Studio or a similar platform to a deliberately narrow set of PALO MCP tools, without writing policy code first.</p>
+                        <dl>
+                            <div><dt>First move</dt><dd>Select one authority profile, one reversible action and one accountable reviewer.</dd></div>
+                            <div><dt>Use</dt><dd>Streamable HTTP MCP, guided profiles and evidence review.</dd></div>
+                        </dl>
+                        <div class="palo-actions"><a class="palo-btn" href="docs/palo-ai-adoption-paths.md#path-3-rapid-prototyper--business-maker">Open rapid-prototyping path</a></div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="palo-section palo-ai-dark" id="lifecycle">
+            <div class="palo-shell">
+                <p class="palo-eyebrow">Portable governance lifecycle</p>
+                <h2>From intention to verifiable outcome</h2>
+                <ol class="palo-ai-lifecycle">
+                    <li><span>01</span><strong>Propose</strong><small>An identified agent or workflow requests an action.</small></li>
+                    <li><span>02</span><strong>Normalize</strong><small>Resource, operation, path, host, network intent and arguments become one Action Claim.</small></li>
+                    <li><span>03</span><strong>Evaluate</strong><small>Schema, registry and Rego policy fail closed on malformed or missing context.</small></li>
+                    <li><span>04</span><strong>Approve</strong><small>When required, a reviewer resolves the exact immutable claim.</small></li>
+                    <li><span>05</span><strong>Execute</strong><small>The protected credential or tool is reachable only through the governed path.</small></li>
+                    <li><span>06</span><strong>Receipt</strong><small>The trusted executor records what was actually attempted without accepting caller-supplied success claims.</small></li>
+                    <li><span>07</span><strong>Observe</strong><small>A separately registered verifier retrieves authoritative post-state.</small></li>
+                    <li><span>08</span><strong>Verify effect</strong><small>Expected and forbidden effects resolve to verified, mismatch or inconclusive.</small></li>
+                    <li><span>09</span><strong>Escalate</strong><small>Mismatch and uncertainty create a resource hold and a reviewable assurance incident.</small></li>
+                </ol>
+            </div>
+        </section>
+
+        <section class="palo-section" id="deployment">
+            <div class="palo-shell">
+                <p class="palo-eyebrow">Deployment choice</p>
+                <h2>Local remains possible. Cloud becomes a governed service boundary.</h2>
+                <p class="palo-lead">The contract stays portable; identity, keys, persistence, availability and network trust change by deployment mode.</p>
+                <p class="palo-table-scroll-hint"><span aria-hidden="true">↔</span> Swipe horizontally to compare every deployment field.</p>
+                <div class="palo-table-wrap">
+                    <table class="palo-table palo-ai-deployment-table">
+                        <thead><tr><th>Mode</th><th>Best fit</th><th>Current availability</th><th>Trust boundary</th></tr></thead>
+                        <tbody>
+                            <tr><th scope="row">Local sidecar</th><td>Code-first development, self-hosted n8n and offline evaluation.</td><td><span class="palo-ai-chip is-implemented">Implemented preview</span></td><td>Keep OPA, registry, ledger and credentials on the trusted host or private container network.</td></tr>
+                            <tr><th scope="row">Hybrid</th><td>Local/private workflows calling a remote PALO decision service over HTTPS.</td><td><span class="palo-ai-chip is-prototype">Prototype</span></td><td>Workflow data crosses the organization boundary; minimize claims and retain protected execution locally.</td></tr>
+                            <tr><th scope="row">Managed cloud</th><td>Multi-team governance with central policies, approvals, evidence and operations.</td><td><span class="palo-ai-chip is-specified">Target architecture</span></td><td>Requires tenant isolation, workload identity, RBAC, KMS/HSM, HA and independent assurance.</td></tr>
+                            <tr><th scope="row">Private cloud / VPC</th><td>Regulated or enterprise environments needing organizational control and network isolation.</td><td><span class="palo-ai-chip is-specified">Target architecture</span></td><td>Customer-owned identity, network, keys, retention and operational controls integrate with the PALO service.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="palo-ai-endpoints">
+                    <div><span>HTTPS Gateway · developer preview</span><code>https://governance.paloframework.org/gateway</code></div>
+                    <div><span>Streamable HTTP MCP · developer preview</span><code>https://governance.paloframework.org/mcp</code></div>
+                </div>
+                <p class="palo-note"><strong>Internet-reachable does not mean production-ready.</strong> The current VPS adds HTTPS termination and network isolation, but not production workload identity, least-privilege RBAC, managed keys, high availability, distributed exactly-once semantics, attested execution or independent security review.</p>
+                <div class="palo-actions"><a class="palo-btn" href="docs/palo-ai-cloud-reference-architecture.md">Compare cloud architectures</a><a class="palo-btn palo-btn-secondary" href="docs/palo-ai-vps-deployment.md">Deploy the preview VPS stack</a></div>
+            </div>
+        </section>
+
+        <section class="palo-section" id="platforms">
+            <div class="palo-shell">
+                <p class="palo-eyebrow">Integration is not enforcement</p>
+                <h2>Platform capability matrix</h2>
+                <p class="palo-lead">A visible check helps people understand a decision. It becomes an authorization boundary only when the protected tool and credential cannot be reached around it.</p>
+                <p class="palo-table-scroll-hint"><span aria-hidden="true">↔</span> Swipe horizontally to compare enforcement coverage.</p>
+                <div class="palo-table-wrap">
+                    <table class="palo-table palo-ai-platform-table">
+                        <thead><tr><th>Platform</th><th>Visual gate</th><th>Brokered execution</th><th>Runtime interception</th><th>Authoritative today?</th></tr></thead>
+                        <tbody>
+                            <tr><th scope="row">n8n</th><td>Local alpha node; native HTTP/Switch alternative</td><td>Specified</td><td>Self-hosted hook pattern specified</td><td>No — prototype decision gate</td></tr>
+                            <tr><th scope="row">Copilot Studio</th><td>MCP tools can surface governance actions</td><td>Target via narrow PALO tools</td><td>Platform-owned controls</td><td>No — integration guidance only</td></tr>
+                            <tr><th scope="row">Dify</th><td>Non-production tool example</td><td>Agent Strategy target</td><td>Plugin-owned target</td><td>No — reference example</td></tr>
+                            <tr><th scope="row">LangChain / LangGraph</th><td>Middleware decision feedback</td><td>Recommended adapter shape</td><td>Before-tool middleware / interrupt</td><td>No — adapter not packaged</td></tr>
+                            <tr><th scope="row">Node-RED</th><td>Custom node or subflow target</td><td>Broker required</td><td>Self-hosted hook target</td><td>No — specified pattern</td></tr>
+                            <tr><th scope="row">Make</th><td>HTTP or custom-app step</td><td>PALO-controlled API target</td><td>No universal interceptor</td><td>No — direct actions must be removed</td></tr>
+                            <tr><th scope="row">Zapier</th><td>Private/public integration target</td><td>PALO-controlled action target</td><td>No universal interceptor</td><td>No — direct actions must be removed</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="palo-note"><strong>Enforcement invariant:</strong> do not expose a direct privileged tool path beside its PALO-governed broker and then describe the flow as enforced.</p>
+            </div>
+        </section>
+
+        <section class="palo-section palo-ai-assurance" id="assurance">
+            <div class="palo-shell palo-ai-assurance-grid">
+                <div>
+                    <p class="palo-eyebrow">Assurance before scale</p>
+                    <h2>What is real, and what still blocks production</h2>
+                    <p>The developer preview includes canonical schemas, a trusted versioned registry, Rego v1 policy evaluation, replay controls, transactional local persistence, signed evidence and official-SDK MCP transports. These are evaluation primitives, not evidence of an independently assured production service.</p>
+                </div>
+                <div class="palo-ai-assurance-list">
+                    <h3>Required closure</h3>
+                    <ul>
+                        <li>OIDC or mTLS workload identity and least-privilege tenant RBAC</li>
+                        <li>KMS/HSM-backed signing, rotation and separation of duties</li>
+                        <li>Unavoidable governed execution and one-time authorization consumption</li>
+                        <li>Durable approval resume, HA state, outbox, recovery and external evidence anchoring</li>
+                        <li>Threat model, independent penetration test, cryptographic review and supply-chain assessment</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="palo-shell">
+                <div class="palo-actions"><a class="palo-btn" href="docs/palo-ai-security-assurance-and-scale.md">Open assurance and scale plan</a><a class="palo-btn palo-btn-secondary" href="docs/palo-ai-production-readiness-plan.md">Production-readiness gates</a><a class="palo-btn palo-btn-secondary" href="PALO_AgenticCapabilityMatrix.html">Capability matrix</a></div>
+            </div>
+        </section>
+
+        <section class="palo-section" id="preview-boundary">
+            <div class="palo-shell">
+                <p class="palo-eyebrow">Current publication boundary</p>
+                <h2>Precisely what this release claims</h2>
+                <div class="palo-ai-boundary-grid">
+                    <article><span class="palo-ai-chip is-prototype">Prototype</span><h3>n8n visual decision gate</h3><p>Locally installable alpha package with Allowed, Approval Required and Denied outputs. It does not execute the protected target.</p></article>
+                    <article><span class="palo-ai-chip is-specified">Specified</span><h3>Governed executor</h3><p>Target pattern where PALO owns the only protected credential and consumes authorization once.</p></article>
+                    <article><span class="palo-ai-chip is-specified">Specified</span><h3>Secure approval resume</h3><p>Target flow binding authenticated reviewer authority, exact claim digest and one-time workflow continuation.</p></article>
+                    <article><span class="palo-ai-chip is-specified">Specified</span><h3>Workflow admission</h3><p>Target deployment gate that rejects flows containing bypass paths before activation.</p></article>
+                </div>
+                <p class="palo-note"><strong>Publication status:</strong> <code>n8n-nodes-palo-ai</code> is unpublished, unverified and not accepted by n8n. npm publication, catalog discovery, n8n verification and connector submission are deferred until real integration and security gates pass.</p>
+            </div>
+        </section>
+
+        <section class="palo-section palo-ai-invitation" id="participate">
+            <div class="palo-shell palo-ai-invitation-grid">
+                <div><p class="palo-eyebrow">Architecture preview</p><h2>Bring one safe workflow. Challenge the boundary.</h2></div>
+                <div><p>We are looking for n8n builders, platform integrators, policy authors and security reviewers willing to test a non-production workflow with mock or reversible actions. Do not share secrets, personal data or production credentials.</p><div class="palo-actions"><a class="palo-btn" href="docs/community/n8n-architecture-preview-post.md">Read the community discussion draft</a><a class="palo-btn palo-btn-secondary" href="docs/community/palo-ai-feedback-design-partner-form.md">Design-partner intake</a><a class="palo-btn palo-btn-secondary" href="docs/palo-ai-community-and-market-entry.md">Market-entry plan</a></div></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="palo-footer">
+        <div class="palo-shell">
+            <p>PALO-AI v2.5 is a full-cycle developer preview published for isolated evaluation and interoperability feedback.</p>
+            <div class="palo-footer-links"><a href="PALO_DocumentationHub.html">Documentation</a><a href="PALO_AgenticGovernance.html">PALO-AM</a><a href="SECURITY.md">Security policy</a><a href="privacy-policy.html">Privacy</a><a href="PALO_Community.html">Community</a></div>
+        </div>
+    </footer>
+</body>
+</html>

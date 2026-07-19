@@ -1,0 +1,29 @@
+Options -Indexes
+DirectoryIndex index.html
+
+# Keep the static site safe when served from Apache/LiteSpeed.
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), geolocation=(), microphone=()"
+</IfModule>
+
+# Compress text assets when the Hostinger server exposes mod_deflate.
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/css text/javascript
+  AddOutputFilterByType DEFLATE application/javascript application/json application/xml image/svg+xml
+</IfModule>
+
+# Avoid stale HTML while allowing static assets to cache.
+<IfModule mod_headers.c>
+  <FilesMatch "\.(html|xml|json|txt|md)$">
+    Header set Cache-Control "no-cache, must-revalidate"
+  </FilesMatch>
+  <FilesMatch "\.(css|js|svg|webp|png|jpg|jpeg|gif|ico|pdf|mp4|woff2?)$">
+    Header set Cache-Control "public, max-age=2592000"
+  </FilesMatch>
+</IfModule>
+
+# Enable this only after the domain is confirmed fully HTTPS.
+# Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"

@@ -291,7 +291,9 @@ for (const [file, html] of htmlByFile) {
   for (const match of html.matchAll(sharedPattern)) {
     sharedReferenceCount += 1;
     const expected = `v=${releaseVersion}`;
-    if (match[2] !== expected) report(file, `stale shared asset version on ${match[0]}; expected ?${expected}`, match.index);
+    const fingerprint = match[2]?.startsWith(`${expected}-`) ? match[2].slice(expected.length + 1) : "";
+    const isVersioned = match[2] === expected || /^[0-9a-f]{8,64}$/.test(fingerprint);
+    if (!isVersioned) report(file, `stale shared asset version on ${match[0]}; expected ?${expected} or ?${expected}-<content-hash>`, match.index);
   }
 }
 if (sharedReferenceCount === 0) errors.push("shared assets: no palo-v21.css/js references found");

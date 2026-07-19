@@ -1,0 +1,14 @@
+{
+  "format": "palo-agentic-assurance-incident",
+  "schemaVersion": "1.0.0",
+  "incidentId": "incident-00000000-0000-0000-0000-000000000001",
+  "executionId": "execution-00000000-0000-0000-0000-000000000001",
+  "claimId": "claim-00000000-0000-0000-0000-000000000001",
+  "caseId": "case-catalog-demo",
+  "status": "open",
+  "severity": "high",
+  "reason": "Observed catalog state does not satisfy the Effect Contract",
+  "resourceHold": true,
+  "createdAt": "2026-07-18T10:00:03Z",
+  "updatedAt": "2026-07-18T10:00:03Z"
+}

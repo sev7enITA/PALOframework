@@ -1,0 +1,103 @@
+{
+  "name": "PALO-AI — Full-Cycle Outcome Assurance",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "35a86c93-266d-4d1c-a873-4a3d35ac7801",
+      "name": "Propose Catalog Update",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [-660, 100]
+    },
+    {
+      "parameters": {
+        "operation": "execute",
+        "caseId": "case-catalog-demo",
+        "agentId": "agent-catalog-demo",
+        "proposedTool": "catalog_update",
+        "actionOperation": "update",
+        "resource": "catalog:item",
+        "path": "/tenants/tenant-a/items/item-1",
+        "tenantId": "tenant-a",
+        "arguments": "{\"tenantId\":\"tenant-a\",\"itemId\":\"item-1\",\"newPrice\":120,\"expectedVersion\":3,\"simulateWrongEffect\":false}",
+        "argumentSchema": "{\"type\":\"object\",\"required\":[\"tenantId\",\"itemId\",\"newPrice\",\"expectedVersion\"],\"properties\":{\"tenantId\":{\"const\":\"tenant-a\"},\"itemId\":{\"const\":\"item-1\"},\"newPrice\":{\"type\":\"number\",\"minimum\":0},\"expectedVersion\":{\"type\":\"integer\",\"minimum\":1},\"simulateWrongEffect\":{\"type\":\"boolean\"}},\"additionalProperties\":false}",
+        "effectDefinition": "{\"preconditions\":[{\"predicateId\":\"predicate-current-version\",\"path\":\"/version\",\"operator\":\"equals\",\"value\":3}],\"expectedEffects\":[{\"predicateId\":\"predicate-price-target\",\"path\":\"/price\",\"operator\":\"changedTo\",\"value\":120}],\"forbiddenEffects\":[{\"predicateId\":\"predicate-cross-tenant\",\"path\":\"/tenantId\",\"operator\":\"changedTo\",\"value\":\"tenant-b\"}],\"verification\":{\"windowSeconds\":30,\"onInconclusive\":\"hold_and_review\",\"maxAttempts\":1}}",
+        "readScopes": "[\"/tenants/tenant-a/items/item-1\"]",
+        "writeScopes": "[\"/tenants/tenant-a/items/item-1\"]",
+        "networkIntent": "none",
+        "sequenceNumber": 1,
+        "expirySeconds": 300,
+        "executorId": "executor-catalog-demo",
+        "verifierId": "verifier-catalog-demo",
+        "capabilityTtlSeconds": 60
+      },
+      "id": "cb3f00c2-8c63-45ae-a0f5-36f97b619e55",
+      "name": "PALO — Governed Catalog Action",
+      "type": "n8n-nodes-palo-ai.paloGovernedAction",
+      "typeVersion": 1,
+      "position": [-360, 100]
+    },
+    {
+      "parameters": {},
+      "id": "61481ab1-f66b-42db-b4a6-c4596f220cc0",
+      "name": "✅ Verified Outcome",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [60, -140]
+    },
+    {
+      "parameters": {},
+      "id": "507b6cf5-4038-45fb-a704-d148be89d774",
+      "name": "⏳ Review or Incident",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [60, 20]
+    },
+    {
+      "parameters": {},
+      "id": "3f79f68b-1643-4a61-9700-f0dc6816a3ba",
+      "name": "⛔ Denied Before Execution",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [60, 180]
+    },
+    {
+      "parameters": {},
+      "id": "17274ae9-a4ff-4c4b-b3e0-e28746937eca",
+      "name": "⚠️ Execution Failed",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [60, 340]
+    },
+    {
+      "parameters": {
+        "content": "## PALO-AI Full-Cycle Assurance\nThe action is not complete when policy says **allowed**. It is complete only after a one-time capability, trusted execution receipt and authoritative effect verification.\n\nFirst run: human approval is required. Resolve the approval, then use **Resume Approved Action** with the exact claim and approval ID.\n\nSet `simulateWrongEffect` to `true` to produce a mismatch and an assurance incident. Synthetic data only.",
+        "height": 260,
+        "width": 980,
+        "color": 5
+      },
+      "id": "e09f8c7e-6e0c-4075-bc8e-98fd51bc98ee",
+      "name": "Assurance Narrative",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [-660, -460]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Propose Catalog Update": { "main": [[{ "node": "PALO — Governed Catalog Action", "type": "main", "index": 0 }]] },
+    "PALO — Governed Catalog Action": {
+      "main": [
+        [{ "node": "✅ Verified Outcome", "type": "main", "index": 0 }],
+        [{ "node": "⏳ Review or Incident", "type": "main", "index": 0 }],
+        [{ "node": "⛔ Denied Before Execution", "type": "main", "index": 0 }],
+        [{ "node": "⚠️ Execution Failed", "type": "main", "index": 0 }]
+      ]
+    }
+  },
+  "active": false,
+  "settings": { "executionOrder": "v1" },
+  "versionId": "a0f3f98f-c023-4813-929f-445c5563bea8",
+  "meta": { "templateCredsSetupCompleted": false },
+  "tags": []
+}

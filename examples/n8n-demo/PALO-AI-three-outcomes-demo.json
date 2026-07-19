@@ -1,0 +1,147 @@
+{
+  "name": "PALO-AI — Three Governance Outcomes",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "2a78c087-d598-4cc7-98dd-a621d5a2e7b8",
+      "name": "Run Governance Demo",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [-720, 80]
+    },
+    {
+      "parameters": {
+        "operation": "propose",
+        "caseId": "case-n8n-demo",
+        "agentId": "agent-demo-autonomous",
+        "proposedTool": "read_file",
+        "actionOperation": "read",
+        "resource": "file:document",
+        "path": "/workspace/support-docs/demo.txt",
+        "networkIntent": "none",
+        "arguments": "{\"path\":\"/workspace/support-docs/demo.txt\"}",
+        "argumentSchema": "{\"type\":\"object\",\"required\":[\"path\"],\"properties\":{\"path\":{\"type\":\"string\"}},\"additionalProperties\":false}",
+        "readScopes": "[\"/workspace/support-docs\"]",
+        "writeScopes": "[]",
+        "sequenceNumber": 1,
+        "expirySeconds": 300
+      },
+      "id": "1248c6ee-59b6-47ad-9811-20ea9bf7e29f",
+      "name": "PALO — Autonomous Low Risk",
+      "type": "n8n-nodes-palo-ai.paloGovernance",
+      "typeVersion": 1,
+      "position": [-400, -160]
+    },
+    {
+      "parameters": {
+        "operation": "propose",
+        "caseId": "case-n8n-demo",
+        "agentId": "agent-demo-supervised",
+        "proposedTool": "read_file",
+        "actionOperation": "read",
+        "resource": "file:document",
+        "path": "/workspace/support-docs/demo.txt",
+        "networkIntent": "none",
+        "arguments": "{\"path\":\"/workspace/support-docs/demo.txt\"}",
+        "argumentSchema": "{\"type\":\"object\",\"required\":[\"path\"],\"properties\":{\"path\":{\"type\":\"string\"}},\"additionalProperties\":false}",
+        "readScopes": "[\"/workspace/support-docs\"]",
+        "writeScopes": "[]",
+        "sequenceNumber": 1,
+        "expirySeconds": 300
+      },
+      "id": "5b0b7608-b16a-441e-b481-9c9cdfc35daa",
+      "name": "PALO — Human Supervised",
+      "type": "n8n-nodes-palo-ai.paloGovernance",
+      "typeVersion": 1,
+      "position": [-400, 80]
+    },
+    {
+      "parameters": {
+        "operation": "propose",
+        "caseId": "case-n8n-demo",
+        "agentId": "agent-demo-restricted",
+        "proposedTool": "delete_file",
+        "actionOperation": "delete",
+        "resource": "file:document",
+        "path": "/workspace/support-docs/demo.txt",
+        "networkIntent": "none",
+        "arguments": "{\"path\":\"/workspace/support-docs/demo.txt\"}",
+        "argumentSchema": "{\"type\":\"object\",\"required\":[\"path\"],\"properties\":{\"path\":{\"type\":\"string\"}},\"additionalProperties\":false}",
+        "readScopes": "[\"/workspace/support-docs\"]",
+        "writeScopes": "[]",
+        "sequenceNumber": 1,
+        "expirySeconds": 300
+      },
+      "id": "f0a4aeed-5968-4cdd-8294-c0489df62487",
+      "name": "PALO — Outside Authority",
+      "type": "n8n-nodes-palo-ai.paloGovernance",
+      "typeVersion": 1,
+      "position": [-400, 320]
+    },
+    {
+      "parameters": {},
+      "id": "987a57e6-48ef-4ca2-8d55-e2e4a465183a",
+      "name": "✅ Allowed — Mock Read",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [0, -160]
+    },
+    {
+      "parameters": {},
+      "id": "39039de5-a551-429b-8b56-1806a3c830ba",
+      "name": "⏳ Human Approval Required",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [0, 80]
+    },
+    {
+      "parameters": {},
+      "id": "8bd482c3-68fd-4edc-a66c-a4ae27e9a50d",
+      "name": "⛔ Denied — Stop Action",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [0, 320]
+    },
+    {
+      "parameters": {
+        "content": "## PALO-AI Governance Control Plane\nOne trigger proposes three simulated actions. PALO makes authority, human oversight and denial visible before any execution.\n\n**Developer preview — no real target tool is called.**",
+        "height": 180,
+        "width": 820,
+        "color": 5
+      },
+      "id": "0c36375f-7aeb-4ef7-966d-c6aadf24a3a8",
+      "name": "Demo Narrative",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [-720, -440]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Run Governance Demo": {
+      "main": [[
+        { "node": "PALO — Autonomous Low Risk", "type": "main", "index": 0 },
+        { "node": "PALO — Human Supervised", "type": "main", "index": 0 },
+        { "node": "PALO — Outside Authority", "type": "main", "index": 0 }
+      ]]
+    },
+    "PALO — Autonomous Low Risk": {
+      "main": [[{ "node": "✅ Allowed — Mock Read", "type": "main", "index": 0 }], [], []]
+    },
+    "PALO — Human Supervised": {
+      "main": [[], [{ "node": "⏳ Human Approval Required", "type": "main", "index": 0 }], []]
+    },
+    "PALO — Outside Authority": {
+      "main": [[], [], [{ "node": "⛔ Denied — Stop Action", "type": "main", "index": 0 }]]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "4cfb17ae-046f-4da4-8f74-dac18a32ba85",
+  "meta": {
+    "templateCredsSetupCompleted": false
+  },
+  "tags": []
+}
