@@ -1,0 +1,8 @@
+PALO Support Knowledge Base — Refund Policy (fictional demo)
+
+1. Support agents may read this document to answer customer questions.
+2. Refunds above EUR 100 require a named human reviewer.
+3. Payment execution is outside the scope of this demo.
+4. Never copy access tokens or customer personal data into an evidence payload.
+
+This file contains synthetic demonstration content only.

@@ -8,6 +8,12 @@ export interface PaloGatewayResponse {
 	[key: string]: unknown;
 }
 
+export interface PaloAssuranceResponse {
+	status: 'verified' | 'review_required' | 'denied' | 'execution_failed' | 'execution_unknown';
+	executionId?: string;
+	[key: string]: unknown;
+}
+
 export function canonicalize(value: unknown): string {
 	if (value === null || typeof value !== 'object') {
 		return JSON.stringify(value);
@@ -58,10 +64,20 @@ export function decisionOutput(response: PaloGatewayResponse): 0 | 1 | 2 {
 	return 2;
 }
 
+export function assuranceOutput(response: PaloAssuranceResponse): 0 | 1 | 2 | 3 {
+	if (response.status === 'verified') return 0;
+	if (response.status === 'review_required' || response.status === 'execution_unknown') return 1;
+	if (response.status === 'denied') return 2;
+	return 3;
+}
+
 export function assertImmutableClaim(value: unknown): Record<string, unknown> {
 	const claim = parseObject(value, 'Immutable Claim');
-	if (claim.format !== 'palo-agentic-action-claim' || claim.schemaVersion !== '1.1.0') {
-		throw new Error('Immutable Claim must be a PALO Action Claim schemaVersion 1.1.0');
+	if (
+		claim.format !== 'palo-agentic-action-claim' ||
+		!['1.1.0', '1.2.0'].includes(String(claim.schemaVersion))
+	) {
+		throw new Error('Immutable Claim must be a PALO Action Claim schemaVersion 1.1.0 or 1.2.0');
 	}
 	for (const field of ['claimId', 'caseId', 'agentId', 'action']) {
 		if (!(field in claim)) throw new Error(`Immutable Claim is missing ${field}`);

@@ -15,7 +15,7 @@ The target architecture and public claim discipline are documented in [`docs/pal
 
 ## Installable alpha
 
-The `n8n-nodes-palo-ai` 0.1.0 source package adds an encrypted credential type, strict community-node lint/build, three explicit outputs and a real n8n 2.30.7 fail-closed runtime test. See the [test report](../../../../docs/palo-ai-n8n-alpha-test-report.md).
+The `n8n-nodes-palo-ai` 0.2.0 source package retains the three-output decision gate and adds a four-output PALO Governed Action node for Action Claim 1.2, trusted receipt and outcome assurance. The original 0.1.0 runtime evidence is recorded in the [test report](../../../../docs/palo-ai-n8n-alpha-test-report.md); package 0.2 remains unpublished and requires a new real n8n runtime validation before any publication claim.
 
 The [`palo-visual-governance-gate.json`](templates/palo-visual-governance-gate.json) workflow is for local mock evaluation only. Select a PALO API credential after import.
 
@@ -31,4 +31,4 @@ Do not connect this example to production tools, sensitive data or consequential
 
 ## Package roadmap
 
-The package name is `n8n-nodes-palo-ai`. The current alpha implements the visual gate and encrypted gateway credentials. Approval operations, governed executors, evidence inspection and workflow admission remain roadmap items. Backend enforcement hooks and the MCP governance proxy remain a separate self-hosted/OEM component.
+The package name is `n8n-nodes-palo-ai`. Package 0.2 implements the visual gate, encrypted gateway credentials and the full-cycle Governed Action client. Executor and verifier handlers remain runtime-operator components; authenticated approval delivery and workflow admission remain roadmap items.

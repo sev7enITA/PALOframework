@@ -54,7 +54,10 @@ try {
   });
 
   for (const file of PUBLIC_HTML) {
-    const response = await page.goto(`${baseUrl}/${file}`, { waitUntil: "domcontentloaded", timeout: 30_000 });
+    // Wait for styles and other subresources before navigating to the next page.
+    // On slower CI runners, DOMContentLoaded alone can abort a still-loading local
+    // stylesheet during the next navigation and report a false request failure.
+    const response = await page.goto(`${baseUrl}/${file}`, { waitUntil: "load", timeout: 30_000 });
     if (!response?.ok()) failures.push(`${file}: navigation returned ${response?.status() || "no response"}`);
     const title = await page.title();
     if (!title.trim()) failures.push(`${file}: empty document title`);

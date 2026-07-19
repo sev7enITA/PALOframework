@@ -264,6 +264,11 @@ body.palo-v21 textarea:focus-visible {
 @media (max-width: 900px) {
     .palo-flow { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     .palo-results-grid { grid-template-columns: 1fr; }
+    .palo-header-inner { min-height: 68px; position: relative; }
+    .palo-menu-toggle { display: inline-flex; align-items: center; justify-content: center; }
+    .palo-nav { display: none; position: absolute; z-index: 20; top: 68px; left: 0; right: 0; flex-direction: column; align-items: stretch; gap: 0; padding: 8px 14px 14px; background: var(--palo-teal-dark); border-bottom: 1px solid rgba(255, 255, 255, 0.22); }
+    .palo-nav.is-open { display: flex; }
+    .palo-nav a { padding: 4px 0; }
 }
 
 @media (max-width: 760px) {
@@ -285,6 +290,118 @@ body.palo-v21 textarea:focus-visible {
 @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}
+
+/* PALO-AI documentation and adoption surface */
+.palo-ai-main { padding-bottom: 0; }
+.palo-ai-hero { padding: 70px 0 62px; background: var(--palo-surface); border-bottom: 1px solid var(--palo-line); }
+.palo-ai-hero-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(390px, .95fr); align-items: center; gap: clamp(36px, 7vw, 86px); }
+.palo-ai-hero h1 { max-width: 700px; margin: 0; font-size: clamp(2.65rem, 5.6vw, 5.25rem); line-height: .98; letter-spacing: -.045em; }
+.palo-ai-hero-lead { max-width: 700px; margin: 24px 0 0; color: var(--palo-ink-soft); font-size: 1.14rem; }
+.palo-ai-status-line { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
+.palo-ai-chip { display: inline-flex; align-items: center; min-height: 27px; padding: 3px 8px; color: var(--palo-ink-soft); background: var(--palo-white); border: 1px solid var(--palo-line); border-radius: 3px; font-size: .7rem; font-weight: 800; letter-spacing: .045em; line-height: 1.2; text-transform: uppercase; }
+.palo-ai-chip-preview, .palo-ai-chip.is-prototype { color: #734f09; background: #fff8e6; border-color: #e2bd6d; }
+.palo-ai-chip.is-implemented { color: #245c40; background: #edf8f1; border-color: #98c9ad; }
+.palo-ai-chip.is-specified { color: var(--palo-teal-dark); background: #eaf7f8; border-color: #9bcfd4; }
+.palo-ai-boundary { max-width: 700px; margin: 22px 0 0; padding: 15px 17px; color: var(--palo-ink-soft); background: var(--palo-white); border-left: 4px solid var(--palo-gold); font-size: .92rem; }
+.palo-ai-boundary strong { color: var(--palo-ink); }
+
+.palo-ai-control-plane { display: grid; grid-template-columns: minmax(90px, .7fr) 28px minmax(190px, 1.25fr) 28px minmax(110px, .8fr); align-items: center; margin: 0; padding: 22px; color: var(--palo-white); background: var(--palo-teal-dark); border-top: 5px solid var(--palo-gold); box-shadow: 16px 18px 0 #dce5e9; }
+.palo-ai-proposal, .palo-ai-outcomes { min-width: 0; }
+.palo-ai-proposal span, .palo-ai-proposal strong { display: block; }
+.palo-ai-proposal span { color: #a8dadd; font: 700 .68rem ui-monospace, SFMono-Regular, Consolas, monospace; text-transform: uppercase; }
+.palo-ai-proposal strong { margin-top: 6px; font-size: .9rem; line-height: 1.25; }
+.palo-ai-arrow { color: var(--palo-gold); font-size: 1.4rem; text-align: center; }
+.palo-ai-core { padding: 16px; background: #12313c; border: 1px solid #44727b; }
+.palo-ai-core-label { display: block; margin-bottom: 10px; color: #a8dadd; font: 700 .65rem ui-monospace, SFMono-Regular, Consolas, monospace; text-transform: uppercase; }
+.palo-ai-core ol { margin: 0; padding: 0; list-style: none; }
+.palo-ai-core li { display: flex; gap: 7px; padding: 7px 0; border-top: 1px solid #294d57; font-size: .76rem; line-height: 1.25; }
+.palo-ai-core li span { color: var(--palo-gold); font-family: ui-monospace, SFMono-Regular, Consolas, monospace; }
+.palo-ai-outcomes { display: grid; gap: 8px; }
+.palo-ai-outcomes span { padding: 7px 8px; background: #173f4a; border-left: 3px solid; font-size: .7rem; font-weight: 800; line-height: 1.25; }
+.palo-ai-outcomes .is-allow { border-color: #69c38e; }
+.palo-ai-outcomes .is-review { border-color: var(--palo-gold); }
+.palo-ai-outcomes .is-deny { border-color: #e67d7d; }
+.palo-ai-control-plane figcaption { grid-column: 1 / -1; margin-top: 16px; padding-top: 14px; color: #c7d8dc; border-top: 1px solid #44727b; font-size: .73rem; line-height: 1.45; }
+
+.palo-ai-routes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 32px; border-top: 1px solid var(--palo-line); border-bottom: 1px solid var(--palo-line); }
+.palo-ai-route { display: flex; flex-direction: column; min-width: 0; padding: 28px 26px 30px; border-right: 1px solid var(--palo-line); }
+.palo-ai-route:last-child { border-right: 0; }
+.palo-ai-route:nth-child(2) { background: var(--palo-surface); }
+.palo-ai-route-number { margin-bottom: 42px; color: var(--palo-teal); font: 800 .72rem ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .08em; }
+.palo-ai-route h3 { font-size: 1.5rem; }
+.palo-ai-route > p { color: var(--palo-muted); }
+.palo-ai-route dl { margin: 26px 0 0; }
+.palo-ai-route dl div { padding: 12px 0; border-top: 1px solid var(--palo-line); }
+.palo-ai-route dt { color: var(--palo-ink); font-size: .75rem; font-weight: 800; text-transform: uppercase; }
+.palo-ai-route dd { margin: 4px 0 0; color: var(--palo-muted); font-size: .88rem; }
+.palo-ai-route .palo-actions { margin-top: auto; padding-top: 20px; }
+
+.palo-ai-dark { color: var(--palo-white); background: var(--palo-teal-dark); }
+.palo-ai-dark h2 { color: var(--palo-white); }
+.palo-ai-lifecycle { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); margin: 34px 0 0; padding: 0; list-style: none; border-top: 1px solid #456e77; border-bottom: 1px solid #456e77; }
+.palo-ai-lifecycle li { min-height: 195px; padding: 18px 13px; border-right: 1px solid #456e77; }
+.palo-ai-lifecycle li:last-child { border-right: 0; }
+.palo-ai-lifecycle span, .palo-ai-lifecycle strong, .palo-ai-lifecycle small { display: block; }
+.palo-ai-lifecycle span { color: var(--palo-gold); font: 800 .7rem ui-monospace, SFMono-Regular, Consolas, monospace; }
+.palo-ai-lifecycle strong { margin-top: 44px; font-size: .94rem; }
+.palo-ai-lifecycle small { margin-top: 7px; color: #c4dadd; font-size: .73rem; line-height: 1.4; }
+
+.palo-ai-deployment-table th[scope="row"], .palo-ai-platform-table th[scope="row"] { color: var(--palo-ink); background: #f2f6f7; }
+.palo-ai-endpoints { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; margin-top: 24px; background: var(--palo-line); border: 1px solid var(--palo-line); }
+.palo-ai-endpoints div { min-width: 0; padding: 16px; background: var(--palo-surface); }
+.palo-ai-endpoints span { display: block; color: var(--palo-muted); font-size: .73rem; font-weight: 800; text-transform: uppercase; }
+.palo-ai-endpoints code { display: block; margin-top: 7px; overflow-wrap: anywhere; color: var(--palo-teal-dark); font-size: .84rem; }
+.palo-table-scroll-hint { display: none; margin: 18px 0 -14px; color: var(--palo-muted); font-size: .78rem; font-weight: 800; }
+
+.palo-ai-assurance { background: var(--palo-surface); }
+.palo-ai-assurance-grid { display: grid; grid-template-columns: minmax(0, .85fr) minmax(380px, 1.15fr); gap: clamp(36px, 7vw, 96px); }
+.palo-ai-assurance-grid p { color: var(--palo-muted); }
+.palo-ai-assurance-list { padding: 24px; background: var(--palo-white); border-top: 4px solid var(--palo-teal); }
+.palo-ai-assurance-list ul { margin: 18px 0 0; padding-left: 20px; }
+.palo-ai-assurance-list li { margin: 10px 0; color: var(--palo-ink-soft); }
+.palo-ai-boundary-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: 28px; border: 1px solid var(--palo-line); }
+.palo-ai-boundary-grid article { padding: 21px; border-right: 1px solid var(--palo-line); }
+.palo-ai-boundary-grid article:last-child { border-right: 0; }
+.palo-ai-boundary-grid h3 { margin-top: 18px; }
+.palo-ai-boundary-grid p { color: var(--palo-muted); font-size: .9rem; }
+.palo-ai-invitation { color: var(--palo-white); background: var(--palo-ink); }
+.palo-ai-invitation h2 { color: var(--palo-white); }
+.palo-ai-invitation-grid { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(32px, 7vw, 90px); }
+.palo-ai-invitation-grid > div:last-child > p { margin: 0; color: #c8d8e2; }
+
+@media (max-width: 1000px) {
+    .palo-ai-hero-grid { grid-template-columns: 1fr; }
+    .palo-ai-control-plane { max-width: 720px; }
+    .palo-ai-lifecycle { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .palo-ai-lifecycle li { min-height: 170px; border-bottom: 1px solid #456e77; }
+    .palo-ai-lifecycle li:nth-child(4) { border-right: 0; }
+    .palo-ai-boundary-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .palo-ai-boundary-grid article:nth-child(2) { border-right: 0; }
+    .palo-ai-boundary-grid article:nth-child(-n+2) { border-bottom: 1px solid var(--palo-line); }
+}
+
+@media (max-width: 760px) {
+    .palo-ai-hero { padding: 48px 0; }
+    .palo-ai-routes { grid-template-columns: 1fr; }
+    .palo-ai-route { border-right: 0; border-bottom: 1px solid var(--palo-line); }
+    .palo-ai-route:last-child { border-bottom: 0; }
+    .palo-ai-route-number { margin-bottom: 22px; }
+    .palo-ai-lifecycle { grid-template-columns: 1fr; }
+    .palo-ai-lifecycle li { min-height: 0; border-right: 0; }
+    .palo-ai-lifecycle strong { margin-top: 16px; }
+    .palo-ai-endpoints, .palo-ai-assurance-grid, .palo-ai-invitation-grid { grid-template-columns: 1fr; }
+    .palo-table-scroll-hint { display: block; }
+    .palo-ai-deployment-table, .palo-ai-platform-table { min-width: 760px; }
+}
+
+@media (max-width: 540px) {
+    .palo-ai-control-plane { grid-template-columns: 1fr; gap: 10px; padding: 18px; box-shadow: 8px 9px 0 #dce5e9; }
+    .palo-ai-arrow { transform: rotate(90deg); }
+    .palo-ai-boundary-grid { grid-template-columns: 1fr; }
+    .palo-ai-boundary-grid article { border-right: 0; border-bottom: 1px solid var(--palo-line); }
+    .palo-ai-boundary-grid article:nth-child(3) { border-bottom: 1px solid var(--palo-line); }
+    .palo-ai-boundary-grid article:last-child { border-bottom: 0; }
 }
 
 /* Homepage command surface */

@@ -1,6 +1,6 @@
 {
   "name": "palo-platform",
-  "version": "2.4.1",
+  "version": "2.5.0",
   "private": true,
   "description": "Deterministic validation, publication, and browser smoke tooling for the PALO static platform.",
   "type": "module",
@@ -14,6 +14,9 @@
     "palo:mcp": "node packages/palo-mcp-server/index.js",
     "palo:mcp:http": "node packages/palo-mcp-server/http.js",
     "palo:gateway": "node packages/palo-mcp-server/gateway.js",
+    "demo:hands-on": "node examples/hands-on-demo/run-assurance-cycle.mjs",
+    "demo:hands-on:legacy": "node examples/hands-on-demo/run-support-case.mjs",
+    "demo:n8n:seed": "node examples/hands-on-demo/run-support-case.mjs --seed-n8n",
     "validate:dist": "node scripts/validate.mjs --root dist --built",
     "build": "node scripts/build.mjs",
     "build:check": "node scripts/build.mjs --check",
@@ -21,14 +24,14 @@
     "p0": "npm run validate:agentic && npm run validate && npm run build && npm run validate:dist && npm run build:check && npm run smoke"
   },
   "devDependencies": {
-    "ajv": "8.20.0",
-    "ajv-formats": "3.0.1",
     "fast-xml-parser": "5.10.0",
     "html-validate": "11.5.5",
     "playwright": "1.61.1"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "1.29.0",
+    "ajv": "8.20.0",
+    "ajv-formats": "3.0.1",
     "better-sqlite3": "12.11.1",
     "zod": "4.4.3"
   }

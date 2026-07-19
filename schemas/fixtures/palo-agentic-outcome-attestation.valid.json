@@ -1,0 +1,17 @@
+{
+  "format": "palo-agentic-outcome-attestation",
+  "schemaVersion": "1.0.0",
+  "attestationId": "attestation-00000000-0000-0000-0000-000000000001",
+  "executionId": "execution-00000000-0000-0000-0000-000000000001",
+  "claimId": "claim-00000000-0000-0000-0000-000000000001",
+  "verifierId": "verifier-catalog-demo",
+  "status": "verified",
+  "checkedAt": "2026-07-18T10:00:03Z",
+  "postStateDigest": "sha256:ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+  "checks": [
+    { "predicateId": "predicate-price-updated", "category": "expected", "status": "pass", "reason": "Observed value equals the declared target" }
+  ],
+  "keyId": "key-catalog-demo",
+  "algorithm": "HMAC-SHA256",
+  "signature": "hmac-sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+}

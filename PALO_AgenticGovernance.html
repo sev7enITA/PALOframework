@@ -20,7 +20,7 @@
 <link rel="stylesheet" href="agentic/style.css">
     <link rel="stylesheet" href="assets/palo-icons.css">
 <script src="assets/palo-icons.js"></script>
-<script src="assets/palo-v21.js?v=2.4.1"></script>
+<script src="assets/palo-v21.js?v=2.5.0"></script>
 <script src="assets/palo-case-file.js?v=2.4.1"></script>
 </head>
 <body>
@@ -136,7 +136,7 @@
       <label>Import trusted agent profile<input id="am-profile-import" type="file" accept="application/json,.json"></label>
       <label>Import policy decision<input id="am-decision-import" type="file" accept="application/json,.json" multiple></label>
       <label>Import approval packet<input id="am-approval-import" type="file" accept="application/json,.json"></label>
-      <label>Gateway URL<input id="am-gateway-url" type="url" value="http://127.0.0.1:8787" autocomplete="url"></label>
+      <label>Gateway URL<input id="am-gateway-url" type="url" value="https://governance.paloframework.org/gateway" autocomplete="url"></label>
       <label>Gateway bearer token<input id="am-gateway-token" type="password" autocomplete="off"></label>
       <label>Resolver identity<input id="am-resolver" type="text" autocomplete="email" placeholder="reviewer@example.org"></label>
       <label style="grid-column:1/-1;">Decision rationale<textarea id="am-rationale" rows="3" maxlength="4000" placeholder="Explain why this exact Action Claim is approved or denied."></textarea></label>
@@ -148,7 +148,7 @@
       <button class="simulator-secondary" type="button" id="am-export-contracts">Export profile &amp; decisions</button>
     </div>
     <pre id="am-runtime-status" tabindex="0" aria-live="polite" style="white-space:pre-wrap;overflow:auto;max-height:320px;">No runtime contract loaded.</pre>
-    <p class="simulator-disclaimer"><strong>Developer preview:</strong> the bearer token is only a coarse developer control and does not authenticate an accountable reviewer or separate administrative roles. The current approval packet does not provide all context required for a consequential human decision. Use only isolated test data and a localhost test runtime.</p>
+    <p class="simulator-disclaimer"><strong>Developer preview:</strong> the online endpoint is Internet-reachable but is not production-ready. Its bearer token is only a coarse developer control and does not authenticate an accountable reviewer or separate administrative roles. Use isolated test data and non-consequential tools. For a local evaluation, replace the URL with <code>http://127.0.0.1:8787</code>.</p>
   </div>
 </div>
 </section>
@@ -431,7 +431,11 @@
     <p class="section-desc">Developer-preview contracts and reference components for exploring governance of autonomous agents and agent teams.</p>
   </div>
   <div class="simulator-disclaimer" style="margin-bottom:24px;padding:18px;border:1px solid var(--am-border);border-radius:10px;">
-    <strong>Developer Preview · Not for production authorization.</strong> PALO-AI v2.4.1 includes a JSON governance schema, draft Rego policies, proposed and executable reference MCP tools, and non-production n8n and Dify examples. Runtime enforcement, production cryptographic evidence, meaningful authenticated mobile approvals, production connectors, exactly-once execution, and collaborative-agent-team runtime semantics remain under development. An <code>allowed</code> preview response is not proof that an action is safe, lawful, currently authorized, successfully executed, or durably evidenced.
+    <strong>Full-Cycle Developer Preview · Not for production authorization.</strong> PALO-AI v2.5 adds Action Claim 1.2, Effect Contracts, one-time execution capabilities, trusted receipts, authoritative outcome attestations and assurance incidents. The reference runtime can demonstrate the complete cycle with operator-provisioned in-process connectors and synthetic data. Production identity, KMS/HSM, distributed exactly-once guarantees, high availability, independently assessed connectors and collaborative-agent-team runtime semantics remain under development.
+  </div>
+  <div style="display:flex;flex-wrap:wrap;gap:12px;margin-bottom:28px;">
+    <a href="PALO_AIGovernance.html" class="palo-btn"><span data-palo-icon="robot" class="palo-icon-inline"></span>Open the PALO-AI Governance Hub</a>
+    <a href="docs/palo-ai-adoption-paths.md" class="palo-btn palo-btn-secondary">Choose an adoption path</a>
   </div>
   
   <div class="governance-shift" style="margin-bottom: 40px;">
@@ -468,9 +472,10 @@
     <div class="scenario-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));gap:20px;">
       <div style="background:rgba(255,255,255,0.02);padding:18px;border-radius:8px;border:1px solid var(--am-border);">
         <h4 style="color:#fff;font-size:.9rem;margin-bottom:8px;">JSON Governance Schema</h4>
-        <p style="color:var(--am-text-muted);font-size:.78rem;margin-bottom:12px;">Define trusted profiles, policies, OPA inputs, action claims, policy decisions, human approvals and signed evidence with seven interoperable contracts.</p>
+        <p style="color:var(--am-text-muted);font-size:.78rem;margin-bottom:12px;">Define profiles, policy inputs, Action Claims, Effect Contracts, capabilities, receipts, outcome attestations, incidents and signed evidence with twelve interoperable contracts.</p>
         <a href="schemas/palo-agentic-interface.schema.json" class="palo-btn palo-btn-secondary" style="font-size:.75rem;padding:6px 12px;min-height:30px;"><span data-palo-icon="file" class="palo-icon-inline"></span>Open Schema</a>
         <a href="schemas/palo-agentic-action-claim.schema.json" class="palo-btn palo-btn-secondary" style="font-size:.75rem;padding:6px 12px;min-height:30px;"><span data-palo-icon="file" class="palo-icon-inline"></span>Action Claim</a>
+        <a href="schemas/palo-agentic-effect-contract.schema.json" class="palo-btn palo-btn-secondary" style="font-size:.75rem;padding:6px 12px;min-height:30px;">Effect Contract</a>
       </div>
       <div style="background:rgba(255,255,255,0.02);padding:18px;border-radius:8px;border:1px solid var(--am-border);">
         <h4 style="color:#fff;font-size:.9rem;margin-bottom:8px;">Policy-as-Code (Rego)</h4>
@@ -479,7 +484,7 @@
       </div>
       <div style="background:rgba(255,255,255,0.02);padding:18px;border-radius:8px;border:1px solid var(--am-border);">
         <h4 style="color:#fff;font-size:.9rem;margin-bottom:8px;">Model Context Protocol</h4>
-        <p style="color:var(--am-text-muted);font-size:.78rem;margin-bottom:12px;">Evaluate eleven reference tools over stdio or experimental bearer-authenticated MCP Streamable HTTP. Dify and n8n artifacts are non-production examples.</p>
+        <p style="color:var(--am-text-muted);font-size:.78rem;margin-bottom:12px;">Evaluate nineteen reference tools over stdio or experimental bearer-authenticated MCP Streamable HTTP, including governed execution, outcome verification and incident handling.</p>
         <a href="examples/agentic-interface/mcp-server-spec.json" class="palo-btn palo-btn-secondary" style="font-size:.75rem;padding:6px 12px;min-height:30px;"><span data-palo-icon="target" class="palo-icon-inline"></span>Open MCP Spec</a>
         <a href="PALO_AgenticCapabilityMatrix.html" class="palo-btn palo-btn-secondary" style="font-size:.75rem;padding:6px 12px;min-height:30px;">Capability Matrix</a>
       </div>
@@ -536,10 +541,10 @@
 <div class="container">
   <div class="coming-soon">
     <h3><span data-palo-icon=rocket class=palo-icon-inline></span>Developer preview available</h3>
-    <p>v2.4.1 publishes canonical agentic contracts, a reference MCP server, tested draft Rego policy, prototype approval state, an experimental connector gateway and HMAC/hash-chain evidence examples. These components are not a production authorization or evidence service.</p>
+    <p>v2.5 extends canonical governance into a complete reference assurance cycle: Action Claim 1.2, Effect Contract, one-time capability, trusted receipt, authoritative outcome attestation and held assurance incident. These components remain a developer preview and are not a production authorization or evidence service.</p>
     <div class="roadmap-grid" style="max-width:900px;margin:0 auto;">
-      <div class="roadmap-card"><div class="roadmap-ver">Available</div><p>Versioned contracts, reference MCP transports, draft Rego tests and local prototype components.</p></div>
-      <div class="roadmap-card"><div class="roadmap-ver">Harden</div><p>Fix exactly-once execution, state/evidence atomicity, decision provenance, key lifecycle and policy attestation.</p></div>
+      <div class="roadmap-card"><div class="roadmap-ver">Available</div><p>Twelve contracts, nineteen MCP tools, full-cycle runtime tests and an n8n governed-action preview.</p></div>
+      <div class="roadmap-card"><div class="roadmap-ver">Harden</div><p>Add durable distributed processing, connector attestation, workload identity, KMS/HSM and policy attestation.</p></div>
       <div class="roadmap-card"><div class="roadmap-ver">Authenticate</div><p>Add principal identity, role separation and meaningful action context for accountable human approval.</p></div>
       <div class="roadmap-card"><div class="roadmap-ver">Implement</div><p>Complete collaborative-agent teams, production connectors, mobile delivery and distributed staging assurance.</p></div>
     </div>

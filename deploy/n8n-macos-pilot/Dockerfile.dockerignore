@@ -1,0 +1,4 @@
+**
+!packages/
+!packages/n8n-nodes-palo-ai/
+!packages/n8n-nodes-palo-ai/n8n-nodes-palo-ai-0.1.0.tgz

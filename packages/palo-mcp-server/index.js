@@ -5,6 +5,6 @@ import { createPaloMcpServer } from "./server.js";
 
 const runtime = new GovernanceRuntime();
 const server = createPaloMcpServer(runtime);
-process.stderr.write("PALO-AI v2.4.1 DEVELOPER PREVIEW — isolated testing only; not a production authorization or execution boundary.\n");
+process.stderr.write("PALO-AI v2.5 FULL-CYCLE DEVELOPER PREVIEW — isolated testing only; not a production authorization or execution boundary.\n");
 await server.connect(new StdioServerTransport());
 process.on("exit", () => runtime.close());

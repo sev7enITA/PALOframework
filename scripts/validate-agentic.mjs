@@ -6,7 +6,11 @@ import addFormats from "ajv-formats";
 
 const ajv = new Ajv2020({ allErrors: true, strict: true });
 addFormats(ajv);
-const names = ["palo-agentic-interface", "palo-agentic-action-claim", "palo-agentic-policy", "palo-agentic-policy-input", "palo-agentic-policy-decision", "palo-agentic-approval", "palo-agentic-evidence-envelope"];
+const names = [
+  "palo-agentic-interface", "palo-agentic-effect-contract", "palo-agentic-action-claim", "palo-agentic-policy", "palo-agentic-policy-input",
+  "palo-agentic-policy-decision", "palo-agentic-approval", "palo-agentic-evidence-envelope", "palo-agentic-execution-capability",
+  "palo-agentic-execution-receipt", "palo-agentic-outcome-attestation", "palo-agentic-assurance-incident"
+];
 const errors = [];
 const loaded = {};
 for (const name of names) {
@@ -25,8 +29,9 @@ for (const name of names) {
 }
 
 const expectedTools = [
-  "palo_get_approval_status", "palo_get_registry", "palo_list_approvals", "palo_register_agent", "palo_register_policy",
-  "palo_request_approval", "palo_resolve_approval", "palo_submit_evidence", "palo_verify_action_authority", "palo_verify_evidence", "palo_verify_ledger"
+  "palo_execute_governed_action", "palo_get_approval_status", "palo_get_execution_status", "palo_get_incident", "palo_get_registry", "palo_list_approvals", "palo_list_incidents",
+  "palo_register_agent", "palo_register_executor", "palo_register_policy", "palo_register_verifier", "palo_request_approval", "palo_resolve_approval", "palo_resolve_incident",
+  "palo_submit_evidence", "palo_verify_action_authority", "palo_verify_evidence", "palo_verify_ledger", "palo_verify_outcome"
 ].sort();
 const spec = JSON.parse(await readFile("examples/agentic-interface/mcp-server-spec.json", "utf8"));
 const documentedTools = (spec.tools || []).map((tool) => tool.name).sort();
