@@ -4,7 +4,7 @@ Status: architecture preview updated for the PALO-AI v2.5 full-cycle developer p
 
 > **PALO-AI is an emerging governance control plane for n8n and agentic automation platforms, designed to make authority, policy enforcement, human oversight and cryptographic evidence visible and enforceable.**
 
-For runnable setup and current limitations, use the [PALO-AI Governance Integration Guide](palo-ai-governance-integration-guide.md) and [Full-Cycle Assurance Guide](palo-ai-full-cycle-assurance.md). The v2.4.1 technical assessment remains the production-readiness baseline.
+For runnable setup and current limitations, use the [PALO-AI Governance Integration Guide](palo-ai-governance-integration-guide.md), [Full-Cycle Assurance Guide](palo-ai-full-cycle-assurance.md) and [v2.5 Technical and Security Assessment](palo-ai-v2.5-technical-assessment.md). The capability matrix, not interface appearance, determines readiness.
 
 ## Product boundary
 
@@ -202,8 +202,8 @@ SQLite is never shared with n8n. Mobile biometrics may protect access to the cli
 2. **Human Controlled** — approval for external communications, writes, deletion and purchases.
 3. **Enterprise Baseline** — host allowlists, scope restrictions, credential references and separation of duties.
 4. **Regulated Data** — declared purpose, redaction, approval obligations and retention controls.
-5. **Agent Team** — roles, delegation depth, subagent limits, task leases and conflict handling; specified only in v2.4.1.
-6. **Vibe Coding** — unavoidable gates for shell, filesystem, Git, deployment and secret access; prototype metadata only in v2.4.1.
+5. **Agent Team** — roles, delegation depth and subagent constraints have prototype support; durable team task leases, conflict handling and team-level evidence remain specified.
+6. **Vibe Coding** — gate metadata is prototyped, but an unavoidable proxy for shell, filesystem, Git, deployment and secret access is not implemented.
 
 ## Delivery sequence
 
@@ -220,7 +220,7 @@ SQLite is never shared with n8n. Mobile biometrics may protect access to the cli
 
 Use:
 
-> PALO-AI proposes a visual and enforceable governance control plane for n8n and similar agentic automation platforms. The v2.4.1 developer preview publishes contracts, policy examples and reference runtime components for evaluation.
+> PALO-AI is an emerging visual governance control plane for n8n and similar agentic automation platforms. The v2.5 developer preview adds governed execution and authoritative outcome verification to its contracts, policy examples and reference runtime, while remaining limited to isolated evaluation.
 
 Do not yet use:
 

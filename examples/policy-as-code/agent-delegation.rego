@@ -9,6 +9,16 @@ import rego.v1
 
 policy_version := "palo-agentic-governance/1.2.0"
 
+# Defense-in-depth fallback. The complete rules below already deny malformed
+# input explicitly; this default preserves fail-closed behavior if a future
+# edit accidentally leaves an input shape unmatched.
+default action_decision := {
+	"status": "denied",
+	"reasons": ["policy input did not match a supported decision path"],
+	"obligations": ["stop_action", "repair_policy_input"],
+	"policyVersion": "palo-agentic-governance/1.2.0",
+}
+
 claim_contract_valid if {
 	input.claim.schemaVersion == "1.1.0"
 }

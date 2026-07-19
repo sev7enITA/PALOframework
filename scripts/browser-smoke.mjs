@@ -84,6 +84,50 @@ try {
     return content;
   }
 
+  await page.goto(`${baseUrl}/governance-hub/`, { waitUntil: "networkidle" });
+  await page.getByRole("button", { name: "Registry" }).click();
+  const governanceSearch = page.getByPlaceholder("Search registry");
+  await governanceSearch.fill("status");
+  if (await page.locator("tbody tr").count() !== 0) failures.push("Governance Hub: search matched an object key instead of row values");
+  await governanceSearch.fill("Catalog");
+  if (await page.locator("tbody tr").count() !== 1) failures.push("Governance Hub: value search did not isolate the Catalog row");
+  const registryExport = await captureDownload(page.getByRole("button", { name: "Export evidence" }), "Governance Hub registry export");
+  try {
+    if (JSON.parse(registryExport).length !== 4) failures.push("Governance Hub: registry export has unexpected content");
+  } catch {
+    failures.push("Governance Hub: registry export is not valid JSON");
+  }
+
+  await page.getByRole("button", { name: "Executive" }).click();
+  await page.getByRole("button", { name: "Reports" }).click();
+  const executiveBrief = await captureDownload(page.getByRole("button", { name: "Generate brief" }), "Governance Hub executive brief");
+  if (!executiveBrief.includes("Developer preview")) failures.push("Governance Hub: executive brief omits its release boundary");
+
+  await page.getByRole("button", { name: "Technical" }).click();
+  await page.getByRole("button", { name: "Setup" }).click();
+  await page.getByRole("button", { name: /Bound authority/ }).click();
+  await page.getByRole("button", { name: "Test this boundary" }).click();
+  const runningBoundaryTest = page.getByRole("button", { name: "Testing…" });
+  if (!await runningBoundaryTest.isDisabled()) failures.push("Governance Hub: boundary test remains enabled while simulation is running");
+  await page.getByRole("button", { name: "Test this boundary" }).waitFor({ timeout: 2_000 });
+
+  await page.getByRole("button", { name: "Executions" }).click();
+  await page.getByRole("button", { name: /Trace Catalog price update/ }).click();
+  const executionExport = await captureDownload(page.getByRole("button", { name: "Export evidence" }), "Governance Hub execution evidence");
+  try {
+    if (JSON.parse(executionExport).assurance !== "mismatch") failures.push("Governance Hub: execution export has unexpected assurance content");
+  } catch {
+    failures.push("Governance Hub: execution export is not valid JSON");
+  }
+
+  await page.locator("body").click({ position: { x: 1200, y: 760 } });
+  await page.keyboard.press("Tab");
+  const focusIndicator = await page.evaluate(() => {
+    const style = getComputedStyle(document.activeElement);
+    return { color: style.outlineColor, style: style.outlineStyle, width: style.outlineWidth };
+  });
+  if (focusIndicator.color !== "rgb(20, 125, 139)" || focusIndicator.style !== "solid" || focusIndicator.width !== "3px") failures.push(`Governance Hub: focus indicator is not the accessible solid teal style (${JSON.stringify(focusIndicator)})`);
+
   await page.goto(`${baseUrl}/PALO_AssessmentPath.html`, { waitUntil: "domcontentloaded" });
   await page.evaluate(() => { localStorage.clear(); sessionStorage.clear(); });
   const unknownPreserved = await page.evaluate(() => {

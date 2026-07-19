@@ -1,12 +1,12 @@
 # PALO-AI Governance Hub — status, gaps and staged launch plan
 
-Status: evidence-led launch plan prepared 19 July 2026 for the PALO-AI v2.5 developer preview and proposed role-based GUI.
+Status: evidence-led launch plan updated 19 July 2026 for the PALO-AI v2.5 developer preview and implemented role-based GUI prototype.
 
 ## Executive conclusion
 
 PALO-AI has moved beyond a static architecture proposal: the repository now contains a working full-cycle reference model that can authorize a canonical action, bind exact human approval, issue a one-time capability, execute through a registered in-process adapter, sign a receipt, verify authoritative post-state and open a held incident when the effect is wrong or uncertain.
 
-It has **not** yet reached production-control-plane maturity. The proposed Governance Hub can materially reduce cognitive friction, but a polished dashboard must not be allowed to outrun identity, non-bypassability, key custody, distributed reliability and independent assurance.
+It has **not** yet reached production-control-plane maturity. The implemented mock-data Governance Hub can materially reduce cognitive friction, but a polished dashboard must not be allowed to outrun identity, non-bypassability, key custody, distributed reliability and independent assurance.
 
 The launch should therefore make one promise:
 
@@ -27,7 +27,7 @@ The launch should therefore make one promise:
 | n8n | Package 0.2 source, two nodes, local 0.1 alpha evidence and synthetic workflow | The n8n integration is an unpublished, unverified developer preview; 0.2 still needs a fresh clean-install real-canvas validation. |
 | Dify and other platforms | Authenticated Python Dify example and portable adapter contract | Cross-platform integration is demonstrated at example/specification level, not as production connectors. |
 | Public proof | Architecture, capability matrix, diagrams, screenshots, three-minute video and hands-on demo | There is enough material for architecture review and design-partner recruitment. |
-| Governance Hub GUI | Role model and page/workflow copy | Executive Cockpit and Technical Workbench are proposed; no implementation or production claim should be made yet. |
+| Governance Hub GUI | Tested React/Vite prototype, production build, role model and workflows | Executive Cockpit and Technical Workbench are implemented with illustrative data; no live-runtime or production claim should be made. |
 
 ### Core differentiation
 
@@ -152,7 +152,7 @@ Timing: immediately, before new promotion.
 Actions:
 
 - use v2.5 and “full-cycle developer preview” consistently;
-- publish the Governance Hub page as a product-direction page, not an availability claim;
+- publish the Governance Hub as an available interactive prototype while keeping live-runtime and production claims explicitly out of scope;
 - make `agentic/capability-matrix.json` the source of truth for status;
 - make the direct-versus-governed demo the primary proof asset;
 - place the current boundary next to every CTA;

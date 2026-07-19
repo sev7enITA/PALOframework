@@ -234,7 +234,7 @@
             <p class="last-updated">
                 <span class="badge">Security information</span>
                 <span class="badge">Responsible disclosure</span>
-                Last reviewed: July 11, 2026
+                Last reviewed: July 19, 2026
             </p>
 
             <p>At PALO Framework, we are committed to ensuring the security and privacy of our users and their data.
@@ -248,6 +248,17 @@
                 <li>All PALO Framework tools and applications</li>
                 <li>Any data processed through our services</li>
             </ul>
+
+            <div class="highlight-box warning">
+                <strong>PALO-AI v2.5 Developer Preview Boundary</strong>
+                <p style="margin-bottom: 0; margin-top: 8px;">The PALO-AI full-cycle runtime, Governance Hub,
+                    remote MCP transport and n8n/Dify integrations are available only for isolated evaluation with
+                    synthetic data and non-consequential tools. They are not a production authorization service,
+                    multi-tenant control plane, compliance certification or independently assessed security boundary.
+                    The Governance Hub currently uses illustrative local data and must connect through a
+                    tenant-aware backend-for-frontend with OIDC and server-enforced authorization before online
+                    multi-user use.</p>
+            </div>
 
             <h2>2. Our Security Commitment</h2>
             <p>We implement appropriate technical and organizational measures to ensure a level of security appropriate
@@ -276,7 +287,7 @@
             <h3>3.1 How to Report</h3>
             <div class="contact-box">
                 <p style="margin-bottom: 8px;"><strong><span data-palo-icon=mail class=palo-icon-inline></span>Email:</strong> <a
-                        href="mailto:info@paloframework.org">info@paloframework.org</a></p>
+                        href="mailto:security@paloframework.org">security@paloframework.org</a></p>
                 <p style="margin-bottom: 8px;"><strong><span data-palo-icon=lock class=palo-icon-inline></span>PGP Key:</strong> Available upon request</p>
                 <p style="margin-bottom: 0;"><strong><span data-palo-icon=clipboard class=palo-icon-inline></span>security.txt:</strong> <a
                         href="/.well-known/security.txt">/.well-known/security.txt</a></p>
@@ -309,6 +320,10 @@
             </div>
 
             <h2>4. Data Processing Security</h2>
+            <p>The public website is HTTPS-only. The PALO-AI reference deployment additionally uses an isolated
+                Docker backend network; its internal PALO-to-OPA connection is a developer-preview HTTP channel, not
+                a production mutually authenticated policy plane. Production deployments require organization-owned
+                identity, network policy, key custody, signed policy promotion and independent assessment.</p>
             <p>In accordance with GDPR Article 32, we implement:</p>
 
             <table>
@@ -388,7 +403,7 @@
 
             <h2>8. Contact Information</h2>
             <div class="contact-box">
-                <p><strong><span data-palo-icon=lock class=palo-icon-inline></span>Security Issues:</strong> <a href="mailto:info@paloframework.org">info@paloframework.org</a>
+                <p><strong><span data-palo-icon=lock class=palo-icon-inline></span>Security Issues:</strong> <a href="mailto:security@paloframework.org">security@paloframework.org</a>
                 </p>
                 <p><strong><span data-palo-icon=mail class=palo-icon-inline></span>Privacy Inquiries:</strong> <a
                         href="mailto:info@paloframework.org">info@paloframework.org</a></p>

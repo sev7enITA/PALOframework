@@ -35,7 +35,7 @@ PALO-AI v2.5 contains a working full-cycle reference core, but not yet a product
 | Dify integration | Authenticated Python example | Prototype | Packaged adapter or Agent Strategy, lifecycle tests and production credentials |
 | Other platforms | Portable adapter contract | Specified | Platform-specific implementations and tests |
 
-The authoritative status is the [public capability matrix](../agentic/capability-matrix.json). A feature is production-ready only when that matrix explicitly says `production-ready`. The v2.4.1 assessment remains the baseline; the implemented v2.5 delta is documented in the [full-cycle assurance guide](palo-ai-full-cycle-assurance.md).
+The authoritative status is the [public capability matrix](../agentic/capability-matrix.json). A feature is production-ready only when that matrix explicitly says `production-ready`. The [v2.5 technical and security assessment](palo-ai-v2.5-technical-assessment.md) is the current release assessment; the v2.4.1 assessment is retained as the original preview baseline.
 
 ### Security blockers identified in this assessment
 
@@ -293,7 +293,7 @@ The mobile or Web reviewer must resolve an approval through an authenticated PAL
 
 n8n's official [MCP Client Tool](https://docs.n8n.io/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.toolmcp/) can expose selected MCP tools to an AI Agent. Select an explicit allowlist and do not connect equivalent target tools directly to the same agent.
 
-The current n8n documentation describes an SSE endpoint for this client. PALO v2.4.1 provides stdio and authenticated Streamable HTTP, so do not claim plug-and-play compatibility until an SSE adapter or a version-specific Streamable HTTP test has been implemented and verified.
+Client compatibility depends on the MCP transport and product version. PALO v2.5 provides stdio and authenticated Streamable HTTP; do not claim plug-and-play compatibility with clients that require SSE or another transport until that exact combination has been tested and documented.
 
 ### Production path for n8n
 
@@ -373,7 +373,7 @@ A standalone “check policy” step followed by a native vendor action is advis
 
 ## MCP-based platforms
 
-For MCP clients, expose only PALO-governed tools to the agent. Do not expose the same privileged target tools alongside their PALO wrappers. The v2.4.1 stdio server is the strongest current preview transport because it can remain local to a trusted host; the authenticated Streamable HTTP transport is still a shared-token prototype.
+For MCP clients, expose only PALO-governed tools to the agent. Do not expose the same privileged target tools alongside their PALO wrappers. The v2.5 stdio server can remain local to a trusted host; the authenticated Streamable HTTP transport remains a shared-token prototype and requires an explicit host allowlist for every non-loopback binding.
 
 n8n also documents an [instance-level MCP server](https://docs.n8n.io/advanced-ai/mcp/accessing-n8n-mcp-server/). That server exposes selected n8n workflows to clients; it does not by itself enforce PALO authority over actions inside those workflows.
 
@@ -458,7 +458,8 @@ curl --fail --silent \
 
 ## Repository references
 
-- [PALO-AI v2.4.1 technical assessment](palo-ai-v2.4.1-technical-assessment.md)
+- [PALO-AI v2.5 technical and security assessment](palo-ai-v2.5-technical-assessment.md)
+- [PALO-AI v2.4.1 technical assessment](palo-ai-v2.4.1-technical-assessment.md) — original preview baseline
 - [PALO-AI n8n architecture](palo-ai-n8n-governance-control-plane.md)
 - [Production-readiness plan](palo-ai-production-readiness-plan.md)
 - [n8n alpha test report](palo-ai-n8n-alpha-test-report.md)
