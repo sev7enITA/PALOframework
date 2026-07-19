@@ -59,6 +59,15 @@
       "status": "prototype",
       "productionUse": false
     },
+    "agenticGovernanceHub": {
+      "version": "0.1.0",
+      "date": "2026-07-19",
+      "status": "interactive-product-prototype",
+      "productionUse": false,
+      "webEntry": "governance-hub/",
+      "roles": ["executive", "technical"],
+      "runtime": "realistic-evaluation-data"
+    },
     "n8nGovernanceControlPlane": {
       "version": "0.2.0",
       "date": "2026-07-18",
@@ -110,6 +119,11 @@
     "architecturePreview": {
       "status": "source-ready",
       "webEntry": "PALO_AIGovernance.html",
+      "guidedWorkspace": "governance-hub/",
+      "governanceHubProductSpec": "docs/palo-ai-governance-hub-product-spec.md",
+      "governanceHubUserGuide": "docs/palo-ai-governance-hub-user-guide.md",
+      "governanceHubWorkflows": "docs/palo-ai-governance-hub-workflows.md",
+      "governanceHubStatus": "docs/palo-ai-governance-hub-status.md",
       "adoptionPaths": "docs/palo-ai-adoption-paths.md",
       "cloudArchitecture": "docs/palo-ai-cloud-reference-architecture.md",
       "securityAssurance": "docs/palo-ai-security-assurance-and-scale.md",

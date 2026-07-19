@@ -1,14 +1,24 @@
 import { createHash } from "node:crypto";
+import { execFile } from "node:child_process";
 import { cp, mkdir, mkdtemp, readFile, readdir, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import process from "node:process";
+import { promisify } from "node:util";
 import { fileURLToPath } from "node:url";
 import { PUBLIC_FILES } from "./public-files.mjs";
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const distRoot = path.join(projectRoot, "dist");
 const checkOnly = process.argv.includes("--check");
+const execFileAsync = promisify(execFile);
+
+async function buildGovernanceHub() {
+  await execFileAsync("npm", ["run", "build"], {
+    cwd: path.join(projectRoot, "governance-hub"),
+    maxBuffer: 10 * 1024 * 1024
+  });
+}
 
 async function build(target) {
   await rm(target, { force: true, recursive: true });
@@ -20,6 +30,10 @@ async function build(target) {
     await mkdir(path.dirname(destination), { recursive: true });
     await cp(source, destination, { errorOnExist: true, force: false });
   }
+
+  await cp(path.join(projectRoot, "governance-hub", "dist"), path.join(target, "governance-hub"), {
+    recursive: true
+  });
 }
 
 async function inventory(root) {
@@ -43,6 +57,7 @@ if (checkOnly) {
   const temporaryRoot = await mkdtemp(path.join(tmpdir(), "palo-dist-"));
   const rebuilt = path.join(temporaryRoot, "dist");
   try {
+    await buildGovernanceHub();
     await build(rebuilt);
     const expected = await inventory(rebuilt);
     const actual = await inventory(distRoot);
@@ -60,6 +75,7 @@ if (checkOnly) {
     await rm(temporaryRoot, { force: true, recursive: true });
   }
 } else {
+  await buildGovernanceHub();
   await build(distRoot);
-  console.log(`Built dist with ${PUBLIC_FILES.length} allowlisted files.`);
+  console.log(`Built dist with ${PUBLIC_FILES.length} allowlisted files plus the PALO-AI Governance Hub bundle.`);
 }
