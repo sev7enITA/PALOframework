@@ -11,6 +11,9 @@ and this project follows Semantic Versioning where practical.
 
 ### Added
 
+- Added the white PALO-AI Governance Hub prototype with a shared Executive/Technical shell, an eight-step guided governance builder, portfolio and decision views, execution traces, approvals, incidents and integration boundaries
+- Added a product specification, role-based user guide, workflow reference, six Mermaid architecture diagrams, site copy, GitHub copy and a design-partner launch plan for the Governance Hub
+- Added deterministic nested Vite publication so the Governance Hub ships inside the Hostinger/GitHub Pages `dist` artifact while retaining a local development mode
 - Added a web-native PALO-AI governance entry point with task-based routes for code-first developers, no-code/low-code builders, and rapid prototypers using Copilot Studio or similar MCP-capable tools
 - Added local, hybrid, managed-cloud and private-cloud deployment guidance with explicit identity, key custody, tenant isolation, availability and evidence gates
 - Added an independent cyber-assurance and scale plan covering threat modelling, cryptographic review, penetration testing, supply-chain assessment, recovery and multi-tenant acceptance criteria
@@ -24,6 +27,7 @@ and this project follows Semantic Versioning where practical.
 
 ### Changed
 
+- Reframed PALO-AI complexity through progressive disclosure: business questions and visible outcomes are primary, while Action Claims, Effect Contracts, Rego inputs and raw evidence remain inspectable on demand
 - Positioned PALO-AI as an emerging governance control plane while retaining developer-preview disclaimers and avoiding claims of certified, production-ready, biometric, exactly-once, or unavoidable enforcement
 
 ## [2.5.0] - 2026-07-18

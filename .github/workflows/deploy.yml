@@ -25,9 +25,14 @@ jobs:
         with:
           node-version: 20
           cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            governance-hub/package-lock.json
 
       - name: Install toolchain
-        run: npm ci
+        run: |
+          npm ci
+          npm ci --prefix governance-hub
 
       - name: Install Chromium
         run: npx playwright install --with-deps chromium

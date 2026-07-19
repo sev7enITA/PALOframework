@@ -52,6 +52,7 @@ temp/
 
 # Cache
 .cache/
+.npm-cache/
 .parcel-cache/
 .tools/
 __pycache__/
@@ -62,3 +63,6 @@ coverage/
 
 # Documentation build
 docs/_build/
+
+# Local package-manager configuration
+.npmrc

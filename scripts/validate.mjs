@@ -247,7 +247,9 @@ for (const file of PUBLIC_HTML) {
   htmlByFile.set(`${file}:static`, staticHtml);
 }
 
-const publicSet = new Set(PUBLIC_FILES);
+const publicSet = new Set([...PUBLIC_FILES, "governance-hub/index.html"]);
+try { await access(path.join(validationRoot, "governance-hub/index.html")); }
+catch { errors.push("governance-hub/index.html: generated Governance Hub entry is missing"); }
 for (const [file, html] of htmlByFile) {
   if (file.endsWith(":static")) continue;
   const staticHtml = htmlByFile.get(`${file}:static`);
