@@ -59,6 +59,9 @@ try {
     // stylesheet during the next navigation and report a false request failure.
     const response = await page.goto(`${baseUrl}/${file}`, { waitUntil: "load", timeout: 30_000 });
     if (!response?.ok()) failures.push(`${file}: navigation returned ${response?.status() || "no response"}`);
+    if (await page.locator('link[data-palo-spotlight-style]').count()) {
+      await page.waitForFunction(() => Boolean(document.querySelector('link[data-palo-spotlight-style]')?.sheet));
+    }
     const title = await page.title();
     if (!title.trim()) failures.push(`${file}: empty document title`);
     if (await page.locator("body").count() !== 1) failures.push(`${file}: body element did not render`);
