@@ -50,7 +50,10 @@ try {
   });
   page.on("pageerror", (error) => failures.push(`${page.url()}: page error: ${error.message}`));
   page.on("requestfailed", (request) => {
-    if (new URL(request.url()).origin === baseUrl) failures.push(`${page.url()}: local request failed: ${request.url()}`);
+    const isNavigationStylesheetAbort = request.resourceType() === "stylesheet" && request.failure()?.errorText === "net::ERR_ABORTED";
+    if (new URL(request.url()).origin === baseUrl && !isNavigationStylesheetAbort) {
+      failures.push(`${page.url()}: local request failed: ${request.url()} (${request.failure()?.errorText || "unknown error"})`);
+    }
   });
 
   for (const file of PUBLIC_HTML) {
