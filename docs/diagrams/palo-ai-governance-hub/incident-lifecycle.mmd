@@ -1,0 +1,25 @@
+stateDiagram-v2
+    state "No incident" as NoIncident
+    state "Open<br/>resourceHold = true" as Open
+    state "Acknowledged<br/>resourceHold = true" as Acknowledged
+    state "Resolved<br/>resourceHold = false" as Resolved
+
+    [*] --> NoIncident
+    NoIncident --> Open: outcome mismatch or inconclusive
+    Open --> Acknowledged: reviewer acknowledges and investigates
+    Acknowledged --> Resolved: authorized resolution recorded
+    Open --> Resolved: authorized direct resolution
+    Resolved --> [*]
+
+    Open --> Open: authenticated re-verification remains mismatch / inconclusive
+    Acknowledged --> Acknowledged: investigation evidence added (required)
+
+    note right of Open
+        Current API: list, get, acknowledge or resolve.
+        Resolution uses caller-supplied identity in the preview.
+    end note
+
+    note right of Resolved
+        No automatic rollback.
+        Compensation is a new governed Action Claim.
+    end note

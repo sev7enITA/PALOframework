@@ -38,7 +38,7 @@ PALO is not a certification body and does not provide legal advice. It is a prac
 
 > **PALO-AI is an emerging governance control plane for n8n and agentic automation platforms, designed to make authority, policy enforcement, human oversight and cryptographic evidence visible and enforceable.**
 
-Start from the [web-native PALO-AI Governance hub](PALO_AIGovernance.html), then choose the [code-first, no-code/low-code, or rapid-prototyping adoption path](docs/palo-ai-adoption-paths.md). The same contracts can be evaluated locally, through the online developer-preview endpoint, or against the documented hybrid/cloud target architecture.
+Start in the [guided PALO-AI Governance Hub](governance-hub/) to move from business intent to explicit authority through a white, role-adaptive interface. Use the [public governance overview](PALO_AIGovernance.html) for positioning, then choose the [code-first, no-code/low-code, or rapid-prototyping adoption path](docs/palo-ai-adoption-paths.md). The same contracts can be evaluated locally, through the online developer-preview endpoint, or against the documented hybrid/cloud target architecture.
 
 n8n orchestrates what automation does. PALO governs whether an identified agent or automation is authorized to do it. The proposed integration combines four complementary patterns: a visible decision gate, an enforced governed executor, digest-bound human approval, and workflow admission controls. Only the decision and approval-contract prototypes are available in v2.4.1; unavoidable execution and instance-level admission remain specified roadmap capabilities.
 
@@ -46,6 +46,10 @@ n8n orchestrates what automation does. PALO governs whether an identified agent 
 - [PALO-AI cloud reference architecture](docs/palo-ai-cloud-reference-architecture.md)
 - [PALO-AI security assurance and scale plan](docs/palo-ai-security-assurance-and-scale.md)
 - [PALO-AI community and market-entry plan](docs/palo-ai-community-and-market-entry.md)
+- [Governance Hub product specification](docs/palo-ai-governance-hub-product-spec.md)
+- [Governance Hub user guide](docs/palo-ai-governance-hub-user-guide.md)
+- [Governance Hub workflow and diagram index](docs/palo-ai-governance-hub-workflows.md)
+- [Governance Hub current status, production gaps and delivery waves](docs/palo-ai-governance-hub-status.md)
 - [Presentation and launch playbook](docs/palo-ai-n8n-launch-playbook.md)
 - [Current n8n developer-preview example](examples/agentic-interface/integrations/n8n/)
 - [Installable n8n alpha package](packages/n8n-nodes-palo-ai/)
