@@ -4,8 +4,10 @@
 
 | Version | Supported          |
 | ------- | ------------------ |
-| 2.4.x website and static tools | :white_check_mark: |
-| 2.4.1 PALO-AI developer preview runtime | :x: non-production |
+| 2.5.x website and static tools | :white_check_mark: |
+| 2.5.0 PALO-AI full-cycle runtime and Governance Hub | :x: developer preview; non-production |
+| 2.4.x website and static tools | :white_check_mark: security fixes only |
+| 2.4.1 PALO-AI developer preview runtime | :x: superseded; non-production |
 | 1.3.x   | :white_check_mark: |
 | 1.2.x   | :white_check_mark: |
 | 1.1.x   | :x:                |
@@ -15,11 +17,23 @@
 
 We take the security of PALO Framework seriously. If you believe you have found a security vulnerability, please report it to us as described below.
 
-## PALO-AI developer-preview boundary
+## PALO-AI v2.5 developer-preview boundary
 
-PALO-AI v2.4.1 runtime code, remote MCP transport, approval clients, HMAC/SQLite evidence flow, Vibe Gate, and n8n/Dify examples are published for developer evaluation and are not supported for production authorization or consequential tool execution.
+PALO-AI v2.5 runtime code, Governance Hub, remote MCP transport, approval flows, HMAC/SQLite evidence chain, governed-execution reference adapters, Vibe Gate metadata, and n8n/Dify examples are published for isolated developer evaluation. They are not supported for production authorization, consequential tool execution, compliance certification, or multi-tenant operation.
 
-Known preview limitations are documented in `packages/palo-mcp-server/README.md`, `examples/agentic-interface/README.md`, and `agentic/capability-matrix.json`. In particular, the preview does not provide production identity-aware RBAC, exactly-once execution, atomic runtime/evidence state, trusted reviewer authentication, KMS/HSM lifecycle, unavoidable pre-tool enforcement, production connectors, or collaborative-agent-team runtime semantics.
+Known preview limitations are documented in `docs/palo-ai-v2.5-technical-assessment.md`, `docs/palo-ai-governance-integration-guide.md`, `packages/palo-mcp-server/README.md`, and `agentic/capability-matrix.json`. In particular:
+
+- the Governance Hub is an interactive mock-data prototype and does not connect directly to the Gateway;
+- the browser must never receive the shared preview bearer token; online Hub operation requires a backend-for-frontend, OIDC, tenant-aware RBAC/ABAC, redaction, and separation of duties;
+- Gateway and MCP authentication use coarse shared preview tokens rather than principal or workload identity;
+- environment/file-provided HMAC keys, SQLite WAL, in-process adapters, and single-instance recovery are reference mechanisms rather than production key custody or distributed durability;
+- PALO-to-OPA traffic is restricted to the internal Docker network in the reference deployment but is not mutually authenticated; production requires a threat-modelled policy plane, signed bundle promotion, evaluated-bundle attestation, and service identity appropriate to the deployment;
+- exactly-once behavior is not universally claimed, protected credentials may remain bypassable unless isolated behind the governed executor, and n8n/Dify integrations are not certified production connectors;
+- reviewer authentication, multi-tenant isolation, HA, backup/restore, external evidence anchoring, incident operations, and independent penetration/cryptographic assessment remain open production gates.
+
+The append-only SQLite triggers and HMAC/hash-chain checks detect selected modifications inside the reference key and host boundary. They do not make evidence immutable against a privileged host operator and do not provide third-party non-repudiation.
+
+The Case File, Evidence Bundle, and PolicyWatcher schemas intentionally preserve additive fields for forward compatibility. Unknown fields remain untrusted, must not be executed or promoted to authority, and consumers must use only validated known fields at security-sensitive sinks.
 
 Security researchers may report additional issues through the private process below. Do not test the preview against systems, accounts, data, or tools you do not own or have explicit authorization to assess.
 

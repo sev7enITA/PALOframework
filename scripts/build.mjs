@@ -14,7 +14,16 @@ const checkOnly = process.argv.includes("--check");
 const execFileAsync = promisify(execFile);
 
 async function buildGovernanceHub() {
-  await execFileAsync("npm", ["run", "build"], {
+  // npm is exposed as npm.cmd on Windows, and .cmd files cannot be launched
+  // directly with execFile. Prefer npm's JavaScript entry point when this
+  // script is invoked through npm; retain a cmd.exe fallback for direct runs.
+  const invocation = process.env.npm_execpath
+    ? { executable: process.execPath, args: [process.env.npm_execpath, "run", "build"] }
+    : process.platform === "win32"
+      ? { executable: process.env.ComSpec || "cmd.exe", args: ["/d", "/s", "/c", "npm run build"] }
+      : { executable: "npm", args: ["run", "build"] };
+
+  await execFileAsync(invocation.executable, invocation.args, {
     cwd: path.join(projectRoot, "governance-hub"),
     maxBuffer: 10 * 1024 * 1024
   });

@@ -32,7 +32,7 @@ The framework is aligned with major AI governance references including:
 
 PALO is not a certification body and does not provide legal advice. It is a practical pre-screening, documentation, and governance support toolkit.
 
-> **PALO-AI v2.4.1 developer preview:** the agentic contracts, reference MCP server, draft Rego policies, approval clients, evidence ledger, and n8n/Dify examples are published for evaluation and interoperability feedback. They are not a production authorization service, an unavoidable tool-execution boundary, a compliance certification, or a replacement for organization-owned identity, access control, key management, monitoring, backup, retention, legal review, and security assurance. Runtime enforcement, cryptographic evidence hardening, meaningful mobile approval workflows, production connectors, and collaborative-agent-team execution remain under development.
+> **PALO-AI v2.5 full-cycle developer preview:** the reference runtime now separates permission from outcome assurance through Effect Contracts, one-time execution capabilities, signed receipts, authoritative post-state verification, incident holds and single-instance recovery. The Governance Hub is an implemented React/Vite interface prototype using illustrative local data. These components are for isolated evaluation: they are not a production authorization service, an unavoidable execution boundary, a compliance certification, or a replacement for organization-owned identity, access control, key management, monitoring, backup, retention, legal review and independent security assurance.
 
 ### PALO-AI for agentic automation platforms
 
@@ -40,7 +40,7 @@ PALO is not a certification body and does not provide legal advice. It is a prac
 
 Start in the [guided PALO-AI Governance Hub](governance-hub/) to move from business intent to explicit authority through a white, role-adaptive interface. Use the [public governance overview](PALO_AIGovernance.html) for positioning, then choose the [code-first, no-code/low-code, or rapid-prototyping adoption path](docs/palo-ai-adoption-paths.md). The same contracts can be evaluated locally, through the online developer-preview endpoint, or against the documented hybrid/cloud target architecture.
 
-n8n orchestrates what automation does. PALO governs whether an identified agent or automation is authorized to do it. The proposed integration combines four complementary patterns: a visible decision gate, an enforced governed executor, digest-bound human approval, and workflow admission controls. Only the decision and approval-contract prototypes are available in v2.4.1; unavoidable execution and instance-level admission remain specified roadmap capabilities.
+n8n orchestrates what automation does. PALO governs whether an identified agent or automation is authorized to do it and whether the declared result is later verified. The integration combines four complementary patterns: a visible decision gate, a governed executor, digest-bound human approval, and workflow admission controls. Package 0.2 implements decision-gate and governed-execution prototypes; secure approval resume and instance-level admission remain specified capabilities. The package is unpublished and not n8n-verified.
 
 - [PALO-AI n8n governance control-plane architecture](docs/palo-ai-n8n-governance-control-plane.md)
 - [PALO-AI cloud reference architecture](docs/palo-ai-cloud-reference-architecture.md)
@@ -58,6 +58,7 @@ n8n orchestrates what automation does. PALO governs whether an identified agent 
 - [Four-pattern hero infographic](assets/palo-ai-n8n-scenarios/palo-ai-n8n-governance-hero.png)
 - [Three-minute architecture-preview demo](media/palo-ai-n8n-architecture-preview-3min.mp4)
 - [Evidence-based capability matrix](agentic/capability-matrix.json)
+- [PALO-AI v2.5 technical and security assessment](docs/palo-ai-v2.5-technical-assessment.md)
 
 ## Why PALO?
 
@@ -241,7 +242,8 @@ Primary framework documents and artifacts:
 - [The PALO Framework v1 paper, Feb 2026](ThePALOFramework_%20A_Paradigm_for_Principled_AI_Lifecycle_OrchestrationInBusiness%20v1%20Feb%202026.pdf)
 - [PALO-AM Agentic Governance page](PALO_AgenticGovernance.html)
 - [PALO-AI Governance Integration Guide](docs/palo-ai-governance-integration-guide.md)
-- [PALO-AI v2.4.1 Technical Assessment](docs/palo-ai-v2.4.1-technical-assessment.md)
+- [PALO-AI v2.5 Technical and Security Assessment](docs/palo-ai-v2.5-technical-assessment.md)
+- [PALO-AI v2.4.1 Technical Assessment](docs/palo-ai-v2.4.1-technical-assessment.md) — retained as the original preview baseline
 - [PALO-AI Online VPS Deployment](docs/palo-ai-vps-deployment.md)
 - [PALO-AM standalone document](insights/PALO-AM_Agentic_Governance_Modality_v2_Standalone_Document.docx)
 - [FRIA worksheet](assets/FRIA09-12_new.xlsx)
@@ -276,7 +278,7 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md), [CODE_OF_CONDUCT.md](CODE_OF_CON
 
 ## Roadmap
 
-Current baseline: v2.4.1 developer preview, released 2026-07-17. It publishes canonical contracts, a reference MCP toolkit, draft OPA/Rego evaluation, prototype approval and evidence flows, and non-production connector examples for developer feedback.
+Current baseline: v2.5 full-cycle developer preview, released 2026-07-18. It adds Effect Contracts, governed execution, trusted receipts, authoritative outcome verification, incident holds and tested single-instance recovery to the v2.4.1 contracts and policy foundation.
 
 Completed in H1 2026:
 
@@ -300,14 +302,15 @@ Completed in H1 2026:
 | Release reliability foundation | Complete |
 | Operational platform and research map | Complete |
 | PALO-AI contracts and reference runtime | Developer preview |
+| PALO-AI full-cycle assurance and Governance Hub | Developer preview |
 
 Planned roadmap:
 
 | Target | Focus | Planned scope |
 | --- | --- | --- |
-| v2.5 | Evidence and governance board packs | Board templates, decision logs, KPI/KRI registers, review packets, and audit-ready summaries built on the evidence bundle format |
-| v2.6 | Multilingual and use-case expansion | Broader localization and worked examples for procurement, HR, finance, public-sector, and software-delivery use cases |
-| v3.0 | Integration layer | API and integration patterns for enterprise governance workflows, issue trackers, GRC platforms, and documentation systems |
+| v2.6 | Identity, durability and validated connectors | Identity-aware BFF, workload identity, scoped RBAC, managed key custody, durable state/queues and fresh n8n connector validation |
+| v2.7 | Evidence and governance board packs | Board templates, decision logs, KPI/KRI registers, review packets and audit-ready summaries built on verified outcomes |
+| v3.0 | Production integration layer | Independently assessed deployment patterns and integrations for enterprise workflows, issue trackers, GRC platforms and documentation systems |
 
 Exploratory items:
 
@@ -319,7 +322,7 @@ Exploratory items:
 
 PALO is an educational, governance-support, and pre-screening toolkit. It does not provide legal advice, does not certify compliance, and does not replace professional legal, technical, security, or conformity-assessment review.
 
-PALO-AI v2.4.1 is explicitly non-production. An `allowed` preview decision must not be treated as proof that an action is safe, lawful, correctly authorized, successfully executed, or durably evidenced. Deployers remain responsible for independent threat modelling, authenticated identities and roles, least privilege, policy ownership, exactly-once execution, trusted approval context, key custody and rotation, observability, incident response, backup, retention, and validation against their real tools and environments.
+PALO-AI v2.5 is explicitly non-production. `Allowed` records a policy decision; only a matching authoritative outcome may be labelled `verified`, and even that does not certify that an action was safe or lawful. Deployers remain responsible for independent threat modelling, authenticated identities and roles, least privilege, policy ownership, connector idempotency, trusted approval context, key custody and rotation, observability, incident response, backup, retention and validation against their real tools and environments.
 
 ## License
 

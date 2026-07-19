@@ -6,7 +6,8 @@ flowchart TB
         AU["Auditor view<br/>read evidence and versions"]
     end
 
-    BFF["Hub API / backend-for-frontend<br/>REQUIRED: OIDC, RBAC, tenant context, redaction"]
+    MOCK["Illustrative local data<br/>CURRENT PROTOTYPE"]
+    BFF["Hub API / backend-for-frontend<br/>REQUIRED FOR LIVE DATA: OIDC, RBAC, tenant context, redaction"]
 
     subgraph Runtime["PALO-AI v2.5 developer-preview runtime"]
         GW["Gateway + MCP server<br/>current: shared bearer token"]
@@ -22,10 +23,14 @@ flowchart TB
     PLAT["Agent and workflow platforms<br/>n8n, MCP clients, custom runtimes"]
     TARGET["Protected target systems"]
 
-    EC --> BFF
-    TW --> BFF
-    RV --> BFF
-    AU --> BFF
+    EC --> MOCK
+    TW --> MOCK
+    RV --> MOCK
+    AU --> MOCK
+    EC -. "planned authenticated path" .-> BFF
+    TW -. "planned authenticated path" .-> BFF
+    RV -. "planned authenticated path" .-> BFF
+    AU -. "planned authenticated path" .-> BFF
     BFF --> GW
     PLAT --> GW
     GW --> REG

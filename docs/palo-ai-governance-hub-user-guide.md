@@ -1,8 +1,8 @@
 # PALO-AI Governance Hub — User and Interaction Guide
 
-Status: proposed experience guide for the PALO-AI v2.5 developer preview, updated 19 July 2026.
+Status: interaction guide for the implemented PALO-AI v2.5 Governance Hub prototype, updated 19 July 2026.
 
-> **The Governance Hub GUI is a proposed product surface, not a currently released production application.** This guide defines how executive and technical users should interact with it and identifies what can be backed by the current developer-preview runtime. Until the Hub exists, use the repository’s REST, MCP, n8n, and demonstration instructions with synthetic or isolated data only.
+> **The Governance Hub is an interactive product prototype, not a production application.** The current React/Vite interface uses illustrative local data and demonstrates the Executive and Technical journeys described here. It is not connected directly to the Gateway. Use the repository’s REST, MCP, n8n, and demonstration instructions only with synthetic or isolated data until an authenticated BFF and the remaining production controls exist.
 
 ## 1. Choose your mode
 

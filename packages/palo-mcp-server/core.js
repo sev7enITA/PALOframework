@@ -60,7 +60,7 @@ function signHmac(value, secret) {
   return `hmac-sha256:${createHmac("sha256", secret).update(canonicalize(value)).digest("hex")}`;
 }
 
-function safeEqual(left, right) {
+function canonicalEqual(left, right) {
   return canonicalize(left) === canonicalize(right);
 }
 
@@ -84,11 +84,11 @@ function evaluatePredicate(predicate, preState, postState, category) {
     case "exists": passed = category === "precondition" ? before.found : after.found; break;
     case "equals": {
       const observed = category === "precondition" ? before : after;
-      passed = observed.found && safeEqual(observed.value, predicate.value);
+      passed = observed.found && canonicalEqual(observed.value, predicate.value);
       break;
     }
-    case "unchanged": passed = before.found && after.found && safeEqual(before.value, after.value); break;
-    case "changedTo": passed = after.found && safeEqual(after.value, predicate.value) && (!before.found || !safeEqual(before.value, after.value)); break;
+    case "unchanged": passed = before.found && after.found && canonicalEqual(before.value, after.value); break;
+    case "changedTo": passed = after.found && canonicalEqual(after.value, predicate.value) && (!before.found || !canonicalEqual(before.value, after.value)); break;
     case "deltaWithin": {
       if (!before.found || !after.found || typeof before.value !== "number" || typeof after.value !== "number") known = false;
       else { const delta = after.value - before.value; passed = delta >= predicate.minimumDelta && delta <= predicate.maximumDelta; }

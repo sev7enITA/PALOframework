@@ -93,6 +93,7 @@ export const PUBLIC_FILES = [
   "docs/diagrams/palo-ai-governance-hub/role-permission-model.mmd",
   "docs/palo-ai-security-assurance-and-scale.md",
   "docs/palo-ai-v2.4.1-technical-assessment.md",
+  "docs/palo-ai-v2.5-technical-assessment.md",
   "docs/palo-ai-vps-deployment.md",
   "docs/palo-ai-n8n-governance-control-plane.md",
   "docs/palo-ai-n8n-launch-playbook.md",

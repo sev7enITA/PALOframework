@@ -1,6 +1,6 @@
 # PALO-AI Online VPS Deployment
 
-Status: Internet-reachable developer-preview deployment for PALO-AI v2.4.1. This topology provides HTTPS and network isolation, but it does not remove the production-readiness blockers in the technical assessment.
+Status: Internet-reachable developer-preview deployment for PALO-AI v2.5. This topology provides HTTPS and network isolation, but it does not remove the production-readiness blockers in the current technical assessment.
 
 ## Live deployment status
 
@@ -13,10 +13,10 @@ The reference developer-preview endpoint was deployed on 17 July 2026:
 | Gateway | HTTPS under `/gateway`, bearer-authenticated and route-limited |
 | Policy engine | OPA 1.17.0, Docker-internal only |
 | TLS | Let's Encrypt ECDSA certificate with automatic renewal |
-| Persistence | Append-only SQLite preview ledger in a Docker volume |
+| Persistence | SQLite WAL reference state, transactional outbox and append-only evidence chain in a Docker volume |
 | Release classification | Developer preview; non-production |
 
-The live smoke test verifies HTTPS health, anonymous rejection and authenticated registry access. Public agent/policy registration, approval resolution, approval enumeration and direct evidence submission return `404`. The remote MCP server exposes only six low-privilege governance tools; administrative tools remain unavailable over the Internet.
+The live smoke test verifies HTTPS health, anonymous rejection and authenticated registry access. Public agent/policy/executor/verifier registration, approval resolution, approval enumeration, incident enumeration/resolution and direct evidence submission return `404`. The remote MCP server exposes only six low-privilege governance tools; administrative and governed-execution MCP tools remain unavailable over the Internet.
 
 ## Address model
 
@@ -33,6 +33,8 @@ The deployment deliberately uses both private and public addresses:
 | `https://governance.paloframework.org/mcp` | Internet, authenticated | Streamable HTTP MCP endpoint |
 
 `8181` is therefore not the public endpoint. It remains private even when the complete stack runs online on the VPS.
+
+Private does not mean production-authenticated. The reference PALO services call OPA over HTTP inside the isolated Docker network. Before consequential deployment, threat-model sibling-container and host compromise, add authenticated policy distribution and evaluated-bundle provenance, and use mTLS or an equivalent workload-identity control when the deployment boundary requires it.
 
 ## Supplied deployment
 
@@ -219,13 +221,15 @@ Expose only the PALO-governed tools to an agent. Do not make equivalent privileg
 
 The public reverse proxy currently exposes:
 
-- MCP `/mcp` and its health endpoint;
-- Gateway registry read;
-- Action Claim verification;
-- approval status read only when addressed by approval ID;
-- ledger verification.
+- MCP `/mcp` and its health endpoint; the configured remote tool allowlist remains decision/status oriented and excludes administrative and execution tools;
+- Gateway health and authenticated registry read;
+- authenticated Action Claim verification and full-cycle governed execution;
+- authenticated execution detail, outcome read and explicit re-verification addressed by execution ID;
+- authenticated approval status read only when addressed by approval ID;
+- authenticated incident detail read only when addressed by incident ID;
+- authenticated ledger verification.
 
-It blocks public agent/policy registration, approval enumeration, approval resolution and direct evidence submission. Those operations currently share a coarse bearer-token identity and are unsafe as Internet-facing administrative APIs. A future authenticated reviewer service can reopen the required approval route after OIDC/RBAC and separation of duties are implemented.
+It blocks public agent/policy/executor/verifier registration, approval enumeration, approval resolution, incident enumeration, incident resolution and direct evidence submission. Every non-health Gateway route still relies on one coarse preview bearer token. The execution routes are provided only for isolated n8n/Dify evaluation with mock or reversible actions; they are not a browser API or a multi-tenant authorization boundary. A future Governance Hub must call a BFF that applies OIDC, tenant context, RBAC/ABAC, redaction and separation of duties rather than placing this bearer token in browser code or storage.
 
 ## Next implementation gates
 
@@ -266,4 +270,4 @@ The current SQLite volume is suitable only for the developer preview. Back it up
 
 Putting the endpoint online does not make it production-ready. The shared-token identity model, optional n8n gate, evidence provenance, policy-bundle attestation, approval identity, cached authorization and effective resource-to-scope binding issues remain. Use mock, reversible or non-consequential actions until those findings are closed.
 
-See the [technical assessment](palo-ai-v2.4.1-technical-assessment.md) and [integration guide](palo-ai-governance-integration-guide.md).
+See the [v2.5 technical assessment](palo-ai-v2.5-technical-assessment.md), the retained [v2.4.1 baseline](palo-ai-v2.4.1-technical-assessment.md), and the [integration guide](palo-ai-governance-integration-guide.md).
