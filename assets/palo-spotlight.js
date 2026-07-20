@@ -15,6 +15,8 @@
   var phaseLabels = { frame: "Frame", classify: "Classify", assess: "Assess", control: "Control", measure: "Measure", prove: "Prove & Review" };
   var phaseOrder = ["frame", "classify", "assess", "control", "measure", "prove"];
   var starterIntents = ["What should I do first?", "Classify risk", "Assess fundamental rights", "Govern agent autonomy", "Define KPI and KRI", "Prepare board evidence", "Monitor a policy change"];
+  var graphIndex = { data: null, nodes: new Map(), relations: new Map(), documents: new Map(), weights: new Map() };
+  var searchTimer = null;
 
   var styleReady = false;
   var styleCallbacks = [];
@@ -64,23 +66,37 @@
     return String(value == null ? "" : value);
   }
 
+  function ensureIndex() {
+    var data = window.PALO_GRAPH_DATA || { nodes: [], links: [] };
+    if (graphIndex.data === data) return;
+    graphIndex = { data: data, nodes: new Map(), relations: new Map(), documents: new Map(), weights: new Map() };
+    data.nodes.forEach(function (node) { graphIndex.nodes.set(node.id, node); graphIndex.relations.set(node.id, []); });
+    data.links.forEach(function (link) {
+      if (graphIndex.relations.has(link.source)) graphIndex.relations.get(link.source).push(link);
+      if (graphIndex.relations.has(link.target)) graphIndex.relations.get(link.target).push(link);
+    });
+    graphIndex.relations.forEach(function (links) { links.sort(function (a, b) { return (weightRank[b.weight] || 0) - (weightRank[a.weight] || 0); }); });
+  }
+
   function nodeById(id) {
-    var data = window.PALO_GRAPH_DATA;
-    return data && data.nodes ? data.nodes.filter(function (node) { return node.id === id; })[0] : null;
+    ensureIndex();
+    return graphIndex.nodes.get(id) || null;
   }
 
   function relationsFor(id) {
-    var data = window.PALO_GRAPH_DATA || { links: [] };
-    return data.links.filter(function (link) { return link.source === id || link.target === id; }).sort(function (a, b) {
-      return (weightRank[b.weight] || 0) - (weightRank[a.weight] || 0);
-    });
+    ensureIndex();
+    return graphIndex.relations.get(id) || [];
   }
 
   function strongestWeight(node) {
+    ensureIndex();
+    if (graphIndex.weights.has(node.id)) return graphIndex.weights.get(node.id);
     var weights = relationsFor(node.id).map(function (link) { return link.weight; });
     if (node.weight) weights.push(node.weight);
     weights.sort(function (a, b) { return (weightRank[b] || 0) - (weightRank[a] || 0); });
-    return weights[0] || "W2";
+    var strongest = weights[0] || "W2";
+    graphIndex.weights.set(node.id, strongest);
+    return strongest;
   }
 
   function relationSearchText(node) {
@@ -94,11 +110,23 @@
     var q = normalize(query);
     if (!q) return 1;
     var tokens = q.split(/\s+/).filter(Boolean);
-    var label = normalize(node.label);
-    var primary = normalize([node.label, node.type, node.phaseId, node.status].join(" "));
-    var intent = normalize(flatten([node.intents, node.action, node.stakeholder, node.stakeholders]));
-    var detail = normalize(flatten([node.role, node.properties, node.outputs, node.artifact]));
-    var relation = normalize(relationSearchText(node));
+    ensureIndex();
+    var document = graphIndex.documents.get(node.id);
+    if (!document) {
+      document = {
+        label: normalize(node.label),
+        primary: normalize([node.label, node.type, node.phaseId, node.status].join(" ")),
+        intent: normalize(flatten([node.intents, node.action, node.stakeholder, node.stakeholders])),
+        detail: normalize(flatten([node.role, node.properties, node.outputs, node.artifact])),
+        relation: normalize(relationSearchText(node))
+      };
+      graphIndex.documents.set(node.id, document);
+    }
+    var label = document.label;
+    var primary = document.primary;
+    var intent = document.intent;
+    var detail = document.detail;
+    var relation = document.relation;
     var score = 0;
     if (label === q) score += 160;
     if (label.indexOf(q) === 0) score += 100;
@@ -347,7 +375,11 @@
       button.addEventListener("click", function () { var stage = nodeById(phase); if (stage) selectNode(stage.id, -1, true); });
       ui.route.appendChild(button);
     });
-    ui.input.addEventListener("input", function () { state.query = ui.input.value.trim(); state.selectedId = null; state.selectedIndex = 0; search(); });
+    ui.input.addEventListener("input", function () {
+      state.query = ui.input.value.trim(); state.selectedId = null; state.selectedIndex = 0;
+      if (searchTimer) window.clearTimeout(searchTimer);
+      searchTimer = window.setTimeout(function () { searchTimer = null; search(); }, 80);
+    });
     ui.input.addEventListener("keydown", function (event) {
       if (event.key === "ArrowDown") { event.preventDefault(); moveSelection(1); }
       else if (event.key === "ArrowUp") { event.preventDefault(); moveSelection(-1); }

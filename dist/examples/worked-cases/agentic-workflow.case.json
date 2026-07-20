@@ -1,0 +1,29 @@
+{
+  "format": "palo-case-file",
+  "schemaVersion": "1.0.0",
+  "caseId": "case-agentic-invoice-workflow",
+  "title": "Worked case: agentic invoice exception workflow",
+  "status": "draft",
+  "createdAt": "2026-07-12T08:00:00Z",
+  "updatedAt": "2026-07-12T08:00:00Z",
+  "owner": "Educational example owner",
+  "context": {
+    "domain": "agentic-workflows",
+    "scenario": "An agent gathers invoice exception evidence and proposes a resolution; payment release and supplier communication require separate human approval.",
+    "exampleStatus": "educational-non-production",
+    "sourceStatus": "The case points to starter sources only; the PALO-AM result is an educational routing aid, not authorization.",
+    "limitations": "Fictional tools and permissions; no identity, segregation-of-duties, financial-control or recovery design is validated.",
+    "p2References": {
+      "controlIds": ["ctrl-purpose-boundary", "ctrl-human-review", "ctrl-incident-response", "ctrl-change-gate", "ctrl-decision-trace"],
+      "indicatorIds": ["kpi-review-completion", "kpi-incident-triage-time", "kri-override-failure-rate", "kri-scope-change-rate"],
+      "gateIds": ["frame", "classify", "assess", "control", "measure", "prove"],
+      "sourceIds": ["src-nist-ai-rmf", "src-iso-42001"],
+      "templateIds": ["tpl-incident-response", "tpl-board-review", "tpl-red-team-evidence"]
+    }
+  },
+  "assessments": [{ "assessmentId": "assessment-agentic-1", "module": "PALO-AM Simulator", "recordedAt": "2026-07-12T08:00:00Z", "data": { "tier": "Tier 3 - constrained autonomy", "decision": "redesign", "conditions": ["Remove payment-release permission", "Use allowlisted tools", "Require reversible staged execution"] } }],
+  "evidence": [{ "evidenceId": "evidence-agentic-permission-map", "title": "Illustrative tool and permission map", "kind": "approved-purpose-record", "status": "draft", "recordedAt": "2026-07-12T08:00:00Z", "content": { "allowed": ["Read invoice metadata", "Draft exception summary"], "prohibited": ["Release payment", "Change supplier master data"] } }],
+  "sources": [{ "sourceId": "src-nist-ai-rmf", "title": "AI Risk Management Framework", "url": "https://www.nist.gov/itl/ai-risk-management-framework", "sourceType": "official", "publisher": "US National Institute of Standards and Technology", "checkedAt": "2026-07-12T08:00:00Z", "freshness": { "status": "current", "reviewIntervalDays": 90, "nextReviewAt": "2026-10-10T08:00:00Z" } }],
+  "incidents": [],
+  "handoffs": []
+}

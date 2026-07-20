@@ -29,12 +29,12 @@
                 <span data-palo-icon="menu" aria-hidden="true"></span>
             </button>
             <nav class="palo-nav" id="palo-primary-nav" aria-label="Primary navigation">
-                <a href="index.html">Home</a>
-                <a href="PALO_AssessmentPath.html">Assessment Path</a>
-                <a href="PALO_AgenticGovernance.html">PALO-AM</a>
-                <a href="PALO_AIGovernance.html" aria-current="page">PALO-AI</a>
-                <a href="PALO_DocumentationHub.html">Documentation</a>
-                <a href="PALO_Community.html">Community</a>
+                <a href="designs/theory-to-practice-infographic/#onboarding">Start</a>
+                <a href="PALO_AIGovernance.html" aria-current="page">Agentic Governance</a>
+                <a href="governance-hub/">Governance Hub</a>
+                <a href="index.html#guided-journeys">Tools</a>
+                <a href="PALO_DocumentationLibrary.html">Documentation</a>
+                <a href="PALO_AIProductionReadiness.html">Readiness</a>
             </nav>
         </div>
     </header>
@@ -54,8 +54,8 @@
                     <div class="palo-actions">
                         <a class="palo-btn" href="governance-hub/">Open the guided workspace</a>
                         <a class="palo-btn palo-btn-secondary" href="#choose-path">Choose your path</a>
-                        <a class="palo-btn palo-btn-secondary" href="docs/palo-ai-governance-integration-guide.md">Read the integration guide</a>
-                        <a class="palo-btn palo-btn-secondary" href="docs/palo-ai-full-cycle-assurance.md">Explore full-cycle assurance</a>
+                        <a class="palo-btn palo-btn-secondary" href="docs/palo-ai-governance-integration-guide.html">Read the integration guide</a>
+                        <a class="palo-btn palo-btn-secondary" href="docs/palo-ai-full-cycle-assurance.html">Explore full-cycle assurance</a>
                     </div>
                 </div>
                 <figure class="palo-ai-control-plane" aria-labelledby="control-plane-caption">
@@ -82,11 +82,25 @@
             </div>
         </section>
 
+        <section class="palo-section palo-ai-orientation" aria-labelledby="agentic-route-title">
+            <div class="palo-shell">
+                <p class="palo-eyebrow">One connected governance journey</p>
+                <h2 id="agentic-route-title">Method → runtime contract → role-based workspace → evidence boundary</h2>
+                <nav class="palo-route-ribbon" aria-label="PALO Agentic Governance route">
+                    <a href="PALO_AgenticGovernance.html"><small>Methodology</small><strong>PALO-AM v2.0</strong><span>Bound identity, authority, autonomy and oversight.</span></a><i aria-hidden="true">→</i>
+                    <a href="#lifecycle"><small>Runtime contract</small><strong>PALO-AI v2.5</strong><span>Govern the action before, during and after execution.</span></a><i aria-hidden="true">→</i>
+                    <a href="governance-hub/"><small>Role-based prototype</small><strong>Governance Hub</strong><span>Executive and technical lenses over the same state.</span></a><i aria-hidden="true">→</i>
+                    <a href="PALO_AgenticCapabilityMatrix.html"><small>Evidence boundary</small><strong>Capability + Readiness</strong><span>Separate implemented evidence from production claims.</span></a>
+                </nav>
+                <p class="palo-note"><strong>Orientation:</strong> PALO-AM v2.0 remains the June 2026 methodology baseline. PALO-AI v2.5 is the July 2026 full-cycle runtime/contracts Developer Preview. The Governance Hub uses illustrative/local data and is not a production console.</p>
+            </div>
+        </section>
+
         <section class="palo-section" id="choose-path">
             <div class="palo-shell">
-                <p class="palo-eyebrow">Start from your working context</p>
-                <h2>Three routes into the same governance contract</h2>
-                <p class="palo-lead">Choose how you build. PALO-AI keeps the Action Claim, policy decision, approval and evidence vocabulary consistent across the routes.</p>
+                <p class="palo-eyebrow">Objective: govern agent actions</p>
+                <h2>Build mode refines the route. It does not replace accountability.</h2>
+                <p class="palo-lead">First choose your organizational role in the guided Start. Only then choose how you build. PALO-AI keeps the Action Claim, policy decision, approval and evidence vocabulary consistent across all three implementation modes.</p>
                 <div class="palo-ai-routes">
                     <article class="palo-ai-route">
                         <div class="palo-ai-route-number">01 / CODE</div>
@@ -96,7 +110,7 @@
                             <div><dt>First move</dt><dd>Validate a canonical Action Claim and force one mock tool through the governed path.</dd></div>
                             <div><dt>Use</dt><dd>SDK contracts, stdio or remote MCP, Rego tests, gateway adapter.</dd></div>
                         </dl>
-                        <div class="palo-actions"><a class="palo-btn" href="docs/palo-ai-adoption-paths.md#path-1-code-first-developer">Open code-first path</a></div>
+                        <div class="palo-actions"><a class="palo-btn" href="designs/theory-to-practice-infographic/?intent=agentic&amp;mode=code#onboarding">Build my code-first route</a><a class="palo-btn palo-btn-secondary" href="docs/palo-ai-adoption-paths.html">Read the guide</a></div>
                     </article>
                     <article class="palo-ai-route">
                         <div class="palo-ai-route-number">02 / VISUAL</div>
@@ -106,7 +120,7 @@
                             <div><dt>First move</dt><dd>Run the synthetic catalog demo and compare verified, mismatched and inconclusive outcomes.</dd></div>
                             <div><dt>Use</dt><dd>Local alpha node or native HTTP, Switch and Wait nodes.</dd></div>
                         </dl>
-                        <div class="palo-actions"><a class="palo-btn" href="docs/palo-ai-adoption-paths.md#path-2-no-code--low-code-builder">Open visual-builder path</a></div>
+                        <div class="palo-actions"><a class="palo-btn" href="designs/theory-to-practice-infographic/?intent=agentic&amp;mode=visual#onboarding">Build my visual route</a><a class="palo-btn palo-btn-secondary" href="docs/palo-ai-adoption-paths.html">Read the guide</a></div>
                     </article>
                     <article class="palo-ai-route">
                         <div class="palo-ai-route-number">03 / RAPID</div>
@@ -116,7 +130,7 @@
                             <div><dt>First move</dt><dd>Select one authority profile, one reversible action and one accountable reviewer.</dd></div>
                             <div><dt>Use</dt><dd>Streamable HTTP MCP, guided profiles and evidence review.</dd></div>
                         </dl>
-                        <div class="palo-actions"><a class="palo-btn" href="docs/palo-ai-adoption-paths.md#path-3-rapid-prototyper--business-maker">Open rapid-prototyping path</a></div>
+                        <div class="palo-actions"><a class="palo-btn" href="designs/theory-to-practice-infographic/?intent=agentic&amp;mode=rapid#onboarding">Build my rapid route</a><a class="palo-btn palo-btn-secondary" href="docs/palo-ai-adoption-paths.html">Read the guide</a></div>
                     </article>
                 </div>
             </div>
@@ -136,8 +150,8 @@
                     <p class="palo-note"><strong>Prototype boundary:</strong> this browser interface uses realistic evaluation data. Production multi-user operation still requires an authenticated backend-for-frontend, tenant-aware roles, managed keys and independent security assurance.</p>
                     <div class="palo-actions">
                         <a class="palo-btn" href="governance-hub/">Launch the white workspace</a>
-                        <a class="palo-btn palo-btn-secondary" href="docs/palo-ai-governance-hub-user-guide.md">Read the user guide</a>
-                        <a class="palo-btn palo-btn-secondary" href="docs/palo-ai-governance-hub-product-spec.md">Review the product specification</a>
+                        <a class="palo-btn palo-btn-secondary" href="docs/palo-ai-governance-hub-user-guide.html">Read the user guide</a>
+                        <a class="palo-btn palo-btn-secondary" href="docs/palo-ai-governance-hub-product-spec.html">Review the product specification</a>
                     </div>
                 </div>
                 <figure class="palo-ai-hub-figure">
@@ -187,7 +201,7 @@
                     <div><span>Streamable HTTP MCP · developer preview</span><code>https://governance.paloframework.org/mcp</code></div>
                 </div>
                 <p class="palo-note"><strong>Internet-reachable does not mean production-ready.</strong> The current VPS adds HTTPS termination and network isolation, but not production workload identity, least-privilege RBAC, managed keys, high availability, distributed exactly-once semantics, attested execution or independent security review.</p>
-                <div class="palo-actions"><a class="palo-btn" href="docs/palo-ai-cloud-reference-architecture.md">Compare cloud architectures</a><a class="palo-btn palo-btn-secondary" href="docs/palo-ai-vps-deployment.md">Deploy the preview VPS stack</a></div>
+                <div class="palo-actions"><a class="palo-btn" href="docs/palo-ai-cloud-reference-architecture.html">Compare cloud architectures</a><a class="palo-btn palo-btn-secondary" href="docs/palo-ai-vps-deployment.html">Deploy the preview VPS stack</a></div>
             </div>
         </section>
 
@@ -201,7 +215,7 @@
                     <table class="palo-table palo-ai-platform-table">
                         <thead><tr><th>Platform</th><th>Visual gate</th><th>Brokered execution</th><th>Runtime interception</th><th>Authoritative today?</th></tr></thead>
                         <tbody>
-                            <tr><th scope="row">n8n</th><td>Local alpha node; native HTTP/Switch alternative</td><td>Specified</td><td>Self-hosted hook pattern specified</td><td>No — prototype decision gate</td></tr>
+                            <tr><th scope="row">n8n</th><td>Package 0.2 compatibility decision node</td><td>Package 0.2 Governed Action prototype</td><td>Not implemented; alternate credentials or tool paths can bypass the node</td><td>No — unpublished and not n8n-verified</td></tr>
                             <tr><th scope="row">Copilot Studio</th><td>MCP tools can surface governance actions</td><td>Target via narrow PALO tools</td><td>Platform-owned controls</td><td>No — integration guidance only</td></tr>
                             <tr><th scope="row">Dify</th><td>Non-production tool example</td><td>Agent Strategy target</td><td>Plugin-owned target</td><td>No — reference example</td></tr>
                             <tr><th scope="row">LangChain / LangGraph</th><td>Middleware decision feedback</td><td>Recommended adapter shape</td><td>Before-tool middleware / interrupt</td><td>No — adapter not packaged</td></tr>
@@ -227,14 +241,14 @@
                     <ul>
                         <li>OIDC or mTLS workload identity and least-privilege tenant RBAC</li>
                         <li>KMS/HSM-backed signing, rotation and separation of duties</li>
-                        <li>Unavoidable governed execution and one-time authorization consumption</li>
+                        <li>Distributed durability for consumed one-time capabilities, workload identity, connector isolation and removal of alternate privileged execution paths</li>
                         <li>Durable approval resume, HA state, outbox, recovery and external evidence anchoring</li>
                         <li>Threat model, independent penetration test, cryptographic review and supply-chain assessment</li>
                     </ul>
                 </div>
             </div>
             <div class="palo-shell">
-                <div class="palo-actions"><a class="palo-btn" href="docs/palo-ai-security-assurance-and-scale.md">Open assurance and scale plan</a><a class="palo-btn palo-btn-secondary" href="docs/palo-ai-production-readiness-plan.md">Production-readiness gates</a><a class="palo-btn palo-btn-secondary" href="PALO_AgenticCapabilityMatrix.html">Capability matrix</a></div>
+                <div class="palo-actions"><a class="palo-btn" href="PALO_AIProductionReadiness.html">Open Production Readiness</a><a class="palo-btn palo-btn-secondary" href="docs/palo-ai-security-assurance-and-scale.html">Security and scale plan</a><a class="palo-btn palo-btn-secondary" href="PALO_AgenticCapabilityMatrix.html">Capability matrix</a><a class="palo-btn palo-btn-secondary" href="PALO_DocumentationLibrary.html">Documentation Library</a></div>
             </div>
         </section>
 
@@ -244,7 +258,7 @@
                 <h2>Precisely what this release claims</h2>
                 <div class="palo-ai-boundary-grid">
                     <article><span class="palo-ai-chip is-prototype">Prototype</span><h3>n8n visual decision gate</h3><p>Locally installable alpha package with Allowed, Approval Required and Denied outputs. It does not execute the protected target.</p></article>
-                    <article><span class="palo-ai-chip is-specified">Specified</span><h3>Governed executor</h3><p>Target pattern where PALO owns the only protected credential and consumes authorization once.</p></article>
+                    <article><span class="palo-ai-chip is-prototype">Prototype</span><h3>Governed executor</h3><p>Package 0.2 binds an Effect Contract to a one-time capability, executes through a registered connector, records a signed receipt and verifies authoritative post-state. Alternate credentials or tool paths can still bypass this preview.</p></article>
                     <article><span class="palo-ai-chip is-specified">Specified</span><h3>Secure approval resume</h3><p>Target flow binding authenticated reviewer authority, exact claim digest and one-time workflow continuation.</p></article>
                     <article><span class="palo-ai-chip is-specified">Specified</span><h3>Workflow admission</h3><p>Target deployment gate that rejects flows containing bypass paths before activation.</p></article>
                 </div>
@@ -255,7 +269,7 @@
         <section class="palo-section palo-ai-invitation" id="participate">
             <div class="palo-shell palo-ai-invitation-grid">
                 <div><p class="palo-eyebrow">Architecture preview</p><h2>Bring one safe workflow. Challenge the boundary.</h2></div>
-                <div><p>We are looking for n8n builders, platform integrators, policy authors and security reviewers willing to test a non-production workflow with mock or reversible actions. Do not share secrets, personal data or production credentials.</p><div class="palo-actions"><a class="palo-btn" href="docs/community/n8n-architecture-preview-post.md">Read the community discussion draft</a><a class="palo-btn palo-btn-secondary" href="docs/community/palo-ai-feedback-design-partner-form.md">Design-partner intake</a><a class="palo-btn palo-btn-secondary" href="docs/palo-ai-community-and-market-entry.md">Market-entry plan</a></div></div>
+                <div><p>We are looking for n8n builders, platform integrators, policy authors and security reviewers willing to test a non-production workflow with mock or reversible actions. Do not share secrets, personal data or production credentials.</p><div class="palo-actions"><a class="palo-btn" href="docs/community/n8n-architecture-preview-post.html">Read the community discussion draft</a><a class="palo-btn palo-btn-secondary" href="docs/community/palo-ai-feedback-design-partner-form.html">Design-partner intake</a><a class="palo-btn palo-btn-secondary" href="docs/palo-ai-community-and-market-entry.html">Market-entry plan</a></div></div>
             </div>
         </section>
     </main>
@@ -263,7 +277,7 @@
     <footer class="palo-footer">
         <div class="palo-shell">
             <p>PALO-AI v2.5 is a full-cycle developer preview published for isolated evaluation and interoperability feedback.</p>
-            <div class="palo-footer-links"><a href="PALO_DocumentationHub.html">Documentation</a><a href="PALO_AgenticGovernance.html">PALO-AM</a><a href="SECURITY.md">Security policy</a><a href="privacy-policy.html">Privacy</a><a href="PALO_Community.html">Community</a></div>
+            <div class="palo-footer-links"><a href="PALO_DocumentationLibrary.html">Documentation</a><a href="PALO_AgenticGovernance.html">PALO-AM</a><a href="security-policy.html">Security policy</a><a href="privacy-policy.html">Privacy</a><a href="PALO_Community.html">Community</a></div>
         </div>
     </footer>
 </body>

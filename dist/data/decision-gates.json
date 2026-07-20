@@ -1,0 +1,75 @@
+{
+  "format": "palo-decision-gates",
+  "schemaVersion": "1.0.0",
+  "status": "educational-non-production",
+  "updatedAt": "2026-07-12",
+  "disclaimer": "These gate prompts support accountable deliberation. They do not authorize deployment, determine legal status, or replace organization-specific decision rights.",
+  "gates": [
+    {
+      "gateId": "frame",
+      "label": "Frame",
+      "purpose": "Agree the problem, affected stakeholders, intended benefit, owner and non-AI alternatives.",
+      "entryCriteria": ["Named accountable owner", "Problem and affected population described", "Non-AI option considered"],
+      "decisionOptions": ["proceed", "proceed-with-conditions", "hold", "redesign", "stop"],
+      "requiredControlIds": ["ctrl-purpose-boundary"],
+      "indicatorIds": ["kri-scope-change-rate"],
+      "sourceIds": ["src-oecd-ai-principles", "src-nist-ai-rmf"],
+      "templateIds": ["tpl-contribution-starter"]
+    },
+    {
+      "gateId": "classify",
+      "label": "Classify",
+      "purpose": "Identify system type, authority, affected rights, jurisdictions, suppliers and preliminary risk posture.",
+      "entryCriteria": ["Purpose boundary recorded", "Material system and supplier dependencies listed"],
+      "decisionOptions": ["proceed", "proceed-with-conditions", "hold", "redesign", "stop"],
+      "requiredControlIds": ["ctrl-purpose-boundary", "ctrl-third-party-due-diligence", "ctrl-change-gate"],
+      "indicatorIds": ["kri-scope-change-rate"],
+      "sourceIds": ["src-eu-ai-act", "src-nist-ai-rmf"],
+      "templateIds": ["tpl-procurement"]
+    },
+    {
+      "gateId": "assess",
+      "label": "Assess",
+      "purpose": "Test impacts, data, misuse, limitations, alternatives and residual uncertainty.",
+      "entryCriteria": ["Classification reviewed", "Data and affected-stakeholder context available", "Test scope agreed"],
+      "decisionOptions": ["proceed", "proceed-with-conditions", "hold", "redesign", "stop"],
+      "requiredControlIds": ["ctrl-data-provenance", "ctrl-third-party-due-diligence", "ctrl-adversarial-testing", "ctrl-change-gate"],
+      "indicatorIds": ["kpi-provenance-coverage", "kpi-vendor-evidence-coverage", "kri-critical-test-failure-rate"],
+      "sourceIds": ["src-nist-ai-rmf", "src-nist-genai-profile"],
+      "templateIds": ["tpl-red-team-evidence", "tpl-procurement"]
+    },
+    {
+      "gateId": "control",
+      "label": "Control",
+      "purpose": "Assign safeguards, owners, escalation, human authority, technical limits and supplier obligations.",
+      "entryCriteria": ["Material risks and uncertainty recorded", "Control owners available", "Residual-risk decision route named"],
+      "decisionOptions": ["proceed", "proceed-with-conditions", "hold", "redesign", "stop"],
+      "requiredControlIds": ["ctrl-data-provenance", "ctrl-human-review", "ctrl-third-party-due-diligence", "ctrl-incident-response"],
+      "indicatorIds": ["kpi-review-completion", "kpi-vendor-evidence-coverage", "kri-sensitive-data-events", "kri-override-failure-rate"],
+      "sourceIds": ["src-iso-42001", "src-nist-ai-rmf"],
+      "templateIds": ["tpl-incident-response", "tpl-procurement"]
+    },
+    {
+      "gateId": "measure",
+      "label": "Measure",
+      "purpose": "Set baselines, indicators, thresholds, monitoring ownership and response timing.",
+      "entryCriteria": ["Controls and owners assigned", "Data collection feasibility checked", "Threshold decision rights named"],
+      "decisionOptions": ["proceed", "proceed-with-conditions", "hold", "redesign", "stop"],
+      "requiredControlIds": ["ctrl-adversarial-testing", "ctrl-incident-response", "ctrl-decision-trace"],
+      "indicatorIds": ["kpi-review-completion", "kpi-incident-triage-time", "kri-sensitive-data-events", "kri-critical-test-failure-rate"],
+      "sourceIds": ["src-nist-ai-rmf"],
+      "templateIds": ["tpl-incident-response", "tpl-red-team-evidence"]
+    },
+    {
+      "gateId": "prove",
+      "label": "Prove and Review",
+      "purpose": "Assemble decision evidence, exceptions, source status, approvals and triggers for reopening.",
+      "entryCriteria": ["Required evidence indexed", "Exceptions and residual risk recorded", "Review and reopening schedule assigned"],
+      "decisionOptions": ["proceed", "proceed-with-conditions", "hold", "redesign", "stop"],
+      "requiredControlIds": ["ctrl-human-review", "ctrl-adversarial-testing", "ctrl-incident-response", "ctrl-change-gate", "ctrl-decision-trace"],
+      "indicatorIds": ["kpi-provenance-coverage", "kpi-review-completion", "kpi-incident-triage-time", "kri-scope-change-rate"],
+      "sourceIds": ["src-nist-ai-rmf", "src-iso-42001"],
+      "templateIds": ["tpl-board-review", "tpl-contribution-starter"]
+    }
+  ]
+}

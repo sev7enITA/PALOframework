@@ -1,9 +1,9 @@
 (function () {
   "use strict";
 
-  var VERSION = "2.3.2";
-  var SOURCE_DATE = "2026-07-11";
-  var STORAGE_KEY = "palo-onboarding-route-v2.3.2";
+  var VERSION = "2.5.0";
+  var SOURCE_DATE = "2026-07-19";
+  var STORAGE_KEY = "palo-onboarding-route-v2.5.0";
   var phaseIds = ["frame", "classify", "assess", "control", "measure", "prove"];
   var root = document.getElementById("onboarding");
   var explorer = document.getElementById("explorer-experience");
@@ -25,6 +25,8 @@
   var currentStep = 1;
   var currentRoute = null;
   var storageAvailable = true;
+  var startMenuToggle = document.querySelector(".start-menu-toggle");
+  var startPrimaryNav = document.getElementById("start-primary-nav");
 
   var modules = {
     "model-canvas": { name: "AI Model Canvas", href: "../../PALO_ModelCanvasAI.html", phase: "frame", artifact: "Bounded use-case brief" },
@@ -39,7 +41,19 @@
     "kpi": { name: "KPI and KRI Generator", href: "../../PALO_KPIGenerator.html", phase: "measure", artifact: "KPI/KRI register" },
     "docs": { name: "Documentation Hub", href: "../../PALO_DocumentationHub.html", phase: "prove", artifact: "Versioned source and guidance context" },
     "reg-watch": { name: "Regulatory Watch 2026", href: "../../PALO_RegulatoryWatch.html", phase: "classify", artifact: "Current official-source context" },
-    "comparison": { name: "Framework Comparison", href: "../../PALO_ComparisonTool.html", phase: "classify", artifact: "Framework comparison record" }
+    "comparison": { name: "Framework Comparison", href: "../../PALO_ComparisonTool.html", phase: "classify", artifact: "Framework comparison record" },
+    "palo-ai": { name: "PALO-AI Overview", href: "../../PALO_AIGovernance.html", phase: "control", artifact: "Full-cycle governance route" },
+    "governance-hub-executive": { name: "Governance Hub — Executive", href: "../../governance-hub/?role=executive&view=today", phase: "control", artifact: "Executive governance decision view" },
+    "governance-hub-technical": { name: "Governance Hub — Technical Setup", href: "../../governance-hub/?role=technical&view=setup", phase: "control", artifact: "Bound authority and outcome-assurance profile" },
+    "capability-matrix": { name: "Capability Matrix", href: "../../PALO_AgenticCapabilityMatrix.html", phase: "prove", artifact: "Evidence-backed capability boundary" },
+    "readiness": { name: "Production Readiness", href: "../../PALO_AIProductionReadiness.html", phase: "prove", artifact: "Nine-gate readiness plan" },
+    "integration-guide": { name: "Integration Guide", href: "../../docs/palo-ai-governance-integration-guide.html", phase: "control", artifact: "Governed integration design" },
+    "n8n-guide": { name: "n8n Visual-Builder Guide", href: "../../docs/palo-ai-n8n-governance-control-plane.html", phase: "control", artifact: "Visual governed workflow design" }
+  };
+
+  var objectiveLabels = {
+    approve: "Approve or prioritize", build: "Shape or build", govern: "Govern or comply",
+    agentic: "Govern agent actions", deploy: "Buy or deploy", verify: "Verify or review"
   };
 
   var roleContent = {
@@ -130,18 +144,22 @@
     window.scrollTo(0, 0);
   }
 
+  function totalSteps() { return selected("decision") === "agentic" ? 4 : 3; }
+
   function showStep(step, focus) {
-    currentStep = Math.max(1, Math.min(3, step));
+    var total = totalSteps();
+    currentStep = Math.max(1, Math.min(total, step));
     fieldsets.forEach(function (fieldset) { fieldset.hidden = Number(fieldset.getAttribute("data-step")) !== currentStep; });
     markers.forEach(function (marker) {
       var markerStep = Number(marker.getAttribute("data-step-marker"));
+      marker.hidden = markerStep === 4 && total !== 4;
       marker.toggleAttribute("aria-current", markerStep === currentStep);
       if (markerStep === currentStep) marker.setAttribute("aria-current", "step");
       marker.classList.toggle("is-complete", markerStep < currentStep);
     });
-    progress.textContent = "Step " + currentStep + " of 3";
+    progress.textContent = "Step " + currentStep + " of " + total;
     form.querySelector("[data-action='back']").hidden = currentStep === 1;
-    form.querySelector("[data-action='continue']").textContent = currentStep === 3 ? "Build my route" : "Continue";
+    form.querySelector("[data-action='continue']").textContent = currentStep === total ? "Build my route" : "Continue";
     error.hidden = true;
     if (focus) fieldsets[currentStep - 1].querySelector("legend").focus ? fieldsets[currentStep - 1].querySelector("legend").focus() : fieldsets[currentStep - 1].scrollIntoView();
   }
@@ -162,7 +180,7 @@
   }
 
   function answers() {
-    return { decision: selected("decision"), role: selected("role"), stage: selected("stage"), signals: selectedSignals() };
+    return { decision: selected("decision"), role: selected("role"), stage: selected("stage"), signals: selectedSignals(), buildMode: selected("decision") === "agentic" ? selected("buildMode") : "" };
   }
 
   function validateStep() {
@@ -171,6 +189,7 @@
     if (currentStep === 1 && !selected("decision")) { valid = false; message = "Choose the decision you are trying to make."; }
     if (currentStep === 2 && (!selected("role") || !selected("stage"))) { valid = false; message = "Choose both your role and the current stage of work."; }
     if (currentStep === 3 && !selectedSignals().length) { valid = false; message = "Select at least one visible signal. You can choose 'I do not know yet'."; }
+    if (currentStep === 4 && !selected("buildMode")) { valid = false; message = "Choose how you are building the agentic workflow."; }
     if (!valid) {
       error.textContent = message; error.hidden = false; error.focus ? error.focus() : null;
       var first = fieldsets[currentStep - 1].querySelector("input:not(:checked)"); if (first) first.focus();
@@ -198,6 +217,14 @@
       phase = "assess";
       reason = primaryId === "fria" ? "At design stage, material effects on people or rights should be assessed before controls and deployment conditions are fixed." : "At design stage, delegated action and autonomy should be bounded before controls and permissions are fixed.";
     }
+    if (input.decision === "agentic") {
+      primaryId = "palo-ai"; phase = "control"; reason = "Start from one full-cycle governance contract that connects authority, policy, approval, protected execution, receipt and authoritative outcome verification.";
+      if (input.role === "executive") { primaryId = "governance-hub-executive"; reason = "See agent authority, verified outcomes and exceptions through an executive lens before delegating technical configuration."; }
+      else if (input.role === "grc" || input.role === "audit") { primaryId = "palo-am"; phase = "assess"; reason = "Define delegated authority and oversight in PALO-AM, then verify current implementation and production-readiness evidence."; }
+      else if (input.buildMode === "code") { primaryId = "governance-hub-technical"; reason = "Bind one agent, tool, resource, approval rule and Effect Contract, then carry the generated contract into the code-first integration guide."; }
+      else if (input.buildMode === "visual") { primaryId = "governance-hub-technical"; reason = "Configure the governed action in plain language, then map the same contract to a visual n8n route with semantic outcomes."; }
+      else if (input.buildMode === "rapid") { primaryId = "palo-ai"; reason = "Start with the PALO-AI boundary and connect only a narrow MCP surface before exposing actions to a rapid-prototyping platform."; }
+    }
 
     var contextual = [];
     if (input.signals.indexOf("rights") !== -1 || input.signals.indexOf("consequential") !== -1) addContext(contextual, "fria", "Use for material effects on people, access, or rights.", primaryId);
@@ -209,6 +236,14 @@
     if (contextual.length < 2 && input.role === "public") addContext(contextual, "reg-watch", "Use current official sources for procurement and deployment conditions.", primaryId);
     if (contextual.length < 2 && input.role === "executive") addContext(contextual, "kpi", "Use a small indicator set to make residual risk visible to decision makers.", primaryId);
     if (contextual.length < 2 && input.role === "audit") addContext(contextual, "docs", "Use versioned guidance and source artifacts to reconstruct the decision.", primaryId);
+    if (input.decision === "agentic") {
+      contextual = [];
+      if (input.role === "executive") { addContext(contextual, "palo-ai", "Understand the full-cycle control model behind the executive signals.", primaryId); addContext(contextual, "readiness", "Separate preview evidence from production claims.", primaryId); }
+      else if (input.role === "grc" || input.role === "audit") { addContext(contextual, "capability-matrix", "Inspect specified, prototype and implemented evidence without overstating maturity.", primaryId); addContext(contextual, "readiness", "Track the nine public production gates.", primaryId); }
+      else if (input.buildMode === "code") { addContext(contextual, "integration-guide", "Implement Action Claims, policy and brokered execution.", primaryId); addContext(contextual, "capability-matrix", "Check the exact preview boundary before integration.", primaryId); }
+      else if (input.buildMode === "visual") { addContext(contextual, "n8n-guide", "Map the contract to visual nodes and remove bypass paths.", primaryId); addContext(contextual, "readiness", "Keep the alpha package inside its evaluation boundary.", primaryId); }
+      else { addContext(contextual, "governance-hub-technical", "Prototype the same authority contract through the guided builder.", primaryId); addContext(contextual, "capability-matrix", "Check which capabilities are prototype versus implemented.", primaryId); }
+    }
 
     var role = roleContent[input.role];
     var primary = modules[primaryId];
@@ -219,6 +254,8 @@
       stakeholder: role.label,
       heading: role.heading,
       stakeholderQuestion: role.question,
+      objective: objectiveLabels[input.decision] || input.decision,
+      buildMode: input.buildMode || "",
       startingPhase: phase,
       primaryAction: { id: primaryId, name: primary.name, href: primary.href, reason: reason, artifact: primary.artifact },
       contextualModules: contextual,
@@ -237,7 +274,15 @@
     document.getElementById("primary-action-title").textContent = route.primaryAction.name;
     document.getElementById("primary-action-reason").textContent = route.primaryAction.reason;
     document.getElementById("route-artifact").textContent = route.primaryAction.artifact;
+    document.getElementById("ribbon-role").textContent = route.stakeholder;
+    document.getElementById("ribbon-objective").textContent = route.objective || objectiveLabels[route.answers.decision];
+    document.getElementById("ribbon-phase").textContent = route.startingPhase === "prove" ? "Prove & Review" : route.startingPhase;
+    document.getElementById("ribbon-artifact").textContent = route.primaryAction.artifact;
+    document.getElementById("ribbon-next").textContent = route.primaryAction.name;
+    document.getElementById("route-maturity").textContent = route.answers.decision === "agentic" ? "Developer preview route" : "Local-first guided tool";
     var primaryLink = document.getElementById("primary-module-link"); primaryLink.href = route.primaryAction.href; primaryLink.textContent = "Open " + route.primaryAction.name;
+    var companions = document.getElementById("route-companion-actions"); companions.innerHTML = "";
+    route.contextualModules.forEach(function (item) { var link = document.createElement("a"); link.className = "onboarding-secondary"; link.href = item.href; link.textContent = item.name; companions.appendChild(link); });
     document.getElementById("route-why").textContent = route.primaryAction.reason + " It keeps the first action proportionate while preserving the complete six-phase route.";
     var prepare = document.getElementById("route-prepare"); prepare.innerHTML = ""; route.preparation.forEach(function (item) { var li = document.createElement("li"); li.textContent = item; prepare.appendChild(li); });
     var modulesTarget = document.getElementById("context-modules"); modulesTarget.innerHTML = "";
@@ -272,9 +317,10 @@
     var caseFile = existing || api.create({ title: route.stakeholder + " governance case", context: { stakeholder: route.stakeholder } });
     caseFile = api.merge(caseFile, {
       context: { stakeholder: route.stakeholder, onboardingAnswers: route.answers, decisionRequested: route.stakeholderQuestion },
-      assessments: [{ assessmentId: "onboarding-route", module: "stakeholder-onboarding", recordedAt: route.generatedAt, data: route }]
+      assessments: [{ assessmentId: "onboarding-route-" + String(Date.parse(route.generatedAt)), module: "stakeholder-onboarding", recordedAt: route.generatedAt, data: route }]
     });
-    api.save(caseFile);
+    var saved = api.save(caseFile);
+    if (!saved.ok) { importStatus.textContent = "The route could not be saved locally. Export it before continuing."; importStatus.classList.add("is-error"); return null; }
     showCaseResume(caseFile);
     return caseFile;
   }
@@ -283,8 +329,9 @@
     if (!window.PALOCaseFile) return;
     var caseFile = currentRoute ? saveRouteToCase(currentRoute) : currentCase();
     if (!caseFile) { importStatus.textContent = "Start a route or import a case before continuing."; importStatus.classList.add("is-error"); return; }
-    var result = window.PALOCaseFile.handoff(caseFile, "stakeholder-onboarding", "assessment-path", { routeId: currentRoute ? "onboarding-route" : null });
+    var result = window.PALOCaseFile.handoff(caseFile, "stakeholder-onboarding", "assessment-path", { routeId: currentRoute ? "onboarding-route-" + String(Date.parse(currentRoute.generatedAt)) : null });
     if (result.ok) window.location.href = "../../PALO_AssessmentPath.html?handoff=onboarding#assessment-form";
+    else { importStatus.textContent = "The handoff could not be persisted. Export the case before continuing."; importStatus.classList.add("is-error"); }
   }
 
   function importCase(file) {
@@ -294,7 +341,8 @@
     window.PALOCaseFile.import(file).then(function (result) {
       var incoming = result.type === window.PALOCaseFile.formats.evidenceBundle ? window.PALOCaseFile.bundleToCase(result.document) : result.document;
       var caseFile = currentCase() ? window.PALOCaseFile.merge(currentCase(), incoming) : incoming;
-      window.PALOCaseFile.save(caseFile);
+      var saved = window.PALOCaseFile.save(caseFile);
+      if (!saved.ok) throw new Error("The file is valid but the local Case File could not be saved.");
       showCaseResume(caseFile);
       var onboarding = caseFile.assessments.slice().reverse().find(function (item) { return item.module === "stakeholder-onboarding" && item.data; });
       if (onboarding) { currentRoute = onboarding.data; safeWrite(currentRoute); restoreAnswers(currentRoute); renderRoute(currentRoute); }
@@ -358,17 +406,19 @@
 
   function restoreAnswers(route) {
     if (!route || !route.answers) return;
-    ["decision", "role", "stage"].forEach(function (name) { var input = form.querySelector("input[name='" + name + "'][value='" + route.answers[name] + "']"); if (input) input.checked = true; });
+    ["decision", "role", "stage", "buildMode"].forEach(function (name) { var input = form.querySelector("input[name='" + name + "'][value='" + route.answers[name] + "']"); if (input) input.checked = true; });
     form.querySelectorAll("input[name='signals']").forEach(function (input) { input.checked = route.answers.signals.indexOf(input.value) !== -1; });
   }
 
   function applyIntent() {
     var intent = new URLSearchParams(window.location.search).get("intent");
-    var mapping = { classify: "govern", assess: "govern", prove: "verify" };
+    var mapping = { classify: "govern", assess: "govern", prove: "verify", agentic: "agentic" };
     if (!mapping[intent]) return;
     var input = form.querySelector("input[name='decision'][value='" + mapping[intent] + "']"); if (input) input.checked = true;
+    var requestedMode = new URLSearchParams(window.location.search).get("mode");
+    if (intent === "agentic" && ["code", "visual", "rapid"].indexOf(requestedMode) !== -1) { var modeInput = form.querySelector("input[name='buildMode'][value='" + requestedMode + "']"); if (modeInput) modeInput.checked = true; }
     var context = document.getElementById("intent-context"); context.hidden = false;
-    context.textContent = intent === "classify" ? "Classification context selected. We will still start from your decision and role." : intent === "assess" ? "Impact context selected. Your answers will determine whether Assess is the right starting phase." : "Evidence review context selected. Your answers will determine the shortest reproducible route.";
+    context.textContent = intent === "classify" ? "Classification context selected. We will still start from your decision and role." : intent === "assess" ? "Impact context selected. Your answers will determine whether Assess is the right starting phase." : intent === "agentic" ? "Agentic Governance selected. Your role remains the accountability context; a build-mode question will refine the implementation path." : "Evidence review context selected. Your answers will determine the shortest reproducible route.";
   }
 
   function runRoutingSelfTest() {
@@ -403,7 +453,7 @@
     if (!actionTarget) return;
     var action = actionTarget.getAttribute("data-action");
     if (action === "begin") begin();
-    if (action === "continue") { if (!validateStep()) return; if (currentStep < 3) showStep(currentStep + 1, true); else generateRoute(); }
+    if (action === "continue") { if (!validateStep()) return; if (currentStep < totalSteps()) showStep(currentStep + 1, true); else generateRoute(); }
     if (action === "back") showStep(currentStep - 1, true);
     if (action === "change") { showView("form"); showStep(1, false); }
     if (action === "guided-explorer") activateExplorer(currentRoute);
@@ -414,6 +464,11 @@
     if (action === "restart") { safeClear(); currentRoute = null; form.reset(); applyIntent(); resumePanel.hidden = true; begin(); }
     if (action === "download-toggle") { var options = root.querySelector(".download-options"); var expanded = options.hidden; options.hidden = !expanded; actionTarget.setAttribute("aria-expanded", String(expanded)); }
   });
+  if (startMenuToggle && startPrimaryNav) {
+    startMenuToggle.addEventListener("click", function () { var open = startPrimaryNav.classList.toggle("is-open"); startMenuToggle.setAttribute("aria-expanded", String(open)); });
+    startPrimaryNav.addEventListener("click", function (event) { if (event.target.closest("a")) { startPrimaryNav.classList.remove("is-open"); startMenuToggle.setAttribute("aria-expanded", "false"); } });
+    document.addEventListener("keydown", function (event) { if (event.key === "Escape" && startPrimaryNav.classList.contains("is-open")) { startPrimaryNav.classList.remove("is-open"); startMenuToggle.setAttribute("aria-expanded", "false"); startMenuToggle.focus(); } });
+  }
   root.addEventListener("click", function (event) { var target = event.target.closest("[data-download]"); if (target) downloadRoute(target.getAttribute("data-download")); });
   importInput.addEventListener("change", function () { importCase(importInput.files[0]); importInput.value = ""; });
 

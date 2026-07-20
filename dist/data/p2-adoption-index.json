@@ -1,0 +1,28 @@
+{
+  "format": "palo-p2-adoption-index",
+  "schemaVersion": "1.0.0",
+  "status": "educational-non-production",
+  "artifacts": [
+    { "artifactId": "control-library", "kind": "control-library", "path": "data/control-library.json", "schemaPath": "schemas/palo-control-library.schema.json" },
+    { "artifactId": "kpi-kri-registry", "kind": "indicator-registry", "path": "data/kpi-kri-registry.json", "schemaPath": "schemas/palo-kpi-kri-registry.schema.json" },
+    { "artifactId": "decision-gates", "kind": "gate-registry", "path": "data/decision-gates.json", "schemaPath": "schemas/palo-decision-gates.schema.json" },
+    { "artifactId": "source-registry", "kind": "source-registry", "path": "data/source-registry.json", "schemaPath": "schemas/palo-source-registry.schema.json" },
+    { "artifactId": "policywatcher-signal", "kind": "handoff-schema", "path": "schemas/fixtures/policywatcher-signal.valid.json", "schemaPath": "schemas/policywatcher-signal.schema.json" },
+    { "artifactId": "policy-as-code-input", "kind": "example-input", "path": "examples/policy-as-code/decision-gate-input.example.json", "schemaPath": "schemas/palo-policy-input.schema.json" }
+  ],
+  "workedCases": [
+    { "caseId": "case-procurement-assistant", "domain": "procurement", "path": "examples/worked-cases/procurement.case.json", "controlIds": ["ctrl-purpose-boundary", "ctrl-third-party-due-diligence", "ctrl-data-provenance"], "indicatorIds": ["kpi-vendor-evidence-coverage", "kpi-provenance-coverage"], "gateIds": ["frame", "classify", "assess", "control"], "sourceIds": ["src-nist-ai-rmf", "src-iso-42001"], "templateIds": ["tpl-procurement", "tpl-board-review"] },
+    { "caseId": "case-hr-learning-assistant", "domain": "human-resources", "path": "examples/worked-cases/hr.case.json", "controlIds": ["ctrl-purpose-boundary", "ctrl-human-review", "ctrl-data-provenance", "ctrl-decision-trace"], "indicatorIds": ["kri-scope-change-rate", "kpi-provenance-coverage", "kpi-review-completion"], "gateIds": ["frame", "classify", "assess", "prove"], "sourceIds": ["src-oecd-ai-principles", "src-eu-ai-act"], "templateIds": ["tpl-board-review", "tpl-incident-response"] },
+    { "caseId": "case-public-service-triage", "domain": "public-service", "path": "examples/worked-cases/public-service.case.json", "controlIds": ["ctrl-purpose-boundary", "ctrl-human-review", "ctrl-incident-response", "ctrl-decision-trace"], "indicatorIds": ["kpi-review-completion", "kpi-incident-triage-time", "kri-override-failure-rate"], "gateIds": ["frame", "assess", "control", "measure", "prove"], "sourceIds": ["src-nist-ai-rmf", "src-oecd-ai-principles"], "templateIds": ["tpl-incident-response", "tpl-board-review"] },
+    { "caseId": "case-software-code-review", "domain": "software-delivery", "path": "examples/worked-cases/software-delivery.case.json", "controlIds": ["ctrl-purpose-boundary", "ctrl-adversarial-testing", "ctrl-change-gate", "ctrl-decision-trace"], "indicatorIds": ["kri-critical-test-failure-rate", "kpi-review-completion", "kri-scope-change-rate"], "gateIds": ["classify", "assess", "measure", "prove"], "sourceIds": ["src-nist-genai-profile", "src-owasp-llm-top10"], "templateIds": ["tpl-red-team-evidence", "tpl-incident-response"] },
+    { "caseId": "case-generative-support-drafts", "domain": "generative-ai", "path": "examples/worked-cases/generative-ai.case.json", "controlIds": ["ctrl-data-provenance", "ctrl-human-review", "ctrl-adversarial-testing", "ctrl-incident-response"], "indicatorIds": ["kpi-provenance-coverage", "kpi-review-completion", "kri-critical-test-failure-rate"], "gateIds": ["assess", "control", "measure", "prove"], "sourceIds": ["src-nist-genai-profile", "src-owasp-llm-top10"], "templateIds": ["tpl-red-team-evidence", "tpl-incident-response", "tpl-board-review"] },
+    { "caseId": "case-agentic-invoice-workflow", "domain": "agentic-workflows", "path": "examples/worked-cases/agentic-workflow.case.json", "controlIds": ["ctrl-purpose-boundary", "ctrl-human-review", "ctrl-incident-response", "ctrl-change-gate", "ctrl-decision-trace"], "indicatorIds": ["kpi-review-completion", "kpi-incident-triage-time", "kri-override-failure-rate", "kri-scope-change-rate"], "gateIds": ["frame", "classify", "assess", "control", "measure", "prove"], "sourceIds": ["src-nist-ai-rmf", "src-iso-42001"], "templateIds": ["tpl-incident-response", "tpl-board-review", "tpl-red-team-evidence"] }
+  ],
+  "templates": [
+    { "templateId": "tpl-procurement", "title": "Procurement governance record", "path": "templates/procurement.md", "gateIds": ["classify", "assess", "control"] },
+    { "templateId": "tpl-incident-response", "title": "AI incident response record", "path": "templates/incident-response.md", "gateIds": ["control", "measure", "prove"] },
+    { "templateId": "tpl-board-review", "title": "Board and accountable-committee review pack", "path": "templates/board-review.md", "gateIds": ["frame", "control", "prove"] },
+    { "templateId": "tpl-red-team-evidence", "title": "Red-team evidence record", "path": "templates/red-team-evidence.md", "gateIds": ["assess", "measure", "prove"] },
+    { "templateId": "tpl-contribution-starter", "title": "PALO starter-library contribution", "path": "templates/contribution-starter.md", "gateIds": ["frame", "prove"] }
+  ]
+}

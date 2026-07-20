@@ -1,0 +1,502 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Changelog | PALO Documentation</title>
+  <meta name="description" content="Public PALO documentation: Changelog.">
+  <link rel="canonical" href="https://paloframework.org/CHANGELOG.html">
+  <link rel="icon" type="image/webp" href="assets/logo.webp">
+  <link rel="stylesheet" href="assets/palo-icons.css">
+  <link rel="stylesheet" href="assets/palo-v21.css?v=2.5.0">
+  <link rel="stylesheet" href="assets/palo-docs.css">
+  <script src="assets/palo-icons.js" defer></script>
+  <script src="assets/palo-v21.js?v=2.5.0" defer></script>
+  <script src="assets/palo-docs.js" defer></script>
+</head>
+<body class="palo-v21 palo-doc-page" data-doc-source="CHANGELOG.md">
+  <a class="palo-skip-link" href="#main-content">Skip to main content</a>
+  <header class="palo-site-header"><div class="palo-shell palo-header-inner">
+    <a class="palo-brand" href="index.html"><img src="assets/logo.webp" alt="PALO">PALO FRAMEWORK</a>
+    <button class="palo-menu-toggle" type="button" data-palo-menu-toggle aria-expanded="false" aria-controls="palo-primary-nav" aria-label="Open navigation"><span data-palo-icon="menu" aria-hidden="true"></span></button>
+    <nav class="palo-nav" id="palo-primary-nav" aria-label="Primary navigation"><a href="designs/theory-to-practice-infographic/">Start</a><a href="PALO_AIGovernance.html">Agentic Governance</a><a href="governance-hub/">Governance Hub</a><a href="index.html#guided-journeys">Tools</a><a href="PALO_DocumentationLibrary.html" aria-current="page">Documentation</a><a href="PALO_AIProductionReadiness.html">Readiness</a></nav>
+  </div></header>
+  <main id="main-content" class="palo-doc-main">
+    <div class="palo-shell">
+      <nav class="palo-doc-breadcrumb" aria-label="Breadcrumb"><a href="PALO_DocumentationLibrary.html">Documentation Library</a><span aria-hidden="true">/</span><span>Start and adoption</span></nav>
+      <header class="palo-doc-hero"><p class="palo-eyebrow">Start and adoption · Public documentation</p><h1>Changelog</h1><div class="palo-doc-facts"><span><small>Level</small><strong>reference</strong></span><span><small>Audience</small><strong>governance · technical · builder</strong></span><span><small>Product</small><strong>PALO Core</strong></span><span><small>Status</small><strong>Current Guidance</strong></span><span><small>Read</small><strong>20 min</strong></span></div><p class="palo-doc-source">Published HTML view · Source: <code>CHANGELOG.md</code></p><div class="palo-actions"><button class="palo-btn" type="button" data-doc-copy-link>Copy link</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-share>Share page</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-print>Print</button></div><p class="palo-action-status" data-doc-action-status role="status" aria-live="polite"></p></header>
+      <details class="palo-doc-mobile-toc"><summary>On this page</summary><ol><li class="depth-2"><a href="#unreleased">[Unreleased]</a></li><li class="depth-3"><a href="#added">Added</a></li><li class="depth-3"><a href="#changed">Changed</a></li><li class="depth-2"><a href="#250---2026-07-18">[2.5.0] - 2026-07-18</a></li><li class="depth-3"><a href="#added-2">Added</a></li><li class="depth-3"><a href="#changed-2">Changed</a></li><li class="depth-3"><a href="#known-developer-preview-limitations">Known developer-preview limitations</a></li><li class="depth-2"><a href="#241---2026-07-17">[2.4.1] - 2026-07-17</a></li><li class="depth-3"><a href="#added-3">Added</a></li><li class="depth-3"><a href="#changed-3">Changed</a></li><li class="depth-3"><a href="#security">Security</a></li><li class="depth-3"><a href="#known-developer-preview-limitations-2">Known developer-preview limitations</a></li><li class="depth-2"><a href="#240---2026-07-12">[2.4.0] - 2026-07-12</a></li><li class="depth-3"><a href="#added-4">Added</a></li><li class="depth-3"><a href="#changed-4">Changed</a></li><li class="depth-2"><a href="#232---2026-07-11">[2.3.2] - 2026-07-11</a></li><li class="depth-3"><a href="#fixed">Fixed</a></li><li class="depth-3"><a href="#added-5">Added</a></li><li class="depth-3"><a href="#changed-5">Changed</a></li><li class="depth-3"><a href="#accessibility">Accessibility</a></li><li class="depth-2"><a href="#231---2026-07-11">[2.3.1] - 2026-07-11</a></li><li class="depth-3"><a href="#added-6">Added</a></li><li class="depth-3"><a href="#changed-6">Changed</a></li><li class="depth-2"><a href="#230---2026-07-11">[2.3.0] - 2026-07-11</a></li><li class="depth-3"><a href="#changed-7">Changed</a></li><li class="depth-3"><a href="#fixed-2">Fixed</a></li><li class="depth-2"><a href="#221---2026-07-11">[2.2.1] - 2026-07-11</a></li><li class="depth-3"><a href="#added-7">Added</a></li><li class="depth-3"><a href="#changed-8">Changed</a></li><li class="depth-2"><a href="#220---2026-07-11">[2.2.0] - 2026-07-11</a></li><li class="depth-3"><a href="#added-8">Added</a></li><li class="depth-3"><a href="#changed-9">Changed</a></li><li class="depth-2"><a href="#210---2026-07-11">[2.1.0] - 2026-07-11</a></li><li class="depth-3"><a href="#added-9">Added</a></li><li class="depth-3"><a href="#changed-10">Changed</a></li><li class="depth-2"><a href="#201---2026-06-22">[2.0.1] - 2026-06-22</a></li><li class="depth-3"><a href="#changed-11">Changed</a></li><li class="depth-2"><a href="#200---2026-06-22">[2.0.0] - 2026-06-22</a></li><li class="depth-3"><a href="#added-10">Added</a></li><li class="depth-3"><a href="#changed-12">Changed</a></li><li class="depth-2"><a href="#180---2026-05-15">[1.8.0] - 2026-05-15</a></li><li class="depth-3"><a href="#added-11">Added</a></li><li class="depth-3"><a href="#changed-13">Changed</a></li><li class="depth-2"><a href="#171---2026-04-08">[1.7.1] - 2026-04-08</a></li><li class="depth-3"><a href="#added-12">Added</a></li><li class="depth-3"><a href="#changed-14">Changed</a></li><li class="depth-2"><a href="#170---2026-03-25">[1.7.0] - 2026-03-25</a></li><li class="depth-3"><a href="#added-13">Added</a></li><li class="depth-3"><a href="#changed-15">Changed</a></li><li class="depth-2"><a href="#160---2026-03-12">[1.6.0] - 2026-03-12</a></li><li class="depth-3"><a href="#added-14">Added</a></li><li class="depth-3"><a href="#changed-16">Changed</a></li><li class="depth-2"><a href="#150---2026-03-03">[1.5.0] - 2026-03-03</a></li><li class="depth-3"><a href="#added-15">Added</a></li><li class="depth-3"><a href="#changed-17">Changed</a></li><li class="depth-2"><a href="#140---2026-01-13">[1.4.0] - 2026-01-13</a></li><li class="depth-3"><a href="#added-16">Added</a></li><li class="depth-3"><a href="#changed-18">Changed</a></li><li class="depth-2"><a href="#130---2026-01-04">[1.3.0] - 2026-01-04</a></li><li class="depth-3"><a href="#added-17">Added</a></li><li class="depth-3"><a href="#changed-19">Changed</a></li><li class="depth-2"><a href="#120---2026-01-02">[1.2.0] - 2026-01-02</a></li><li class="depth-3"><a href="#added-18">Added</a></li><li class="depth-3"><a href="#changed-20">Changed</a></li><li class="depth-2"><a href="#110---2025-12-17">[1.1.0] - 2025-12-17</a></li><li class="depth-3"><a href="#added-19">Added</a></li><li class="depth-3"><a href="#changed-21">Changed</a></li><li class="depth-2"><a href="#100---2025-12-01">[1.0.0] - 2025-12-01</a></li><li class="depth-3"><a href="#added-20">Added</a></li><li class="depth-3"><a href="#security-2">Security</a></li><li class="depth-2"><a href="#090---2025-11-15">[0.9.0] - 2025-11-15</a></li><li class="depth-3"><a href="#added-21">Added</a></li></ol></details>
+      <div class="palo-doc-layout"><aside class="palo-doc-sidebar" aria-label="On this page"><strong>On this page</strong><ol><li class="depth-2"><a href="#unreleased">[Unreleased]</a></li><li class="depth-3"><a href="#added">Added</a></li><li class="depth-3"><a href="#changed">Changed</a></li><li class="depth-2"><a href="#250---2026-07-18">[2.5.0] - 2026-07-18</a></li><li class="depth-3"><a href="#added-2">Added</a></li><li class="depth-3"><a href="#changed-2">Changed</a></li><li class="depth-3"><a href="#known-developer-preview-limitations">Known developer-preview limitations</a></li><li class="depth-2"><a href="#241---2026-07-17">[2.4.1] - 2026-07-17</a></li><li class="depth-3"><a href="#added-3">Added</a></li><li class="depth-3"><a href="#changed-3">Changed</a></li><li class="depth-3"><a href="#security">Security</a></li><li class="depth-3"><a href="#known-developer-preview-limitations-2">Known developer-preview limitations</a></li><li class="depth-2"><a href="#240---2026-07-12">[2.4.0] - 2026-07-12</a></li><li class="depth-3"><a href="#added-4">Added</a></li><li class="depth-3"><a href="#changed-4">Changed</a></li><li class="depth-2"><a href="#232---2026-07-11">[2.3.2] - 2026-07-11</a></li><li class="depth-3"><a href="#fixed">Fixed</a></li><li class="depth-3"><a href="#added-5">Added</a></li><li class="depth-3"><a href="#changed-5">Changed</a></li><li class="depth-3"><a href="#accessibility">Accessibility</a></li><li class="depth-2"><a href="#231---2026-07-11">[2.3.1] - 2026-07-11</a></li><li class="depth-3"><a href="#added-6">Added</a></li><li class="depth-3"><a href="#changed-6">Changed</a></li><li class="depth-2"><a href="#230---2026-07-11">[2.3.0] - 2026-07-11</a></li><li class="depth-3"><a href="#changed-7">Changed</a></li><li class="depth-3"><a href="#fixed-2">Fixed</a></li><li class="depth-2"><a href="#221---2026-07-11">[2.2.1] - 2026-07-11</a></li><li class="depth-3"><a href="#added-7">Added</a></li><li class="depth-3"><a href="#changed-8">Changed</a></li><li class="depth-2"><a href="#220---2026-07-11">[2.2.0] - 2026-07-11</a></li><li class="depth-3"><a href="#added-8">Added</a></li><li class="depth-3"><a href="#changed-9">Changed</a></li><li class="depth-2"><a href="#210---2026-07-11">[2.1.0] - 2026-07-11</a></li><li class="depth-3"><a href="#added-9">Added</a></li><li class="depth-3"><a href="#changed-10">Changed</a></li><li class="depth-2"><a href="#201---2026-06-22">[2.0.1] - 2026-06-22</a></li><li class="depth-3"><a href="#changed-11">Changed</a></li><li class="depth-2"><a href="#200---2026-06-22">[2.0.0] - 2026-06-22</a></li><li class="depth-3"><a href="#added-10">Added</a></li><li class="depth-3"><a href="#changed-12">Changed</a></li><li class="depth-2"><a href="#180---2026-05-15">[1.8.0] - 2026-05-15</a></li><li class="depth-3"><a href="#added-11">Added</a></li><li class="depth-3"><a href="#changed-13">Changed</a></li><li class="depth-2"><a href="#171---2026-04-08">[1.7.1] - 2026-04-08</a></li><li class="depth-3"><a href="#added-12">Added</a></li><li class="depth-3"><a href="#changed-14">Changed</a></li><li class="depth-2"><a href="#170---2026-03-25">[1.7.0] - 2026-03-25</a></li><li class="depth-3"><a href="#added-13">Added</a></li><li class="depth-3"><a href="#changed-15">Changed</a></li><li class="depth-2"><a href="#160---2026-03-12">[1.6.0] - 2026-03-12</a></li><li class="depth-3"><a href="#added-14">Added</a></li><li class="depth-3"><a href="#changed-16">Changed</a></li><li class="depth-2"><a href="#150---2026-03-03">[1.5.0] - 2026-03-03</a></li><li class="depth-3"><a href="#added-15">Added</a></li><li class="depth-3"><a href="#changed-17">Changed</a></li><li class="depth-2"><a href="#140---2026-01-13">[1.4.0] - 2026-01-13</a></li><li class="depth-3"><a href="#added-16">Added</a></li><li class="depth-3"><a href="#changed-18">Changed</a></li><li class="depth-2"><a href="#130---2026-01-04">[1.3.0] - 2026-01-04</a></li><li class="depth-3"><a href="#added-17">Added</a></li><li class="depth-3"><a href="#changed-19">Changed</a></li><li class="depth-2"><a href="#120---2026-01-02">[1.2.0] - 2026-01-02</a></li><li class="depth-3"><a href="#added-18">Added</a></li><li class="depth-3"><a href="#changed-20">Changed</a></li><li class="depth-2"><a href="#110---2025-12-17">[1.1.0] - 2025-12-17</a></li><li class="depth-3"><a href="#added-19">Added</a></li><li class="depth-3"><a href="#changed-21">Changed</a></li><li class="depth-2"><a href="#100---2025-12-01">[1.0.0] - 2025-12-01</a></li><li class="depth-3"><a href="#added-20">Added</a></li><li class="depth-3"><a href="#security-2">Security</a></li><li class="depth-2"><a href="#090---2025-11-15">[0.9.0] - 2025-11-15</a></li><li class="depth-3"><a href="#added-21">Added</a></li></ol></aside><article class="palo-doc-content"><h1 id="changelog">Changelog<a class="palo-doc-anchor" href="#changelog" aria-label="Link to Changelog">#</a></h1><p>All notable changes to the PALO Framework are documented in this file.</p>
+<p>The format is based on <a href="https://keepachangelog.com/en/1.0.0/" target="_blank" rel="noopener noreferrer">Keep a Changelog</a>,
+and this project follows Semantic Versioning where practical.</p>
+<hr />
+<h2 id="unreleased">[Unreleased]<a class="palo-doc-anchor" href="#unreleased" aria-label="Link to [Unreleased]">#</a></h2><h3 id="added">Added<a class="palo-doc-anchor" href="#added" aria-label="Link to Added">#</a></h3><ul>
+<li>Added a cognitive front door that routes by organizational role and objective, with a distinct “Govern agent actions” objective and conditional code-first, no-code/low-code and rapid-prototyping modes</li>
+<li>Added a persistent role → objective → phase → artifact → next-action ribbon across guided onboarding and Agentic Governance orientation</li>
+<li>Added safe Governance Hub deep links for executive/technical roles and known views, with deterministic fallback for malformed parameters</li>
+<li>Added a public, interactive nine-gate Production Readiness route and a responsive evidence-based Capability Matrix; internal technical assessment workpapers are excluded from publication</li>
+<li>Added a deterministic sanitized Markdown-to-HTML publication pipeline, searchable Documentation Library, document navigation, print/share controls and privacy-first local feedback exports</li>
+<li>Added the white PALO-AI Governance Hub prototype with a shared Executive/Technical shell, an eight-step guided governance builder, portfolio and decision views, execution traces, approvals, incidents and integration boundaries</li>
+<li>Added a product specification, role-based user guide, workflow reference, six Mermaid architecture diagrams, site copy, GitHub copy and a design-partner launch plan for the Governance Hub</li>
+<li>Added deterministic nested Vite publication so the Governance Hub ships inside the Hostinger/GitHub Pages <code>dist</code> artifact while retaining a local development mode</li>
+<li>Added a web-native PALO-AI governance entry point with task-based routes for code-first developers, no-code/low-code builders, and rapid prototypers using Copilot Studio or similar MCP-capable tools</li>
+<li>Added local, hybrid, managed-cloud and private-cloud deployment guidance with explicit identity, key custody, tenant isolation, availability and evidence gates</li>
+<li>Added an independent cyber-assurance and scale plan covering threat modelling, cryptographic review, penetration testing, supply-chain assessment, recovery and multi-tenant acceptance criteria</li>
+<li>Added a staged n8n and broader community market-entry plan that defers npm and Creator Portal submission until real integration and security gates pass</li>
+<li>Added the PALO-AI governance control-plane architecture for n8n and similar agentic automation platforms, with explicit enforcement classes for the Visual Decision Gate, Governed Executor, Digest-Bound Approval, and Workflow Admission patterns</li>
+<li>Added four presentation-ready PALO-AI/n8n workflow screens illustrating the visual insertion point and enforcement boundary of each architecture pattern</li>
+<li>Added a public presentation and launch playbook with audience-specific positioning, demo guidance, claim discipline, staged promotion, and design-partner outreach material</li>
+<li>Added an n8n integration boundary document separating the current decision-node prototype from the planned installable connector and enforced self-hosted/OEM components</li>
+<li>Added the installable <code>n8n-nodes-palo-ai</code> 0.1.0 alpha package, encrypted gateway credentials, three-way decision routing, immutable approval resume, CI and deferred provenance publishing workflow</li>
+<li>Added a real n8n 2.30.7 tarball install/runtime test report, safe workflow template, community discussion draft, and feedback/design-partner issue forms</li>
+</ul>
+<h3 id="changed">Changed<a class="palo-doc-anchor" href="#changed" aria-label="Link to Changed">#</a></h3><ul>
+<li>Reduced primary navigation to Start, Agentic Governance, Governance Hub, Tools, Documentation and Readiness; consolidated the former Documentation Hub into a transition page and made the filtered HTML Library canonical</li>
+<li>Refocused the homepage on PALO-AI full-cycle assurance, the eight-step Governance Hub builder and nine existing guided journeys described by outcome and artifact</li>
+<li>Added Documentation Library depth, audience and task filters plus product, maturity, reading-time, prerequisite and recommended-next-step metadata</li>
+<li>Updated the public Documentation Hub, PALO-AI overview, capability matrix, PALO-AM entry point and adoption/community guides to reflect the v2.5 full-cycle preview and its four n8n outcome paths</li>
+<li>Aligned README, security policy, VPS guidance, Governance Hub copy and release metadata to the v2.5 full-cycle developer-preview boundary</li>
+<li>Added an explicit Rego default-deny fallback and renamed canonical object comparison to avoid implying cryptographic constant-time semantics</li>
+<li>Hardened Governance Hub search, download cleanup, asynchronous boundary testing, keyboard focus and Windows publication validation, with browser smoke coverage</li>
+<li>Reframed PALO-AI complexity through progressive disclosure: business questions and visible outcomes are primary, while Action Claims, Effect Contracts, Rego inputs and raw evidence remain inspectable on demand</li>
+<li>Positioned PALO-AI as an emerging governance control plane while retaining developer-preview disclaimers and avoiding claims of certified, production-ready, biometric, exactly-once, or unavoidable enforcement</li>
+</ul>
+<h2 id="250---2026-07-18">[2.5.0] - 2026-07-18<a class="palo-doc-anchor" href="#250---2026-07-18" aria-label="Link to [2.5.0] - 2026-07-18">#</a></h2><p><strong>Release status: Full-Cycle Developer Preview — isolated evaluation only.</strong></p>
+<h3 id="added-2">Added<a class="palo-doc-anchor" href="#added-2" aria-label="Link to Added">#</a></h3><ul>
+<li>Added Action Claim 1.2 and immutable Effect Contracts for authoritative preconditions, expected effects, forbidden effects and inconclusive handling</li>
+<li>Added signed one-time Execution Capabilities bound to the exact claim, decision, tenant, resource, executor and verifier</li>
+<li>Added operator-provisioned trusted executor and verifier registries, signed Execution Receipts and signed Outcome Attestations</li>
+<li>Added <code>verified</code>, <code>mismatch</code> and <code>inconclusive</code> outcome semantics so an allowed action is no longer confused with a correct result</li>
+<li>Added held Assurance Incidents with explicit acknowledge/resolve transitions; compensating actions remain separately governed claims</li>
+<li>Expanded the MCP toolkit from eleven to nineteen tools and added full-cycle REST execution, outcome and incident endpoints</li>
+<li>Added <code>n8n-nodes-palo-ai</code> 0.2 with the PALO Governed Action node and four visible outputs: Verified, Review Required, Denied and Execution Failed</li>
+<li>Added a synthetic multi-tenant catalog demo covering verified effect, stale-state prevention and authorized-but-wrong mismatch detection</li>
+<li>Added automated tests for capability replay resistance, idempotent retries, signed receipts, outcome verification, incident holds and ledger integrity</li>
+</ul>
+<h3 id="changed-2">Changed<a class="palo-doc-anchor" href="#changed-2" aria-label="Link to Changed">#</a></h3><ul>
+<li>Disabled caller-supplied REST execution evidence by default; governed execution now generates receipt and outcome evidence inside the trusted runtime</li>
+<li>Updated the reference Rego policy to accept Action Claim 1.2 only when a bound Effect Contract is present</li>
+<li>Retained Action Claim 1.1 and the original n8n decision-only node for migration compatibility</li>
+</ul>
+<h3 id="known-developer-preview-limitations">Known developer-preview limitations<a class="palo-doc-anchor" href="#known-developer-preview-limitations" aria-label="Link to Known developer-preview limitations">#</a></h3><ul>
+<li>SQLite, shared bearer tokens, environment HMAC keys and in-process connector handlers are not production infrastructure</li>
+<li>External tools cannot join the local database transaction; exactly-once behavior depends on connector idempotency and is not universally claimed</li>
+<li>Executor and verifier workloads are not attested, mobile reviewer identity remains a prototype, and multi-replica durable recovery is not implemented</li>
+<li>Production adoption still requires workload identity, scoped RBAC, KMS/HSM, PostgreSQL and durable queues, HA, observability and independent security assessment</li>
+</ul>
+<h2 id="241---2026-07-17">[2.4.1] - 2026-07-17<a class="palo-doc-anchor" href="#241---2026-07-17" aria-label="Link to [2.4.1] - 2026-07-17">#</a></h2><p><strong>Release status: Developer Preview — not approved for production authorization or consequential tool execution.</strong></p>
+<p>This release publishes contracts and a reference implementation for evaluation. Runtime enforcement, cryptographic evidence hardening, authenticated human approval, production connectors, and collaborative agent-team execution remain under development. The included bearer-token transports, SQLite/HMAC components, Vibe Gate metadata, Web/Android approval clients, and n8n/Dify integrations are prototypes and must not be represented as production security controls.</p>
+<h3 id="added-3">Added<a class="palo-doc-anchor" href="#added-3" aria-label="Link to Added">#</a></h3><ul>
+<li>Added an experimental bearer-authenticated MCP Streamable HTTP transport using the official SDK, with protocol parity across eleven stdio/remote tools</li>
+<li>Added a reference SQLite WAL registry and append-only evidence-ledger prototype for agents, authorities, policies, replay state, approvals, decisions and signed events</li>
+<li>Added normalized Action Claims with path, host, network intent, validated arguments, nonce, idempotency key and monotonic sequence number</li>
+<li>Added prototype Web and Android Approval Inbox clients, PALO-AM profile/decision exchange, and a demonstrative Vibe Coding claim-metadata gate</li>
+<li>Added an honest public machine-readable capability matrix and an in-process register → deny → approval → execute → sign → persist → verify acceptance test</li>
+<li>Added the non-production PALO governance MCP reference server, expanded from its initial seven-tool baseline to eleven tools for registry, policy, approval, evidence and ledger operations</li>
+<li>Added canonical, interoperable JSON contracts for agent profiles, action claims, policy decisions, approvals, and HMAC-signed evidence envelopes</li>
+<li>Added an experimental localhost governance gateway for non-production Dify, n8n, and workflow examples; policy and signing secrets remain server-side</li>
+<li>Added a persistent approval state machine with expiry, single terminal resolution, exact claim-digest binding, accountable resolver identity, and rationale</li>
+<li>Added an append-only SQLite evidence-ledger prototype with UUID event IDs, secret-field redaction, HMAC-SHA256 signatures, previous-event hash chaining and immutable update/delete triggers</li>
+<li>Added pinned, checksum-verified OPA installation, Rego v1 compilation and policy tests, MCP protocol smoke tests, runtime security tests, connector tests, and CI enforcement</li>
+</ul>
+<h3 id="changed-3">Changed<a class="palo-doc-anchor" href="#changed-3" aria-label="Link to Changed">#</a></h3><ul>
+<li>Replaced legacy Rego syntax and permissive delegation shortcuts with fail-closed checks for registered tools, operations, read/write scopes, network access, hosts, delegation depth, subagent count, roles, and human validation</li>
+<li>Replaced local Dify and n8n allowlists, mock signatures, and second-based evidence IDs with canonical claims evaluated by the trusted PALO gateway</li>
+<li>Changed agent profiles so they reference only a key ID and algorithm; signing secrets can no longer be embedded or derived from public configuration</li>
+<li>Preserved every PALO-AM and Assessment Path run as a unique historical record and calculate source freshness from recorded source state instead of marking every export current</li>
+<li>Made Case File merge linear for identified arrays, reject cross-case merges, require strict RFC 3339 timestamps, and surface save or handoff persistence failures before navigation</li>
+</ul>
+<h3 id="security">Security<a class="palo-doc-anchor" href="#security" aria-label="Link to Security">#</a></h3><ul>
+<li>Added nonce replay detection, immutable claim-ID checks, constant-time signature and gateway-token comparisons, authenticated gateway access, request-size limits, redaction defaults, atomic registry writes, and fail-closed OPA outage behavior</li>
+<li>Prevented raw tool arguments, access tokens, passwords, cookies, API keys, and private keys from entering agentic decision evidence</li>
+</ul>
+<h3 id="known-developer-preview-limitations-2">Known developer-preview limitations<a class="palo-doc-anchor" href="#known-developer-preview-limitations-2" aria-label="Link to Known developer-preview limitations">#</a></h3><ul>
+<li>A single bearer token does not provide principal identity, role separation, reviewer authentication, administrative authorization, rotation, or production transport security</li>
+<li>The reference executor is not an exactly-once execution engine; cached decisions, action expiry, state/evidence atomicity, and decision provenance require further hardening before real tool use</li>
+<li>Approval clients demonstrate state transitions but do not yet provide sufficient human-readable action context or an enterprise reviewer identity lifecycle</li>
+<li>Vibe Gate metadata is a self-attested demonstration and is not a trusted signed attestation or an unavoidable pre-tool-call proxy</li>
+<li>Collaborative Agent Teams remain specified only; Team Registry, Shared Task Claims, peer coordination, leases, conflict handling, and team-level evidence are not implemented</li>
+<li>n8n and Dify artifacts are non-production examples and do not provide a certified end-to-end approval-resume or execution connector</li>
+</ul>
+<h2 id="240---2026-07-12">[2.4.0] - 2026-07-12<a class="palo-doc-anchor" href="#240---2026-07-12" aria-label="Link to [2.4.0] - 2026-07-12">#</a></h2><h3 id="added-4">Added<a class="palo-doc-anchor" href="#added-4" aria-label="Link to Added">#</a></h3><ul>
+<li><p>Added PALO Spotlight, a local ER-aware platform search across modules, guide decisions, artifacts, actors, controls, sources, stakeholder intents, and weighted relationships</p>
+</li>
+<li><p>Added deterministic intent scoring, six-phase route tracing, relation traversal, operational starter questions, keyboard navigation, and reusable <code>PALO_SPOTLIGHT.open(query)</code> integration for a future conversational assistant</p>
+</li>
+<li><p>Added a pinned Node toolchain for HTML, links, fragments, canonicals, sitemap, RSS, release metadata, and browser smoke validation</p>
+</li>
+<li><p>Added an explicit public-file allowlist and deterministic root-to-<code>dist</code> build with SHA-256 exactness verification</p>
+</li>
+<li><p>Added <code>release-manifest.json</code>, portable <code>_headers</code>, hosting guidance, and P0 lateral analysis</p>
+</li>
+<li><p>Added PALO case-file and evidence-bundle v1 schemas with valid/invalid fixtures, migration guidance, source freshness fields, and incident/material-change gate triggers</p>
+</li>
+<li><p>Added a local-only browser API for case create, validate, import, export, merge, board pack, and cross-module handoff while preserving unknown fields</p>
+</li>
+<li><p>Added case import/resume and handoff to Stakeholder Onboarding and Assessment Path, including board-review Markdown output</p>
+</li>
+<li><p>Added the embedded PALO-AM Simulator MVP with deterministic tiering, control/evidence/KPI recommendations, JSON/Markdown export, and case linkage</p>
+</li>
+<li><p>Added critical P1 browser flows and P1 lateral analysis</p>
+</li>
+<li><p>Added P2 structured control, KPI/KRI, decision-gate and source starter libraries with cross-reference validation</p>
+</li>
+<li><p>Added six educational Case File worked examples, five operational templates, a PolicyWatcher signal contract, vendor-neutral connector patterns, and non-production policy-as-code examples</p>
+</li>
+<li><p>Added P2 dependency/license inventory, publication hygiene, module contracts, deterministic publication coverage, and lateral analysis</p>
+</li>
+<li><p>Added the public Platform Map with honest Implemented, Foundation, and Research states; P0-P3 lateral impact panels; stakeholder-intent navigation; and a synchronized table fallback</p>
+</li>
+<li><p>Added navigation entities and weighted navigation relations to the Operationalization Explorer with a dedicated graph mode, destination properties, fallback coverage, and P3 browser tests</p>
+</li>
+<li><p>Added Platform Map links to the homepage, shared navigation, Documentation Hub, sitemap, RSS, release manifest, README, and deterministic publication allowlist</p>
+</li>
+<li><p>Added P3 lateral analysis and the required desktop, mobile, navigation-graph, and PALO-AM Simulator screenshots</p>
+</li>
+<li><p>Added the v2.4.0 PolicyWatcher maintenance integration: a local Assessment Path signal receiver, pending-human-review Case File mapping, live Platform Map/Explorer destination, and exact import/boundary tests</p>
+</li>
+</ul>
+<h3 id="changed-4">Changed<a class="palo-doc-anchor" href="#changed-4" aria-label="Link to Changed">#</a></h3><ul>
+<li>Updated AJV to 8.20.0 after the final dependency audit, removing the reported moderate ReDoS advisory from the validation toolchain</li>
+<li>Unified all shared <code>palo-v21.css</code> and <code>palo-v21.js</code> cache keys on release v2.4.0</li>
+<li>Changed GitHub Pages CI to fail on validation errors and deploy only the generated <code>dist</code> artifact</li>
+<li>Upgraded Assessment Path exports to evidence-bundle v1 and connected onboarding, assessment, simulator, and board review through one portable local case</li>
+<li>Corrected the mobile Explorer navigation landing so it remains hash-free, opens on the visible graph, and focuses the Navigation mode control</li>
+<li>Raised Explorer mode, phase, relationship, inspector, semantic-search, and result targets to a 44px minimum</li>
+<li>Offset focused PALO-AM results below both fixed navigation bars and added keyboard-focusable, text-labelled mobile scroll affordances to the matrix and KPI/KRI registry</li>
+<li>Standardized PolicyWatcher links on <code>https://www.policywatcher.online/</code>, retained the local schema as the contract, and made additive signal fields forward-compatible without changing the <code>1.0.0</code> format</li>
+</ul>
+<h2 id="232---2026-07-11">[2.3.2] - 2026-07-11<a class="palo-doc-anchor" href="#232---2026-07-11" aria-label="Link to [2.3.2] - 2026-07-11">#</a></h2><h3 id="fixed">Fixed<a class="palo-doc-anchor" href="#fixed" aria-label="Link to Fixed">#</a></h3><ul>
+<li>Unified the homepage Toolbox, AuditBench, and Poisoning Study entry bands around the shared PALO workspace pattern</li>
+<li>Restored cold-load and direct-file styling for the homepage lifecycle and proof metrics using local CSS</li>
+<li>Rebuilt the Companion App page on the shared shell with valid section navigation and operational lifecycle routes</li>
+<li>Linked the homepage five-phase proof point to the lifecycle and synchronized changed public files with <code>dist/</code></li>
+<li>Restored the PALO-AM <code>Controls</code> navigation target and completed a 27-page internal and external link audit</li>
+</ul>
+<h3 id="added-5">Added<a class="palo-doc-anchor" href="#added-5" aria-label="Link to Added">#</a></h3><ul>
+<li><strong>Stakeholder onboarding</strong><ul>
+<li>Added a three-step, plain-language onboarding for decision, working context, and material signals</li>
+<li>Added deterministic routing that returns exactly one primary action, one evidence artifact, and no more than two contextual PALO modules</li>
+<li>Added personalized six-phase routes for executive, governance, product, engineering, public-sector, procurement, audit, assurance, and research perspectives</li>
+<li>Added local JSON and Markdown route exports without accounts, analytics, or transmission of onboarding answers</li>
+<li>Added resume, restart, change-answer, and explore-all paths using session-local storage with a graceful storage fallback</li>
+<li>Connected the result to the weighted ER workflow and 3D knowledge graph with phase, module, camera, inspector, and URL synchronization</li>
+</ul>
+</li>
+</ul>
+<h3 id="changed-5">Changed<a class="palo-doc-anchor" href="#changed-5" aria-label="Link to Changed">#</a></h3><ul>
+<li>Made Stakeholder Onboarding the primary Start here, hero, command-center, and theory-to-practice entry from the homepage</li>
+<li>Updated the public release marker to v2.3.2 on the homepage, Explorer, and Community shell</li>
+<li>Added canonical, Open Graph, Twitter, robots, and WebApplication metadata for the Operationalization Explorer</li>
+</ul>
+<h3 id="accessibility">Accessibility<a class="palo-doc-anchor" href="#accessibility" aria-label="Link to Accessibility">#</a></h3><ul>
+<li>Used native fieldsets, legends, radio buttons, and checkboxes with text progress, 44px controls, visible focus, preserved answers, intentional result focus, reduced motion, and a semantic WebGL fallback</li>
+<li>Verified responsive onboarding and Explorer behavior across desktop, tablet, and mobile layouts</li>
+</ul>
+<h2 id="231---2026-07-11">[2.3.1] - 2026-07-11<a class="palo-doc-anchor" href="#231---2026-07-11" aria-label="Link to [2.3.1] - 2026-07-11">#</a></h2><h3 id="added-6">Added<a class="palo-doc-anchor" href="#added-6" aria-label="Link to Added">#</a></h3><ul>
+<li><strong>Theory to Practice value proposition</strong><ul>
+<li>Added a dedicated homepage operating loop that explains how PALO moves from a use-case question to classification, impact assessment, controls, KPI/KRI, evidence, and review</li>
+<li>Connected the operating loop to the available PALO modules: Model Canvas, Human Agency Risk Map, Tech Trends Observatory, Risk Tiering, Framework Comparison, Regulatory Watch, FRIA, PALO-AM, Vibe Coding Governance, AuditBench, Poisoning Boomerang, KPI/KRI Generator, Assessment Path, Documentation Hub, and P.A.L.O. Toolbox</li>
+<li>Made the practical outputs explicit: decision record, impact and control record, KPI/KRI register, and versioned JSON or Markdown evidence bundle</li>
+</ul>
+</li>
+</ul>
+<h3 id="changed-6">Changed<a class="palo-doc-anchor" href="#changed-6" aria-label="Link to Changed">#</a></h3><ul>
+<li>Pointed the primary Start here navigation to the theory-to-practice value proposition</li>
+<li>Updated the public release marker to v2.3.1 on the homepage and Community shell</li>
+</ul>
+<h2 id="230---2026-07-11">[2.3.0] - 2026-07-11<a class="palo-doc-anchor" href="#230---2026-07-11" aria-label="Link to [2.3.0] - 2026-07-11">#</a></h2><h3 id="changed-7">Changed<a class="palo-doc-anchor" href="#changed-7" aria-label="Link to Changed">#</a></h3><ul>
+<li><strong>Workspace UI refresh</strong><ul>
+<li>Replaced the crowded homepage toolbar with a compact command bar organized around Start here, Assess, Observe, Docs, Community, and Toolbox</li>
+<li>Replaced the marketing-first hero with a workspace entry view and three operational routes</li>
+<li>Added responsive mobile navigation with clear touch targets and no horizontal overflow</li>
+<li>Simplified the homepage footer to policy, resource, contact, and RSS links</li>
+<li>Removed the non-essential WCAG target badge and privacy-status card from the primary interface; accessibility and privacy remain available as policy pages</li>
+<li>Applied the command bar to the Community page and aligned the public shell with the PolicyWatcher workspace language</li>
+</ul>
+</li>
+</ul>
+<h3 id="fixed-2">Fixed<a class="palo-doc-anchor" href="#fixed-2" aria-label="Link to Fixed">#</a></h3><ul>
+<li>Prevented top navigation wrapping and overlapping at desktop widths</li>
+<li>Removed the legacy homepage mobile-menu script that could target missing navigation nodes after the shell refresh</li>
+</ul>
+<h2 id="221---2026-07-11">[2.2.1] - 2026-07-11<a class="palo-doc-anchor" href="#221---2026-07-11" aria-label="Link to [2.2.1] - 2026-07-11">#</a></h2><h3 id="added-7">Added<a class="palo-doc-anchor" href="#added-7" aria-label="Link to Added">#</a></h3><ul>
+<li><strong>PolicyWatcher ecosystem link</strong><ul>
+<li>Added PolicyWatcher as a separate civic-tech monitoring companion for public privacy-policy and terms-of-service changes</li>
+<li>Added links to the PolicyWatcher Observatory, timeline, confidence methodology, and Trust &amp; Quality materials</li>
+<li>Added an explicit integration boundary: PolicyWatcher signals can inform monitoring, but do not replace original sources, official requirements, human review, or legal advice</li>
+</ul>
+</li>
+</ul>
+<h3 id="changed-8">Changed<a class="palo-doc-anchor" href="#changed-8" aria-label="Link to Changed">#</a></h3><ul>
+<li>Added PolicyWatcher references to the homepage, Assessment Path, Regulatory Watch, Documentation Hub, Recognition page, README, and release feed</li>
+</ul>
+<h2 id="220---2026-07-11">[2.2.0] - 2026-07-11<a class="palo-doc-anchor" href="#220---2026-07-11" aria-label="Link to [2.2.0] - 2026-07-11">#</a></h2><h3 id="added-8">Added<a class="palo-doc-anchor" href="#added-8" aria-label="Link to Added">#</a></h3><ul>
+<li><strong>PALO Assessment Path</strong><ul>
+<li>Added three guided entry points: classify the case, assess impacts, and build the evidence</li>
+<li>Added routing from Risk Tiering to contextual FRIA, controls, KPI/KRI, PALO-AM, and AI Dev Governance when signals apply</li>
+<li>Added local JSON and Markdown evidence bundle export with PALO version, route, evidence readiness, official sources, and disclaimer</li>
+</ul>
+</li>
+<li><strong>Regulatory Watch 2026</strong><ul>
+<li>Added dated status cards for Article 4 AI literacy, GPAI milestones, Article 50 transparency, and current high-risk implementation guidance</li>
+<li>Added official Commission and EUR-Lex source links and an explicit review-date disclaimer</li>
+</ul>
+</li>
+<li><strong>Documentation Hub</strong><ul>
+<li>Added indexable web-native lifecycle documentation, interactive module directory, primary document links, source set, and contribution links</li>
+</ul>
+</li>
+<li><strong>Proof and Community media kit</strong><ul>
+<li>Added public links for the Android and iOS/iPadOS companion apps, GitHub, framework image, PDF, and community page</li>
+</ul>
+</li>
+<li><strong>Unified v2.2 shell assets</strong><ul>
+<li>Added responsive shared CSS and JavaScript for navigation, local downloads, current year labels, and Documentation Hub filtering</li>
+</ul>
+</li>
+</ul>
+<h3 id="changed-9">Changed<a class="palo-doc-anchor" href="#changed-9" aria-label="Link to Changed">#</a></h3><ul>
+<li>Added Start Here, Regulatory Watch, Assessment Path, Documentation Hub, and Proof &amp; Community sections to the homepage</li>
+<li>Updated README, sitemap, RSS feed, and release history for v2.2.0</li>
+<li>Updated the roadmap to place PALO-AM Simulator after the guided evidence workflow</li>
+</ul>
+<h2 id="210---2026-07-11">[2.1.0] - 2026-07-11<a class="palo-doc-anchor" href="#210---2026-07-11" aria-label="Link to [2.1.0] - 2026-07-11">#</a></h2><h3 id="added-9">Added<a class="palo-doc-anchor" href="#added-9" aria-label="Link to Added">#</a></h3><ul>
+<li><strong>Recognition and source notes page</strong><ul>
+<li>Added <code>PALO_Recognition.html</code> with public references, primary sources, link review date, and verification notes</li>
+</ul>
+</li>
+</ul>
+<h3 id="changed-10">Changed<a class="palo-doc-anchor" href="#changed-10" aria-label="Link to Changed">#</a></h3><ul>
+<li>Corrected the Risk Tiering transparency reference from Article 52 to Article 50</li>
+<li>Reframed FRIA copy as Article 27 readiness and pre-screening for in-scope deployers and use cases</li>
+<li>Added current Commission timeline notes for high-risk AI implementation and linked the official guidance</li>
+<li>Updated privacy, security, and accessibility statements with July 2026 review status</li>
+<li>Replaced unverified WCAG/GDPR compliance badges with review status and privacy information labels</li>
+<li>Completed SEO description, canonical, and Open Graph metadata for previously incomplete pages</li>
+<li>Added Recognition to the homepage footer, README module list, sitemap, RSS feed, and release metadata</li>
+</ul>
+<hr />
+<h2 id="201---2026-06-22">[2.0.1] - 2026-06-22<a class="palo-doc-anchor" href="#201---2026-06-22" aria-label="Link to [2.0.1] - 2026-06-22">#</a></h2><h3 id="changed-11">Changed<a class="palo-doc-anchor" href="#changed-11" aria-label="Link to Changed">#</a></h3><ul>
+<li>Updated README release table to use exact release dates and version numbers</li>
+<li>Reworked the README roadmap into a versioned roadmap from v2.0.1 through v3.0</li>
+<li>Aligned the PALO-AM page roadmap with the repository roadmap numbering</li>
+<li>Aligned homepage changelog entries with <code>CHANGELOG.md</code></li>
+<li>Reordered RSS entries for chronological consistency and synchronized <code>dist/feed.xml</code></li>
+</ul>
+<hr />
+<h2 id="200---2026-06-22">[2.0.0] - 2026-06-22<a class="palo-doc-anchor" href="#200---2026-06-22" aria-label="Link to [2.0.0] - 2026-06-22">#</a></h2><h3 id="added-10">Added<a class="palo-doc-anchor" href="#added-10" aria-label="Link to Added">#</a></h3><ul>
+<li><strong>PALO-AM: Agentic Governance Modality v2.0</strong><ul>
+<li>New PALO extension for AI agents and agentic systems</li>
+<li>Five operational governance objects: Agent Identity, Agent Authority, Agentic Risk Matrix, Agentic Control Layer, and Agentic Evidence Layer</li>
+<li>Action-Space vs Autonomy Matrix for routing agentic systems into governance tiers</li>
+<li>Five-phase PALO lifecycle overlay for delegated-action systems</li>
+<li>KPI/KRI registry for agentic AI governance</li>
+<li>Worked enterprise scenarios for procurement, workflow automation, and autonomous support agents</li>
+<li>Alignment references for IMDA MGF v1.5, EU AI Act, ISO/IEC 42001, ISO/IEC 42005, and NIST AI RMF</li>
+</ul>
+</li>
+<li><strong>Public recognition and reference links</strong><ul>
+<li>Added references to Reuters-distributed coverage, World AI Council mention, Rivista AI coverage, and Rivista Corporate Governance special issue index</li>
+</ul>
+</li>
+</ul>
+<h3 id="changed-12">Changed<a class="palo-doc-anchor" href="#changed-12" aria-label="Link to Changed">#</a></h3><ul>
+<li>Updated README to reflect the current 2026 framework state, mobile ecosystem, new modules, documentation, and roadmap</li>
+<li>Updated sitemap and RSS feed to include newer modules and mobile release information</li>
+<li>Corrected Google Play links to the active package ID: <code>com.fabriziodegni.paloframework</code></li>
+</ul>
+<hr />
+<h2 id="180---2026-05-15">[1.8.0] - 2026-05-15<a class="palo-doc-anchor" href="#180---2026-05-15" aria-label="Link to [1.8.0] - 2026-05-15">#</a></h2><h3 id="added-11">Added<a class="palo-doc-anchor" href="#added-11" aria-label="Link to Added">#</a></h3><ul>
+<li><strong>Enterprise Security &amp; Governance for AI-Assisted Software Development Environments</strong><ul>
+<li>New PALO extension covering AI-assisted software delivery, rapid prototyping, vibe coding, and coding assistants</li>
+<li>Three-layer governance model: Functional Intent, Controlled Environment, and Evidence &amp; Assurance</li>
+<li>Six decision gates for AI-assisted software development workflows</li>
+<li>KPIs/KRIs for traceability, security, review coverage, and evidence quality</li>
+<li>Dedicated module page: <code>PALO_VibeCoding.html</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="changed-13">Changed<a class="palo-doc-anchor" href="#changed-13" aria-label="Link to Changed">#</a></h3><ul>
+<li>Added AI Dev Governance links to homepage navigation and toolkit shortcuts</li>
+<li>Integrated AI-assisted development governance into the homepage changelog</li>
+</ul>
+<hr />
+<h2 id="171---2026-04-08">[1.7.1] - 2026-04-08<a class="palo-doc-anchor" href="#171---2026-04-08" aria-label="Link to [1.7.1] - 2026-04-08">#</a></h2><h3 id="added-12">Added<a class="palo-doc-anchor" href="#added-12" aria-label="Link to Added">#</a></h3><ul>
+<li><strong>P.A.L.O. Companion App - iOS/iPadOS Release</strong><ul>
+<li>App Store listing added for the P.A.L.O. Framework Toolbox</li>
+<li>Universal iPhone and iPad support</li>
+<li>Evidence Vault, biometric protection, PDF report generation, and direct access to PALO web modules</li>
+<li>App Store link: <a href="https://apps.apple.com/it/app/p-a-l-o-framework-toolbox/id6761771299" target="_blank" rel="noopener noreferrer">https://apps.apple.com/it/app/p-a-l-o-framework-toolbox/id6761771299</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="changed-14">Changed<a class="palo-doc-anchor" href="#changed-14" aria-label="Link to Changed">#</a></h3><ul>
+<li>Updated companion app messaging from Android-only to cross-platform availability</li>
+</ul>
+<hr />
+<h2 id="170---2026-03-25">[1.7.0] - 2026-03-25<a class="palo-doc-anchor" href="#170---2026-03-25" aria-label="Link to [1.7.0] - 2026-03-25">#</a></h2><h3 id="added-13">Added<a class="palo-doc-anchor" href="#added-13" aria-label="Link to Added">#</a></h3><ul>
+<li><strong>The Poisoning Boomerang</strong><ul>
+<li>New research module analyzing data poisoning as a cross-cutting AI governance risk</li>
+<li>Coverage of six poisoning and anti-scraping tools: Miasma, Nepenthes, Nightshade, Glaze, Cloudflare AI Labyrinth, and AttackAI</li>
+<li>Five detection strategies and lifecycle controls for data integrity governance</li>
+<li>EU AI Act Article 10 and Article 15 governance notes</li>
+<li>PALO lifecycle integration for data provenance, robustness, monitoring, and remediation</li>
+<li>Dedicated module page: <code>PALO_PoisoningStudy.html</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="changed-15">Changed<a class="palo-doc-anchor" href="#changed-15" aria-label="Link to Changed">#</a></h3><ul>
+<li>Added Poisoning Study links to homepage navigation and related research sections</li>
+<li>Expanded the homepage changelog with March 2026 research updates</li>
+</ul>
+<hr />
+<h2 id="160---2026-03-12">[1.6.0] - 2026-03-12<a class="palo-doc-anchor" href="#160---2026-03-12" aria-label="Link to [1.6.0] - 2026-03-12">#</a></h2><h3 id="added-14">Added<a class="palo-doc-anchor" href="#added-14" aria-label="Link to Added">#</a></h3><ul>
+<li><strong>P.A.L.O. Companion App - Android Launch on Google Play</strong><ul>
+<li>Official public release of the P.A.L.O. Framework Toolbox for Android devices</li>
+<li>Available on the <a href="https://play.google.com/store/apps/details?id=com.fabriziodegni.paloframework" target="_blank" rel="noopener noreferrer">Google Play Store</a></li>
+<li>Offline, privacy-first AI governance pre-screening toolkit</li>
+<li>Full PALO Framework integration: FRIA, Model Canvas AI, Risk Tiering, KPI Generator, and more</li>
+<li>Optimized for Android smartphones and tablets</li>
+<li>Built with Flutter for a native mobile experience</li>
+</ul>
+</li>
+</ul>
+<h3 id="changed-16">Changed<a class="palo-doc-anchor" href="#changed-16" aria-label="Link to Changed">#</a></h3><ul>
+<li>Updated homepage to reflect official Android app availability</li>
+<li>Enhanced Companion App landing page with Google Play Store links</li>
+</ul>
+<hr />
+<h2 id="150---2026-03-03">[1.5.0] - 2026-03-03<a class="palo-doc-anchor" href="#150---2026-03-03" aria-label="Link to [1.5.0] - 2026-03-03">#</a></h2><h3 id="added-15">Added<a class="palo-doc-anchor" href="#added-15" aria-label="Link to Added">#</a></h3><ul>
+<li><strong>PALO Companion App v2.0 landing page</strong><ul>
+<li>Dedicated page for the offline, privacy-first mobile app</li>
+<li>8 professional assessment tools presented for mobile use</li>
+<li>Evidence Vault and mobile-first workflow messaging</li>
+</ul>
+</li>
+<li><strong>AuditBench Explorer</strong><ul>
+<li>Interactive deep-dive into the AuditBench alignment auditing benchmark (Sheshadri et al., 2026)</li>
+<li>14 hidden AI behavior cards with PALO analysis</li>
+<li>Category filtering: Manipulation, Deception, Bias, Safety, and Autonomy</li>
+<li>Investigator Simulator with five auditing tools: Prefilling, User Persona, Scaffolded Probing, SAE Probe, and Reveal</li>
+<li>PALO Alignment Self-Assessment with checklist and radar chart visualization</li>
+<li>Export functionality for reports and assessment results</li>
+</ul>
+</li>
+</ul>
+<h3 id="changed-17">Changed<a class="palo-doc-anchor" href="#changed-17" aria-label="Link to Changed">#</a></h3><ul>
+<li>Updated homepage with Companion App showcase section</li>
+<li>Added Companion App links to hero buttons and toolkit navigation</li>
+<li>Updated homepage with AuditBench Explorer showcase section</li>
+<li>Added AuditBench link to hero buttons and mobile navigation</li>
+<li>Enhanced PALO toolkit with alignment auditing capabilities</li>
+</ul>
+<hr />
+<h2 id="140---2026-01-13">[1.4.0] - 2026-01-13<a class="palo-doc-anchor" href="#140---2026-01-13" aria-label="Link to [1.4.0] - 2026-01-13">#</a></h2><h3 id="added-16">Added<a class="palo-doc-anchor" href="#added-16" aria-label="Link to Added">#</a></h3><ul>
+<li><strong>Community &amp; Open Collaboration Page</strong><ul>
+<li>Dedicated page for open collaboration, contributors, and partners</li>
+<li>Open collaboration roles for contributors and reviewers</li>
+<li>Partners and partnerships section for academic, industry, and standards-body collaborations</li>
+</ul>
+</li>
+</ul>
+<h3 id="changed-18">Changed<a class="palo-doc-anchor" href="#changed-18" aria-label="Link to Changed">#</a></h3><ul>
+<li>Updated homepage navigation with Community link</li>
+<li>Enhanced footer with Community page link</li>
+</ul>
+<hr />
+<h2 id="130---2026-01-04">[1.3.0] - 2026-01-04<a class="palo-doc-anchor" href="#130---2026-01-04" aria-label="Link to [1.3.0] - 2026-01-04">#</a></h2><h3 id="added-17">Added<a class="palo-doc-anchor" href="#added-17" aria-label="Link to Added">#</a></h3><ul>
+<li><strong>2026 Tech Trends Observatory</strong><ul>
+<li>Analysis of predictions from McKinsey, BCG, Accenture, PwC, EY, KPMG, and Gartner</li>
+<li>Theme Coverage Matrix</li>
+<li>Blind Spots analysis revealing governance gaps</li>
+<li>PALO Governance Gap Score</li>
+<li>Cross-firm correlation insights</li>
+<li>Direct links to public source reports</li>
+</ul>
+</li>
+<li>Full GitHub repository structure with README, CONTRIBUTING, and documentation</li>
+</ul>
+<h3 id="changed-19">Changed<a class="palo-doc-anchor" href="#changed-19" aria-label="Link to Changed">#</a></h3><ul>
+<li>Updated homepage with 2026 Tech Trends CTA button</li>
+<li>Enhanced January 2026 changelog entry</li>
+</ul>
+<hr />
+<h2 id="120---2026-01-02">[1.2.0] - 2026-01-02<a class="palo-doc-anchor" href="#120---2026-01-02" aria-label="Link to [1.2.0] - 2026-01-02">#</a></h2><h3 id="added-18">Added<a class="palo-doc-anchor" href="#added-18" aria-label="Link to Added">#</a></h3><ul>
+<li><strong>Human Agency Risk Map</strong><ul>
+<li>Observatory tracking 18 activities humans are delegating to AI</li>
+<li>Interactive cards with mitigation strategies</li>
+<li>Psychological impact analysis</li>
+<li>Category filtering: Cognitive, Behavioral, Social, and Professional</li>
+<li>PALO Framework integration CTAs</li>
+</ul>
+</li>
+<li><strong>Human Agency Risk Map Italian version</strong><ul>
+<li>Full Italian translation</li>
+<li>Language toggle between EN and IT versions</li>
+</ul>
+</li>
+</ul>
+<h3 id="changed-20">Changed<a class="palo-doc-anchor" href="#changed-20" aria-label="Link to Changed">#</a></h3><ul>
+<li>Updated homepage hero section with Human Agency Risk Map button</li>
+<li>Added "2026 Spotlight" badge to homepage changelog</li>
+</ul>
+<hr />
+<h2 id="110---2025-12-17">[1.1.0] - 2025-12-17<a class="palo-doc-anchor" href="#110---2025-12-17" aria-label="Link to [1.1.0] - 2025-12-17">#</a></h2><h3 id="added-19">Added<a class="palo-doc-anchor" href="#added-19" aria-label="Link to Added">#</a></h3><ul>
+<li><strong>Risk Tiering Calculator</strong><ul>
+<li>3-step wizard for EU AI Act risk classification</li>
+<li>Minimal, Limited, High, and Unacceptable risk tiers</li>
+<li>Required documentation guidance per tier</li>
+<li>Visual risk indicators</li>
+</ul>
+</li>
+<li><strong>KPI Generator</strong><ul>
+<li>AI governance metrics aligned with PALO principles</li>
+<li>Customizable KPI templates</li>
+<li>Export functionality</li>
+</ul>
+</li>
+</ul>
+<h3 id="changed-21">Changed<a class="palo-doc-anchor" href="#changed-21" aria-label="Link to Changed">#</a></h3><ul>
+<li>Updated homepage with Risk Calculator and KPI Generator buttons</li>
+<li>Enhanced mobile navigation with Toolkit section</li>
+<li>Improved footer navigation</li>
+</ul>
+<hr />
+<h2 id="100---2025-12-01">[1.0.0] - 2025-12-01<a class="palo-doc-anchor" href="#100---2025-12-01" aria-label="Link to [1.0.0] - 2025-12-01">#</a></h2><h3 id="added-20">Added<a class="palo-doc-anchor" href="#added-20" aria-label="Link to Added">#</a></h3><ul>
+<li>Initial release of PALO Framework website</li>
+<li><strong>FRIA Assessment Tool</strong><ul>
+<li>Fundamental Rights Impact Assessment wizard</li>
+</ul>
+</li>
+<li><strong>Model Canvas AI</strong><ul>
+<li>Visual planning tool for AI projects</li>
+</ul>
+</li>
+<li><strong>Comparison Tool</strong><ul>
+<li>Framework comparison utility</li>
+</ul>
+</li>
+<li>Complete PALO Framework v1.0 PDF documentation</li>
+<li>Accessibility statement</li>
+<li>Privacy policy and security policy</li>
+<li>SEO optimization: sitemap, robots.txt, and meta tags</li>
+<li>RSS feed for updates</li>
+</ul>
+<h3 id="security-2">Security<a class="palo-doc-anchor" href="#security-2" aria-label="Link to Security">#</a></h3><ul>
+<li>Implemented <code>security.txt</code> in <code>.well-known</code></li>
+<li>Added HTTPS-only policy</li>
+</ul>
+<hr />
+<h2 id="090---2025-11-15">[0.9.0] - 2025-11-15<a class="palo-doc-anchor" href="#090---2025-11-15" aria-label="Link to [0.9.0] - 2025-11-15">#</a></h2><h3 id="added-21">Added<a class="palo-doc-anchor" href="#added-21" aria-label="Link to Added">#</a></h3><ul>
+<li>Beta version of PALO Framework tools</li>
+<li>Initial design system and color palette</li>
+<li>Responsive layout foundation</li>
+</ul>
+</article></div>
+      <aside class="palo-doc-next"><div><small>Prerequisite</small><strong>No specialist prerequisite stated</strong></div><div><small>Recommended next step</small><strong>Return to the Documentation Library</strong></div></aside>
+      <section class="palo-doc-feedback" aria-labelledby="feedback-title"><p class="palo-eyebrow">Privacy-first feedback</p><h2 id="feedback-title">Help improve this guide</h2><p>Your feedback stays in your browser until you explicitly copy it, download it, or open an email draft. Do not include secrets, personal data, credentials or production identifiers.</p><form data-doc-feedback><div class="palo-form-grid"><div class="palo-field"><label for="feedback-role">Your role</label><select id="feedback-role" name="role"><option>Executive / governance owner</option><option>Platform or security engineer</option><option>No-code / low-code builder</option><option>External reviewer</option></select></div><div class="palo-field"><label for="feedback-category">Category</label><select id="feedback-category" name="category"><option>Clarity</option><option>Technical accuracy</option><option>Missing guidance</option><option>Accessibility</option></select></div><div class="palo-field palo-field-full"><label for="feedback-message">Feedback</label><textarea id="feedback-message" name="message" maxlength="3000" required placeholder="Describe the non-sensitive improvement you recommend."></textarea></div><div class="palo-form-actions"><button class="palo-btn" type="button" data-feedback-copy>Copy feedback</button><button class="palo-btn palo-btn-secondary" type="button" data-feedback-download>Download JSON</button><button class="palo-btn palo-btn-secondary" type="button" data-feedback-email>Email draft</button></div></div><p class="palo-action-status" data-feedback-status role="status" aria-live="polite"></p></form></section>
+    </div>
+  </main>
+  <footer class="palo-footer"><div class="palo-shell"><p>PALO public documentation. Developer preview boundaries apply.</p><div class="palo-footer-links"><a href="PALO_AIGovernance.html">PALO-AI</a><a href="governance-hub/">Governance Hub</a><a href="PALO_AgenticCapabilityMatrix.html">Capability Matrix</a><a href="PALO_AIProductionReadiness.html">Production Readiness</a><a href="privacy-policy.html">Privacy</a></div></div></footer>
+</body></html>

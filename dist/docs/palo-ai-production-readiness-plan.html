@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>PALO-AI production-readiness plan | PALO Documentation</title>
+  <meta name="description" content="Public PALO documentation: PALO-AI production-readiness plan.">
+  <link rel="canonical" href="https://paloframework.org/docs/palo-ai-production-readiness-plan.html">
+  <link rel="icon" type="image/webp" href="../assets/logo.webp">
+  <link rel="stylesheet" href="../assets/palo-icons.css">
+  <link rel="stylesheet" href="../assets/palo-v21.css?v=2.5.0">
+  <link rel="stylesheet" href="../assets/palo-docs.css">
+  <script src="../assets/palo-icons.js" defer></script>
+  <script src="../assets/palo-v21.js?v=2.5.0" defer></script>
+  <script src="../assets/palo-docs.js" defer></script>
+</head>
+<body class="palo-v21 palo-doc-page" data-doc-source="docs/palo-ai-production-readiness-plan.md">
+  <a class="palo-skip-link" href="#main-content">Skip to main content</a>
+  <header class="palo-site-header"><div class="palo-shell palo-header-inner">
+    <a class="palo-brand" href="../index.html"><img src="../assets/logo.webp" alt="PALO">PALO FRAMEWORK</a>
+    <button class="palo-menu-toggle" type="button" data-palo-menu-toggle aria-expanded="false" aria-controls="palo-primary-nav" aria-label="Open navigation"><span data-palo-icon="menu" aria-hidden="true"></span></button>
+    <nav class="palo-nav" id="palo-primary-nav" aria-label="Primary navigation"><a href="../designs/theory-to-practice-infographic/">Start</a><a href="../PALO_AIGovernance.html">Agentic Governance</a><a href="../governance-hub/">Governance Hub</a><a href="../index.html#guided-journeys">Tools</a><a href="../PALO_DocumentationLibrary.html" aria-current="page">Documentation</a><a href="../PALO_AIProductionReadiness.html">Readiness</a></nav>
+  </div></header>
+  <main id="main-content" class="palo-doc-main">
+    <div class="palo-shell">
+      <nav class="palo-doc-breadcrumb" aria-label="Breadcrumb"><a href="../PALO_DocumentationLibrary.html">Documentation Library</a><span aria-hidden="true">/</span><span>Security and production readiness</span></nav>
+      <header class="palo-doc-hero"><p class="palo-eyebrow">Security and production readiness · Public documentation</p><h1>PALO-AI production-readiness plan</h1><div class="palo-doc-facts"><span><small>Level</small><strong>reference</strong></span><span><small>Audience</small><strong>executive · governance · technical</strong></span><span><small>Product</small><strong>PALO-AI</strong></span><span><small>Status</small><strong>Planning Baseline</strong></span><span><small>Read</small><strong>3 min</strong></span></div><p class="palo-doc-source">Published HTML view · Source: <code>docs/palo-ai-production-readiness-plan.md</code></p><div class="palo-actions"><button class="palo-btn" type="button" data-doc-copy-link>Copy link</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-share>Share page</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-print>Print</button></div><p class="palo-action-status" data-doc-action-status role="status" aria-live="polite"></p></header>
+      <details class="palo-doc-mobile-toc"><summary>On this page</summary><ol><li class="depth-2"><a href="#target-architecture">Target architecture</a></li><li class="depth-2"><a href="#remaining-delivery-sequence">Remaining delivery sequence</a></li><li class="depth-2"><a href="#acceptance-criteria">Acceptance criteria</a></li></ol></details>
+      <div class="palo-doc-layout"><aside class="palo-doc-sidebar" aria-label="On this page"><strong>On this page</strong><ol><li class="depth-2"><a href="#target-architecture">Target architecture</a></li><li class="depth-2"><a href="#remaining-delivery-sequence">Remaining delivery sequence</a></li><li class="depth-2"><a href="#acceptance-criteria">Acceptance criteria</a></li></ol></aside><article class="palo-doc-content"><h1 id="palo-ai-production-readiness-plan">PALO-AI production-readiness plan<a class="palo-doc-anchor" href="#palo-ai-production-readiness-plan" aria-label="Link to PALO-AI production-readiness plan">#</a></h1><p>Status: remaining production-readiness plan for the v2.5 full-cycle developer preview, updated 19 July 2026. The presence of a target control or acceptance criterion below does not mean that it is implemented or production-ready. Refer to <code>agentic/capability-matrix.json</code>, <code>PALO_AgenticCapabilityMatrix.html</code> and <code>PALO_AIProductionReadiness.html</code> for the public evidence-based status. Internal assessment workpapers are not published.</p>
+<p>The preview must not be used to authorize consequential tools or access sensitive production data. Production readiness requires closure of the documented correctness, identity, authorization, evidence, approval, connector, operations, security-testing, and collaborative-agent-team gaps.</p>
+<h2 id="target-architecture">Target architecture<a class="palo-doc-anchor" href="#target-architecture" aria-label="Link to Target architecture">#</a></h2><ol>
+<li>A single governance core owns schema validation, trusted registries, policy evaluation, replay controls, approvals, execution capabilities, outcome verification, incidents, signatures and evidence persistence.</li>
+<li>The official MCP SDK exposes the same tool set over stdio and authenticated Streamable HTTP. The existing REST gateway remains a connector adapter, never a second policy engine.</li>
+<li>The reference SQLite runtime demonstrates registries, replay state, approvals, decisions, a transactional outbox and an append-only evidence chain. The production target uses durable multi-instance state and managed key custody.</li>
+<li>Canonical Action Claims include tool, operation, normalized resource/path/host, explicit network intent, validated arguments, nonce, idempotency key, monotonic sequence number and a resource-bound Effect Contract for full-cycle execution.</li>
+<li>OPA Rego v1 receives a schema-validated input envelope and defaults to deny on missing, malformed or unavailable inputs.</li>
+<li>Web and mobile use the same approval/profile/policy exchange contract. The runtime remains the authority and every resolution is bound to the exact claim digest.</li>
+<li>Vibe Coding emits and verifies a governance claim before a coding tool call can execute.</li>
+</ol>
+<h2 id="remaining-delivery-sequence">Remaining delivery sequence<a class="palo-doc-anchor" href="#remaining-delivery-sequence" aria-label="Link to Remaining delivery sequence">#</a></h2><ul>
+<li>Add a same-origin Governance Hub BFF with OIDC, tenant context, scoped RBAC/ABAC and server-side Gateway credentials.</li>
+<li>Replace shared bearer identity, environment HMAC keys and SQLite with workload identity, KMS/HSM custody, PostgreSQL, durable queues/outbox and tested restore.</li>
+<li>Isolate and attest executor/verifier workloads and prove protected credentials cannot bypass the governed path.</li>
+<li>Authenticate policy distribution and record evaluated-bundle provenance; use mTLS where the deployment threat model requires it.</li>
+<li>Complete secure reviewer assignment/resume and mobile/web parity with meaningful, digest-bound context.</li>
+<li>Validate n8n package 0.2 on fresh supported canvases and reversible connectors before npm or template submission.</li>
+<li>Complete independent threat modelling, code/API penetration testing, cryptographic review and container/supply-chain assessment.</li>
+</ul>
+<h2 id="acceptance-criteria">Acceptance criteria<a class="palo-doc-anchor" href="#acceptance-criteria" aria-label="Link to Acceptance criteria">#</a></h2><ul>
+<li>No execution path bypasses schema validation, trusted profile lookup or OPA.</li>
+<li>Unknown tools, missing argument schemas, malformed claims, stale sequences, duplicate nonces and conflicting idempotency keys fail closed.</li>
+<li>Approval can transition once from pending to a terminal state and remains bound to one immutable claim digest.</li>
+<li>Evidence signatures and chain verification remain valid across restart, backup and restore; production keys remain outside the application host and support rotation and revocation.</li>
+<li>Stdio and authenticated Streamable HTTP advertise the same MCP tools.</li>
+<li>The E2E scenario proves register → deny → approval → capability → execute → receipt → persist → verify outcome → incident or release.</li>
+<li>The capability matrix distinguishes specified, prototype, implemented and production-ready without aspirational claims.</li>
+</ul>
+</article></div>
+      <aside class="palo-doc-next"><div><small>Prerequisite</small><strong>Capability Matrix</strong></div><div><small>Recommended next step</small><strong>Open Production Readiness</strong></div></aside>
+      <section class="palo-doc-feedback" aria-labelledby="feedback-title"><p class="palo-eyebrow">Privacy-first feedback</p><h2 id="feedback-title">Help improve this guide</h2><p>Your feedback stays in your browser until you explicitly copy it, download it, or open an email draft. Do not include secrets, personal data, credentials or production identifiers.</p><form data-doc-feedback><div class="palo-form-grid"><div class="palo-field"><label for="feedback-role">Your role</label><select id="feedback-role" name="role"><option>Executive / governance owner</option><option>Platform or security engineer</option><option>No-code / low-code builder</option><option>External reviewer</option></select></div><div class="palo-field"><label for="feedback-category">Category</label><select id="feedback-category" name="category"><option>Clarity</option><option>Technical accuracy</option><option>Missing guidance</option><option>Accessibility</option></select></div><div class="palo-field palo-field-full"><label for="feedback-message">Feedback</label><textarea id="feedback-message" name="message" maxlength="3000" required placeholder="Describe the non-sensitive improvement you recommend."></textarea></div><div class="palo-form-actions"><button class="palo-btn" type="button" data-feedback-copy>Copy feedback</button><button class="palo-btn palo-btn-secondary" type="button" data-feedback-download>Download JSON</button><button class="palo-btn palo-btn-secondary" type="button" data-feedback-email>Email draft</button></div></div><p class="palo-action-status" data-feedback-status role="status" aria-live="polite"></p></form></section>
+    </div>
+  </main>
+  <footer class="palo-footer"><div class="palo-shell"><p>PALO public documentation. Developer preview boundaries apply.</p><div class="palo-footer-links"><a href="../PALO_AIGovernance.html">PALO-AI</a><a href="../governance-hub/">Governance Hub</a><a href="../PALO_AgenticCapabilityMatrix.html">Capability Matrix</a><a href="../PALO_AIProductionReadiness.html">Production Readiness</a><a href="../privacy-policy.html">Privacy</a></div></div></footer>
+</body></html>

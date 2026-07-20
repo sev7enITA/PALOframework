@@ -21,7 +21,7 @@ We take the security of PALO Framework seriously. If you believe you have found 
 
 PALO-AI v2.5 runtime code, Governance Hub, remote MCP transport, approval flows, HMAC/SQLite evidence chain, governed-execution reference adapters, Vibe Gate metadata, and n8n/Dify examples are published for isolated developer evaluation. They are not supported for production authorization, consequential tool execution, compliance certification, or multi-tenant operation.
 
-Known preview limitations are documented in `docs/palo-ai-v2.5-technical-assessment.md`, `docs/palo-ai-governance-integration-guide.md`, `packages/palo-mcp-server/README.md`, and `agentic/capability-matrix.json`. In particular:
+Known preview limitations are documented in the public `PALO_AIProductionReadiness.html`, `PALO_AgenticCapabilityMatrix.html`, `docs/palo-ai-governance-integration-guide.md`, `packages/palo-mcp-server/README.md`, and `agentic/capability-matrix.json`. Internal assessment workpapers are intentionally not published. In particular:
 
 - the Governance Hub is an interactive mock-data prototype and does not connect directly to the Gateway;
 - the browser must never receive the shared preview bearer token; online Hub operation requires a backend-for-frontend, OIDC, tenant-aware RBAC/ABAC, redaction, and separation of duties;

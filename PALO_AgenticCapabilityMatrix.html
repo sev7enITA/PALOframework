@@ -3,49 +3,76 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>PALO-AI Developer Preview Capability Matrix</title>
-  <meta name="description" content="Honest implementation status and non-production boundaries for the PALO-AI v2.5 full-cycle developer preview.">
+  <title>PALO-AI v2.5 Capability Matrix</title>
+  <meta name="description" content="Evidence-based implementation status and remaining production gates for PALO-AI v2.5.">
   <link rel="canonical" href="https://paloframework.org/PALO_AgenticCapabilityMatrix.html">
-    <link rel="stylesheet" href="assets/palo-v21.css?v=2.5.0-a2554859">
+  <link rel="icon" type="image/webp" href="assets/logo.webp">
+  <link rel="stylesheet" href="assets/palo-icons.css">
+  <link rel="stylesheet" href="assets/palo-v21.css?v=2.5.0">
+  <link rel="stylesheet" href="assets/palo-docs.css">
+  <script src="assets/palo-icons.js" defer></script>
+  <script src="assets/palo-v21.js?v=2.5.0" defer></script>
+  <script src="assets/palo-docs.js" defer></script>
 </head>
-<body class="palo-v21">
-<main id="main-content" class="palo-page-shell">
-  <section class="palo-hero">
-    <p class="palo-eyebrow">PALO-AI · v2.5 · Full-Cycle Developer Preview</p>
-    <h1>Agentic capability matrix</h1>
-    <p>This matrix separates specified, prototype, implemented, and production-ready capabilities. No PALO-AI runtime capability is represented as production-ready in this release.</p>
-    <p><strong>Safety boundary:</strong> this developer preview is not a production authorization service, security boundary, compliance certification, or substitute for organization-owned identity, access control, key management, monitoring, backup, retention, legal review, and security assurance.</p>
-    <p><a class="palo-btn" href="PALO_AgenticGovernance.html">Back to PALO-AM</a> <a class="palo-btn palo-btn-secondary" href="agentic/capability-matrix.json">Machine-readable matrix</a></p>
-  </section>
-  <section class="palo-section">
-    <div class="palo-table-wrap">
-      <table>
-        <thead><tr><th>Capability</th><th>Status</th><th>Available evidence</th><th>Not included in v2.5</th></tr></thead>
-        <tbody>
-          <tr><td>Official MCP SDK · stdio</td><td>Implemented</td><td>19-tool protocol test</td><td>Production process isolation and deployment assurance</td></tr>
-          <tr><td>Authenticated Streamable HTTP MCP</td><td>Prototype</td><td>Anonymous denial and authenticated protocol test</td><td>Principal RBAC, workload identity, TLS termination, token rotation and rate limiting</td></tr>
-          <tr><td>Versioned agent, authority and policy registry</td><td>Prototype</td><td>SQLite records and semantic-version checks</td><td>Administrative authorization, publisher signatures, backup and recovery</td></tr>
-          <tr><td>Canonical Action Claims</td><td>Implemented</td><td>Action Claim 1.1 compatibility and Action Claim 1.2 Effect Contract binding</td><td>Adopter-specific production tool schemas and interoperability certification</td></tr>
-          <tr><td>Effect Contract predicate DSL</td><td>Implemented</td><td>Closed JSON-Pointer predicates and schema validation</td><td>Domain-specific predicate packs and formal-methods verification</td></tr>
-          <tr><td>One-time execution capability</td><td>Prototype</td><td>Claim, tenant, resource, executor and verifier binding with replay tests</td><td>Distributed capability service and workload identity</td></tr>
-          <tr><td>Trusted Execution Receipt</td><td>Prototype</td><td>Runtime-generated signed receipt and idempotent retry tests</td><td>Connector binary/workload attestation and universal exactly-once guarantees</td></tr>
-          <tr><td>Authoritative outcome verification</td><td>Prototype</td><td>Verified, mismatch and inconclusive test scenarios</td><td>Production connector certification, HA and distributed recovery</td></tr>
-          <tr><td>Assurance Incident lifecycle</td><td>Prototype</td><td>Resource hold, human resolution and ledger evidence</td><td>Enterprise incident integrations and production approval identity</td></tr>
-          <tr><td>OPA Rego v1 default deny</td><td>Implemented</td><td>Positive and negative reference-policy tests</td><td>Signed policy distribution, bundle attestation and highly available OPA</td></tr>
-          <tr><td>HMAC evidence signatures</td><td>Prototype</td><td>Canonicalization and signature verification tests</td><td>KMS/HSM integration, key rotation and external anchoring</td></tr>
-          <tr><td>Replay protection</td><td>Prototype</td><td>Nonce, idempotency-key and sequence tests</td><td>Production-grade exactly-once execution and distributed coordination</td></tr>
-          <tr><td>Append-only SQLite ledger</td><td>Prototype</td><td>WAL/FULL mode, immutable triggers and chain verification</td><td>Cross-state atomicity, retention, backup and tamper-resistant storage</td></tr>
-          <tr><td>Human approval · Web and Android</td><td>Prototype</td><td>Digest-bound state transition and demonstration clients</td><td>Authenticated reviewer identity, complete action context, push delivery and production workflow assurance</td></tr>
-          <tr><td>PALO-AM profile and decision exchange</td><td>Prototype</td><td>Local import and export</td><td>Owner validation and enterprise synchronization</td></tr>
-          <tr><td>Vibe Coding pre-tool gate</td><td>Prototype</td><td>Metadata demonstration and reference Rego rule</td><td>Trusted gate attestation and an unavoidable tool-execution proxy</td></tr>
-          <tr><td>Hierarchical subagents</td><td>Prototype</td><td>Profiles, limits and parent metadata</td><td>Trusted spawning, lineage verification and evidence handback</td></tr>
-          <tr><td>Collaborative agent teams</td><td>Specified</td><td>Architecture and governance model</td><td>Team registry, shared task claims, peer assignment, leases and team evidence</td></tr>
-          <tr><td>n8n and Dify integrations</td><td>Prototype</td><td>n8n package 0.2 with decision-only and full-cycle visual nodes</td><td>npm publication, n8n verification, production credentials and connector certification</td></tr>
-          <tr><td>Governance E2E</td><td>Prototype</td><td>Authorize, approve, capability, execute, receipt, verify, mismatch, incident and ledger tests</td><td>Distributed staging validation with production identity, tools, mobile review, observability and recovery</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-</main>
-</body>
-</html>
+<body class="palo-v21 palo-matrix-page">
+  <a class="palo-skip-link" href="#main-content">Skip to main content</a>
+  <header class="palo-site-header"><div class="palo-shell palo-header-inner">
+    <a class="palo-brand" href="index.html"><img src="assets/logo.webp" alt="PALO">PALO FRAMEWORK</a>
+    <button class="palo-menu-toggle" type="button" data-palo-menu-toggle aria-expanded="false" aria-controls="palo-primary-nav" aria-label="Open navigation"><span data-palo-icon="menu" aria-hidden="true"></span></button>
+    <nav class="palo-nav" id="palo-primary-nav" aria-label="Primary navigation"><a href="designs/theory-to-practice-infographic/#onboarding">Start</a><a href="PALO_AIGovernance.html">Agentic Governance</a><a href="governance-hub/">Governance Hub</a><a href="index.html#guided-journeys">Tools</a><a href="PALO_DocumentationLibrary.html">Documentation</a><a href="PALO_AIProductionReadiness.html">Readiness</a></nav>
+  </div></header>
+  <main id="main-content" class="palo-main">
+    <section class="palo-hero palo-compact-hero"><div class="palo-shell">
+      <p class="palo-eyebrow">PALO-AI · v2.5 · Full-cycle developer preview</p>
+      <h1>Agentic capability matrix</h1>
+      <p>One evidence-based view of what is specified, prototyped and implemented—and what still blocks production use. No PALO-AI runtime capability is represented as production-ready.</p>
+      <div class="palo-note"><strong>Safety boundary:</strong> this preview is not a production authorization service, security certification or substitute for organization-owned identity, access control, key management, monitoring, backup, retention and independent assurance.</div>
+      <div class="palo-actions"><a class="palo-btn" href="governance-hub/">Open Governance Hub</a><a class="palo-btn palo-btn-secondary" href="PALO_AIProductionReadiness.html">Production Readiness</a><a class="palo-btn palo-btn-secondary" href="agentic/capability-matrix.json">Machine-readable matrix</a></div>
+    </div></section>
+    <section class="palo-section"><div class="palo-shell">
+      <div class="palo-matrix-metrics" aria-label="Capability summary">
+        <article><strong data-matrix-count="implemented">0</strong><span>Implemented</span></article><article><strong data-matrix-count="prototype">0</strong><span>Prototype</span></article><article><strong data-matrix-count="specified">0</strong><span>Specified</span></article><article><strong data-matrix-count="production-ready">0</strong><span>Production-ready</span></article>
+      </div>
+      <div class="palo-matrix-tools" data-matrix-controls>
+        <div class="palo-field"><label for="matrix-search">Search capabilities</label><input id="matrix-search" type="search" placeholder="Try approval, n8n, identity…" data-matrix-search></div>
+        <fieldset><legend>Filter by status</legend><div class="palo-filter-row"><button class="palo-filter is-active" type="button" data-matrix-filter="all" aria-pressed="true">All</button><button class="palo-filter" type="button" data-matrix-filter="implemented" aria-pressed="false">Implemented</button><button class="palo-filter" type="button" data-matrix-filter="prototype" aria-pressed="false">Prototype</button><button class="palo-filter" type="button" data-matrix-filter="specified" aria-pressed="false">Specified</button><button class="palo-filter" type="button" data-matrix-filter="production-ready" aria-pressed="false">Production-ready</button></div></fieldset>
+      </div>
+      <p class="palo-small" data-matrix-result role="status" aria-live="polite"></p>
+      <div class="palo-table-wrap palo-matrix-scroller" tabindex="0" aria-label="Capability matrix; scroll horizontally at intermediate widths">
+        <table class="palo-table palo-capability-table">
+          <thead><tr><th scope="col">Capability</th><th scope="col">Status</th><th scope="col">Available evidence</th><th scope="col">Remaining production gate</th></tr></thead>
+          <tbody>
+            <tr data-status="implemented"><th scope="row">Official MCP SDK · stdio</th><td><span class="palo-ai-chip is-implemented">Implemented</span></td><td>19-tool protocol test.</td><td>Production process isolation and deployment assurance.</td></tr>
+            <tr data-status="prototype"><th scope="row">Authenticated Streamable HTTP MCP</th><td><span class="palo-ai-chip is-prototype">Prototype</span></td><td>Anonymous denial and authenticated protocol tests.</td><td>Workload identity, principal RBAC, rotation and rate limiting.</td></tr>
+            <tr data-status="prototype"><th scope="row">Versioned trusted registry</th><td><span class="palo-ai-chip is-prototype">Prototype</span></td><td>SQLite records and semantic-version checks.</td><td>Administrative authorization, publisher signatures, backup and recovery.</td></tr>
+            <tr data-status="implemented"><th scope="row">Canonical Action Claims</th><td><span class="palo-ai-chip is-implemented">Implemented</span></td><td>Action Claim 1.1 compatibility and 1.2 Effect Contract binding.</td><td>Connector-specific production schemas and interoperability validation.</td></tr>
+            <tr data-status="implemented"><th scope="row">Effect Contract predicate DSL</th><td><span class="palo-ai-chip is-implemented">Implemented</span></td><td>Closed JSON-Pointer predicates and schema validation.</td><td>Domain predicate packs and formal verification.</td></tr>
+            <tr data-status="prototype"><th scope="row">One-time execution capability</th><td><span class="palo-ai-chip is-prototype">Prototype</span></td><td>Claim, tenant, resource, executor and verifier binding with replay tests.</td><td>Distributed capability service and workload identity.</td></tr>
+            <tr data-status="prototype"><th scope="row">Trusted Execution Receipt</th><td><span class="palo-ai-chip is-prototype">Prototype</span></td><td>Runtime-generated signed receipt and idempotent retry tests.</td><td>Connector workload attestation and distributed recovery.</td></tr>
+            <tr data-status="prototype"><th scope="row">Authoritative outcome verification</th><td><span class="palo-ai-chip is-prototype">Prototype</span></td><td>Verified, mismatch and inconclusive scenarios.</td><td>Production connector validation, HA and recovery.</td></tr>
+            <tr data-status="prototype"><th scope="row">Assurance Incident lifecycle</th><td><span class="palo-ai-chip is-prototype">Prototype</span></td><td>Resource hold, human resolution and ledger evidence.</td><td>Enterprise incident integration and production approval identity.</td></tr>
+            <tr data-status="implemented"><th scope="row">OPA Rego v1 default deny</th><td><span class="palo-ai-chip is-implemented">Implemented</span></td><td>Positive and negative reference-policy tests.</td><td>Authenticated policy distribution and bundle attestation.</td></tr>
+            <tr data-status="prototype"><th scope="row">HMAC evidence signatures</th><td><span class="palo-ai-chip is-prototype">Prototype</span></td><td>Canonicalization and signature verification tests.</td><td>KMS/HSM custody, rotation and external anchoring.</td></tr>
+            <tr data-status="prototype"><th scope="row">Replay protection</th><td><span class="palo-ai-chip is-prototype">Prototype</span></td><td>Nonce, idempotency-key and sequence tests.</td><td>Distributed coordination; no universal exactly-once claim.</td></tr>
+            <tr data-status="prototype"><th scope="row">Append-only SQLite ledger</th><td><span class="palo-ai-chip is-prototype">Prototype</span></td><td>WAL/FULL mode, immutable triggers and chain verification.</td><td>PostgreSQL, durable outbox, retention, backup and tested restore.</td></tr>
+            <tr data-status="prototype"><th scope="row">Single-instance recovery</th><td><span class="palo-ai-chip is-prototype">Prototype</span></td><td>Stale pending entries become signed unknown receipts and incidents.</td><td>Distributed leasing, reconciliation and multi-replica recovery.</td></tr>
+            <tr data-status="prototype"><th scope="row">Human approval · Web and Android</th><td><span class="palo-ai-chip is-prototype">Prototype</span></td><td>Digest-bound state transition and demonstration clients.</td><td>Authenticated reviewer identity, delivery and production workflow assurance.</td></tr>
+            <tr data-status="prototype"><th scope="row">PALO-AM profile exchange</th><td><span class="palo-ai-chip is-prototype">Prototype</span></td><td>Local profile and decision import/export.</td><td>Owner validation and enterprise synchronization.</td></tr>
+            <tr data-status="prototype"><th scope="row">Vibe Coding pre-tool gate</th><td><span class="palo-ai-chip is-prototype">Prototype</span></td><td>Claim metadata and reference Rego rule.</td><td>Trusted attestation and unavoidable execution proxy.</td></tr>
+            <tr data-status="prototype"><th scope="row">Hierarchical subagents</th><td><span class="palo-ai-chip is-prototype">Prototype</span></td><td>Profiles, delegation limits and parent metadata.</td><td>Trusted spawning, lineage verification and evidence handback.</td></tr>
+            <tr data-status="specified"><th scope="row">Collaborative agent teams</th><td><span class="palo-ai-chip is-specified">Specified</span></td><td>Architecture and governance model.</td><td>Team registry, leases, conflict handling and team evidence.</td></tr>
+            <tr data-status="prototype"><th scope="row">Dify connector</th><td><span class="palo-ai-chip is-prototype">Prototype</span></td><td>Authenticated claim-submission example.</td><td>Production credentials, packaging and connector validation.</td></tr>
+            <tr data-status="prototype"><th scope="row">n8n visual decision gate</th><td><span class="palo-ai-chip is-prototype">Prototype</span></td><td>Package 0.2 decision node and fail-closed gateway path.</td><td>Fresh canvas validation, publication and unavoidable execution boundary.</td></tr>
+            <tr data-status="prototype"><th scope="row">n8n governed executor</th><td><span class="palo-ai-chip is-prototype">Prototype</span></td><td>Full-cycle node with four explicit result routes.</td><td>Real reversible connectors, npm publication and n8n review.</td></tr>
+            <tr data-status="specified"><th scope="row">n8n secure approval resume</th><td><span class="palo-ai-chip is-specified">Specified</span></td><td>Exact-claim approval contract.</td><td>Authenticated delivery and one-time backend-controlled resume.</td></tr>
+            <tr data-status="specified"><th scope="row">n8n workflow admission</th><td><span class="palo-ai-chip is-specified">Specified</span></td><td>Architecture and digest registration design.</td><td>Activation and pre-execution enforcement hooks.</td></tr>
+            <tr data-status="prototype"><th scope="row">Governance Hub GUI</th><td><span class="palo-ai-chip is-prototype">Prototype</span></td><td>Executive and technical mock-data interface.</td><td>Same-origin BFF, authenticated sessions and tenant authorization.</td></tr>
+            <tr data-status="prototype"><th scope="row">Governance E2E</th><td><span class="palo-ai-chip is-prototype">Prototype</span></td><td>Authorize, approve, execute, receipt, verify, incident and ledger tests.</td><td>Distributed staging with production identity, observability and recovery.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="palo-empty" data-matrix-empty>No capabilities match these filters.</p>
+    </div></section>
+  </main>
+  <footer class="palo-footer"><div class="palo-shell"><p>PALO-AI v2.5 developer preview · No runtime capability is production-ready.</p><div class="palo-footer-links"><a href="governance-hub/">Governance Hub</a><a href="PALO_DocumentationLibrary.html">Documentation</a><a href="PALO_AIProductionReadiness.html">Production Readiness</a><a href="security-policy.html">Security</a></div></div></footer>
+</body></html>

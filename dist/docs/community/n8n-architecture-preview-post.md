@@ -19,13 +19,14 @@ The proposed model has four integration patterns:
 3. **Digest-Bound Human Approval** — approval is bound to the exact immutable claim, then revalidated before a one-time secure resume.
 4. **Workflow Admission** — assess workflow JSON, governance coverage and a versioned workflow digest before activation or execution.
 
-The current v2.4.1 developer preview includes versioned JSON contracts, an official-SDK MCP reference server, draft Rego policy, replay controls, a SQLite-backed preview registry and ledger, and prototype approval/evidence flows. The new `n8n-nodes-palo-ai` alpha package builds and exposes the first visual decision-gate pattern.
+The current v2.5 full-cycle developer preview includes versioned JSON contracts, an official-SDK MCP reference server, Rego v1 policy, replay controls, a SQLite-backed preview registry and ledger, exact-claim approval, one-time execution capabilities, trusted receipts and authoritative outcome verification. The unpublished `n8n-nodes-palo-ai` 0.2 package provides both the visual decision gate and a governed-action prototype with Verified, Review Required, Denied and Execution Failed outputs.
 
-Important limitations: the visual gate alone is advisory because a workflow editor can bypass it. Production identity, governed execution, authenticated mobile resume, distributed transactional state, KMS/HSM custody and verified/certified connectors remain under development. We are not claiming that every n8n tool call is intercepted.
+Important limitations: the visual gate is advisory, and the governed-action prototype is bypassable whenever another workflow path retains the protected credential or direct tool. Production identity, authenticated approval resume, non-bypassable connector isolation, distributed durability, KMS/HSM custody and verified/certified connectors remain under development. We are not claiming that every n8n tool call is intercepted or that package 0.2 is published or n8n-verified.
 
 I would value feedback on:
 
 - Does the Action Claim contain the right n8n execution and tool context?
+- Does the distinction between an `allowed` decision and a `verified` outcome remain understandable on the canvas?
 - Where should the boundary sit between native n8n HITL/guardrails and portable PALO policy?
 - Which self-hosted hook or executor pattern would make bypass resistance practical?
 - What would you require before testing this in a disposable local environment?
@@ -40,4 +41,4 @@ We are also looking for a small number of design partners with one safe, non-pro
 
 The intake questions and safety boundaries are collected in [`docs/community/palo-ai-feedback-design-partner-form.md`](../community/palo-ai-feedback-design-partner-form.md). This post is an invitation to discuss the architecture, not a request for n8n verification or connector review.
 
-**n8n orchestrates what automation does. PALO governs whether it is authorized to do it.**
+**n8n orchestrates what automation does. PALO makes explicit whether the action was authorized—and whether its declared effect was later verified.**

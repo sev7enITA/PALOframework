@@ -9,12 +9,14 @@ export const PUBLIC_FILES = [
   "PALO_AgenticGovernance.html",
   "PALO_AIGovernance.html",
   "PALO_AgenticCapabilityMatrix.html",
+  "PALO_AIProductionReadiness.html",
   "PALO_AssessmentPath.html",
   "PALO_AuditBench.html",
   "PALO_Community.html",
   "PALO_CompanionApp.html",
   "PALO_ComparisonTool.html",
   "PALO_DocumentationHub.html",
+  "PALO_DocumentationLibrary.html",
   "PALO_FRIA.html",
   "PALO_HumanAgencyRiskMap.html",
   "PALO_HumanAgencyRiskMap_IT.html",
@@ -40,6 +42,7 @@ export const PUBLIC_FILES = [
   "agentic/capability-matrix.json",
   "assets/palo-am-simulator.js",
   "assets/palo-am-runtime-console.js",
+  "assets/palo-am-nav.js",
   "assets/palo-assessment-path.js",
   "assets/palo-case-file.js",
   "assets/palo-platform-map.css",
@@ -54,6 +57,8 @@ export const PUBLIC_FILES = [
   "assets/palo-icons.svg",
   "assets/palo-v21.css",
   "assets/palo-v21.js",
+  "assets/palo-docs.css",
+  "assets/palo-docs.js",
   "assets/palo-vibe-gate.js",
   "assets/palo-ai-n8n-scenarios/palo-ai-n8n-governance-hero.png",
   "assets/palo-ai-n8n-scenarios/palo-ai-n8n-governance-hero-v2.png",
@@ -92,8 +97,6 @@ export const PUBLIC_FILES = [
   "docs/diagrams/palo-ai-governance-hub/incident-lifecycle.mmd",
   "docs/diagrams/palo-ai-governance-hub/role-permission-model.mmd",
   "docs/palo-ai-security-assurance-and-scale.md",
-  "docs/palo-ai-v2.4.1-technical-assessment.md",
-  "docs/palo-ai-v2.5-technical-assessment.md",
   "docs/palo-ai-vps-deployment.md",
   "docs/palo-ai-n8n-governance-control-plane.md",
   "docs/palo-ai-n8n-launch-playbook.md",
@@ -199,4 +202,7 @@ export const PUBLIC_FILES = [
   "vibe-coding/style.css"
 ].sort();
 
-export const PUBLIC_HTML = PUBLIC_FILES.filter((file) => file.endsWith(".html"));
+export const PUBLIC_MARKDOWN = PUBLIC_FILES.filter((file) => file.endsWith(".md"));
+export const PUBLIC_SOURCE_HTML = PUBLIC_FILES.filter((file) => file.endsWith(".html"));
+export const PUBLIC_GENERATED_HTML = PUBLIC_MARKDOWN.map((file) => file.replace(/\.md$/i, ".html"));
+export const PUBLIC_HTML = [...PUBLIC_SOURCE_HTML, ...PUBLIC_GENERATED_HTML].sort();

@@ -1,12 +1,13 @@
 import { createHash } from "node:crypto";
 import { execFile } from "node:child_process";
-import { cp, mkdir, mkdtemp, readFile, readdir, rm } from "node:fs/promises";
+import { cp, mkdir, mkdtemp, readFile, readdir, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import process from "node:process";
 import { promisify } from "node:util";
 import { fileURLToPath } from "node:url";
 import { PUBLIC_FILES } from "./public-files.mjs";
+import { renderPublicDocs } from "./render-public-docs.mjs";
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const distRoot = path.join(projectRoot, "dist");
@@ -39,6 +40,21 @@ async function build(target) {
     await mkdir(path.dirname(destination), { recursive: true });
     await cp(source, destination, { errorOnExist: true, force: false });
   }
+
+  await renderPublicDocs({ sourceRoot: projectRoot, targetRoot: target });
+
+  async function rewriteBuiltMarkdownLinks(directory) {
+    for (const entry of await readdir(directory, { withFileTypes: true })) {
+      const absolute = path.join(directory, entry.name);
+      if (entry.isDirectory()) await rewriteBuiltMarkdownLinks(absolute);
+      if (entry.isFile() && entry.name.endsWith(".html")) {
+        const html = await readFile(absolute, "utf8");
+        const rewritten = html.replace(/(href=["'](?!https?:|\/\/)[^"'#?]+)\.md(?=([?#][^"']*)?["'])/gi, "$1.html");
+        if (rewritten !== html) await writeFile(absolute, rewritten);
+      }
+    }
+  }
+  await rewriteBuiltMarkdownLinks(target);
 
   await cp(path.join(projectRoot, "governance-hub", "dist"), path.join(target, "governance-hub"), {
     recursive: true
@@ -86,5 +102,5 @@ if (checkOnly) {
 } else {
   await buildGovernanceHub();
   await build(distRoot);
-  console.log(`Built dist with ${PUBLIC_FILES.length} allowlisted files plus the PALO-AI Governance Hub bundle.`);
+  console.log(`Built dist with ${PUBLIC_FILES.length} allowlisted source files, styled public documentation, and the PALO-AI Governance Hub bundle.`);
 }

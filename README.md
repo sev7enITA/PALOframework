@@ -38,7 +38,7 @@ PALO is not a certification body and does not provide legal advice. It is a prac
 
 > **PALO-AI is an emerging governance control plane for n8n and agentic automation platforms, designed to make authority, policy enforcement, human oversight and cryptographic evidence visible and enforceable.**
 
-Start in the [guided PALO-AI Governance Hub](governance-hub/) to move from business intent to explicit authority through a white, role-adaptive interface. Use the [public governance overview](PALO_AIGovernance.html) for positioning, then choose the [code-first, no-code/low-code, or rapid-prototyping adoption path](docs/palo-ai-adoption-paths.md). The same contracts can be evaluated locally, through the online developer-preview endpoint, or against the documented hybrid/cloud target architecture.
+Start with the [cognitive Stakeholder Onboarding](designs/theory-to-practice-infographic/) to choose an organizational role and objective. “Govern agent actions” adds a conditional code-first, no-code/low-code, or rapid-prototyping question without replacing the accountability role. Continue in the [guided PALO-AI Governance Hub](governance-hub/) or use the [public Agentic Governance overview](PALO_AIGovernance.html) to connect PALO-AM methodology, PALO-AI runtime contracts, the role-based prototype and capability/readiness evidence.
 
 n8n orchestrates what automation does. PALO governs whether an identified agent or automation is authorized to do it and whether the declared result is later verified. The integration combines four complementary patterns: a visible decision gate, a governed executor, digest-bound human approval, and workflow admission controls. Package 0.2 implements decision-gate and governed-execution prototypes; secure approval resume and instance-level admission remain specified capabilities. The package is unpublished and not n8n-verified.
 
@@ -58,7 +58,7 @@ n8n orchestrates what automation does. PALO governs whether an identified agent 
 - [Four-pattern hero infographic](assets/palo-ai-n8n-scenarios/palo-ai-n8n-governance-hero.png)
 - [Three-minute architecture-preview demo](media/palo-ai-n8n-architecture-preview-3min.mp4)
 - [Evidence-based capability matrix](agentic/capability-matrix.json)
-- [PALO-AI v2.5 technical and security assessment](docs/palo-ai-v2.5-technical-assessment.md)
+- [Public Production Readiness route](PALO_AIProductionReadiness.html)
 
 ## Why PALO?
 
@@ -93,7 +93,7 @@ n8n orchestrates what automation does. PALO governs whether an identified agent 
 | [Recognition and Sources](PALO_Recognition.html) | Public references, primary sources, and verification notes | Live |
 | [PALO Assessment Path](PALO_AssessmentPath.html) | Guided route from risk tiering to contextual FRIA, controls, KPI/KRI, and a local evidence bundle | Live |
 | [Regulatory Watch 2026](PALO_RegulatoryWatch.html) | Dated AI Act watchlist with Article 4, Article 50, high-risk milestones, and official sources | Live |
-| [Documentation Hub](PALO_DocumentationHub.html) | Web-native lifecycle documentation, module index, primary documents, and source links | Live |
+| [Documentation Library](PALO_DocumentationLibrary.html) | Searchable HTML documentation with Start, Guide and Reference depth plus audience, task, product and maturity metadata | Live |
 | [Platform Map](PALO_PlatformMap.html) | Operational status, stakeholder-intent routes, modules, artifacts, research boundaries, and accessible table navigation | Live |
 | [Operationalization Explorer / Stakeholder Onboarding](designs/theory-to-practice-infographic/) | Three-step local stakeholder routing into the six-phase weighted workflow and interactive 3D knowledge graph | Live |
 
@@ -143,7 +143,7 @@ These references are useful context, but the repository remains the source for t
 
 ### Use the live website
 
-Open the [PALO Stakeholder Onboarding](https://paloframework.org/designs/theory-to-practice-infographic/#onboarding). Three questions identify one practical next action, the artifact it produces, and the relevant PALO modules. Experienced users can still open any module directly from [paloframework.org](https://paloframework.org).
+Open the [PALO Stakeholder Onboarding](https://paloframework.org/designs/theory-to-practice-infographic/#onboarding). It starts from your role and objective, then identifies one practical next action, the artifact it produces, and the relevant PALO modules. Agentic routes add a fourth build-mode question only when needed. Experienced users can still open any module directly from [paloframework.org](https://paloframework.org).
 
 ### Run locally
 
@@ -242,8 +242,9 @@ Primary framework documents and artifacts:
 - [The PALO Framework v1 paper, Feb 2026](ThePALOFramework_%20A_Paradigm_for_Principled_AI_Lifecycle_OrchestrationInBusiness%20v1%20Feb%202026.pdf)
 - [PALO-AM Agentic Governance page](PALO_AgenticGovernance.html)
 - [PALO-AI Governance Integration Guide](docs/palo-ai-governance-integration-guide.md)
-- [PALO-AI v2.5 Technical and Security Assessment](docs/palo-ai-v2.5-technical-assessment.md)
-- [PALO-AI v2.4.1 Technical Assessment](docs/palo-ai-v2.4.1-technical-assessment.md) — retained as the original preview baseline
+- [PALO-AI Capability Matrix](PALO_AgenticCapabilityMatrix.html)
+- [PALO-AI Production Readiness](PALO_AIProductionReadiness.html)
+- [PALO Documentation Library](PALO_DocumentationLibrary.html)
 - [PALO-AI Online VPS Deployment](docs/palo-ai-vps-deployment.md)
 - [PALO-AM standalone document](insights/PALO-AM_Agentic_Governance_Modality_v2_Standalone_Document.docx)
 - [FRIA worksheet](assets/FRIA09-12_new.xlsx)

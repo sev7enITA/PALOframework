@@ -1,0 +1,13 @@
+{
+  "format": "palo-policywatcher-signal",
+  "schemaVersion": "1.0.0",
+  "signalId": "bad",
+  "observedAt": "not-a-date",
+  "source": { "sourceId": "missing-fields" },
+  "summary": "Invalid fixture",
+  "changeType": "legal-conclusion",
+  "subjects": [],
+  "confidence": { "level": "certain", "score": 2, "rationale": "Invalid" },
+  "authority": { "status": "authoritative", "disclaimer": "Too short" },
+  "suggestedHandoff": { "module": "Other", "eventName": "wrong", "reviewGateIds": [] }
+}
