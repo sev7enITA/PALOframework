@@ -11,6 +11,8 @@ and this project follows Semantic Versioning where practical.
 
 ### Added
 
+- Added canonical public “Why PALO-AI” and “PALO-AI Quickstarts” pages that separate the strategic assurance case from verified code-first, n8n/no-code and Copilot Studio/MCP evaluation routes
+- Added a browser-local comparison of direct execution, governed execution and authorized-but-wrong outcome mismatch, plus a persistent v2.5 capability/readiness/security rail across public agentic pages
 - Added a cognitive front door that routes by organizational role and objective, with a distinct “Govern agent actions” objective and conditional code-first, no-code/low-code and rapid-prototyping modes
 - Added a persistent role → objective → phase → artifact → next-action ribbon across guided onboarding and Agentic Governance orientation
 - Added safe Governance Hub deep links for executive/technical roles and known views, with deterministic fallback for malformed parameters
