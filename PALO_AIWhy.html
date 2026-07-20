@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Why PALO-AI | Full-Cycle Agentic Assurance</title>
+    <meta
+      name="description"
+      content="Why agentic systems need explicit authority, governed execution and post-execution outcome verification—and what PALO-AI v2.5 currently proves."
+    />
+    <link rel="canonical" href="https://paloframework.org/PALO_AIWhy.html" />
+    <link rel="icon" type="image/webp" href="assets/logo.webp" />
+    <link rel="stylesheet" href="assets/palo-icons.css" />
+    <link rel="stylesheet" href="assets/palo-v21.css?v=2.5.0" />
+    <script src="assets/palo-icons.js" defer></script>
+    <script src="assets/palo-v21.js?v=2.5.0" defer></script>
+    <script src="assets/palo-ai-demo.js?v=2.5.0" defer></script>
+  </head>
+  <body class="palo-v21">
+    <a class="palo-skip-link" href="#main-content">Skip to main content</a>
+    <header class="palo-site-header">
+      <div class="palo-shell palo-header-inner">
+        <a class="palo-brand" href="index.html"
+          ><img src="assets/logo.webp" alt="PALO" />PALO FRAMEWORK</a
+        ><button
+          class="palo-menu-toggle"
+          type="button"
+          data-palo-menu-toggle
+          aria-expanded="false"
+          aria-controls="palo-primary-nav"
+          aria-label="Open navigation"
+        >
+          <span data-palo-icon="menu" aria-hidden="true"></span>
+        </button>
+        <nav
+          class="palo-nav"
+          id="palo-primary-nav"
+          aria-label="Primary navigation"
+        >
+          <a href="designs/theory-to-practice-infographic/#onboarding">Start</a
+          ><a href="PALO_AIGovernance.html" aria-current="page"
+            >Agentic Governance</a
+          ><a href="governance-hub/">Governance Hub</a
+          ><a href="index.html#guided-journeys">Tools</a
+          ><a href="PALO_DocumentationLibrary.html">Documentation</a
+          ><a href="PALO_AIProductionReadiness.html">Readiness</a>
+        </nav>
+      </div>
+    </header>
+    <aside class="palo-ai-status-rail" aria-label="PALO-AI assurance status">
+      <div class="palo-shell">
+        <span>v2.5 Developer Preview</span
+        ><a href="PALO_AgenticCapabilityMatrix.html">Capability Matrix</a
+        ><a href="PALO_AIProductionReadiness.html">Production Readiness</a
+        ><a href="security-policy.html">Security boundary</a>
+      </div>
+    </aside>
+    <main id="main-content" class="palo-main">
+      <section class="palo-ai-public-hero">
+        <div class="palo-shell palo-ai-public-hero-grid">
+          <div>
+            <p class="palo-eyebrow">Why PALO-AI</p>
+            <h1>An agent can be authorized—and still be wrong.</h1>
+            <p class="palo-lead">
+              PALO-AI extends governance beyond permission. It binds declared
+              authority, policy and human oversight to protected execution, a
+              trusted receipt and verification of the effect that actually
+              occurred.
+            </p>
+            <p class="palo-ai-boundary">
+              <strong>Developer Preview:</strong> use isolated data and
+              reversible, non-consequential tools. This is not a production
+              authorization service or certified security boundary.
+            </p>
+            <div class="palo-actions">
+              <a class="palo-btn" href="#comparison">Run the comparison</a
+              ><a
+                class="palo-btn palo-btn-secondary"
+                href="PALO_AIQuickstarts.html"
+                >Choose a quickstart</a
+              >
+            </div>
+          </div>
+          <aside
+            class="palo-ai-assurance-track"
+            aria-label="Full-cycle assurance track"
+          >
+            <p>The assurance track</p>
+            <ol>
+              <li><span>01</span>Tool access is not authority</li>
+              <li><span>02</span>Permission is not correctness</li>
+              <li><span>03</span>Verified outcome or held incident</li>
+            </ol>
+          </aside>
+        </div>
+      </section>
+      <section class="palo-section">
+        <div class="palo-shell">
+          <p class="palo-eyebrow">The technical difference</p>
+          <h2>Logging an action is not the same as governing it.</h2>
+          <div class="palo-ai-three-way">
+            <article>
+              <small>Without PALO</small>
+              <h3>Direct path</h3>
+              <p>
+                An agent calls an operational tool with a reusable credential. A
+                successful API response can be mistaken for a correct business
+                outcome.
+              </p>
+            </article>
+            <article>
+              <small>With PALO</small>
+              <h3>Governed path</h3>
+              <p>
+                The exact claim, authority, approval, capability, receipt and
+                observed outcome become one reviewable chain.
+              </p>
+            </article>
+            <article>
+              <small>Authorized but wrong</small>
+              <h3>Assurance path</h3>
+              <p>
+                When authoritative post-state contradicts the declared effect,
+                the resource is held and an incident is opened.
+              </p>
+            </article>
+          </div>
+          <div class="palo-note">
+            <strong>Enforcement condition:</strong> a policy decision is
+            authoritative only when direct privileged paths are removed and the
+            protected connector cannot be reached around the governed path.
+          </div>
+        </div>
+      </section>
+      <section class="palo-section" id="comparison">
+        <div class="palo-shell">
+          <p class="palo-eyebrow">Browser-local, synthetic comparison</p>
+          <h2>See the same action through three assurance states</h2>
+          <p class="palo-lead">
+            This interaction explains the control model. It performs no network
+            request, tool call, approval or real execution.
+          </p>
+          <div class="palo-ai-demo" data-palo-ai-demo>
+            <div
+              class="palo-ai-demo-tabs"
+              role="tablist"
+              aria-label="Comparison scenarios"
+            >
+              <button
+                type="button"
+                role="tab"
+                data-scenario="without"
+                aria-selected="false"
+              >
+                Without PALO</button
+              ><button
+                type="button"
+                role="tab"
+                data-scenario="with"
+                aria-selected="true"
+              >
+                With PALO</button
+              ><button
+                type="button"
+                role="tab"
+                data-scenario="wrong"
+                aria-selected="false"
+              >
+                Authorized but wrong
+              </button>
+              <p class="palo-small">
+                Use arrow keys to move between scenarios.
+              </p>
+            </div>
+            <div class="palo-ai-demo-stage" role="tabpanel">
+              <div class="palo-ai-demo-summary">
+                <div>
+                  <h3 data-demo-title></h3>
+                  <p data-demo-narrative></p>
+                </div>
+                <span class="palo-ai-demo-badge" data-demo-badge></span>
+              </div>
+              <ol class="palo-ai-demo-steps" data-demo-steps></ol>
+              <section
+                class="palo-ai-demo-evidence"
+                aria-labelledby="demo-evidence-title"
+              >
+                <div>
+                  <p class="palo-card-kicker">Evidence state</p>
+                  <h4 id="demo-evidence-title">
+                    What can be independently reviewed?
+                  </h4>
+                </div>
+                <ul data-demo-evidence aria-live="polite"></ul>
+              </section>
+              <p
+                class="palo-small"
+                data-demo-status
+                role="status"
+                aria-live="polite"
+              ></p>
+              <div class="palo-actions">
+                <a
+                  class="palo-btn"
+                  href="examples/hands-on-demo/README.html"
+                  >Run the terminal demo</a
+                ><a
+                  class="palo-btn palo-btn-secondary"
+                  href="docs/palo-ai-full-cycle-assurance.html"
+                  >Read full-cycle assurance</a
+                ><a
+                  class="palo-btn palo-btn-secondary"
+                  href="governance-hub/?role=technical&amp;view=setup"
+                  >Open the eight-step wizard</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="palo-section">
+        <div class="palo-shell">
+          <p class="palo-eyebrow">What PALO changes</p>
+          <h2>Five governance questions become one evidence chain</h2>
+          <div class="palo-ai-proof-grid">
+            <article>
+              <h3>Authority</h3>
+              <p>
+                Who may act, for what purpose, on which resource and within
+                which limits?
+              </p>
+            </article>
+            <article>
+              <h3>Oversight</h3>
+              <p>
+                Which exact immutable claim needs review, and who is accountable
+                for it?
+              </p>
+            </article>
+            <article>
+              <h3>Execution</h3>
+              <p>
+                Can the action run only through a one-time, claim-bound
+                capability?
+              </p>
+            </article>
+            <article>
+              <h3>Evidence</h3>
+              <p>What did the trusted executor actually attempt and record?</p>
+            </article>
+            <article>
+              <h3>Outcome</h3>
+              <p>Does authoritative post-state satisfy the Effect Contract?</p>
+            </article>
+            <article>
+              <h3>Response</h3>
+              <p>
+                If evidence mismatches or is inconclusive, is the resource held
+                for review?
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+      <section class="palo-section palo-ai-dark">
+        <div class="palo-shell">
+          <p class="palo-eyebrow">Know the boundary before adoption</p>
+          <h2>Prototype evidence is not production assurance.</h2>
+          <p class="palo-lead">
+            Inspect what is implemented, what remains a prototype and the nine
+            independently testable production gates. Then choose the shortest
+            evaluation route for your build mode.
+          </p>
+          <div class="palo-actions">
+            <a class="palo-btn" href="PALO_AIQuickstarts.html"
+              >Choose a quickstart</a
+            ><a
+              class="palo-btn palo-btn-secondary"
+              href="PALO_AgenticCapabilityMatrix.html"
+              >Capability Matrix</a
+            ><a
+              class="palo-btn palo-btn-secondary"
+              href="PALO_AIProductionReadiness.html"
+              >Production Readiness</a
+            >
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="palo-footer">
+      <div class="palo-shell">
+        <p>
+          PALO-AI v2.5 Developer Preview · Full-cycle agentic assurance for
+          isolated evaluation.
+        </p>
+        <div class="palo-footer-links">
+          <a href="PALO_AIGovernance.html">Overview</a
+          ><a href="governance-hub/">Governance Hub</a
+          ><a href="PALO_DocumentationLibrary.html">Documentation</a
+          ><a href="security-policy.html">Security</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -38,11 +38,13 @@ PALO is not a certification body and does not provide legal advice. It is a prac
 
 > **PALO-AI is an emerging governance control plane for n8n and agentic automation platforms, designed to make authority, policy enforcement, human oversight and cryptographic evidence visible and enforceable.**
 
-Start with the [cognitive Stakeholder Onboarding](designs/theory-to-practice-infographic/) to choose an organizational role and objective. “Govern agent actions” adds a conditional code-first, no-code/low-code, or rapid-prototyping question without replacing the accountability role. Continue in the [guided PALO-AI Governance Hub](governance-hub/) or use the [public Agentic Governance overview](PALO_AIGovernance.html) to connect PALO-AM methodology, PALO-AI runtime contracts, the role-based prototype and capability/readiness evidence.
+Start with [Why PALO-AI](PALO_AIWhy.html) for the high-level full-cycle assurance case, then choose a [code-first, n8n/no-code, or Copilot Studio/MCP quickstart](PALO_AIQuickstarts.html). The [cognitive Stakeholder Onboarding](designs/theory-to-practice-infographic/) chooses an organizational role and objective; “Govern agent actions” adds a conditional build-mode question without replacing accountability. Continue in the [guided PALO-AI Governance Hub](governance-hub/) or use the [public Agentic Governance overview](PALO_AIGovernance.html) to connect PALO-AM methodology, PALO-AI runtime contracts, the role-based prototype and capability/readiness evidence.
 
 n8n orchestrates what automation does. PALO governs whether an identified agent or automation is authorized to do it and whether the declared result is later verified. The integration combines four complementary patterns: a visible decision gate, a governed executor, digest-bound human approval, and workflow admission controls. Package 0.2 implements decision-gate and governed-execution prototypes; secure approval resume and instance-level admission remain specified capabilities. The package is unpublished and not n8n-verified.
 
 - [PALO-AI n8n governance control-plane architecture](docs/palo-ai-n8n-governance-control-plane.md)
+- [Why PALO-AI: interactive full-cycle comparison](PALO_AIWhy.html)
+- [PALO-AI quickstarts: code, n8n and Copilot Studio/MCP](PALO_AIQuickstarts.html)
 - [PALO-AI cloud reference architecture](docs/palo-ai-cloud-reference-architecture.md)
 - [PALO-AI security assurance and scale plan](docs/palo-ai-security-assurance-and-scale.md)
 - [PALO-AI community and market-entry plan](docs/palo-ai-community-and-market-entry.md)
@@ -242,6 +244,8 @@ Primary framework documents and artifacts:
 - [The PALO Framework v1 paper, Feb 2026](ThePALOFramework_%20A_Paradigm_for_Principled_AI_Lifecycle_OrchestrationInBusiness%20v1%20Feb%202026.pdf)
 - [PALO-AM Agentic Governance page](PALO_AgenticGovernance.html)
 - [PALO-AI Governance Integration Guide](docs/palo-ai-governance-integration-guide.md)
+- [Why PALO-AI](PALO_AIWhy.html)
+- [PALO-AI Quickstarts](PALO_AIQuickstarts.html)
 - [PALO-AI Capability Matrix](PALO_AgenticCapabilityMatrix.html)
 - [PALO-AI Production Readiness](PALO_AIProductionReadiness.html)
 - [PALO Documentation Library](PALO_DocumentationLibrary.html)

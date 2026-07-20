@@ -177,6 +177,14 @@
       "documentationLibrary": "PALO_DocumentationLibrary.html",
       "legacyDocumentationHub": "transition-page",
       "privacy": "local-first-no-silent-submission"
+    },
+    "agenticPublicOrientation": {
+      "status": "source-ready",
+      "why": "PALO_AIWhy.html",
+      "quickstarts": "PALO_AIQuickstarts.html",
+      "buildModes": ["code-first", "n8n-no-code", "copilot-studio-mcp"],
+      "comparison": ["without-palo", "with-palo", "authorized-but-wrong"],
+      "assuranceRail": ["capability-matrix", "production-readiness", "security-boundary"]
     }
   }
 }

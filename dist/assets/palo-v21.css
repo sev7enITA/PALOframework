@@ -503,6 +503,84 @@ body.palo-v21 textarea:focus-visible {
     .palo-home-workspace-foot span:last-child { width: 100%; margin-left: 0; }
 }
 
+/* PALO-AI public orientation and quickstarts */
+.palo-ai-status-rail { background: #102a43; border-bottom: 3px solid #c78a19; color: #fff; }
+.palo-ai-status-rail .palo-shell { display: flex; align-items: stretch; min-height: 52px; overflow-x: auto; scrollbar-width: thin; }
+.palo-ai-status-rail a, .palo-ai-status-rail span { display: flex; align-items: center; flex: 0 0 auto; min-height: 52px; padding: 0 18px; border-right: 1px solid rgba(255,255,255,.14); color: #fff !important; font-size: 12px; font-weight: 800; text-decoration: none; }
+.palo-ai-status-rail span { color: #8ee5e8 !important; text-transform: uppercase; letter-spacing: .06em; }
+.palo-ai-status-rail a:hover, .palo-ai-status-rail a:focus { background: #173f5f; text-decoration: underline; }
+.palo-ai-public-hero { padding: clamp(62px, 9vw, 116px) 0 64px; background: #fff; border-bottom: 1px solid #d9e2ec; }
+.palo-ai-public-hero-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(330px, .85fr); gap: clamp(36px, 7vw, 96px); align-items: center; }
+.palo-ai-public-hero h1 { max-width: 900px; margin: 10px 0 20px; font-size: clamp(3rem, 6.5vw, 6.8rem); line-height: .95; letter-spacing: -.055em; }
+.palo-ai-public-hero .palo-lead { max-width: 760px; }
+.palo-ai-assurance-track { padding: 26px; background: #f5f8fa; border-top: 4px solid #c78a19; }
+.palo-ai-assurance-track p { margin: 0; color: #627d98; font-size: 11px; font-weight: 850; letter-spacing: .08em; text-transform: uppercase; }
+.palo-ai-assurance-track ol { list-style: none; margin: 18px 0 0; padding: 0; }
+.palo-ai-assurance-track li { display: grid; grid-template-columns: 34px 1fr; gap: 12px; padding: 14px 0; border-top: 1px solid #d9e2ec; color: #102a43; font-weight: 800; }
+.palo-ai-assurance-track li span { color: #147d8b; }
+.palo-ai-three-way { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); border-top: 1px solid #bcccdc; border-left: 1px solid #bcccdc; }
+.palo-ai-three-way article { min-height: 250px; padding: 28px; border-right: 1px solid #bcccdc; border-bottom: 1px solid #bcccdc; }
+.palo-ai-three-way article:nth-child(2) { border-top: 4px solid #147d8b; }
+.palo-ai-three-way article:nth-child(3) { border-top: 4px solid #c78a19; }
+.palo-ai-three-way small { color: #147d8b; font-weight: 850; text-transform: uppercase; }
+.palo-ai-three-way h3 { margin: 12px 0; }
+.palo-ai-demo { display: grid; grid-template-columns: minmax(240px,.62fr) minmax(0,1.38fr); min-height: 540px; margin-top: 30px; border: 1px solid #bcccdc; background: #fff; }
+.palo-ai-demo-tabs { padding: 24px; background: #f5f8fa; border-right: 1px solid #bcccdc; }
+.palo-ai-demo-tabs [role="tab"] { width: 100%; min-height: 52px; margin-bottom: 8px; padding: 12px 14px; border: 1px solid #bcccdc; background: #fff; color: #102a43; text-align: left; font: inherit; font-weight: 800; cursor: pointer; }
+.palo-ai-demo-tabs [role="tab"][aria-selected="true"] { border-color: #147d8b; box-shadow: inset 4px 0 #147d8b; }
+.palo-ai-demo-stage { padding: clamp(24px,4vw,48px); }
+.palo-ai-demo-summary { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 20px; align-items: start; }
+.palo-ai-demo-badge { padding: 7px 10px; color: #102a43; background: #e6fffa; border: 1px solid #81e6d9; font-size: 11px; font-weight: 850; text-transform: uppercase; }
+.palo-ai-demo-badge.is-risk { background: #fff8e1; border-color: #e3b341; }
+.palo-ai-demo-steps { list-style: none; display: grid; gap: 8px; margin: 28px 0; padding: 0; }
+.palo-ai-demo-steps li { display: grid; grid-template-columns: 38px 1fr; gap: 13px; align-items: center; padding: 13px; background: #f5f8fa; border-left: 3px solid #bcccdc; }
+.palo-ai-demo-steps li.is-active { border-left-color: #147d8b; background: #e6fffa; }
+.palo-ai-demo-steps li.is-risk { border-left-color: #c78a19; background: #fff8e1; }
+.palo-ai-demo-steps span { color: #147d8b; font-size: 11px; font-weight: 850; }
+.palo-ai-demo-evidence { display: grid; grid-template-columns: minmax(160px,.55fr) minmax(0,1.45fr); gap: 22px; margin: 28px 0; padding: 22px; background: #102a43; color: #fff; }
+.palo-ai-demo-evidence h4 { margin: 6px 0 0; color: #fff; }
+.palo-ai-demo-evidence .palo-card-kicker { margin: 0; color: #8ee5e8; }
+.palo-ai-demo-evidence ul { list-style: none; margin: 0; padding: 0; }
+.palo-ai-demo-evidence li { display: flex; justify-content: space-between; gap: 18px; padding: 10px 0; border-top: 1px solid rgba(255,255,255,.16); }
+.palo-ai-demo-evidence li:first-child { border-top: 0; }
+.palo-ai-demo-evidence li strong { color: #fff; font-size: 12px; }
+.palo-ai-demo-evidence li span { color: #8ee5e8; font-size: 11px; font-weight: 800; text-align: right; }
+.palo-ai-proof-grid, .palo-ai-route-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 18px; }
+.palo-ai-proof-grid article, .palo-ai-route-card { padding: 26px; border: 1px solid #d9e2ec; background: #fff; }
+.palo-ai-route-card { border-top: 4px solid #147d8b; }
+.palo-ai-route-card:nth-child(3) { border-top-color: #c78a19; }
+.palo-ai-route-card .palo-card-kicker { color: #147d8b; }
+.palo-ai-quick-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin: 28px 0; }
+.palo-ai-quick-tabs a { min-height: 44px; padding: 12px 16px; border: 1px solid #bcccdc; color: #102a43; font-weight: 800; text-decoration: none; }
+.palo-ai-quick-tabs a:hover, .palo-ai-quick-tabs a:focus { border-color: #147d8b; background: #e6fffa; }
+.palo-ai-quickstart { scroll-margin-top: 150px; padding: 52px 0; border-top: 1px solid #d9e2ec; }
+.palo-ai-quick-grid { display: grid; grid-template-columns: minmax(250px,.72fr) minmax(0,1.28fr); gap: clamp(30px,6vw,80px); }
+.palo-ai-stepper { list-style: none; margin: 24px 0; padding: 0; counter-reset: quickstep; }
+.palo-ai-stepper li { position: relative; margin-left: 18px; padding: 0 0 25px 35px; border-left: 1px solid #bcccdc; counter-increment: quickstep; }
+.palo-ai-stepper li::before { content: counter(quickstep); position: absolute; left: -18px; top: -2px; display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; color: #fff; background: #147d8b; font-size: 12px; font-weight: 850; }
+.palo-ai-stepper li:last-child { border-left-color: transparent; }
+.palo-ai-command { position: relative; margin: 10px 0; padding: 18px 108px 18px 18px; overflow-x: auto; color: #e6fffa; background: #102a43; border-left: 3px solid #c78a19; font-family: ui-monospace,SFMono-Regular,Menlo,monospace; font-size: 12px; white-space: pre-wrap; }
+.palo-ai-copy { position: absolute; right: 9px; top: 9px; min-height: 44px; padding: 8px 12px; border: 1px solid #8ee5e8; color: #fff; background: transparent; font: inherit; font-size: 11px; font-weight: 800; cursor: pointer; }
+.palo-ai-boundary-card { padding: 22px; background: #fff8e1; border-left: 4px solid #c78a19; }
+@media (max-width: 880px) {
+  .palo-ai-public-hero-grid, .palo-ai-demo, .palo-ai-quick-grid { grid-template-columns: 1fr; }
+  .palo-ai-demo-tabs { border-right: 0; border-bottom: 1px solid #bcccdc; }
+  .palo-ai-three-way, .palo-ai-proof-grid, .palo-ai-route-grid { grid-template-columns: 1fr; }
+  .palo-ai-public-hero h1 { font-size: clamp(3rem, 14vw, 5.2rem); }
+}
+@media (max-width: 520px) {
+  .palo-ai-status-rail .palo-shell { display: grid; grid-template-columns: 1fr 1fr; padding: 0; overflow: visible; }
+  .palo-ai-status-rail a, .palo-ai-status-rail span { justify-content: center; min-width: 0; min-height: 44px; padding: 8px 9px; border-right: 1px solid rgba(255,255,255,.14); border-bottom: 1px solid rgba(255,255,255,.14); font-size: 10px; text-align: center; white-space: normal; }
+  .palo-ai-status-rail span { grid-column: 1 / -1; min-height: 36px; }
+  .palo-ai-status-rail a:last-child { grid-column: 1 / -1; min-height: 40px; }
+  .palo-ai-demo-summary { grid-template-columns: 1fr; }
+  .palo-ai-demo-evidence { grid-template-columns: 1fr; }
+  .palo-ai-command { padding-right: 18px; padding-top: 62px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .palo-ai-demo-steps li { transition: none; }
+}
+
 /* Homepage legacy sections, brought into the workspace visual language. */
 .palo-home #about,
 .palo-home #principles,

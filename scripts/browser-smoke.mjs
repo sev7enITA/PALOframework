@@ -314,6 +314,22 @@ try {
   await page.locator('[data-matrix-filter="specified"]').click();
   if (await page.locator('[data-status="specified"]:visible').count() !== 3 || await page.locator('[data-status="prototype"]:visible').count() !== 0) failures.push("Capability Matrix: status filtering is incorrect");
 
+  await page.goto(`${baseUrl}/PALO_AIWhy.html`, { waitUntil: "domcontentloaded" });
+  if (await page.locator('[data-palo-ai-demo] [role="tab"]').count() !== 3) failures.push("Why PALO-AI: expected three comparison scenarios");
+  await page.getByRole("tab", { name: "Authorized but wrong" }).click();
+  if (!/Mismatch held/i.test(await page.locator("[data-demo-badge]").innerText()) || await page.locator("[data-demo-steps] li").count() !== 6 || await page.locator("[data-demo-evidence] li").count() !== 5) failures.push("Why PALO-AI: authorized-but-wrong scenario did not render the held mismatch lifecycle and evidence");
+  if (!await page.locator('a[href="examples/hands-on-demo/README.html"]').isVisible()) failures.push("Why PALO-AI: terminal demo link is missing");
+  const whyRequests = [];
+  page.on("request", (request) => { if (!request.url().startsWith(baseUrl)) whyRequests.push(request.url()); });
+  await page.getByRole("tab", { name: "Without PALO" }).click();
+  if (!/Direct execution/i.test(await page.locator("[data-demo-badge]").innerText()) || whyRequests.length) failures.push("Why PALO-AI: local comparison made an external request or rendered the wrong state");
+
+  await page.goto(`${baseUrl}/PALO_AIQuickstarts.html#n8n`, { waitUntil: "domcontentloaded" });
+  if (!await page.locator("#n8n").isVisible() || await page.locator("[data-copy-command]").count() < 5) failures.push("PALO-AI Quickstarts: deep links or copyable verified commands are missing");
+  for (const href of ["packages/palo-mcp-server/README.html", "packages/n8n-nodes-palo-ai/README.html", "examples/n8n-demo/PALO-AI-full-cycle-assurance-demo.json", "examples/hands-on-demo/README.html"]) {
+    if (!await page.locator(`a[href="${href}"]`).first().isVisible()) failures.push(`PALO-AI Quickstarts: required direct link is missing (${href})`);
+  }
+
   await page.goto(`${baseUrl}/PALO_AIProductionReadiness.html`, { waitUntil: "domcontentloaded" });
   if (await page.locator("[data-gate-id]").count() !== 9) failures.push("Production Readiness: expected exactly nine gates");
   await page.locator('[data-readiness-filter="wave"]').selectOption("5");
@@ -348,7 +364,7 @@ try {
 
   for (const viewport of [{ width: 1440, height: 900 }, { width: 1024, height: 768 }, { width: 390, height: 844 }, { width: 360, height: 800 }]) {
     await page.setViewportSize(viewport);
-    for (const file of ["index.html", "PALO_AIGovernance.html", "PALO_AssessmentPath.html", "PALO_AgenticGovernance.html", "PALO_AgenticCapabilityMatrix.html", "PALO_AIProductionReadiness.html", "PALO_DocumentationLibrary.html", "docs/palo-ai-adoption-paths.html", "PALO_PlatformMap.html", "designs/theory-to-practice-infographic/index.html?mode=navigation"]) {
+    for (const file of ["index.html", "PALO_AIGovernance.html", "PALO_AIWhy.html", "PALO_AIQuickstarts.html", "PALO_AssessmentPath.html", "PALO_AgenticGovernance.html", "PALO_AgenticCapabilityMatrix.html", "PALO_AIProductionReadiness.html", "PALO_DocumentationLibrary.html", "docs/palo-ai-adoption-paths.html", "PALO_PlatformMap.html", "designs/theory-to-practice-infographic/index.html?mode=navigation"]) {
       await page.goto(`${baseUrl}/${file}`, { waitUntil: "domcontentloaded" });
       if (file.includes("mode=navigation")) {
         await page.waitForFunction(() => window.__graphReady === true, null, { timeout: 30_000 });

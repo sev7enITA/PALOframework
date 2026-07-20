@@ -379,6 +379,15 @@ if (built) {
   const readinessHtml = htmlByFile.get("PALO_AIProductionReadiness.html") || "";
   if ((readinessHtml.match(/data-gate-id=/g) || []).length !== 9) errors.push("PALO_AIProductionReadiness.html: must expose exactly nine readiness gates");
   if (!/PALO-AM v2\.0[\s\S]*current governance modality/i.test(htmlByFile.get("PALO_AgenticGovernance.html") || "")) errors.push("PALO_AgenticGovernance.html: PALO-AM/PALO-AI version relationship is missing");
+  const assurancePages = ["PALO_AIWhy.html", "PALO_AIQuickstarts.html", "PALO_AIGovernance.html", "PALO_AgenticCapabilityMatrix.html", "PALO_AIProductionReadiness.html"];
+  for (const file of assurancePages) {
+    const html = htmlByFile.get(file) || "";
+    if (!/palo-ai-status-rail/.test(html) || !/PALO_AgenticCapabilityMatrix\.html/.test(html) || !/PALO_AIProductionReadiness\.html/.test(html) || !/security-policy\.html/.test(html)) errors.push(`${file}: persistent assurance status rail is incomplete`);
+  }
+  const whyHtml = htmlByFile.get("PALO_AIWhy.html") || "";
+  if ((whyHtml.match(/data-scenario=/g) || []).length !== 3 || !/Authorized but wrong/.test(whyHtml) || !/browser-local/i.test(whyHtml)) errors.push("PALO_AIWhy.html: comparison must expose three clearly bounded local scenarios");
+  const quickstartHtml = htmlByFile.get("PALO_AIQuickstarts.html") || "";
+  for (const anchor of ["code-first", "n8n", "copilot", "compare"]) if (!new RegExp(`id=[\"']${anchor}[\"']`).test(quickstartHtml)) errors.push(`PALO_AIQuickstarts.html: missing deep-link route #${anchor}`);
 }
 
 if (errors.length) {
