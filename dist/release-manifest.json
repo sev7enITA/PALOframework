@@ -80,8 +80,11 @@
       "testedWith": "n8n 2.30.7"
     },
     "stakeholderOnboarding": {
-      "version": "2.4.0",
-      "date": "2026-07-12"
+      "version": "2.5.0",
+      "date": "2026-07-19",
+      "objectiveAxis": ["approve", "build", "govern", "govern-agent-actions", "deploy", "verify"],
+      "agenticBuildModes": ["code-first", "no-code-low-code", "rapid-prototyping"],
+      "routeRibbon": true
     },
     "assessmentPath": {
       "version": "2.4.1",
@@ -120,21 +123,23 @@
       "status": "source-ready",
       "webEntry": "PALO_AIGovernance.html",
       "guidedWorkspace": "governance-hub/",
-      "governanceHubProductSpec": "docs/palo-ai-governance-hub-product-spec.md",
-      "governanceHubUserGuide": "docs/palo-ai-governance-hub-user-guide.md",
-      "governanceHubWorkflows": "docs/palo-ai-governance-hub-workflows.md",
-      "governanceHubStatus": "docs/palo-ai-governance-hub-status.md",
-      "adoptionPaths": "docs/palo-ai-adoption-paths.md",
-      "cloudArchitecture": "docs/palo-ai-cloud-reference-architecture.md",
-      "securityAssurance": "docs/palo-ai-security-assurance-and-scale.md",
-      "communityMarketEntry": "docs/palo-ai-community-and-market-entry.md",
-      "architecture": "docs/palo-ai-n8n-governance-control-plane.md",
-      "integrationGuide": "docs/palo-ai-governance-integration-guide.md",
-      "fullCycleAssurance": "docs/palo-ai-full-cycle-assurance.md",
-      "technicalAssessment": "docs/palo-ai-v2.4.1-technical-assessment.md",
-      "vpsDeployment": "docs/palo-ai-vps-deployment.md",
-      "publicationStatus": "docs/palo-ai-n8n-publication-status.md",
-      "communityDiscussion": "docs/community/n8n-architecture-preview-post.md",
+      "documentationLibrary": "PALO_DocumentationLibrary.html",
+      "capabilityMatrix": "PALO_AgenticCapabilityMatrix.html",
+      "productionReadiness": "PALO_AIProductionReadiness.html",
+      "governanceHubProductSpec": "docs/palo-ai-governance-hub-product-spec.html",
+      "governanceHubUserGuide": "docs/palo-ai-governance-hub-user-guide.html",
+      "governanceHubWorkflows": "docs/palo-ai-governance-hub-workflows.html",
+      "governanceHubStatus": "docs/palo-ai-governance-hub-status.html",
+      "adoptionPaths": "docs/palo-ai-adoption-paths.html",
+      "cloudArchitecture": "docs/palo-ai-cloud-reference-architecture.html",
+      "securityAssurance": "docs/palo-ai-security-assurance-and-scale.html",
+      "communityMarketEntry": "docs/palo-ai-community-and-market-entry.html",
+      "architecture": "docs/palo-ai-n8n-governance-control-plane.html",
+      "integrationGuide": "docs/palo-ai-governance-integration-guide.html",
+      "fullCycleAssurance": "docs/palo-ai-full-cycle-assurance.html",
+      "vpsDeployment": "docs/palo-ai-vps-deployment.html",
+      "publicationStatus": "docs/palo-ai-n8n-publication-status.html",
+      "communityDiscussion": "docs/community/n8n-architecture-preview-post.html",
       "heroInfographic": "assets/palo-ai-n8n-scenarios/palo-ai-n8n-governance-hero.png",
       "heroInfographicRefresh": "assets/palo-ai-n8n-scenarios/palo-ai-n8n-governance-hero-v2.png",
       "patternScreens": [
@@ -164,6 +169,14 @@
         "npmPublication": "deferred",
         "n8nTemplatesOrConnector": "deferred"
       }
+    },
+    "cognitiveFrontDoor": {
+      "status": "source-ready",
+      "entry": "designs/theory-to-practice-infographic/",
+      "primaryNavigation": ["Start", "Agentic Governance", "Governance Hub", "Tools", "Documentation", "Readiness"],
+      "documentationLibrary": "PALO_DocumentationLibrary.html",
+      "legacyDocumentationHub": "transition-page",
+      "privacy": "local-first-no-silent-submission"
     }
   }
 }

@@ -1,0 +1,13 @@
+{
+  "format": "palo-policy-input",
+  "schemaVersion": "1.0.0",
+  "exampleStatus": "educational-non-production",
+  "caseId": "case-policy-example-001",
+  "decisionContext": {
+    "gateId": "prove",
+    "humanApprovalRequired": true,
+    "humanApprovalRecorded": false,
+    "openCriticalFindings": 1,
+    "requiredEvidenceComplete": false
+  }
+}

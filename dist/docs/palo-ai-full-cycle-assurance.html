@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>PALO-AI v2.5 — Full-Cycle Agentic Assurance | PALO Documentation</title>
+  <meta name="description" content="Public PALO documentation: PALO-AI v2.5 — Full-Cycle Agentic Assurance.">
+  <link rel="canonical" href="https://paloframework.org/docs/palo-ai-full-cycle-assurance.html">
+  <link rel="icon" type="image/webp" href="../assets/logo.webp">
+  <link rel="stylesheet" href="../assets/palo-icons.css">
+  <link rel="stylesheet" href="../assets/palo-v21.css?v=2.5.0">
+  <link rel="stylesheet" href="../assets/palo-docs.css">
+  <script src="../assets/palo-icons.js" defer></script>
+  <script src="../assets/palo-v21.js?v=2.5.0" defer></script>
+  <script src="../assets/palo-docs.js" defer></script>
+</head>
+<body class="palo-v21 palo-doc-page" data-doc-source="docs/palo-ai-full-cycle-assurance.md">
+  <a class="palo-skip-link" href="#main-content">Skip to main content</a>
+  <header class="palo-site-header"><div class="palo-shell palo-header-inner">
+    <a class="palo-brand" href="../index.html"><img src="../assets/logo.webp" alt="PALO">PALO FRAMEWORK</a>
+    <button class="palo-menu-toggle" type="button" data-palo-menu-toggle aria-expanded="false" aria-controls="palo-primary-nav" aria-label="Open navigation"><span data-palo-icon="menu" aria-hidden="true"></span></button>
+    <nav class="palo-nav" id="palo-primary-nav" aria-label="Primary navigation"><a href="../designs/theory-to-practice-infographic/">Start</a><a href="../PALO_AIGovernance.html">Agentic Governance</a><a href="../governance-hub/">Governance Hub</a><a href="../index.html#guided-journeys">Tools</a><a href="../PALO_DocumentationLibrary.html" aria-current="page">Documentation</a><a href="../PALO_AIProductionReadiness.html">Readiness</a></nav>
+  </div></header>
+  <main id="main-content" class="palo-doc-main">
+    <div class="palo-shell">
+      <nav class="palo-doc-breadcrumb" aria-label="Breadcrumb"><a href="../PALO_DocumentationLibrary.html">Documentation Library</a><span aria-hidden="true">/</span><span>Architecture and integration</span></nav>
+      <header class="palo-doc-hero"><p class="palo-eyebrow">Architecture and integration · Public documentation</p><h1>PALO-AI v2.5 — Full-Cycle Agentic Assurance</h1><div class="palo-doc-facts"><span><small>Level</small><strong>reference</strong></span><span><small>Audience</small><strong>technical · governance</strong></span><span><small>Product</small><strong>PALO-AI</strong></span><span><small>Status</small><strong>Developer Preview</strong></span><span><small>Read</small><strong>5 min</strong></span></div><p class="palo-doc-source">Published HTML view · Source: <code>docs/palo-ai-full-cycle-assurance.md</code></p><div class="palo-actions"><button class="palo-btn" type="button" data-doc-copy-link>Copy link</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-share>Share page</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-print>Print</button></div><p class="palo-action-status" data-doc-action-status role="status" aria-live="polite"></p></header>
+      <details class="palo-doc-mobile-toc"><summary>On this page</summary><ol><li class="depth-2"><a href="#why-the-cycle-extends-beyond-authorization">Why the cycle extends beyond authorization</a></li><li class="depth-2"><a href="#contracts">Contracts</a></li><li class="depth-2"><a href="#trusted-runtime-flow">Trusted runtime flow</a></li><li class="depth-2"><a href="#rest-interface">REST interface</a></li><li class="depth-2"><a href="#n8n-experience">n8n experience</a></li><li class="depth-2"><a href="#run-the-synthetic-catalog-demonstration">Run the synthetic catalog demonstration</a></li><li class="depth-2"><a href="#migration-from-v241">Migration from v2.4.1</a></li><li class="depth-2"><a href="#production-boundary">Production boundary</a></li></ol></details>
+      <div class="palo-doc-layout"><aside class="palo-doc-sidebar" aria-label="On this page"><strong>On this page</strong><ol><li class="depth-2"><a href="#why-the-cycle-extends-beyond-authorization">Why the cycle extends beyond authorization</a></li><li class="depth-2"><a href="#contracts">Contracts</a></li><li class="depth-2"><a href="#trusted-runtime-flow">Trusted runtime flow</a></li><li class="depth-2"><a href="#rest-interface">REST interface</a></li><li class="depth-2"><a href="#n8n-experience">n8n experience</a></li><li class="depth-2"><a href="#run-the-synthetic-catalog-demonstration">Run the synthetic catalog demonstration</a></li><li class="depth-2"><a href="#migration-from-v241">Migration from v2.4.1</a></li><li class="depth-2"><a href="#production-boundary">Production boundary</a></li></ol></aside><article class="palo-doc-content"><h1 id="palo-ai-v25--full-cycle-agentic-assurance">PALO-AI v2.5 — Full-Cycle Agentic Assurance<a class="palo-doc-anchor" href="#palo-ai-v25--full-cycle-agentic-assurance" aria-label="Link to PALO-AI v2.5 — Full-Cycle Agentic Assurance">#</a></h1><blockquote>
+<p><strong>Developer preview.</strong> Use synthetic or isolated data and non-consequential tools only. This implementation is not an independently assessed security boundary, compliance certification, production identity service or universal exactly-once executor.</p>
+</blockquote>
+<h2 id="why-the-cycle-extends-beyond-authorization">Why the cycle extends beyond authorization<a class="palo-doc-anchor" href="#why-the-cycle-extends-beyond-authorization" aria-label="Link to Why the cycle extends beyond authorization">#</a></h2><p>A policy can determine that an action is permitted. It cannot prove that the action was correct, that the state observed by the agent was current, or that the external system produced the intended result. PALO-AI v2.5 therefore separates permission from assurance:</p>
+<figure class="palo-doc-code"><figcaption>text code</figcaption><pre tabindex="0"><code class="language-text">Propose → Authorize → Approve → Capability → Execute → Receipt → Observe → Verify → Escalate</code></pre></figure><p>An action is <code>verified</code> only when a registered verifier observes authoritative post-state that satisfies the immutable Effect Contract. A policy decision by itself remains <code>allowed</code>, not <code>verified</code>.</p>
+<h2 id="contracts">Contracts<a class="palo-doc-anchor" href="#contracts" aria-label="Link to Contracts">#</a></h2><div class="palo-doc-table-wrap" tabindex="0" aria-label="Scrollable documentation table"><table>
+<thead>
+<tr>
+<th>Contract</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Action Claim 1.2</td>
+<td>Binds identity, tool, arguments, tenant, replay material and Effect Contract</td>
+</tr>
+<tr>
+<td>Effect Contract 1.0</td>
+<td>Declares preconditions, expected effects, forbidden effects and verification behavior</td>
+</tr>
+<tr>
+<td>Execution Capability 1.0</td>
+<td>Short-lived, one-time, server-side authority for one claim, executor and verifier</td>
+</tr>
+<tr>
+<td>Execution Receipt 1.0</td>
+<td>Signed record generated by the trusted executor after the attempt</td>
+</tr>
+<tr>
+<td>Outcome Attestation 1.0</td>
+<td>Signed <code>verified</code>, <code>mismatch</code> or <code>inconclusive</code> comparison against authoritative state</td>
+</tr>
+<tr>
+<td>Assurance Incident 1.0</td>
+<td>Review record and resource hold for mismatch or uncertainty</td>
+</tr>
+</tbody></table></div>
+<p>The Effect Contract uses a closed predicate DSL. Paths are JSON Pointers and supported operators are <code>exists</code>, <code>equals</code>, <code>unchanged</code>, <code>changedTo</code> and <code>deltaWithin</code>. PALO never evaluates caller-provided JavaScript or arbitrary expressions.</p>
+<h2 id="trusted-runtime-flow">Trusted runtime flow<a class="palo-doc-anchor" href="#trusted-runtime-flow" aria-label="Link to Trusted runtime flow">#</a></h2><ol>
+<li>Normalize and validate Action Claim 1.2.</li>
+<li>Revalidate profile, current policy, replay material, expiry and exact approval.</li>
+<li>Resolve active executor and verifier manifests from the trusted registry.</li>
+<li>Issue a signed capability bound to claim digest, decision, tenant, resource, executor and verifier.</li>
+<li>Ask the verifier for authoritative pre-state and check Effect Contract preconditions.</li>
+<li>Consume the capability once and persist execution intent before calling the connector.</li>
+<li>Invoke the operator-provisioned executor with the immutable arguments and idempotency key.</li>
+<li>Generate a signed Execution Receipt inside the trusted runtime.</li>
+<li>Ask the verifier for authoritative post-state and evaluate intended and forbidden effects.</li>
+<li>Persist the signed Outcome Attestation and append lifecycle evidence to the hash chain.</li>
+<li>On mismatch or uncertainty, create an Assurance Incident and hold the resource until human resolution.</li>
+</ol>
+<p>The reference Gateway also scans its transactional outbox at startup. An execution left in <code>executing/pending</code> beyond <code>PALO_EXECUTION_RECOVERY_AGE_MS</code> (default: 30 seconds) receives a signed <code>unknown</code> receipt, is classified as <code>inconclusive</code>, and is held for review. An execution with a durably recorded receipt but no attestation resumes post-state verification. Receipt persistence and its evidence append are atomic. A matching final state alone cannot prove that an unknown recovered connector call caused it. This is single-instance recovery, not distributed exactly-once execution.</p>
+<p>Automatic rollback is intentionally excluded. A compensating operation must be represented as a new Action Claim with its own authority, policy, approval, execution and verification cycle.</p>
+<h2 id="rest-interface">REST interface<a class="palo-doc-anchor" href="#rest-interface" aria-label="Link to REST interface">#</a></h2><p>Existing decision-only integrations may continue to call <code>POST /v1/actions/verify</code> with Action Claim 1.1 or 1.2.</p>
+<p>Full-cycle clients use:</p>
+<div class="palo-doc-table-wrap" tabindex="0" aria-label="Scrollable documentation table"><table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Endpoint</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>POST</code></td>
+<td><code>/v1/executors/register</code></td>
+<td>Register a versioned executor manifest; handler provisioning remains operator-side</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/v1/verifiers/register</code></td>
+<td>Register a versioned verifier manifest</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/v1/actions/execute</code></td>
+<td>Authorize and attempt the full assurance cycle</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/v1/executions/{executionId}</code></td>
+<td>Read receipt, attestation and linked incident</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/v1/executions/{executionId}/outcome</code></td>
+<td>Read or complete the current outcome verification</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/v1/executions/{executionId}/verify</code></td>
+<td>Force an authenticated re-verification after an inconclusive result</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/v1/incidents</code></td>
+<td>List assurance incidents</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/v1/incidents/{incidentId}</code></td>
+<td>Read one incident</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/v1/incidents/resolve</code></td>
+<td>Acknowledge or resolve an incident and release its hold</td>
+</tr>
+</tbody></table></div>
+<p><code>POST /v1/evidence</code> is disabled by default and returns HTTP 410. It can be temporarily enabled with <code>PALO_ALLOW_UNTRUSTED_EVIDENCE=true</code> only for legacy isolated demonstrations. New clients must use governed execution so receipt and outcome evidence are generated inside the trusted boundary.</p>
+<h2 id="n8n-experience">n8n experience<a class="palo-doc-anchor" href="#n8n-experience" aria-label="Link to n8n experience">#</a></h2><p>Package <code>n8n-nodes-palo-ai</code> 0.2 contains two nodes:</p>
+<ul>
+<li><strong>PALO Governance</strong>: the compatibility decision-only gate with Allowed, Approval Required and Denied outputs.</li>
+<li><strong>PALO Governed Action</strong>: the full-cycle node with Verified, Review Required, Denied and Execution Failed outputs.</li>
+</ul>
+<p>The Governed Action node is programmatic because it builds a canonical Action Claim and routes a multi-stage gateway result to four semantic outputs. It does not expose the protected target tool as an independent downstream branch. A workflow that retains another direct credential path can still bypass PALO and must not be described as governed.</p>
+<h2 id="run-the-synthetic-catalog-demonstration">Run the synthetic catalog demonstration<a class="palo-doc-anchor" href="#run-the-synthetic-catalog-demonstration" aria-label="Link to Run the synthetic catalog demonstration">#</a></h2><p>Start OPA:</p>
+<figure class="palo-doc-code"><figcaption>bash code</figcaption><pre tabindex="0"><code class="language-bash">.tools/opa/opa run --server --addr=127.0.0.1:8181 \
+  examples/policy-as-code/agent-delegation.rego</code></pre></figure><p>Start the isolated Gateway:</p>
+<figure class="palo-doc-code"><figcaption>bash code</figcaption><pre tabindex="0"><code class="language-bash">export PALO_OPA_URL='http://127.0.0.1:8181'
+export PALO_GATEWAY_TOKEN='palo-demo-only-gateway-token-32-bytes'
+export PALO_HMAC_KEYS_JSON='{"key-catalog-demo":"palo-demo-only-signing-secret-material-32-bytes"}'
+export PALO_ENABLE_DEMO_CATALOG='true'
+export PALO_EXECUTION_RECOVERY_AGE_MS='30000'
+export PALO_DATA_DIR="${TMPDIR:-/tmp}/palo-assurance-demo-$(date +%s)"
+npm run palo:gateway</code></pre></figure><p>Run a verified effect:</p>
+<figure class="palo-doc-code"><figcaption>bash code</figcaption><pre tabindex="0"><code class="language-bash">export PALO_GATEWAY_TOKEN='palo-demo-only-gateway-token-32-bytes'
+npm run demo:hands-on -- --auto-approve</code></pre></figure><p>Restart the Gateway with a fresh <code>PALO_DATA_DIR</code>, then demonstrate the “authorized, but wrong” case:</p>
+<figure class="palo-doc-code"><figcaption>bash code</figcaption><pre tabindex="0"><code class="language-bash">npm run demo:hands-on -- --auto-approve --wrong-effect</code></pre></figure><p>The second run must end with an Outcome Attestation of <code>mismatch</code>, an open Assurance Incident and <code>resourceHold: true</code>.</p>
+<p>For n8n, install package 0.2 and import <code>examples/n8n-demo/PALO-AI-full-cycle-assurance-demo.json</code>. When n8n runs in Docker, configure the PALO API credential with <code>http://host.docker.internal:8787</code>; otherwise use the reachable HTTPS Gateway URL. Resolve the first approval, then rerun the node in <strong>Resume Approved Action</strong> mode with the exact immutable claim and approval ID.</p>
+<h2 id="migration-from-v241">Migration from v2.4.1<a class="palo-doc-anchor" href="#migration-from-v241" aria-label="Link to Migration from v2.4.1">#</a></h2><ol>
+<li>Leave existing Action Claim 1.1 decision gates unchanged.</li>
+<li>Upgrade the n8n package from 0.1 to 0.2; the original node remains registered.</li>
+<li>For each protected action, declare an Effect Contract and move to Action Claim 1.2.</li>
+<li>Register an executor manifest and provision its handler inside the runtime operator boundary.</li>
+<li>Register a separately trusted verifier capable of authoritative pre- and post-state reads.</li>
+<li>Replace caller-submitted execution evidence with <code>POST /v1/actions/execute</code>.</li>
+<li>Route <code>mismatch</code> and <code>inconclusive</code> outcomes to an accountable incident owner.</li>
+<li>Treat every compensation or rollback as a new governed action.</li>
+</ol>
+<h2 id="production-boundary">Production boundary<a class="palo-doc-anchor" href="#production-boundary" aria-label="Link to Production boundary">#</a></h2><p>SQLite, shared bearer tokens, environment HMAC keys and in-process adapters are reference mechanisms. Production adoption requires workload identity, principal-level RBAC, KMS/HSM-backed signing, PostgreSQL and durable queues, tenant isolation, HA, backup and retention, rate limiting, connector attestation, observability, threat modelling, penetration testing and an independent cryptographic review.</p>
+</article></div>
+      <aside class="palo-doc-next"><div><small>Prerequisite</small><strong>Action Claim and Effect Contract concepts</strong></div><div><small>Recommended next step</small><strong>Inspect the Capability Matrix</strong></div></aside>
+      <section class="palo-doc-feedback" aria-labelledby="feedback-title"><p class="palo-eyebrow">Privacy-first feedback</p><h2 id="feedback-title">Help improve this guide</h2><p>Your feedback stays in your browser until you explicitly copy it, download it, or open an email draft. Do not include secrets, personal data, credentials or production identifiers.</p><form data-doc-feedback><div class="palo-form-grid"><div class="palo-field"><label for="feedback-role">Your role</label><select id="feedback-role" name="role"><option>Executive / governance owner</option><option>Platform or security engineer</option><option>No-code / low-code builder</option><option>External reviewer</option></select></div><div class="palo-field"><label for="feedback-category">Category</label><select id="feedback-category" name="category"><option>Clarity</option><option>Technical accuracy</option><option>Missing guidance</option><option>Accessibility</option></select></div><div class="palo-field palo-field-full"><label for="feedback-message">Feedback</label><textarea id="feedback-message" name="message" maxlength="3000" required placeholder="Describe the non-sensitive improvement you recommend."></textarea></div><div class="palo-form-actions"><button class="palo-btn" type="button" data-feedback-copy>Copy feedback</button><button class="palo-btn palo-btn-secondary" type="button" data-feedback-download>Download JSON</button><button class="palo-btn palo-btn-secondary" type="button" data-feedback-email>Email draft</button></div></div><p class="palo-action-status" data-feedback-status role="status" aria-live="polite"></p></form></section>
+    </div>
+  </main>
+  <footer class="palo-footer"><div class="palo-shell"><p>PALO public documentation. Developer preview boundaries apply.</p><div class="palo-footer-links"><a href="../PALO_AIGovernance.html">PALO-AI</a><a href="../governance-hub/">Governance Hub</a><a href="../PALO_AgenticCapabilityMatrix.html">Capability Matrix</a><a href="../PALO_AIProductionReadiness.html">Production Readiness</a><a href="../privacy-policy.html">Privacy</a></div></div></footer>
+</body></html>

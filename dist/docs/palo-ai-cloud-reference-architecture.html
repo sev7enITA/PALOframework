@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>PALO-AI Cloud Reference Architecture | PALO Documentation</title>
+  <meta name="description" content="Public PALO documentation: PALO-AI Cloud Reference Architecture.">
+  <link rel="canonical" href="https://paloframework.org/docs/palo-ai-cloud-reference-architecture.html">
+  <link rel="icon" type="image/webp" href="../assets/logo.webp">
+  <link rel="stylesheet" href="../assets/palo-icons.css">
+  <link rel="stylesheet" href="../assets/palo-v21.css?v=2.5.0">
+  <link rel="stylesheet" href="../assets/palo-docs.css">
+  <script src="../assets/palo-icons.js" defer></script>
+  <script src="../assets/palo-v21.js?v=2.5.0" defer></script>
+  <script src="../assets/palo-docs.js" defer></script>
+</head>
+<body class="palo-v21 palo-doc-page" data-doc-source="docs/palo-ai-cloud-reference-architecture.md">
+  <a class="palo-skip-link" href="#main-content">Skip to main content</a>
+  <header class="palo-site-header"><div class="palo-shell palo-header-inner">
+    <a class="palo-brand" href="../index.html"><img src="../assets/logo.webp" alt="PALO">PALO FRAMEWORK</a>
+    <button class="palo-menu-toggle" type="button" data-palo-menu-toggle aria-expanded="false" aria-controls="palo-primary-nav" aria-label="Open navigation"><span data-palo-icon="menu" aria-hidden="true"></span></button>
+    <nav class="palo-nav" id="palo-primary-nav" aria-label="Primary navigation"><a href="../designs/theory-to-practice-infographic/">Start</a><a href="../PALO_AIGovernance.html">Agentic Governance</a><a href="../governance-hub/">Governance Hub</a><a href="../index.html#guided-journeys">Tools</a><a href="../PALO_DocumentationLibrary.html" aria-current="page">Documentation</a><a href="../PALO_AIProductionReadiness.html">Readiness</a></nav>
+  </div></header>
+  <main id="main-content" class="palo-doc-main">
+    <div class="palo-shell">
+      <nav class="palo-doc-breadcrumb" aria-label="Breadcrumb"><a href="../PALO_DocumentationLibrary.html">Documentation Library</a><span aria-hidden="true">/</span><span>Operations and deployment</span></nav>
+      <header class="palo-doc-hero"><p class="palo-eyebrow">Operations and deployment · Public documentation</p><h1>PALO-AI Cloud Reference Architecture</h1><div class="palo-doc-facts"><span><small>Level</small><strong>reference</strong></span><span><small>Audience</small><strong>technical · governance</strong></span><span><small>Product</small><strong>PALO-AI</strong></span><span><small>Status</small><strong>Target Architecture</strong></span><span><small>Read</small><strong>6 min</strong></span></div><p class="palo-doc-source">Published HTML view · Source: <code>docs/palo-ai-cloud-reference-architecture.md</code></p><div class="palo-actions"><button class="palo-btn" type="button" data-doc-copy-link>Copy link</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-share>Share page</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-print>Print</button></div><p class="palo-action-status" data-doc-action-status role="status" aria-live="polite"></p></header>
+      <details class="palo-doc-mobile-toc"><summary>On this page</summary><ol><li class="depth-2"><a href="#recommendation">Recommendation</a></li><li class="depth-2"><a href="#current-versus-target">Current versus target</a></li><li class="depth-2"><a href="#logical-architecture">Logical architecture</a></li><li class="depth-2"><a href="#deployment-modes">Deployment modes</a></li><li class="depth-3"><a href="#1-palo-local">1. PALO Local</a></li><li class="depth-3"><a href="#2-palo-hybrid">2. PALO Hybrid</a></li><li class="depth-3"><a href="#3-palo-cloud">3. PALO Cloud</a></li><li class="depth-3"><a href="#4-palo-private">4. PALO Private</a></li><li class="depth-2"><a href="#platform-placement">Platform placement</a></li><li class="depth-2"><a href="#cloud-provider-decision">Cloud-provider decision</a></li><li class="depth-2"><a href="#scale-gates">Scale gates</a></li><li class="depth-2"><a href="#production-acceptance-tests">Production acceptance tests</a></li></ol></details>
+      <div class="palo-doc-layout"><aside class="palo-doc-sidebar" aria-label="On this page"><strong>On this page</strong><ol><li class="depth-2"><a href="#recommendation">Recommendation</a></li><li class="depth-2"><a href="#current-versus-target">Current versus target</a></li><li class="depth-2"><a href="#logical-architecture">Logical architecture</a></li><li class="depth-2"><a href="#deployment-modes">Deployment modes</a></li><li class="depth-3"><a href="#1-palo-local">1. PALO Local</a></li><li class="depth-3"><a href="#2-palo-hybrid">2. PALO Hybrid</a></li><li class="depth-3"><a href="#3-palo-cloud">3. PALO Cloud</a></li><li class="depth-3"><a href="#4-palo-private">4. PALO Private</a></li><li class="depth-2"><a href="#platform-placement">Platform placement</a></li><li class="depth-2"><a href="#cloud-provider-decision">Cloud-provider decision</a></li><li class="depth-2"><a href="#scale-gates">Scale gates</a></li><li class="depth-2"><a href="#production-acceptance-tests">Production acceptance tests</a></li></ol></aside><article class="palo-doc-content"><h1 id="palo-ai-cloud-reference-architecture">PALO-AI Cloud Reference Architecture<a class="palo-doc-anchor" href="#palo-ai-cloud-reference-architecture" aria-label="Link to PALO-AI Cloud Reference Architecture">#</a></h1><p>Status: target architecture and deployment decision record for the PALO-AI v2.5 full-cycle developer preview, updated 19 July 2026.</p>
+<blockquote>
+<p>The live Hostinger VPS is an Internet-reachable developer preview. HTTPS and private container networking do not make the current runtime a production authorization boundary.</p>
+</blockquote>
+<h2 id="recommendation">Recommendation<a class="palo-doc-anchor" href="#recommendation" aria-label="Link to Recommendation">#</a></h2><p>Do not replace local PALO with a single mandatory cloud service. Productize four deployment modes behind the same versioned contracts:</p>
+<ol>
+<li><strong>PALO Local</strong> — Docker Compose or process-local sidecar for developers, offline evaluation and self-hosted n8n.</li>
+<li><strong>PALO Hybrid</strong> — a local governed executor calls a remote policy/control plane while protected credentials and sensitive side effects remain inside the organization.</li>
+<li><strong>PALO Cloud</strong> — a managed, multi-tenant control plane for registry, policy distribution, approvals, evidence and administration.</li>
+<li><strong>PALO Private</strong> — the same service deployed into a customer VPC/private cloud with customer identity, network, keys and retention.</li>
+</ol>
+<p>The recommended order is Local -&gt; single-tenant Hybrid staging -&gt; managed single-region pilot -&gt; multi-tenant managed service -&gt; private-cloud distribution.</p>
+<h2 id="current-versus-target">Current versus target<a class="palo-doc-anchor" href="#current-versus-target" aria-label="Link to Current versus target">#</a></h2><div class="palo-doc-table-wrap" tabindex="0" aria-label="Scrollable documentation table"><table>
+<thead>
+<tr>
+<th>Concern</th>
+<th>Current VPS preview</th>
+<th>Production target</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Identity</td>
+<td>Shared bearer token</td>
+<td>OIDC workload identity, mTLS for service paths, authenticated human principals</td>
+</tr>
+<tr>
+<td>Authorization</td>
+<td>Coarse route restriction</td>
+<td>Tenant/project RBAC, policy administration roles, approval separation of duties</td>
+</tr>
+<tr>
+<td>Policy</td>
+<td>Local Rego file / preview registry</td>
+<td>Signed versioned bundles, controlled promotion, rollback, digest attestation and status telemetry</td>
+</tr>
+<tr>
+<td>State</td>
+<td>Single-host SQLite WAL</td>
+<td>Managed PostgreSQL with tenant isolation, migrations, PITR, transactional outbox and tested restore</td>
+</tr>
+<tr>
+<td>Replay and recovery</td>
+<td>Local nonce/idempotency/sequence checks plus single-instance outbox recovery</td>
+<td>Atomic distributed consumption, scoped replay namespaces, connector-specific idempotency and durable recovery without universal exactly-once claims</td>
+</tr>
+<tr>
+<td>Signing</td>
+<td>Environment-supplied HMAC</td>
+<td>KMS/HSM-backed Ed25519 or HMAC keys, rotation, audit and envelope signing</td>
+</tr>
+<tr>
+<td>Approval</td>
+<td>Preview state machine</td>
+<td>Authenticated reviewer context, claim-bound one-time grants, durable callbacks and escalation</td>
+</tr>
+<tr>
+<td>Availability</td>
+<td>One VPS</td>
+<td>Multi-zone services, health-based routing, queues, back-pressure and tested disaster recovery</td>
+</tr>
+<tr>
+<td>Evidence</td>
+<td>Local append-only hash chain</td>
+<td>Transactional event store, immutable archive/WORM target, external anchoring and retention controls</td>
+</tr>
+<tr>
+<td>Operations</td>
+<td>Manual Docker deployment</td>
+<td>Infrastructure as code, signed images, SBOM, provenance, SLOs, tracing, alerts and runbooks</td>
+</tr>
+</tbody></table></div>
+<h2 id="logical-architecture">Logical architecture<a class="palo-doc-anchor" href="#logical-architecture" aria-label="Link to Logical architecture">#</a></h2><figure class="palo-doc-code"><figcaption>text code</figcaption><pre tabindex="0"><code class="language-text">Clients and platform adapters
+  n8n | Copilot Studio | Dify | LangGraph | Node-RED | Make | Zapier
+            |
+     API gateway / WAF / rate limits
+            |
+  workload identity and tenant resolver
+            |
+  +---------+-----------+----------------+
+  |                     |                |
+Claim service      Approval service   Evidence verifier
+  |                     |                |
+  +---------- transactional command bus--+
+            |
+   Governed executor / capability broker
+            |
+   target-specific credentials and tools
+
+Policy plane: signed registry -&gt; signed OPA bundles -&gt; decision logs/status
+Data plane: PostgreSQL -&gt; outbox/queue -&gt; immutable object archive
+Security plane: KMS/HSM, secrets manager, SIEM/OpenTelemetry, audit administration</code></pre></figure><p>For authoritative enforcement, the governed executor must hold the target credential and be the only network path to the protected action. A remote policy decision returned to an optional visual node remains advisory.</p>
+<h2 id="deployment-modes">Deployment modes<a class="palo-doc-anchor" href="#deployment-modes" aria-label="Link to Deployment modes">#</a></h2><h3 id="1-palo-local">1. PALO Local<a class="palo-doc-anchor" href="#1-palo-local" aria-label="Link to 1. PALO Local">#</a></h3><p>Use for laptop development, offline tests and a self-hosted automation instance on one trusted machine.</p>
+<ul>
+<li>Bind gateways to loopback or a private container network.</li>
+<li>Pin exact images and package versions.</li>
+<li>Keep mock credentials separate from personal/production credentials.</li>
+<li>Preserve the same Action Claim and evidence formats used by cloud modes.</li>
+<li>Treat SQLite as single-host preview persistence, not distributed evidence infrastructure.</li>
+</ul>
+<h3 id="2-palo-hybrid">2. PALO Hybrid<a class="palo-doc-anchor" href="#2-palo-hybrid" aria-label="Link to 2. PALO Hybrid">#</a></h3><p>Use when policy and approval coordination can be centralized but execution must remain inside the adopter network.</p>
+<ul>
+<li>Send the minimum normalized claim; avoid raw payloads and secrets.</li>
+<li>Run the executor and target credential locally.</li>
+<li>Bind a signed one-time grant to tenant, workload, audience, action digest and expiry.</li>
+<li>Re-evaluate policy immediately before local consumption.</li>
+<li>Queue evidence through a durable outbox when the cloud control plane is unavailable.</li>
+<li>Fail closed for new consequential actions; define an explicit, risk-owned break-glass path.</li>
+</ul>
+<h3 id="3-palo-cloud">3. PALO Cloud<a class="palo-doc-anchor" href="#3-palo-cloud" aria-label="Link to 3. PALO Cloud">#</a></h3><p>Use for design partners only after the identity, state, key and recovery gates are complete.</p>
+<ul>
+<li>Separate tenant control data at the database, cache, queue, object-storage and key layers.</li>
+<li>Use per-environment and preferably per-tenant signing keys.</li>
+<li>Isolate administrative APIs from runtime APIs.</li>
+<li>Run stateless gateways and evaluators across availability zones.</li>
+<li>Use managed PostgreSQL, managed key custody, a durable queue and immutable evidence archive.</li>
+<li>Publish SLOs for decision latency, availability, approval delivery, evidence durability and recovery.</li>
+</ul>
+<h3 id="4-palo-private">4. PALO Private<a class="palo-doc-anchor" href="#4-palo-private" aria-label="Link to 4. PALO Private">#</a></h3><p>Use for regulated organizations and customers requiring data-residency or network control.</p>
+<ul>
+<li>Deliver signed OCI images, Helm charts or equivalent reproducible deployment artifacts.</li>
+<li>Integrate with the customer's OIDC, secrets manager, SIEM, KMS/HSM and backup services.</li>
+<li>Support offline signed policy bundles and controlled egress.</li>
+<li>Produce a conformance report without exporting sensitive Action Claims.</li>
+<li>Define a supported-version and security-update policy before commercial distribution.</li>
+</ul>
+<h2 id="platform-placement">Platform placement<a class="palo-doc-anchor" href="#platform-placement" aria-label="Link to Platform placement">#</a></h2><div class="palo-doc-table-wrap" tabindex="0" aria-label="Scrollable documentation table"><table>
+<thead>
+<tr>
+<th>Platform</th>
+<th>Local option</th>
+<th>Cloud option</th>
+<th>Strongest practical enforcement</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>n8n</td>
+<td>Local node/native nodes plus local executor</td>
+<td>n8n calls PALO Cloud; private executor recommended</td>
+<td>Governed executor plus self-hosted workflow admission</td>
+</tr>
+<tr>
+<td>Copilot Studio</td>
+<td>Not normally local</td>
+<td>Streamable HTTP MCP / connector to PALO Cloud or Private</td>
+<td>Expose only narrow PALO broker tools; disable equivalent direct tools</td>
+</tr>
+<tr>
+<td>Dify</td>
+<td>Self-hosted strategy/plugin</td>
+<td>Hosted Dify calls PALO Cloud</td>
+<td>PALO-owned Agent Strategy before <code>tool.invoke</code></td>
+</tr>
+<tr>
+<td>LangChain/LangGraph</td>
+<td>Local middleware and sidecar</td>
+<td>Cloud service plus server-side broker</td>
+<td>Client middleware plus authoritative server enforcement</td>
+</tr>
+<tr>
+<td>Node-RED</td>
+<td>Local node and runtime hook</td>
+<td>Remote policy with local executor</td>
+<td>Administrator-controlled runtime hook and protected-node registry</td>
+</tr>
+<tr>
+<td>Make/Zapier</td>
+<td>Local is not the primary model</td>
+<td>Hosted platform calls PALO Cloud</td>
+<td>Brokered action; direct native actions removed</td>
+</tr>
+</tbody></table></div>
+<h2 id="cloud-provider-decision">Cloud-provider decision<a class="palo-doc-anchor" href="#cloud-provider-decision" aria-label="Link to Cloud-provider decision">#</a></h2><p>Keep the product architecture cloud-neutral. For the first managed pilot, Azure is strategically coherent with Copilot Studio because Entra ID, Key Vault, managed PostgreSQL, queues, container services and Power Platform governance can be combined without changing PALO contracts. AWS or GCP are equally viable when a design partner already operates there. The selection gate should be operational ownership, customer identity, data residency and managed key requirements, not branding.</p>
+<p>The existing Hostinger VPS can continue as a disposable single-tenant interoperability environment. Do not make it the production source of truth until automated backup/restore, least-privilege administration, managed key custody, monitoring, incident response and independent security testing are in place.</p>
+<h2 id="scale-gates">Scale gates<a class="palo-doc-anchor" href="#scale-gates" aria-label="Link to Scale gates">#</a></h2><ol>
+<li><strong>10 design workflows:</strong> single-tenant staging, synthetic data, daily backup verification, manual support.</li>
+<li><strong>First external design partner:</strong> isolated tenant, OIDC, per-environment keys, signed policy bundles, audit export and contractual preview scope.</li>
+<li><strong>Production candidate:</strong> multi-zone services, PostgreSQL PITR, durable outbox, KMS/HSM, SLOs, on-call, recovery exercises and external pen test.</li>
+<li><strong>Multi-tenant service:</strong> formal tenant threat model, isolation tests, per-tenant quotas/keys, privacy controls, regional deployment and independent assurance.</li>
+<li><strong>Enterprise/private distribution:</strong> signed supply chain, SBOM/VEX, support lifecycle, upgrade/rollback conformance and customer-operated key option.</li>
+</ol>
+<h2 id="production-acceptance-tests">Production acceptance tests<a class="palo-doc-anchor" href="#production-acceptance-tests" aria-label="Link to Production acceptance tests">#</a></h2><ul>
+<li>Policy outage, stale bundle and malformed decision all fail closed.</li>
+<li>A direct tool path is denied at network or credential level.</li>
+<li>Duplicate, reordered and replayed claims cannot cause a second side effect.</li>
+<li>Approval modification generates a new claim and new evaluation.</li>
+<li>A one-time grant is consumed atomically with the execution intent.</li>
+<li>Evidence is generated by the trusted executor, not accepted as caller-supplied truth.</li>
+<li>Database, queue and region recovery preserve decision/approval/execution lineage.</li>
+<li>Tenant A cannot observe, authorize, replay or verify private data from tenant B.</li>
+</ul>
+<p>See also the <a href="palo-ai-security-assurance-and-scale.html">security assurance and scale plan</a> and <a href="palo-ai-production-readiness-plan.html">production-readiness plan</a>.</p>
+</article></div>
+      <aside class="palo-doc-next"><div><small>Prerequisite</small><strong>Threat model and deployment owner</strong></div><div><small>Recommended next step</small><strong>Review Production Readiness</strong></div></aside>
+      <section class="palo-doc-feedback" aria-labelledby="feedback-title"><p class="palo-eyebrow">Privacy-first feedback</p><h2 id="feedback-title">Help improve this guide</h2><p>Your feedback stays in your browser until you explicitly copy it, download it, or open an email draft. Do not include secrets, personal data, credentials or production identifiers.</p><form data-doc-feedback><div class="palo-form-grid"><div class="palo-field"><label for="feedback-role">Your role</label><select id="feedback-role" name="role"><option>Executive / governance owner</option><option>Platform or security engineer</option><option>No-code / low-code builder</option><option>External reviewer</option></select></div><div class="palo-field"><label for="feedback-category">Category</label><select id="feedback-category" name="category"><option>Clarity</option><option>Technical accuracy</option><option>Missing guidance</option><option>Accessibility</option></select></div><div class="palo-field palo-field-full"><label for="feedback-message">Feedback</label><textarea id="feedback-message" name="message" maxlength="3000" required placeholder="Describe the non-sensitive improvement you recommend."></textarea></div><div class="palo-form-actions"><button class="palo-btn" type="button" data-feedback-copy>Copy feedback</button><button class="palo-btn palo-btn-secondary" type="button" data-feedback-download>Download JSON</button><button class="palo-btn palo-btn-secondary" type="button" data-feedback-email>Email draft</button></div></div><p class="palo-action-status" data-feedback-status role="status" aria-live="polite"></p></form></section>
+    </div>
+  </main>
+  <footer class="palo-footer"><div class="palo-shell"><p>PALO public documentation. Developer preview boundaries apply.</p><div class="palo-footer-links"><a href="../PALO_AIGovernance.html">PALO-AI</a><a href="../governance-hub/">Governance Hub</a><a href="../PALO_AgenticCapabilityMatrix.html">Capability Matrix</a><a href="../PALO_AIProductionReadiness.html">Production Readiness</a><a href="../privacy-policy.html">Privacy</a></div></div></footer>
+</body></html>

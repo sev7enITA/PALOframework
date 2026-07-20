@@ -1,6 +1,6 @@
 # PALO-AI Online VPS Deployment
 
-Status: Internet-reachable developer-preview deployment for PALO-AI v2.5. This topology provides HTTPS and network isolation, but it does not remove the production-readiness blockers in the current technical assessment.
+Status: Internet-reachable developer-preview deployment for PALO-AI v2.5. This topology provides HTTPS and network isolation, but it does not remove the blockers tracked in the public [Production Readiness plan](../PALO_AIProductionReadiness.html).
 
 ## Live deployment status
 
@@ -270,4 +270,4 @@ The current SQLite volume is suitable only for the developer preview. Back it up
 
 Putting the endpoint online does not make it production-ready. The shared-token identity model, optional n8n gate, evidence provenance, policy-bundle attestation, approval identity, cached authorization and effective resource-to-scope binding issues remain. Use mock, reversible or non-consequential actions until those findings are closed.
 
-See the [v2.5 technical assessment](palo-ai-v2.5-technical-assessment.md), the retained [v2.4.1 baseline](palo-ai-v2.4.1-technical-assessment.md), and the [integration guide](palo-ai-governance-integration-guide.md).
+See the [public Production Readiness route](../PALO_AIProductionReadiness.html), [Capability Matrix](../PALO_AgenticCapabilityMatrix.html), and [integration guide](palo-ai-governance-integration-guide.md). Internal assessment workpapers are not published.

@@ -35,6 +35,7 @@
     <a href="PALO_AuditBench.html"><span data-palo-icon="search" class="palo-icon-inline"></span>AuditBench</a>
     <a href="PALO_VibeCoding.html"><span data-palo-icon="lock" class="palo-icon-inline"></span>AI Dev Gov.</a>
     <a href="PALO_AgenticGovernance.html"><span data-palo-icon="robot" class="palo-icon-inline"></span>PALO-AM</a>
+    <a href="governance-hub/"><span data-palo-icon="layers" class="palo-icon-inline"></span>Governance Hub</a>
     <a href="PALO_PoisoningStudy.html"><span data-palo-icon="microscope" class="palo-icon-inline"></span>Poisoning Study</a>
     <a href="PALO_TechTrends2026.html"><span data-palo-icon="chart" class="palo-icon-inline"></span>Tech Trends</a>
     <a href="PALO_Community.html"><span data-palo-icon="users" class="palo-icon-inline"></span>Community</a>
@@ -43,6 +44,8 @@
 
 <nav class="section-nav">
   <div class="nav-brand"><span data-palo-icon=robot class=palo-icon-inline></span>PALO-AM</div>
+  <button class="section-menu-toggle" type="button" data-am-section-toggle aria-expanded="false" aria-controls="am-section-links">Explore sections</button>
+  <div class="section-links" id="am-section-links" data-am-section-links>
   <a href="#objects">Five Objects</a>
   <a href="#simulator">Simulator</a>
   <a href="#matrix">Risk Matrix</a>
@@ -51,7 +54,10 @@
   <a href="#kpis">KPIs</a>
   <a href="#scenarios">Scenarios</a>
   <a href="#agentic-interface">Agentic Interface</a>
+  <a href="governance-hub/">Governance Hub</a>
   <a href="#standards">Standards</a>
+  </div>
+  <a class="section-hub-action" href="governance-hub/">Open Hub</a>
 </nav>
 
 <main id="main-content">
@@ -59,9 +65,13 @@
 <!-- === HERO === -->
 <header class="hero">
 <div class="container">
-  <div class="hero-badge"><span data-palo-icon=robot class=palo-icon-inline></span>PALO-AM v2.0 - JUNE 2026</div>
+  <div class="hero-badge"><span data-palo-icon=robot class=palo-icon-inline></span>PALO-AM v2.0 · CURRENT METHODOLOGY BASELINE · JUNE 2026</div>
   <h1>Agentic Governance Modality<br><span class="gradient-text">From Model Governance to Delegated-Action Governance</span></h1>
   <p class="hero-subtitle"><span data-palo-icon=robot class=palo-icon-inline></span>PALO-AM is the agentic extension of the PALO Framework. It introduces a new layer of governance objects, control domains and evidence artefacts specifically designed for AI systems that select tools, write to systems, trigger workflows and act autonomously on behalf of the organization.</p>
+  <div style="max-width:900px;margin:22px 0;padding:17px 19px;color:var(--am-text-muted);background:var(--am-glass);border-left:4px solid #c78a19;">
+    <strong style="color:#fff;">Two separate version streams.</strong> PALO-AM v2.0 remains the current governance modality and methodology baseline published in June 2026. PALO-AI v2.5 is the July 2026 full-cycle runtime and contracts developer preview that operationalizes parts of this modality. Neither label makes the runtime production-ready.
+  </div>
+  <div style="display:flex;flex-wrap:wrap;gap:12px;margin:0 0 28px;"><a href="governance-hub/" class="palo-btn">Open PALO-AI Governance Hub</a><a href="PALO_AIProductionReadiness.html" class="palo-btn palo-btn-secondary">View Production Readiness</a></div>
   <div class="hero-meta">
     <div class="author-card"><div class="author-avatar">FD</div><div><strong>Fabrizio Degni</strong><span>Chief AI Officer</span></div></div>
     <div class="hero-stats">
@@ -242,7 +252,7 @@
     <h2>Action-Space vs Autonomy Matrix</h2>
     <p class="section-desc">The primary PALO-AM routing instrument. Examines two dimensions: <strong>what can the agent change</strong> (action-space impact) and <strong>how independently can it decide</strong> (autonomy level). Any increase in autonomy or action-space after approval triggers Phase 2 reassessment.</p>
   </div>
-  <div class="matrix-container" tabindex="0" role="region" aria-label="Action-space and autonomy matrix. Scroll horizontally for all columns.">
+  <div class="matrix-container" tabindex="0" role="region" aria-label="Action-space and autonomy matrix. On small screens each autonomy row is presented as labelled impact cards." data-mobile-presentation="stacked">
     <p class="horizontal-scroll-hint">Scroll horizontally to inspect all matrix columns &rarr;</p>
     <div style="text-align:center;margin-bottom:16px;font-size:.8rem;color:var(--am-text-muted);">
       <strong style="color:var(--am-text);">&harr; Autonomy Level</strong> (rows) &nbsp;x&nbsp; <strong style="color:var(--am-text);">&rarr; Action-Space Impact</strong> (columns)
@@ -254,25 +264,25 @@
       <div class="matrix-header">High Impact<br><span style="font-weight:400;font-size:.65rem;">(cross-system)</span></div>
       <div class="matrix-header">Critical Impact<br><span style="font-weight:400;font-size:.65rem;">(financial/safety/legal)</span></div>
       <div class="matrix-label">High Autonomy</div>
-      <div class="matrix-cell tier-2">Tier 2</div>
-      <div class="matrix-cell tier-1">Tier 1</div>
-      <div class="matrix-cell tier-1">Tier 1</div>
-      <div class="matrix-cell tier-prohibited">PROHIBITED</div>
+      <div class="matrix-cell tier-2" data-impact="Low impact · read-only / reversible">Tier 2</div>
+      <div class="matrix-cell tier-1" data-impact="Medium impact · internal write">Tier 1</div>
+      <div class="matrix-cell tier-1" data-impact="High impact · cross-system">Tier 1</div>
+      <div class="matrix-cell tier-prohibited" data-impact="Critical impact · financial / safety / legal">PROHIBITED</div>
       <div class="matrix-label">Medium Autonomy</div>
-      <div class="matrix-cell tier-3">Tier 3</div>
-      <div class="matrix-cell tier-2">Tier 2</div>
-      <div class="matrix-cell tier-1">Tier 1</div>
-      <div class="matrix-cell tier-1">Tier 1</div>
+      <div class="matrix-cell tier-3" data-impact="Low impact · read-only / reversible">Tier 3</div>
+      <div class="matrix-cell tier-2" data-impact="Medium impact · internal write">Tier 2</div>
+      <div class="matrix-cell tier-1" data-impact="High impact · cross-system">Tier 1</div>
+      <div class="matrix-cell tier-1" data-impact="Critical impact · financial / safety / legal">Tier 1</div>
       <div class="matrix-label">Low Autonomy</div>
-      <div class="matrix-cell tier-3">Tier 3</div>
-      <div class="matrix-cell tier-3">Tier 3</div>
-      <div class="matrix-cell tier-2">Tier 2</div>
-      <div class="matrix-cell tier-2">Tier 2</div>
+      <div class="matrix-cell tier-3" data-impact="Low impact · read-only / reversible">Tier 3</div>
+      <div class="matrix-cell tier-3" data-impact="Medium impact · internal write">Tier 3</div>
+      <div class="matrix-cell tier-2" data-impact="High impact · cross-system">Tier 2</div>
+      <div class="matrix-cell tier-2" data-impact="Critical impact · financial / safety / legal">Tier 2</div>
       <div class="matrix-label">Supervised</div>
-      <div class="matrix-cell tier-4">Tier 4</div>
-      <div class="matrix-cell tier-4">Tier 4</div>
-      <div class="matrix-cell tier-3">Tier 3</div>
-      <div class="matrix-cell tier-3">Tier 3</div>
+      <div class="matrix-cell tier-4" data-impact="Low impact · read-only / reversible">Tier 4</div>
+      <div class="matrix-cell tier-4" data-impact="Medium impact · internal write">Tier 4</div>
+      <div class="matrix-cell tier-3" data-impact="High impact · cross-system">Tier 3</div>
+      <div class="matrix-cell tier-3" data-impact="Critical impact · financial / safety / legal">Tier 3</div>
     </div>
     <div class="matrix-legend">
       <div class="legend-item"><div class="legend-dot t1"></div>Tier 1 - Maximum Controls</div>
@@ -434,7 +444,8 @@
     <strong>Full-Cycle Developer Preview · Not for production authorization.</strong> PALO-AI v2.5 adds Action Claim 1.2, Effect Contracts, one-time execution capabilities, trusted receipts, authoritative outcome attestations and assurance incidents. The reference runtime can demonstrate the complete cycle with operator-provisioned in-process connectors and synthetic data. Production identity, KMS/HSM, distributed exactly-once guarantees, high availability, independently assessed connectors and collaborative-agent-team runtime semantics remain under development.
   </div>
   <div style="display:flex;flex-wrap:wrap;gap:12px;margin-bottom:28px;">
-    <a href="PALO_AIGovernance.html" class="palo-btn"><span data-palo-icon="robot" class="palo-icon-inline"></span>Open the PALO-AI Governance Hub</a>
+    <a href="governance-hub/" class="palo-btn"><span data-palo-icon="robot" class="palo-icon-inline"></span>Open the PALO-AI Governance Hub</a>
+    <a href="PALO_AIGovernance.html" class="palo-btn palo-btn-secondary">PALO-AI overview</a>
     <a href="docs/palo-ai-adoption-paths.md" class="palo-btn palo-btn-secondary">Choose an adoption path</a>
   </div>
   
@@ -579,5 +590,6 @@
 
 <script src="assets/palo-am-simulator.js?v=2.4.1"></script>
 <script src="assets/palo-am-runtime-console.js?v=2.4.1"></script>
+<script src="assets/palo-am-nav.js?v=2.5.0"></script>
 </body>
 </html>

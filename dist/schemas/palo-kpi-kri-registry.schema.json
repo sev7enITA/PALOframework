@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paloframework.org/schemas/palo-kpi-kri-registry.schema.json",
+  "title": "PALO KPI KRI Registry",
+  "type": "object",
+  "required": ["format", "schemaVersion", "status", "updatedAt", "disclaimer", "indicators"],
+  "properties": {
+    "format": { "const": "palo-kpi-kri-registry" },
+    "schemaVersion": { "const": "1.0.0" },
+    "status": { "const": "educational-non-production" },
+    "updatedAt": { "type": "string", "format": "date" },
+    "disclaimer": { "type": "string", "minLength": 20 },
+    "indicators": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["indicatorId", "type", "name", "purpose", "formula", "cadence", "direction", "thresholds", "controlIds", "gateIds", "sourceIds", "caveat"],
+        "properties": {
+          "indicatorId": { "type": "string", "pattern": "^(kpi|kri)-[a-z0-9-]+$" },
+          "type": { "enum": ["KPI", "KRI"] },
+          "name": { "type": "string", "minLength": 1 },
+          "purpose": { "type": "string", "minLength": 1 },
+          "formula": { "type": "string", "minLength": 1 },
+          "cadence": { "type": "string", "minLength": 1 },
+          "direction": { "enum": ["higher-is-better", "lower-is-better", "within-range"] },
+          "thresholds": { "type": "object", "required": ["amber", "red"], "properties": { "amber": { "type": "string" }, "red": { "type": "string" } }, "additionalProperties": false },
+          "controlIds": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string" } },
+          "gateIds": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string" } },
+          "sourceIds": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string" } },
+          "caveat": { "type": "string", "minLength": 10 }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

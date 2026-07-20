@@ -1,0 +1,48 @@
+flowchart TB
+    subgraph People["Role-based Governance Hub"]
+        EC["Executive Cockpit<br/>portfolio, exposure, decisions"]
+        TW["Technical Workbench<br/>configure, test, operate"]
+        RV["Reviewer workspace<br/>approve or deny exact claims"]
+        AU["Auditor view<br/>read evidence and versions"]
+    end
+
+    MOCK["Illustrative local data<br/>CURRENT PROTOTYPE"]
+    BFF["Hub API / backend-for-frontend<br/>REQUIRED FOR LIVE DATA: OIDC, RBAC, tenant context, redaction"]
+
+    subgraph Runtime["PALO-AI v2.5 developer-preview runtime"]
+        GW["Gateway + MCP server<br/>current: shared bearer token"]
+        REG["Versioned registry<br/>agents, policies, executors, verifiers"]
+        OPA["OPA / Rego v1<br/>default deny"]
+        APR["Digest-bound approvals"]
+        EXE["One-time capability<br/>governed executor"]
+        VER["Authoritative verifier<br/>Effect Contract"]
+        LED["SQLite WAL + hash-chain evidence"]
+        INC["Assurance incidents<br/>resource holds"]
+    end
+
+    PLAT["Agent and workflow platforms<br/>n8n, MCP clients, custom runtimes"]
+    TARGET["Protected target systems"]
+
+    EC --> MOCK
+    TW --> MOCK
+    RV --> MOCK
+    AU --> MOCK
+    EC -. "planned authenticated path" .-> BFF
+    TW -. "planned authenticated path" .-> BFF
+    RV -. "planned authenticated path" .-> BFF
+    AU -. "planned authenticated path" .-> BFF
+    BFF --> GW
+    PLAT --> GW
+    GW --> REG
+    GW --> OPA
+    GW --> APR
+    GW --> EXE
+    EXE --> TARGET
+    EXE --> VER
+    VER --> TARGET
+    GW --> LED
+    VER --> INC
+    INC --> LED
+
+    NOTE["Developer-preview boundary<br/>No production identity, HA, KMS/HSM,<br/>tenant isolation or certified connectors"]
+    NOTE -.-> GW

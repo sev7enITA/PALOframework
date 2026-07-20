@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   Pulse,
   ArrowRight,
@@ -77,6 +77,19 @@ const executiveNav = [
   ["reports", "Reports", FileText],
 ];
 
+const knownViews = {
+  technical: new Set(technicalNav.map(([id]) => id)),
+  executive: new Set(executiveNav.map(([id]) => id)),
+};
+
+function initialRoute() {
+  const params = new URLSearchParams(window.location.search);
+  const requestedRole = params.get("role");
+  const role = requestedRole === "executive" || requestedRole === "technical" ? requestedRole : "technical";
+  const requestedView = params.get("view");
+  return { role, view: knownViews[role].has(requestedView) ? requestedView : role === "executive" ? "today" : "setup" };
+}
+
 function downloadBlob(blob, filename) {
   const url = URL.createObjectURL(blob);
   const anchor = document.createElement("a");
@@ -119,10 +132,10 @@ function StatusPill({ children, tone = toneFor(String(children)) }) {
 
 function AppMark() {
   return (
-    <div className="app-mark" aria-label="PALO-AI Governance Hub">
+    <a className="app-mark" href="../PALO_AIGovernance.html" aria-label="PALO-AI Governance Hub — return to public overview">
       <div className="app-mark-icon"><ShieldCheck weight="duotone" /></div>
       <div><strong>PALO-AI</strong><span>Governance Hub</span></div>
-    </div>
+    </a>
   );
 }
 
@@ -150,6 +163,10 @@ function Shell({ role, onRoleChange, view, onViewChange, children }) {
               {id === "incidents" && <span className="nav-count">2</span>}
             </button>
           ))}
+        </nav>
+        <nav className="public-links" aria-label="Public PALO resources">
+          <a href="../PALO_DocumentationLibrary.html"><FileText /><span>Documentation</span></a>
+          <a href="../PALO_AIProductionReadiness.html"><ShieldCheck /><span>Readiness</span></a>
         </nav>
         <div className="sidebar-brand">
           <img src={`${import.meta.env.BASE_URL}logo.webp`} alt="PALO Framework" />
@@ -543,9 +560,10 @@ function IntegrationsView() {
 }
 
 export function App() {
-  const [role, setRole] = useState("technical");
-  const [technicalView, setTechnicalView] = useState("setup");
-  const [executiveView, setExecutiveView] = useState("today");
+  const initial = useMemo(initialRoute, []);
+  const [role, setRole] = useState(initial.role);
+  const [technicalView, setTechnicalView] = useState(initial.role === "technical" ? initial.view : "setup");
+  const [executiveView, setExecutiveView] = useState(initial.role === "executive" ? initial.view : "today");
   const [selectedExecution, setSelectedExecution] = useState(null);
   const [approvals, setApprovals] = useState(initialApprovalRows);
   const [incidents, setIncidents] = useState(initialIncidentRows);
@@ -553,6 +571,14 @@ export function App() {
 
   const view = role === "technical" ? technicalView : executiveView;
   const setView = role === "technical" ? setTechnicalView : setExecutiveView;
+  useEffect(() => {
+    const url = new URL(window.location.href);
+    url.searchParams.set("role", role);
+    url.searchParams.set("view", view);
+    window.history.replaceState(null, "", `${url.pathname}${url.search}${url.hash}`);
+    document.documentElement.dataset.hubRole = role;
+    document.documentElement.dataset.hubView = view;
+  }, [role, view]);
   const changeRole = (nextRole) => {
     setRole(nextRole);
     setSelectedExecution(null);

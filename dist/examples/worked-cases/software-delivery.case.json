@@ -1,0 +1,29 @@
+{
+  "format": "palo-case-file",
+  "schemaVersion": "1.0.0",
+  "caseId": "case-software-code-review",
+  "title": "Worked case: AI-assisted software delivery",
+  "status": "draft",
+  "createdAt": "2026-07-12T08:00:00Z",
+  "updatedAt": "2026-07-12T08:00:00Z",
+  "owner": "Educational example owner",
+  "context": {
+    "domain": "software-delivery",
+    "scenario": "A coding assistant proposes changes in a sandbox; branch protection, tests and accountable reviewers remain mandatory.",
+    "exampleStatus": "educational-non-production",
+    "sourceStatus": "Security references are informative starting points and require a system-specific threat model and current version check.",
+    "limitations": "Fictional repository and controls; no production architecture, attack surface or dependency behavior has been assessed.",
+    "p2References": {
+      "controlIds": ["ctrl-purpose-boundary", "ctrl-adversarial-testing", "ctrl-change-gate", "ctrl-decision-trace"],
+      "indicatorIds": ["kri-critical-test-failure-rate", "kpi-review-completion", "kri-scope-change-rate"],
+      "gateIds": ["classify", "assess", "measure", "prove"],
+      "sourceIds": ["src-nist-genai-profile", "src-owasp-llm-top10"],
+      "templateIds": ["tpl-red-team-evidence", "tpl-incident-response"]
+    }
+  },
+  "assessments": [{ "assessmentId": "assessment-software-1", "module": "P2 worked case", "recordedAt": "2026-07-12T08:00:00Z", "data": { "decision": "proceed-with-conditions", "conditions": ["No direct production credentials", "Required review and test gates", "Dependency and license checks"] } }],
+  "evidence": [{ "evidenceId": "evidence-software-test-plan", "title": "Illustrative adversarial test plan", "kind": "test-plan", "status": "draft", "recordedAt": "2026-07-12T08:00:00Z", "content": { "scenarios": ["Prompt injection through repository content", "Secret exfiltration attempt", "Unsafe dependency suggestion"] } }],
+  "sources": [{ "sourceId": "src-owasp-llm-top10", "title": "OWASP Top 10 for Large Language Model Applications", "url": "https://owasp.org/www-project-top-10-for-large-language-model-applications/", "sourceType": "organizational", "publisher": "OWASP Foundation", "checkedAt": "2026-07-12T08:00:00Z", "freshness": { "status": "current", "reviewIntervalDays": 90, "nextReviewAt": "2026-10-10T08:00:00Z" } }],
+  "incidents": [],
+  "handoffs": []
+}

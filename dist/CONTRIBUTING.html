@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Contributing to PALO Framework | PALO Documentation</title>
+  <meta name="description" content="Public PALO documentation: Contributing to PALO Framework.">
+  <link rel="canonical" href="https://paloframework.org/CONTRIBUTING.html">
+  <link rel="icon" type="image/webp" href="assets/logo.webp">
+  <link rel="stylesheet" href="assets/palo-icons.css">
+  <link rel="stylesheet" href="assets/palo-v21.css?v=2.5.0">
+  <link rel="stylesheet" href="assets/palo-docs.css">
+  <script src="assets/palo-icons.js" defer></script>
+  <script src="assets/palo-v21.js?v=2.5.0" defer></script>
+  <script src="assets/palo-docs.js" defer></script>
+</head>
+<body class="palo-v21 palo-doc-page" data-doc-source="CONTRIBUTING.md">
+  <a class="palo-skip-link" href="#main-content">Skip to main content</a>
+  <header class="palo-site-header"><div class="palo-shell palo-header-inner">
+    <a class="palo-brand" href="index.html"><img src="assets/logo.webp" alt="PALO">PALO FRAMEWORK</a>
+    <button class="palo-menu-toggle" type="button" data-palo-menu-toggle aria-expanded="false" aria-controls="palo-primary-nav" aria-label="Open navigation"><span data-palo-icon="menu" aria-hidden="true"></span></button>
+    <nav class="palo-nav" id="palo-primary-nav" aria-label="Primary navigation"><a href="designs/theory-to-practice-infographic/">Start</a><a href="PALO_AIGovernance.html">Agentic Governance</a><a href="governance-hub/">Governance Hub</a><a href="index.html#guided-journeys">Tools</a><a href="PALO_DocumentationLibrary.html" aria-current="page">Documentation</a><a href="PALO_AIProductionReadiness.html">Readiness</a></nav>
+  </div></header>
+  <main id="main-content" class="palo-doc-main">
+    <div class="palo-shell">
+      <nav class="palo-doc-breadcrumb" aria-label="Breadcrumb"><a href="PALO_DocumentationLibrary.html">Documentation Library</a><span aria-hidden="true">/</span><span>Community and contribution</span></nav>
+      <header class="palo-doc-hero"><p class="palo-eyebrow">Community and contribution · Public documentation</p><h1>Contributing to PALO Framework</h1><div class="palo-doc-facts"><span><small>Level</small><strong>reference</strong></span><span><small>Audience</small><strong>governance · technical · builder</strong></span><span><small>Product</small><strong>PALO Core</strong></span><span><small>Status</small><strong>Current Guidance</strong></span><span><small>Read</small><strong>3 min</strong></span></div><p class="palo-doc-source">Published HTML view · Source: <code>CONTRIBUTING.md</code></p><div class="palo-actions"><button class="palo-btn" type="button" data-doc-copy-link>Copy link</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-share>Share page</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-print>Print</button></div><p class="palo-action-status" data-doc-action-status role="status" aria-live="polite"></p></header>
+      <details class="palo-doc-mobile-toc"><summary>On this page</summary><ol><li class="depth-2"><a href="#table-of-contents">Table of Contents</a></li><li class="depth-2"><a href="#code-of-conduct">Code of Conduct</a></li><li class="depth-2"><a href="#how-can-i-contribute">How Can I Contribute?</a></li><li class="depth-3"><a href="#reporting-bugs">Reporting Bugs</a></li><li class="depth-3"><a href="#suggesting-enhancements">Suggesting Enhancements</a></li><li class="depth-3"><a href="#documentation">Documentation</a></li><li class="depth-3"><a href="#translations">Translations</a></li><li class="depth-2"><a href="#development-setup">Development Setup</a></li><li class="depth-3"><a href="#prerequisites">Prerequisites</a></li><li class="depth-3"><a href="#local-development">Local Development</a></li><li class="depth-2"><a href="#style-guidelines">Style Guidelines</a></li><li class="depth-3"><a href="#html">HTML</a></li><li class="depth-3"><a href="#css">CSS</a></li><li class="depth-3"><a href="#javascript">JavaScript</a></li><li class="depth-3"><a href="#accessibility">Accessibility</a></li><li class="depth-2"><a href="#pull-request-process">Pull Request Process</a></li><li class="depth-3"><a href="#pr-checklist">PR Checklist</a></li><li class="depth-3"><a href="#review-process">Review Process</a></li><li class="depth-2"><a href="#questions">Questions?</a></li></ol></details>
+      <div class="palo-doc-layout"><aside class="palo-doc-sidebar" aria-label="On this page"><strong>On this page</strong><ol><li class="depth-2"><a href="#table-of-contents">Table of Contents</a></li><li class="depth-2"><a href="#code-of-conduct">Code of Conduct</a></li><li class="depth-2"><a href="#how-can-i-contribute">How Can I Contribute?</a></li><li class="depth-3"><a href="#reporting-bugs">Reporting Bugs</a></li><li class="depth-3"><a href="#suggesting-enhancements">Suggesting Enhancements</a></li><li class="depth-3"><a href="#documentation">Documentation</a></li><li class="depth-3"><a href="#translations">Translations</a></li><li class="depth-2"><a href="#development-setup">Development Setup</a></li><li class="depth-3"><a href="#prerequisites">Prerequisites</a></li><li class="depth-3"><a href="#local-development">Local Development</a></li><li class="depth-2"><a href="#style-guidelines">Style Guidelines</a></li><li class="depth-3"><a href="#html">HTML</a></li><li class="depth-3"><a href="#css">CSS</a></li><li class="depth-3"><a href="#javascript">JavaScript</a></li><li class="depth-3"><a href="#accessibility">Accessibility</a></li><li class="depth-2"><a href="#pull-request-process">Pull Request Process</a></li><li class="depth-3"><a href="#pr-checklist">PR Checklist</a></li><li class="depth-3"><a href="#review-process">Review Process</a></li><li class="depth-2"><a href="#questions">Questions?</a></li></ol></aside><article class="palo-doc-content"><h1 id="contributing-to-palo-framework">Contributing to PALO Framework<a class="palo-doc-anchor" href="#contributing-to-palo-framework" aria-label="Link to Contributing to PALO Framework">#</a></h1><p>First off, thank you for considering contributing to PALO!</p>
+<h2 id="table-of-contents">Table of Contents<a class="palo-doc-anchor" href="#table-of-contents" aria-label="Link to Table of Contents">#</a></h2><ul>
+<li><a href="#code-of-conduct">Code of Conduct</a></li>
+<li><a href="#how-can-i-contribute">How Can I Contribute?</a></li>
+<li><a href="#development-setup">Development Setup</a></li>
+<li><a href="#style-guidelines">Style Guidelines</a></li>
+<li><a href="#pull-request-process">Pull Request Process</a></li>
+</ul>
+<hr />
+<h2 id="code-of-conduct">Code of Conduct<a class="palo-doc-anchor" href="#code-of-conduct" aria-label="Link to Code of Conduct">#</a></h2><p>This project adheres to the Contributor Covenant <a href="https://github.com/sev7enITA/PALOframework/blob/main/CODE_OF_CONDUCT.md" target="_blank" rel="noopener noreferrer">Code of Conduct</a>. By participating, you are expected to uphold this code. Please report unacceptable behavior to <a href="mailto:conduct@paloframework.org">conduct@paloframework.org</a>.</p>
+<hr />
+<h2 id="how-can-i-contribute">How Can I Contribute?<a class="palo-doc-anchor" href="#how-can-i-contribute" aria-label="Link to How Can I Contribute?">#</a></h2><h3 id="reporting-bugs">Reporting Bugs<a class="palo-doc-anchor" href="#reporting-bugs" aria-label="Link to Reporting Bugs">#</a></h3><p>Before creating bug reports, please check existing issues. When you create a bug report, include as many details as possible:</p>
+<ul>
+<li><strong>Use a clear and descriptive title</strong></li>
+<li><strong>Describe the exact steps to reproduce the problem</strong></li>
+<li><strong>Provide specific examples</strong></li>
+<li><strong>Describe the behavior you observed and expected</strong></li>
+<li><strong>Include screenshots if applicable</strong></li>
+<li><strong>Note your browser and version</strong></li>
+</ul>
+<h3 id="suggesting-enhancements">Suggesting Enhancements<a class="palo-doc-anchor" href="#suggesting-enhancements" aria-label="Link to Suggesting Enhancements">#</a></h3><p>Enhancement suggestions are tracked as GitHub issues. When creating an enhancement suggestion:</p>
+<ul>
+<li><strong>Use a clear and descriptive title</strong></li>
+<li><strong>Provide a detailed description of the suggested enhancement</strong></li>
+<li><strong>Explain why this enhancement would be useful</strong></li>
+<li><strong>List any similar features in other projects if applicable</strong></li>
+</ul>
+<h3 id="documentation">Documentation<a class="palo-doc-anchor" href="#documentation" aria-label="Link to Documentation">#</a></h3><ul>
+<li>Fix typos or clarify language</li>
+<li>Add missing documentation</li>
+<li>Improve code comments</li>
+<li>Write tutorials or guides</li>
+</ul>
+<h3 id="translations">Translations<a class="palo-doc-anchor" href="#translations" aria-label="Link to Translations">#</a></h3><p>We welcome translations! Currently available:</p>
+<ul>
+<li>English (default)</li>
+<li>Italian (partial)</li>
+</ul>
+<p>To add a new language:</p>
+<ol>
+<li>Copy the English version of the file</li>
+<li>Add language suffix (e.g., <code>_DE.html</code> for German)</li>
+<li>Translate all content</li>
+<li>Submit a pull request</li>
+</ol>
+<hr />
+<h2 id="development-setup">Development Setup<a class="palo-doc-anchor" href="#development-setup" aria-label="Link to Development Setup">#</a></h2><h3 id="prerequisites">Prerequisites<a class="palo-doc-anchor" href="#prerequisites" aria-label="Link to Prerequisites">#</a></h3><ul>
+<li>Modern web browser (Chrome, Firefox, Safari, Edge)</li>
+<li>Text editor (VS Code recommended)</li>
+<li>Git</li>
+</ul>
+<h3 id="local-development">Local Development<a class="palo-doc-anchor" href="#local-development" aria-label="Link to Local Development">#</a></h3><figure class="palo-doc-code"><figcaption>bash code</figcaption><pre tabindex="0"><code class="language-bash"># Clone your fork
+git clone https://github.com/YOUR-USERNAME/palo.git
+cd palo
+
+# Create a branch for your feature
+git checkout -b feature/your-feature-name
+
+# Start a local server (optional, but recommended for testing)
+python3 -m http.server 8000
+
+# Open in browser
+open http://localhost:8000</code></pre></figure><hr />
+<h2 id="style-guidelines">Style Guidelines<a class="palo-doc-anchor" href="#style-guidelines" aria-label="Link to Style Guidelines">#</a></h2><h3 id="html">HTML<a class="palo-doc-anchor" href="#html" aria-label="Link to HTML">#</a></h3><ul>
+<li>Use semantic HTML5 elements</li>
+<li>Include proper ARIA labels for accessibility</li>
+<li>Maintain consistent indentation (4 spaces)</li>
+<li>Include <code>alt</code> attributes for all images</li>
+</ul>
+<h3 id="css">CSS<a class="palo-doc-anchor" href="#css" aria-label="Link to CSS">#</a></h3><ul>
+<li>Use CSS custom properties (variables) for colors</li>
+<li>Follow BEM naming convention where applicable</li>
+<li>Ensure responsive design (mobile-first)</li>
+<li>Test in multiple browsers</li>
+</ul>
+<h3 id="javascript">JavaScript<a class="palo-doc-anchor" href="#javascript" aria-label="Link to JavaScript">#</a></h3><ul>
+<li>Use vanilla JavaScript (no frameworks required)</li>
+<li>Add comments for complex logic</li>
+<li>Ensure keyboard navigation works</li>
+<li>Handle errors gracefully</li>
+</ul>
+<h3 id="accessibility">Accessibility<a class="palo-doc-anchor" href="#accessibility" aria-label="Link to Accessibility">#</a></h3><p>All contributions must maintain WCAG 2.1 AA compliance:</p>
+<ul>
+<li>Color contrast ratio &gt;= 4.5:1</li>
+<li>Keyboard navigable</li>
+<li>Screen reader compatible</li>
+<li>Focus indicators visible</li>
+</ul>
+<hr />
+<h2 id="pull-request-process">Pull Request Process<a class="palo-doc-anchor" href="#pull-request-process" aria-label="Link to Pull Request Process">#</a></h2><ol>
+<li><strong>Fork</strong> the repository</li>
+<li><strong>Create</strong> a feature branch (<code>git checkout -b feature/AmazingFeature</code>)</li>
+<li><strong>Commit</strong> your changes (<code>git commit -m 'Add some AmazingFeature'</code>)</li>
+<li><strong>Push</strong> to the branch (<code>git push origin feature/AmazingFeature</code>)</li>
+<li><strong>Open</strong> a Pull Request</li>
+</ol>
+<h3 id="pr-checklist">PR Checklist<a class="palo-doc-anchor" href="#pr-checklist" aria-label="Link to PR Checklist">#</a></h3><ul>
+<li><input disabled type="checkbox" /> My code follows the style guidelines</li>
+<li><input disabled type="checkbox" /> I have tested in multiple browsers</li>
+<li><input disabled type="checkbox" /> I have updated documentation if needed</li>
+<li><input disabled type="checkbox" /> I have added tests if applicable</li>
+<li><input disabled type="checkbox" /> My changes generate no new warnings</li>
+<li><input disabled type="checkbox" /> I have checked accessibility compliance</li>
+</ul>
+<h3 id="review-process">Review Process<a class="palo-doc-anchor" href="#review-process" aria-label="Link to Review Process">#</a></h3><ol>
+<li>Maintainers will review your PR</li>
+<li>Address any requested changes</li>
+<li>Once approved, your PR will be merged</li>
+<li>Celebrate!</li>
+</ol>
+<hr />
+<h2 id="questions">Questions?<a class="palo-doc-anchor" href="#questions" aria-label="Link to Questions?">#</a></h2><p>Feel free to open an issue with the tag <code>question</code> or reach out to the maintainers.</p>
+<hr />
+<p>**Thank you for contributing to responsible AI governance! **</p>
+</article></div>
+      <aside class="palo-doc-next"><div><small>Prerequisite</small><strong>No specialist prerequisite stated</strong></div><div><small>Recommended next step</small><strong>Return to the Documentation Library</strong></div></aside>
+      <section class="palo-doc-feedback" aria-labelledby="feedback-title"><p class="palo-eyebrow">Privacy-first feedback</p><h2 id="feedback-title">Help improve this guide</h2><p>Your feedback stays in your browser until you explicitly copy it, download it, or open an email draft. Do not include secrets, personal data, credentials or production identifiers.</p><form data-doc-feedback><div class="palo-form-grid"><div class="palo-field"><label for="feedback-role">Your role</label><select id="feedback-role" name="role"><option>Executive / governance owner</option><option>Platform or security engineer</option><option>No-code / low-code builder</option><option>External reviewer</option></select></div><div class="palo-field"><label for="feedback-category">Category</label><select id="feedback-category" name="category"><option>Clarity</option><option>Technical accuracy</option><option>Missing guidance</option><option>Accessibility</option></select></div><div class="palo-field palo-field-full"><label for="feedback-message">Feedback</label><textarea id="feedback-message" name="message" maxlength="3000" required placeholder="Describe the non-sensitive improvement you recommend."></textarea></div><div class="palo-form-actions"><button class="palo-btn" type="button" data-feedback-copy>Copy feedback</button><button class="palo-btn palo-btn-secondary" type="button" data-feedback-download>Download JSON</button><button class="palo-btn palo-btn-secondary" type="button" data-feedback-email>Email draft</button></div></div><p class="palo-action-status" data-feedback-status role="status" aria-live="polite"></p></form></section>
+    </div>
+  </main>
+  <footer class="palo-footer"><div class="palo-shell"><p>PALO public documentation. Developer preview boundaries apply.</p><div class="palo-footer-links"><a href="PALO_AIGovernance.html">PALO-AI</a><a href="governance-hub/">Governance Hub</a><a href="PALO_AgenticCapabilityMatrix.html">Capability Matrix</a><a href="PALO_AIProductionReadiness.html">Production Readiness</a><a href="privacy-policy.html">Privacy</a></div></div></footer>
+</body></html>

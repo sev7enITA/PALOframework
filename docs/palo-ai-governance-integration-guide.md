@@ -35,7 +35,7 @@ PALO-AI v2.5 contains a working full-cycle reference core, but not yet a product
 | Dify integration | Authenticated Python example | Prototype | Packaged adapter or Agent Strategy, lifecycle tests and production credentials |
 | Other platforms | Portable adapter contract | Specified | Platform-specific implementations and tests |
 
-The authoritative status is the [public capability matrix](../agentic/capability-matrix.json). A feature is production-ready only when that matrix explicitly says `production-ready`. The [v2.5 technical and security assessment](palo-ai-v2.5-technical-assessment.md) is the current release assessment; the v2.4.1 assessment is retained as the original preview baseline.
+The authoritative public status is the [capability matrix](../PALO_AgenticCapabilityMatrix.html). A feature is production-ready only when the machine-readable matrix explicitly says `production-ready`. Use the [public Production Readiness route](../PALO_AIProductionReadiness.html) for the nine delivery gates and conditional planning ranges. Internal assessment workpapers are not part of the public site.
 
 ### Security blockers identified in this assessment
 
@@ -458,8 +458,8 @@ curl --fail --silent \
 
 ## Repository references
 
-- [PALO-AI v2.5 technical and security assessment](palo-ai-v2.5-technical-assessment.md)
-- [PALO-AI v2.4.1 technical assessment](palo-ai-v2.4.1-technical-assessment.md) — original preview baseline
+- [Public Production Readiness route](../PALO_AIProductionReadiness.html)
+- [Public Capability Matrix](../PALO_AgenticCapabilityMatrix.html)
 - [PALO-AI n8n architecture](palo-ai-n8n-governance-control-plane.md)
 - [Production-readiness plan](palo-ai-production-readiness-plan.md)
 - [n8n alpha test report](palo-ai-n8n-alpha-test-report.md)

@@ -1,6 +1,6 @@
 # PALO-AI Cloud Reference Architecture
 
-Status: target architecture and deployment decision record for the PALO-AI v2.4.1 developer preview, updated 17 July 2026.
+Status: target architecture and deployment decision record for the PALO-AI v2.5 full-cycle developer preview, updated 19 July 2026.
 
 > The live Hostinger VPS is an Internet-reachable developer preview. HTTPS and private container networking do not make the current runtime a production authorization boundary.
 
@@ -23,7 +23,7 @@ The recommended order is Local -> single-tenant Hybrid staging -> managed single
 | Authorization | Coarse route restriction | Tenant/project RBAC, policy administration roles, approval separation of duties |
 | Policy | Local Rego file / preview registry | Signed versioned bundles, controlled promotion, rollback, digest attestation and status telemetry |
 | State | Single-host SQLite WAL | Managed PostgreSQL with tenant isolation, migrations, PITR, transactional outbox and tested restore |
-| Replay | Local nonce/idempotency/sequence checks | Atomic distributed consumption, scoped replay namespaces and recovery-safe exactly-once effects |
+| Replay and recovery | Local nonce/idempotency/sequence checks plus single-instance outbox recovery | Atomic distributed consumption, scoped replay namespaces, connector-specific idempotency and durable recovery without universal exactly-once claims |
 | Signing | Environment-supplied HMAC | KMS/HSM-backed Ed25519 or HMAC keys, rotation, audit and envelope signing |
 | Approval | Preview state machine | Authenticated reviewer context, claim-bound one-time grants, durable callbacks and escalation |
 | Availability | One VPS | Multi-zone services, health-based routing, queues, back-pressure and tested disaster recovery |

@@ -1,6 +1,6 @@
 # PALO-AI Community and Market-Entry Plan
 
-Status: staged communication plan for the PALO-AI v2.4.1 developer preview, updated 17 July 2026.
+Status: staged communication plan for the PALO-AI v2.5 full-cycle developer preview, updated 19 July 2026.
 
 ## Positioning
 
@@ -8,7 +8,7 @@ Use this sentence consistently:
 
 > **PALO-AI is an emerging governance control plane for n8n and agentic automation platforms, designed to make authority, policy enforcement, human oversight and cryptographic evidence visible and enforceable.**
 
-Immediately qualify it: v2.4.1 is a developer preview. The current n8n package is an optional visual decision gate, unpublished and unverified. Governed execution, secure one-time approval resume and workflow admission remain target capabilities.
+Immediately qualify it: v2.5 is a full-cycle developer preview. The unpublished and unverified n8n package 0.2 includes an optional visual decision gate and a governed-action prototype. Neither is an unavoidable production boundary: secure approval resume and workflow admission remain specified, and alternate credentials or tool paths can bypass governance until connector isolation is proven.
 
 ## Sequence
 
@@ -84,10 +84,10 @@ Defer Product Hunt, paid campaigns and broad press until there is a stable hoste
 - Central page: `PALO_AIGovernance.html`
 - Four-pattern hero infographic and workflow screens
 - Three-minute architecture-preview video with captions
-- Three-outcome n8n demo
+- Direct-versus-governed demo plus four-output n8n full-cycle workflow
 - Capability matrix with evidence-based statuses
 - Technical assessment and cloud/security roadmaps
-- A 90-second live demo: Denied -> Approval Required -> Allowed, with the bypass boundary explained
+- A 90-second live demo: direct execution versus Denied -> Approval Required -> Verified/Review Required, with the bypass boundary explained
 
 ## Success measures
 

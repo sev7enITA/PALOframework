@@ -4,7 +4,7 @@ Status: architecture preview updated for the PALO-AI v2.5 full-cycle developer p
 
 > **PALO-AI is an emerging governance control plane for n8n and agentic automation platforms, designed to make authority, policy enforcement, human oversight and cryptographic evidence visible and enforceable.**
 
-For runnable setup and current limitations, use the [PALO-AI Governance Integration Guide](palo-ai-governance-integration-guide.md), [Full-Cycle Assurance Guide](palo-ai-full-cycle-assurance.md) and [v2.5 Technical and Security Assessment](palo-ai-v2.5-technical-assessment.md). The capability matrix, not interface appearance, determines readiness.
+For runnable setup and current limitations, use the [PALO-AI Governance Integration Guide](palo-ai-governance-integration-guide.md), [Full-Cycle Assurance Guide](palo-ai-full-cycle-assurance.md), [public Capability Matrix](../PALO_AgenticCapabilityMatrix.html) and [Production Readiness route](../PALO_AIProductionReadiness.html). Interface appearance does not determine readiness.
 
 ## Product boundary
 

@@ -1,0 +1,43 @@
+flowchart LR
+    subgraph Roles["Human and service roles"]
+        E["Executive"]
+        O["Business owner"]
+        R["Reviewer"]
+        P["Policy engineer"]
+        A["Platform administrator"]
+        U["Auditor"]
+        W["Agent workload"]
+        X["Executor workload"]
+        V["Verifier workload"]
+    end
+
+    subgraph Permissions["Target permissions"]
+        READ["Read portfolio and assurance"]
+        RISK["Accept risk / suspend scope"]
+        DECIDE["Approve or deny exact claim"]
+        POLICY["Draft and test policy"]
+        PROMOTE["Review and promote version"]
+        ADMIN["Register integrations and operate runtime"]
+        AUDIT["Read evidence and export review pack"]
+        PROPOSE["Propose Action Claim"]
+        EXECUTE["Consume bound capability"]
+        VERIFY["Read authoritative state and attest outcome"]
+    end
+
+    E --> READ
+    E --> RISK
+    O --> READ
+    O --> RISK
+    R --> DECIDE
+    P --> POLICY
+    O --> PROMOTE
+    A --> ADMIN
+    U --> AUDIT
+    W --> PROPOSE
+    X --> EXECUTE
+    V --> VERIFY
+
+    CURRENT["CURRENT: one shared bearer token<br/>coarsely spans human and service operations"]
+    REQUIRED["REQUIRED: OIDC + workload identity + tenant RBAC<br/>separation of duties + scoped service credentials"]
+    CURRENT -.-> Permissions
+    REQUIRED -.-> Permissions

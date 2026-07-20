@@ -66,21 +66,22 @@ People can see why an action is allowed, denied or paused, while the workflow re
 1. Start the disposable local n8n stack in `deploy/n8n-macos-pilot/`.
 2. Install the exact local `n8n-nodes-palo-ai` alpha package through the supplied image.
 3. Configure a PALO API credential with either the local gateway or the online preview URL.
-4. Import `examples/n8n-demo/PALO-AI-three-outcomes-demo.json` or build the same flow with native HTTP Request, Switch and Wait nodes.
-5. Test Allowed, Approval Required and Denied with fresh nonces and monotonic sequence numbers.
-6. Place only a mock or reversible action after Allowed.
-7. Run `n8n audit` before and after installing a community node.
+4. Import `examples/n8n-demo/PALO-AI-full-cycle-assurance-demo.json` and configure the PALO Governed Action node with a mock or reversible target.
+5. Test Verified, Review Required, Denied and Execution Failed with fresh nonces and monotonic sequence numbers.
+6. Compare the same proposal with the compatibility `PALO-AI-three-outcomes-demo.json` to show why an advisory allow decision is not an outcome guarantee.
+7. Confirm that no alternate node or credential can reach the protected target around the governed path.
+8. Run `n8n audit` before and after installing a community node.
 
 ### What the canvas must show
 
 ```text
 Trigger or agent proposal
   -> normalize Action Claim
-  -> PALO Authorize
-  -> Switch
-       allow -> governed mock executor -> record -> verify
-       approval_required -> authenticated Wait -> verify exact grant
-       deny -> Stop And Error
+  -> PALO Governed Action
+       verified -> continue with signed receipt and outcome attestation
+       review_required -> stop, approve or investigate exact claim/outcome
+       denied -> Stop And Error
+       execution_failed -> retry only under the documented idempotency boundary
 ```
 
 An n8n Wait/resume URL coordinates the workflow; it is not itself cryptographic approval or replay protection. PALO must validate the exact claim digest, reviewer authority, state, expiry, nonce and one-time grant before execution.
@@ -90,7 +91,8 @@ Primary resources:
 - [n8n control-plane architecture](palo-ai-n8n-governance-control-plane.md)
 - [n8n alpha test report](palo-ai-n8n-alpha-test-report.md)
 - [macOS local pilot](../deploy/n8n-macos-pilot/README.md)
-- [three-outcome demo](../examples/n8n-demo/README.md)
+- [full-cycle assurance demo](../examples/hands-on-demo/README.md)
+- [decision-only compatibility demo](../examples/n8n-demo/README.md)
 - [alpha package](../packages/n8n-nodes-palo-ai/README.md)
 
 ### Submission boundary

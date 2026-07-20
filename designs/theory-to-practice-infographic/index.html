@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Find a practical PALO governance path in three questions, then explore the weighted workflow and operational knowledge graph.">
+  <meta name="description" content="Find a practical PALO governance path by role and objective, including a dedicated route for governing agent actions.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://paloframework.org/designs/theory-to-practice-infographic/">
   <meta property="og:type" content="website">
@@ -30,7 +30,7 @@
     "isAccessibleForFree": true,
     "description": "A local-first educational governance-support onboarding that routes stakeholders to PALO modules and an interactive operational knowledge graph.",
     "author": {"@type": "Organization", "name": "PALO Framework", "url": "https://paloframework.org/"},
-    "softwareVersion": "2.4.0"
+    "softwareVersion": "2.5.0"
   }
   </script>
 </head>
@@ -42,12 +42,15 @@
       <p class="brand-name">PALO Framework</p>
       <p class="brand-sub">Principled AI Lifecycle Orchestration</p>
     </div>
-    <span class="release">v2.4.0</span>
-    <nav class="view-links" aria-label="Alternative infographic views">
-      <a href="../../index.html">Home</a>
-      <a href="../../PALO_PlatformMap.html">Platform map</a>
-      <a href="narrative.html">Narrative</a>
-      <a href="workflow.html">Weighted workflow</a>
+    <span class="release">v2.5.0</span>
+    <button class="start-menu-toggle" type="button" aria-expanded="false" aria-controls="start-primary-nav">Menu</button>
+    <nav class="start-primary-nav" id="start-primary-nav" aria-label="Primary navigation">
+      <a href="index.html" aria-current="page">Start</a>
+      <a href="../../PALO_AIGovernance.html">Agentic Governance</a>
+      <a href="../../governance-hub/">Governance Hub</a>
+      <a href="../../index.html#guided-journeys">Tools</a>
+      <a href="../../PALO_DocumentationLibrary.html">Documentation</a>
+      <a href="../../PALO_AIProductionReadiness.html">Readiness</a>
     </nav>
     <div class="icon-controls" aria-label="Graph controls">
       <button class="icon-button" id="motion-toggle" type="button" aria-label="Pause graph motion" title="Pause graph motion" aria-pressed="false">
@@ -67,15 +70,15 @@
       <div class="onboarding-intro-copy">
         <p class="onboarding-eyebrow">Start with your decision</p>
         <h1 id="onboarding-title">Find your PALO path.</h1>
-        <p class="onboarding-lead">Three questions turn your context into a practical first action, the right PALO modules, and the evidence you should produce.</p>
+        <p class="onboarding-lead">Start with who you are and what you need to achieve. PALO turns that context into a practical first action, an artifact and a reviewable next step.</p>
         <p class="onboarding-trust">No account <span aria-hidden="true">·</span> Local only <span aria-hidden="true">·</span> Change your answers at any time</p>
       </div>
       <aside class="onboarding-orientation" aria-label="What you will receive">
         <p class="orientation-label">Your working route</p>
         <ol>
-          <li><span>01</span><strong>Clarify the decision</strong><small>Start from your responsibility, not framework terminology.</small></li>
-          <li><span>02</span><strong>Choose the first action</strong><small>One module, one reason, one concrete artifact.</small></li>
-          <li><span>03</span><strong>Enter the operating model</strong><small>Continue through the six phases and weighted evidence graph.</small></li>
+          <li><span>01</span><strong>Name your objective</strong><small>Start from your responsibility, not framework terminology.</small></li>
+          <li><span>02</span><strong>Choose the first action</strong><small>One primary route, one artifact and a clear maturity boundary.</small></li>
+          <li><span>03</span><strong>Continue with evidence</strong><small>Move into the relevant wizard, Governance Hub or six-phase operating model.</small></li>
         </ol>
       </aside>
       <div class="welcome-actions">
@@ -104,6 +107,7 @@
           <li data-step-marker="1"><span>1</span><strong>Decision</strong></li>
           <li data-step-marker="2"><span>2</span><strong>Context</strong></li>
           <li data-step-marker="3"><span>3</span><strong>Signals</strong></li>
+          <li data-step-marker="4" hidden><span>4</span><strong>Build mode</strong></li>
         </ol>
       </div>
       <form id="onboarding-form" novalidate>
@@ -115,6 +119,7 @@
             <label><input type="radio" name="decision" value="approve"><span><strong>Approve or prioritize</strong><small>Reach a defensible proceed, pause, or stop decision.</small></span></label>
             <label><input type="radio" name="decision" value="build"><span><strong>Shape or build</strong><small>Turn an AI idea into a bounded, reviewable use case.</small></span></label>
             <label><input type="radio" name="decision" value="govern"><span><strong>Govern or comply</strong><small>Identify obligations, impacts, controls, and evidence.</small></span></label>
+            <label class="agentic-objective"><input type="radio" name="decision" value="agentic"><span><strong>Govern agent actions</strong><small>Make authority, approvals, protected execution and real-world effects reviewable.</small></span><em>Agentic Governance</em></label>
             <label><input type="radio" name="decision" value="deploy"><span><strong>Buy or deploy</strong><small>Decide what can be procured or deployed and under which safeguards.</small></span></label>
             <label><input type="radio" name="decision" value="verify"><span><strong>Verify or review</strong><small>Reconstruct a decision, test claims, and identify evidence gaps.</small></span></label>
           </div>
@@ -153,14 +158,30 @@
             <label><input type="checkbox" name="signals" value="unknown"><span><strong>I do not know yet</strong></span></label>
           </div>
         </fieldset>
+        <fieldset data-step="4" hidden>
+          <legend>How are you building?</legend>
+          <p class="fieldset-support">This implementation mode refines the route. Your organizational role remains the authority and accountability context.</p>
+          <div class="choice-list build-mode-list">
+            <label><input type="radio" name="buildMode" value="code"><span><strong>Code-first</strong><small>SDK contracts, JSON Schema, MCP, OPA/Rego, CI gates and brokered execution.</small></span></label>
+            <label><input type="radio" name="buildMode" value="visual"><span><strong>No-code / low-code</strong><small>Visual workflows such as n8n, with semantic outcomes and an unavoidable governed action path.</small></span></label>
+            <label><input type="radio" name="buildMode" value="rapid"><span><strong>Rapid prototyping</strong><small>Copilot Studio or similar tools connected to a deliberately narrow MCP surface.</small></span></label>
+          </div>
+        </fieldset>
         <div class="form-commands"><button class="onboarding-secondary" type="button" data-action="back" hidden>Back</button><button class="onboarding-primary" type="button" data-action="continue">Continue</button></div>
       </form>
     </section>
 
     <section class="onboarding-result" data-onboarding-view="result" hidden aria-labelledby="route-title">
       <div class="result-heading"><p class="onboarding-eyebrow">Your recommended PALO path</p><h2 id="route-title" tabindex="-1"></h2><p class="stakeholder-question" id="stakeholder-question"></p></div>
+      <nav class="route-ribbon" aria-label="Your PALO route">
+        <span><small>Your role</small><strong id="ribbon-role"></strong></span><i aria-hidden="true">→</i>
+        <span><small>Your objective</small><strong id="ribbon-objective"></strong></span><i aria-hidden="true">→</i>
+        <span><small>Current PALO phase</small><strong id="ribbon-phase"></strong></span><i aria-hidden="true">→</i>
+        <span><small>Artifact</small><strong id="ribbon-artifact"></strong></span><i aria-hidden="true">→</i>
+        <span><small>Recommended next action</small><strong id="ribbon-next"></strong></span>
+      </nav>
       <div class="result-grid">
-        <article class="primary-action-panel"><p class="orientation-label">Start here</p><div class="primary-action-title"><span id="route-phase"></span><h3 id="primary-action-title"></h3></div><p id="primary-action-reason"></p><div class="artifact-line"><span>Artifact you will produce</span><strong id="route-artifact"></strong></div><a class="onboarding-primary" id="primary-module-link" href="#">Open primary module</a></article>
+        <article class="primary-action-panel"><div class="result-label-row"><p class="orientation-label">Primary action</p><span class="route-maturity" id="route-maturity"></span></div><div class="primary-action-title"><span id="route-phase"></span><h3 id="primary-action-title"></h3></div><p id="primary-action-reason"></p><div class="artifact-line"><span>Artifact you will produce</span><strong id="route-artifact"></strong></div><a class="onboarding-primary" id="primary-module-link" href="#">Open primary module</a><div class="route-companion-actions" id="route-companion-actions"></div></article>
         <aside class="route-modules" aria-labelledby="context-modules-title"><p class="orientation-label">Use when the context triggers them</p><h3 id="context-modules-title">Contextual modules</h3><div id="context-modules"></div></aside>
       </div>
       <div class="route-details">
@@ -185,6 +206,10 @@
     </div>
     <p class="status-line">6 phases · 15 modules · weighted relationships · versioned evidence</p>
   </section>
+
+  <nav class="explorer-subnav" aria-label="Operationalization Explorer views">
+    <span>Explorer views</span><a href="../../PALO_PlatformMap.html">Platform Map</a><a href="narrative.html">Narrative</a><a href="workflow.html">Weighted workflow</a>
+  </nav>
 
   <nav class="mobile-phase-selector" aria-label="Operational phases">
     <a href="#frame" data-phase-link="frame">01 Frame</a>

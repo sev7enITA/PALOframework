@@ -1,0 +1,49 @@
+sequenceDiagram
+    autonumber
+    participant P as Platform / agent
+    participant G as PALO Gateway
+    participant R as Registry + OPA
+    participant H as Human reviewer
+    participant X as Governed executor
+    participant V as Authoritative verifier
+    participant L as Ledger / incidents
+
+    P->>G: Submit canonical Action Claim 1.2
+    G->>G: Validate schema, expiry and replay material
+    G->>R: Resolve active profiles and evaluate policy
+    alt malformed, missing profile, policy unavailable or denied
+        R-->>G: denied (fail closed)
+        G->>L: Persist decision evidence
+        G-->>P: denied, tool does not execute
+    else approval required
+        R-->>G: pending_approval
+        G->>L: Persist digest-bound approval request
+        G-->>P: review_required + approvalId
+        H->>G: Resolve exact approval
+        Note over H,G: Current preview uses a caller-supplied reviewer label
+        P->>G: Re-submit identical claim + approvalId
+        G->>R: Revalidate profile, policy, digest and approval
+    else allowed
+        R-->>G: allowed
+    end
+
+    G->>V: Read authoritative pre-state
+    alt pre-state unavailable or preconditions fail
+        V-->>G: unavailable / mismatch
+        G-->>P: review_required or denied, no execution
+    else preconditions satisfied
+        G->>G: Issue and atomically consume one-time capability
+        G->>L: Persist execution intent
+        G->>X: Execute immutable arguments + idempotency key
+        X-->>G: Result or failure
+        G->>L: Sign and persist Execution Receipt
+        G->>V: Read authoritative post-state
+        V-->>G: Effect Contract checks
+        alt verified
+            G->>L: Persist signed verified attestation
+            G-->>P: verified
+        else mismatch or inconclusive
+            G->>L: Persist attestation, open incident and hold resource
+            G-->>P: review_required
+        end
+    end

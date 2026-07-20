@@ -1,0 +1,23 @@
+flowchart TB
+    START(["Start integration"]) --> CONNECT["Connect environment<br/>platform, gateway, case"]
+    CONNECT --> DISCOVER["Discover or register<br/>agent, tools, executor, verifier"]
+    DISCOVER --> PURPOSE["Define purpose, owner,<br/>tenant and environment"]
+    PURPOSE --> AUTH["Bound authority<br/>operation, resource, path, host, scopes"]
+    AUTH --> EFFECT["Define Effect Contract<br/>preconditions, expected and forbidden effects"]
+    EFFECT --> OVERSIGHT["Choose oversight<br/>automatic, approval, deny"]
+    OVERSIGHT --> GENERATE["Generate draft contracts<br/>Action Claim template + Rego tests"]
+    GENERATE --> VALIDATE{"Schema and policy<br/>validation passes?"}
+    VALIDATE -->|"no"| REPAIR["Repair invalid or incomplete input"]
+    REPAIR --> GENERATE
+    VALIDATE -->|"yes"| SIM["Simulate allowed, denied,<br/>approval, replay, stale state, mismatch"]
+    SIM --> SAFE{"Required tests pass?"}
+    SAFE -->|"no"| REDESIGN["Reduce authority or fix policy / verifier"]
+    REDESIGN --> AUTH
+    SAFE -->|"yes"| REVIEW["Peer and accountable-owner review"]
+    REVIEW --> APPROVED{"Approved for preview?"}
+    APPROVED -->|"no"| GENERATE
+    APPROVED -->|"yes"| PUBLISH["Publish immutable version<br/>and bind deployment digest"]
+    PUBLISH --> MONITOR["Monitor decisions, outcomes,<br/>incidents and bypass exposure"]
+
+    CURRENT["CURRENT: register APIs and local tests"] -.-> DISCOVER
+    REQUIRED["REQUIRED: draft/review/promotion, signed bundles,<br/>deployment attestation and rollback APIs"] -.-> PUBLISH

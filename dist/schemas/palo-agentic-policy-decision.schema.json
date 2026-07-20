@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paloframework.org/schemas/palo-agentic-policy-decision.schema.json",
+  "title": "PALO Agentic Policy Decision",
+  "description": "Developer-preview policy-decision contract. An allowed status is not proof that an action is safe, lawful, currently authorized, exactly once, executed, or durably evidenced.",
+  "type": "object",
+  "required": ["format", "schemaVersion", "decisionId", "claimId", "agentId", "status", "reasons", "policyVersion", "profileVersion", "claimDigest", "decidedAt", "obligations"],
+  "properties": {
+    "format": { "const": "palo-agentic-policy-decision" },
+    "schemaVersion": { "const": "1.0.0" },
+    "decisionId": { "type": "string", "pattern": "^decision-[a-f0-9-]{36}$" },
+    "claimId": { "type": "string", "pattern": "^claim-[a-f0-9-]{36}$" },
+    "agentId": { "type": "string", "pattern": "^agent-[a-zA-Z0-9][a-zA-Z0-9-]{5,63}$" },
+    "status": { "enum": ["allowed", "denied", "pending_approval"] },
+    "reasons": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } },
+    "policyVersion": { "type": "string", "minLength": 1 },
+    "profileVersion": { "type": "string", "minLength": 1 },
+    "claimDigest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+    "decidedAt": { "type": "string", "format": "date-time" },
+    "approvalId": { "type": "string", "pattern": "^approval-[a-f0-9-]{36}$" },
+    "obligations": { "type": "array", "items": { "type": "string", "minLength": 1 } }
+  },
+  "allOf": [
+    { "if": { "properties": { "status": { "const": "pending_approval" } }, "required": ["status"] }, "then": { "properties": { "approvalId": {} }, "required": ["approvalId"] } }
+  ],
+  "additionalProperties": false
+}

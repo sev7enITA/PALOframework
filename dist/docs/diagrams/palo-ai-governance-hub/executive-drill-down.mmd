@@ -1,0 +1,25 @@
+flowchart TB
+    subgraph SUMMARY["From portfolio to controlled action"]
+        direction LR
+        A["Portfolio overview<br/>coverage, assurance, incidents"] --> B["Business area / owner"]
+        B --> C["Platform and workflow"]
+        C --> D["Agent authority profile"]
+    end
+
+    subgraph EVIDENCE["From action to evidence"]
+        direction LR
+        E["Governed action"] --> F["Decision + approval"]
+        F --> G["Receipt + outcome attestation"]
+        G --> H["Evidence lineage"]
+    end
+
+    D --> E
+
+    A -->|"high exposure"| X["Assign owner or suspend pilot"]
+    G -->|"mismatch / inconclusive"| I["Incident + resource hold"]
+    I --> J["Acknowledge, investigate, resolve"]
+
+    M["Missing or stale metric"] --> N["Show unavailable / partial<br/>never infer a positive score"]
+    N -.-> A
+
+    H --> O["Exportable review pack<br/>REQUIRED API"]
