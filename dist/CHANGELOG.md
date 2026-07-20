@@ -35,6 +35,7 @@ and this project follows Semantic Versioning where practical.
 
 ### Changed
 
+- Replaced presentational italic elements with dedicated semantic separators and aligned the PALO-AM adoption link with the generated HTML documentation
 - Reduced primary navigation to Start, Agentic Governance, Governance Hub, Tools, Documentation and Readiness; consolidated the former Documentation Hub into a transition page and made the filtered HTML Library canonical
 - Refocused the homepage on PALO-AI full-cycle assurance, the eight-step Governance Hub builder and nine existing guided journeys described by outcome and artifact
 - Added Documentation Library depth, audience and task filters plus product, maturity, reading-time, prerequisite and recommended-next-step metadata

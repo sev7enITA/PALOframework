@@ -318,11 +318,16 @@ try {
     if (!await entry.isVisible() || !await entry.locator(`a[href="${route.href}"]`).isVisible()) failures.push(`Homepage: governance route or primary destination is missing (${route.title})`);
   }
   if (!/PALO Framework[\s\S]*PALO-AM[\s\S]*PALO-AI/.test(await governanceRouteSection.locator(".palo-umbrella-lineage").innerText())) failures.push("Homepage: visible PALO to PALO-AM to PALO-AI lineage is missing");
+  const cycleSeparators = page.locator(".palo-full-cycle > .palo-cycle-separator");
+  if (await cycleSeparators.count() !== 6 || await cycleSeparators.evaluateAll((nodes) => nodes.some((node) => node.tagName !== "SPAN"))) failures.push("Homepage: full-cycle separators are not semantic spans");
 
   await page.goto(`${baseUrl}/PALO_AIGovernance.html`, { waitUntil: "domcontentloaded" });
   if (!/PALO Framework[\s\S]*PALO-AM methodology[\s\S]*PALO-AI enforcement/.test(await page.locator(".palo-ai-parent-lineage").innerText())) failures.push("PALO-AI overview: parent lineage cue is missing");
+  const routeSeparators = page.locator(".palo-route-ribbon > .palo-route-separator");
+  if (await routeSeparators.count() !== 3 || await routeSeparators.evaluateAll((nodes) => nodes.some((node) => node.tagName !== "SPAN"))) failures.push("PALO-AI overview: route separators are not semantic spans");
 
   await page.goto(`${baseUrl}/PALO_AgenticGovernance.html`, { waitUntil: "domcontentloaded" });
+  if (!await page.locator('a[href="docs/palo-ai-adoption-paths.html"]').count() || await page.locator('a[href="docs/palo-ai-adoption-paths.md"]').count()) failures.push("PALO-AM: adoption path does not target generated HTML documentation");
   const paloAmHeroCraft = await page.evaluate(() => {
     const callout = document.querySelector(".am-version-callout");
     const lead = callout?.querySelector("strong");
@@ -398,6 +403,10 @@ try {
     await page.setViewportSize(viewport);
     for (const file of ["index.html", "PALO_AIGovernance.html", "PALO_AIWhy.html", "PALO_AIQuickstarts.html", "PALO_AssessmentPath.html", "PALO_AgenticGovernance.html", "PALO_AgenticCapabilityMatrix.html", "PALO_AIProductionReadiness.html", "PALO_DocumentationLibrary.html", "docs/palo-ai-adoption-paths.html", "PALO_PlatformMap.html", "designs/theory-to-practice-infographic/index.html?mode=navigation"]) {
       await page.goto(`${baseUrl}/${file}`, { waitUntil: "domcontentloaded" });
+      if (file.includes("mode=navigation")) {
+        const onboardingSeparators = page.locator(".route-ribbon > .route-separator");
+        if (await onboardingSeparators.count() !== 4 || await onboardingSeparators.evaluateAll((nodes) => nodes.some((node) => node.tagName !== "SPAN"))) failures.push(`${file}: route separators are not semantic spans`);
+      }
       if (file === "index.html" && viewport.width <= 390) {
         const routeMap = await page.locator("#palo-governance-routes").evaluate((section) => ({
           entries: section.querySelectorAll(".palo-governance-entry").length,

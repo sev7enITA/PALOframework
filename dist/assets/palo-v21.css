@@ -1254,11 +1254,11 @@ body.palo-v21 textarea:focus-visible {
 .palo-route-ribbon strong { margin-top: 5px; font-size: 14px; }
 body.palo-v21 .palo-route-ribbon a, body.palo-v21 .palo-route-ribbon strong { color: #ffffff !important; }
 .palo-route-ribbon span { margin-top: 5px; color: #bcccdc; font-size: 11px; line-height: 1.4; }
-.palo-route-ribbon i { display: grid; place-items: center; color: #c78a19; font-style: normal; }
+.palo-route-ribbon > .palo-route-separator { display: grid; place-items: center; margin: 0; padding: 0; color: #c78a19; font-size: 11px; line-height: 1; }
 .palo-agentic-feature-grid { display: grid; grid-template-columns: minmax(0, .9fr) minmax(420px, 1.1fr); gap: clamp(28px, 5vw, 70px); align-items: start; }
 .palo-full-cycle { display: flex; flex-wrap: wrap; gap: 7px; align-items: center; margin-top: 26px; }
 .palo-full-cycle span { padding: 7px 9px; color: #102a43; background: #fff; border: 1px solid #bcccdc; font-size: 11px; font-weight: 800; }
-.palo-full-cycle i { color: #c78a19; font-style: normal; }
+.palo-full-cycle > .palo-cycle-separator { padding: 0; color: #c78a19; background: transparent; border: 0; font-size: 11px; font-weight: 500; }
 .palo-hub-eight-step { border-top: 4px solid #147d8b; }
 .palo-hub-eight-step ol { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 8px 20px; padding-left: 24px; }
 .palo-hub-eight-step li::marker { color: #c78a19; font-weight: 800; }
@@ -1277,7 +1277,7 @@ body.palo-v21 .palo-route-ribbon a, body.palo-v21 .palo-route-ribbon strong { co
   .palo-journey-ledger article { grid-template-columns: 120px 1fr; gap: 8px 16px; }
   .palo-journey-ledger article p, .palo-journey-ledger article > strong, .palo-journey-ledger article > a { grid-column: 2; }
   .palo-route-ribbon { grid-template-columns: 1fr; }
-  .palo-route-ribbon i { display: none; }
+  .palo-route-ribbon > .palo-route-separator { display: none; }
   .palo-route-ribbon a { border-bottom: 1px solid rgba(255,255,255,.14); }
   .palo-governance-routes-intro { grid-template-columns: 1fr; }
   .palo-governance-route-map, .palo-umbrella-lineage { grid-template-columns: 1fr; }
@@ -1291,5 +1291,5 @@ body.palo-v21 .palo-route-ribbon a, body.palo-v21 .palo-route-ribbon strong { co
   .palo-journey-ledger article { grid-template-columns: 1fr; }
   .palo-journey-ledger article p, .palo-journey-ledger article > strong, .palo-journey-ledger article > a { grid-column: 1; }
   .palo-hub-eight-step ol { grid-template-columns: 1fr; }
-  .palo-full-cycle i { display: none; }
+  .palo-full-cycle > .palo-cycle-separator { display: none; }
 }

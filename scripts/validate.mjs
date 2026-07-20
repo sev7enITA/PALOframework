@@ -393,10 +393,19 @@ if (built) {
   for (const title of ["Govern the AI lifecycle", "Govern agentic systems", "Enforce agent actions"]) if (!governanceRoutes.includes(title)) errors.push(`index.html: umbrella governance route is missing exact title "${title}"`);
   for (const destination of ["designs/theory-to-practice-infographic/#onboarding", "#guided-journeys", "PALO_AgenticGovernance.html", "PALO_AgenticGovernance.html#simulator", "PALO_AIGovernance.html", "governance-hub/", "PALO_AIQuickstarts.html"]) if (!governanceRoutes.includes(`href="${destination}"`)) errors.push(`index.html: umbrella governance route is missing destination ${destination}`);
   if (!/PALO provides the governance system[\s\S]*PALO-AM defines agentic authority[\s\S]*PALO-AI makes selected controls executable and verifiable/.test(governanceRoutes)) errors.push("index.html: PALO to PALO-AM to PALO-AI lineage statement is missing");
-  if (!/PALO Framework[\s\S]*PALO-AM methodology[\s\S]*PALO-AI enforcement/.test(htmlByFile.get("PALO_AIGovernance.html") || "")) errors.push("PALO_AIGovernance.html: parent component lineage cue is missing");
+  const paloAiHtml = htmlByFile.get("PALO_AIGovernance.html") || "";
+  if (!/PALO Framework[\s\S]*PALO-AM methodology[\s\S]*PALO-AI enforcement/.test(paloAiHtml)) errors.push("PALO_AIGovernance.html: parent component lineage cue is missing");
+  const paloRouteRibbon = paloAiHtml.match(/<nav[^>]*class=["'][^"']*palo-route-ribbon[^"']*["'][^>]*>[\s\S]*?<\/nav>/i)?.[0] || "";
+  if ((paloRouteRibbon.match(/class=["']palo-route-separator["']/g) || []).length !== 3 || /<i\b/.test(paloRouteRibbon)) errors.push("PALO_AIGovernance.html: route separators must use dedicated semantic spans");
+  const fullCycle = homeHtml.match(/<div[^>]*class=["'][^"']*palo-full-cycle[^"']*["'][^>]*>[\s\S]*?<\/div>/i)?.[0] || "";
+  if ((fullCycle.match(/class=["']palo-cycle-separator["']/g) || []).length !== 6 || /<i\b/.test(fullCycle)) errors.push("index.html: full-cycle separators must use dedicated semantic spans");
   const paloAmHtml = htmlByFile.get("PALO_AgenticGovernance.html") || "";
   if (!/PALO-AM is the agentic governance modality inside the PALO Framework\. It is distinct from the PALO-AI runtime/.test(paloAmHtml)) errors.push("PALO_AgenticGovernance.html: PALO-AM parent/modality distinction is missing");
   if (!/class=["']am-version-callout["']/.test(paloAmHtml) || !/class=["']am-hero-actions["']/.test(paloAmHtml) || (paloAmHtml.match(/class=["'][^"']*am-action/g) || []).length !== 2) errors.push("PALO_AgenticGovernance.html: specialist version callout or hero actions are missing");
+  if (!/href=["']docs\/palo-ai-adoption-paths\.html["']/.test(paloAmHtml) || /href=["']docs\/palo-ai-adoption-paths\.md["']/.test(paloAmHtml)) errors.push("PALO_AgenticGovernance.html: adoption path must target generated HTML documentation");
+  const onboardingHtml = htmlByFile.get("designs/theory-to-practice-infographic/index.html") || "";
+  const onboardingRibbon = onboardingHtml.match(/<nav[^>]*class=["'][^"']*route-ribbon[^"']*["'][^>]*>[\s\S]*?<\/nav>/i)?.[0] || "";
+  if ((onboardingRibbon.match(/class=["']route-separator["']/g) || []).length !== 4 || /<i\b/.test(onboardingRibbon)) errors.push("Stakeholder Onboarding: route separators must use dedicated semantic spans");
 }
 
 if (errors.length) {
