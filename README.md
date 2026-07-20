@@ -36,9 +36,17 @@ PALO is not a certification body and does not provide legal advice. It is a prac
 
 ### PALO-AI for agentic automation platforms
 
+PALO is the umbrella governance system across the AI lifecycle. Its public entry routes now begin with the problem to solve:
+
+1. **Govern the AI lifecycle** with the complete PALO Framework and its guided lifecycle tools.
+2. **Govern agentic systems** with PALO-AM, the agentic governance modality inside PALO.
+3. **Enforce agent actions** with PALO-AI, the technical control-plane Developer Preview that operationalizes selected PALO-AM controls.
+
+Use the [homepage governance map](index.html#palo-governance-routes) to choose among these connected routes.
+
 > **PALO-AI is an emerging governance control plane for n8n and agentic automation platforms, designed to make authority, policy enforcement, human oversight and cryptographic evidence visible and enforceable.**
 
-Start with [Why PALO-AI](PALO_AIWhy.html) for the high-level full-cycle assurance case, then choose a [code-first, n8n/no-code, or Copilot Studio/MCP quickstart](PALO_AIQuickstarts.html). The [cognitive Stakeholder Onboarding](designs/theory-to-practice-infographic/) chooses an organizational role and objective; “Govern agent actions” adds a conditional build-mode question without replacing accountability. Continue in the [guided PALO-AI Governance Hub](governance-hub/) or use the [public Agentic Governance overview](PALO_AIGovernance.html) to connect PALO-AM methodology, PALO-AI runtime contracts, the role-based prototype and capability/readiness evidence.
+Start with [Why PALO-AI](PALO_AIWhy.html) for the high-level full-cycle assurance case, then choose a [code-first, n8n/no-code, or Copilot Studio/MCP quickstart](PALO_AIQuickstarts.html). The [cognitive Stakeholder Onboarding](designs/theory-to-practice-infographic/) chooses an organizational role and objective. The "Govern agent actions" option adds a conditional build-mode question without replacing accountability. Continue in the [guided PALO-AI Governance Hub](governance-hub/) or use the [public Agentic Governance overview](PALO_AIGovernance.html) to connect PALO-AM methodology, PALO-AI runtime contracts, the role-based prototype and capability/readiness evidence.
 
 n8n orchestrates what automation does. PALO governs whether an identified agent or automation is authorized to do it and whether the declared result is later verified. The integration combines four complementary patterns: a visible decision gate, a governed executor, digest-bound human approval, and workflow admission controls. Package 0.2 implements decision-gate and governed-execution prototypes; secure approval resume and instance-level admission remain specified capabilities. The package is unpublished and not n8n-verified.
 

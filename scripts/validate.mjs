@@ -388,6 +388,15 @@ if (built) {
   if ((whyHtml.match(/data-scenario=/g) || []).length !== 3 || !/Authorized but wrong/.test(whyHtml) || !/browser-local/i.test(whyHtml)) errors.push("PALO_AIWhy.html: comparison must expose three clearly bounded local scenarios");
   const quickstartHtml = htmlByFile.get("PALO_AIQuickstarts.html") || "";
   for (const anchor of ["code-first", "n8n", "copilot", "compare"]) if (!new RegExp(`id=[\"']${anchor}[\"']`).test(quickstartHtml)) errors.push(`PALO_AIQuickstarts.html: missing deep-link route #${anchor}`);
+  const homeHtml = htmlByFile.get("index.html") || "";
+  const governanceRoutes = homeHtml.match(/<section[^>]+id=["']palo-governance-routes["'][\s\S]*?<\/section>/i)?.[0] || "";
+  for (const title of ["Govern the AI lifecycle", "Govern agentic systems", "Enforce agent actions"]) if (!governanceRoutes.includes(title)) errors.push(`index.html: umbrella governance route is missing exact title "${title}"`);
+  for (const destination of ["designs/theory-to-practice-infographic/#onboarding", "#guided-journeys", "PALO_AgenticGovernance.html", "PALO_AgenticGovernance.html#simulator", "PALO_AIGovernance.html", "governance-hub/", "PALO_AIQuickstarts.html"]) if (!governanceRoutes.includes(`href="${destination}"`)) errors.push(`index.html: umbrella governance route is missing destination ${destination}`);
+  if (!/PALO provides the governance system[\s\S]*PALO-AM defines agentic authority[\s\S]*PALO-AI makes selected controls executable and verifiable/.test(governanceRoutes)) errors.push("index.html: PALO to PALO-AM to PALO-AI lineage statement is missing");
+  if (!/PALO Framework[\s\S]*PALO-AM methodology[\s\S]*PALO-AI enforcement/.test(htmlByFile.get("PALO_AIGovernance.html") || "")) errors.push("PALO_AIGovernance.html: parent component lineage cue is missing");
+  const paloAmHtml = htmlByFile.get("PALO_AgenticGovernance.html") || "";
+  if (!/PALO-AM is the agentic governance modality inside the PALO Framework\. It is distinct from the PALO-AI runtime/.test(paloAmHtml)) errors.push("PALO_AgenticGovernance.html: PALO-AM parent/modality distinction is missing");
+  if (!/class=["']am-version-callout["']/.test(paloAmHtml) || !/class=["']am-hero-actions["']/.test(paloAmHtml) || (paloAmHtml.match(/class=["'][^"']*am-action/g) || []).length !== 2) errors.push("PALO_AgenticGovernance.html: specialist version callout or hero actions are missing");
 }
 
 if (errors.length) {

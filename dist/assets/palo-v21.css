@@ -509,6 +509,9 @@ body.palo-v21 textarea:focus-visible {
 .palo-ai-status-rail a, .palo-ai-status-rail span { display: flex; align-items: center; flex: 0 0 auto; min-height: 52px; padding: 0 18px; border-right: 1px solid rgba(255,255,255,.14); color: #fff !important; font-size: 12px; font-weight: 800; text-decoration: none; }
 .palo-ai-status-rail span { color: #8ee5e8 !important; text-transform: uppercase; letter-spacing: .06em; }
 .palo-ai-status-rail a:hover, .palo-ai-status-rail a:focus { background: #173f5f; text-decoration: underline; }
+.palo-ai-parent-lineage { display: flex; flex-wrap: wrap; gap: 7px; align-items: center; margin: 0 0 22px; color: #627d98; font-size: 11px; font-weight: 800; }
+.palo-ai-parent-lineage a { min-height: 44px; display: inline-flex; align-items: center; color: #0b5964; }
+.palo-ai-parent-lineage strong { color: #102a43; }
 .palo-ai-public-hero { padding: clamp(62px, 9vw, 116px) 0 64px; background: #fff; border-bottom: 1px solid #d9e2ec; }
 .palo-ai-public-hero-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(330px, .85fr); gap: clamp(36px, 7vw, 96px); align-items: center; }
 .palo-ai-public-hero h1 { max-width: 900px; margin: 10px 0 20px; font-size: clamp(3rem, 6.5vw, 6.8rem); line-height: .95; letter-spacing: -.055em; }
@@ -1214,6 +1217,34 @@ body.palo-v21 textarea:focus-visible {
 .palo-cognitive-output strong { margin-top: 5px; font-size: 13px; }
 .palo-agentic-entry { border-left: 3px solid #c78a19; }
 .palo-agentic-feature { background: #f5f8fa; border-top: 1px solid #d9e2ec; border-bottom: 1px solid #d9e2ec; }
+.palo-governance-routes { scroll-margin-top: 86px; padding-top: clamp(64px,8vw,104px); background: #fff; border-bottom: 1px solid #bcccdc; }
+.palo-governance-routes-intro { display: grid; grid-template-columns: minmax(0,1.25fr) minmax(300px,.75fr); gap: clamp(30px,6vw,82px); align-items: end; }
+.palo-governance-routes-intro h2 { max-width: 850px; margin-bottom: 18px; font-size: clamp(2.35rem,4.8vw,4.8rem); line-height: .98; letter-spacing: -.045em; }
+.palo-governance-lineage-statement { margin: 0 0 8px; padding: 18px 0 18px 22px; color: #334e68; border-left: 4px solid #c78a19; font-size: 14px; line-height: 1.65; }
+.palo-governance-lineage-statement strong { display: block; color: #102a43; }
+.palo-umbrella-lineage { display: grid; grid-template-columns: 1.15fr 1fr 1fr; list-style: none; margin: 42px 0 0; padding: 0; color: #fff; background: #102a43; border-top: 4px solid #c78a19; }
+.palo-umbrella-lineage li { position: relative; min-width: 0; padding: 17px 48px 18px 22px; border-right: 1px solid rgba(255,255,255,.18); }
+.palo-umbrella-lineage li:not(:last-child)::after { content: ">"; position: absolute; right: 16px; top: 50%; color: #c78a19; transform: translateY(-50%); }
+.palo-umbrella-lineage small, .palo-umbrella-lineage strong { display: block; }
+.palo-umbrella-lineage small { color: #8ee5e8; font-size: 9px; font-weight: 850; letter-spacing: .08em; text-transform: uppercase; }
+.palo-umbrella-lineage strong { margin-top: 4px; color: #fff; font-size: 15px; }
+.palo-governance-route-map { display: grid; grid-template-columns: 1.15fr 1fr 1fr; border-right: 1px solid #bcccdc; border-bottom: 1px solid #bcccdc; border-left: 1px solid #bcccdc; }
+.palo-governance-entry { display: flex; flex-direction: column; min-width: 0; min-height: 510px; padding: clamp(24px,3vw,38px); border-right: 1px solid #bcccdc; }
+.palo-governance-entry:last-child { border-right: 0; }
+.palo-governance-entry.is-framework { box-shadow: inset 0 4px #102a43; }
+.palo-governance-entry.is-methodology { box-shadow: inset 0 4px #147d8b; background: #f5f8fa; }
+.palo-governance-entry.is-enforcement { box-shadow: inset 0 4px #c78a19; }
+.palo-governance-entry-head { min-height: 190px; padding-bottom: 24px; border-bottom: 1px solid #d9e2ec; }
+.palo-governance-entry-head > span { color: #147d8b; font: 850 10px ui-monospace,SFMono-Regular,Consolas,monospace; letter-spacing: .08em; text-transform: uppercase; }
+.palo-governance-entry h3 { margin: 38px 0 14px; font-size: clamp(1.65rem,2.5vw,2.45rem); line-height: 1.04; }
+.palo-governance-audience { margin: 0; color: #486581; font-size: 11px; font-weight: 800; line-height: 1.55; text-transform: uppercase; }
+.palo-governance-entry > p { color: #486581; font-size: 14px; line-height: 1.6; }
+.palo-governance-outcome, .palo-governance-position { margin-top: 22px; padding: 16px 0; border-top: 1px solid #d9e2ec; border-bottom: 1px solid #d9e2ec; }
+.palo-governance-outcome small, .palo-governance-outcome strong { display: block; }
+.palo-governance-outcome small { color: #147d8b; font-size: 9px; font-weight: 850; letter-spacing: .08em; text-transform: uppercase; }
+.palo-governance-outcome strong, .palo-governance-position strong { color: #102a43; font-size: 12px; line-height: 1.55; }
+.palo-governance-entry .palo-actions { align-items: stretch; margin-top: auto; padding-top: 26px; }
+.palo-governance-entry .palo-btn { min-width: 0; text-align: center; }
 .palo-ai-orientation { padding-top: 44px; padding-bottom: 44px; background: #f5f8fa; border-bottom: 1px solid #d9e2ec; }
 .palo-route-ribbon { display: grid; grid-template-columns: minmax(160px,1fr) 20px minmax(160px,1fr) 20px minmax(160px,1fr) 20px minmax(160px,1fr); gap: 7px; align-items: stretch; margin: 26px 0 18px; padding: 12px; color: #fff; background: #102a43; border-left: 4px solid #c78a19; }
 .palo-route-ribbon a { display: block; min-width: 0; padding: 9px; color: #fff; text-decoration: none; }
@@ -1248,6 +1279,13 @@ body.palo-v21 .palo-route-ribbon a, body.palo-v21 .palo-route-ribbon strong { co
   .palo-route-ribbon { grid-template-columns: 1fr; }
   .palo-route-ribbon i { display: none; }
   .palo-route-ribbon a { border-bottom: 1px solid rgba(255,255,255,.14); }
+  .palo-governance-routes-intro { grid-template-columns: 1fr; }
+  .palo-governance-route-map, .palo-umbrella-lineage { grid-template-columns: 1fr; }
+  .palo-umbrella-lineage li { padding-right: 22px; border-right: 0; border-bottom: 1px solid rgba(255,255,255,.16); }
+  .palo-umbrella-lineage li:not(:last-child)::after { content: "↓"; right: 22px; }
+  .palo-governance-entry { min-height: 0; border-right: 0; border-bottom: 1px solid #bcccdc; }
+  .palo-governance-entry:last-child { border-bottom: 0; }
+  .palo-governance-entry-head { min-height: 0; }
 }
 @media (max-width: 560px) {
   .palo-journey-ledger article { grid-template-columns: 1fr; }

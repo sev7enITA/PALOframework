@@ -45,13 +45,14 @@
         <section class="palo-ai-hero">
             <div class="palo-shell palo-ai-hero-grid">
                 <div>
+                    <nav class="palo-ai-parent-lineage" aria-label="PALO component lineage"><a href="index.html">PALO Framework</a><span aria-hidden="true">/</span><a href="PALO_AgenticGovernance.html">PALO-AM methodology</a><span aria-hidden="true">/</span><strong>PALO-AI enforcement</strong></nav>
                     <div class="palo-ai-status-line" aria-label="Release status">
                         <span class="palo-ai-chip palo-ai-chip-preview">v2.5 full-cycle developer preview</span>
                         <span class="palo-ai-chip">Internet-reachable evaluation endpoints</span>
                     </div>
                     <p class="palo-eyebrow">Governance before, during and after execution</p>
-                    <h1>Make agent authority—and its real-world effect—verifiable.</h1>
-                    <p class="palo-ai-hero-lead">PALO-AI is an emerging governance control plane for n8n and agentic automation platforms. It binds explicit authority and policy to a one-time execution capability, a trusted receipt and verification that the action produced the declared effect.</p>
+                    <h1>Make agent authority and its real-world effect verifiable.</h1>
+                    <p class="palo-ai-hero-lead">PALO-AI is the technical control-plane component of the PALO Framework. It operationalizes selected PALO-AM controls for n8n and agentic automation platforms by binding explicit authority and policy to a one-time execution capability, a trusted receipt and verification that the action produced the declared effect.</p>
                     <p class="palo-ai-boundary"><strong>Current boundary:</strong> this release is for interoperability evaluation with isolated data and non-consequential tools. It is not a production authorization service, certification, or independently assessed security boundary.</p>
                     <div class="palo-actions">
                         <a class="palo-btn" href="PALO_AIWhy.html">Why PALO-AI?</a>
@@ -64,7 +65,7 @@
                 </div>
                 <figure class="palo-ai-control-plane" aria-labelledby="control-plane-caption">
                     <div class="palo-ai-proposal"><span>Agent / workflow</span><strong>Action proposal</strong></div>
-                    <div class="palo-ai-arrow" aria-hidden="true">→</div>
+                    <div class="palo-ai-arrow" aria-hidden="true">to</div>
                     <div class="palo-ai-core">
                         <span class="palo-ai-core-label">PALO-AI control path</span>
                         <ol>
@@ -75,7 +76,7 @@
                             <li><span>05</span>Verify the effect</li>
                         </ol>
                     </div>
-                    <div class="palo-ai-arrow" aria-hidden="true">→</div>
+                    <div class="palo-ai-arrow" aria-hidden="true">to</div>
                     <div class="palo-ai-outcomes">
                         <span class="is-allow">Verified</span>
                         <span class="is-review">Review required</span>
@@ -89,11 +90,11 @@
         <section class="palo-section palo-ai-orientation" aria-labelledby="agentic-route-title">
             <div class="palo-shell">
                 <p class="palo-eyebrow">One connected governance journey</p>
-                <h2 id="agentic-route-title">Method → runtime contract → role-based workspace → evidence boundary</h2>
+                <h2 id="agentic-route-title">Method, runtime contract, role-based workspace and evidence boundary</h2>
                 <nav class="palo-route-ribbon" aria-label="PALO Agentic Governance route">
-                    <a href="PALO_AgenticGovernance.html"><small>Methodology</small><strong>PALO-AM v2.0</strong><span>Bound identity, authority, autonomy and oversight.</span></a><i aria-hidden="true">→</i>
-                    <a href="#lifecycle"><small>Runtime contract</small><strong>PALO-AI v2.5</strong><span>Govern the action before, during and after execution.</span></a><i aria-hidden="true">→</i>
-                    <a href="governance-hub/"><small>Role-based prototype</small><strong>Governance Hub</strong><span>Executive and technical lenses over the same state.</span></a><i aria-hidden="true">→</i>
+                    <a href="PALO_AgenticGovernance.html"><small>Methodology</small><strong>PALO-AM v2.0</strong><span>Bound identity, authority, autonomy and oversight.</span></a><i aria-hidden="true">to</i>
+                    <a href="#lifecycle"><small>Runtime contract</small><strong>PALO-AI v2.5</strong><span>Govern the action before, during and after execution.</span></a><i aria-hidden="true">to</i>
+                    <a href="governance-hub/"><small>Role-based prototype</small><strong>Governance Hub</strong><span>Executive and technical lenses over the same state.</span></a><i aria-hidden="true">to</i>
                     <a href="PALO_AgenticCapabilityMatrix.html"><small>Evidence boundary</small><strong>Capability + Readiness</strong><span>Separate implemented evidence from production claims.</span></a>
                 </nav>
                 <p class="palo-note"><strong>Orientation:</strong> PALO-AM v2.0 remains the June 2026 methodology baseline. PALO-AI v2.5 is the July 2026 full-cycle runtime/contracts Developer Preview. The Governance Hub uses illustrative/local data and is not a production console.</p>
@@ -201,8 +202,8 @@
                     </table>
                 </div>
                 <div class="palo-ai-endpoints">
-                    <div><span>HTTPS Gateway · developer preview</span><code>https://governance.paloframework.org/gateway</code></div>
-                    <div><span>Streamable HTTP MCP · developer preview</span><code>https://governance.paloframework.org/mcp</code></div>
+                    <div><span>HTTPS Gateway: developer preview</span><code>https://governance.paloframework.org/gateway</code></div>
+                    <div><span>Streamable HTTP MCP: developer preview</span><code>https://governance.paloframework.org/mcp</code></div>
                 </div>
                 <p class="palo-note"><strong>Internet-reachable does not mean production-ready.</strong> The current VPS adds HTTPS termination and network isolation, but not production workload identity, least-privilege RBAC, managed keys, high availability, distributed exactly-once semantics, attested execution or independent security review.</p>
                 <div class="palo-actions"><a class="palo-btn" href="docs/palo-ai-cloud-reference-architecture.html">Compare cloud architectures</a><a class="palo-btn palo-btn-secondary" href="docs/palo-ai-vps-deployment.html">Deploy the preview VPS stack</a></div>
@@ -219,13 +220,13 @@
                     <table class="palo-table palo-ai-platform-table">
                         <thead><tr><th>Platform</th><th>Visual gate</th><th>Brokered execution</th><th>Runtime interception</th><th>Authoritative today?</th></tr></thead>
                         <tbody>
-                            <tr><th scope="row">n8n</th><td>Package 0.2 compatibility decision node</td><td>Package 0.2 Governed Action prototype</td><td>Not implemented; alternate credentials or tool paths can bypass the node</td><td>No — unpublished and not n8n-verified</td></tr>
-                            <tr><th scope="row">Copilot Studio</th><td>MCP tools can surface governance actions</td><td>Target via narrow PALO tools</td><td>Platform-owned controls</td><td>No — integration guidance only</td></tr>
-                            <tr><th scope="row">Dify</th><td>Non-production tool example</td><td>Agent Strategy target</td><td>Plugin-owned target</td><td>No — reference example</td></tr>
-                            <tr><th scope="row">LangChain / LangGraph</th><td>Middleware decision feedback</td><td>Recommended adapter shape</td><td>Before-tool middleware / interrupt</td><td>No — adapter not packaged</td></tr>
-                            <tr><th scope="row">Node-RED</th><td>Custom node or subflow target</td><td>Broker required</td><td>Self-hosted hook target</td><td>No — specified pattern</td></tr>
-                            <tr><th scope="row">Make</th><td>HTTP or custom-app step</td><td>PALO-controlled API target</td><td>No universal interceptor</td><td>No — direct actions must be removed</td></tr>
-                            <tr><th scope="row">Zapier</th><td>Private/public integration target</td><td>PALO-controlled action target</td><td>No universal interceptor</td><td>No — direct actions must be removed</td></tr>
+                            <tr><th scope="row">n8n</th><td>Package 0.2 compatibility decision node</td><td>Package 0.2 Governed Action prototype</td><td>Not implemented; alternate credentials or tool paths can bypass the node</td><td>No. Unpublished and not n8n-verified</td></tr>
+                            <tr><th scope="row">Copilot Studio</th><td>MCP tools can surface governance actions</td><td>Target via narrow PALO tools</td><td>Platform-owned controls</td><td>No. Integration guidance only</td></tr>
+                            <tr><th scope="row">Dify</th><td>Non-production tool example</td><td>Agent Strategy target</td><td>Plugin-owned target</td><td>No. Reference example</td></tr>
+                            <tr><th scope="row">LangChain / LangGraph</th><td>Middleware decision feedback</td><td>Recommended adapter shape</td><td>Before-tool middleware / interrupt</td><td>No. Adapter not packaged</td></tr>
+                            <tr><th scope="row">Node-RED</th><td>Custom node or subflow target</td><td>Broker required</td><td>Self-hosted hook target</td><td>No. Specified pattern</td></tr>
+                            <tr><th scope="row">Make</th><td>HTTP or custom-app step</td><td>PALO-controlled API target</td><td>No universal interceptor</td><td>No. Direct actions must be removed</td></tr>
+                            <tr><th scope="row">Zapier</th><td>Private/public integration target</td><td>PALO-controlled action target</td><td>No universal interceptor</td><td>No. Direct actions must be removed</td></tr>
                         </tbody>
                     </table>
                 </div>

@@ -306,6 +306,38 @@ try {
   if (!await page.locator("#graph-fallback").isVisible()) failures.push("Explorer fallback: forced fallback did not render");
   if (!await page.locator('#graph-fallback a[href="../../PALO_PlatformMap.html#map-table"]').isVisible()) failures.push("Explorer fallback: Platform Map table link is missing");
 
+  await page.goto(`${baseUrl}/index.html#palo-governance-routes`, { waitUntil: "domcontentloaded" });
+  const governanceRouteSection = page.locator("#palo-governance-routes");
+  if (!await governanceRouteSection.isVisible() || await governanceRouteSection.locator(".palo-governance-entry").count() !== 3) failures.push("Homepage: umbrella governance map is missing or incomplete");
+  for (const route of [
+    { title: "Govern the AI lifecycle", href: "designs/theory-to-practice-infographic/#onboarding" },
+    { title: "Govern agentic systems", href: "PALO_AgenticGovernance.html" },
+    { title: "Enforce agent actions", href: "PALO_AIGovernance.html" }
+  ]) {
+    const entry = governanceRouteSection.getByRole("heading", { name: route.title }).locator("xpath=ancestor::article");
+    if (!await entry.isVisible() || !await entry.locator(`a[href="${route.href}"]`).isVisible()) failures.push(`Homepage: governance route or primary destination is missing (${route.title})`);
+  }
+  if (!/PALO Framework[\s\S]*PALO-AM[\s\S]*PALO-AI/.test(await governanceRouteSection.locator(".palo-umbrella-lineage").innerText())) failures.push("Homepage: visible PALO to PALO-AM to PALO-AI lineage is missing");
+
+  await page.goto(`${baseUrl}/PALO_AIGovernance.html`, { waitUntil: "domcontentloaded" });
+  if (!/PALO Framework[\s\S]*PALO-AM methodology[\s\S]*PALO-AI enforcement/.test(await page.locator(".palo-ai-parent-lineage").innerText())) failures.push("PALO-AI overview: parent lineage cue is missing");
+
+  await page.goto(`${baseUrl}/PALO_AgenticGovernance.html`, { waitUntil: "domcontentloaded" });
+  const paloAmHeroCraft = await page.evaluate(() => {
+    const callout = document.querySelector(".am-version-callout");
+    const lead = callout?.querySelector("strong");
+    const actions = Array.from(document.querySelectorAll(".am-hero-actions .am-action"));
+    const governanceNav = Array.from(document.querySelectorAll(".section-nav a")).find((link) => /Governance Hub|Open Hub/.test(link.textContent));
+    return {
+      calloutBackground: callout ? getComputedStyle(callout).backgroundColor : null,
+      leadColor: lead ? getComputedStyle(lead).color : null,
+      actionHeights: actions.map((action) => action.getBoundingClientRect().height),
+      actionDisplays: actions.map((action) => getComputedStyle(action).display),
+      governanceNavHeight: governanceNav?.getBoundingClientRect().height || 0
+    };
+  });
+  if (paloAmHeroCraft.calloutBackground === paloAmHeroCraft.leadColor || paloAmHeroCraft.actionHeights.length !== 2 || paloAmHeroCraft.actionHeights.some((height) => height < 44) || paloAmHeroCraft.actionDisplays.some((display) => display !== "flex") || paloAmHeroCraft.governanceNavHeight < 44) failures.push(`PALO-AM hero: callout contrast, specialist action styling or 44px targets regressed (${JSON.stringify(paloAmHeroCraft)})`);
+
   await page.goto(`${baseUrl}/PALO_AgenticCapabilityMatrix.html`, { waitUntil: "domcontentloaded" });
   if (await page.locator("[data-status]").count() !== 26) failures.push("Capability Matrix: expected 26 evidence rows");
   await page.locator("[data-matrix-search]").fill("governance hub");
@@ -366,6 +398,14 @@ try {
     await page.setViewportSize(viewport);
     for (const file of ["index.html", "PALO_AIGovernance.html", "PALO_AIWhy.html", "PALO_AIQuickstarts.html", "PALO_AssessmentPath.html", "PALO_AgenticGovernance.html", "PALO_AgenticCapabilityMatrix.html", "PALO_AIProductionReadiness.html", "PALO_DocumentationLibrary.html", "docs/palo-ai-adoption-paths.html", "PALO_PlatformMap.html", "designs/theory-to-practice-infographic/index.html?mode=navigation"]) {
       await page.goto(`${baseUrl}/${file}`, { waitUntil: "domcontentloaded" });
+      if (file === "index.html" && viewport.width <= 390) {
+        const routeMap = await page.locator("#palo-governance-routes").evaluate((section) => ({
+          entries: section.querySelectorAll(".palo-governance-entry").length,
+          visibleAudiences: Array.from(section.querySelectorAll(".palo-governance-audience")).filter((node) => node.getBoundingClientRect().height > 0).length,
+          lineageVisible: section.querySelector(".palo-umbrella-lineage")?.getBoundingClientRect().height > 0
+        }));
+        if (routeMap.entries !== 3 || routeMap.visibleAudiences !== 3 || !routeMap.lineageVisible) failures.push(`Homepage at ${viewport.width}x${viewport.height}: route lineage or audience labels are hidden (${JSON.stringify(routeMap)})`);
+      }
       if (file.includes("mode=navigation")) {
         await page.waitForFunction(() => window.__graphReady === true, null, { timeout: 30_000 });
         if (viewport.width <= 390) {
