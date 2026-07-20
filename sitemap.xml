@@ -72,7 +72,21 @@
 
     <url>
         <loc>https://paloframework.org/PALO_AIGovernance.html</loc>
-        <lastmod>2026-07-19</lastmod>
+        <lastmod>2026-07-20</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <url>
+        <loc>https://paloframework.org/PALO_AIWhy.html</loc>
+        <lastmod>2026-07-20</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <url>
+        <loc>https://paloframework.org/PALO_AIQuickstarts.html</loc>
+        <lastmod>2026-07-20</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
@@ -136,8 +150,36 @@
 
     <url>
         <loc>https://paloframework.org/PALO_AgenticGovernance.html</loc>
-        <lastmod>2026-06-22</lastmod>
+        <lastmod>2026-07-19</lastmod>
         <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <url>
+        <loc>https://paloframework.org/PALO_DocumentationLibrary.html</loc>
+        <lastmod>2026-07-19</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <url>
+        <loc>https://paloframework.org/PALO_AIProductionReadiness.html</loc>
+        <lastmod>2026-07-19</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <url>
+        <loc>https://paloframework.org/PALO_AgenticCapabilityMatrix.html</loc>
+        <lastmod>2026-07-19</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <url>
+        <loc>https://paloframework.org/governance-hub/</loc>
+        <lastmod>2026-07-19</lastmod>
+        <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
 

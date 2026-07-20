@@ -49,7 +49,7 @@ AI agents in visual workflows can decide which tools to call, but autonomy is no
 
 ### 60 seconds
 
-n8n makes it easy to connect AI agents to operational tools. The missing layer is a consistent answer to four questions: who is acting, what exactly are they trying to do, are they authorized, and what evidence remains afterward? PALO-AI is an emerging governance control plane for agentic automation. It converts a proposed tool call into a canonical Action Claim, evaluates versioned OPA policy outside the model, requests digest-bound human approval when necessary, and records signed evidence of the decision and outcome. The v2.4.1 developer preview publishes the contracts, MCP toolkit, draft policies and integration patterns for evaluation. Runtime enforcement and production connectors are the next delivery stage.
+n8n makes it easy to connect AI agents to operational tools. The missing layer is a consistent answer to five questions: who is acting, what exactly are they trying to do, are they authorized, what actually happened, and what evidence remains afterward? PALO-AI is an emerging governance control plane for agentic automation. It converts a proposed tool call into a canonical Action Claim, evaluates versioned OPA policy outside the model, requests digest-bound human approval when necessary, executes through a governed reference path and verifies the declared effect against authoritative state. The v2.5 developer preview publishes this full-cycle reference implementation for isolated evaluation; production identity, durability, connector isolation and independent assurance remain delivery gates.
 
 ## Recommended eight-slide presentation
 
@@ -143,7 +143,7 @@ The proposed model introduces four complementary patterns:
 - digest-bound human approval and secure resume;
 - workflow admission and continuous governance.
 
-PALO-AI v2.4.1 is a developer preview. It includes versioned JSON contracts, an official-SDK MCP reference server, draft Rego policies, replay controls, and prototype approval and signed-evidence flows. Production identity, unavoidable runtime enforcement, secure mobile approval delivery and certified connectors remain under development.
+PALO-AI v2.5 is a full-cycle developer preview. It includes versioned JSON contracts, an official-SDK MCP reference server, Rego policies, replay controls, exact-claim approval, one-time execution capabilities, signed receipts and authoritative outcome verification. Production identity, unavoidable enforcement, secure mobile approval delivery, durable multi-instance recovery and certified connectors remain under development.
 
 We are looking for n8n builders, security engineers, policy authors and design partners willing to review the contracts and test safe non-production workflows.
 

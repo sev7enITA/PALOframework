@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>n8n Community Discussion Draft | PALO Documentation</title>
+  <meta name="description" content="Public PALO documentation: n8n Community Discussion Draft.">
+  <link rel="canonical" href="https://paloframework.org/docs/community/n8n-architecture-preview-post.html">
+  <link rel="icon" type="image/webp" href="../../assets/logo.webp">
+  <link rel="stylesheet" href="../../assets/palo-icons.css">
+  <link rel="stylesheet" href="../../assets/palo-v21.css?v=2.5.0">
+  <link rel="stylesheet" href="../../assets/palo-docs.css">
+  <script src="../../assets/palo-icons.js" defer></script>
+  <script src="../../assets/palo-v21.js?v=2.5.0" defer></script>
+  <script src="../../assets/palo-docs.js" defer></script>
+</head>
+<body class="palo-v21 palo-doc-page" data-doc-source="docs/community/n8n-architecture-preview-post.md">
+  <a class="palo-skip-link" href="#main-content">Skip to main content</a>
+  <header class="palo-site-header"><div class="palo-shell palo-header-inner">
+    <a class="palo-brand" href="../../index.html"><img src="../../assets/logo.webp" alt="PALO">PALO FRAMEWORK</a>
+    <button class="palo-menu-toggle" type="button" data-palo-menu-toggle aria-expanded="false" aria-controls="palo-primary-nav" aria-label="Open navigation"><span data-palo-icon="menu" aria-hidden="true"></span></button>
+    <nav class="palo-nav" id="palo-primary-nav" aria-label="Primary navigation"><a href="../../designs/theory-to-practice-infographic/">Start</a><a href="../../PALO_AIGovernance.html">Agentic Governance</a><a href="../../governance-hub/">Governance Hub</a><a href="../../index.html#guided-journeys">Tools</a><a href="../../PALO_DocumentationLibrary.html" aria-current="page">Documentation</a><a href="../../PALO_AIProductionReadiness.html">Readiness</a></nav>
+  </div></header>
+  <main id="main-content" class="palo-doc-main">
+    <div class="palo-shell">
+      <nav class="palo-doc-breadcrumb" aria-label="Breadcrumb"><a href="../../PALO_DocumentationLibrary.html">Documentation Library</a><span aria-hidden="true">/</span><span>Community and contribution</span></nav>
+      <header class="palo-doc-hero"><p class="palo-eyebrow">Community and contribution · Public documentation</p><h1>n8n Community Discussion Draft</h1><div class="palo-doc-facts"><span><small>Level</small><strong>guide</strong></span><span><small>Audience</small><strong>technical · builder</strong></span><span><small>Product</small><strong>PALO Core</strong></span><span><small>Status</small><strong>Current Guidance</strong></span><span><small>Read</small><strong>3 min</strong></span></div><p class="palo-doc-source">Published HTML view · Source: <code>docs/community/n8n-architecture-preview-post.md</code></p><div class="palo-actions"><button class="palo-btn" type="button" data-doc-copy-link>Copy link</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-share>Share page</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-print>Print</button></div><p class="palo-action-status" data-doc-action-status role="status" aria-live="polite"></p></header>
+      <details class="palo-doc-mobile-toc"><summary>On this page</summary><ol><li class="depth-2"><a href="#title">Title</a></li><li class="depth-2"><a href="#post">Post</a></li></ol></details>
+      <div class="palo-doc-layout"><aside class="palo-doc-sidebar" aria-label="On this page"><strong>On this page</strong><ol><li class="depth-2"><a href="#title">Title</a></li><li class="depth-2"><a href="#post">Post</a></li></ol></aside><article class="palo-doc-content"><h1 id="n8n-community-discussion-draft">n8n Community Discussion Draft<a class="palo-doc-anchor" href="#n8n-community-discussion-draft" aria-label="Link to n8n Community Discussion Draft">#</a></h1><h2 id="title">Title<a class="palo-doc-anchor" href="#title" aria-label="Link to Title">#</a></h2><p>Architecture preview: a governance control plane for agent authority, policy gates, HITL and evidence in n8n</p>
+<h2 id="post">Post<a class="palo-doc-anchor" href="#post" aria-label="Link to Post">#</a></h2><p>Hello n8n community,</p>
+<p>We are exploring <strong>PALO-AI as a complementary governance control plane for agentic n8n workflows</strong>. This is an architecture and developer preview, not a verification request and not a production connector announcement.</p>
+<p>The problem we are testing is simple: an AI agent may be able to choose a tool, but that does not establish that the agent is authorized to perform the exact operation against the exact resource, host and arguments.</p>
+<p>The proposed model has four integration patterns:</p>
+<ol>
+<li><strong>Visual Governance Decision Gate</strong> — a removable canvas node that turns a proposed tool call into a canonical Action Claim and exposes allowed, approval-required and denied branches.</li>
+<li><strong>Governed Executor</strong> — the stronger target pattern in which credentials and allowlisted execution remain behind an unavoidable PALO-controlled boundary.</li>
+<li><strong>Digest-Bound Human Approval</strong> — approval is bound to the exact immutable claim, then revalidated before a one-time secure resume.</li>
+<li><strong>Workflow Admission</strong> — assess workflow JSON, governance coverage and a versioned workflow digest before activation or execution.</li>
+</ol>
+<p>The current v2.5 full-cycle developer preview includes versioned JSON contracts, an official-SDK MCP reference server, Rego v1 policy, replay controls, a SQLite-backed preview registry and ledger, exact-claim approval, one-time execution capabilities, trusted receipts and authoritative outcome verification. The unpublished <code>n8n-nodes-palo-ai</code> 0.2 package provides both the visual decision gate and a governed-action prototype with Verified, Review Required, Denied and Execution Failed outputs.</p>
+<p>Important limitations: the visual gate is advisory, and the governed-action prototype is bypassable whenever another workflow path retains the protected credential or direct tool. Production identity, authenticated approval resume, non-bypassable connector isolation, distributed durability, KMS/HSM custody and verified/certified connectors remain under development. We are not claiming that every n8n tool call is intercepted or that package 0.2 is published or n8n-verified.</p>
+<p>I would value feedback on:</p>
+<ul>
+<li>Does the Action Claim contain the right n8n execution and tool context?</li>
+<li>Does the distinction between an <code>allowed</code> decision and a <code>verified</code> outcome remain understandable on the canvas?</li>
+<li>Where should the boundary sit between native n8n HITL/guardrails and portable PALO policy?</li>
+<li>Which self-hosted hook or executor pattern would make bypass resistance practical?</li>
+<li>What would you require before testing this in a disposable local environment?</li>
+</ul>
+<p>Architecture, capability matrix and package source:</p>
+<p><a href="https://github.com/sev7enITA/PALOframework/tree/main" target="_blank" rel="noopener noreferrer">https://github.com/sev7enITA/PALOframework/tree/main</a></p>
+<p>Three-minute architecture preview: <code>media/palo-ai-n8n-architecture-preview-3min.mp4</code> (script and storyboard in <code>media/</code>).</p>
+<p>We are also looking for a small number of design partners with one safe, non-production workflow and one mock or reversible tool action. Please use the repository feedback/design-partner templates and do not share secrets or production data.</p>
+<p>The intake questions and safety boundaries are collected in <a href="palo-ai-feedback-design-partner-form.html"><code>docs/community/palo-ai-feedback-design-partner-form.md</code></a>. This post is an invitation to discuss the architecture, not a request for n8n verification or connector review.</p>
+<p><strong>n8n orchestrates what automation does. PALO makes explicit whether the action was authorized—and whether its declared effect was later verified.</strong></p>
+</article></div>
+      <aside class="palo-doc-next"><div><small>Prerequisite</small><strong>No specialist prerequisite stated</strong></div><div><small>Recommended next step</small><strong>Return to the Documentation Library</strong></div></aside>
+      <section class="palo-doc-feedback" aria-labelledby="feedback-title"><p class="palo-eyebrow">Privacy-first feedback</p><h2 id="feedback-title">Help improve this guide</h2><p>Your feedback stays in your browser until you explicitly copy it, download it, or open an email draft. Do not include secrets, personal data, credentials or production identifiers.</p><form data-doc-feedback><div class="palo-form-grid"><div class="palo-field"><label for="feedback-role">Your role</label><select id="feedback-role" name="role"><option>Executive / governance owner</option><option>Platform or security engineer</option><option>No-code / low-code builder</option><option>External reviewer</option></select></div><div class="palo-field"><label for="feedback-category">Category</label><select id="feedback-category" name="category"><option>Clarity</option><option>Technical accuracy</option><option>Missing guidance</option><option>Accessibility</option></select></div><div class="palo-field palo-field-full"><label for="feedback-message">Feedback</label><textarea id="feedback-message" name="message" maxlength="3000" required placeholder="Describe the non-sensitive improvement you recommend."></textarea></div><div class="palo-form-actions"><button class="palo-btn" type="button" data-feedback-copy>Copy feedback</button><button class="palo-btn palo-btn-secondary" type="button" data-feedback-download>Download JSON</button><button class="palo-btn palo-btn-secondary" type="button" data-feedback-email>Email draft</button></div></div><p class="palo-action-status" data-feedback-status role="status" aria-live="polite"></p></form></section>
+    </div>
+  </main>
+  <footer class="palo-footer"><div class="palo-shell"><p>PALO public documentation. Developer preview boundaries apply.</p><div class="palo-footer-links"><a href="../../PALO_AIGovernance.html">PALO-AI</a><a href="../../governance-hub/">Governance Hub</a><a href="../../PALO_AgenticCapabilityMatrix.html">Capability Matrix</a><a href="../../PALO_AIProductionReadiness.html">Production Readiness</a><a href="../../privacy-policy.html">Privacy</a></div></div></footer>
+</body></html>

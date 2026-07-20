@@ -1,0 +1,479 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>PALO-AI Governance Hub — status, gaps and staged launch plan | PALO Documentation</title>
+  <meta name="description" content="Public PALO documentation: PALO-AI Governance Hub — status, gaps and staged launch plan.">
+  <link rel="canonical" href="https://paloframework.org/docs/palo-ai-governance-hub-launch-plan.html">
+  <link rel="icon" type="image/webp" href="../assets/logo.webp">
+  <link rel="stylesheet" href="../assets/palo-icons.css">
+  <link rel="stylesheet" href="../assets/palo-v21.css?v=2.5.0">
+  <link rel="stylesheet" href="../assets/palo-docs.css">
+  <script src="../assets/palo-icons.js" defer></script>
+  <script src="../assets/palo-v21.js?v=2.5.0" defer></script>
+  <script src="../assets/palo-docs.js" defer></script>
+</head>
+<body class="palo-v21 palo-doc-page" data-doc-source="docs/palo-ai-governance-hub-launch-plan.md">
+  <a class="palo-skip-link" href="#main-content">Skip to main content</a>
+  <header class="palo-site-header"><div class="palo-shell palo-header-inner">
+    <a class="palo-brand" href="../index.html"><img src="../assets/logo.webp" alt="PALO">PALO FRAMEWORK</a>
+    <button class="palo-menu-toggle" type="button" data-palo-menu-toggle aria-expanded="false" aria-controls="palo-primary-nav" aria-label="Open navigation"><span data-palo-icon="menu" aria-hidden="true"></span></button>
+    <nav class="palo-nav" id="palo-primary-nav" aria-label="Primary navigation"><a href="../designs/theory-to-practice-infographic/">Start</a><a href="../PALO_AIGovernance.html">Agentic Governance</a><a href="../governance-hub/">Governance Hub</a><a href="../index.html#guided-journeys">Tools</a><a href="../PALO_DocumentationLibrary.html" aria-current="page">Documentation</a><a href="../PALO_AIProductionReadiness.html">Readiness</a></nav>
+  </div></header>
+  <main id="main-content" class="palo-doc-main">
+    <div class="palo-shell">
+      <nav class="palo-doc-breadcrumb" aria-label="Breadcrumb"><a href="../PALO_DocumentationLibrary.html">Documentation Library</a><span aria-hidden="true">/</span><span>Governance Hub and UX</span></nav>
+      <header class="palo-doc-hero"><p class="palo-eyebrow">Governance Hub and UX · Public documentation</p><h1>PALO-AI Governance Hub — status, gaps and staged launch plan</h1><div class="palo-doc-facts"><span><small>Level</small><strong>guide</strong></span><span><small>Audience</small><strong>governance · technical · builder</strong></span><span><small>Product</small><strong>PALO-AI</strong></span><span><small>Status</small><strong>Developer Preview</strong></span><span><small>Read</small><strong>15 min</strong></span></div><p class="palo-doc-source">Published HTML view · Source: <code>docs/palo-ai-governance-hub-launch-plan.md</code></p><div class="palo-actions"><button class="palo-btn" type="button" data-doc-copy-link>Copy link</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-share>Share page</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-print>Print</button></div><p class="palo-action-status" data-doc-action-status role="status" aria-live="polite"></p></header>
+      <details class="palo-doc-mobile-toc"><summary>On this page</summary><ol><li class="depth-2"><a href="#executive-conclusion">Executive conclusion</a></li><li class="depth-2"><a href="#where-we-are-now">Where we are now</a></li><li class="depth-3"><a href="#evidence-that-can-be-demonstrated">Evidence that can be demonstrated</a></li><li class="depth-3"><a href="#core-differentiation">Core differentiation</a></li><li class="depth-2"><a href="#what-is-missing">What is missing</a></li><li class="depth-3"><a href="#product-and-usability-gaps">Product and usability gaps</a></li><li class="depth-3"><a href="#security-and-production-gaps">Security and production gaps</a></li><li class="depth-3"><a href="#ecosystem-gaps">Ecosystem gaps</a></li><li class="depth-2"><a href="#the-product-narrative-by-audience">The product narrative by audience</a></li><li class="depth-3"><a href="#1-executive-and-board-level-decision-makers">1. Executive and board-level decision makers</a></li><li class="depth-3"><a href="#2-cio-cto-ciso-and-enterprise-architects">2. CIO, CTO, CISO and enterprise architects</a></li><li class="depth-3"><a href="#3-n8n-and-no-codelow-code-builders">3. n8n and no-code/low-code builders</a></li><li class="depth-3"><a href="#4-code-first-agent-and-platform-engineers">4. Code-first agent and platform engineers</a></li><li class="depth-3"><a href="#5-governance-risk-compliance-and-audit">5. Governance, risk, compliance and audit</a></li><li class="depth-3"><a href="#6-security-and-assurance-reviewers">6. Security and assurance reviewers</a></li><li class="depth-2"><a href="#promotion-sequence">Promotion sequence</a></li><li class="depth-3"><a href="#stage-0--align-the-public-truth">Stage 0 — align the public truth</a></li><li class="depth-3"><a href="#stage-1--design-review-not-launch-announcement">Stage 1 — design review, not launch announcement</a></li><li class="depth-3"><a href="#stage-2--structured-design-partner-cohort">Stage 2 — structured design-partner cohort</a></li><li class="depth-3"><a href="#stage-3--installable-alpha-decision">Stage 3 — installable alpha decision</a></li><li class="depth-3"><a href="#stage-4--external-assurance-and-controlled-production-candidate">Stage 4 — external assurance and controlled production candidate</a></li><li class="depth-2"><a href="#proof-asset-stack">Proof-asset stack</a></li><li class="depth-2"><a href="#editorial-calendar-for-the-first-six-weeks">Editorial calendar for the first six weeks</a></li><li class="depth-2"><a href="#measurable-kpis">Measurable KPIs</a></li><li class="depth-3"><a href="#learning-and-comprehension">Learning and comprehension</a></li><li class="depth-3"><a href="#technical-proof">Technical proof</a></li><li class="depth-3"><a href="#community-and-adoption">Community and adoption</a></li><li class="depth-3"><a href="#metrics-to-treat-as-secondary">Metrics to treat as secondary</a></li><li class="depth-2"><a href="#message-and-claim-guardrails">Message and claim guardrails</a></li><li class="depth-3"><a href="#always-say">Always say</a></li><li class="depth-3"><a href="#never-say">Never say</a></li><li class="depth-2"><a href="#recommended-immediate-actions">Recommended immediate actions</a></li><li class="depth-3"><a href="#next-72-hours">Next 72 hours</a></li><li class="depth-3"><a href="#next-30-days">Next 30 days</a></li><li class="depth-3"><a href="#next-90-days">Next 90 days</a></li><li class="depth-2"><a href="#final-decision-framework">Final decision framework</a></li></ol></details>
+      <div class="palo-doc-layout"><aside class="palo-doc-sidebar" aria-label="On this page"><strong>On this page</strong><ol><li class="depth-2"><a href="#executive-conclusion">Executive conclusion</a></li><li class="depth-2"><a href="#where-we-are-now">Where we are now</a></li><li class="depth-3"><a href="#evidence-that-can-be-demonstrated">Evidence that can be demonstrated</a></li><li class="depth-3"><a href="#core-differentiation">Core differentiation</a></li><li class="depth-2"><a href="#what-is-missing">What is missing</a></li><li class="depth-3"><a href="#product-and-usability-gaps">Product and usability gaps</a></li><li class="depth-3"><a href="#security-and-production-gaps">Security and production gaps</a></li><li class="depth-3"><a href="#ecosystem-gaps">Ecosystem gaps</a></li><li class="depth-2"><a href="#the-product-narrative-by-audience">The product narrative by audience</a></li><li class="depth-3"><a href="#1-executive-and-board-level-decision-makers">1. Executive and board-level decision makers</a></li><li class="depth-3"><a href="#2-cio-cto-ciso-and-enterprise-architects">2. CIO, CTO, CISO and enterprise architects</a></li><li class="depth-3"><a href="#3-n8n-and-no-codelow-code-builders">3. n8n and no-code/low-code builders</a></li><li class="depth-3"><a href="#4-code-first-agent-and-platform-engineers">4. Code-first agent and platform engineers</a></li><li class="depth-3"><a href="#5-governance-risk-compliance-and-audit">5. Governance, risk, compliance and audit</a></li><li class="depth-3"><a href="#6-security-and-assurance-reviewers">6. Security and assurance reviewers</a></li><li class="depth-2"><a href="#promotion-sequence">Promotion sequence</a></li><li class="depth-3"><a href="#stage-0--align-the-public-truth">Stage 0 — align the public truth</a></li><li class="depth-3"><a href="#stage-1--design-review-not-launch-announcement">Stage 1 — design review, not launch announcement</a></li><li class="depth-3"><a href="#stage-2--structured-design-partner-cohort">Stage 2 — structured design-partner cohort</a></li><li class="depth-3"><a href="#stage-3--installable-alpha-decision">Stage 3 — installable alpha decision</a></li><li class="depth-3"><a href="#stage-4--external-assurance-and-controlled-production-candidate">Stage 4 — external assurance and controlled production candidate</a></li><li class="depth-2"><a href="#proof-asset-stack">Proof-asset stack</a></li><li class="depth-2"><a href="#editorial-calendar-for-the-first-six-weeks">Editorial calendar for the first six weeks</a></li><li class="depth-2"><a href="#measurable-kpis">Measurable KPIs</a></li><li class="depth-3"><a href="#learning-and-comprehension">Learning and comprehension</a></li><li class="depth-3"><a href="#technical-proof">Technical proof</a></li><li class="depth-3"><a href="#community-and-adoption">Community and adoption</a></li><li class="depth-3"><a href="#metrics-to-treat-as-secondary">Metrics to treat as secondary</a></li><li class="depth-2"><a href="#message-and-claim-guardrails">Message and claim guardrails</a></li><li class="depth-3"><a href="#always-say">Always say</a></li><li class="depth-3"><a href="#never-say">Never say</a></li><li class="depth-2"><a href="#recommended-immediate-actions">Recommended immediate actions</a></li><li class="depth-3"><a href="#next-72-hours">Next 72 hours</a></li><li class="depth-3"><a href="#next-30-days">Next 30 days</a></li><li class="depth-3"><a href="#next-90-days">Next 90 days</a></li><li class="depth-2"><a href="#final-decision-framework">Final decision framework</a></li></ol></aside><article class="palo-doc-content"><h1 id="palo-ai-governance-hub--status-gaps-and-staged-launch-plan">PALO-AI Governance Hub — status, gaps and staged launch plan<a class="palo-doc-anchor" href="#palo-ai-governance-hub--status-gaps-and-staged-launch-plan" aria-label="Link to PALO-AI Governance Hub — status, gaps and staged launch plan">#</a></h1><p>Status: evidence-led launch plan updated 19 July 2026 for the PALO-AI v2.5 developer preview and implemented role-based GUI prototype.</p>
+<h2 id="executive-conclusion">Executive conclusion<a class="palo-doc-anchor" href="#executive-conclusion" aria-label="Link to Executive conclusion">#</a></h2><p>PALO-AI has moved beyond a static architecture proposal: the repository now contains a working full-cycle reference model that can authorize a canonical action, bind exact human approval, issue a one-time capability, execute through a registered in-process adapter, sign a receipt, verify authoritative post-state and open a held incident when the effect is wrong or uncertain.</p>
+<p>It has <strong>not</strong> yet reached production-control-plane maturity. The implemented mock-data Governance Hub can materially reduce cognitive friction, but a polished dashboard must not be allowed to outrun identity, non-bypassability, key custody, distributed reliability and independent assurance.</p>
+<p>The launch should therefore make one promise:</p>
+<blockquote>
+<p><strong>PALO-AI helps teams make agent authority explicit and test whether protected actions produced their declared outcomes. The current release is an open developer preview for isolated evaluation—not a production authorization service.</strong></p>
+</blockquote>
+<h2 id="where-we-are-now">Where we are now<a class="palo-doc-anchor" href="#where-we-are-now" aria-label="Link to Where we are now">#</a></h2><h3 id="evidence-that-can-be-demonstrated">Evidence that can be demonstrated<a class="palo-doc-anchor" href="#evidence-that-can-be-demonstrated" aria-label="Link to Evidence that can be demonstrated">#</a></h3><div class="palo-doc-table-wrap" tabindex="0" aria-label="Scrollable documentation table"><table>
+<thead>
+<tr>
+<th>Area</th>
+<th>Repository evidence</th>
+<th>Safe current statement</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Governance contracts</td>
+<td>12 agentic JSON schemas and fixtures</td>
+<td>The core contract vocabulary is implemented and testable in the reference repository.</td>
+</tr>
+<tr>
+<td>Policy</td>
+<td>Rego v1 default-deny policy and 13 tests</td>
+<td>Reference allow, deny, approval and fail-closed behavior is covered by the included policy tests.</td>
+</tr>
+<tr>
+<td>MCP</td>
+<td>19 registered tools; stdio and bearer-authenticated Streamable HTTP</td>
+<td>The official-SDK reference server is implemented; remote transport remains a prototype without production identity or perimeter controls.</td>
+</tr>
+<tr>
+<td>Runtime</td>
+<td>23 Node.js tests across core, assurance, MCP, deployment and demo behavior</td>
+<td>The documented single-instance reference behavior is exercised by automated tests; this is not independent security assurance.</td>
+</tr>
+<tr>
+<td>Full-cycle assurance</td>
+<td>Effect Contract, capability, receipt, outcome attestation, incident and hold</td>
+<td>A working reference path distinguishes permitted actions from verified outcomes.</td>
+</tr>
+<tr>
+<td>Replay and recovery</td>
+<td>Nonce, idempotency, sequence checks, transactional outbox and restart recovery</td>
+<td>Reference replay controls and single-instance recovery exist; distributed exactly-once execution does not.</td>
+</tr>
+<tr>
+<td>n8n</td>
+<td>Package 0.2 source, two nodes, local 0.1 alpha evidence and synthetic workflow</td>
+<td>The n8n integration is an unpublished, unverified developer preview; 0.2 still needs a fresh clean-install real-canvas validation.</td>
+</tr>
+<tr>
+<td>Dify and other platforms</td>
+<td>Authenticated Python Dify example and portable adapter contract</td>
+<td>Cross-platform integration is demonstrated at example/specification level, not as production connectors.</td>
+</tr>
+<tr>
+<td>Public proof</td>
+<td>Architecture, capability matrix, diagrams, screenshots, three-minute video and hands-on demo</td>
+<td>There is enough material for architecture review and design-partner recruitment.</td>
+</tr>
+<tr>
+<td>Governance Hub GUI</td>
+<td>Tested React/Vite prototype, production build, role model and workflows</td>
+<td>Executive Cockpit and Technical Workbench are implemented with illustrative data; no live-runtime or production claim should be made.</td>
+</tr>
+</tbody></table></div>
+<h3 id="core-differentiation">Core differentiation<a class="palo-doc-anchor" href="#core-differentiation" aria-label="Link to Core differentiation">#</a></h3><p>The strongest current message is not “we log AI actions.” It is:</p>
+<ol>
+<li>autonomy does not establish authority;</li>
+<li>policy permission does not establish correctness;</li>
+<li>approval must bind the exact immutable claim;</li>
+<li>execution evidence must be generated inside the governed path;</li>
+<li>authoritative post-state determines <code>verified</code>, <code>mismatch</code> or <code>inconclusive</code>;</li>
+<li>wrong or uncertain outcomes become held assurance incidents.</li>
+</ol>
+<p>This is more precise and defensible than a broad claim of “complete AI governance.”</p>
+<h2 id="what-is-missing">What is missing<a class="palo-doc-anchor" href="#what-is-missing" aria-label="Link to What is missing">#</a></h2><h3 id="product-and-usability-gaps">Product and usability gaps<a class="palo-doc-anchor" href="#product-and-usability-gaps" aria-label="Link to Product and usability gaps">#</a></h3><div class="palo-doc-table-wrap" tabindex="0" aria-label="Scrollable documentation table"><table>
+<thead>
+<tr>
+<th>Gap</th>
+<th>Consequence</th>
+<th>Next proof required</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>No implemented Executive Cockpit</td>
+<td>Managers still need narrative documents or raw artifacts</td>
+<td>Tested prototype with five executive decisions and evidence drill-down</td>
+</tr>
+<tr>
+<td>No implemented Technical Workbench</td>
+<td>Setup starts from contracts and commands, increasing cognitive load</td>
+<td>Wizard prototype generating profiles, claims, Effect Contracts, policy and tests</td>
+</tr>
+<tr>
+<td>No stable explanation layer</td>
+<td>Raw denial reasons may be too technical or inconsistent</td>
+<td>Human-readable explanation taxonomy mapped to machine evidence</td>
+</tr>
+<tr>
+<td>No portfolio telemetry API</td>
+<td>Executive metrics would be sample data or expensive client aggregation</td>
+<td>Read-only aggregate API with lineage to immutable evidence</td>
+</tr>
+<tr>
+<td>No visual bypass analysis</td>
+<td>A polished gate can conceal direct credential paths</td>
+<td>Topology model and explicit coverage/bypass findings</td>
+</tr>
+<tr>
+<td>No governed policy promotion UX</td>
+<td>Draft, review, publish and rollback remain operator work</td>
+<td>Versioned lifecycle with reviewer separation and signed bundle evidence</td>
+</tr>
+<tr>
+<td>No reusable domain packs</td>
+<td>Every adopter must design contracts and tests from scratch</td>
+<td>Two or three narrow packs, such as catalog update and support ticket action</td>
+</tr>
+</tbody></table></div>
+<h3 id="security-and-production-gaps">Security and production gaps<a class="palo-doc-anchor" href="#security-and-production-gaps" aria-label="Link to Security and production gaps">#</a></h3><ol>
+<li>Principal-level identity, SSO/OIDC, RBAC and separation of duties.</li>
+<li>Multi-tenant and cross-environment isolation.</li>
+<li>KMS/HSM-backed signing, rotation, revocation and external anchoring.</li>
+<li>Signed OPA bundle promotion, provenance, digest attestation and rollback.</li>
+<li>Credential isolation and a non-bypassable governed executor for each protected target.</li>
+<li>Workflow admission or equivalent coverage enforcement.</li>
+<li>Authenticated reviewer presentation, notification and one-time backend-controlled resume.</li>
+<li>PostgreSQL or equivalent durable storage, queues, multi-replica leasing and recovery.</li>
+<li>HA, backup/restore, retention, rate limiting, observability and incident response.</li>
+<li>Connector workload identity, binary/supply-chain attestation and certification criteria.</li>
+<li>Independent architecture, cryptography, application/cloud and agent/MCP abuse assessment.</li>
+<li>Performance, failure-mode and recovery evidence under representative load.</li>
+</ol>
+<h3 id="ecosystem-gaps">Ecosystem gaps<a class="palo-doc-anchor" href="#ecosystem-gaps" aria-label="Link to Ecosystem gaps">#</a></h3><ul>
+<li>npm trusted publishing is configured in workflow source but public package release remains intentionally deferred;</li>
+<li>n8n package 0.2 requires a clean disposable installation and real-canvas validation;</li>
+<li>normal npm community-package discovery must be tested after publication;</li>
+<li>n8n verification eligibility and Creator Portal review remain discretionary and must not be implied;</li>
+<li>workflow template submission should follow real user tests, not lead them;</li>
+<li>Copilot Studio, LangGraph and other adapters need scoped implementation and conformance evidence;</li>
+<li>no formal support, compatibility or vulnerability-response service level exists.</li>
+</ul>
+<h2 id="the-product-narrative-by-audience">The product narrative by audience<a class="palo-doc-anchor" href="#the-product-narrative-by-audience" aria-label="Link to The product narrative by audience">#</a></h2><h3 id="1-executive-and-board-level-decision-makers">1. Executive and board-level decision makers<a class="palo-doc-anchor" href="#1-executive-and-board-level-decision-makers" aria-label="Link to 1. Executive and board-level decision makers">#</a></h3><p><strong>Problem:</strong> agentic automation increases operational authority faster than governance teams can see or review it.</p>
+<p><strong>Message:</strong> understand where protected actions can bypass control, where outcomes are verified and where accountable decisions are required.</p>
+<p><strong>Proof to show:</strong> direct-versus-governed workflow, one mismatch incident, four separate assurance measures and a plain-language executive report.</p>
+<p><strong>Ask:</strong> authorize a six-week isolated pilot and nominate the accountable business, IT and security owners.</p>
+<h3 id="2-cio-cto-ciso-and-enterprise-architects">2. CIO, CTO, CISO and enterprise architects<a class="palo-doc-anchor" href="#2-cio-cto-ciso-and-enterprise-architects" aria-label="Link to 2. CIO, CTO, CISO and enterprise architects">#</a></h3><p><strong>Problem:</strong> a visual approval node is not an enforcement boundary, and policy permission does not prove the external result.</p>
+<p><strong>Message:</strong> evaluate PALO as a portable control-plane architecture around existing orchestrators, not as another workflow engine.</p>
+<p><strong>Proof to show:</strong> trust boundaries, credential topology, failure behavior, Effect Contract, capability consumption, recovery and current gaps.</p>
+<p><strong>Ask:</strong> approve technical due diligence, threat modelling and one non-production integration.</p>
+<h3 id="3-n8n-and-no-codelow-code-builders">3. n8n and no-code/low-code builders<a class="palo-doc-anchor" href="#3-n8n-and-no-codelow-code-builders" aria-label="Link to 3. n8n and no-code/low-code builders">#</a></h3><p><strong>Problem:</strong> governance becomes repeated HTTP/Switch/Wait logic and may remain bypassable.</p>
+<p><strong>Message:</strong> keep the canvas experience while making authority, approval and outcome states explicit through a reusable PALO service integration.</p>
+<p><strong>Proof to show:</strong> importable safe workflow, Denied/Review Required/Verified/Mismatch paths and direct credential warning.</p>
+<p><strong>Ask:</strong> reproduce the demo and report node ergonomics, installation and failure behavior.</p>
+<h3 id="4-code-first-agent-and-platform-engineers">4. Code-first agent and platform engineers<a class="palo-doc-anchor" href="#4-code-first-agent-and-platform-engineers" aria-label="Link to 4. Code-first agent and platform engineers">#</a></h3><p><strong>Problem:</strong> authority, replay protection, approval and outcome evidence are reimplemented differently in every agent stack.</p>
+<p><strong>Message:</strong> test portable JSON contracts, Rego policy, MCP tools and REST lifecycle against one isolated adapter.</p>
+<p><strong>Proof to show:</strong> schemas, policy tests, E2E test, MCP toolkit and reference runtime.</p>
+<p><strong>Ask:</strong> contribute a conformance fixture, negative test or adapter threat-boundary review.</p>
+<h3 id="5-governance-risk-compliance-and-audit">5. Governance, risk, compliance and audit<a class="palo-doc-anchor" href="#5-governance-risk-compliance-and-audit" aria-label="Link to 5. Governance, risk, compliance and audit">#</a></h3><p><strong>Problem:</strong> static assessments and post-hoc logs do not bind the actual action and observed outcome.</p>
+<p><strong>Message:</strong> connect authority, human oversight, execution evidence and outcome assurance to one reviewable lifecycle.</p>
+<p><strong>Proof to show:</strong> exact-claim approval, signed receipt, outcome attestation, incident and evidence lineage.</p>
+<p><strong>Ask:</strong> review decision rights, retention, explanation and reporting requirements.</p>
+<h3 id="6-security-and-assurance-reviewers">6. Security and assurance reviewers<a class="palo-doc-anchor" href="#6-security-and-assurance-reviewers" aria-label="Link to 6. Security and assurance reviewers">#</a></h3><p><strong>Problem:</strong> the governance layer itself becomes a high-value authorization and evidence target.</p>
+<p><strong>Message:</strong> challenge PALO's trust boundaries before it is scaled; do not accept interface polish as security proof.</p>
+<p><strong>Proof to show:</strong> threat model, capability matrix, fail-closed tests, bypass statement, key boundary and unresolved blockers.</p>
+<p><strong>Ask:</strong> perform architecture, cryptographic and adversarial review and publish a sanitized finding summary after remediation.</p>
+<h2 id="promotion-sequence">Promotion sequence<a class="palo-doc-anchor" href="#promotion-sequence" aria-label="Link to Promotion sequence">#</a></h2><h3 id="stage-0--align-the-public-truth">Stage 0 — align the public truth<a class="palo-doc-anchor" href="#stage-0--align-the-public-truth" aria-label="Link to Stage 0 — align the public truth">#</a></h3><p>Timing: immediately, before new promotion.</p>
+<p>Actions:</p>
+<ul>
+<li>use v2.5 and “full-cycle developer preview” consistently;</li>
+<li>publish the Governance Hub as an available interactive prototype while keeping live-runtime and production claims explicitly out of scope;</li>
+<li>make <code>agentic/capability-matrix.json</code> the source of truth for status;</li>
+<li>make the direct-versus-governed demo the primary proof asset;</li>
+<li>place the current boundary next to every CTA;</li>
+<li>update community copy that still centers v2.4.1 before posting it;</li>
+<li>do not publish sample executive metrics without a visible “illustrative data” label.</li>
+</ul>
+<p>Exit criteria:</p>
+<ul>
+<li>no public page claims production readiness, n8n verification or universal interception;</li>
+<li>every major capability statement links to evidence or is labelled proposed;</li>
+<li>one executive and one technical narrative use the same lifecycle vocabulary.</li>
+</ul>
+<h3 id="stage-1--design-review-not-launch-announcement">Stage 1 — design review, not launch announcement<a class="palo-doc-anchor" href="#stage-1--design-review-not-launch-announcement" aria-label="Link to Stage 1 — design review, not launch announcement">#</a></h3><p>Timing: weeks 1–2.</p>
+<p>Channels and actions:</p>
+<p><strong>GitHub Discussions</strong>
+Open “One Governance Hub, two role-based views” and ask four design questions. Link the full-cycle guide, capability matrix and safe demo.</p>
+<p><strong>n8n Community</strong>
+Post an updated architecture discussion, explicitly not a verification request. Ask where native nodes should end and a one-service PALO integration should begin, how builders expose bypass risk and which reversible workflow should become the first partner test.</p>
+<p><strong>OPA community</strong>
+Ask for review of input ownership, policy-bundle attestation, default-deny semantics, exception expiry and test coverage. Do not lead with marketing copy.</p>
+<p><strong>OWASP GenAI Agentic Security Initiative and MCP security practitioners</strong>
+Share the trust-boundary diagram and “authorized but wrong” case. Ask reviewers to challenge confused-deputy, prompt-injection, replay, verifier trust and evidence-forgery paths.</p>
+<p><strong>LinkedIn</strong>
+Publish a short technical narrative around one insight: <strong>Allowed is not verified.</strong> Use a 30–45 second clip of the wrong-effect path and link to GitHub. Invite critique and design partners, not buyers.</p>
+<p>Exit criteria:</p>
+<ul>
+<li>10 qualified architecture responses;</li>
+<li>at least 3 responses from outside the existing network;</li>
+<li>all material feedback classified as contract, enforcement, UX, policy, reliability or documentation;</li>
+<li>public “what changed because of feedback” log started.</li>
+</ul>
+<h3 id="stage-2--structured-design-partner-cohort">Stage 2 — structured design-partner cohort<a class="palo-doc-anchor" href="#stage-2--structured-design-partner-cohort" aria-label="Link to Stage 2 — structured design-partner cohort">#</a></h3><p>Timing: weeks 2–6.</p>
+<p>Recruit 3–5 partners across:</p>
+<ul>
+<li>one n8n consultant or self-hosted operator;</li>
+<li>one internal AI automation team;</li>
+<li>one security/authorization specialist;</li>
+<li>one governance or assurance practitioner;</li>
+<li>optionally one cross-platform builder using Dify, Copilot Studio or LangGraph.</li>
+</ul>
+<p>Each partner supplies:</p>
+<ul>
+<li>one disposable workflow;</li>
+<li>one synthetic or reversible action;</li>
+<li>a stated “must never execute” condition;</li>
+<li>a named accountable reviewer;</li>
+<li>measurable comprehension, latency and reliability criteria;</li>
+<li>permission before any result is attributed publicly.</li>
+</ul>
+<p>Each evaluation must test:</p>
+<figure class="palo-doc-code"><figcaption>text code</figcaption><pre tabindex="0"><code class="language-text">register -&gt; deny -&gt; exact approval -&gt; governed execution -&gt; signed receipt
+         -&gt; authoritative verification -&gt; mismatch/inconclusive -&gt; incident -&gt; recovery</code></pre></figure><p>Measure both controls and friction:</p>
+<ul>
+<li>time to first governed action;</li>
+<li>number of concepts the builder must understand;</li>
+<li>setup steps and manual fields;</li>
+<li>policy and contract errors before first successful run;</li>
+<li>reviewer time and decision comprehension;</li>
+<li>bypass paths detected;</li>
+<li>decision and verification latency;</li>
+<li>recovery success;</li>
+<li>percentage of actions with an authoritative verifier;</li>
+<li>false confidence events, where “allowed” was mistaken for “verified.”</li>
+</ul>
+<p>Exit criteria:</p>
+<ul>
+<li>3 written partner scopes;</li>
+<li>2 independently reproduced installations;</li>
+<li>2 complete test reports, including one wrong-effect case;</li>
+<li>top five cognitive-friction points ranked by evidence;</li>
+<li>no unresolved critical security or authorization finding.</li>
+</ul>
+<h3 id="stage-3--installable-alpha-decision">Stage 3 — installable alpha decision<a class="palo-doc-anchor" href="#stage-3--installable-alpha-decision" aria-label="Link to Stage 3 — installable alpha decision">#</a></h3><p>Timing: after Stage 2 evidence, not on a fixed publicity date.</p>
+<p>Before npm publication:</p>
+<ul>
+<li>validate package 0.2 on a clean supported n8n instance;</li>
+<li>test install, upgrade, downgrade and uninstall;</li>
+<li>run n8n package scanning and <code>n8n audit</code> before and after installation;</li>
+<li>document exact compatibility, checksums, SBOM and known limitations;</li>
+<li>confirm that the public node integrates one PALO service and does not masquerade as generic flow control;</li>
+<li>publish through GitHub Actions trusted publishing with provenance;</li>
+<li>confirm support and security contact readiness;</li>
+<li>record a go/no-go decision.</li>
+</ul>
+<p>After publication:</p>
+<ul>
+<li>test the normal n8n community-package installation path;</li>
+<li>verify discovery and removal behavior;</li>
+<li>publish only safe, reversible workflow examples;</li>
+<li>wait for real feedback before proposing templates or Creator Portal review.</li>
+</ul>
+<p>Exit criteria:</p>
+<ul>
+<li>repeatable clean installation on the declared compatibility range;</li>
+<li>scan, build, tests and packaging pass from a tagged commit;</li>
+<li>provenance and SBOM public;</li>
+<li>zero open critical/high release-blocking findings;</li>
+<li>rollback and deprecation path documented.</li>
+</ul>
+<h3 id="stage-4--external-assurance-and-controlled-production-candidate">Stage 4 — external assurance and controlled production candidate<a class="palo-doc-anchor" href="#stage-4--external-assurance-and-controlled-production-candidate" aria-label="Link to Stage 4 — external assurance and controlled production candidate">#</a></h3><p>Timing: only after design-partner learning and architecture hardening.</p>
+<p>Commission three complementary reviews:</p>
+<ol>
+<li>architecture and agent/MCP threat-model review;</li>
+<li>applied cryptography and evidence-boundary review;</li>
+<li>application, API, cloud and business-logic penetration test with retest.</li>
+</ol>
+<p>Shortlist providers through the CREST Marketplace or equivalently qualified independent practitioners. Require demonstrable OAuth/OIDC, multi-tenant SaaS, OPA/Rego, Node.js, MCP/agentic abuse and applied cryptography experience.</p>
+<p>Do not use OWASP peer feedback as a substitute for a contracted independent assessment. Publish a sanitized assurance statement only after remediation and retest.</p>
+<p>Exit criteria:</p>
+<ul>
+<li>signed threat model and residual-risk register;</li>
+<li>KMS/HSM and identity architecture implemented;</li>
+<li>tenant isolation and cross-tenant tests complete;</li>
+<li>HA and backup/recovery exercise complete;</li>
+<li>independent findings remediated and retested;</li>
+<li>explicit decision on controlled production-pilot scope.</li>
+</ul>
+<h2 id="proof-asset-stack">Proof-asset stack<a class="palo-doc-anchor" href="#proof-asset-stack" aria-label="Link to Proof-asset stack">#</a></h2><p>Use proof assets in this order:</p>
+<ol>
+<li><strong>One-sentence problem:</strong> Allowed is not verified.</li>
+<li><strong>30-second visual:</strong> direct tool call versus governed full cycle.</li>
+<li><strong>Three-minute video:</strong> deny, approve, execute, verify and wrong-effect incident.</li>
+<li><strong>Hands-on demo:</strong> synthetic catalog action with exact steps and expected output.</li>
+<li><strong>Capability matrix:</strong> specified, prototype, implemented and production-ready status.</li>
+<li><strong>Technical guide:</strong> lifecycle, trust boundary and production gaps.</li>
+<li><strong>Test evidence:</strong> Rego, runtime, MCP, deployment and recovery cases.</li>
+<li><strong>Design-partner report:</strong> independently reproduced result and friction findings.</li>
+<li><strong>Security statement:</strong> sanitized external review and remediation evidence.</li>
+</ol>
+<p>Avoid leading with a long feature list or a conceptual dashboard. The audience should understand the difference between <code>allowed</code>, <code>verified</code>, <code>mismatch</code> and <code>inconclusive</code> before seeing product breadth.</p>
+<h2 id="editorial-calendar-for-the-first-six-weeks">Editorial calendar for the first six weeks<a class="palo-doc-anchor" href="#editorial-calendar-for-the-first-six-weeks" aria-label="Link to Editorial calendar for the first six weeks">#</a></h2><div class="palo-doc-table-wrap" tabindex="0" aria-label="Scrollable documentation table"><table>
+<thead>
+<tr>
+<th>Week</th>
+<th>Primary asset</th>
+<th>Channel</th>
+<th>Intended learning</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>“Allowed is not verified” clip and diagram</td>
+<td>LinkedIn + GitHub Discussion</td>
+<td>Does the problem resonate without framework jargon?</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Governance Hub role concept</td>
+<td>GitHub Discussion</td>
+<td>Which executive decisions and technical tasks matter?</td>
+</tr>
+<tr>
+<td>2</td>
+<td>n8n direct-versus-governed workflow</td>
+<td>n8n Community</td>
+<td>Is the node boundary clear and complementary?</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Rego input and bundle-boundary review</td>
+<td>OPA community</td>
+<td>Are policy ownership and failure semantics credible?</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Threat-boundary and wrong-effect case</td>
+<td>OWASP/MCP security reviewers</td>
+<td>Which abuse cases or trust assumptions are missing?</td>
+</tr>
+<tr>
+<td>3–4</td>
+<td>Design-partner office hours</td>
+<td>Direct outreach</td>
+<td>Which setup steps create the most friction?</td>
+</tr>
+<tr>
+<td>4</td>
+<td>“What feedback changed” engineering note</td>
+<td>GitHub + LinkedIn</td>
+<td>Are we visibly learning rather than advertising?</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Reproduced partner demo</td>
+<td>GitHub, with permission</td>
+<td>Can an external builder reach the expected outcomes?</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Evidence-led alpha readiness review</td>
+<td>GitHub</td>
+<td>Publish, defer or narrow the package?</td>
+</tr>
+</tbody></table></div>
+<h2 id="measurable-kpis">Measurable KPIs<a class="palo-doc-anchor" href="#measurable-kpis" aria-label="Link to Measurable KPIs">#</a></h2><h3 id="learning-and-comprehension">Learning and comprehension<a class="palo-doc-anchor" href="#learning-and-comprehension" aria-label="Link to Learning and comprehension">#</a></h3><ul>
+<li>at least 70% of five executive test participants can explain “allowed versus verified” after a five-minute walkthrough;</li>
+<li>at least 80% correctly identify an open resource hold and its accountable owner;</li>
+<li>median technical time to first governed synthetic action below 45 minutes by the end of the design-partner cohort;</li>
+<li>median reviewer comprehension score of at least 4/5 for tool, target, effect, expiry and reason;</li>
+<li>top five friction points have owners and measurable remediation criteria.</li>
+</ul>
+<h3 id="technical-proof">Technical proof<a class="palo-doc-anchor" href="#technical-proof" aria-label="Link to Technical proof">#</a></h3><ul>
+<li>100% pass rate for documented deny, forged approval, replay, stale-state, wrong-effect, verifier-unavailable and restart-recovery fixtures;</li>
+<li>two independent clean installations on the declared n8n compatibility range;</li>
+<li>100% of pilot protected actions mapped to an explicit credential path and bypass review;</li>
+<li>at least 90% of pilot actions have a declared authoritative verifier, with the remainder explicitly marked unverifiable;</li>
+<li>zero unresolved critical or high authorization findings at an alpha publication gate;</li>
+<li>reproducible build, provenance, checksum and SBOM for any public package.</li>
+</ul>
+<h3 id="community-and-adoption">Community and adoption<a class="palo-doc-anchor" href="#community-and-adoption" aria-label="Link to Community and adoption">#</a></h3><ul>
+<li>10 qualified architecture responses in 30 days;</li>
+<li>3–5 design partners with written scopes;</li>
+<li>2 external reproducible test reports;</li>
+<li>1 external threat-model review before any production-candidate language;</li>
+<li>at least 3 documented product changes caused by external feedback;</li>
+<li>a written go/no-go decision for npm publication and any n8n Creator Portal submission.</li>
+</ul>
+<h3 id="metrics-to-treat-as-secondary">Metrics to treat as secondary<a class="palo-doc-anchor" href="#metrics-to-treat-as-secondary" aria-label="Link to Metrics to treat as secondary">#</a></h3><ul>
+<li>video views;</li>
+<li>LinkedIn impressions;</li>
+<li>GitHub stars;</li>
+<li>package downloads before the integration is repeatable;</li>
+<li>unqualified form submissions.</li>
+</ul>
+<p>These are reach signals, not assurance or product-market evidence.</p>
+<h2 id="message-and-claim-guardrails">Message and claim guardrails<a class="palo-doc-anchor" href="#message-and-claim-guardrails" aria-label="Link to Message and claim guardrails">#</a></h2><h3 id="always-say">Always say<a class="palo-doc-anchor" href="#always-say" aria-label="Link to Always say">#</a></h3><ul>
+<li>developer preview;</li>
+<li>isolated or synthetic data and reversible actions only;</li>
+<li>allowed and verified are separate states;</li>
+<li>the GUI is proposed until implementation evidence exists;</li>
+<li>the n8n package is unpublished and not n8n-verified;</li>
+<li>bypass resistance depends on credential isolation and workflow admission;</li>
+<li>production claims remain gated by independent assessment.</li>
+</ul>
+<h3 id="never-say">Never say<a class="palo-doc-anchor" href="#never-say" aria-label="Link to Never say">#</a></h3><ul>
+<li>production-ready, enterprise-ready or certified;</li>
+<li>n8n partner, n8n approved or n8n verified;</li>
+<li>every agent tool call is intercepted;</li>
+<li>tamper-proof evidence without explaining key custody and external anchoring;</li>
+<li>exactly-once execution across arbitrary external tools;</li>
+<li>authenticated or biometric approval unless the reviewer identity mechanism supports it;</li>
+<li>universal compliance with the EU AI Act, ISO/IEC 42001, NIST AI RMF or another framework.</li>
+</ul>
+<h2 id="recommended-immediate-actions">Recommended immediate actions<a class="palo-doc-anchor" href="#recommended-immediate-actions" aria-label="Link to Recommended immediate actions">#</a></h2><h3 id="next-72-hours">Next 72 hours<a class="palo-doc-anchor" href="#next-72-hours" aria-label="Link to Next 72 hours">#</a></h3><ol>
+<li>Publish a clearly labelled Governance Hub concept page using the copy draft in <code>docs/site/palo-ai-governance-hub-page-copy.md</code>.</li>
+<li>Open one GitHub Discussion for the two-view model; do not open a separate discussion for every feature.</li>
+<li>Update the existing n8n community draft from v2.4.1 to v2.5 before posting.</li>
+<li>Record a 45-second “Allowed is not verified” video using the wrong-effect demo.</li>
+<li>Invite ten named reviewers: two n8n builders, two platform/security engineers, two OPA/authorization specialists, two governance practitioners and two executive/CIO advisers.</li>
+<li>Create a public “feedback changed” label or project view so learning is visible.</li>
+</ol>
+<h3 id="next-30-days">Next 30 days<a class="palo-doc-anchor" href="#next-30-days" aria-label="Link to Next 30 days">#</a></h3><ol>
+<li>Prototype the Executive Cockpit with read-only illustrative data and test five decision tasks.</li>
+<li>Prototype the Technical Workbench wizard through generation of one complete catalog-update assurance pack.</li>
+<li>Run three design-partner evaluations and publish redacted results with permission.</li>
+<li>Complete the external threat-model review and scope the cryptographic assessment.</li>
+<li>Decide whether package 0.2 is ready for a provenance-backed npm alpha or should remain repository-only.</li>
+</ol>
+<h3 id="next-90-days">Next 90 days<a class="palo-doc-anchor" href="#next-90-days" aria-label="Link to Next 90 days">#</a></h3><ol>
+<li>Implement identity, RBAC and policy-promotion foundations before exposing administrative GUI operations.</li>
+<li>Move the reference data plane toward durable multi-tenant storage and queue architecture.</li>
+<li>Isolate protected connector credentials and test workflow-admission controls.</li>
+<li>Commission application/cloud and cryptographic assessment, remediate and retest.</li>
+<li>Publish a narrow production-candidate scope only if the evidence supports it.</li>
+</ol>
+<h2 id="final-decision-framework">Final decision framework<a class="palo-doc-anchor" href="#final-decision-framework" aria-label="Link to Final decision framework">#</a></h2><p>At every stage ask three questions:</p>
+<ol>
+<li><strong>Can a protected action bypass PALO?</strong> If yes, call the integration advisory.</li>
+<li><strong>Can PALO authenticate who configured, approved, executed and verified the action?</strong> If no, keep it in developer-preview scope.</li>
+<li><strong>Can independent evidence show that the system fails safely under attack, outage and recovery?</strong> If no, do not claim production readiness.</li>
+</ol>
+<p>The immediate objective is not maximum reach. It is to earn a small body of credible, reproducible evidence that PALO reduces governance ambiguity without imposing unacceptable cognitive or operational friction.</p>
+</article></div>
+      <aside class="palo-doc-next"><div><small>Prerequisite</small><strong>No specialist prerequisite stated</strong></div><div><small>Recommended next step</small><strong>Return to the Documentation Library</strong></div></aside>
+      <section class="palo-doc-feedback" aria-labelledby="feedback-title"><p class="palo-eyebrow">Privacy-first feedback</p><h2 id="feedback-title">Help improve this guide</h2><p>Your feedback stays in your browser until you explicitly copy it, download it, or open an email draft. Do not include secrets, personal data, credentials or production identifiers.</p><form data-doc-feedback><div class="palo-form-grid"><div class="palo-field"><label for="feedback-role">Your role</label><select id="feedback-role" name="role"><option>Executive / governance owner</option><option>Platform or security engineer</option><option>No-code / low-code builder</option><option>External reviewer</option></select></div><div class="palo-field"><label for="feedback-category">Category</label><select id="feedback-category" name="category"><option>Clarity</option><option>Technical accuracy</option><option>Missing guidance</option><option>Accessibility</option></select></div><div class="palo-field palo-field-full"><label for="feedback-message">Feedback</label><textarea id="feedback-message" name="message" maxlength="3000" required placeholder="Describe the non-sensitive improvement you recommend."></textarea></div><div class="palo-form-actions"><button class="palo-btn" type="button" data-feedback-copy>Copy feedback</button><button class="palo-btn palo-btn-secondary" type="button" data-feedback-download>Download JSON</button><button class="palo-btn palo-btn-secondary" type="button" data-feedback-email>Email draft</button></div></div><p class="palo-action-status" data-feedback-status role="status" aria-live="polite"></p></form></section>
+    </div>
+  </main>
+  <footer class="palo-footer"><div class="palo-shell"><p>PALO public documentation. Developer preview boundaries apply.</p><div class="palo-footer-links"><a href="../PALO_AIGovernance.html">PALO-AI</a><a href="../governance-hub/">Governance Hub</a><a href="../PALO_AgenticCapabilityMatrix.html">Capability Matrix</a><a href="../PALO_AIProductionReadiness.html">Production Readiness</a><a href="../privacy-policy.html">Privacy</a></div></div></footer>
+</body></html>

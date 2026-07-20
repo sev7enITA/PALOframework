@@ -1,0 +1,17 @@
+{
+  "format": "palo-case-file",
+  "schemaVersion": "1.0.0",
+  "caseId": "case-procurement-001",
+  "title": "Procurement assistant review",
+  "status": "active",
+  "createdAt": "2026-07-12T08:00:00.000Z",
+  "updatedAt": "2026-07-12T09:00:00.000Z",
+  "owner": "Procurement governance team",
+  "context": { "sector": "public service", "customPortfolioCode": "PORT-7" },
+  "assessments": [{ "assessmentId": "assessment-001", "module": "assessment-path", "recordedAt": "2026-07-12T09:00:00.000Z", "data": { "riskTier": "unknown" } }],
+  "evidence": [{ "evidenceId": "evidence-001", "title": "Supplier system description", "kind": "document", "status": "draft", "recordedAt": "2026-07-12T08:30:00.000Z" }],
+  "sources": [{ "sourceId": "eu-ai-act", "title": "Artificial Intelligence Act", "url": "https://eur-lex.europa.eu/eli/reg/2024/1689/oj/eng", "sourceType": "official", "publisher": "European Union", "checkedAt": "2026-07-12T08:00:00.000Z", "freshness": { "status": "current", "reviewIntervalDays": 90, "nextReviewAt": "2026-10-10T08:00:00.000Z" } }],
+  "incidents": [],
+  "handoffs": [],
+  "extensionExample": { "preserved": true }
+}

@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paloframework.org/schemas/palo-agentic-evidence-envelope.schema.json",
+  "title": "PALO Signed Agentic Evidence Envelope",
+  "description": "Developer-preview HMAC evidence-envelope contract. A valid signature proves only possession of the configured shared secret; it is not non-repudiation, external timestamping, legal evidence, or certification of the claimed execution.",
+  "type": "object",
+  "required": ["format", "schemaVersion", "eventId", "caseId", "agentId", "claimId", "decisionId", "outcome", "recordedAt", "payloadDigest", "previousEventDigest", "keyId", "algorithm", "signature"],
+  "properties": {
+    "format": { "const": "palo-agentic-evidence-envelope" },
+    "schemaVersion": { "const": "1.0.0" },
+    "eventId": { "type": "string", "pattern": "^event-[a-f0-9-]{36}$" },
+    "caseId": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "agentId": { "type": "string", "pattern": "^agent-[a-zA-Z0-9][a-zA-Z0-9-]{5,63}$" },
+    "claimId": { "type": "string", "pattern": "^claim-[a-f0-9-]{36}$" },
+    "decisionId": { "type": "string", "pattern": "^decision-[a-f0-9-]{36}$" },
+    "approvalId": { "type": "string", "pattern": "^approval-[a-f0-9-]{36}$" },
+    "executionId": { "type": "string", "pattern": "^execution-[a-f0-9-]{36}$" },
+    "attestationId": { "type": "string", "pattern": "^attestation-[a-f0-9-]{36}$" },
+    "incidentId": { "type": "string", "pattern": "^incident-[a-f0-9-]{36}$" },
+    "outcome": { "enum": ["allowed", "denied", "pending_approval", "executed", "failed", "execution_started", "execution_succeeded", "execution_failed", "execution_unknown", "outcome_verified", "outcome_mismatch", "outcome_inconclusive", "incident_opened", "incident_resolved"] },
+    "recordedAt": { "type": "string", "format": "date-time" },
+    "redactedPayload": { "type": "object", "additionalProperties": true },
+    "payloadDigest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+    "previousEventDigest": { "type": ["string", "null"], "pattern": "^sha256:[a-f0-9]{64}$" },
+    "keyId": { "type": "string", "pattern": "^key-[a-zA-Z0-9._-]{3,100}$" },
+    "algorithm": { "const": "HMAC-SHA256" },
+    "signature": { "type": "string", "pattern": "^hmac-sha256:[a-f0-9]{64}$" }
+  },
+  "additionalProperties": false
+}

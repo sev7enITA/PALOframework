@@ -16,12 +16,12 @@ PALO-AI is an emerging governance control plane for n8n and agentic automation p
 Propose -> Authorize -> Approve -> Capability -> Execute -> Receipt -> Observe -> Verify -> Escalate
 ```
 
-The proposed **PALO-AI Governance Hub** adds two role-based views over the same contracts and evidence:
+The **PALO-AI Governance Hub prototype** adds two role-based views over the same contracts and evidence:
 
 - **Executive Cockpit** — portfolio exposure, governance coverage, outcome assurance, open holds, accountable decisions and board reporting in plain language.
 - **Technical Workbench** — agent and authority setup, policy and Effect Contract builders, topology and bypass review, simulation, execution timelines and raw evidence.
 
-The GUI is a product direction, not a current implementation claim. The v2.5 repository contains the full-cycle reference contracts and runtime described below; GUI status must remain separate until tested source is available.
+The repository contains a tested React/Vite GUI using illustrative local data. It demonstrates the product direction but is not yet connected to live runtime data, human identity, tenant authorization or production key infrastructure. A live multi-user Hub requires a BFF with OIDC and server-enforced authorization.
 
 #### What is available in v2.5
 
@@ -314,7 +314,7 @@ Before merging public copy:
 - distinguish **allowed** from **verified**;
 - distinguish an advisory node from an unavoidable execution boundary;
 - say `n8n-nodes-palo-ai` is unpublished and not n8n-verified;
-- identify the Governance Hub GUI as proposed until tested source exists;
+- identify the Governance Hub as an implemented mock-data prototype, not a connected or production control plane;
 - do not call HMAC evidence tamper-proof outside the stated key boundary;
 - do not imply biometric approval, exactly-once execution, tenant isolation or connector certification;
 - link material status claims to `agentic/capability-matrix.json`;

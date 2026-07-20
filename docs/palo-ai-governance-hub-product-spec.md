@@ -1,8 +1,8 @@
 # PALO-AI Governance Hub — Product Specification
 
-Status: proposed product experience for the PALO-AI v2.5 developer preview, updated 19 July 2026.
+Status: implemented interactive product prototype for the PALO-AI v2.5 developer preview, updated 19 July 2026.
 
-> **Important boundary.** This document specifies a future GUI and the backend capabilities required to support it. It does not claim that the GUI, production identity, tenant isolation, or production authorization boundary already exists. The current runtime is a developer preview for synthetic or isolated data and non-consequential tools. Current implementation status remains authoritative in [`agentic/capability-matrix.json`](../agentic/capability-matrix.json).
+> **Important boundary.** The repository now contains a tested React/Vite GUI using illustrative local data. It does not yet contain the production backend-for-frontend, identity, tenant isolation, or authorization boundary required to connect that GUI to live runtime state. Use the runtime only with synthetic or isolated data and non-consequential tools. Current implementation status remains authoritative in [`agentic/capability-matrix.json`](../agentic/capability-matrix.json).
 
 ## 1. Product intent
 
@@ -15,9 +15,11 @@ The Hub is not a second policy engine. It is an administration, review, and expl
 
 ```mermaid
 flowchart LR
-    EC[Executive Cockpit] --> HUB[Governance Hub API and explanation layer]
-    TW[Technical Workbench] --> HUB
-    HUB --> RT[PALO-AI runtime]
+    EC[Executive Cockpit] --> UI[Governance Hub browser prototype]
+    TW[Technical Workbench] --> UI
+    UI --> MOCK[Illustrative local data]
+    UI -. planned authenticated path .-> BFF[Backend-for-frontend]
+    BFF --> RT[PALO-AI runtime]
     RT --> REG[Registry and policies]
     RT --> APP[Approvals]
     RT --> EXE[Governed execution]
@@ -39,7 +41,7 @@ Agentic automation creates two distinct questions:
 1. **Was the action permitted?** Authority, policy, scope, approval, and replay controls answer this before execution.
 2. **Did the action produce the promised result?** Trusted execution receipts and authoritative post-state verification answer this after execution.
 
-The current reference implementation exposes these concepts through JSON contracts, REST endpoints, MCP tools, tests, and the n8n preview package. That is appropriate for engineering evaluation, but it creates cognitive friction for business owners and unnecessary configuration friction for technical adopters.
+The current reference implementation exposes these concepts through JSON contracts, REST endpoints, MCP tools, tests, the n8n preview package, and an interactive mock-data Hub. The GUI demonstrates the intended experience, while live multi-user operation still requires the authenticated BFF and query/administration APIs defined later in this specification.
 
 The Hub must make the full cycle visible without collapsing permission and correctness into one misleading status:
 

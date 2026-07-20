@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paloframework.org/schemas/palo-agentic-assurance-incident.schema.json",
+  "title": "PALO Assurance Incident",
+  "description": "Developer-preview human-resolution record for a mismatched or inconclusive governed action.",
+  "type": "object",
+  "required": ["format", "schemaVersion", "incidentId", "executionId", "claimId", "caseId", "status", "severity", "reason", "resourceHold", "createdAt", "updatedAt"],
+  "properties": {
+    "format": { "const": "palo-agentic-assurance-incident" },
+    "schemaVersion": { "const": "1.0.0" },
+    "incidentId": { "type": "string", "pattern": "^incident-[a-f0-9-]{36}$" },
+    "executionId": { "type": "string", "pattern": "^execution-[a-f0-9-]{36}$" },
+    "claimId": { "type": "string", "pattern": "^claim-[a-f0-9-]{36}$" },
+    "caseId": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "status": { "enum": ["open", "acknowledged", "resolved"] },
+    "severity": { "enum": ["low", "medium", "high", "critical"] },
+    "reason": { "type": "string", "minLength": 1, "maxLength": 4000 },
+    "resourceHold": { "type": "boolean" },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "updatedAt": { "type": "string", "format": "date-time" },
+    "resolvedBy": { "type": "string", "minLength": 1, "maxLength": 320 },
+    "resolution": { "type": "string", "minLength": 1, "maxLength": 4000 },
+    "resolvedAt": { "type": "string", "format": "date-time" }
+  },
+  "additionalProperties": false
+}

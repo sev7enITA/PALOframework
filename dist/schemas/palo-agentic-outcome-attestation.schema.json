@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paloframework.org/schemas/palo-agentic-outcome-attestation.schema.json",
+  "title": "PALO Outcome Attestation",
+  "description": "Developer-preview signed comparison between an Effect Contract and authoritative observed state.",
+  "type": "object",
+  "required": ["format", "schemaVersion", "attestationId", "executionId", "claimId", "verifierId", "status", "checkedAt", "postStateDigest", "checks", "keyId", "algorithm", "signature"],
+  "properties": {
+    "format": { "const": "palo-agentic-outcome-attestation" },
+    "schemaVersion": { "const": "1.0.0" },
+    "attestationId": { "type": "string", "pattern": "^attestation-[a-f0-9-]{36}$" },
+    "executionId": { "type": "string", "pattern": "^execution-[a-f0-9-]{36}$" },
+    "claimId": { "type": "string", "pattern": "^claim-[a-f0-9-]{36}$" },
+    "verifierId": { "type": "string", "pattern": "^verifier-[a-zA-Z0-9][a-zA-Z0-9._-]{2,100}$" },
+    "status": { "enum": ["verified", "mismatch", "inconclusive"] },
+    "checkedAt": { "type": "string", "format": "date-time" },
+    "postStateDigest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+    "checks": {
+      "type": "array",
+      "maxItems": 300,
+      "items": {
+        "type": "object",
+        "required": ["predicateId", "category", "status", "reason"],
+        "properties": {
+          "predicateId": { "type": "string", "pattern": "^predicate-[a-zA-Z0-9._-]{1,100}$" },
+          "category": { "enum": ["precondition", "expected", "forbidden"] },
+          "status": { "enum": ["pass", "fail", "unknown"] },
+          "reason": { "type": "string", "minLength": 1, "maxLength": 1000 }
+        },
+        "additionalProperties": false
+      }
+    },
+    "incidentId": { "type": "string", "pattern": "^incident-[a-f0-9-]{36}$" },
+    "keyId": { "type": "string", "pattern": "^key-[a-zA-Z0-9._-]{3,100}$" },
+    "algorithm": { "const": "HMAC-SHA256" },
+    "signature": { "type": "string", "pattern": "^hmac-sha256:[a-f0-9]{64}$" }
+  },
+  "additionalProperties": false
+}

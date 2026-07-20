@@ -84,6 +84,56 @@ try {
     return content;
   }
 
+  await page.goto(`${baseUrl}/governance-hub/?role=executive&view=assurance`, { waitUntil: "networkidle" });
+  await expectAttribute(page.locator("html"), "data-hub-role", "executive", "Governance Hub executive deep link");
+  await expectAttribute(page.locator("html"), "data-hub-view", "assurance", "Governance Hub assurance deep link");
+  await page.goto(`${baseUrl}/governance-hub/?role=unknown&view=secrets`, { waitUntil: "networkidle" });
+  await expectAttribute(page.locator("html"), "data-hub-role", "technical", "Governance Hub invalid role fallback");
+  await expectAttribute(page.locator("html"), "data-hub-view", "setup", "Governance Hub invalid view fallback");
+  await page.goto(`${baseUrl}/governance-hub/`, { waitUntil: "networkidle" });
+  await page.getByRole("button", { name: "Registry" }).click();
+  const governanceSearch = page.getByPlaceholder("Search registry");
+  await governanceSearch.fill("status");
+  if (await page.locator("tbody tr").count() !== 0) failures.push("Governance Hub: search matched an object key instead of row values");
+  await governanceSearch.fill("Catalog");
+  if (await page.locator("tbody tr").count() !== 1) failures.push("Governance Hub: value search did not isolate the Catalog row");
+  const registryExport = await captureDownload(page.getByRole("button", { name: "Export evidence" }), "Governance Hub registry export");
+  try {
+    if (JSON.parse(registryExport).length !== 4) failures.push("Governance Hub: registry export has unexpected content");
+  } catch {
+    failures.push("Governance Hub: registry export is not valid JSON");
+  }
+
+  await page.getByRole("button", { name: "Executive" }).click();
+  await page.getByRole("button", { name: "Reports" }).click();
+  const executiveBrief = await captureDownload(page.getByRole("button", { name: "Generate brief" }), "Governance Hub executive brief");
+  if (!executiveBrief.includes("Developer preview")) failures.push("Governance Hub: executive brief omits its release boundary");
+
+  await page.getByRole("button", { name: "Technical" }).click();
+  await page.getByRole("button", { name: "Setup" }).click();
+  await page.getByRole("button", { name: /Bound authority/ }).click();
+  await page.getByRole("button", { name: "Test this boundary" }).click();
+  const runningBoundaryTest = page.getByRole("button", { name: "Testing…" });
+  if (!await runningBoundaryTest.isDisabled()) failures.push("Governance Hub: boundary test remains enabled while simulation is running");
+  await page.getByRole("button", { name: "Test this boundary" }).waitFor({ timeout: 2_000 });
+
+  await page.getByRole("button", { name: "Executions" }).click();
+  await page.getByRole("button", { name: /Trace Catalog price update/ }).click();
+  const executionExport = await captureDownload(page.getByRole("button", { name: "Export evidence" }), "Governance Hub execution evidence");
+  try {
+    if (JSON.parse(executionExport).assurance !== "mismatch") failures.push("Governance Hub: execution export has unexpected assurance content");
+  } catch {
+    failures.push("Governance Hub: execution export is not valid JSON");
+  }
+
+  await page.locator("body").click({ position: { x: 1200, y: 760 } });
+  await page.keyboard.press("Tab");
+  const focusIndicator = await page.evaluate(() => {
+    const style = getComputedStyle(document.activeElement);
+    return { color: style.outlineColor, style: style.outlineStyle, width: style.outlineWidth };
+  });
+  if (focusIndicator.color !== "rgb(20, 125, 139)" || focusIndicator.style !== "solid" || focusIndicator.width !== "3px") failures.push(`Governance Hub: focus indicator is not the accessible solid teal style (${JSON.stringify(focusIndicator)})`);
+
   await page.goto(`${baseUrl}/PALO_AssessmentPath.html`, { waitUntil: "domcontentloaded" });
   await page.evaluate(() => { localStorage.clear(); sessionStorage.clear(); });
   const unknownPreserved = await page.evaluate(() => {
@@ -98,6 +148,8 @@ try {
   await page.locator("#case-file-import").setInputFiles(path.join(projectRoot, "schemas/fixtures/palo-case-file.valid.json"));
   await page.waitForFunction(() => document.documentElement.getAttribute("data-case-import") === "pass");
   await page.locator('[data-action="begin"]').click();
+  const agenticModes = await page.evaluate(() => ["code", "visual", "rapid"].map((buildMode) => window.__PALO_ONBOARDING.buildRoute({ decision: "agentic", role: "engineering", stage: "development", signals: ["agentic"], buildMode })).map((route) => ({ objective: route.objective, primary: route.primaryAction.id, contexts: route.contextualModules.map((item) => item.id) })));
+  if (agenticModes.some((route) => route.objective !== "Govern agent actions") || agenticModes[0].primary !== "governance-hub-technical" || agenticModes[1].contexts.indexOf("n8n-guide") === -1 || agenticModes[2].primary !== "palo-ai") failures.push(`onboarding: agentic mode routing is incomplete (${JSON.stringify(agenticModes)})`);
   await page.locator('input[name="decision"][value="verify"]').check();
   await page.locator('[data-action="continue"]').click();
   await page.locator('input[name="role"][value="grc"]').check();
@@ -254,10 +306,115 @@ try {
   if (!await page.locator("#graph-fallback").isVisible()) failures.push("Explorer fallback: forced fallback did not render");
   if (!await page.locator('#graph-fallback a[href="../../PALO_PlatformMap.html#map-table"]').isVisible()) failures.push("Explorer fallback: Platform Map table link is missing");
 
+  await page.goto(`${baseUrl}/index.html#palo-governance-routes`, { waitUntil: "domcontentloaded" });
+  const governanceRouteSection = page.locator("#palo-governance-routes");
+  if (!await governanceRouteSection.isVisible() || await governanceRouteSection.locator(".palo-governance-entry").count() !== 3) failures.push("Homepage: umbrella governance map is missing or incomplete");
+  for (const route of [
+    { title: "Govern the AI lifecycle", href: "designs/theory-to-practice-infographic/#onboarding" },
+    { title: "Govern agentic systems", href: "PALO_AgenticGovernance.html" },
+    { title: "Enforce agent actions", href: "PALO_AIGovernance.html" }
+  ]) {
+    const entry = governanceRouteSection.getByRole("heading", { name: route.title }).locator("xpath=ancestor::article");
+    if (!await entry.isVisible() || !await entry.locator(`a[href="${route.href}"]`).isVisible()) failures.push(`Homepage: governance route or primary destination is missing (${route.title})`);
+  }
+  if (!/PALO Framework[\s\S]*PALO-AM[\s\S]*PALO-AI/.test(await governanceRouteSection.locator(".palo-umbrella-lineage").innerText())) failures.push("Homepage: visible PALO to PALO-AM to PALO-AI lineage is missing");
+  const cycleSeparators = page.locator(".palo-full-cycle > .palo-cycle-separator");
+  if (await cycleSeparators.count() !== 6 || await cycleSeparators.evaluateAll((nodes) => nodes.some((node) => node.tagName !== "SPAN"))) failures.push("Homepage: full-cycle separators are not semantic spans");
+
+  await page.goto(`${baseUrl}/PALO_AIGovernance.html`, { waitUntil: "domcontentloaded" });
+  if (!/PALO Framework[\s\S]*PALO-AM methodology[\s\S]*PALO-AI enforcement/.test(await page.locator(".palo-ai-parent-lineage").innerText())) failures.push("PALO-AI overview: parent lineage cue is missing");
+  const routeSeparators = page.locator(".palo-route-ribbon > .palo-route-separator");
+  if (await routeSeparators.count() !== 3 || await routeSeparators.evaluateAll((nodes) => nodes.some((node) => node.tagName !== "SPAN"))) failures.push("PALO-AI overview: route separators are not semantic spans");
+
+  await page.goto(`${baseUrl}/PALO_AgenticGovernance.html`, { waitUntil: "domcontentloaded" });
+  if (!await page.locator('a[href="docs/palo-ai-adoption-paths.html"]').count() || await page.locator('a[href="docs/palo-ai-adoption-paths.md"]').count()) failures.push("PALO-AM: adoption path does not target generated HTML documentation");
+  const paloAmHeroCraft = await page.evaluate(() => {
+    const callout = document.querySelector(".am-version-callout");
+    const lead = callout?.querySelector("strong");
+    const actions = Array.from(document.querySelectorAll(".am-hero-actions .am-action"));
+    const governanceNav = Array.from(document.querySelectorAll(".section-nav a")).find((link) => /Governance Hub|Open Hub/.test(link.textContent));
+    return {
+      calloutBackground: callout ? getComputedStyle(callout).backgroundColor : null,
+      leadColor: lead ? getComputedStyle(lead).color : null,
+      actionHeights: actions.map((action) => action.getBoundingClientRect().height),
+      actionDisplays: actions.map((action) => getComputedStyle(action).display),
+      governanceNavHeight: governanceNav?.getBoundingClientRect().height || 0
+    };
+  });
+  if (paloAmHeroCraft.calloutBackground === paloAmHeroCraft.leadColor || paloAmHeroCraft.actionHeights.length !== 2 || paloAmHeroCraft.actionHeights.some((height) => height < 44) || paloAmHeroCraft.actionDisplays.some((display) => display !== "flex") || paloAmHeroCraft.governanceNavHeight < 44) failures.push(`PALO-AM hero: callout contrast, specialist action styling or 44px targets regressed (${JSON.stringify(paloAmHeroCraft)})`);
+
+  await page.goto(`${baseUrl}/PALO_AgenticCapabilityMatrix.html`, { waitUntil: "domcontentloaded" });
+  if (await page.locator("[data-status]").count() !== 26) failures.push("Capability Matrix: expected 26 evidence rows");
+  await page.locator("[data-matrix-search]").fill("governance hub");
+  if (await page.locator("[data-status]:visible").count() !== 1) failures.push("Capability Matrix: search did not isolate Governance Hub");
+  await page.locator("[data-matrix-search]").fill("");
+  await page.locator('[data-matrix-filter="specified"]').click();
+  if (await page.locator('[data-status="specified"]:visible').count() !== 3 || await page.locator('[data-status="prototype"]:visible').count() !== 0) failures.push("Capability Matrix: status filtering is incorrect");
+
+  await page.goto(`${baseUrl}/PALO_AIWhy.html`, { waitUntil: "domcontentloaded" });
+  if (await page.locator('[data-palo-ai-demo] [role="tab"]').count() !== 3) failures.push("Why PALO-AI: expected three comparison scenarios");
+  await page.getByRole("tab", { name: "Authorized but wrong" }).click();
+  if (!/Mismatch held/i.test(await page.locator("[data-demo-badge]").innerText()) || await page.locator("[data-demo-steps] li").count() !== 6 || await page.locator("[data-demo-evidence] li").count() !== 5) failures.push("Why PALO-AI: authorized-but-wrong scenario did not render the held mismatch lifecycle and evidence");
+  if (!await page.locator('a[href="examples/hands-on-demo/README.html"]').isVisible()) failures.push("Why PALO-AI: terminal demo link is missing");
+  const whyRequests = [];
+  page.on("request", (request) => { if (!request.url().startsWith(baseUrl)) whyRequests.push(request.url()); });
+  await page.getByRole("tab", { name: "Without PALO" }).click();
+  if (!/Direct execution/i.test(await page.locator("[data-demo-badge]").innerText()) || whyRequests.length) failures.push("Why PALO-AI: local comparison made an external request or rendered the wrong state");
+
+  await page.goto(`${baseUrl}/PALO_AIQuickstarts.html#n8n`, { waitUntil: "domcontentloaded" });
+  if (!await page.locator("#n8n").isVisible() || await page.locator("[data-copy-command]").count() < 5) failures.push("PALO-AI Quickstarts: deep links or copyable verified commands are missing");
+  for (const href of ["packages/palo-mcp-server/README.html", "packages/n8n-nodes-palo-ai/README.html", "examples/n8n-demo/PALO-AI-full-cycle-assurance-demo.json", "examples/hands-on-demo/README.html"]) {
+    if (!await page.locator(`a[href="${href}"]`).first().isVisible()) failures.push(`PALO-AI Quickstarts: required direct link is missing (${href})`);
+  }
+
+  await page.goto(`${baseUrl}/PALO_AIProductionReadiness.html`, { waitUntil: "domcontentloaded" });
+  if (await page.locator("[data-gate-id]").count() !== 9) failures.push("Production Readiness: expected exactly nine gates");
+  await page.locator('[data-readiness-filter="wave"]').selectOption("5");
+  if (await page.locator("[data-gate-id]:visible").count() !== 1) failures.push("Production Readiness: wave filter did not isolate Wave 5");
+  const readinessJson = await captureDownload(page.locator('[data-readiness-export="json"]'), "Production Readiness JSON export");
+  try {
+    const parsed = JSON.parse(readinessJson);
+    if (parsed.authoritative !== false || parsed.gates?.length !== 9) failures.push("Production Readiness: exported snapshot omits non-authoritative boundary or gates");
+  } catch { failures.push("Production Readiness: export is not valid JSON"); }
+
+  await page.goto(`${baseUrl}/PALO_DocumentationLibrary.html`, { waitUntil: "domcontentloaded" });
+  if (await page.locator("[data-library-card]").count() < 35) failures.push("Documentation Library: generated public index is incomplete");
+  await page.locator("[data-library-search]").fill("adoption");
+  if (await page.locator("[data-library-card]:visible").count() < 1) failures.push("Documentation Library: search returned no relevant guide");
+  await page.locator("[data-library-search]").fill("");
+  await page.locator('[data-library-depth="guide"]').click();
+  await page.locator("[data-library-audience]").selectOption("technical");
+  await page.locator("[data-library-task]").selectOption("integrate");
+  if (await page.locator('[data-library-card][data-level="guide"]:visible').count() < 1) failures.push("Documentation Library: depth, audience and task filters returned no implementation guide");
+
+  await page.goto(`${baseUrl}/docs/palo-ai-adoption-paths.html`, { waitUntil: "domcontentloaded" });
+  if (!await page.locator(".palo-doc-sidebar").count() || !await page.locator("[data-doc-feedback]").count()) failures.push("Generated documentation: navigation or feedback surface is missing");
+  await page.evaluate(() => Object.defineProperty(navigator, "clipboard", { configurable: true, value: { writeText: () => Promise.reject(new DOMException("Write permission denied", "NotAllowedError")) } }));
+  await page.locator("[data-doc-feedback] textarea").fill("Clarify the reversible connector example.");
+  await page.locator("[data-feedback-copy]").click();
+  if (!/copied|copy unavailable/i.test(await page.locator("[data-feedback-status]").innerText())) failures.push("Generated documentation: denied clipboard permission has no visible fallback status");
+  const feedbackJson = await captureDownload(page.locator("[data-feedback-download]"), "Documentation feedback JSON export");
+  try {
+    const parsed = JSON.parse(feedbackJson);
+    if (!/Prepared locally/.test(parsed.privacy || "") || parsed.document !== "docs/palo-ai-adoption-paths.md") failures.push("Generated documentation: feedback export omits privacy or source context");
+  } catch { failures.push("Generated documentation: feedback export is not valid JSON"); }
+
   for (const viewport of [{ width: 1440, height: 900 }, { width: 1024, height: 768 }, { width: 390, height: 844 }, { width: 360, height: 800 }]) {
     await page.setViewportSize(viewport);
-    for (const file of ["PALO_AssessmentPath.html", "PALO_AgenticGovernance.html", "PALO_PlatformMap.html", "designs/theory-to-practice-infographic/index.html?mode=navigation"]) {
+    for (const file of ["index.html", "PALO_AIGovernance.html", "PALO_AIWhy.html", "PALO_AIQuickstarts.html", "PALO_AssessmentPath.html", "PALO_AgenticGovernance.html", "PALO_AgenticCapabilityMatrix.html", "PALO_AIProductionReadiness.html", "PALO_DocumentationLibrary.html", "docs/palo-ai-adoption-paths.html", "PALO_PlatformMap.html", "designs/theory-to-practice-infographic/index.html?mode=navigation"]) {
       await page.goto(`${baseUrl}/${file}`, { waitUntil: "domcontentloaded" });
+      if (file.includes("mode=navigation")) {
+        const onboardingSeparators = page.locator(".route-ribbon > .route-separator");
+        if (await onboardingSeparators.count() !== 4 || await onboardingSeparators.evaluateAll((nodes) => nodes.some((node) => node.tagName !== "SPAN"))) failures.push(`${file}: route separators are not semantic spans`);
+      }
+      if (file === "index.html" && viewport.width <= 390) {
+        const routeMap = await page.locator("#palo-governance-routes").evaluate((section) => ({
+          entries: section.querySelectorAll(".palo-governance-entry").length,
+          visibleAudiences: Array.from(section.querySelectorAll(".palo-governance-audience")).filter((node) => node.getBoundingClientRect().height > 0).length,
+          lineageVisible: section.querySelector(".palo-umbrella-lineage")?.getBoundingClientRect().height > 0
+        }));
+        if (routeMap.entries !== 3 || routeMap.visibleAudiences !== 3 || !routeMap.lineageVisible) failures.push(`Homepage at ${viewport.width}x${viewport.height}: route lineage or audience labels are hidden (${JSON.stringify(routeMap)})`);
+      }
       if (file.includes("mode=navigation")) {
         await page.waitForFunction(() => window.__graphReady === true, null, { timeout: 30_000 });
         if (viewport.width <= 390) {
@@ -300,8 +457,16 @@ try {
           });
           if (offset.resultTop < offset.navBottom - 1 || offset.activeId !== "simulator-result") failures.push(`PALO-AM tier ${scenario.tier} at ${viewport.width}x${viewport.height}: focused result is clipped by fixed navigation`);
         }
-        const scrollAffordances = await page.evaluate(() => Array.from(document.querySelectorAll(".matrix-container, .data-table-wrapper")).map((node) => ({ focusable: node.tabIndex === 0, labelled: Boolean(node.getAttribute("aria-label")), hint: node.querySelector(".horizontal-scroll-hint")?.getBoundingClientRect().height || 0, overflows: node.scrollWidth > node.clientWidth })));
-        if (scrollAffordances.some((item) => !item.focusable || !item.labelled || item.hint < 1 || !item.overflows)) failures.push(`PALO-AM at ${viewport.width}x${viewport.height}: matrix/table horizontal-scroll affordance is incomplete`);
+        const responsiveDataSurfaces = await page.evaluate(() => ({
+          matrix: (() => {
+            const node = document.querySelector('.matrix-container[data-mobile-presentation="stacked"]');
+            return node ? { focusable: node.tabIndex === 0, labelled: Boolean(node.getAttribute("aria-label")), hint: node.querySelector(".horizontal-scroll-hint")?.getBoundingClientRect().height || 0, overflows: node.scrollWidth > node.clientWidth, labelledCards: node.querySelectorAll(".matrix-cell[data-impact]").length } : null;
+          })(),
+          tables: Array.from(document.querySelectorAll(".data-table-wrapper")).map((node) => ({ focusable: node.tabIndex === 0, labelled: Boolean(node.getAttribute("aria-label")), hint: node.querySelector(".horizontal-scroll-hint")?.getBoundingClientRect().height || 0, overflows: node.scrollWidth > node.clientWidth }))
+        }));
+        const matrix = responsiveDataSurfaces.matrix;
+        if (!matrix || !matrix.focusable || !matrix.labelled || matrix.hint > 0 || matrix.overflows || matrix.labelledCards !== 16) failures.push(`PALO-AM at ${viewport.width}x${viewport.height}: stacked matrix presentation is incomplete (${JSON.stringify(matrix)})`);
+        if (responsiveDataSurfaces.tables.some((item) => !item.focusable || !item.labelled || item.hint < 1 || !item.overflows)) failures.push(`PALO-AM at ${viewport.width}x${viewport.height}: table horizontal-scroll affordance is incomplete`);
       }
       const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
       if (overflow > 1) failures.push(`${file} at ${viewport.width}x${viewport.height}: horizontal overflow of ${overflow}px`);

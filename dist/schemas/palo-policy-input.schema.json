@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paloframework.org/schemas/palo-policy-input.schema.json",
+  "title": "PALO Educational Policy Input",
+  "type": "object",
+  "required": ["format", "schemaVersion", "exampleStatus", "caseId", "decisionContext"],
+  "properties": {
+    "format": { "const": "palo-policy-input" },
+    "schemaVersion": { "const": "1.0.0" },
+    "exampleStatus": { "const": "educational-non-production" },
+    "caseId": { "type": "string", "pattern": "^case-[a-z0-9][a-z0-9-]{5,63}$" },
+    "decisionContext": {
+      "type": "object",
+      "required": ["gateId", "humanApprovalRequired", "humanApprovalRecorded", "openCriticalFindings", "requiredEvidenceComplete"],
+      "properties": {
+        "gateId": { "enum": ["frame", "classify", "assess", "control", "measure", "prove"] },
+        "humanApprovalRequired": { "type": "boolean" },
+        "humanApprovalRecorded": { "type": "boolean" },
+        "openCriticalFindings": { "type": "integer", "minimum": 0 },
+        "requiredEvidenceComplete": { "type": "boolean" }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

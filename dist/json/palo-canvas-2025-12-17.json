@@ -1,0 +1,79 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "timestamp": "2025-12-17T20:16:34.588Z",
+    "phase": 1,
+    "projectName": "CS-Triage Copilot | Customer Support | 2025-12"
+  },
+  "configuration": {
+    "riskTier": "limited",
+    "useCaseCategory": "recommendation",
+    "gateDecision": "go"
+  },
+  "canvas": {
+    "projectName": "CS-Triage Copilot | Customer Support | 2025-12",
+    "strategicAlignment": "Improves operational efficiency (lower handling time, better routing).\nEnhances service quality and consistency (standardized knowledge usage).\nSupports risk reduction (early incident detection; controlled and auditable workflow).\nAligns with trust goals: transparency to users, data minimization, human oversight, and measurable compliance KPIs.",
+    "problemStatement": "Our customer support team receives ~18,000 inbound requests/month across email, chat, and web forms. Today, triage and routing are manual, inconsistent, and slow, causing:\n- high average time-to-first-response (often >12 hours during peaks),\n- misrouting to the wrong teams,\n- inconsistent answers for recurring issues, and\n- limited visibility on emerging incidents (billing outages, service disruptions).\nThe AI system will classify, prioritize, and suggest draft responses for incoming tickets, while keeping a human in control for final decisions. The goal is to reduce response times, improve routing accuracy, and increase customer satisfaction without increasing privacy or fairness risks.",
+    "selectedWorkflow": "AI classifies and prioritizes incoming support tickets, retrieves relevant knowledge base snippets, and drafts a response. A human agent reviews and edits the suggested classification and draft before sending to the customer.",
+    "dataGovernance": "Data sources: historical support tickets (last 24 months), internal knowledge base articles, and product/service taxonomy.\nData minimization: process only ticket text and essential metadata (product line, language, channel, timestamp).\nPII handling: automatically redact obvious identifiers like emails, phone numbers, and tax IDs before model processing; store original text separately with restricted access.\nLawful basis & notices: contractual necessity for customer support; update privacy notice to include AI-assisted processing.\nRetention: refresh training dataset quarterly; retain raw tickets per policy; retain AI prompts and outputs for 90 days for audit then delete or anonymize.\nAccess control: role-based access; tenant separation for multiple brands; encryption at rest and in transit.",
+    "modelTransparency": "Model type: retrieval-augmented generation (RAG) for draft responses and a lightweight classifier for routing and priority.\nExplainability: provide top category, confidence band, and retrieved knowledge base sources to the agent.\nGuardrails: use restricted answer templates; refuse to generate medical or legal advice; apply prompt injection filters; flag jailbreak patterns.\nKnown limitations: rare topics may be misclassified; draft text can be overly confident; multilingual nuances may reduce accuracy.\nFailure modes: hallucinated policy references, misrouting urgent tickets, or leakage of sensitive content in drafts.\nMitigations: apply confidence thresholds, mandatory human review, redaction, and continuous monitoring.",
+    "valueProposition": "Reduce average time-to-first-response by 40–60% and improve routing consistency.\nImprove service quality through standardized answers and lower handling costs.\nIncrease customer satisfaction and detect operational incidents earlier.\nBuild trust through transparency, privacy preservation, and human oversight.",
+    "securityEnvironment": "Design with security in mind: enforce role-based access control and encrypt data at rest and in transit.\nTrack energy per query and optimize by caching retrieval results and using smaller models for classification.\nMonitor training and inference carbon footprint and optimize compute usage to reduce emissions.",
+    "endUsers": "",
+    "governanceRoles": "",
+    "redFlags": "",
+    "compliance": "GDPR and internal privacy policies are observed. EU AI Act transparency obligations are met for AI-assisted customer interactions. ISO/IEC 42001 controls are mapped to governance artifacts, and an ISO/IEC 42005 impact assessment has been initiated. NIST AI RMF mapping is in place for monitoring and incident management. Vendor terms are reviewed to ensure data use, retention, and location requirements are satisfied.",
+    "stakeholders": "Customer Operations, Legal/Compliance, DPO, Security, IT, and a customer advisory panel are involved. Feedback channels include an agent flagging button (\"wrong category\", \"unsafe draft\", \"missing policy\"), weekly QA sample reviews, customer complaint tagging, and quarterly governance reviews.",
+    "costSustainability": "Pilot first to control spend. Budget includes model hosting, monitoring tooling, and training. Sustainability plan: track energy per query, reduce token usage, prefer smaller models for classification, and set decommission criteria if KPIs or risks degrade.",
+    "riskTier": "limited",
+    "useCaseCategory": "recommendation",
+    "principle1": true,
+    "principle2": true,
+    "principle3": true,
+    "principle4": true,
+    "principle5": true,
+    "principle6": true,
+    "principle7": true,
+    "gateDecision": "go",
+    "decisionRationale": "Proceed because the system is decision-support only, with mandatory human approval before customer-facing actions. The main risks (privacy, automation bias, prompt injection, and unfair priority assignment) are addressed through: data minimization and redaction, access controls, confidence thresholds, logging and audits, agent training, and continuous KPI monitoring. Rollout will be staged, starting with low-risk ticket categories and a monitored pilot."
+  },
+  "kpis": {
+    "kpiF1": 89,
+    "kpiDrift": 3,
+    "kpiUptime": 99.8,
+    "kpiAdversarial": 70,
+    "kpiROI": 35,
+    "kpiAdoption": 75,
+    "kpiCSAT": 84,
+    "kpiCostSavings": 220,
+    "kpiFairness": 0.92,
+    "kpiExplainability": 4,
+    "kpiPrivacy": 0,
+    "kpiEnergy": 0.6
+  },
+  "principles": {
+    "principle1": true,
+    "principle2": true,
+    "principle3": true,
+    "principle4": true,
+    "principle5": true,
+    "principle6": true,
+    "principle7": true
+  },
+  "scores": {
+    "dimensions": {
+      "dataGovernance": 64,
+      "transparency": 69,
+      "humanAgency": 20,
+      "fairness": 30,
+      "environment": 40
+    },
+    "frameworks": {
+      "iso42001": 46,
+      "iso42005": 38,
+      "oecd": 29,
+      "euAIAct": 57
+    },
+    "overall": 45
+  }
+}

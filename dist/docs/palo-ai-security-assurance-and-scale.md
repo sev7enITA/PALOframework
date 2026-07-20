@@ -1,6 +1,6 @@
 # PALO-AI Security Assurance and Scale Plan
 
-Status: external-assurance plan for the PALO-AI v2.4.1 developer preview, updated 17 July 2026.
+Status: external-assurance plan for the PALO-AI v2.5 full-cycle developer preview, updated 19 July 2026.
 
 ## Recommendation
 
@@ -60,7 +60,7 @@ Model at least these trust boundaries and attackers:
 Run the required path:
 
 ```text
-register -> deny -> approval -> execute -> sign -> persist -> verify
+register -> deny -> approval -> capability -> execute -> receipt -> persist -> verify outcome -> incident/release
 ```
 
 Then attack every transition: malformed claims, expired claims, changed arguments, stale policies, duplicate callbacks, concurrent consumption, direct executor calls, forged outcomes, key rotation, database recovery, network partitions and tenant identifier substitution.
@@ -116,7 +116,7 @@ Do not open a public bug bounty while basic identity, tenant isolation and remed
 ## Immediate next actions
 
 1. Freeze a tagged assessment candidate and produce an SBOM plus architecture/data-flow pack.
-2. Complete the seven blockers in the technical assessment.
+2. Complete and evidence the nine gates in the [public Production Readiness route](../PALO_AIProductionReadiness.html).
 3. Ask the OWASP Agentic Security community for a design review of the threat model, without representing it as certification.
 4. Issue an RFP to three independent qualified providers for architecture/code/pen-test coverage.
 5. Remediate, retest and publish a sanitized assurance statement before any production claim.

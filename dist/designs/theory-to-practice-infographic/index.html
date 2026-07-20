@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Find a practical PALO governance path by role and objective, including a dedicated route for governing agent actions.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://paloframework.org/designs/theory-to-practice-infographic/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://paloframework.org/designs/theory-to-practice-infographic/">
+  <meta property="og:title" content="Find your PALO path | Stakeholder Onboarding">
+  <meta property="og:description" content="Three questions turn your context into a practical first action, the right PALO modules, and the evidence you should produce.">
+  <meta property="og:image" content="https://paloframework.org/designs/theory-to-practice-infographic/assets/onboarding-desktop.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Find your PALO path | Stakeholder Onboarding">
+  <meta name="twitter:description" content="A local-first route from governance context to action, evidence, and the PALO Operationalization Explorer.">
+  <meta name="twitter:image" content="https://paloframework.org/designs/theory-to-practice-infographic/assets/onboarding-desktop.png">
+  <title>Find your PALO path | Operationalization Explorer</title>
+  <link rel="stylesheet" href="assets/deep-dive.css?v=232">
+  <link rel="stylesheet" href="assets/onboarding.css?v=235">
+  <link rel="stylesheet" href="../../assets/palo-spotlight.css?v=2.4.0" data-palo-spotlight-style="true">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "PALO Stakeholder Onboarding and Operationalization Explorer",
+    "url": "https://paloframework.org/designs/theory-to-practice-infographic/",
+    "applicationCategory": "EducationalApplication",
+    "operatingSystem": "Any modern web browser",
+    "isAccessibleForFree": true,
+    "description": "A local-first educational governance-support onboarding that routes stakeholders to PALO modules and an interactive operational knowledge graph.",
+    "author": {"@type": "Organization", "name": "PALO Framework", "url": "https://paloframework.org/"},
+    "softwareVersion": "2.5.0"
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" id="skip-link" href="#onboarding">Skip to guided start</a>
+  <header class="brandbar">
+    <img src="assets/logo.webp" alt="PALO Framework logo">
+    <div class="brand-lockup">
+      <p class="brand-name">PALO Framework</p>
+      <p class="brand-sub">Principled AI Lifecycle Orchestration</p>
+    </div>
+    <span class="release">v2.5.0</span>
+    <button class="start-menu-toggle" type="button" aria-expanded="false" aria-controls="start-primary-nav">Menu</button>
+    <nav class="start-primary-nav" id="start-primary-nav" aria-label="Primary navigation">
+      <a href="index.html" aria-current="page">Start</a>
+      <a href="../../PALO_AIGovernance.html">Agentic Governance</a>
+      <a href="../../governance-hub/">Governance Hub</a>
+      <a href="../../index.html#guided-journeys">Tools</a>
+      <a href="../../PALO_DocumentationLibrary.html">Documentation</a>
+      <a href="../../PALO_AIProductionReadiness.html">Readiness</a>
+    </nav>
+    <div class="icon-controls" aria-label="Graph controls">
+      <button class="icon-button" id="motion-toggle" type="button" aria-label="Pause graph motion" title="Pause graph motion" aria-pressed="false">
+        <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M9 5v14M15 5v14"/></svg>
+      </button>
+      <button class="icon-button" id="camera-reset" type="button" aria-label="Reset graph camera" title="Reset graph camera">
+        <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 11a8 8 0 1 1 2.3 5.7L4 19v-6h6l-2.3 2.3"/></svg>
+      </button>
+      <button class="icon-button" id="semantic-toggle" type="button" aria-label="Show semantic graph" title="Show semantic graph" aria-pressed="false">
+        <svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="6" cy="7" r="2"/><circle cx="18" cy="6" r="2"/><circle cx="12" cy="18" r="2"/><path d="m8 7 8-.7M7 9l4 7M17 8l-4 8"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="onboarding" id="onboarding" aria-labelledby="onboarding-title">
+    <section class="onboarding-intro" data-onboarding-view="welcome">
+      <div class="onboarding-intro-copy">
+        <p class="onboarding-eyebrow">Start with your decision</p>
+        <h1 id="onboarding-title">Find your PALO path.</h1>
+        <p class="onboarding-lead">Start with who you are and what you need to achieve. PALO turns that context into a practical first action, an artifact and a reviewable next step.</p>
+        <p class="onboarding-trust">No account <span aria-hidden="true">·</span> Local only <span aria-hidden="true">·</span> Change your answers at any time</p>
+      </div>
+      <aside class="onboarding-orientation" aria-label="What you will receive">
+        <p class="orientation-label">Your working route</p>
+        <ol>
+          <li><span>01</span><strong>Name your objective</strong><small>Start from your responsibility, not framework terminology.</small></li>
+          <li><span>02</span><strong>Choose the first action</strong><small>One primary route, one artifact and a clear maturity boundary.</small></li>
+          <li><span>03</span><strong>Continue with evidence</strong><small>Move into the relevant wizard, Governance Hub or six-phase operating model.</small></li>
+        </ol>
+      </aside>
+      <div class="welcome-actions">
+        <button class="onboarding-primary" type="button" data-action="begin">Find my path</button>
+        <label class="onboarding-secondary import-label" for="case-file-import">Import case file</label>
+        <input id="case-file-import" type="file" accept="application/json,.json" hidden>
+        <button class="onboarding-secondary" type="button" data-action="explore-all">Explore all phases</button>
+      </div>
+      <p class="import-status" id="case-import-status" role="status" aria-live="polite"></p>
+      <section class="resume-panel" id="case-resume-panel" hidden aria-labelledby="case-resume-title">
+        <div><h2 id="case-resume-title">Continue your local case</h2><p id="case-resume-summary"></p></div>
+        <div class="resume-actions"><button type="button" class="onboarding-primary" data-action="resume-case">Open in Assessment Path</button><button type="button" class="onboarding-secondary" data-action="clear-case">Remove local case</button></div>
+      </section>
+      <section class="resume-panel" id="resume-panel" hidden aria-labelledby="resume-title">
+        <div><p class="orientation-label">Saved in this browser session</p><h2 id="resume-title">Continue your working path</h2><p id="resume-summary"></p></div>
+        <div class="resume-actions"><button type="button" class="onboarding-primary" data-action="resume">Resume your path</button><button type="button" class="onboarding-secondary" data-action="restart">Start again</button></div>
+      </section>
+    </section>
+
+    <section class="onboarding-session" data-onboarding-view="form" hidden aria-labelledby="form-title">
+      <div class="session-context">
+        <p class="onboarding-eyebrow">PALO guided start</p>
+        <h2 id="form-title">A practical route, built around your decision.</h2>
+        <p>Choose what best describes the work today. There are no compliance scores and “I do not know yet” is a valid answer.</p>
+        <ol class="onboarding-stepper" aria-label="Onboarding progress">
+          <li data-step-marker="1"><span>1</span><strong>Decision</strong></li>
+          <li data-step-marker="2"><span>2</span><strong>Context</strong></li>
+          <li data-step-marker="3"><span>3</span><strong>Signals</strong></li>
+          <li data-step-marker="4" hidden><span>4</span><strong>Build mode</strong></li>
+        </ol>
+      </div>
+      <form id="onboarding-form" novalidate>
+        <p class="step-progress" id="step-progress">Step 1 of 3</p>
+        <p class="form-error" id="form-error" role="alert" hidden></p>
+        <fieldset data-step="1">
+          <legend>What decision are you trying to make?</legend>
+          <div class="choice-list">
+            <label><input type="radio" name="decision" value="approve"><span><strong>Approve or prioritize</strong><small>Reach a defensible proceed, pause, or stop decision.</small></span></label>
+            <label><input type="radio" name="decision" value="build"><span><strong>Shape or build</strong><small>Turn an AI idea into a bounded, reviewable use case.</small></span></label>
+            <label><input type="radio" name="decision" value="govern"><span><strong>Govern or comply</strong><small>Identify obligations, impacts, controls, and evidence.</small></span></label>
+            <label class="agentic-objective"><input type="radio" name="decision" value="agentic"><span><strong>Govern agent actions</strong><small>Make authority, approvals, protected execution and real-world effects reviewable.</small></span><em>Agentic Governance</em></label>
+            <label><input type="radio" name="decision" value="deploy"><span><strong>Buy or deploy</strong><small>Decide what can be procured or deployed and under which safeguards.</small></span></label>
+            <label><input type="radio" name="decision" value="verify"><span><strong>Verify or review</strong><small>Reconstruct a decision, test claims, and identify evidence gaps.</small></span></label>
+          </div>
+          <p class="intent-context" id="intent-context" hidden></p>
+        </fieldset>
+        <fieldset data-step="2" hidden>
+          <legend>Where are you in the work?</legend>
+          <div class="question-group"><h3>Your role</h3><div class="choice-grid role-grid">
+            <label><input type="radio" name="role" value="executive"><span><strong>Executive or board</strong></span></label>
+            <label><input type="radio" name="role" value="grc"><span><strong>Governance, risk, or compliance</strong></span></label>
+            <label><input type="radio" name="role" value="product"><span><strong>Product or use-case owner</strong></span></label>
+            <label><input type="radio" name="role" value="engineering"><span><strong>Engineering, data, or security</strong></span></label>
+            <label><input type="radio" name="role" value="public"><span><strong>Public sector, procurement, or deployer</strong></span></label>
+            <label><input type="radio" name="role" value="audit"><span><strong>Audit, assurance, or research</strong></span></label>
+          </div></div>
+          <div class="question-group"><h3>Current stage</h3><div class="choice-grid stage-grid">
+            <label><input type="radio" name="stage" value="idea"><span><strong>Idea or early exploration</strong></span></label>
+            <label><input type="radio" name="stage" value="design"><span><strong>Design or assessment</strong></span></label>
+            <label><input type="radio" name="stage" value="development"><span><strong>Development or validation</strong></span></label>
+            <label><input type="radio" name="stage" value="deployment"><span><strong>Preparing deployment</strong></span></label>
+            <label><input type="radio" name="stage" value="live"><span><strong>Live system or material change</strong></span></label>
+            <label><input type="radio" name="stage" value="retirement"><span><strong>Retirement or decommissioning</strong></span></label>
+            <label><input type="radio" name="stage" value="unknown"><span><strong>I do not know yet</strong></span></label>
+          </div></div>
+        </fieldset>
+        <fieldset data-step="3" hidden>
+          <legend>Which signals are already visible?</legend>
+          <p class="fieldset-support">Select every signal that may apply. Uncertainty is useful context.</p>
+          <div class="choice-list signals-list">
+            <label><input type="checkbox" name="signals" value="rights"><span><strong>Affects people, access, rights, or vulnerable groups</strong></span></label>
+            <label><input type="checkbox" name="signals" value="consequential"><span><strong>Makes or ranks consequential decisions</strong></span></label>
+            <label><input type="checkbox" name="signals" value="agentic"><span><strong>Uses tools, takes actions, or operates with meaningful autonomy</strong></span></label>
+            <label><input type="checkbox" name="signals" value="ai-dev"><span><strong>Is being built with AI coding assistance</strong></span></label>
+            <label><input type="checkbox" name="signals" value="integrity"><span><strong>Has material data, provenance, poisoning, or model-integrity concerns</strong></span></label>
+            <label><input type="checkbox" name="signals" value="assurance"><span><strong>Requires formal audit or independent assurance</strong></span></label>
+            <label><input type="checkbox" name="signals" value="unknown"><span><strong>I do not know yet</strong></span></label>
+          </div>
+        </fieldset>
+        <fieldset data-step="4" hidden>
+          <legend>How are you building?</legend>
+          <p class="fieldset-support">This implementation mode refines the route. Your organizational role remains the authority and accountability context.</p>
+          <div class="choice-list build-mode-list">
+            <label><input type="radio" name="buildMode" value="code"><span><strong>Code-first</strong><small>SDK contracts, JSON Schema, MCP, OPA/Rego, CI gates and brokered execution.</small></span></label>
+            <label><input type="radio" name="buildMode" value="visual"><span><strong>No-code / low-code</strong><small>Visual workflows such as n8n, with semantic outcomes and an unavoidable governed action path.</small></span></label>
+            <label><input type="radio" name="buildMode" value="rapid"><span><strong>Rapid prototyping</strong><small>Copilot Studio or similar tools connected to a deliberately narrow MCP surface.</small></span></label>
+          </div>
+        </fieldset>
+        <div class="form-commands"><button class="onboarding-secondary" type="button" data-action="back" hidden>Back</button><button class="onboarding-primary" type="button" data-action="continue">Continue</button></div>
+      </form>
+    </section>
+
+    <section class="onboarding-result" data-onboarding-view="result" hidden aria-labelledby="route-title">
+      <div class="result-heading"><p class="onboarding-eyebrow">Your recommended PALO path</p><h2 id="route-title" tabindex="-1"></h2><p class="stakeholder-question" id="stakeholder-question"></p></div>
+      <nav class="route-ribbon" aria-label="Your PALO route">
+        <span><small>Your role</small><strong id="ribbon-role"></strong></span><span class="route-separator" aria-hidden="true">to</span>
+        <span><small>Your objective</small><strong id="ribbon-objective"></strong></span><span class="route-separator" aria-hidden="true">to</span>
+        <span><small>Current PALO phase</small><strong id="ribbon-phase"></strong></span><span class="route-separator" aria-hidden="true">to</span>
+        <span><small>Artifact</small><strong id="ribbon-artifact"></strong></span><span class="route-separator" aria-hidden="true">to</span>
+        <span><small>Recommended next action</small><strong id="ribbon-next"></strong></span>
+      </nav>
+      <div class="result-grid">
+        <article class="primary-action-panel"><div class="result-label-row"><p class="orientation-label">Primary action</p><span class="route-maturity" id="route-maturity"></span></div><div class="primary-action-title"><span id="route-phase"></span><h3 id="primary-action-title"></h3></div><p id="primary-action-reason"></p><div class="artifact-line"><span>Artifact you will produce</span><strong id="route-artifact"></strong></div><a class="onboarding-primary" id="primary-module-link" href="#">Open primary module</a><div class="route-companion-actions" id="route-companion-actions"></div></article>
+        <aside class="route-modules" aria-labelledby="context-modules-title"><p class="orientation-label">Use when the context triggers them</p><h3 id="context-modules-title">Contextual modules</h3><div id="context-modules"></div></aside>
+      </div>
+      <div class="route-details">
+        <details open><summary>Why this route</summary><p id="route-why"></p></details>
+        <details><summary>What you need</summary><ul id="route-prepare"></ul></details>
+        <details><summary>Complete six-phase route</summary><ol class="personal-route" id="personal-route"></ol></details>
+        <details><summary>Lifecycle crosswalk</summary><p>Frame supports ideation. Classify and Assess support screening and planning. Control supports planning, development, and validation. Measure supports definition and monitoring. Prove &amp; Review supports deployment, continuous review, and retirement, then feeds the next Frame cycle.</p></details>
+      </div>
+      <p class="route-disclaimer">PALO provides educational governance support, not legal advice or certification. Validate decisions against current official sources and qualified human review. Sources reviewed 11 July 2026.</p>
+      <div class="result-commands"><button class="onboarding-primary" type="button" data-action="handoff-assessment">Continue case in Assessment Path</button><button class="onboarding-secondary" type="button" data-action="guided-explorer">Start guided Explorer</button><div class="download-menu"><button class="onboarding-secondary" type="button" data-action="download-toggle" aria-expanded="false">Download route</button><div class="download-options" hidden><button type="button" data-download="json">JSON</button><button type="button" data-download="markdown">Markdown</button></div></div><button class="onboarding-secondary" type="button" data-action="change">Change answers</button></div>
+      <p class="sr-only" id="route-live" aria-live="polite"></p>
+    </section>
+  </main>
+
+  <div id="explorer-experience">
+
+  <section class="intro" aria-labelledby="page-title">
+    <div>
+      <p class="eyebrow">PALO Operationalization Explorer</p>
+      <h1 id="page-title">From principles to accountable operations.</h1>
+      <p class="intro-copy">Explore six operating phases, the modules that activate them, and the evidence that connects every decision.</p>
+    </div>
+    <p class="status-line">6 phases · 15 modules · weighted relationships · versioned evidence</p>
+  </section>
+
+  <nav class="explorer-subnav" aria-label="Operationalization Explorer views">
+    <span>Explorer views</span><a href="../../PALO_PlatformMap.html">Platform Map</a><a href="narrative.html">Narrative</a><a href="workflow.html">Weighted workflow</a>
+  </nav>
+
+  <nav class="mobile-phase-selector" aria-label="Operational phases">
+    <a href="#frame" data-phase-link="frame">01 Frame</a>
+    <a href="#classify" data-phase-link="classify">02 Classify</a>
+    <a href="#assess" data-phase-link="assess">03 Assess</a>
+    <a href="#control" data-phase-link="control">04 Control</a>
+    <a href="#measure" data-phase-link="measure">05 Measure</a>
+    <a href="#prove" data-phase-link="prove">06 Prove</a>
+  </nav>
+
+  <div class="semantic-map" id="semantic-map" aria-label="Semantic operational graph">
+    <h2>Semantic operational path</h2>
+    <p>The six phases form a weighted evidence cycle. W5 is the default path, W4 is a material dependency, W3 is contextual and W2 provides supporting evidence.</p>
+    <ol>
+      <li><a href="#frame">Frame</a> produces the use-case brief.</li>
+      <li><a href="#classify">Classify</a> uses it to justify the risk route.</li>
+      <li><a href="#assess">Assess</a> records impacts, rights and delegated authority.</li>
+      <li><a href="#control">Control</a> turns findings into owned, testable controls.</li>
+      <li><a href="#measure">Measure</a> makes deterioration and accountability observable.</li>
+      <li><a href="#prove">Prove &amp; Review</a> assembles evidence and updates the next cycle.</li>
+    </ol>
+  </div>
+  </div>
+
+  <div class="app-grid">
+    <nav class="phase-rail" aria-label="Operational phases">
+      <a href="#frame" data-phase-link="frame"><span><strong>01</strong>FRAME</span></a>
+      <a href="#classify" data-phase-link="classify"><span><strong>02</strong>CLASSIFY</span></a>
+      <a href="#assess" data-phase-link="assess"><span><strong>03</strong>ASSESS</span></a>
+      <a href="#control" data-phase-link="control"><span><strong>04</strong>CONTROL</span></a>
+      <a href="#measure" data-phase-link="measure"><span><strong>05</strong>MEASURE</span></a>
+      <a href="#prove" data-phase-link="prove"><span><strong>06</strong>PROVE</span></a>
+    </nav>
+
+    <main class="deep-dives" id="deep-dives">
+      <section class="phase-section" id="frame" data-phase="frame" tabindex="-1" aria-labelledby="frame-title">
+        <div class="phase-heading"><span class="phase-number">01</span><div><p class="phase-kicker">Phase 1 Ideation</p><h2 id="frame-title">Frame</h2><p class="core-question">What are we building, for whom, and why?</p></div></div>
+        <div class="outcome-row"><span>Operational outcome</span><strong>A bounded, owned and reviewable use case</strong></div>
+        <div class="operation-band">
+          <div class="operation-cell"><h3>Inputs</h3><ul><li>Business objective and system boundary</li><li>Lifecycle owner and stakeholders</li><li>Affected people, data and model assumptions</li></ul></div>
+          <div class="operation-cell"><h3>Actions</h3><ul><li>Define intended outcome and non-goals</li><li>Map human agency and delegation</li><li>Record technology and horizon signals</li></ul></div>
+          <div class="operation-cell gate"><h3>Decision gate</h3><p>Is the use case sufficiently defined to classify?</p></div>
+          <div class="operation-cell output"><h3>Output</h3><p><strong>Use-case brief</strong></p></div>
+        </div>
+        <h3 class="modules-title">Modules that activate Frame</h3>
+        <article class="module-entry" data-node-id="model-canvas" tabindex="0"><div><h4>AI Model Canvas</h4><span class="weight">W5 Core</span></div><div><p class="module-role">Structures purpose, scope, ownership and assumptions.</p><p class="module-meta"><strong>Use:</strong> initiation and material scope change · <strong>Properties:</strong> purpose, scope, owners, stakeholders, lifecycle, assumptions · <strong>Produces:</strong> Canvas and JSON/Markdown record</p></div><a class="open-module" href="../../PALO_ModelCanvasAI.html">Open module →</a></article>
+        <article class="module-entry" data-node-id="agency-map" tabindex="0"><div><h4>Human Agency Risk Map</h4><span class="weight">W3 Contextual</span></div><div><p class="module-role">Maps delegated activity and effects on human agency.</p><p class="module-meta"><strong>Use:</strong> when systems influence or replace human decisions · <strong>Properties:</strong> delegated activity, affected agency, oversight need · <strong>Produces:</strong> agency-risk context</p></div><a class="open-module" href="../../PALO_HumanAgencyRiskMap.html">Open module →</a></article>
+        <article class="module-entry" data-node-id="tech-trends" tabindex="0"><div><h4>Tech Trends Observatory</h4><span class="weight">W2 Supporting</span></div><div><p class="module-role">Adds technology and horizon signals to context.</p><p class="module-meta"><strong>Use:</strong> emerging capabilities or uncertain trajectories · <strong>Properties:</strong> signal, horizon, governance impact · <strong>Produces:</strong> horizon context</p></div><a class="open-module" href="../../PALO_TechTrends2026.html">Open module →</a></article>
+      </section>
+
+      <section class="phase-section" id="classify" data-phase="classify" tabindex="-1" aria-labelledby="classify-title">
+        <div class="phase-heading"><span class="phase-number">02</span><div><p class="phase-kicker">Phases 1-2 Screening and Assessment</p><h2 id="classify-title">Classify</h2><p class="core-question">What route, obligations, and level of scrutiny apply?</p></div></div>
+        <div class="outcome-row"><span>Operational outcome</span><strong>A justified and current governance route</strong></div>
+        <div class="operation-band">
+          <div class="operation-cell"><h3>Inputs</h3><ul><li>Use-case brief, sector and function</li><li>Provider/deployer role and autonomy</li><li>System capability and affected groups</li></ul></div>
+          <div class="operation-cell"><h3>Actions</h3><ul><li>Run initial EU AI Act risk routing</li><li>Cross-check governance frameworks</li><li>Verify current official sources</li></ul></div>
+          <div class="operation-cell gate"><h3>Decision gate</h3><p>Is the initial risk route justified and current?</p></div>
+          <div class="operation-cell output"><h3>Output</h3><p><strong>Risk route</strong></p></div>
+        </div>
+        <h3 class="modules-title">Modules that activate Classify</h3>
+        <article class="module-entry" data-node-id="risk-tiering" tabindex="0"><div><h4>Risk Tiering Calculator</h4><span class="weight">W5 Core</span></div><div><p class="module-role">Routes the use case through an initial EU AI Act screen.</p><p class="module-meta"><strong>Use:</strong> every use case before detailed assessment · <strong>Properties:</strong> tier, prohibited-practice signals, high-risk context · <strong>Produces:</strong> Markdown risk report</p></div><a class="open-module" href="../../PALO_RiskTiering.html">Open module →</a></article>
+        <article class="module-entry" data-node-id="comparison" tabindex="0"><div><h4>Framework Comparison</h4><span class="weight">W3 Contextual</span></div><div><p class="module-role">Cross-checks governance frameworks and gaps.</p><p class="module-meta"><strong>Use:</strong> when several standards apply · <strong>Properties:</strong> framework, overlap, gaps · <strong>Produces:</strong> comparison record</p></div><a class="open-module" href="../../PALO_ComparisonTool.html">Open module →</a></article>
+        <article class="module-entry" data-node-id="reg-watch" tabindex="0"><div><h4>Regulatory Watch 2026</h4><span class="weight">W4 Strong</span></div><div><p class="module-role">Keeps the route anchored to current official sources.</p><p class="module-meta"><strong>Use:</strong> classification and every formal review · <strong>Properties:</strong> article, date, status, source · <strong>Produces:</strong> current obligation context</p></div><a class="open-module" href="../../PALO_RegulatoryWatch.html">Open module →</a></article>
+      </section>
+
+      <section class="phase-section" id="assess" data-phase="assess" tabindex="-1" aria-labelledby="assess-title">
+        <div class="phase-heading"><span class="phase-number">03</span><div><p class="phase-kicker">Phase 2 Assessment and Planning</p><h2 id="assess-title">Assess</h2><p class="core-question">What impacts, rights, authority, and oversight conditions exist?</p></div></div>
+        <div class="outcome-row"><span>Operational outcome</span><strong>A contextual record of impacts and delegated authority</strong></div>
+        <div class="operation-band">
+          <div class="operation-cell"><h3>Inputs</h3><ul><li>Risk route, affected groups and rights</li><li>Impact scenarios and drivers</li><li>Delegated actions, autonomy and oversight</li></ul></div>
+          <div class="operation-cell"><h3>Actions</h3><ul><li>Assess fundamental-rights impacts</li><li>Map authority and action space</li><li>Record likelihood, gravity and rationale</li></ul></div>
+          <div class="operation-cell gate"><h3>Decision gate</h3><p>Are impacts and delegated authority understood well enough to control?</p></div>
+          <div class="operation-cell output"><h3>Output</h3><p><strong>Impact assessment record</strong></p></div>
+        </div>
+        <h3 class="modules-title">Modules that activate Assess</h3>
+        <article class="module-entry" data-node-id="fria" tabindex="0"><div><h4>FRIA Assessment</h4><span class="weight">W4 Strong</span></div><div><p class="module-role">Evaluates fundamental-rights impact scenarios and mitigation.</p><p class="module-meta"><strong>Use:</strong> when deployment may affect people or rights · <strong>Properties:</strong> right, scenario, likelihood, gravity, reversibility, mitigation · <strong>Produces:</strong> FRIA JSON/Markdown/template</p></div><a class="open-module" href="../../PALO_FRIA.html">Open module →</a></article>
+        <article class="module-entry" data-node-id="palo-am" tabindex="0"><div><h4>PALO-AM</h4><span class="weight">W4 Strong</span></div><div><p class="module-role">Examines identity, authority and action space in agentic systems.</p><p class="module-meta"><strong>Use:</strong> agents, tools and delegated action · <strong>Properties:</strong> identity, authority, tools, autonomy, oversight · <strong>Produces:</strong> agentic governance record</p></div><a class="open-module" href="../../PALO_AgenticGovernance.html">Open module →</a></article>
+        <article class="module-entry" data-node-id="assessment-path" tabindex="0"><div><h4>Assessment Path</h4><span class="weight">W5 Core</span></div><div><p class="module-role">Connects context, route, readiness and sources.</p><p class="module-meta"><strong>Use:</strong> backbone of contextual assessment · <strong>Properties:</strong> context, route, readiness, sources · <strong>Produces:</strong> contextual assessment record</p></div><a class="open-module" href="../../PALO_AssessmentPath.html">Open module →</a></article>
+      </section>
+
+      <section class="phase-section" id="control" data-phase="control" tabindex="-1" aria-labelledby="control-title">
+        <div class="phase-heading"><span class="phase-number">04</span><div><p class="phase-kicker">Phases 2-3 Planning, Development, and Validation</p><h2 id="control-title">Control</h2><p class="core-question">Which controls make the identified risks governable?</p></div></div>
+        <div class="outcome-row"><span>Operational outcome</span><strong>Owned controls linked to findings, tests and evidence</strong></div>
+        <div class="operation-band">
+          <div class="operation-cell"><h3>Inputs</h3><ul><li>Impact findings and risk/control linkage</li><li>System architecture and development environment</li><li>Assurance requirements</li></ul></div>
+          <div class="operation-cell"><h3>Actions</h3><ul><li>Assign engineering, process and assurance controls</li><li>Define owner, gate and required evidence</li><li>Test controls and record residual risk</li></ul></div>
+          <div class="operation-cell gate"><h3>Decision gate</h3><p>Are controls implemented, testable, and owned?</p></div>
+          <div class="operation-cell output"><h3>Output</h3><p><strong>Control plan</strong></p></div>
+        </div>
+        <h3 class="modules-title">Modules that activate Control</h3>
+        <article class="module-entry" data-node-id="vibe" tabindex="0"><div><h4>Vibe Coding Governance</h4><span class="weight">W3 Contextual</span></div><div><p class="module-role">Governs AI-assisted development with explicit delivery gates.</p><p class="module-meta"><strong>Use:</strong> AI-assisted software development · <strong>Properties:</strong> intent, controlled environment, evidence, delivery gates · <strong>Produces:</strong> development controls</p></div><a class="open-module" href="../../PALO_VibeCoding.html">Open module →</a></article>
+        <article class="module-entry" data-node-id="auditbench" tabindex="0"><div><h4>AuditBench Explorer</h4><span class="weight">W3 Contextual</span></div><div><p class="module-role">Tests hidden behavior and alignment evidence.</p><p class="module-meta"><strong>Use:</strong> validation and assurance · <strong>Properties:</strong> hidden behavior, audit technique, test status · <strong>Produces:</strong> alignment audit report</p></div><a class="open-module" href="../../PALO_AuditBench.html">Open module →</a></article>
+        <article class="module-entry" data-node-id="poisoning" tabindex="0"><div><h4>Poisoning Boomerang</h4><span class="weight">W3 Contextual</span></div><div><p class="module-role">Frames data and model integrity threats.</p><p class="module-meta"><strong>Use:</strong> material provenance or integrity risk · <strong>Properties:</strong> threat, provenance, detection, integrity control · <strong>Produces:</strong> integrity controls</p></div><a class="open-module" href="../../PALO_PoisoningStudy.html">Open module →</a></article>
+      </section>
+
+      <section class="phase-section" id="measure" data-phase="measure" tabindex="-1" aria-labelledby="measure-title">
+        <div class="phase-heading"><span class="phase-number">05</span><div><p class="phase-kicker">Phase 2 definition and Phase 4 monitoring</p><h2 id="measure-title">Measure</h2><p class="core-question">How will accountability, performance, risk, and drift be observed?</p></div></div>
+        <div class="outcome-row"><span>Operational outcome</span><strong>Indicators that reveal deterioration and trigger action</strong></div>
+        <div class="operation-band">
+          <div class="operation-cell"><h3>Inputs</h3><ul><li>Control plan and governance objectives</li><li>Measurable indicators and data availability</li><li>Review cadence</li></ul></div>
+          <div class="operation-cell"><h3>Actions</h3><ul><li>Define KPI/KRI name and formula</li><li>Set threshold, owner, cadence and status</li><li>Capture operating evidence locally</li></ul></div>
+          <div class="operation-cell gate"><h3>Decision gate</h3><p>Can the team detect deterioration and act?</p></div>
+          <div class="operation-cell output"><h3>Output</h3><p><strong>KPI/KRI register</strong></p></div>
+        </div>
+        <h3 class="modules-title">Modules that activate Measure</h3>
+        <article class="module-entry" data-node-id="kpi" tabindex="0"><div><h4>KPI and KRI Generator</h4><span class="weight">W5 Core</span></div><div><p class="module-role">Creates the measurable governance indicator set.</p><p class="module-meta"><strong>Current properties:</strong> category, indicator, definition, formula · <strong>Complete downstream with:</strong> threshold, owner, cadence, current value and status · <strong>Produces:</strong> CSV/Markdown set</p></div><a class="open-module" href="../../PALO_KPIGenerator.html">Open module →</a></article>
+        <article class="module-entry" data-node-id="toolbox" tabindex="0"><div><h4>P.A.L.O. Toolbox</h4><span class="weight">W3 Contextual</span></div><div><p class="module-role">Captures portable operational evidence locally.</p><p class="module-meta"><strong>Use:</strong> field work and ongoing evidence capture · <strong>Properties:</strong> local record, Evidence Vault, portable report · <strong>Produces:</strong> local operational evidence</p></div><a class="open-module" href="../../PALO_CompanionApp.html">Open module →</a></article>
+      </section>
+
+      <section class="phase-section" id="prove" data-phase="prove" tabindex="-1" aria-labelledby="prove-title">
+        <div class="phase-heading"><span class="phase-number">06</span><div><p class="phase-kicker">Phases 4-5 Deployment, Review, and Decommissioning</p><h2 id="prove-title">Prove &amp; Review</h2><p class="core-question">Can the decision be reconstructed, reviewed, and improved?</p></div></div>
+        <div class="outcome-row"><span>Operational outcome</span><strong>Accountable evidence plus a next-cycle update</strong></div>
+        <div class="operation-band">
+          <div class="operation-cell"><h3>Inputs</h3><ul><li>Assessment route, control plan and KPI/KRI status</li><li>Sources, decisions and findings</li><li>Changes, incidents and new context</li></ul></div>
+          <div class="operation-cell"><h3>Actions</h3><ul><li>Assemble versioned evidence</li><li>Review readiness and gaps</li><li>Feed findings into the next cycle</li></ul></div>
+          <div class="operation-cell gate"><h3>Decision gate</h3><p>Is the evidence complete enough for an accountable decision?</p></div>
+          <div class="operation-cell output"><h3>Output</h3><p><strong>Versioned evidence bundle + next-cycle update</strong></p></div>
+        </div>
+        <h3 class="modules-title">Modules that activate Prove &amp; Review</h3>
+        <article class="module-entry" data-node-id="assessment-path" tabindex="0"><div><h4>Assessment Path</h4><span class="weight">W5 Core</span></div><div><p class="module-role">Assembles the versioned evidence bundle.</p><p class="module-meta"><strong>Properties:</strong> formatVersion, generatedAt, assessment, route, evidenceReadiness, sources, disclaimer · <strong>Produces:</strong> JSON/Markdown evidence bundle</p></div><a class="open-module" href="../../PALO_AssessmentPath.html">Open module →</a></article>
+        <article class="module-entry" data-node-id="docs" tabindex="0"><div><h4>Documentation Hub</h4><span class="weight">W4 Strong</span></div><div><p class="module-role">Connects evidence to lifecycle guidance and source artifacts.</p><p class="module-meta"><strong>Use:</strong> reconstructing decisions and preparing review · <strong>Properties:</strong> guidance, source artifact, version · <strong>Produces:</strong> source and guidance context</p></div><a class="open-module" href="../../PALO_DocumentationHub.html">Open module →</a></article>
+        <article class="module-entry" data-node-id="reg-watch" tabindex="0"><div><h4>Regulatory Watch</h4><span class="weight">W3 Contextual</span></div><div><p class="module-role">Refreshes the next cycle with regulatory change.</p><p class="module-meta"><strong>Properties:</strong> change, article, source, reviewed date · <strong>Produces:</strong> next-cycle regulatory context</p></div><a class="open-module" href="../../PALO_RegulatoryWatch.html">Open module →</a></article>
+        <article class="module-entry" data-node-id="toolbox" tabindex="0"><div><h4>P.A.L.O. Toolbox</h4><span class="weight">W3 Contextual</span></div><div><p class="module-role">Packages evidence for local and portable use.</p><p class="module-meta"><strong>Properties:</strong> portable evidence, local storage, report · <strong>Produces:</strong> portable evidence package</p></div><a class="open-module" href="../../PALO_CompanionApp.html">Open module →</a></article>
+        <p class="module-meta"><strong>Evidence Bundle is an artifact:</strong> it is produced by the operational path and is not presented as a PALO module.</p>
+      </section>
+    </main>
+
+    <aside class="graph-shell" aria-label="Interactive PALO knowledge graph and property inspector">
+      <div class="graph-stage">
+        <div class="graph-label"><p>3D knowledge graph</p><h2 id="graph-phase-label" tabindex="-1">01 · Frame cluster</h2></div>
+        <div class="graph-mode" role="group" aria-label="Graph mode">
+          <button id="graph-mode-workflow" type="button" aria-pressed="true">Workflow</button>
+          <button id="graph-mode-navigation" type="button" aria-pressed="false">Navigation</button>
+        </div>
+        <div id="graph" aria-hidden="true"></div>
+        <div class="graph-legend" id="graph-legend" aria-hidden="true"><span><i></i>Phase</span><span class="module"><i></i>Module</span><span class="artifact"><i></i>Artifact</span><span class="support"><i></i>Control / actor / source</span></div>
+        <div class="graph-fallback" id="graph-fallback"><div><h3>3D view unavailable</h3><p>The complete six-phase model remains available in the semantic sections. The public Platform Map provides the equivalent navigation routes as an accessible table.</p><a href="workflow.html">Open weighted workflow</a> · <a href="../../PALO_PlatformMap.html#map-table">Open navigation table</a></div></div>
+      </div>
+      <section class="inspector" id="inspector" aria-live="polite" aria-labelledby="inspector-title">
+        <div class="inspector-head"><div><p class="entity-type" id="entity-type">Stage · 01</p><h3 id="inspector-title">Frame</h3></div><span class="entity-status" id="entity-status">Operational phase</span></div>
+        <p class="entity-role" id="entity-role">Define the use case, its boundary, owners and affected people before governance choices are made.</p>
+        <table class="property-table"><tbody id="property-table"></tbody></table>
+        <ul class="relationship-list" id="relationship-list" aria-label="Weighted relationships"></ul>
+        <a class="inspector-command" id="inspector-command" href="#frame" hidden>Open module</a>
+        <details class="semantic-explorer">
+          <summary>Search entities and relationships</summary>
+          <label class="entity-type" for="entity-search">Entity search</label>
+          <input class="entity-search" id="entity-search" type="search" placeholder="Search modules, artifacts, controls...">
+          <div class="entity-results" id="entity-results" role="list"></div>
+        </details>
+      </section>
+    </aside>
+  </div>
+
+  <noscript><section class="noscript-fallback"><h2>Semantic exploration remains available</h2><p>The 3D view requires JavaScript, but all six operational phases, properties and module links remain available above in normal document flow.</p><a href="workflow.html">Open the canonical weighted workflow</a></section></noscript>
+  <script src="../../assets/palo-case-file.js?v=2.4.0"></script>
+  <script src="assets/graph-data.js?v=240"></script>
+  <script src="../../assets/palo-spotlight.js?v=2.4.0"></script>
+  <script src="assets/onboarding.js?v=240"></script>
+  <script src="assets/deep-dive.js?v=240"></script>
+</body>
+</html>

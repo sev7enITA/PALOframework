@@ -1,4 +1,4 @@
-import { access, readFile } from "node:fs/promises";
+import { access, readFile, readdir } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
 import { fileURLToPath } from "node:url";
@@ -6,7 +6,7 @@ import { XMLParser } from "fast-xml-parser";
 import { HtmlValidate } from "html-validate";
 import Ajv2020 from "ajv/dist/2020.js";
 import addFormats from "ajv-formats";
-import { PUBLIC_FILES, PUBLIC_HTML } from "./public-files.mjs";
+import { PUBLIC_FILES, PUBLIC_GENERATED_HTML, PUBLIC_HTML, PUBLIC_SOURCE_HTML } from "./public-files.mjs";
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const rootArgument = process.argv[process.argv.indexOf("--root") + 1] || ".";
@@ -222,7 +222,8 @@ async function validateP2Artifacts() {
 try { await validateP2Artifacts(); }
 catch (error) { errors.push(`P2 artifact validation failed: ${error.message}`); }
 
-for (const file of PUBLIC_HTML) {
+const htmlFilesToValidate = [...(built ? PUBLIC_HTML : PUBLIC_SOURCE_HTML), "governance-hub/index.html"];
+for (const file of htmlFilesToValidate) {
   let html;
   try { html = await readFile(path.join(validationRoot, file), "utf8"); }
   catch { continue; }
@@ -247,7 +248,19 @@ for (const file of PUBLIC_HTML) {
   htmlByFile.set(`${file}:static`, staticHtml);
 }
 
-const publicSet = new Set([...PUBLIC_FILES, "governance-hub/index.html"]);
+const publicSet = new Set([...PUBLIC_FILES, ...PUBLIC_GENERATED_HTML, "governance-hub/index.html"]);
+if (built) {
+  const addBuiltFiles = async (directory, prefix) => {
+    for (const entry of await readdir(directory, { withFileTypes: true })) {
+      const absolute = path.join(directory, entry.name);
+      const relative = `${prefix}/${entry.name}`;
+      if (entry.isDirectory()) await addBuiltFiles(absolute, relative);
+      else if (entry.isFile()) publicSet.add(normalizePath(relative));
+    }
+  };
+  try { await addBuiltFiles(path.join(validationRoot, "governance-hub"), "governance-hub"); }
+  catch { /* The explicit entry-point check below reports a missing Hub build. */ }
+}
 try { await access(path.join(validationRoot, "governance-hub/index.html")); }
 catch { errors.push("governance-hub/index.html: generated Governance Hub entry is missing"); }
 for (const [file, html] of htmlByFile) {
@@ -355,6 +368,44 @@ if (built) {
       errors.push(`${relativePath}: internal build/repository file leaked into dist`);
     } catch { /* Expected. */ }
   }
+  const internalAssessments = ["docs/palo-ai-v2.4.1-technical-assessment.md", "docs/palo-ai-v2.5-technical-assessment.md", "docs/palo-ai-v2.4.1-technical-assessment.html", "docs/palo-ai-v2.5-technical-assessment.html"];
+  for (const relativePath of internalAssessments) {
+    try { await access(path.join(validationRoot, relativePath)); errors.push(`${relativePath}: internal assessment leaked into dist`); }
+    catch { /* Expected. */ }
+  }
+  for (const [file, html] of htmlByFile) {
+    if (!file.endsWith(":static") && /palo-ai-v2\.(?:4\.1|5)-technical-assessment\.(?:md|html)/i.test(html)) report(file, "public HTML references an internal technical assessment");
+  }
+  const readinessHtml = htmlByFile.get("PALO_AIProductionReadiness.html") || "";
+  if ((readinessHtml.match(/data-gate-id=/g) || []).length !== 9) errors.push("PALO_AIProductionReadiness.html: must expose exactly nine readiness gates");
+  if (!/PALO-AM v2\.0[\s\S]*current governance modality/i.test(htmlByFile.get("PALO_AgenticGovernance.html") || "")) errors.push("PALO_AgenticGovernance.html: PALO-AM/PALO-AI version relationship is missing");
+  const assurancePages = ["PALO_AIWhy.html", "PALO_AIQuickstarts.html", "PALO_AIGovernance.html", "PALO_AgenticCapabilityMatrix.html", "PALO_AIProductionReadiness.html"];
+  for (const file of assurancePages) {
+    const html = htmlByFile.get(file) || "";
+    if (!/palo-ai-status-rail/.test(html) || !/PALO_AgenticCapabilityMatrix\.html/.test(html) || !/PALO_AIProductionReadiness\.html/.test(html) || !/security-policy\.html/.test(html)) errors.push(`${file}: persistent assurance status rail is incomplete`);
+  }
+  const whyHtml = htmlByFile.get("PALO_AIWhy.html") || "";
+  if ((whyHtml.match(/data-scenario=/g) || []).length !== 3 || !/Authorized but wrong/.test(whyHtml) || !/browser-local/i.test(whyHtml)) errors.push("PALO_AIWhy.html: comparison must expose three clearly bounded local scenarios");
+  const quickstartHtml = htmlByFile.get("PALO_AIQuickstarts.html") || "";
+  for (const anchor of ["code-first", "n8n", "copilot", "compare"]) if (!new RegExp(`id=[\"']${anchor}[\"']`).test(quickstartHtml)) errors.push(`PALO_AIQuickstarts.html: missing deep-link route #${anchor}`);
+  const homeHtml = htmlByFile.get("index.html") || "";
+  const governanceRoutes = homeHtml.match(/<section[^>]+id=["']palo-governance-routes["'][\s\S]*?<\/section>/i)?.[0] || "";
+  for (const title of ["Govern the AI lifecycle", "Govern agentic systems", "Enforce agent actions"]) if (!governanceRoutes.includes(title)) errors.push(`index.html: umbrella governance route is missing exact title "${title}"`);
+  for (const destination of ["designs/theory-to-practice-infographic/#onboarding", "#guided-journeys", "PALO_AgenticGovernance.html", "PALO_AgenticGovernance.html#simulator", "PALO_AIGovernance.html", "governance-hub/", "PALO_AIQuickstarts.html"]) if (!governanceRoutes.includes(`href="${destination}"`)) errors.push(`index.html: umbrella governance route is missing destination ${destination}`);
+  if (!/PALO provides the governance system[\s\S]*PALO-AM defines agentic authority[\s\S]*PALO-AI makes selected controls executable and verifiable/.test(governanceRoutes)) errors.push("index.html: PALO to PALO-AM to PALO-AI lineage statement is missing");
+  const paloAiHtml = htmlByFile.get("PALO_AIGovernance.html") || "";
+  if (!/PALO Framework[\s\S]*PALO-AM methodology[\s\S]*PALO-AI enforcement/.test(paloAiHtml)) errors.push("PALO_AIGovernance.html: parent component lineage cue is missing");
+  const paloRouteRibbon = paloAiHtml.match(/<nav[^>]*class=["'][^"']*palo-route-ribbon[^"']*["'][^>]*>[\s\S]*?<\/nav>/i)?.[0] || "";
+  if ((paloRouteRibbon.match(/class=["']palo-route-separator["']/g) || []).length !== 3 || /<i\b/.test(paloRouteRibbon)) errors.push("PALO_AIGovernance.html: route separators must use dedicated semantic spans");
+  const fullCycle = homeHtml.match(/<div[^>]*class=["'][^"']*palo-full-cycle[^"']*["'][^>]*>[\s\S]*?<\/div>/i)?.[0] || "";
+  if ((fullCycle.match(/class=["']palo-cycle-separator["']/g) || []).length !== 6 || /<i\b/.test(fullCycle)) errors.push("index.html: full-cycle separators must use dedicated semantic spans");
+  const paloAmHtml = htmlByFile.get("PALO_AgenticGovernance.html") || "";
+  if (!/PALO-AM is the agentic governance modality inside the PALO Framework\. It is distinct from the PALO-AI runtime/.test(paloAmHtml)) errors.push("PALO_AgenticGovernance.html: PALO-AM parent/modality distinction is missing");
+  if (!/class=["']am-version-callout["']/.test(paloAmHtml) || !/class=["']am-hero-actions["']/.test(paloAmHtml) || (paloAmHtml.match(/class=["'][^"']*am-action/g) || []).length !== 2) errors.push("PALO_AgenticGovernance.html: specialist version callout or hero actions are missing");
+  if (!/href=["']docs\/palo-ai-adoption-paths\.html["']/.test(paloAmHtml) || /href=["']docs\/palo-ai-adoption-paths\.md["']/.test(paloAmHtml)) errors.push("PALO_AgenticGovernance.html: adoption path must target generated HTML documentation");
+  const onboardingHtml = htmlByFile.get("designs/theory-to-practice-infographic/index.html") || "";
+  const onboardingRibbon = onboardingHtml.match(/<nav[^>]*class=["'][^"']*route-ribbon[^"']*["'][^>]*>[\s\S]*?<\/nav>/i)?.[0] || "";
+  if ((onboardingRibbon.match(/class=["']route-separator["']/g) || []).length !== 4 || /<i\b/.test(onboardingRibbon)) errors.push("Stakeholder Onboarding: route separators must use dedicated semantic spans");
 }
 
 if (errors.length) {
@@ -362,5 +413,5 @@ if (errors.length) {
   process.exitCode = 1;
 } else {
   const p2Summary = p2Counts ? `, P2 ${p2Counts.controls} controls/${p2Counts.indicators} indicators/${p2Counts.gates} gates/${p2Counts.sources} sources/${p2Counts.cases} cases/${p2Counts.templates} templates` : "";
-  console.log(`Validation passed: ${PUBLIC_HTML.length} HTML files, P1 schemas and fixtures${p2Summary}, ${sharedReferenceCount} versioned shared assets, ${sitemapUrls.length} sitemap URLs, ${feedItems.length} RSS items.`);
+  console.log(`Validation passed: ${htmlFilesToValidate.length} HTML files, P1 schemas and fixtures${p2Summary}, ${sharedReferenceCount} versioned shared assets, ${sitemapUrls.length} sitemap URLs, ${feedItems.length} RSS items.`);
 }

@@ -1,0 +1,465 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>PALO-AI Quickstarts | Code, n8n and Copilot Studio</title>
+    <meta
+      name="description"
+      content="Three evidence-disciplined PALO-AI v2.5 quickstarts for code-first developers, n8n builders and Copilot Studio or MCP prototypers."
+    />
+    <link
+      rel="canonical"
+      href="https://paloframework.org/PALO_AIQuickstarts.html"
+    />
+    <link rel="icon" type="image/webp" href="assets/logo.webp" />
+    <link rel="stylesheet" href="assets/palo-icons.css" />
+    <link rel="stylesheet" href="assets/palo-v21.css?v=2.5.0" />
+    <script src="assets/palo-icons.js" defer></script>
+    <script src="assets/palo-v21.js?v=2.5.0" defer></script>
+    <script src="assets/palo-ai-demo.js?v=2.5.0" defer></script>
+  </head>
+  <body class="palo-v21">
+    <a class="palo-skip-link" href="#main-content">Skip to main content</a>
+    <header class="palo-site-header">
+      <div class="palo-shell palo-header-inner">
+        <a class="palo-brand" href="index.html"
+          ><img src="assets/logo.webp" alt="PALO" />PALO FRAMEWORK</a
+        ><button
+          class="palo-menu-toggle"
+          type="button"
+          data-palo-menu-toggle
+          aria-expanded="false"
+          aria-controls="palo-primary-nav"
+          aria-label="Open navigation"
+        >
+          <span data-palo-icon="menu" aria-hidden="true"></span>
+        </button>
+        <nav
+          class="palo-nav"
+          id="palo-primary-nav"
+          aria-label="Primary navigation"
+        >
+          <a href="designs/theory-to-practice-infographic/#onboarding">Start</a
+          ><a href="PALO_AIGovernance.html" aria-current="page"
+            >Agentic Governance</a
+          ><a href="governance-hub/">Governance Hub</a
+          ><a href="index.html#guided-journeys">Tools</a
+          ><a href="PALO_DocumentationLibrary.html">Documentation</a
+          ><a href="PALO_AIProductionReadiness.html">Readiness</a>
+        </nav>
+      </div>
+    </header>
+    <aside class="palo-ai-status-rail" aria-label="PALO-AI assurance status">
+      <div class="palo-shell">
+        <span>v2.5 Developer Preview</span
+        ><a href="PALO_AgenticCapabilityMatrix.html">Capability Matrix</a
+        ><a href="PALO_AIProductionReadiness.html">Production Readiness</a
+        ><a href="security-policy.html">Security boundary</a>
+      </div>
+    </aside>
+    <main id="main-content" class="palo-main">
+      <section class="palo-ai-public-hero">
+        <div class="palo-shell palo-ai-public-hero-grid">
+          <div>
+            <p class="palo-eyebrow">PALO-AI quickstarts</p>
+            <h1>Choose the shortest safe route into PALO-AI.</h1>
+            <p class="palo-lead">
+              Start with one isolated, reversible action. Prove the governed
+              path and its evidence before expanding tools, credentials or
+              authority.
+            </p>
+            <div class="palo-actions">
+              <a class="palo-btn" href="#routes">Choose your route</a
+              ><a class="palo-btn palo-btn-secondary" href="PALO_AIWhy.html"
+                >Why PALO-AI?</a
+              >
+            </div>
+          </div>
+          <aside class="palo-ai-assurance-track">
+            <p>Every route proves the same chain</p>
+            <ol>
+              <li><span>01</span>Explicit Action Claim</li>
+              <li><span>02</span>Bound execution path</li>
+              <li><span>03</span>Observed and verified effect</li>
+            </ol>
+          </aside>
+        </div>
+      </section>
+      <section class="palo-section" id="routes">
+        <div class="palo-shell">
+          <p class="palo-eyebrow">Select by build mode</p>
+          <h2>Three routes. One governance contract.</h2>
+          <div class="palo-ai-route-grid">
+            <article class="palo-ai-route-card">
+              <p class="palo-card-kicker">01 / Code</p>
+              <h3>Code-first developer</h3>
+              <p>
+                Validate contracts, policy and the isolated reference runtime.
+              </p>
+              <a href="#code-first">Open code quickstart →</a>
+            </article>
+            <article class="palo-ai-route-card">
+              <p class="palo-card-kicker">02 / Visual</p>
+              <h3>n8n / no-code builder</h3>
+              <p>
+                Install package 0.2 on a disposable self-hosted canvas and
+                import the safe demo.
+              </p>
+              <a href="#n8n">Open n8n quickstart →</a>
+            </article>
+            <article class="palo-ai-route-card">
+              <p class="palo-card-kicker">03 / Rapid</p>
+              <h3>Copilot Studio / MCP</h3>
+              <p>
+                Expose only a narrow, authenticated preview toolset to the
+                agent.
+              </p>
+              <a href="#copilot">Open MCP quickstart →</a>
+            </article>
+          </div>
+          <nav class="palo-ai-quick-tabs" aria-label="Quickstart sections">
+            <a href="#code-first">Code-first</a><a href="#n8n">n8n / no-code</a
+            ><a href="#copilot">Copilot Studio / MCP</a
+            ><a href="#compare">Compare routes</a>
+          </nav>
+        </div>
+      </section>
+      <section class="palo-ai-quickstart" id="code-first">
+        <div class="palo-shell palo-ai-quick-grid">
+          <div>
+            <p class="palo-eyebrow">01 / Code-first</p>
+            <h2>Validate the contracts and isolated runtime</h2>
+            <p>
+              <strong>Prerequisites:</strong> Node.js/npm, a local checkout and
+              a supported shell.
+            </p>
+            <div class="palo-ai-boundary-card">
+              <strong>What this proves</strong>
+              <p>
+                Schemas, Rego tests and the reference agentic validation suite
+                pass in your checkout.
+              </p>
+              <strong>What it does not prove</strong>
+              <p>
+                Production workload identity, connector isolation, HA, KMS
+                custody or independent assurance.
+              </p>
+            </div>
+          </div>
+          <div>
+            <ol class="palo-ai-stepper">
+              <li>
+                <strong>Install exactly from the lockfile.</strong>
+                <div class="palo-ai-command">
+                  <code>npm ci</code
+                  ><button class="palo-ai-copy" type="button" data-copy-command>
+                    Copy
+                  </button>
+                </div>
+              </li>
+              <li>
+                <strong>Install the pinned local OPA tool.</strong>
+                <div class="palo-ai-command">
+                  <code>npm run opa:install</code
+                  ><button class="palo-ai-copy" type="button" data-copy-command>
+                    Copy
+                  </button>
+                </div>
+              </li>
+              <li>
+                <strong>Validate the agentic contracts and policies.</strong>
+                <div class="palo-ai-command">
+                  <code>npm run validate:agentic</code
+                  ><button class="palo-ai-copy" type="button" data-copy-command>
+                    Copy
+                  </button>
+                </div>
+              </li>
+            </ol>
+            <p>
+              <strong>Expected result:</strong> schema, registry, policy and
+              full-cycle reference checks complete without failures.
+            </p>
+            <div class="palo-actions">
+              <a class="palo-btn" href="packages/palo-mcp-server/README.html"
+                >MCP server reference</a
+              ><a
+                class="palo-btn palo-btn-secondary"
+                href="docs/palo-ai-governance-integration-guide.html"
+                >Integration guide</a
+              ><a
+                class="palo-btn palo-btn-secondary"
+                href="PALO_AgenticCapabilityMatrix.html"
+                >Inspect evidence</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="palo-ai-quickstart" id="n8n">
+        <div class="palo-shell palo-ai-quick-grid">
+          <div>
+            <p class="palo-eyebrow">02 / n8n and visual builders</p>
+            <h2>Sideload package 0.2 on a disposable canvas</h2>
+            <p>
+              <strong>Prerequisites:</strong> a disposable self-hosted n8n
+              instance, Docker or an isolated host, and no production
+              credentials.
+            </p>
+            <div class="palo-ai-boundary-card">
+              <strong>What this proves</strong>
+              <p>
+                The package builds, verifies and can represent the governed
+                decision and full-cycle action paths.
+              </p>
+              <strong>What it does not prove</strong>
+              <p>
+                n8n verification, npm provenance, a production connector or
+                unavoidable interception of alternate credentials.
+              </p>
+            </div>
+          </div>
+          <div>
+            <ol class="palo-ai-stepper">
+              <li>
+                <strong>Build and verify the package.</strong>
+                <div class="palo-ai-command">
+                  <code
+                    >cd packages/n8n-nodes-palo-ai &amp;&amp; npm ci &amp;&amp;
+                    npm run verify &amp;&amp; npm pack</code
+                  ><button class="palo-ai-copy" type="button" data-copy-command>
+                    Copy
+                  </button>
+                </div>
+              </li>
+              <li>
+                <strong>Sideload the generated tarball.</strong>
+                <p>
+                  Install it only in your disposable self-hosted environment,
+                  then restart n8n.
+                </p>
+              </li>
+              <li>
+                <strong>Create the preview credential.</strong>
+                <p>
+                  For the local Docker demo use gateway
+                  <code>http://host.docker.internal:8787</code> and the
+                  repository’s explicitly demo-only token.
+                </p>
+              </li>
+              <li>
+                <strong>Import the safe workflow.</strong>
+                <div class="palo-ai-command">
+                  <code
+                    >examples/n8n-demo/PALO-AI-full-cycle-assurance-demo.json</code
+                  ><button class="palo-ai-copy" type="button" data-copy-command>
+                    Copy
+                  </button>
+                </div>
+                <p>
+                  <a
+                    href="examples/n8n-demo/PALO-AI-full-cycle-assurance-demo.json"
+                    download
+                    >Download the safe n8n demo JSON</a
+                  >
+                </p>
+              </li>
+              <li>
+                <strong>Compare the nodes.</strong>
+                <p>
+                  <em>PALO Governance</em> is an advisory decision gate.
+                  <em>PALO Governed Action</em> represents the protected
+                  execution and verification path. Direct equivalent credentials
+                  remain a bypass and must be removed for real enforcement.
+                </p>
+              </li>
+            </ol>
+            <p>
+              <strong>Expected result:</strong> visible Verified, Review
+              Required, Denied and Execution Failed routes using synthetic data.
+            </p>
+            <div class="palo-actions">
+              <a class="palo-btn" href="packages/n8n-nodes-palo-ai/README.html"
+                >n8n package reference</a
+              ><a
+                class="palo-btn palo-btn-secondary"
+                href="docs/palo-ai-full-cycle-assurance.html"
+                >Hands-on assurance guide</a
+              ><a
+                class="palo-btn palo-btn-secondary"
+                href="docs/palo-ai-n8n-governance-control-plane.html"
+                >Architecture boundary</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="palo-ai-quickstart" id="copilot">
+        <div class="palo-shell palo-ai-quick-grid">
+          <div>
+            <p class="palo-eyebrow">03 / Copilot Studio and MCP</p>
+            <h2>Connect a deliberately narrow MCP toolset</h2>
+            <p>
+              <strong>Prerequisites:</strong> an isolated PALO remote MCP
+              preview, HTTPS, a preview credential and permission to configure
+              tools in Copilot Studio.
+            </p>
+            <div class="palo-ai-boundary-card">
+              <strong>What this proves</strong>
+              <p>
+                Copilot Studio can discover and call selected PALO MCP tools
+                over authenticated Streamable HTTP.
+              </p>
+              <strong>What it does not prove</strong>
+              <p>
+                Universal interception, OAuth/OIDC production identity or
+                removal of direct equivalent actions.
+              </p>
+            </div>
+          </div>
+          <div>
+            <ol class="palo-ai-stepper">
+              <li>
+                <strong>Start from one reversible action.</strong>
+                <p>
+                  Define its resource, allowed operation, accountable reviewer
+                  and expected effect.
+                </p>
+              </li>
+              <li>
+                <strong>Expose only the required PALO tools.</strong>
+                <p>
+                  Use the server tool allowlist; do not publish the entire
+                  governance surface to the agent.
+                </p>
+              </li>
+              <li>
+                <strong>Use preview authentication deliberately.</strong>
+                <p>
+                  The current reference remote transport supports a shared
+                  API-key/bearer preview boundary. OAuth/OIDC workload identity
+                  is the recommended production design and remains a readiness
+                  gate.
+                </p>
+              </li>
+              <li>
+                <strong>Add the existing MCP server in Copilot Studio.</strong>
+                <p>
+                  Follow Microsoft’s Streamable HTTP MCP onboarding flow, then
+                  inspect every imported tool.
+                </p>
+              </li>
+              <li>
+                <strong>Remove direct equivalent actions.</strong>
+                <p>
+                  If the agent can still call the operational system directly,
+                  PALO is advisory rather than an enforcement boundary.
+                </p>
+              </li>
+            </ol>
+            <p>
+              <strong>Expected result:</strong> the agent sees only selected
+              governance tools and evaluation remains inside a declared preview
+              boundary.
+            </p>
+            <div class="palo-actions">
+              <a
+                class="palo-btn"
+                href="docs/palo-ai-governance-integration-guide.html"
+                >PALO integration guide</a
+              ><a
+                class="palo-btn palo-btn-secondary"
+                href="https://learn.microsoft.com/en-us/microsoft-copilot-studio/mcp-add-existing-server-to-agent"
+                >Microsoft MCP onboarding</a
+              ><a
+                class="palo-btn palo-btn-secondary"
+                href="PALO_AIProductionReadiness.html"
+                >Identity readiness gate</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="palo-section" id="compare">
+        <div class="palo-shell">
+          <p class="palo-eyebrow">Choose deliberately</p>
+          <h2>Quickstart comparison</h2>
+          <div class="palo-table-wrap">
+            <table class="palo-table">
+              <thead>
+                <tr>
+                  <th>Route</th>
+                  <th>First proof</th>
+                  <th>Main bypass to remove</th>
+                  <th>Next destination</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>Code-first</th>
+                  <td>Contracts and reference tests pass</td>
+                  <td>Direct SDK/tool credential</td>
+                  <td>
+                    <a href="governance-hub/?role=technical&amp;view=setup"
+                      >Eight-step wizard</a
+                    >
+                  </td>
+                </tr>
+                <tr>
+                  <th>n8n</th>
+                  <td>Four full-cycle branches are visible</td>
+                  <td>Alternate credential or direct node</td>
+                  <td>
+                    <a href="docs/palo-ai-full-cycle-assurance.html">Hands-on assurance guide</a>
+                  </td>
+                </tr>
+                <tr>
+                  <th>Copilot / MCP</th>
+                  <td>Narrow tool discovery and call</td>
+                  <td>Direct equivalent agent action</td>
+                  <td>
+                    <a href="docs/palo-ai-governance-integration-guide.html"
+                      >Integration guide</a
+                    >
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="palo-actions">
+            <a class="palo-btn" href="examples/hands-on-demo/README.html"
+              >Run the terminal demo</a
+            ><a
+              class="palo-btn palo-btn-secondary"
+              href="governance-hub/"
+              >Open Governance Hub</a
+            ><a
+              class="palo-btn palo-btn-secondary"
+              href="PALO_AgenticCapabilityMatrix.html"
+              >Capability Matrix</a
+            ><a
+              class="palo-btn palo-btn-secondary"
+              href="PALO_AIProductionReadiness.html"
+              >Production Readiness</a
+            >
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="palo-footer">
+      <div class="palo-shell">
+        <p>
+          PALO-AI v2.5 Developer Preview · Evaluate with isolated data and
+          reversible tools.
+        </p>
+        <div class="palo-footer-links">
+          <a href="PALO_AIWhy.html">Why PALO-AI</a
+          ><a href="PALO_AIGovernance.html">Overview</a
+          ><a href="PALO_DocumentationLibrary.html">Documentation</a
+          ><a href="security-policy.html">Security</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

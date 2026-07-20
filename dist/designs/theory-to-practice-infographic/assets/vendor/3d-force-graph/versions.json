@@ -1,0 +1,21 @@
+{
+  "package": "3d-force-graph",
+  "version": "1.80.0",
+  "distribution": "dist/3d-force-graph.min.js",
+  "acquisitionUrl": "https://registry.npmjs.org/3d-force-graph/-/3d-force-graph-1.80.0.tgz",
+  "npmIntegrity": "sha512-tzI353gW1nXPpnC7VTa3JjMg+3cp77qOLUFO0vucPTfF+q5R6sQsNsIqVTbRIb7RSypn14nBa4yfkOe9ThxASw==",
+  "tarballSha1": "295d84b44b8df7f416c2f2b838b5c441989a0d13",
+  "tarballSha256": "1b146925a2b994e339fbdf383f50196a64e56dfd8a2a1ed3d89da0079e56893f",
+  "vendoredFileSha256": "d96e738edcca580edd524730c1c6b05ed2efce028c23ca95db1bf43033a72e42",
+  "gitHead": "957c1831157416e88ea9faf8e6a4edfe7b545858",
+  "license": "MIT",
+  "runtimeForm": "Official self-contained UMD/IIFE browser bundle",
+  "bundledDependencyRanges": {
+    "three": ">=0.179 <1",
+    "three-forcegraph": "1",
+    "three-render-objects": "^1.41",
+    "accessor-fn": "1",
+    "kapsule": "^1.16"
+  },
+  "verification": "Loaded through file:// with window.ForceGraph3D present and no separate window.THREE runtime."
+}

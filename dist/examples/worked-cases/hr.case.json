@@ -1,0 +1,29 @@
+{
+  "format": "palo-case-file",
+  "schemaVersion": "1.0.0",
+  "caseId": "case-hr-learning-assistant",
+  "title": "Worked case: employee learning assistant",
+  "status": "draft",
+  "createdAt": "2026-07-12T08:00:00Z",
+  "updatedAt": "2026-07-12T08:00:00Z",
+  "owner": "Educational example owner",
+  "context": {
+    "domain": "human-resources",
+    "scenario": "An internal assistant suggests optional learning resources but may not evaluate performance, promotion, discipline or employment eligibility.",
+    "exampleStatus": "educational-non-production",
+    "sourceStatus": "Primary references are pointers only; HR, labor, privacy and accessibility obligations require jurisdiction-specific review.",
+    "limitations": "Fictional scenario with no validated workforce consultation, data inventory or legal analysis.",
+    "p2References": {
+      "controlIds": ["ctrl-purpose-boundary", "ctrl-human-review", "ctrl-data-provenance", "ctrl-decision-trace"],
+      "indicatorIds": ["kri-scope-change-rate", "kpi-provenance-coverage", "kpi-review-completion"],
+      "gateIds": ["frame", "classify", "assess", "prove"],
+      "sourceIds": ["src-oecd-ai-principles", "src-eu-ai-act"],
+      "templateIds": ["tpl-board-review", "tpl-incident-response"]
+    }
+  },
+  "assessments": [{ "assessmentId": "assessment-hr-1", "module": "P2 worked case", "recordedAt": "2026-07-12T08:00:00Z", "data": { "decision": "redesign", "reason": "Separate optional learning support from employment decision systems and prohibit inference into personnel records." } }],
+  "evidence": [{ "evidenceId": "evidence-hr-purpose-boundary", "title": "Illustrative HR prohibited-use list", "kind": "approved-purpose-record", "status": "draft", "recordedAt": "2026-07-12T08:00:00Z", "content": { "prohibitedUses": ["Performance scoring", "Promotion recommendation", "Disciplinary recommendation"] } }],
+  "sources": [{ "sourceId": "src-oecd-ai-principles", "title": "OECD AI Principles", "url": "https://oecd.ai/en/ai-principles", "sourceType": "official", "publisher": "Organisation for Economic Co-operation and Development", "checkedAt": "2026-07-12T08:00:00Z", "freshness": { "status": "current", "reviewIntervalDays": 180, "nextReviewAt": "2027-01-08T08:00:00Z" } }],
+  "incidents": [],
+  "handoffs": []
+}

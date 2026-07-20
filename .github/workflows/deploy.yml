@@ -14,6 +14,30 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  windows-build:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.22.0
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            governance-hub/package-lock.json
+
+      - name: Install root build dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Install Governance Hub dependencies
+        run: npm ci --prefix governance-hub
+
+      - name: Verify cross-platform publication build
+        run: npm run build
+
   build:
     runs-on: ubuntu-latest
     steps:
@@ -23,7 +47,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22.22.0
           cache: npm
           cache-dependency-path: |
             package-lock.json

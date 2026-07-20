@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paloframework.org/schemas/palo-agentic-effect-contract.schema.json",
+  "title": "PALO Agentic Effect Contract",
+  "description": "Developer-preview contract describing observable preconditions, intended effects and forbidden effects for a governed action.",
+  "type": "object",
+  "required": ["format", "schemaVersion", "effectContractId", "resourceSelector", "preconditions", "expectedEffects", "forbiddenEffects", "verification"],
+  "properties": {
+    "format": { "const": "palo-agentic-effect-contract" },
+    "schemaVersion": { "const": "1.0.0" },
+    "effectContractId": { "type": "string", "pattern": "^effect-[a-f0-9-]{36}$" },
+    "resourceSelector": {
+      "type": "object",
+      "required": ["resource", "path"],
+      "properties": {
+        "resource": { "type": "string", "minLength": 1, "maxLength": 1000 },
+        "path": { "type": "string", "minLength": 1, "maxLength": 1000, "pattern": "^/" },
+        "tenantId": { "type": "string", "minLength": 1, "maxLength": 128 }
+      },
+      "additionalProperties": false
+    },
+    "preconditions": { "$ref": "#/$defs/predicateList" },
+    "expectedEffects": { "$ref": "#/$defs/predicateList" },
+    "forbiddenEffects": { "$ref": "#/$defs/predicateList" },
+    "verification": {
+      "type": "object",
+      "required": ["windowSeconds", "onInconclusive"],
+      "properties": {
+        "windowSeconds": { "type": "integer", "minimum": 1, "maximum": 86400 },
+        "onInconclusive": { "enum": ["hold_and_review", "retry_then_review"] },
+        "maxAttempts": { "type": "integer", "minimum": 1, "maximum": 10 }
+      },
+      "additionalProperties": false
+    }
+  },
+  "$defs": {
+    "predicateList": {
+      "type": "array",
+      "maxItems": 100,
+      "items": { "$ref": "#/$defs/predicate" }
+    },
+    "predicate": {
+      "type": "object",
+      "required": ["predicateId", "path", "operator"],
+      "properties": {
+        "predicateId": { "type": "string", "pattern": "^predicate-[a-zA-Z0-9._-]{1,100}$" },
+        "path": { "type": "string", "pattern": "^(|/(?:[^~/]|~0|~1)*)$", "maxLength": 1000 },
+        "operator": { "enum": ["exists", "equals", "unchanged", "changedTo", "deltaWithin"] },
+        "value": true,
+        "minimumDelta": { "type": "number" },
+        "maximumDelta": { "type": "number" },
+        "description": { "type": "string", "maxLength": 500 }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "operator": { "enum": ["equals", "changedTo"] } }, "required": ["operator"] },
+          "then": { "properties": { "value": true }, "required": ["value"] }
+        },
+        {
+          "if": { "properties": { "operator": { "const": "deltaWithin" } }, "required": ["operator"] },
+          "then": { "properties": { "minimumDelta": { "type": "number" }, "maximumDelta": { "type": "number" } }, "required": ["minimumDelta", "maximumDelta"] }
+        }
+      ],
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
