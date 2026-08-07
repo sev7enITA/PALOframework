@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paloframework.org/schemas/palo-agentic-enforcement-provider.schema.json",
+  "title": "PALO Agentic Enforcement Provider",
+  "description": "Vendor-neutral manifest for a policy runtime that returns fail-closed pre-action decisions to PALO. Provider registration does not make an external runtime trusted, production-ready, or endorsed by its vendor.",
+  "type": "object",
+  "required": ["format", "schemaVersion", "providerId", "providerVersion", "displayName", "providerType", "capabilities", "policyReference"],
+  "properties": {
+    "format": { "const": "palo-agentic-enforcement-provider" },
+    "schemaVersion": { "const": "1.0.0" },
+    "providerId": { "type": "string", "pattern": "^provider-[a-zA-Z0-9][a-zA-Z0-9._-]{2,100}$" },
+    "providerVersion": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+(?:-[0-9A-Za-z.-]+)?$" },
+    "displayName": { "type": "string", "minLength": 1, "maxLength": 200 },
+    "providerType": { "type": "string", "pattern": "^[a-z][a-z0-9._-]{2,100}$" },
+    "capabilities": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "contains": { "const": "pre_action_decision" },
+      "items": { "enum": ["pre_action_decision", "human_escalation", "decision_evidence", "argument_transformation", "post_action_mediation"] }
+    },
+    "policyReference": { "type": "string", "minLength": 1, "maxLength": 500 },
+    "vendor": { "type": "string", "minLength": 1, "maxLength": 200 },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": {
+        "anyOf": [
+          { "type": "string" },
+          { "type": "number" },
+          { "type": "boolean" },
+          { "type": "null" }
+        ]
+      }
+    }
+  },
+  "additionalProperties": false
+}

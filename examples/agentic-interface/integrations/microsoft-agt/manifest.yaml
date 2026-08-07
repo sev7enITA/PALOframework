@@ -1,0 +1,24 @@
+agent_control_specification_version: 0.3.1-beta
+metadata:
+  name: palo_outcome_assurance_bridge
+extends: []
+policies:
+  palo_outcome_assurance_bridge:
+    type: rego
+    bundle: ./policy
+    query: data.agent_control_specification.palo_outcome_assurance_bridge.verdict
+intervention_points:
+  pre_tool_call:
+    policy_target: $.tool_call.args
+    policy_target_kind: tool_args
+    policy:
+      id: palo_outcome_assurance_bridge
+      query: data.agent_control_specification.palo_outcome_assurance_bridge.pre_tool_call_verdict
+    tool_name_from: $.tool_call.name
+tools:
+  catalog_update:
+    type: Tool
+    id: catalog_update
+    clearance: internal
+    security_labels: [catalog_write, consequential_action]
+annotators: {}

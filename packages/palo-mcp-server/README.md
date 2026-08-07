@@ -38,6 +38,19 @@ In another terminal run `npm run demo:hands-on -- --auto-approve`. Add `--wrong-
 
 On Gateway startup, `executing/pending` outbox rows older than `PALO_EXECUTION_RECOVERY_AGE_MS` (30 seconds by default) are recovered fail-closed. The runtime creates a signed `unknown` receipt, an inconclusive attestation, and a held incident. Rows with a recorded receipt but no attestation resume outcome verification. This protects the reference single-instance lifecycle after interruption; it is not multi-replica leasing or a universal exactly-once guarantee.
 
+## Vendor-neutral enforcement providers
+
+OPA remains the default policy evaluator. The runtime now accepts a versioned `palo-agentic-enforcement-provider` implementation and records its provider, version, policy reference and optional decision/evidence references in each Policy Decision.
+
+The first optional provider maps PALO Action Claims to Microsoft Agent Governance Toolkit ACS `pre_tool_call`. It is a PALO-maintained interoperability proposal, not a Microsoft-maintained or endorsed integration. The upstream package is loaded only when selected and is not a mandatory PALO dependency.
+
+```bash
+npm install --no-save --package-lock=false agent-control-specification@0.3.1-beta.0
+npm run demo:microsoft-agt
+```
+
+See the [PALO + Microsoft AGT quickstart](https://github.com/sev7enITA/PALOframework/tree/main/examples/agentic-interface/integrations/microsoft-agt) for the environment configuration, trust boundaries and upgrade policy.
+
 ## Local validation
 
 ```bash

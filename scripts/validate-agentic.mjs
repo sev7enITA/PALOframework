@@ -9,7 +9,7 @@ addFormats(ajv);
 const names = [
   "palo-agentic-interface", "palo-agentic-effect-contract", "palo-agentic-action-claim", "palo-agentic-policy", "palo-agentic-policy-input",
   "palo-agentic-policy-decision", "palo-agentic-approval", "palo-agentic-evidence-envelope", "palo-agentic-execution-capability",
-  "palo-agentic-execution-receipt", "palo-agentic-outcome-attestation", "palo-agentic-assurance-incident"
+  "palo-agentic-execution-receipt", "palo-agentic-outcome-attestation", "palo-agentic-assurance-incident", "palo-agentic-enforcement-provider"
 ];
 const errors = [];
 const loaded = {};
@@ -40,10 +40,11 @@ if (JSON.stringify(documentedTools) !== JSON.stringify(expectedTools)) errors.pu
 let opa = process.env.PALO_OPA_BIN || path.resolve(".tools/opa/opa");
 try { await access(opa); }
 catch { opa = "opa"; }
-const opaCheck = spawnSync(opa, ["check", "examples/policy-as-code"], { encoding: "utf8" });
+const opaSources = ["examples/policy-as-code", "examples/agentic-interface/integrations/microsoft-agt/policy"];
+const opaCheck = spawnSync(opa, ["check", ...opaSources], { encoding: "utf8" });
 if (opaCheck.error?.code === "ENOENT") errors.push("OPA is required; run npm run opa:install or set PALO_OPA_BIN");
 else if (opaCheck.status !== 0) errors.push(`OPA check failed: ${opaCheck.stderr || opaCheck.stdout}`);
-const opaTest = spawnSync(opa, ["test", "examples/policy-as-code"], { encoding: "utf8" });
+const opaTest = spawnSync(opa, ["test", ...opaSources], { encoding: "utf8" });
 if (!opaTest.error && opaTest.status !== 0) errors.push(`OPA tests failed: ${opaTest.stderr || opaTest.stdout}`);
 
 if (errors.length) {
