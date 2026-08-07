@@ -62,6 +62,7 @@ n8n orchestrates what automation does. PALO governs whether an identified agent 
 - [Governance Hub current status, production gaps and delivery waves](docs/palo-ai-governance-hub-status.md)
 - [Presentation and launch playbook](docs/palo-ai-n8n-launch-playbook.md)
 - [Current n8n developer-preview example](examples/agentic-interface/integrations/n8n/)
+- [PALO + Microsoft AGT ACS interoperability proposal](examples/agentic-interface/integrations/microsoft-agt/)
 - [Installable n8n alpha package](packages/n8n-nodes-palo-ai/)
 - [n8n alpha test report](docs/palo-ai-n8n-alpha-test-report.md)
 - [Architecture preview publication status and staged release gates](docs/palo-ai-n8n-publication-status.md)

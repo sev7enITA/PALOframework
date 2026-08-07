@@ -15,6 +15,7 @@
     "palo:mcp:http": "node packages/palo-mcp-server/http.js",
     "palo:gateway": "node packages/palo-mcp-server/gateway.js",
     "demo:hands-on": "node examples/hands-on-demo/run-assurance-cycle.mjs",
+    "demo:microsoft-agt": "node examples/agentic-interface/integrations/microsoft-agt/run-demo.mjs",
     "demo:hands-on:legacy": "node examples/hands-on-demo/run-support-case.mjs",
     "demo:n8n:seed": "node examples/hands-on-demo/run-support-case.mjs --seed-n8n",
     "validate:dist": "node scripts/validate.mjs --root dist --built",

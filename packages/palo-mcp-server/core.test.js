@@ -70,6 +70,24 @@ test("nonce, idempotency and monotonic sequence prevent replay", async (t) => {
   assert.match((await runtime.verifyAction(idemReplay)).reasons[0], /idempotency/i);
 });
 
+test("a cached allow is never returned after the Action Claim expires", async (t) => {
+  const { runtime } = await fixture(t);
+  const claim = makeClaim(1);
+  const pending = await runtime.verifyAction(claim);
+  await runtime.resolveApproval(pending.approvalId, "approved", "reviewer@example.org", "Approved exact short-lived claim");
+  const allowed = await runtime.verifyAction(claim, pending.approvalId);
+  assert.equal(allowed.status, "allowed");
+  const realNow = Date.now;
+  try {
+    Date.now = () => Date.parse(claim.expiresAt) + 1;
+    const expiredDecision = await runtime.verifyAction(claim);
+    assert.equal(expiredDecision.status, "denied");
+    assert.match(expiredDecision.reasons[0], /expired or not yet valid/i);
+  } finally {
+    Date.now = realNow;
+  }
+});
+
 test("approval is immutable and bound to the exact Action Claim", async (t) => {
   const { runtime } = await fixture(t); const claim = makeClaim(1);
   const pending = await runtime.verifyAction(claim); const approval = await runtime.getApproval(pending.approvalId);
