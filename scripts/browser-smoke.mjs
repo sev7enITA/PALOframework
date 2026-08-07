@@ -46,12 +46,18 @@ try {
     if (new URL(request.url()).hostname === "www.policywatcher.online") policyWatcherRequests.push({ method: request.method(), url: request.url() });
   });
   page.on("console", (message) => {
-    if (message.type() === "error" && !/favicon|cdn\.tailwindcss\.com/i.test(message.text())) failures.push(`${page.url()}: console error: ${message.text()}`);
+    const text = message.text();
+    const isChromiumComputePressureWarning = /^Permissions policy violation: compute-pressure is not allowed in this document\.?$/.test(text);
+    if (message.type() === "error" && !/favicon|cdn\.tailwindcss\.com/i.test(text) && !isChromiumComputePressureWarning) failures.push(`${page.url()}: console error: ${text}`);
   });
   page.on("pageerror", (error) => failures.push(`${page.url()}: page error: ${error.message}`));
   page.on("requestfailed", (request) => {
-    const isNavigationStylesheetAbort = request.resourceType() === "stylesheet" && request.failure()?.errorText === "net::ERR_ABORTED";
-    if (new URL(request.url()).origin === baseUrl && !isNavigationStylesheetAbort) {
+    const requestUrl = new URL(request.url());
+    const isNavigationAbort = request.failure()?.errorText === "net::ERR_ABORTED" && (
+      request.resourceType() === "stylesheet"
+      || (request.resourceType() === "script" && requestUrl.pathname.endsWith("/assets/palo-spotlight.js"))
+    );
+    if (requestUrl.origin === baseUrl && !isNavigationAbort) {
       failures.push(`${page.url()}: local request failed: ${request.url()} (${request.failure()?.errorText || "unknown error"})`);
     }
   });
@@ -62,6 +68,9 @@ try {
     // stylesheet during the next navigation and report a false request failure.
     const response = await page.goto(`${baseUrl}/${file}`, { waitUntil: "load", timeout: 30_000 });
     if (!response?.ok()) failures.push(`${file}: navigation returned ${response?.status() || "no response"}`);
+    if (await page.locator('script[data-palo-spotlight-loader]').count()) {
+      await page.waitForFunction(() => window.PALO_SPOTLIGHT?.__ready === true, null, { timeout: 30_000 });
+    }
     if (await page.locator('link[data-palo-spotlight-style]').count()) {
       await page.waitForFunction(() => Boolean(document.querySelector('link[data-palo-spotlight-style]')?.sheet));
     }

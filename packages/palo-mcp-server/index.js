@@ -2,8 +2,10 @@
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { GovernanceRuntime } from "./core.js";
 import { createPaloMcpServer } from "./server.js";
+import { loadEnforcementProviderFromEnvironment } from "./providers/from-environment.js";
 
-const runtime = new GovernanceRuntime();
+const enforcementProvider = await loadEnforcementProviderFromEnvironment();
+const runtime = new GovernanceRuntime({ enforcementProvider });
 const server = createPaloMcpServer(runtime);
 process.stderr.write("PALO-AI v2.5 FULL-CYCLE DEVELOPER PREVIEW — isolated testing only; not a production authorization or execution boundary.\n");
 await server.connect(new StdioServerTransport());

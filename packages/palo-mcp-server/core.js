@@ -5,6 +5,7 @@ import { fileURLToPath } from "node:url";
 import Database from "better-sqlite3";
 import Ajv2020 from "ajv/dist/2020.js";
 import addFormats from "ajv-formats";
+import { createFunctionEnforcementProvider, evaluateEnforcementProvider, validateEnforcementProviderManifest } from "./enforcement-provider.js";
 
 const PROFILE_FORMAT = "palo-agentic-interface";
 const POLICY_ID = "policy-agentic-governance";
@@ -13,7 +14,7 @@ const repositoryRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url))
 const schemaNames = [
   "palo-agentic-interface", "palo-agentic-effect-contract", "palo-agentic-action-claim", "palo-agentic-policy", "palo-agentic-policy-input",
   "palo-agentic-policy-decision", "palo-agentic-approval", "palo-agentic-evidence-envelope", "palo-agentic-execution-capability",
-  "palo-agentic-execution-receipt", "palo-agentic-outcome-attestation", "palo-agentic-assurance-incident"
+  "palo-agentic-execution-receipt", "palo-agentic-outcome-attestation", "palo-agentic-assurance-incident", "palo-agentic-enforcement-provider"
 ];
 const schemas = Object.fromEntries(schemaNames.map((name) => [name, JSON.parse(readFileSync(path.join(repositoryRoot, "schemas", `${name}.schema.json`), "utf8"))]));
 const ajv = new Ajv2020({ allErrors: true, strict: true });
@@ -193,17 +194,32 @@ export function createOpaEvaluator({ url = process.env.PALO_OPA_URL, timeoutMs =
 }
 
 export class GovernanceRuntime {
-  constructor({ dataDir = process.env.PALO_DATA_DIR || path.resolve(".palo-agentic"), keys, policyEvaluator, executors = {}, verifiers = {} } = {}) {
+  constructor({ dataDir = process.env.PALO_DATA_DIR || path.resolve(".palo-agentic"), keys, policyEvaluator, enforcementProvider, executors = {}, verifiers = {} } = {}) {
+    if (policyEvaluator && enforcementProvider) throw new Error("Configure policyEvaluator or enforcementProvider, not both");
     this.dataDir = dataDir;
     this.keys = keys || loadKeysFromEnvironment();
-    this.policyEvaluator = policyEvaluator || createOpaEvaluator();
+    const evaluator = policyEvaluator || createOpaEvaluator();
+    this.enforcementProvider = enforcementProvider || createFunctionEnforcementProvider(evaluator, policyEvaluator ? {
+      providerId: "provider-palo-custom-evaluator",
+      displayName: "PALO custom policy evaluator",
+      providerType: "embedded-policy-evaluator"
+    } : {
+      providerId: "provider-palo-opa",
+      displayName: "PALO OPA policy evaluator",
+      providerType: "opa-policy-runtime"
+    });
+    validateEnforcementProviderManifest(this.enforcementProvider.manifest);
+    assertSchema("palo-agentic-enforcement-provider", this.enforcementProvider.manifest);
     this.executorHandlers = new Map(Object.entries(executors));
     this.verifierHandlers = new Map(Object.entries(verifiers));
     this.db = openDatabase(dataDir);
     this.bootstrapPolicy();
   }
 
-  close() { if (this.db?.open) this.db.close(); }
+  close() {
+    try { this.enforcementProvider?.close?.(); }
+    finally { if (this.db?.open) this.db.close(); }
+  }
 
   bootstrapPolicy() {
     const policy = {
@@ -324,6 +340,7 @@ export class GovernanceRuntime {
 
   async getRegistry() {
     return {
+      enforcementProvider: clone(this.enforcementProvider.manifest),
       profiles: this.db.prepare("SELECT case_id AS caseId, agent_id AS agentId, profile_version AS profileVersion, profile_digest AS profileDigest, status, registered_at AS registeredAt, updated_at AS updatedAt FROM profiles ORDER BY agent_id, profile_version").all(),
       policies: this.db.prepare("SELECT policy_id AS policyId, policy_version AS policyVersion, bundle_digest AS bundleDigest, status, registered_at AS registeredAt FROM policies ORDER BY policy_id, policy_version").all(),
       executors: this.db.prepare("SELECT executor_id AS executorId, executor_version AS version, status, registered_at AS registeredAt FROM executors ORDER BY executor_id, executor_version").all(),
@@ -361,12 +378,12 @@ export class GovernanceRuntime {
     catch (error) { return this.persistDeniedMalformed(inputClaim, error.message); }
     const digest = sha256(claim);
     const existingRow = this.db.prepare("SELECT claim_digest, decision_json FROM decisions WHERE claim_id = ?").get(claim.claimId);
+    if (Date.parse(claim.expiresAt) <= Date.now() || Date.parse(claim.requestedAt) > Date.now() + 30000) return this.persistDecision(claim, digest, { status: "denied", reasons: ["Claim is expired or not yet valid"], obligations: [] });
     if (existingRow) {
       if (existingRow.claim_digest !== digest) return this.persistDecision(claim, digest, { status: "denied", reasons: ["claimId replayed with different content"], obligations: ["rotate_claim_id"] });
       const existing = parse(existingRow.decision_json);
       if (!revalidate && (!approvalId || existing.status !== "pending_approval")) return existing;
     }
-    if (Date.parse(claim.expiresAt) <= Date.now() || Date.parse(claim.requestedAt) > Date.now() + 30000) return this.persistDecision(claim, digest, { status: "denied", reasons: ["Claim is expired or not yet valid"], obligations: [] });
     let profile; let policy;
     try { profile = await this.getProfile(claim.caseId, claim.agentId); policy = this.getPolicy(); this.validateArguments(claim, profile); }
     catch (error) { return this.persistDecision(claim, digest, { status: "denied", reasons: [error.message], obligations: ["register_trusted_authority"] }); }
@@ -382,8 +399,11 @@ export class GovernanceRuntime {
       } catch (error) { return this.persistDecision(claim, digest, { status: "denied", reasons: [error.message], obligations: ["obtain_bound_human_approval"] }, profile); }
     }
     const policyInput = { claim, claim_digest: digest, profile, policy, approval, now: nowIso() };
-    const result = await this.policyEvaluator(policyInput);
-    if (result.status === "pending_approval" && !approval) { approval = await this.requestApproval(claim, digest, "palo-policy-engine"); result.approvalId = approval.approvalId; }
+    const result = await evaluateEnforcementProvider(this.enforcementProvider, policyInput);
+    if (result.status === "pending_approval") {
+      const pendingApproval = approval?.status === "pending" ? approval : await this.requestApproval(claim, digest, "palo-policy-engine");
+      result.approvalId = pendingApproval.approvalId;
+    }
     return this.persistDecision(claim, digest, result, profile);
   }
 
@@ -402,9 +422,10 @@ export class GovernanceRuntime {
       profileVersion: profile?.profileVersion || "unknown", claimDigest, decidedAt: nowIso(), obligations: result.obligations || []
     };
     if (result.approvalId) decision.approvalId = result.approvalId;
+    if (result.enforcementProvider) decision.enforcementProvider = result.enforcementProvider;
     assertSchema("palo-agentic-policy-decision", decision);
     this.db.prepare("INSERT INTO decisions VALUES (?, ?, ?, ?) ON CONFLICT(claim_id) DO UPDATE SET claim_digest=excluded.claim_digest, decision_json=excluded.decision_json, updated_at=excluded.updated_at").run(claim.claimId, claimDigest, JSON.stringify(decision), nowIso());
-    if (profile) this.recordEvidence({ claim, decision, outcome: decision.status, payload: { action: claim.action, requestedScopes: claim.requestedScopes } });
+    if (profile) this.recordEvidence({ claim, decision, outcome: decision.status, payload: { action: claim.action, requestedScopes: claim.requestedScopes, ...(decision.enforcementProvider ? { enforcementProvider: decision.enforcementProvider } : {}) } });
     return decision;
   }
 

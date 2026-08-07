@@ -3,12 +3,14 @@ import { createServer } from "node:http";
 import { timingSafeEqual } from "node:crypto";
 import { GovernanceRuntime } from "./core.js";
 import { installDemoCatalog } from "./demo-catalog.js";
+import { loadEnforcementProviderFromEnvironment } from "./providers/from-environment.js";
 
 const host = process.env.PALO_GATEWAY_HOST || "127.0.0.1";
 const port = Number(process.env.PALO_GATEWAY_PORT || 8787);
 const token = process.env.PALO_GATEWAY_TOKEN;
 if (!token || token.length < 24) throw new Error("PALO_GATEWAY_TOKEN must contain at least 24 characters");
-const runtime = new GovernanceRuntime();
+const enforcementProvider = await loadEnforcementProviderFromEnvironment();
+const runtime = new GovernanceRuntime({ enforcementProvider });
 if (process.env.PALO_ENABLE_DEMO_CATALOG === "true") await installDemoCatalog(runtime);
 await runtime.recoverPendingExecutions({ olderThanMs: Number(process.env.PALO_EXECUTION_RECOVERY_AGE_MS || 30000) });
 

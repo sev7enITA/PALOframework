@@ -5,6 +5,7 @@ import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/
 import { createMcpExpressApp } from "@modelcontextprotocol/sdk/server/express.js";
 import { GovernanceRuntime } from "./core.js";
 import { createPaloMcpServer } from "./server.js";
+import { loadEnforcementProviderFromEnvironment } from "./providers/from-environment.js";
 
 function authorized(header, token) {
   const actual = Buffer.from(header || ""); const expected = Buffer.from(`Bearer ${token}`);
@@ -45,7 +46,8 @@ if (import.meta.url === pathToFileURL(process.argv[1]).href) {
   const port = Number(process.env.PALO_MCP_HTTP_PORT || 8788);
   const allowedHosts = parseAllowedHosts(process.env.PALO_MCP_ALLOWED_HOSTS);
   const exposedTools = parseAllowedHosts(process.env.PALO_MCP_EXPOSED_TOOLS);
-  const runtime = new GovernanceRuntime();
+  const enforcementProvider = await loadEnforcementProviderFromEnvironment();
+  const runtime = new GovernanceRuntime({ enforcementProvider });
   const app = createAuthenticatedMcpApp({ runtime, token, host, allowedHosts, exposedTools: exposedTools.length ? exposedTools : undefined });
   const listener = app.listen(port, host, () => process.stderr.write(`PALO-AI DEVELOPER PREVIEW listening on http://${host}:${port}/mcp — isolated testing only; not a production authorization boundary.\n`));
   const shutdown = () => listener.close(() => { runtime.close(); process.exit(0); });

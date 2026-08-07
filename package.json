@@ -15,6 +15,7 @@
     "palo:mcp:http": "node packages/palo-mcp-server/http.js",
     "palo:gateway": "node packages/palo-mcp-server/gateway.js",
     "demo:hands-on": "node examples/hands-on-demo/run-assurance-cycle.mjs",
+    "demo:microsoft-agt": "node examples/agentic-interface/integrations/microsoft-agt/run-demo.mjs",
     "demo:hands-on:legacy": "node examples/hands-on-demo/run-support-case.mjs",
     "demo:n8n:seed": "node examples/hands-on-demo/run-support-case.mjs --seed-n8n",
     "validate:dist": "node scripts/validate.mjs --root dist --built",
@@ -24,14 +25,14 @@
     "p0": "npm run validate:agentic && npm run validate && npm run build && npm run validate:dist && npm run build:check && npm run smoke"
   },
   "devDependencies": {
-    "fast-xml-parser": "5.10.0",
+    "fast-xml-parser": "5.10.1",
     "html-validate": "11.5.5",
     "marked": "18.0.6",
     "playwright": "1.61.1",
     "sanitize-html": "2.17.6"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "1.29.0",
+    "@modelcontextprotocol/sdk": "1.30.0",
     "ajv": "8.20.0",
     "ajv-formats": "3.0.1",
     "better-sqlite3": "12.11.1",

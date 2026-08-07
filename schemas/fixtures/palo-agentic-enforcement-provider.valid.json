@@ -1,0 +1,13 @@
+{
+  "format": "palo-agentic-enforcement-provider",
+  "schemaVersion": "1.0.0",
+  "providerId": "provider-palo-opa",
+  "providerVersion": "1.0.0",
+  "displayName": "PALO OPA policy evaluator",
+  "providerType": "opa-policy-runtime",
+  "capabilities": ["pre_action_decision"],
+  "policyReference": "policy-agentic-governance/1.2.0",
+  "metadata": {
+    "interoperabilityStatus": "reference"
+  }
+}
