@@ -33,12 +33,12 @@ Call to action:
 
 > Run the synthetic demo, inspect the decision and outcome evidence, and tell us whether the boundary is useful for your agent platform. Please do not connect this developer preview to production credentials or consequential systems.
 
-Links to insert before publication:
+Publication links:
 
-- Release/commit: `[immutable URL]`
-- Integration quickstart: `[immutable URL]`
-- Demo output or video: `[URL]`
-- Maintainer discussion: `[URL, after opening]`
+- Integration commit: https://github.com/sev7enITA/PALOframework/commit/c373825
+- Integration quickstart: https://github.com/sev7enITA/PALOframework/tree/c373825/examples/agentic-interface/integrations/microsoft-agt
+- PALO review discussion: https://github.com/sev7enITA/PALOframework/pull/6
+- Public news page: https://paloframework.org/docs/community/palo-microsoft-agt-interoperability-proposal.html
 
 ## Short LinkedIn / community post
 
@@ -50,7 +50,9 @@ The demo shows both `allowed -> verified` and `allowed -> wrong outcome -> incid
 
 This is a PALO-maintained community proposal, not a Microsoft endorsement. We are looking for technical feedback from AGT maintainers and practitioners.
 
-`[integration link]` `[discussion link]`
+https://paloframework.org/docs/community/palo-microsoft-agt-interoperability-proposal.html
+
+https://github.com/sev7enITA/PALOframework/pull/6
 
 ## Version B — use only after upstream acceptance
 

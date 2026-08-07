@@ -107,6 +107,7 @@ export const PUBLIC_FILES = [
   "docs/palo-ai-production-readiness-plan.md",
   "docs/community/n8n-architecture-preview-post.md",
   "docs/community/palo-ai-feedback-design-partner-form.md",
+  "docs/community/palo-microsoft-agt-interoperability-proposal.md",
   "media/README.md",
   "media/palo-ai-n8n-architecture-preview-3min.mp4",
   "media/palo-ai-n8n-demo-captions.srt",
