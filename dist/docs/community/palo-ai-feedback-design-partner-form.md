@@ -1,12 +1,12 @@
 # PALO-AI developer-preview feedback and design-partner intake
 
-This document is the canonical, safe intake for the PALO-AI v2.4.1 architecture preview. It can be used as a GitHub issue, a private form, or a facilitated interview. It is not a support or security-incident channel.
+This document is the canonical, safe intake for the PALO-AI v2.5 full-cycle architecture preview. It can be used as a GitHub issue, a private form, or a facilitated interview. It is not a support or security-incident channel.
 
 ## Safety and scope
 
 Please use only a disposable, non-production n8n instance and mock, synthetic or reversible tool actions. Do not submit credentials, API tokens, private keys, personal data, client names, proprietary workflow exports, production URLs or confidential policy. Redact screenshots and execution IDs before sharing them. Report a suspected security issue privately through the repository security contact instead of opening a public issue.
 
-The preview is not a production authorization service, an unavoidable interception boundary, an n8n-verified connector or a compliance certification. The visual decision gate is advisory. Identity, governed execution, secure mobile approval delivery, distributed state, KMS/HSM key custody and certified connectors remain under development.
+The preview is not a production authorization service, an unavoidable interception boundary, an n8n-verified connector or a compliance certification. The visual decision gate is advisory, and package 0.2's governed-action prototype is bypassable if direct credentials or tool routes remain. Production identity, authenticated approval delivery, non-bypassable connector isolation, distributed state, KMS/HSM key custody and certified connectors remain under development.
 
 ## Part A — Architecture feedback
 
@@ -43,10 +43,10 @@ The preview is not a production authorization service, an unavoidable intercepti
    One non-production agent workflow and one mock/reversible tool action. State what must never execute.
 
 3. **Patterns and capabilities to evaluate**
-   Authority profile and Action Claim mapping; OPA/Rego allow/deny behavior; approval-required flow; replay/idempotency handling; evidence/ledger shape; n8n node ergonomics; MCP interoperability; workflow-admission analysis.
+   Authority profile and Action Claim mapping; OPA/Rego allow/deny behavior; approval-required flow; replay/idempotency handling; Effect Contract and outcome verification; evidence/ledger shape; n8n node ergonomics; MCP interoperability; workflow-admission analysis.
 
 4. **Evaluation plan and success criteria**
-   List the smallest reproducible test (for example: register → deny → approval → execute mock action → verify claim digest) and measurable outcomes such as decision correctness, error handling, latency or operator comprehension.
+   List the smallest reproducible test (for example: register → deny → approval → capability → execute mock action → verify authoritative outcome) and measurable outcomes such as decision correctness, effect-verification coverage, error handling, latency or operator comprehension.
 
 5. **Integration constraints**
    n8n version, deployment topology, identity provider (if any), network restrictions, preferred transport and retention requirements. Do not provide credentials or sensitive topology details.

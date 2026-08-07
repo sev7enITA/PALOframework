@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paloframework.org/schemas/palo-agentic-policy-input.schema.json",
+  "title": "PALO OPA Agentic Policy Input",
+  "description": "Developer-preview OPA input contract. A conforming input or policy response is not a production authorization or compliance determination.",
+  "type": "object",
+  "required": ["claim", "claim_digest", "profile", "policy", "approval", "now"],
+  "properties": {
+    "claim": { "$ref": "palo-agentic-action-claim.schema.json" },
+    "claim_digest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+    "profile": { "$ref": "palo-agentic-interface.schema.json" },
+    "policy": { "$ref": "palo-agentic-policy.schema.json" },
+    "approval": { "oneOf": [{ "$ref": "palo-agentic-approval.schema.json" }, { "type": "null" }] },
+    "now": { "type": "string", "format": "date-time" }
+  },
+  "additionalProperties": false
+}

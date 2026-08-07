@@ -1,0 +1,29 @@
+{
+  "format": "palo-case-file",
+  "schemaVersion": "1.0.0",
+  "caseId": "case-procurement-assistant",
+  "title": "Worked case: supplier due diligence assistant",
+  "status": "draft",
+  "createdAt": "2026-07-12T08:00:00Z",
+  "updatedAt": "2026-07-12T08:00:00Z",
+  "owner": "Educational example owner",
+  "context": {
+    "domain": "procurement",
+    "scenario": "A procurement team considers a supplier-hosted assistant that summarizes bids but does not rank or award them.",
+    "exampleStatus": "educational-non-production",
+    "sourceStatus": "Starter references were checked on the recorded dates; applicability and current status require human review.",
+    "limitations": "Fictional scenario; no supplier, legal regime, data flow or control has been verified.",
+    "p2References": {
+      "controlIds": ["ctrl-purpose-boundary", "ctrl-third-party-due-diligence", "ctrl-data-provenance"],
+      "indicatorIds": ["kpi-vendor-evidence-coverage", "kpi-provenance-coverage"],
+      "gateIds": ["frame", "classify", "assess", "control"],
+      "sourceIds": ["src-nist-ai-rmf", "src-iso-42001"],
+      "templateIds": ["tpl-procurement", "tpl-board-review"]
+    }
+  },
+  "assessments": [{ "assessmentId": "assessment-procurement-1", "module": "P2 worked case", "recordedAt": "2026-07-12T08:00:00Z", "data": { "decision": "proceed-with-conditions", "conditions": ["Keep award authority with named reviewers", "Complete supplier evidence gaps", "Test data retention and exit"] } }],
+  "evidence": [{ "evidenceId": "evidence-procurement-gap-list", "title": "Illustrative supplier evidence gap list", "kind": "supplier-questionnaire", "status": "draft", "recordedAt": "2026-07-12T08:00:00Z", "content": { "openItems": ["Subprocessor inventory", "Change notification route", "Export and deletion evidence"] } }],
+  "sources": [{ "sourceId": "src-nist-ai-rmf", "title": "AI Risk Management Framework", "url": "https://www.nist.gov/itl/ai-risk-management-framework", "sourceType": "official", "publisher": "US National Institute of Standards and Technology", "checkedAt": "2026-07-12T08:00:00Z", "freshness": { "status": "current", "reviewIntervalDays": 90, "nextReviewAt": "2026-10-10T08:00:00Z" } }],
+  "incidents": [],
+  "handoffs": []
+}

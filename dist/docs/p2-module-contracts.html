@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>P2 module contracts | PALO Documentation</title>
+  <meta name="description" content="Public PALO documentation: P2 module contracts.">
+  <link rel="canonical" href="https://paloframework.org/docs/p2-module-contracts.html">
+  <link rel="icon" type="image/webp" href="../assets/logo.webp">
+  <link rel="stylesheet" href="../assets/palo-icons.css">
+  <link rel="stylesheet" href="../assets/palo-v21.css?v=2.5.0">
+  <link rel="stylesheet" href="../assets/palo-docs.css">
+  <script src="../assets/palo-icons.js" defer></script>
+  <script src="../assets/palo-v21.js?v=2.5.0" defer></script>
+  <script src="../assets/palo-docs.js" defer></script>
+</head>
+<body class="palo-v21 palo-doc-page" data-doc-source="docs/p2-module-contracts.md">
+  <a class="palo-skip-link" href="#main-content">Skip to main content</a>
+  <header class="palo-site-header"><div class="palo-shell palo-header-inner">
+    <a class="palo-brand" href="../index.html"><img src="../assets/logo.webp" alt="PALO">PALO FRAMEWORK</a>
+    <button class="palo-menu-toggle" type="button" data-palo-menu-toggle aria-expanded="false" aria-controls="palo-primary-nav" aria-label="Open navigation"><span data-palo-icon="menu" aria-hidden="true"></span></button>
+    <nav class="palo-nav" id="palo-primary-nav" aria-label="Primary navigation"><a href="../designs/theory-to-practice-infographic/">Start</a><a href="../PALO_AIGovernance.html">Agentic Governance</a><a href="../governance-hub/">Governance Hub</a><a href="../index.html#guided-journeys">Tools</a><a href="../PALO_DocumentationLibrary.html" aria-current="page">Documentation</a><a href="../PALO_AIProductionReadiness.html">Readiness</a></nav>
+  </div></header>
+  <main id="main-content" class="palo-doc-main">
+    <div class="palo-shell">
+      <nav class="palo-doc-breadcrumb" aria-label="Breadcrumb"><a href="../PALO_DocumentationLibrary.html">Documentation Library</a><span aria-hidden="true">/</span><span>Architecture and integration</span></nav>
+      <header class="palo-doc-hero"><p class="palo-eyebrow">Architecture and integration · Public documentation</p><h1>P2 module contracts</h1><div class="palo-doc-facts"><span><small>Level</small><strong>reference</strong></span><span><small>Audience</small><strong>governance · technical · builder</strong></span><span><small>Product</small><strong>PALO Core</strong></span><span><small>Status</small><strong>Current Guidance</strong></span><span><small>Read</small><strong>3 min</strong></span></div><p class="palo-doc-source">Published HTML view · Source: <code>docs/p2-module-contracts.md</code></p><div class="palo-actions"><button class="palo-btn" type="button" data-doc-copy-link>Copy link</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-share>Share page</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-print>Print</button></div><p class="palo-action-status" data-doc-action-status role="status" aria-live="polite"></p></header>
+      <details class="palo-doc-mobile-toc"><summary>On this page</summary><ol><li class="depth-2"><a href="#envelope">Envelope</a></li><li class="depth-2"><a href="#event-names">Event names</a></li><li class="depth-2"><a href="#storage-and-handoff">Storage and handoff</a></li><li class="depth-2"><a href="#policywatcher-handoff">PolicyWatcher handoff</a></li><li class="depth-2"><a href="#evolution">Evolution</a></li></ol></details>
+      <div class="palo-doc-layout"><aside class="palo-doc-sidebar" aria-label="On this page"><strong>On this page</strong><ol><li class="depth-2"><a href="#envelope">Envelope</a></li><li class="depth-2"><a href="#event-names">Event names</a></li><li class="depth-2"><a href="#storage-and-handoff">Storage and handoff</a></li><li class="depth-2"><a href="#policywatcher-handoff">PolicyWatcher handoff</a></li><li class="depth-2"><a href="#evolution">Evolution</a></li></ol></aside><article class="palo-doc-content"><h1 id="p2-module-contracts">P2 module contracts<a class="palo-doc-anchor" href="#p2-module-contracts" aria-label="Link to P2 module contracts">#</a></h1><p>Version: <code>1.0.0</code><br />Status: interoperability foundation; browser events are local signals, not authenticated messages or remote APIs.</p>
+<h2 id="envelope">Envelope<a class="palo-doc-anchor" href="#envelope" aria-label="Link to Envelope">#</a></h2><p>Modules dispatch <code>CustomEvent</code> on <code>window</code>. Event <code>detail</code> uses this additive envelope:</p>
+<figure class="palo-doc-code"><figcaption>json code</figcaption><pre tabindex="0"><code class="language-json">{
+  "contractVersion": "1.0.0",
+  "eventId": "event-unique-id",
+  "occurredAt": "2026-07-12T08:00:00Z",
+  "sourceModule": "PALO_AssessmentPath",
+  "caseId": "case-example-001",
+  "payload": {}
+}</code></pre></figure><p>Consumers must reject unsupported major versions, ignore unknown fields, validate the payload before use, and treat events as untrusted same-page input. Events must not carry secrets, credentials, raw personal data or large evidence binaries.</p>
+<h2 id="event-names">Event names<a class="palo-doc-anchor" href="#event-names" aria-label="Link to Event names">#</a></h2><div class="palo-doc-table-wrap" tabindex="0" aria-label="Scrollable documentation table"><table>
+<thead>
+<tr>
+<th>Event</th>
+<th>Payload</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>palo:case-file:ready</code></td>
+<td>Complete <code>palo-case-file</code></td>
+<td>A validated case is available to the current module.</td>
+</tr>
+<tr>
+<td><code>palo:case-file:updated</code></td>
+<td><code>{ caseFile, changedSections }</code></td>
+<td>Local case state changed and may be re-rendered or stored.</td>
+</tr>
+<tr>
+<td><code>palo:evidence:added</code></td>
+<td><code>{ caseId, evidence }</code></td>
+<td>A module produced one evidence record compatible with the Case File contract.</td>
+</tr>
+<tr>
+<td><code>palo:handoff:requested</code></td>
+<td><code>{ from, to, caseFile, reason }</code></td>
+<td>A user explicitly requested a cross-module route.</td>
+</tr>
+<tr>
+<td><code>palo:policywatcher:signal</code></td>
+<td>Complete <code>palo-policywatcher-signal</code></td>
+<td>Regulatory Watch surfaced a non-authoritative monitoring signal for human review.</td>
+</tr>
+<tr>
+<td><code>palo:source:review-due</code></td>
+<td><code>{ sourceId, nextReviewAt, affectedCaseIds }</code></td>
+<td>A source freshness checkpoint is due.</td>
+</tr>
+</tbody></table></div>
+<p>The existing Explorer event <code>palo:activate-explorer</code> remains unchanged and outside this P2 contract. P3 navigation events are intentionally not defined here.</p>
+<h2 id="storage-and-handoff">Storage and handoff<a class="palo-doc-anchor" href="#storage-and-handoff" aria-label="Link to Storage and handoff">#</a></h2><p>P1 remains authoritative for browser persistence:</p>
+<ul>
+<li><code>localStorage["palo.case-file.v1"]</code>: one local Case File working copy.</li>
+<li><code>sessionStorage["palo.handoff.v1"]</code>: explicit, single-browser handoff consumed by the destination module.</li>
+<li><code>sessionStorage["palo-onboarding-route-v2.3.2"]</code>: existing onboarding route state.</li>
+</ul>
+<p>P2 connectors exchange exported artifacts and do not add background synchronization. Unknown Case File fields must survive import, merge and export. Browser storage is neither encrypted nor access-controlled; users remain responsible for exported-file custody.</p>
+<h2 id="policywatcher-handoff">PolicyWatcher handoff<a class="palo-doc-anchor" href="#policywatcher-handoff" aria-label="Link to PolicyWatcher handoff">#</a></h2><p>Validate signals against <code>schemas/policywatcher-signal.schema.json</code>. A receiving module may add the signal as a Case File source with <code>sourceType: "monitoring-signal"</code>, but must retain <code>authority.status: "non-authoritative-monitoring-signal"</code> until an accountable reviewer checks the primary source. Confidence describes signal detection, not legal significance.</p>
+<p>Assessment Path is the v2.4.0 local receiver. It parses the file in the browser, rejects unsupported format/version/authority values before Case File mutation, preserves the complete signal including additive fields, and records a normalized source, open evidence item and material-change review record. The suggested gates are retained and Measure/Prove are always flagged because this handoff enters the monitoring and review loop. The visible status remains <code>pending-human-review</code>; import does not call PolicyWatcher or any PALO endpoint.</p>
+<h2 id="evolution">Evolution<a class="palo-doc-anchor" href="#evolution" aria-label="Link to Evolution">#</a></h2><p>Minor versions may add optional fields or events. Breaking field semantics, removing required fields, changing storage ownership or changing event trust assumptions requires a new major version and migration guidance. No network endpoint is part of v1.</p>
+</article></div>
+      <aside class="palo-doc-next"><div><small>Prerequisite</small><strong>No specialist prerequisite stated</strong></div><div><small>Recommended next step</small><strong>Return to the Documentation Library</strong></div></aside>
+      <section class="palo-doc-feedback" aria-labelledby="feedback-title"><p class="palo-eyebrow">Privacy-first feedback</p><h2 id="feedback-title">Help improve this guide</h2><p>Your feedback stays in your browser until you explicitly copy it, download it, or open an email draft. Do not include secrets, personal data, credentials or production identifiers.</p><form data-doc-feedback><div class="palo-form-grid"><div class="palo-field"><label for="feedback-role">Your role</label><select id="feedback-role" name="role"><option>Executive / governance owner</option><option>Platform or security engineer</option><option>No-code / low-code builder</option><option>External reviewer</option></select></div><div class="palo-field"><label for="feedback-category">Category</label><select id="feedback-category" name="category"><option>Clarity</option><option>Technical accuracy</option><option>Missing guidance</option><option>Accessibility</option></select></div><div class="palo-field palo-field-full"><label for="feedback-message">Feedback</label><textarea id="feedback-message" name="message" maxlength="3000" required placeholder="Describe the non-sensitive improvement you recommend."></textarea></div><div class="palo-form-actions"><button class="palo-btn" type="button" data-feedback-copy>Copy feedback</button><button class="palo-btn palo-btn-secondary" type="button" data-feedback-download>Download JSON</button><button class="palo-btn palo-btn-secondary" type="button" data-feedback-email>Email draft</button></div></div><p class="palo-action-status" data-feedback-status role="status" aria-live="polite"></p></form></section>
+    </div>
+  </main>
+  <footer class="palo-footer"><div class="palo-shell"><p>PALO public documentation. Developer preview boundaries apply.</p><div class="palo-footer-links"><a href="../PALO_AIGovernance.html">PALO-AI</a><a href="../governance-hub/">Governance Hub</a><a href="../PALO_AgenticCapabilityMatrix.html">Capability Matrix</a><a href="../PALO_AIProductionReadiness.html">Production Readiness</a><a href="../privacy-policy.html">Privacy</a></div></div></footer>
+</body></html>

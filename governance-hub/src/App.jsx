@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   Pulse,
   ArrowRight,
@@ -77,6 +77,37 @@ const executiveNav = [
   ["reports", "Reports", FileText],
 ];
 
+const knownViews = {
+  technical: new Set(technicalNav.map(([id]) => id)),
+  executive: new Set(executiveNav.map(([id]) => id)),
+};
+
+function initialRoute() {
+  const params = new URLSearchParams(window.location.search);
+  const requestedRole = params.get("role");
+  const role = requestedRole === "executive" || requestedRole === "technical" ? requestedRole : "technical";
+  const requestedView = params.get("view");
+  return { role, view: knownViews[role].has(requestedView) ? requestedView : role === "executive" ? "today" : "setup" };
+}
+
+function downloadBlob(blob, filename) {
+  const url = URL.createObjectURL(blob);
+  const anchor = document.createElement("a");
+  anchor.href = url;
+  anchor.download = filename;
+  anchor.hidden = true;
+  document.body.appendChild(anchor);
+  anchor.click();
+  anchor.remove();
+  window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+function rowContainsQuery(row, query) {
+  const normalizedQuery = query.trim().toLocaleLowerCase();
+  if (!normalizedQuery) return true;
+  return Object.values(row).some((value) => String(value ?? "").toLocaleLowerCase().includes(normalizedQuery));
+}
+
 const defaultAuthority = {
   agent: "Catalog Assistant",
   environment: "n8n — Sandbox",
@@ -101,10 +132,10 @@ function StatusPill({ children, tone = toneFor(String(children)) }) {
 
 function AppMark() {
   return (
-    <div className="app-mark" aria-label="PALO-AI Governance Hub">
+    <a className="app-mark" href="../PALO_AIGovernance.html" aria-label="PALO-AI Governance Hub — return to public overview">
       <div className="app-mark-icon"><ShieldCheck weight="duotone" /></div>
       <div><strong>PALO-AI</strong><span>Governance Hub</span></div>
-    </div>
+    </a>
   );
 }
 
@@ -132,6 +163,10 @@ function Shell({ role, onRoleChange, view, onViewChange, children }) {
               {id === "incidents" && <span className="nav-count">2</span>}
             </button>
           ))}
+        </nav>
+        <nav className="public-links" aria-label="Public PALO resources">
+          <a href="../PALO_DocumentationLibrary.html"><FileText /><span>Documentation</span></a>
+          <a href="../PALO_AIProductionReadiness.html"><ShieldCheck /><span>Readiness</span></a>
         </nav>
         <div className="sidebar-brand">
           <img src={`${import.meta.env.BASE_URL}logo.webp`} alt="PALO Framework" />
@@ -224,7 +259,7 @@ function TechnicalSetup() {
           {step === 7 && <PublishStep published={published} onPublish={() => setPublished(true)} />}
           <div className="wizard-actions">
             <button className="button button-secondary" disabled={step === 0} onClick={() => move(-1)}>Back</button>
-            {step === 3 && <button className="button button-secondary" onClick={runBoundaryTest}><Flask />Test this boundary</button>}
+            {step === 3 && <button className="button button-secondary" disabled={simulation === "running"} onClick={runBoundaryTest}><Flask />{simulation === "running" ? "Testing…" : "Test this boundary"}</button>}
             {step < 7 ? <button className="button button-primary" onClick={() => move(1)}>{step === 3 ? "Continue to oversight" : "Continue"}<ArrowRight /></button> : null}
           </div>
         </div>
@@ -461,8 +496,7 @@ function AssuranceView() {
 function ReportsView() {
   const downloadReport = () => {
     const content = `PALO-AI Executive Assurance Brief\nDate: 2026-07-19\n\nGovernance coverage: 92%\nAuthority assurance: 95%\nOutcome assurance: 88%\nOpen high-impact exceptions: 3\n\nDeveloper preview: isolated evaluation only.`;
-    const url = URL.createObjectURL(new Blob([content], { type: "text/plain" }));
-    const anchor = document.createElement("a"); anchor.href = url; anchor.download = "palo-ai-executive-assurance-brief.txt"; anchor.click(); URL.revokeObjectURL(url);
+    downloadBlob(new Blob([content], { type: "text/plain" }), "palo-ai-executive-assurance-brief.txt");
   };
   return <><PageHeader eyebrow="Reports" title="Turn evidence into a decision-ready brief" description="Generate an executive summary without hiding uncertainty or the developer-preview boundary." actions={<button className="button button-primary" onClick={downloadReport}><DownloadSimple />Generate brief</button>} /><section className="report-preview"><div className="report-cover"><ShieldCheck weight="duotone" /><p>PALO-AI</p><h2>Executive Assurance Brief</h2><span>Isolated evaluation · July 19, 2026</span></div><div className="report-outline"><h2>Included sections</h2>{["Executive situation summary", "Material changes since last review", "Governance and authority coverage", "Verified, mismatched and inconclusive outcomes", "Open incidents and held resources", "Decisions requested", "Current boundary and production gaps"].map((item) => <div key={item}><CheckCircle weight="fill" /><span>{item}</span></div>)}</div></section></>;
 }
@@ -477,10 +511,9 @@ function DataPage({ type, onExecutionSelect, approvals, onApproval, incidents, o
     incidents: { title: "Assurance incidents", description: "Mismatch and uncertainty remain held until accountable resolution.", rows: incidents, columns: ["Title", "Resource", "Severity", "State", "Owner", "Opened"] },
   };
   const config = configs[type];
-  const rows = config.rows.filter((row) => JSON.stringify(row).toLowerCase().includes(query.toLowerCase()));
+  const rows = config.rows.filter((row) => rowContainsQuery(row, query));
   const downloadRows = () => {
-    const url = URL.createObjectURL(new Blob([JSON.stringify(config.rows, null, 2)], { type: "application/json" }));
-    const anchor = document.createElement("a"); anchor.href = url; anchor.download = `palo-ai-${type}.json`; anchor.click(); URL.revokeObjectURL(url);
+    downloadBlob(new Blob([JSON.stringify(config.rows, null, 2)], { type: "application/json" }), `palo-ai-${type}.json`);
   };
   return (
     <>
@@ -506,8 +539,7 @@ function ExecutionDetail({ onBack }) {
   const runTest = () => { setTestState("running"); window.setTimeout(() => setTestState("complete"), 900); };
   const downloadEvidence = () => {
     const evidence = { executionId: "EXE-2026-0719-0842", decision: "allowed", assurance: "mismatch", expected: 120, observed: 125, incidentId: "INC-307", boundary: "developer-preview" };
-    const url = URL.createObjectURL(new Blob([JSON.stringify(evidence, null, 2)], { type: "application/json" }));
-    const anchor = document.createElement("a"); anchor.href = url; anchor.download = "palo-ai-execution-evidence.json"; anchor.click(); URL.revokeObjectURL(url);
+    downloadBlob(new Blob([JSON.stringify(evidence, null, 2)], { type: "application/json" }), "palo-ai-execution-evidence.json");
   };
   return (
     <>
@@ -528,9 +560,10 @@ function IntegrationsView() {
 }
 
 export function App() {
-  const [role, setRole] = useState("technical");
-  const [technicalView, setTechnicalView] = useState("setup");
-  const [executiveView, setExecutiveView] = useState("today");
+  const initial = useMemo(initialRoute, []);
+  const [role, setRole] = useState(initial.role);
+  const [technicalView, setTechnicalView] = useState(initial.role === "technical" ? initial.view : "setup");
+  const [executiveView, setExecutiveView] = useState(initial.role === "executive" ? initial.view : "today");
   const [selectedExecution, setSelectedExecution] = useState(null);
   const [approvals, setApprovals] = useState(initialApprovalRows);
   const [incidents, setIncidents] = useState(initialIncidentRows);
@@ -538,6 +571,14 @@ export function App() {
 
   const view = role === "technical" ? technicalView : executiveView;
   const setView = role === "technical" ? setTechnicalView : setExecutiveView;
+  useEffect(() => {
+    const url = new URL(window.location.href);
+    url.searchParams.set("role", role);
+    url.searchParams.set("view", view);
+    window.history.replaceState(null, "", `${url.pathname}${url.search}${url.hash}`);
+    document.documentElement.dataset.hubRole = role;
+    document.documentElement.dataset.hubView = view;
+  }, [role, view]);
   const changeRole = (nextRole) => {
     setRole(nextRole);
     setSelectedExecution(null);

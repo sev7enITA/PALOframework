@@ -1,0 +1,27 @@
+PALO Operationalization Explorer - Third-Party Notices
+
+The local file 3d-force-graph.min.js is the official browser distribution from:
+3d-force-graph 1.80.0, Copyright Vasco Asturiano, MIT License
+https://github.com/vasturiano/3d-force-graph
+
+The distribution is self-contained and bundles runtime code from its dependency
+tree. Direct bundled dependency ranges declared by 3d-force-graph 1.80.0 are:
+
+- Three.js >=0.179 <1, Copyright three.js authors, MIT License
+  https://github.com/mrdoob/three.js
+- three-forcegraph 1.x, Copyright Vasco Asturiano, MIT License
+  https://github.com/vasturiano/three-forcegraph
+- three-render-objects ^1.41, Copyright Vasco Asturiano, MIT License
+  https://github.com/vasturiano/three-render-objects
+- accessor-fn 1.x, Copyright Vasco Asturiano, MIT License
+  https://github.com/vasturiano/accessor-fn
+- kapsule ^1.16, Copyright Vasco Asturiano, MIT License
+  https://github.com/vasturiano/kapsule
+
+The dependency tree also includes open-source packages used by three-forcegraph
+and three-render-objects, including D3 modules, ngraph modules, tinycolor2,
+Tween.js, float-tooltip and polished. These components are distributed under
+their respective permissive open-source licenses. The official minified bundle
+is preserved unchanged. Package acquisition and integrity details are recorded
+in versions.json. The top-level 3d-force-graph MIT license is preserved in the
+adjacent LICENSE file.

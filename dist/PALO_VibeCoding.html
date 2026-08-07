@@ -47,6 +47,7 @@
     <a href="#categories">Categories</a>
     <a href="#three-layers">Three Layers</a>
     <a href="#controls">Controls</a>
+    <a href="#tool-call-gate">Tool-call Gate</a>
     <a href="#gates">Decision Gates</a>
     <a href="#kpis">KPIs</a>
     <a href="#principles"><span data-palo-icon=shield class=palo-icon-inline></span>Principles</a>
@@ -210,6 +211,23 @@
         </table>
       </div>
     </div>
+  </div>
+</section>
+
+<section id="tool-call-gate" class="section section-dark">
+  <div class="container">
+    <div class="section-header"><span class="section-number">Developer preview</span><h2>Pre-tool-call Vibe Coding Gate contract</h2><p class="section-desc">This form demonstrates the metadata expected by the draft Rego policy when <code>requireVibeGate: true</code>. The current browser-generated digest is self-attested: it is not trusted gate evidence, an unavoidable tool proxy, or a production enforcement control.</p></div>
+    <form id="vibe-tool-gate" class="exec-box">
+      <label><input type="checkbox" name="intent"> Functional intent and accountable owner are documented</label><br>
+      <label><input type="checkbox" name="environment"> Repository, branch, runtime and tool permissions are controlled</label><br>
+      <label><input type="checkbox" name="secrets"> Secret, dependency and data-boundary checks are configured</label><br>
+      <label><input type="checkbox" name="tests"> Required tests and rollback conditions are explicit</label><br>
+      <label><input type="checkbox" name="review"> Human review requirement is bound to the delivery action</label><br><br>
+      <label>Evidence reference <input name="evidence" required placeholder="PR, ticket or control record ID"></label>
+      <button type="submit" class="tab-btn active">Generate preview metadata</button>
+      <button type="reset" class="tab-btn">Reset</button>
+    </form>
+    <pre id="vibe-gate-result" aria-live="polite" style="white-space:pre-wrap;overflow:auto;max-height:320px;">Preview metadata not generated. This demonstration does not control any coding tool.</pre>
   </div>
 </section>
 
@@ -405,6 +423,7 @@ function showTab(tabId) {
   event.target.classList.add('active');
 }
 </script>
+<script src="assets/palo-vibe-gate.js?v=2.4.1"></script>
 
 </main>
 

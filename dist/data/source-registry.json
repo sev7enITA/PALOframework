@@ -1,0 +1,75 @@
+{
+  "format": "palo-source-registry",
+  "schemaVersion": "1.0.0",
+  "status": "educational-non-production",
+  "updatedAt": "2026-07-12",
+  "disclaimer": "This registry is an educational starting point. Source presence and freshness metadata do not establish legal applicability, compliance, certification, or completeness.",
+  "sources": [
+    {
+      "sourceId": "src-nist-ai-rmf",
+      "title": "AI Risk Management Framework",
+      "url": "https://www.nist.gov/itl/ai-risk-management-framework",
+      "sourceType": "official",
+      "publisher": "US National Institute of Standards and Technology",
+      "checkedAt": "2026-07-12T08:00:00Z",
+      "freshness": { "status": "current", "reviewIntervalDays": 90, "nextReviewAt": "2026-10-10T08:00:00Z" },
+      "authorityStatus": "authoritative-primary",
+      "usageNote": "Use as a risk-management reference; confirm the current publication and organizational applicability before use."
+    },
+    {
+      "sourceId": "src-nist-genai-profile",
+      "title": "Artificial Intelligence Risk Management Framework: Generative Artificial Intelligence Profile",
+      "url": "https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-generative-artificial-intelligence",
+      "sourceType": "official",
+      "publisher": "US National Institute of Standards and Technology",
+      "checkedAt": "2026-07-12T08:00:00Z",
+      "freshness": { "status": "current", "reviewIntervalDays": 90, "nextReviewAt": "2026-10-10T08:00:00Z" },
+      "authorityStatus": "authoritative-primary",
+      "usageNote": "Use for generative-AI risk prompts; it is not a substitute for context-specific testing or accountable review."
+    },
+    {
+      "sourceId": "src-iso-42001",
+      "title": "ISO/IEC 42001 Artificial intelligence management system",
+      "url": "https://www.iso.org/standard/81230.html",
+      "sourceType": "standard",
+      "publisher": "International Organization for Standardization",
+      "checkedAt": "2026-07-12T08:00:00Z",
+      "freshness": { "status": "current", "reviewIntervalDays": 180, "nextReviewAt": "2027-01-08T08:00:00Z" },
+      "authorityStatus": "authoritative-standard",
+      "usageNote": "Catalog metadata is linked for status checking; this starter library does not reproduce or certify conformance to the standard."
+    },
+    {
+      "sourceId": "src-eu-ai-act",
+      "title": "Regulation (EU) 2024/1689 (Artificial Intelligence Act)",
+      "url": "https://eur-lex.europa.eu/eli/reg/2024/1689/oj",
+      "sourceType": "official",
+      "publisher": "Official Journal of the European Union",
+      "checkedAt": "2026-07-12T08:00:00Z",
+      "freshness": { "status": "current", "reviewIntervalDays": 30, "nextReviewAt": "2026-08-11T08:00:00Z" },
+      "authorityStatus": "authoritative-primary",
+      "usageNote": "Use the official text and current implementation timeline with qualified counsel; no gate or control here is a legal conclusion."
+    },
+    {
+      "sourceId": "src-oecd-ai-principles",
+      "title": "OECD AI Principles",
+      "url": "https://oecd.ai/en/ai-principles",
+      "sourceType": "official",
+      "publisher": "Organisation for Economic Co-operation and Development",
+      "checkedAt": "2026-07-12T08:00:00Z",
+      "freshness": { "status": "current", "reviewIntervalDays": 180, "nextReviewAt": "2027-01-08T08:00:00Z" },
+      "authorityStatus": "authoritative-primary",
+      "usageNote": "Use as a principles reference and verify any jurisdiction-specific obligations separately."
+    },
+    {
+      "sourceId": "src-owasp-llm-top10",
+      "title": "OWASP Top 10 for Large Language Model Applications",
+      "url": "https://owasp.org/www-project-top-10-for-large-language-model-applications/",
+      "sourceType": "organizational",
+      "publisher": "OWASP Foundation",
+      "checkedAt": "2026-07-12T08:00:00Z",
+      "freshness": { "status": "current", "reviewIntervalDays": 90, "nextReviewAt": "2026-10-10T08:00:00Z" },
+      "authorityStatus": "informative",
+      "usageNote": "Use as an informative security testing aid; select and validate controls for the actual system and threat model."
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "1.0.0",
+  "sourceRegistry": {
+    "requiredFields": ["sourceId", "title", "url", "sourceType", "publisher", "checkedAt", "freshness"],
+    "sourceTypes": ["official", "standard", "organizational", "research", "monitoring-signal"],
+    "freshnessStatuses": ["current", "review-due", "stale", "superseded", "unknown"],
+    "rule": "Freshness records review state and timing only. It is not a legal-validity conclusion.",
+    "defaultReviewIntervalDays": 90
+  },
+  "triggers": [
+    { "triggerId": "material-purpose-change", "label": "Purpose or affected population materially changes", "reopenGates": ["frame", "classify", "assess"] },
+    { "triggerId": "authority-expansion", "label": "Autonomy, tools, permissions, or action space expands", "reopenGates": ["classify", "assess", "control"] },
+    { "triggerId": "data-sensitivity-change", "label": "New data class, provenance issue, or sensitivity increase", "reopenGates": ["assess", "control"] },
+    { "triggerId": "harm-or-rights-incident", "label": "Actual or credible harm, rights impact, or unsafe outcome", "reopenGates": ["assess", "control", "measure", "prove"] },
+    { "triggerId": "control-failure", "label": "Control bypass, failed checkpoint, or monitoring blind spot", "reopenGates": ["control", "measure", "prove"] },
+    { "triggerId": "source-superseded", "label": "Material source or internal requirement is superseded", "reopenGates": ["classify", "assess", "prove"] }
+  ],
+  "gateLabels": { "frame": "Frame", "classify": "Classify", "assess": "Assess", "control": "Control", "measure": "Measure", "prove": "Prove and Review" },
+  "disclaimer": "These operational triggers support review planning. They do not determine legal obligations, compliance, certification, or incident materiality."
+}

@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>PALO-AI Governance Hub — Workflow and Diagram Specification | PALO Documentation</title>
+  <meta name="description" content="Public PALO documentation: PALO-AI Governance Hub — Workflow and Diagram Specification.">
+  <link rel="canonical" href="https://paloframework.org/docs/palo-ai-governance-hub-workflows.html">
+  <link rel="icon" type="image/webp" href="../assets/logo.webp">
+  <link rel="stylesheet" href="../assets/palo-icons.css">
+  <link rel="stylesheet" href="../assets/palo-v21.css?v=2.5.0">
+  <link rel="stylesheet" href="../assets/palo-docs.css">
+  <script src="../assets/palo-icons.js" defer></script>
+  <script src="../assets/palo-v21.js?v=2.5.0" defer></script>
+  <script src="../assets/palo-docs.js" defer></script>
+</head>
+<body class="palo-v21 palo-doc-page" data-doc-source="docs/palo-ai-governance-hub-workflows.md">
+  <a class="palo-skip-link" href="#main-content">Skip to main content</a>
+  <header class="palo-site-header"><div class="palo-shell palo-header-inner">
+    <a class="palo-brand" href="../index.html"><img src="../assets/logo.webp" alt="PALO">PALO FRAMEWORK</a>
+    <button class="palo-menu-toggle" type="button" data-palo-menu-toggle aria-expanded="false" aria-controls="palo-primary-nav" aria-label="Open navigation"><span data-palo-icon="menu" aria-hidden="true"></span></button>
+    <nav class="palo-nav" id="palo-primary-nav" aria-label="Primary navigation"><a href="../designs/theory-to-practice-infographic/">Start</a><a href="../PALO_AIGovernance.html">Agentic Governance</a><a href="../governance-hub/">Governance Hub</a><a href="../index.html#guided-journeys">Tools</a><a href="../PALO_DocumentationLibrary.html" aria-current="page">Documentation</a><a href="../PALO_AIProductionReadiness.html">Readiness</a></nav>
+  </div></header>
+  <main id="main-content" class="palo-doc-main">
+    <div class="palo-shell">
+      <nav class="palo-doc-breadcrumb" aria-label="Breadcrumb"><a href="../PALO_DocumentationLibrary.html">Documentation Library</a><span aria-hidden="true">/</span><span>Governance Hub and UX</span></nav>
+      <header class="palo-doc-hero"><p class="palo-eyebrow">Governance Hub and UX · Public documentation</p><h1>PALO-AI Governance Hub — Workflow and Diagram Specification</h1><div class="palo-doc-facts"><span><small>Level</small><strong>guide</strong></span><span><small>Audience</small><strong>technical · governance</strong></span><span><small>Product</small><strong>PALO-AI</strong></span><span><small>Status</small><strong>Prototype Workflow</strong></span><span><small>Read</small><strong>12 min</strong></span></div><p class="palo-doc-source">Published HTML view · Source: <code>docs/palo-ai-governance-hub-workflows.md</code></p><div class="palo-actions"><button class="palo-btn" type="button" data-doc-copy-link>Copy link</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-share>Share page</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-print>Print</button></div><p class="palo-action-status" data-doc-action-status role="status" aria-live="polite"></p></header>
+      <details class="palo-doc-mobile-toc"><summary>On this page</summary><ol><li class="depth-2"><a href="#purpose">Purpose</a></li><li class="depth-2"><a href="#diagram-set">Diagram set</a></li><li class="depth-2"><a href="#shared-architecture">Shared architecture</a></li><li class="depth-3"><a href="#inputs">Inputs</a></li><li class="depth-3"><a href="#outputs">Outputs</a></li><li class="depth-3"><a href="#failure-states">Failure states</a></li><li class="depth-2"><a href="#executive-workflow">Executive workflow</a></li><li class="depth-3"><a href="#reading-path">Reading path</a></li><li class="depth-3"><a href="#recommended-executive-measures">Recommended executive measures</a></li><li class="depth-3"><a href="#inputs-2">Inputs</a></li><li class="depth-3"><a href="#outputs-2">Outputs</a></li><li class="depth-3"><a href="#failure-states-2">Failure states</a></li><li class="depth-2"><a href="#technical-onboarding-and-publish-workflow">Technical onboarding and publish workflow</a></li><li class="depth-3"><a href="#inputs-3">Inputs</a></li><li class="depth-3"><a href="#outputs-3">Outputs</a></li><li class="depth-3"><a href="#failure-states-3">Failure states</a></li><li class="depth-2"><a href="#approval-execution-and-outcome-workflow">Approval, execution and outcome workflow</a></li><li class="depth-3"><a href="#inputs-4">Inputs</a></li><li class="depth-3"><a href="#outputs-4">Outputs</a></li><li class="depth-3"><a href="#failure-states-4">Failure states</a></li><li class="depth-2"><a href="#incident-workflow">Incident workflow</a></li><li class="depth-3"><a href="#inputs-5">Inputs</a></li><li class="depth-3"><a href="#outputs-5">Outputs</a></li><li class="depth-3"><a href="#failure-states-5">Failure states</a></li><li class="depth-2"><a href="#role-and-permission-model">Role and permission model</a></li><li class="depth-2"><a href="#current-and-required-api-surface">Current and required API surface</a></li><li class="depth-3"><a href="#available-in-the-v25-reference-gateway">Available in the v2.5 reference Gateway</a></li><li class="depth-3"><a href="#required-for-the-governance-hub">Required for the Governance Hub</a></li><li class="depth-2"><a href="#gui-explanation-levels">GUI explanation levels</a></li><li class="depth-2"><a href="#acceptance-criteria-for-this-design">Acceptance criteria for this design</a></li><li class="depth-2"><a href="#related-documents">Related documents</a></li></ol></details>
+      <div class="palo-doc-layout"><aside class="palo-doc-sidebar" aria-label="On this page"><strong>On this page</strong><ol><li class="depth-2"><a href="#purpose">Purpose</a></li><li class="depth-2"><a href="#diagram-set">Diagram set</a></li><li class="depth-2"><a href="#shared-architecture">Shared architecture</a></li><li class="depth-3"><a href="#inputs">Inputs</a></li><li class="depth-3"><a href="#outputs">Outputs</a></li><li class="depth-3"><a href="#failure-states">Failure states</a></li><li class="depth-2"><a href="#executive-workflow">Executive workflow</a></li><li class="depth-3"><a href="#reading-path">Reading path</a></li><li class="depth-3"><a href="#recommended-executive-measures">Recommended executive measures</a></li><li class="depth-3"><a href="#inputs-2">Inputs</a></li><li class="depth-3"><a href="#outputs-2">Outputs</a></li><li class="depth-3"><a href="#failure-states-2">Failure states</a></li><li class="depth-2"><a href="#technical-onboarding-and-publish-workflow">Technical onboarding and publish workflow</a></li><li class="depth-3"><a href="#inputs-3">Inputs</a></li><li class="depth-3"><a href="#outputs-3">Outputs</a></li><li class="depth-3"><a href="#failure-states-3">Failure states</a></li><li class="depth-2"><a href="#approval-execution-and-outcome-workflow">Approval, execution and outcome workflow</a></li><li class="depth-3"><a href="#inputs-4">Inputs</a></li><li class="depth-3"><a href="#outputs-4">Outputs</a></li><li class="depth-3"><a href="#failure-states-4">Failure states</a></li><li class="depth-2"><a href="#incident-workflow">Incident workflow</a></li><li class="depth-3"><a href="#inputs-5">Inputs</a></li><li class="depth-3"><a href="#outputs-5">Outputs</a></li><li class="depth-3"><a href="#failure-states-5">Failure states</a></li><li class="depth-2"><a href="#role-and-permission-model">Role and permission model</a></li><li class="depth-2"><a href="#current-and-required-api-surface">Current and required API surface</a></li><li class="depth-3"><a href="#available-in-the-v25-reference-gateway">Available in the v2.5 reference Gateway</a></li><li class="depth-3"><a href="#required-for-the-governance-hub">Required for the Governance Hub</a></li><li class="depth-2"><a href="#gui-explanation-levels">GUI explanation levels</a></li><li class="depth-2"><a href="#acceptance-criteria-for-this-design">Acceptance criteria for this design</a></li><li class="depth-2"><a href="#related-documents">Related documents</a></li></ol></aside><article class="palo-doc-content"><h1 id="palo-ai-governance-hub--workflow-and-diagram-specification">PALO-AI Governance Hub — Workflow and Diagram Specification<a class="palo-doc-anchor" href="#palo-ai-governance-hub--workflow-and-diagram-specification" aria-label="Link to PALO-AI Governance Hub — Workflow and Diagram Specification">#</a></h1><p>Status: design specification for a role-based GUI over the PALO-AI v2.5 developer preview.</p>
+<blockquote>
+<p><strong>Developer-preview boundary.</strong> This document does not turn the reference runtime into a production authorization boundary. Use synthetic or isolated data and non-consequential tools only. Production use still requires workload and human identity, tenant RBAC, KMS/HSM-backed keys, durable distributed state, high availability, connector isolation, monitoring and independent security assessment.</p>
+</blockquote>
+<h2 id="purpose">Purpose<a class="palo-doc-anchor" href="#purpose" aria-label="Link to Purpose">#</a></h2><p>The proposed <strong>PALO-AI Governance Hub</strong> is one product with two primary lenses over the same versioned contracts and evidence:</p>
+<ul>
+<li><strong>Executive Cockpit</strong> — communicates exposure, ownership, decisions and verified outcomes without requiring knowledge of JSON, Rego or MCP.</li>
+<li><strong>Technical Workbench</strong> — configures, tests, publishes and operates the controls behind those outcomes, with progressive access to generated contracts and evidence.</li>
+</ul>
+<p>The Hub must not maintain a separate governance truth. It reads and acts through PALO-AI contracts: Action Claim 1.2, Effect Contract 1.0, Policy Decision 1.0, Approval 1.0, Execution Capability 1.0, Execution Receipt 1.0, Outcome Attestation 1.0 and Assurance Incident 1.0.</p>
+<h2 id="diagram-set">Diagram set<a class="palo-doc-anchor" href="#diagram-set" aria-label="Link to Diagram set">#</a></h2><div class="palo-doc-table-wrap" tabindex="0" aria-label="Scrollable documentation table"><table>
+<thead>
+<tr>
+<th>Diagram</th>
+<th>Analytical job</th>
+<th>Main takeaway</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="diagrams/palo-ai-governance-hub/shared-architecture.mmd">Shared architecture</a></td>
+<td>Software/system structure</td>
+<td>Both lenses share one source of truth; a production Hub needs an authenticated backend-for-frontend rather than browser-held preview tokens.</td>
+</tr>
+<tr>
+<td><a href="diagrams/palo-ai-governance-hub/executive-drill-down.mmd">Executive drill-down</a></td>
+<td>Hierarchy and decision path</td>
+<td>Every portfolio indicator must drill down to evidence, while missing data remains visibly unavailable rather than becoming a positive score.</td>
+</tr>
+<tr>
+<td><a href="diagrams/palo-ai-governance-hub/technical-onboarding-publish.mmd">Technical onboarding and publish</a></td>
+<td>Technical workflow</td>
+<td>Intent becomes bounded authority, an Effect Contract, tests and an immutable reviewed version.</td>
+</tr>
+<tr>
+<td><a href="diagrams/palo-ai-governance-hub/approval-execution-verification.mmd">Approval, execution and verification</a></td>
+<td>Runtime sequence</td>
+<td>Permission is not assurance: execution is capability-bound and the result is verified against authoritative state.</td>
+</tr>
+<tr>
+<td><a href="diagrams/palo-ai-governance-hub/incident-lifecycle.mmd">Incident lifecycle</a></td>
+<td>State machine</td>
+<td>Mismatch or uncertainty creates a resource hold; resolution is explicit and compensation is a new governed action.</td>
+</tr>
+<tr>
+<td><a href="diagrams/palo-ai-governance-hub/role-permission-model.mmd">Role and permission model</a></td>
+<td>Authorization model</td>
+<td>Human decisions and workload permissions need distinct identities and separation of duties.</td>
+</tr>
+</tbody></table></div>
+<p>The diagrams are explanatory Mermaid sources. Neutral nodes show context, focal nodes show control points, and failure branches are explicit. They are intentionally schematic and do not imply production readiness.</p>
+<h2 id="shared-architecture">Shared architecture<a class="palo-doc-anchor" href="#shared-architecture" aria-label="Link to Shared architecture">#</a></h2><p>The Hub introduces a role-aware presentation and orchestration layer without replacing the PALO runtime. The browser should call a backend-for-frontend (BFF), which resolves user identity, tenant and permissions, redacts sensitive fields, and calls the runtime using scoped service credentials. Direct browser access with the shared preview bearer token is out of scope for any production design.</p>
+<h3 id="inputs">Inputs<a class="palo-doc-anchor" href="#inputs" aria-label="Link to Inputs">#</a></h3><ul>
+<li>Authenticated human principal, role, tenant/project and selected environment — <strong>required, not implemented in v2.5</strong>.</li>
+<li>Registry records for agents, policies, executors and verifiers.</li>
+<li>Decisions, approvals, executions, receipts, attestations, incidents and ledger status.</li>
+<li>Platform correlation identifiers such as workflow, execution and node IDs.</li>
+</ul>
+<h3 id="outputs">Outputs<a class="palo-doc-anchor" href="#outputs" aria-label="Link to Outputs">#</a></h3><ul>
+<li>Role-appropriate portfolio summaries and technical detail.</li>
+<li>Human-readable explanations linked to canonical evidence.</li>
+<li>Authorized administrative or review commands.</li>
+<li>Exportable, redacted review material — <strong>required API</strong>.</li>
+</ul>
+<h3 id="failure-states">Failure states<a class="palo-doc-anchor" href="#failure-states" aria-label="Link to Failure states">#</a></h3><ul>
+<li>Identity or tenant context is missing: deny the command and expose no cross-tenant data.</li>
+<li>Runtime or policy service is unavailable: show stale/partial status with last-updated time; new consequential actions remain fail-closed.</li>
+<li>Evidence cannot be correlated: label the record incomplete; do not infer verified assurance.</li>
+<li>Sensitive arguments cannot be safely redacted: suppress detail and require an authorized technical view.</li>
+</ul>
+<h2 id="executive-workflow">Executive workflow<a class="palo-doc-anchor" href="#executive-workflow" aria-label="Link to Executive workflow">#</a></h2><p>The Executive Cockpit answers five questions: what is happening, where exposure exists, which outcomes are not verified, where a human decision is required, and who owns remediation.</p>
+<h3 id="reading-path">Reading path<a class="palo-doc-anchor" href="#reading-path" aria-label="Link to Reading path">#</a></h3><ol>
+<li>Portfolio coverage and outcome distribution.</li>
+<li>Business area and accountable owner.</li>
+<li>Platform, workflow and agent authority profile.</li>
+<li>Individual Action Claim and policy decision.</li>
+<li>Approval, Execution Receipt and Outcome Attestation.</li>
+<li>Incident, resource hold and resolution evidence when assurance is not verified.</li>
+</ol>
+<h3 id="recommended-executive-measures">Recommended executive measures<a class="palo-doc-anchor" href="#recommended-executive-measures" aria-label="Link to Recommended executive measures">#</a></h3><p>Keep dimensions separate rather than producing one opaque score:</p>
+<div class="palo-doc-table-wrap" tabindex="0" aria-label="Scrollable documentation table"><table>
+<thead>
+<tr>
+<th>Dimension</th>
+<th>Suggested measure</th>
+<th>Caveat</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Governance coverage</td>
+<td>Consequential workflows with a non-bypassable governed path / known consequential workflows</td>
+<td>Workflow discovery and admission are not implemented; preview coverage is declared, not independently proven.</td>
+</tr>
+<tr>
+<td>Authority assurance</td>
+<td>Active agents with current, bounded profiles / registered active agents</td>
+<td>The registry is a prototype and lacks production publisher authorization.</td>
+</tr>
+<tr>
+<td>Outcome assurance</td>
+<td><code>verified</code>, <code>mismatch</code>, <code>inconclusive</code>, pending and unavailable counts</td>
+<td><code>allowed</code> is never counted as <code>verified</code>.</td>
+</tr>
+<tr>
+<td>Operational health</td>
+<td>Open incidents, held resources, recovery events and verification latency</td>
+<td>The current runtime is single-instance and not an HA service.</td>
+</tr>
+</tbody></table></div>
+<h3 id="inputs-2">Inputs<a class="palo-doc-anchor" href="#inputs-2" aria-label="Link to Inputs">#</a></h3><ul>
+<li>Aggregated registry, decision, execution and incident data.</li>
+<li>Business owner and criticality metadata — <strong>required extension</strong>.</li>
+<li>Coverage inventory and bypass assessment — <strong>required workflow-admission capability</strong>.</li>
+</ul>
+<h3 id="outputs-2">Outputs<a class="palo-doc-anchor" href="#outputs-2" aria-label="Link to Outputs">#</a></h3><ul>
+<li>Assign owner, request remediation, suspend a preview scope or accept a documented residual risk.</li>
+<li>Evidence-linked report for an IT/security handoff.</li>
+</ul>
+<h3 id="failure-states-2">Failure states<a class="palo-doc-anchor" href="#failure-states-2" aria-label="Link to Failure states">#</a></h3><ul>
+<li>Missing denominator for a coverage measure: show <code>unavailable</code>, not 0% or 100%.</li>
+<li>Stale telemetry: retain the last known view with a timestamp and visible stale flag.</li>
+<li>Mixed tenant or environment selection: block aggregation unless explicitly authorized.</li>
+<li>Incident without owner: elevate as an accountability gap.</li>
+</ul>
+<h2 id="technical-onboarding-and-publish-workflow">Technical onboarding and publish workflow<a class="palo-doc-anchor" href="#technical-onboarding-and-publish-workflow" aria-label="Link to Technical onboarding and publish workflow">#</a></h2><p>The Technical Workbench starts from intent rather than raw JSON:</p>
+<ol>
+<li>Connect an isolated environment and select local, hybrid, cloud or private deployment intent.</li>
+<li>Discover or register the agent, allowed tools, executor and independent verifier.</li>
+<li>Declare purpose, owner, tenant, case and environment.</li>
+<li>Bound authority by operation, resource, path, host, network intent and requested scopes.</li>
+<li>Build the Effect Contract using the closed JSON-Pointer predicate DSL.</li>
+<li>Select automatic, human-review or deny behavior.</li>
+<li>Generate draft contracts and Rego tests.</li>
+<li>Validate schemas and simulate allowed, denied, approval, replay, stale-state, mismatch and verifier-unavailable cases.</li>
+<li>Obtain peer and accountable-owner review.</li>
+<li>Publish an immutable version and bind its digest to the deployment.</li>
+<li>Monitor decisions, outcomes, incidents and possible bypass paths.</li>
+</ol>
+<h3 id="inputs-3">Inputs<a class="palo-doc-anchor" href="#inputs-3" aria-label="Link to Inputs">#</a></h3><ul>
+<li>Platform connection and non-secret metadata.</li>
+<li>Agent/case identity, authority boundary and argument schema.</li>
+<li>Executor and verifier manifests.</li>
+<li>Effect predicates, verification timeout and inconclusive behavior.</li>
+<li>Reviewers, owners and environment promotion target — <strong>required identity and workflow extensions</strong>.</li>
+</ul>
+<h3 id="outputs-3">Outputs<a class="palo-doc-anchor" href="#outputs-3" aria-label="Link to Outputs">#</a></h3><ul>
+<li>Validated Agent Profile and Action Claim template.</li>
+<li>Effect Contract, Rego policy, fixtures and test result.</li>
+<li>Versioned registry entries and deployment digest.</li>
+<li>Preview conformance report and unresolved-gap list.</li>
+</ul>
+<h3 id="failure-states-3">Failure states<a class="palo-doc-anchor" href="#failure-states-3" aria-label="Link to Failure states">#</a></h3><ul>
+<li>Schema invalid or authority incomplete: do not allow simulation or publication.</li>
+<li>Verifier cannot read authoritative state: mark the design incomplete or require human review; do not claim outcome assurance.</li>
+<li>Tests do not cover deny, replay and mismatch paths: block promotion.</li>
+<li>Direct target credential remains in the workflow: label integration advisory and block a “governed” claim.</li>
+<li>Published digest differs from evaluated OPA bundle: fail closed — <strong>bundle attestation required</strong>.</li>
+</ul>
+<h2 id="approval-execution-and-outcome-workflow">Approval, execution and outcome workflow<a class="palo-doc-anchor" href="#approval-execution-and-outcome-workflow" aria-label="Link to Approval, execution and outcome workflow">#</a></h2><p>The runtime flow is:</p>
+<figure class="palo-doc-code"><figcaption>text code</figcaption><pre tabindex="0"><code class="language-text">Propose -&gt; Authorize -&gt; Approve -&gt; Capability -&gt; Execute -&gt; Receipt -&gt; Observe -&gt; Verify -&gt; Escalate</code></pre></figure><p>An approval is not a mutable flag. It is bound to the exact claim digest and must be revalidated with the profile, policy and replay material immediately before execution. The trusted runtime consumes a short-lived capability once, persists execution intent, calls the registered executor, signs a receipt, and asks the registered verifier to compare authoritative post-state with the immutable Effect Contract.</p>
+<h3 id="inputs-4">Inputs<a class="palo-doc-anchor" href="#inputs-4" aria-label="Link to Inputs">#</a></h3><ul>
+<li>Canonical Action Claim 1.2 with nonce, idempotency key, sequence number and Effect Contract.</li>
+<li>Active agent profile, policy, executor and verifier manifests.</li>
+<li>Exact approval ID when policy requires review.</li>
+<li>Authoritative pre- and post-state observations.</li>
+</ul>
+<h3 id="outputs-4">Outputs<a class="palo-doc-anchor" href="#outputs-4" aria-label="Link to Outputs">#</a></h3><ul>
+<li><code>denied</code>: no tool execution.</li>
+<li><code>review_required</code>: approval is pending, pre-state is unavailable, or outcome is mismatched/inconclusive.</li>
+<li><code>verified</code>: signed receipt and attestation show the expected effect with no forbidden effect.</li>
+<li><code>execution_failed</code>: the connector reports failure; subsequent state still requires evidence and review as applicable.</li>
+</ul>
+<h3 id="failure-states-4">Failure states<a class="palo-doc-anchor" href="#failure-states-4" aria-label="Link to Failure states">#</a></h3><ul>
+<li>Malformed or expired claim, missing profile, replay, invalid approval, or unavailable/malformed policy result: deny fail-closed.</li>
+<li>Unsatisfied precondition: deny before execution.</li>
+<li>Executor failure or crash after intent: persist/recover an unknown receipt; classify attribution as inconclusive.</li>
+<li>Verifier unavailable: open an incident and hold the resource.</li>
+<li>Effect mismatch: open a high-severity incident and hold the resource.</li>
+<li>Alternate credential path exists: PALO cannot claim authoritative enforcement.</li>
+</ul>
+<h2 id="incident-workflow">Incident workflow<a class="palo-doc-anchor" href="#incident-workflow" aria-label="Link to Incident workflow">#</a></h2><p>A <code>mismatch</code> or <code>inconclusive</code> attestation opens an Assurance Incident and a hold for the resource key. The current state vocabulary is <code>open</code>, <code>acknowledged</code> and <code>resolved</code>. Resolution releases the hold. A compensating action or rollback must be a new Action Claim with a new assurance cycle.</p>
+<h3 id="inputs-5">Inputs<a class="palo-doc-anchor" href="#inputs-5" aria-label="Link to Inputs">#</a></h3><ul>
+<li>Execution, claim and attestation identifiers.</li>
+<li>Verification checks and reason.</li>
+<li>Authorized human identity and resolution record — caller-supplied labels are preview-only.</li>
+</ul>
+<h3 id="outputs-5">Outputs<a class="palo-doc-anchor" href="#outputs-5" aria-label="Link to Outputs">#</a></h3><ul>
+<li>Acknowledged or resolved incident.</li>
+<li>Released resource hold only on resolution.</li>
+<li>New governed compensation claim when remediation changes state.</li>
+</ul>
+<h3 id="failure-states-5">Failure states<a class="palo-doc-anchor" href="#failure-states-5" aria-label="Link to Failure states">#</a></h3><ul>
+<li>Attempted backward transition from resolved: reject.</li>
+<li>Re-verification remains inconclusive or mismatched: keep the incident and hold active.</li>
+<li>Resolution has no authenticated actor or adequate rationale: production design must reject it.</li>
+<li>Automatic rollback requested: reject; create a separately governed compensation.</li>
+</ul>
+<h2 id="role-and-permission-model">Role and permission model<a class="palo-doc-anchor" href="#role-and-permission-model" aria-label="Link to Role and permission model">#</a></h2><div class="palo-doc-table-wrap" tabindex="0" aria-label="Scrollable documentation table"><table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Primary permissions</th>
+<th>Guardrail</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Executive</td>
+<td>Read portfolio; assign strategic owner; accept or suspend scoped risk</td>
+<td>No raw secrets, policy edits or operational approval by default.</td>
+</tr>
+<tr>
+<td>Business owner</td>
+<td>Own use case; review risk; approve promotion</td>
+<td>Cannot be the only policy author and promoter for high-impact scope.</td>
+</tr>
+<tr>
+<td>Reviewer</td>
+<td>Approve or deny one exact Action Claim</td>
+<td>Authenticated identity, purpose, expiry and separation of duties required.</td>
+</tr>
+<tr>
+<td>Policy engineer</td>
+<td>Draft and test policy and Effect Contracts</td>
+<td>Cannot silently promote own high-impact change.</td>
+</tr>
+<tr>
+<td>Platform administrator</td>
+<td>Register integrations; operate deployment and recovery</td>
+<td>Cannot approve business actions solely by infrastructure privilege.</td>
+</tr>
+<tr>
+<td>Auditor</td>
+<td>Read versions, evidence and review packs</td>
+<td>Read-only and redacted by tenant/scope.</td>
+</tr>
+<tr>
+<td>Agent workload</td>
+<td>Propose bounded Action Claims</td>
+<td>Cannot resolve approvals or submit trusted evidence.</td>
+</tr>
+<tr>
+<td>Executor workload</td>
+<td>Consume a bound one-time capability</td>
+<td>Holds target credential; cannot expand the claim.</td>
+</tr>
+<tr>
+<td>Verifier workload</td>
+<td>Read authoritative state and attest the Effect Contract</td>
+<td>Separate trust path from the executor wherever practical.</td>
+</tr>
+</tbody></table></div>
+<p>The v2.5 preview uses shared bearer tokens and caller-supplied human labels. Those controls are insufficient for the role model above. The target requires OIDC for people, workload identity/mTLS for services, tenant/project RBAC, scoped credentials, separation of duties and a complete administrative audit trail.</p>
+<h2 id="current-and-required-api-surface">Current and required API surface<a class="palo-doc-anchor" href="#current-and-required-api-surface" aria-label="Link to Current and required API surface">#</a></h2><h3 id="available-in-the-v25-reference-gateway">Available in the v2.5 reference Gateway<a class="palo-doc-anchor" href="#available-in-the-v25-reference-gateway" aria-label="Link to Available in the v2.5 reference Gateway">#</a></h3><div class="palo-doc-table-wrap" tabindex="0" aria-label="Scrollable documentation table"><table>
+<thead>
+<tr>
+<th>Workflow</th>
+<th>Current endpoint(s)</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Health</td>
+<td><code>GET /health</code></td>
+<td>Unauthenticated preview health only.</td>
+</tr>
+<tr>
+<td>Registry read</td>
+<td><code>GET /v1/registry</code></td>
+<td>Aggregate preview registry; needs pagination, filters and tenant scoping.</td>
+</tr>
+<tr>
+<td>Registration</td>
+<td><code>POST /v1/agents/register</code>, <code>/v1/policies/register</code>, <code>/v1/executors/register</code>, <code>/v1/verifiers/register</code></td>
+<td>Immediate version registration; no draft/review/promotion lifecycle.</td>
+</tr>
+<tr>
+<td>Decision gate</td>
+<td><code>POST /v1/actions/verify</code></td>
+<td>Action Claim 1.1/1.2 compatibility; fail-closed reference behavior.</td>
+</tr>
+<tr>
+<td>Governed action</td>
+<td><code>POST /v1/actions/execute</code></td>
+<td>Full-cycle reference execution using in-process adapters.</td>
+</tr>
+<tr>
+<td>Execution read/verify</td>
+<td><code>GET /v1/executions/{id}</code>, <code>GET /v1/executions/{id}/outcome</code>, <code>POST /v1/executions/{id}/verify</code></td>
+<td>Suitable for execution drill-down; lacks search/list endpoint.</td>
+</tr>
+<tr>
+<td>Approvals</td>
+<td><code>GET /v1/approvals</code>, <code>GET /v1/approvals/{id}</code>, <code>POST /v1/approvals/resolve</code></td>
+<td>Caller-supplied reviewer identity; list endpoint must not be public without RBAC.</td>
+</tr>
+<tr>
+<td>Incidents</td>
+<td><code>GET /v1/incidents</code>, <code>GET /v1/incidents/{id}</code>, <code>POST /v1/incidents/resolve</code></td>
+<td>Supports acknowledge/resolve and resource release.</td>
+</tr>
+<tr>
+<td>Ledger</td>
+<td><code>GET /v1/evidence/verify-ledger</code></td>
+<td>Integrity check, not a query/report API. Caller-submitted evidence is disabled by default.</td>
+</tr>
+</tbody></table></div>
+<p>The MCP server exposes corresponding preview tools for registry, verification, approval, execution, outcome, incident and ledger operations. The same identity and authorization gaps apply.</p>
+<h3 id="required-for-the-governance-hub">Required for the Governance Hub<a class="palo-doc-anchor" href="#required-for-the-governance-hub" aria-label="Link to Required for the Governance Hub">#</a></h3><div class="palo-doc-table-wrap" tabindex="0" aria-label="Scrollable documentation table"><table>
+<thead>
+<tr>
+<th>API family</th>
+<th>Minimum capability</th>
+<th>Why it is needed</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Identity/session</td>
+<td>OIDC login, logout, session, tenant/project context and scoped service exchange</td>
+<td>Prevent browser-held shared tokens and establish human accountability.</td>
+</tr>
+<tr>
+<td>Authorization</td>
+<td>Role/permission introspection and policy-enforced command authorization</td>
+<td>Enforce the role model and separation of duties.</td>
+</tr>
+<tr>
+<td>Portfolio/query</td>
+<td>Paginated agents, workflows, decisions, executions, outcomes and incidents with filters and stable cursors</td>
+<td>Build dashboards without downloading the entire registry or ledger.</td>
+</tr>
+<tr>
+<td>Aggregation</td>
+<td>Coverage, outcome and incident series with denominator, freshness and data-quality metadata</td>
+<td>Prevent misleading executive measures.</td>
+</tr>
+<tr>
+<td>Policy lifecycle</td>
+<td>Draft, validate, simulate, review, approve, promote, rollback and compare immutable versions</td>
+<td>Convert immediate registration into governed change management.</td>
+</tr>
+<tr>
+<td>Deployment attestation</td>
+<td>Bind active runtime, OPA bundle, connector and workflow digests</td>
+<td>Prove the evaluated/deployed control matches the reviewed version.</td>
+</tr>
+<tr>
+<td>Workflow coverage</td>
+<td>Inventory and admission assessment, including alternate credential paths</td>
+<td>Distinguish advisory routing from non-bypassable governance.</td>
+</tr>
+<tr>
+<td>Approval delivery</td>
+<td>Meaningful action presentation, authenticated reviewer assignment, notifications and one-time resume</td>
+<td>Complete the human-review journey securely.</td>
+</tr>
+<tr>
+<td>Evidence query/export</td>
+<td>Correlated evidence timeline, redaction policy and signed review-pack export</td>
+<td>Support executive drill-down, audit and incident response.</td>
+</tr>
+<tr>
+<td>Operations</td>
+<td>Connector health, verifier freshness, queue/outbox status, backup/restore and recovery telemetry</td>
+<td>Make failure and degraded states visible.</td>
+</tr>
+</tbody></table></div>
+<h2 id="gui-explanation-levels">GUI explanation levels<a class="palo-doc-anchor" href="#gui-explanation-levels" aria-label="Link to GUI explanation levels">#</a></h2><p>Each record should support progressive disclosure:</p>
+<ol>
+<li><strong>Plain language</strong> — “Price update denied because the requested change exceeded the agent's authority.”</li>
+<li><strong>Structured explanation</strong> — agent, resource, policy version, rule, owner and obligation.</li>
+<li><strong>Evidence lineage</strong> — claim, approval, capability, receipt, attestation and incident.</li>
+<li><strong>Raw technical view</strong> — canonical JSON, Rego result, digests, signature metadata and logs.</li>
+</ol>
+<p>Essential status and reason information must remain visible without hover. Mobile views should preserve the sequence <code>status -&gt; reason -&gt; owner/action -&gt; evidence</code>, with tap/focus rather than hover-only disclosure. Status must use text and iconography in addition to color.</p>
+<h2 id="acceptance-criteria-for-this-design">Acceptance criteria for this design<a class="palo-doc-anchor" href="#acceptance-criteria-for-this-design" aria-label="Link to Acceptance criteria for this design">#</a></h2><ul>
+<li>Executive counts never equate <code>allowed</code> with <code>verified</code>.</li>
+<li>Every positive assurance indicator drills down to signed or integrity-linked evidence.</li>
+<li>Missing, stale and partial data are visible states.</li>
+<li>A role cannot gain target-system authority merely through the GUI.</li>
+<li>Approval is shown against an immutable, human-meaningful claim summary.</li>
+<li>Publishing is blocked when required negative, replay and outcome tests fail.</li>
+<li>A workflow with a direct credential bypass cannot be labelled non-bypassably governed.</li>
+<li>Mismatch and inconclusive outcomes create visible incidents and resource holds.</li>
+<li>Resolving an incident does not imply automatic rollback or successful compensation.</li>
+<li>Raw contracts remain available to technical and audit roles without becoming the default executive interface.</li>
+</ul>
+<h2 id="related-documents">Related documents<a class="palo-doc-anchor" href="#related-documents" aria-label="Link to Related documents">#</a></h2><ul>
+<li><a href="palo-ai-full-cycle-assurance.html">Full-cycle agentic assurance</a></li>
+<li><a href="palo-ai-governance-integration-guide.html">Governance integration guide</a></li>
+<li><a href="palo-ai-cloud-reference-architecture.html">Cloud reference architecture</a></li>
+<li><a href="palo-ai-security-assurance-and-scale.html">Security assurance and scale</a></li>
+<li><a href="../agentic/capability-matrix.json">Capability matrix</a></li>
+</ul>
+</article></div>
+      <aside class="palo-doc-next"><div><small>Prerequisite</small><strong>Governance Hub product model</strong></div><div><small>Recommended next step</small><strong>Test the eight-step builder</strong></div></aside>
+      <section class="palo-doc-feedback" aria-labelledby="feedback-title"><p class="palo-eyebrow">Privacy-first feedback</p><h2 id="feedback-title">Help improve this guide</h2><p>Your feedback stays in your browser until you explicitly copy it, download it, or open an email draft. Do not include secrets, personal data, credentials or production identifiers.</p><form data-doc-feedback><div class="palo-form-grid"><div class="palo-field"><label for="feedback-role">Your role</label><select id="feedback-role" name="role"><option>Executive / governance owner</option><option>Platform or security engineer</option><option>No-code / low-code builder</option><option>External reviewer</option></select></div><div class="palo-field"><label for="feedback-category">Category</label><select id="feedback-category" name="category"><option>Clarity</option><option>Technical accuracy</option><option>Missing guidance</option><option>Accessibility</option></select></div><div class="palo-field palo-field-full"><label for="feedback-message">Feedback</label><textarea id="feedback-message" name="message" maxlength="3000" required placeholder="Describe the non-sensitive improvement you recommend."></textarea></div><div class="palo-form-actions"><button class="palo-btn" type="button" data-feedback-copy>Copy feedback</button><button class="palo-btn palo-btn-secondary" type="button" data-feedback-download>Download JSON</button><button class="palo-btn palo-btn-secondary" type="button" data-feedback-email>Email draft</button></div></div><p class="palo-action-status" data-feedback-status role="status" aria-live="polite"></p></form></section>
+    </div>
+  </main>
+  <footer class="palo-footer"><div class="palo-shell"><p>PALO public documentation. Developer preview boundaries apply.</p><div class="palo-footer-links"><a href="../PALO_AIGovernance.html">PALO-AI</a><a href="../governance-hub/">Governance Hub</a><a href="../PALO_AgenticCapabilityMatrix.html">Capability Matrix</a><a href="../PALO_AIProductionReadiness.html">Production Readiness</a><a href="../privacy-policy.html">Privacy</a></div></div></footer>
+</body></html>
