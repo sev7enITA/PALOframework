@@ -11,6 +11,14 @@ and this project follows Semantic Versioning where practical.
 
 ### Added
 
+- Added a three-entry public governance map that keeps PALO Framework as the umbrella, positions PALO-AM as its agentic governance modality and PALO-AI as its Developer Preview technical enforcement component
+- Added canonical public "Why PALO-AI" and "PALO-AI Quickstarts" pages that separate the strategic assurance case from verified code-first, n8n/no-code and Copilot Studio/MCP evaluation routes
+- Added a browser-local comparison of direct execution, governed execution and authorized-but-wrong outcome mismatch, plus a persistent v2.5 capability/readiness/security rail across public agentic pages
+- Added a cognitive front door that routes by organizational role and objective, with a distinct "Govern agent actions" objective and conditional code-first, no-code/low-code and rapid-prototyping modes
+- Added a persistent role, objective, phase, artifact and next-action ribbon across guided onboarding and Agentic Governance orientation
+- Added safe Governance Hub deep links for executive/technical roles and known views, with deterministic fallback for malformed parameters
+- Added a public, interactive nine-gate Production Readiness route and a responsive evidence-based Capability Matrix; internal technical assessment workpapers are excluded from publication
+- Added a deterministic sanitized Markdown-to-HTML publication pipeline, searchable Documentation Library, document navigation, print/share controls and privacy-first local feedback exports
 - Added the white PALO-AI Governance Hub prototype with a shared Executive/Technical shell, an eight-step guided governance builder, portfolio and decision views, execution traces, approvals, incidents and integration boundaries
 - Added a product specification, role-based user guide, workflow reference, six Mermaid architecture diagrams, site copy, GitHub copy and a design-partner launch plan for the Governance Hub
 - Added deterministic nested Vite publication so the Governance Hub ships inside the Hostinger/GitHub Pages `dist` artifact while retaining a local development mode
@@ -27,12 +35,20 @@ and this project follows Semantic Versioning where practical.
 
 ### Changed
 
+- Replaced presentational italic elements with dedicated semantic separators and aligned the PALO-AM adoption link with the generated HTML documentation
+- Reduced primary navigation to Start, Agentic Governance, Governance Hub, Tools, Documentation and Readiness; consolidated the former Documentation Hub into a transition page and made the filtered HTML Library canonical
+- Refocused the homepage on PALO-AI full-cycle assurance, the eight-step Governance Hub builder and nine existing guided journeys described by outcome and artifact
+- Added Documentation Library depth, audience and task filters plus product, maturity, reading-time, prerequisite and recommended-next-step metadata
+- Updated the public Documentation Hub, PALO-AI overview, capability matrix, PALO-AM entry point and adoption/community guides to reflect the v2.5 full-cycle preview and its four n8n outcome paths
+- Aligned README, security policy, VPS guidance, Governance Hub copy and release metadata to the v2.5 full-cycle developer-preview boundary
+- Added an explicit Rego default-deny fallback and renamed canonical object comparison to avoid implying cryptographic constant-time semantics
+- Hardened Governance Hub search, download cleanup, asynchronous boundary testing, keyboard focus and Windows publication validation, with browser smoke coverage
 - Reframed PALO-AI complexity through progressive disclosure: business questions and visible outcomes are primary, while Action Claims, Effect Contracts, Rego inputs and raw evidence remain inspectable on demand
 - Positioned PALO-AI as an emerging governance control plane while retaining developer-preview disclaimers and avoiding claims of certified, production-ready, biometric, exactly-once, or unavoidable enforcement
 
 ## [2.5.0] - 2026-07-18
 
-**Release status: Full-Cycle Developer Preview — isolated evaluation only.**
+**Release status: Full-Cycle Developer Preview. Isolated evaluation only.**
 
 ### Added
 
@@ -61,7 +77,7 @@ and this project follows Semantic Versioning where practical.
 
 ## [2.4.1] - 2026-07-17
 
-**Release status: Developer Preview — not approved for production authorization or consequential tool execution.**
+**Release status: Developer Preview. Not approved for production authorization or consequential tool execution.**
 
 This release publishes contracts and a reference implementation for evaluation. Runtime enforcement, cryptographic evidence hardening, authenticated human approval, production connectors, and collaborative agent-team execution remain under development. The included bearer-token transports, SQLite/HMAC components, Vibe Gate metadata, Web/Android approval clients, and n8n/Dify integrations are prototypes and must not be represented as production security controls.
 
@@ -71,7 +87,7 @@ This release publishes contracts and a reference implementation for evaluation. 
 - Added a reference SQLite WAL registry and append-only evidence-ledger prototype for agents, authorities, policies, replay state, approvals, decisions and signed events
 - Added normalized Action Claims with path, host, network intent, validated arguments, nonce, idempotency key and monotonic sequence number
 - Added prototype Web and Android Approval Inbox clients, PALO-AM profile/decision exchange, and a demonstrative Vibe Coding claim-metadata gate
-- Added an honest public machine-readable capability matrix and an in-process register → deny → approval → execute → sign → persist → verify acceptance test
+- Added an honest public machine-readable capability matrix and an in-process register, deny, approval, execute, sign, persist and verify acceptance test
 - Added the non-production PALO governance MCP reference server, expanded from its initial seven-tool baseline to eleven tools for registry, policy, approval, evidence and ledger operations
 - Added canonical, interoperable JSON contracts for agent profiles, action claims, policy decisions, approvals, and HMAC-signed evidence envelopes
 - Added an experimental localhost governance gateway for non-production Dify, n8n, and workflow examples; policy and signing secrets remain server-side

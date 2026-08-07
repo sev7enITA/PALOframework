@@ -1,0 +1,651 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>PALO-AI Governance Hub — User and Interaction Guide | PALO Documentation</title>
+  <meta name="description" content="Public PALO documentation: PALO-AI Governance Hub — User and Interaction Guide.">
+  <link rel="canonical" href="https://paloframework.org/docs/palo-ai-governance-hub-user-guide.html">
+  <link rel="icon" type="image/webp" href="../assets/logo.webp">
+  <link rel="stylesheet" href="../assets/palo-icons.css">
+  <link rel="stylesheet" href="../assets/palo-v21.css?v=2.5.0">
+  <link rel="stylesheet" href="../assets/palo-docs.css">
+  <script src="../assets/palo-icons.js" defer></script>
+  <script src="../assets/palo-v21.js?v=2.5.0" defer></script>
+  <script src="../assets/palo-docs.js" defer></script>
+</head>
+<body class="palo-v21 palo-doc-page" data-doc-source="docs/palo-ai-governance-hub-user-guide.md">
+  <a class="palo-skip-link" href="#main-content">Skip to main content</a>
+  <header class="palo-site-header"><div class="palo-shell palo-header-inner">
+    <a class="palo-brand" href="../index.html"><img src="../assets/logo.webp" alt="PALO">PALO FRAMEWORK</a>
+    <button class="palo-menu-toggle" type="button" data-palo-menu-toggle aria-expanded="false" aria-controls="palo-primary-nav" aria-label="Open navigation"><span data-palo-icon="menu" aria-hidden="true"></span></button>
+    <nav class="palo-nav" id="palo-primary-nav" aria-label="Primary navigation"><a href="../designs/theory-to-practice-infographic/">Start</a><a href="../PALO_AIGovernance.html">Agentic Governance</a><a href="../governance-hub/">Governance Hub</a><a href="../index.html#guided-journeys">Tools</a><a href="../PALO_DocumentationLibrary.html" aria-current="page">Documentation</a><a href="../PALO_AIProductionReadiness.html">Readiness</a></nav>
+  </div></header>
+  <main id="main-content" class="palo-doc-main">
+    <div class="palo-shell">
+      <nav class="palo-doc-breadcrumb" aria-label="Breadcrumb"><a href="../PALO_DocumentationLibrary.html">Documentation Library</a><span aria-hidden="true">/</span><span>Governance Hub and UX</span></nav>
+      <header class="palo-doc-hero"><p class="palo-eyebrow">Governance Hub and UX · Public documentation</p><h1>PALO-AI Governance Hub — User and Interaction Guide</h1><div class="palo-doc-facts"><span><small>Level</small><strong>start</strong></span><span><small>Audience</small><strong>executive · governance · technical · builder</strong></span><span><small>Product</small><strong>PALO-AI</strong></span><span><small>Status</small><strong>Interactive Prototype</strong></span><span><small>Read</small><strong>17 min</strong></span></div><p class="palo-doc-source">Published HTML view · Source: <code>docs/palo-ai-governance-hub-user-guide.md</code></p><div class="palo-actions"><button class="palo-btn" type="button" data-doc-copy-link>Copy link</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-share>Share page</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-print>Print</button></div><p class="palo-action-status" data-doc-action-status role="status" aria-live="polite"></p></header>
+      <details class="palo-doc-mobile-toc"><summary>On this page</summary><ol><li class="depth-2"><a href="#1-choose-your-mode">1. Choose your mode</a></li><li class="depth-2"><a href="#2-concepts-in-plain-language">2. Concepts in plain language</a></li><li class="depth-2"><a href="#3-sign-in-and-confirm-context">3. Sign in and confirm context</a></li><li class="depth-2"><a href="#4-executive-cockpit-guide">4. Executive Cockpit guide</a></li><li class="depth-3"><a href="#41-start-with-today">4.1 Start with Today</a></li><li class="depth-3"><a href="#42-read-the-assurance-dimensions">4.2 Read the assurance dimensions</a></li><li class="depth-3"><a href="#43-use-the-exposure-map">4.3 Use the Exposure Map</a></li><li class="depth-3"><a href="#44-make-a-decision">4.4 Make a decision</a></li><li class="depth-3"><a href="#45-export-an-executive-report">4.5 Export an executive report</a></li><li class="depth-2"><a href="#5-reviewer-guide">5. Reviewer guide</a></li><li class="depth-3"><a href="#review-an-approval-request">Review an approval request</a></li><li class="depth-2"><a href="#6-technical-workbench-guide">6. Technical Workbench guide</a></li><li class="depth-3"><a href="#61-connect-an-environment">6.1 Connect an environment</a></li><li class="depth-3"><a href="#62-discover-or-register-inventory">6.2 Discover or register inventory</a></li><li class="depth-3"><a href="#63-build-governance-from-intent">6.3 Build governance from intent</a></li><li class="depth-3"><a href="#64-integrate-a-platform">6.4 Integrate a platform</a></li><li class="depth-3"><a href="#65-use-the-test-lab">6.5 Use the Test Lab</a></li><li class="depth-2"><a href="#7-investigate-an-execution">7. Investigate an execution</a></li><li class="depth-3"><a href="#interpret-terminal-states">Interpret terminal states</a></li><li class="depth-2"><a href="#8-resolve-an-assurance-incident">8. Resolve an assurance incident</a></li><li class="depth-2"><a href="#9-evidence-and-audit-guide">9. Evidence and audit guide</a></li><li class="depth-2"><a href="#10-accessibility-and-efficient-operation">10. Accessibility and efficient operation</a></li><li class="depth-2"><a href="#11-troubleshooting">11. Troubleshooting</a></li><li class="depth-2"><a href="#12-acceptance-checklist-for-a-guided-pilot">12. Acceptance checklist for a guided pilot</a></li><li class="depth-3"><a href="#executive">Executive</a></li><li class="depth-3"><a href="#technical">Technical</a></li><li class="depth-3"><a href="#accessibility">Accessibility</a></li><li class="depth-2"><a href="#13-what-works-now-and-what-remains-target-behavior">13. What works now and what remains target behavior</a></li><li class="depth-2"><a href="#14-recommended-rollout">14. Recommended rollout</a></li><li class="depth-2"><a href="#15-related-documentation">15. Related documentation</a></li></ol></details>
+      <div class="palo-doc-layout"><aside class="palo-doc-sidebar" aria-label="On this page"><strong>On this page</strong><ol><li class="depth-2"><a href="#1-choose-your-mode">1. Choose your mode</a></li><li class="depth-2"><a href="#2-concepts-in-plain-language">2. Concepts in plain language</a></li><li class="depth-2"><a href="#3-sign-in-and-confirm-context">3. Sign in and confirm context</a></li><li class="depth-2"><a href="#4-executive-cockpit-guide">4. Executive Cockpit guide</a></li><li class="depth-3"><a href="#41-start-with-today">4.1 Start with Today</a></li><li class="depth-3"><a href="#42-read-the-assurance-dimensions">4.2 Read the assurance dimensions</a></li><li class="depth-3"><a href="#43-use-the-exposure-map">4.3 Use the Exposure Map</a></li><li class="depth-3"><a href="#44-make-a-decision">4.4 Make a decision</a></li><li class="depth-3"><a href="#45-export-an-executive-report">4.5 Export an executive report</a></li><li class="depth-2"><a href="#5-reviewer-guide">5. Reviewer guide</a></li><li class="depth-3"><a href="#review-an-approval-request">Review an approval request</a></li><li class="depth-2"><a href="#6-technical-workbench-guide">6. Technical Workbench guide</a></li><li class="depth-3"><a href="#61-connect-an-environment">6.1 Connect an environment</a></li><li class="depth-3"><a href="#62-discover-or-register-inventory">6.2 Discover or register inventory</a></li><li class="depth-3"><a href="#63-build-governance-from-intent">6.3 Build governance from intent</a></li><li class="depth-3"><a href="#64-integrate-a-platform">6.4 Integrate a platform</a></li><li class="depth-3"><a href="#65-use-the-test-lab">6.5 Use the Test Lab</a></li><li class="depth-2"><a href="#7-investigate-an-execution">7. Investigate an execution</a></li><li class="depth-3"><a href="#interpret-terminal-states">Interpret terminal states</a></li><li class="depth-2"><a href="#8-resolve-an-assurance-incident">8. Resolve an assurance incident</a></li><li class="depth-2"><a href="#9-evidence-and-audit-guide">9. Evidence and audit guide</a></li><li class="depth-2"><a href="#10-accessibility-and-efficient-operation">10. Accessibility and efficient operation</a></li><li class="depth-2"><a href="#11-troubleshooting">11. Troubleshooting</a></li><li class="depth-2"><a href="#12-acceptance-checklist-for-a-guided-pilot">12. Acceptance checklist for a guided pilot</a></li><li class="depth-3"><a href="#executive">Executive</a></li><li class="depth-3"><a href="#technical">Technical</a></li><li class="depth-3"><a href="#accessibility">Accessibility</a></li><li class="depth-2"><a href="#13-what-works-now-and-what-remains-target-behavior">13. What works now and what remains target behavior</a></li><li class="depth-2"><a href="#14-recommended-rollout">14. Recommended rollout</a></li><li class="depth-2"><a href="#15-related-documentation">15. Related documentation</a></li></ol></aside><article class="palo-doc-content"><h1 id="palo-ai-governance-hub--user-and-interaction-guide">PALO-AI Governance Hub — User and Interaction Guide<a class="palo-doc-anchor" href="#palo-ai-governance-hub--user-and-interaction-guide" aria-label="Link to PALO-AI Governance Hub — User and Interaction Guide">#</a></h1><p>Status: interaction guide for the implemented PALO-AI v2.5 Governance Hub prototype, updated 19 July 2026.</p>
+<blockquote>
+<p><strong>The Governance Hub is an interactive product prototype, not a production application.</strong> The current React/Vite interface uses illustrative local data and demonstrates the Executive and Technical journeys described here. It is not connected directly to the Gateway. Use the repository’s REST, MCP, n8n, and demonstration instructions only with synthetic or isolated data until an authenticated BFF and the remaining production controls exist.</p>
+</blockquote>
+<h2 id="1-choose-your-mode">1. Choose your mode<a class="palo-doc-anchor" href="#1-choose-your-mode" aria-label="Link to 1. Choose your mode">#</a></h2><p>Use one Hub and select the view appropriate to the decision you need to make.</p>
+<div class="palo-doc-table-wrap" tabindex="0" aria-label="Scrollable documentation table"><table>
+<thead>
+<tr>
+<th>If you need to...</th>
+<th>Start in...</th>
+<th>You should leave with...</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Understand current exposure, adverse outcomes, ownership, or decisions</td>
+<td>Executive Cockpit</td>
+<td>A clear decision, owner, due date, and evidence link</td>
+</tr>
+<tr>
+<td>Configure authority, policy, approval, or expected effects</td>
+<td>Technical Workbench</td>
+<td>A validated, versioned draft and test results</td>
+</tr>
+<tr>
+<td>Investigate why an action was allowed, denied, or produced the wrong result</td>
+<td>Technical Workbench / Investigate</td>
+<td>A complete evidence timeline and remediation owner</td>
+</tr>
+<tr>
+<td>Approve one proposed action</td>
+<td>Decision Inbox</td>
+<td>An exact claim, meaningful impact description, and terminal decision</td>
+</tr>
+<tr>
+<td>Assess readiness for a pilot</td>
+<td>Executive Cockpit, then Technical Workbench</td>
+<td>A bounded business decision plus technical acceptance evidence</td>
+</tr>
+</tbody></table></div>
+<p>The mode switch changes language and depth. It does not create a separate source of truth.</p>
+<h2 id="2-concepts-in-plain-language">2. Concepts in plain language<a class="palo-doc-anchor" href="#2-concepts-in-plain-language" aria-label="Link to 2. Concepts in plain language">#</a></h2><div class="palo-doc-table-wrap" tabindex="0" aria-label="Scrollable documentation table"><table>
+<thead>
+<tr>
+<th>PALO-AI term</th>
+<th>Plain-language meaning</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Action Claim</td>
+<td>A precise statement of who wants to do what, where, with which arguments, and under which replay protections</td>
+</tr>
+<tr>
+<td>Authority Profile</td>
+<td>The registered boundaries of what an agent may propose</td>
+</tr>
+<tr>
+<td>Policy decision</td>
+<td>The deterministic result: allowed, denied, or human review required</td>
+</tr>
+<tr>
+<td>Approval</td>
+<td>A one-time human decision bound to the exact claim; changing the claim requires a new decision</td>
+</tr>
+<tr>
+<td>Execution Capability</td>
+<td>Short-lived, one-time server-side authority to execute one approved claim</td>
+</tr>
+<tr>
+<td>Execution Receipt</td>
+<td>A signed runtime record of the execution attempt</td>
+</tr>
+<tr>
+<td>Effect Contract</td>
+<td>The expected before/after conditions and effects that must never occur</td>
+</tr>
+<tr>
+<td>Outcome Attestation</td>
+<td>The verifier’s signed conclusion: verified, mismatch, or inconclusive</td>
+</tr>
+<tr>
+<td>Assurance Incident</td>
+<td>A review case opened when the result is wrong or cannot be established</td>
+</tr>
+<tr>
+<td>Resource hold</td>
+<td>A safeguard that prevents further governed action on a resource until authorized resolution</td>
+</tr>
+</tbody></table></div>
+<p>Remember the central rule:</p>
+<blockquote>
+<p><strong>Allowed means the action passed authority and policy checks. Verified means authoritative post-state satisfied the Effect Contract. These are different claims.</strong></p>
+</blockquote>
+<h2 id="3-sign-in-and-confirm-context">3. Sign in and confirm context<a class="palo-doc-anchor" href="#3-sign-in-and-confirm-context" aria-label="Link to 3. Sign in and confirm context">#</a></h2><p>The target Hub uses organization identity through OIDC and a secure server-side session. The current shared bearer-token gateway is not suitable for a multi-user browser interface.</p>
+<p>After sign-in, confirm the global context before reviewing or changing anything:</p>
+<ol>
+<li><strong>Organization and tenant</strong> — whose data and policy scope you are viewing.</li>
+<li><strong>Environment</strong> — Local, Development, Staging, or Production.</li>
+<li><strong>Role</strong> — Executive, Business Owner, Reviewer, Policy Engineer, Platform Administrator, Security Operator, Auditor, or Integration Developer.</li>
+<li><strong>Time window</strong> — the period included in dashboards and reports.</li>
+<li><strong>Data freshness</strong> — when the last complete runtime and inventory update occurred.</li>
+<li><strong>Release boundary</strong> — developer preview, design-partner pilot, or production candidate.</li>
+</ol>
+<p>Stop if the tenant or environment is wrong. Do not rely on visual labels alone for production controls; backend tenant and role authorization must be enforced.</p>
+<h2 id="4-executive-cockpit-guide">4. Executive Cockpit guide<a class="palo-doc-anchor" href="#4-executive-cockpit-guide" aria-label="Link to 4. Executive Cockpit guide">#</a></h2><h3 id="41-start-with-today">4.1 Start with Today<a class="palo-doc-anchor" href="#41-start-with-today" aria-label="Link to 4.1 Start with Today">#</a></h3><p>The Today page should answer five questions:</p>
+<ol>
+<li>What changed?</li>
+<li>Where are we exposed?</li>
+<li>Which outcomes were wrong or uncertain?</li>
+<li>What decision is required?</li>
+<li>Who is accountable and by when?</li>
+</ol>
+<p>Review the page in this order:</p>
+<ol>
+<li><strong>Critical exceptions</strong> — known bypass paths, mismatches, control unavailable, or unowned high-impact workflows.</li>
+<li><strong>Outcome assurance</strong> — verified, mismatch, inconclusive, execution failed, pending, and not instrumented.</li>
+<li><strong>Governance coverage</strong> — whether known consequential paths actually require PALO.</li>
+<li><strong>Open decisions</strong> — risk acceptance, pilot gate, owner assignment, suspension, or exception.</li>
+<li><strong>Trend and freshness</strong> — whether the position is improving and whether the data is current enough to act on.</li>
+</ol>
+<p>Do not use a green card as proof of production readiness. Open the definition and evidence before making a consequential decision.</p>
+<h3 id="42-read-the-assurance-dimensions">4.2 Read the assurance dimensions<a class="palo-doc-anchor" href="#42-read-the-assurance-dimensions" aria-label="Link to 4.2 Read the assurance dimensions">#</a></h3><p>The Cockpit deliberately avoids one composite score.</p>
+<div class="palo-doc-table-wrap" tabindex="0" aria-label="Scrollable documentation table"><table>
+<thead>
+<tr>
+<th>Dimension</th>
+<th>Executive question</th>
+<th>Warning signs</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Governance coverage</td>
+<td>Can consequential actions bypass the governed path?</td>
+<td>Unknown inventory, direct credentials, advisory-only visual gate</td>
+</tr>
+<tr>
+<td>Authority assurance</td>
+<td>Are agents operating within explicit and current authority?</td>
+<td>Missing/expired profiles, unusual deny reasons, stale policy</td>
+</tr>
+<tr>
+<td>Outcome assurance</td>
+<td>Did completed actions produce the promised result?</td>
+<td>Mismatch, inconclusive verification, no Effect Contract, unavailable verifier</td>
+</tr>
+<tr>
+<td>Operational health</td>
+<td>Are the controls themselves reliable?</td>
+<td>Policy outage, recovery events, aged holds, failed ledger check</td>
+</tr>
+</tbody></table></div>
+<p>For every metric, open <strong>Definition</strong> to see numerator, denominator, window, filters, freshness, and exclusions. “Not measured” must never appear as success.</p>
+<h3 id="43-use-the-exposure-map">4.3 Use the Exposure Map<a class="palo-doc-anchor" href="#43-use-the-exposure-map" aria-label="Link to 4.3 Use the Exposure Map">#</a></h3><ol>
+<li>Select the business domain.</li>
+<li>Filter by environment, owner, platform, impact class, and assurance state.</li>
+<li>Expand from business capability to workflow, agent, resource, and execution.</li>
+<li>Open <strong>Known bypasses</strong> to see any direct tool, network, or credential path around PALO.</li>
+<li>Select an item to see the accountable owner, current control state, and next recommended action.</li>
+</ol>
+<p>Example interpretation:</p>
+<blockquote>
+<p>“Customer Operations has three high-impact workflows. Two use a governed executor and authoritative verifier. One still exposes a direct platform credential and cannot be described as enforced.”</p>
+</blockquote>
+<h3 id="44-make-a-decision">4.4 Make a decision<a class="palo-doc-anchor" href="#44-make-a-decision" aria-label="Link to 4.4 Make a decision">#</a></h3><p>Executive decisions are distinct from operational Action Claim approvals.</p>
+<p>Possible decisions include:</p>
+<ul>
+<li>authorize a bounded pilot;</li>
+<li>assign a business or technical owner;</li>
+<li>suspend or contain an integration;</li>
+<li>accept a time-bound residual risk;</li>
+<li>reject an exception;</li>
+<li>request technical evidence or independent review.</li>
+</ul>
+<p>To record a decision:</p>
+<ol>
+<li>Open the item from <strong>Decisions</strong>.</li>
+<li>Read the business impact, evidence summary, unknowns, and current technical recommendation.</li>
+<li>Verify the decision scope, environment, tenant, expiry, and owner.</li>
+<li>Select the decision and provide a rationale.</li>
+<li>Set the due date and review condition.</li>
+<li>Confirm with step-up authentication when required.</li>
+</ol>
+<p>The current runtime does not implement this risk-decision workflow. It requires a dedicated backend contract; it must not be represented as an Action Claim approval.</p>
+<h3 id="45-export-an-executive-report">4.5 Export an executive report<a class="palo-doc-anchor" href="#45-export-an-executive-report" aria-label="Link to 4.5 Export an executive report">#</a></h3><ol>
+<li>Set the tenant, environment, time window, and filters.</li>
+<li>Select <strong>Reports &gt; Executive assurance snapshot</strong>.</li>
+<li>Review included dimensions and redaction policy.</li>
+<li>Confirm that the report displays the release status and current product boundary.</li>
+<li>Generate the snapshot.</li>
+</ol>
+<p>A valid report includes:</p>
+<ul>
+<li>generation time and timezone;</li>
+<li>principal and authorized scope;</li>
+<li>metric definitions and data freshness;</li>
+<li>material exposures and outcomes;</li>
+<li>owners, decisions, and due dates;</li>
+<li>links or identifiers for underlying evidence;</li>
+<li>limitations, exclusions, and preview disclaimer.</li>
+</ul>
+<h2 id="5-reviewer-guide">5. Reviewer guide<a class="palo-doc-anchor" href="#5-reviewer-guide" aria-label="Link to 5. Reviewer guide">#</a></h2><p>An approval is not a general permission. It is a terminal decision over one exact Action Claim digest.</p>
+<h3 id="review-an-approval-request">Review an approval request<a class="palo-doc-anchor" href="#review-an-approval-request" aria-label="Link to Review an approval request">#</a></h3><ol>
+<li>Open <strong>Decisions &gt; Operational approvals</strong>.</li>
+<li>Confirm the request is assigned to you or your authorized role.</li>
+<li>Review the plain-language proposal:<ul>
+<li>requester and agent;</li>
+<li>business purpose;</li>
+<li>tenant, environment, resource, and operation;</li>
+<li>proposed arguments and redactions;</li>
+<li>expected effect and forbidden effects;</li>
+<li>policy reasons and obligations;</li>
+<li>expiry and impact class.</li>
+</ul>
+</li>
+<li>Expand <strong>Structured details</strong> when the summary is insufficient.</li>
+<li>Open <strong>Evidence</strong> to inspect claim digest, profile, policy version, and verifier.</li>
+<li>Choose <strong>Approve</strong>, <strong>Deny</strong>, or <strong>Cancel</strong> and enter a meaningful rationale.</li>
+<li>Complete step-up authentication if required.</li>
+</ol>
+<p>Do not approve when:</p>
+<ul>
+<li>the effect is vague or cannot be verified;</li>
+<li>the resource, tenant, or arguments are ambiguous;</li>
+<li>required information is redacted from your role;</li>
+<li>the request is stale or no longer necessary;</li>
+<li>you are the requester and separation-of-duty rules prohibit self-approval;</li>
+<li>the workflow still has an equivalent direct path around PALO.</li>
+</ul>
+<p>Changing the tool, arguments, resource, Effect Contract, tenant, or other digest-bound fields invalidates the approval and requires a new claim.</p>
+<h2 id="6-technical-workbench-guide">6. Technical Workbench guide<a class="palo-doc-anchor" href="#6-technical-workbench-guide" aria-label="Link to 6. Technical Workbench guide">#</a></h2><h3 id="61-connect-an-environment">6.1 Connect an environment<a class="palo-doc-anchor" href="#61-connect-an-environment" aria-label="Link to 6.1 Connect an environment">#</a></h3><p>Select one deployment mode:</p>
+<div class="palo-doc-table-wrap" tabindex="0" aria-label="Scrollable documentation table"><table>
+<thead>
+<tr>
+<th>Mode</th>
+<th>Use</th>
+<th>Key boundary</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Local</td>
+<td>Laptop development, offline tests, self-hosted n8n</td>
+<td>Loopback/private network and synthetic data; SQLite is single-host preview state</td>
+</tr>
+<tr>
+<td>Hybrid</td>
+<td>Central policy/approval with local protected execution</td>
+<td>Protected credential and executor stay inside the adopter network</td>
+</tr>
+<tr>
+<td>Cloud</td>
+<td>Managed control plane</td>
+<td>Requires identity, tenant isolation, durable state, managed keys, and independent assurance</td>
+</tr>
+<tr>
+<td>Private</td>
+<td>Customer VPC/private cloud</td>
+<td>Integrates with customer identity, network, KMS, SIEM, and retention controls</td>
+</tr>
+</tbody></table></div>
+<p>The connection wizard must show:</p>
+<ul>
+<li>runtime version and release status;</li>
+<li>REST and MCP health;</li>
+<li>tenant and environment identity;</li>
+<li>authentication method;</li>
+<li>registry, policy, database, connector, verifier, and ledger status;</li>
+<li>known missing controls and supported operations.</li>
+</ul>
+<p>The current gateway can provide a basic <code>GET /health</code> response. Dependency health and historical telemetry require new APIs.</p>
+<h3 id="62-discover-or-register-inventory">6.2 Discover or register inventory<a class="palo-doc-anchor" href="#62-discover-or-register-inventory" aria-label="Link to 6.2 Discover or register inventory">#</a></h3><p>Open <strong>Inventory</strong> and work through:</p>
+<ol>
+<li>Agents and Authority Profiles.</li>
+<li>Policies and versions.</li>
+<li>Executors and protected credential boundaries.</li>
+<li>Verifiers and authoritative state sources.</li>
+<li>Tools, operations, resources, and network destinations.</li>
+<li>Business owners, impact classes, and environments.</li>
+</ol>
+<p>For the current preview, the registry can be read through <code>GET /v1/registry</code> or <code>palo_get_registry</code>. Registration exists for agents, policies, executors, and verifiers, but authenticated publishers, promotion, signed bundles, and conformance health are not yet implemented.</p>
+<h3 id="63-build-governance-from-intent">6.3 Build governance from intent<a class="palo-doc-anchor" href="#63-build-governance-from-intent" aria-label="Link to 6.3 Build governance from intent">#</a></h3><p>Open <strong>Govern &gt; New governed action type</strong>.</p>
+<h4 id="step-1--purpose-and-ownership">Step 1 — Purpose and ownership<a class="palo-doc-anchor" href="#step-1--purpose-and-ownership" aria-label="Link to Step 1 — Purpose and ownership">#</a></h4><p>Define:</p>
+<ul>
+<li>business purpose;</li>
+<li>accountable business and technical owners;</li>
+<li>tenant and environment;</li>
+<li>impact and data classification;</li>
+<li>expiry or review date.</li>
+</ul>
+<h4 id="step-2--bound-authority">Step 2 — Bound authority<a class="palo-doc-anchor" href="#step-2--bound-authority" aria-label="Link to Step 2 — Bound authority">#</a></h4><p>Select:</p>
+<ul>
+<li>agent and Authority Profile;</li>
+<li>tool and operation;</li>
+<li>resource type and identifier pattern;</li>
+<li>allowed path and host;</li>
+<li>explicit network intent;</li>
+<li>argument schema, values, and limits.</li>
+</ul>
+<p>Unknown tools, missing argument schemas, malformed claims, and missing profiles must fail closed.</p>
+<h4 id="step-3--choose-oversight">Step 3 — Choose oversight<a class="palo-doc-anchor" href="#step-3--choose-oversight" aria-label="Link to Step 3 — Choose oversight">#</a></h4><p>Define whether the action is:</p>
+<ul>
+<li>automatically allowed under specified conditions;</li>
+<li>subject to exact-claim human approval;</li>
+<li>always denied.</li>
+</ul>
+<p>Specify reviewer role, expiry, separation of duties, and required rationale.</p>
+<h4 id="step-4--define-expected-effects">Step 4 — Define expected effects<a class="palo-doc-anchor" href="#step-4--define-expected-effects" aria-label="Link to Step 4 — Define expected effects">#</a></h4><p>Use the Effect Contract builder:</p>
+<div class="palo-doc-table-wrap" tabindex="0" aria-label="Scrollable documentation table"><table>
+<thead>
+<tr>
+<th>Before execution</th>
+<th>Expected after execution</th>
+<th>Must never occur</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Preconditions over authoritative state</td>
+<td>Intended effects</td>
+<td>Forbidden effects</td>
+</tr>
+</tbody></table></div>
+<p>Choose a registered verifier and specify behavior when authoritative state is unavailable. The closed predicate DSL supports JSON Pointer paths and the operators <code>exists</code>, <code>equals</code>, <code>unchanged</code>, <code>changedTo</code>, and <code>deltaWithin</code>. The builder must not accept arbitrary JavaScript or expressions.</p>
+<h4 id="step-5--inspect-generated-artifacts">Step 5 — Inspect generated artifacts<a class="palo-doc-anchor" href="#step-5--inspect-generated-artifacts" aria-label="Link to Step 5 — Inspect generated artifacts">#</a></h4><p>Switch among:</p>
+<ul>
+<li>plain-language policy;</li>
+<li>structured field view;</li>
+<li>generated canonical JSON;</li>
+<li>generated Rego and test fixtures;</li>
+<li>version diff.</li>
+</ul>
+<p>The visual builder proposes artifacts. Schema validation, policy evaluation, review, and environment authorization remain mandatory.</p>
+<h4 id="step-6--test-before-publishing">Step 6 — Test before publishing<a class="palo-doc-anchor" href="#step-6--test-before-publishing" aria-label="Link to Step 6 — Test before publishing">#</a></h4><p>Run at least:</p>
+<ul>
+<li>allowed happy path;</li>
+<li>malformed and missing-profile default deny;</li>
+<li>unknown tool and invalid argument deny;</li>
+<li>approval and exact-claim reuse test;</li>
+<li>replay, stale sequence, and expired claim tests;</li>
+<li>verified intended effect;</li>
+<li>mismatch and forbidden-effect detection;</li>
+<li>unavailable verifier and recovery behavior;</li>
+<li>bypass-path assessment.</li>
+</ul>
+<h4 id="step-7--review-and-publish">Step 7 — Review and publish<a class="palo-doc-anchor" href="#step-7--review-and-publish" aria-label="Link to Step 7 — Review and publish">#</a></h4><ol>
+<li>Review the generated artifacts and test results.</li>
+<li>Assign a semantic version.</li>
+<li>Submit the change to an authorized reviewer.</li>
+<li>Review the environment-specific diff.</li>
+<li>Promote only after validation and separation-of-duty checks.</li>
+<li>Record publisher identity, digest, time, and rollback target.</li>
+</ol>
+<p>The current registry write endpoints do not implement this lifecycle. Treat this as target behavior, not an existing control.</p>
+<h3 id="64-integrate-a-platform">6.4 Integrate a platform<a class="palo-doc-anchor" href="#64-integrate-a-platform" aria-label="Link to 6.4 Integrate a platform">#</a></h3><h4 id="code-first-or-mcp">Code-first or MCP<a class="palo-doc-anchor" href="#code-first-or-mcp" aria-label="Link to Code-first or MCP">#</a></h4><ol>
+<li>Validate Action Claim 1.2.</li>
+<li>Register profiles, policy, executor, and verifier.</li>
+<li>Expose only the required PALO MCP tools.</li>
+<li>Keep target credentials inside the governed executor.</li>
+<li>Remove direct paths from the agent to the target.</li>
+<li>Test <code>register -&gt; deny -&gt; approval -&gt; execute -&gt; sign -&gt; persist -&gt; verify</code>.</li>
+</ol>
+<h4 id="n8n">n8n<a class="palo-doc-anchor" href="#n8n" aria-label="Link to n8n">#</a></h4><ol>
+<li>Install the local <code>n8n-nodes-palo-ai</code> 0.2 preview package.</li>
+<li>Use <strong>PALO Governed Action</strong> for the full-cycle route.</li>
+<li>Route Verified, Review Required, Denied, and Execution Failed separately.</li>
+<li>Do not place an equivalent direct credential path beside the PALO node.</li>
+<li>Resume an approved action only with the exact immutable claim and approval identifier.</li>
+</ol>
+<p>The package is unpublished and not n8n-verified. A visual node alone is not an unavoidable execution boundary.</p>
+<h4 id="comparable-platforms">Comparable platforms<a class="palo-doc-anchor" href="#comparable-platforms" aria-label="Link to Comparable platforms">#</a></h4><ul>
+<li>Copilot Studio: expose only narrow PALO broker tools; disable equivalent direct actions.</li>
+<li>Dify: prefer a PALO-owned strategy or broker before <code>tool.invoke</code>.</li>
+<li>LangChain/LangGraph: combine middleware visibility with authoritative server-side enforcement.</li>
+<li>Node-RED: use an administrator-controlled runtime hook and protected-node registry.</li>
+<li>Make/Zapier: use brokered execution because a visual step cannot universally intercept native actions.</li>
+</ul>
+<p>Every adapter must publish its <code>enforcement_scope</code> and <code>known_bypass_paths</code>.</p>
+<h3 id="65-use-the-test-lab">6.5 Use the Test Lab<a class="palo-doc-anchor" href="#65-use-the-test-lab" aria-label="Link to 6.5 Use the Test Lab">#</a></h3><ol>
+<li>Select a draft version and isolated environment.</li>
+<li>Choose a test scenario.</li>
+<li>Review the generated claim and expected decision/outcome.</li>
+<li>Run the test.</li>
+<li>Compare expected and actual lifecycle states.</li>
+<li>Open any failed step for reason code and source evidence.</li>
+<li>Save the result against the draft version.</li>
+</ol>
+<p>Simulation mode must never invoke a protected production connector. A synthetic executor/verifier is required for safe demonstrations.</p>
+<h2 id="7-investigate-an-execution">7. Investigate an execution<a class="palo-doc-anchor" href="#7-investigate-an-execution" aria-label="Link to 7. Investigate an execution">#</a></h2><p>Open <strong>Investigate &gt; Executions</strong> and search by execution ID, case, agent, workflow, resource, tenant, or incident.</p>
+<p>The Action Explorer presents:</p>
+<ol>
+<li>normalized Action Claim and digest;</li>
+<li>Authority Profile and policy version;</li>
+<li>policy decision and reasons;</li>
+<li>approval and authenticated reviewer, when required;</li>
+<li>one-time capability issue and consumption;</li>
+<li>execution intent and trusted receipt;</li>
+<li>authoritative pre-state and post-state observations;</li>
+<li>Effect Contract checks;</li>
+<li>Outcome Attestation;</li>
+<li>Assurance Incident and resource-hold state.</li>
+</ol>
+<h3 id="interpret-terminal-states">Interpret terminal states<a class="palo-doc-anchor" href="#interpret-terminal-states" aria-label="Link to Interpret terminal states">#</a></h3><div class="palo-doc-table-wrap" tabindex="0" aria-label="Scrollable documentation table"><table>
+<thead>
+<tr>
+<th>State</th>
+<th>Meaning</th>
+<th>Next action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Verified</td>
+<td>Authoritative post-state satisfied the Effect Contract</td>
+<td>Close or monitor according to policy</td>
+</tr>
+<tr>
+<td>Mismatch</td>
+<td>Observed state violated an intended or forbidden effect</td>
+<td>Open/maintain incident, contain resource, investigate</td>
+</tr>
+<tr>
+<td>Inconclusive</td>
+<td>The result cannot be established reliably</td>
+<td>Keep hold where configured, restore verifier or reconcile manually</td>
+</tr>
+<tr>
+<td>Execution failed</td>
+<td>Trusted executor reported a failed attempt</td>
+<td>Investigate connector and verify whether any partial effect occurred</td>
+</tr>
+<tr>
+<td>Denied</td>
+<td>Authority/policy/precondition prevented execution</td>
+<td>Review reasons; correct configuration or leave denied</td>
+</tr>
+<tr>
+<td>Review required</td>
+<td>Approval or human assurance action is needed</td>
+<td>Assign authorized reviewer; do not bypass</td>
+</tr>
+</tbody></table></div>
+<p>Do not infer causality from matching final state after an unknown recovered call. The reference implementation explicitly treats that recovery case as inconclusive.</p>
+<h2 id="8-resolve-an-assurance-incident">8. Resolve an assurance incident<a class="palo-doc-anchor" href="#8-resolve-an-assurance-incident" aria-label="Link to 8. Resolve an assurance incident">#</a></h2><p>Mismatch and inconclusive outcomes can open an Assurance Incident and resource hold.</p>
+<ol>
+<li>Open <strong>Decisions &gt; Assurance incidents</strong>.</li>
+<li>Confirm tenant, resource, impact, and hold status.</li>
+<li>Review the Action Explorer timeline and verifier evidence.</li>
+<li>Assign a security or technical owner.</li>
+<li><strong>Acknowledge</strong> when investigation starts.</li>
+<li>Record findings and corrective actions.</li>
+<li>If compensation is needed, create a new governed Action Claim. Do not edit history or silently roll back.</li>
+<li><strong>Resolve</strong> only when evidence supports the resolution and an authorized principal can release the hold.</li>
+</ol>
+<p>The current preview supports list, get, acknowledge, and resolve operations, but it uses caller-supplied identity labels under a shared bearer token. Production use requires authenticated principals, authorization, assignment, and stronger hold integration.</p>
+<h2 id="9-evidence-and-audit-guide">9. Evidence and audit guide<a class="palo-doc-anchor" href="#9-evidence-and-audit-guide" aria-label="Link to 9. Evidence and audit guide">#</a></h2><p>Open <strong>Evidence</strong> to inspect or verify:</p>
+<ul>
+<li>claim, decision, approval, capability, receipt, attestation, and incident linkage;</li>
+<li>canonical digests and signature metadata;</li>
+<li>append-only ledger sequence and previous-event digest;</li>
+<li>last complete verification time and result;</li>
+<li>environment, release, key identifier, and retention metadata.</li>
+</ul>
+<p>Current <code>GET /v1/evidence/verify-ledger</code> and <code>palo_verify_ledger</code> verify the reference HMAC signatures and local hash chain. A valid result does not establish external immutability, independent timestamping, key non-compromise, or non-repudiation.</p>
+<p>Caller-supplied execution evidence is disabled by default. Use governed execution so the runtime generates the receipt and outcome evidence inside the trusted boundary.</p>
+<h2 id="10-accessibility-and-efficient-operation">10. Accessibility and efficient operation<a class="palo-doc-anchor" href="#10-accessibility-and-efficient-operation" aria-label="Link to 10. Accessibility and efficient operation">#</a></h2><ul>
+<li>Use keyboard navigation for all inventory, approval, investigation, and publishing tasks.</li>
+<li>Read status labels; color is supplemental.</li>
+<li>Use the data-table alternative for every chart.</li>
+<li>At 200% zoom, use single-column reading order rather than horizontal scrolling for core actions.</li>
+<li>Toggle reduced motion if animations interfere with investigation.</li>
+<li>Use plain-language definitions before opening structured or raw code views.</li>
+<li>Exact timestamps always include timezone; relative times are supplemental.</li>
+<li>Redacted content is labeled with the reason and required role.</li>
+</ul>
+<p>If a task cannot be completed with keyboard or assistive technology, report it as a release-blocking accessibility defect for that core journey.</p>
+<h2 id="11-troubleshooting">11. Troubleshooting<a class="palo-doc-anchor" href="#11-troubleshooting" aria-label="Link to 11. Troubleshooting">#</a></h2><div class="palo-doc-table-wrap" tabindex="0" aria-label="Scrollable documentation table"><table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Likely cause</th>
+<th>Safe response</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Metric shows no data</td>
+<td>Inventory, telemetry, or scope unavailable</td>
+<td>Treat as not measured; verify environment, filters, and freshness</td>
+</tr>
+<tr>
+<td>Action remains review required</td>
+<td>Missing/expired approval or unavailable pre-state</td>
+<td>Review exact claim and approval; restore authoritative verifier</td>
+</tr>
+<tr>
+<td>Approved claim is denied on resume</td>
+<td>Claim changed, expired, replayed, or policy/profile changed</td>
+<td>Generate a fresh claim and repeat evaluation/approval</td>
+</tr>
+<tr>
+<td>Outcome is inconclusive</td>
+<td>Verifier unavailable, malformed, stale, or recovered execution unknown</td>
+<td>Maintain review/hold and re-verify after restoring authority</td>
+</tr>
+<tr>
+<td>Ledger verification fails</td>
+<td>Signature or chain mismatch</td>
+<td>Stop assurance exports, preserve state, escalate to security owner</td>
+</tr>
+<tr>
+<td>n8n appears governed but target still executes directly</td>
+<td>Equivalent direct credential/tool path remains</td>
+<td>Remove the bypass or describe the integration as advisory</td>
+</tr>
+<tr>
+<td>User sees the wrong tenant/environment</td>
+<td>Context, session, or authorization defect</td>
+<td>Stop; do not act; report as a security incident</td>
+</tr>
+<tr>
+<td>Browser asks for a shared gateway token</td>
+<td>Unsupported direct-browser design</td>
+<td>Use a backend-for-frontend; never store the token in browser state</td>
+</tr>
+</tbody></table></div>
+<h2 id="12-acceptance-checklist-for-a-guided-pilot">12. Acceptance checklist for a guided pilot<a class="palo-doc-anchor" href="#12-acceptance-checklist-for-a-guided-pilot" aria-label="Link to 12. Acceptance checklist for a guided pilot">#</a></h2><h3 id="executive">Executive<a class="palo-doc-anchor" href="#executive" aria-label="Link to Executive">#</a></h3><ul>
+<li><input disabled type="checkbox" /> Named business and technical owners exist.</li>
+<li><input disabled type="checkbox" /> Scope, environment, data class, and release boundary are visible.</li>
+<li><input disabled type="checkbox" /> Coverage, authority, outcome, and operations are separate dimensions.</li>
+<li><input disabled type="checkbox" /> At least one mismatch or inconclusive scenario is explained accurately.</li>
+<li><input disabled type="checkbox" /> The executive can identify a decision and owner in under two minutes.</li>
+<li><input disabled type="checkbox" /> The exported report includes denominators, freshness, evidence links, and limitations.</li>
+</ul>
+<h3 id="technical">Technical<a class="palo-doc-anchor" href="#technical" aria-label="Link to Technical">#</a></h3><ul>
+<li><input disabled type="checkbox" /> A direct tool path fails or is explicitly recorded as a known bypass.</li>
+<li><input disabled type="checkbox" /> Malformed, unknown, stale, expired, and replayed claims fail closed.</li>
+<li><input disabled type="checkbox" /> Approval is bound to one immutable claim and resolves once.</li>
+<li><input disabled type="checkbox" /> One synthetic action completes the full verified cycle.</li>
+<li><input disabled type="checkbox" /> One wrong effect creates mismatch, incident, and hold.</li>
+<li><input disabled type="checkbox" /> One verifier failure produces an inconclusive outcome.</li>
+<li><input disabled type="checkbox" /> Generated contracts validate and required tests are attached to the version.</li>
+<li><input disabled type="checkbox" /> No shared service credential is available to browser JavaScript.</li>
+</ul>
+<h3 id="accessibility">Accessibility<a class="palo-doc-anchor" href="#accessibility" aria-label="Link to Accessibility">#</a></h3><ul>
+<li><input disabled type="checkbox" /> Core tasks are keyboard operable.</li>
+<li><input disabled type="checkbox" /> Status does not depend on color.</li>
+<li><input disabled type="checkbox" /> Charts have textual and tabular alternatives.</li>
+<li><input disabled type="checkbox" /> Errors are announced and linked to recovery actions.</li>
+<li><input disabled type="checkbox" /> Core journeys pass manual screen-reader checks.</li>
+</ul>
+<h2 id="13-what-works-now-and-what-remains-target-behavior">13. What works now and what remains target behavior<a class="palo-doc-anchor" href="#13-what-works-now-and-what-remains-target-behavior" aria-label="Link to 13. What works now and what remains target behavior">#</a></h2><div class="palo-doc-table-wrap" tabindex="0" aria-label="Scrollable documentation table"><table>
+<thead>
+<tr>
+<th>Area</th>
+<th>Current developer preview</th>
+<th>Required for the proposed Hub</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Full-cycle contracts</td>
+<td>Implemented schemas and prototype runtime flow</td>
+<td>Schema-driven forms, explanations, version lifecycle</td>
+</tr>
+<tr>
+<td>Registry</td>
+<td>Prototype versioned local records</td>
+<td>Authenticated publishers, owners, filters, promotion and signed bundles</td>
+</tr>
+<tr>
+<td>Approvals</td>
+<td>Prototype exact-claim state machine</td>
+<td>Principal identity, assignment, step-up auth, notifications and role enforcement</td>
+</tr>
+<tr>
+<td>Executions/outcomes</td>
+<td>Prototype detail and verification endpoints</td>
+<td>Search/list, projections, pagination, redaction and durable async operation</td>
+</tr>
+<tr>
+<td>Incidents</td>
+<td>Prototype list/detail/resolve</td>
+<td>Assignment, SLA, comments, remediation and stronger hold integration</td>
+</tr>
+<tr>
+<td>Ledger</td>
+<td>Prototype local HMAC/hash-chain verification</td>
+<td>KMS/HSM, scoped export, retention and external anchoring where needed</td>
+</tr>
+<tr>
+<td>Executive metrics</td>
+<td>Not implemented</td>
+<td>Inventory denominator, KPI service, ownership, trends and snapshots</td>
+</tr>
+<tr>
+<td>Human identity/RBAC</td>
+<td>Not implemented; shared bearer token only</td>
+<td>OIDC, sessions, tenant RBAC/ABAC, audit and separation of duties</td>
+</tr>
+<tr>
+<td>Production data plane</td>
+<td>Single-instance SQLite reference</td>
+<td>PostgreSQL, queue/outbox, HA, PITR and recovery testing</td>
+</tr>
+</tbody></table></div>
+<h2 id="14-recommended-rollout">14. Recommended rollout<a class="palo-doc-anchor" href="#14-recommended-rollout" aria-label="Link to 14. Recommended rollout">#</a></h2><ol>
+<li><strong>Validate the experience</strong> with clickable prototypes and separate executive/technical usability tests.</li>
+<li><strong>Release a local Technical Console</strong> over current preview APIs for isolated demonstrations.</li>
+<li><strong>Add the guided Workbench</strong> with generated contracts, simulations, change review, and versioning.</li>
+<li><strong>Add the Executive Cockpit</strong> only after defensible inventory, ownership, KPI denominators, and drill-down exist.</li>
+<li><strong>Run a single-tenant design-partner pilot</strong> after OIDC, RBAC, PostgreSQL, KMS, notifications, backup/restore, and independent security review.</li>
+<li><strong>Claim production readiness only after</strong> HA, workload identity, recovery exercises, penetration testing/retest, cryptographic review, and operational ownership.</li>
+</ol>
+<h2 id="15-related-documentation">15. Related documentation<a class="palo-doc-anchor" href="#15-related-documentation" aria-label="Link to 15. Related documentation">#</a></h2><ul>
+<li><a href="palo-ai-governance-hub-product-spec.html">Governance Hub product specification</a></li>
+<li><a href="palo-ai-full-cycle-assurance.html">Full-cycle assurance</a></li>
+<li><a href="palo-ai-adoption-paths.html">Adoption paths</a></li>
+<li><a href="palo-ai-governance-integration-guide.html">Governance integration guide</a></li>
+<li><a href="palo-ai-cloud-reference-architecture.html">Cloud reference architecture</a></li>
+<li><a href="palo-ai-security-assurance-and-scale.html">Security assurance and scale plan</a></li>
+<li><a href="../agentic/capability-matrix.json">Current capability matrix</a></li>
+</ul>
+</article></div>
+      <aside class="palo-doc-next"><div><small>Prerequisite</small><strong>No technical prerequisite</strong></div><div><small>Recommended next step</small><strong>Open the Governance Hub</strong></div></aside>
+      <section class="palo-doc-feedback" aria-labelledby="feedback-title"><p class="palo-eyebrow">Privacy-first feedback</p><h2 id="feedback-title">Help improve this guide</h2><p>Your feedback stays in your browser until you explicitly copy it, download it, or open an email draft. Do not include secrets, personal data, credentials or production identifiers.</p><form data-doc-feedback><div class="palo-form-grid"><div class="palo-field"><label for="feedback-role">Your role</label><select id="feedback-role" name="role"><option>Executive / governance owner</option><option>Platform or security engineer</option><option>No-code / low-code builder</option><option>External reviewer</option></select></div><div class="palo-field"><label for="feedback-category">Category</label><select id="feedback-category" name="category"><option>Clarity</option><option>Technical accuracy</option><option>Missing guidance</option><option>Accessibility</option></select></div><div class="palo-field palo-field-full"><label for="feedback-message">Feedback</label><textarea id="feedback-message" name="message" maxlength="3000" required placeholder="Describe the non-sensitive improvement you recommend."></textarea></div><div class="palo-form-actions"><button class="palo-btn" type="button" data-feedback-copy>Copy feedback</button><button class="palo-btn palo-btn-secondary" type="button" data-feedback-download>Download JSON</button><button class="palo-btn palo-btn-secondary" type="button" data-feedback-email>Email draft</button></div></div><p class="palo-action-status" data-feedback-status role="status" aria-live="polite"></p></form></section>
+    </div>
+  </main>
+  <footer class="palo-footer"><div class="palo-shell"><p>PALO public documentation. Developer preview boundaries apply.</p><div class="palo-footer-links"><a href="../PALO_AIGovernance.html">PALO-AI</a><a href="../governance-hub/">Governance Hub</a><a href="../PALO_AgenticCapabilityMatrix.html">Capability Matrix</a><a href="../PALO_AIProductionReadiness.html">Production Readiness</a><a href="../privacy-policy.html">Privacy</a></div></div></footer>
+</body></html>

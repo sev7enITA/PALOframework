@@ -1,0 +1,13 @@
+{
+  "format": "palo-evidence-bundle",
+  "schemaVersion": "1.0.0",
+  "bundleId": "bundle-assessment-001",
+  "caseId": "case-procurement-001",
+  "generatedAt": "2026-07-12T09:00:00.000Z",
+  "assessment": { "systemName": "Procurement assistant" },
+  "artifacts": [{ "artifactId": "route-001", "title": "Assessment route", "kind": "assessment-route", "status": "ready" }],
+  "sourceRegistry": [{ "sourceId": "eu-ai-act", "title": "Artificial Intelligence Act", "url": "https://eur-lex.europa.eu/eli/reg/2024/1689/oj/eng", "sourceType": "official", "publisher": "European Union", "checkedAt": "2026-07-12T08:00:00.000Z", "freshness": { "status": "current", "reviewIntervalDays": 90, "nextReviewAt": "2026-10-10T08:00:00.000Z" } }],
+  "freshness": { "evaluatedAt": "2026-07-12T09:00:00.000Z", "status": "current" },
+  "disclaimer": "Educational governance support only.",
+  "extensionExample": { "preserved": true }
+}

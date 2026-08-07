@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paloframework.org/schemas/palo-p2-index.schema.json",
+  "title": "PALO P2 Adoption Index",
+  "type": "object",
+  "required": ["format", "schemaVersion", "status", "artifacts", "workedCases", "templates"],
+  "properties": {
+    "format": { "const": "palo-p2-adoption-index" },
+    "schemaVersion": { "const": "1.0.0" },
+    "status": { "const": "educational-non-production" },
+    "artifacts": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/artifact" } },
+    "workedCases": { "type": "array", "minItems": 6, "items": { "$ref": "#/$defs/case" } },
+    "templates": { "type": "array", "minItems": 5, "items": { "$ref": "#/$defs/template" } }
+  },
+  "$defs": {
+    "artifact": {
+      "type": "object",
+      "required": ["artifactId", "kind", "path", "schemaPath"],
+      "properties": { "artifactId": { "type": "string" }, "kind": { "type": "string" }, "path": { "type": "string" }, "schemaPath": { "type": "string" } },
+      "additionalProperties": false
+    },
+    "case": {
+      "type": "object",
+      "required": ["caseId", "domain", "path", "controlIds", "indicatorIds", "gateIds", "sourceIds", "templateIds"],
+      "properties": {
+        "caseId": { "type": "string" }, "domain": { "type": "string" }, "path": { "type": "string" },
+        "controlIds": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string" } },
+        "indicatorIds": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string" } },
+        "gateIds": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string" } },
+        "sourceIds": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string" } },
+        "templateIds": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string" } }
+      },
+      "additionalProperties": false
+    },
+    "template": {
+      "type": "object",
+      "required": ["templateId", "title", "path", "gateIds"],
+      "properties": { "templateId": { "type": "string" }, "title": { "type": "string" }, "path": { "type": "string" }, "gateIds": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string" } } },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

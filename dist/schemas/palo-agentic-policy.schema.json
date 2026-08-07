@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paloframework.org/schemas/palo-agentic-policy.schema.json",
+  "title": "PALO Policy Registration",
+  "description": "Developer-preview policy-manifest contract. The v2.5 reference runtime does not authenticate the publisher or attest that the active OPA bundle matches this manifest.",
+  "type": "object",
+  "required": ["format", "schemaVersion", "policyId", "policyVersion", "status", "regoPackage", "entrypoint", "bundleDigest"],
+  "properties": {
+    "format": { "const": "palo-agentic-policy" },
+    "schemaVersion": { "const": "1.0.0" },
+    "policyId": { "type": "string", "pattern": "^policy-[a-zA-Z0-9._-]{3,100}$" },
+    "policyVersion": { "type": "string", "pattern": "^[1-9][0-9]*\\.[0-9]+\\.[0-9]+$" },
+    "status": { "enum": ["active", "suspended", "retired"] },
+    "regoPackage": { "type": "string", "pattern": "^[a-zA-Z0-9_.]+$" },
+    "entrypoint": { "type": "string", "minLength": 1, "maxLength": 300 },
+    "bundleDigest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+    "metadata": { "type": "object", "additionalProperties": true }
+  },
+  "additionalProperties": false
+}

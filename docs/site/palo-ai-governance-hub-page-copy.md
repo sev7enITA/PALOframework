@@ -1,8 +1,8 @@
 # PALO-AI Governance Hub — website copy draft
 
-Status: English copy deck for a proposed role-based governance interface, prepared 19 July 2026.
+Status: English copy deck for the implemented role-based Governance Hub prototype, updated 19 July 2026.
 
-This document is publication copy, not evidence that the Governance Hub user interface has already been implemented. Any live page must retain the developer-preview boundary below until the capability matrix and independent assurance gates support stronger claims.
+The Governance Hub user interface is now implemented and tested as a React/Vite prototype using illustrative local data. This copy is not evidence of a live runtime connection or production security boundary. Any live page must retain the developer-preview boundary below until the capability matrix and independent assurance gates support stronger claims.
 
 ## SEO and sharing metadata
 
@@ -52,7 +52,7 @@ Secondary navigation CTA: **Review the architecture on GitHub**
 
 ## Announcement ribbon
 
-**PALO-AI v2.5 developer preview** — full-cycle reference contracts and runtime are available for isolated evaluation. The role-based Governance Hub described on this page is the proposed interaction layer and is not yet a production service.
+**PALO-AI v2.5 developer preview** — full-cycle reference contracts, runtime and an interactive mock-data Governance Hub are available for isolated evaluation. The Hub is not yet connected through a production BFF and is not a production service.
 
 ## Hero
 
@@ -117,9 +117,11 @@ An execution log proves that something ran. It does not prove that the intended 
 
 ```mermaid
 flowchart LR
-    EC["Executive Cockpit<br/>Exposure · outcomes · decisions"] --> HUB["PALO-AI Governance Hub<br/>Shared governance source of truth"]
+    EC["Executive Cockpit<br/>Exposure · outcomes · decisions"] --> HUB["PALO-AI Governance Hub<br/>Interactive browser prototype"]
     TW["Technical Workbench<br/>Configure · test · operate"] --> HUB
-    HUB --> RT["PALO-AI reference runtime"]
+    HUB --> MOCK["Illustrative local data<br/>current prototype"]
+    HUB -. "planned authenticated path" .-> BFF["BFF<br/>OIDC · RBAC · tenant context"]
+    BFF --> RT["PALO-AI reference runtime"]
     RT --> ORCH["n8n and agentic orchestrators"]
     RT --> SYS["Protected systems and authoritative state"]
 ```
@@ -393,7 +395,7 @@ No. The visual gate is bypassable when another node or workflow retains direct t
 
 ### Is the Governance Hub available now?
 
-The underlying v2.5 contracts and reference runtime are available for developer evaluation. The Executive Cockpit and Technical Workbench described here are the proposed role-based GUI and should not be presented as implemented until the repository contains tested source and the capability matrix is updated.
+Yes, as an interactive developer-preview prototype. The Executive Cockpit and Technical Workbench are implemented with illustrative local data and can be used for demonstrations and structured usability evaluation. They are not yet connected to live runtime data and must not be presented as a production, multi-user governance service.
 
 ### Can this be used in production?
 

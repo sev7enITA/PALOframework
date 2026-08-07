@@ -1,0 +1,23 @@
+{
+  "format": "palo-agentic-interface",
+  "schemaVersion": "1.0.0",
+  "agentId": "agent-bad",
+  "identity": {
+    "role": "Bad agent",
+    "lineage": "bad-lineage",
+    "baseModel": "gpt-4",
+    "systemPromptHash": "short-hash-invalid",
+    "temperature": 3.5
+  },
+  "authority": {
+    "allowedTools": [],
+    "externalNetwork": true,
+    "readScopes": [],
+    "writeScopes": []
+  },
+  "delegation": {
+    "maxSubagents": -1,
+    "allowedSubagentRoles": [],
+    "requireHumanValidation": false
+  }
+}

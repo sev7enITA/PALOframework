@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>PALO Agentic Interface (PALO-AI) — Full-Cycle Developer Preview | PALO Documentation</title>
+  <meta name="description" content="Public PALO documentation: PALO Agentic Interface (PALO-AI) — Full-Cycle Developer Preview.">
+  <link rel="canonical" href="https://paloframework.org/examples/agentic-interface/README.html">
+  <link rel="icon" type="image/webp" href="../../assets/logo.webp">
+  <link rel="stylesheet" href="../../assets/palo-icons.css">
+  <link rel="stylesheet" href="../../assets/palo-v21.css?v=2.5.0">
+  <link rel="stylesheet" href="../../assets/palo-docs.css">
+  <script src="../../assets/palo-icons.js" defer></script>
+  <script src="../../assets/palo-v21.js?v=2.5.0" defer></script>
+  <script src="../../assets/palo-docs.js" defer></script>
+</head>
+<body class="palo-v21 palo-doc-page" data-doc-source="examples/agentic-interface/README.md">
+  <a class="palo-skip-link" href="#main-content">Skip to main content</a>
+  <header class="palo-site-header"><div class="palo-shell palo-header-inner">
+    <a class="palo-brand" href="../../index.html"><img src="../../assets/logo.webp" alt="PALO">PALO FRAMEWORK</a>
+    <button class="palo-menu-toggle" type="button" data-palo-menu-toggle aria-expanded="false" aria-controls="palo-primary-nav" aria-label="Open navigation"><span data-palo-icon="menu" aria-hidden="true"></span></button>
+    <nav class="palo-nav" id="palo-primary-nav" aria-label="Primary navigation"><a href="../../designs/theory-to-practice-infographic/">Start</a><a href="../../PALO_AIGovernance.html">Agentic Governance</a><a href="../../governance-hub/">Governance Hub</a><a href="../../index.html#guided-journeys">Tools</a><a href="../../PALO_DocumentationLibrary.html" aria-current="page">Documentation</a><a href="../../PALO_AIProductionReadiness.html">Readiness</a></nav>
+  </div></header>
+  <main id="main-content" class="palo-doc-main">
+    <div class="palo-shell">
+      <nav class="palo-doc-breadcrumb" aria-label="Breadcrumb"><a href="../../PALO_DocumentationLibrary.html">Documentation Library</a><span aria-hidden="true">/</span><span>Templates and examples</span></nav>
+      <header class="palo-doc-hero"><p class="palo-eyebrow">Templates and examples · Public documentation</p><h1>PALO Agentic Interface (PALO-AI) — Full-Cycle Developer Preview</h1><div class="palo-doc-facts"><span><small>Level</small><strong>guide</strong></span><span><small>Audience</small><strong>governance · technical · builder</strong></span><span><small>Product</small><strong>PALO-AI</strong></span><span><small>Status</small><strong>Current Guidance</strong></span><span><small>Read</small><strong>4 min</strong></span></div><p class="palo-doc-source">Published HTML view · Source: <code>examples/agentic-interface/README.md</code></p><div class="palo-actions"><button class="palo-btn" type="button" data-doc-copy-link>Copy link</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-share>Share page</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-print>Print</button></div><p class="palo-action-status" data-doc-action-status role="status" aria-live="polite"></p></header>
+      <details class="palo-doc-mobile-toc"><summary>On this page</summary><ol><li class="depth-2"><a href="#demonstrated-trust-model-and-missing-production-controls">Demonstrated trust model and missing production controls</a></li><li class="depth-2"><a href="#canonical-contracts">Canonical contracts</a></li><li class="depth-2"><a href="#run-and-validate">Run and validate</a></li><li class="depth-2"><a href="#mcp-tools">MCP tools</a></li><li class="depth-2"><a href="#approval-delivery-boundary">Approval delivery boundary</a></li><li class="depth-2"><a href="#known-limitations-before-production-use">Known limitations before production use</a></li></ol></details>
+      <div class="palo-doc-layout"><aside class="palo-doc-sidebar" aria-label="On this page"><strong>On this page</strong><ol><li class="depth-2"><a href="#demonstrated-trust-model-and-missing-production-controls">Demonstrated trust model and missing production controls</a></li><li class="depth-2"><a href="#canonical-contracts">Canonical contracts</a></li><li class="depth-2"><a href="#run-and-validate">Run and validate</a></li><li class="depth-2"><a href="#mcp-tools">MCP tools</a></li><li class="depth-2"><a href="#approval-delivery-boundary">Approval delivery boundary</a></li><li class="depth-2"><a href="#known-limitations-before-production-use">Known limitations before production use</a></li></ol></aside><article class="palo-doc-content"><h1 id="palo-agentic-interface-palo-ai--full-cycle-developer-preview">PALO Agentic Interface (PALO-AI) — Full-Cycle Developer Preview<a class="palo-doc-anchor" href="#palo-agentic-interface-palo-ai--full-cycle-developer-preview" aria-label="Link to PALO Agentic Interface (PALO-AI) — Full-Cycle Developer Preview">#</a></h1><p>PALO-AI v2.5 publishes governance contracts and a non-production reference runtime for autonomous agents and agent teams. It demonstrates registered authority profiles, Action Claim 1.2, digest-bound approval, one-time execution capabilities, trusted receipts, authoritative outcome attestations and held assurance incidents.</p>
+<blockquote>
+<p><strong>Do not use this developer preview to authorize or execute production tools, access sensitive data, or support consequential decisions.</strong> It is not an audited security boundary, compliance certification, exactly-once executor, production identity service, trusted human-approval system, or production evidence platform. Mode A is partially prototyped; Mode B collaborative agent teams remain specified only.</p>
+</blockquote>
+<h2 id="demonstrated-trust-model-and-missing-production-controls">Demonstrated trust model and missing production controls<a class="palo-doc-anchor" href="#demonstrated-trust-model-and-missing-production-controls" aria-label="Link to Demonstrated trust model and missing production controls">#</a></h2><ul>
+<li>The reference API can register versioned agent profiles, executors and verifiers, but v2.5 does not authenticate distinct administrative roles or cryptographically attest publishers and connector binaries.</li>
+<li>Signing secrets stay in <code>PALO_HMAC_KEYS_JSON</code> or the deployment secret manager. Public profiles contain only a <code>keyId</code>.</li>
+<li>Dify and n8n are thin clients of the authenticated PALO gateway. They do not decide locally or sign evidence.</li>
+<li>OPA outages, malformed claims, missing adapters and failed authoritative reads fail closed. Exactly-once external execution is claimed only where the connector provides reliable idempotency; multi-replica durability remains future work.</li>
+<li>Tool arguments are schema-validated and their canonical digest is verified. Evidence is redacted; secrets must never be admitted by a tool argument schema.</li>
+<li>The default gateway binds to <code>127.0.0.1</code>. The included bearer token is a developer control only and does not provide principal identity, role separation, workload identity, reviewer authentication, administrative authorization, rotation, rate limiting, or TLS termination.</li>
+<li>For remote clients, use the repository's VPS topology and public HTTPS Gateway/MCP endpoints; <code>127.0.0.1</code> remains only the local default or a VPS-local administration binding.</li>
+</ul>
+<h2 id="canonical-contracts">Canonical contracts<a class="palo-doc-anchor" href="#canonical-contracts" aria-label="Link to Canonical contracts">#</a></h2><div class="palo-doc-table-wrap" tabindex="0" aria-label="Scrollable documentation table"><table>
+<thead>
+<tr>
+<th>Contract</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>schemas/palo-agentic-interface.schema.json</code></td>
+<td>Trusted identity and authority profile</td>
+</tr>
+<tr>
+<td><code>schemas/palo-agentic-action-claim.schema.json</code></td>
+<td>Expiring, replay-resistant proposed action</td>
+</tr>
+<tr>
+<td><code>schemas/palo-agentic-effect-contract.schema.json</code></td>
+<td>Preconditions, intended effects and forbidden effects</td>
+</tr>
+<tr>
+<td><code>schemas/palo-agentic-policy.schema.json</code></td>
+<td>Trusted versioned OPA policy registration</td>
+</tr>
+<tr>
+<td><code>schemas/palo-agentic-policy-input.schema.json</code></td>
+<td>Exact fail-closed OPA input envelope</td>
+</tr>
+<tr>
+<td><code>schemas/palo-agentic-policy-decision.schema.json</code></td>
+<td>OPA decision and obligations</td>
+</tr>
+<tr>
+<td><code>schemas/palo-agentic-approval.schema.json</code></td>
+<td>Human approval bound to an exact claim digest</td>
+</tr>
+<tr>
+<td><code>schemas/palo-agentic-evidence-envelope.schema.json</code></td>
+<td>Redacted, HMAC-signed, hash-chained audit event</td>
+</tr>
+<tr>
+<td><code>schemas/palo-agentic-execution-capability.schema.json</code></td>
+<td>Short-lived, one-time execution authority</td>
+</tr>
+<tr>
+<td><code>schemas/palo-agentic-execution-receipt.schema.json</code></td>
+<td>Trusted record of the actual execution attempt</td>
+</tr>
+<tr>
+<td><code>schemas/palo-agentic-outcome-attestation.schema.json</code></td>
+<td>Verified, mismatched or inconclusive observed outcome</td>
+</tr>
+<tr>
+<td><code>schemas/palo-agentic-assurance-incident.schema.json</code></td>
+<td>Human resolution record and resource hold</td>
+</tr>
+</tbody></table></div>
+<h2 id="run-and-validate">Run and validate<a class="palo-doc-anchor" href="#run-and-validate" aria-label="Link to Run and validate">#</a></h2><figure class="palo-doc-code"><figcaption>bash code</figcaption><pre tabindex="0"><code class="language-bash">npm ci
+npm run opa:install
+.tools/opa/opa run --server examples/policy-as-code/agent-delegation.rego</code></pre></figure><p>In a second shell:</p>
+<figure class="palo-doc-code"><figcaption>bash code</figcaption><pre tabindex="0"><code class="language-bash">export PALO_OPA_URL=http://127.0.0.1:8181
+export PALO_HMAC_KEYS_JSON='{"key-support-2026":"replace-with-at-least-32-secret-bytes"}'
+npm run palo:mcp</code></pre></figure><p>Use <code>PALO_MCP_HTTP_TOKEN=... npm run palo:mcp:http</code> only for isolated testing of the experimental Streamable HTTP transport. Use <code>npm run palo:gateway</code> with a strong <code>PALO_GATEWAY_TOKEN</code> only for local evaluation of Web, Android, Dify and n8n examples. Run <code>npm run validate:agentic</code> to validate all twelve contracts, compile and test Rego, exercise both MCP transports, test replay, approval, governed execution, mismatch and incident behavior, and verify the SQLite hash chain. Passing these tests does not establish production readiness.</p>
+<h2 id="mcp-tools">MCP tools<a class="palo-doc-anchor" href="#mcp-tools" aria-label="Link to MCP tools">#</a></h2><p>The executable catalog is synchronized with <code>mcp-server-spec.json</code>:</p>
+<ul>
+<li><code>palo_register_agent</code></li>
+<li><code>palo_register_policy</code></li>
+<li><code>palo_register_executor</code></li>
+<li><code>palo_register_verifier</code></li>
+<li><code>palo_get_registry</code></li>
+<li><code>palo_verify_action_authority</code></li>
+<li><code>palo_execute_governed_action</code></li>
+<li><code>palo_get_execution_status</code></li>
+<li><code>palo_verify_outcome</code></li>
+<li><code>palo_request_approval</code></li>
+<li><code>palo_get_approval_status</code></li>
+<li><code>palo_list_approvals</code></li>
+<li><code>palo_resolve_approval</code></li>
+<li><code>palo_submit_evidence</code></li>
+<li><code>palo_verify_evidence</code></li>
+<li><code>palo_verify_ledger</code></li>
+<li><code>palo_list_incidents</code></li>
+<li><code>palo_get_incident</code></li>
+<li><code>palo_resolve_incident</code></li>
+</ul>
+<p>An allowed policy decision remains only permission to attempt the action. Full-cycle assurance is established separately through the capability, trusted receipt and Outcome Attestation. The legacy <code>palo_submit_evidence</code> tool is retained for local compatibility, while the REST equivalent is disabled by default because caller-supplied success is not trusted evidence.</p>
+<h2 id="approval-delivery-boundary">Approval delivery boundary<a class="palo-doc-anchor" href="#approval-delivery-boundary" aria-label="Link to Approval delivery boundary">#</a></h2><p>The reference runtime provides a prototype approval state machine and MCP/gateway resolution endpoints. It does not provide authenticated reviewer identity, a production approval roster, sufficient human-readable action context, device attestation, or hosted push notifications. Web and mobile clients demonstrate the contract only; they must not be used for real authorization decisions.</p>
+<h2 id="known-limitations-before-production-use">Known limitations before production use<a class="palo-doc-anchor" href="#known-limitations-before-production-use" aria-label="Link to Known limitations before production use">#</a></h2><ul>
+<li>Separate and authenticate administrator, agent, reviewer, auditor, and connector roles.</li>
+<li>Replace the SQLite/outbox preview with PostgreSQL, durable work queues and explicit connector idempotency contracts.</li>
+<li>Revalidate claim expiry, current authority, policy version, and approval on every execution attempt.</li>
+<li>Attest executor and verifier workloads, protect their credentials and separate their identities from agent callers.</li>
+<li>Replace environment-only HMAC secrets with organization-owned key custody, rotation, revocation, and external anchoring.</li>
+<li>Replace self-attested Vibe Gate metadata with trusted signed gate evidence and an unavoidable tool proxy.</li>
+<li>Preserve the exact immutable claim across connector retries and approval resume.</li>
+<li>Implement the Mode B Team Registry, Shared Task Claim, peer assignment, leases, conflicts, and team evidence model.</li>
+<li>Complete threat modelling, security testing, observability, backup/restore, retention, incident response, and a distributed staging E2E.</li>
+</ul>
+</article></div>
+      <aside class="palo-doc-next"><div><small>Prerequisite</small><strong>No specialist prerequisite stated</strong></div><div><small>Recommended next step</small><strong>Return to the Documentation Library</strong></div></aside>
+      <section class="palo-doc-feedback" aria-labelledby="feedback-title"><p class="palo-eyebrow">Privacy-first feedback</p><h2 id="feedback-title">Help improve this guide</h2><p>Your feedback stays in your browser until you explicitly copy it, download it, or open an email draft. Do not include secrets, personal data, credentials or production identifiers.</p><form data-doc-feedback><div class="palo-form-grid"><div class="palo-field"><label for="feedback-role">Your role</label><select id="feedback-role" name="role"><option>Executive / governance owner</option><option>Platform or security engineer</option><option>No-code / low-code builder</option><option>External reviewer</option></select></div><div class="palo-field"><label for="feedback-category">Category</label><select id="feedback-category" name="category"><option>Clarity</option><option>Technical accuracy</option><option>Missing guidance</option><option>Accessibility</option></select></div><div class="palo-field palo-field-full"><label for="feedback-message">Feedback</label><textarea id="feedback-message" name="message" maxlength="3000" required placeholder="Describe the non-sensitive improvement you recommend."></textarea></div><div class="palo-form-actions"><button class="palo-btn" type="button" data-feedback-copy>Copy feedback</button><button class="palo-btn palo-btn-secondary" type="button" data-feedback-download>Download JSON</button><button class="palo-btn palo-btn-secondary" type="button" data-feedback-email>Email draft</button></div></div><p class="palo-action-status" data-feedback-status role="status" aria-live="polite"></p></form></section>
+    </div>
+  </main>
+  <footer class="palo-footer"><div class="palo-shell"><p>PALO public documentation. Developer preview boundaries apply.</p><div class="palo-footer-links"><a href="../../PALO_AIGovernance.html">PALO-AI</a><a href="../../governance-hub/">Governance Hub</a><a href="../../PALO_AgenticCapabilityMatrix.html">Capability Matrix</a><a href="../../PALO_AIProductionReadiness.html">Production Readiness</a><a href="../../privacy-policy.html">Privacy</a></div></div></footer>
+</body></html>
