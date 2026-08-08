@@ -20,7 +20,7 @@ jobs:
       - name: Apply README update
         run: python3 .github/readme-recognition-update.py
 
-      - name: Validate and publish
+      - name: Validate and publish branch
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -29,4 +29,4 @@ jobs:
           git add README.md .github/readme-recognition-update.py .github/workflows/_temp-connection-test.yml
           git diff --cached --check
           git commit -m "Publish PALO citation and recognition details"
-          git push
+          git push origin HEAD:refs/heads/agent/palo-citation-recognition
