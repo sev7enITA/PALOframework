@@ -73,6 +73,7 @@ export const PUBLIC_FILES = [
   "assets/palo-ai-n8n-scenarios/real-n8n-runtime-denied.png",
   "assets/palo-ai-n8n-scenarios/real-n8n-workflow.png",
   "assets/palo-ai-governance-hub/guided-builder-reference.png",
+  "assets/palo-ai-integrations/microsoft-agt/palo-microsoft-agt-interoperability-workflow.png",
   "data/p1-governance-definitions.json",
   "data/control-library.json",
   "data/decision-gates.json",
