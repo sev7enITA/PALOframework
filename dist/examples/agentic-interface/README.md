@@ -23,7 +23,8 @@ PALO-AI v2.5 publishes governance contracts and a non-production reference runti
 | `schemas/palo-agentic-effect-contract.schema.json` | Preconditions, intended effects and forbidden effects |
 | `schemas/palo-agentic-policy.schema.json` | Trusted versioned OPA policy registration |
 | `schemas/palo-agentic-policy-input.schema.json` | Exact fail-closed OPA input envelope |
-| `schemas/palo-agentic-policy-decision.schema.json` | OPA decision and obligations |
+| `schemas/palo-agentic-enforcement-provider.schema.json` | Vendor-neutral pre-action enforcement-provider manifest |
+| `schemas/palo-agentic-policy-decision.schema.json` | Policy decision, obligations and provider evidence reference |
 | `schemas/palo-agentic-approval.schema.json` | Human approval bound to an exact claim digest |
 | `schemas/palo-agentic-evidence-envelope.schema.json` | Redacted, HMAC-signed, hash-chained audit event |
 | `schemas/palo-agentic-execution-capability.schema.json` | Short-lived, one-time execution authority |
@@ -47,7 +48,11 @@ export PALO_HMAC_KEYS_JSON='{"key-support-2026":"replace-with-at-least-32-secret
 npm run palo:mcp
 ```
 
-Use `PALO_MCP_HTTP_TOKEN=... npm run palo:mcp:http` only for isolated testing of the experimental Streamable HTTP transport. Use `npm run palo:gateway` with a strong `PALO_GATEWAY_TOKEN` only for local evaluation of Web, Android, Dify and n8n examples. Run `npm run validate:agentic` to validate all twelve contracts, compile and test Rego, exercise both MCP transports, test replay, approval, governed execution, mismatch and incident behavior, and verify the SQLite hash chain. Passing these tests does not establish production readiness.
+Use `PALO_MCP_HTTP_TOKEN=... npm run palo:mcp:http` only for isolated testing of the experimental Streamable HTTP transport. Use `npm run palo:gateway` with a strong `PALO_GATEWAY_TOKEN` only for local evaluation of Web, Android, Dify and n8n examples. Run `npm run validate:agentic` to validate all thirteen contracts, compile and test Rego, exercise both MCP transports, test replay, approval, governed execution, mismatch and incident behavior, and verify the SQLite hash chain. Passing these tests does not establish production readiness.
+
+## Optional Microsoft AGT ACS provider
+
+The [Microsoft AGT integration proposal](https://github.com/sev7enITA/PALOframework/tree/main/examples/agentic-interface/integrations/microsoft-agt) maps an immutable PALO Action Claim and digest-bound approval to ACS `pre_tool_call`, while PALO retains capability issuance, governed execution and authoritative outcome verification. It is optional, version-pinned and maintained by PALO; Microsoft has not endorsed or accepted it at the time of publication.
 
 ## MCP tools
 

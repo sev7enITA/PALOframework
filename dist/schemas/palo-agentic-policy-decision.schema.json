@@ -18,7 +18,20 @@
     "claimDigest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
     "decidedAt": { "type": "string", "format": "date-time" },
     "approvalId": { "type": "string", "pattern": "^approval-[a-f0-9-]{36}$" },
-    "obligations": { "type": "array", "items": { "type": "string", "minLength": 1 } }
+    "obligations": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+    "enforcementProvider": {
+      "type": "object",
+      "description": "Portable reference to the provider that produced the pre-action decision. It is evidence linkage, not vendor endorsement or proof of provider integrity.",
+      "required": ["providerId", "providerVersion", "policyReference"],
+      "properties": {
+        "providerId": { "type": "string", "pattern": "^provider-[a-zA-Z0-9][a-zA-Z0-9._-]{2,100}$" },
+        "providerVersion": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+(?:-[0-9A-Za-z.-]+)?$" },
+        "policyReference": { "type": "string", "minLength": 1, "maxLength": 500 },
+        "decisionReference": { "type": "string", "minLength": 1, "maxLength": 500 },
+        "evidenceDigest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" }
+      },
+      "additionalProperties": false
+    }
   },
   "allOf": [
     { "if": { "properties": { "status": { "const": "pending_approval" } }, "required": ["status"] }, "then": { "properties": { "approvalId": {} }, "required": ["approvalId"] } }
