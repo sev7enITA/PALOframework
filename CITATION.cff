@@ -1,5 +1,5 @@
 cff-version: "1.2.0"
-message: "If you use the PALO Framework in research or practice, please cite the preferred PALO paper and, where appropriate, the software release itself."
+message: "If you use the PALO Framework in research or practice, please cite the published PALO article in preferred-citation and, where appropriate, the software release itself."
 title: "PALO Framework: Principled AI Lifecycle Orchestration"
 type: software
 authors:
@@ -23,10 +23,16 @@ keywords:
   - "ISO/IEC 42001"
   - "governance as code"
 preferred-citation:
-  type: unpublished
+  type: article
   authors:
     - family-names: "Degni"
       given-names: "Fabrizio"
-  title: "The PALO Framework: A Paradigm for Principled AI Lifecycle Orchestration in Business"
+  title: "Il Framework PALO per la Corporate Governance dell'IA: un paradigma per l'orchestrazione del ciclo di vita dell'Intelligenza Artificiale basato su principi in ambito aziendale"
+  journal: "Rivista Corporate Governance"
+  issue-title: "Numero Straordinario - 2026"
+  issue-date: "2026-03-04"
   year: 2026
-  url: "https://github.com/sev7enITA/PALOframework/blob/main/ThePALOFramework_%20A_Paradigm_for_Principled_AI_Lifecycle_OrchestrationInBusiness%20v1%20Feb%202026.pdf"
+  issn: "2784-8647"
+  publisher:
+    name: "G. Giappichelli Editore"
+  url: "https://www.rivistacorporategovernance.it/Tool/NewsletterArchive/Detail/view_html?anno=2026&id_newsletter=27"
