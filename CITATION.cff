@@ -1,0 +1,32 @@
+cff-version: "1.2.0"
+message: "If you use the PALO Framework in research or practice, please cite the preferred PALO paper and, where appropriate, the software release itself."
+title: "PALO Framework: Principled AI Lifecycle Orchestration"
+type: software
+authors:
+  - family-names: "Degni"
+    given-names: "Fabrizio"
+version: "2.5.0"
+date-released: "2026-07-18"
+license: MIT
+repository-code: "https://github.com/sev7enITA/PALOframework"
+url: "https://www.paloframework.org"
+abstract: "PALO (Principled AI Lifecycle Orchestration) is an open-source framework and toolkit for operational AI governance, translating principles, laws, standards and organizational requirements into lifecycle decisions, risk assessments, evidence artifacts, governance controls, KPIs/KRIs and repeatable governance gates, including governance patterns for agentic AI systems."
+keywords:
+  - "AI governance"
+  - "Responsible AI"
+  - "agentic AI"
+  - "AI agents"
+  - "AI risk management"
+  - "human oversight"
+  - "EU AI Act"
+  - "NIST AI RMF"
+  - "ISO/IEC 42001"
+  - "governance as code"
+preferred-citation:
+  type: unpublished
+  authors:
+    - family-names: "Degni"
+      given-names: "Fabrizio"
+  title: "The PALO Framework: A Paradigm for Principled AI Lifecycle Orchestration in Business"
+  year: 2026
+  url: "https://github.com/sev7enITA/PALOframework/blob/main/ThePALOFramework_%20A_Paradigm_for_Principled_AI_Lifecycle_OrchestrationInBusiness%20v1%20Feb%202026.pdf"
