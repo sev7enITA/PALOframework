@@ -1,4 +1,4 @@
-# PALO Framework
+# P.A.L.O. Framework
 
 **Principled AI Lifecycle Orchestration**
 
@@ -8,7 +8,7 @@
 [![Website](https://img.shields.io/badge/Website-paloframework.org-21808D)](https://paloframework.org)
 [![GitHub](https://img.shields.io/badge/GitHub-sev7enITA%2FPALOframework-black)](https://github.com/sev7enITA/PALOframework)
 
-PALO is an open-source framework and toolkit for operational AI governance. It helps teams translate principles, laws, and standards into lifecycle decisions, risk assessments, evidence artifacts, KPIs/KRIs, and repeatable governance gates.
+P.A.L.O. is an open-source framework and toolkit for operational AI governance. It helps teams translate principles, laws, and standards into lifecycle decisions, risk assessments, evidence artifacts, KPIs/KRIs, and repeatable governance gates.
 
 - Website: [paloframework.org](https://paloframework.org)
 - Android: [P.A.L.O. Framework Toolbox on Google Play](https://play.google.com/store/apps/details?id=com.fabriziodegni.paloframework)
