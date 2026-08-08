@@ -1,6 +1,6 @@
 # News draft — PALO outcome assurance for Microsoft AGT
 
-Status: editorial draft. The first version may be published after committing a reproducible release. The acceptance version is conditional and must not be used before upstream confirmation.
+Status: evaluation post ready for publication after the updated PALO website is deployed. Updated 8 August 2026. The acceptance version is conditional and must not be used before upstream confirmation.
 
 ## Version A — publishable as an evaluation proposal
 
@@ -37,22 +37,37 @@ Publication links:
 
 - Integration commit: https://github.com/sev7enITA/PALOframework/commit/c373825
 - Integration quickstart: https://github.com/sev7enITA/PALOframework/tree/c373825/examples/agentic-interface/integrations/microsoft-agt
-- PALO review discussion: https://github.com/sev7enITA/PALOframework/pull/6
+- Merged PALO implementation: https://github.com/sev7enITA/PALOframework/pull/6
+- Architecture infographic: https://github.com/sev7enITA/PALOframework/blob/6f806bf8557c3fadbdb9676f93a894853ea102d3/assets/palo-ai-integrations/microsoft-agt/palo-microsoft-agt-interoperability-workflow.png
+- Microsoft AGT evaluation discussion: https://github.com/microsoft/agent-governance-toolkit/discussions/3647
 - Public news page: https://paloframework.org/docs/community/palo-microsoft-agt-interoperability-proposal.html
 
 ## Short LinkedIn / community post
 
-Policy can allow an agent action. That does not prove the intended effect occurred.
+Policy can allow an agent action. That does not prove the intended effect actually occurred.
 
-PALO has published a vendor-neutral interoperability proposal for Microsoft Agent Governance Toolkit ACS. AGT evaluates the action at `pre_tool_call`; PALO binds approval and execution evidence, then independently verifies authoritative post-state.
+PALO has published a vendor-neutral interoperability proposal for Microsoft Agent Governance Toolkit ACS.
 
-The demo shows both `allowed -> verified` and `allowed -> wrong outcome -> incident hold`.
+The boundary is deliberately complementary:
 
-This is a PALO-maintained community proposal, not a Microsoft endorsement. We are looking for technical feedback from AGT maintainers and practitioners.
+- AGT evaluates the proposed action at `pre_tool_call`.
+- PALO binds the decision to an immutable Action Claim, digest-bound approval and one-time capability.
+- After execution, PALO checks authoritative business state independently of the tool response.
 
-https://paloframework.org/docs/community/palo-microsoft-agt-interoperability-proposal.html
+The runnable demo shows both:
 
-https://github.com/sev7enITA/PALOframework/pull/6
+- `allowed -> executed -> verified`
+- `allowed -> wrong outcome -> incident hold`
+
+The adapter remains optional and PALO's provider boundary remains vendor-neutral. This is a PALO-maintained community proposal for evaluation, not a Microsoft-maintained or Microsoft-endorsed integration.
+
+We have opened the technical boundary for maintainer and practitioner feedback:
+
+PALO evaluation: https://paloframework.org/docs/community/palo-microsoft-agt-interoperability-proposal.html
+
+Microsoft AGT Discussion #3647: https://github.com/microsoft/agent-governance-toolkit/discussions/3647
+
+#AIGovernance #AgenticAI #OpenSource #OutcomeAssurance
 
 ## Version B — use only after upstream acceptance
 

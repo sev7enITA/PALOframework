@@ -5,8 +5,8 @@
         <link>https://paloframework.org</link>
         <description>Latest updates, tools, and insights from the PALO Framework - Principled AI Lifecycle Orchestration for responsible AI governance.</description>
         <language>en</language>
-        <lastBuildDate>Sun, 19 Jul 2026 12:00:00 +0200</lastBuildDate>
-        <pubDate>Sun, 19 Jul 2026 12:00:00 +0200</pubDate>
+        <lastBuildDate>Sat, 08 Aug 2026 03:30:00 +0200</lastBuildDate>
+        <pubDate>Sat, 08 Aug 2026 03:30:00 +0200</pubDate>
         <ttl>60</ttl>
         <atom:link href="https://paloframework.org/feed.xml" rel="self" type="application/rss+xml"/>
         <image>
@@ -20,6 +20,17 @@
         <category>AI Governance</category>
         <category>Responsible AI</category>
         <category>EU AI Act</category>
+        <item>
+            <title>PALO + Microsoft AGT - Vendor-Neutral Interoperability Proposal</title>
+            <link>https://paloframework.org/docs/community/palo-microsoft-agt-interoperability-proposal.html</link>
+            <description><![CDATA[PALO has published an evaluation proposal that maps immutable PALO Action Claims to Microsoft Agent Governance Toolkit ACS pre-tool-call decisions while retaining independent post-action outcome verification. The optional adapter is PALO-maintained, vendor-neutral and not endorsed by Microsoft. Maintainer and practitioner feedback is invited in Microsoft AGT Discussion #3647.]]></description>
+            <pubDate>Fri, 07 Aug 2026 21:30:00 +0200</pubDate>
+            <guid isPermaLink="true">https://paloframework.org/docs/community/palo-microsoft-agt-interoperability-proposal.html</guid>
+            <dc:creator>PALO Framework</dc:creator>
+            <category>Agentic AI</category>
+            <category>Interoperability</category>
+            <category>Outcome Assurance</category>
+        </item>
         <item>
             <title>PALO-AI Governance Hub - Guided Product Prototype</title>
             <link>https://paloframework.org/governance-hub/</link>
