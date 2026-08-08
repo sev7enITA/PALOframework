@@ -18,8 +18,9 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Update README citation and recognition
-        shell: python
+        shell: bash
         run: |
+          python3 <<'PY'
           from pathlib import Path
 
           path = Path("README.md")
@@ -76,8 +77,10 @@ These references provide research, provenance, and external context. The reposit
 
           text = text[:start] + recognition + text[end:]
           path.write_text(text, encoding="utf-8")
+          PY
 
       - name: Commit publication
+        shell: bash
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
