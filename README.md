@@ -17,6 +17,20 @@ PALO is an open-source framework and toolkit for operational AI governance. It h
 
 ---
 
+## Cite PALO
+
+PALO is both an open-source governance framework and a published research artifact. GitHub citation metadata are maintained in [`CITATION.cff`](CITATION.cff), which provides the preferred academic citation for the framework.
+
+**Preferred research citation**
+
+> Degni, F. (2026). *Il Framework PALO per la Corporate Governance dell'IA: un paradigma per l'orchestrazione del ciclo di vita dell'Intelligenza Artificiale basato su principi in ambito aziendale*. Rivista Corporate Governance, Numero Straordinario 2026. G. Giappichelli Editore. ISSN 2724-1068 / EISSN 2784-8647.
+
+- [Cite this repository](CITATION.cff)
+- [Published paper and recognition sources](PALO_Recognition.html)
+- [PALO v1 research paper in the repository](ThePALOFramework_%20A_Paradigm_for_Principled_AI_Lifecycle_OrchestrationInBusiness%20v1%20Feb%202026.pdf)
+
+---
+
 ## Overview
 
 PALO (Principled AI Lifecycle Orchestration) is designed for organizations that need practical AI governance across the full lifecycle: ideation, risk classification, design, development, deployment, monitoring, incident response, and decommissioning.
@@ -140,15 +154,25 @@ The app is designed as a privacy-first mobile workspace for contextual AI govern
 
 See [CHANGELOG.md](CHANGELOG.md) for the full release history.
 
-## Recognition And Public References
+## Research, Publication And Public Recognition
 
-PALO has been discussed in public AI governance and responsible innovation contexts, including:
+PALO's public record is separated below by evidence type so that a journal publication, a public presentation, and independent media or institutional references are not presented as equivalent forms of recognition. The [Recognition & Sources](PALO_Recognition.html) page provides the underlying links and verification notes.
 
-- A Reuters-distributed announcement referenced by the [World AI Council](https://www.linkedin.com/posts/world-ai-council_at-the-world-ai-council-we-are-incredibly-activity-7438233663349133312-9akN)
-- Coverage of the P.A.L.O. Framework Toolbox 2.0 and Human Economic Forum context by [Rivista AI](https://www.rivista.ai/2026/03/25/p-a-l-o-framework-toolbox-2-0-governance-in-your-pocket-o-lillusione-portatile-del-controllo-algoritmico/)
-- Reference to "The PALO Framework for AI Corporate Governance" in the 2026 special issue index of [Rivista Corporate Governance](https://images.rivistacorporategovernance.it/f/indici/NumeroStraordinario_2026_tUAZh_RCG.pdf)
+### Research publication
 
-These references are useful context, but the repository remains the source for the open toolkit and implementation artifacts.
+- **Rivista Corporate Governance, Numero Straordinario 2026.** Fabrizio Degni's PALO paper, *"Il Framework PALO per la Corporate Governance dell'IA: un paradigma per l'orchestrazione del ciclo di vita dell'Intelligenza Artificiale basato su principi in ambito aziendale"*, was published on 4 March 2026 by **G. Giappichelli Editore**. The journal carries **ISSN 2724-1068 / EISSN 2784-8647**. This publication is also the repository's [`preferred-citation`](CITATION.cff).
+
+### Public presentation and provenance
+
+- **Human Economic Forum 2025.** The official programme for the 9 December 2025 event at the Italian Chamber of Deputies lists Fabrizio Degni in the panel *Diritto, responsabilità e coesione sociale*. The event forms part of the documented public provenance of PALO and its creator. [Open the programme](https://www.humaneconomicforum.org/documents/programma_9-dic-2025.pdf).
+
+### Independent coverage and public references
+
+- **World AI Council.** A public World AI Council post refers to PALO and notes recognition through Reuters coverage. [Read the public reference](https://www.linkedin.com/posts/world-ai-council_at-the-world-ai-council-we-are-incredibly-activity-7438233663349133312-9akN).
+- **Rivista AI.** Independent coverage examined the P.A.L.O. Framework Toolbox 2.0 in the context of AI governance and the Human Economic Forum. [Read the article](https://www.rivista.ai/2026/03/25/p-a-l-o-framework-toolbox-2-0-governance-in-your-pocket-o-lillusione-portatile-del-controllo-algoritmico/).
+- **Rivista Corporate Governance.** The publisher's 2026 special-issue materials include the PALO contribution in the issue record. [Open the special issue index](https://images.rivistacorporategovernance.it/f/indici/NumeroStraordinario_2026_tUAZh_RCG.pdf).
+
+These references provide research, provenance, and external context. The repository and framework documentation remain the source of truth for PALO's current implementation, capabilities, release status, and technical boundaries.
 
 ## Quick Start
 
