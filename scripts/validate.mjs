@@ -89,6 +89,7 @@ for (const relativePath of privatePublicationPaths) {
 async function validateP1Fixtures() {
   const caseSchema = JSON.parse(await readFile(path.join(validationRoot, "schemas/palo-case-file.schema.json"), "utf8"));
   const bundleSchema = JSON.parse(await readFile(path.join(validationRoot, "schemas/palo-evidence-bundle.schema.json"), "utf8"));
+  const localReceiptSchema = JSON.parse(await readFile(path.join(validationRoot, "schemas/palo-local-validation-receipt.schema.json"), "utf8"));
   const agenticSchema = JSON.parse(await readFile(path.join(validationRoot, "schemas/palo-agentic-interface.schema.json"), "utf8"));
   ajv.addSchema(caseSchema);
   ajv.addSchema(agenticSchema);
@@ -98,6 +99,7 @@ async function validateP1Fixtures() {
     "palo-agentic-interface": ajv.getSchema(agenticSchema.$id)
   };
   caseFileValidator = validators["palo-case-file"];
+  ajv.compile(localReceiptSchema);
   for (const [name, validator] of Object.entries(validators)) {
     for (const expectation of ["valid", "invalid"]) {
       const file = `schemas/fixtures/${name}.${expectation}.json`;
@@ -106,6 +108,17 @@ async function validateP1Fixtures() {
       if (expectation === "valid" && !result) errors.push(`${file}: expected valid fixture failed schema: ${ajv.errorsText(validator.errors)}`);
       if (expectation === "invalid" && result) errors.push(`${file}: intentionally invalid fixture unexpectedly passed schema`);
     }
+  }
+  const goldCases = [
+    "evidence-pack/cases/agentic-invoice-exception.case.json",
+    "evidence-pack/cases/hr-learning-assistant.case.json",
+    "evidence-pack/cases/procurement-bid-summary.case.json"
+  ];
+  for (const file of goldCases) {
+    const fixture = JSON.parse(await readFile(path.join(validationRoot, file), "utf8"));
+    if (!caseFileValidator(fixture)) errors.push(`${file}: gold case failed PALO Case File schema: ${ajv.errorsText(caseFileValidator.errors)}`);
+    if (fixture.context?.goldCase !== true || !Number.isInteger(fixture.context?.completionMinutes) || fixture.context.completionMinutes >= 10) errors.push(`${file}: gold case must declare goldCase=true and completionMinutes below 10`);
+    if (!fixture.context?.declaredAuthority?.allowed?.length || !fixture.context?.declaredAuthority?.prohibited?.length || !fixture.context?.verificationMethod) errors.push(`${file}: gold case must declare allowed/prohibited authority and an independent verification method`);
   }
   const definitions = JSON.parse(await readFile(path.join(validationRoot, "data/p1-governance-definitions.json"), "utf8"));
   if (definitions.schemaVersion !== "1.0.0" || !Array.isArray(definitions.triggers) || !definitions.triggers.length) errors.push("data/p1-governance-definitions.json: requires v1 definitions and at least one trigger");
@@ -363,7 +376,9 @@ for (const [name, module] of Object.entries(manifest.modules || {})) {
   if (!/^\d+\.\d+\.\d+$/.test(module.version || "") || !/^\d{4}-\d{2}-\d{2}$/.test(module.date || "")) errors.push(`release-manifest.json: module ${name} requires SemVer version and ISO date`);
 }
 const semanticModule = manifest.modules?.semanticFoundation;
-if (semanticModule?.version !== releaseVersion || semanticModule?.date !== releaseDate) errors.push("release-manifest.json: semanticFoundation must match the root release version and date");
+const semanticReleaseMajor = String(semanticModule?.version || "").split(".")[0];
+const platformReleaseMajor = String(releaseVersion || "").split(".")[0];
+if (semanticReleaseMajor !== platformReleaseMajor || semanticModule?.date > releaseDate) errors.push("release-manifest.json: semanticFoundation must remain in the platform release major and cannot postdate it");
 if (semanticModule?.semanticSpine !== "data/semantic-spine.json" || semanticModule?.semanticRelease !== "data/semantic-release-manifest.json") errors.push("release-manifest.json: semanticFoundation canonical paths are incomplete");
 if (new Set(semanticModule?.evidenceBoundaryModel || []).size !== 4 || new Set(semanticModule?.workspaces || []).size !== 3) errors.push("release-manifest.json: semanticFoundation requires four authority classes and three workspaces");
 const hubModule = manifest.modules?.agenticGovernanceHub;

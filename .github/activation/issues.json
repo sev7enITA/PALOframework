@@ -1,0 +1,62 @@
+[
+  {
+    "title": "[Case] Independently replay the agentic invoice gold case",
+    "labels": ["activation", "case", "good first issue"],
+    "body": "## Goal\nReplay the preloaded agentic invoice case from a clean clone and check whether the dossier distinguishes permission from verified effect.\n\n## Scope\nOne case only: `evidence-pack/cases/agentic-invoice-exception.case.json`. Do not propose a new module.\n\n## Acceptance criteria\n- Record setup time and time to the first local receipt.\n- Identify any ambiguous allowed or prohibited action.\n- Verify the receipt digest changes after a material case edit.\n- Report whether the dossier supports a proceed, pause or stop decision.\n\n## Safety boundary\nUse synthetic data only. Validation is not certification or production approval."
+  },
+  {
+    "title": "[Case] Review the HR learning assistant decision boundary",
+    "labels": ["activation", "case", "governance"],
+    "body": "## Goal\nReview whether the HR gold case cleanly separates optional learning support from employment decisions.\n\n## Scope\n`evidence-pack/cases/hr-learning-assistant.case.json` only.\n\n## Acceptance criteria\n- Identify one plausible prohibited inference not already named, or explain why the list is sufficient.\n- Check whether a reviewer can identify the accountable decision owner.\n- Propose one bounded evidence improvement.\n- Make no jurisdiction-wide legal conclusion."
+  },
+  {
+    "title": "[Case] Verify procurement gold-case sources and decision rights",
+    "labels": ["activation", "case", "documentation"],
+    "body": "## Goal\nCheck source freshness and decision rights in the procurement bid-summary gold case.\n\n## Scope\n`evidence-pack/cases/procurement-bid-summary.case.json` only.\n\n## Acceptance criteria\n- Verify every source URL and review date.\n- Confirm scoring and award authority remain outside the assistant boundary.\n- Add or propose one traceability check from bid source to summary.\n- Keep the example synthetic and non-production."
+  },
+  {
+    "title": "[Adapter] Accept a Case File from stdin in the local validator",
+    "labels": ["activation", "adapter", "good first issue"],
+    "body": "## Goal\nAllow `npm run evidence:validate -- -` to validate a Case File supplied through stdin.\n\n## Acceptance criteria\n- Existing file-path behavior remains unchanged.\n- Stdin input has a documented size limit and rejects invalid JSON clearly.\n- Receipt output remains local and deterministic for the same case content.\n- Add Node tests for valid, invalid and oversized input.\n\n## Non-goal\nNo network API or hosted upload."
+  },
+  {
+    "title": "[Adapter] Add an n8n export-to-Evidence-Pack example",
+    "labels": ["activation", "adapter", "n8n"],
+    "body": "## Goal\nCreate one isolated n8n example that exports a synthetic PALO Case File for local Evidence Pack validation.\n\n## Acceptance criteria\n- Uses the existing n8n developer-preview boundary.\n- Produces a Case File that passes `npm run case:contribute -- --validate-all`.\n- Requires no production credentials or personal data.\n- Documents that n8n orchestration does not itself verify the declared outcome.\n\n## Non-goal\nPublishing or claiming an n8n-verified community node."
+  },
+  {
+    "title": "[Threat test] Reject a validation receipt after case tampering",
+    "labels": ["activation", "threat-test", "security"],
+    "body": "## Goal\nAdd a negative test proving that a receipt no longer matches after a material Case File change.\n\n## Acceptance criteria\n- Start from the agentic invoice gold case and its receipt.\n- Change one authority or expected-effect field.\n- Demonstrate a digest mismatch with a deterministic test.\n- Document what the receipt does and does not protect.\n\n## Non-goal\nClaiming signer identity, non-repudiation or independent assurance."
+  },
+  {
+    "title": "[Threat test] Prove the browser Evidence Pack has no mandatory telemetry",
+    "labels": ["activation", "threat-test", "privacy"],
+    "body": "## Goal\nAdd a browser test that fails if the Evidence Pack sends case or receipt content over the network.\n\n## Acceptance criteria\n- Intercept browser requests after page load.\n- Complete the preloaded case, generate and download a receipt.\n- Assert no request contains case answers, receipt content or identifiers.\n- Allow only documented static asset requests required to load the page.\n- Record the tested browser and route."
+  },
+  {
+    "title": "[Threat test] Add a missing-authority negative gold-case fixture",
+    "labels": ["activation", "threat-test", "governance"],
+    "body": "## Goal\nShow that a structurally valid Case File can still be decision-misleading when authority boundaries are absent.\n\n## Acceptance criteria\n- Add one intentionally misleading educational fixture.\n- The base Case File schema may pass, but Evidence Pack readiness must fail or warn.\n- The result names the missing allowed action, prohibited action and verification method.\n- Add a test and plain-language explanation."
+  },
+  {
+    "title": "[Mapping] Review Evidence Pack claims against the EU AI Act source",
+    "labels": ["activation", "mapping", "governance"],
+    "body": "## Goal\nReview only the EU AI Act references and wording exposed by the three gold cases.\n\n## Acceptance criteria\n- Link each material regulatory statement to the exact official source location.\n- Separate source-backed statement, PALO interpretation and open applicability question.\n- Remove or narrow any overbroad claim.\n- Record the source check date.\n\n## Non-goal\nProviding legal advice or a complete compliance mapping."
+  },
+  {
+    "title": "[Mapping] Trace NIST and ISO references to Evidence Pack decisions",
+    "labels": ["activation", "mapping", "documentation"],
+    "body": "## Goal\nMake the NIST AI RMF and ISO/IEC 42001 references actionable for the exact Evidence Pack decisions they support.\n\n## Acceptance criteria\n- Map each reference to a named decision or evidence field.\n- Identify whether the source is official, standard or interpretive.\n- Add a review date and an applicability caveat.\n- Do not reproduce paywalled standards text."
+  },
+  {
+    "title": "[Accessibility] Complete the Evidence Pack with keyboard and screen reader",
+    "labels": ["activation", "accessibility", "good first issue"],
+    "body": "## Goal\nComplete the preloaded case and receipt flow without a pointer device.\n\n## Acceptance criteria\n- Test current Chrome or Firefox with one named screen reader.\n- Confirm logical heading order, field labels, focus order and live-region announcements.\n- Confirm every action has a visible focus state and at least a 44px target.\n- Report exact steps and one screenshot or accessibility-tree excerpt for each failure."
+  },
+  {
+    "title": "[Accessibility] Verify Evidence Pack at 390px and 200 percent zoom",
+    "labels": ["activation", "accessibility", "good first issue"],
+    "body": "## Goal\nVerify the complete Evidence Pack path on a 390px viewport and at 200 percent browser zoom.\n\n## Acceptance criteria\n- No horizontal page overflow.\n- Primary CTA, form, results, receipt actions and disclaimers remain visible and operable.\n- Text does not overlap or truncate material meaning.\n- Add a browser smoke assertion for any reproducible regression."
+  }
+]

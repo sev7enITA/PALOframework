@@ -5,7 +5,7 @@ type: software
 authors:
   - family-names: "Degni"
     given-names: "Fabrizio"
-version: "3.0.0"
+version: "3.0.1"
 date-released: "2026-08-12"
 license: MIT
 repository-code: "https://github.com/sev7enITA/PALOframework"

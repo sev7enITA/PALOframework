@@ -21,6 +21,17 @@
         <category>Responsible AI</category>
         <category>EU AI Act</category>
         <item>
+            <title>PALO v3.0.1 - Evidence Pack Activation</title>
+            <link>https://paloframework.org/PALO_AssessmentPath.html</link>
+            <description><![CDATA[PALO v3.0.1 makes Evidence Pack the primary activation route with a preloaded local case, three gold cases, a voluntary SHA-256 validation receipt, Community Casebook contribution tooling and a 30-day new-module freeze.]]></description>
+            <pubDate>Wed, 12 Aug 2026 13:00:00 +0200</pubDate>
+            <guid isPermaLink="true">https://paloframework.org/PALO_AssessmentPath.html</guid>
+            <dc:creator>PALO Framework</dc:creator>
+            <category>Evidence Pack</category>
+            <category>Community Activation</category>
+            <category>Operational Evidence</category>
+        </item>
+        <item>
             <title>PALO v3.0.0 - Semantic Foundation</title>
             <link>https://paloframework.org/docs/palo-v3-semantic-foundation.html</link>
             <description><![CDATA[PALO v3.0.0 adds a canonical semantic spine, lifecycle and append-only gate decisions, atomic evidence contracts, RDF/SHACL validation, versioned mappings, public authority boundaries and a digest-bound semantic release inventory.]]></description>

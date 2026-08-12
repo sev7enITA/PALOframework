@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: PALO Evidence Pack questions and feedback
+    url: https://github.com/sev7enITA/PALOframework/discussions
+    about: Use the canonical Discussion channel for questions, reviewer findings and activation feedback.
+  - name: Private security reporting
+    url: https://github.com/sev7enITA/PALOframework/security/advisories/new
+    about: Report vulnerabilities privately. Do not publish exploit details or secrets in an issue or Discussion.
