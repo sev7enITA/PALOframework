@@ -4,6 +4,7 @@ The canonical deploy input is the `dist/` directory produced by:
 
 ```sh
 npm ci
+npm ci --prefix governance-hub --ignore-scripts
 npm run build
 npm run validate:dist
 npm run build:check

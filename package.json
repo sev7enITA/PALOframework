@@ -28,7 +28,8 @@
     "build": "node scripts/build.mjs",
     "build:check": "node scripts/build.mjs --check",
     "smoke": "node scripts/browser-smoke.mjs",
-    "p0": "npm run validate:agentic && npm run validate && npm run build && npm run validate:dist && npm run build:check && npm run smoke"
+    "p0:bootstrap": "npm ci --prefix governance-hub --ignore-scripts && npm run opa:install",
+    "p0": "npm run p0:bootstrap && npm run validate:agentic && npm run validate && npm run build && npm run validate:dist && npm run build:check && npm run smoke"
   },
   "devDependencies": {
     "fast-xml-parser": "5.10.1",

@@ -61,6 +61,12 @@ try {
       failures.push(`${page.url()}: local request failed: ${request.url()} (${request.failure()?.errorText || "unknown error"})`);
     }
   });
+  page.on("response", (response) => {
+    const responseUrl = new URL(response.url());
+    if (responseUrl.origin === baseUrl && response.status() >= 400) {
+      failures.push(`${page.url()}: local response failed: ${response.url()} (${response.status()})`);
+    }
+  });
 
   for (const file of PUBLIC_HTML) {
     // Wait for styles and other subresources before navigating to the next page.

@@ -16,6 +16,8 @@ npx playwright install chromium
 npm run p0
 ```
 
+After the root `npm ci`, `npm run p0` installs the locked Governance Hub dependencies and the checksum-verified OPA binary. This makes the release gate independent from pre-existing local caches or nested `node_modules` directories.
+
 Before the public build, v3 semantic assets follow deterministic projection and conformance checks:
 
 ```sh

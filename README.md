@@ -190,7 +190,7 @@ Open the [PALO Stakeholder Onboarding](https://paloframework.org/designs/theory-
 
 The website remains static. The optional, non-production PALO-AI reference runtime uses Node.js 20+ and OPA.
 
-To validate or regenerate the v3 semantic foundation, use `npm run semantic:validate`, `npm run semantic:generate`, and `npm run semantic:release`. The full release gate remains `npm run p0`.
+To validate or regenerate the v3 semantic foundation, use `npm run semantic:validate`, `npm run semantic:generate`, and `npm run semantic:release`. The full release gate remains `npm run p0`; it bootstraps the locked Governance Hub dependencies and the verified OPA binary so the gate is reproducible from a clean clone after the root `npm ci`.
 
 ```bash
 git clone https://github.com/sev7enITA/PALOframework.git

@@ -33,6 +33,7 @@ No unreleased changes.
 - Documentation Library is the canonical source-backed documentation destination; Documentation Hub remains a backward-compatible transition page.
 - README, citation metadata, lifecycle narrative, naming convention and roadmap are reconciled with the v3.0.0 Semantic Foundation release.
 - Local assessment outputs and specifically identified private or third-party research inputs are excluded from accidental staging.
+- The P0 gate now bootstraps locked Governance Hub dependencies and the verified OPA binary for clean-clone reproducibility.
 
 ### Validation
 
