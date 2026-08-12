@@ -1,4 +1,4 @@
-# PALO-AI Governance Hub — website copy draft
+# PALO-AI Governance Hub - website copy draft
 
 Status: English copy deck for the implemented role-based Governance Hub prototype, updated 19 July 2026.
 
@@ -20,7 +20,7 @@ Explore a role-based control plane for agentic automation: executive assurance, 
 
 **Open Graph title**
 
-PALO-AI Governance Hub — from permitted actions to verified outcomes
+PALO-AI Governance Hub - from permitted actions to verified outcomes
 
 **Open Graph description**
 
@@ -52,7 +52,7 @@ Secondary navigation CTA: **Review the architecture on GitHub**
 
 ## Announcement ribbon
 
-**PALO-AI v2.5 developer preview** — full-cycle reference contracts, runtime and an interactive mock-data Governance Hub are available for isolated evaluation. The Hub is not yet connected through a production BFF and is not a production service.
+**PALO-AI v2.5 developer preview** - full-cycle reference contracts, runtime and an interactive mock-data Governance Hub are available for isolated evaluation. The Hub is not yet connected through a production BFF and is not a production service.
 
 ## Hero
 
@@ -84,7 +84,7 @@ Helper: Compare a direct tool call with a governed, verified path using syntheti
 
 ### Tertiary link
 
-**See what is implemented, prototyped and still specified →**
+**See what is implemented, prototyped and still specified ->**
 
 ### Hero proof line
 
@@ -98,7 +98,7 @@ Permission is necessary. It is not proof of correctness.
 
 ### Copy
 
-An agent can choose a valid tool, present valid arguments and pass an authorization policy—and still produce the wrong result because its source state was stale, its assumption was incorrect or the external system behaved differently than expected.
+An agent can choose a valid tool, present valid arguments and pass an authorization policy - and still produce the wrong result because its source state was stale, its assumption was incorrect or the external system behaved differently than expected.
 
 Most governance views stop at **allowed**. PALO-AI extends the lifecycle to ask a second question: **did the protected system actually reach the declared outcome?**
 
@@ -117,10 +117,10 @@ An execution log proves that something ran. It does not prove that the intended 
 
 ```mermaid
 flowchart LR
-    EC["Executive Cockpit<br/>Exposure · outcomes · decisions"] --> HUB["PALO-AI Governance Hub<br/>Interactive browser prototype"]
-    TW["Technical Workbench<br/>Configure · test · operate"] --> HUB
+    EC["Executive Cockpit<br/>Exposure | outcomes | decisions"] --> HUB["PALO-AI Governance Hub<br/>Interactive browser prototype"]
+    TW["Technical Workbench<br/>Configure | test | operate"] --> HUB
     HUB --> MOCK["Illustrative local data<br/>current prototype"]
-    HUB -. "planned authenticated path" .-> BFF["BFF<br/>OIDC · RBAC · tenant context"]
+    HUB -. "planned authenticated path" .-> BFF["BFF<br/>OIDC | RBAC | tenant context"]
     BFF --> RT["PALO-AI reference runtime"]
     RT --> ORCH["n8n and agentic orchestrators"]
     RT --> SYS["Protected systems and authoritative state"]
@@ -145,7 +145,7 @@ FOR EXECUTIVES, BUSINESS OWNERS AND RISK LEADERS
 
 ### Headline
 
-See where agentic operations are controlled—and where assurance is still missing.
+See where agentic operations are controlled - and where assurance is still missing.
 
 ### Copy
 
@@ -178,7 +178,7 @@ Generate a review packet with current exposure, changes, incidents, remediation 
 
 **Review the executive concept**
 
-Supporting link: **Download the Executive Briefing →**
+Supporting link: **Download the Executive Briefing ->**
 
 ## Technical Workbench
 
@@ -192,7 +192,7 @@ Define the intent. Generate the contracts. Test every decision path.
 
 ### Copy
 
-The Technical Workbench should begin with business and operational intent—not with an empty policy editor.
+The Technical Workbench should begin with business and operational intent - not with an empty policy editor.
 
 ### Guided setup questions
 
@@ -207,14 +207,14 @@ The Technical Workbench should begin with business and operational intent—not 
 
 ### Proposed wizard
 
-1. **Connect environment** — n8n, MCP client, custom application or another adapter.
-2. **Discover agents and tools** — import or map agents, workflows, tools and connectors.
-3. **Define purpose and ownership** — business purpose, accountable owner, tenant and environment.
-4. **Bound authority** — tools, operations, resources, paths, hosts and network intent.
-5. **Select oversight** — automatic execution, exact-claim approval or denial.
-6. **Define the Effect Contract** — preconditions, expected effects, forbidden effects and authoritative verifier.
-7. **Simulate failure paths** — deny, stale state, replay, mismatch, unavailable verifier and recovery.
-8. **Review and publish** — version, approve and deploy through controlled promotion.
+1. **Connect environment** - n8n, MCP client, custom application or another adapter.
+2. **Discover agents and tools** - import or map agents, workflows, tools and connectors.
+3. **Define purpose and ownership** - business purpose, accountable owner, tenant and environment.
+4. **Bound authority** - tools, operations, resources, paths, hosts and network intent.
+5. **Select oversight** - automatic execution, exact-claim approval or denial.
+6. **Define the Effect Contract** - preconditions, expected effects, forbidden effects and authoritative verifier.
+7. **Simulate failure paths** - deny, stale state, replay, mismatch, unavailable verifier and recovery.
+8. **Review and publish** - version, approve and deploy through controlled promotion.
 
 ### Generated artifacts
 
@@ -253,23 +253,23 @@ Exercise allowed, denied, approval-required, replay, stale-state, wrong-effect, 
 
 Supporting links:
 
-- **Review the full-cycle assurance model →**
-- **Inspect the capability matrix →**
-- **Run the n8n developer-preview demo →**
+- **Review the full-cycle assurance model ->**
+- **Inspect the capability matrix ->**
+- **Run the n8n developer-preview demo ->**
 
 ## How the governed lifecycle works
 
 ```mermaid
 flowchart LR
-    A["1 · Propose<br/>Canonical Action Claim"] --> B["2 · Authorize<br/>Current profile + policy"]
+    A["1 | Propose<br/>Canonical Action Claim"] --> B["2 | Authorize<br/>Current profile + policy"]
     B --> C{"Decision"}
     C -->|Denied| D["Stop + explain"]
     C -->|Approval required| E["Exact-claim human review"]
     E --> B
-    C -->|Allowed| F["3 · Issue one-time capability"]
-    F --> G["4 · Execute through registered adapter"]
-    G --> H["5 · Sign execution receipt"]
-    H --> I["6 · Observe authoritative post-state"]
+    C -->|Allowed| F["3 | Issue one-time capability"]
+    F --> G["4 | Execute through registered adapter"]
+    G --> H["5 | Sign execution receipt"]
+    H --> I["6 | Observe authoritative post-state"]
     I --> J{"Outcome"}
     J -->|Verified| K["Close with attestation"]
     J -->|Mismatch or inconclusive| L["Hold resource + open incident"]
@@ -291,8 +291,8 @@ n8n coordinates triggers, agents, data and workflow steps. PALO-AI supplies port
 
 The current `n8n-nodes-palo-ai` 0.2 package contains:
 
-- **PALO Governance** — a decision-only visual gate with Allowed, Approval Required and Denied outputs;
-- **PALO Governed Action** — a full-cycle reference node with Verified, Review Required, Denied and Execution Failed outputs.
+- **PALO Governance** - a decision-only visual gate with Allowed, Approval Required and Denied outputs;
+- **PALO Governed Action** - a full-cycle reference node with Verified, Review Required, Denied and Execution Failed outputs.
 
 The package is unpublished and not n8n-verified. A visual gate is advisory when a workflow can retain another direct credential path. For consequential use, target credentials must remain behind an independently reviewed governed executor and workflow-admission controls.
 
@@ -317,7 +317,7 @@ Show the signal. Preserve the uncertainty.
 
 ### Measurement caution
 
-Do not collapse these dimensions into a universal “PALO score.” A high authorization rate may hide weak verification coverage; a healthy runtime may coexist with a bypassable credential path.
+Do not collapse these dimensions into a universal 'PALO score.' A high authorization rate may hide weak verification coverage; a healthy runtime may coexist with a bypassable credential path.
 
 ## What exists today
 
@@ -349,7 +349,7 @@ These GUI capabilities remain proposed until implementation evidence is added to
 
 ### Headline
 
-Developer preview means test the model—not trust it with consequential operations.
+Developer preview means test the model - not trust it with consequential operations.
 
 ### Required disclaimer
 
@@ -365,7 +365,7 @@ Developer preview. Use synthetic data and reversible actions only. No production
 
 ### Headline
 
-Help test where governance becomes enforceable—and where it still creates friction.
+Help test where governance becomes enforceable - and where it still creates friction.
 
 ### Copy
 
@@ -377,7 +377,7 @@ The evaluation should measure decision correctness, bypass visibility, operator 
 
 **Propose a safe design-partner evaluation**
 
-Secondary link: **Submit architecture feedback on GitHub →**
+Secondary link: **Submit architecture feedback on GitHub ->**
 
 ## Frequently asked questions
 
@@ -424,10 +424,10 @@ Tertiary: **Join the design-partner cohort**
 ## Publication checklist for this page
 
 - Replace all proposed links with verified public routes before deployment.
-- Keep the words “proposed,” “developer preview,” “unpublished” and “not n8n-verified” where applicable.
+- Keep the words 'proposed,' 'developer preview,' 'unpublished' and 'not n8n-verified' where applicable.
 - Link status claims to `agentic/capability-matrix.json`.
 - Link technical behavior to `docs/palo-ai-full-cycle-assurance.md` and `docs/palo-ai-governance-integration-guide.md`.
-- Show the “without PALO / with PALO” workflow visual near the problem section.
+- Show the 'without PALO / with PALO' workflow visual near the problem section.
 - Show a real n8n developer-preview screenshot near the integration section, with a caption that distinguishes demonstration evidence from production enforcement.
 - Do not publish fabricated dashboard numbers. Use clearly labelled sample data until a live telemetry pipeline exists.
 - Provide text alternatives for diagrams and screenshots.

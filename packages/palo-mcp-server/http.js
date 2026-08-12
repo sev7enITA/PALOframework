@@ -49,7 +49,7 @@ if (import.meta.url === pathToFileURL(process.argv[1]).href) {
   const enforcementProvider = await loadEnforcementProviderFromEnvironment();
   const runtime = new GovernanceRuntime({ enforcementProvider });
   const app = createAuthenticatedMcpApp({ runtime, token, host, allowedHosts, exposedTools: exposedTools.length ? exposedTools : undefined });
-  const listener = app.listen(port, host, () => process.stderr.write(`PALO-AI DEVELOPER PREVIEW listening on http://${host}:${port}/mcp — isolated testing only; not a production authorization boundary.\n`));
+  const listener = app.listen(port, host, () => process.stderr.write(`PALO-AI DEVELOPER PREVIEW listening on http://${host}:${port}/mcp - isolated testing only; not a production authorization boundary.\n`));
   const shutdown = () => listener.close(() => { runtime.close(); process.exit(0); });
   process.on("SIGINT", shutdown); process.on("SIGTERM", shutdown);
 }

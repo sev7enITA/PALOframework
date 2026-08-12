@@ -115,7 +115,7 @@ test("legacy missing redaction fields do not interrupt evidence recording", asyn
   assert.deepEqual(evidence.redactedPayload, { token: "[REDACTED]", result: "recorded" });
 });
 
-test("E2E register → deny → approval → execute → sign → persist → verify", async (t) => {
+test("E2E register -> deny -> approval -> execute -> sign -> persist -> verify", async (t) => {
   const { runtime } = await fixture(t, false); await runtime.registerAgent("case-runtime-test", profile);
   const denied = await runtime.verifyAction(makeClaim(1, { action: { ...makeClaim().action, tool: "shell" } }));
   assert.equal(denied.status, "denied");

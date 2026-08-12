@@ -69,9 +69,9 @@ export const decisionQueue = [
 ].map(semanticPreview);
 
 export const registryRows = [
-  { id: "agent-catalog-demo", name: "Catalog Assistant", owner: "Commerce Platform", environment: "n8n — Sandbox", authority: "Bounded update", status: "Active", version: "2.1.4" },
-  { id: "agent-refund-review", name: "Refund Approval Agent", owner: "Customer Operations", environment: "n8n — Pilot", authority: "Approval required", status: "Attention", version: "1.8.0" },
-  { id: "agent-benefits", name: "Benefits Eligibility Agent", owner: "People & Culture", environment: "MCP — Sandbox", authority: "Read only", status: "Active", version: "0.9.3" },
+  { id: "agent-catalog-demo", name: "Catalog Assistant", owner: "Commerce Platform", environment: "n8n - Sandbox", authority: "Bounded update", status: "Active", version: "2.1.4" },
+  { id: "agent-refund-review", name: "Refund Approval Agent", owner: "Customer Operations", environment: "n8n - Pilot", authority: "Approval required", status: "Attention", version: "1.8.0" },
+  { id: "agent-benefits", name: "Benefits Eligibility Agent", owner: "People & Culture", environment: "MCP - Sandbox", authority: "Read only", status: "Active", version: "0.9.3" },
   { id: "agent-vendor", name: "Vendor Onboarding Agent", owner: "Finance & Accounting", environment: "Custom runtime", authority: "Cross-system write", status: "Review", version: "1.2.2" },
 ].map(semanticPreview);
 
@@ -89,8 +89,8 @@ export const executionRows = [
 ].map(semanticPreview);
 
 export const approvalRows = [
-  { id: "APR-2048", action: "Refund €420 to customer", agent: "Refund Approval Agent", owner: "Customer Operations", expires: "18 min", status: "Pending", digest: "sha256:74b5…d912" },
-  { id: "APR-2047", action: "Publish customer notification", agent: "Content Generation Agent", owner: "Marketing & Growth", expires: "42 min", status: "Pending", digest: "sha256:91a1…07af" },
+  { id: "APR-2048", action: "Refund €420 to customer", agent: "Refund Approval Agent", owner: "Customer Operations", expires: "18 min", status: "Pending", digest: "sha256:74b5...d912" },
+  { id: "APR-2047", action: "Publish customer notification", agent: "Content Generation Agent", owner: "Marketing & Growth", expires: "42 min", status: "Pending", digest: "sha256:91a1...07af" },
 ].map(semanticPreview);
 
 export const incidentRows = [

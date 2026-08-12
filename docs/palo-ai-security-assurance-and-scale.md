@@ -6,9 +6,9 @@ Status: external-assurance plan for the PALO-AI v2.5 full-cycle developer previe
 
 Use three independent review tracks. A penetration test alone is insufficient for an agentic governance control plane.
 
-1. **Architecture and threat-model review** — an application/security architect with agentic AI, MCP, authorization systems and cloud identity experience.
-2. **Cryptography and evidence review** — an applied cryptography specialist reviewing canonicalization, key custody, signature domains, rotation, replay controls and ledger claims.
-3. **Adversarial implementation assessment** — an independent CREST-accredited or equivalently qualified application/cloud penetration-testing provider, plus focused agent/MCP abuse testing.
+1. **Architecture and threat-model review** - an application/security architect with agentic AI, MCP, authorization systems and cloud identity experience.
+2. **Cryptography and evidence review** - an applied cryptography specialist reviewing canonicalization, key custody, signature domains, rotation, replay controls and ledger claims.
+3. **Adversarial implementation assessment** - an independent CREST-accredited or equivalently qualified application/cloud penetration-testing provider, plus focused agent/MCP abuse testing.
 
 Open-source peer review through the [OWASP GenAI Agentic Security Initiative](https://genai.owasp.org/initiatives/agentic-security-initiative/) is valuable for research feedback, but it is not a substitute for a contracted independent assurance report.
 

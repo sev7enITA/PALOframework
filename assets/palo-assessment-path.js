@@ -95,7 +95,7 @@
       return;
     }
     signalStatus.classList.add("is-pending");
-    signalStatus.innerHTML = "<strong>Pending human review.</strong> " + esc(review.changeSummary) + " · observed " + esc(review.observedAt) + " · confidence " + esc(review.confidence.level) + " (" + esc(review.confidence.score) + ") · reopen " + esc(review.reopenedGates.join(", ")) + ". Confidence describes detection only; verify the original policy and relevance.";
+    signalStatus.innerHTML = "<strong>Pending human review.</strong> " + esc(review.changeSummary) + " | observed " + esc(review.observedAt) + " | confidence " + esc(review.confidence.level) + " (" + esc(review.confidence.score) + ") | reopen " + esc(review.reopenedGates.join(", ")) + ". Confidence describes detection only; verify the original policy and relevance.";
     document.documentElement.setAttribute("data-policywatcher-review", "pending-human-review");
   }
 
@@ -122,7 +122,7 @@
     preview.textContent = JSON.stringify(bundle, null, 2);
     results.classList.add("is-visible");
     results.focus();
-    status.innerHTML = "<strong>Case saved locally.</strong> " + esc(caseFile.title) + " · " + esc(caseFile.status) + " · unknown imported fields retained.";
+    status.innerHTML = "<strong>Case saved locally.</strong> " + esc(caseFile.title) + " | " + esc(caseFile.status) + " | unknown imported fields retained.";
     document.documentElement.setAttribute("data-assessment-case", "saved");
     if (window.paloRenderIcons) window.paloRenderIcons(results);
   }
@@ -161,7 +161,7 @@
       var labelMap = { dataGovernance: "Data governance and provenance", humanOversight: "Human oversight and escalation", monitoring: "Monitoring and change control", incidentResponse: "Incident response and remediation", transparency: "Transparency and user information" };
       if (record && record.data.evidenceReadiness) setValue(name, record.data.evidenceReadiness[labelMap[name]]);
     });
-    status.innerHTML = "<strong>Case resumed locally.</strong> " + esc(caseFile.title) + " · " + caseFile.assessments.length + " assessment record(s).";
+    status.innerHTML = "<strong>Case resumed locally.</strong> " + esc(caseFile.title) + " | " + caseFile.assessments.length + " assessment record(s).";
     renderMonitoringReview(caseFile.context && caseFile.context.policyWatcherReview);
     if (announce) status.scrollIntoView({ block: "center" });
     document.documentElement.setAttribute("data-assessment-resume", "pass");
@@ -181,7 +181,7 @@
       var saved = api.save(caseFile);
       if (!saved.ok) throw new Error("The file is valid but the local Case File could not be saved.");
       restore(caseFile, false);
-      status.innerHTML = "<strong>Import complete.</strong> " + esc(caseFile.title) + (result.migrated ? " · legacy bundle migrated to v1." : " · v1 validated.");
+      status.innerHTML = "<strong>Import complete.</strong> " + esc(caseFile.title) + (result.migrated ? " | legacy bundle migrated to v1." : " | v1 validated.");
       document.documentElement.setAttribute("data-assessment-import", "pass");
     }).catch(function (importError) { status.innerHTML = "<strong>Import failed.</strong> " + esc(importError.message); document.documentElement.setAttribute("data-assessment-import", "fail"); });
     importInput.value = "";

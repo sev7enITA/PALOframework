@@ -9,7 +9,10 @@ and this project follows Semantic Versioning where practical.
 
 ## [Unreleased]
 
-No unreleased changes.
+### Changed
+
+- Normalized tracked source and generated publication text to plain ASCII punctuation, separators and status labels.
+- Added an automated text-style gate for source files, generated `dist` files and current Git metadata.
 
 ## [3.0.0] - 2026-08-12
 

@@ -1,5 +1,5 @@
 {
-  "name": "PALO-AI — Without Governance vs Governed Action",
+  "name": "PALO-AI - Without Governance vs Governed Action",
   "nodes": [
     {
       "parameters": {},
@@ -12,7 +12,7 @@
     {
       "parameters": {},
       "id": "b821f2a2-1b60-4169-814e-45dac663f438",
-      "name": "WITHOUT PALO — Agent Proposal",
+      "name": "WITHOUT PALO - Agent Proposal",
       "type": "n8n-nodes-base.noOp",
       "typeVersion": 1,
       "position": [-500, -160]
@@ -20,7 +20,7 @@
     {
       "parameters": {},
       "id": "9dc89021-148c-486e-a990-5966e1520c70",
-      "name": "Direct Mock Tool — Executes Immediately",
+      "name": "Direct Mock Tool - Executes Immediately",
       "type": "n8n-nodes-base.noOp",
       "typeVersion": 1,
       "position": [-100, -160]
@@ -43,7 +43,7 @@
         "expirySeconds": 300
       },
       "id": "a318304b-71be-410f-9476-c19d42f37f16",
-      "name": "WITH PALO — Governance Gate",
+      "name": "WITH PALO - Governance Gate",
       "type": "n8n-nodes-palo-ai.paloGovernance",
       "typeVersion": 1,
       "position": [-500, 240]
@@ -51,7 +51,7 @@
     {
       "parameters": {},
       "id": "36df9fcf-ee52-4036-b748-0ccb83ac01cc",
-      "name": "Allowed — Governed Execution Path",
+      "name": "Allowed - Governed Execution Path",
       "type": "n8n-nodes-base.noOp",
       "typeVersion": 1,
       "position": [-40, 120]
@@ -59,7 +59,7 @@
     {
       "parameters": {},
       "id": "0e66e7aa-ce08-4a46-9581-75fa6de9d750",
-      "name": "Approval Required — Stop and Review",
+      "name": "Approval Required - Stop and Review",
       "type": "n8n-nodes-base.noOp",
       "typeVersion": 1,
       "position": [-40, 240]
@@ -67,7 +67,7 @@
     {
       "parameters": {},
       "id": "8affd126-3438-4179-85b5-ab52dcffbe87",
-      "name": "Denied — Tool Does Not Execute",
+      "name": "Denied - Tool Does Not Execute",
       "type": "n8n-nodes-base.noOp",
       "typeVersion": 1,
       "position": [-40, 360]
@@ -87,7 +87,7 @@
     },
     {
       "parameters": {
-        "content": "## WITH PALO\nThe same proposal becomes an Action Claim and must pass authority, policy and — for this profile — human approval before the protected execution path.",
+        "content": "## WITH PALO\nThe same proposal becomes an Action Claim and must pass authority, policy and - for this profile - human approval before the protected execution path.",
         "height": 190,
         "width": 700,
         "color": 5
@@ -103,18 +103,18 @@
   "connections": {
     "Run Before / After Demo": {
       "main": [[
-        { "node": "WITHOUT PALO — Agent Proposal", "type": "main", "index": 0 },
-        { "node": "WITH PALO — Governance Gate", "type": "main", "index": 0 }
+        { "node": "WITHOUT PALO - Agent Proposal", "type": "main", "index": 0 },
+        { "node": "WITH PALO - Governance Gate", "type": "main", "index": 0 }
       ]]
     },
-    "WITHOUT PALO — Agent Proposal": {
-      "main": [[{ "node": "Direct Mock Tool — Executes Immediately", "type": "main", "index": 0 }]]
+    "WITHOUT PALO - Agent Proposal": {
+      "main": [[{ "node": "Direct Mock Tool - Executes Immediately", "type": "main", "index": 0 }]]
     },
-    "WITH PALO — Governance Gate": {
+    "WITH PALO - Governance Gate": {
       "main": [
-        [{ "node": "Allowed — Governed Execution Path", "type": "main", "index": 0 }],
-        [{ "node": "Approval Required — Stop and Review", "type": "main", "index": 0 }],
-        [{ "node": "Denied — Tool Does Not Execute", "type": "main", "index": 0 }]
+        [{ "node": "Allowed - Governed Execution Path", "type": "main", "index": 0 }],
+        [{ "node": "Approval Required - Stop and Review", "type": "main", "index": 0 }],
+        [{ "node": "Denied - Tool Does Not Execute", "type": "main", "index": 0 }]
       ]
     }
   },

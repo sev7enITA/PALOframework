@@ -1,4 +1,4 @@
-# PALO Agentic Interface (PALO-AI) — Full-Cycle Developer Preview
+# PALO Agentic Interface (PALO-AI) - Full-Cycle Developer Preview
 
 PALO-AI v2.5 publishes governance contracts and a non-production reference runtime for autonomous agents and agent teams. It demonstrates registered authority profiles, Action Claim 1.2, digest-bound approval, one-time execution capabilities, trusted receipts, authoritative outcome attestations and held assurance incidents.
 

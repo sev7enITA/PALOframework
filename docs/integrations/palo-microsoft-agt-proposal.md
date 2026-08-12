@@ -173,6 +173,6 @@ After a maintainer acknowledges the design but before merge, use:
 
 Only after merge or explicit written approval use precise language such as:
 
-> The PALO interoperability documentation/example was accepted into the Microsoft Agent Governance Toolkit repository in PR #…
+> The PALO interoperability documentation/example was accepted into the Microsoft Agent Governance Toolkit repository in PR #...
 
-Never shorten that to “Microsoft partnered with PALO” unless a separate partnership has actually been announced by Microsoft.
+Never shorten that to 'Microsoft partnered with PALO' unless a separate partnership has actually been announced by Microsoft.

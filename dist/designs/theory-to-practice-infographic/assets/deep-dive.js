@@ -101,7 +101,7 @@
     heading.scope = "row";
     heading.textContent = label;
     if (content instanceof Node) value.appendChild(content);
-    else value.textContent = content == null || content === "" ? "—" : String(content);
+    else value.textContent = content == null || content === "" ? " - " : String(content);
     row.appendChild(heading);
     row.appendChild(value);
     propertyTable.appendChild(row);
@@ -115,7 +115,7 @@
 
   function renderNodeInspector(node) {
     selectedNode = node;
-    inspectorType.textContent = node.type + (node.number ? " · " + node.number : "") + " · " + node.phaseId;
+    inspectorType.textContent = node.type + (node.number ? " | " + node.number : "") + " | " + node.phaseId;
     inspectorTitle.textContent = node.label;
     inspectorStatus.textContent = node.status;
     inspectorRole.textContent = node.role;
@@ -125,12 +125,12 @@
     appendProperty("Evidence / authority", authorityLabel(node.evidenceClass));
     appendProperty("Authority boundary", node.authorityBoundary);
     appendProperty("Last reviewed", node.lastReviewed);
-    appendProperty("Source references", (node.sourceRefs || []).length ? node.sourceRefs.join(" · ") : "Canonical PALO definition");
+    appendProperty("Source references", (node.sourceRefs || []).length ? node.sourceRefs.join(" | ") : "Canonical PALO definition");
     Object.keys(node.properties || {}).forEach(function (key) {
       appendProperty(key, node.properties[key]);
     });
     if (node.outputs && node.outputs.length) {
-      appendProperty("Outputs", node.outputs.join(" · "));
+      appendProperty("Outputs", node.outputs.join(" | "));
     }
     relationshipList.innerHTML = "";
     visibleLinks().forEach(function (link) {
@@ -144,7 +144,7 @@
       var relation = document.createElement("span");
       var transfer = document.createElement("span");
       weight.textContent = link.weight;
-      relation.textContent = source.label + " · " + link.verb + " · " + target.label;
+      relation.textContent = source.label + " | " + link.verb + " | " + target.label;
       transfer.className = "transferred-artifact";
       transfer.textContent = "Transfers: " + link.artifactTransferred;
       button.appendChild(weight);
@@ -168,8 +168,8 @@
     var source = nodeById[idOf(link.source)];
     var target = nodeById[idOf(link.target)];
     selectedNode = null;
-    inspectorType.textContent = "Relationship · " + link.relationType;
-    inspectorTitle.textContent = source.label + " → " + target.label;
+    inspectorType.textContent = "Relationship | " + link.relationType;
+    inspectorTitle.textContent = source.label + " -> " + target.label;
     inspectorStatus.textContent = link.weight;
     inspectorRole.textContent = link.meaning;
     var values = {
@@ -177,7 +177,7 @@
       "Relationship version": link.relationshipVersion,
       "Mapping basis": link.mappingBasis,
       Source: source.label, Verb: link.verb, Target: target.label,
-      Weight: link.weight + " · " + data.weights[link.weight],
+      Weight: link.weight + " | " + data.weights[link.weight],
       "Relation type": link.relationType, "Transferred artifact": link.artifactTransferred
     };
     propertyTable.innerHTML = "";
@@ -192,7 +192,7 @@
     sections.forEach(function (section) { section.classList.toggle("is-active", section.id === activePhase); });
     phaseLinks.forEach(function (link) { link.classList.toggle("active", link.getAttribute("data-phase-link") === activePhase); });
     var stage = nodeById[activePhase];
-    graphPhaseLabel.textContent = graphMode === "navigation" ? "Stakeholder navigation routes" : stage.number + " · " + stage.label + " cluster";
+    graphPhaseLabel.textContent = graphMode === "navigation" ? "Stakeholder navigation routes" : stage.number + " | " + stage.label + " cluster";
     if (graph) {
       graph.nodeColor(nodeColor).linkColor(linkColor).linkWidth(linkWidth)
         .linkDirectionalParticles(function (link) { return !graphPaused && !reducedMotion && link.relationType === "operational" && linkInPhase(link) ? 2 : 0; });
@@ -336,7 +336,7 @@
         .backgroundColor("#071d2b")
         .showNavInfo(false)
         .graphData(currentGraphData())
-        .nodeLabel(function (node) { return '<div class="graph-tooltip"><strong>' + node.label + '</strong><br>' + node.type + ' · ' + node.phaseId + '</div>'; })
+        .nodeLabel(function (node) { return '<div class="graph-tooltip"><strong>' + node.label + '</strong><br>' + node.type + ' | ' + node.phaseId + '</div>'; })
         .nodeVal(function (node) { return node.type === "stage" ? 11 : node.type === "module" ? 5.5 : node.type === "artifact" ? 7 : 4; })
         .nodeResolution(16)
         .nodeColor(nodeColor)
@@ -379,7 +379,7 @@
     matches.forEach(function (node) {
       var button = document.createElement("button");
       button.type = "button"; button.setAttribute("role", "listitem");
-      button.textContent = node.label + " · " + node.type;
+      button.textContent = node.label + " | " + node.type;
       button.addEventListener("click", function () { selectNode(node, { scroll: true }); });
       searchResults.appendChild(button);
     });
@@ -389,7 +389,7 @@
       var label = source.label + " " + link.verb + " " + target.label + " " + link.weight;
       if (label.toLowerCase().indexOf(query) === -1) return;
       var button = document.createElement("button");
-      button.type = "button"; button.setAttribute("role", "listitem"); button.textContent = link.weight + " · " + source.label + " " + link.verb + " " + target.label;
+      button.type = "button"; button.setAttribute("role", "listitem"); button.textContent = link.weight + " | " + source.label + " " + link.verb + " " + target.label;
       button.addEventListener("click", function () { renderRelationshipInspector(link); });
       searchResults.appendChild(button);
     });
@@ -403,7 +403,7 @@
       if (graph) graph.width(graphElement.clientWidth).height(graphElement.clientHeight);
       setPhase(phase || "frame", { hash: !options.preserveHash, scroll: false, immediate: false, lock: true });
       if (route) {
-        inspectorType.textContent = "Guided route · " + route.stakeholder;
+        inspectorType.textContent = "Guided route | " + route.stakeholder;
         inspectorTitle.textContent = "Start with " + route.primaryAction.name;
         inspectorStatus.textContent = (phase || route.startingPhase) + " phase";
         inspectorRole.textContent = route.primaryAction.reason + " Artifact: " + route.primaryAction.artifact + ".";
@@ -412,7 +412,7 @@
           var row = document.createElement("li");
           var button = document.createElement("button");
           button.type = "button";
-          button.textContent = "Contextual · " + item.name + " · " + item.reason;
+          button.textContent = "Contextual | " + item.name + " | " + item.reason;
           button.addEventListener("click", function () { if (nodeById[item.id]) selectNode(nodeById[item.id], { scroll: true }); });
           row.appendChild(button); relationshipList.appendChild(row);
         });

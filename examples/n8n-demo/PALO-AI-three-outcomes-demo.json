@@ -1,5 +1,5 @@
 {
-  "name": "PALO-AI — Three Governance Outcomes",
+  "name": "PALO-AI - Three Governance Outcomes",
   "nodes": [
     {
       "parameters": {},
@@ -27,7 +27,7 @@
         "expirySeconds": 300
       },
       "id": "1248c6ee-59b6-47ad-9811-20ea9bf7e29f",
-      "name": "PALO — Autonomous Low Risk",
+      "name": "PALO - Autonomous Low Risk",
       "type": "n8n-nodes-palo-ai.paloGovernance",
       "typeVersion": 1,
       "position": [-400, -160]
@@ -50,7 +50,7 @@
         "expirySeconds": 300
       },
       "id": "5b0b7608-b16a-441e-b481-9c9cdfc35daa",
-      "name": "PALO — Human Supervised",
+      "name": "PALO - Human Supervised",
       "type": "n8n-nodes-palo-ai.paloGovernance",
       "typeVersion": 1,
       "position": [-400, 80]
@@ -73,7 +73,7 @@
         "expirySeconds": 300
       },
       "id": "f0a4aeed-5968-4cdd-8294-c0489df62487",
-      "name": "PALO — Outside Authority",
+      "name": "PALO - Outside Authority",
       "type": "n8n-nodes-palo-ai.paloGovernance",
       "typeVersion": 1,
       "position": [-400, 320]
@@ -81,7 +81,7 @@
     {
       "parameters": {},
       "id": "987a57e6-48ef-4ca2-8d55-e2e4a465183a",
-      "name": "✅ Allowed — Mock Read",
+      "name": "[PASS] Allowed - Mock Read",
       "type": "n8n-nodes-base.noOp",
       "typeVersion": 1,
       "position": [0, -160]
@@ -89,7 +89,7 @@
     {
       "parameters": {},
       "id": "39039de5-a551-429b-8b56-1806a3c830ba",
-      "name": "⏳ Human Approval Required",
+      "name": "[WAIT] Human Approval Required",
       "type": "n8n-nodes-base.noOp",
       "typeVersion": 1,
       "position": [0, 80]
@@ -97,14 +97,14 @@
     {
       "parameters": {},
       "id": "8bd482c3-68fd-4edc-a66c-a4ae27e9a50d",
-      "name": "⛔ Denied — Stop Action",
+      "name": "[BLOCKED] Denied - Stop Action",
       "type": "n8n-nodes-base.noOp",
       "typeVersion": 1,
       "position": [0, 320]
     },
     {
       "parameters": {
-        "content": "## PALO-AI Governance Control Plane\nOne trigger proposes three simulated actions. PALO makes authority, human oversight and denial visible before any execution.\n\n**Developer preview — no real target tool is called.**",
+        "content": "## PALO-AI Governance Control Plane\nOne trigger proposes three simulated actions. PALO makes authority, human oversight and denial visible before any execution.\n\n**Developer preview - no real target tool is called.**",
         "height": 180,
         "width": 820,
         "color": 5
@@ -120,19 +120,19 @@
   "connections": {
     "Run Governance Demo": {
       "main": [[
-        { "node": "PALO — Autonomous Low Risk", "type": "main", "index": 0 },
-        { "node": "PALO — Human Supervised", "type": "main", "index": 0 },
-        { "node": "PALO — Outside Authority", "type": "main", "index": 0 }
+        { "node": "PALO - Autonomous Low Risk", "type": "main", "index": 0 },
+        { "node": "PALO - Human Supervised", "type": "main", "index": 0 },
+        { "node": "PALO - Outside Authority", "type": "main", "index": 0 }
       ]]
     },
-    "PALO — Autonomous Low Risk": {
-      "main": [[{ "node": "✅ Allowed — Mock Read", "type": "main", "index": 0 }], [], []]
+    "PALO - Autonomous Low Risk": {
+      "main": [[{ "node": "[PASS] Allowed - Mock Read", "type": "main", "index": 0 }], [], []]
     },
-    "PALO — Human Supervised": {
-      "main": [[], [{ "node": "⏳ Human Approval Required", "type": "main", "index": 0 }], []]
+    "PALO - Human Supervised": {
+      "main": [[], [{ "node": "[WAIT] Human Approval Required", "type": "main", "index": 0 }], []]
     },
-    "PALO — Outside Authority": {
-      "main": [[], [], [{ "node": "⛔ Denied — Stop Action", "type": "main", "index": 0 }]]
+    "PALO - Outside Authority": {
+      "main": [[], [], [{ "node": "[BLOCKED] Denied - Stop Action", "type": "main", "index": 0 }]]
     }
   },
   "active": false,

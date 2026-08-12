@@ -112,4 +112,4 @@ const gateway = createServer(async (request, response) => {
   }
 });
 
-gateway.listen(port, host, () => process.stderr.write(`PALO-AI v2.5 FULL-CYCLE DEVELOPER PREVIEW gateway listening on http://${host}:${port} — isolated testing only; shared bearer token is not production identity or RBAC.\n`));
+gateway.listen(port, host, () => process.stderr.write(`PALO-AI v2.5 FULL-CYCLE DEVELOPER PREVIEW gateway listening on http://${host}:${port} - isolated testing only; shared bearer token is not production identity or RBAC.\n`));

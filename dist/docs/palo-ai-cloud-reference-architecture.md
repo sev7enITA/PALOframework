@@ -8,10 +8,10 @@ Status: target architecture and deployment decision record for the PALO-AI v2.5 
 
 Do not replace local PALO with a single mandatory cloud service. Productize four deployment modes behind the same versioned contracts:
 
-1. **PALO Local** — Docker Compose or process-local sidecar for developers, offline evaluation and self-hosted n8n.
-2. **PALO Hybrid** — a local governed executor calls a remote policy/control plane while protected credentials and sensitive side effects remain inside the organization.
-3. **PALO Cloud** — a managed, multi-tenant control plane for registry, policy distribution, approvals, evidence and administration.
-4. **PALO Private** — the same service deployed into a customer VPC/private cloud with customer identity, network, keys and retention.
+1. **PALO Local** - Docker Compose or process-local sidecar for developers, offline evaluation and self-hosted n8n.
+2. **PALO Hybrid** - a local governed executor calls a remote policy/control plane while protected credentials and sensitive side effects remain inside the organization.
+3. **PALO Cloud** - a managed, multi-tenant control plane for registry, policy distribution, approvals, evidence and administration.
+4. **PALO Private** - the same service deployed into a customer VPC/private cloud with customer identity, network, keys and retention.
 
 The recommended order is Local -> single-tenant Hybrid staging -> managed single-region pilot -> multi-tenant managed service -> private-cloud distribution.
 

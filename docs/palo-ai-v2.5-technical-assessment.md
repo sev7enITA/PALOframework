@@ -1,4 +1,4 @@
-# PALO-AI v2.5 — Technical and Security Assessment
+# PALO-AI v2.5 - Technical and Security Assessment
 
 > **Assessment date:** 2026-07-19
 >

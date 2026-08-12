@@ -110,7 +110,7 @@ function rowContainsQuery(row, query) {
 
 const defaultAuthority = {
   agent: "Catalog Assistant",
-  environment: "n8n — Sandbox",
+  environment: "n8n - Sandbox",
   tool: "Catalog Update",
   operation: "Update",
   resource: "Tenant A / Catalog items",
@@ -132,7 +132,7 @@ function StatusPill({ children, tone = toneFor(String(children)) }) {
 
 function AppMark() {
   return (
-    <a className="app-mark" href="../PALO_AIGovernance.html" aria-label="PALO-AI Governance Hub — return to public overview">
+    <a className="app-mark" href="../PALO_AIGovernance.html" aria-label="PALO-AI Governance Hub - return to public overview">
       <div className="app-mark-icon"><ShieldCheck weight="duotone" /></div>
       <div><strong>PALO-AI</strong><span>Governance Hub</span></div>
     </a>
@@ -185,11 +185,11 @@ function Shell({ role, onRoleChange, view, onViewChange, children }) {
           <div className="breadcrumb"><span>{role === "technical" ? "Workspace" : "Portfolio"}</span><ArrowRight /><strong>{navItems.find(([id]) => id === view)?.[1]}</strong></div>
           <div className="topbar-actions">
             <StatusPill tone="attention">Developer preview</StatusPill>
-            <div className="role-lens"><span>Workspace lens · not access control</span><RoleSwitch role={role} onChange={onRoleChange} /></div>
+            <div className="role-lens"><span>Workspace lens | not access control</span><RoleSwitch role={role} onChange={onRoleChange} /></div>
             <button className="icon-button" aria-label="Notifications"><Bell /></button>
           </div>
         </header>
-        <div className="preview-boundary" role="note"><WarningCircle weight="fill" /><span><strong>Illustrative local preview</strong> · no live authority, source-of-record status, or approval decision.</span></div>
+        <div className="preview-boundary" role="note"><WarningCircle weight="fill" /><span><strong>Illustrative local preview</strong> | no live authority, source-of-record status, or approval decision.</span></div>
         <main className="main-content">{children}</main>
       </section>
     </div>
@@ -260,7 +260,7 @@ function TechnicalSetup() {
           {step === 7 && <PublishStep published={published} onPublish={() => setPublished(true)} />}
           <div className="wizard-actions">
             <button className="button button-secondary" disabled={step === 0} onClick={() => move(-1)}>Back</button>
-            {step === 3 && <button className="button button-secondary" disabled={simulation === "running"} onClick={runBoundaryTest}><Flask />{simulation === "running" ? "Testing…" : "Test this boundary"}</button>}
+            {step === 3 && <button className="button button-secondary" disabled={simulation === "running"} onClick={runBoundaryTest}><Flask />{simulation === "running" ? "Testing..." : "Test this boundary"}</button>}
             {step < 7 ? <button className="button button-primary" onClick={() => move(1)}>{step === 3 ? "Continue to oversight" : "Continue"}<ArrowRight /></button> : null}
           </div>
         </div>
@@ -323,7 +323,7 @@ function ConnectStep() {
       <div className="inline-test">
         <div><strong>Reference gateway</strong><span>Uses synthetic data and non-consequential connectors.</span></div>
         <button className="button button-secondary" onClick={() => { setHealth("testing"); window.setTimeout(() => setHealth("ready"), 600); }}>
-          {health === "testing" ? "Checking…" : "Check connection"}
+          {health === "testing" ? "Checking..." : "Check connection"}
         </button>
         {health === "ready" && <StatusPill>Ready</StatusPill>}
       </div>
@@ -343,7 +343,7 @@ function DiscoverStep() {
           <label key={choice} className={selected.includes(choice) ? "selected" : ""}>
             <input type="checkbox" checked={selected.includes(choice)} onChange={() => setSelected((items) => items.includes(choice) ? items.filter((item) => item !== choice) : [...items, choice])} />
             <Robot weight="duotone" />
-            <span><strong>{choice}</strong><small>{choice === "Catalog Assistant" ? "Catalog Update · Catalog Read" : "2 connected tools"}</small></span>
+            <span><strong>{choice}</strong><small>{choice === "Catalog Assistant" ? "Catalog Update | Catalog Read" : "2 connected tools"}</small></span>
             {selected.includes(choice) && <CheckCircle weight="fill" />}
           </label>
         ))}
@@ -371,7 +371,7 @@ function AuthorityStep({ value, onChange }) {
       <h2>What may this agent change?</h2>
       <p>Define the exact action, resource scope and limits. Broader possession of credentials does not expand this authority.</p>
       <FieldRow icon={Robot} label="Agent" value={value.agent} options={["Catalog Assistant", "Refund Approval Agent"]} onChange={update("agent")} />
-      <FieldRow icon={Cloud} label="Environment" value={value.environment} options={["n8n — Sandbox", "MCP — Sandbox", "Custom runtime — Development"]} onChange={update("environment")} />
+      <FieldRow icon={Cloud} label="Environment" value={value.environment} options={["n8n - Sandbox", "MCP - Sandbox", "Custom runtime - Development"]} onChange={update("environment")} />
       <FieldRow icon={Wrench} label="Permitted tool" value={value.tool} options={["Catalog Update", "Catalog Read", "No tool"]} onChange={update("tool")} />
       <FieldRow icon={SlidersHorizontal} label="Operation" value={value.operation} options={["Update", "Read", "Create"]} onChange={update("operation")} />
       <FieldRow icon={Folder} label="Resource scope" value={value.resource} options={["Tenant A / Catalog items", "Tenant A / Item 1", "All sandbox tenants"]} onChange={update("resource")} />
@@ -408,7 +408,7 @@ function OutcomeStep({ value, onChange }) {
         <label><span>Expected after execution</span><textarea value={value.expected} onChange={(event) => onChange({ ...value, expected: event.target.value })} /></label>
         <label><span>Must never change</span><textarea value={value.forbidden} onChange={(event) => onChange({ ...value, forbidden: event.target.value })} /></label>
       </div>
-      <div className="source-row"><Database weight="duotone" /><div><strong>Authoritative verifier</strong><span>Catalog API read-back · separate from the update connector</span></div><StatusPill>Configured</StatusPill></div>
+      <div className="source-row"><Database weight="duotone" /><div><strong>Authoritative verifier</strong><span>Catalog API read-back | separate from the update connector</span></div><StatusPill>Configured</StatusPill></div>
     </div>
   );
 }
@@ -426,10 +426,10 @@ function SimulationStep({ state, onRun }) {
     <div className="step-content">
       <h2>Prove the control before publishing</h2>
       <p>Run both the expected path and the failure modes against synthetic sandbox data.</p>
-      <button className="button button-primary" onClick={onRun} disabled={state === "running"}><Flask />{state === "running" ? "Running assurance suite…" : "Run assurance suite"}</button>
+      <button className="button button-primary" onClick={onRun} disabled={state === "running"}><Flask />{state === "running" ? "Running assurance suite..." : "Run assurance suite"}</button>
       <div className={`test-results ${state}`}>
         {state === "idle" && <div className="empty-state"><Flask /><strong>No simulation run yet</strong><span>The suite does not execute consequential tools.</span></div>}
-        {state === "running" && <div className="loading-state"><Pulse /><strong>Evaluating six scenarios…</strong></div>}
+        {state === "running" && <div className="loading-state"><Pulse /><strong>Evaluating six scenarios...</strong></div>}
         {state === "passed" && tests.map(([name, expectation]) => <div key={name}><CheckCircle weight="fill" /><span><strong>{name}</strong><small>{expectation}</small></span><StatusPill>Passed</StatusPill></div>)}
       </div>
     </div>
@@ -469,7 +469,7 @@ function PortfolioTable({ compact = false }) {
   return (
     <section className="content-panel portfolio-panel">
       <div className="panel-heading"><div><p className="eyebrow">Portfolio</p><h2>Exposure by business area</h2></div>{!compact && <button className="button button-secondary"><DownloadSimple />Export</button>}</div>
-      <div className="table-wrap"><table><thead><tr><th>Business area</th><th>Agents</th><th>Governed</th><th>Verified</th><th>Exceptions</th></tr></thead><tbody>{portfolioRows.map((row) => <tr key={row.area}><td><strong>{row.area}</strong><small>{row.scope}</small></td><td>{row.agents}</td><td><strong>{row.governed}%</strong><small>{row.governed >= 92 ? "On track" : "Attention"}</small></td><td><strong>{row.verified}%</strong><small>{row.verified >= 90 ? "Good" : "Attention"}</small></td><td>{row.exceptions ? <StatusPill tone={row.impact === "High" ? "negative" : "attention"}>{row.exceptions} · {row.impact}</StatusPill> : "—"}</td></tr>)}</tbody></table></div>
+      <div className="table-wrap"><table><thead><tr><th>Business area</th><th>Agents</th><th>Governed</th><th>Verified</th><th>Exceptions</th></tr></thead><tbody>{portfolioRows.map((row) => <tr key={row.area}><td><strong>{row.area}</strong><small>{row.scope}</small></td><td>{row.agents}</td><td><strong>{row.governed}%</strong><small>{row.governed >= 92 ? "On track" : "Attention"}</small></td><td><strong>{row.verified}%</strong><small>{row.verified >= 90 ? "Good" : "Attention"}</small></td><td>{row.exceptions ? <StatusPill tone={row.impact === "High" ? "negative" : "attention"}>{row.exceptions} | {row.impact}</StatusPill> : " - "}</td></tr>)}</tbody></table></div>
     </section>
   );
 }
@@ -478,7 +478,7 @@ function DecisionList({ decisions, compact = false, onResolve }) {
   return (
     <section className="content-panel decision-panel">
       <div className="panel-heading"><div><p className="eyebrow">Decision queue</p><h2>Items requiring attention</h2></div><StatusPill tone="attention">{decisions.filter((item) => item.status !== "Resolved").length} open</StatusPill></div>
-      <div className="decision-list">{decisions.slice(0, compact ? 5 : decisions.length).map((item) => <article key={item.id}><div className={`decision-icon status-${toneFor(item.impact)}`}>{item.impact === "High" ? <WarningCircle weight="fill" /> : item.impact === "Info" ? <PauseCircle weight="fill" /> : <Warning weight="fill" />}</div><div><strong>{item.title}</strong><span>{item.area} · {item.agent}</span></div><StatusPill>{item.impact} impact</StatusPill><div className="decision-meta"><span>{item.when}</span><strong>{item.status}</strong></div>{!compact && item.status !== "Resolved" && <button className="button button-secondary" onClick={() => onResolve?.(item.id)}>Mark reviewed</button>}</article>)}</div>
+      <div className="decision-list">{decisions.slice(0, compact ? 5 : decisions.length).map((item) => <article key={item.id}><div className={`decision-icon status-${toneFor(item.impact)}`}>{item.impact === "High" ? <WarningCircle weight="fill" /> : item.impact === "Info" ? <PauseCircle weight="fill" /> : <Warning weight="fill" />}</div><div><strong>{item.title}</strong><span>{item.area} | {item.agent}</span></div><StatusPill>{item.impact} impact</StatusPill><div className="decision-meta"><span>{item.when}</span><strong>{item.status}</strong></div>{!compact && item.status !== "Resolved" && <button className="button button-secondary" onClick={() => onResolve?.(item.id)}>Mark reviewed</button>}</article>)}</div>
     </section>
   );
 }
@@ -486,7 +486,7 @@ function DecisionList({ decisions, compact = false, onResolve }) {
 function SemanticRecord({ record, onClose }) {
   if (!record) return null;
   const recordId = record.id || record.label || record.name || "local-preview-record";
-  return <div className="semantic-record-backdrop" role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget) onClose(); }}><section className="semantic-record" role="dialog" aria-modal="true" aria-labelledby="semantic-record-title"><div className="panel-heading"><div><p className="eyebrow">Semantic record</p><h2 id="semantic-record-title">{record.name || record.label || record.title || record.action}</h2></div><button className="icon-button" onClick={onClose} aria-label="Close semantic record"><X /></button></div><dl><div><dt>Semantic ID</dt><dd>https://paloframework.org/semantic/local-preview/{recordId}</dd></div><div><dt>Definition version</dt><dd>{record.definitionVersion || "3.0.0"}</dd></div><div><dt>Evidence class</dt><dd>{record.dataClass || "illustrative-local-preview"}</dd></div><div><dt>Authority boundary</dt><dd>{record.authorityBoundary || "Local demonstration only; not a source of record or approval decision."}</dd></div><div><dt>Source references</dt><dd>{record.sourceRefs?.length ? record.sourceRefs.join(" · ") : "None · illustrative data"}</dd></div></dl></section></div>;
+  return <div className="semantic-record-backdrop" role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget) onClose(); }}><section className="semantic-record" role="dialog" aria-modal="true" aria-labelledby="semantic-record-title"><div className="panel-heading"><div><p className="eyebrow">Semantic record</p><h2 id="semantic-record-title">{record.name || record.label || record.title || record.action}</h2></div><button className="icon-button" onClick={onClose} aria-label="Close semantic record"><X /></button></div><dl><div><dt>Semantic ID</dt><dd>https://paloframework.org/semantic/local-preview/{recordId}</dd></div><div><dt>Definition version</dt><dd>{record.definitionVersion || "3.0.0"}</dd></div><div><dt>Evidence class</dt><dd>{record.dataClass || "illustrative-local-preview"}</dd></div><div><dt>Authority boundary</dt><dd>{record.authorityBoundary || "Local demonstration only; not a source of record or approval decision."}</dd></div><div><dt>Source references</dt><dd>{record.sourceRefs?.length ? record.sourceRefs.join(" | ") : "None | illustrative data"}</dd></div></dl></section></div>;
 }
 
 function AssuranceView() {
@@ -495,7 +495,7 @@ function AssuranceView() {
     <>
       <PageHeader eyebrow="Assurance" title="Four signals, no misleading composite score" description="Every indicator exposes its denominator, freshness and evidence drill-down." />
       <section className="assurance-matrix">
-        {executiveSignals.map((signal) => <article key={signal.id}><div className="matrix-title"><h2>{signal.label}</h2><StatusPill tone={signal.tone}>{signal.status}</StatusPill></div><div className="matrix-value">{signal.value}</div><p>{signal.detail}</p><dl><div><dt>Measured</dt><dd>Jul 19, 2026 · 10:45 UTC</dd></div><div><dt>Evidence class</dt><dd>{signal.dataClass}</dd></div><div><dt>Scope</dt><dd>Sandbox and isolated pilot · not a source of record</dd></div></dl><button className="button button-secondary" onClick={() => setSelectedRecord(signal)}>Inspect evidence<ArrowSquareOut /></button></article>)}
+        {executiveSignals.map((signal) => <article key={signal.id}><div className="matrix-title"><h2>{signal.label}</h2><StatusPill tone={signal.tone}>{signal.status}</StatusPill></div><div className="matrix-value">{signal.value}</div><p>{signal.detail}</p><dl><div><dt>Measured</dt><dd>Jul 19, 2026 | 10:45 UTC</dd></div><div><dt>Evidence class</dt><dd>{signal.dataClass}</dd></div><div><dt>Scope</dt><dd>Sandbox and isolated pilot | not a source of record</dd></div></dl><button className="button button-secondary" onClick={() => setSelectedRecord(signal)}>Inspect evidence<ArrowSquareOut /></button></article>)}
       </section>
       <SemanticRecord record={selectedRecord} onClose={() => setSelectedRecord(null)} />
     </>
@@ -507,7 +507,7 @@ function ReportsView() {
     const content = `PALO-AI Executive Assurance Brief\nDate: 2026-07-19\nAuthoritative: false\nEvidence class: illustrative-local-preview\n\nGovernance coverage: 92%\nAuthority assurance: 95%\nOutcome assurance: 88%\nOpen high-impact exceptions: 3\n\nDeveloper preview: isolated evaluation only; not a source of record.`;
     downloadBlob(new Blob([content], { type: "text/plain" }), "palo-ai-executive-assurance-brief.txt");
   };
-  return <><PageHeader eyebrow="Reports" title="Turn evidence into a decision-ready brief" description="Generate an executive summary without hiding uncertainty or the developer-preview boundary." actions={<button className="button button-primary" onClick={downloadReport}><DownloadSimple />Generate brief</button>} /><section className="report-preview"><div className="report-cover"><ShieldCheck weight="duotone" /><p>PALO-AI</p><h2>Executive Assurance Brief</h2><span>Isolated evaluation · July 19, 2026</span></div><div className="report-outline"><h2>Included sections</h2>{["Executive situation summary", "Material changes since last review", "Governance and authority coverage", "Verified, mismatched and inconclusive outcomes", "Open incidents and held resources", "Decisions requested", "Current boundary and production gaps"].map((item) => <div key={item}><CheckCircle weight="fill" /><span>{item}</span></div>)}</div></section></>;
+  return <><PageHeader eyebrow="Reports" title="Turn evidence into a decision-ready brief" description="Generate an executive summary without hiding uncertainty or the developer-preview boundary." actions={<button className="button button-primary" onClick={downloadReport}><DownloadSimple />Generate brief</button>} /><section className="report-preview"><div className="report-cover"><ShieldCheck weight="duotone" /><p>PALO-AI</p><h2>Executive Assurance Brief</h2><span>Isolated evaluation | July 19, 2026</span></div><div className="report-outline"><h2>Included sections</h2>{["Executive situation summary", "Material changes since last review", "Governance and authority coverage", "Verified, mismatched and inconclusive outcomes", "Open incidents and held resources", "Decisions requested", "Current boundary and production gaps"].map((item) => <div key={item}><CheckCircle weight="fill" /><span>{item}</span></div>)}</div></section></>;
 }
 
 function DataPage({ type, onExecutionSelect, approvals, onApproval, incidents, onIncident }) {
@@ -542,8 +542,8 @@ function DataRow({ type, row, onInspect, onExecutionSelect, onApproval, onIncide
   if (type === "registry") return <tr><td><strong>{row.name}</strong><small>{row.id}</small></td><td>{row.owner}</td><td>{row.environment}</td><td>{row.authority}</td><td><StatusPill>{row.status}</StatusPill></td><td>{row.version}</td><td><button className="text-button" onClick={() => onInspect(row)}>Inspect</button></td></tr>;
   if (type === "policies") return <tr><td><strong>{row.name}</strong><small>{row.id}</small></td><td>{row.scope}</td><td>{row.tests}</td><td><StatusPill>{row.status}</StatusPill></td><td>{row.version}</td><td><button className="text-button" onClick={() => onInspect(row)}>Open</button></td></tr>;
   if (type === "executions") return <tr><td><strong>{row.action}</strong><small>{row.id}</small></td><td>{row.agent}</td><td><StatusPill>{row.decision}</StatusPill></td><td><StatusPill>{row.assurance}</StatusPill></td><td>{row.resource}</td><td>{row.time}</td><td><button className="text-button" onClick={() => onExecutionSelect(row.id)} aria-label={`Trace ${row.action}`}>Trace</button></td></tr>;
-  if (type === "approvals") return <tr><td><strong>{row.action}</strong><small>{row.id}</small></td><td>{row.agent}</td><td>{row.owner}</td><td>{row.expires}</td><td><StatusPill>{row.status}</StatusPill></td><td><code>{row.digest}</code></td><td>{row.status === "Pending" ? <div className="table-actions"><button aria-label={`Approve ${row.action}`} className="approve" onClick={() => onApproval(row.id, "Approved")}><Check /></button><button aria-label={`Deny ${row.action}`} className="deny" onClick={() => onApproval(row.id, "Denied")}><X /></button></div> : "—"}</td></tr>;
-  return <tr><td><strong>{row.title}</strong><small>{row.id}</small></td><td>{row.resource}</td><td><StatusPill>{row.severity}</StatusPill></td><td><StatusPill>{row.state}</StatusPill></td><td>{row.owner}</td><td>{row.opened}</td><td>{row.state !== "Resolved" ? <button className="text-button" onClick={() => onIncident(row.id)} aria-label={`Resolve ${row.title}`}>Resolve</button> : "—"}</td></tr>;
+  if (type === "approvals") return <tr><td><strong>{row.action}</strong><small>{row.id}</small></td><td>{row.agent}</td><td>{row.owner}</td><td>{row.expires}</td><td><StatusPill>{row.status}</StatusPill></td><td><code>{row.digest}</code></td><td>{row.status === "Pending" ? <div className="table-actions"><button aria-label={`Approve ${row.action}`} className="approve" onClick={() => onApproval(row.id, "Approved")}><Check /></button><button aria-label={`Deny ${row.action}`} className="deny" onClick={() => onApproval(row.id, "Denied")}><X /></button></div> : " - "}</td></tr>;
+  return <tr><td><strong>{row.title}</strong><small>{row.id}</small></td><td>{row.resource}</td><td><StatusPill>{row.severity}</StatusPill></td><td><StatusPill>{row.state}</StatusPill></td><td>{row.owner}</td><td>{row.opened}</td><td>{row.state !== "Resolved" ? <button className="text-button" onClick={() => onIncident(row.id)} aria-label={`Resolve ${row.title}`}>Resolve</button> : " - "}</td></tr>;
 }
 
 function ExecutionDetail({ onBack }) {
@@ -555,19 +555,19 @@ function ExecutionDetail({ onBack }) {
   };
   return (
     <>
-      <button className="back-link" onClick={onBack}>← Back to executions</button>
-      <PageHeader eyebrow="Execution · EXE-2026-0719-0842" title="Catalog price update — action assurance" description="Inspect an illustrative action from proposal through a simulated verification result; no live authority is asserted." actions={<><button className="button button-primary" onClick={runTest} disabled={testState === "running"}><Flask />{testState === "running" ? "Running…" : testState === "complete" ? "Assurance complete" : "Run assurance test"}</button><button className="button button-secondary" onClick={downloadEvidence}><DownloadSimple />Export evidence</button></>} />
+      <button className="back-link" onClick={onBack}> Back to executions</button>
+      <PageHeader eyebrow="Execution | EXE-2026-0719-0842" title="Catalog price update - action assurance" description="Inspect an illustrative action from proposal through a simulated verification result; no live authority is asserted." actions={<><button className="button button-primary" onClick={runTest} disabled={testState === "running"}><Flask />{testState === "running" ? "Running..." : testState === "complete" ? "Assurance complete" : "Run assurance test"}</button><button className="button button-secondary" onClick={downloadEvidence}><DownloadSimple />Export evidence</button></>} />
       <section className="lifecycle-panel"><div className="lifecycle-line">{assuranceTimeline.map((stage, index) => <div key={stage.label} className={stage.status}><span>{stage.status === "failed" ? <XCircle weight="fill" /> : <CheckCircle weight="fill" />}</span><strong>{stage.label}</strong><small>{stage.time}</small>{index < assuranceTimeline.length - 1 && <i />}</div>)}</div></section>
       <section className="execution-grid">
-        <article className="content-panel outcome-detail"><div className="panel-heading"><div><p className="eyebrow">Selected stage · illustrative local preview</p><h2>Outcome mismatch</h2></div><StatusPill tone="negative">Mismatch</StatusPill></div><p>The simulated verification result does not match the expected Effect Contract.</p><div className="explanation"><strong>Explanation</strong><p>Expected price 120.00 USD; illustrative read-back reports 125.00 USD. This is not a source-of-record outcome.</p></div><dl className="detail-grid"><div><dt>Expected price</dt><dd>120.00 USD</dd></div><div><dt>Illustrative post-state</dt><dd className="negative-text">125.00 USD</dd></div><div><dt>Verifier</dt><dd>Catalog API read-back</dd></div><div><dt>Verified at</dt><dd>Jul 19, 2026 · 10:32:18 UTC</dd></div></dl><div className="incident-banner"><WarningCircle weight="fill" /><div><strong>Resource hold / Incident INC-307</strong><span>Further changes are held until the mismatch is resolved.</span></div></div><details className="disclosure light"><summary><Code />View raw evidence<CaretDown /></summary><pre>{JSON.stringify({ status: "mismatch", expected: 120, observed: 125, receiptDigest: "sha256:a2f9…901c", incidentId: "INC-307" }, null, 2)}</pre></details></article>
-        <aside className="content-panel trust-boundary"><div className="panel-heading"><div><p className="eyebrow">Trust boundary</p><h2>Protected execution path</h2></div></div><div className="trust-path"><div><Robot /><span>Agent</span></div><i /><div><ShieldCheck /><span>PALO-AI</span></div><i /><div><Cloud /><span>Catalog API</span></div></div><div className="warning-banner"><Warning /><div><strong>Parallel credential path detected</strong><span>A non-governed credential reaches the same connector.</span></div></div><dl><div><dt>Policy</dt><dd>Catalog Price Change v3.2</dd></div><div><dt>Executor</dt><dd>Catalog Adapter v1.4</dd></div><div><dt>Verifier</dt><dd>Catalog Read-back v1.1</dd></div><div><dt>Capability</dt><dd>Single-use · consumed</dd></div></dl></aside>
+        <article className="content-panel outcome-detail"><div className="panel-heading"><div><p className="eyebrow">Selected stage | illustrative local preview</p><h2>Outcome mismatch</h2></div><StatusPill tone="negative">Mismatch</StatusPill></div><p>The simulated verification result does not match the expected Effect Contract.</p><div className="explanation"><strong>Explanation</strong><p>Expected price 120.00 USD; illustrative read-back reports 125.00 USD. This is not a source-of-record outcome.</p></div><dl className="detail-grid"><div><dt>Expected price</dt><dd>120.00 USD</dd></div><div><dt>Illustrative post-state</dt><dd className="negative-text">125.00 USD</dd></div><div><dt>Verifier</dt><dd>Catalog API read-back</dd></div><div><dt>Verified at</dt><dd>Jul 19, 2026 | 10:32:18 UTC</dd></div></dl><div className="incident-banner"><WarningCircle weight="fill" /><div><strong>Resource hold / Incident INC-307</strong><span>Further changes are held until the mismatch is resolved.</span></div></div><details className="disclosure light"><summary><Code />View raw evidence<CaretDown /></summary><pre>{JSON.stringify({ status: "mismatch", expected: 120, observed: 125, receiptDigest: "sha256:a2f9...901c", incidentId: "INC-307" }, null, 2)}</pre></details></article>
+        <aside className="content-panel trust-boundary"><div className="panel-heading"><div><p className="eyebrow">Trust boundary</p><h2>Protected execution path</h2></div></div><div className="trust-path"><div><Robot /><span>Agent</span></div><i /><div><ShieldCheck /><span>PALO-AI</span></div><i /><div><Cloud /><span>Catalog API</span></div></div><div className="warning-banner"><Warning /><div><strong>Parallel credential path detected</strong><span>A non-governed credential reaches the same connector.</span></div></div><dl><div><dt>Policy</dt><dd>Catalog Price Change v3.2</dd></div><div><dt>Executor</dt><dd>Catalog Adapter v1.4</dd></div><div><dt>Verifier</dt><dd>Catalog Read-back v1.1</dd></div><div><dt>Capability</dt><dd>Single-use | consumed</dd></div></dl></aside>
       </section>
     </>
   );
 }
 
 function IntegrationsView() {
-  const integrations = [["n8n — Sandbox", "Connected", "Visual governed actions"], ["MCP — Local", "Connected", "19 validated tools"], ["Dify example", "Reference", "Non-production adapter"], ["Copilot Studio", "Planned", "Design partner required"]];
+  const integrations = [["n8n - Sandbox", "Connected", "Visual governed actions"], ["MCP - Local", "Connected", "19 validated tools"], ["Dify example", "Reference", "Non-production adapter"], ["Copilot Studio", "Planned", "Design partner required"]];
   return <><PageHeader eyebrow="Integrations" title="Connect orchestration without exposing protected credentials" description="The Governance Hub remains the control path; platforms propose actions and consume assurance results." actions={<button className="button button-primary"><PlugsConnected />Add integration</button>} /><section className="integration-list">{integrations.map(([name, status, detail]) => <article key={name}><div className="integration-icon"><PlugsConnected weight="duotone" /></div><div><h2>{name}</h2><p>{detail}</p></div><StatusPill>{status}</StatusPill><button className="button button-secondary">Configure</button></article>)}</section><div className="security-boundary"><LockKey /><div><strong>Browser security boundary</strong><span>This preview does not place a shared gateway bearer token in browser storage. Online multi-user operation requires a BFF, OIDC and server-enforced RBAC.</span></div></div></>;
 }
 
@@ -608,7 +608,7 @@ export function App() {
   } else {
     if (view === "today") content = <ExecutiveToday decisions={decisions} onDecisionView={() => setExecutiveView("decisions")} onAssuranceView={() => setExecutiveView("assurance")} />;
     else if (view === "portfolio") content = <><PageHeader eyebrow="Portfolio" title="Where are we exposed?" description="Compare governed coverage and outcome assurance without hiding differences between business areas." /><PortfolioTable /></>;
-    else if (view === "decisions") content = <><PageHeader eyebrow="Decisions" title="What requires executive attention?" description="Strategic exceptions, risk acceptance and ownership—not routine operational approvals." /><DecisionList decisions={decisions} onResolve={resolveDecision} /></>;
+    else if (view === "decisions") content = <><PageHeader eyebrow="Decisions" title="What requires executive attention?" description="Strategic exceptions, risk acceptance and ownership - not routine operational approvals." /><DecisionList decisions={decisions} onResolve={resolveDecision} /></>;
     else if (view === "assurance") content = <AssuranceView />;
     else content = <ReportsView />;
   }

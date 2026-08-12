@@ -1,4 +1,4 @@
-# PALO-AI for n8n — Presentation and Launch Playbook
+# PALO-AI for n8n - Presentation and Launch Playbook
 
 Status: go-to-market guide for an architecture and developer preview, not a production launch.
 
@@ -27,19 +27,19 @@ The category joins four capabilities that are often fragmented:
 
 ### n8n builders and AI engineers
 
-“Keep the visual workflow and agent autonomy. Add a visible decision gate today and a path toward governed execution without embedding policy in prompts.”
+'Keep the visual workflow and agent autonomy. Add a visible decision gate today and a path toward governed execution without embedding policy in prompts.'
 
 ### Security and platform teams
 
-“Normalize every proposed action, evaluate versioned policy outside the LLM, restrict executors, and retain evidence tied to the exact decision.”
+'Normalize every proposed action, evaluate versioned policy outside the LLM, restrict executors, and retain evidence tied to the exact decision.'
 
 ### Governance, risk and compliance teams
 
-“Connect authority, human oversight and evidence to the operational workflow rather than reviewing static documentation after deployment.”
+'Connect authority, human oversight and evidence to the operational workflow rather than reviewing static documentation after deployment.'
 
 ### Executives and innovation leaders
 
-“Enable agentic automation without treating autonomy as unlimited authority.”
+'Enable agentic automation without treating autonomy as unlimited authority.'
 
 ## Elevator pitches
 
@@ -57,7 +57,7 @@ n8n makes it easy to connect AI agents to operational tools. The missing layer i
 2. **The governance gap:** autonomy does not establish authority.
 3. **The PALO proposition:** one control plane for authority, policy, oversight and evidence.
 4. **The four patterns:** Decision Gate, Governed Executor, Secure Approval, Workflow Admission.
-5. **The live flow:** propose → normalize → deny/approve → execute → evidence.
+5. **The live flow:** propose -> normalize -> deny/approve -> execute -> evidence.
 6. **What exists today:** contracts, MCP server, Rego policy, replay controls, approval and ledger prototypes.
 7. **What remains:** production identity, unavoidable execution, distributed state, secure mobile resume and certified connectors.
 8. **The invitation:** design partners, connector contributors, policy authors and security reviewers.
@@ -90,7 +90,7 @@ Never demo with real credentials, personal data, production systems or irreversi
 
 ## Four-stage launch sequence
 
-### Stage 1 — Architecture preview
+### Stage 1 - Architecture preview
 
 - Publish the architecture on GitHub.
 - Share a concise LinkedIn article and diagram.
@@ -99,7 +99,7 @@ Never demo with real credentials, personal data, production systems or irreversi
 
 Call to action: **Review the contracts and challenge the enforcement model.**
 
-### Stage 2 — Installable alpha
+### Stage 2 - Installable alpha
 
 - Publish `n8n-nodes-palo-ai` only after it builds, installs and passes node tests.
 - Release three workflow examples in the repository before seeking inclusion in external template libraries.
@@ -108,7 +108,7 @@ Call to action: **Review the contracts and challenge the enforcement model.**
 
 Call to action: **Run the safe local demo and report interoperability issues.**
 
-### Stage 3 — Enforced self-hosted preview
+### Stage 3 - Enforced self-hosted preview
 
 - Release workflow admission hooks and the governed executor.
 - Demonstrate that removing the visual gate or changing the workflow digest blocks execution.
@@ -117,7 +117,7 @@ Call to action: **Run the safe local demo and report interoperability issues.**
 
 Call to action: **Evaluate an enforceable non-production workflow.**
 
-### Stage 4 — Production-readiness evidence
+### Stage 4 - Production-readiness evidence
 
 - Complete identity, KMS/HSM, PostgreSQL, HA, backup/recovery and distributed idempotency.
 - Run an external security assessment.
@@ -159,15 +159,15 @@ Discussion opening:
 
 ## Outreach message for design partners
 
-Subject: Design-partner invitation — governed agentic workflows with PALO-AI and n8n
+Subject: Design-partner invitation - governed agentic workflows with PALO-AI and n8n
 
-We are evaluating a developer preview of PALO-AI, an emerging governance control plane for agentic automation. We are looking for a small number of teams with a safe, non-production n8n use case involving an AI agent and one operational tool. The evaluation focuses on authority definition, policy decisions, human approval and evidence—not production execution. Participants receive direct architecture support and can influence the connector and policy-pack design. No sensitive data or production credentials should be used.
+We are evaluating a developer preview of PALO-AI, an emerging governance control plane for agentic automation. We are looking for a small number of teams with a safe, non-production n8n use case involving an AI agent and one operational tool. The evaluation focuses on authority definition, policy decisions, human approval and evidence - not production execution. Participants receive direct architecture support and can influence the connector and policy-pack design. No sensitive data or production credentials should be used.
 
 ## Promotion priorities
 
 1. **Earn technical credibility before reach.** Lead with contracts, tests, limitations and a reproducible demo.
 2. **Use the architecture diagram as the hero asset.** It communicates the product boundary faster than a feature list.
-3. **Invite critique.** Security and n8n communities respond better to an explicit threat model than to “complete governance” claims.
+3. **Invite critique.** Security and n8n communities respond better to an explicit threat model than to 'complete governance' claims.
 4. **Demonstrate a denial.** A successful deny and immutable approval resume are more persuasive than a happy-path dashboard.
 5. **Publish evidence of progress.** Compatibility matrix, test results, latency, failure behavior and resolved review findings.
 
@@ -189,7 +189,7 @@ Download counts and impressions are secondary until the connector is installable
 Before publishing any announcement, verify:
 
 - Is every capability labelled specified, prototype, implemented or production-ready?
-- Does “enforced” refer only to an unavoidable execution path?
+- Does 'enforced' refer only to an unavoidable execution path?
 - Are approval and evidence claims bound to the exact implemented mechanism?
 - Are biometrics distinguished from cryptographic identity and signatures?
 - Is SQLite described as preview storage only?

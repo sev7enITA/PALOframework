@@ -1,4 +1,4 @@
-# PALO-AI n8n architecture preview — publication status
+# PALO-AI n8n architecture preview - publication status
 
 **Release:** 2.5 full-cycle developer preview
 **Status:** architecture source and evaluation assets published on the repository `main` branch; no npm publication, n8n verification request, or template submission is implied by this file.

@@ -1,4 +1,4 @@
-# PALO-AI n8n integration — developer preview
+# PALO-AI n8n integration - developer preview
 
 This directory contains the original non-production decision-node reference and a safe importable workflow template. The installable alpha now lives in [`packages/n8n-nodes-palo-ai`](../../../../packages/n8n-nodes-palo-ai). It is not published, verified or an unavoidable execution boundary.
 

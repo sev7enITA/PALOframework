@@ -1,4 +1,4 @@
-# PALO-AI Governance Hub — GitHub copy draft
+# PALO-AI Governance Hub - GitHub copy draft
 
 Status: ready-to-adapt English repository copy for the v2.5 developer preview, prepared 19 July 2026.
 
@@ -18,8 +18,8 @@ Propose -> Authorize -> Approve -> Capability -> Execute -> Receipt -> Observe -
 
 The **PALO-AI Governance Hub prototype** adds two role-based views over the same contracts and evidence:
 
-- **Executive Cockpit** — portfolio exposure, governance coverage, outcome assurance, open holds, accountable decisions and board reporting in plain language.
-- **Technical Workbench** — agent and authority setup, policy and Effect Contract builders, topology and bypass review, simulation, execution timelines and raw evidence.
+- **Executive Cockpit** - portfolio exposure, governance coverage, outcome assurance, open holds, accountable decisions and board reporting in plain language.
+- **Technical Workbench** - agent and authority setup, policy and Effect Contract builders, topology and bypass review, simulation, execution timelines and raw evidence.
 
 The repository contains a tested React/Vite GUI using illustrative local data. It demonstrates the product direction but is not yet connected to live runtime data, human identity, tenant authorization or production key infrastructure. A live multi-user Hub requires a BFF with OIDC and server-enforced authorization.
 
@@ -63,7 +63,7 @@ Use synthetic data and unprivileged mock tools only. To demonstrate an action th
 npm run demo:hands-on -- --auto-approve --wrong-effect
 ```
 
-The expected result is a `mismatch` Outcome Attestation, an open Assurance Incident and a held resource—not a verified action.
+The expected result is a `mismatch` Outcome Attestation, an open Assurance Incident and a held resource - not a verified action.
 
 #### Developer-preview boundary
 
@@ -282,7 +282,7 @@ body:
 
 ### Direct outreach version
 
-Subject: Design review invitation — PALO-AI full-cycle governance for one safe workflow
+Subject: Design review invitation - PALO-AI full-cycle governance for one safe workflow
 
 PALO-AI v2.5 is an open developer preview exploring a governance control plane for agentic automation. We are inviting a small number of n8n builders, platform teams, security architects, OPA practitioners and governance specialists to evaluate one disposable workflow and one mock or reversible tool action.
 

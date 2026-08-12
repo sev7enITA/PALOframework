@@ -31,5 +31,5 @@ The preview must not be used to authorize consequential tools or access sensitiv
 - Approval can transition once from pending to a terminal state and remains bound to one immutable claim digest.
 - Evidence signatures and chain verification remain valid across restart, backup and restore; production keys remain outside the application host and support rotation and revocation.
 - Stdio and authenticated Streamable HTTP advertise the same MCP tools.
-- The E2E scenario proves register → deny → approval → capability → execute → receipt → persist → verify outcome → incident or release.
+- The E2E scenario proves register -> deny -> approval -> capability -> execute -> receipt -> persist -> verify outcome -> incident or release.
 - The capability matrix distinguishes specified, prototype, implemented and production-ready without aspirational claims.

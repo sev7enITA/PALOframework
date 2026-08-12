@@ -1,4 +1,4 @@
-# PALO-AI Governance Hub — Delivery Status
+# PALO-AI Governance Hub - Delivery Status
 
 **Assessment date:** 2026-08-12
 
@@ -19,7 +19,7 @@ The interface is ready for controlled demonstrations and structured design-partn
 | Guided technical setup | Prototype | Eight steps from connection through sandbox publication |
 | Executive cockpit | Prototype | Four independent signals, portfolio, decision queue, assurance and report views |
 | Operational workbench | Prototype | Registry, policy, execution, approval, incident and integration views |
-| Full-cycle trace | Prototype UI over implemented contracts | Proposed → authorized → approved → capability → executed → receipt → outcome |
+| Full-cycle trace | Prototype UI over implemented contracts | Proposed -> authorized -> approved -> capability -> executed -> receipt -> outcome |
 | Runtime contracts | Implemented developer-preview schemas | 12 validated agentic contracts |
 | MCP interface | Implemented reference server | 19 official-SDK tools; stdio and authenticated Streamable HTTP preview |
 | Policy evaluation | Implemented reference policy | Rego v1 compile and policy tests, default deny and fail closed |
@@ -39,29 +39,29 @@ The interface is ready for controlled demonstrations and structured design-partn
 
 ## Recommended delivery waves
 
-### Wave 0 — Product validation
+### Wave 0 - Product validation
 
 - Run five executive and five technical usability sessions.
 - Confirm that users distinguish `allowed` from `verified` and understand `mismatch` and `inconclusive`.
 - Measure time to first governed capability, setup error rate and explanation comprehension.
 
-### Wave 1 — Evaluation BFF
+### Wave 1 - Evaluation BFF
 
 - Add OIDC, tenant context, server-side Gateway credentials and read-only portfolio APIs.
 - Connect the Technical tables and execution trace to isolated runtime data.
 - Keep write operations restricted to disposable environments.
 
-### Wave 2 — Governed operations
+### Wave 2 - Governed operations
 
 - Connect exact-claim approval, one-time capability consumption, evidence export and incident holds.
 - Add permission tests, audit records, pagination, redaction and negative multi-tenant tests.
 
-### Wave 3 — Cloud reliability and cyber assurance
+### Wave 3 - Cloud reliability and cyber assurance
 
 - Adopt managed database, queue, KMS/HSM, observability, backup, HA and recovery testing.
 - Complete external security, cryptographic and supply-chain reviews.
 
-### Wave 4 — Ecosystem publication
+### Wave 4 - Ecosystem publication
 
 - Publish the npm package only after real integration and security gates pass.
 - Then request n8n community-node verification and submit governed workflow templates.
@@ -69,7 +69,7 @@ The interface is ready for controlled demonstrations and structured design-partn
 
 ## Promotion sequence
 
-1. Lead with one sentence: **“Allowed is not verified.”**
+1. Lead with one sentence: **'Allowed is not verified.'**
 2. Show the two-minute contrast: direct tool execution versus governed execution with authoritative outcome verification.
 3. Publish a short Executive explainer and a separate technical deep dive with contracts and traces.
 4. Open an n8n community discussion for architecture feedback, not a verification request.

@@ -1,4 +1,4 @@
-# PALO-AI v2.5 hands-on demo — permission is not correctness
+# PALO-AI v2.5 hands-on demo - permission is not correctness
 
 This no-slides demonstration compares a direct agent tool call with full-cycle assurance over a synthetic multi-tenant catalog. It uses no production system, personal data or consequential action.
 
@@ -9,7 +9,7 @@ This no-slides demonstration compares a direct agent tool call with full-cycle a
 3. Policy requests human approval for the exact immutable claim.
 4. PALO issues and consumes a one-time capability, then invokes its trusted synthetic executor.
 5. A separate verifier reads authoritative post-state.
-6. The outcome is `verified`, `mismatch` or `inconclusive`—not merely `allowed`.
+6. The outcome is `verified`, `mismatch` or `inconclusive` - not merely `allowed`.
 7. Mismatch and uncertainty open an Assurance Incident and hold the affected resource.
 
 ## Start the environment

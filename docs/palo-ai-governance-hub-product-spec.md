@@ -1,4 +1,4 @@
-# PALO-AI Governance Hub — Product Specification
+# PALO-AI Governance Hub - Product Specification
 
 Status: implemented interactive product prototype for the PALO-AI v2.5 developer preview, updated 19 July 2026.
 
@@ -8,8 +8,8 @@ Status: implemented interactive product prototype for the PALO-AI v2.5 developer
 
 The PALO-AI Governance Hub is one product with two role-aware views over the same governance lifecycle:
 
-- **Executive Cockpit** — explains exposure, assurance outcomes, accountable ownership, and decisions without requiring knowledge of JSON, Rego, MCP, or workflow internals.
-- **Technical Workbench** — lets authorized practitioners configure, test, operate, and investigate the controls that produce those outcomes.
+- **Executive Cockpit** - explains exposure, assurance outcomes, accountable ownership, and decisions without requiring knowledge of JSON, Rego, MCP, or workflow internals.
+- **Technical Workbench** - lets authorized practitioners configure, test, operate, and investigate the controls that produce those outcomes.
 
 The Hub is not a second policy engine. It is an administration, review, and explanation layer over the PALO-AI runtime and its versioned contracts.
 
@@ -173,9 +173,9 @@ Red indicates a defined adverse condition, not merely missing data. Missing inst
 
 The inbox separates:
 
-- **Operational approvals** — exact Action Claims assigned to reviewers.
-- **Assurance incidents** — mismatch or inconclusive outcomes requiring investigation.
-- **Risk decisions** — exceptions, pilot gates, and residual-risk acceptance.
+- **Operational approvals** - exact Action Claims assigned to reviewers.
+- **Assurance incidents** - mismatch or inconclusive outcomes requiring investigation.
+- **Risk decisions** - exceptions, pilot gates, and residual-risk acceptance.
 
 The first two have current runtime support at prototype level. Risk-decision workflow is a missing backend capability and must not be simulated by reusing Action Claim approval records.
 
@@ -236,7 +236,7 @@ The same event has four representations:
 
 | Level | Audience | Example |
 | --- | --- | --- |
-| 1. Plain language | Executive / business owner | “Price update denied because the requested change exceeded this agent’s limit.” |
+| 1. Plain language | Executive / business owner | 'Price update denied because the requested change exceeded this agent's limit.' |
 | 2. Structured explanation | Reviewer / operator | Agent, tenant, resource, operation, limit, policy version, and required action |
 | 3. Evidence | Auditor / investigator | Claim digest, approval, decision, capability, receipt, attestation, incident |
 | 4. Raw technical | Engineer | Canonical JSON, Rego result, signature metadata, ledger entry, runtime log reference |
@@ -251,7 +251,7 @@ Explanation rules:
 
 ## 9. KPI and KRI model
 
-The Hub must not publish a single composite “PALO score.” A high aggregate can hide a critical bypass or unverified consequential workflow.
+The Hub must not publish a single composite 'PALO score.' A high aggregate can hide a critical bypass or unverified consequential workflow.
 
 ### 9.1 Governance coverage
 
@@ -294,7 +294,7 @@ The Hub must not publish a single composite “PALO score.” A high aggregate c
 ### KPI presentation requirements
 
 - Always show numerator, denominator, period, data freshness, filters, and exclusions.
-- Never use green for “not measured.”
+- Never use green for 'not measured.'
 - Prevent comparison across environments with materially different instrumentation unless explicitly normalized.
 - Allow drill-down to the records included in a calculation.
 - Version metric definitions and preserve report snapshots.
@@ -327,7 +327,7 @@ The current gateway uses one shared bearer token and a single runtime context. T
 
 ## 11. Backend capabilities required for the Hub
 
-### Priority 0 — required before an Internet-facing multi-user GUI
+### Priority 0 - required before an Internet-facing multi-user GUI
 
 - OIDC-based human authentication with secure server-side sessions.
 - Tenant, project, environment, and resource scopes attached to every request.
@@ -338,7 +338,7 @@ The current gateway uses one shared bearer token and a single runtime context. T
 - Authenticated reviewer assignment and immutable identity on approval/incident transitions.
 - Audit events for all administrative reads of sensitive evidence and all writes.
 
-### Priority 1 — needed for a useful technical preview
+### Priority 1 - needed for a useful technical preview
 
 - Execution search/list endpoint and lifecycle timeline projection.
 - Connector, executor, verifier, policy, and data-store health projections.
@@ -349,7 +349,7 @@ The current gateway uses one shared bearer token and a single runtime context. T
 - Explanation projection with stable reason codes and linked evidence.
 - Notification service for approvals and incidents.
 
-### Priority 2 — needed for executive decision support
+### Priority 2 - needed for executive decision support
 
 - Governed inventory and coverage denominator.
 - Business ownership and impact classification.
@@ -358,7 +358,7 @@ The current gateway uses one shared bearer token and a single runtime context. T
 - Snapshot reports with provenance, redaction, and retention policy.
 - Trends and comparisons that preserve historical metric definitions.
 
-### Priority 3 — needed for production scale
+### Priority 3 - needed for production scale
 
 - Managed PostgreSQL, durable queue/outbox, tenant isolation, backup/PITR, and tested restore.
 - KMS/HSM-backed signing, rotation, key version visibility, and independent cryptographic review.

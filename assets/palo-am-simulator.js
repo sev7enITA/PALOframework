@@ -12,7 +12,7 @@
     medium: { read: 3, internal: 2, "cross-system": 1, critical: 1 },
     high: { read: 2, internal: 1, "cross-system": 1, critical: 0 }
   };
-  var labels = { 0: "Redesign required", 1: "Tier 1 · Maximum controls", 2: "Tier 2 · Controlled", 3: "Tier 3 · Supervised", 4: "Tier 4 · Monitored" };
+  var labels = { 0: "Redesign required", 1: "Tier 1 | Maximum controls", 2: "Tier 2 | Controlled", 3: "Tier 3 | Supervised", 4: "Tier 4 | Monitored" };
   var baseline = {
     controls: ["Named accountable owner and versioned authority profile", "Explicit tool allow-list and schema validation", "Tamper-evident action and approval logging"],
     evidence: ["Agent identity and authority profiles", "Tier rationale and approval record", "Tool-call and policy-decision sample"],

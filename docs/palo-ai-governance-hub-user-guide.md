@@ -1,8 +1,8 @@
-# PALO-AI Governance Hub — User and Interaction Guide
+# PALO-AI Governance Hub - User and Interaction Guide
 
 Status: interaction guide for the v3-aligned PALO-AI Governance Hub prototype, updated 12 August 2026.
 
-> **The Governance Hub is an interactive product prototype, not a production application.** The current React/Vite interface uses `illustrative-local-preview` data and demonstrates Executive and Technical workspace lenses. Those lenses are not identities, permissions or access-control roles. Records and exports are not a source of record, live authority or approval decision, and the interface is not connected directly to the Gateway. Use the repository’s REST, MCP, n8n, and demonstration instructions only with synthetic or isolated data until an authenticated BFF and the remaining production controls exist.
+> **The Governance Hub is an interactive product prototype, not a production application.** The current React/Vite interface uses `illustrative-local-preview` data and demonstrates Executive and Technical workspace lenses. Those lenses are not identities, permissions or access-control roles. Records and exports are not a source of record, live authority or approval decision, and the interface is not connected directly to the Gateway. Use the repository's REST, MCP, n8n, and demonstration instructions only with synthetic or isolated data until an authenticated BFF and the remaining production controls exist.
 
 ## 1. Choose your mode
 
@@ -29,7 +29,7 @@ The workspace-lens switch changes language and depth. It does not create a separ
 | Execution Capability | Short-lived, one-time server-side authority to execute one approved claim |
 | Execution Receipt | A signed runtime record of the execution attempt |
 | Effect Contract | The expected before/after conditions and effects that must never occur |
-| Outcome Attestation | The verifier’s signed conclusion: verified, mismatch, or inconclusive |
+| Outcome Attestation | The verifier's signed conclusion: verified, mismatch, or inconclusive |
 | Assurance Incident | A review case opened when the result is wrong or cannot be established |
 | Resource hold | A safeguard that prevents further governed action on a resource until authorized resolution |
 
@@ -43,12 +43,12 @@ The target Hub uses organization identity through OIDC and a secure server-side 
 
 After sign-in, confirm the global context before reviewing or changing anything:
 
-1. **Organization and tenant** — whose data and policy scope you are viewing.
-2. **Environment** — Local, Development, Staging, or Production.
-3. **Role** — Executive, Business Owner, Reviewer, Policy Engineer, Platform Administrator, Security Operator, Auditor, or Integration Developer.
-4. **Time window** — the period included in dashboards and reports.
-5. **Data freshness** — when the last complete runtime and inventory update occurred.
-6. **Release boundary** — developer preview, design-partner pilot, or production candidate.
+1. **Organization and tenant** - whose data and policy scope you are viewing.
+2. **Environment** - Local, Development, Staging, or Production.
+3. **Role** - Executive, Business Owner, Reviewer, Policy Engineer, Platform Administrator, Security Operator, Auditor, or Integration Developer.
+4. **Time window** - the period included in dashboards and reports.
+5. **Data freshness** - when the last complete runtime and inventory update occurred.
+6. **Release boundary** - developer preview, design-partner pilot, or production candidate.
 
 Stop if the tenant or environment is wrong. Do not rely on visual labels alone for production controls; backend tenant and role authorization must be enforced.
 
@@ -66,11 +66,11 @@ The Today page should answer five questions:
 
 Review the page in this order:
 
-1. **Critical exceptions** — known bypass paths, mismatches, control unavailable, or unowned high-impact workflows.
-2. **Outcome assurance** — verified, mismatch, inconclusive, execution failed, pending, and not instrumented.
-3. **Governance coverage** — whether known consequential paths actually require PALO.
-4. **Open decisions** — risk acceptance, pilot gate, owner assignment, suspension, or exception.
-5. **Trend and freshness** — whether the position is improving and whether the data is current enough to act on.
+1. **Critical exceptions** - known bypass paths, mismatches, control unavailable, or unowned high-impact workflows.
+2. **Outcome assurance** - verified, mismatch, inconclusive, execution failed, pending, and not instrumented.
+3. **Governance coverage** - whether known consequential paths actually require PALO.
+4. **Open decisions** - risk acceptance, pilot gate, owner assignment, suspension, or exception.
+5. **Trend and freshness** - whether the position is improving and whether the data is current enough to act on.
 
 Do not use a green card as proof of production readiness. Open the definition and evidence before making a consequential decision.
 
@@ -85,7 +85,7 @@ The Cockpit deliberately avoids one composite score.
 | Outcome assurance | Did completed actions produce the promised result? | Mismatch, inconclusive verification, no Effect Contract, unavailable verifier |
 | Operational health | Are the controls themselves reliable? | Policy outage, recovery events, aged holds, failed ledger check |
 
-For every metric, open **Definition** to see numerator, denominator, window, filters, freshness, and exclusions. “Not measured” must never appear as success.
+For every metric, open **Definition** to see numerator, denominator, window, filters, freshness, and exclusions. 'Not measured' must never appear as success.
 
 ### 4.3 Use the Exposure Map
 
@@ -97,7 +97,7 @@ For every metric, open **Definition** to see numerator, denominator, window, fil
 
 Example interpretation:
 
-> “Customer Operations has three high-impact workflows. Two use a governed executor and authoritative verifier. One still exposes a direct platform credential and cannot be described as enforced.”
+> 'Customer Operations has three high-impact workflows. Two use a governed executor and authoritative verifier. One still exposes a direct platform credential and cannot be described as enforced.'
 
 ### 4.4 Make a decision
 
@@ -214,7 +214,7 @@ For the current preview, the registry can be read through `GET /v1/registry` or 
 
 Open **Govern > New governed action type**.
 
-#### Step 1 — Purpose and ownership
+#### Step 1 - Purpose and ownership
 
 Define:
 
@@ -224,7 +224,7 @@ Define:
 - impact and data classification;
 - expiry or review date.
 
-#### Step 2 — Bound authority
+#### Step 2 - Bound authority
 
 Select:
 
@@ -237,7 +237,7 @@ Select:
 
 Unknown tools, missing argument schemas, malformed claims, and missing profiles must fail closed.
 
-#### Step 3 — Choose oversight
+#### Step 3 - Choose oversight
 
 Define whether the action is:
 
@@ -247,7 +247,7 @@ Define whether the action is:
 
 Specify reviewer role, expiry, separation of duties, and required rationale.
 
-#### Step 4 — Define expected effects
+#### Step 4 - Define expected effects
 
 Use the Effect Contract builder:
 
@@ -257,7 +257,7 @@ Use the Effect Contract builder:
 
 Choose a registered verifier and specify behavior when authoritative state is unavailable. The closed predicate DSL supports JSON Pointer paths and the operators `exists`, `equals`, `unchanged`, `changedTo`, and `deltaWithin`. The builder must not accept arbitrary JavaScript or expressions.
 
-#### Step 5 — Inspect generated artifacts
+#### Step 5 - Inspect generated artifacts
 
 Switch among:
 
@@ -269,7 +269,7 @@ Switch among:
 
 The visual builder proposes artifacts. Schema validation, policy evaluation, review, and environment authorization remain mandatory.
 
-#### Step 6 — Test before publishing
+#### Step 6 - Test before publishing
 
 Run at least:
 
@@ -283,7 +283,7 @@ Run at least:
 - unavailable verifier and recovery behavior;
 - bypass-path assessment.
 
-#### Step 7 — Review and publish
+#### Step 7 - Review and publish
 
 1. Review the generated artifacts and test results.
 2. Assign a semantic version.

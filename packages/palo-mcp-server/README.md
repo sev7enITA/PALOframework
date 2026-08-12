@@ -1,4 +1,4 @@
-# PALO MCP reference server — Developer Preview
+# PALO MCP reference server - Developer Preview
 
 This package is the non-production reference implementation shipped with PALO-AI v2.5. It demonstrates the official MCP SDK over stdio and experimental bearer-authenticated Streamable HTTP, Action Claim 1.2, Effect Contracts, one-time capabilities, trusted in-process executors, authoritative verifiers, signed receipts, outcome attestations, assurance incidents and a hash-chained SQLite ledger.
 

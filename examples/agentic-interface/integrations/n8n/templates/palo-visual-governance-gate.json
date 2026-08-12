@@ -1,5 +1,5 @@
 {
-  "name": "PALO-AI Visual Governance Gate — Developer Preview",
+  "name": "PALO-AI Visual Governance Gate - Developer Preview",
   "nodes": [
     {
       "parameters": {},
@@ -35,7 +35,7 @@
     {
       "parameters": {},
       "id": "allowed-outcome",
-      "name": "Allowed — Mock Only",
+      "name": "Allowed - Mock Only",
       "type": "n8n-nodes-base.noOp",
       "typeVersion": 1,
       "position": [900, 180]
@@ -51,7 +51,7 @@
     {
       "parameters": {},
       "id": "denied-outcome",
-      "name": "Denied — Stop",
+      "name": "Denied - Stop",
       "type": "n8n-nodes-base.noOp",
       "typeVersion": 1,
       "position": [900, 420]
@@ -63,9 +63,9 @@
     },
     "PALO Governance": {
       "main": [
-        [{ "node": "Allowed — Mock Only", "type": "main", "index": 0 }],
+        [{ "node": "Allowed - Mock Only", "type": "main", "index": 0 }],
         [{ "node": "Approval Required", "type": "main", "index": 0 }],
-        [{ "node": "Denied — Stop", "type": "main", "index": 0 }]
+        [{ "node": "Denied - Stop", "type": "main", "index": 0 }]
       ]
     }
   },

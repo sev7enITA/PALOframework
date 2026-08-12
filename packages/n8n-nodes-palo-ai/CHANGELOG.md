@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.2.0 — Unreleased full-cycle developer preview
+## 0.2.0 - Unreleased full-cycle developer preview
 
 - Add the PALO Governed Action node with Verified, Review Required, Denied and Execution Failed outputs.
 - Add Action Claim 1.2 and Effect Contract construction for preconditions, expected effects and forbidden effects.
@@ -10,7 +10,7 @@
 
 This version remains unpublished, unaudited and unsuitable for production authorization or consequential tools.
 
-## 0.1.0 — Unreleased developer preview
+## 0.1.0 - Unreleased developer preview
 
 - Add the installable PALO Governance community-node package scaffold.
 - Add encrypted PALO API credentials.

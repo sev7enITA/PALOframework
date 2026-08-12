@@ -57,9 +57,9 @@ A visible PALO decision node is useful, but it is not an enforcement boundary if
 
 Use one of these integration classes deliberately:
 
-1. **Advisory gate** — the workflow calls PALO and visibly routes `allowed`, `pending_approval`, and `denied`. Suitable for learning and design-partner pilots only.
-2. **Governed executor** — the agent can call only a PALO-owned broker or tool wrapper. PALO evaluates and consumes authorization before the broker uses isolated target credentials.
-3. **Workflow admission** — an instance-level hook rejects workflows or executions that do not have the required PALO coverage and registered digest.
+1. **Advisory gate** - the workflow calls PALO and visibly routes `allowed`, `pending_approval`, and `denied`. Suitable for learning and design-partner pilots only.
+2. **Governed executor** - the agent can call only a PALO-owned broker or tool wrapper. PALO evaluates and consumes authorization before the broker uses isolated target credentials.
+3. **Workflow admission** - an instance-level hook rejects workflows or executions that do not have the required PALO coverage and registered digest.
 
 For consequential actions, use classes 2 and 3 together. Credentials for the real tool must remain behind the governed executor; otherwise a direct path remains.
 
@@ -279,9 +279,9 @@ Replace fixture values with a currently registered profile and generate fresh cl
 
 The three node outputs mean:
 
-- **Allowed** — the policy permits the claim, but the current node has not executed the target action;
-- **Approval Required** — persist the exact claim and approval ID outside transient UI state;
-- **Denied** — stop and alert. Connector errors also deny or stop the workflow.
+- **Allowed** - the policy permits the claim, but the current node has not executed the target action;
+- **Approval Required** - persist the exact claim and approval ID outside transient UI state;
+- **Denied** - stop and alert. Connector errors also deny or stop the workflow.
 
 #### 4. Human review
 
@@ -336,8 +336,8 @@ The repository example at `examples/agentic-interface/integrations/dify/palo_dif
 
 Two integration levels are possible:
 
-1. **Decision tool** — a workflow or agent calls PALO before a separate tool. This remains advisory if the agent can call that tool directly.
-2. **PALO-owned Agent Strategy or brokered tool** — PALO owns the tool-selection/execution loop or the only available action credential. This is the preferred enforcement model.
+1. **Decision tool** - a workflow or agent calls PALO before a separate tool. This remains advisory if the agent can call that tool directly.
+2. **PALO-owned Agent Strategy or brokered tool** - PALO owns the tool-selection/execution loop or the only available action credential. This is the preferred enforcement model.
 
 Dify's official extension points include [plugin types](https://docs.dify.ai/en/develop-plugin/getting-started/choose-plugin-type), [tool plugins](https://docs.dify.ai/en/develop-plugin/dev-guides-and-walkthroughs/tool-plugin), and [Agent Strategy plugins](https://docs.dify.ai/en/develop-plugin/dev-guides-and-walkthroughs/agent-strategy-plugin). Package and test a PALO plugin only after the generic connector contract is stable.
 
@@ -369,7 +369,7 @@ These SaaS platforms do not expose a universal instance-level interceptor for ev
 - Make: use a [custom app](https://developers.make.com/custom-apps-documentation) or HTTP/webhook call to a PALO broker.
 - Zapier: use a [private or public integration](https://docs.zapier.com/platform/home) whose action calls the PALO broker.
 
-A standalone “check policy” step followed by a native vendor action is advisory and can suffer time-of-check/time-of-use drift.
+A standalone 'check policy' step followed by a native vendor action is advisory and can suffer time-of-check/time-of-use drift.
 
 ## MCP-based platforms
 

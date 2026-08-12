@@ -8,13 +8,13 @@ Please use only a disposable, non-production n8n instance and mock, synthetic or
 
 The preview is not a production authorization service, an unavoidable interception boundary, an n8n-verified connector or a compliance certification. The visual decision gate is advisory, and package 0.2's governed-action prototype is bypassable if direct credentials or tool routes remain. Production identity, authenticated approval delivery, non-bypassable connector isolation, distributed state, KMS/HSM key custody and certified connectors remain under development.
 
-## Part A — Architecture feedback
+## Part A - Architecture feedback
 
 1. **Perspective**
-   n8n builder · AI/platform engineer · security engineer · governance/risk/compliance · researcher/policy author · other
+   n8n builder | AI/platform engineer | security engineer | governance/risk/compliance | researcher/policy author | other
 
 2. **Pattern reviewed**
-   Visual Governance Decision Gate · Governed Executor · Digest-Bound Human Approval · Workflow Admission · cross-cutting contracts/MCP
+   Visual Governance Decision Gate | Governed Executor | Digest-Bound Human Approval | Workflow Admission | cross-cutting contracts/MCP
 
 3. **Environment**
    n8n version and deployment mode (self-hosted/Docker/Desktop/other), PALO commit or package version, operating system, and whether the test used the local reference gateway. Never include secrets.
@@ -32,9 +32,9 @@ The preview is not a production authorization service, an unavoidable intercepti
    What change, test or n8n-native integration point would improve the result? What compatibility or failure-mode requirement should be added?
 
 8. **Impact**
-   Blocking · high · medium · low · unclear. Explain the consequence and who is affected.
+   Blocking | high | medium | low | unclear. Explain the consequence and who is affected.
 
-## Part B — Design-partner proposal
+## Part B - Design-partner proposal
 
 1. **Role and team type**
    For example: platform engineer, internal automation team, security research group, consultancy, or policy team.
@@ -46,7 +46,7 @@ The preview is not a production authorization service, an unavoidable intercepti
    Authority profile and Action Claim mapping; OPA/Rego allow/deny behavior; approval-required flow; replay/idempotency handling; Effect Contract and outcome verification; evidence/ledger shape; n8n node ergonomics; MCP interoperability; workflow-admission analysis.
 
 4. **Evaluation plan and success criteria**
-   List the smallest reproducible test (for example: register → deny → approval → capability → execute mock action → verify authoritative outcome) and measurable outcomes such as decision correctness, effect-verification coverage, error handling, latency or operator comprehension.
+   List the smallest reproducible test (for example: register -> deny -> approval -> capability -> execute mock action -> verify authoritative outcome) and measurable outcomes such as decision correctness, effect-verification coverage, error handling, latency or operator comprehension.
 
 5. **Integration constraints**
    n8n version, deployment topology, identity provider (if any), network restrictions, preferred transport and retention requirements. Do not provide credentials or sensitive topology details.

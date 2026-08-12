@@ -1,12 +1,12 @@
-# PALO-AI Governance Hub — Design QA
+# PALO-AI Governance Hub - Design QA
 
 ## Comparison basis
 
-- Source of truth: selected generated concept, “Guided Governance Builder” (private generation path intentionally omitted)
+- Source of truth: selected generated concept, 'Guided Governance Builder' (private generation path intentionally omitted)
 - Implementation: `http://localhost:4173/`
-- Primary state: Technical lens → Setup → Step 4, “Bound authority”
-- Desktop viewport: 1440 × 1024
-- Mobile viewport: 390 × 844
+- Primary state: Technical lens -> Setup -> Step 4, 'Bound authority'
+- Desktop viewport: 1440 x 1024
+- Mobile viewport: 390 x 844
 
 The reference and implementation were compared at the same desktop state and viewport. The implementation preserves the selected white enterprise direction: left navigation, Executive/Technical role switch, eight-step setup rail, plain-language authority form, PALO teal/navy/gold palette, and a right-hand enforcement summary with progressively disclosed contracts.
 
@@ -14,15 +14,15 @@ The reference and implementation were compared at the same desktop state and vie
 
 | Priority | Finding | Resolution |
 | --- | --- | --- |
-| P0 | None | — |
-| P1 | None | — |
+| P0 | None | - |
+| P1 | None | - |
 | P2 | The mobile wizard rail clipped the next step label without a strong scrolling behavior. | Added horizontal scroll snapping, scroll padding and an explicit scrollbar palette. |
 | P2 | Approval and execution table actions needed explicit accessible names and direct button handlers. | Added action-specific labels and moved execution tracing onto the visible `Trace` button. |
 | P2 | Two connection selects appeared editable but did not persist their selection. | Added local platform and environment state. |
 
 ## Functional checks
 
-- Technical → Executive role switching: passed.
+- Technical -> Executive role switching: passed.
 - Mobile navigation drawer: passed.
 - Eight-step wizard navigation and editable authority fields: passed.
 - Boundary and assurance simulations: passed.

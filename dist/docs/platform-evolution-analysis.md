@@ -156,7 +156,7 @@ The release pipeline checks deterministic projections, JSON Schema valid/invalid
 
 ### UI and UX impact
 
-The Explorer becomes a Semantic Inspector over the generated spine. Platform Map and Documentation Library filter by evidence/authority class independently of delivery status. Governance Hub identifies Executive and Technical as workspace lenses—not access roles—and labels every demonstration record/export as an illustrative local preview. These changes create a consistent boundary across the public catalog, case workspace and assurance review.
+The Explorer becomes a Semantic Inspector over the generated spine. Platform Map and Documentation Library filter by evidence/authority class independently of delivery status. Governance Hub identifies Executive and Technical as workspace lenses - not access roles - and labels every demonstration record/export as an illustrative local preview. These changes create a consistent boundary across the public catalog, case workspace and assurance review.
 
 ### Residual risk
 

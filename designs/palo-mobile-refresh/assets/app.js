@@ -208,7 +208,7 @@
 
   function populateRoute() {
     const content = routeContent[assessment.route] || routeContent.Frame;
-    $('[data-result-phase]').textContent = `${content.number} · ${assessment.route}`;
+    $('[data-result-phase]').textContent = `${content.number} | ${assessment.route}`;
     $('[data-result-module]').textContent = assessment.module;
     $('[data-result-copy]').textContent = content.copy;
     $('[data-result-name]').textContent = assessment.name || 'Untitled system';
@@ -254,7 +254,7 @@
     $('[data-flow-step-label]', flow).textContent = 'Complete';
     $$('.flow-progress i', flow).forEach((item) => { item.className = 'is-complete'; });
     $('[data-complete-title]', flow).textContent = `${assessment.name} is ready.`;
-    $('[data-complete-route]', flow).textContent = `${assessment.route} · ${assessment.module}`;
+    $('[data-complete-route]', flow).textContent = `${assessment.route} | ${assessment.module}`;
     $('.flow-body', flow).scrollTop = 0;
     requestAnimationFrame(() => $('[data-flow-finish]', flow).focus());
   }

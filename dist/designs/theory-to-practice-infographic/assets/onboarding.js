@@ -43,8 +43,8 @@
     "reg-watch": { name: "Regulatory Watch 2026", href: "../../PALO_RegulatoryWatch.html", phase: "classify", artifact: "Current official-source context" },
     "comparison": { name: "Framework Comparison", href: "../../PALO_ComparisonTool.html", phase: "classify", artifact: "Framework comparison record" },
     "palo-ai": { name: "PALO-AI Overview", href: "../../PALO_AIGovernance.html", phase: "control", artifact: "Full-cycle governance route" },
-    "governance-hub-executive": { name: "Governance Hub — Executive", href: "../../governance-hub/?role=executive&view=today", phase: "control", artifact: "Executive governance decision view" },
-    "governance-hub-technical": { name: "Governance Hub — Technical Setup", href: "../../governance-hub/?role=technical&view=setup", phase: "control", artifact: "Bound authority and outcome-assurance profile" },
+    "governance-hub-executive": { name: "Governance Hub - Executive", href: "../../governance-hub/?role=executive&view=today", phase: "control", artifact: "Executive governance decision view" },
+    "governance-hub-technical": { name: "Governance Hub - Technical Setup", href: "../../governance-hub/?role=technical&view=setup", phase: "control", artifact: "Bound authority and outcome-assurance profile" },
     "capability-matrix": { name: "Capability Matrix", href: "../../PALO_AgenticCapabilityMatrix.html", phase: "prove", artifact: "Evidence-backed capability boundary" },
     "readiness": { name: "Production Readiness", href: "../../PALO_AIProductionReadiness.html", phase: "prove", artifact: "Nine-gate readiness plan" },
     "integration-guide": { name: "Integration Guide", href: "../../docs/palo-ai-governance-integration-guide.html", phase: "control", artifact: "Governed integration design" },
@@ -307,7 +307,7 @@
 
   function showCaseResume(caseFile) {
     caseResumePanel.hidden = !caseFile;
-    if (caseFile) caseResumeSummary.textContent = caseFile.title + " · " + caseFile.status + " · updated " + caseFile.updatedAt.slice(0, 10);
+    if (caseFile) caseResumeSummary.textContent = caseFile.title + " | " + caseFile.status + " | updated " + caseFile.updatedAt.slice(0, 10);
   }
 
   function saveRouteToCase(route) {
@@ -474,7 +474,7 @@
 
   var stored = safeRead();
   if (stored && stored.onboardingVersion === VERSION) {
-    currentRoute = stored; restoreAnswers(stored); resumePanel.hidden = false; resumeSummary.textContent = stored.stakeholder + " · Start with " + stored.primaryAction.name + " · " + stored.startingPhase;
+    currentRoute = stored; restoreAnswers(stored); resumePanel.hidden = false; resumeSummary.textContent = stored.stakeholder + " | Start with " + stored.primaryAction.name + " | " + stored.startingPhase;
   }
   showCaseResume(currentCase());
   applyIntent();

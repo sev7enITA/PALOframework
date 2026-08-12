@@ -1282,7 +1282,7 @@ body.palo-v21 .palo-route-ribbon a, body.palo-v21 .palo-route-ribbon strong { co
   .palo-governance-routes-intro { grid-template-columns: 1fr; }
   .palo-governance-route-map, .palo-umbrella-lineage { grid-template-columns: 1fr; }
   .palo-umbrella-lineage li { padding-right: 22px; border-right: 0; border-bottom: 1px solid rgba(255,255,255,.16); }
-  .palo-umbrella-lineage li:not(:last-child)::after { content: "↓"; right: 22px; }
+  .palo-umbrella-lineage li:not(:last-child)::after { content: "v"; right: 22px; }
   .palo-governance-entry { min-height: 0; border-right: 0; border-bottom: 1px solid #bcccdc; }
   .palo-governance-entry:last-child { border-bottom: 0; }
   .palo-governance-entry-head { min-height: 0; }

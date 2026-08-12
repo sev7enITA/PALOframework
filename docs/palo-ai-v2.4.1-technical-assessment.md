@@ -52,7 +52,7 @@ These capabilities are executable and tested as reference components:
 - Rego v1 default-deny policy and negative tests;
 - fail-closed behavior when OPA is absent or returns an invalid decision.
 
-“Implemented” here means the component exists and its current tests pass. It does not mean the surrounding production control is complete.
+'Implemented' here means the component exists and its current tests pass. It does not mean the surrounding production control is complete.
 
 ### Prototypes
 
@@ -79,7 +79,7 @@ These capabilities are executable and tested as reference components:
 
 ## P0 security and enforcement blockers
 
-### P0-1 — Effective resource is not bound to authority scope
+### P0-1 - Effective resource is not bound to authority scope
 
 The Rego policy checks the claim's declared `requestedScopes`, while the runtime separately validates tool arguments against a trusted JSON Schema. It does not yet prove that `action.path`, `action.resource`, and every path or URI embedded in the arguments are contained within the registered authority scopes.
 
@@ -92,7 +92,7 @@ Required correction:
 - validate all target-bearing arguments against the same authority;
 - add negative tests for path traversal, sibling prefixes, encoded paths, symlinks/aliases and URI normalization.
 
-### P0-2 — An allowed decision is reusable without complete freshness checks
+### P0-2 - An allowed decision is reusable without complete freshness checks
 
 The runtime can return a stored decision for an existing claim before rechecking expiry and before loading the current authority profile and policy. The reference `authorizeAndExecute` method can then use that decision.
 
@@ -105,19 +105,19 @@ Required correction:
 - issue and atomically consume a short-lived, audience-bound, one-time capability;
 - preserve prior decisions immutably rather than replacing them.
 
-### P0-3 — The n8n visual gate is bypassable
+### P0-3 - The n8n visual gate is bypassable
 
 The current node routes a decision but does not own target execution. A workflow editor can remove it or connect the agent directly to another tool.
 
 Required correction: implement the governed executor and, for enforced self-hosted profiles, workflow admission/pre-execution checks. Target credentials must not be available outside the PALO execution boundary.
 
-### P0-4 — Shared bearer token collapses security roles
+### P0-4 - Shared bearer token collapses security roles
 
 The reference gateway uses one shared token for profile and policy administration, action verification, approval resolution, registry access and evidence submission.
 
 Required correction: introduce OIDC and/or mTLS workload identity, least-privilege RBAC, tenant/environment boundaries, credential rotation, and separation among administrator, agent, connector, reviewer and auditor.
 
-### P0-5 — Client-supplied execution evidence can be signed
+### P0-5 - Client-supplied execution evidence can be signed
 
 The preview evidence API accepts a claim, decision and outcome from an authenticated caller. The runtime validates binding and status but does not establish that the decision was its immutable stored decision or that a trusted executor performed the side effect.
 
@@ -125,13 +125,13 @@ Impact: a token holder can ask the service to sign a false execution outcome.
 
 Required correction: accept outcome evidence only from a registered governed executor; look up the immutable decision and consumed capability server-side; commit execution state and an evidence outbox atomically.
 
-### P0-6 — Approval is cryptographically bound but not yet meaningful
+### P0-6 - Approval is cryptographically bound but not yet meaningful
 
 The approval object binds IDs and a digest, but the reference reviewer presentation does not yet provide a complete trusted view of tool, target, arguments, data sensitivity, consequences, reversibility and policy reason. Reviewer identity is also not production-authenticated.
 
 Required correction: create a signed/redacted action presentation, authenticate and authorize the reviewer, enforce separation of duties and expiry, and resume through a one-time backend signal.
 
-### P0-7 — Registered policy provenance is not bound to evaluated OPA code
+### P0-7 - Registered policy provenance is not bound to evaluated OPA code
 
 The registry stores a policy manifest and digest, while the evaluator calls a fixed OPA data endpoint. The response does not prove that the loaded bundle is the registered artifact.
 
@@ -168,9 +168,9 @@ This assessment corrected the following visible inconsistencies:
 
 Remaining claim discipline:
 
-- use “governance-enabled” or “visual governance gate” for opt-in integrations;
-- use “brokered execution” only when PALO owns the target credential and execution;
-- use “enforced” only when direct paths are removed and server-side enforcement remains mandatory;
+- use 'governance-enabled' or 'visual governance gate' for opt-in integrations;
+- use 'brokered execution' only when PALO owns the target credential and execution;
+- use 'enforced' only when direct paths are removed and server-side enforcement remains mandatory;
 - never claim biometric signing, exactly-once execution, n8n verification, certification or production readiness without linked evidence.
 
 ## Recommended delivery sequence

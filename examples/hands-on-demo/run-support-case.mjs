@@ -124,7 +124,7 @@ async function runSupportCase() {
   console.log(`Gateway: ${gatewayUrl}`);
   console.log(`Case: ${caseId}`);
 
-  headline(0, "WITHOUT PALO — the agent calls the tool directly");
+  headline(0, "WITHOUT PALO - the agent calls the tool directly");
   const unrestrictedDocument = await readFile(path.join(repositoryRoot, "examples/hands-on-demo/restricted-finance-note.txt"), "utf8");
   console.log(`${colors.red}Direct mock tool executed: true${colors.reset}`);
   console.log(`Result: ${unrestrictedDocument.split("\n").slice(0, 3).join(" ")}`);
@@ -200,7 +200,7 @@ async function runSupportCase() {
   console.log(`Ledger entries: ${ledger.entries}`);
   console.log(`Ledger head: ${ledger.headDigest}`);
 
-  console.log(`\n${colors.bold}${colors.green}Demo complete: deny → approval → allow → mock execute → sign → persist → replay deny → verify.${colors.reset}`);
+  console.log(`\n${colors.bold}${colors.green}Demo complete: deny -> approval -> allow -> mock execute -> sign -> persist -> replay deny -> verify.${colors.reset}`);
 }
 
 await gateway("/health");

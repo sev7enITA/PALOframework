@@ -6,47 +6,47 @@ PALO v3.0.0 introduces a versioned semantic foundation for definitions, lifecycl
 
 The release establishes one deterministic path from canonical framework meaning to public interfaces:
 
-`semantic-spine.json` → generated lifecycle and Explorer projection → semantic validation → digest-bound semantic release manifest → allowlisted public build.
+`semantic-spine.json` -> generated lifecycle and Explorer projection -> semantic validation -> digest-bound semantic release manifest -> allowlisted public build.
 
 The foundation does not claim that formal consistency proves legal applicability, control effectiveness, source freshness or approval. Those remain accountable human decisions.
 
 ## Six delivery waves
 
-### Wave 1 — Canonical semantic spine
+### Wave 1 - Canonical semantic spine
 
 - Stable HTTPS semantic identifiers for phases, modules, artifacts, controls, indicators, sources, actors and navigation routes.
 - Definition version, evidence class, authority boundary, source references and review date on every node.
 - Versioned mapping basis on every relationship.
 - Deterministic generation of the Explorer graph; the browser asset is a projection, not an independent registry.
 
-### Wave 2 — Lifecycle and gate decisions
+### Wave 2 - Lifecycle and gate decisions
 
 - A generated six-phase lifecycle definition aligned to the canonical Decision Gate registry.
 - Gate Instance records for the state of a gate in a specific case.
 - Append-only Gate Decision Records with actor, authority, rationale, input snapshot and digest chain.
 
-### Wave 3 — Atomic evidence contracts
+### Wave 3 - Atomic evidence contracts
 
 - Evidence Artifact for immutable item identity, provenance and digest.
 - Evidence Claim for a falsifiable assertion and its subject.
 - Evidence Evaluation for method, reviewer, result and rationale.
 - Evidence Bundle Manifest for versioned composition without replacing the P1 Evidence Bundle.
 
-### Wave 4 — Executable formal model
+### Wave 4 - Executable formal model
 
 - JSON-LD context for portable identifiers.
 - RDF/Turtle ontology for the public semantic vocabulary.
 - SHACL shapes and executable valid/invalid fixtures.
 - Named invariants checked in the release pipeline.
 
-### Wave 5 — Mapping and release governance
+### Wave 5 - Mapping and release governance
 
 - Atomic source-to-target mappings across controls, indicators, gates and sources.
 - Independent source and target versions, mapping basis, coverage, provenance and approval state.
 - Change-impact register and migration gates for breaking semantic changes.
 - Digest-bound semantic release inventory.
 
-### Wave 6 — Human-readable boundaries
+### Wave 6 - Human-readable boundaries
 
 - Explorer Semantic Inspector exposes ID, version, evidence class, authority boundary, sources and relationship basis.
 - Platform Map separates delivery status from evidence/authority class.
@@ -66,9 +66,9 @@ Delivery status such as Implemented or Foundation is independent of these classe
 
 ## Workspace boundaries
 
-- **Public semantic catalog** — read-only orientation across definitions, relations and sources.
-- **Case workspace** — applies released definitions to a local governance case without amending them.
-- **Assurance review** — reviews evidence, conditions, incidents and decision history without implying legal or technical authority.
+- **Public semantic catalog** - read-only orientation across definitions, relations and sources.
+- **Case workspace** - applies released definitions to a local governance case without amending them.
+- **Assurance review** - reviews evidence, conditions, incidents and decision history without implying legal or technical authority.
 
 Executive and Technical are presentation lenses inside the Governance Hub. They are not identities, permissions or RBAC roles.
 

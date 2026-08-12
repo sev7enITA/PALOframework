@@ -24,9 +24,9 @@
   <aside class="palo-ai-status-rail" aria-label="PALO-AI assurance status"><div class="palo-shell"><span>v2.5 Developer Preview</span><a href="PALO_AgenticCapabilityMatrix.html" aria-current="page">Capability Matrix</a><a href="PALO_AIProductionReadiness.html">Production Readiness</a><a href="security-policy.html">Security boundary</a></div></aside>
   <main id="main-content" class="palo-main">
     <section class="palo-hero palo-compact-hero"><div class="palo-shell">
-      <p class="palo-eyebrow">PALO-AI · v2.5 · Full-cycle developer preview</p>
+      <p class="palo-eyebrow">PALO-AI | v2.5 | Full-cycle developer preview</p>
       <h1>Agentic capability matrix</h1>
-      <p>One evidence-based view of what is specified, prototyped and implemented—and what still blocks production use. No PALO-AI runtime capability is represented as production-ready.</p>
+      <p>One evidence-based view of what is specified, prototyped and implemented - and what still blocks production use. No PALO-AI runtime capability is represented as production-ready.</p>
       <div class="palo-note"><strong>Safety boundary:</strong> this preview is not a production authorization service, security certification or substitute for organization-owned identity, access control, key management, monitoring, backup, retention and independent assurance.</div>
       <div class="palo-actions"><a class="palo-btn" href="PALO_AIWhy.html">Why PALO-AI?</a><a class="palo-btn palo-btn-secondary" href="governance-hub/">Open Governance Hub</a><a class="palo-btn palo-btn-secondary" href="PALO_AIProductionReadiness.html">Production Readiness</a><a class="palo-btn palo-btn-secondary" href="agentic/capability-matrix.json">Machine-readable matrix</a></div>
     </div></section>
@@ -35,7 +35,7 @@
         <article><strong data-matrix-count="implemented">0</strong><span>Implemented</span></article><article><strong data-matrix-count="prototype">0</strong><span>Prototype</span></article><article><strong data-matrix-count="specified">0</strong><span>Specified</span></article><article><strong data-matrix-count="production-ready">0</strong><span>Production-ready</span></article>
       </div>
       <div class="palo-matrix-tools" data-matrix-controls>
-        <div class="palo-field"><label for="matrix-search">Search capabilities</label><input id="matrix-search" type="search" placeholder="Try approval, n8n, identity…" data-matrix-search></div>
+        <div class="palo-field"><label for="matrix-search">Search capabilities</label><input id="matrix-search" type="search" placeholder="Try approval, n8n, identity..." data-matrix-search></div>
         <fieldset><legend>Filter by status</legend><div class="palo-filter-row"><button class="palo-filter is-active" type="button" data-matrix-filter="all" aria-pressed="true">All</button><button class="palo-filter" type="button" data-matrix-filter="implemented" aria-pressed="false">Implemented</button><button class="palo-filter" type="button" data-matrix-filter="prototype" aria-pressed="false">Prototype</button><button class="palo-filter" type="button" data-matrix-filter="specified" aria-pressed="false">Specified</button><button class="palo-filter" type="button" data-matrix-filter="production-ready" aria-pressed="false">Production-ready</button></div></fieldset>
       </div>
       <p class="palo-small" data-matrix-result role="status" aria-live="polite"></p>
@@ -43,7 +43,7 @@
         <table class="palo-table palo-capability-table">
           <thead><tr><th scope="col">Capability</th><th scope="col">Status</th><th scope="col">Available evidence</th><th scope="col">Remaining production gate</th></tr></thead>
           <tbody>
-            <tr data-status="implemented"><th scope="row">Official MCP SDK · stdio</th><td><span class="palo-ai-chip is-implemented">Implemented</span></td><td>19-tool protocol test.</td><td>Production process isolation and deployment assurance.</td></tr>
+            <tr data-status="implemented"><th scope="row">Official MCP SDK | stdio</th><td><span class="palo-ai-chip is-implemented">Implemented</span></td><td>19-tool protocol test.</td><td>Production process isolation and deployment assurance.</td></tr>
             <tr data-status="prototype"><th scope="row">Authenticated Streamable HTTP MCP</th><td><span class="palo-ai-chip is-prototype">Prototype</span></td><td>Anonymous denial and authenticated protocol tests.</td><td>Workload identity, principal RBAC, rotation and rate limiting.</td></tr>
             <tr data-status="prototype"><th scope="row">Versioned trusted registry</th><td><span class="palo-ai-chip is-prototype">Prototype</span></td><td>SQLite records and semantic-version checks.</td><td>Administrative authorization, publisher signatures, backup and recovery.</td></tr>
             <tr data-status="implemented"><th scope="row">Canonical Action Claims</th><td><span class="palo-ai-chip is-implemented">Implemented</span></td><td>Action Claim 1.1 compatibility and 1.2 Effect Contract binding.</td><td>Connector-specific production schemas and interoperability validation.</td></tr>
@@ -57,7 +57,7 @@
             <tr data-status="prototype"><th scope="row">Replay protection</th><td><span class="palo-ai-chip is-prototype">Prototype</span></td><td>Nonce, idempotency-key and sequence tests.</td><td>Distributed coordination; no universal exactly-once claim.</td></tr>
             <tr data-status="prototype"><th scope="row">Append-only SQLite ledger</th><td><span class="palo-ai-chip is-prototype">Prototype</span></td><td>WAL/FULL mode, immutable triggers and chain verification.</td><td>PostgreSQL, durable outbox, retention, backup and tested restore.</td></tr>
             <tr data-status="prototype"><th scope="row">Single-instance recovery</th><td><span class="palo-ai-chip is-prototype">Prototype</span></td><td>Stale pending entries become signed unknown receipts and incidents.</td><td>Distributed leasing, reconciliation and multi-replica recovery.</td></tr>
-            <tr data-status="prototype"><th scope="row">Human approval · Web and Android</th><td><span class="palo-ai-chip is-prototype">Prototype</span></td><td>Digest-bound state transition and demonstration clients.</td><td>Authenticated reviewer identity, delivery and production workflow assurance.</td></tr>
+            <tr data-status="prototype"><th scope="row">Human approval | Web and Android</th><td><span class="palo-ai-chip is-prototype">Prototype</span></td><td>Digest-bound state transition and demonstration clients.</td><td>Authenticated reviewer identity, delivery and production workflow assurance.</td></tr>
             <tr data-status="prototype"><th scope="row">PALO-AM profile exchange</th><td><span class="palo-ai-chip is-prototype">Prototype</span></td><td>Local profile and decision import/export.</td><td>Owner validation and enterprise synchronization.</td></tr>
             <tr data-status="prototype"><th scope="row">Vibe Coding pre-tool gate</th><td><span class="palo-ai-chip is-prototype">Prototype</span></td><td>Claim metadata and reference Rego rule.</td><td>Trusted attestation and unavoidable execution proxy.</td></tr>
             <tr data-status="prototype"><th scope="row">Hierarchical subagents</th><td><span class="palo-ai-chip is-prototype">Prototype</span></td><td>Profiles, delegation limits and parent metadata.</td><td>Trusted spawning, lineage verification and evidence handback.</td></tr>
@@ -75,5 +75,5 @@
       <p class="palo-empty" data-matrix-empty>No capabilities match these filters.</p>
     </div></section>
   </main>
-  <footer class="palo-footer"><div class="palo-shell"><p>PALO-AI v2.5 developer preview · No runtime capability is production-ready.</p><div class="palo-footer-links"><a href="governance-hub/">Governance Hub</a><a href="PALO_DocumentationLibrary.html">Documentation</a><a href="PALO_AIProductionReadiness.html">Production Readiness</a><a href="security-policy.html">Security</a></div></div></footer>
+  <footer class="palo-footer"><div class="palo-shell"><p>PALO-AI v2.5 developer preview | No runtime capability is production-ready.</p><div class="palo-footer-links"><a href="governance-hub/">Governance Hub</a><a href="PALO_DocumentationLibrary.html">Documentation</a><a href="PALO_AIProductionReadiness.html">Production Readiness</a><a href="security-policy.html">Security</a></div></div></footer>
 </body></html>

@@ -14,10 +14,10 @@ The problem we are testing is simple: an AI agent may be able to choose a tool, 
 
 The proposed model has four integration patterns:
 
-1. **Visual Governance Decision Gate** — a removable canvas node that turns a proposed tool call into a canonical Action Claim and exposes allowed, approval-required and denied branches.
-2. **Governed Executor** — the stronger target pattern in which credentials and allowlisted execution remain behind an unavoidable PALO-controlled boundary.
-3. **Digest-Bound Human Approval** — approval is bound to the exact immutable claim, then revalidated before a one-time secure resume.
-4. **Workflow Admission** — assess workflow JSON, governance coverage and a versioned workflow digest before activation or execution.
+1. **Visual Governance Decision Gate** - a removable canvas node that turns a proposed tool call into a canonical Action Claim and exposes allowed, approval-required and denied branches.
+2. **Governed Executor** - the stronger target pattern in which credentials and allowlisted execution remain behind an unavoidable PALO-controlled boundary.
+3. **Digest-Bound Human Approval** - approval is bound to the exact immutable claim, then revalidated before a one-time secure resume.
+4. **Workflow Admission** - assess workflow JSON, governance coverage and a versioned workflow digest before activation or execution.
 
 The current v2.5 full-cycle developer preview includes versioned JSON contracts, an official-SDK MCP reference server, Rego v1 policy, replay controls, a SQLite-backed preview registry and ledger, exact-claim approval, one-time execution capabilities, trusted receipts and authoritative outcome verification. The unpublished `n8n-nodes-palo-ai` 0.2 package provides both the visual decision gate and a governed-action prototype with Verified, Review Required, Denied and Execution Failed outputs.
 
@@ -41,4 +41,4 @@ We are also looking for a small number of design partners with one safe, non-pro
 
 The intake questions and safety boundaries are collected in [`docs/community/palo-ai-feedback-design-partner-form.md`](../community/palo-ai-feedback-design-partner-form.md). This post is an invitation to discuss the architecture, not a request for n8n verification or connector review.
 
-**n8n orchestrates what automation does. PALO makes explicit whether the action was authorized—and whether its declared effect was later verified.**
+**n8n orchestrates what automation does. PALO makes explicit whether the action was authorized - and whether its declared effect was later verified.**

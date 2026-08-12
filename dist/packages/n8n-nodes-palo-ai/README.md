@@ -97,16 +97,16 @@ Builds Action Claim 1.2, binds an Effect Contract and posts it to `/v1/actions/e
 
 ## Outputs
 
-1. **Allowed** — policy returned `allowed`; execution is still a separate explicit workflow step.
-2. **Approval Required** — policy returned `pending_approval`; persist the exact claim and follow the PALO approval flow.
-3. **Denied** — policy returned `denied`, or a connector error is routed here when n8n's Continue On Fail option is enabled.
+1. **Allowed** - policy returned `allowed`; execution is still a separate explicit workflow step.
+2. **Approval Required** - policy returned `pending_approval`; persist the exact claim and follow the PALO approval flow.
+3. **Denied** - policy returned `denied`, or a connector error is routed here when n8n's Continue On Fail option is enabled.
 
 The PALO Governed Action outputs are:
 
-1. **Verified** — trusted receipt exists and authoritative post-state satisfies the Effect Contract.
-2. **Review Required** — approval is pending, the effect is mismatched, or verification is inconclusive.
-3. **Denied** — authority, policy, replay, precondition or resource-hold checks stopped execution.
-4. **Execution Failed** — the trusted connector reported failure or the PALO connector itself failed when Continue On Fail is enabled.
+1. **Verified** - trusted receipt exists and authoritative post-state satisfies the Effect Contract.
+2. **Review Required** - approval is pending, the effect is mismatched, or verification is inconclusive.
+3. **Denied** - authority, policy, replay, precondition or resource-hold checks stopped execution.
+4. **Execution Failed** - the trusted connector reported failure or the PALO connector itself failed when Continue On Fail is enabled.
 
 Without Continue On Fail, network, authentication, parsing and malformed-response errors stop the workflow. This is deliberate fail-closed behavior.
 

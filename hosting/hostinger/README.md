@@ -1,11 +1,11 @@
-# PALO Web — Hostinger deployment bundle
+# PALO Web - Hostinger deployment bundle
 
 This folder contains the Apache/LiteSpeed rules to place at the root of the static PALO Web export. The deployable site itself is generated from the repository `dist/` build and is delivered as a separate ZIP artifact.
 
 ## Upload
 
 1. Create a backup of the current Hostinger `public_html` directory.
-2. Open Hostinger File Manager → the domain → `public_html`.
+2. Open Hostinger File Manager -> the domain -> `public_html`.
 3. Upload the generated `PALO-Hostinger-...zip` file.
 4. Extract it **inside `public_html`**, so `public_html/index.html` exists directly (do not leave a nested `dist/` folder).
 5. Upload or overwrite `.htaccess` from this folder at `public_html/.htaccess`.

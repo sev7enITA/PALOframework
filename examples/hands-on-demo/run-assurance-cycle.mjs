@@ -52,16 +52,16 @@ const health = await gateway("/health");
 if (health.version !== "2.5.0") throw new Error("The v2.5 full-cycle gateway is not running");
 await gateway("/v1/demo/catalog/reset", { method: "POST", body: { price: 100, version: staleState ? 4 : 3 } });
 
-console.log(`${colors.bold}PALO-AI v2.5 full-cycle assurance — synthetic catalog demo${colors.reset}`);
+console.log(`${colors.bold}PALO-AI v2.5 full-cycle assurance - synthetic catalog demo${colors.reset}`);
 console.log("No production system, customer data or consequential tool is used.");
 
-headline(0, "WITHOUT PALO — possession becomes permission");
+headline(0, "WITHOUT PALO - possession becomes permission");
 const directState = { tenantId: "tenant-a", itemId: "item-1", price: 100, version: 3 };
 directState.price = simulateWrongEffect ? 130 : 120; directState.version += 1;
 console.log(`${colors.red}Direct tool executed without authority, policy, approval, capability or outcome verification.${colors.reset}`);
 console.log(`Observed price: ${directState.price}; whether this matches the intended result is not checked.`);
 
-headline(1, "WITH PALO — propose authority and intended effect together");
+headline(1, "WITH PALO - propose authority and intended effect together");
 const actionClaim = claim();
 console.log(`Claim: ${actionClaim.claimId}`);
 console.log(`Expected effect: price changes from 100 to 120; tenant remains tenant-a.`);
@@ -83,11 +83,11 @@ if (outcome.receipt) console.log(`Receipt: ${outcome.receipt.status}; signature 
 headline(4, "Verify the effect against authoritative post-state");
 if (outcome.attestation) {
   console.log(`Attestation: ${outcome.attestation.status}`);
-  for (const check of outcome.attestation.checks) console.log(`- ${check.category}/${check.predicateId}: ${check.status} — ${check.reason}`);
+  for (const check of outcome.attestation.checks) console.log(`- ${check.category}/${check.predicateId}: ${check.status} - ${check.reason}`);
 }
 if (outcome.incident) console.log(`${colors.red}Incident ${outcome.incident.incidentId}: ${outcome.incident.reason}; resource hold=${outcome.incident.resourceHold}${colors.reset}`);
 
 headline(5, "Verify the append-only evidence chain");
 const ledger = await gateway("/v1/evidence/verify-ledger");
 console.log(`${ledger.valid ? colors.green : colors.red}Ledger valid: ${ledger.valid}${colors.reset}; entries=${ledger.entries}; head=${ledger.headDigest}`);
-console.log(`\n${colors.bold}${outcome.status === "verified" ? colors.green : colors.yellow}Demo complete: authorize → approve → capability → execute → receipt → verify → ${outcome.attestation?.status || outcome.status}.${colors.reset}`);
+console.log(`\n${colors.bold}${outcome.status === "verified" ? colors.green : colors.yellow}Demo complete: authorize -> approve -> capability -> execute -> receipt -> verify -> ${outcome.attestation?.status || outcome.status}.${colors.reset}`);

@@ -1,4 +1,4 @@
-# PALO-AI Governance Hub — status, gaps and staged launch plan
+# PALO-AI Governance Hub - status, gaps and staged launch plan
 
 Status: evidence-led launch plan updated 19 July 2026 for the PALO-AI v2.5 developer preview and implemented role-based GUI prototype.
 
@@ -10,7 +10,7 @@ It has **not** yet reached production-control-plane maturity. The implemented mo
 
 The launch should therefore make one promise:
 
-> **PALO-AI helps teams make agent authority explicit and test whether protected actions produced their declared outcomes. The current release is an open developer preview for isolated evaluation—not a production authorization service.**
+> **PALO-AI helps teams make agent authority explicit and test whether protected actions produced their declared outcomes. The current release is an open developer preview for isolated evaluation - not a production authorization service.**
 
 ## Where we are now
 
@@ -31,7 +31,7 @@ The launch should therefore make one promise:
 
 ### Core differentiation
 
-The strongest current message is not “we log AI actions.” It is:
+The strongest current message is not 'we log AI actions.' It is:
 
 1. autonomy does not establish authority;
 2. policy permission does not establish correctness;
@@ -40,7 +40,7 @@ The strongest current message is not “we log AI actions.” It is:
 5. authoritative post-state determines `verified`, `mismatch` or `inconclusive`;
 6. wrong or uncertain outcomes become held assurance incidents.
 
-This is more precise and defensible than a broad claim of “complete AI governance.”
+This is more precise and defensible than a broad claim of 'complete AI governance.'
 
 ## What is missing
 
@@ -145,19 +145,19 @@ This is more precise and defensible than a broad claim of “complete AI governa
 
 ## Promotion sequence
 
-### Stage 0 — align the public truth
+### Stage 0 - align the public truth
 
 Timing: immediately, before new promotion.
 
 Actions:
 
-- use v2.5 and “full-cycle developer preview” consistently;
+- use v2.5 and 'full-cycle developer preview' consistently;
 - publish the Governance Hub as an available interactive prototype while keeping live-runtime and production claims explicitly out of scope;
 - make `agentic/capability-matrix.json` the source of truth for status;
 - make the direct-versus-governed demo the primary proof asset;
 - place the current boundary next to every CTA;
 - update community copy that still centers v2.4.1 before posting it;
-- do not publish sample executive metrics without a visible “illustrative data” label.
+- do not publish sample executive metrics without a visible 'illustrative data' label.
 
 Exit criteria:
 
@@ -165,14 +165,14 @@ Exit criteria:
 - every major capability statement links to evidence or is labelled proposed;
 - one executive and one technical narrative use the same lifecycle vocabulary.
 
-### Stage 1 — design review, not launch announcement
+### Stage 1 - design review, not launch announcement
 
-Timing: weeks 1–2.
+Timing: weeks 1-2.
 
 Channels and actions:
 
 **GitHub Discussions**
-Open “One Governance Hub, two role-based views” and ask four design questions. Link the full-cycle guide, capability matrix and safe demo.
+Open 'One Governance Hub, two role-based views' and ask four design questions. Link the full-cycle guide, capability matrix and safe demo.
 
 **n8n Community**
 Post an updated architecture discussion, explicitly not a verification request. Ask where native nodes should end and a one-service PALO integration should begin, how builders expose bypass risk and which reversible workflow should become the first partner test.
@@ -181,23 +181,23 @@ Post an updated architecture discussion, explicitly not a verification request. 
 Ask for review of input ownership, policy-bundle attestation, default-deny semantics, exception expiry and test coverage. Do not lead with marketing copy.
 
 **OWASP GenAI Agentic Security Initiative and MCP security practitioners**
-Share the trust-boundary diagram and “authorized but wrong” case. Ask reviewers to challenge confused-deputy, prompt-injection, replay, verifier trust and evidence-forgery paths.
+Share the trust-boundary diagram and 'authorized but wrong' case. Ask reviewers to challenge confused-deputy, prompt-injection, replay, verifier trust and evidence-forgery paths.
 
 **LinkedIn**
-Publish a short technical narrative around one insight: **Allowed is not verified.** Use a 30–45 second clip of the wrong-effect path and link to GitHub. Invite critique and design partners, not buyers.
+Publish a short technical narrative around one insight: **Allowed is not verified.** Use a 30-45 second clip of the wrong-effect path and link to GitHub. Invite critique and design partners, not buyers.
 
 Exit criteria:
 
 - 10 qualified architecture responses;
 - at least 3 responses from outside the existing network;
 - all material feedback classified as contract, enforcement, UX, policy, reliability or documentation;
-- public “what changed because of feedback” log started.
+- public 'what changed because of feedback' log started.
 
-### Stage 2 — structured design-partner cohort
+### Stage 2 - structured design-partner cohort
 
-Timing: weeks 2–6.
+Timing: weeks 2-6.
 
-Recruit 3–5 partners across:
+Recruit 3-5 partners across:
 
 - one n8n consultant or self-hosted operator;
 - one internal AI automation team;
@@ -209,7 +209,7 @@ Each partner supplies:
 
 - one disposable workflow;
 - one synthetic or reversible action;
-- a stated “must never execute” condition;
+- a stated 'must never execute' condition;
 - a named accountable reviewer;
 - measurable comprehension, latency and reliability criteria;
 - permission before any result is attributed publicly.
@@ -232,7 +232,7 @@ Measure both controls and friction:
 - decision and verification latency;
 - recovery success;
 - percentage of actions with an authoritative verifier;
-- false confidence events, where “allowed” was mistaken for “verified.”
+- false confidence events, where 'allowed' was mistaken for 'verified.'
 
 Exit criteria:
 
@@ -242,7 +242,7 @@ Exit criteria:
 - top five cognitive-friction points ranked by evidence;
 - no unresolved critical security or authorization finding.
 
-### Stage 3 — installable alpha decision
+### Stage 3 - installable alpha decision
 
 Timing: after Stage 2 evidence, not on a fixed publicity date.
 
@@ -272,7 +272,7 @@ Exit criteria:
 - zero open critical/high release-blocking findings;
 - rollback and deprecation path documented.
 
-### Stage 4 — external assurance and controlled production candidate
+### Stage 4 - external assurance and controlled production candidate
 
 Timing: only after design-partner learning and architecture hardening.
 
@@ -315,13 +315,13 @@ Avoid leading with a long feature list or a conceptual dashboard. The audience s
 
 | Week | Primary asset | Channel | Intended learning |
 | --- | --- | --- | --- |
-| 1 | “Allowed is not verified” clip and diagram | LinkedIn + GitHub Discussion | Does the problem resonate without framework jargon? |
+| 1 | 'Allowed is not verified' clip and diagram | LinkedIn + GitHub Discussion | Does the problem resonate without framework jargon? |
 | 1 | Governance Hub role concept | GitHub Discussion | Which executive decisions and technical tasks matter? |
 | 2 | n8n direct-versus-governed workflow | n8n Community | Is the node boundary clear and complementary? |
 | 2 | Rego input and bundle-boundary review | OPA community | Are policy ownership and failure semantics credible? |
 | 3 | Threat-boundary and wrong-effect case | OWASP/MCP security reviewers | Which abuse cases or trust assumptions are missing? |
-| 3–4 | Design-partner office hours | Direct outreach | Which setup steps create the most friction? |
-| 4 | “What feedback changed” engineering note | GitHub + LinkedIn | Are we visibly learning rather than advertising? |
+| 3-4 | Design-partner office hours | Direct outreach | Which setup steps create the most friction? |
+| 4 | 'What feedback changed' engineering note | GitHub + LinkedIn | Are we visibly learning rather than advertising? |
 | 5 | Reproduced partner demo | GitHub, with permission | Can an external builder reach the expected outcomes? |
 | 6 | Evidence-led alpha readiness review | GitHub | Publish, defer or narrow the package? |
 
@@ -329,7 +329,7 @@ Avoid leading with a long feature list or a conceptual dashboard. The audience s
 
 ### Learning and comprehension
 
-- at least 70% of five executive test participants can explain “allowed versus verified” after a five-minute walkthrough;
+- at least 70% of five executive test participants can explain 'allowed versus verified' after a five-minute walkthrough;
 - at least 80% correctly identify an open resource hold and its accountable owner;
 - median technical time to first governed synthetic action below 45 minutes by the end of the design-partner cohort;
 - median reviewer comprehension score of at least 4/5 for tool, target, effect, expiry and reason;
@@ -347,7 +347,7 @@ Avoid leading with a long feature list or a conceptual dashboard. The audience s
 ### Community and adoption
 
 - 10 qualified architecture responses in 30 days;
-- 3–5 design partners with written scopes;
+- 3-5 design partners with written scopes;
 - 2 external reproducible test reports;
 - 1 external threat-model review before any production-candidate language;
 - at least 3 documented product changes caused by external feedback;
@@ -392,9 +392,9 @@ These are reach signals, not assurance or product-market evidence.
 1. Publish a clearly labelled Governance Hub concept page using the copy draft in `docs/site/palo-ai-governance-hub-page-copy.md`.
 2. Open one GitHub Discussion for the two-view model; do not open a separate discussion for every feature.
 3. Update the existing n8n community draft from v2.4.1 to v2.5 before posting.
-4. Record a 45-second “Allowed is not verified” video using the wrong-effect demo.
+4. Record a 45-second 'Allowed is not verified' video using the wrong-effect demo.
 5. Invite ten named reviewers: two n8n builders, two platform/security engineers, two OPA/authorization specialists, two governance practitioners and two executive/CIO advisers.
-6. Create a public “feedback changed” label or project view so learning is visible.
+6. Create a public 'feedback changed' label or project view so learning is visible.
 
 ### Next 30 days
 

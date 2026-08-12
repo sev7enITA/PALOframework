@@ -1,4 +1,4 @@
-# PALO-AI v2.5 — Full-Cycle Agentic Assurance
+# PALO-AI v2.5 - Full-Cycle Agentic Assurance
 
 > **Developer preview.** Use synthetic or isolated data and non-consequential tools only. This implementation is not an independently assessed security boundary, compliance certification, production identity service or universal exactly-once executor.
 
@@ -7,7 +7,7 @@
 A policy can determine that an action is permitted. It cannot prove that the action was correct, that the state observed by the agent was current, or that the external system produced the intended result. PALO-AI v2.5 therefore separates permission from assurance:
 
 ```text
-Propose → Authorize → Approve → Capability → Execute → Receipt → Observe → Verify → Escalate
+Propose -> Authorize -> Approve -> Capability -> Execute -> Receipt -> Observe -> Verify -> Escalate
 ```
 
 An action is `verified` only when a registered verifier observes authoritative post-state that satisfies the immutable Effect Contract. A policy decision by itself remains `allowed`, not `verified`.
@@ -100,7 +100,7 @@ export PALO_GATEWAY_TOKEN='palo-demo-only-gateway-token-32-bytes'
 npm run demo:hands-on -- --auto-approve
 ```
 
-Restart the Gateway with a fresh `PALO_DATA_DIR`, then demonstrate the “authorized, but wrong” case:
+Restart the Gateway with a fresh `PALO_DATA_DIR`, then demonstrate the 'authorized, but wrong' case:
 
 ```bash
 npm run demo:hands-on -- --auto-approve --wrong-effect

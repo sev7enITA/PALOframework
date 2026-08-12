@@ -24,11 +24,11 @@ PALO-AI complements native n8n security, access control, guardrails and human-re
 
 ## Four visual integration patterns
 
-### Pattern A — Visual Governance Decision Gate
+### Pattern A - Visual Governance Decision Gate
 
 **Enforcement class:** advisory prototype unless paired with Pattern B or Pattern D.
 
-![Pattern A — PALO Visual Governance Decision Gate](../assets/palo-ai-n8n-scenarios/pattern-a-visual-governance-gate.png)
+![Pattern A - PALO Visual Governance Decision Gate](../assets/palo-ai-n8n-scenarios/pattern-a-visual-governance-gate.png)
 
 ```text
 [Proposed Action] -> [PALO Decision Gate]
@@ -39,11 +39,11 @@ PALO-AI complements native n8n security, access control, guardrails and human-re
 
 The node submits a canonical Action Claim to the trusted PALO Gateway. It exposes distinct decision branches and human-readable reasons. It is valuable for workflow transparency and prototyping, but it can be removed or bypassed by a workflow editor and must not be called an execution interceptor on its own.
 
-### Pattern B — PALO Governed Executor
+### Pattern B - PALO Governed Executor
 
 **Enforcement class:** implemented reference prototype in v2.5; production hardening and connector certification remain open.
 
-![Pattern B — PALO Governed Executor](../assets/palo-ai-n8n-scenarios/pattern-b-governed-executor.png)
+![Pattern B - PALO Governed Executor](../assets/palo-ai-n8n-scenarios/pattern-b-governed-executor.png)
 
 ```text
 [AI Agent] -> [PALO Governed Tool]
@@ -64,11 +64,11 @@ The agent can call only a PALO-governed tool. It supplies a registered `executor
 
 An arbitrary `targetTool` string is not sufficient. Production executors require a versioned registration, an argument schema, an authority profile, allowed hosts and scopes, credential isolation, timeout and retry semantics, and evidence mapping.
 
-### Pattern C — Digest-Bound Human Approval and Secure Resume
+### Pattern C - Digest-Bound Human Approval and Secure Resume
 
 **Enforcement class:** approval-state prototype; authenticated delivery and resume remain specified.
 
-![Pattern C — PALO Secure Human Approval](../assets/palo-ai-n8n-scenarios/pattern-c-secure-human-approval.png)
+![Pattern C - PALO Secure Human Approval](../assets/palo-ai-n8n-scenarios/pattern-c-secure-human-approval.png)
 
 ```text
 [Pending Action] -> [PALO Approval API] -> [PALO Web or Mobile]
@@ -86,11 +86,11 @@ The mobile client never receives authority to execute a tool and should not call
 
 This pattern should integrate with n8n's native human-review and wait semantics rather than duplicate their workflow lifecycle.
 
-### Pattern D — Workflow Admission and Continuous Governance
+### Pattern D - Workflow Admission and Continuous Governance
 
 **Enforcement class:** specified self-hosted/OEM enforcement pattern.
 
-![Pattern D — PALO Workflow Admission](../assets/palo-ai-n8n-scenarios/pattern-d-workflow-admission.png)
+![Pattern D - PALO Workflow Admission](../assets/palo-ai-n8n-scenarios/pattern-d-workflow-admission.png)
 
 ```text
 [Create or update workflow]
@@ -198,12 +198,12 @@ SQLite is never shared with n8n. Mobile biometrics may protect access to the cli
 
 ## Out-of-the-box policy packs
 
-1. **Observe Only** — assessment and evidence with no write authority.
-2. **Human Controlled** — approval for external communications, writes, deletion and purchases.
-3. **Enterprise Baseline** — host allowlists, scope restrictions, credential references and separation of duties.
-4. **Regulated Data** — declared purpose, redaction, approval obligations and retention controls.
-5. **Agent Team** — roles, delegation depth and subagent constraints have prototype support; durable team task leases, conflict handling and team-level evidence remain specified.
-6. **Vibe Coding** — gate metadata is prototyped, but an unavoidable proxy for shell, filesystem, Git, deployment and secret access is not implemented.
+1. **Observe Only** - assessment and evidence with no write authority.
+2. **Human Controlled** - approval for external communications, writes, deletion and purchases.
+3. **Enterprise Baseline** - host allowlists, scope restrictions, credential references and separation of duties.
+4. **Regulated Data** - declared purpose, redaction, approval obligations and retention controls.
+5. **Agent Team** - roles, delegation depth and subagent constraints have prototype support; durable team task leases, conflict handling and team-level evidence remain specified.
+6. **Vibe Coding** - gate metadata is prototyped, but an unavoidable proxy for shell, filesystem, Git, deployment and secret access is not implemented.
 
 ## Delivery sequence
 
@@ -224,12 +224,12 @@ Use:
 
 Do not yet use:
 
-- “production security boundary”;
-- “biometrically signed execution evidence”;
-- “exactly-once execution”;
-- “certified n8n connector”;
-- “the standard” or “de facto standard”;
-- “all n8n tool calls are intercepted” without the enforced deployment profile.
+- 'production security boundary';
+- 'biometrically signed execution evidence';
+- 'exactly-once execution';
+- 'certified n8n connector';
+- 'the standard' or 'de facto standard';
+- 'all n8n tool calls are intercepted' without the enforced deployment profile.
 
 ## n8n references
 

@@ -12,7 +12,7 @@ Immediately qualify it: v2.5 is a full-cycle developer preview. The unpublished 
 
 ## Sequence
 
-### Stage 1 — architecture discussion
+### Stage 1 - architecture discussion
 
 Publish the prepared [n8n community discussion draft](community/n8n-architecture-preview-post.md) in the n8n Community forum as a request for architectural feedback, not verification.
 
@@ -24,9 +24,9 @@ Ask three precise questions:
 
 Include the architecture page, three-minute demo, alpha evidence, capability matrix and a prominent non-production disclaimer. Do not include tokens, VPS administrative routes or claims of n8n endorsement.
 
-### Stage 2 — design partners
+### Stage 2 - design partners
 
-Recruit 3–5 partners from these groups:
+Recruit 3-5 partners from these groups:
 
 - n8n consultants and self-hosted platform operators;
 - AI automation teams with a reversible internal workflow;
@@ -36,7 +36,7 @@ Recruit 3–5 partners from these groups:
 
 Use the [design-partner intake](community/palo-ai-feedback-design-partner-form.md). Require synthetic or low-risk data, an accountable owner, an explicit bypass review and permission before publishing any result.
 
-### Stage 3 — installable alpha evidence
+### Stage 3 - installable alpha evidence
 
 Before npm publication:
 
@@ -47,7 +47,7 @@ Before npm publication:
 - publish checksum, SBOM, exact compatibility range and known limitations;
 - complete a real end-to-end workflow with brokered mock execution and recovery.
 
-### Stage 4 — npm and n8n review
+### Stage 4 - npm and n8n review
 
 n8n's current submission process requires an npm community package and, for verification submissions after 1 May 2026, publication from GitHub Actions with provenance. Submission is made through the n8n Creator Portal. n8n also states that logic/flow-control nodes are not currently accepted and that a package should integrate exactly one third-party service.
 
@@ -75,7 +75,7 @@ Official references:
 | Agent security researchers | OWASP GenAI Agentic Security Initiative | Threat model and Action Claim contract | Challenge abuse cases and MCP boundary |
 | Microsoft builders | Copilot Studio / Power Platform community | Narrow Streamable HTTP MCP route | Test tool selection, data policy and maker UX |
 | Developers | GitHub Discussions, release notes | Contracts, examples, capability matrix | Run conformance fixtures and file issues |
-| Broader market | LinkedIn, article, conference lightning talk | “Visible governance is not yet enforcement” narrative | Recruit design partners, not buyers |
+| Broader market | LinkedIn, article, conference lightning talk | 'Visible governance is not yet enforcement' narrative | Recruit design partners, not buyers |
 
 Defer Product Hunt, paid campaigns and broad press until there is a stable hosted onboarding flow, documented service levels and at least two independently publishable design-partner results.
 

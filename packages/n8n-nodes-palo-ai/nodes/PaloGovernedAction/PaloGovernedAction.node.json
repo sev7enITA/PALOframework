@@ -8,7 +8,7 @@
       { "url": "https://github.com/sev7enITA/PALOframework/blob/main/packages/n8n-nodes-palo-ai/README.md" }
     ],
     "generic": [
-      { "label": "PALO-AI full-cycle assurance", "icon": "🌐", "url": "https://github.com/sev7enITA/PALOframework/blob/main/docs/palo-ai-full-cycle-assurance.md" }
+      { "label": "PALO-AI full-cycle assurance", "icon": "[WEB]", "url": "https://github.com/sev7enITA/PALOframework/blob/main/docs/palo-ai-full-cycle-assurance.md" }
     ]
   }
 }

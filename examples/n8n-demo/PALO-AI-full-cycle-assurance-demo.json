@@ -1,5 +1,5 @@
 {
-  "name": "PALO-AI — Full-Cycle Outcome Assurance",
+  "name": "PALO-AI - Full-Cycle Outcome Assurance",
   "nodes": [
     {
       "parameters": {},
@@ -32,7 +32,7 @@
         "capabilityTtlSeconds": 60
       },
       "id": "cb3f00c2-8c63-45ae-a0f5-36f97b619e55",
-      "name": "PALO — Governed Catalog Action",
+      "name": "PALO - Governed Catalog Action",
       "type": "n8n-nodes-palo-ai.paloGovernedAction",
       "typeVersion": 1,
       "position": [-360, 100]
@@ -40,7 +40,7 @@
     {
       "parameters": {},
       "id": "61481ab1-f66b-42db-b4a6-c4596f220cc0",
-      "name": "✅ Verified Outcome",
+      "name": "[PASS] Verified Outcome",
       "type": "n8n-nodes-base.noOp",
       "typeVersion": 1,
       "position": [60, -140]
@@ -48,7 +48,7 @@
     {
       "parameters": {},
       "id": "507b6cf5-4038-45fb-a704-d148be89d774",
-      "name": "⏳ Review or Incident",
+      "name": "[WAIT] Review or Incident",
       "type": "n8n-nodes-base.noOp",
       "typeVersion": 1,
       "position": [60, 20]
@@ -56,7 +56,7 @@
     {
       "parameters": {},
       "id": "3f79f68b-1643-4a61-9700-f0dc6816a3ba",
-      "name": "⛔ Denied Before Execution",
+      "name": "[BLOCKED] Denied Before Execution",
       "type": "n8n-nodes-base.noOp",
       "typeVersion": 1,
       "position": [60, 180]
@@ -64,7 +64,7 @@
     {
       "parameters": {},
       "id": "17274ae9-a4ff-4c4b-b3e0-e28746937eca",
-      "name": "⚠️ Execution Failed",
+      "name": "[WARNING] Execution Failed",
       "type": "n8n-nodes-base.noOp",
       "typeVersion": 1,
       "position": [60, 340]
@@ -85,13 +85,13 @@
   ],
   "pinData": {},
   "connections": {
-    "Propose Catalog Update": { "main": [[{ "node": "PALO — Governed Catalog Action", "type": "main", "index": 0 }]] },
-    "PALO — Governed Catalog Action": {
+    "Propose Catalog Update": { "main": [[{ "node": "PALO - Governed Catalog Action", "type": "main", "index": 0 }]] },
+    "PALO - Governed Catalog Action": {
       "main": [
-        [{ "node": "✅ Verified Outcome", "type": "main", "index": 0 }],
-        [{ "node": "⏳ Review or Incident", "type": "main", "index": 0 }],
-        [{ "node": "⛔ Denied Before Execution", "type": "main", "index": 0 }],
-        [{ "node": "⚠️ Execution Failed", "type": "main", "index": 0 }]
+        [{ "node": "[PASS] Verified Outcome", "type": "main", "index": 0 }],
+        [{ "node": "[WAIT] Review or Incident", "type": "main", "index": 0 }],
+        [{ "node": "[BLOCKED] Denied Before Execution", "type": "main", "index": 0 }],
+        [{ "node": "[WARNING] Execution Failed", "type": "main", "index": 0 }]
       ]
     }
   },

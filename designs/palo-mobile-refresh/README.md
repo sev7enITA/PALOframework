@@ -26,7 +26,7 @@ The prototype is deliberately local-first and does not claim a specific native e
 | Evidence segments | Filters needs-review and complete artifacts |
 | Library search | Filters modules while preserving phase group context |
 | Profile, privacy, methodology, version | Opens accessible bottom sheets |
-| Start a new assessment | Runs intent → context → recommended route → completion |
+| Start a new assessment | Runs intent -> context -> recommended route -> completion |
 | Escape / overlay click | Dismisses the active sheet or assessment flow |
 
 ## View locally
@@ -39,4 +39,4 @@ python3 -m http.server 8080
 
 Then open `http://localhost:8080/`. No build step, external runtime dependency or network-hosted asset is required.
 
-Key review sizes: `390 × 844`, `430 × 932`, `320px` minimum width, and desktop widths above `900px`.
+Key review sizes: `390 x 844`, `430 x 932`, `320px` minimum width, and desktop widths above `900px`.

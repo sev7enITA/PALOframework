@@ -34,14 +34,14 @@
     return copied;
   };
   document.querySelector("[data-doc-copy-link]")?.addEventListener("click", async () => {
-    const copied = await copy(location.href); say(copied ? "Link copied to clipboard." : "Copy unavailable—select and copy the link manually in the open dialog.");
+    const copied = await copy(location.href); say(copied ? "Link copied to clipboard." : "Copy unavailable - select and copy the link manually in the open dialog.");
   });
   document.querySelector("[data-doc-share]")?.addEventListener("click", async () => {
     if (navigator.share) {
       try { await navigator.share({ title: document.title, url: location.href }); say("Share dialog opened."); return; }
       catch (error) { if (error?.name === "AbortError") { say("Share cancelled. Nothing was sent."); return; } }
     }
-    const copied = await copy(location.href); say(copied ? "Sharing is unavailable here, so the link was copied." : "Share and automatic copy are unavailable—copy the link manually in the open dialog.");
+    const copied = await copy(location.href); say(copied ? "Sharing is unavailable here, so the link was copied." : "Share and automatic copy are unavailable - copy the link manually in the open dialog.");
   });
   document.querySelector("[data-doc-print]")?.addEventListener("click", () => window.print());
 
@@ -118,7 +118,7 @@
           group.querySelector("[data-library-toggle]")?.setAttribute("aria-expanded", "true");
         }
       }
-      if (result) result.textContent = `${visible} of ${libraryCards.length} public documents shown · ${depth === "all" ? "all depths" : depth + " depth"}.`;
+      if (result) result.textContent = `${visible} of ${libraryCards.length} public documents shown | ${depth === "all" ? "all depths" : depth + " depth"}.`;
       empty?.classList.toggle("is-visible", visible === 0);
     };
     for (const button of depthButtons) button.addEventListener("click", () => { depth = button.dataset.libraryDepth; for (const item of depthButtons) { const active = item === button; item.classList.toggle("is-active", active); item.setAttribute("aria-pressed", String(active)); } update(); });
@@ -152,12 +152,12 @@
       if (readinessStatus) readinessStatus.textContent = `${visible} of 9 gates shown. Checklist state remains local and non-authoritative.`;
     };
     filters.forEach((filter) => filter.addEventListener("change", update)); update();
-    const snapshot = () => ({ release: "PALO v3.0.0 semantic foundation · PALO-AI developer preview", authoritative: false, evidenceClass: "illustrative-local-preview", generatedAt: new Date().toISOString(), note: "Browser-local planning snapshot; not implementation evidence or approval.", gates: gates.map((gate) => ({ id: gate.dataset.gateId, title: gate.querySelector("h3").textContent, wave: Number(gate.dataset.wave), status: gate.dataset.gateStatus, owner: gate.dataset.owner, locallyChecked: gate.querySelector("[data-gate-check]").checked })) });
+    const snapshot = () => ({ release: "PALO v3.0.0 semantic foundation | PALO-AI developer preview", authoritative: false, evidenceClass: "illustrative-local-preview", generatedAt: new Date().toISOString(), note: "Browser-local planning snapshot; not implementation evidence or approval.", gates: gates.map((gate) => ({ id: gate.dataset.gateId, title: gate.querySelector("h3").textContent, wave: Number(gate.dataset.wave), status: gate.dataset.gateStatus, owner: gate.dataset.owner, locallyChecked: gate.querySelector("[data-gate-check]").checked })) });
     const download = (content, type, name) => { const link = document.createElement("a"); link.href = URL.createObjectURL(new Blob([content], { type })); link.download = name; link.click(); URL.revokeObjectURL(link.href); };
-    const markdown = (value) => `# PALO-AI production-readiness snapshot\n\n> ${value.note}\n\n${value.gates.map((gate) => `- [${gate.locallyChecked ? "x" : " "}] **${gate.id} — ${gate.title}** · Wave ${gate.wave} · ${gate.status} · ${gate.owner}`).join("\n")}`;
+    const markdown = (value) => `# PALO-AI production-readiness snapshot\n\n> ${value.note}\n\n${value.gates.map((gate) => `- [${gate.locallyChecked ? "x" : " "}] **${gate.id} - ${gate.title}** | Wave ${gate.wave} | ${gate.status} | ${gate.owner}`).join("\n")}`;
     document.querySelector('[data-readiness-export="json"]')?.addEventListener("click", () => { download(JSON.stringify(snapshot(), null, 2), "application/json", "palo-ai-readiness-snapshot.json"); if (readinessStatus) readinessStatus.textContent = "Local JSON snapshot downloaded. Nothing was submitted."; });
     document.querySelector('[data-readiness-export="markdown"]')?.addEventListener("click", () => { download(markdown(snapshot()), "text/markdown", "palo-ai-readiness-snapshot.md"); if (readinessStatus) readinessStatus.textContent = "Local Markdown snapshot downloaded. Nothing was submitted."; });
-    document.querySelector("[data-readiness-copy]")?.addEventListener("click", async () => { const copied = await copy(markdown(snapshot())); if (readinessStatus) readinessStatus.textContent = copied ? "Sanitized planning summary copied. No credentials or form data are included." : "Copy unavailable—select the sanitized summary manually in the open dialog."; });
+    document.querySelector("[data-readiness-copy]")?.addEventListener("click", async () => { const copied = await copy(markdown(snapshot())); if (readinessStatus) readinessStatus.textContent = copied ? "Sanitized planning summary copied. No credentials or form data are included." : "Copy unavailable - select the sanitized summary manually in the open dialog."; });
   }
 
   const form = document.querySelector("[data-doc-feedback]");
@@ -172,7 +172,7 @@
     return true;
   };
   const asText = (value) => `PALO documentation feedback\nDocument: ${value.document}\nRole: ${value.role}\nCategory: ${value.category}\n\n${value.message}\n\n${value.privacy}`;
-  form.querySelector("[data-feedback-copy]")?.addEventListener("click", async () => { const value = feedback(); if (!validate(value)) return; const copied = await copy(asText(value)); if (feedbackStatus) feedbackStatus.textContent = copied ? "Feedback copied. Nothing was sent." : "Copy unavailable—select the feedback manually in the open dialog. Nothing was sent."; });
+  form.querySelector("[data-feedback-copy]")?.addEventListener("click", async () => { const value = feedback(); if (!validate(value)) return; const copied = await copy(asText(value)); if (feedbackStatus) feedbackStatus.textContent = copied ? "Feedback copied. Nothing was sent." : "Copy unavailable - select the feedback manually in the open dialog. Nothing was sent."; });
   form.querySelector("[data-feedback-download]")?.addEventListener("click", () => { const value = feedback(); if (!validate(value)) return; const link = document.createElement("a"); link.href = URL.createObjectURL(new Blob([JSON.stringify(value, null, 2)], { type: "application/json" })); link.download = "palo-documentation-feedback.json"; link.click(); URL.revokeObjectURL(link.href); if (feedbackStatus) feedbackStatus.textContent = "Local JSON downloaded. Nothing was sent."; });
   form.querySelector("[data-feedback-email]")?.addEventListener("click", () => { const value = feedback(); if (!validate(value)) return; location.href = `mailto:contact@paloframework.org?subject=${encodeURIComponent(`PALO documentation feedback: ${value.category}`)}&body=${encodeURIComponent(asText(value))}`; if (feedbackStatus) feedbackStatus.textContent = "Email draft opened. You decide whether to send it."; });
 })();

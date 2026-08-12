@@ -1,4 +1,4 @@
-# PALO-AI for n8n — Three-Minute Architecture Preview Demo
+# PALO-AI for n8n - Three-Minute Architecture Preview Demo
 
 Target length: three minutes.
 

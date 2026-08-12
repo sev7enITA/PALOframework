@@ -190,7 +190,7 @@
   }
 
   function resultMeta(node) {
-    return [node.type === "stage" ? "Guide phase" : node.type, phaseLabels[node.phaseId] || node.phaseId, node.status].filter(Boolean).join(" · ");
+    return [node.type === "stage" ? "Guide phase" : node.type, phaseLabels[node.phaseId] || node.phaseId, node.status].filter(Boolean).join(" | ");
   }
 
   function renderResults() {
@@ -259,7 +259,7 @@
     }
     var head = el("div", "palo-spotlight-inspector-head");
     var title = el("div");
-    title.appendChild(el("p", "palo-spotlight-kicker", typeLabel(node.type) + " · " + (phaseLabels[node.phaseId] || "Cross-phase")));
+    title.appendChild(el("p", "palo-spotlight-kicker", typeLabel(node.type) + " | " + (phaseLabels[node.phaseId] || "Cross-phase")));
     var h2 = el("h2", "", node.label); h2.id = "palo-spotlight-inspector-title";
     title.appendChild(h2); head.appendChild(title);
     head.appendChild(el("span", "palo-spotlight-status", node.status || "Operational entity"));
@@ -284,7 +284,7 @@
         var source = nodeById(relation.source), target = nodeById(relation.target);
         var card = el("article", "palo-spotlight-relation"); card.dataset.weight = relation.weight;
         var line = el("p", "palo-spotlight-relation-line");
-        line.appendChild(el("b", "", weightLabel[relation.weight] + " · "));
+        line.appendChild(el("b", "", weightLabel[relation.weight] + " | "));
         line.appendChild(document.createTextNode((source ? source.label : relation.source) + " " + relation.verb + " " + (target ? target.label : relation.target)));
         card.appendChild(line);
         card.appendChild(el("p", "", (relation.artifactTransferred ? "Transfers: " + relation.artifactTransferred + ". " : "") + relation.meaning));
@@ -304,7 +304,7 @@
         ui.inspector.appendChild(el("h3", "palo-spotlight-section-title", heading));
         var branches = el("div", "palo-spotlight-branches");
         branchGroups[heading].forEach(function (related) {
-          var button = el("button", "palo-spotlight-branch", related.label + " · " + (phaseLabels[related.phaseId] || typeLabel(related.type)));
+          var button = el("button", "palo-spotlight-branch", related.label + " | " + (phaseLabels[related.phaseId] || typeLabel(related.type)));
           button.type = "button";
           button.addEventListener("click", function () { selectNode(related.id, -1, true); });
           branches.appendChild(button);
@@ -354,7 +354,7 @@
   function buildDialog() {
     if (document.getElementById("palo-spotlight")) return;
     var backdrop = el("div", "palo-spotlight-backdrop"); backdrop.id = "palo-spotlight"; backdrop.hidden = true;
-    backdrop.innerHTML = '<section class="palo-spotlight-dialog" role="dialog" aria-modal="true" aria-labelledby="palo-spotlight-title"><div class="palo-spotlight-head"><label class="palo-spotlight-search-wrap" for="palo-spotlight-input"><svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg><span id="palo-spotlight-title" hidden>Search the PALO operating model</span><input class="palo-spotlight-input" id="palo-spotlight-input" type="search" autocomplete="off" placeholder="Ask for an action, artifact, module or stakeholder..." aria-describedby="palo-spotlight-count"></label><button class="palo-spotlight-close" type="button" aria-label="Close search">Esc</button></div><div class="palo-spotlight-tools"><div class="palo-spotlight-filters" aria-label="Search filters"></div><p class="palo-spotlight-count" id="palo-spotlight-count" role="status" aria-live="polite">Loading index</p></div><nav class="palo-spotlight-route" aria-label="Six-phase operating route"></nav><div class="palo-spotlight-body"><div class="palo-spotlight-results" role="listbox" aria-label="Search results"></div><section class="palo-spotlight-inspector" aria-labelledby="palo-spotlight-inspector-title"></section></div><footer class="palo-spotlight-footer"><span>Arrow keys move · Enter selects · Escape closes</span><span>Local search · ER-aware · No analytics</span></footer></section>';
+    backdrop.innerHTML = '<section class="palo-spotlight-dialog" role="dialog" aria-modal="true" aria-labelledby="palo-spotlight-title"><div class="palo-spotlight-head"><label class="palo-spotlight-search-wrap" for="palo-spotlight-input"><svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg><span id="palo-spotlight-title" hidden>Search the PALO operating model</span><input class="palo-spotlight-input" id="palo-spotlight-input" type="search" autocomplete="off" placeholder="Ask for an action, artifact, module or stakeholder..." aria-describedby="palo-spotlight-count"></label><button class="palo-spotlight-close" type="button" aria-label="Close search">Esc</button></div><div class="palo-spotlight-tools"><div class="palo-spotlight-filters" aria-label="Search filters"></div><p class="palo-spotlight-count" id="palo-spotlight-count" role="status" aria-live="polite">Loading index</p></div><nav class="palo-spotlight-route" aria-label="Six-phase operating route"></nav><div class="palo-spotlight-body"><div class="palo-spotlight-results" role="listbox" aria-label="Search results"></div><section class="palo-spotlight-inspector" aria-labelledby="palo-spotlight-inspector-title"></section></div><footer class="palo-spotlight-footer"><span>Arrow keys move | Enter selects | Escape closes</span><span>Local search | ER-aware | No analytics</span></footer></section>';
     document.body.appendChild(backdrop);
     ui.backdrop = backdrop;
     ui.dialog = backdrop.querySelector(".palo-spotlight-dialog");
@@ -425,7 +425,7 @@
 
   function launcherMarkup() {
     var button = el("button", "palo-spotlight-launcher"); button.type = "button"; button.setAttribute("aria-label", "Search PALO functions, guidance and relationships"); button.title = "Search PALO";
-    button.innerHTML = '<svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg><span class="palo-spotlight-launcher-label">Search</span><span class="palo-spotlight-shortcut" aria-hidden="true">⌘K</span>';
+    button.innerHTML = '<svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg><span class="palo-spotlight-launcher-label">Search</span><span class="palo-spotlight-shortcut" aria-hidden="true">Cmd+K</span>';
     button.addEventListener("click", function () { open(""); });
     return button;
   }

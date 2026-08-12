@@ -94,6 +94,14 @@ open http://localhost:8000
 
 ##  Style Guidelines
 
+### Text and Git metadata
+
+- Use plain ASCII punctuation in source text, generated pages, commit messages, tag messages and ref names.
+- Use the normal hyphen (`-`), straight quotes (`'` and `"`), three periods (`...`) and ASCII arrows (`->`) when needed.
+- Do not use typographic dashes, typographic quotes, Unicode ellipses, decorative separators, emoji or invisible spacing characters.
+- Letters with language-specific accents and necessary currency symbols remain valid.
+- Run `npm run validate:text-style` before committing. The P0 gate applies the same rule to source files, generated `dist` files and current Git metadata.
+
 ### HTML
 
 - Use semantic HTML5 elements

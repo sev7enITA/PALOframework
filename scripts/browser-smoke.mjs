@@ -139,7 +139,7 @@ try {
   await page.getByRole("button", { name: "Setup" }).click();
   await page.getByRole("button", { name: /Bound authority/ }).click();
   await page.getByRole("button", { name: "Test this boundary" }).click();
-  const runningBoundaryTest = page.getByRole("button", { name: "Testing…" });
+  const runningBoundaryTest = page.getByRole("button", { name: "Testing..." });
   if (!await runningBoundaryTest.isDisabled()) failures.push("Governance Hub: boundary test remains enabled while simulation is running");
   await page.getByRole("button", { name: "Test this boundary" }).waitFor({ timeout: 2_000 });
 

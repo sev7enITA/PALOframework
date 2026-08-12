@@ -1,4 +1,4 @@
-# PALO-AI Governance Hub — Workflow and Diagram Specification
+# PALO-AI Governance Hub - Workflow and Diagram Specification
 
 Status: design specification for a role-based GUI over the PALO-AI v2.5 developer preview.
 
@@ -8,8 +8,8 @@ Status: design specification for a role-based GUI over the PALO-AI v2.5 develope
 
 The proposed **PALO-AI Governance Hub** is one product with two primary lenses over the same versioned contracts and evidence:
 
-- **Executive Cockpit** — communicates exposure, ownership, decisions and verified outcomes without requiring knowledge of JSON, Rego or MCP.
-- **Technical Workbench** — configures, tests, publishes and operates the controls behind those outcomes, with progressive access to generated contracts and evidence.
+- **Executive Cockpit** - communicates exposure, ownership, decisions and verified outcomes without requiring knowledge of JSON, Rego or MCP.
+- **Technical Workbench** - configures, tests, publishes and operates the controls behind those outcomes, with progressive access to generated contracts and evidence.
 
 The Hub must not maintain a separate governance truth. It reads and acts through PALO-AI contracts: Action Claim 1.2, Effect Contract 1.0, Policy Decision 1.0, Approval 1.0, Execution Capability 1.0, Execution Receipt 1.0, Outcome Attestation 1.0 and Assurance Incident 1.0.
 
@@ -32,7 +32,7 @@ The Hub introduces a role-aware presentation and orchestration layer without rep
 
 ### Inputs
 
-- Authenticated human principal, role, tenant/project and selected environment — **required, not implemented in v2.5**.
+- Authenticated human principal, role, tenant/project and selected environment - **required, not implemented in v2.5**.
 - Registry records for agents, policies, executors and verifiers.
 - Decisions, approvals, executions, receipts, attestations, incidents and ledger status.
 - Platform correlation identifiers such as workflow, execution and node IDs.
@@ -42,7 +42,7 @@ The Hub introduces a role-aware presentation and orchestration layer without rep
 - Role-appropriate portfolio summaries and technical detail.
 - Human-readable explanations linked to canonical evidence.
 - Authorized administrative or review commands.
-- Exportable, redacted review material — **required API**.
+- Exportable, redacted review material - **required API**.
 
 ### Failure states
 
@@ -78,8 +78,8 @@ Keep dimensions separate rather than producing one opaque score:
 ### Inputs
 
 - Aggregated registry, decision, execution and incident data.
-- Business owner and criticality metadata — **required extension**.
-- Coverage inventory and bypass assessment — **required workflow-admission capability**.
+- Business owner and criticality metadata - **required extension**.
+- Coverage inventory and bypass assessment - **required workflow-admission capability**.
 
 ### Outputs
 
@@ -115,7 +115,7 @@ The Technical Workbench starts from intent rather than raw JSON:
 - Agent/case identity, authority boundary and argument schema.
 - Executor and verifier manifests.
 - Effect predicates, verification timeout and inconclusive behavior.
-- Reviewers, owners and environment promotion target — **required identity and workflow extensions**.
+- Reviewers, owners and environment promotion target - **required identity and workflow extensions**.
 
 ### Outputs
 
@@ -129,8 +129,8 @@ The Technical Workbench starts from intent rather than raw JSON:
 - Schema invalid or authority incomplete: do not allow simulation or publication.
 - Verifier cannot read authoritative state: mark the design incomplete or require human review; do not claim outcome assurance.
 - Tests do not cover deny, replay and mismatch paths: block promotion.
-- Direct target credential remains in the workflow: label integration advisory and block a “governed” claim.
-- Published digest differs from evaluated OPA bundle: fail closed — **bundle attestation required**.
+- Direct target credential remains in the workflow: label integration advisory and block a 'governed' claim.
+- Published digest differs from evaluated OPA bundle: fail closed - **bundle attestation required**.
 
 ## Approval, execution and outcome workflow
 
@@ -173,7 +173,7 @@ A `mismatch` or `inconclusive` attestation opens an Assurance Incident and a hol
 
 - Execution, claim and attestation identifiers.
 - Verification checks and reason.
-- Authorized human identity and resolution record — caller-supplied labels are preview-only.
+- Authorized human identity and resolution record - caller-supplied labels are preview-only.
 
 ### Outputs
 
@@ -241,10 +241,10 @@ The MCP server exposes corresponding preview tools for registry, verification, a
 
 Each record should support progressive disclosure:
 
-1. **Plain language** — “Price update denied because the requested change exceeded the agent's authority.”
-2. **Structured explanation** — agent, resource, policy version, rule, owner and obligation.
-3. **Evidence lineage** — claim, approval, capability, receipt, attestation and incident.
-4. **Raw technical view** — canonical JSON, Rego result, digests, signature metadata and logs.
+1. **Plain language** - 'Price update denied because the requested change exceeded the agent's authority.'
+2. **Structured explanation** - agent, resource, policy version, rule, owner and obligation.
+3. **Evidence lineage** - claim, approval, capability, receipt, attestation and incident.
+4. **Raw technical view** - canonical JSON, Rego result, digests, signature metadata and logs.
 
 Essential status and reason information must remain visible without hover. Mobile views should preserve the sequence `status -> reason -> owner/action -> evidence`, with tap/focus rather than hover-only disclosure. Status must use text and iconography in addition to color.
 

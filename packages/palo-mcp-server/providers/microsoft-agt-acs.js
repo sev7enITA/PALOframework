@@ -98,7 +98,7 @@ export function createMicrosoftAgtAcsProvider({
       schemaVersion: "1.0.0",
       providerId: "provider-microsoft-agt-acs",
       providerVersion,
-      displayName: "Microsoft Agent Governance Toolkit — Agent Control Specification",
+      displayName: "Microsoft Agent Governance Toolkit - Agent Control Specification",
       providerType: "external-policy-runtime",
       capabilities: ["pre_action_decision", "human_escalation", "decision_evidence"],
       policyReference,

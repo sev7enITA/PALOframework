@@ -1,8 +1,8 @@
-# News draft — PALO outcome assurance for Microsoft AGT
+# News draft - PALO outcome assurance for Microsoft AGT
 
 Status: evaluation post ready for publication after the updated PALO website is deployed. Updated 8 August 2026. The acceptance version is conditional and must not be used before upstream confirmation.
 
-## Version A — publishable as an evaluation proposal
+## Version A - publishable as an evaluation proposal
 
 ### PALO publishes a vendor-neutral outcome-assurance adapter for Microsoft Agent Governance Toolkit
 
@@ -69,7 +69,7 @@ Microsoft AGT Discussion #3647: https://github.com/microsoft/agent-governance-to
 
 #AIGovernance #AgenticAI #OpenSource #OutcomeAssurance
 
-## Version B — use only after upstream acceptance
+## Version B - use only after upstream acceptance
 
 ### Microsoft AGT maintainers accept PALO outcome-assurance interoperability documentation
 
@@ -92,7 +92,7 @@ Before any publication, verify:
 - the real ACS demo passes from a clean checkout;
 - exact tested ACS and AGT versions are current;
 - all links resolve without authentication;
-- “proposal”, “community” and “not endorsed” language remains visible;
+- 'proposal', 'community' and 'not endorsed' language remains visible;
 - no Microsoft logo is used without permission;
-- no statement says “official Microsoft integration”, “partnership” or “certified” without written evidence;
+- no statement says 'official Microsoft integration', 'partnership' or 'certified' without written evidence;
 - any upstream acknowledgement is quoted accurately and linked directly.

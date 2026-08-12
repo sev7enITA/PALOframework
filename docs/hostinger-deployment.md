@@ -1,4 +1,4 @@
-# Hostinger deployment — PALO Web v3.0.0
+# Hostinger deployment - PALO Web v3.0.0
 
 The canonical deploy input is the `dist/` directory produced by:
 
@@ -19,7 +19,7 @@ The ready-to-upload artifact is generated as `PALO-Hostinger-<release>.zip`. Its
 2. Upload the ZIP to `public_html`.
 3. Extract it in place; do not create `public_html/dist/`.
 4. Copy `hosting/hostinger/.htaccess` to `public_html/.htaccess` if it was not included in the ZIP.
-5. Confirm SSL is active and enable Hostinger “Force HTTPS”.
+5. Confirm SSL is active and enable Hostinger 'Force HTTPS'.
 6. Purge Hostinger/CDN cache.
 
 ## FTP alternative

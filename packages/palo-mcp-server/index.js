@@ -7,6 +7,6 @@ import { loadEnforcementProviderFromEnvironment } from "./providers/from-environ
 const enforcementProvider = await loadEnforcementProviderFromEnvironment();
 const runtime = new GovernanceRuntime({ enforcementProvider });
 const server = createPaloMcpServer(runtime);
-process.stderr.write("PALO-AI v2.5 FULL-CYCLE DEVELOPER PREVIEW — isolated testing only; not a production authorization or execution boundary.\n");
+process.stderr.write("PALO-AI v2.5 FULL-CYCLE DEVELOPER PREVIEW - isolated testing only; not a production authorization or execution boundary.\n");
 await server.connect(new StdioServerTransport());
 process.on("exit", () => runtime.close());

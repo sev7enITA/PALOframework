@@ -9,14 +9,14 @@
   form.addEventListener("submit", function (event) {
     event.preventDefault(); var data = new FormData(form); var checks = ["intent", "environment", "secrets", "tests", "review"];
     var missing = checks.filter(function (name) { return !data.get(name); });
-    if (missing.length) { output.textContent = "DENIED — incomplete gate: " + missing.join(", "); output.setAttribute("role", "alert"); return; }
+    if (missing.length) { output.textContent = "DENIED - incomplete gate: " + missing.join(", "); output.setAttribute("role", "alert"); return; }
     var evidence = String(data.get("evidence") || "").trim(); var gateId = "vibe-gate-" + (window.crypto.randomUUID ? window.crypto.randomUUID() : Date.now());
     var record = { gateId: gateId, evaluatedAt: new Date().toISOString(), evidenceReference: evidence, checks: checks };
     hash(JSON.stringify(record)).then(function (digest) {
       var claimMetadata = { vibeGate: { status: "passed", gateId: gateId, evidenceDigest: digest } };
-      output.textContent = "DEVELOPER PREVIEW — self-attested metadata, not trusted authorization evidence.\n" + JSON.stringify({ gateRecord: record, actionClaimMetadata: claimMetadata }, null, 2); output.removeAttribute("role");
+      output.textContent = "DEVELOPER PREVIEW - self-attested metadata, not trusted authorization evidence.\n" + JSON.stringify({ gateRecord: record, actionClaimMetadata: claimMetadata }, null, 2); output.removeAttribute("role");
       document.documentElement.setAttribute("data-vibe-gate", "passed");
-    }).catch(function (error) { output.textContent = "DENIED — " + error.message; output.setAttribute("role", "alert"); });
+    }).catch(function (error) { output.textContent = "DENIED - " + error.message; output.setAttribute("role", "alert"); });
   });
   form.addEventListener("reset", function () { output.textContent = "Preview metadata not generated. This demonstration does not control any coding tool."; document.documentElement.setAttribute("data-vibe-gate", "denied"); });
 }());
