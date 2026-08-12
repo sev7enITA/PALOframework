@@ -11,8 +11,15 @@
   var signalInput = document.getElementById("policywatcher-signal-import");
   var signalStatus = document.getElementById("policywatcher-import-status");
   var signalApi = window.PALOPolicyWatcherSignal;
+  var loadGoldCaseButton = document.getElementById("load-gold-case");
+  var sampleStatus = document.getElementById("evidence-sample-status");
+  var validateEvidenceButton = document.getElementById("validate-evidence-case");
+  var downloadReceiptButton = document.getElementById("download-validation-receipt");
+  var copyReceiptButton = document.getElementById("copy-validation-receipt");
+  var receiptStatus = document.getElementById("validation-receipt-status");
   var bundle = null;
   var caseFile = null;
+  var validationReceipt = null;
   var sourceTemplates = [
     { sourceId: "eu-ai-act-framework", title: "EU AI Act regulatory framework", url: "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai", publisher: "European Commission" },
     { sourceId: "eu-ai-act-official-journal", title: "Regulation (EU) 2024/1689", url: "https://eur-lex.europa.eu/eli/reg/2024/1689/oj/eng", publisher: "European Union" }
@@ -36,6 +43,85 @@
     var field = form.elements[name];
     if (!field || next == null) return;
     if (field.type === "checkbox") field.checked = Boolean(next); else field.value = String(next);
+  }
+
+  function canonicalJson(input) {
+    if (Array.isArray(input)) return "[" + input.map(canonicalJson).join(",") + "]";
+    if (input && typeof input === "object") return "{" + Object.keys(input).sort().map(function (key) { return JSON.stringify(key) + ":" + canonicalJson(input[key]); }).join(",") + "}";
+    return JSON.stringify(input);
+  }
+
+  function digestDocument(documentValue) {
+    if (!window.crypto || !window.crypto.subtle || !window.TextEncoder) return Promise.reject(new Error("SHA-256 is unavailable in this browser context. Use HTTPS or localhost."));
+    var bytes = new TextEncoder().encode(canonicalJson(documentValue));
+    return window.crypto.subtle.digest("SHA-256", bytes).then(function (digest) {
+      return Array.from(new Uint8Array(digest)).map(function (byte) { return byte.toString(16).padStart(2, "0"); }).join("");
+    });
+  }
+
+  function resetReceipt() {
+    validationReceipt = null;
+    if (downloadReceiptButton) downloadReceiptButton.disabled = true;
+    if (copyReceiptButton) copyReceiptButton.disabled = true;
+    if (receiptStatus) receiptStatus.textContent = "No validation receipt created yet.";
+    document.documentElement.removeAttribute("data-evidence-receipt");
+  }
+
+  function fallbackGoldCase() {
+    var stamp = "2026-08-12T08:00:00Z";
+    return api.merge(api.create({ title: "Gold case: agentic invoice exception" }), {
+      caseId: "case-gold-agentic-invoice",
+      title: "Gold case: agentic invoice exception",
+      status: "review",
+      createdAt: stamp,
+      updatedAt: stamp,
+      owner: "PALO Evidence Pack educational review",
+      context: {
+        domain: "agentic-workflows",
+        scenario: "An agent collects invoice exception evidence and drafts a resolution. Payment release and supplier communication remain outside its authority.",
+        exampleStatus: "educational-non-production",
+        goldCase: true,
+        completionMinutes: 8,
+        limitations: "Fictional data and tools; no payment, supplier, identity or production control is connected.",
+        declaredAuthority: { allowed: ["Read synthetic invoice metadata", "Draft an exception summary"], prohibited: ["Release payment", "Change supplier data", "Contact the supplier"] },
+        expectedEffect: "A draft is created and the payment state remains unchanged.",
+        verificationMethod: "Compare the synthetic post-state to the expected effect and prohibited effects."
+      },
+      sources: [{ sourceId: "src-nist-ai-rmf", title: "AI Risk Management Framework", url: "https://www.nist.gov/itl/ai-risk-management-framework", sourceType: "official", publisher: "US National Institute of Standards and Technology", checkedAt: stamp, freshness: { status: "current", reviewIntervalDays: 90, nextReviewAt: "2026-11-10T08:00:00Z" } }]
+    });
+  }
+
+  function populateGoldCase(nextCase, shouldScroll) {
+    caseFile = nextCase;
+    setValue("systemName", "Agentic invoice exception");
+    setValue("organization", "Synthetic Finance Operations");
+    setValue("deployerRole", "private-deployer");
+    setValue("sector", "Finance operations");
+    setValue("useCase", nextCase.context.scenario);
+    setValue("riskTier", "unknown");
+    setValue("article27Scope", "no");
+    setValue("agentic", true);
+    setValue("aiAssisted", false);
+    setValue("dataGovernance", true);
+    setValue("humanOversight", true);
+    setValue("monitoring", true);
+    setValue("incidentResponse", false);
+    setValue("transparency", true);
+    api.save(caseFile);
+    resetReceipt();
+    status.innerHTML = "<strong>Synthetic case loaded locally.</strong> Review the declared authority, then build the route.";
+    sampleStatus.innerHTML = "<strong>Preloaded:</strong> agentic invoice exception | expected completion 8 minutes | fictional data only.";
+    document.documentElement.setAttribute("data-evidence-sample", "loaded");
+    if (shouldScroll) form.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
+  }
+
+  function loadGoldCase(shouldScroll) {
+    sampleStatus.innerHTML = "<strong>Loading locally.</strong> Preparing the synthetic agentic invoice case.";
+    return fetch("evidence-pack/cases/agentic-invoice-exception.case.json", { cache: "no-store" })
+      .then(function (response) { if (!response.ok) throw new Error("HTTP " + response.status); return response.json(); })
+      .then(function (documentValue) { var checked = api.validate(documentValue); if (!checked.valid) throw new Error(checked.errors.map(function (item) { return item.path + " " + item.message; }).join("; ")); return documentValue; })
+      .catch(function () { return fallbackGoldCase(); })
+      .then(function (documentValue) { populateGoldCase(documentValue, shouldScroll); return documentValue; });
   }
 
   function esc(valueToEscape) {
@@ -125,6 +211,7 @@
     status.innerHTML = "<strong>Case saved locally.</strong> " + esc(caseFile.title) + " | " + esc(caseFile.status) + " | unknown imported fields retained.";
     document.documentElement.setAttribute("data-assessment-case", "saved");
     if (window.paloRenderIcons) window.paloRenderIcons(results);
+    resetReceipt();
   }
 
   function saveAssessment() {
@@ -169,7 +256,8 @@
   }
 
   form.addEventListener("submit", function (event) { event.preventDefault(); saveAssessment(); });
-  form.addEventListener("reset", function () { results.classList.remove("is-visible"); bundle = null; });
+  form.addEventListener("reset", function () { results.classList.remove("is-visible"); bundle = null; resetReceipt(); });
+  loadGoldCaseButton.addEventListener("click", function () { loadGoldCase(true); });
   document.getElementById("resume-local-case").addEventListener("click", function () { restore(api.load(), true); });
   importInput.addEventListener("change", function () {
     var file = importInput.files[0];
@@ -214,6 +302,71 @@
   document.getElementById("download-board-pack").addEventListener("click", function () { if (caseFile) { document.documentElement.setAttribute("data-board-pack", "generated"); window.paloDownload("palo-board-review-pack.md", api.boardPack(caseFile), "text/markdown;charset=utf-8"); } });
   document.getElementById("handoff-simulator").addEventListener("click", function () { if (!caseFile) return; var assessments = Array.isArray(caseFile.assessments) ? caseFile.assessments : []; var latest = assessments.slice().reverse().find(function (item) { return item.module === "assessment-path"; }); var handoff = api.handoff(caseFile, "assessment-path", "palo-am-simulator", { assessmentId: latest ? latest.assessmentId : null }); if (handoff.ok) window.location.href = "PALO_AgenticGovernance.html?handoff=assessment#simulator"; else status.innerHTML = "<strong>Handoff failed.</strong> Export the case before continuing."; });
 
+  validateEvidenceButton.addEventListener("click", function () {
+    if (!caseFile || !bundle) {
+      receiptStatus.textContent = "Build the evidence route before creating a receipt.";
+      return;
+    }
+    receiptStatus.textContent = "Validating locally and calculating the SHA-256 digest...";
+    Promise.all([digestDocument(caseFile), Promise.resolve(api.validate(caseFile)), Promise.resolve(api.validate(bundle))]).then(function (resultsValue) {
+      var digest = resultsValue[0];
+      var caseValidation = resultsValue[1];
+      var bundleValidation = resultsValue[2];
+      var authority = caseFile.context && caseFile.context.declaredAuthority;
+      var authorityReady = Boolean(authority && Array.isArray(authority.allowed) && authority.allowed.length && Array.isArray(authority.prohibited) && authority.prohibited.length && caseFile.context.verificationMethod);
+      var sourceReady = Boolean(Array.isArray(caseFile.sources) && caseFile.sources.length);
+      var checks = [
+        { checkId: "case-schema", status: caseValidation.valid ? "passed" : "failed", message: caseValidation.valid ? "Case File conforms to the published PALO Case File 1.0.0 contract." : "Case File schema validation failed." },
+        { checkId: "bundle-schema", status: bundleValidation.valid ? "passed" : "failed", message: bundleValidation.valid ? "Evidence bundle conforms to the published PALO Evidence Bundle 1.0.0 contract." : "Evidence bundle schema validation failed." },
+        { checkId: "authority-boundary", status: authorityReady ? "passed" : "failed", message: authorityReady ? "Allowed actions, prohibited actions and an independent verification method are declared." : "Add allowed actions, prohibited actions and an independent verification method before relying on the dossier." },
+        { checkId: "source-boundary", status: sourceReady ? "passed" : "failed", message: sourceReady ? "At least one dated source is preserved in the Case File." : "Add a dated source and applicability boundary." },
+        { checkId: "privacy-mode", status: "passed", message: "Validation ran in this browser and created no mandatory transmission." }
+      ];
+      var valid = checks.every(function (check) { return check.status === "passed"; });
+      validationReceipt = {
+        format: "palo-local-validation-receipt",
+        schemaVersion: "1.0.0",
+        receiptId: "receipt-" + digest.slice(0, 16),
+        caseId: caseFile.caseId,
+        generatedAt: new Date().toISOString(),
+        result: valid ? "valid" : "invalid",
+        artifactDigest: "sha256:" + digest,
+        checks: checks,
+        validator: { name: "PALO Evidence Pack local validator", version: "3.0.1", execution: "browser-local" },
+        privacyBoundary: "The receipt contains a case identifier, validation checks and an artifact digest. Sharing is voluntary. Schema conformance is not certification, legal advice, production approval or independent assurance.",
+        shareMode: "voluntary-export"
+      };
+      downloadReceiptButton.disabled = false;
+      copyReceiptButton.disabled = false;
+      receiptStatus.textContent = (valid ? "Valid local receipt" : "Receipt created with open checks") + " | " + validationReceipt.receiptId + " | " + validationReceipt.artifactDigest;
+      document.documentElement.setAttribute("data-evidence-receipt", valid ? "valid" : "open-checks");
+    }).catch(function (validationError) {
+      receiptStatus.textContent = "Receipt creation failed: " + validationError.message;
+      document.documentElement.setAttribute("data-evidence-receipt", "error");
+    });
+  });
+
+  downloadReceiptButton.addEventListener("click", function () {
+    if (!validationReceipt) return;
+    window.paloDownload(validationReceipt.receiptId + ".json", JSON.stringify(validationReceipt, null, 2) + "\n", "application/json;charset=utf-8");
+    document.documentElement.setAttribute("data-evidence-receipt-download", "complete");
+  });
+
+  copyReceiptButton.addEventListener("click", function () {
+    if (!validationReceipt) return;
+    var serialized = JSON.stringify(validationReceipt, null, 2) + "\n";
+    if (!navigator.clipboard || !navigator.clipboard.writeText) {
+      receiptStatus.textContent = "Clipboard access is unavailable. Download the receipt instead.";
+      return;
+    }
+    navigator.clipboard.writeText(serialized).then(function () {
+      receiptStatus.textContent = "Receipt copied voluntarily. No content was sent by PALO.";
+      document.documentElement.setAttribute("data-evidence-receipt-copy", "complete");
+    }).catch(function () { receiptStatus.textContent = "Clipboard permission was denied. Download the receipt instead."; });
+  });
+
   var handoff = api.consumeHandoff("assessment-path");
-  restore(handoff ? handoff.caseFile : api.load(), false);
+  var params = new URLSearchParams(window.location.search);
+  if (params.get("sample") === "agentic-invoice") loadGoldCase(false);
+  else restore(handoff ? handoff.caseFile : api.load(), false);
 }());

@@ -6,6 +6,30 @@ PALO v3 semantic sources are versioned public contracts. Change the semantic sou
 
 First off, thank you for considering contributing to PALO!
 
+## Fast path: contribute a case
+
+During the 30-day activation freeze, the most valuable contribution is one synthetic or safely publishable Evidence Pack case. Generate the Case File and pull request body with:
+
+```sh
+npm run case:contribute -- \
+  --slug retail-returns-assistant \
+  --title "Retail returns assistant" \
+  --sector retail \
+  --scenario "An assistant drafts a recommendation while a named employee approves refunds." \
+  --community builders \
+  --author "@your-github-handle"
+```
+
+Complete the generated TODO fields, then run:
+
+```sh
+npm run case:contribute -- --validate-all
+npm run evidence:test
+npm run validate
+```
+
+The command does not push, open a pull request or transmit case content. Cases must state allowed and prohibited actions, an observable expected effect, an independent verification method and their non-production boundary.
+
 ##  Table of Contents
 
 - [Code of Conduct](#code-of-conduct)

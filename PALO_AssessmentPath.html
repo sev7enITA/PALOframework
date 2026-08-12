@@ -3,22 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PALO Assessment Path | Guided AI Governance Evidence</title>
-    <meta name="description" content="Use the PALO Assessment Path to classify an AI use case, assess contextual impacts, route to controls, and export a local evidence bundle.">
+    <title>PALO Evidence Pack | Reviewable AI Governance Evidence</title>
+    <meta name="description" content="Turn one AI use case into a traceable, reviewable PALO evidence dossier in less than ten minutes, locally and without an account.">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://paloframework.org/PALO_AssessmentPath.html">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://paloframework.org/PALO_AssessmentPath.html">
-    <meta property="og:title" content="PALO Assessment Path | Guided AI Governance Evidence">
-    <meta property="og:description" content="A guided route from a use-case question to a local PALO evidence bundle.">
+    <meta property="og:title" content="PALO Evidence Pack | Reviewable AI Governance Evidence">
+    <meta property="og:description" content="A local-first route from one AI use case to a traceable, reviewable evidence dossier in less than ten minutes.">
     <meta property="og:image" content="https://paloframework.org/assets/logo.webp">
     <meta property="og:site_name" content="PALO Framework">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="icon" type="image/webp" href="assets/logo.webp">
     <link rel="stylesheet" href="assets/palo-icons.css">
-    <link rel="stylesheet" href="assets/palo-v21.css?v=3.0.0">
+    <link rel="stylesheet" href="assets/palo-v21.css?v=3.0.1">
     <script src="assets/palo-icons.js"></script>
-    <script src="assets/palo-v21.js?v=3.0.0"></script>
+    <script src="assets/palo-v21.js?v=3.0.1"></script>
     <script src="assets/palo-case-file.js?v=2.4.1"></script>
     <script src="assets/palo-policywatcher-signal.js?v=2.4.1"></script>
 </head>
@@ -32,7 +32,7 @@
             </button>
             <nav class="palo-nav" id="palo-primary-nav" aria-label="Primary navigation">
                 <a href="index.html">Home</a>
-                <a href="PALO_AssessmentPath.html" aria-current="page">Assessment Path</a>
+                <a href="PALO_AssessmentPath.html" aria-current="page">Evidence Pack</a>
                 <a href="PALO_RegulatoryWatch.html">Regulatory Watch</a>
                 <a href="PALO_DocumentationLibrary.html">Documentation</a>
                 <a href="PALO_PlatformMap.html">Platform Map</a>
@@ -45,13 +45,15 @@
     <main id="main-content" class="palo-main">
         <section class="palo-hero">
             <div class="palo-shell">
-                <p class="palo-eyebrow">PALO v2.2.0 guided workflow</p>
-                <h1>PALO Assessment Path</h1>
-                <p>One guided route from a use-case question to an evidence bundle. Start with the context, route the work to the right PALO modules, and keep a local record of the decision.</p>
+                <p class="palo-eyebrow">PALO Evidence Pack | v3 starter experience</p>
+                <h1>From one AI use case to reviewable evidence.</h1>
+                <p>In less than ten minutes, turn one AI use case into a traceable evidence dossier that another person can review. This is a routing and evidence aid, not certification or a substitute for legal, technical, or independent assurance.</p>
+                <p class="palo-evidence-problem"><strong>Allowed is not verified.</strong></p>
                 <div class="palo-actions">
-                    <a class="palo-btn" href="#assessment-form"><span data-palo-icon="clipboard" aria-hidden="true"></span>Start an assessment</a>
-                    <a class="palo-btn palo-btn-secondary" href="PALO_RegulatoryWatch.html"><span data-palo-icon="scale" aria-hidden="true"></span>Check Regulatory Watch</a>
+                    <button class="palo-btn" type="button" id="load-gold-case"><span data-palo-icon="clipboard" aria-hidden="true"></span>Run the preloaded case</button>
+                    <a class="palo-evidence-quiet-link" href="#assessment-form">Use my own case</a>
                 </div>
+                <p class="palo-evidence-trust"><span data-palo-icon="shield" aria-hidden="true"></span>Runs in this browser. No account. No answer is sent. Export is voluntary.</p>
             </div>
         </section>
 
@@ -60,13 +62,14 @@
                 <p class="palo-status"><span data-palo-icon="check" aria-hidden="true"></span>Local-first assessment</p>
                 <h2>Five linked governance gates</h2>
                 <p class="palo-lead">The path is a routing and evidence aid. It does not certify compliance or replace a legal, technical, or fundamental-rights review.</p>
-                <div class="palo-flow" aria-label="PALO Assessment Path stages">
+                <div class="palo-flow" aria-label="PALO Evidence Pack stages">
                     <article class="palo-step"><span class="palo-step-number">01</span><h3>Risk Tiering</h3><p>Describe the system and its intended use.</p></article>
                     <article class="palo-step"><span class="palo-step-number">02</span><h3>Contextual FRIA</h3><p>Route fundamental-rights questions when the context calls for them.</p></article>
                     <article class="palo-step"><span class="palo-step-number">03</span><h3>Controls</h3><p>Identify oversight, transparency, data, and incident controls.</p></article>
                     <article class="palo-step"><span class="palo-step-number">04</span><h3>KPI and KRI</h3><p>Turn the governance intent into measurable follow-up.</p></article>
                     <article class="palo-step"><span class="palo-step-number">05</span><h3>Evidence bundle</h3><p>Export the route, readiness, sources, and disclaimer.</p></article>
                 </div>
+                <p class="palo-small">Built on the PALO Assessment Path.</p>
                 <div class="palo-note"><strong>Optional monitoring companion.</strong> After deployment, use <a href="https://www.policywatcher.online/" target="_blank" rel="noopener noreferrer">PolicyWatcher</a> to follow public privacy-policy and terms-of-service changes that may affect the operating context. Keep the original source and human review in the PALO evidence record.</div>
             </div>
         </section>
@@ -101,6 +104,7 @@
                     </div>
                     <div class="palo-signal-review" id="policywatcher-import-status" role="status" aria-live="polite"><strong>No signal imported.</strong> PolicyWatcher remains separate from PALO and no case data is sent to the portal.</div>
                 </section>
+                <div class="palo-sample-status" id="evidence-sample-status" role="status" aria-live="polite">The synthetic agentic invoice case is ready to load.</div>
                 <form class="palo-form" id="palo-assessment-form">
                     <div class="palo-form-grid">
                         <div class="palo-field">
@@ -191,6 +195,17 @@
                             <pre class="palo-output" id="bundle-preview"></pre>
                         </div>
                     </div>
+                    <section class="palo-validation-receipt" aria-labelledby="validation-receipt-title">
+                        <p class="palo-card-kicker">Voluntary local export</p>
+                        <h3 id="validation-receipt-title">Local validation receipt</h3>
+                        <p>Check this evidence case against the published schema and create a SHA-256 digest. The receipt records a local validation result; it is not certification or independent assurance.</p>
+                        <div class="palo-actions">
+                            <button class="palo-btn" type="button" id="validate-evidence-case">Validate and create receipt</button>
+                            <button class="palo-btn palo-btn-secondary" type="button" id="download-validation-receipt" disabled>Download receipt</button>
+                            <button class="palo-btn palo-btn-secondary" type="button" id="copy-validation-receipt" disabled>Copy receipt</button>
+                        </div>
+                        <p class="palo-receipt-status" id="validation-receipt-status" role="status" aria-live="polite">No validation receipt created yet.</p>
+                    </section>
                 </section>
 
                 <div class="palo-note"><strong>Use the route as a starting point.</strong> The export includes PALO version, route logic, evidence readiness, official source links, and a plain-language disclaimer so the next reviewer can see what was assessed and what remains open.</div>

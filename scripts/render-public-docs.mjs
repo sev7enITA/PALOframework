@@ -167,10 +167,10 @@ function renderDocument(markdown, file) {
   <link rel="canonical" href="${escapeHtml(canonical)}">
   <link rel="icon" type="image/webp" href="${asset("assets/logo.webp")}">
   <link rel="stylesheet" href="${asset("assets/palo-icons.css")}">
-  <link rel="stylesheet" href="${asset("assets/palo-v21.css")}?v=3.0.0">
+  <link rel="stylesheet" href="${asset("assets/palo-v21.css")}?v=3.0.1">
   <link rel="stylesheet" href="${asset("assets/palo-docs.css")}">
   <script src="${asset("assets/palo-icons.js")}" defer></script>
-  <script src="${asset("assets/palo-v21.js")}?v=3.0.0" defer></script>
+  <script src="${asset("assets/palo-v21.js")}?v=3.0.1" defer></script>
   <script src="${asset("assets/palo-docs.js")}" defer></script>
 </head>
 <body class="palo-v21 palo-doc-page" data-doc-source="${escapeHtml(file)}">

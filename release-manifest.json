@@ -1,13 +1,13 @@
 {
   "schemaVersion": "1.0.0",
   "release": {
-    "version": "3.0.0",
+    "version": "3.0.1",
     "date": "2026-08-12",
     "status": "developer-preview",
     "versioningModel": "platform-release-with-independent-components"
   },
   "sharedAssets": {
-    "version": "3.0.0",
+    "version": "3.0.1",
     "files": [
       "assets/palo-v21.css",
       "assets/palo-v21.js"
@@ -15,7 +15,7 @@
   },
   "components": {
     "web": {
-      "version": "3.0.0",
+      "version": "3.0.1",
       "date": "2026-08-12"
     },
     "framework": {
@@ -99,8 +99,18 @@
       "routeRibbon": true
     },
     "assessmentPath": {
-      "version": "2.4.1",
-      "date": "2026-07-17"
+      "version": "3.0.1",
+      "date": "2026-08-12"
+    },
+    "evidencePack": {
+      "version": "1.0.0",
+      "date": "2026-08-12",
+      "status": "implemented-local-first",
+      "webEntry": "PALO_AssessmentPath.html?sample=agentic-invoice#assessment-form",
+      "goldCases": 3,
+      "validationReceipt": "palo-local-validation-receipt",
+      "telemetryRequired": false,
+      "accountRequired": false
     },
     "operationalEvidenceCore": {
       "version": "1.0.0",
@@ -196,9 +206,9 @@
       }
     },
     "cognitiveFrontDoor": {
-      "status": "source-ready",
-      "entry": "designs/theory-to-practice-infographic/",
-      "primaryNavigation": ["Start", "Agentic Governance", "Governance Hub", "Tools", "Documentation", "Readiness"],
+      "status": "evidence-pack-primary",
+      "entry": "PALO_AssessmentPath.html?sample=agentic-invoice#assessment-form",
+      "primaryNavigation": ["Evidence Pack", "Agentic Governance", "Governance Hub", "Tools", "Documentation", "Readiness"],
       "documentationLibrary": "PALO_DocumentationLibrary.html",
       "legacyDocumentationHub": "transition-page",
       "privacy": "local-first-no-silent-submission"

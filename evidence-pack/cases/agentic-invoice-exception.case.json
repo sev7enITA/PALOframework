@@ -1,0 +1,65 @@
+{
+  "format": "palo-case-file",
+  "schemaVersion": "1.0.0",
+  "caseId": "case-gold-agentic-invoice",
+  "title": "Gold case: agentic invoice exception",
+  "status": "review",
+  "createdAt": "2026-08-12T08:00:00Z",
+  "updatedAt": "2026-08-12T08:00:00Z",
+  "owner": "PALO Evidence Pack educational review",
+  "context": {
+    "domain": "agentic-workflows",
+    "scenario": "An agent collects invoice exception evidence and drafts a resolution. Payment release and supplier communication remain outside its authority.",
+    "exampleStatus": "educational-non-production",
+    "goldCase": true,
+    "completionMinutes": 8,
+    "learningObjective": "Separate policy permission from verified effect and preserve a human decision boundary.",
+    "sourceStatus": "The references are starting points only. The validation receipt proves schema conformance, not legal, security or production approval.",
+    "limitations": "Fictional data and tools; no payment, supplier, identity or production control is connected.",
+    "decisionQuestion": "May the agent draft the exception while a named reviewer retains release authority?",
+    "declaredAuthority": {
+      "allowed": ["Read synthetic invoice metadata", "Draft an exception summary"],
+      "prohibited": ["Release payment", "Change supplier data", "Contact the supplier"]
+    },
+    "expectedEffect": "A draft is created and the payment state remains unchanged.",
+    "verificationMethod": "Compare the synthetic post-state to the expected effect and prohibited effects."
+  },
+  "assessments": [
+    {
+      "assessmentId": "assessment-gold-agentic-invoice",
+      "module": "PALO Evidence Pack",
+      "recordedAt": "2026-08-12T08:00:00Z",
+      "data": {
+        "decision": "proceed-with-conditions",
+        "conditions": ["Keep payment release outside the agent tool set", "Require reviewer identity", "Verify the post-state independently"]
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidenceId": "evidence-gold-agentic-authority",
+      "title": "Synthetic authority and expected-effect record",
+      "kind": "authority-and-effect-contract",
+      "status": "ready",
+      "recordedAt": "2026-08-12T08:00:00Z",
+      "content": {
+        "allowed": ["draft_exception"],
+        "forbidden": ["release_payment", "change_supplier", "send_external_message"],
+        "expectedPostState": { "draftCreated": true, "paymentReleased": false }
+      }
+    }
+  ],
+  "sources": [
+    {
+      "sourceId": "src-nist-ai-rmf",
+      "title": "AI Risk Management Framework",
+      "url": "https://www.nist.gov/itl/ai-risk-management-framework",
+      "sourceType": "official",
+      "publisher": "US National Institute of Standards and Technology",
+      "checkedAt": "2026-08-12T08:00:00Z",
+      "freshness": { "status": "current", "reviewIntervalDays": 90, "nextReviewAt": "2026-11-10T08:00:00Z" }
+    }
+  ],
+  "incidents": [],
+  "handoffs": []
+}

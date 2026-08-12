@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paloframework.org/schemas/palo-local-validation-receipt.schema.json",
+  "title": "PALO Local Validation Receipt",
+  "type": "object",
+  "required": [
+    "format",
+    "schemaVersion",
+    "receiptId",
+    "caseId",
+    "generatedAt",
+    "result",
+    "artifactDigest",
+    "checks",
+    "validator",
+    "privacyBoundary"
+  ],
+  "properties": {
+    "format": { "const": "palo-local-validation-receipt" },
+    "schemaVersion": { "const": "1.0.0" },
+    "receiptId": { "type": "string", "pattern": "^receipt-[a-f0-9]{16}$" },
+    "caseId": { "type": "string", "pattern": "^case-[a-z0-9][a-z0-9-]{5,63}$" },
+    "generatedAt": { "type": "string", "format": "date-time" },
+    "result": { "enum": ["valid", "invalid"] },
+    "artifactDigest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+    "checks": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["checkId", "status", "message"],
+        "properties": {
+          "checkId": { "type": "string", "minLength": 1 },
+          "status": { "enum": ["passed", "failed"] },
+          "message": { "type": "string", "minLength": 1 }
+        },
+        "additionalProperties": false
+      }
+    },
+    "validator": {
+      "type": "object",
+      "required": ["name", "version", "execution"],
+      "properties": {
+        "name": { "const": "PALO Evidence Pack local validator" },
+        "version": { "type": "string", "minLength": 1 },
+        "execution": { "enum": ["browser-local", "node-local"] }
+      },
+      "additionalProperties": false
+    },
+    "privacyBoundary": { "type": "string", "minLength": 1 },
+    "shareMode": { "const": "voluntary-export" }
+  },
+  "additionalProperties": false
+}

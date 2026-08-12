@@ -170,6 +170,37 @@ try {
   });
   if (!unknownPreserved) failures.push("case-file API: merge did not preserve unknown fields");
 
+  await page.evaluate(() => { localStorage.clear(); sessionStorage.clear(); });
+  const evidenceNetworkWrites = [];
+  const trackEvidenceWrites = (request) => {
+    if (!["GET", "HEAD", "OPTIONS"].includes(request.method())) evidenceNetworkWrites.push({ method: request.method(), url: request.url() });
+  };
+  page.on("request", trackEvidenceWrites);
+  await page.goto(`${baseUrl}/PALO_AssessmentPath.html?sample=agentic-invoice#assessment-form`, { waitUntil: "domcontentloaded" });
+  await page.waitForFunction(() => document.documentElement.getAttribute("data-evidence-sample") === "loaded");
+  if (await page.locator("#system-name").inputValue() !== "Agentic invoice exception" || !await page.locator("#agentic").isChecked()) failures.push("Evidence Pack: the synthetic agentic invoice case was not preloaded");
+  await page.locator("#palo-assessment-form").evaluate((form) => form.requestSubmit());
+  await expectAttribute(page.locator("html"), "data-assessment-case", "saved", "Evidence Pack sample save");
+  await page.locator("#validate-evidence-case").click();
+  await expectAttribute(page.locator("html"), "data-evidence-receipt", "valid", "Evidence Pack local receipt");
+  const firstReceiptText = await captureDownload(page.locator("#download-validation-receipt"), "Evidence Pack receipt export");
+  let firstReceipt;
+  try {
+    firstReceipt = JSON.parse(firstReceiptText);
+    if (firstReceipt.format !== "palo-local-validation-receipt" || firstReceipt.result !== "valid" || !/^sha256:[a-f0-9]{64}$/.test(firstReceipt.artifactDigest) || firstReceipt.shareMode !== "voluntary-export") failures.push("Evidence Pack receipt: format, result, digest or voluntary share mode is invalid");
+  } catch (error) { failures.push(`Evidence Pack receipt: invalid JSON (${error.message})`); }
+  await page.locator("#use-case").fill("An agent drafts an invoice exception and adds a material new authority request.");
+  await page.locator("#palo-assessment-form").evaluate((form) => form.requestSubmit());
+  await page.locator("#validate-evidence-case").click();
+  await expectAttribute(page.locator("html"), "data-evidence-receipt", "valid", "Evidence Pack changed-case receipt");
+  const changedReceiptText = await captureDownload(page.locator("#download-validation-receipt"), "Evidence Pack changed receipt export");
+  try {
+    const changedReceipt = JSON.parse(changedReceiptText);
+    if (firstReceipt && changedReceipt.artifactDigest === firstReceipt.artifactDigest) failures.push("Evidence Pack receipt: digest did not change after a material case edit");
+  } catch (error) { failures.push(`Evidence Pack changed receipt: invalid JSON (${error.message})`); }
+  page.off("request", trackEvidenceWrites);
+  if (evidenceNetworkWrites.length) failures.push(`Evidence Pack: local completion sent a network write (${JSON.stringify(evidenceNetworkWrites)})`);
+
   await page.goto(`${baseUrl}/designs/theory-to-practice-infographic/index.html`, { waitUntil: "domcontentloaded" });
   await page.evaluate(() => { localStorage.clear(); sessionStorage.clear(); });
   await page.locator("#case-file-import").setInputFiles(path.join(projectRoot, "schemas/fixtures/palo-case-file.valid.json"));

@@ -8,6 +8,22 @@
 [![Website](https://img.shields.io/badge/Website-paloframework.org-21808D)](https://paloframework.org)
 [![GitHub](https://img.shields.io/badge/GitHub-sev7enITA%2FPALOframework-black)](https://github.com/sev7enITA/PALOframework)
 
+## Start here: PALO Evidence Pack
+
+**Allowed is not verified.** Give PALO one AI use case. Leave with a traceable, reviewable evidence dossier and a local validation receipt in less than ten minutes.
+
+### [Run the preloaded Evidence Pack case](https://paloframework.org/PALO_AssessmentPath.html?sample=agentic-invoice#assessment-form)
+
+No account. No mandatory telemetry. Your answers stay in the browser and export is voluntary. The receipt proves local schema checks and digest binding; it is not certification, legal advice, production approval or independent assurance.
+
+From a clone:
+
+```sh
+npm run evidence:validate
+```
+
+The [starter pack](evidence-pack/README.md) includes three schema-valid gold cases. Use `npm run case:contribute -- --help` to generate a community case, validate it and prepare its pull request body.
+
 PALO is an open-source framework and toolkit for operational AI governance. It helps teams translate principles, laws, and standards into lifecycle decisions, risk assessments, evidence artifacts, KPIs/KRIs, and repeatable governance gates.
 
 **Naming convention:** PALO is the canonical project brand. The punctuated form `P.A.L.O.` is retained only where it is part of an existing publication or mobile-store title.
@@ -120,7 +136,7 @@ n8n orchestrates what automation does. PALO governs whether an identified agent 
 | [PALO-AM Agentic Governance](PALO_AgenticGovernance.html) | PALO extension for AI agents, delegated authority, action-space control, and agentic evidence | Live |
 | [Mobile Toolbox](PALO_CompanionApp.html) | Mobile workspace overview for Android and iOS/iPadOS apps | Live |
 | [Recognition and Sources](PALO_Recognition.html) | Public references, primary sources, and verification notes | Live |
-| [PALO Assessment Path](PALO_AssessmentPath.html) | Guided route from risk tiering to contextual FRIA, controls, KPI/KRI, and a local evidence bundle | Live |
+| [PALO Evidence Pack](PALO_AssessmentPath.html?sample=agentic-invoice#assessment-form) | Less-than-ten-minute local route from one AI use case to a reviewable dossier and voluntary validation receipt; built on Assessment Path | Live |
 | [Regulatory Watch 2026](PALO_RegulatoryWatch.html) | Dated AI Act watchlist with Article 4, Article 50, high-risk milestones, and official sources | Live |
 | [Documentation Library](PALO_DocumentationLibrary.html) | Searchable HTML documentation with Start, Guide and Reference depth plus audience, task, product and maturity metadata | Live |
 | [Platform Map](PALO_PlatformMap.html) | Operational status, stakeholder-intent routes, modules, artifacts, research boundaries, and accessible table navigation | Live |
@@ -140,6 +156,7 @@ The app is designed as a privacy-first mobile workspace for contextual AI govern
 
 | Date | Release | Highlights |
 | --- | --- | --- |
+| 2026-08-12 | v3.0.1 - Evidence Pack Activation | One primary activation route, preloaded local case, voluntary digest-bound validation receipt, three gold cases, `case:contribute` and a 30-day new-module freeze |
 | 2026-08-12 | v3.0.0 - Semantic Foundation | Canonical semantic spine, append-only gate decisions, atomic evidence/claim/evaluation contracts, RDF/SHACL invariants, mapping governance, Semantic Inspector and digest-bound releases |
 | 2026-07-18 | v2.5.0 - Full-Cycle Agentic Assurance | Effect Contracts, one-time execution capabilities, trusted receipts, authoritative outcome attestations, held assurance incidents, crash recovery, and the n8n Governed Action preview |
 | 2026-07-17 | v2.4.1 - PALO-AI Developer Preview | Versioned agentic contracts, reference MCP transports, draft Rego v1 policies, prototype approval and evidence flows, and non-production n8n/Dify examples |
@@ -184,7 +201,7 @@ These references provide research, provenance, and external context. The reposit
 
 ### Use the live website
 
-Open the [PALO Stakeholder Onboarding](https://paloframework.org/designs/theory-to-practice-infographic/#onboarding). It starts from your role and objective, then identifies one practical next action, the artifact it produces, and the relevant PALO modules. Agentic routes add a fourth build-mode question only when needed. Experienced users can still open any module directly from [paloframework.org](https://paloframework.org).
+Open the [PALO Evidence Pack](https://paloframework.org/PALO_AssessmentPath.html?sample=agentic-invoice#assessment-form). The synthetic agentic invoice case is preloaded, runs locally and can produce a reviewable dossier plus a voluntary validation receipt in less than ten minutes. Existing PALO modules remain available as downstream tools after the evidence route identifies what is needed.
 
 ### Run locally
 
@@ -321,11 +338,27 @@ Contributions are welcome. Useful areas include:
 - Improving accessibility and mobile behavior
 - Adding tests/checklists for generated reports
 
+The fastest contribution path is a synthetic or safely publishable Casebook artifact:
+
+```sh
+npm run case:contribute -- \
+  --slug retail-returns-assistant \
+  --title "Retail returns assistant" \
+  --sector retail \
+  --scenario "An assistant drafts a recommendation while a named employee approves refunds." \
+  --community builders \
+  --author "@your-github-handle"
+```
+
+The command generates a Case File, validates the public schema and prepares a PR body. It never pushes or opens a pull request automatically.
+
 Please read [CONTRIBUTING.md](CONTRIBUTING.md), [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md), and [SECURITY.md](SECURITY.md) before opening issues or pull requests.
 
 ## Roadmap
 
-Current baseline: v3.0.0 semantic foundation, released 2026-08-12. It establishes canonical lifecycle definitions, append-only gate decision history, atomic evidence contracts, executable RDF/SHACL validation, and digest-bound release inventory on top of the PALO-AI v2.5 full-cycle reference runtime.
+Current baseline: v3.0.1 Evidence Pack Activation, released 2026-08-12. It adds one focused local activation route, three gold cases, voluntary digest-bound receipts and a Community Casebook contribution path on top of the v3.0.0 semantic foundation and PALO-AI v2.5 full-cycle reference runtime.
+
+Activation focus: new non-essential modules are frozen from 2026-08-12 through 2026-09-10. Work is concentrated on Evidence Pack completion, external review, accessibility, negative tests and Community Casebook contributions. See the [activation freeze](docs/activation-freeze-2026-08.md).
 
 Completed in H1 2026:
 

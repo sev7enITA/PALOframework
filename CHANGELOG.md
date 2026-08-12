@@ -9,10 +9,20 @@ and this project follows Semantic Versioning where practical.
 
 ## [Unreleased]
 
+## [3.0.1] - 2026-08-12
+
+### Added
+
+- Added the preloaded local Evidence Pack experience, a voluntary SHA-256 validation receipt and three schema-valid gold cases.
+- Added `case:contribute`, a one-command generator and validator for Community Casebook contributions and pull request preparation.
+- Added the five-day activation runbook, 20-seat founding review protocol and public changed-because-of-feedback log.
+
 ### Changed
 
 - Normalized tracked source and generated publication text to plain ASCII punctuation, separators and status labels.
 - Added an automated text-style gate for source files, generated `dist` files and current Git metadata.
+- Started a 30-day new-module freeze, enabled one canonical GitHub Discussions channel and added the five-day activation and changed-because-of-feedback records.
+- Made PALO Evidence Pack the only primary website and README activation route while retaining existing modules as downstream tools.
 
 ## [3.0.0] - 2026-08-12
 

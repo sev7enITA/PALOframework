@@ -1,0 +1,64 @@
+{
+  "format": "palo-case-file",
+  "schemaVersion": "1.0.0",
+  "caseId": "case-gold-hr-learning-assistant",
+  "title": "Gold case: employee learning assistant",
+  "status": "review",
+  "createdAt": "2026-08-12T08:00:00Z",
+  "updatedAt": "2026-08-12T08:00:00Z",
+  "owner": "PALO Evidence Pack educational review",
+  "context": {
+    "domain": "human-resources",
+    "scenario": "An internal assistant suggests optional learning resources but must not evaluate performance, promotion, discipline or employment eligibility.",
+    "exampleStatus": "educational-non-production",
+    "goldCase": true,
+    "completionMinutes": 7,
+    "learningObjective": "Turn a broad HR assistant idea into an explicit purpose boundary and prohibited-use record.",
+    "sourceStatus": "Applicability requires workforce, privacy, accessibility and jurisdiction-specific review.",
+    "limitations": "Fictional scenario with no employee data, works council consultation or validated legal analysis.",
+    "decisionQuestion": "Can optional learning support remain technically and organizationally separated from employment decisions?",
+    "declaredAuthority": {
+      "allowed": ["Suggest optional learning resources"],
+      "prohibited": ["Performance scoring", "Promotion recommendation", "Disciplinary recommendation", "Employment eligibility inference"]
+    },
+    "expectedEffect": "A user receives optional resources and no personnel decision record is created.",
+    "verificationMethod": "Inspect output and audit events for prohibited employment inferences or personnel-record writes."
+  },
+  "assessments": [
+    {
+      "assessmentId": "assessment-gold-hr-learning",
+      "module": "PALO Evidence Pack",
+      "recordedAt": "2026-08-12T08:00:00Z",
+      "data": {
+        "decision": "redesign",
+        "conditions": ["Isolate the learning catalog", "Block personnel-record writes", "Add accessible human support"]
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidenceId": "evidence-gold-hr-boundary",
+      "title": "Synthetic HR purpose boundary",
+      "kind": "approved-purpose-record",
+      "status": "ready",
+      "recordedAt": "2026-08-12T08:00:00Z",
+      "content": {
+        "approvedPurpose": "Optional learning discovery",
+        "prohibitedUses": ["performance", "promotion", "discipline", "eligibility"]
+      }
+    }
+  ],
+  "sources": [
+    {
+      "sourceId": "src-eu-ai-act",
+      "title": "Artificial Intelligence Act",
+      "url": "https://eur-lex.europa.eu/eli/reg/2024/1689/oj/eng",
+      "sourceType": "official",
+      "publisher": "European Union",
+      "checkedAt": "2026-08-12T08:00:00Z",
+      "freshness": { "status": "current", "reviewIntervalDays": 90, "nextReviewAt": "2026-11-10T08:00:00Z" }
+    }
+  ],
+  "incidents": [],
+  "handoffs": []
+}
