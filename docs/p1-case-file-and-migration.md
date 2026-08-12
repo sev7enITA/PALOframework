@@ -1,5 +1,7 @@
 # PALO case file and evidence bundle v1
 
+> **v3 compatibility:** the PALO v3 semantic, gate-decision and atomic evidence contracts are additive. Case File v1 and Evidence Bundle v1 remain supported; consumers may link to v3 semantic IDs or compose new manifests without silently reinterpreting existing v1 fields.
+
 P1 introduces `palo-case-file` and `palo-evidence-bundle`, both at schema version `1.0.0`. Their JSON Schemas are the normative structural definitions. Examples under `schemas/fixtures/` include one valid and one intentionally invalid document for each format.
 
 ## Local contract

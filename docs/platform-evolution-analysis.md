@@ -4,7 +4,7 @@
 
 ### Delivered scope
 
-P0 establishes a minimal Node 20 toolchain for source validation, deterministic allowlisted publication, built-artifact exactness, and Chromium smoke testing. One `2.4.0` release identifier in `release-manifest.json` governs the shared `palo-v21.css` and `palo-v21.js` cache keys. CI validates source, rebuilds and validates `dist`, checks deterministic exactness, smokes every public HTML page, and uploads only `dist` to GitHub Pages.
+P0 establishes a minimal Node 20 toolchain for source validation, deterministic allowlisted publication, built-artifact exactness, and Chromium smoke testing. One current release identifier in `release-manifest.json` governs the shared `palo-v21.css` and `palo-v21.js` cache keys. CI validates source, rebuilds and validates `dist`, checks deterministic exactness, smokes every public HTML page, and uploads only `dist` to GitHub Pages.
 
 The publication boundary is explicit. It retains all linked public modules and runtime assets while excluding working documents, workshop files, raw APK/AAB binaries, non-public screenshots, hidden desktop metadata, and repository/toolchain internals. `_headers` and hosting guidance provide a portable header policy while stating that GitHub Pages does not apply arbitrary custom headers.
 
@@ -60,7 +60,7 @@ P2 can build curated control, KPI/KRI, gate, source, scenario, and connector lib
 
 ### Delivered scope
 
-P2 adds versioned educational starter libraries for eight controls, eight KPI/KRIs, six lifecycle decision gates and six sources. Stable IDs connect those records to a machine-readable adoption index, six fictional worked Case Files and five Markdown templates for procurement, incident response, board review, red-team evidence and contributions. Every worked case conforms to the P1 Case File schema, identifies its non-production status and source limitations, and carries indexed control, indicator, gate, source and template references.
+P2 adds versioned educational starter libraries for nine controls, ten KPI/KRIs, six lifecycle decision gates and six sources. Stable IDs connect those records to a machine-readable adoption index, six fictional worked Case Files and five Markdown templates for procurement, incident response, board review, red-team evidence and contributions. Every worked case conforms to the P1 Case File schema, identifies its non-production status and source limitations, and carries indexed control, indicator, gate, source and template references.
 
 The integration foundation includes a PolicyWatcher monitoring-signal schema with valid/invalid fixtures, mandatory non-authoritative status and confidence rationale; a versioned browser-event and storage contract; vendor-neutral issue-tracker, GRC and document-system connector patterns; and a deliberately small policy-as-code example with a validated input. Dependency/license inventory, publication-hygiene guidance and a complete P2 index document define the maintenance boundary. No connector is configured, no assessment is transmitted, and no credential or live tenant detail is included.
 
@@ -110,7 +110,7 @@ P3 makes public platform topology a first-class record rather than leaving archi
 
 ### UI impact
 
-The Platform Map uses the existing ink, teal, surface, gold and restrained red palette with compact headings, square-edged status markers, 44px controls and no decorative media. A four-column desktop topology becomes two columns on tablet and one column on mobile. The P0-P3 impact ledger and semantic table reflow into labeled records at narrow widths, preventing document-level horizontal overflow. Shared navigation and the Documentation Hub gain one direct Platform Map entry. The Explorer gains a compact two-button graph mode control without displacing motion, camera or semantic-view controls.
+The Platform Map uses the existing ink, teal, surface, gold and restrained red palette with compact headings, square-edged status markers, 44px controls and no decorative media. A four-column desktop topology becomes two columns on tablet and one column on mobile. The P0-P4 impact ledger and semantic table reflow into labeled records at narrow widths, preventing document-level horizontal overflow. Shared navigation and the Documentation Hub gain one direct Platform Map entry. The Explorer gains a compact two-button graph mode control without displacing motion, camera or semantic-view controls.
 
 ### UX impact
 
@@ -141,3 +141,23 @@ The v2.4.0 maintenance integration makes the existing PolicyWatcher boundary ope
 Browser tests prove valid import, additive-field preservation, visible pending-review state, the exact reopened gates, browser-event dispatch and normalized source fields. They then reject the invalid fixture and byte-compare local storage to prove no Case File mutation. Request monitoring confirms import sends no request to PolicyWatcher. Platform Map and Explorer tests require the exact `https://www.policywatcher.online/` destination, local schema, Foundation status and authority-boundary properties. Public references use the canonical `www` host and external UI links retain `_blank` plus `noopener noreferrer`.
 
 The residual boundary is deliberate: PALO does not fetch PolicyWatcher observations, authenticate portal records, verify that a detected change is material, or determine whether a policy applies. An accountable person must inspect the primary policy, establish relevance, update the evidence state and close or retain the reopened gates.
+
+## P4 - Versioned semantic foundation
+
+### Delivered scope
+
+P4 introduces a canonical semantic spine with stable identity, definition version, evidence class, authority boundary, source references and review date across the public operating model. Lifecycle, Gate Instance and append-only Gate Decision Record contracts preserve the difference between a framework gate and its application to a case. Atomic Evidence Artifact, Claim, Evaluation and Bundle Manifest contracts add verifiable provenance without breaking P1 formats.
+
+The formal layer includes JSON-LD, RDF/Turtle, SHACL shapes and named invariants. Atomic mappings connect controls, indicators, gates and sources with independently versioned endpoints, coverage, rationale and provenance. A semantic change-impact record and digest-bound semantic release manifest govern migration and publication.
+
+### Test evidence
+
+The release pipeline checks deterministic projections, JSON Schema valid/invalid fixtures, RDF parsing, SHACL-subset conformance, named invariants, mapping referential integrity and every semantic release digest. The normal allowlisted source/dist validation, deterministic build comparison and browser smoke remain release-blocking.
+
+### UI and UX impact
+
+The Explorer becomes a Semantic Inspector over the generated spine. Platform Map and Documentation Library filter by evidence/authority class independently of delivery status. Governance Hub identifies Executive and Technical as workspace lenses—not access roles—and labels every demonstration record/export as an illustrative local preview. These changes create a consistent boundary across the public catalog, case workspace and assurance review.
+
+### Residual risk
+
+Formal consistency does not establish legal applicability, source freshness, control effectiveness, evidence truth or approval authority. The semantic catalog is a released PALO definition set, not an automated ontology service or organization-specific source of record. Accountable human review remains required wherever a source, monitoring signal, local case or approval is involved.

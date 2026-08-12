@@ -1,0 +1,294 @@
+{
+  "format": "palo-lifecycle-definition",
+  "schemaVersion": "1.0.0",
+  "lifecycleId": "https://paloframework.org/semantic/lifecycle/palo-core",
+  "definitionVersion": "3.0.0",
+  "label": "PALO Core Lifecycle",
+  "status": "approved-for-release",
+  "releasedAt": "2026-08-12",
+  "frameworkRef": "https://paloframework.org/semantic/framework/palo",
+  "phases": [
+    {
+      "phaseDefinitionId": "phase-frame",
+      "semanticId": "https://paloframework.org/semantic/stage/frame",
+      "definitionVersion": "3.0.0",
+      "ordinal": 1,
+      "label": "Frame",
+      "purpose": "Define the use case, its boundary, owners and affected people before governance choices are made.",
+      "gateDefinitionRef": "https://paloframework.org/semantic/gate/frame?v=3.0.0"
+    },
+    {
+      "phaseDefinitionId": "phase-classify",
+      "semanticId": "https://paloframework.org/semantic/stage/classify",
+      "definitionVersion": "3.0.0",
+      "ordinal": 2,
+      "label": "Classify",
+      "purpose": "Establish the applicable risk route, obligations and level of scrutiny.",
+      "gateDefinitionRef": "https://paloframework.org/semantic/gate/classify?v=3.0.0"
+    },
+    {
+      "phaseDefinitionId": "phase-assess",
+      "semanticId": "https://paloframework.org/semantic/stage/assess",
+      "definitionVersion": "3.0.0",
+      "ordinal": 3,
+      "label": "Assess",
+      "purpose": "Evaluate impacts, rights, delegated authority, autonomy and oversight conditions.",
+      "gateDefinitionRef": "https://paloframework.org/semantic/gate/assess?v=3.0.0"
+    },
+    {
+      "phaseDefinitionId": "phase-control",
+      "semanticId": "https://paloframework.org/semantic/stage/control",
+      "definitionVersion": "3.0.0",
+      "ordinal": 4,
+      "label": "Control",
+      "purpose": "Translate findings into owned, testable engineering, process and assurance controls.",
+      "gateDefinitionRef": "https://paloframework.org/semantic/gate/control?v=3.0.0"
+    },
+    {
+      "phaseDefinitionId": "phase-measure",
+      "semanticId": "https://paloframework.org/semantic/stage/measure",
+      "definitionVersion": "3.0.0",
+      "ordinal": 5,
+      "label": "Measure",
+      "purpose": "Define how accountability, performance, risk and drift will be observed over time.",
+      "gateDefinitionRef": "https://paloframework.org/semantic/gate/measure?v=3.0.0"
+    },
+    {
+      "phaseDefinitionId": "phase-prove",
+      "semanticId": "https://paloframework.org/semantic/stage/prove",
+      "definitionVersion": "3.0.0",
+      "ordinal": 6,
+      "label": "Prove & Review",
+      "purpose": "Assemble reconstructable evidence, decide readiness and feed findings into the next cycle.",
+      "gateDefinitionRef": "https://paloframework.org/semantic/gate/prove?v=3.0.0"
+    }
+  ],
+  "gateDefinitions": [
+    {
+      "gateDefinitionId": "https://paloframework.org/semantic/gate/frame?v=3.0.0",
+      "gateId": "frame",
+      "definitionVersion": "3.0.0",
+      "label": "Frame",
+      "purpose": "Agree the problem, affected stakeholders, intended benefit, owner and non-AI alternatives.",
+      "entryCriteria": [
+        "Named accountable owner",
+        "Problem and affected population described",
+        "Non-AI option considered"
+      ],
+      "decisionOptions": [
+        "proceed",
+        "proceed-with-conditions",
+        "hold",
+        "redesign",
+        "stop"
+      ],
+      "requiredControlIds": [
+        "ctrl-purpose-boundary"
+      ],
+      "indicatorIds": [
+        "kri-scope-change-rate"
+      ],
+      "sourceIds": [
+        "src-oecd-ai-principles",
+        "src-nist-ai-rmf"
+      ],
+      "templateIds": [
+        "tpl-contribution-starter"
+      ]
+    },
+    {
+      "gateDefinitionId": "https://paloframework.org/semantic/gate/classify?v=3.0.0",
+      "gateId": "classify",
+      "definitionVersion": "3.0.0",
+      "label": "Classify",
+      "purpose": "Identify system type, authority, affected rights, jurisdictions, suppliers and preliminary risk posture.",
+      "entryCriteria": [
+        "Purpose boundary recorded",
+        "Material system and supplier dependencies listed"
+      ],
+      "decisionOptions": [
+        "proceed",
+        "proceed-with-conditions",
+        "hold",
+        "redesign",
+        "stop"
+      ],
+      "requiredControlIds": [
+        "ctrl-purpose-boundary",
+        "ctrl-third-party-due-diligence",
+        "ctrl-change-gate"
+      ],
+      "indicatorIds": [
+        "kri-scope-change-rate"
+      ],
+      "sourceIds": [
+        "src-eu-ai-act",
+        "src-nist-ai-rmf"
+      ],
+      "templateIds": [
+        "tpl-procurement"
+      ]
+    },
+    {
+      "gateDefinitionId": "https://paloframework.org/semantic/gate/assess?v=3.0.0",
+      "gateId": "assess",
+      "definitionVersion": "3.0.0",
+      "label": "Assess",
+      "purpose": "Test impacts, data, misuse, limitations, alternatives and residual uncertainty.",
+      "entryCriteria": [
+        "Classification reviewed",
+        "Data and affected-stakeholder context available",
+        "Test scope agreed"
+      ],
+      "decisionOptions": [
+        "proceed",
+        "proceed-with-conditions",
+        "hold",
+        "redesign",
+        "stop"
+      ],
+      "requiredControlIds": [
+        "ctrl-data-provenance",
+        "ctrl-third-party-due-diligence",
+        "ctrl-adversarial-testing",
+        "ctrl-change-gate"
+      ],
+      "indicatorIds": [
+        "kpi-provenance-coverage",
+        "kpi-vendor-evidence-coverage",
+        "kri-critical-test-failure-rate"
+      ],
+      "sourceIds": [
+        "src-nist-ai-rmf",
+        "src-nist-genai-profile"
+      ],
+      "templateIds": [
+        "tpl-red-team-evidence",
+        "tpl-procurement"
+      ]
+    },
+    {
+      "gateDefinitionId": "https://paloframework.org/semantic/gate/control?v=3.0.0",
+      "gateId": "control",
+      "definitionVersion": "3.0.0",
+      "label": "Control",
+      "purpose": "Assign safeguards, owners, escalation, human authority, technical limits and supplier obligations.",
+      "entryCriteria": [
+        "Material risks and uncertainty recorded",
+        "Control owners available",
+        "Residual-risk decision route named"
+      ],
+      "decisionOptions": [
+        "proceed",
+        "proceed-with-conditions",
+        "hold",
+        "redesign",
+        "stop"
+      ],
+      "requiredControlIds": [
+        "ctrl-data-provenance",
+        "ctrl-human-review",
+        "ctrl-third-party-due-diligence",
+        "ctrl-incident-response"
+      ],
+      "indicatorIds": [
+        "kpi-review-completion",
+        "kpi-vendor-evidence-coverage",
+        "kri-sensitive-data-events",
+        "kri-override-failure-rate"
+      ],
+      "sourceIds": [
+        "src-iso-42001",
+        "src-nist-ai-rmf"
+      ],
+      "templateIds": [
+        "tpl-incident-response",
+        "tpl-procurement"
+      ]
+    },
+    {
+      "gateDefinitionId": "https://paloframework.org/semantic/gate/measure?v=3.0.0",
+      "gateId": "measure",
+      "definitionVersion": "3.0.0",
+      "label": "Measure",
+      "purpose": "Set baselines, indicators, thresholds, monitoring ownership and response timing.",
+      "entryCriteria": [
+        "Controls and owners assigned",
+        "Data collection feasibility checked",
+        "Threshold decision rights named"
+      ],
+      "decisionOptions": [
+        "proceed",
+        "proceed-with-conditions",
+        "hold",
+        "redesign",
+        "stop"
+      ],
+      "requiredControlIds": [
+        "ctrl-adversarial-testing",
+        "ctrl-incident-response",
+        "ctrl-decision-trace"
+      ],
+      "indicatorIds": [
+        "kpi-review-completion",
+        "kpi-incident-triage-time",
+        "kri-sensitive-data-events",
+        "kri-critical-test-failure-rate"
+      ],
+      "sourceIds": [
+        "src-nist-ai-rmf"
+      ],
+      "templateIds": [
+        "tpl-incident-response",
+        "tpl-red-team-evidence"
+      ]
+    },
+    {
+      "gateDefinitionId": "https://paloframework.org/semantic/gate/prove?v=3.0.0",
+      "gateId": "prove",
+      "definitionVersion": "3.0.0",
+      "label": "Prove and Review",
+      "purpose": "Assemble decision evidence, exceptions, source status, approvals and triggers for reopening.",
+      "entryCriteria": [
+        "Required evidence indexed",
+        "Exceptions and residual risk recorded",
+        "Review and reopening schedule assigned"
+      ],
+      "decisionOptions": [
+        "proceed",
+        "proceed-with-conditions",
+        "hold",
+        "redesign",
+        "stop"
+      ],
+      "requiredControlIds": [
+        "ctrl-human-review",
+        "ctrl-adversarial-testing",
+        "ctrl-incident-response",
+        "ctrl-change-gate",
+        "ctrl-decision-trace"
+      ],
+      "indicatorIds": [
+        "kpi-provenance-coverage",
+        "kpi-review-completion",
+        "kpi-incident-triage-time",
+        "kri-scope-change-rate"
+      ],
+      "sourceIds": [
+        "src-nist-ai-rmf",
+        "src-iso-42001"
+      ],
+      "templateIds": [
+        "tpl-board-review",
+        "tpl-contribution-starter"
+      ]
+    }
+  ],
+  "provenance": {
+    "generatedFrom": [
+      "data/semantic-spine.json",
+      "data/decision-gates.json"
+    ],
+    "authorityBoundary": "This versioned lifecycle structures accountable governance decisions; it does not itself determine legal applicability or authorize deployment."
+  }
+}

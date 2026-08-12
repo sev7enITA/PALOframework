@@ -1,0 +1,15 @@
+{
+  "format": "palo-evidence-artifact",
+  "schemaVersion": "1.0.0",
+  "artifactId": "evidence-artifact-override-test-001",
+  "caseId": "case-catalog-assistant",
+  "artifactType": "test-result",
+  "title": "Independent override test result",
+  "mediaType": "application/json",
+  "recordedAt": "2026-08-12T09:30:00Z",
+  "contentDigest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+  "storageReference": "urn:palo:local-evidence:override-test-001",
+  "provenance": { "producerId": "test-harness-001", "captureMethod": "generated", "sourceSystem": "isolated-test-lab" },
+  "sensitivity": "internal",
+  "status": "verified"
+}

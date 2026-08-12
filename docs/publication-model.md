@@ -12,6 +12,16 @@ npx playwright install chromium
 npm run p0
 ```
 
-`npm run validate` checks source HTML structure, internal links and fragments, shared asset versions, canonical URLs, sitemap, RSS, and release metadata. `npm run validate:dist` repeats those checks against the publication artifact and detects common repository-file leaks. `npm run build:check` independently rebuilds to a temporary directory and compares the SHA-256 inventory with `dist`. `npm run smoke` serves `dist` on an ephemeral loopback port, visits every allowlisted public HTML page in Chromium, and closes both browser and server before exiting.
+Before the public build, v3 semantic assets follow deterministic projection and conformance checks:
+
+```sh
+npm run semantic:check
+npm run semantic:validate
+npm run semantic:release:check
+```
+
+Use `npm run semantic:generate` after an approved semantic-spine change and `npm run semantic:release` only after mapped contracts are final. Generated graph, lifecycle, mapping and digest inventory drift blocks validation.
+
+`npm run validate` checks semantic projections and invariants, source HTML structure, internal links and fragments, shared asset versions, canonical URLs, sitemap, RSS, and release metadata. `npm run validate:dist` repeats those checks against the publication artifact and detects common repository-file leaks. `npm run build:check` independently rebuilds to a temporary directory and compares the SHA-256 inventory with `dist`. `npm run smoke` serves `dist` on an ephemeral loopback port, visits every allowlisted public HTML page in Chromium, and closes both browser and server before exiting.
 
 CI uploads only `dist/`. A new public file is not deployable until it is deliberately added to the allowlist and passes source, built-artifact, and browser validation.

@@ -1,0 +1,26 @@
+{
+  "format": "palo-semantic-change-impact",
+  "schemaVersion": "1.0.0",
+  "changeImpactId": "https://paloframework.org/semantic/change-impact/v2-to-v3",
+  "fromVersion": "2.5.0",
+  "toVersion": "3.0.0",
+  "assessedAt": "2026-08-12",
+  "status": "approved-for-release",
+  "compatibilityPolicy": "Existing P1/P2 JSON contracts remain supported. PALO v3 semantic contracts are additive and become the canonical source for generated public projections.",
+  "changes": [
+    { "changeId": "CHANGE-01", "category": "semantic-model", "summary": "Introduce stable semantic identities, versioned definitions and authority classes.", "compatibility": "additive", "affectedArtifacts": ["data/semantic-spine.json", "schemas/palo-semantic-spine.schema.json"], "requiredAction": "Consumers may continue using P1/P2 JSON; semantic-aware consumers should resolve the v3 catalog." },
+    { "changeId": "CHANGE-02", "category": "lifecycle", "summary": "Separate lifecycle, phase and gate definitions from runtime gate instances.", "compatibility": "additive", "affectedArtifacts": ["data/lifecycle-core.json", "schemas/palo-gate-instance.schema.json"], "requiredAction": "New runtime implementations should reference exact lifecycle and gate definition versions." },
+    { "changeId": "CHANGE-03", "category": "decision", "summary": "Add append-only gate decision records with attributable authority and digest chaining.", "compatibility": "additive", "affectedArtifacts": ["schemas/palo-gate-decision-record.schema.json"], "requiredAction": "Do not overwrite historical gate decisions; add a superseding record." },
+    { "changeId": "CHANGE-04", "category": "evidence", "summary": "Separate artifacts, atomic claims, evaluations and bundle manifests.", "compatibility": "additive", "affectedArtifacts": ["schemas/palo-evidence-artifact.schema.json", "schemas/palo-evidence-claim.schema.json", "schemas/palo-evidence-evaluation.schema.json", "schemas/palo-evidence-bundle-manifest.schema.json"], "requiredAction": "Legacy Evidence Bundle v1 remains readable; new assurance flows should emit normalized records." },
+    { "changeId": "CHANGE-05", "category": "mapping", "summary": "Replace ambiguous multi-target coverage assertions with atomic versioned mappings.", "compatibility": "generated-projection", "affectedArtifacts": ["data/semantic-mappings.json"], "requiredAction": "Use one mapping record per source-target pair and preserve its rationale and approval scope." },
+    { "changeId": "CHANGE-06", "category": "release", "summary": "Pin semantic artifacts to an immutable SHA-256 release manifest.", "compatibility": "additive", "affectedArtifacts": ["data/semantic-release-manifest.json"], "requiredAction": "Assessments and new evidence manifests should record the semantic release digest used." },
+    { "changeId": "CHANGE-07", "category": "user-experience", "summary": "Expose semantic identity, evidence class and authority boundary without conflating them with delivery status.", "compatibility": "generated-projection", "affectedArtifacts": ["designs/theory-to-practice-infographic/assets/graph-data.js", "PALO_PlatformMap.html"], "requiredAction": "Regenerate public projections and retain explicit preview/human-review boundaries." }
+  ],
+  "migrationGates": [
+    "All semantic schemas and fixtures validate.",
+    "Explorer projection is deterministic and exact.",
+    "Every mapping is atomic and resolves to existing registry IDs.",
+    "Every release item digest matches its published source file.",
+    "No existing P1/P2 consumer is required to adopt RDF or JSON-LD."
+  ]
+}

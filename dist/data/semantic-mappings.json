@@ -1,0 +1,3414 @@
+{
+  "format": "palo-semantic-mapping-registry",
+  "schemaVersion": "1.0.0",
+  "semanticVersion": "3.0.0",
+  "releasedAt": "2026-08-12",
+  "status": "approved-for-release",
+  "authorityBoundary": "Mappings express versioned PALO relationships and rationale. They do not establish legal equivalence, compliance, certification, or deployment authorization.",
+  "mappings": [
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/control-to-gate/ctrl-adversarial-testing/assess",
+      "mappingVersion": "1.0.0",
+      "mappingType": "control-to-gate",
+      "source": {
+        "entityType": "control",
+        "entityId": "ctrl-adversarial-testing",
+        "semanticId": "https://paloframework.org/semantic/control/ctrl-adversarial-testing?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "gate",
+        "entityId": "assess",
+        "semanticId": "https://paloframework.org/semantic/gate/assess?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "coverageType": "conditional",
+      "conditions": [
+        "Confirm applicability and ownership for the actual case."
+      ],
+      "rationale": "The control is relevant to the named gate when the case scope activates it.",
+      "basis": "Declared relationship in data/control-library.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/control-library.json",
+        "generationRule": "control-to-gate: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/control-to-gate/ctrl-adversarial-testing/measure",
+      "mappingVersion": "1.0.0",
+      "mappingType": "control-to-gate",
+      "source": {
+        "entityType": "control",
+        "entityId": "ctrl-adversarial-testing",
+        "semanticId": "https://paloframework.org/semantic/control/ctrl-adversarial-testing?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "gate",
+        "entityId": "measure",
+        "semanticId": "https://paloframework.org/semantic/gate/measure?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "coverageType": "conditional",
+      "conditions": [
+        "Confirm applicability and ownership for the actual case."
+      ],
+      "rationale": "The control is relevant to the named gate when the case scope activates it.",
+      "basis": "Declared relationship in data/control-library.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/control-library.json",
+        "generationRule": "control-to-gate: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/control-to-gate/ctrl-adversarial-testing/prove",
+      "mappingVersion": "1.0.0",
+      "mappingType": "control-to-gate",
+      "source": {
+        "entityType": "control",
+        "entityId": "ctrl-adversarial-testing",
+        "semanticId": "https://paloframework.org/semantic/control/ctrl-adversarial-testing?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "gate",
+        "entityId": "prove",
+        "semanticId": "https://paloframework.org/semantic/gate/prove?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "coverageType": "conditional",
+      "conditions": [
+        "Confirm applicability and ownership for the actual case."
+      ],
+      "rationale": "The control is relevant to the named gate when the case scope activates it.",
+      "basis": "Declared relationship in data/control-library.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/control-library.json",
+        "generationRule": "control-to-gate: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/control-to-gate/ctrl-agentic-authority/assess",
+      "mappingVersion": "1.0.0",
+      "mappingType": "control-to-gate",
+      "source": {
+        "entityType": "control",
+        "entityId": "ctrl-agentic-authority",
+        "semanticId": "https://paloframework.org/semantic/control/ctrl-agentic-authority?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "gate",
+        "entityId": "assess",
+        "semanticId": "https://paloframework.org/semantic/gate/assess?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "coverageType": "conditional",
+      "conditions": [
+        "Confirm applicability and ownership for the actual case."
+      ],
+      "rationale": "The control is relevant to the named gate when the case scope activates it.",
+      "basis": "Declared relationship in data/control-library.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/control-library.json",
+        "generationRule": "control-to-gate: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/control-to-gate/ctrl-agentic-authority/control",
+      "mappingVersion": "1.0.0",
+      "mappingType": "control-to-gate",
+      "source": {
+        "entityType": "control",
+        "entityId": "ctrl-agentic-authority",
+        "semanticId": "https://paloframework.org/semantic/control/ctrl-agentic-authority?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "gate",
+        "entityId": "control",
+        "semanticId": "https://paloframework.org/semantic/gate/control?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "coverageType": "conditional",
+      "conditions": [
+        "Confirm applicability and ownership for the actual case."
+      ],
+      "rationale": "The control is relevant to the named gate when the case scope activates it.",
+      "basis": "Declared relationship in data/control-library.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/control-library.json",
+        "generationRule": "control-to-gate: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/control-to-gate/ctrl-change-gate/assess",
+      "mappingVersion": "1.0.0",
+      "mappingType": "control-to-gate",
+      "source": {
+        "entityType": "control",
+        "entityId": "ctrl-change-gate",
+        "semanticId": "https://paloframework.org/semantic/control/ctrl-change-gate?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "gate",
+        "entityId": "assess",
+        "semanticId": "https://paloframework.org/semantic/gate/assess?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "coverageType": "conditional",
+      "conditions": [
+        "Confirm applicability and ownership for the actual case."
+      ],
+      "rationale": "The control is relevant to the named gate when the case scope activates it.",
+      "basis": "Declared relationship in data/control-library.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/control-library.json",
+        "generationRule": "control-to-gate: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/control-to-gate/ctrl-change-gate/classify",
+      "mappingVersion": "1.0.0",
+      "mappingType": "control-to-gate",
+      "source": {
+        "entityType": "control",
+        "entityId": "ctrl-change-gate",
+        "semanticId": "https://paloframework.org/semantic/control/ctrl-change-gate?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "gate",
+        "entityId": "classify",
+        "semanticId": "https://paloframework.org/semantic/gate/classify?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "coverageType": "conditional",
+      "conditions": [
+        "Confirm applicability and ownership for the actual case."
+      ],
+      "rationale": "The control is relevant to the named gate when the case scope activates it.",
+      "basis": "Declared relationship in data/control-library.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/control-library.json",
+        "generationRule": "control-to-gate: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/control-to-gate/ctrl-change-gate/prove",
+      "mappingVersion": "1.0.0",
+      "mappingType": "control-to-gate",
+      "source": {
+        "entityType": "control",
+        "entityId": "ctrl-change-gate",
+        "semanticId": "https://paloframework.org/semantic/control/ctrl-change-gate?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "gate",
+        "entityId": "prove",
+        "semanticId": "https://paloframework.org/semantic/gate/prove?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "coverageType": "conditional",
+      "conditions": [
+        "Confirm applicability and ownership for the actual case."
+      ],
+      "rationale": "The control is relevant to the named gate when the case scope activates it.",
+      "basis": "Declared relationship in data/control-library.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/control-library.json",
+        "generationRule": "control-to-gate: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/control-to-gate/ctrl-data-provenance/assess",
+      "mappingVersion": "1.0.0",
+      "mappingType": "control-to-gate",
+      "source": {
+        "entityType": "control",
+        "entityId": "ctrl-data-provenance",
+        "semanticId": "https://paloframework.org/semantic/control/ctrl-data-provenance?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "gate",
+        "entityId": "assess",
+        "semanticId": "https://paloframework.org/semantic/gate/assess?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "coverageType": "conditional",
+      "conditions": [
+        "Confirm applicability and ownership for the actual case."
+      ],
+      "rationale": "The control is relevant to the named gate when the case scope activates it.",
+      "basis": "Declared relationship in data/control-library.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/control-library.json",
+        "generationRule": "control-to-gate: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/control-to-gate/ctrl-data-provenance/control",
+      "mappingVersion": "1.0.0",
+      "mappingType": "control-to-gate",
+      "source": {
+        "entityType": "control",
+        "entityId": "ctrl-data-provenance",
+        "semanticId": "https://paloframework.org/semantic/control/ctrl-data-provenance?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "gate",
+        "entityId": "control",
+        "semanticId": "https://paloframework.org/semantic/gate/control?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "coverageType": "conditional",
+      "conditions": [
+        "Confirm applicability and ownership for the actual case."
+      ],
+      "rationale": "The control is relevant to the named gate when the case scope activates it.",
+      "basis": "Declared relationship in data/control-library.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/control-library.json",
+        "generationRule": "control-to-gate: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/control-to-gate/ctrl-decision-trace/measure",
+      "mappingVersion": "1.0.0",
+      "mappingType": "control-to-gate",
+      "source": {
+        "entityType": "control",
+        "entityId": "ctrl-decision-trace",
+        "semanticId": "https://paloframework.org/semantic/control/ctrl-decision-trace?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "gate",
+        "entityId": "measure",
+        "semanticId": "https://paloframework.org/semantic/gate/measure?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "coverageType": "conditional",
+      "conditions": [
+        "Confirm applicability and ownership for the actual case."
+      ],
+      "rationale": "The control is relevant to the named gate when the case scope activates it.",
+      "basis": "Declared relationship in data/control-library.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/control-library.json",
+        "generationRule": "control-to-gate: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/control-to-gate/ctrl-decision-trace/prove",
+      "mappingVersion": "1.0.0",
+      "mappingType": "control-to-gate",
+      "source": {
+        "entityType": "control",
+        "entityId": "ctrl-decision-trace",
+        "semanticId": "https://paloframework.org/semantic/control/ctrl-decision-trace?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "gate",
+        "entityId": "prove",
+        "semanticId": "https://paloframework.org/semantic/gate/prove?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "coverageType": "conditional",
+      "conditions": [
+        "Confirm applicability and ownership for the actual case."
+      ],
+      "rationale": "The control is relevant to the named gate when the case scope activates it.",
+      "basis": "Declared relationship in data/control-library.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/control-library.json",
+        "generationRule": "control-to-gate: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/control-to-gate/ctrl-human-review/control",
+      "mappingVersion": "1.0.0",
+      "mappingType": "control-to-gate",
+      "source": {
+        "entityType": "control",
+        "entityId": "ctrl-human-review",
+        "semanticId": "https://paloframework.org/semantic/control/ctrl-human-review?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "gate",
+        "entityId": "control",
+        "semanticId": "https://paloframework.org/semantic/gate/control?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "coverageType": "conditional",
+      "conditions": [
+        "Confirm applicability and ownership for the actual case."
+      ],
+      "rationale": "The control is relevant to the named gate when the case scope activates it.",
+      "basis": "Declared relationship in data/control-library.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/control-library.json",
+        "generationRule": "control-to-gate: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/control-to-gate/ctrl-human-review/prove",
+      "mappingVersion": "1.0.0",
+      "mappingType": "control-to-gate",
+      "source": {
+        "entityType": "control",
+        "entityId": "ctrl-human-review",
+        "semanticId": "https://paloframework.org/semantic/control/ctrl-human-review?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "gate",
+        "entityId": "prove",
+        "semanticId": "https://paloframework.org/semantic/gate/prove?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "coverageType": "conditional",
+      "conditions": [
+        "Confirm applicability and ownership for the actual case."
+      ],
+      "rationale": "The control is relevant to the named gate when the case scope activates it.",
+      "basis": "Declared relationship in data/control-library.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/control-library.json",
+        "generationRule": "control-to-gate: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/control-to-gate/ctrl-incident-response/control",
+      "mappingVersion": "1.0.0",
+      "mappingType": "control-to-gate",
+      "source": {
+        "entityType": "control",
+        "entityId": "ctrl-incident-response",
+        "semanticId": "https://paloframework.org/semantic/control/ctrl-incident-response?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "gate",
+        "entityId": "control",
+        "semanticId": "https://paloframework.org/semantic/gate/control?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "coverageType": "conditional",
+      "conditions": [
+        "Confirm applicability and ownership for the actual case."
+      ],
+      "rationale": "The control is relevant to the named gate when the case scope activates it.",
+      "basis": "Declared relationship in data/control-library.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/control-library.json",
+        "generationRule": "control-to-gate: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/control-to-gate/ctrl-incident-response/measure",
+      "mappingVersion": "1.0.0",
+      "mappingType": "control-to-gate",
+      "source": {
+        "entityType": "control",
+        "entityId": "ctrl-incident-response",
+        "semanticId": "https://paloframework.org/semantic/control/ctrl-incident-response?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "gate",
+        "entityId": "measure",
+        "semanticId": "https://paloframework.org/semantic/gate/measure?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "coverageType": "conditional",
+      "conditions": [
+        "Confirm applicability and ownership for the actual case."
+      ],
+      "rationale": "The control is relevant to the named gate when the case scope activates it.",
+      "basis": "Declared relationship in data/control-library.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/control-library.json",
+        "generationRule": "control-to-gate: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/control-to-gate/ctrl-incident-response/prove",
+      "mappingVersion": "1.0.0",
+      "mappingType": "control-to-gate",
+      "source": {
+        "entityType": "control",
+        "entityId": "ctrl-incident-response",
+        "semanticId": "https://paloframework.org/semantic/control/ctrl-incident-response?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "gate",
+        "entityId": "prove",
+        "semanticId": "https://paloframework.org/semantic/gate/prove?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "coverageType": "conditional",
+      "conditions": [
+        "Confirm applicability and ownership for the actual case."
+      ],
+      "rationale": "The control is relevant to the named gate when the case scope activates it.",
+      "basis": "Declared relationship in data/control-library.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/control-library.json",
+        "generationRule": "control-to-gate: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/control-to-gate/ctrl-purpose-boundary/classify",
+      "mappingVersion": "1.0.0",
+      "mappingType": "control-to-gate",
+      "source": {
+        "entityType": "control",
+        "entityId": "ctrl-purpose-boundary",
+        "semanticId": "https://paloframework.org/semantic/control/ctrl-purpose-boundary?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "gate",
+        "entityId": "classify",
+        "semanticId": "https://paloframework.org/semantic/gate/classify?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "coverageType": "conditional",
+      "conditions": [
+        "Confirm applicability and ownership for the actual case."
+      ],
+      "rationale": "The control is relevant to the named gate when the case scope activates it.",
+      "basis": "Declared relationship in data/control-library.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/control-library.json",
+        "generationRule": "control-to-gate: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/control-to-gate/ctrl-purpose-boundary/frame",
+      "mappingVersion": "1.0.0",
+      "mappingType": "control-to-gate",
+      "source": {
+        "entityType": "control",
+        "entityId": "ctrl-purpose-boundary",
+        "semanticId": "https://paloframework.org/semantic/control/ctrl-purpose-boundary?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "gate",
+        "entityId": "frame",
+        "semanticId": "https://paloframework.org/semantic/gate/frame?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "coverageType": "conditional",
+      "conditions": [
+        "Confirm applicability and ownership for the actual case."
+      ],
+      "rationale": "The control is relevant to the named gate when the case scope activates it.",
+      "basis": "Declared relationship in data/control-library.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/control-library.json",
+        "generationRule": "control-to-gate: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/control-to-gate/ctrl-third-party-due-diligence/assess",
+      "mappingVersion": "1.0.0",
+      "mappingType": "control-to-gate",
+      "source": {
+        "entityType": "control",
+        "entityId": "ctrl-third-party-due-diligence",
+        "semanticId": "https://paloframework.org/semantic/control/ctrl-third-party-due-diligence?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "gate",
+        "entityId": "assess",
+        "semanticId": "https://paloframework.org/semantic/gate/assess?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "coverageType": "conditional",
+      "conditions": [
+        "Confirm applicability and ownership for the actual case."
+      ],
+      "rationale": "The control is relevant to the named gate when the case scope activates it.",
+      "basis": "Declared relationship in data/control-library.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/control-library.json",
+        "generationRule": "control-to-gate: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/control-to-gate/ctrl-third-party-due-diligence/classify",
+      "mappingVersion": "1.0.0",
+      "mappingType": "control-to-gate",
+      "source": {
+        "entityType": "control",
+        "entityId": "ctrl-third-party-due-diligence",
+        "semanticId": "https://paloframework.org/semantic/control/ctrl-third-party-due-diligence?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "gate",
+        "entityId": "classify",
+        "semanticId": "https://paloframework.org/semantic/gate/classify?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "coverageType": "conditional",
+      "conditions": [
+        "Confirm applicability and ownership for the actual case."
+      ],
+      "rationale": "The control is relevant to the named gate when the case scope activates it.",
+      "basis": "Declared relationship in data/control-library.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/control-library.json",
+        "generationRule": "control-to-gate: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/control-to-gate/ctrl-third-party-due-diligence/control",
+      "mappingVersion": "1.0.0",
+      "mappingType": "control-to-gate",
+      "source": {
+        "entityType": "control",
+        "entityId": "ctrl-third-party-due-diligence",
+        "semanticId": "https://paloframework.org/semantic/control/ctrl-third-party-due-diligence?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "gate",
+        "entityId": "control",
+        "semanticId": "https://paloframework.org/semantic/gate/control?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "coverageType": "conditional",
+      "conditions": [
+        "Confirm applicability and ownership for the actual case."
+      ],
+      "rationale": "The control is relevant to the named gate when the case scope activates it.",
+      "basis": "Declared relationship in data/control-library.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/control-library.json",
+        "generationRule": "control-to-gate: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/control-to-indicator/ctrl-adversarial-testing/kri-critical-test-failure-rate",
+      "mappingVersion": "1.0.0",
+      "mappingType": "control-to-indicator",
+      "source": {
+        "entityType": "control",
+        "entityId": "ctrl-adversarial-testing",
+        "semanticId": "https://paloframework.org/semantic/control/ctrl-adversarial-testing?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "indicator",
+        "entityId": "kri-critical-test-failure-rate",
+        "semanticId": "https://paloframework.org/semantic/indicator/kri-critical-test-failure-rate?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The indicator can provide a signal about the control without proving control effectiveness.",
+      "basis": "Declared relationship in data/control-library.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/control-library.json",
+        "generationRule": "control-to-indicator: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/control-to-indicator/ctrl-agentic-authority/kpi-review-completion",
+      "mappingVersion": "1.0.0",
+      "mappingType": "control-to-indicator",
+      "source": {
+        "entityType": "control",
+        "entityId": "ctrl-agentic-authority",
+        "semanticId": "https://paloframework.org/semantic/control/ctrl-agentic-authority?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "indicator",
+        "entityId": "kpi-review-completion",
+        "semanticId": "https://paloframework.org/semantic/indicator/kpi-review-completion?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The indicator can provide a signal about the control without proving control effectiveness.",
+      "basis": "Declared relationship in data/control-library.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/control-library.json",
+        "generationRule": "control-to-indicator: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/control-to-indicator/ctrl-agentic-authority/kri-scope-change-rate",
+      "mappingVersion": "1.0.0",
+      "mappingType": "control-to-indicator",
+      "source": {
+        "entityType": "control",
+        "entityId": "ctrl-agentic-authority",
+        "semanticId": "https://paloframework.org/semantic/control/ctrl-agentic-authority?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "indicator",
+        "entityId": "kri-scope-change-rate",
+        "semanticId": "https://paloframework.org/semantic/indicator/kri-scope-change-rate?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The indicator can provide a signal about the control without proving control effectiveness.",
+      "basis": "Declared relationship in data/control-library.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/control-library.json",
+        "generationRule": "control-to-indicator: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/control-to-indicator/ctrl-change-gate/kpi-review-completion",
+      "mappingVersion": "1.0.0",
+      "mappingType": "control-to-indicator",
+      "source": {
+        "entityType": "control",
+        "entityId": "ctrl-change-gate",
+        "semanticId": "https://paloframework.org/semantic/control/ctrl-change-gate?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "indicator",
+        "entityId": "kpi-review-completion",
+        "semanticId": "https://paloframework.org/semantic/indicator/kpi-review-completion?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The indicator can provide a signal about the control without proving control effectiveness.",
+      "basis": "Declared relationship in data/control-library.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/control-library.json",
+        "generationRule": "control-to-indicator: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/control-to-indicator/ctrl-change-gate/kri-scope-change-rate",
+      "mappingVersion": "1.0.0",
+      "mappingType": "control-to-indicator",
+      "source": {
+        "entityType": "control",
+        "entityId": "ctrl-change-gate",
+        "semanticId": "https://paloframework.org/semantic/control/ctrl-change-gate?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "indicator",
+        "entityId": "kri-scope-change-rate",
+        "semanticId": "https://paloframework.org/semantic/indicator/kri-scope-change-rate?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The indicator can provide a signal about the control without proving control effectiveness.",
+      "basis": "Declared relationship in data/control-library.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/control-library.json",
+        "generationRule": "control-to-indicator: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/control-to-indicator/ctrl-data-provenance/kpi-provenance-coverage",
+      "mappingVersion": "1.0.0",
+      "mappingType": "control-to-indicator",
+      "source": {
+        "entityType": "control",
+        "entityId": "ctrl-data-provenance",
+        "semanticId": "https://paloframework.org/semantic/control/ctrl-data-provenance?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "indicator",
+        "entityId": "kpi-provenance-coverage",
+        "semanticId": "https://paloframework.org/semantic/indicator/kpi-provenance-coverage?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The indicator can provide a signal about the control without proving control effectiveness.",
+      "basis": "Declared relationship in data/control-library.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/control-library.json",
+        "generationRule": "control-to-indicator: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/control-to-indicator/ctrl-data-provenance/kri-sensitive-data-events",
+      "mappingVersion": "1.0.0",
+      "mappingType": "control-to-indicator",
+      "source": {
+        "entityType": "control",
+        "entityId": "ctrl-data-provenance",
+        "semanticId": "https://paloframework.org/semantic/control/ctrl-data-provenance?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "indicator",
+        "entityId": "kri-sensitive-data-events",
+        "semanticId": "https://paloframework.org/semantic/indicator/kri-sensitive-data-events?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The indicator can provide a signal about the control without proving control effectiveness.",
+      "basis": "Declared relationship in data/control-library.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/control-library.json",
+        "generationRule": "control-to-indicator: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/control-to-indicator/ctrl-decision-trace/kpi-provenance-coverage",
+      "mappingVersion": "1.0.0",
+      "mappingType": "control-to-indicator",
+      "source": {
+        "entityType": "control",
+        "entityId": "ctrl-decision-trace",
+        "semanticId": "https://paloframework.org/semantic/control/ctrl-decision-trace?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "indicator",
+        "entityId": "kpi-provenance-coverage",
+        "semanticId": "https://paloframework.org/semantic/indicator/kpi-provenance-coverage?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The indicator can provide a signal about the control without proving control effectiveness.",
+      "basis": "Declared relationship in data/control-library.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/control-library.json",
+        "generationRule": "control-to-indicator: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/control-to-indicator/ctrl-decision-trace/kpi-review-completion",
+      "mappingVersion": "1.0.0",
+      "mappingType": "control-to-indicator",
+      "source": {
+        "entityType": "control",
+        "entityId": "ctrl-decision-trace",
+        "semanticId": "https://paloframework.org/semantic/control/ctrl-decision-trace?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "indicator",
+        "entityId": "kpi-review-completion",
+        "semanticId": "https://paloframework.org/semantic/indicator/kpi-review-completion?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The indicator can provide a signal about the control without proving control effectiveness.",
+      "basis": "Declared relationship in data/control-library.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/control-library.json",
+        "generationRule": "control-to-indicator: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/control-to-indicator/ctrl-human-review/kpi-review-completion",
+      "mappingVersion": "1.0.0",
+      "mappingType": "control-to-indicator",
+      "source": {
+        "entityType": "control",
+        "entityId": "ctrl-human-review",
+        "semanticId": "https://paloframework.org/semantic/control/ctrl-human-review?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "indicator",
+        "entityId": "kpi-review-completion",
+        "semanticId": "https://paloframework.org/semantic/indicator/kpi-review-completion?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The indicator can provide a signal about the control without proving control effectiveness.",
+      "basis": "Declared relationship in data/control-library.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/control-library.json",
+        "generationRule": "control-to-indicator: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/control-to-indicator/ctrl-human-review/kri-override-failure-rate",
+      "mappingVersion": "1.0.0",
+      "mappingType": "control-to-indicator",
+      "source": {
+        "entityType": "control",
+        "entityId": "ctrl-human-review",
+        "semanticId": "https://paloframework.org/semantic/control/ctrl-human-review?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "indicator",
+        "entityId": "kri-override-failure-rate",
+        "semanticId": "https://paloframework.org/semantic/indicator/kri-override-failure-rate?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The indicator can provide a signal about the control without proving control effectiveness.",
+      "basis": "Declared relationship in data/control-library.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/control-library.json",
+        "generationRule": "control-to-indicator: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/control-to-indicator/ctrl-incident-response/kpi-incident-triage-time",
+      "mappingVersion": "1.0.0",
+      "mappingType": "control-to-indicator",
+      "source": {
+        "entityType": "control",
+        "entityId": "ctrl-incident-response",
+        "semanticId": "https://paloframework.org/semantic/control/ctrl-incident-response?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "indicator",
+        "entityId": "kpi-incident-triage-time",
+        "semanticId": "https://paloframework.org/semantic/indicator/kpi-incident-triage-time?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The indicator can provide a signal about the control without proving control effectiveness.",
+      "basis": "Declared relationship in data/control-library.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/control-library.json",
+        "generationRule": "control-to-indicator: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/control-to-indicator/ctrl-incident-response/kri-sensitive-data-events",
+      "mappingVersion": "1.0.0",
+      "mappingType": "control-to-indicator",
+      "source": {
+        "entityType": "control",
+        "entityId": "ctrl-incident-response",
+        "semanticId": "https://paloframework.org/semantic/control/ctrl-incident-response?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "indicator",
+        "entityId": "kri-sensitive-data-events",
+        "semanticId": "https://paloframework.org/semantic/indicator/kri-sensitive-data-events?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The indicator can provide a signal about the control without proving control effectiveness.",
+      "basis": "Declared relationship in data/control-library.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/control-library.json",
+        "generationRule": "control-to-indicator: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/control-to-indicator/ctrl-purpose-boundary/kri-scope-change-rate",
+      "mappingVersion": "1.0.0",
+      "mappingType": "control-to-indicator",
+      "source": {
+        "entityType": "control",
+        "entityId": "ctrl-purpose-boundary",
+        "semanticId": "https://paloframework.org/semantic/control/ctrl-purpose-boundary?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "indicator",
+        "entityId": "kri-scope-change-rate",
+        "semanticId": "https://paloframework.org/semantic/indicator/kri-scope-change-rate?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The indicator can provide a signal about the control without proving control effectiveness.",
+      "basis": "Declared relationship in data/control-library.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/control-library.json",
+        "generationRule": "control-to-indicator: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/control-to-indicator/ctrl-third-party-due-diligence/kpi-vendor-evidence-coverage",
+      "mappingVersion": "1.0.0",
+      "mappingType": "control-to-indicator",
+      "source": {
+        "entityType": "control",
+        "entityId": "ctrl-third-party-due-diligence",
+        "semanticId": "https://paloframework.org/semantic/control/ctrl-third-party-due-diligence?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "indicator",
+        "entityId": "kpi-vendor-evidence-coverage",
+        "semanticId": "https://paloframework.org/semantic/indicator/kpi-vendor-evidence-coverage?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The indicator can provide a signal about the control without proving control effectiveness.",
+      "basis": "Declared relationship in data/control-library.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/control-library.json",
+        "generationRule": "control-to-indicator: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/control-to-source/ctrl-adversarial-testing/src-nist-genai-profile",
+      "mappingVersion": "1.0.0",
+      "mappingType": "control-to-source",
+      "source": {
+        "entityType": "control",
+        "entityId": "ctrl-adversarial-testing",
+        "semanticId": "https://paloframework.org/semantic/control/ctrl-adversarial-testing?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "source",
+        "entityId": "src-nist-genai-profile",
+        "semanticId": "https://paloframework.org/semantic/source/src-nist-genai-profile?v=1.0.0",
+        "version": "1.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The registered source informs the control objective and tailoring context.",
+      "basis": "Declared relationship in data/control-library.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/control-library.json",
+        "generationRule": "control-to-source: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/control-to-source/ctrl-adversarial-testing/src-owasp-llm-top10",
+      "mappingVersion": "1.0.0",
+      "mappingType": "control-to-source",
+      "source": {
+        "entityType": "control",
+        "entityId": "ctrl-adversarial-testing",
+        "semanticId": "https://paloframework.org/semantic/control/ctrl-adversarial-testing?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "source",
+        "entityId": "src-owasp-llm-top10",
+        "semanticId": "https://paloframework.org/semantic/source/src-owasp-llm-top10?v=1.0.0",
+        "version": "1.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The registered source informs the control objective and tailoring context.",
+      "basis": "Declared relationship in data/control-library.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/control-library.json",
+        "generationRule": "control-to-source: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/control-to-source/ctrl-agentic-authority/src-iso-42001",
+      "mappingVersion": "1.0.0",
+      "mappingType": "control-to-source",
+      "source": {
+        "entityType": "control",
+        "entityId": "ctrl-agentic-authority",
+        "semanticId": "https://paloframework.org/semantic/control/ctrl-agentic-authority?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "source",
+        "entityId": "src-iso-42001",
+        "semanticId": "https://paloframework.org/semantic/source/src-iso-42001?v=1.0.0",
+        "version": "1.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The registered source informs the control objective and tailoring context.",
+      "basis": "Declared relationship in data/control-library.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/control-library.json",
+        "generationRule": "control-to-source: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/control-to-source/ctrl-agentic-authority/src-nist-ai-rmf",
+      "mappingVersion": "1.0.0",
+      "mappingType": "control-to-source",
+      "source": {
+        "entityType": "control",
+        "entityId": "ctrl-agentic-authority",
+        "semanticId": "https://paloframework.org/semantic/control/ctrl-agentic-authority?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "source",
+        "entityId": "src-nist-ai-rmf",
+        "semanticId": "https://paloframework.org/semantic/source/src-nist-ai-rmf?v=1.0.0",
+        "version": "1.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The registered source informs the control objective and tailoring context.",
+      "basis": "Declared relationship in data/control-library.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/control-library.json",
+        "generationRule": "control-to-source: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/control-to-source/ctrl-change-gate/src-iso-42001",
+      "mappingVersion": "1.0.0",
+      "mappingType": "control-to-source",
+      "source": {
+        "entityType": "control",
+        "entityId": "ctrl-change-gate",
+        "semanticId": "https://paloframework.org/semantic/control/ctrl-change-gate?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "source",
+        "entityId": "src-iso-42001",
+        "semanticId": "https://paloframework.org/semantic/source/src-iso-42001?v=1.0.0",
+        "version": "1.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The registered source informs the control objective and tailoring context.",
+      "basis": "Declared relationship in data/control-library.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/control-library.json",
+        "generationRule": "control-to-source: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/control-to-source/ctrl-change-gate/src-nist-ai-rmf",
+      "mappingVersion": "1.0.0",
+      "mappingType": "control-to-source",
+      "source": {
+        "entityType": "control",
+        "entityId": "ctrl-change-gate",
+        "semanticId": "https://paloframework.org/semantic/control/ctrl-change-gate?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "source",
+        "entityId": "src-nist-ai-rmf",
+        "semanticId": "https://paloframework.org/semantic/source/src-nist-ai-rmf?v=1.0.0",
+        "version": "1.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The registered source informs the control objective and tailoring context.",
+      "basis": "Declared relationship in data/control-library.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/control-library.json",
+        "generationRule": "control-to-source: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/control-to-source/ctrl-data-provenance/src-eu-ai-act",
+      "mappingVersion": "1.0.0",
+      "mappingType": "control-to-source",
+      "source": {
+        "entityType": "control",
+        "entityId": "ctrl-data-provenance",
+        "semanticId": "https://paloframework.org/semantic/control/ctrl-data-provenance?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "source",
+        "entityId": "src-eu-ai-act",
+        "semanticId": "https://paloframework.org/semantic/source/src-eu-ai-act?v=1.0.0",
+        "version": "1.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The registered source informs the control objective and tailoring context.",
+      "basis": "Declared relationship in data/control-library.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/control-library.json",
+        "generationRule": "control-to-source: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/control-to-source/ctrl-data-provenance/src-nist-ai-rmf",
+      "mappingVersion": "1.0.0",
+      "mappingType": "control-to-source",
+      "source": {
+        "entityType": "control",
+        "entityId": "ctrl-data-provenance",
+        "semanticId": "https://paloframework.org/semantic/control/ctrl-data-provenance?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "source",
+        "entityId": "src-nist-ai-rmf",
+        "semanticId": "https://paloframework.org/semantic/source/src-nist-ai-rmf?v=1.0.0",
+        "version": "1.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The registered source informs the control objective and tailoring context.",
+      "basis": "Declared relationship in data/control-library.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/control-library.json",
+        "generationRule": "control-to-source: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/control-to-source/ctrl-decision-trace/src-eu-ai-act",
+      "mappingVersion": "1.0.0",
+      "mappingType": "control-to-source",
+      "source": {
+        "entityType": "control",
+        "entityId": "ctrl-decision-trace",
+        "semanticId": "https://paloframework.org/semantic/control/ctrl-decision-trace?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "source",
+        "entityId": "src-eu-ai-act",
+        "semanticId": "https://paloframework.org/semantic/source/src-eu-ai-act?v=1.0.0",
+        "version": "1.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The registered source informs the control objective and tailoring context.",
+      "basis": "Declared relationship in data/control-library.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/control-library.json",
+        "generationRule": "control-to-source: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/control-to-source/ctrl-decision-trace/src-nist-ai-rmf",
+      "mappingVersion": "1.0.0",
+      "mappingType": "control-to-source",
+      "source": {
+        "entityType": "control",
+        "entityId": "ctrl-decision-trace",
+        "semanticId": "https://paloframework.org/semantic/control/ctrl-decision-trace?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "source",
+        "entityId": "src-nist-ai-rmf",
+        "semanticId": "https://paloframework.org/semantic/source/src-nist-ai-rmf?v=1.0.0",
+        "version": "1.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The registered source informs the control objective and tailoring context.",
+      "basis": "Declared relationship in data/control-library.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/control-library.json",
+        "generationRule": "control-to-source: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/control-to-source/ctrl-human-review/src-eu-ai-act",
+      "mappingVersion": "1.0.0",
+      "mappingType": "control-to-source",
+      "source": {
+        "entityType": "control",
+        "entityId": "ctrl-human-review",
+        "semanticId": "https://paloframework.org/semantic/control/ctrl-human-review?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "source",
+        "entityId": "src-eu-ai-act",
+        "semanticId": "https://paloframework.org/semantic/source/src-eu-ai-act?v=1.0.0",
+        "version": "1.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The registered source informs the control objective and tailoring context.",
+      "basis": "Declared relationship in data/control-library.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/control-library.json",
+        "generationRule": "control-to-source: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/control-to-source/ctrl-human-review/src-nist-ai-rmf",
+      "mappingVersion": "1.0.0",
+      "mappingType": "control-to-source",
+      "source": {
+        "entityType": "control",
+        "entityId": "ctrl-human-review",
+        "semanticId": "https://paloframework.org/semantic/control/ctrl-human-review?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "source",
+        "entityId": "src-nist-ai-rmf",
+        "semanticId": "https://paloframework.org/semantic/source/src-nist-ai-rmf?v=1.0.0",
+        "version": "1.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The registered source informs the control objective and tailoring context.",
+      "basis": "Declared relationship in data/control-library.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/control-library.json",
+        "generationRule": "control-to-source: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/control-to-source/ctrl-human-review/src-oecd-ai-principles",
+      "mappingVersion": "1.0.0",
+      "mappingType": "control-to-source",
+      "source": {
+        "entityType": "control",
+        "entityId": "ctrl-human-review",
+        "semanticId": "https://paloframework.org/semantic/control/ctrl-human-review?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "source",
+        "entityId": "src-oecd-ai-principles",
+        "semanticId": "https://paloframework.org/semantic/source/src-oecd-ai-principles?v=1.0.0",
+        "version": "1.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The registered source informs the control objective and tailoring context.",
+      "basis": "Declared relationship in data/control-library.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/control-library.json",
+        "generationRule": "control-to-source: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/control-to-source/ctrl-incident-response/src-iso-42001",
+      "mappingVersion": "1.0.0",
+      "mappingType": "control-to-source",
+      "source": {
+        "entityType": "control",
+        "entityId": "ctrl-incident-response",
+        "semanticId": "https://paloframework.org/semantic/control/ctrl-incident-response?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "source",
+        "entityId": "src-iso-42001",
+        "semanticId": "https://paloframework.org/semantic/source/src-iso-42001?v=1.0.0",
+        "version": "1.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The registered source informs the control objective and tailoring context.",
+      "basis": "Declared relationship in data/control-library.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/control-library.json",
+        "generationRule": "control-to-source: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/control-to-source/ctrl-incident-response/src-nist-ai-rmf",
+      "mappingVersion": "1.0.0",
+      "mappingType": "control-to-source",
+      "source": {
+        "entityType": "control",
+        "entityId": "ctrl-incident-response",
+        "semanticId": "https://paloframework.org/semantic/control/ctrl-incident-response?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "source",
+        "entityId": "src-nist-ai-rmf",
+        "semanticId": "https://paloframework.org/semantic/source/src-nist-ai-rmf?v=1.0.0",
+        "version": "1.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The registered source informs the control objective and tailoring context.",
+      "basis": "Declared relationship in data/control-library.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/control-library.json",
+        "generationRule": "control-to-source: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/control-to-source/ctrl-purpose-boundary/src-nist-ai-rmf",
+      "mappingVersion": "1.0.0",
+      "mappingType": "control-to-source",
+      "source": {
+        "entityType": "control",
+        "entityId": "ctrl-purpose-boundary",
+        "semanticId": "https://paloframework.org/semantic/control/ctrl-purpose-boundary?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "source",
+        "entityId": "src-nist-ai-rmf",
+        "semanticId": "https://paloframework.org/semantic/source/src-nist-ai-rmf?v=1.0.0",
+        "version": "1.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The registered source informs the control objective and tailoring context.",
+      "basis": "Declared relationship in data/control-library.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/control-library.json",
+        "generationRule": "control-to-source: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/control-to-source/ctrl-purpose-boundary/src-oecd-ai-principles",
+      "mappingVersion": "1.0.0",
+      "mappingType": "control-to-source",
+      "source": {
+        "entityType": "control",
+        "entityId": "ctrl-purpose-boundary",
+        "semanticId": "https://paloframework.org/semantic/control/ctrl-purpose-boundary?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "source",
+        "entityId": "src-oecd-ai-principles",
+        "semanticId": "https://paloframework.org/semantic/source/src-oecd-ai-principles?v=1.0.0",
+        "version": "1.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The registered source informs the control objective and tailoring context.",
+      "basis": "Declared relationship in data/control-library.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/control-library.json",
+        "generationRule": "control-to-source: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/control-to-source/ctrl-third-party-due-diligence/src-iso-42001",
+      "mappingVersion": "1.0.0",
+      "mappingType": "control-to-source",
+      "source": {
+        "entityType": "control",
+        "entityId": "ctrl-third-party-due-diligence",
+        "semanticId": "https://paloframework.org/semantic/control/ctrl-third-party-due-diligence?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "source",
+        "entityId": "src-iso-42001",
+        "semanticId": "https://paloframework.org/semantic/source/src-iso-42001?v=1.0.0",
+        "version": "1.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The registered source informs the control objective and tailoring context.",
+      "basis": "Declared relationship in data/control-library.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/control-library.json",
+        "generationRule": "control-to-source: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/control-to-source/ctrl-third-party-due-diligence/src-nist-ai-rmf",
+      "mappingVersion": "1.0.0",
+      "mappingType": "control-to-source",
+      "source": {
+        "entityType": "control",
+        "entityId": "ctrl-third-party-due-diligence",
+        "semanticId": "https://paloframework.org/semantic/control/ctrl-third-party-due-diligence?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "source",
+        "entityId": "src-nist-ai-rmf",
+        "semanticId": "https://paloframework.org/semantic/source/src-nist-ai-rmf?v=1.0.0",
+        "version": "1.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The registered source informs the control objective and tailoring context.",
+      "basis": "Declared relationship in data/control-library.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/control-library.json",
+        "generationRule": "control-to-source: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/gate-to-source/assess/src-nist-ai-rmf",
+      "mappingVersion": "1.0.0",
+      "mappingType": "gate-to-source",
+      "source": {
+        "entityType": "gate",
+        "entityId": "assess",
+        "semanticId": "https://paloframework.org/semantic/gate/assess?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "source",
+        "entityId": "src-nist-ai-rmf",
+        "semanticId": "https://paloframework.org/semantic/source/src-nist-ai-rmf?v=1.0.0",
+        "version": "1.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The source provides context for accountable gate deliberation.",
+      "basis": "Declared relationship in data/decision-gates.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/decision-gates.json",
+        "generationRule": "gate-to-source: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/gate-to-source/assess/src-nist-genai-profile",
+      "mappingVersion": "1.0.0",
+      "mappingType": "gate-to-source",
+      "source": {
+        "entityType": "gate",
+        "entityId": "assess",
+        "semanticId": "https://paloframework.org/semantic/gate/assess?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "source",
+        "entityId": "src-nist-genai-profile",
+        "semanticId": "https://paloframework.org/semantic/source/src-nist-genai-profile?v=1.0.0",
+        "version": "1.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The source provides context for accountable gate deliberation.",
+      "basis": "Declared relationship in data/decision-gates.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/decision-gates.json",
+        "generationRule": "gate-to-source: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/gate-to-source/classify/src-eu-ai-act",
+      "mappingVersion": "1.0.0",
+      "mappingType": "gate-to-source",
+      "source": {
+        "entityType": "gate",
+        "entityId": "classify",
+        "semanticId": "https://paloframework.org/semantic/gate/classify?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "source",
+        "entityId": "src-eu-ai-act",
+        "semanticId": "https://paloframework.org/semantic/source/src-eu-ai-act?v=1.0.0",
+        "version": "1.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The source provides context for accountable gate deliberation.",
+      "basis": "Declared relationship in data/decision-gates.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/decision-gates.json",
+        "generationRule": "gate-to-source: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/gate-to-source/classify/src-nist-ai-rmf",
+      "mappingVersion": "1.0.0",
+      "mappingType": "gate-to-source",
+      "source": {
+        "entityType": "gate",
+        "entityId": "classify",
+        "semanticId": "https://paloframework.org/semantic/gate/classify?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "source",
+        "entityId": "src-nist-ai-rmf",
+        "semanticId": "https://paloframework.org/semantic/source/src-nist-ai-rmf?v=1.0.0",
+        "version": "1.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The source provides context for accountable gate deliberation.",
+      "basis": "Declared relationship in data/decision-gates.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/decision-gates.json",
+        "generationRule": "gate-to-source: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/gate-to-source/control/src-iso-42001",
+      "mappingVersion": "1.0.0",
+      "mappingType": "gate-to-source",
+      "source": {
+        "entityType": "gate",
+        "entityId": "control",
+        "semanticId": "https://paloframework.org/semantic/gate/control?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "source",
+        "entityId": "src-iso-42001",
+        "semanticId": "https://paloframework.org/semantic/source/src-iso-42001?v=1.0.0",
+        "version": "1.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The source provides context for accountable gate deliberation.",
+      "basis": "Declared relationship in data/decision-gates.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/decision-gates.json",
+        "generationRule": "gate-to-source: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/gate-to-source/control/src-nist-ai-rmf",
+      "mappingVersion": "1.0.0",
+      "mappingType": "gate-to-source",
+      "source": {
+        "entityType": "gate",
+        "entityId": "control",
+        "semanticId": "https://paloframework.org/semantic/gate/control?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "source",
+        "entityId": "src-nist-ai-rmf",
+        "semanticId": "https://paloframework.org/semantic/source/src-nist-ai-rmf?v=1.0.0",
+        "version": "1.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The source provides context for accountable gate deliberation.",
+      "basis": "Declared relationship in data/decision-gates.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/decision-gates.json",
+        "generationRule": "gate-to-source: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/gate-to-source/frame/src-nist-ai-rmf",
+      "mappingVersion": "1.0.0",
+      "mappingType": "gate-to-source",
+      "source": {
+        "entityType": "gate",
+        "entityId": "frame",
+        "semanticId": "https://paloframework.org/semantic/gate/frame?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "source",
+        "entityId": "src-nist-ai-rmf",
+        "semanticId": "https://paloframework.org/semantic/source/src-nist-ai-rmf?v=1.0.0",
+        "version": "1.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The source provides context for accountable gate deliberation.",
+      "basis": "Declared relationship in data/decision-gates.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/decision-gates.json",
+        "generationRule": "gate-to-source: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/gate-to-source/frame/src-oecd-ai-principles",
+      "mappingVersion": "1.0.0",
+      "mappingType": "gate-to-source",
+      "source": {
+        "entityType": "gate",
+        "entityId": "frame",
+        "semanticId": "https://paloframework.org/semantic/gate/frame?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "source",
+        "entityId": "src-oecd-ai-principles",
+        "semanticId": "https://paloframework.org/semantic/source/src-oecd-ai-principles?v=1.0.0",
+        "version": "1.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The source provides context for accountable gate deliberation.",
+      "basis": "Declared relationship in data/decision-gates.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/decision-gates.json",
+        "generationRule": "gate-to-source: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/gate-to-source/measure/src-nist-ai-rmf",
+      "mappingVersion": "1.0.0",
+      "mappingType": "gate-to-source",
+      "source": {
+        "entityType": "gate",
+        "entityId": "measure",
+        "semanticId": "https://paloframework.org/semantic/gate/measure?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "source",
+        "entityId": "src-nist-ai-rmf",
+        "semanticId": "https://paloframework.org/semantic/source/src-nist-ai-rmf?v=1.0.0",
+        "version": "1.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The source provides context for accountable gate deliberation.",
+      "basis": "Declared relationship in data/decision-gates.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/decision-gates.json",
+        "generationRule": "gate-to-source: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/gate-to-source/prove/src-iso-42001",
+      "mappingVersion": "1.0.0",
+      "mappingType": "gate-to-source",
+      "source": {
+        "entityType": "gate",
+        "entityId": "prove",
+        "semanticId": "https://paloframework.org/semantic/gate/prove?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "source",
+        "entityId": "src-iso-42001",
+        "semanticId": "https://paloframework.org/semantic/source/src-iso-42001?v=1.0.0",
+        "version": "1.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The source provides context for accountable gate deliberation.",
+      "basis": "Declared relationship in data/decision-gates.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/decision-gates.json",
+        "generationRule": "gate-to-source: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/gate-to-source/prove/src-nist-ai-rmf",
+      "mappingVersion": "1.0.0",
+      "mappingType": "gate-to-source",
+      "source": {
+        "entityType": "gate",
+        "entityId": "prove",
+        "semanticId": "https://paloframework.org/semantic/gate/prove?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "source",
+        "entityId": "src-nist-ai-rmf",
+        "semanticId": "https://paloframework.org/semantic/source/src-nist-ai-rmf?v=1.0.0",
+        "version": "1.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The source provides context for accountable gate deliberation.",
+      "basis": "Declared relationship in data/decision-gates.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/decision-gates.json",
+        "generationRule": "gate-to-source: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/indicator-to-gate/kpi-incident-triage-time/measure",
+      "mappingVersion": "1.0.0",
+      "mappingType": "indicator-to-gate",
+      "source": {
+        "entityType": "indicator",
+        "entityId": "kpi-incident-triage-time",
+        "semanticId": "https://paloframework.org/semantic/indicator/kpi-incident-triage-time?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "gate",
+        "entityId": "measure",
+        "semanticId": "https://paloframework.org/semantic/gate/measure?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The indicator can inform the named gate but cannot make the gate decision.",
+      "basis": "Declared relationship in data/kpi-kri-registry.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/kpi-kri-registry.json",
+        "generationRule": "indicator-to-gate: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/indicator-to-gate/kpi-incident-triage-time/prove",
+      "mappingVersion": "1.0.0",
+      "mappingType": "indicator-to-gate",
+      "source": {
+        "entityType": "indicator",
+        "entityId": "kpi-incident-triage-time",
+        "semanticId": "https://paloframework.org/semantic/indicator/kpi-incident-triage-time?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "gate",
+        "entityId": "prove",
+        "semanticId": "https://paloframework.org/semantic/gate/prove?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The indicator can inform the named gate but cannot make the gate decision.",
+      "basis": "Declared relationship in data/kpi-kri-registry.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/kpi-kri-registry.json",
+        "generationRule": "indicator-to-gate: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/indicator-to-gate/kpi-provenance-coverage/assess",
+      "mappingVersion": "1.0.0",
+      "mappingType": "indicator-to-gate",
+      "source": {
+        "entityType": "indicator",
+        "entityId": "kpi-provenance-coverage",
+        "semanticId": "https://paloframework.org/semantic/indicator/kpi-provenance-coverage?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "gate",
+        "entityId": "assess",
+        "semanticId": "https://paloframework.org/semantic/gate/assess?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The indicator can inform the named gate but cannot make the gate decision.",
+      "basis": "Declared relationship in data/kpi-kri-registry.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/kpi-kri-registry.json",
+        "generationRule": "indicator-to-gate: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/indicator-to-gate/kpi-provenance-coverage/prove",
+      "mappingVersion": "1.0.0",
+      "mappingType": "indicator-to-gate",
+      "source": {
+        "entityType": "indicator",
+        "entityId": "kpi-provenance-coverage",
+        "semanticId": "https://paloframework.org/semantic/indicator/kpi-provenance-coverage?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "gate",
+        "entityId": "prove",
+        "semanticId": "https://paloframework.org/semantic/gate/prove?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The indicator can inform the named gate but cannot make the gate decision.",
+      "basis": "Declared relationship in data/kpi-kri-registry.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/kpi-kri-registry.json",
+        "generationRule": "indicator-to-gate: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/indicator-to-gate/kpi-review-completion/control",
+      "mappingVersion": "1.0.0",
+      "mappingType": "indicator-to-gate",
+      "source": {
+        "entityType": "indicator",
+        "entityId": "kpi-review-completion",
+        "semanticId": "https://paloframework.org/semantic/indicator/kpi-review-completion?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "gate",
+        "entityId": "control",
+        "semanticId": "https://paloframework.org/semantic/gate/control?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The indicator can inform the named gate but cannot make the gate decision.",
+      "basis": "Declared relationship in data/kpi-kri-registry.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/kpi-kri-registry.json",
+        "generationRule": "indicator-to-gate: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/indicator-to-gate/kpi-review-completion/measure",
+      "mappingVersion": "1.0.0",
+      "mappingType": "indicator-to-gate",
+      "source": {
+        "entityType": "indicator",
+        "entityId": "kpi-review-completion",
+        "semanticId": "https://paloframework.org/semantic/indicator/kpi-review-completion?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "gate",
+        "entityId": "measure",
+        "semanticId": "https://paloframework.org/semantic/gate/measure?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The indicator can inform the named gate but cannot make the gate decision.",
+      "basis": "Declared relationship in data/kpi-kri-registry.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/kpi-kri-registry.json",
+        "generationRule": "indicator-to-gate: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/indicator-to-gate/kpi-review-completion/prove",
+      "mappingVersion": "1.0.0",
+      "mappingType": "indicator-to-gate",
+      "source": {
+        "entityType": "indicator",
+        "entityId": "kpi-review-completion",
+        "semanticId": "https://paloframework.org/semantic/indicator/kpi-review-completion?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "gate",
+        "entityId": "prove",
+        "semanticId": "https://paloframework.org/semantic/gate/prove?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The indicator can inform the named gate but cannot make the gate decision.",
+      "basis": "Declared relationship in data/kpi-kri-registry.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/kpi-kri-registry.json",
+        "generationRule": "indicator-to-gate: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/indicator-to-gate/kpi-vendor-evidence-coverage/assess",
+      "mappingVersion": "1.0.0",
+      "mappingType": "indicator-to-gate",
+      "source": {
+        "entityType": "indicator",
+        "entityId": "kpi-vendor-evidence-coverage",
+        "semanticId": "https://paloframework.org/semantic/indicator/kpi-vendor-evidence-coverage?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "gate",
+        "entityId": "assess",
+        "semanticId": "https://paloframework.org/semantic/gate/assess?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The indicator can inform the named gate but cannot make the gate decision.",
+      "basis": "Declared relationship in data/kpi-kri-registry.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/kpi-kri-registry.json",
+        "generationRule": "indicator-to-gate: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/indicator-to-gate/kpi-vendor-evidence-coverage/control",
+      "mappingVersion": "1.0.0",
+      "mappingType": "indicator-to-gate",
+      "source": {
+        "entityType": "indicator",
+        "entityId": "kpi-vendor-evidence-coverage",
+        "semanticId": "https://paloframework.org/semantic/indicator/kpi-vendor-evidence-coverage?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "gate",
+        "entityId": "control",
+        "semanticId": "https://paloframework.org/semantic/gate/control?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The indicator can inform the named gate but cannot make the gate decision.",
+      "basis": "Declared relationship in data/kpi-kri-registry.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/kpi-kri-registry.json",
+        "generationRule": "indicator-to-gate: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/indicator-to-gate/kri-critical-test-failure-rate/assess",
+      "mappingVersion": "1.0.0",
+      "mappingType": "indicator-to-gate",
+      "source": {
+        "entityType": "indicator",
+        "entityId": "kri-critical-test-failure-rate",
+        "semanticId": "https://paloframework.org/semantic/indicator/kri-critical-test-failure-rate?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "gate",
+        "entityId": "assess",
+        "semanticId": "https://paloframework.org/semantic/gate/assess?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The indicator can inform the named gate but cannot make the gate decision.",
+      "basis": "Declared relationship in data/kpi-kri-registry.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/kpi-kri-registry.json",
+        "generationRule": "indicator-to-gate: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/indicator-to-gate/kri-critical-test-failure-rate/measure",
+      "mappingVersion": "1.0.0",
+      "mappingType": "indicator-to-gate",
+      "source": {
+        "entityType": "indicator",
+        "entityId": "kri-critical-test-failure-rate",
+        "semanticId": "https://paloframework.org/semantic/indicator/kri-critical-test-failure-rate?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "gate",
+        "entityId": "measure",
+        "semanticId": "https://paloframework.org/semantic/gate/measure?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The indicator can inform the named gate but cannot make the gate decision.",
+      "basis": "Declared relationship in data/kpi-kri-registry.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/kpi-kri-registry.json",
+        "generationRule": "indicator-to-gate: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/indicator-to-gate/kri-critical-test-failure-rate/prove",
+      "mappingVersion": "1.0.0",
+      "mappingType": "indicator-to-gate",
+      "source": {
+        "entityType": "indicator",
+        "entityId": "kri-critical-test-failure-rate",
+        "semanticId": "https://paloframework.org/semantic/indicator/kri-critical-test-failure-rate?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "gate",
+        "entityId": "prove",
+        "semanticId": "https://paloframework.org/semantic/gate/prove?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The indicator can inform the named gate but cannot make the gate decision.",
+      "basis": "Declared relationship in data/kpi-kri-registry.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/kpi-kri-registry.json",
+        "generationRule": "indicator-to-gate: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/indicator-to-gate/kri-multi-agent-conflict-rate/control",
+      "mappingVersion": "1.0.0",
+      "mappingType": "indicator-to-gate",
+      "source": {
+        "entityType": "indicator",
+        "entityId": "kri-multi-agent-conflict-rate",
+        "semanticId": "https://paloframework.org/semantic/indicator/kri-multi-agent-conflict-rate?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "gate",
+        "entityId": "control",
+        "semanticId": "https://paloframework.org/semantic/gate/control?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The indicator can inform the named gate but cannot make the gate decision.",
+      "basis": "Declared relationship in data/kpi-kri-registry.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/kpi-kri-registry.json",
+        "generationRule": "indicator-to-gate: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/indicator-to-gate/kri-multi-agent-conflict-rate/measure",
+      "mappingVersion": "1.0.0",
+      "mappingType": "indicator-to-gate",
+      "source": {
+        "entityType": "indicator",
+        "entityId": "kri-multi-agent-conflict-rate",
+        "semanticId": "https://paloframework.org/semantic/indicator/kri-multi-agent-conflict-rate?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "gate",
+        "entityId": "measure",
+        "semanticId": "https://paloframework.org/semantic/gate/measure?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The indicator can inform the named gate but cannot make the gate decision.",
+      "basis": "Declared relationship in data/kpi-kri-registry.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/kpi-kri-registry.json",
+        "generationRule": "indicator-to-gate: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/indicator-to-gate/kri-override-failure-rate/control",
+      "mappingVersion": "1.0.0",
+      "mappingType": "indicator-to-gate",
+      "source": {
+        "entityType": "indicator",
+        "entityId": "kri-override-failure-rate",
+        "semanticId": "https://paloframework.org/semantic/indicator/kri-override-failure-rate?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "gate",
+        "entityId": "control",
+        "semanticId": "https://paloframework.org/semantic/gate/control?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The indicator can inform the named gate but cannot make the gate decision.",
+      "basis": "Declared relationship in data/kpi-kri-registry.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/kpi-kri-registry.json",
+        "generationRule": "indicator-to-gate: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/indicator-to-gate/kri-override-failure-rate/measure",
+      "mappingVersion": "1.0.0",
+      "mappingType": "indicator-to-gate",
+      "source": {
+        "entityType": "indicator",
+        "entityId": "kri-override-failure-rate",
+        "semanticId": "https://paloframework.org/semantic/indicator/kri-override-failure-rate?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "gate",
+        "entityId": "measure",
+        "semanticId": "https://paloframework.org/semantic/gate/measure?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The indicator can inform the named gate but cannot make the gate decision.",
+      "basis": "Declared relationship in data/kpi-kri-registry.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/kpi-kri-registry.json",
+        "generationRule": "indicator-to-gate: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/indicator-to-gate/kri-scope-change-rate/classify",
+      "mappingVersion": "1.0.0",
+      "mappingType": "indicator-to-gate",
+      "source": {
+        "entityType": "indicator",
+        "entityId": "kri-scope-change-rate",
+        "semanticId": "https://paloframework.org/semantic/indicator/kri-scope-change-rate?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "gate",
+        "entityId": "classify",
+        "semanticId": "https://paloframework.org/semantic/gate/classify?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The indicator can inform the named gate but cannot make the gate decision.",
+      "basis": "Declared relationship in data/kpi-kri-registry.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/kpi-kri-registry.json",
+        "generationRule": "indicator-to-gate: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/indicator-to-gate/kri-scope-change-rate/frame",
+      "mappingVersion": "1.0.0",
+      "mappingType": "indicator-to-gate",
+      "source": {
+        "entityType": "indicator",
+        "entityId": "kri-scope-change-rate",
+        "semanticId": "https://paloframework.org/semantic/indicator/kri-scope-change-rate?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "gate",
+        "entityId": "frame",
+        "semanticId": "https://paloframework.org/semantic/gate/frame?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The indicator can inform the named gate but cannot make the gate decision.",
+      "basis": "Declared relationship in data/kpi-kri-registry.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/kpi-kri-registry.json",
+        "generationRule": "indicator-to-gate: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/indicator-to-gate/kri-scope-change-rate/prove",
+      "mappingVersion": "1.0.0",
+      "mappingType": "indicator-to-gate",
+      "source": {
+        "entityType": "indicator",
+        "entityId": "kri-scope-change-rate",
+        "semanticId": "https://paloframework.org/semantic/indicator/kri-scope-change-rate?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "gate",
+        "entityId": "prove",
+        "semanticId": "https://paloframework.org/semantic/gate/prove?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The indicator can inform the named gate but cannot make the gate decision.",
+      "basis": "Declared relationship in data/kpi-kri-registry.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/kpi-kri-registry.json",
+        "generationRule": "indicator-to-gate: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/indicator-to-gate/kri-sensitive-data-events/control",
+      "mappingVersion": "1.0.0",
+      "mappingType": "indicator-to-gate",
+      "source": {
+        "entityType": "indicator",
+        "entityId": "kri-sensitive-data-events",
+        "semanticId": "https://paloframework.org/semantic/indicator/kri-sensitive-data-events?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "gate",
+        "entityId": "control",
+        "semanticId": "https://paloframework.org/semantic/gate/control?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The indicator can inform the named gate but cannot make the gate decision.",
+      "basis": "Declared relationship in data/kpi-kri-registry.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/kpi-kri-registry.json",
+        "generationRule": "indicator-to-gate: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/indicator-to-gate/kri-sensitive-data-events/measure",
+      "mappingVersion": "1.0.0",
+      "mappingType": "indicator-to-gate",
+      "source": {
+        "entityType": "indicator",
+        "entityId": "kri-sensitive-data-events",
+        "semanticId": "https://paloframework.org/semantic/indicator/kri-sensitive-data-events?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "gate",
+        "entityId": "measure",
+        "semanticId": "https://paloframework.org/semantic/gate/measure?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The indicator can inform the named gate but cannot make the gate decision.",
+      "basis": "Declared relationship in data/kpi-kri-registry.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/kpi-kri-registry.json",
+        "generationRule": "indicator-to-gate: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/indicator-to-gate/kri-sensitive-data-events/prove",
+      "mappingVersion": "1.0.0",
+      "mappingType": "indicator-to-gate",
+      "source": {
+        "entityType": "indicator",
+        "entityId": "kri-sensitive-data-events",
+        "semanticId": "https://paloframework.org/semantic/indicator/kri-sensitive-data-events?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "gate",
+        "entityId": "prove",
+        "semanticId": "https://paloframework.org/semantic/gate/prove?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The indicator can inform the named gate but cannot make the gate decision.",
+      "basis": "Declared relationship in data/kpi-kri-registry.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/kpi-kri-registry.json",
+        "generationRule": "indicator-to-gate: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/indicator-to-gate/kri-tool-call-error-rate/control",
+      "mappingVersion": "1.0.0",
+      "mappingType": "indicator-to-gate",
+      "source": {
+        "entityType": "indicator",
+        "entityId": "kri-tool-call-error-rate",
+        "semanticId": "https://paloframework.org/semantic/indicator/kri-tool-call-error-rate?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "gate",
+        "entityId": "control",
+        "semanticId": "https://paloframework.org/semantic/gate/control?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The indicator can inform the named gate but cannot make the gate decision.",
+      "basis": "Declared relationship in data/kpi-kri-registry.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/kpi-kri-registry.json",
+        "generationRule": "indicator-to-gate: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/indicator-to-gate/kri-tool-call-error-rate/measure",
+      "mappingVersion": "1.0.0",
+      "mappingType": "indicator-to-gate",
+      "source": {
+        "entityType": "indicator",
+        "entityId": "kri-tool-call-error-rate",
+        "semanticId": "https://paloframework.org/semantic/indicator/kri-tool-call-error-rate?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "gate",
+        "entityId": "measure",
+        "semanticId": "https://paloframework.org/semantic/gate/measure?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The indicator can inform the named gate but cannot make the gate decision.",
+      "basis": "Declared relationship in data/kpi-kri-registry.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/kpi-kri-registry.json",
+        "generationRule": "indicator-to-gate: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/indicator-to-source/kpi-incident-triage-time/src-nist-ai-rmf",
+      "mappingVersion": "1.0.0",
+      "mappingType": "indicator-to-source",
+      "source": {
+        "entityType": "indicator",
+        "entityId": "kpi-incident-triage-time",
+        "semanticId": "https://paloframework.org/semantic/indicator/kpi-incident-triage-time?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "source",
+        "entityId": "src-nist-ai-rmf",
+        "semanticId": "https://paloframework.org/semantic/source/src-nist-ai-rmf?v=1.0.0",
+        "version": "1.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The source informs the indicator definition; the published threshold remains illustrative.",
+      "basis": "Declared relationship in data/kpi-kri-registry.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/kpi-kri-registry.json",
+        "generationRule": "indicator-to-source: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/indicator-to-source/kpi-provenance-coverage/src-nist-ai-rmf",
+      "mappingVersion": "1.0.0",
+      "mappingType": "indicator-to-source",
+      "source": {
+        "entityType": "indicator",
+        "entityId": "kpi-provenance-coverage",
+        "semanticId": "https://paloframework.org/semantic/indicator/kpi-provenance-coverage?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "source",
+        "entityId": "src-nist-ai-rmf",
+        "semanticId": "https://paloframework.org/semantic/source/src-nist-ai-rmf?v=1.0.0",
+        "version": "1.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The source informs the indicator definition; the published threshold remains illustrative.",
+      "basis": "Declared relationship in data/kpi-kri-registry.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/kpi-kri-registry.json",
+        "generationRule": "indicator-to-source: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/indicator-to-source/kpi-review-completion/src-nist-ai-rmf",
+      "mappingVersion": "1.0.0",
+      "mappingType": "indicator-to-source",
+      "source": {
+        "entityType": "indicator",
+        "entityId": "kpi-review-completion",
+        "semanticId": "https://paloframework.org/semantic/indicator/kpi-review-completion?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "source",
+        "entityId": "src-nist-ai-rmf",
+        "semanticId": "https://paloframework.org/semantic/source/src-nist-ai-rmf?v=1.0.0",
+        "version": "1.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The source informs the indicator definition; the published threshold remains illustrative.",
+      "basis": "Declared relationship in data/kpi-kri-registry.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/kpi-kri-registry.json",
+        "generationRule": "indicator-to-source: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/indicator-to-source/kpi-review-completion/src-oecd-ai-principles",
+      "mappingVersion": "1.0.0",
+      "mappingType": "indicator-to-source",
+      "source": {
+        "entityType": "indicator",
+        "entityId": "kpi-review-completion",
+        "semanticId": "https://paloframework.org/semantic/indicator/kpi-review-completion?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "source",
+        "entityId": "src-oecd-ai-principles",
+        "semanticId": "https://paloframework.org/semantic/source/src-oecd-ai-principles?v=1.0.0",
+        "version": "1.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The source informs the indicator definition; the published threshold remains illustrative.",
+      "basis": "Declared relationship in data/kpi-kri-registry.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/kpi-kri-registry.json",
+        "generationRule": "indicator-to-source: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/indicator-to-source/kpi-vendor-evidence-coverage/src-iso-42001",
+      "mappingVersion": "1.0.0",
+      "mappingType": "indicator-to-source",
+      "source": {
+        "entityType": "indicator",
+        "entityId": "kpi-vendor-evidence-coverage",
+        "semanticId": "https://paloframework.org/semantic/indicator/kpi-vendor-evidence-coverage?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "source",
+        "entityId": "src-iso-42001",
+        "semanticId": "https://paloframework.org/semantic/source/src-iso-42001?v=1.0.0",
+        "version": "1.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The source informs the indicator definition; the published threshold remains illustrative.",
+      "basis": "Declared relationship in data/kpi-kri-registry.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/kpi-kri-registry.json",
+        "generationRule": "indicator-to-source: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/indicator-to-source/kri-critical-test-failure-rate/src-nist-genai-profile",
+      "mappingVersion": "1.0.0",
+      "mappingType": "indicator-to-source",
+      "source": {
+        "entityType": "indicator",
+        "entityId": "kri-critical-test-failure-rate",
+        "semanticId": "https://paloframework.org/semantic/indicator/kri-critical-test-failure-rate?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "source",
+        "entityId": "src-nist-genai-profile",
+        "semanticId": "https://paloframework.org/semantic/source/src-nist-genai-profile?v=1.0.0",
+        "version": "1.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The source informs the indicator definition; the published threshold remains illustrative.",
+      "basis": "Declared relationship in data/kpi-kri-registry.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/kpi-kri-registry.json",
+        "generationRule": "indicator-to-source: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/indicator-to-source/kri-critical-test-failure-rate/src-owasp-llm-top10",
+      "mappingVersion": "1.0.0",
+      "mappingType": "indicator-to-source",
+      "source": {
+        "entityType": "indicator",
+        "entityId": "kri-critical-test-failure-rate",
+        "semanticId": "https://paloframework.org/semantic/indicator/kri-critical-test-failure-rate?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "source",
+        "entityId": "src-owasp-llm-top10",
+        "semanticId": "https://paloframework.org/semantic/source/src-owasp-llm-top10?v=1.0.0",
+        "version": "1.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The source informs the indicator definition; the published threshold remains illustrative.",
+      "basis": "Declared relationship in data/kpi-kri-registry.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/kpi-kri-registry.json",
+        "generationRule": "indicator-to-source: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/indicator-to-source/kri-multi-agent-conflict-rate/src-nist-ai-rmf",
+      "mappingVersion": "1.0.0",
+      "mappingType": "indicator-to-source",
+      "source": {
+        "entityType": "indicator",
+        "entityId": "kri-multi-agent-conflict-rate",
+        "semanticId": "https://paloframework.org/semantic/indicator/kri-multi-agent-conflict-rate?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "source",
+        "entityId": "src-nist-ai-rmf",
+        "semanticId": "https://paloframework.org/semantic/source/src-nist-ai-rmf?v=1.0.0",
+        "version": "1.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The source informs the indicator definition; the published threshold remains illustrative.",
+      "basis": "Declared relationship in data/kpi-kri-registry.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/kpi-kri-registry.json",
+        "generationRule": "indicator-to-source: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/indicator-to-source/kri-override-failure-rate/src-eu-ai-act",
+      "mappingVersion": "1.0.0",
+      "mappingType": "indicator-to-source",
+      "source": {
+        "entityType": "indicator",
+        "entityId": "kri-override-failure-rate",
+        "semanticId": "https://paloframework.org/semantic/indicator/kri-override-failure-rate?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "source",
+        "entityId": "src-eu-ai-act",
+        "semanticId": "https://paloframework.org/semantic/source/src-eu-ai-act?v=1.0.0",
+        "version": "1.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The source informs the indicator definition; the published threshold remains illustrative.",
+      "basis": "Declared relationship in data/kpi-kri-registry.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/kpi-kri-registry.json",
+        "generationRule": "indicator-to-source: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/indicator-to-source/kri-override-failure-rate/src-oecd-ai-principles",
+      "mappingVersion": "1.0.0",
+      "mappingType": "indicator-to-source",
+      "source": {
+        "entityType": "indicator",
+        "entityId": "kri-override-failure-rate",
+        "semanticId": "https://paloframework.org/semantic/indicator/kri-override-failure-rate?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "source",
+        "entityId": "src-oecd-ai-principles",
+        "semanticId": "https://paloframework.org/semantic/source/src-oecd-ai-principles?v=1.0.0",
+        "version": "1.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The source informs the indicator definition; the published threshold remains illustrative.",
+      "basis": "Declared relationship in data/kpi-kri-registry.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/kpi-kri-registry.json",
+        "generationRule": "indicator-to-source: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/indicator-to-source/kri-scope-change-rate/src-nist-ai-rmf",
+      "mappingVersion": "1.0.0",
+      "mappingType": "indicator-to-source",
+      "source": {
+        "entityType": "indicator",
+        "entityId": "kri-scope-change-rate",
+        "semanticId": "https://paloframework.org/semantic/indicator/kri-scope-change-rate?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "source",
+        "entityId": "src-nist-ai-rmf",
+        "semanticId": "https://paloframework.org/semantic/source/src-nist-ai-rmf?v=1.0.0",
+        "version": "1.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The source informs the indicator definition; the published threshold remains illustrative.",
+      "basis": "Declared relationship in data/kpi-kri-registry.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/kpi-kri-registry.json",
+        "generationRule": "indicator-to-source: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/indicator-to-source/kri-sensitive-data-events/src-eu-ai-act",
+      "mappingVersion": "1.0.0",
+      "mappingType": "indicator-to-source",
+      "source": {
+        "entityType": "indicator",
+        "entityId": "kri-sensitive-data-events",
+        "semanticId": "https://paloframework.org/semantic/indicator/kri-sensitive-data-events?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "source",
+        "entityId": "src-eu-ai-act",
+        "semanticId": "https://paloframework.org/semantic/source/src-eu-ai-act?v=1.0.0",
+        "version": "1.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The source informs the indicator definition; the published threshold remains illustrative.",
+      "basis": "Declared relationship in data/kpi-kri-registry.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/kpi-kri-registry.json",
+        "generationRule": "indicator-to-source: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/indicator-to-source/kri-sensitive-data-events/src-nist-ai-rmf",
+      "mappingVersion": "1.0.0",
+      "mappingType": "indicator-to-source",
+      "source": {
+        "entityType": "indicator",
+        "entityId": "kri-sensitive-data-events",
+        "semanticId": "https://paloframework.org/semantic/indicator/kri-sensitive-data-events?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "source",
+        "entityId": "src-nist-ai-rmf",
+        "semanticId": "https://paloframework.org/semantic/source/src-nist-ai-rmf?v=1.0.0",
+        "version": "1.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The source informs the indicator definition; the published threshold remains illustrative.",
+      "basis": "Declared relationship in data/kpi-kri-registry.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/kpi-kri-registry.json",
+        "generationRule": "indicator-to-source: one immutable source-target pair per declared ID reference."
+      }
+    },
+    {
+      "mappingId": "https://paloframework.org/semantic/mapping/indicator-to-source/kri-tool-call-error-rate/src-nist-ai-rmf",
+      "mappingVersion": "1.0.0",
+      "mappingType": "indicator-to-source",
+      "source": {
+        "entityType": "indicator",
+        "entityId": "kri-tool-call-error-rate",
+        "semanticId": "https://paloframework.org/semantic/indicator/kri-tool-call-error-rate?v=3.0.0",
+        "version": "3.0.0"
+      },
+      "target": {
+        "entityType": "source",
+        "entityId": "src-nist-ai-rmf",
+        "semanticId": "https://paloframework.org/semantic/source/src-nist-ai-rmf?v=1.0.0",
+        "version": "1.0.0"
+      },
+      "coverageType": "supporting",
+      "conditions": [],
+      "rationale": "The source informs the indicator definition; the published threshold remains illustrative.",
+      "basis": "Declared relationship in data/kpi-kri-registry.json; no legal-equivalence or compliance claim is created.",
+      "approval": {
+        "status": "approved",
+        "scope": "PALO framework publication only; not a legal applicability or certification decision.",
+        "decidedAt": "2026-08-12T08:00:00Z",
+        "decidedBy": "PALO framework release process"
+      },
+      "validFrom": "2026-08-12T00:00:00Z",
+      "provenance": {
+        "generatedFrom": "data/kpi-kri-registry.json",
+        "generationRule": "indicator-to-source: one immutable source-target pair per declared ID reference."
+      }
+    }
+  ]
+}

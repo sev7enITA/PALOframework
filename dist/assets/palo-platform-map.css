@@ -27,6 +27,13 @@
 .state-implemented { color: #11603b; background: #edf9f2; border-color: #a7d9bd; }
 .state-foundation { color: #8a5a00; background: #fff8e6; border-color: #e5c56e; }
 .state-research { color: #9b2c2c; background: #fff5f5; border-color: #e6a3a3; }
+.evidence-key { display: flex; flex-wrap: wrap; align-items: center; gap: 7px; margin: 12px 0 0; }
+.evidence-key > strong { margin-right: 4px; font-size: .76rem; text-transform: uppercase; }
+.evidence-badge { display: inline-flex; align-items: center; min-height: 25px; padding: 3px 7px; color: #234; background: #eef3f6; border: 1px solid #afc2ce; border-radius: 999px; font-size: .66rem; font-weight: 800; }
+.evidence-canonical { color: #075e68; background: #e9fafb; border-color: #8bcdd1; }
+.evidence-source { color: #24547b; background: #edf6ff; border-color: #a8c9e3; }
+.evidence-preview { color: #795200; background: #fff8e6; border-color: #e4c670; }
+.evidence-review { color: #8a2929; background: #fff0f0; border-color: #dfa2a2; }
 
 .phase-ledger { margin-top: 28px; border-top: 1px solid var(--palo-line); }
 .phase-row { display: grid; grid-template-columns: 90px 130px repeat(4, minmax(0, 1fr)); border-bottom: 1px solid var(--palo-line); }
@@ -38,7 +45,7 @@
 
 .map-controls {
     display: grid;
-    grid-template-columns: repeat(3, minmax(150px, 1fr)) auto;
+    grid-template-columns: repeat(4, minmax(140px, 1fr)) auto;
     gap: 12px;
     align-items: end;
     margin: 24px 0 18px;

@@ -1,0 +1,15 @@
+{
+  "format": "palo-evidence-evaluation",
+  "schemaVersion": "1.0.0",
+  "evaluationId": "evidence-evaluation-override-001",
+  "claimId": "evidence-claim-override-test-plan",
+  "assessmentRunId": "assessment-run-catalog-001",
+  "evaluator": { "actorId": "party-independent-reviewer-001", "role": "assurance-reviewer" },
+  "evaluatedAt": "2026-08-12T09:50:00Z",
+  "outcome": "partial",
+  "quality": { "relevance": 0.9, "integrity": 1, "recency": 1, "independence": 0.8 },
+  "rationale": "The test is current and integrity-bound, but production-like failure recovery remains outside scope.",
+  "inputClaimDigest": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+  "recordDigest": "sha256:3333333333333333333333333333333333333333333333333333333333333333",
+  "appendOnly": true
+}

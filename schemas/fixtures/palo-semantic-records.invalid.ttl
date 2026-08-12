@@ -1,0 +1,15 @@
+@prefix palo: <https://paloframework.org/semantic/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+palo:case-invalid a palo:GovernanceCase, palo:SemanticEntity .
+palo:artifact-one a palo:EvidenceArtifact, palo:SemanticEntity ; palo:stableId "artifact-one" ; palo:caseId "case-invalid" ; palo:contentDigest "unsigned" .
+palo:artifact-two a palo:EvidenceArtifact, palo:SemanticEntity ; palo:stableId "artifact-two" ; palo:caseId "case-invalid" ; palo:contentDigest "unsigned" .
+palo:claim-invalid a palo:EvidenceClaim, palo:ImmutableRecord, palo:SemanticEntity ;
+  palo:stableId "claim-invalid" ;
+  palo:usesArtifact palo:artifact-one, palo:artifact-two ;
+  palo:claimScope palo:case-invalid ;
+  palo:claimStatement "" ;
+  palo:integrityReference "missing" ;
+  palo:recordedAt "not-a-date"^^xsd:string ;
+  palo:recordDigest "missing" ;
+  palo:appendOnly false .

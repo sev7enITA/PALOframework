@@ -96,6 +96,7 @@ try {
   await page.goto(`${baseUrl}/governance-hub/?role=executive&view=assurance`, { waitUntil: "networkidle" });
   await expectAttribute(page.locator("html"), "data-hub-role", "executive", "Governance Hub executive deep link");
   await expectAttribute(page.locator("html"), "data-hub-view", "assurance", "Governance Hub assurance deep link");
+  if (!/Illustrative local preview/.test(await page.locator(".preview-boundary").innerText())) failures.push("Governance Hub executive lens: persistent local-preview boundary is missing");
   await page.goto(`${baseUrl}/governance-hub/?role=unknown&view=secrets`, { waitUntil: "networkidle" });
   await expectAttribute(page.locator("html"), "data-hub-role", "technical", "Governance Hub invalid role fallback");
   await expectAttribute(page.locator("html"), "data-hub-view", "setup", "Governance Hub invalid view fallback");
@@ -106,12 +107,21 @@ try {
   if (await page.locator("tbody tr").count() !== 0) failures.push("Governance Hub: search matched an object key instead of row values");
   await governanceSearch.fill("Catalog");
   if (await page.locator("tbody tr").count() !== 1) failures.push("Governance Hub: value search did not isolate the Catalog row");
+  await page.getByRole("button", { name: "Inspect" }).click();
+  const registryRecord = await page.getByRole("dialog", { name: "Catalog Assistant" }).innerText();
+  if (!/Semantic ID[\s\S]*Definition version[\s\S]*Evidence class[\s\S]*illustrative-local-preview[\s\S]*Authority boundary/.test(registryRecord)) failures.push("Governance Hub: registry Semantic Record omits v3 identity or authority fields");
+  await page.getByRole("button", { name: "Close semantic record" }).click();
   const registryExport = await captureDownload(page.getByRole("button", { name: "Export evidence" }), "Governance Hub registry export");
   try {
-    if (JSON.parse(registryExport).length !== 4) failures.push("Governance Hub: registry export has unexpected content");
+    const parsed = JSON.parse(registryExport);
+    if (parsed.authoritative !== false || parsed.dataClass !== "illustrative-local-preview" || parsed.records?.length !== 4) failures.push("Governance Hub: registry export has unexpected authority boundary or content");
   } catch {
     failures.push("Governance Hub: registry export is not valid JSON");
   }
+  await page.getByRole("button", { name: "Policies" }).click();
+  await page.locator("tbody .text-button", { hasText: "Open" }).first().click();
+  if (!/policy-catalog-change[\s\S]*illustrative-local-preview/.test(await page.getByRole("dialog").innerText())) failures.push("Governance Hub: policy Semantic Record did not open with identity and data class");
+  await page.getByRole("button", { name: "Close semantic record" }).click();
 
   await page.getByRole("button", { name: "Executive" }).click();
   await page.getByRole("button", { name: "Reports" }).click();
@@ -119,6 +129,7 @@ try {
   if (!executiveBrief.includes("Developer preview")) failures.push("Governance Hub: executive brief omits its release boundary");
 
   await page.getByRole("button", { name: "Technical" }).click();
+  if (!/Illustrative local preview/.test(await page.locator(".preview-boundary").innerText())) failures.push("Governance Hub technical lens: persistent local-preview boundary is missing");
   await page.getByRole("button", { name: "Setup" }).click();
   await page.getByRole("button", { name: /Bound authority/ }).click();
   await page.getByRole("button", { name: "Test this boundary" }).click();
@@ -130,7 +141,8 @@ try {
   await page.getByRole("button", { name: /Trace Catalog price update/ }).click();
   const executionExport = await captureDownload(page.getByRole("button", { name: "Export evidence" }), "Governance Hub execution evidence");
   try {
-    if (JSON.parse(executionExport).assurance !== "mismatch") failures.push("Governance Hub: execution export has unexpected assurance content");
+    const parsed = JSON.parse(executionExport);
+    if (parsed.assurance !== "mismatch" || parsed.authoritative !== false || parsed.dataClass !== "illustrative-local-preview") failures.push("Governance Hub: execution export has unexpected assurance or authority content");
   } catch {
     failures.push("Governance Hub: execution export is not valid JSON");
   }
@@ -263,6 +275,10 @@ try {
   if (await page.locator("[data-map-route]:visible").count() !== 3 || await page.locator("[data-map-row]:visible").count() !== 3) failures.push("Platform Map: visual and table filters are not synchronized");
   await page.locator("#map-reset").click();
   await page.waitForFunction(() => document.documentElement.getAttribute("data-platform-map-results") === "12");
+  await page.locator("#map-evidence-class").selectOption("human-review-required");
+  await page.waitForFunction(() => document.documentElement.getAttribute("data-platform-map-results") === "1");
+  if (await page.locator('[data-map-route][data-evidence-class="human-review-required"]:visible').count() !== 1 || await page.locator('[data-map-row][data-evidence-class="human-review-required"]:visible').count() !== 1) failures.push("Platform Map: evidence/authority filter is not synchronized");
+  await page.locator("#map-reset").click();
   const mapPolicyLink = page.locator('[data-route-id="route-monitor"] a[href="https://www.policywatcher.online/"]').first();
   if (!await mapPolicyLink.isVisible()) failures.push("Platform Map: live PolicyWatcher destination is missing from Receive monitoring signals");
   await expectAttribute(mapPolicyLink, "target", "_blank", "Platform Map PolicyWatcher link");
@@ -295,7 +311,7 @@ try {
   if (navigationGraph.changedPixels < 100) failures.push(`Explorer navigation mode: canvas pixel check found only ${navigationGraph.changedPixels} non-background samples`);
   await page.evaluate(() => window.__PALO_EXPLORER.selectNode("nav-controls"));
   const inspectorText = await page.locator("#inspector").innerText();
-  if (!/Destination[\s\S]*Control Library/.test(inspectorText) || !/Stakeholder[\s\S]*Product and engineering/.test(inspectorText) || !/Artifact[\s\S]*Calibrated control plan/.test(inspectorText) || !/Status[\s\S]*Foundation/.test(inspectorText)) failures.push("Explorer navigation mode: inspector omits required navigation properties");
+  if (!/Semantic ID[\s\S]*Definition version[\s\S]*Evidence \/ authority[\s\S]*Authority boundary/.test(inspectorText) || !/Destination[\s\S]*Control Library/.test(inspectorText) || !/Stakeholder[\s\S]*Product and engineering/.test(inspectorText) || !/Artifact[\s\S]*Calibrated control plan/.test(inspectorText) || !/Status[\s\S]*Foundation/.test(inspectorText)) failures.push("Explorer navigation mode: inspector omits required semantic or navigation properties");
   await page.evaluate(() => window.__PALO_EXPLORER.selectNode("nav-monitor"));
   const monitoringInspector = await page.locator("#inspector").innerText();
   if (!/External companion[\s\S]*PolicyWatcher/.test(monitoringInspector) || !/Live destination[\s\S]*https:\/\/www\.policywatcher\.online\//.test(monitoringInspector) || !/Contract \/ schema[\s\S]*policywatcher-signal\.schema\.json/.test(monitoringInspector) || !/Lifecycle phase[\s\S]*measure/.test(monitoringInspector) || !/Status[\s\S]*Foundation/.test(monitoringInspector) || !/Authority boundary[\s\S]*pending human review/.test(monitoringInspector)) failures.push("Explorer PolicyWatcher node: inspector omits live destination, contract, lifecycle, status, or authority boundary");
@@ -391,6 +407,12 @@ try {
   await page.locator("[data-library-search]").fill("adoption");
   if (await page.locator("[data-library-card]:visible").count() < 1) failures.push("Documentation Library: search returned no relevant guide");
   await page.locator("[data-library-search]").fill("");
+  await page.locator('[data-library-depth="all"]').click();
+  await page.locator("[data-library-evidence]").selectOption("canonical-definition");
+  await page.locator("[data-library-workspace]").selectOption("public-catalog");
+  if (await page.locator('[data-library-card][data-evidence-class="canonical-definition"][data-workspace="public-catalog"]:visible').count() < 1) failures.push("Documentation Library: canonical public-catalog filter returned no reference");
+  await page.locator("[data-library-evidence]").selectOption("all");
+  await page.locator("[data-library-workspace]").selectOption("all");
   await page.locator('[data-library-depth="guide"]').click();
   await page.locator("[data-library-audience]").selectOption("technical");
   await page.locator("[data-library-task]").selectOption("integrate");
@@ -490,5 +512,5 @@ if (failures.length) {
   console.error(`Browser smoke failed with ${failures.length} error(s):\n${failures.map((failure) => `- ${failure}`).join("\n")}`);
   process.exitCode = 1;
 } else {
-  console.log(`Browser smoke passed for ${PUBLIC_HTML.length} public HTML pages plus critical P1 evidence flows, PolicyWatcher valid/invalid local import and preservation, and P3 Platform Map, links, graph mode, fallback, and responsive flows.`);
+  console.log(`Browser smoke passed for ${PUBLIC_HTML.length} public HTML pages plus P1 evidence flows, PolicyWatcher import boundaries, and v3 Semantic Inspector, Platform Map, Library, Governance Hub and responsive flows.`);
 }

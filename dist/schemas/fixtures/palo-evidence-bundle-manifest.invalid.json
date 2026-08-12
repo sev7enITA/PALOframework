@@ -1,0 +1,14 @@
+{
+  "format": "palo-evidence-bundle-manifest",
+  "schemaVersion": "1.0.0",
+  "bundleId": "bad",
+  "caseId": "bad",
+  "assessmentRunId": "bad",
+  "generatedAt": "today",
+  "lifecycleDefinitionRef": "relative",
+  "semanticReleaseManifestRef": "",
+  "semanticReleaseDigest": "missing",
+  "items": [],
+  "bundleDigest": "missing",
+  "authorityBoundary": ""
+}

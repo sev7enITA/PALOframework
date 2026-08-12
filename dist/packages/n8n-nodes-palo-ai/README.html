@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>n8n-nodes-palo-ai | PALO Documentation</title>
+  <meta name="description" content="Public PALO documentation: n8n-nodes-palo-ai.">
+  <link rel="canonical" href="https://paloframework.org/packages/n8n-nodes-palo-ai/README.html">
+  <link rel="icon" type="image/webp" href="../../assets/logo.webp">
+  <link rel="stylesheet" href="../../assets/palo-icons.css">
+  <link rel="stylesheet" href="../../assets/palo-v21.css?v=3.0.0">
+  <link rel="stylesheet" href="../../assets/palo-docs.css">
+  <script src="../../assets/palo-icons.js" defer></script>
+  <script src="../../assets/palo-v21.js?v=3.0.0" defer></script>
+  <script src="../../assets/palo-docs.js" defer></script>
+</head>
+<body class="palo-v21 palo-doc-page" data-doc-source="packages/n8n-nodes-palo-ai/README.md">
+  <a class="palo-skip-link" href="#main-content">Skip to main content</a>
+  <header class="palo-site-header"><div class="palo-shell palo-header-inner">
+    <a class="palo-brand" href="../../index.html"><img src="../../assets/logo.webp" alt="PALO">PALO FRAMEWORK</a>
+    <button class="palo-menu-toggle" type="button" data-palo-menu-toggle aria-expanded="false" aria-controls="palo-primary-nav" aria-label="Open navigation"><span data-palo-icon="menu" aria-hidden="true"></span></button>
+    <nav class="palo-nav" id="palo-primary-nav" aria-label="Primary navigation"><a href="../../designs/theory-to-practice-infographic/">Start</a><a href="../../PALO_AIGovernance.html">Agentic Governance</a><a href="../../governance-hub/">Governance Hub</a><a href="../../index.html#guided-journeys">Tools</a><a href="../../PALO_DocumentationLibrary.html" aria-current="page">Documentation</a><a href="../../PALO_AIProductionReadiness.html">Readiness</a></nav>
+  </div></header>
+  <main id="main-content" class="palo-doc-main">
+    <div class="palo-shell">
+      <nav class="palo-doc-breadcrumb" aria-label="Breadcrumb"><a href="../../PALO_DocumentationLibrary.html">Documentation Library</a><span aria-hidden="true">/</span><span>Architecture and integration</span></nav>
+      <header class="palo-doc-hero"><p class="palo-eyebrow">Architecture and integration · Public documentation</p><h1>n8n-nodes-palo-ai</h1><div class="palo-doc-facts"><span><small>Level</small><strong>reference</strong></span><span><small>Audience</small><strong>technical · builder</strong></span><span><small>Product</small><strong>PALO-AI</strong></span><span><small>Status</small><strong>Developer Preview</strong></span><span><small>Read</small><strong>4 min</strong></span></div><p class="palo-doc-source">Published HTML view · Source: <code>packages/n8n-nodes-palo-ai/README.md</code></p><div class="palo-actions"><button class="palo-btn" type="button" data-doc-copy-link>Copy link</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-share>Share page</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-print>Print</button></div><p class="palo-action-status" data-doc-action-status role="status" aria-live="polite"></p></header>
+      <details class="palo-doc-mobile-toc"><summary>On this page</summary><ol><li class="depth-2"><a href="#what-this-alpha-implements">What this alpha implements</a></li><li class="depth-2"><a href="#installation-for-local-evaluation">Installation for local evaluation</a></li><li class="depth-2"><a href="#palo-gateway-prerequisite">PALO Gateway prerequisite</a></li><li class="depth-2"><a href="#credentials">Credentials</a></li><li class="depth-2"><a href="#operations">Operations</a></li><li class="depth-3"><a href="#propose-action">Propose Action</a></li><li class="depth-3"><a href="#resume-approved-action">Resume Approved Action</a></li><li class="depth-3"><a href="#execute-governed-action">Execute Governed Action</a></li><li class="depth-2"><a href="#outputs">Outputs</a></li><li class="depth-2"><a href="#compatibility">Compatibility</a></li><li class="depth-2"><a href="#public-architecture">Public architecture</a></li><li class="depth-2"><a href="#feedback">Feedback</a></li><li class="depth-2"><a href="#license">License</a></li></ol></details>
+      <div class="palo-doc-layout"><aside class="palo-doc-sidebar" aria-label="On this page"><strong>On this page</strong><ol><li class="depth-2"><a href="#what-this-alpha-implements">What this alpha implements</a></li><li class="depth-2"><a href="#installation-for-local-evaluation">Installation for local evaluation</a></li><li class="depth-2"><a href="#palo-gateway-prerequisite">PALO Gateway prerequisite</a></li><li class="depth-2"><a href="#credentials">Credentials</a></li><li class="depth-2"><a href="#operations">Operations</a></li><li class="depth-3"><a href="#propose-action">Propose Action</a></li><li class="depth-3"><a href="#resume-approved-action">Resume Approved Action</a></li><li class="depth-3"><a href="#execute-governed-action">Execute Governed Action</a></li><li class="depth-2"><a href="#outputs">Outputs</a></li><li class="depth-2"><a href="#compatibility">Compatibility</a></li><li class="depth-2"><a href="#public-architecture">Public architecture</a></li><li class="depth-2"><a href="#feedback">Feedback</a></li><li class="depth-2"><a href="#license">License</a></li></ol></aside><article class="palo-doc-content"><h1 id="n8n-nodes-palo-ai">n8n-nodes-palo-ai<a class="palo-doc-anchor" href="#n8n-nodes-palo-ai" aria-label="Link to n8n-nodes-palo-ai">#</a></h1><p>Developer-preview PALO-AI decision gate and full-cycle outcome assurance for n8n agentic workflows.</p>
+<blockquote>
+<p><strong>Not for production authorization.</strong> Package 0.2 adds a full-cycle node backed by operator-provisioned executors and verifiers, but it is not an audited security boundary, verified n8n community node, production identity service or certified connector. Use isolated development data and mock tools only.</p>
+</blockquote>
+<p>The compatibility node routes policy to <strong>Allowed</strong>, <strong>Approval Required</strong> or <strong>Denied</strong>. The new PALO Governed Action node continues through a one-time capability, trusted receipt and authoritative effect verification, then routes to <strong>Verified</strong>, <strong>Review Required</strong>, <strong>Denied</strong> or <strong>Execution Failed</strong>.</p>
+<h2 id="what-this-alpha-implements">What this alpha implements<a class="palo-doc-anchor" href="#what-this-alpha-implements" aria-label="Link to What this alpha implements">#</a></h2><ul>
+<li>encrypted n8n credentials for the gateway URL and bearer token;</li>
+<li>normalized PALO Action Claims (<code>schemaVersion: 1.1.0</code>);</li>
+<li>tool, operation, resource, normalized path, host, network intent, arguments and schema digests;</li>
+<li>nonce, idempotency key, sequence number and expiry material;</li>
+<li>n8n workflow, execution, node and item correlation metadata;</li>
+<li>explicit allow, approval-required and deny outputs;</li>
+<li>immutable-claim resume after approval;</li>
+<li>fail-closed behavior for malformed decisions and connector failures.</li>
+<li>Action Claim 1.2 with a closed Effect Contract predicate DSL;</li>
+<li>runtime-owned protected execution instead of a downstream direct-tool branch;</li>
+<li>signed Execution Receipt and Outcome Attestation;</li>
+<li>held Assurance Incident for mismatched or inconclusive outcomes;</li>
+<li>explicit separation between an <code>allowed</code> policy decision and a <code>verified</code> outcome.</li>
+</ul>
+<p>The original node is visible and removable on the canvas and remains decision-only. The Governed Action node calls the PALO-owned execution endpoint; the workflow must not retain another direct credential path to the protected target.</p>
+<h2 id="installation-for-local-evaluation">Installation for local evaluation<a class="palo-doc-anchor" href="#installation-for-local-evaluation" aria-label="Link to Installation for local evaluation">#</a></h2><p>Build and package from the PALO repository:</p>
+<figure class="palo-doc-code"><figcaption>bash code</figcaption><pre tabindex="0"><code class="language-bash">cd packages/n8n-nodes-palo-ai
+npm ci
+npm run verify
+npm pack</code></pre></figure><p>Install the generated <code>.tgz</code> in a disposable self-hosted n8n instance using the community-node installation flow, or run the official node development environment:</p>
+<figure class="palo-doc-code"><figcaption>bash code</figcaption><pre tabindex="0"><code class="language-bash">npm run dev</code></pre></figure><p>The package is intentionally not published to npm until the local install and runtime test gates are complete.</p>
+<h2 id="palo-gateway-prerequisite">PALO Gateway prerequisite<a class="palo-doc-anchor" href="#palo-gateway-prerequisite" aria-label="Link to PALO Gateway prerequisite">#</a></h2><p>For n8n Cloud or remote integrations, deploy the reference stack on a VPS and use the authenticated HTTPS Gateway URL described in the <a href="https://github.com/sev7enITA/PALOframework/blob/main/docs/palo-ai-vps-deployment.md" target="_blank" rel="noopener noreferrer">online VPS deployment guide</a>. The commands below are only for isolated local package evaluation.</p>
+<p>From the PALO repository root:</p>
+<figure class="palo-doc-code"><figcaption>bash code</figcaption><pre tabindex="0"><code class="language-bash">npm ci
+npm run opa:install</code></pre></figure><p>Start OPA in a first terminal:</p>
+<figure class="palo-doc-code"><figcaption>bash code</figcaption><pre tabindex="0"><code class="language-bash">.tools/opa/opa run --server --addr 127.0.0.1:8181 \
+  examples/policy-as-code/agent-delegation.rego</code></pre></figure><p>Start the gateway in a second terminal:</p>
+<figure class="palo-doc-code"><figcaption>bash code</figcaption><pre tabindex="0"><code class="language-bash">export PALO_OPA_URL='http://127.0.0.1:8181'
+export PALO_GATEWAY_TOKEN='replace-with-at-least-24-random-characters'
+export PALO_HMAC_KEYS_JSON='{"key-support-2026":"replace-with-at-least-32-bytes-of-secret-material"}'
+npm run palo:gateway</code></pre></figure><p>The reference gateway and its SQLite ledger are developer-preview components. They are not a production security boundary.</p>
+<h2 id="credentials">Credentials<a class="palo-doc-anchor" href="#credentials" aria-label="Link to Credentials">#</a></h2><p>Create an <strong>PALO API</strong> credential in n8n:</p>
+<ul>
+<li><strong>Gateway URL:</strong> for example <code>https://governance.paloframework.org/gateway</code> online, or <code>http://127.0.0.1:8787</code> only in an isolated local setup;</li>
+<li><strong>Bearer Token:</strong> the same <code>PALO_GATEWAY_TOKEN</code> used by the gateway.</li>
+</ul>
+<p>The credential test calls the authenticated <code>/v1/registry</code> endpoint. Raw secrets are never placed in node output.</p>
+<h2 id="operations">Operations<a class="palo-doc-anchor" href="#operations" aria-label="Link to Operations">#</a></h2><h3 id="propose-action">Propose Action<a class="palo-doc-anchor" href="#propose-action" aria-label="Link to Propose Action">#</a></h3><p>Builds a new Action Claim and posts it to <code>/v1/actions/verify</code>. Configure the registered agent ID, case ID, tool, operation, resource, path, network intent, arguments, schema, scopes and caller-maintained sequence number.</p>
+<h3 id="resume-approved-action">Resume Approved Action<a class="palo-doc-anchor" href="#resume-approved-action" aria-label="Link to Resume Approved Action">#</a></h3><p>Submits the exact Action Claim returned by the pending-approval output together with its approval ID. Do not reconstruct or alter the claim: PALO binds approval to its canonical digest.</p>
+<h3 id="execute-governed-action">Execute Governed Action<a class="palo-doc-anchor" href="#execute-governed-action" aria-label="Link to Execute Governed Action">#</a></h3><p>Builds Action Claim 1.2, binds an Effect Contract and posts it to <code>/v1/actions/execute</code>. The selected executor and verifier must already be registered and provisioned by the runtime operator. An allowed policy result is not emitted as success: the Verified output is used only after authoritative post-state satisfies the declared effect.</p>
+<h2 id="outputs">Outputs<a class="palo-doc-anchor" href="#outputs" aria-label="Link to Outputs">#</a></h2><ol>
+<li><strong>Allowed</strong> — policy returned <code>allowed</code>; execution is still a separate explicit workflow step.</li>
+<li><strong>Approval Required</strong> — policy returned <code>pending_approval</code>; persist the exact claim and follow the PALO approval flow.</li>
+<li><strong>Denied</strong> — policy returned <code>denied</code>, or a connector error is routed here when n8n's Continue On Fail option is enabled.</li>
+</ol>
+<p>The PALO Governed Action outputs are:</p>
+<ol>
+<li><strong>Verified</strong> — trusted receipt exists and authoritative post-state satisfies the Effect Contract.</li>
+<li><strong>Review Required</strong> — approval is pending, the effect is mismatched, or verification is inconclusive.</li>
+<li><strong>Denied</strong> — authority, policy, replay, precondition or resource-hold checks stopped execution.</li>
+<li><strong>Execution Failed</strong> — the trusted connector reported failure or the PALO connector itself failed when Continue On Fail is enabled.</li>
+</ol>
+<p>Without Continue On Fail, network, authentication, parsing and malformed-response errors stop the workflow. This is deliberate fail-closed behavior.</p>
+<h2 id="compatibility">Compatibility<a class="palo-doc-anchor" href="#compatibility" aria-label="Link to Compatibility">#</a></h2><ul>
+<li>built with <code>@n8n/node-cli</code> 0.39.3;</li>
+<li>local development and canvas-load target: n8n 2.30.7;</li>
+<li>Node.js 20 or newer recommended for the development toolchain.</li>
+</ul>
+<p>Compatibility is evidence from the documented test run, not a support guarantee.</p>
+<h2 id="public-architecture">Public architecture<a class="palo-doc-anchor" href="#public-architecture" aria-label="Link to Public architecture">#</a></h2><ul>
+<li><a href="https://github.com/sev7enITA/PALOframework/blob/main/docs/palo-ai-governance-integration-guide.md" target="_blank" rel="noopener noreferrer">PALO-AI integration guide</a></li>
+<li><a href="https://github.com/sev7enITA/PALOframework/blob/main/docs/palo-ai-full-cycle-assurance.md" target="_blank" rel="noopener noreferrer">PALO-AI full-cycle assurance</a></li>
+<li><a href="https://github.com/sev7enITA/PALOframework/blob/main/docs/palo-ai-n8n-governance-control-plane.md" target="_blank" rel="noopener noreferrer">PALO-AI governance control plane for n8n</a></li>
+<li><a href="https://github.com/sev7enITA/PALOframework/blob/main/agentic/capability-matrix.json" target="_blank" rel="noopener noreferrer">Capability matrix</a></li>
+<li><a href="https://github.com/sev7enITA/PALOframework/blob/main/docs/palo-ai-n8n-launch-playbook.md" target="_blank" rel="noopener noreferrer">Launch and design-partner playbook</a></li>
+</ul>
+<h2 id="feedback">Feedback<a class="palo-doc-anchor" href="#feedback" aria-label="Link to Feedback">#</a></h2><p>Please use the repository issue templates for architecture feedback or a safe, non-production design-partner proposal. Never attach credentials, personal data, proprietary workflow exports or production payloads.</p>
+<h2 id="license">License<a class="palo-doc-anchor" href="#license" aria-label="Link to License">#</a></h2><p>MIT for this package. n8n itself is distributed under its own licensing terms.</p>
+</article></div>
+      <aside class="palo-doc-next"><div><small>Prerequisite</small><strong>No specialist prerequisite stated</strong></div><div><small>Recommended next step</small><strong>Return to the Documentation Library</strong></div></aside>
+      <section class="palo-doc-feedback" aria-labelledby="feedback-title"><p class="palo-eyebrow">Privacy-first feedback</p><h2 id="feedback-title">Help improve this guide</h2><p>Your feedback stays in your browser until you explicitly copy it, download it, or open an email draft. Do not include secrets, personal data, credentials or production identifiers.</p><form data-doc-feedback><div class="palo-form-grid"><div class="palo-field"><label for="feedback-role">Your role</label><select id="feedback-role" name="role"><option>Executive / governance owner</option><option>Platform or security engineer</option><option>No-code / low-code builder</option><option>External reviewer</option></select></div><div class="palo-field"><label for="feedback-category">Category</label><select id="feedback-category" name="category"><option>Clarity</option><option>Technical accuracy</option><option>Missing guidance</option><option>Accessibility</option></select></div><div class="palo-field palo-field-full"><label for="feedback-message">Feedback</label><textarea id="feedback-message" name="message" maxlength="3000" required placeholder="Describe the non-sensitive improvement you recommend."></textarea></div><div class="palo-form-actions"><button class="palo-btn" type="button" data-feedback-copy>Copy feedback</button><button class="palo-btn palo-btn-secondary" type="button" data-feedback-download>Download JSON</button><button class="palo-btn palo-btn-secondary" type="button" data-feedback-email>Email draft</button></div></div><p class="palo-action-status" data-feedback-status role="status" aria-live="polite"></p></form></section>
+    </div>
+  </main>
+  <footer class="palo-footer"><div class="palo-shell"><p>PALO public documentation. Developer preview boundaries apply.</p><div class="palo-footer-links"><a href="../../PALO_AIGovernance.html">PALO-AI</a><a href="../../governance-hub/">Governance Hub</a><a href="../../PALO_AgenticCapabilityMatrix.html">Capability Matrix</a><a href="../../PALO_AIProductionReadiness.html">Production Readiness</a><a href="../../privacy-policy.html">Privacy</a></div></div></footer>
+</body></html>

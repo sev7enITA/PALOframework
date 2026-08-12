@@ -1,8 +1,8 @@
 # PALO-AI Governance Hub — User and Interaction Guide
 
-Status: interaction guide for the implemented PALO-AI v2.5 Governance Hub prototype, updated 19 July 2026.
+Status: interaction guide for the v3-aligned PALO-AI Governance Hub prototype, updated 12 August 2026.
 
-> **The Governance Hub is an interactive product prototype, not a production application.** The current React/Vite interface uses illustrative local data and demonstrates the Executive and Technical journeys described here. It is not connected directly to the Gateway. Use the repository’s REST, MCP, n8n, and demonstration instructions only with synthetic or isolated data until an authenticated BFF and the remaining production controls exist.
+> **The Governance Hub is an interactive product prototype, not a production application.** The current React/Vite interface uses `illustrative-local-preview` data and demonstrates Executive and Technical workspace lenses. Those lenses are not identities, permissions or access-control roles. Records and exports are not a source of record, live authority or approval decision, and the interface is not connected directly to the Gateway. Use the repository’s REST, MCP, n8n, and demonstration instructions only with synthetic or isolated data until an authenticated BFF and the remaining production controls exist.
 
 ## 1. Choose your mode
 
@@ -16,7 +16,7 @@ Use one Hub and select the view appropriate to the decision you need to make.
 | Approve one proposed action | Decision Inbox | An exact claim, meaningful impact description, and terminal decision |
 | Assess readiness for a pilot | Executive Cockpit, then Technical Workbench | A bounded business decision plus technical acceptance evidence |
 
-The mode switch changes language and depth. It does not create a separate source of truth.
+The workspace-lens switch changes language and depth. It does not create a separate source of truth or enforce access control.
 
 ## 2. Concepts in plain language
 

@@ -1,0 +1,105 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paloframework.org/schemas/palo-semantic-spine.schema.json",
+  "title": "PALO Semantic Spine",
+  "type": "object",
+  "required": ["format", "schemaVersion", "semanticVersion", "namespace", "releasedAt", "status", "authorityClasses", "workspaces", "nodes", "links", "stageIds", "navigationIds", "weights"],
+  "properties": {
+    "format": { "const": "palo-semantic-spine" },
+    "schemaVersion": { "const": "1.0.0" },
+    "semanticVersion": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "namespace": { "type": "string", "format": "uri", "pattern": "^https://paloframework\\.org/semantic/$" },
+    "releasedAt": { "type": "string", "format": "date" },
+    "status": { "enum": ["draft", "in-review", "approved-for-release", "deprecated", "superseded"] },
+    "authorityClasses": {
+      "type": "object",
+      "required": ["canonical-definition", "source-backed-context", "illustrative-local-preview", "human-review-required"],
+      "properties": {
+        "canonical-definition": { "$ref": "#/$defs/authorityClass" },
+        "source-backed-context": { "$ref": "#/$defs/authorityClass" },
+        "illustrative-local-preview": { "$ref": "#/$defs/authorityClass" },
+        "human-review-required": { "$ref": "#/$defs/authorityClass" }
+      },
+      "additionalProperties": false
+    },
+    "workspaces": {
+      "type": "array",
+      "minItems": 3,
+      "items": {
+        "type": "object",
+        "required": ["workspaceId", "label", "purpose", "authorityBoundary"],
+        "properties": {
+          "workspaceId": { "enum": ["public-catalog", "case-workspace", "assurance-review"] },
+          "label": { "type": "string", "minLength": 1 },
+          "purpose": { "type": "string", "minLength": 1 },
+          "authorityBoundary": { "type": "string", "minLength": 1 }
+        },
+        "additionalProperties": false
+      }
+    },
+    "nodes": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/node" }
+    },
+    "links": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/link" }
+    },
+    "stageIds": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string" } },
+    "navigationIds": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string" } },
+    "weights": { "type": "object", "minProperties": 1, "additionalProperties": { "type": "string" } }
+  },
+  "$defs": {
+    "authorityClass": {
+      "type": "object",
+      "required": ["label", "meaning", "authoritative"],
+      "properties": {
+        "label": { "type": "string", "minLength": 1 },
+        "meaning": { "type": "string", "minLength": 1 },
+        "authoritative": { "type": "boolean" }
+      },
+      "additionalProperties": false
+    },
+    "node": {
+      "type": "object",
+      "required": ["id", "label", "type", "phaseId", "role", "status", "semanticId", "definitionVersion", "evidenceClass", "authorityBoundary", "sourceRefs", "lastReviewed"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
+        "label": { "type": "string", "minLength": 1 },
+        "type": { "enum": ["stage", "module", "artifact", "actor", "source", "control", "metric", "navigation"] },
+        "phaseId": { "enum": ["frame", "classify", "assess", "control", "measure", "prove"] },
+        "role": { "type": "string", "minLength": 1 },
+        "status": { "type": "string", "minLength": 1 },
+        "semanticId": { "type": "string", "format": "uri" },
+        "definitionVersion": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+        "evidenceClass": { "enum": ["canonical-definition", "source-backed-context", "illustrative-local-preview", "human-review-required"] },
+        "authorityBoundary": { "type": "string", "minLength": 1 },
+        "sourceRefs": { "type": "array", "uniqueItems": true, "items": { "type": "string" } },
+        "lastReviewed": { "type": "string", "format": "date" },
+        "properties": { "type": "object" },
+        "outputs": { "type": "array", "items": { "type": "string" } }
+      },
+      "additionalProperties": true
+    },
+    "link": {
+      "type": "object",
+      "required": ["source", "target", "verb", "weight", "meaning", "artifactTransferred", "relationType", "semanticId", "relationshipVersion", "mappingBasis"],
+      "properties": {
+        "source": { "type": "string" },
+        "target": { "type": "string" },
+        "verb": { "type": "string", "minLength": 1 },
+        "weight": { "type": "string", "pattern": "^W[2-5]$" },
+        "meaning": { "type": "string", "minLength": 1 },
+        "artifactTransferred": { "type": "string" },
+        "relationType": { "enum": ["operational", "evidence", "feedback", "context", "support", "navigation"] },
+        "semanticId": { "type": "string", "format": "uri" },
+        "relationshipVersion": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+        "mappingBasis": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

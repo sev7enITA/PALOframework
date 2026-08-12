@@ -5,8 +5,8 @@
         <link>https://paloframework.org</link>
         <description>Latest updates, tools, and insights from the PALO Framework - Principled AI Lifecycle Orchestration for responsible AI governance.</description>
         <language>en</language>
-        <lastBuildDate>Sat, 08 Aug 2026 03:30:00 +0200</lastBuildDate>
-        <pubDate>Sat, 08 Aug 2026 03:30:00 +0200</pubDate>
+        <lastBuildDate>Wed, 12 Aug 2026 12:00:00 +0200</lastBuildDate>
+        <pubDate>Wed, 12 Aug 2026 12:00:00 +0200</pubDate>
         <ttl>60</ttl>
         <atom:link href="https://paloframework.org/feed.xml" rel="self" type="application/rss+xml"/>
         <image>
@@ -20,6 +20,17 @@
         <category>AI Governance</category>
         <category>Responsible AI</category>
         <category>EU AI Act</category>
+        <item>
+            <title>PALO v3.0.0 - Semantic Foundation</title>
+            <link>https://paloframework.org/docs/palo-v3-semantic-foundation.html</link>
+            <description><![CDATA[PALO v3.0.0 adds a canonical semantic spine, lifecycle and append-only gate decisions, atomic evidence contracts, RDF/SHACL validation, versioned mappings, public authority boundaries and a digest-bound semantic release inventory.]]></description>
+            <pubDate>Wed, 12 Aug 2026 12:00:00 +0200</pubDate>
+            <guid isPermaLink="true">https://paloframework.org/docs/palo-v3-semantic-foundation.html</guid>
+            <dc:creator>PALO Framework</dc:creator>
+            <category>Semantic Foundation</category>
+            <category>Operational Evidence</category>
+            <category>Release Engineering</category>
+        </item>
         <item>
             <title>PALO + Microsoft AGT - Vendor-Neutral Interoperability Proposal</title>
             <link>https://paloframework.org/docs/community/palo-microsoft-agt-interoperability-proposal.html</link>

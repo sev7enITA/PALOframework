@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paloframework.org/schemas/palo-evidence-evaluation.schema.json",
+  "title": "PALO Evidence Evaluation",
+  "type": "object",
+  "required": ["format", "schemaVersion", "evaluationId", "claimId", "assessmentRunId", "evaluator", "evaluatedAt", "outcome", "quality", "rationale", "inputClaimDigest", "recordDigest", "appendOnly"],
+  "properties": {
+    "format": { "const": "palo-evidence-evaluation" },
+    "schemaVersion": { "const": "1.0.0" },
+    "evaluationId": { "type": "string", "pattern": "^evidence-evaluation-[a-z0-9][a-z0-9-]{5,80}$" },
+    "claimId": { "type": "string", "pattern": "^evidence-claim-[a-z0-9][a-z0-9-]{5,80}$" },
+    "assessmentRunId": { "type": "string", "pattern": "^assessment-run-[a-z0-9][a-z0-9-]{5,80}$" },
+    "evaluator": {
+      "type": "object",
+      "required": ["actorId", "role"],
+      "properties": {
+        "actorId": { "type": "string", "minLength": 1 },
+        "role": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
+    },
+    "evaluatedAt": { "type": "string", "format": "date-time" },
+    "outcome": { "enum": ["sufficient", "partial", "insufficient", "unverified"] },
+    "quality": {
+      "type": "object",
+      "required": ["relevance", "integrity", "recency", "independence"],
+      "properties": {
+        "relevance": { "$ref": "#/$defs/score" },
+        "integrity": { "$ref": "#/$defs/score" },
+        "recency": { "$ref": "#/$defs/score" },
+        "independence": { "$ref": "#/$defs/score" }
+      },
+      "additionalProperties": false
+    },
+    "rationale": { "type": "string", "minLength": 1 },
+    "inputClaimDigest": { "$ref": "#/$defs/digest" },
+    "recordDigest": { "$ref": "#/$defs/digest" },
+    "appendOnly": { "const": true }
+  },
+  "$defs": {
+    "score": { "type": "number", "minimum": 0, "maximum": 1 },
+    "digest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" }
+  },
+  "additionalProperties": false
+}

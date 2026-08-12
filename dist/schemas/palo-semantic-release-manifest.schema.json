@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paloframework.org/schemas/palo-semantic-release-manifest.schema.json",
+  "title": "PALO Semantic Release Manifest",
+  "type": "object",
+  "required": ["format", "schemaVersion", "releaseId", "semanticVersion", "releasedAt", "status", "digestAlgorithm", "items", "manifestDigest", "authorityBoundary"],
+  "properties": {
+    "format": { "const": "palo-semantic-release-manifest" },
+    "schemaVersion": { "const": "1.0.0" },
+    "releaseId": { "type": "string", "format": "uri" },
+    "semanticVersion": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "releasedAt": { "type": "string", "format": "date" },
+    "status": { "enum": ["draft", "in-review", "approved-for-release", "deprecated", "superseded"] },
+    "digestAlgorithm": { "const": "sha256" },
+    "items": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["itemId", "path", "role", "semanticVersion", "status", "sha256"],
+        "properties": {
+          "itemId": { "type": "string", "format": "uri" },
+          "path": { "type": "string", "pattern": "^(data|formal|schemas)/" },
+          "role": { "enum": ["canonical-catalog", "lifecycle-definition", "mapping-registry", "invariant-registry", "json-ld-context", "ontology", "constraint-profile", "schema", "change-impact"] },
+          "schemaPath": { "type": "string", "pattern": "^schemas/" },
+          "semanticVersion": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+          "status": { "enum": ["approved-for-release", "compatibility-contract"] },
+          "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "manifestDigest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+    "authorityBoundary": { "type": "string", "minLength": 1 }
+  },
+  "additionalProperties": false
+}

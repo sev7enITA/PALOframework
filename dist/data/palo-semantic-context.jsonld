@@ -1,0 +1,31 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "palo": "https://paloframework.org/semantic/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "id": "@id",
+    "type": "@type",
+    "stableId": "palo:stableId",
+    "definitionVersion": "palo:definitionVersion",
+    "recordedAt": { "@id": "palo:recordedAt", "@type": "xsd:dateTime" },
+    "releasedAt": { "@id": "palo:releasedAt", "@type": "xsd:date" },
+    "contentDigest": "palo:contentDigest",
+    "recordDigest": "palo:recordDigest",
+    "inputSnapshotHash": "palo:inputSnapshotHash",
+    "appendOnly": { "@id": "palo:appendOnly", "@type": "xsd:boolean" },
+    "hasPhaseDefinition": { "@id": "palo:hasPhaseDefinition", "@type": "@id", "@container": "@set" },
+    "hasGateDefinition": { "@id": "palo:hasGateDefinition", "@type": "@id", "@container": "@set" },
+    "instantiatesGate": { "@id": "palo:instantiatesGate", "@type": "@id" },
+    "decisionForGate": { "@id": "palo:decisionForGate", "@type": "@id" },
+    "usesArtifact": { "@id": "palo:usesArtifact", "@type": "@id" },
+    "supportsTarget": { "@id": "palo:supportsTarget", "@type": "@id" },
+    "claimScope": { "@id": "palo:claimScope", "@type": "@id" },
+    "evaluatesClaim": { "@id": "palo:evaluatesClaim", "@type": "@id" },
+    "containsBundleItem": { "@id": "palo:containsBundleItem", "@type": "@id", "@container": "@set" },
+    "mapsSourceVersion": { "@id": "palo:mapsSourceVersion", "@type": "@id" },
+    "mapsTargetVersion": { "@id": "palo:mapsTargetVersion", "@type": "@id" },
+    "pinnedToReleaseManifest": { "@id": "palo:pinnedToReleaseManifest", "@type": "@id" },
+    "supersedes": { "@id": "palo:supersedes", "@type": "@id" }
+  }
+}

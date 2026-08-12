@@ -46,6 +46,29 @@ and this project follows Semantic Versioning where practical.
 - Reframed PALO-AI complexity through progressive disclosure: business questions and visible outcomes are primary, while Action Claims, Effect Contracts, Rego inputs and raw evidence remain inspectable on demand
 - Positioned PALO-AI as an emerging governance control plane while retaining developer-preview disclaimers and avoiding claims of certified, production-ready, biometric, exactly-once, or unavoidable enforcement
 
+## [3.0.0] - 2026-08-12
+
+### Added
+
+- Added the canonical PALO semantic spine with stable HTTPS identifiers, definition versions, evidence/authority classes, source references and review dates across 46 public graph entities and their relationships.
+- Added lifecycle, Gate Instance and append-only Gate Decision Record contracts with actor authority, rationale, immutable input snapshots and digest chaining.
+- Added atomic Evidence Artifact, Evidence Claim, Evidence Evaluation and Evidence Bundle Manifest contracts while retaining P1 Case File and Evidence Bundle v1 compatibility.
+- Added a JSON-LD context, RDF ontology, SHACL shapes, valid/invalid Turtle fixtures and executable semantic invariants.
+- Added a versioned atomic mapping registry across controls, indicators, gates and sources, plus change-impact and digest-bound semantic release manifests.
+- Added a public Semantic Inspector, evidence/authority filters in Platform Map and Documentation Library, and semantic record drawers in the Governance Hub prototype.
+
+### Changed
+
+- The Explorer graph asset is now generated deterministically from the semantic spine instead of being an independently maintained catalog.
+- Delivery state is now separate from evidence authority: Canonical definition, Source-backed context, Illustrative local preview and Human review required.
+- Executive and Technical in the Governance Hub are explicitly workspace lenses, not access-control roles; all prototype records and exports declare their non-authoritative local-preview boundary.
+- P2 registry documentation now reports the canonical 9 controls and 10 indicators.
+- Root web/package/release metadata and shared asset cache keys advance to v3.0.0.
+
+### Validation
+
+- Added generation-drift checks, JSON Schema validation, RDF parsing, SHACL-subset conformance checks, invalid-fixture assertions, mapping/digest validation and public build coverage to the P0 gate.
+
 ## [2.5.0] - 2026-07-18
 
 **Release status: Full-Cycle Developer Preview. Isolated evaluation only.**

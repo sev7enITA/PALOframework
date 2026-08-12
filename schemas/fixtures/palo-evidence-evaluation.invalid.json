@@ -1,0 +1,15 @@
+{
+  "format": "palo-evidence-evaluation",
+  "schemaVersion": "1.0.0",
+  "evaluationId": "bad",
+  "claimId": "bad",
+  "assessmentRunId": "bad",
+  "evaluator": { "actorId": "", "role": "" },
+  "evaluatedAt": "today",
+  "outcome": "approved",
+  "quality": { "relevance": 2, "integrity": -1, "recency": 1, "independence": 1 },
+  "rationale": "",
+  "inputClaimDigest": "missing",
+  "recordDigest": "missing",
+  "appendOnly": false
+}

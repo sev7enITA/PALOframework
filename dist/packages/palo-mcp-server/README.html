@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>PALO MCP reference server — Developer Preview | PALO Documentation</title>
+  <meta name="description" content="Public PALO documentation: PALO MCP reference server — Developer Preview.">
+  <link rel="canonical" href="https://paloframework.org/packages/palo-mcp-server/README.html">
+  <link rel="icon" type="image/webp" href="../../assets/logo.webp">
+  <link rel="stylesheet" href="../../assets/palo-icons.css">
+  <link rel="stylesheet" href="../../assets/palo-v21.css?v=3.0.0">
+  <link rel="stylesheet" href="../../assets/palo-docs.css">
+  <script src="../../assets/palo-icons.js" defer></script>
+  <script src="../../assets/palo-v21.js?v=3.0.0" defer></script>
+  <script src="../../assets/palo-docs.js" defer></script>
+</head>
+<body class="palo-v21 palo-doc-page" data-doc-source="packages/palo-mcp-server/README.md">
+  <a class="palo-skip-link" href="#main-content">Skip to main content</a>
+  <header class="palo-site-header"><div class="palo-shell palo-header-inner">
+    <a class="palo-brand" href="../../index.html"><img src="../../assets/logo.webp" alt="PALO">PALO FRAMEWORK</a>
+    <button class="palo-menu-toggle" type="button" data-palo-menu-toggle aria-expanded="false" aria-controls="palo-primary-nav" aria-label="Open navigation"><span data-palo-icon="menu" aria-hidden="true"></span></button>
+    <nav class="palo-nav" id="palo-primary-nav" aria-label="Primary navigation"><a href="../../designs/theory-to-practice-infographic/">Start</a><a href="../../PALO_AIGovernance.html">Agentic Governance</a><a href="../../governance-hub/">Governance Hub</a><a href="../../index.html#guided-journeys">Tools</a><a href="../../PALO_DocumentationLibrary.html" aria-current="page">Documentation</a><a href="../../PALO_AIProductionReadiness.html">Readiness</a></nav>
+  </div></header>
+  <main id="main-content" class="palo-doc-main">
+    <div class="palo-shell">
+      <nav class="palo-doc-breadcrumb" aria-label="Breadcrumb"><a href="../../PALO_DocumentationLibrary.html">Documentation Library</a><span aria-hidden="true">/</span><span>Start and adoption</span></nav>
+      <header class="palo-doc-hero"><p class="palo-eyebrow">Start and adoption · Public documentation</p><h1>PALO MCP reference server — Developer Preview</h1><div class="palo-doc-facts"><span><small>Level</small><strong>reference</strong></span><span><small>Audience</small><strong>technical · builder</strong></span><span><small>Product</small><strong>PALO Core</strong></span><span><small>Status</small><strong>Current Guidance</strong></span><span><small>Read</small><strong>3 min</strong></span></div><p class="palo-doc-source">Published HTML view · Source: <code>packages/palo-mcp-server/README.md</code></p><div class="palo-actions"><button class="palo-btn" type="button" data-doc-copy-link>Copy link</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-share>Share page</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-print>Print</button></div><p class="palo-action-status" data-doc-action-status role="status" aria-live="polite"></p></header>
+      <details class="palo-doc-mobile-toc"><summary>On this page</summary><ol><li class="depth-2"><a href="#safety-notice">Safety notice</a></li><li class="depth-2"><a href="#full-cycle-reference-demo">Full-cycle reference demo</a></li><li class="depth-2"><a href="#vendor-neutral-enforcement-providers">Vendor-neutral enforcement providers</a></li><li class="depth-2"><a href="#local-validation">Local validation</a></li></ol></details>
+      <div class="palo-doc-layout"><aside class="palo-doc-sidebar" aria-label="On this page"><strong>On this page</strong><ol><li class="depth-2"><a href="#safety-notice">Safety notice</a></li><li class="depth-2"><a href="#full-cycle-reference-demo">Full-cycle reference demo</a></li><li class="depth-2"><a href="#vendor-neutral-enforcement-providers">Vendor-neutral enforcement providers</a></li><li class="depth-2"><a href="#local-validation">Local validation</a></li></ol></aside><article class="palo-doc-content"><h1 id="palo-mcp-reference-server--developer-preview">PALO MCP reference server — Developer Preview<a class="palo-doc-anchor" href="#palo-mcp-reference-server--developer-preview" aria-label="Link to PALO MCP reference server — Developer Preview">#</a></h1><p>This package is the non-production reference implementation shipped with PALO-AI v2.5. It demonstrates the official MCP SDK over stdio and experimental bearer-authenticated Streamable HTTP, Action Claim 1.2, Effect Contracts, one-time capabilities, trusted in-process executors, authoritative verifiers, signed receipts, outcome attestations, assurance incidents and a hash-chained SQLite ledger.</p>
+<h2 id="safety-notice">Safety notice<a class="palo-doc-anchor" href="#safety-notice" aria-label="Link to Safety notice">#</a></h2><p>Do not use this package to authorize or execute production tools, access sensitive data, or support consequential decisions. It is not an audited security boundary, universal exactly-once executor, production identity service, trusted approval service, compliance certification, or production evidence platform.</p>
+<p>The following controls are not provided in v2.5:</p>
+<ul>
+<li>principal-level authentication and RBAC for administrators, agents, reviewers, auditors, and connectors;</li>
+<li>TLS termination, workload identity, token rotation, rate limiting, or network perimeter controls;</li>
+<li>production policy-bundle signing, distribution, attestation, rollback, or availability;</li>
+<li>a distributed transaction spanning external tools; exactly-once claims remain limited to connectors with reliable idempotency semantics;</li>
+<li>durable job leasing and crash recovery across multiple runtime replicas;</li>
+<li>production attestation of executor and verifier binaries, workloads or supply chains;</li>
+<li>KMS/HSM key custody, rotation, revocation, separation of duties, or external ledger anchoring;</li>
+<li>complete action context and authenticated reviewer identity for meaningful approval;</li>
+<li>trusted Vibe Gate attestation or an unavoidable pre-tool-call execution proxy;</li>
+<li>Mode B Team Registry, Shared Task Claims, peer coordination, leases, conflict handling, or team-level evidence;</li>
+<li>monitoring, backup/restore, retention, incident response, penetration testing, or distributed staging validation.</li>
+</ul>
+<p>Use only isolated development data and unprivileged mock executors. Read the repository-level capability matrix and integration guide before running the server.</p>
+<h2 id="full-cycle-reference-demo">Full-cycle reference demo<a class="palo-doc-anchor" href="#full-cycle-reference-demo" aria-label="Link to Full-cycle reference demo">#</a></h2><p>Start OPA, then run the Gateway with the synthetic catalog adapter:</p>
+<figure class="palo-doc-code"><figcaption>bash code</figcaption><pre tabindex="0"><code class="language-bash">export PALO_OPA_URL='http://127.0.0.1:8181'
+export PALO_GATEWAY_TOKEN='palo-demo-only-gateway-token-32-bytes'
+export PALO_HMAC_KEYS_JSON='{"key-catalog-demo":"palo-demo-only-signing-secret-material-32-bytes"}'
+export PALO_ENABLE_DEMO_CATALOG='true'
+npm run palo:gateway</code></pre></figure><p>In another terminal run <code>npm run demo:hands-on -- --auto-approve</code>. Add <code>--wrong-effect</code> to demonstrate an authorized action that produces a mismatched outcome and a held Assurance Incident.</p>
+<p>On Gateway startup, <code>executing/pending</code> outbox rows older than <code>PALO_EXECUTION_RECOVERY_AGE_MS</code> (30 seconds by default) are recovered fail-closed. The runtime creates a signed <code>unknown</code> receipt, an inconclusive attestation, and a held incident. Rows with a recorded receipt but no attestation resume outcome verification. This protects the reference single-instance lifecycle after interruption; it is not multi-replica leasing or a universal exactly-once guarantee.</p>
+<h2 id="vendor-neutral-enforcement-providers">Vendor-neutral enforcement providers<a class="palo-doc-anchor" href="#vendor-neutral-enforcement-providers" aria-label="Link to Vendor-neutral enforcement providers">#</a></h2><p>OPA remains the default policy evaluator. The runtime now accepts a versioned <code>palo-agentic-enforcement-provider</code> implementation and records its provider, version, policy reference and optional decision/evidence references in each Policy Decision.</p>
+<p>The first optional provider maps PALO Action Claims to Microsoft Agent Governance Toolkit ACS <code>pre_tool_call</code>. It is a PALO-maintained interoperability proposal, not a Microsoft-maintained or endorsed integration. The upstream package is loaded only when selected and is not a mandatory PALO dependency.</p>
+<figure class="palo-doc-code"><figcaption>bash code</figcaption><pre tabindex="0"><code class="language-bash">npm install --no-save --package-lock=false agent-control-specification@0.3.1-beta.0
+npm run demo:microsoft-agt</code></pre></figure><p>See the <a href="https://github.com/sev7enITA/PALOframework/tree/main/examples/agentic-interface/integrations/microsoft-agt" target="_blank" rel="noopener noreferrer">PALO + Microsoft AGT quickstart</a> for the environment configuration, trust boundaries and upgrade policy.</p>
+<h2 id="local-validation">Local validation<a class="palo-doc-anchor" href="#local-validation" aria-label="Link to Local validation">#</a></h2><figure class="palo-doc-code"><figcaption>bash code</figcaption><pre tabindex="0"><code class="language-bash">npm ci
+npm run opa:install
+npm run validate:agentic</code></pre></figure><p>Passing the included tests confirms the documented reference behavior only; it does not establish production readiness.</p>
+</article></div>
+      <aside class="palo-doc-next"><div><small>Prerequisite</small><strong>No specialist prerequisite stated</strong></div><div><small>Recommended next step</small><strong>Return to the Documentation Library</strong></div></aside>
+      <section class="palo-doc-feedback" aria-labelledby="feedback-title"><p class="palo-eyebrow">Privacy-first feedback</p><h2 id="feedback-title">Help improve this guide</h2><p>Your feedback stays in your browser until you explicitly copy it, download it, or open an email draft. Do not include secrets, personal data, credentials or production identifiers.</p><form data-doc-feedback><div class="palo-form-grid"><div class="palo-field"><label for="feedback-role">Your role</label><select id="feedback-role" name="role"><option>Executive / governance owner</option><option>Platform or security engineer</option><option>No-code / low-code builder</option><option>External reviewer</option></select></div><div class="palo-field"><label for="feedback-category">Category</label><select id="feedback-category" name="category"><option>Clarity</option><option>Technical accuracy</option><option>Missing guidance</option><option>Accessibility</option></select></div><div class="palo-field palo-field-full"><label for="feedback-message">Feedback</label><textarea id="feedback-message" name="message" maxlength="3000" required placeholder="Describe the non-sensitive improvement you recommend."></textarea></div><div class="palo-form-actions"><button class="palo-btn" type="button" data-feedback-copy>Copy feedback</button><button class="palo-btn palo-btn-secondary" type="button" data-feedback-download>Download JSON</button><button class="palo-btn palo-btn-secondary" type="button" data-feedback-email>Email draft</button></div></div><p class="palo-action-status" data-feedback-status role="status" aria-live="polite"></p></form></section>
+    </div>
+  </main>
+  <footer class="palo-footer"><div class="palo-shell"><p>PALO public documentation. Developer preview boundaries apply.</p><div class="palo-footer-links"><a href="../../PALO_AIGovernance.html">PALO-AI</a><a href="../../governance-hub/">Governance Hub</a><a href="../../PALO_AgenticCapabilityMatrix.html">Capability Matrix</a><a href="../../PALO_AIProductionReadiness.html">Production Readiness</a><a href="../../privacy-policy.html">Privacy</a></div></div></footer>
+</body></html>

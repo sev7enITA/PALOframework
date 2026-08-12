@@ -1,0 +1,2296 @@
+{
+  "format": "palo-semantic-spine",
+  "schemaVersion": "1.0.0",
+  "semanticVersion": "3.0.0",
+  "namespace": "https://paloframework.org/semantic/",
+  "releasedAt": "2026-08-12",
+  "status": "approved-for-release",
+  "authorityClasses": {
+    "canonical-definition": {
+      "label": "Canonical definition",
+      "meaning": "A versioned PALO framework definition.",
+      "authoritative": true
+    },
+    "source-backed-context": {
+      "label": "Source-backed context",
+      "meaning": "Context traceable to registered sources; applicability still requires accountable review.",
+      "authoritative": false
+    },
+    "illustrative-local-preview": {
+      "label": "Illustrative local preview",
+      "meaning": "Demonstration or foundation data that is not operational evidence.",
+      "authoritative": false
+    },
+    "human-review-required": {
+      "label": "Human review required",
+      "meaning": "A non-authoritative signal that cannot change governance state without accountable review.",
+      "authoritative": false
+    }
+  },
+  "workspaces": [
+    {
+      "workspaceId": "public-catalog",
+      "label": "Public semantic catalog",
+      "purpose": "Explore versioned PALO definitions, relations and source boundaries.",
+      "authorityBoundary": "Read-only framework orientation; no case decision is made here."
+    },
+    {
+      "workspaceId": "case-workspace",
+      "label": "Case workspace",
+      "purpose": "Apply released definitions to a local governance case.",
+      "authorityBoundary": "Case state remains local and does not amend canonical framework definitions."
+    },
+    {
+      "workspaceId": "assurance-review",
+      "label": "Assurance review",
+      "purpose": "Review evidence, conditions, incidents and decision history.",
+      "authorityBoundary": "Review records accountability; it does not create legal conclusions or technical authority by implication."
+    }
+  ],
+  "nodes": [
+    {
+      "id": "frame",
+      "label": "Frame",
+      "number": "01",
+      "type": "stage",
+      "phaseId": "frame",
+      "role": "Define the use case, its boundary, owners and affected people before governance choices are made.",
+      "status": "Operational phase",
+      "properties": {
+        "Core question": "What are we building, for whom, and why?",
+        "Lifecycle": "Phase 1 Ideation",
+        "Decision gate": "Is the use case sufficiently defined to classify?"
+      },
+      "outputs": [
+        "Use-case brief"
+      ],
+      "action": "Describe purpose, scope, owners, affected people and the decision boundary.",
+      "intents": [
+        "what should I do first",
+        "start governance",
+        "define use case",
+        "assign owner"
+      ],
+      "stakeholders": [
+        "accountable owner",
+        "product",
+        "governance"
+      ],
+      "href": "#frame",
+      "semanticId": "https://paloframework.org/semantic/stage/frame",
+      "definitionVersion": "3.0.0",
+      "evidenceClass": "canonical-definition",
+      "authorityBoundary": "Canonical PALO framework definition; it structures governance but does not create legal obligations or authorize deployment.",
+      "sourceRefs": [],
+      "lastReviewed": "2026-08-12"
+    },
+    {
+      "id": "classify",
+      "label": "Classify",
+      "number": "02",
+      "type": "stage",
+      "phaseId": "classify",
+      "role": "Establish the applicable risk route, obligations and level of scrutiny.",
+      "status": "Operational phase",
+      "properties": {
+        "Core question": "What route, obligations, and level of scrutiny apply?",
+        "Lifecycle": "Phases 1-2 Screening and Assessment",
+        "Decision gate": "Is the initial risk route justified and current?"
+      },
+      "outputs": [
+        "Risk route"
+      ],
+      "action": "Run the initial risk route and verify current obligations against official sources.",
+      "intents": [
+        "classify risk",
+        "risk tier",
+        "applicable obligations",
+        "high risk"
+      ],
+      "stakeholders": [
+        "legal",
+        "risk",
+        "governance"
+      ],
+      "href": "#classify",
+      "semanticId": "https://paloframework.org/semantic/stage/classify",
+      "definitionVersion": "3.0.0",
+      "evidenceClass": "canonical-definition",
+      "authorityBoundary": "Canonical PALO framework definition; it structures governance but does not create legal obligations or authorize deployment.",
+      "sourceRefs": [],
+      "lastReviewed": "2026-08-12"
+    },
+    {
+      "id": "assess",
+      "label": "Assess",
+      "number": "03",
+      "type": "stage",
+      "phaseId": "assess",
+      "role": "Evaluate impacts, rights, delegated authority, autonomy and oversight conditions.",
+      "status": "Operational phase",
+      "properties": {
+        "Core question": "What impacts, rights, authority, and oversight conditions exist?",
+        "Lifecycle": "Phase 2 Assessment and Planning",
+        "Decision gate": "Are impacts and delegated authority understood well enough to control?"
+      },
+      "outputs": [
+        "Impact assessment record"
+      ],
+      "action": "Evaluate impacts, fundamental rights, authority, autonomy and human oversight.",
+      "intents": [
+        "fundamental rights",
+        "agent autonomy",
+        "assess impact",
+        "human oversight"
+      ],
+      "stakeholders": [
+        "legal",
+        "risk",
+        "product",
+        "public sector"
+      ],
+      "href": "#assess",
+      "semanticId": "https://paloframework.org/semantic/stage/assess",
+      "definitionVersion": "3.0.0",
+      "evidenceClass": "canonical-definition",
+      "authorityBoundary": "Canonical PALO framework definition; it structures governance but does not create legal obligations or authorize deployment.",
+      "sourceRefs": [],
+      "lastReviewed": "2026-08-12"
+    },
+    {
+      "id": "control",
+      "label": "Control",
+      "number": "04",
+      "type": "stage",
+      "phaseId": "control",
+      "role": "Translate findings into owned, testable engineering, process and assurance controls.",
+      "status": "Operational phase",
+      "properties": {
+        "Core question": "Which controls make the identified risks governable?",
+        "Lifecycle": "Phases 2-3 Planning, Development, and Validation",
+        "Decision gate": "Are controls implemented, testable, and owned?"
+      },
+      "outputs": [
+        "Control plan"
+      ],
+      "action": "Convert findings into owned controls with tests, evidence and decision gates.",
+      "intents": [
+        "select controls",
+        "implement controls",
+        "assurance test",
+        "development governance"
+      ],
+      "stakeholders": [
+        "engineering",
+        "product",
+        "assurance"
+      ],
+      "href": "#control",
+      "semanticId": "https://paloframework.org/semantic/stage/control",
+      "definitionVersion": "3.0.0",
+      "evidenceClass": "canonical-definition",
+      "authorityBoundary": "Canonical PALO framework definition; it structures governance but does not create legal obligations or authorize deployment.",
+      "sourceRefs": [],
+      "lastReviewed": "2026-08-12"
+    },
+    {
+      "id": "measure",
+      "label": "Measure",
+      "number": "05",
+      "type": "stage",
+      "phaseId": "measure",
+      "role": "Define how accountability, performance, risk and drift will be observed over time.",
+      "status": "Operational phase",
+      "properties": {
+        "Core question": "How will accountability, performance, risk, and drift be observed?",
+        "Lifecycle": "Phase 2 definition and Phase 4 monitoring",
+        "Decision gate": "Can the team detect deterioration and act?"
+      },
+      "outputs": [
+        "KPI/KRI register"
+      ],
+      "action": "Define indicators, thresholds, owners and cadence, then monitor material change.",
+      "intents": [
+        "KPI",
+        "KRI",
+        "monitor change",
+        "drift",
+        "threshold"
+      ],
+      "stakeholders": [
+        "operations",
+        "assurance",
+        "board"
+      ],
+      "href": "#measure",
+      "semanticId": "https://paloframework.org/semantic/stage/measure",
+      "definitionVersion": "3.0.0",
+      "evidenceClass": "canonical-definition",
+      "authorityBoundary": "Canonical PALO framework definition; it structures governance but does not create legal obligations or authorize deployment.",
+      "sourceRefs": [],
+      "lastReviewed": "2026-08-12"
+    },
+    {
+      "id": "prove",
+      "label": "Prove & Review",
+      "number": "06",
+      "type": "stage",
+      "phaseId": "prove",
+      "role": "Assemble reconstructable evidence, decide readiness and feed findings into the next cycle.",
+      "status": "Operational phase",
+      "properties": {
+        "Core question": "Can the decision be reconstructed, reviewed, and improved?",
+        "Lifecycle": "Phases 4-5 Deployment, Review, and Decommissioning",
+        "Decision gate": "Is the evidence complete enough for an accountable decision?"
+      },
+      "outputs": [
+        "Versioned evidence bundle",
+        "Next-cycle update"
+      ],
+      "action": "Assemble versioned evidence, review readiness and record the accountable decision.",
+      "intents": [
+        "board evidence",
+        "evidence bundle",
+        "prove decision",
+        "review readiness"
+      ],
+      "stakeholders": [
+        "board",
+        "executive",
+        "audit",
+        "assurance"
+      ],
+      "href": "#prove",
+      "semanticId": "https://paloframework.org/semantic/stage/prove",
+      "definitionVersion": "3.0.0",
+      "evidenceClass": "canonical-definition",
+      "authorityBoundary": "Canonical PALO framework definition; it structures governance but does not create legal obligations or authorize deployment.",
+      "sourceRefs": [],
+      "lastReviewed": "2026-08-12"
+    },
+    {
+      "id": "model-canvas",
+      "label": "AI Model Canvas",
+      "type": "module",
+      "phaseId": "frame",
+      "role": "Structures purpose, scope, ownership and assumptions.",
+      "status": "Available",
+      "href": "../../PALO_ModelCanvasAI.html",
+      "properties": {
+        "When to use": "At initiation and after material scope change",
+        "Key properties": "purpose, scope, owners, stakeholders, lifecycle, assumptions",
+        "Weight": "W5 Core"
+      },
+      "outputs": [
+        "Structured Canvas",
+        "JSON/Markdown record"
+      ],
+      "weight": "W5",
+      "action": "At initiation and after material scope change",
+      "intents": [
+        "what should I do first",
+        "start governance",
+        "define use case",
+        "assign owner"
+      ],
+      "stakeholders": [
+        "accountable owner",
+        "product",
+        "governance"
+      ],
+      "semanticId": "https://paloframework.org/semantic/module/model-canvas",
+      "definitionVersion": "3.0.0",
+      "evidenceClass": "canonical-definition",
+      "authorityBoundary": "Canonical PALO framework definition; it structures governance but does not create legal obligations or authorize deployment.",
+      "sourceRefs": [
+        "src-nist-ai-rmf"
+      ],
+      "lastReviewed": "2026-08-12"
+    },
+    {
+      "id": "agency-map",
+      "label": "Human Agency Risk Map",
+      "type": "module",
+      "phaseId": "frame",
+      "role": "Maps delegated activity and potential effects on human agency.",
+      "status": "Available",
+      "href": "../../PALO_HumanAgencyRiskMap.html",
+      "properties": {
+        "When to use": "When systems influence or replace human decisions",
+        "Key properties": "delegated activity, affected agency, oversight need",
+        "Weight": "W3 Contextual"
+      },
+      "outputs": [
+        "Agency-risk context"
+      ],
+      "weight": "W3",
+      "action": "When systems influence or replace human decisions",
+      "intents": [
+        "what should I do first",
+        "start governance",
+        "define use case",
+        "assign owner"
+      ],
+      "stakeholders": [
+        "accountable owner",
+        "product",
+        "governance"
+      ],
+      "semanticId": "https://paloframework.org/semantic/module/agency-map",
+      "definitionVersion": "3.0.0",
+      "evidenceClass": "canonical-definition",
+      "authorityBoundary": "Canonical PALO framework definition; it structures governance but does not create legal obligations or authorize deployment.",
+      "sourceRefs": [
+        "src-oecd-ai-principles"
+      ],
+      "lastReviewed": "2026-08-12"
+    },
+    {
+      "id": "tech-trends",
+      "label": "Tech Trends Observatory",
+      "type": "module",
+      "phaseId": "frame",
+      "role": "Adds technology and horizon signals to the use-case context.",
+      "status": "Reference",
+      "href": "../../PALO_TechTrends2026.html",
+      "properties": {
+        "When to use": "For emerging capabilities or uncertain technical trajectories",
+        "Key properties": "technology signal, horizon, governance impact",
+        "Weight": "W2 Supporting"
+      },
+      "outputs": [
+        "Horizon context"
+      ],
+      "weight": "W2",
+      "action": "For emerging capabilities or uncertain technical trajectories",
+      "intents": [
+        "what should I do first",
+        "start governance",
+        "define use case",
+        "assign owner"
+      ],
+      "stakeholders": [
+        "accountable owner",
+        "product",
+        "governance"
+      ],
+      "semanticId": "https://paloframework.org/semantic/module/tech-trends",
+      "definitionVersion": "3.0.0",
+      "evidenceClass": "source-backed-context",
+      "authorityBoundary": "Source-backed context informs governance work but does not independently determine legal applicability, compliance, or deployment authorization.",
+      "sourceRefs": [
+        "src-nist-ai-rmf"
+      ],
+      "lastReviewed": "2026-08-12"
+    },
+    {
+      "id": "risk-tiering",
+      "label": "Risk Tiering Calculator",
+      "type": "module",
+      "phaseId": "classify",
+      "role": "Routes the use case through an initial EU AI Act risk screen.",
+      "status": "Available",
+      "href": "../../PALO_RiskTiering.html",
+      "properties": {
+        "When to use": "For every use case before detailed assessment",
+        "Key properties": "tier, prohibited-practice signals, high-risk context",
+        "Weight": "W5 Core"
+      },
+      "outputs": [
+        "Markdown risk report"
+      ],
+      "weight": "W5",
+      "action": "For every use case before detailed assessment",
+      "intents": [
+        "classify risk",
+        "risk tier",
+        "applicable obligations",
+        "high risk"
+      ],
+      "stakeholders": [
+        "legal",
+        "risk",
+        "governance"
+      ],
+      "semanticId": "https://paloframework.org/semantic/module/risk-tiering",
+      "definitionVersion": "3.0.0",
+      "evidenceClass": "canonical-definition",
+      "authorityBoundary": "Canonical PALO framework definition; it structures governance but does not create legal obligations or authorize deployment.",
+      "sourceRefs": [
+        "src-eu-ai-act"
+      ],
+      "lastReviewed": "2026-08-12"
+    },
+    {
+      "id": "comparison",
+      "label": "Framework Comparison",
+      "type": "module",
+      "phaseId": "classify",
+      "role": "Cross-checks overlapping governance frameworks and gaps.",
+      "status": "Available",
+      "href": "../../PALO_ComparisonTool.html",
+      "properties": {
+        "When to use": "When multiple standards or frameworks apply",
+        "Key properties": "applicable framework, overlap, gaps",
+        "Weight": "W3 Contextual"
+      },
+      "outputs": [
+        "Comparison record"
+      ],
+      "weight": "W3",
+      "action": "When multiple standards or frameworks apply",
+      "intents": [
+        "classify risk",
+        "risk tier",
+        "applicable obligations",
+        "high risk"
+      ],
+      "stakeholders": [
+        "legal",
+        "risk",
+        "governance"
+      ],
+      "semanticId": "https://paloframework.org/semantic/module/comparison",
+      "definitionVersion": "3.0.0",
+      "evidenceClass": "canonical-definition",
+      "authorityBoundary": "Canonical PALO framework definition; it structures governance but does not create legal obligations or authorize deployment.",
+      "sourceRefs": [
+        "src-nist-ai-rmf",
+        "src-iso-42001"
+      ],
+      "lastReviewed": "2026-08-12"
+    },
+    {
+      "id": "reg-watch",
+      "label": "Regulatory Watch 2026",
+      "type": "module",
+      "phaseId": "classify",
+      "role": "Keeps the route anchored to current official sources.",
+      "status": "Reviewed source",
+      "href": "../../PALO_RegulatoryWatch.html",
+      "properties": {
+        "When to use": "At classification and each formal review",
+        "Key properties": "article, date, status, source",
+        "Weight": "W4 Strong"
+      },
+      "outputs": [
+        "Current obligation context"
+      ],
+      "weight": "W4",
+      "action": "At classification and each formal review",
+      "intents": [
+        "classify risk",
+        "risk tier",
+        "applicable obligations",
+        "high risk"
+      ],
+      "stakeholders": [
+        "legal",
+        "risk",
+        "governance"
+      ],
+      "semanticId": "https://paloframework.org/semantic/module/reg-watch",
+      "definitionVersion": "3.0.0",
+      "evidenceClass": "source-backed-context",
+      "authorityBoundary": "Source-backed context informs governance work but does not independently determine legal applicability, compliance, or deployment authorization.",
+      "sourceRefs": [
+        "src-eu-ai-act"
+      ],
+      "lastReviewed": "2026-08-12"
+    },
+    {
+      "id": "fria",
+      "label": "FRIA Assessment",
+      "type": "module",
+      "phaseId": "assess",
+      "role": "Evaluates fundamental-rights impact scenarios and mitigations.",
+      "status": "Available",
+      "href": "../../PALO_FRIA.html",
+      "properties": {
+        "When to use": "When deployment may affect people or protected rights",
+        "Key properties": "affected right, scenario, likelihood, gravity, reversibility, mitigation",
+        "Weight": "W4 Strong"
+      },
+      "outputs": [
+        "FRIA JSON/Markdown/template"
+      ],
+      "weight": "W4",
+      "action": "When deployment may affect people or protected rights",
+      "intents": [
+        "fundamental rights",
+        "agent autonomy",
+        "assess impact",
+        "human oversight"
+      ],
+      "stakeholders": [
+        "legal",
+        "risk",
+        "product",
+        "public sector"
+      ],
+      "semanticId": "https://paloframework.org/semantic/module/fria",
+      "definitionVersion": "3.0.0",
+      "evidenceClass": "canonical-definition",
+      "authorityBoundary": "Canonical PALO framework definition; it structures governance but does not create legal obligations or authorize deployment.",
+      "sourceRefs": [
+        "src-eu-ai-act"
+      ],
+      "lastReviewed": "2026-08-12"
+    },
+    {
+      "id": "palo-am",
+      "label": "PALO-AM",
+      "type": "module",
+      "phaseId": "assess",
+      "role": "Examines identity, authority and action space in agentic systems.",
+      "status": "Available",
+      "href": "../../PALO_AgenticGovernance.html",
+      "properties": {
+        "When to use": "For agents, tools and delegated action",
+        "Key properties": "identity, authority, tools, action space, autonomy, oversight",
+        "Weight": "W4 Strong"
+      },
+      "outputs": [
+        "Agentic governance record"
+      ],
+      "weight": "W4",
+      "action": "For agents, tools and delegated action",
+      "intents": [
+        "fundamental rights",
+        "agent autonomy",
+        "assess impact",
+        "human oversight"
+      ],
+      "stakeholders": [
+        "legal",
+        "risk",
+        "product",
+        "public sector"
+      ],
+      "semanticId": "https://paloframework.org/semantic/module/palo-am",
+      "definitionVersion": "3.0.0",
+      "evidenceClass": "canonical-definition",
+      "authorityBoundary": "Canonical PALO framework definition; it structures governance but does not create legal obligations or authorize deployment.",
+      "sourceRefs": [
+        "src-nist-ai-rmf",
+        "src-iso-42001"
+      ],
+      "lastReviewed": "2026-08-12"
+    },
+    {
+      "id": "assessment-path",
+      "label": "Assessment Path",
+      "type": "module",
+      "phaseId": "assess",
+      "role": "Connects context, risk route, readiness and sources.",
+      "status": "Available",
+      "href": "../../PALO_AssessmentPath.html",
+      "properties": {
+        "When to use": "As the backbone of the contextual assessment",
+        "Key properties": "context, route, readiness, sources",
+        "Weight": "W5 Core"
+      },
+      "outputs": [
+        "Contextual assessment record",
+        "Evidence bundle"
+      ],
+      "weight": "W5",
+      "action": "As the backbone of the contextual assessment",
+      "intents": [
+        "fundamental rights",
+        "agent autonomy",
+        "assess impact",
+        "human oversight"
+      ],
+      "stakeholders": [
+        "legal",
+        "risk",
+        "product",
+        "public sector"
+      ],
+      "semanticId": "https://paloframework.org/semantic/module/assessment-path",
+      "definitionVersion": "3.0.0",
+      "evidenceClass": "canonical-definition",
+      "authorityBoundary": "Canonical PALO framework definition; it structures governance but does not create legal obligations or authorize deployment.",
+      "sourceRefs": [
+        "src-nist-ai-rmf"
+      ],
+      "lastReviewed": "2026-08-12"
+    },
+    {
+      "id": "vibe",
+      "label": "Vibe Coding Governance",
+      "type": "module",
+      "phaseId": "control",
+      "role": "Governs AI-assisted development through explicit delivery gates.",
+      "status": "Available",
+      "href": "../../PALO_VibeCoding.html",
+      "properties": {
+        "When to use": "When AI assists software development",
+        "Key properties": "functional intent, controlled environment, evidence, delivery gates",
+        "Weight": "W3 Contextual"
+      },
+      "outputs": [
+        "AI-assisted development controls"
+      ],
+      "weight": "W3",
+      "action": "When AI assists software development",
+      "intents": [
+        "select controls",
+        "implement controls",
+        "assurance test",
+        "development governance"
+      ],
+      "stakeholders": [
+        "engineering",
+        "product",
+        "assurance"
+      ],
+      "semanticId": "https://paloframework.org/semantic/module/vibe",
+      "definitionVersion": "3.0.0",
+      "evidenceClass": "canonical-definition",
+      "authorityBoundary": "Canonical PALO framework definition; it structures governance but does not create legal obligations or authorize deployment.",
+      "sourceRefs": [
+        "src-nist-genai-profile",
+        "src-owasp-llm-top10"
+      ],
+      "lastReviewed": "2026-08-12"
+    },
+    {
+      "id": "auditbench",
+      "label": "AuditBench Explorer",
+      "type": "module",
+      "phaseId": "control",
+      "role": "Tests hidden behavior and alignment evidence.",
+      "status": "Available",
+      "href": "../../PALO_AuditBench.html",
+      "properties": {
+        "When to use": "During validation and assurance",
+        "Key properties": "hidden behavior, audit technique, test status",
+        "Weight": "W3 Contextual"
+      },
+      "outputs": [
+        "Alignment audit assessment/report"
+      ],
+      "weight": "W3",
+      "action": "During validation and assurance",
+      "intents": [
+        "select controls",
+        "implement controls",
+        "assurance test",
+        "development governance"
+      ],
+      "stakeholders": [
+        "engineering",
+        "product",
+        "assurance"
+      ],
+      "semanticId": "https://paloframework.org/semantic/module/auditbench",
+      "definitionVersion": "3.0.0",
+      "evidenceClass": "canonical-definition",
+      "authorityBoundary": "Canonical PALO framework definition; it structures governance but does not create legal obligations or authorize deployment.",
+      "sourceRefs": [
+        "src-nist-genai-profile"
+      ],
+      "lastReviewed": "2026-08-12"
+    },
+    {
+      "id": "poisoning",
+      "label": "Poisoning Boomerang",
+      "type": "module",
+      "phaseId": "control",
+      "role": "Frames data and model integrity threats across the lifecycle.",
+      "status": "Reference",
+      "href": "../../PALO_PoisoningStudy.html",
+      "properties": {
+        "When to use": "Where provenance or integrity risks are material",
+        "Key properties": "threat, provenance, detection, integrity control",
+        "Weight": "W3 Contextual"
+      },
+      "outputs": [
+        "Data/model integrity controls"
+      ],
+      "weight": "W3",
+      "action": "Where provenance or integrity risks are material",
+      "intents": [
+        "select controls",
+        "implement controls",
+        "assurance test",
+        "development governance"
+      ],
+      "stakeholders": [
+        "engineering",
+        "product",
+        "assurance"
+      ],
+      "semanticId": "https://paloframework.org/semantic/module/poisoning",
+      "definitionVersion": "3.0.0",
+      "evidenceClass": "source-backed-context",
+      "authorityBoundary": "Source-backed context informs governance work but does not independently determine legal applicability, compliance, or deployment authorization.",
+      "sourceRefs": [
+        "src-nist-ai-rmf"
+      ],
+      "lastReviewed": "2026-08-12"
+    },
+    {
+      "id": "kpi",
+      "label": "KPI and KRI Generator",
+      "type": "module",
+      "phaseId": "measure",
+      "role": "Creates the measurable indicator set for governance monitoring.",
+      "status": "Available",
+      "href": "../../PALO_KPIGenerator.html",
+      "properties": {
+        "When to use": "When controls need observable performance and risk signals",
+        "Current properties": "category, indicator, definition, formula",
+        "Required downstream": "threshold, owner, cadence, current value, status",
+        "Weight": "W5 Core"
+      },
+      "outputs": [
+        "CSV/Markdown indicator set"
+      ],
+      "weight": "W5",
+      "action": "When controls need observable performance and risk signals",
+      "intents": [
+        "KPI",
+        "KRI",
+        "monitor change",
+        "drift",
+        "threshold"
+      ],
+      "stakeholders": [
+        "operations",
+        "assurance",
+        "board"
+      ],
+      "semanticId": "https://paloframework.org/semantic/module/kpi",
+      "definitionVersion": "3.0.0",
+      "evidenceClass": "canonical-definition",
+      "authorityBoundary": "Canonical PALO framework definition; it structures governance but does not create legal obligations or authorize deployment.",
+      "sourceRefs": [
+        "src-nist-ai-rmf",
+        "src-iso-42001"
+      ],
+      "lastReviewed": "2026-08-12"
+    },
+    {
+      "id": "toolbox",
+      "label": "P.A.L.O. Toolbox",
+      "type": "module",
+      "phaseId": "measure",
+      "role": "Captures portable operational evidence locally.",
+      "status": "Android and iOS",
+      "href": "../../PALO_CompanionApp.html",
+      "properties": {
+        "When to use": "During field work and ongoing evidence capture",
+        "Key properties": "local record, Evidence Vault, portable report",
+        "Weight": "W3 Contextual"
+      },
+      "outputs": [
+        "Local operational evidence",
+        "Portable evidence package"
+      ],
+      "weight": "W3",
+      "action": "During field work and ongoing evidence capture",
+      "intents": [
+        "KPI",
+        "KRI",
+        "monitor change",
+        "drift",
+        "threshold"
+      ],
+      "stakeholders": [
+        "operations",
+        "assurance",
+        "board"
+      ],
+      "semanticId": "https://paloframework.org/semantic/module/toolbox",
+      "definitionVersion": "3.0.0",
+      "evidenceClass": "canonical-definition",
+      "authorityBoundary": "Canonical PALO framework definition; it structures governance but does not create legal obligations or authorize deployment.",
+      "sourceRefs": [],
+      "lastReviewed": "2026-08-12"
+    },
+    {
+      "id": "docs",
+      "label": "Documentation Hub",
+      "type": "module",
+      "phaseId": "prove",
+      "role": "Connects evidence to lifecycle guidance and source artifacts.",
+      "status": "Available",
+      "href": "../../PALO_DocumentationHub.html",
+      "properties": {
+        "When to use": "When reconstructing decisions or preparing review",
+        "Key properties": "lifecycle guidance, source artifact, version",
+        "Weight": "W4 Strong"
+      },
+      "outputs": [
+        "Source and guidance context"
+      ],
+      "weight": "W4",
+      "action": "When reconstructing decisions or preparing review",
+      "intents": [
+        "board evidence",
+        "evidence bundle",
+        "prove decision",
+        "review readiness"
+      ],
+      "stakeholders": [
+        "board",
+        "executive",
+        "audit",
+        "assurance"
+      ],
+      "semanticId": "https://paloframework.org/semantic/module/docs",
+      "definitionVersion": "3.0.0",
+      "evidenceClass": "canonical-definition",
+      "authorityBoundary": "Canonical PALO framework definition; it structures governance but does not create legal obligations or authorize deployment.",
+      "sourceRefs": [],
+      "lastReviewed": "2026-08-12"
+    },
+    {
+      "id": "brief",
+      "label": "Use-case brief",
+      "type": "artifact",
+      "phaseId": "frame",
+      "role": "Versioned operational output transferred to the next governance decision.",
+      "status": "Produced output",
+      "properties": {
+        "Owner": "Assigned by the operating team",
+        "Versioning": "Required",
+        "Review state": "Tracked in the evidence path"
+      },
+      "outputs": [
+        "Use-case brief"
+      ],
+      "action": "Create, version and hand this artifact to the next accountable decision.",
+      "intents": [
+        "what should I do first",
+        "start governance",
+        "define use case",
+        "assign owner",
+        "Use-case brief"
+      ],
+      "stakeholders": [
+        "accountable owner",
+        "product",
+        "governance"
+      ],
+      "semanticId": "https://paloframework.org/semantic/artifact/brief",
+      "definitionVersion": "3.0.0",
+      "evidenceClass": "canonical-definition",
+      "authorityBoundary": "Canonical PALO framework definition; it structures governance but does not create legal obligations or authorize deployment.",
+      "sourceRefs": [],
+      "lastReviewed": "2026-08-12"
+    },
+    {
+      "id": "route",
+      "label": "Risk route",
+      "type": "artifact",
+      "phaseId": "classify",
+      "role": "Versioned operational output transferred to the next governance decision.",
+      "status": "Produced output",
+      "properties": {
+        "Owner": "Assigned by the operating team",
+        "Versioning": "Required",
+        "Review state": "Tracked in the evidence path"
+      },
+      "outputs": [
+        "Risk route"
+      ],
+      "action": "Create, version and hand this artifact to the next accountable decision.",
+      "intents": [
+        "classify risk",
+        "risk tier",
+        "applicable obligations",
+        "high risk",
+        "Risk route"
+      ],
+      "stakeholders": [
+        "legal",
+        "risk",
+        "governance"
+      ],
+      "semanticId": "https://paloframework.org/semantic/artifact/route",
+      "definitionVersion": "3.0.0",
+      "evidenceClass": "canonical-definition",
+      "authorityBoundary": "Canonical PALO framework definition; it structures governance but does not create legal obligations or authorize deployment.",
+      "sourceRefs": [],
+      "lastReviewed": "2026-08-12"
+    },
+    {
+      "id": "impact-record",
+      "label": "Impact assessment record",
+      "type": "artifact",
+      "phaseId": "assess",
+      "role": "Versioned operational output transferred to the next governance decision.",
+      "status": "Produced output",
+      "properties": {
+        "Owner": "Assigned by the operating team",
+        "Versioning": "Required",
+        "Review state": "Tracked in the evidence path"
+      },
+      "outputs": [
+        "Impact assessment record"
+      ],
+      "action": "Create, version and hand this artifact to the next accountable decision.",
+      "intents": [
+        "fundamental rights",
+        "agent autonomy",
+        "assess impact",
+        "human oversight",
+        "Impact assessment record"
+      ],
+      "stakeholders": [
+        "legal",
+        "risk",
+        "product",
+        "public sector"
+      ],
+      "semanticId": "https://paloframework.org/semantic/artifact/impact-record",
+      "definitionVersion": "3.0.0",
+      "evidenceClass": "canonical-definition",
+      "authorityBoundary": "Canonical PALO framework definition; it structures governance but does not create legal obligations or authorize deployment.",
+      "sourceRefs": [],
+      "lastReviewed": "2026-08-12"
+    },
+    {
+      "id": "control-plan",
+      "label": "Control plan",
+      "type": "artifact",
+      "phaseId": "control",
+      "role": "Versioned operational output transferred to the next governance decision.",
+      "status": "Produced output",
+      "properties": {
+        "Owner": "Assigned by the operating team",
+        "Versioning": "Required",
+        "Review state": "Tracked in the evidence path"
+      },
+      "outputs": [
+        "Control plan"
+      ],
+      "action": "Create, version and hand this artifact to the next accountable decision.",
+      "intents": [
+        "select controls",
+        "implement controls",
+        "assurance test",
+        "development governance",
+        "Control plan"
+      ],
+      "stakeholders": [
+        "engineering",
+        "product",
+        "assurance"
+      ],
+      "semanticId": "https://paloframework.org/semantic/artifact/control-plan",
+      "definitionVersion": "3.0.0",
+      "evidenceClass": "canonical-definition",
+      "authorityBoundary": "Canonical PALO framework definition; it structures governance but does not create legal obligations or authorize deployment.",
+      "sourceRefs": [],
+      "lastReviewed": "2026-08-12"
+    },
+    {
+      "id": "indicator-register",
+      "label": "KPI/KRI register",
+      "type": "artifact",
+      "phaseId": "measure",
+      "role": "Versioned operational output transferred to the next governance decision.",
+      "status": "Produced output",
+      "properties": {
+        "Owner": "Assigned by the operating team",
+        "Versioning": "Required",
+        "Review state": "Tracked in the evidence path"
+      },
+      "outputs": [
+        "KPI/KRI register"
+      ],
+      "action": "Create, version and hand this artifact to the next accountable decision.",
+      "intents": [
+        "KPI",
+        "KRI",
+        "monitor change",
+        "drift",
+        "threshold",
+        "KPI/KRI register"
+      ],
+      "stakeholders": [
+        "operations",
+        "assurance",
+        "board"
+      ],
+      "semanticId": "https://paloframework.org/semantic/artifact/indicator-register",
+      "definitionVersion": "3.0.0",
+      "evidenceClass": "canonical-definition",
+      "authorityBoundary": "Canonical PALO framework definition; it structures governance but does not create legal obligations or authorize deployment.",
+      "sourceRefs": [],
+      "lastReviewed": "2026-08-12"
+    },
+    {
+      "id": "evidence-bundle",
+      "label": "Evidence Bundle",
+      "type": "artifact",
+      "phaseId": "prove",
+      "role": "Versioned operational output transferred to the next governance decision.",
+      "status": "Produced output",
+      "properties": {
+        "Owner": "Assigned by the operating team",
+        "Versioning": "Required",
+        "Review state": "Tracked in the evidence path"
+      },
+      "outputs": [
+        "Evidence Bundle"
+      ],
+      "action": "Create, version and hand this artifact to the next accountable decision.",
+      "intents": [
+        "board evidence",
+        "evidence bundle",
+        "prove decision",
+        "review readiness",
+        "Evidence Bundle"
+      ],
+      "stakeholders": [
+        "board",
+        "executive",
+        "audit",
+        "assurance"
+      ],
+      "semanticId": "https://paloframework.org/semantic/artifact/evidence-bundle",
+      "definitionVersion": "3.0.0",
+      "evidenceClass": "canonical-definition",
+      "authorityBoundary": "Canonical PALO framework definition; it structures governance but does not create legal obligations or authorize deployment.",
+      "sourceRefs": [],
+      "lastReviewed": "2026-08-12"
+    },
+    {
+      "id": "accountable-owner",
+      "label": "Accountable Owner",
+      "type": "actor",
+      "phaseId": "frame",
+      "role": "Owns the use case and accepts decision accountability.",
+      "status": "Required role",
+      "properties": {
+        "Responsibility": "Purpose, resources and decision escalation"
+      },
+      "outputs": [
+        "Ownership record"
+      ],
+      "semanticId": "https://paloframework.org/semantic/actor/accountable-owner",
+      "definitionVersion": "3.0.0",
+      "evidenceClass": "canonical-definition",
+      "authorityBoundary": "Canonical PALO framework definition; it structures governance but does not create legal obligations or authorize deployment.",
+      "sourceRefs": [],
+      "lastReviewed": "2026-08-12"
+    },
+    {
+      "id": "board-reviewer",
+      "label": "Board and Review Body",
+      "type": "actor",
+      "phaseId": "prove",
+      "role": "Reviews decision readiness, residual exposure and the evidence supporting approval or escalation.",
+      "status": "Decision role",
+      "stakeholder": "Board, executive and assurance",
+      "properties": {
+        "Responsibility": "Challenge evidence, record the decision and request remediation where needed"
+      },
+      "outputs": [
+        "Board review record"
+      ],
+      "semanticId": "https://paloframework.org/semantic/actor/board-reviewer",
+      "definitionVersion": "3.0.0",
+      "evidenceClass": "canonical-definition",
+      "authorityBoundary": "Canonical PALO framework definition; it structures governance but does not create legal obligations or authorize deployment.",
+      "sourceRefs": [],
+      "lastReviewed": "2026-08-12"
+    },
+    {
+      "id": "product-engineering",
+      "label": "Product and Engineering Team",
+      "type": "actor",
+      "phaseId": "control",
+      "role": "Turns assessment findings into implemented, owned and testable controls.",
+      "status": "Delivery role",
+      "stakeholder": "Product and engineering",
+      "properties": {
+        "Responsibility": "Control implementation, testing and operational handoff"
+      },
+      "outputs": [
+        "Implementation evidence"
+      ],
+      "semanticId": "https://paloframework.org/semantic/actor/product-engineering",
+      "definitionVersion": "3.0.0",
+      "evidenceClass": "canonical-definition",
+      "authorityBoundary": "Canonical PALO framework definition; it structures governance but does not create legal obligations or authorize deployment.",
+      "sourceRefs": [],
+      "lastReviewed": "2026-08-12"
+    },
+    {
+      "id": "legal-governance",
+      "label": "Legal and Governance Team",
+      "type": "actor",
+      "phaseId": "classify",
+      "role": "Interprets the use-case context, obligations and fundamental-rights route without replacing accountable ownership.",
+      "status": "Advisory role",
+      "stakeholder": "Legal, risk and governance",
+      "properties": {
+        "Responsibility": "Classification rationale, source review and escalation"
+      },
+      "outputs": [
+        "Governance rationale"
+      ],
+      "semanticId": "https://paloframework.org/semantic/actor/legal-governance",
+      "definitionVersion": "3.0.0",
+      "evidenceClass": "canonical-definition",
+      "authorityBoundary": "Canonical PALO framework definition; it structures governance but does not create legal obligations or authorize deployment.",
+      "sourceRefs": [],
+      "lastReviewed": "2026-08-12"
+    },
+    {
+      "id": "official-sources",
+      "label": "Official Sources",
+      "type": "source",
+      "phaseId": "classify",
+      "role": "Provide authoritative regulatory context.",
+      "status": "Verified sources",
+      "properties": {
+        "Evidence rule": "Source, date and reviewed status recorded"
+      },
+      "outputs": [
+        "Source register"
+      ],
+      "semanticId": "https://paloframework.org/semantic/source/official-sources",
+      "definitionVersion": "3.0.0",
+      "evidenceClass": "source-backed-context",
+      "authorityBoundary": "Source-backed context informs governance work but does not independently determine legal applicability, compliance, or deployment authorization.",
+      "sourceRefs": [
+        "src-eu-ai-act",
+        "src-nist-ai-rmf",
+        "src-iso-42001",
+        "src-oecd-ai-principles"
+      ],
+      "lastReviewed": "2026-08-12"
+    },
+    {
+      "id": "assurance-control",
+      "label": "Assurance Control",
+      "type": "control",
+      "phaseId": "control",
+      "role": "Links a finding to an owner, test and decision gate.",
+      "status": "Required control",
+      "properties": {
+        "Minimum fields": "risk link, owner, evidence, test status, residual risk"
+      },
+      "outputs": [
+        "Control evidence"
+      ],
+      "semanticId": "https://paloframework.org/semantic/control/assurance-control",
+      "definitionVersion": "3.0.0",
+      "evidenceClass": "canonical-definition",
+      "authorityBoundary": "Canonical PALO framework definition; it structures governance but does not create legal obligations or authorize deployment.",
+      "sourceRefs": [],
+      "lastReviewed": "2026-08-12"
+    },
+    {
+      "id": "drift-indicator",
+      "label": "Drift Indicator",
+      "type": "metric",
+      "phaseId": "measure",
+      "role": "Signals deterioration or material change.",
+      "status": "Required metric",
+      "properties": {
+        "Minimum fields": "formula, threshold, owner, cadence, status"
+      },
+      "outputs": [
+        "Monitoring signal"
+      ],
+      "semanticId": "https://paloframework.org/semantic/metric/drift-indicator",
+      "definitionVersion": "3.0.0",
+      "evidenceClass": "canonical-definition",
+      "authorityBoundary": "Canonical PALO framework definition; it structures governance but does not create legal obligations or authorize deployment.",
+      "sourceRefs": [],
+      "lastReviewed": "2026-08-12"
+    },
+    {
+      "id": "nav-model",
+      "label": "Define the use case",
+      "type": "navigation",
+      "phaseId": "frame",
+      "role": "Routes a stakeholder intent to a working destination and named artifact.",
+      "href": "../../PALO_ModelCanvasAI.html",
+      "stakeholder": "Accountable owner",
+      "artifact": "Use-case brief",
+      "status": "Implemented",
+      "navigationGroup": "orient",
+      "outputs": [
+        "Use-case brief"
+      ],
+      "properties": {
+        "Destination": "AI Model Canvas",
+        "Stakeholder": "Accountable owner",
+        "Phase": "frame",
+        "Artifact": "Use-case brief",
+        "Status": "Implemented"
+      },
+      "action": "Open AI Model Canvas to define the use case.",
+      "intents": [
+        "Define the use case",
+        "AI Model Canvas",
+        "Accountable owner",
+        "Use-case brief"
+      ],
+      "stakeholders": [
+        "Accountable owner"
+      ],
+      "semanticId": "https://paloframework.org/semantic/navigation/nav-model",
+      "definitionVersion": "3.0.0",
+      "evidenceClass": "canonical-definition",
+      "authorityBoundary": "Canonical PALO framework definition; it structures governance but does not create legal obligations or authorize deployment.",
+      "sourceRefs": [],
+      "lastReviewed": "2026-08-12"
+    },
+    {
+      "id": "nav-onboard",
+      "label": "Find a practical route",
+      "type": "navigation",
+      "phaseId": "frame",
+      "role": "Routes a stakeholder intent to a working destination and named artifact.",
+      "href": "#onboarding",
+      "stakeholder": "Any stakeholder",
+      "artifact": "Local route record",
+      "status": "Implemented",
+      "navigationGroup": "orient",
+      "outputs": [
+        "Local route record"
+      ],
+      "properties": {
+        "Destination": "Stakeholder Onboarding",
+        "Stakeholder": "Any stakeholder",
+        "Phase": "frame",
+        "Artifact": "Local route record",
+        "Status": "Implemented"
+      },
+      "action": "Open Stakeholder Onboarding to find a practical route.",
+      "intents": [
+        "Find a practical route",
+        "Stakeholder Onboarding",
+        "Any stakeholder",
+        "Local route record",
+        "what should I do first",
+        "start governance",
+        "find my path"
+      ],
+      "stakeholders": [
+        "Any stakeholder"
+      ],
+      "semanticId": "https://paloframework.org/semantic/navigation/nav-onboard",
+      "definitionVersion": "3.0.0",
+      "evidenceClass": "canonical-definition",
+      "authorityBoundary": "Canonical PALO framework definition; it structures governance but does not create legal obligations or authorize deployment.",
+      "sourceRefs": [],
+      "lastReviewed": "2026-08-12"
+    },
+    {
+      "id": "nav-docs",
+      "label": "Locate source guidance",
+      "type": "navigation",
+      "phaseId": "frame",
+      "role": "Routes a stakeholder intent to a working destination and named artifact.",
+      "href": "../../PALO_DocumentationHub.html",
+      "stakeholder": "Assurance and board",
+      "artifact": "Source and lifecycle context",
+      "status": "Implemented",
+      "navigationGroup": "orient",
+      "outputs": [
+        "Source and lifecycle context"
+      ],
+      "properties": {
+        "Destination": "Documentation Hub",
+        "Stakeholder": "Assurance and board",
+        "Phase": "frame",
+        "Artifact": "Source and lifecycle context",
+        "Status": "Implemented"
+      },
+      "action": "Open Documentation Hub to locate source guidance.",
+      "intents": [
+        "Locate source guidance",
+        "Documentation Hub",
+        "Assurance and board",
+        "Source and lifecycle context"
+      ],
+      "stakeholders": [
+        "Assurance and board"
+      ],
+      "semanticId": "https://paloframework.org/semantic/navigation/nav-docs",
+      "definitionVersion": "3.0.0",
+      "evidenceClass": "canonical-definition",
+      "authorityBoundary": "Canonical PALO framework definition; it structures governance but does not create legal obligations or authorize deployment.",
+      "sourceRefs": [],
+      "lastReviewed": "2026-08-12"
+    },
+    {
+      "id": "nav-tier",
+      "label": "Establish an initial risk route",
+      "type": "navigation",
+      "phaseId": "classify",
+      "role": "Routes a stakeholder intent to a working destination and named artifact.",
+      "href": "../../PALO_RiskTiering.html",
+      "stakeholder": "Risk and legal",
+      "artifact": "Risk classification report",
+      "status": "Implemented",
+      "navigationGroup": "assess",
+      "outputs": [
+        "Risk classification report"
+      ],
+      "properties": {
+        "Destination": "Risk Tiering Calculator",
+        "Stakeholder": "Risk and legal",
+        "Phase": "classify",
+        "Artifact": "Risk classification report",
+        "Status": "Implemented"
+      },
+      "action": "Open Risk Tiering Calculator to establish an initial risk route.",
+      "intents": [
+        "Establish an initial risk route",
+        "Risk Tiering Calculator",
+        "Risk and legal",
+        "Risk classification report"
+      ],
+      "stakeholders": [
+        "Risk and legal"
+      ],
+      "semanticId": "https://paloframework.org/semantic/navigation/nav-tier",
+      "definitionVersion": "3.0.0",
+      "evidenceClass": "canonical-definition",
+      "authorityBoundary": "Canonical PALO framework definition; it structures governance but does not create legal obligations or authorize deployment.",
+      "sourceRefs": [
+        "src-eu-ai-act"
+      ],
+      "lastReviewed": "2026-08-12"
+    },
+    {
+      "id": "nav-fria",
+      "label": "Evaluate rights impacts",
+      "type": "navigation",
+      "phaseId": "assess",
+      "role": "Routes a stakeholder intent to a working destination and named artifact.",
+      "href": "../../PALO_FRIA.html",
+      "stakeholder": "Risk and legal",
+      "artifact": "FRIA record",
+      "status": "Implemented",
+      "navigationGroup": "assess",
+      "outputs": [
+        "FRIA record"
+      ],
+      "properties": {
+        "Destination": "FRIA Assessment",
+        "Stakeholder": "Risk and legal",
+        "Phase": "assess",
+        "Artifact": "FRIA record",
+        "Status": "Implemented"
+      },
+      "action": "Open FRIA Assessment to evaluate rights impacts.",
+      "intents": [
+        "Evaluate rights impacts",
+        "FRIA Assessment",
+        "Risk and legal",
+        "FRIA record"
+      ],
+      "stakeholders": [
+        "Risk and legal"
+      ],
+      "semanticId": "https://paloframework.org/semantic/navigation/nav-fria",
+      "definitionVersion": "3.0.0",
+      "evidenceClass": "canonical-definition",
+      "authorityBoundary": "Canonical PALO framework definition; it structures governance but does not create legal obligations or authorize deployment.",
+      "sourceRefs": [
+        "src-eu-ai-act"
+      ],
+      "lastReviewed": "2026-08-12"
+    },
+    {
+      "id": "nav-agentic",
+      "label": "Bound delegated action",
+      "type": "navigation",
+      "phaseId": "assess",
+      "role": "Routes a stakeholder intent to a working destination and named artifact.",
+      "href": "../../PALO_AgenticGovernance.html#simulator",
+      "stakeholder": "Product and engineering",
+      "artifact": "Agentic evidence plan",
+      "status": "Implemented",
+      "navigationGroup": "assess",
+      "outputs": [
+        "Agentic evidence plan"
+      ],
+      "properties": {
+        "Destination": "PALO-AM",
+        "Stakeholder": "Product and engineering",
+        "Phase": "assess",
+        "Artifact": "Agentic evidence plan",
+        "Status": "Implemented"
+      },
+      "action": "Open PALO-AM to bound delegated action.",
+      "intents": [
+        "Bound delegated action",
+        "PALO-AM",
+        "Product and engineering",
+        "Agentic evidence plan"
+      ],
+      "stakeholders": [
+        "Product and engineering"
+      ],
+      "semanticId": "https://paloframework.org/semantic/navigation/nav-agentic",
+      "definitionVersion": "3.0.0",
+      "evidenceClass": "canonical-definition",
+      "authorityBoundary": "Canonical PALO framework definition; it structures governance but does not create legal obligations or authorize deployment.",
+      "sourceRefs": [],
+      "lastReviewed": "2026-08-12"
+    },
+    {
+      "id": "nav-controls",
+      "label": "Select owned controls",
+      "type": "navigation",
+      "phaseId": "control",
+      "role": "Routes a stakeholder intent to a working destination and named artifact.",
+      "href": "../../data/control-library.json",
+      "stakeholder": "Product and engineering",
+      "artifact": "Calibrated control plan",
+      "status": "Foundation",
+      "navigationGroup": "operate",
+      "outputs": [
+        "Calibrated control plan"
+      ],
+      "properties": {
+        "Destination": "Control Library",
+        "Stakeholder": "Product and engineering",
+        "Phase": "control",
+        "Artifact": "Calibrated control plan",
+        "Status": "Foundation"
+      },
+      "action": "Open Control Library to select owned controls.",
+      "intents": [
+        "Select owned controls",
+        "Control Library",
+        "Product and engineering",
+        "Calibrated control plan"
+      ],
+      "stakeholders": [
+        "Product and engineering"
+      ],
+      "semanticId": "https://paloframework.org/semantic/navigation/nav-controls",
+      "definitionVersion": "3.0.0",
+      "evidenceClass": "illustrative-local-preview",
+      "authorityBoundary": "Illustrative local foundation; it is not production state, approval evidence, or an authorization boundary.",
+      "sourceRefs": [],
+      "lastReviewed": "2026-08-12"
+    },
+    {
+      "id": "nav-vibe",
+      "label": "Govern AI-assisted delivery",
+      "type": "navigation",
+      "phaseId": "control",
+      "role": "Routes a stakeholder intent to a working destination and named artifact.",
+      "href": "../../PALO_VibeCoding.html",
+      "stakeholder": "Product and engineering",
+      "artifact": "Development controls",
+      "status": "Implemented",
+      "navigationGroup": "operate",
+      "outputs": [
+        "Development controls"
+      ],
+      "properties": {
+        "Destination": "Vibe Coding Governance",
+        "Stakeholder": "Product and engineering",
+        "Phase": "control",
+        "Artifact": "Development controls",
+        "Status": "Implemented"
+      },
+      "action": "Open Vibe Coding Governance to govern ai-assisted delivery.",
+      "intents": [
+        "Govern AI-assisted delivery",
+        "Vibe Coding Governance",
+        "Product and engineering",
+        "Development controls"
+      ],
+      "stakeholders": [
+        "Product and engineering"
+      ],
+      "semanticId": "https://paloframework.org/semantic/navigation/nav-vibe",
+      "definitionVersion": "3.0.0",
+      "evidenceClass": "canonical-definition",
+      "authorityBoundary": "Canonical PALO framework definition; it structures governance but does not create legal obligations or authorize deployment.",
+      "sourceRefs": [],
+      "lastReviewed": "2026-08-12"
+    },
+    {
+      "id": "nav-kpi",
+      "label": "Define observable indicators",
+      "type": "navigation",
+      "phaseId": "measure",
+      "role": "Routes a stakeholder intent to a working destination and named artifact.",
+      "href": "../../PALO_KPIGenerator.html",
+      "stakeholder": "Assurance and board",
+      "artifact": "KPI/KRI register",
+      "status": "Implemented",
+      "navigationGroup": "operate",
+      "outputs": [
+        "KPI/KRI register"
+      ],
+      "properties": {
+        "Destination": "KPI and KRI Generator",
+        "Stakeholder": "Assurance and board",
+        "Phase": "measure",
+        "Artifact": "KPI/KRI register",
+        "Status": "Implemented"
+      },
+      "action": "Open KPI and KRI Generator to define observable indicators.",
+      "intents": [
+        "Define observable indicators",
+        "KPI and KRI Generator",
+        "Assurance and board",
+        "KPI/KRI register"
+      ],
+      "stakeholders": [
+        "Assurance and board"
+      ],
+      "semanticId": "https://paloframework.org/semantic/navigation/nav-kpi",
+      "definitionVersion": "3.0.0",
+      "evidenceClass": "canonical-definition",
+      "authorityBoundary": "Canonical PALO framework definition; it structures governance but does not create legal obligations or authorize deployment.",
+      "sourceRefs": [],
+      "lastReviewed": "2026-08-12"
+    },
+    {
+      "id": "nav-evidence",
+      "label": "Assemble the working record",
+      "type": "navigation",
+      "phaseId": "prove",
+      "role": "Routes a stakeholder intent to a working destination and named artifact.",
+      "href": "../../PALO_AssessmentPath.html",
+      "stakeholder": "Assurance and board",
+      "artifact": "Evidence Bundle and board pack",
+      "status": "Implemented",
+      "navigationGroup": "prove",
+      "outputs": [
+        "Evidence Bundle and board pack"
+      ],
+      "properties": {
+        "Destination": "Assessment Path",
+        "Stakeholder": "Assurance and board",
+        "Phase": "prove",
+        "Artifact": "Evidence Bundle and board pack",
+        "Status": "Implemented"
+      },
+      "action": "Open Assessment Path to assemble the working record.",
+      "intents": [
+        "Assemble the working record",
+        "Assessment Path",
+        "Assurance and board",
+        "Evidence Bundle and board pack",
+        "board evidence",
+        "prepare board pack",
+        "evidence bundle"
+      ],
+      "stakeholders": [
+        "Assurance and board"
+      ],
+      "semanticId": "https://paloframework.org/semantic/navigation/nav-evidence",
+      "definitionVersion": "3.0.0",
+      "evidenceClass": "canonical-definition",
+      "authorityBoundary": "Canonical PALO framework definition; it structures governance but does not create legal obligations or authorize deployment.",
+      "sourceRefs": [],
+      "lastReviewed": "2026-08-12"
+    },
+    {
+      "id": "nav-monitor",
+      "label": "Receive monitoring signals",
+      "type": "navigation",
+      "phaseId": "measure",
+      "role": "Routes a stakeholder intent to a working destination and named artifact.",
+      "href": "https://www.policywatcher.online/",
+      "stakeholder": "Risk and legal",
+      "artifact": "Non-authoritative monitoring signal pending human review",
+      "status": "Foundation",
+      "navigationGroup": "prove",
+      "outputs": [
+        "Non-authoritative monitoring signal pending human review"
+      ],
+      "properties": {
+        "Destination": "PolicyWatcher",
+        "External companion": "PolicyWatcher",
+        "Live destination": "https://www.policywatcher.online/",
+        "Contract / schema": "../../schemas/policywatcher-signal.schema.json",
+        "Stakeholder": "Risk and legal",
+        "Phase": "measure",
+        "Lifecycle phase": "measure",
+        "Artifact": "Non-authoritative monitoring signal pending human review",
+        "Status": "Foundation",
+        "Authority boundary": "Non-authoritative monitoring signal pending human review"
+      },
+      "action": "Open PolicyWatcher to receive monitoring signals.",
+      "intents": [
+        "Receive monitoring signals",
+        "PolicyWatcher",
+        "Risk and legal",
+        "Non-authoritative monitoring signal pending human review",
+        "monitor change",
+        "policy change",
+        "terms of service change",
+        "PolicyWatcher"
+      ],
+      "stakeholders": [
+        "Risk and legal"
+      ],
+      "semanticId": "https://paloframework.org/semantic/navigation/nav-monitor",
+      "definitionVersion": "3.0.0",
+      "evidenceClass": "human-review-required",
+      "authorityBoundary": "Non-authoritative monitoring input; an accountable reviewer must verify the primary source and materiality.",
+      "sourceRefs": [
+        "src-eu-ai-act"
+      ],
+      "lastReviewed": "2026-08-12"
+    },
+    {
+      "id": "nav-review",
+      "label": "Run an accountable review",
+      "type": "navigation",
+      "phaseId": "prove",
+      "role": "Routes a stakeholder intent to a working destination and named artifact.",
+      "href": "../../data/decision-gates.json",
+      "stakeholder": "Accountable owner",
+      "artifact": "Gate decision and next-cycle update",
+      "status": "Foundation",
+      "navigationGroup": "prove",
+      "outputs": [
+        "Gate decision and next-cycle update"
+      ],
+      "properties": {
+        "Destination": "Decision Gates",
+        "Stakeholder": "Accountable owner",
+        "Phase": "prove",
+        "Artifact": "Gate decision and next-cycle update",
+        "Status": "Foundation"
+      },
+      "action": "Open Decision Gates to run an accountable review.",
+      "intents": [
+        "Run an accountable review",
+        "Decision Gates",
+        "Accountable owner",
+        "Gate decision and next-cycle update"
+      ],
+      "stakeholders": [
+        "Accountable owner"
+      ],
+      "semanticId": "https://paloframework.org/semantic/navigation/nav-review",
+      "definitionVersion": "3.0.0",
+      "evidenceClass": "illustrative-local-preview",
+      "authorityBoundary": "Illustrative local foundation; it is not production state, approval evidence, or an authorization boundary.",
+      "sourceRefs": [],
+      "lastReviewed": "2026-08-12"
+    }
+  ],
+  "links": [
+    {
+      "source": "frame",
+      "target": "classify",
+      "verb": "classifies",
+      "weight": "W5",
+      "meaning": "A defined use case is the mandatory input to risk routing.",
+      "artifactTransferred": "Use-case brief",
+      "relationType": "operational",
+      "semanticId": "https://paloframework.org/semantic/relationship/frame-classifies-classify",
+      "relationshipVersion": "1.0.0",
+      "mappingBasis": "canonical-lifecycle-flow"
+    },
+    {
+      "source": "classify",
+      "target": "assess",
+      "verb": "routes",
+      "weight": "W5",
+      "meaning": "The risk route determines the depth and scope of assessment.",
+      "artifactTransferred": "Risk route",
+      "relationType": "operational",
+      "semanticId": "https://paloframework.org/semantic/relationship/classify-routes-assess",
+      "relationshipVersion": "1.0.0",
+      "mappingBasis": "canonical-lifecycle-flow"
+    },
+    {
+      "source": "assess",
+      "target": "control",
+      "verb": "requires",
+      "weight": "W5",
+      "meaning": "Material findings require owned and testable controls.",
+      "artifactTransferred": "Impact assessment record",
+      "relationType": "operational",
+      "semanticId": "https://paloframework.org/semantic/relationship/assess-requires-control",
+      "relationshipVersion": "1.0.0",
+      "mappingBasis": "canonical-lifecycle-flow"
+    },
+    {
+      "source": "control",
+      "target": "measure",
+      "verb": "measures",
+      "weight": "W4",
+      "meaning": "Implemented controls need indicators that reveal performance and deterioration.",
+      "artifactTransferred": "Control plan",
+      "relationType": "operational",
+      "semanticId": "https://paloframework.org/semantic/relationship/control-measures-measure",
+      "relationshipVersion": "1.0.0",
+      "mappingBasis": "canonical-lifecycle-flow"
+    },
+    {
+      "source": "measure",
+      "target": "prove",
+      "verb": "records",
+      "weight": "W5",
+      "meaning": "Monitoring evidence is recorded in the accountable decision bundle.",
+      "artifactTransferred": "KPI/KRI register",
+      "relationType": "evidence",
+      "semanticId": "https://paloframework.org/semantic/relationship/measure-records-prove",
+      "relationshipVersion": "1.0.0",
+      "mappingBasis": "canonical-lifecycle-flow"
+    },
+    {
+      "source": "prove",
+      "target": "frame",
+      "verb": "updates context",
+      "weight": "W4",
+      "meaning": "Findings, incidents and changes update the next use-case cycle.",
+      "artifactTransferred": "Next-cycle update",
+      "relationType": "feedback",
+      "semanticId": "https://paloframework.org/semantic/relationship/prove-updates-context-frame",
+      "relationshipVersion": "1.0.0",
+      "mappingBasis": "canonical-lifecycle-flow"
+    },
+    {
+      "source": "model-canvas",
+      "target": "frame",
+      "verb": "activates",
+      "weight": "W5",
+      "meaning": "Structures purpose, scope, ownership and assumptions.",
+      "artifactTransferred": "Structured Canvas",
+      "relationType": "operational",
+      "semanticId": "https://paloframework.org/semantic/relationship/model-canvas-activates-frame",
+      "relationshipVersion": "1.0.0",
+      "mappingBasis": "canonical-lifecycle-flow"
+    },
+    {
+      "source": "agency-map",
+      "target": "frame",
+      "verb": "activates",
+      "weight": "W3",
+      "meaning": "Maps delegated activity and potential effects on human agency.",
+      "artifactTransferred": "Agency-risk context",
+      "relationType": "operational",
+      "semanticId": "https://paloframework.org/semantic/relationship/agency-map-activates-frame",
+      "relationshipVersion": "1.0.0",
+      "mappingBasis": "canonical-lifecycle-flow"
+    },
+    {
+      "source": "tech-trends",
+      "target": "frame",
+      "verb": "activates",
+      "weight": "W2",
+      "meaning": "Adds technology and horizon signals to the use-case context.",
+      "artifactTransferred": "Horizon context",
+      "relationType": "context",
+      "semanticId": "https://paloframework.org/semantic/relationship/tech-trends-activates-frame",
+      "relationshipVersion": "1.0.0",
+      "mappingBasis": "phase-support-assignment"
+    },
+    {
+      "source": "risk-tiering",
+      "target": "classify",
+      "verb": "activates",
+      "weight": "W5",
+      "meaning": "Routes the use case through an initial EU AI Act risk screen.",
+      "artifactTransferred": "Markdown risk report",
+      "relationType": "operational",
+      "semanticId": "https://paloframework.org/semantic/relationship/risk-tiering-activates-classify",
+      "relationshipVersion": "1.0.0",
+      "mappingBasis": "canonical-lifecycle-flow"
+    },
+    {
+      "source": "comparison",
+      "target": "classify",
+      "verb": "activates",
+      "weight": "W3",
+      "meaning": "Cross-checks overlapping governance frameworks and gaps.",
+      "artifactTransferred": "Comparison record",
+      "relationType": "operational",
+      "semanticId": "https://paloframework.org/semantic/relationship/comparison-activates-classify",
+      "relationshipVersion": "1.0.0",
+      "mappingBasis": "canonical-lifecycle-flow"
+    },
+    {
+      "source": "reg-watch",
+      "target": "classify",
+      "verb": "activates",
+      "weight": "W4",
+      "meaning": "Keeps the route anchored to current official sources.",
+      "artifactTransferred": "Current obligation context",
+      "relationType": "operational",
+      "semanticId": "https://paloframework.org/semantic/relationship/reg-watch-activates-classify",
+      "relationshipVersion": "1.0.0",
+      "mappingBasis": "canonical-lifecycle-flow"
+    },
+    {
+      "source": "fria",
+      "target": "assess",
+      "verb": "activates",
+      "weight": "W4",
+      "meaning": "Evaluates fundamental-rights impact scenarios and mitigations.",
+      "artifactTransferred": "FRIA JSON/Markdown/template",
+      "relationType": "operational",
+      "semanticId": "https://paloframework.org/semantic/relationship/fria-activates-assess",
+      "relationshipVersion": "1.0.0",
+      "mappingBasis": "canonical-lifecycle-flow"
+    },
+    {
+      "source": "palo-am",
+      "target": "assess",
+      "verb": "activates",
+      "weight": "W4",
+      "meaning": "Examines identity, authority and action space in agentic systems.",
+      "artifactTransferred": "Agentic governance record",
+      "relationType": "operational",
+      "semanticId": "https://paloframework.org/semantic/relationship/palo-am-activates-assess",
+      "relationshipVersion": "1.0.0",
+      "mappingBasis": "canonical-lifecycle-flow"
+    },
+    {
+      "source": "assessment-path",
+      "target": "assess",
+      "verb": "activates",
+      "weight": "W5",
+      "meaning": "Connects context, risk route, readiness and sources.",
+      "artifactTransferred": "Contextual assessment record",
+      "relationType": "operational",
+      "semanticId": "https://paloframework.org/semantic/relationship/assessment-path-activates-assess",
+      "relationshipVersion": "1.0.0",
+      "mappingBasis": "canonical-lifecycle-flow"
+    },
+    {
+      "source": "vibe",
+      "target": "control",
+      "verb": "activates",
+      "weight": "W3",
+      "meaning": "Governs AI-assisted development through explicit delivery gates.",
+      "artifactTransferred": "AI-assisted development controls",
+      "relationType": "operational",
+      "semanticId": "https://paloframework.org/semantic/relationship/vibe-activates-control",
+      "relationshipVersion": "1.0.0",
+      "mappingBasis": "canonical-lifecycle-flow"
+    },
+    {
+      "source": "auditbench",
+      "target": "control",
+      "verb": "activates",
+      "weight": "W3",
+      "meaning": "Tests hidden behavior and alignment evidence.",
+      "artifactTransferred": "Alignment audit assessment/report",
+      "relationType": "operational",
+      "semanticId": "https://paloframework.org/semantic/relationship/auditbench-activates-control",
+      "relationshipVersion": "1.0.0",
+      "mappingBasis": "canonical-lifecycle-flow"
+    },
+    {
+      "source": "poisoning",
+      "target": "control",
+      "verb": "activates",
+      "weight": "W3",
+      "meaning": "Frames data and model integrity threats across the lifecycle.",
+      "artifactTransferred": "Data/model integrity controls",
+      "relationType": "operational",
+      "semanticId": "https://paloframework.org/semantic/relationship/poisoning-activates-control",
+      "relationshipVersion": "1.0.0",
+      "mappingBasis": "canonical-lifecycle-flow"
+    },
+    {
+      "source": "kpi",
+      "target": "measure",
+      "verb": "activates",
+      "weight": "W5",
+      "meaning": "Creates the measurable indicator set for governance monitoring.",
+      "artifactTransferred": "CSV/Markdown indicator set",
+      "relationType": "operational",
+      "semanticId": "https://paloframework.org/semantic/relationship/kpi-activates-measure",
+      "relationshipVersion": "1.0.0",
+      "mappingBasis": "canonical-lifecycle-flow"
+    },
+    {
+      "source": "toolbox",
+      "target": "measure",
+      "verb": "activates",
+      "weight": "W3",
+      "meaning": "Captures portable operational evidence locally.",
+      "artifactTransferred": "Local operational evidence",
+      "relationType": "operational",
+      "semanticId": "https://paloframework.org/semantic/relationship/toolbox-activates-measure",
+      "relationshipVersion": "1.0.0",
+      "mappingBasis": "canonical-lifecycle-flow"
+    },
+    {
+      "source": "docs",
+      "target": "prove",
+      "verb": "activates",
+      "weight": "W4",
+      "meaning": "Connects evidence to lifecycle guidance and source artifacts.",
+      "artifactTransferred": "Source and guidance context",
+      "relationType": "operational",
+      "semanticId": "https://paloframework.org/semantic/relationship/docs-activates-prove",
+      "relationshipVersion": "1.0.0",
+      "mappingBasis": "canonical-lifecycle-flow"
+    },
+    {
+      "source": "frame",
+      "target": "brief",
+      "verb": "produces",
+      "weight": "W5",
+      "meaning": "The phase gate produces a versioned operational artifact.",
+      "artifactTransferred": "Use-case brief",
+      "relationType": "evidence",
+      "semanticId": "https://paloframework.org/semantic/relationship/frame-produces-brief",
+      "relationshipVersion": "1.0.0",
+      "mappingBasis": "canonical-lifecycle-flow"
+    },
+    {
+      "source": "classify",
+      "target": "route",
+      "verb": "produces",
+      "weight": "W5",
+      "meaning": "The phase gate produces a versioned operational artifact.",
+      "artifactTransferred": "Risk route",
+      "relationType": "evidence",
+      "semanticId": "https://paloframework.org/semantic/relationship/classify-produces-route",
+      "relationshipVersion": "1.0.0",
+      "mappingBasis": "canonical-lifecycle-flow"
+    },
+    {
+      "source": "assess",
+      "target": "impact-record",
+      "verb": "produces",
+      "weight": "W5",
+      "meaning": "The phase gate produces a versioned operational artifact.",
+      "artifactTransferred": "Impact assessment record",
+      "relationType": "evidence",
+      "semanticId": "https://paloframework.org/semantic/relationship/assess-produces-impact-record",
+      "relationshipVersion": "1.0.0",
+      "mappingBasis": "canonical-lifecycle-flow"
+    },
+    {
+      "source": "control",
+      "target": "control-plan",
+      "verb": "produces",
+      "weight": "W5",
+      "meaning": "The phase gate produces a versioned operational artifact.",
+      "artifactTransferred": "Control plan",
+      "relationType": "evidence",
+      "semanticId": "https://paloframework.org/semantic/relationship/control-produces-control-plan",
+      "relationshipVersion": "1.0.0",
+      "mappingBasis": "canonical-lifecycle-flow"
+    },
+    {
+      "source": "measure",
+      "target": "indicator-register",
+      "verb": "produces",
+      "weight": "W5",
+      "meaning": "The phase gate produces a versioned operational artifact.",
+      "artifactTransferred": "KPI/KRI register",
+      "relationType": "evidence",
+      "semanticId": "https://paloframework.org/semantic/relationship/measure-produces-indicator-register",
+      "relationshipVersion": "1.0.0",
+      "mappingBasis": "canonical-lifecycle-flow"
+    },
+    {
+      "source": "prove",
+      "target": "evidence-bundle",
+      "verb": "produces",
+      "weight": "W5",
+      "meaning": "The phase gate produces a versioned operational artifact.",
+      "artifactTransferred": "Evidence Bundle",
+      "relationType": "evidence",
+      "semanticId": "https://paloframework.org/semantic/relationship/prove-produces-evidence-bundle",
+      "relationshipVersion": "1.0.0",
+      "mappingBasis": "canonical-lifecycle-flow"
+    },
+    {
+      "source": "accountable-owner",
+      "target": "frame",
+      "verb": "owns",
+      "weight": "W5",
+      "meaning": "Supporting operational entity connected to the active phase.",
+      "artifactTransferred": "Operational evidence",
+      "relationType": "context",
+      "semanticId": "https://paloframework.org/semantic/relationship/accountable-owner-owns-frame",
+      "relationshipVersion": "1.0.0",
+      "mappingBasis": "phase-support-assignment"
+    },
+    {
+      "source": "official-sources",
+      "target": "classify",
+      "verb": "grounds",
+      "weight": "W4",
+      "meaning": "Supporting operational entity connected to the active phase.",
+      "artifactTransferred": "Operational evidence",
+      "relationType": "context",
+      "semanticId": "https://paloframework.org/semantic/relationship/official-sources-grounds-classify",
+      "relationshipVersion": "1.0.0",
+      "mappingBasis": "phase-support-assignment"
+    },
+    {
+      "source": "assurance-control",
+      "target": "control",
+      "verb": "implements",
+      "weight": "W4",
+      "meaning": "Supporting operational entity connected to the active phase.",
+      "artifactTransferred": "Operational evidence",
+      "relationType": "context",
+      "semanticId": "https://paloframework.org/semantic/relationship/assurance-control-implements-control",
+      "relationshipVersion": "1.0.0",
+      "mappingBasis": "phase-support-assignment"
+    },
+    {
+      "source": "drift-indicator",
+      "target": "measure",
+      "verb": "signals",
+      "weight": "W4",
+      "meaning": "Supporting operational entity connected to the active phase.",
+      "artifactTransferred": "Operational evidence",
+      "relationType": "context",
+      "semanticId": "https://paloframework.org/semantic/relationship/drift-indicator-signals-measure",
+      "relationshipVersion": "1.0.0",
+      "mappingBasis": "phase-support-assignment"
+    },
+    {
+      "source": "legal-governance",
+      "target": "classify",
+      "verb": "advises",
+      "weight": "W4",
+      "meaning": "The stakeholder role supports this decision while accountability remains explicit.",
+      "artifactTransferred": "Governance rationale",
+      "relationType": "context",
+      "semanticId": "https://paloframework.org/semantic/relationship/legal-governance-advises-classify",
+      "relationshipVersion": "1.0.0",
+      "mappingBasis": "phase-support-assignment"
+    },
+    {
+      "source": "product-engineering",
+      "target": "control",
+      "verb": "implements",
+      "weight": "W4",
+      "meaning": "The stakeholder role supports this decision while accountability remains explicit.",
+      "artifactTransferred": "Implementation evidence",
+      "relationType": "context",
+      "semanticId": "https://paloframework.org/semantic/relationship/product-engineering-implements-control",
+      "relationshipVersion": "1.0.0",
+      "mappingBasis": "phase-support-assignment"
+    },
+    {
+      "source": "board-reviewer",
+      "target": "prove",
+      "verb": "reviews",
+      "weight": "W5",
+      "meaning": "The stakeholder role supports this decision while accountability remains explicit.",
+      "artifactTransferred": "Board review record",
+      "relationType": "context",
+      "semanticId": "https://paloframework.org/semantic/relationship/board-reviewer-reviews-prove",
+      "relationshipVersion": "1.0.0",
+      "mappingBasis": "phase-support-assignment"
+    },
+    {
+      "source": "assessment-path",
+      "target": "prove",
+      "verb": "supports review",
+      "weight": "W5",
+      "meaning": "Existing module evidence is assembled or refreshed during review.",
+      "artifactTransferred": "Evidence bundle",
+      "relationType": "evidence",
+      "semanticId": "https://paloframework.org/semantic/relationship/assessment-path-supports-review-prove",
+      "relationshipVersion": "1.0.0",
+      "mappingBasis": "canonical-lifecycle-flow"
+    },
+    {
+      "source": "reg-watch",
+      "target": "prove",
+      "verb": "supports review",
+      "weight": "W3",
+      "meaning": "Existing module evidence is assembled or refreshed during review.",
+      "artifactTransferred": "Review context",
+      "relationType": "evidence",
+      "semanticId": "https://paloframework.org/semantic/relationship/reg-watch-supports-review-prove",
+      "relationshipVersion": "1.0.0",
+      "mappingBasis": "canonical-lifecycle-flow"
+    },
+    {
+      "source": "toolbox",
+      "target": "prove",
+      "verb": "supports review",
+      "weight": "W3",
+      "meaning": "Existing module evidence is assembled or refreshed during review.",
+      "artifactTransferred": "Review context",
+      "relationType": "evidence",
+      "semanticId": "https://paloframework.org/semantic/relationship/toolbox-supports-review-prove",
+      "relationshipVersion": "1.0.0",
+      "mappingBasis": "canonical-lifecycle-flow"
+    },
+    {
+      "source": "nav-model",
+      "target": "nav-onboard",
+      "verb": "leads to",
+      "weight": "W3",
+      "meaning": "Related stakeholder intents can be followed as one operational route.",
+      "artifactTransferred": "Local route record",
+      "relationType": "navigation",
+      "semanticId": "https://paloframework.org/semantic/relationship/nav-model-leads-to-nav-onboard",
+      "relationshipVersion": "1.0.0",
+      "mappingBasis": "stakeholder-intent-route"
+    },
+    {
+      "source": "nav-onboard",
+      "target": "nav-docs",
+      "verb": "leads to",
+      "weight": "W3",
+      "meaning": "Related stakeholder intents can be followed as one operational route.",
+      "artifactTransferred": "Source and lifecycle context",
+      "relationType": "navigation",
+      "semanticId": "https://paloframework.org/semantic/relationship/nav-onboard-leads-to-nav-docs",
+      "relationshipVersion": "1.0.0",
+      "mappingBasis": "stakeholder-intent-route"
+    },
+    {
+      "source": "nav-tier",
+      "target": "nav-fria",
+      "verb": "leads to",
+      "weight": "W3",
+      "meaning": "Related stakeholder intents can be followed as one operational route.",
+      "artifactTransferred": "FRIA record",
+      "relationType": "navigation",
+      "semanticId": "https://paloframework.org/semantic/relationship/nav-tier-leads-to-nav-fria",
+      "relationshipVersion": "1.0.0",
+      "mappingBasis": "stakeholder-intent-route"
+    },
+    {
+      "source": "nav-fria",
+      "target": "nav-agentic",
+      "verb": "leads to",
+      "weight": "W3",
+      "meaning": "Related stakeholder intents can be followed as one operational route.",
+      "artifactTransferred": "Agentic evidence plan",
+      "relationType": "navigation",
+      "semanticId": "https://paloframework.org/semantic/relationship/nav-fria-leads-to-nav-agentic",
+      "relationshipVersion": "1.0.0",
+      "mappingBasis": "stakeholder-intent-route"
+    },
+    {
+      "source": "nav-controls",
+      "target": "nav-vibe",
+      "verb": "leads to",
+      "weight": "W3",
+      "meaning": "Related stakeholder intents can be followed as one operational route.",
+      "artifactTransferred": "Development controls",
+      "relationType": "navigation",
+      "semanticId": "https://paloframework.org/semantic/relationship/nav-controls-leads-to-nav-vibe",
+      "relationshipVersion": "1.0.0",
+      "mappingBasis": "stakeholder-intent-route"
+    },
+    {
+      "source": "nav-vibe",
+      "target": "nav-kpi",
+      "verb": "leads to",
+      "weight": "W3",
+      "meaning": "Related stakeholder intents can be followed as one operational route.",
+      "artifactTransferred": "KPI/KRI register",
+      "relationType": "navigation",
+      "semanticId": "https://paloframework.org/semantic/relationship/nav-vibe-leads-to-nav-kpi",
+      "relationshipVersion": "1.0.0",
+      "mappingBasis": "stakeholder-intent-route"
+    },
+    {
+      "source": "nav-evidence",
+      "target": "nav-monitor",
+      "verb": "leads to",
+      "weight": "W3",
+      "meaning": "Related stakeholder intents can be followed as one operational route.",
+      "artifactTransferred": "Non-authoritative monitoring signal pending human review",
+      "relationType": "navigation",
+      "semanticId": "https://paloframework.org/semantic/relationship/nav-evidence-leads-to-nav-monitor",
+      "relationshipVersion": "1.0.0",
+      "mappingBasis": "stakeholder-intent-route"
+    },
+    {
+      "source": "nav-monitor",
+      "target": "nav-review",
+      "verb": "leads to",
+      "weight": "W3",
+      "meaning": "Related stakeholder intents can be followed as one operational route.",
+      "artifactTransferred": "Gate decision and next-cycle update",
+      "relationType": "navigation",
+      "semanticId": "https://paloframework.org/semantic/relationship/nav-monitor-leads-to-nav-review",
+      "relationshipVersion": "1.0.0",
+      "mappingBasis": "stakeholder-intent-route"
+    },
+    {
+      "source": "nav-docs",
+      "target": "nav-tier",
+      "verb": "hands off to",
+      "weight": "W4",
+      "meaning": "The output supports the next governance intent.",
+      "artifactTransferred": "Risk classification report",
+      "relationType": "navigation",
+      "semanticId": "https://paloframework.org/semantic/relationship/nav-docs-hands-off-to-nav-tier",
+      "relationshipVersion": "1.0.0",
+      "mappingBasis": "stakeholder-intent-route"
+    },
+    {
+      "source": "nav-agentic",
+      "target": "nav-controls",
+      "verb": "hands off to",
+      "weight": "W4",
+      "meaning": "The output supports the next governance intent.",
+      "artifactTransferred": "Calibrated control plan",
+      "relationType": "navigation",
+      "semanticId": "https://paloframework.org/semantic/relationship/nav-agentic-hands-off-to-nav-controls",
+      "relationshipVersion": "1.0.0",
+      "mappingBasis": "stakeholder-intent-route"
+    },
+    {
+      "source": "nav-kpi",
+      "target": "nav-evidence",
+      "verb": "hands off to",
+      "weight": "W4",
+      "meaning": "The output supports the next governance intent.",
+      "artifactTransferred": "Evidence Bundle and board pack",
+      "relationType": "navigation",
+      "semanticId": "https://paloframework.org/semantic/relationship/nav-kpi-hands-off-to-nav-evidence",
+      "relationshipVersion": "1.0.0",
+      "mappingBasis": "stakeholder-intent-route"
+    }
+  ],
+  "stageIds": [
+    "frame",
+    "classify",
+    "assess",
+    "control",
+    "measure",
+    "prove"
+  ],
+  "navigationIds": [
+    "nav-model",
+    "nav-onboard",
+    "nav-docs",
+    "nav-tier",
+    "nav-fria",
+    "nav-agentic",
+    "nav-controls",
+    "nav-vibe",
+    "nav-kpi",
+    "nav-evidence",
+    "nav-monitor",
+    "nav-review"
+  ],
+  "weights": {
+    "W5": "Core: mandatory/default path",
+    "W4": "Strong: material governance dependency",
+    "W3": "Contextual: activated by the use case",
+    "W2": "Supporting: reference or supporting evidence"
+  }
+}

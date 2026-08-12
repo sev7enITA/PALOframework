@@ -1,0 +1,15 @@
+{
+  "format": "palo-evidence-artifact",
+  "schemaVersion": "1.0.0",
+  "artifactId": "bad",
+  "caseId": "wrong",
+  "artifactType": "test-result",
+  "title": "Invalid fixture",
+  "mediaType": "json",
+  "recordedAt": "today",
+  "contentDigest": "unsigned",
+  "storageReference": "relative/path",
+  "provenance": { "producerId": "", "captureMethod": "copied", "sourceSystem": "" },
+  "sensitivity": "secret",
+  "status": "approved"
+}

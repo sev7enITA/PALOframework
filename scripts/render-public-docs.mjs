@@ -32,6 +32,7 @@ function summaryFromMarkdown(markdown) {
 }
 
 function documentCategory(file) {
+  if (/semantic-foundation|semantic|ontology|lifecycle-definition/i.test(file)) return "Semantic foundation and contracts";
   if (file.startsWith("templates/") || file.startsWith("examples/")) return "Templates and examples";
   if (file.startsWith("docs/community/") || file === "CONTRIBUTING.md") return "Community and contribution";
   if (file.includes("governance-hub")) return "Governance Hub and UX";
@@ -42,6 +43,7 @@ function documentCategory(file) {
 }
 
 const importantMetadata = {
+  "docs/palo-v3-semantic-foundation.md": { level: "reference", audience: "executive governance technical builder", task: "understand design assure", product: "PALO Core", status: "Canonical v3.0.0", evidenceClass: "canonical-definition", workspace: "public-catalog", prerequisite: "No specialist prerequisite", next: "Open the Semantic Inspector" },
   "docs/palo-ai-adoption-paths.md": { level: "start", audience: "technical builder governance", task: "understand design", product: "PALO-AI", status: "Developer Preview", prerequisite: "Choose an organizational role and objective", next: "Open the guided Start" },
   "docs/palo-ai-governance-integration-guide.md": { level: "guide", audience: "technical", task: "integrate", product: "PALO-AI", status: "Developer Preview", prerequisite: "One reversible tool and authority profile", next: "Configure the Governance Hub technical setup" },
   "docs/palo-ai-n8n-governance-control-plane.md": { level: "guide", audience: "technical builder", task: "integrate design", product: "PALO-AI", status: "Developer Preview", prerequisite: "Self-hosted n8n evaluation canvas", next: "Run the governed-action demo" },
@@ -76,7 +78,9 @@ function documentMetadata(file, markdown) {
     status: explicit?.status || (lower.includes("palo-ai") ? "Developer Preview" : "Current Guidance"),
     readingTime: `${Math.max(1, Math.ceil(words / 220))} min`,
     prerequisite: explicit?.prerequisite || "No specialist prerequisite stated",
-    next: explicit?.next || "Return to the Documentation Library"
+    next: explicit?.next || "Return to the Documentation Library",
+    evidenceClass: explicit?.evidenceClass || (lower.includes("governance-hub") ? "illustrative-local-preview" : /monitor|watch|signal/.test(lower) ? "human-review-required" : "source-backed-context"),
+    workspace: explicit?.workspace || (/case-file|template|worked-case/.test(lower) ? "case-workspace" : /assurance|security|incident|board-review/.test(lower) ? "assurance-review" : "public-catalog")
   };
 }
 
@@ -163,10 +167,10 @@ function renderDocument(markdown, file) {
   <link rel="canonical" href="${escapeHtml(canonical)}">
   <link rel="icon" type="image/webp" href="${asset("assets/logo.webp")}">
   <link rel="stylesheet" href="${asset("assets/palo-icons.css")}">
-  <link rel="stylesheet" href="${asset("assets/palo-v21.css")}?v=2.5.0">
+  <link rel="stylesheet" href="${asset("assets/palo-v21.css")}?v=3.0.0">
   <link rel="stylesheet" href="${asset("assets/palo-docs.css")}">
   <script src="${asset("assets/palo-icons.js")}" defer></script>
-  <script src="${asset("assets/palo-v21.js")}?v=2.5.0" defer></script>
+  <script src="${asset("assets/palo-v21.js")}?v=3.0.0" defer></script>
   <script src="${asset("assets/palo-docs.js")}" defer></script>
 </head>
 <body class="palo-v21 palo-doc-page" data-doc-source="${escapeHtml(file)}">
@@ -202,9 +206,9 @@ export async function renderPublicDocs({ sourceRoot, targetRoot }) {
     outputs.push(output);
     documents.push({ file, output, title: titleFromMarkdown(markdown, file), category: documentCategory(file), summary: summaryFromMarkdown(markdown), metadata: documentMetadata(file, markdown) });
   }
-  const categories = ["Start and adoption", "Architecture and integration", "Operations and deployment", "Security and production readiness", "Governance Hub and UX", "Community and contribution", "Templates and examples"];
+  const categories = ["Semantic foundation and contracts", "Start and adoption", "Architecture and integration", "Operations and deployment", "Security and production readiness", "Governance Hub and UX", "Community and contribution", "Templates and examples"];
   const groups = categories.map((category, index) => {
-    const cards = documents.filter((document) => document.category === category).map((document) => `<article class="palo-library-card" data-library-card data-category="${escapeHtml(category)}" data-level="${escapeHtml(document.metadata.level)}" data-audience="${escapeHtml(document.metadata.audience)}" data-task="${escapeHtml(document.metadata.task)}" data-product="${escapeHtml(document.metadata.product)}" data-search="${escapeHtml(`${document.title} ${document.summary} ${document.file} ${document.metadata.audience} ${document.metadata.task} ${document.metadata.product}`.toLowerCase())}"><div><p class="palo-card-kicker">${escapeHtml(document.metadata.product)}</p><span class="palo-library-status">${escapeHtml(document.metadata.status)}</span></div><h3>${escapeHtml(document.title)}</h3><p>${escapeHtml(document.summary)}</p><details class="palo-library-meta" open data-library-meta-details><summary>Document details</summary><div class="palo-library-tags"><span>${escapeHtml(document.metadata.level)}</span><span>${escapeHtml(document.metadata.readingTime)}</span></div><small><strong>Prerequisite:</strong> ${escapeHtml(document.metadata.prerequisite)}</small><small><strong>Next:</strong> ${escapeHtml(document.metadata.next)}</small><code>${escapeHtml(document.file)}</code><a href="${escapeHtml(document.output)}">Open HTML guide<span aria-hidden="true"> →</span></a></details></article>`).join("");
+    const cards = documents.filter((document) => document.category === category).map((document) => `<article class="palo-library-card" data-library-card data-category="${escapeHtml(category)}" data-level="${escapeHtml(document.metadata.level)}" data-audience="${escapeHtml(document.metadata.audience)}" data-task="${escapeHtml(document.metadata.task)}" data-product="${escapeHtml(document.metadata.product)}" data-evidence-class="${escapeHtml(document.metadata.evidenceClass)}" data-workspace="${escapeHtml(document.metadata.workspace)}" data-search="${escapeHtml(`${document.title} ${document.summary} ${document.file} ${document.metadata.audience} ${document.metadata.task} ${document.metadata.product} ${document.metadata.evidenceClass} ${document.metadata.workspace}`.toLowerCase())}"><div><p class="palo-card-kicker">${escapeHtml(document.metadata.product)}</p><span class="palo-library-status">${escapeHtml(document.metadata.status)}</span></div><h3>${escapeHtml(document.title)}</h3><p>${escapeHtml(document.summary)}</p><details class="palo-library-meta" open data-library-meta-details><summary>Document details</summary><div class="palo-library-tags"><span>${escapeHtml(document.metadata.level)}</span><span>${escapeHtml(document.metadata.readingTime)}</span><span>${escapeHtml(document.metadata.evidenceClass)}</span><span>${escapeHtml(document.metadata.workspace)}</span></div><small><strong>Prerequisite:</strong> ${escapeHtml(document.metadata.prerequisite)}</small><small><strong>Next:</strong> ${escapeHtml(document.metadata.next)}</small><code>${escapeHtml(document.file)}</code><a href="${escapeHtml(document.output)}">Open HTML guide<span aria-hidden="true"> →</span></a></details></article>`).join("");
     const count = documents.filter((document) => document.category === category).length;
     const groupId = `library-group-${index + 1}`;
     return cards ? `<section class="palo-library-group${index ? " is-mobile-collapsed" : ""}" data-library-group><div class="palo-library-group-heading"><h2>${escapeHtml(category)}</h2><button type="button" data-library-toggle aria-expanded="${index ? "false" : "true"}" aria-controls="${groupId}">${count} documents <span aria-hidden="true">⌄</span></button></div><div class="palo-library-list" id="${groupId}">${cards}</div></section>` : "";

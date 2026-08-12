@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paloframework.org/schemas/palo-evidence-artifact.schema.json",
+  "title": "PALO Evidence Artifact",
+  "type": "object",
+  "required": ["format", "schemaVersion", "artifactId", "caseId", "artifactType", "title", "mediaType", "recordedAt", "contentDigest", "storageReference", "provenance", "sensitivity", "status"],
+  "properties": {
+    "format": { "const": "palo-evidence-artifact" },
+    "schemaVersion": { "const": "1.0.0" },
+    "artifactId": { "type": "string", "pattern": "^evidence-artifact-[a-z0-9][a-z0-9-]{5,80}$" },
+    "caseId": { "type": "string", "pattern": "^case-[a-z0-9][a-z0-9-]{5,63}$" },
+    "artifactType": { "type": "string", "minLength": 1 },
+    "title": { "type": "string", "minLength": 1 },
+    "mediaType": { "type": "string", "pattern": "^[a-z0-9.+-]+/[a-z0-9.+-]+$" },
+    "recordedAt": { "type": "string", "format": "date-time" },
+    "contentDigest": { "$ref": "#/$defs/digest" },
+    "storageReference": { "type": "string", "format": "uri" },
+    "provenance": {
+      "type": "object",
+      "required": ["producerId", "captureMethod", "sourceSystem"],
+      "properties": {
+        "producerId": { "type": "string", "minLength": 1 },
+        "captureMethod": { "enum": ["generated", "exported", "observed", "uploaded", "signed-receipt"] },
+        "sourceSystem": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
+    },
+    "sensitivity": { "enum": ["public", "internal", "confidential", "restricted"] },
+    "status": { "enum": ["draft", "ready", "verified", "superseded", "revoked"] }
+  },
+  "$defs": { "digest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" } },
+  "additionalProperties": false
+}

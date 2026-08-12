@@ -46,6 +46,8 @@ The framework is aligned with major AI governance references including:
 
 PALO is not a certification body and does not provide legal advice. It is a practical pre-screening, documentation, and governance support toolkit.
 
+> **PALO v3.0.0 semantic foundation:** canonical lifecycle definitions, relationships, decision history, evidence claims/evaluations and control-to-gate/source mappings now have stable semantic identity, explicit authority boundaries and executable schema/RDF/SHACL validation. The public Explorer is generated from this spine, and the semantic release inventory is digest-bound. See the [v3 semantic foundation guide](docs/palo-v3-semantic-foundation.md).
+
 > **PALO-AI v2.5 full-cycle developer preview:** the reference runtime now separates permission from outcome assurance through Effect Contracts, one-time execution capabilities, signed receipts, authoritative post-state verification, incident holds and single-instance recovery. The Governance Hub is an implemented React/Vite interface prototype using illustrative local data. These components are for isolated evaluation: they are not a production authorization service, an unavoidable execution boundary, a compliance certification, or a replacement for organization-owned identity, access control, key management, monitoring, backup, retention, legal review and independent security assurance.
 
 ### PALO-AI for agentic automation platforms
@@ -121,6 +123,7 @@ n8n orchestrates what automation does. PALO governs whether an identified agent 
 | [Documentation Library](PALO_DocumentationLibrary.html) | Searchable HTML documentation with Start, Guide and Reference depth plus audience, task, product and maturity metadata | Live |
 | [Platform Map](PALO_PlatformMap.html) | Operational status, stakeholder-intent routes, modules, artifacts, research boundaries, and accessible table navigation | Live |
 | [Operationalization Explorer / Stakeholder Onboarding](designs/theory-to-practice-infographic/) | Three-step local stakeholder routing into the six-phase weighted workflow and interactive 3D knowledge graph | Live |
+| [PALO v3 Semantic Foundation](docs/palo-v3-semantic-foundation.md) | Versioned semantic spine, lifecycle and gate history, atomic evidence contracts, mappings, RDF/SHACL and digest-bound release inventory | Live |
 
 ## Mobile Toolbox
 
@@ -135,6 +138,7 @@ The app is designed as a privacy-first mobile workspace for contextual AI govern
 
 | Date | Release | Highlights |
 | --- | --- | --- |
+| 2026-08-12 | v3.0.0 - Semantic Foundation | Canonical semantic spine, append-only gate decisions, atomic evidence/claim/evaluation contracts, RDF/SHACL invariants, mapping governance, Semantic Inspector and digest-bound releases |
 | 2026-07-18 | v2.5.0 - Full-Cycle Agentic Assurance | Effect Contracts, one-time execution capabilities, trusted receipts, authoritative outcome attestations, held assurance incidents, crash recovery, and the n8n Governed Action preview |
 | 2026-07-17 | v2.4.1 - PALO-AI Developer Preview | Versioned agentic contracts, reference MCP transports, draft Rego v1 policies, prototype approval and evidence flows, and non-production n8n/Dify examples |
 | 2026-07-12 | v2.4.0 - Reliable Operational Evidence | Deterministic publication, local evidence workflows, P2 adoption foundations, the public Platform Map, and Explorer navigation mode |
@@ -183,6 +187,8 @@ Open the [PALO Stakeholder Onboarding](https://paloframework.org/designs/theory-
 ### Run locally
 
 The website remains static. The optional, non-production PALO-AI reference runtime uses Node.js 20+ and OPA.
+
+To validate or regenerate the v3 semantic foundation, use `npm run semantic:validate`, `npm run semantic:generate`, and `npm run semantic:release`. The full release gate remains `npm run p0`.
 
 ```bash
 git clone https://github.com/sev7enITA/PALOframework.git

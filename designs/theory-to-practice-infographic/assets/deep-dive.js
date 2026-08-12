@@ -94,6 +94,25 @@
   function linkColor(link) { return linkInPhase(link) ? "rgba(142,229,232,.76)" : "rgba(118,145,164,.15)"; }
   function linkWidth(link) { return ({ W5: 3.6, W4: 2.7, W3: 1.9, W2: 1.15 }[link.weight] || 1) * (linkInPhase(link) ? 1 : .55); }
 
+  function appendProperty(label, content) {
+    var row = document.createElement("tr");
+    var heading = document.createElement("th");
+    var value = document.createElement("td");
+    heading.scope = "row";
+    heading.textContent = label;
+    if (content instanceof Node) value.appendChild(content);
+    else value.textContent = content == null || content === "" ? "—" : String(content);
+    row.appendChild(heading);
+    row.appendChild(value);
+    propertyTable.appendChild(row);
+  }
+
+  function authorityLabel(evidenceClass) {
+    return data.authorityClasses && data.authorityClasses[evidenceClass]
+      ? data.authorityClasses[evidenceClass].label
+      : evidenceClass;
+  }
+
   function renderNodeInspector(node) {
     selectedNode = node;
     inspectorType.textContent = node.type + (node.number ? " · " + node.number : "") + " · " + node.phaseId;
@@ -101,19 +120,17 @@
     inspectorStatus.textContent = node.status;
     inspectorRole.textContent = node.role;
     propertyTable.innerHTML = "";
+    appendProperty("Semantic ID", node.semanticId);
+    appendProperty("Definition version", node.definitionVersion);
+    appendProperty("Evidence / authority", authorityLabel(node.evidenceClass));
+    appendProperty("Authority boundary", node.authorityBoundary);
+    appendProperty("Last reviewed", node.lastReviewed);
+    appendProperty("Source references", (node.sourceRefs || []).length ? node.sourceRefs.join(" · ") : "Canonical PALO definition");
     Object.keys(node.properties || {}).forEach(function (key) {
-      var row = document.createElement("tr");
-      var heading = document.createElement("th");
-      var value = document.createElement("td");
-      heading.scope = "row"; heading.textContent = key; value.textContent = node.properties[key];
-      row.appendChild(heading); row.appendChild(value); propertyTable.appendChild(row);
+      appendProperty(key, node.properties[key]);
     });
     if (node.outputs && node.outputs.length) {
-      var row = document.createElement("tr");
-      var heading = document.createElement("th");
-      var value = document.createElement("td");
-      heading.scope = "row"; heading.textContent = "Outputs"; value.textContent = node.outputs.join(" · ");
-      row.appendChild(heading); row.appendChild(value); propertyTable.appendChild(row);
+      appendProperty("Outputs", node.outputs.join(" · "));
     }
     relationshipList.innerHTML = "";
     visibleLinks().forEach(function (link) {
@@ -123,7 +140,16 @@
       var item = document.createElement("li");
       var button = document.createElement("button");
       button.type = "button";
-      button.innerHTML = "<b>" + link.weight + "</b> " + source.label + " · " + link.verb + " · " + target.label + "<span class=\"transferred-artifact\">Transfers: " + link.artifactTransferred + "</span>";
+      var weight = document.createElement("b");
+      var relation = document.createElement("span");
+      var transfer = document.createElement("span");
+      weight.textContent = link.weight;
+      relation.textContent = source.label + " · " + link.verb + " · " + target.label;
+      transfer.className = "transferred-artifact";
+      transfer.textContent = "Transfers: " + link.artifactTransferred;
+      button.appendChild(weight);
+      button.appendChild(relation);
+      button.appendChild(transfer);
       button.setAttribute("aria-label", link.weight + ", " + source.label + " " + link.verb + " " + target.label + ". Transfers " + link.artifactTransferred);
       button.addEventListener("click", function () { renderRelationshipInspector(link); });
       item.appendChild(button); relationshipList.appendChild(item);
@@ -147,17 +173,16 @@
     inspectorStatus.textContent = link.weight;
     inspectorRole.textContent = link.meaning;
     var values = {
+      "Relationship ID": link.semanticId,
+      "Relationship version": link.relationshipVersion,
+      "Mapping basis": link.mappingBasis,
       Source: source.label, Verb: link.verb, Target: target.label,
       Weight: link.weight + " · " + data.weights[link.weight],
       "Relation type": link.relationType, "Transferred artifact": link.artifactTransferred
     };
     propertyTable.innerHTML = "";
     Object.keys(values).forEach(function (key) {
-      var row = document.createElement("tr");
-      var heading = document.createElement("th");
-      var value = document.createElement("td");
-      heading.scope = "row"; heading.textContent = key; value.textContent = values[key];
-      row.appendChild(heading); row.appendChild(value); propertyTable.appendChild(row);
+      appendProperty(key, values[key]);
     });
     relationshipList.innerHTML = "";
     inspectorCommand.hidden = true;
@@ -271,6 +296,8 @@
       { name: "fifteen unique modules", pass: new Set(data.nodes.filter(function (node) { return node.type === "module"; }).map(function (node) { return node.id; })).size === 15 },
       { name: "all graph entity types", pass: ["stage", "module", "artifact", "control", "metric", "source", "actor"].every(function (type) { return data.nodes.some(function (node) { return node.type === type; }); }) },
       { name: "weighted relationships", pass: data.links.every(function (link) { return /^W[2-5]$/.test(link.weight) && link.artifactTransferred; }) },
+      { name: "versioned semantic nodes", pass: data.nodes.every(function (node) { return node.semanticId && node.definitionVersion === data.semanticVersion && node.evidenceClass && node.authorityBoundary && node.lastReviewed; }) },
+      { name: "versioned relationship mappings", pass: data.links.every(function (link) { return link.semanticId && link.relationshipVersion && link.mappingBasis; }) },
       { name: "navigation entity properties", pass: data.navigation.length === 12 && data.navigation.every(function (node) { return node.properties.Destination && node.properties.Stakeholder && node.properties.Phase && node.properties.Artifact && node.properties.Status; }) },
       { name: "navigation relationships", pass: data.links.filter(function (link) { return link.relationType === "navigation"; }).length >= 11 },
       { name: "local UMD runtime", pass: typeof window.ForceGraph3D === "function" && typeof window.THREE === "undefined" },

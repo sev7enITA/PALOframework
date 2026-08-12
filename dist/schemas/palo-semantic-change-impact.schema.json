@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paloframework.org/schemas/palo-semantic-change-impact.schema.json",
+  "title": "PALO Semantic Change Impact",
+  "type": "object",
+  "required": ["format", "schemaVersion", "changeImpactId", "fromVersion", "toVersion", "assessedAt", "status", "compatibilityPolicy", "changes", "migrationGates"],
+  "properties": {
+    "format": { "const": "palo-semantic-change-impact" },
+    "schemaVersion": { "const": "1.0.0" },
+    "changeImpactId": { "type": "string", "format": "uri" },
+    "fromVersion": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "toVersion": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "assessedAt": { "type": "string", "format": "date" },
+    "status": { "enum": ["draft", "reviewed", "approved-for-release"] },
+    "compatibilityPolicy": { "type": "string", "minLength": 1 },
+    "changes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["changeId", "category", "summary", "compatibility", "affectedArtifacts", "requiredAction"],
+        "properties": {
+          "changeId": { "type": "string", "pattern": "^CHANGE-[0-9]{2}$" },
+          "category": { "enum": ["semantic-model", "lifecycle", "decision", "evidence", "mapping", "release", "user-experience"] },
+          "summary": { "type": "string", "minLength": 1 },
+          "compatibility": { "enum": ["additive", "migration-required", "generated-projection"] },
+          "affectedArtifacts": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string" } },
+          "requiredAction": { "type": "string", "minLength": 1 }
+        },
+        "additionalProperties": false
+      }
+    },
+    "migrationGates": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string" } }
+  },
+  "additionalProperties": false
+}

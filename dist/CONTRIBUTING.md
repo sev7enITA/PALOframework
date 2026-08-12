@@ -1,5 +1,9 @@
 # Contributing to PALO Framework
 
+## Semantic contract changes
+
+PALO v3 semantic sources are versioned public contracts. Change the semantic source through the documented generator workflow, then run `npm run semantic:generate`, `npm run semantic:validate` and `npm run semantic:release`. Do not hand-edit the generated Explorer graph or lifecycle projection. Breaking identifier, meaning, cardinality, authority-boundary or mapping changes require a major semantic version, a change-impact record, migration gates and updated valid/invalid fixtures.
+
 First off, thank you for considering contributing to PALO!
 
 ##  Table of Contents

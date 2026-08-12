@@ -1,6 +1,6 @@
 {
   "name": "palo-platform",
-  "version": "2.5.0",
+  "version": "3.0.0",
   "private": true,
   "description": "Deterministic validation, publication, and browser smoke tooling for the PALO static platform.",
   "type": "module",
@@ -8,7 +8,13 @@
     "node": ">=20 <25"
   },
   "scripts": {
-    "validate": "node scripts/validate.mjs --root .",
+    "semantic:bootstrap": "node scripts/generate-semantic-assets.mjs --bootstrap",
+    "semantic:generate": "node scripts/generate-semantic-assets.mjs",
+    "semantic:check": "node scripts/generate-semantic-assets.mjs --check",
+    "semantic:validate": "node scripts/validate-semantic.mjs",
+    "semantic:release": "node scripts/generate-semantic-release.mjs",
+    "semantic:release:check": "node scripts/generate-semantic-release.mjs --check",
+    "validate": "npm run semantic:check && npm run semantic:validate && npm run semantic:release:check && node scripts/validate.mjs --root .",
     "validate:agentic": "node scripts/validate-agentic.mjs && node --test packages/palo-mcp-server/*.test.js && python3 -m unittest examples/agentic-interface/integrations/dify/test_palo_dify_tool.py",
     "opa:install": "node scripts/install-opa.mjs",
     "palo:mcp": "node packages/palo-mcp-server/index.js",
@@ -36,6 +42,7 @@
     "ajv": "8.20.0",
     "ajv-formats": "3.0.1",
     "better-sqlite3": "12.11.1",
+    "n3": "2.1.1",
     "zod": "4.4.3"
   }
 }

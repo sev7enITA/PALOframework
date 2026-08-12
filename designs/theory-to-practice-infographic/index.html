@@ -59,7 +59,7 @@
       <button class="icon-button" id="camera-reset" type="button" aria-label="Reset graph camera" title="Reset graph camera">
         <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 11a8 8 0 1 1 2.3 5.7L4 19v-6h6l-2.3 2.3"/></svg>
       </button>
-      <button class="icon-button" id="semantic-toggle" type="button" aria-label="Show semantic graph" title="Show semantic graph" aria-pressed="false">
+      <button class="icon-button" id="semantic-toggle" type="button" aria-label="Open semantic inspector" title="Open semantic inspector" aria-pressed="false">
         <svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="6" cy="7" r="2"/><circle cx="18" cy="6" r="2"/><circle cx="12" cy="18" r="2"/><path d="m8 7 8-.7M7 9l4 7M17 8l-4 8"/></svg>
       </button>
     </div>
@@ -349,13 +349,14 @@
         <div class="graph-fallback" id="graph-fallback"><div><h3>3D view unavailable</h3><p>The complete six-phase model remains available in the semantic sections. The public Platform Map provides the equivalent navigation routes as an accessible table.</p><a href="workflow.html">Open weighted workflow</a> · <a href="../../PALO_PlatformMap.html#map-table">Open navigation table</a></div></div>
       </div>
       <section class="inspector" id="inspector" aria-live="polite" aria-labelledby="inspector-title">
+        <div class="semantic-boundary"><strong>Public semantic catalog</strong><span>Delivery status and source authority are separate. Local previews and monitoring signals never become approval decisions here.</span><a href="../../docs/palo-v3-semantic-foundation.html">Read the v3 contract</a></div>
         <div class="inspector-head"><div><p class="entity-type" id="entity-type">Stage · 01</p><h3 id="inspector-title">Frame</h3></div><span class="entity-status" id="entity-status">Operational phase</span></div>
         <p class="entity-role" id="entity-role">Define the use case, its boundary, owners and affected people before governance choices are made.</p>
         <table class="property-table"><tbody id="property-table"></tbody></table>
         <ul class="relationship-list" id="relationship-list" aria-label="Weighted relationships"></ul>
         <a class="inspector-command" id="inspector-command" href="#frame" hidden>Open module</a>
         <details class="semantic-explorer">
-          <summary>Search entities and relationships</summary>
+          <summary>Search the semantic catalog</summary>
           <label class="entity-type" for="entity-search">Entity search</label>
           <input class="entity-search" id="entity-search" type="search" placeholder="Search modules, artifacts, controls...">
           <div class="entity-results" id="entity-results" role="list"></div>
@@ -365,10 +366,10 @@
   </div>
 
   <noscript><section class="noscript-fallback"><h2>Semantic exploration remains available</h2><p>The 3D view requires JavaScript, but all six operational phases, properties and module links remain available above in normal document flow.</p><a href="workflow.html">Open the canonical weighted workflow</a></section></noscript>
-  <script src="../../assets/palo-case-file.js?v=2.4.0"></script>
-  <script src="assets/graph-data.js?v=240"></script>
-  <script src="../../assets/palo-spotlight.js?v=2.4.0"></script>
-  <script src="assets/onboarding.js?v=240"></script>
-  <script src="assets/deep-dive.js?v=240"></script>
+  <script src="../../assets/palo-case-file.js?v=3.0.0"></script>
+  <script src="assets/graph-data.js?v=300"></script>
+  <script src="../../assets/palo-spotlight.js?v=3.0.0"></script>
+  <script src="assets/onboarding.js?v=300"></script>
+  <script src="assets/deep-dive.js?v=300"></script>
 </body>
 </html>

@@ -1,0 +1,19 @@
+{
+  "format": "palo-gate-decision-record",
+  "schemaVersion": "1.0.0",
+  "decisionId": "gate-decision-invalid-record",
+  "gateInstanceId": "gate-instance-invalid-record",
+  "caseId": "case-invalid-record",
+  "sequence": 2,
+  "outcome": "proceed-with-conditions",
+  "decidedAt": "2026-08-12T10:00:00Z",
+  "decisionActor": { "actorId": "actor", "role": "reviewer", "displayName": "Reviewer" },
+  "authorityBasis": "Missing chain information.",
+  "rationale": "This fixture intentionally violates conditional invariants.",
+  "conditions": [],
+  "inputSnapshotHash": "not-a-digest",
+  "definitionRefs": [],
+  "evidenceClaimIds": [],
+  "recordDigest": "not-a-digest",
+  "appendOnly": false
+}

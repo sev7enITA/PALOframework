@@ -1,0 +1,25 @@
+{
+  "format": "palo-semantic-invariants",
+  "schemaVersion": "1.0.0",
+  "semanticVersion": "3.0.0",
+  "invariants": [
+    { "invariantId": "SEM-01", "statement": "Every semantic entity has exactly one stable identifier.", "enforcedBy": ["SHACL", "JSON Schema"] },
+    { "invariantId": "SEM-02", "statement": "Every canonical definition has exactly one semantic version.", "enforcedBy": ["SHACL", "generator"] },
+    { "invariantId": "SEM-03", "statement": "Released definitions are superseded, never overwritten.", "enforcedBy": ["release validation", "documentation"] },
+    { "invariantId": "SEM-04", "statement": "Lifecycle definitions, phase definitions and gate definitions are distinct from runtime instances.", "enforcedBy": ["OWL", "JSON Schema"] },
+    { "invariantId": "SEM-05", "statement": "Every gate instance references exactly one versioned gate definition and one case.", "enforcedBy": ["SHACL", "JSON Schema"] },
+    { "invariantId": "SEM-06", "statement": "Every consequential gate decision is append-only, digest-bound and attributable.", "enforcedBy": ["SHACL", "JSON Schema"] },
+    { "invariantId": "SEM-07", "statement": "An evidence claim references exactly one artifact, one target and one case scope.", "enforcedBy": ["SHACL", "JSON Schema"] },
+    { "invariantId": "SEM-08", "statement": "Evidence evaluation is separate from evidence assertion.", "enforcedBy": ["OWL", "SHACL"] },
+    { "invariantId": "SEM-09", "statement": "Evidence bundles are manifests of digest-bound records, not duplicate evidence stores.", "enforcedBy": ["SHACL", "JSON Schema"] },
+    { "invariantId": "SEM-10", "statement": "Each cross-framework mapping represents one source version and one target version.", "enforcedBy": ["SHACL", "JSON Schema"] },
+    { "invariantId": "SEM-11", "statement": "Every assessment and evidence manifest is pinned to an immutable semantic release manifest.", "enforcedBy": ["SHACL", "release validation"] },
+    { "invariantId": "SEM-12", "statement": "Delivery status and evidence authority class remain separate properties.", "enforcedBy": ["semantic spine schema", "browser tests"] },
+    { "invariantId": "SEM-13", "statement": "Framework guidance does not create legal obligations or deployment authorization.", "enforcedBy": ["authority boundary", "documentation"] },
+    { "invariantId": "SEM-14", "statement": "Non-authoritative monitoring signals require accountable human review before changing case state.", "enforcedBy": ["semantic spine schema", "module contract"] }
+  ],
+  "fixtureProfile": {
+    "valid": "schemas/fixtures/palo-semantic-records.valid.ttl",
+    "invalid": "schemas/fixtures/palo-semantic-records.invalid.ttl"
+  }
+}

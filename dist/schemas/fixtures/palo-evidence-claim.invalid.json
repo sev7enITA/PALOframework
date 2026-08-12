@@ -1,0 +1,13 @@
+{
+  "format": "palo-evidence-claim",
+  "schemaVersion": "1.0.0",
+  "claimId": "bad",
+  "artifactId": "bad",
+  "target": { "targetType": "everything", "targetId": "" },
+  "scope": { "caseId": "wrong", "validFrom": "today" },
+  "statement": "",
+  "integrityReference": "missing",
+  "createdAt": "today",
+  "status": "verified",
+  "appendOnly": false
+}

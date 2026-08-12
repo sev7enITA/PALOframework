@@ -1,0 +1,13 @@
+{
+  "format": "palo-gate-instance",
+  "schemaVersion": "1.0.0",
+  "gateInstanceId": "gate-instance-catalog-assess-001",
+  "caseId": "case-catalog-assistant",
+  "lifecycleDefinitionRef": "https://paloframework.org/semantic/lifecycle/palo-core?v=3.0.0",
+  "gateDefinitionRef": "https://paloframework.org/semantic/gate/assess?v=3.0.0",
+  "phaseDefinitionRef": "https://paloframework.org/semantic/stage/assess?v=3.0.0",
+  "openedAt": "2026-08-12T09:00:00Z",
+  "status": "ready-for-review",
+  "currentDecisionSequence": 0,
+  "reopenedBy": []
+}

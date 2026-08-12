@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>PALO-AI v2.5 hands-on demo — permission is not correctness | PALO Documentation</title>
+  <meta name="description" content="Public PALO documentation: PALO-AI v2.5 hands-on demo — permission is not correctness.">
+  <link rel="canonical" href="https://paloframework.org/examples/hands-on-demo/README.html">
+  <link rel="icon" type="image/webp" href="../../assets/logo.webp">
+  <link rel="stylesheet" href="../../assets/palo-icons.css">
+  <link rel="stylesheet" href="../../assets/palo-v21.css?v=3.0.0">
+  <link rel="stylesheet" href="../../assets/palo-docs.css">
+  <script src="../../assets/palo-icons.js" defer></script>
+  <script src="../../assets/palo-v21.js?v=3.0.0" defer></script>
+  <script src="../../assets/palo-docs.js" defer></script>
+</head>
+<body class="palo-v21 palo-doc-page" data-doc-source="examples/hands-on-demo/README.md">
+  <a class="palo-skip-link" href="#main-content">Skip to main content</a>
+  <header class="palo-site-header"><div class="palo-shell palo-header-inner">
+    <a class="palo-brand" href="../../index.html"><img src="../../assets/logo.webp" alt="PALO">PALO FRAMEWORK</a>
+    <button class="palo-menu-toggle" type="button" data-palo-menu-toggle aria-expanded="false" aria-controls="palo-primary-nav" aria-label="Open navigation"><span data-palo-icon="menu" aria-hidden="true"></span></button>
+    <nav class="palo-nav" id="palo-primary-nav" aria-label="Primary navigation"><a href="../../designs/theory-to-practice-infographic/">Start</a><a href="../../PALO_AIGovernance.html">Agentic Governance</a><a href="../../governance-hub/">Governance Hub</a><a href="../../index.html#guided-journeys">Tools</a><a href="../../PALO_DocumentationLibrary.html" aria-current="page">Documentation</a><a href="../../PALO_AIProductionReadiness.html">Readiness</a></nav>
+  </div></header>
+  <main id="main-content" class="palo-doc-main">
+    <div class="palo-shell">
+      <nav class="palo-doc-breadcrumb" aria-label="Breadcrumb"><a href="../../PALO_DocumentationLibrary.html">Documentation Library</a><span aria-hidden="true">/</span><span>Templates and examples</span></nav>
+      <header class="palo-doc-hero"><p class="palo-eyebrow">Templates and examples · Public documentation</p><h1>PALO-AI v2.5 hands-on demo — permission is not correctness</h1><div class="palo-doc-facts"><span><small>Level</small><strong>guide</strong></span><span><small>Audience</small><strong>governance · technical · builder</strong></span><span><small>Product</small><strong>PALO Core</strong></span><span><small>Status</small><strong>Current Guidance</strong></span><span><small>Read</small><strong>3 min</strong></span></div><p class="palo-doc-source">Published HTML view · Source: <code>examples/hands-on-demo/README.md</code></p><div class="palo-actions"><button class="palo-btn" type="button" data-doc-copy-link>Copy link</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-share>Share page</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-print>Print</button></div><p class="palo-action-status" data-doc-action-status role="status" aria-live="polite"></p></header>
+      <details class="palo-doc-mobile-toc"><summary>On this page</summary><ol><li class="depth-2"><a href="#what-the-audience-sees">What the audience sees</a></li><li class="depth-2"><a href="#start-the-environment">Start the environment</a></li><li class="depth-2"><a href="#three-practical-runs">Three practical runs</a></li><li class="depth-3"><a href="#verified-outcome">Verified outcome</a></li><li class="depth-3"><a href="#authorized-but-wrong">Authorized, but wrong</a></li><li class="depth-3"><a href="#stale-state-before-execution">Stale state before execution</a></li><li class="depth-2"><a href="#n8n-visual-demonstration">n8n visual demonstration</a></li><li class="depth-2"><a href="#presenter-close">Presenter close</a></li><li class="depth-2"><a href="#safety-boundary">Safety boundary</a></li></ol></details>
+      <div class="palo-doc-layout"><aside class="palo-doc-sidebar" aria-label="On this page"><strong>On this page</strong><ol><li class="depth-2"><a href="#what-the-audience-sees">What the audience sees</a></li><li class="depth-2"><a href="#start-the-environment">Start the environment</a></li><li class="depth-2"><a href="#three-practical-runs">Three practical runs</a></li><li class="depth-3"><a href="#verified-outcome">Verified outcome</a></li><li class="depth-3"><a href="#authorized-but-wrong">Authorized, but wrong</a></li><li class="depth-3"><a href="#stale-state-before-execution">Stale state before execution</a></li><li class="depth-2"><a href="#n8n-visual-demonstration">n8n visual demonstration</a></li><li class="depth-2"><a href="#presenter-close">Presenter close</a></li><li class="depth-2"><a href="#safety-boundary">Safety boundary</a></li></ol></aside><article class="palo-doc-content"><h1 id="palo-ai-v25-hands-on-demo--permission-is-not-correctness">PALO-AI v2.5 hands-on demo — permission is not correctness<a class="palo-doc-anchor" href="#palo-ai-v25-hands-on-demo--permission-is-not-correctness" aria-label="Link to PALO-AI v2.5 hands-on demo — permission is not correctness">#</a></h1><p>This no-slides demonstration compares a direct agent tool call with full-cycle assurance over a synthetic multi-tenant catalog. It uses no production system, personal data or consequential action.</p>
+<h2 id="what-the-audience-sees">What the audience sees<a class="palo-doc-anchor" href="#what-the-audience-sees" aria-label="Link to What the audience sees">#</a></h2><ol>
+<li><strong>Without PALO:</strong> the agent has a tool, so the update executes. There is no authority decision and nobody verifies whether the catalog now reflects the intended result.</li>
+<li><strong>With PALO:</strong> the same intent becomes Action Claim 1.2 plus an Effect Contract.</li>
+<li>Policy requests human approval for the exact immutable claim.</li>
+<li>PALO issues and consumes a one-time capability, then invokes its trusted synthetic executor.</li>
+<li>A separate verifier reads authoritative post-state.</li>
+<li>The outcome is <code>verified</code>, <code>mismatch</code> or <code>inconclusive</code>—not merely <code>allowed</code>.</li>
+<li>Mismatch and uncertainty open an Assurance Incident and hold the affected resource.</li>
+</ol>
+<h2 id="start-the-environment">Start the environment<a class="palo-doc-anchor" href="#start-the-environment" aria-label="Link to Start the environment">#</a></h2><p>Terminal A:</p>
+<figure class="palo-doc-code"><figcaption>bash code</figcaption><pre tabindex="0"><code class="language-bash">cd /path/to/PALO
+npm ci
+npm run opa:install
+.tools/opa/opa run --server --addr=127.0.0.1:8181 \
+  examples/policy-as-code/agent-delegation.rego</code></pre></figure><p>Terminal B:</p>
+<figure class="palo-doc-code"><figcaption>bash code</figcaption><pre tabindex="0"><code class="language-bash">cd /path/to/PALO
+export PALO_OPA_URL='http://127.0.0.1:8181'
+export PALO_GATEWAY_TOKEN='palo-demo-only-gateway-token-32-bytes'
+export PALO_HMAC_KEYS_JSON='{"key-catalog-demo":"palo-demo-only-signing-secret-material-32-bytes"}'
+export PALO_ENABLE_DEMO_CATALOG='true'
+export PALO_DATA_DIR="${TMPDIR:-/tmp}/palo-assurance-demo-$(date +%s)"
+npm run palo:gateway</code></pre></figure><p>Terminal C:</p>
+<figure class="palo-doc-code"><figcaption>bash code</figcaption><pre tabindex="0"><code class="language-bash">cd /path/to/PALO
+export PALO_GATEWAY_TOKEN='palo-demo-only-gateway-token-32-bytes'
+npm run demo:hands-on</code></pre></figure><p>Use <code>--auto-approve</code> for rehearsal. Use a fresh Gateway data directory for every complete run because replay sequence state is persistent.</p>
+<h2 id="three-practical-runs">Three practical runs<a class="palo-doc-anchor" href="#three-practical-runs" aria-label="Link to Three practical runs">#</a></h2><h3 id="verified-outcome">Verified outcome<a class="palo-doc-anchor" href="#verified-outcome" aria-label="Link to Verified outcome">#</a></h3><figure class="palo-doc-code"><figcaption>bash code</figcaption><pre tabindex="0"><code class="language-bash">npm run demo:hands-on -- --auto-approve</code></pre></figure><p>Expected ending: signed receipt, <code>verified</code> attestation, valid ledger and no incident.</p>
+<h3 id="authorized-but-wrong">Authorized, but wrong<a class="palo-doc-anchor" href="#authorized-but-wrong" aria-label="Link to Authorized, but wrong">#</a></h3><p>Restart Terminal B with a fresh <code>PALO_DATA_DIR</code>, then run:</p>
+<figure class="palo-doc-code"><figcaption>bash code</figcaption><pre tabindex="0"><code class="language-bash">npm run demo:hands-on -- --auto-approve --wrong-effect</code></pre></figure><p>The executor intentionally writes price <code>130</code> although the Effect Contract requires <code>120</code>. Policy authorization succeeds, but the verifier emits <code>mismatch</code>, creates an incident and applies a resource hold.</p>
+<h3 id="stale-state-before-execution">Stale state before execution<a class="palo-doc-anchor" href="#stale-state-before-execution" aria-label="Link to Stale state before execution">#</a></h3><p>Restart the Gateway again, then run:</p>
+<figure class="palo-doc-code"><figcaption>bash code</figcaption><pre tabindex="0"><code class="language-bash">npm run demo:hands-on -- --auto-approve --stale-state</code></pre></figure><p>The authoritative catalog version no longer matches the proposal. PALO revokes the capability and prevents the tool call before execution.</p>
+<h2 id="n8n-visual-demonstration">n8n visual demonstration<a class="palo-doc-anchor" href="#n8n-visual-demonstration" aria-label="Link to n8n visual demonstration">#</a></h2><p>Build package 0.2:</p>
+<figure class="palo-doc-code"><figcaption>bash code</figcaption><pre tabindex="0"><code class="language-bash">cd packages/n8n-nodes-palo-ai
+npm ci
+npm run verify
+npm pack</code></pre></figure><p>Install the generated tarball in a disposable self-hosted n8n instance and import:</p>
+<figure class="palo-doc-code"><figcaption>text code</figcaption><pre tabindex="0"><code class="language-text">examples/n8n-demo/PALO-AI-full-cycle-assurance-demo.json</code></pre></figure><p>Configure <code>PALO API</code> with:</p>
+<ul>
+<li>Gateway URL from n8n Docker: <code>http://host.docker.internal:8787</code></li>
+<li>Bearer token: <code>palo-demo-only-gateway-token-32-bytes</code></li>
+</ul>
+<p>The first run routes to Review Required. Resolve its approval through the demo API or PALO review surface, then change the node operation to <strong>Resume Approved Action</strong> and paste the exact claim and approval ID. Never regenerate the claim after approval.</p>
+<h2 id="presenter-close">Presenter close<a class="palo-doc-anchor" href="#presenter-close" aria-label="Link to Presenter close">#</a></h2><blockquote>
+<p>Authorization answers whether an action may be attempted. PALO full-cycle assurance adds a different question: did the protected action actually produce the declared effect? The answer is independently observable as verified, mismatched or inconclusive.</p>
+</blockquote>
+<h2 id="safety-boundary">Safety boundary<a class="palo-doc-anchor" href="#safety-boundary" aria-label="Link to Safety boundary">#</a></h2><p>The shared token, SQLite database, environment HMAC key and in-memory catalog are demonstration mechanisms. Do not expose them to production traffic or real data. Production use requires workload identity, scoped RBAC, protected connectors, KMS/HSM, durable distributed processing, HA, monitoring and independent security review.</p>
+</article></div>
+      <aside class="palo-doc-next"><div><small>Prerequisite</small><strong>No specialist prerequisite stated</strong></div><div><small>Recommended next step</small><strong>Return to the Documentation Library</strong></div></aside>
+      <section class="palo-doc-feedback" aria-labelledby="feedback-title"><p class="palo-eyebrow">Privacy-first feedback</p><h2 id="feedback-title">Help improve this guide</h2><p>Your feedback stays in your browser until you explicitly copy it, download it, or open an email draft. Do not include secrets, personal data, credentials or production identifiers.</p><form data-doc-feedback><div class="palo-form-grid"><div class="palo-field"><label for="feedback-role">Your role</label><select id="feedback-role" name="role"><option>Executive / governance owner</option><option>Platform or security engineer</option><option>No-code / low-code builder</option><option>External reviewer</option></select></div><div class="palo-field"><label for="feedback-category">Category</label><select id="feedback-category" name="category"><option>Clarity</option><option>Technical accuracy</option><option>Missing guidance</option><option>Accessibility</option></select></div><div class="palo-field palo-field-full"><label for="feedback-message">Feedback</label><textarea id="feedback-message" name="message" maxlength="3000" required placeholder="Describe the non-sensitive improvement you recommend."></textarea></div><div class="palo-form-actions"><button class="palo-btn" type="button" data-feedback-copy>Copy feedback</button><button class="palo-btn palo-btn-secondary" type="button" data-feedback-download>Download JSON</button><button class="palo-btn palo-btn-secondary" type="button" data-feedback-email>Email draft</button></div></div><p class="palo-action-status" data-feedback-status role="status" aria-live="polite"></p></form></section>
+    </div>
+  </main>
+  <footer class="palo-footer"><div class="palo-shell"><p>PALO public documentation. Developer preview boundaries apply.</p><div class="palo-footer-links"><a href="../../PALO_AIGovernance.html">PALO-AI</a><a href="../../governance-hub/">Governance Hub</a><a href="../../PALO_AgenticCapabilityMatrix.html">Capability Matrix</a><a href="../../PALO_AIProductionReadiness.html">Production Readiness</a><a href="../../privacy-policy.html">Privacy</a></div></div></footer>
+</body></html>

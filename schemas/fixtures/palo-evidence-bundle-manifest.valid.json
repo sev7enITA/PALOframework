@@ -1,0 +1,18 @@
+{
+  "format": "palo-evidence-bundle-manifest",
+  "schemaVersion": "1.0.0",
+  "bundleId": "bundle-catalog-assistant-001",
+  "caseId": "case-catalog-assistant",
+  "assessmentRunId": "assessment-run-catalog-001",
+  "generatedAt": "2026-08-12T10:05:00Z",
+  "lifecycleDefinitionRef": "https://paloframework.org/semantic/lifecycle/palo-core?v=3.0.0",
+  "semanticReleaseManifestRef": "data/semantic-release-manifest.json",
+  "semanticReleaseDigest": "sha256:4444444444444444444444444444444444444444444444444444444444444444",
+  "items": [
+    { "itemType": "evidence-artifact", "recordId": "evidence-artifact-override-test-001", "recordDigest": "sha256:1111111111111111111111111111111111111111111111111111111111111111" },
+    { "itemType": "evidence-claim", "recordId": "evidence-claim-override-test-plan", "recordDigest": "sha256:2222222222222222222222222222222222222222222222222222222222222222" },
+    { "itemType": "evidence-evaluation", "recordId": "evidence-evaluation-override-001", "recordDigest": "sha256:3333333333333333333333333333333333333333333333333333333333333333" }
+  ],
+  "bundleDigest": "sha256:5555555555555555555555555555555555555555555555555555555555555555",
+  "authorityBoundary": "The bundle records scoped evidence claims and evaluations; inclusion is not certification, legal advice, or deployment authorization."
+}

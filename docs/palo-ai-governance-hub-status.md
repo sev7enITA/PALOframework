@@ -1,14 +1,15 @@
 # PALO-AI Governance Hub — Delivery Status
 
-**Assessment date:** 2026-07-19
-**Product status:** interactive product prototype on top of a full-cycle developer-preview runtime
+**Assessment date:** 2026-08-12
+
+**Product status:** v3-aligned interactive product prototype on top of a full-cycle developer-preview runtime
 **Production use:** not approved
 
 ## Executive summary
 
 PALO-AI now has a coherent product surface for two audiences without splitting the governance model. The Executive lens answers whether agentic operations are governed, appropriately authorized, producing verified outcomes and operationally healthy. The Technical lens turns business intent into a bounded agent capability and exposes the underlying registry, policy, approval, execution, evidence and incident state.
 
-The interface is ready for controlled demonstrations and structured design-partner evaluation. It is not yet a multi-user cloud control plane. The current browser prototype deliberately uses realistic evaluation data and does not embed the preview Gateway bearer token.
+The interface is ready for controlled demonstrations and structured design-partner evaluation. It is not yet a multi-user cloud control plane. Every current record is labelled `illustrative-local-preview`, carries a v3 definition version and states that it is not a source of record, live authority or approval decision. Executive and Technical are workspace lenses, not RBAC roles. The browser prototype does not embed the preview Gateway bearer token.
 
 ## What is available now
 

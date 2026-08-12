@@ -1,0 +1,80 @@
+@prefix palo: <https://paloframework.org/semantic/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+palo: a owl:Ontology ;
+  owl:versionInfo "3.0.0" ;
+  dcterms:title "PALO Semantic Spine" ;
+  dcterms:description "A lightweight semantic profile for versioned PALO definitions, runtime governance records, evidence and mappings." .
+
+palo:SemanticEntity a owl:Class .
+palo:CanonicalDefinition a owl:Class ; rdfs:subClassOf palo:SemanticEntity .
+palo:RuntimeRecord a owl:Class ; rdfs:subClassOf palo:SemanticEntity .
+palo:ImmutableRecord a owl:Class ; rdfs:subClassOf palo:SemanticEntity .
+palo:DecisionRecord a owl:Class ; rdfs:subClassOf palo:ImmutableRecord .
+palo:LifecycleDefinition a owl:Class ; rdfs:subClassOf palo:CanonicalDefinition .
+palo:PhaseDefinition a owl:Class ; rdfs:subClassOf palo:CanonicalDefinition .
+palo:GateDefinition a owl:Class ; rdfs:subClassOf palo:CanonicalDefinition .
+palo:GateInstance a owl:Class ; rdfs:subClassOf palo:RuntimeRecord .
+palo:GateDecisionRecord a owl:Class ; rdfs:subClassOf palo:DecisionRecord .
+palo:EvidenceArtifact a owl:Class ; rdfs:subClassOf palo:RuntimeRecord .
+palo:EvidenceClaim a owl:Class ; rdfs:subClassOf palo:ImmutableRecord .
+palo:EvidenceEvaluation a owl:Class ; rdfs:subClassOf palo:ImmutableRecord .
+palo:EvidenceBundleManifest a owl:Class ; rdfs:subClassOf palo:ImmutableRecord .
+palo:EvidenceBundleItem a owl:Class ; rdfs:subClassOf palo:ImmutableRecord .
+palo:MappingRecord a owl:Class ; rdfs:subClassOf palo:ImmutableRecord .
+palo:SemanticReleaseManifest a owl:Class ; rdfs:subClassOf palo:ImmutableRecord .
+palo:SemanticReleaseItem a owl:Class ; rdfs:subClassOf palo:ImmutableRecord .
+palo:MetricObservation a owl:Class ; rdfs:subClassOf palo:ImmutableRecord .
+palo:ControlImplementation a owl:Class ; rdfs:subClassOf palo:RuntimeRecord .
+palo:AssessmentRun a owl:Class ; rdfs:subClassOf palo:ImmutableRecord .
+palo:GovernanceCase a owl:Class ; rdfs:subClassOf palo:RuntimeRecord .
+palo:AuthorityClass a owl:Class ; rdfs:subClassOf palo:CanonicalDefinition .
+palo:WorkspaceDefinition a owl:Class ; rdfs:subClassOf palo:CanonicalDefinition .
+
+palo:hasPhaseDefinition a owl:ObjectProperty ; rdfs:domain palo:LifecycleDefinition ; rdfs:range palo:PhaseDefinition .
+palo:hasGateDefinition a owl:ObjectProperty ; rdfs:domain palo:LifecycleDefinition ; rdfs:range palo:GateDefinition .
+palo:instantiatesGate a owl:ObjectProperty ; rdfs:domain palo:GateInstance ; rdfs:range palo:GateDefinition .
+palo:gateInstanceCase a owl:ObjectProperty ; rdfs:domain palo:GateInstance ; rdfs:range palo:GovernanceCase .
+palo:decisionForGate a owl:ObjectProperty ; rdfs:domain palo:GateDecisionRecord ; rdfs:range palo:GateInstance .
+palo:decisionActor a owl:ObjectProperty ; rdfs:domain palo:DecisionRecord .
+palo:usesArtifact a owl:ObjectProperty ; rdfs:domain palo:EvidenceClaim ; rdfs:range palo:EvidenceArtifact .
+palo:supportsTarget a owl:ObjectProperty ; rdfs:domain palo:EvidenceClaim ; rdfs:range palo:SemanticEntity .
+palo:claimScope a owl:ObjectProperty ; rdfs:domain palo:EvidenceClaim ; rdfs:range palo:GovernanceCase .
+palo:evaluatesClaim a owl:ObjectProperty ; rdfs:domain palo:EvidenceEvaluation ; rdfs:range palo:EvidenceClaim .
+palo:containsBundleItem a owl:ObjectProperty ; rdfs:domain palo:EvidenceBundleManifest ; rdfs:range palo:EvidenceBundleItem .
+palo:bundleItemReferences a owl:ObjectProperty ; rdfs:domain palo:EvidenceBundleItem ; rdfs:range palo:ImmutableRecord .
+palo:mapsSourceVersion a owl:ObjectProperty ; rdfs:domain palo:MappingRecord ; rdfs:range palo:CanonicalDefinition .
+palo:mapsTargetVersion a owl:ObjectProperty ; rdfs:domain palo:MappingRecord ; rdfs:range palo:CanonicalDefinition .
+palo:pinnedToReleaseManifest a owl:ObjectProperty ; rdfs:range palo:SemanticReleaseManifest .
+palo:containsReleaseItem a owl:ObjectProperty ; rdfs:domain palo:SemanticReleaseManifest ; rdfs:range palo:SemanticReleaseItem .
+palo:releaseItemReferences a owl:ObjectProperty ; rdfs:domain palo:SemanticReleaseItem ; rdfs:range palo:CanonicalDefinition .
+palo:supersedes a owl:ObjectProperty ; rdfs:domain palo:ImmutableRecord ; rdfs:range palo:ImmutableRecord .
+
+palo:stableId a owl:DatatypeProperty ; rdfs:domain palo:SemanticEntity ; rdfs:range xsd:string .
+palo:definitionVersion a owl:DatatypeProperty ; rdfs:domain palo:CanonicalDefinition ; rdfs:range xsd:string .
+palo:caseId a owl:DatatypeProperty ; rdfs:range xsd:string .
+palo:recordedAt a owl:DatatypeProperty ; rdfs:domain palo:ImmutableRecord ; rdfs:range xsd:dateTime .
+palo:appendOnly a owl:DatatypeProperty ; rdfs:domain palo:ImmutableRecord ; rdfs:range xsd:boolean .
+palo:contentDigest a owl:DatatypeProperty ; rdfs:range xsd:string .
+palo:recordDigest a owl:DatatypeProperty ; rdfs:domain palo:ImmutableRecord ; rdfs:range xsd:string .
+palo:inputSnapshotHash a owl:DatatypeProperty ; rdfs:domain palo:DecisionRecord ; rdfs:range xsd:string .
+palo:authorityBasis a owl:DatatypeProperty ; rdfs:domain palo:DecisionRecord ; rdfs:range xsd:string .
+palo:rationale a owl:DatatypeProperty ; rdfs:range xsd:string .
+palo:claimStatement a owl:DatatypeProperty ; rdfs:domain palo:EvidenceClaim ; rdfs:range xsd:string .
+palo:integrityReference a owl:DatatypeProperty ; rdfs:domain palo:EvidenceClaim ; rdfs:range xsd:string .
+palo:evaluationOutcome a owl:DatatypeProperty ; rdfs:domain palo:EvidenceEvaluation ; rdfs:range xsd:string .
+palo:coverageType a owl:DatatypeProperty ; rdfs:domain palo:MappingRecord ; rdfs:range xsd:string .
+palo:approvalStatus a owl:DatatypeProperty ; rdfs:domain palo:MappingRecord ; rdfs:range xsd:string .
+palo:manifestDigest a owl:DatatypeProperty ; rdfs:domain palo:SemanticReleaseManifest ; rdfs:range xsd:string .
+palo:bundleDigest a owl:DatatypeProperty ; rdfs:domain palo:EvidenceBundleManifest ; rdfs:range xsd:string .
+palo:ordinal a owl:DatatypeProperty ; rdfs:domain palo:PhaseDefinition ; rdfs:range xsd:integer .
+
+palo:RegimeDefinition a owl:Class ; rdfs:subClassOf palo:CanonicalDefinition .
+palo:GovernanceFrameworkDefinition a owl:Class ; rdfs:subClassOf palo:CanonicalDefinition .
+palo:EnforcementAdapterDefinition a owl:Class ; rdfs:subClassOf palo:CanonicalDefinition .
+palo:RegimeDefinition owl:disjointWith palo:GovernanceFrameworkDefinition, palo:EnforcementAdapterDefinition .
+palo:GovernanceFrameworkDefinition owl:disjointWith palo:EnforcementAdapterDefinition .

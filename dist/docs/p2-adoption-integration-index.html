@@ -8,10 +8,10 @@
   <link rel="canonical" href="https://paloframework.org/docs/p2-adoption-integration-index.html">
   <link rel="icon" type="image/webp" href="../assets/logo.webp">
   <link rel="stylesheet" href="../assets/palo-icons.css">
-  <link rel="stylesheet" href="../assets/palo-v21.css?v=2.5.0">
+  <link rel="stylesheet" href="../assets/palo-v21.css?v=3.0.0">
   <link rel="stylesheet" href="../assets/palo-docs.css">
   <script src="../assets/palo-icons.js" defer></script>
-  <script src="../assets/palo-v21.js?v=2.5.0" defer></script>
+  <script src="../assets/palo-v21.js?v=3.0.0" defer></script>
   <script src="../assets/palo-docs.js" defer></script>
 </head>
 <body class="palo-v21 palo-doc-page" data-doc-source="docs/p2-adoption-integration-index.md">
@@ -40,13 +40,13 @@
 <tbody><tr>
 <td><code>data/control-library.json</code></td>
 <td><code>schemas/palo-control-library.schema.json</code></td>
-<td align="right">8 controls</td>
+<td align="right">9 controls</td>
 <td>Tailorable purpose, data, review, supplier, testing, incident, change and trace controls.</td>
 </tr>
 <tr>
 <td><code>data/kpi-kri-registry.json</code></td>
 <td><code>schemas/palo-kpi-kri-registry.schema.json</code></td>
-<td align="right">8 indicators</td>
+<td align="right">10 indicators</td>
 <td>Illustrative formulas, cadences, thresholds and caveats linked to controls and gates.</td>
 </tr>
 <tr>
@@ -69,6 +69,7 @@
 </tr>
 </tbody></table></div>
 <p>Schemas are JSON documents and are published at the paths above. IDs are stable interoperability keys, not equivalence claims to external frameworks.</p>
+<p>PALO v3.0.0 projects these stable P2 IDs into <code>data/semantic-spine.json</code> and publishes atomic cross-register mappings in <code>data/semantic-mappings.json</code>. The P2 files remain the canonical content registries for their records; the semantic release manifest binds their reviewed projection by digest.</p>
 <h2 id="policywatcher-signal">PolicyWatcher signal<a class="palo-doc-anchor" href="#policywatcher-signal" aria-label="Link to PolicyWatcher signal">#</a></h2><ul>
 <li>Schema: <code>schemas/policywatcher-signal.schema.json</code></li>
 <li>Valid educational example: <code>schemas/fixtures/policywatcher-signal.valid.json</code></li>

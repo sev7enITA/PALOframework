@@ -141,7 +141,7 @@ function AppMark() {
 
 function RoleSwitch({ role, onChange }) {
   return (
-    <div className="role-switch" aria-label="Choose role lens">
+    <div className="role-switch" aria-label="Workspace lens, not access control">
       <button aria-pressed={role === "executive"} className={role === "executive" ? "active" : ""} onClick={() => onChange("executive")}>Executive</button>
       <button aria-pressed={role === "technical"} className={role === "technical" ? "active" : ""} onClick={() => onChange("technical")}>Technical</button>
     </div>
@@ -185,10 +185,11 @@ function Shell({ role, onRoleChange, view, onViewChange, children }) {
           <div className="breadcrumb"><span>{role === "technical" ? "Workspace" : "Portfolio"}</span><ArrowRight /><strong>{navItems.find(([id]) => id === view)?.[1]}</strong></div>
           <div className="topbar-actions">
             <StatusPill tone="attention">Developer preview</StatusPill>
-            <RoleSwitch role={role} onChange={onRoleChange} />
+            <div className="role-lens"><span>Workspace lens · not access control</span><RoleSwitch role={role} onChange={onRoleChange} /></div>
             <button className="icon-button" aria-label="Notifications"><Bell /></button>
           </div>
         </header>
+        <div className="preview-boundary" role="note"><WarningCircle weight="fill" /><span><strong>Illustrative local preview</strong> · no live authority, source-of-record status, or approval decision.</span></div>
         <main className="main-content">{children}</main>
       </section>
     </div>
@@ -482,20 +483,28 @@ function DecisionList({ decisions, compact = false, onResolve }) {
   );
 }
 
+function SemanticRecord({ record, onClose }) {
+  if (!record) return null;
+  const recordId = record.id || record.label || record.name || "local-preview-record";
+  return <div className="semantic-record-backdrop" role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget) onClose(); }}><section className="semantic-record" role="dialog" aria-modal="true" aria-labelledby="semantic-record-title"><div className="panel-heading"><div><p className="eyebrow">Semantic record</p><h2 id="semantic-record-title">{record.name || record.label || record.title || record.action}</h2></div><button className="icon-button" onClick={onClose} aria-label="Close semantic record"><X /></button></div><dl><div><dt>Semantic ID</dt><dd>https://paloframework.org/semantic/local-preview/{recordId}</dd></div><div><dt>Definition version</dt><dd>{record.definitionVersion || "3.0.0"}</dd></div><div><dt>Evidence class</dt><dd>{record.dataClass || "illustrative-local-preview"}</dd></div><div><dt>Authority boundary</dt><dd>{record.authorityBoundary || "Local demonstration only; not a source of record or approval decision."}</dd></div><div><dt>Source references</dt><dd>{record.sourceRefs?.length ? record.sourceRefs.join(" · ") : "None · illustrative data"}</dd></div></dl></section></div>;
+}
+
 function AssuranceView() {
+  const [selectedRecord, setSelectedRecord] = useState(null);
   return (
     <>
       <PageHeader eyebrow="Assurance" title="Four signals, no misleading composite score" description="Every indicator exposes its denominator, freshness and evidence drill-down." />
       <section className="assurance-matrix">
-        {executiveSignals.map((signal) => <article key={signal.id}><div className="matrix-title"><h2>{signal.label}</h2><StatusPill tone={signal.tone}>{signal.status}</StatusPill></div><div className="matrix-value">{signal.value}</div><p>{signal.detail}</p><dl><div><dt>Measured</dt><dd>Jul 19, 2026 · 10:45 UTC</dd></div><div><dt>Evidence freshness</dt><dd>3 minutes</dd></div><div><dt>Scope</dt><dd>Sandbox and isolated pilot</dd></div></dl><button className="button button-secondary">Inspect evidence<ArrowSquareOut /></button></article>)}
+        {executiveSignals.map((signal) => <article key={signal.id}><div className="matrix-title"><h2>{signal.label}</h2><StatusPill tone={signal.tone}>{signal.status}</StatusPill></div><div className="matrix-value">{signal.value}</div><p>{signal.detail}</p><dl><div><dt>Measured</dt><dd>Jul 19, 2026 · 10:45 UTC</dd></div><div><dt>Evidence class</dt><dd>{signal.dataClass}</dd></div><div><dt>Scope</dt><dd>Sandbox and isolated pilot · not a source of record</dd></div></dl><button className="button button-secondary" onClick={() => setSelectedRecord(signal)}>Inspect evidence<ArrowSquareOut /></button></article>)}
       </section>
+      <SemanticRecord record={selectedRecord} onClose={() => setSelectedRecord(null)} />
     </>
   );
 }
 
 function ReportsView() {
   const downloadReport = () => {
-    const content = `PALO-AI Executive Assurance Brief\nDate: 2026-07-19\n\nGovernance coverage: 92%\nAuthority assurance: 95%\nOutcome assurance: 88%\nOpen high-impact exceptions: 3\n\nDeveloper preview: isolated evaluation only.`;
+    const content = `PALO-AI Executive Assurance Brief\nDate: 2026-07-19\nAuthoritative: false\nEvidence class: illustrative-local-preview\n\nGovernance coverage: 92%\nAuthority assurance: 95%\nOutcome assurance: 88%\nOpen high-impact exceptions: 3\n\nDeveloper preview: isolated evaluation only; not a source of record.`;
     downloadBlob(new Blob([content], { type: "text/plain" }), "palo-ai-executive-assurance-brief.txt");
   };
   return <><PageHeader eyebrow="Reports" title="Turn evidence into a decision-ready brief" description="Generate an executive summary without hiding uncertainty or the developer-preview boundary." actions={<button className="button button-primary" onClick={downloadReport}><DownloadSimple />Generate brief</button>} /><section className="report-preview"><div className="report-cover"><ShieldCheck weight="duotone" /><p>PALO-AI</p><h2>Executive Assurance Brief</h2><span>Isolated evaluation · July 19, 2026</span></div><div className="report-outline"><h2>Included sections</h2>{["Executive situation summary", "Material changes since last review", "Governance and authority coverage", "Verified, mismatched and inconclusive outcomes", "Open incidents and held resources", "Decisions requested", "Current boundary and production gaps"].map((item) => <div key={item}><CheckCircle weight="fill" /><span>{item}</span></div>)}</div></section></>;
@@ -503,6 +512,7 @@ function ReportsView() {
 
 function DataPage({ type, onExecutionSelect, approvals, onApproval, incidents, onIncident }) {
   const [query, setQuery] = useState("");
+  const [selectedRecord, setSelectedRecord] = useState(null);
   const configs = {
     registry: { title: "Trusted registry", description: "Versioned agents, authority profiles and accountable ownership.", rows: registryRows, columns: ["Name", "Owner", "Environment", "Authority", "Status", "Version"] },
     policies: { title: "Policy library", description: "Versioned policy bundles with visible test evidence.", rows: policyRows, columns: ["Name", "Scope", "Tests", "Status", "Version"] },
@@ -513,22 +523,24 @@ function DataPage({ type, onExecutionSelect, approvals, onApproval, incidents, o
   const config = configs[type];
   const rows = config.rows.filter((row) => rowContainsQuery(row, query));
   const downloadRows = () => {
-    downloadBlob(new Blob([JSON.stringify(config.rows, null, 2)], { type: "application/json" }), `palo-ai-${type}.json`);
+    const envelope = { authoritative: false, dataClass: "illustrative-local-preview", definitionVersion: "3.0.0", authorityBoundary: "Local demonstration data; not a source of record or approval decision.", records: config.rows };
+    downloadBlob(new Blob([JSON.stringify(envelope, null, 2)], { type: "application/json" }), `palo-ai-${type}.json`);
   };
   return (
     <>
       <PageHeader eyebrow="Technical workbench" title={config.title} description={config.description} actions={<button className="button button-primary" onClick={downloadRows}><DownloadSimple />Export {type === "policies" ? "policies" : "evidence"}</button>} />
       <section className="content-panel data-panel">
         <div className="data-toolbar"><label><MagnifyingGlass /><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder={`Search ${type}`} /></label><button className="button button-secondary" onClick={() => setQuery("")}><Funnel />Clear filter</button></div>
-        <div className="table-wrap"><table><thead><tr>{config.columns.map((column) => <th key={column}>{column}</th>)}<th><span className="sr-only">Actions</span></th></tr></thead><tbody>{rows.map((row) => <DataRow key={row.id} type={type} row={row} onExecutionSelect={onExecutionSelect} onApproval={onApproval} onIncident={onIncident} />)}</tbody></table></div>
+        <div className="table-wrap"><table><thead><tr>{config.columns.map((column) => <th key={column}>{column}</th>)}<th><span className="sr-only">Actions</span></th></tr></thead><tbody>{rows.map((row) => <DataRow key={row.id} type={type} row={row} onInspect={setSelectedRecord} onExecutionSelect={onExecutionSelect} onApproval={onApproval} onIncident={onIncident} />)}</tbody></table></div>
       </section>
+      <SemanticRecord record={selectedRecord} onClose={() => setSelectedRecord(null)} />
     </>
   );
 }
 
-function DataRow({ type, row, onExecutionSelect, onApproval, onIncident }) {
-  if (type === "registry") return <tr><td><strong>{row.name}</strong><small>{row.id}</small></td><td>{row.owner}</td><td>{row.environment}</td><td>{row.authority}</td><td><StatusPill>{row.status}</StatusPill></td><td>{row.version}</td><td><button className="text-button">Inspect</button></td></tr>;
-  if (type === "policies") return <tr><td><strong>{row.name}</strong><small>{row.id}</small></td><td>{row.scope}</td><td>{row.tests}</td><td><StatusPill>{row.status}</StatusPill></td><td>{row.version}</td><td><button className="text-button">Open</button></td></tr>;
+function DataRow({ type, row, onInspect, onExecutionSelect, onApproval, onIncident }) {
+  if (type === "registry") return <tr><td><strong>{row.name}</strong><small>{row.id}</small></td><td>{row.owner}</td><td>{row.environment}</td><td>{row.authority}</td><td><StatusPill>{row.status}</StatusPill></td><td>{row.version}</td><td><button className="text-button" onClick={() => onInspect(row)}>Inspect</button></td></tr>;
+  if (type === "policies") return <tr><td><strong>{row.name}</strong><small>{row.id}</small></td><td>{row.scope}</td><td>{row.tests}</td><td><StatusPill>{row.status}</StatusPill></td><td>{row.version}</td><td><button className="text-button" onClick={() => onInspect(row)}>Open</button></td></tr>;
   if (type === "executions") return <tr><td><strong>{row.action}</strong><small>{row.id}</small></td><td>{row.agent}</td><td><StatusPill>{row.decision}</StatusPill></td><td><StatusPill>{row.assurance}</StatusPill></td><td>{row.resource}</td><td>{row.time}</td><td><button className="text-button" onClick={() => onExecutionSelect(row.id)} aria-label={`Trace ${row.action}`}>Trace</button></td></tr>;
   if (type === "approvals") return <tr><td><strong>{row.action}</strong><small>{row.id}</small></td><td>{row.agent}</td><td>{row.owner}</td><td>{row.expires}</td><td><StatusPill>{row.status}</StatusPill></td><td><code>{row.digest}</code></td><td>{row.status === "Pending" ? <div className="table-actions"><button aria-label={`Approve ${row.action}`} className="approve" onClick={() => onApproval(row.id, "Approved")}><Check /></button><button aria-label={`Deny ${row.action}`} className="deny" onClick={() => onApproval(row.id, "Denied")}><X /></button></div> : "—"}</td></tr>;
   return <tr><td><strong>{row.title}</strong><small>{row.id}</small></td><td>{row.resource}</td><td><StatusPill>{row.severity}</StatusPill></td><td><StatusPill>{row.state}</StatusPill></td><td>{row.owner}</td><td>{row.opened}</td><td>{row.state !== "Resolved" ? <button className="text-button" onClick={() => onIncident(row.id)} aria-label={`Resolve ${row.title}`}>Resolve</button> : "—"}</td></tr>;
@@ -538,16 +550,16 @@ function ExecutionDetail({ onBack }) {
   const [testState, setTestState] = useState("ready");
   const runTest = () => { setTestState("running"); window.setTimeout(() => setTestState("complete"), 900); };
   const downloadEvidence = () => {
-    const evidence = { executionId: "EXE-2026-0719-0842", decision: "allowed", assurance: "mismatch", expected: 120, observed: 125, incidentId: "INC-307", boundary: "developer-preview" };
+    const evidence = { semanticId: "https://paloframework.org/semantic/local-preview/execution/EXE-2026-0719-0842", definitionVersion: "3.0.0", authoritative: false, dataClass: "illustrative-local-preview", authorityBoundary: "Simulated outcome; not a source of record or approval decision.", executionId: "EXE-2026-0719-0842", decision: "allowed", assurance: "mismatch", expected: 120, observed: 125, incidentId: "INC-307" };
     downloadBlob(new Blob([JSON.stringify(evidence, null, 2)], { type: "application/json" }), "palo-ai-execution-evidence.json");
   };
   return (
     <>
       <button className="back-link" onClick={onBack}>← Back to executions</button>
-      <PageHeader eyebrow="Execution · EXE-2026-0719-0842" title="Catalog price update — action assurance" description="Inspect and prove a single action from proposal through authoritative outcome." actions={<><button className="button button-primary" onClick={runTest} disabled={testState === "running"}><Flask />{testState === "running" ? "Running…" : testState === "complete" ? "Assurance complete" : "Run assurance test"}</button><button className="button button-secondary" onClick={downloadEvidence}><DownloadSimple />Export evidence</button></>} />
+      <PageHeader eyebrow="Execution · EXE-2026-0719-0842" title="Catalog price update — action assurance" description="Inspect an illustrative action from proposal through a simulated verification result; no live authority is asserted." actions={<><button className="button button-primary" onClick={runTest} disabled={testState === "running"}><Flask />{testState === "running" ? "Running…" : testState === "complete" ? "Assurance complete" : "Run assurance test"}</button><button className="button button-secondary" onClick={downloadEvidence}><DownloadSimple />Export evidence</button></>} />
       <section className="lifecycle-panel"><div className="lifecycle-line">{assuranceTimeline.map((stage, index) => <div key={stage.label} className={stage.status}><span>{stage.status === "failed" ? <XCircle weight="fill" /> : <CheckCircle weight="fill" />}</span><strong>{stage.label}</strong><small>{stage.time}</small>{index < assuranceTimeline.length - 1 && <i />}</div>)}</div></section>
       <section className="execution-grid">
-        <article className="content-panel outcome-detail"><div className="panel-heading"><div><p className="eyebrow">Selected stage</p><h2>Outcome mismatch</h2></div><StatusPill tone="negative">Mismatch</StatusPill></div><p>The verified post-state does not match the expected Effect Contract.</p><div className="explanation"><strong>Explanation</strong><p>Expected price 120.00 USD; authoritative post-state reports 125.00 USD.</p></div><dl className="detail-grid"><div><dt>Expected price</dt><dd>120.00 USD</dd></div><div><dt>Authoritative post-state</dt><dd className="negative-text">125.00 USD</dd></div><div><dt>Verifier</dt><dd>Catalog API read-back</dd></div><div><dt>Verified at</dt><dd>Jul 19, 2026 · 10:32:18 UTC</dd></div></dl><div className="incident-banner"><WarningCircle weight="fill" /><div><strong>Resource hold / Incident INC-307</strong><span>Further changes are held until the mismatch is resolved.</span></div></div><details className="disclosure light"><summary><Code />View raw evidence<CaretDown /></summary><pre>{JSON.stringify({ status: "mismatch", expected: 120, observed: 125, receiptDigest: "sha256:a2f9…901c", incidentId: "INC-307" }, null, 2)}</pre></details></article>
+        <article className="content-panel outcome-detail"><div className="panel-heading"><div><p className="eyebrow">Selected stage · illustrative local preview</p><h2>Outcome mismatch</h2></div><StatusPill tone="negative">Mismatch</StatusPill></div><p>The simulated verification result does not match the expected Effect Contract.</p><div className="explanation"><strong>Explanation</strong><p>Expected price 120.00 USD; illustrative read-back reports 125.00 USD. This is not a source-of-record outcome.</p></div><dl className="detail-grid"><div><dt>Expected price</dt><dd>120.00 USD</dd></div><div><dt>Illustrative post-state</dt><dd className="negative-text">125.00 USD</dd></div><div><dt>Verifier</dt><dd>Catalog API read-back</dd></div><div><dt>Verified at</dt><dd>Jul 19, 2026 · 10:32:18 UTC</dd></div></dl><div className="incident-banner"><WarningCircle weight="fill" /><div><strong>Resource hold / Incident INC-307</strong><span>Further changes are held until the mismatch is resolved.</span></div></div><details className="disclosure light"><summary><Code />View raw evidence<CaretDown /></summary><pre>{JSON.stringify({ status: "mismatch", expected: 120, observed: 125, receiptDigest: "sha256:a2f9…901c", incidentId: "INC-307" }, null, 2)}</pre></details></article>
         <aside className="content-panel trust-boundary"><div className="panel-heading"><div><p className="eyebrow">Trust boundary</p><h2>Protected execution path</h2></div></div><div className="trust-path"><div><Robot /><span>Agent</span></div><i /><div><ShieldCheck /><span>PALO-AI</span></div><i /><div><Cloud /><span>Catalog API</span></div></div><div className="warning-banner"><Warning /><div><strong>Parallel credential path detected</strong><span>A non-governed credential reaches the same connector.</span></div></div><dl><div><dt>Policy</dt><dd>Catalog Price Change v3.2</dd></div><div><dt>Executor</dt><dd>Catalog Adapter v1.4</dd></div><div><dt>Verifier</dt><dd>Catalog Read-back v1.1</dd></div><div><dt>Capability</dt><dd>Single-use · consumed</dd></div></dl></aside>
       </section>
     </>

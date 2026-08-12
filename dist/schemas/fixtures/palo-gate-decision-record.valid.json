@@ -1,0 +1,27 @@
+{
+  "format": "palo-gate-decision-record",
+  "schemaVersion": "1.0.0",
+  "decisionId": "gate-decision-catalog-assess-001",
+  "gateInstanceId": "gate-instance-catalog-assess-001",
+  "caseId": "case-catalog-assistant",
+  "sequence": 1,
+  "outcome": "proceed-with-conditions",
+  "decidedAt": "2026-08-12T10:00:00Z",
+  "expiresAt": "2026-11-12T10:00:00Z",
+  "decisionActor": {
+    "actorId": "party-accountable-owner-001",
+    "role": "accountable-owner",
+    "displayName": "Example Accountable Owner"
+  },
+  "authorityBasis": "Organization-assigned governance decision right for this case and gate.",
+  "rationale": "The scoped assessment is sufficient to proceed only while the named evidence condition remains active.",
+  "conditions": ["Complete the independent override test before deployment."],
+  "inputSnapshotHash": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "definitionRefs": [
+    "https://paloframework.org/semantic/lifecycle/palo-core?v=3.0.0",
+    "https://paloframework.org/semantic/gate/assess?v=3.0.0"
+  ],
+  "evidenceClaimIds": ["evidence-claim-override-test-plan"],
+  "recordDigest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "appendOnly": true
+}

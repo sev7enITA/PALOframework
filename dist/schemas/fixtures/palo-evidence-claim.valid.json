@@ -1,0 +1,13 @@
+{
+  "format": "palo-evidence-claim",
+  "schemaVersion": "1.0.0",
+  "claimId": "evidence-claim-override-test-plan",
+  "artifactId": "evidence-artifact-override-test-001",
+  "target": { "targetType": "gate-instance", "targetId": "gate-instance-catalog-assess-001" },
+  "scope": { "caseId": "case-catalog-assistant", "validFrom": "2026-08-12T09:30:00Z", "validTo": "2026-11-12T09:30:00Z" },
+  "statement": "The named reviewer can pause the scoped agent action under the tested conditions.",
+  "integrityReference": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+  "createdAt": "2026-08-12T09:35:00Z",
+  "status": "under-review",
+  "appendOnly": true
+}

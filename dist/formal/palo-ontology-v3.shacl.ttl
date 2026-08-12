@@ -1,0 +1,61 @@
+@prefix palo: <https://paloframework.org/semantic/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+palo:SemanticEntityShape a sh:NodeShape ; sh:targetClass palo:SemanticEntity ;
+  sh:property [ sh:path palo:stableId ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:minLength 1 ] .
+
+palo:CanonicalDefinitionShape a sh:NodeShape ; sh:targetClass palo:CanonicalDefinition ;
+  sh:property [ sh:path palo:definitionVersion ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:pattern "^[0-9]+\\.[0-9]+\\.[0-9]+$" ] .
+
+palo:ImmutableRecordShape a sh:NodeShape ; sh:targetClass palo:ImmutableRecord ;
+  sh:property [ sh:path palo:recordedAt ; sh:datatype xsd:dateTime ; sh:minCount 1 ; sh:maxCount 1 ] ;
+  sh:property [ sh:path palo:recordDigest ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:pattern "^sha256:[a-f0-9]{64}$" ] ;
+  sh:property [ sh:path palo:appendOnly ; sh:datatype xsd:boolean ; sh:minCount 1 ; sh:maxCount 1 ; sh:hasValue true ] .
+
+palo:LifecycleDefinitionShape a sh:NodeShape ; sh:targetClass palo:LifecycleDefinition ;
+  sh:property [ sh:path palo:hasPhaseDefinition ; sh:class palo:PhaseDefinition ; sh:minCount 1 ] ;
+  sh:property [ sh:path palo:hasGateDefinition ; sh:class palo:GateDefinition ; sh:minCount 1 ] .
+
+palo:GateInstanceShape a sh:NodeShape ; sh:targetClass palo:GateInstance ;
+  sh:property [ sh:path palo:instantiatesGate ; sh:class palo:GateDefinition ; sh:minCount 1 ; sh:maxCount 1 ] ;
+  sh:property [ sh:path palo:gateInstanceCase ; sh:class palo:GovernanceCase ; sh:minCount 1 ; sh:maxCount 1 ] ;
+  sh:property [ sh:path palo:caseId ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ] .
+
+palo:GateDecisionRecordShape a sh:NodeShape ; sh:targetClass palo:GateDecisionRecord ;
+  sh:property [ sh:path palo:decisionForGate ; sh:class palo:GateInstance ; sh:minCount 1 ; sh:maxCount 1 ] ;
+  sh:property [ sh:path palo:decisionActor ; sh:minCount 1 ; sh:maxCount 1 ] ;
+  sh:property [ sh:path palo:authorityBasis ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:minLength 1 ] ;
+  sh:property [ sh:path palo:rationale ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:minLength 1 ] ;
+  sh:property [ sh:path palo:inputSnapshotHash ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:pattern "^sha256:[a-f0-9]{64}$" ] .
+
+palo:EvidenceArtifactShape a sh:NodeShape ; sh:targetClass palo:EvidenceArtifact ;
+  sh:property [ sh:path palo:caseId ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ] ;
+  sh:property [ sh:path palo:contentDigest ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:pattern "^sha256:[a-f0-9]{64}$" ] .
+
+palo:EvidenceClaimShape a sh:NodeShape ; sh:targetClass palo:EvidenceClaim ;
+  sh:property [ sh:path palo:usesArtifact ; sh:class palo:EvidenceArtifact ; sh:minCount 1 ; sh:maxCount 1 ] ;
+  sh:property [ sh:path palo:supportsTarget ; sh:class palo:SemanticEntity ; sh:minCount 1 ; sh:maxCount 1 ] ;
+  sh:property [ sh:path palo:claimScope ; sh:class palo:GovernanceCase ; sh:minCount 1 ; sh:maxCount 1 ] ;
+  sh:property [ sh:path palo:claimStatement ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:minLength 1 ] ;
+  sh:property [ sh:path palo:integrityReference ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:pattern "^sha256:[a-f0-9]{64}$" ] .
+
+palo:EvidenceEvaluationShape a sh:NodeShape ; sh:targetClass palo:EvidenceEvaluation ;
+  sh:property [ sh:path palo:evaluatesClaim ; sh:class palo:EvidenceClaim ; sh:minCount 1 ; sh:maxCount 1 ] ;
+  sh:property [ sh:path palo:evaluationOutcome ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( "sufficient" "partial" "insufficient" "unverified" ) ] .
+
+palo:EvidenceBundleManifestShape a sh:NodeShape ; sh:targetClass palo:EvidenceBundleManifest ;
+  sh:property [ sh:path palo:containsBundleItem ; sh:class palo:EvidenceBundleItem ; sh:minCount 1 ] ;
+  sh:property [ sh:path palo:pinnedToReleaseManifest ; sh:class palo:SemanticReleaseManifest ; sh:minCount 1 ; sh:maxCount 1 ] ;
+  sh:property [ sh:path palo:bundleDigest ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:pattern "^sha256:[a-f0-9]{64}$" ] .
+
+palo:MappingRecordShape a sh:NodeShape ; sh:targetClass palo:MappingRecord ;
+  sh:property [ sh:path palo:mapsSourceVersion ; sh:class palo:CanonicalDefinition ; sh:minCount 1 ; sh:maxCount 1 ] ;
+  sh:property [ sh:path palo:mapsTargetVersion ; sh:class palo:CanonicalDefinition ; sh:minCount 1 ; sh:maxCount 1 ] ;
+  sh:property [ sh:path palo:coverageType ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( "total" "partial" "conditional" "supporting" ) ] ;
+  sh:property [ sh:path palo:rationale ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:minLength 1 ] ;
+  sh:property [ sh:path palo:approvalStatus ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( "draft" "in-review" "approved" "rejected" "superseded" ) ] .
+
+palo:SemanticReleaseManifestShape a sh:NodeShape ; sh:targetClass palo:SemanticReleaseManifest ;
+  sh:property [ sh:path palo:containsReleaseItem ; sh:class palo:SemanticReleaseItem ; sh:minCount 1 ] ;
+  sh:property [ sh:path palo:manifestDigest ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:pattern "^sha256:[a-f0-9]{64}$" ] .

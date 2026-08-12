@@ -83,6 +83,8 @@
     const category = document.querySelector("[data-library-category]");
     const audience = document.querySelector("[data-library-audience]");
     const task = document.querySelector("[data-library-task]");
+    const evidence = document.querySelector("[data-library-evidence]");
+    const workspace = document.querySelector("[data-library-workspace]");
     const depthButtons = [...document.querySelectorAll("[data-library-depth]")];
     let depth = depthButtons.find((button) => button.classList.contains("is-active"))?.dataset.libraryDepth || "start";
     const result = document.querySelector("[data-library-result]");
@@ -100,16 +102,18 @@
       const chosen = String(category?.value || "all");
       const chosenAudience = String(audience?.value || "all");
       const chosenTask = String(task?.value || "all");
+      const chosenEvidence = String(evidence?.value || "all");
+      const chosenWorkspace = String(workspace?.value || "all");
       let visible = 0;
       for (const card of libraryCards) {
-        const show = (depth === "all" || card.dataset.level === depth) && (chosen === "all" || card.dataset.category === chosen) && (chosenAudience === "all" || card.dataset.audience.split(" ").includes(chosenAudience)) && (chosenTask === "all" || card.dataset.task.split(" ").includes(chosenTask)) && (!query || card.dataset.search.includes(query));
+        const show = (depth === "all" || card.dataset.level === depth) && (chosen === "all" || card.dataset.category === chosen) && (chosenAudience === "all" || card.dataset.audience.split(" ").includes(chosenAudience)) && (chosenTask === "all" || card.dataset.task.split(" ").includes(chosenTask)) && (chosenEvidence === "all" || card.dataset.evidenceClass === chosenEvidence) && (chosenWorkspace === "all" || card.dataset.workspace === chosenWorkspace) && (!query || card.dataset.search.includes(query));
         card.hidden = !show;
         if (show) visible += 1;
       }
       for (const group of document.querySelectorAll("[data-library-group]")) {
         const hasMatches = Boolean(group.querySelector("[data-library-card]:not([hidden])"));
         group.hidden = !hasMatches;
-        if (hasMatches && (query || chosen !== "all" || chosenAudience !== "all" || chosenTask !== "all" || depth !== "start")) {
+        if (hasMatches && (query || chosen !== "all" || chosenAudience !== "all" || chosenTask !== "all" || chosenEvidence !== "all" || chosenWorkspace !== "all" || depth !== "start")) {
           group.classList.remove("is-mobile-collapsed");
           group.querySelector("[data-library-toggle]")?.setAttribute("aria-expanded", "true");
         }
@@ -118,13 +122,13 @@
       empty?.classList.toggle("is-visible", visible === 0);
     };
     for (const button of depthButtons) button.addEventListener("click", () => { depth = button.dataset.libraryDepth; for (const item of depthButtons) { const active = item === button; item.classList.toggle("is-active", active); item.setAttribute("aria-pressed", String(active)); } update(); });
-    search?.addEventListener("input", update); category?.addEventListener("change", update); audience?.addEventListener("change", update); task?.addEventListener("change", update); update();
+    search?.addEventListener("input", update); category?.addEventListener("change", update); audience?.addEventListener("change", update); task?.addEventListener("change", update); evidence?.addEventListener("change", update); workspace?.addEventListener("change", update); update();
   }
 
   const gates = [...document.querySelectorAll("[data-gate-id]")];
   if (gates.length) {
     const readinessStatus = document.querySelector("[data-readiness-status]");
-    const storageKey = "palo-readiness-local-checklist-v2.5";
+    const storageKey = "palo-readiness-local-checklist-v3.0";
     let saved = {};
     try { saved = JSON.parse(localStorage.getItem(storageKey) || "{}"); } catch { saved = {}; }
     for (const gate of gates) {
@@ -148,7 +152,7 @@
       if (readinessStatus) readinessStatus.textContent = `${visible} of 9 gates shown. Checklist state remains local and non-authoritative.`;
     };
     filters.forEach((filter) => filter.addEventListener("change", update)); update();
-    const snapshot = () => ({ release: "PALO-AI v2.5 developer preview", authoritative: false, generatedAt: new Date().toISOString(), note: "Browser-local planning snapshot; not implementation evidence or approval.", gates: gates.map((gate) => ({ id: gate.dataset.gateId, title: gate.querySelector("h3").textContent, wave: Number(gate.dataset.wave), status: gate.dataset.gateStatus, owner: gate.dataset.owner, locallyChecked: gate.querySelector("[data-gate-check]").checked })) });
+    const snapshot = () => ({ release: "PALO v3.0.0 semantic foundation · PALO-AI developer preview", authoritative: false, evidenceClass: "illustrative-local-preview", generatedAt: new Date().toISOString(), note: "Browser-local planning snapshot; not implementation evidence or approval.", gates: gates.map((gate) => ({ id: gate.dataset.gateId, title: gate.querySelector("h3").textContent, wave: Number(gate.dataset.wave), status: gate.dataset.gateStatus, owner: gate.dataset.owner, locallyChecked: gate.querySelector("[data-gate-check]").checked })) });
     const download = (content, type, name) => { const link = document.createElement("a"); link.href = URL.createObjectURL(new Blob([content], { type })); link.download = name; link.click(); URL.revokeObjectURL(link.href); };
     const markdown = (value) => `# PALO-AI production-readiness snapshot\n\n> ${value.note}\n\n${value.gates.map((gate) => `- [${gate.locallyChecked ? "x" : " "}] **${gate.id} — ${gate.title}** · Wave ${gate.wave} · ${gate.status} · ${gate.owner}`).join("\n")}`;
     document.querySelector('[data-readiness-export="json"]')?.addEventListener("click", () => { download(JSON.stringify(snapshot(), null, 2), "application/json", "palo-ai-readiness-snapshot.json"); if (readinessStatus) readinessStatus.textContent = "Local JSON snapshot downloaded. Nothing was submitted."; });

@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paloframework.org/schemas/palo-gate-decision-record.schema.json",
+  "title": "PALO Append-Only Gate Decision Record",
+  "type": "object",
+  "required": ["format", "schemaVersion", "decisionId", "gateInstanceId", "caseId", "sequence", "outcome", "decidedAt", "decisionActor", "authorityBasis", "rationale", "conditions", "inputSnapshotHash", "definitionRefs", "evidenceClaimIds", "recordDigest", "appendOnly"],
+  "properties": {
+    "format": { "const": "palo-gate-decision-record" },
+    "schemaVersion": { "const": "1.0.0" },
+    "decisionId": { "type": "string", "pattern": "^gate-decision-[a-z0-9][a-z0-9-]{5,80}$" },
+    "gateInstanceId": { "type": "string", "pattern": "^gate-instance-[a-z0-9][a-z0-9-]{5,80}$" },
+    "caseId": { "type": "string", "pattern": "^case-[a-z0-9][a-z0-9-]{5,63}$" },
+    "sequence": { "type": "integer", "minimum": 1 },
+    "supersedesDecisionId": { "type": "string", "pattern": "^gate-decision-[a-z0-9][a-z0-9-]{5,80}$" },
+    "previousDecisionDigest": { "$ref": "#/$defs/digest" },
+    "outcome": { "enum": ["proceed", "proceed-with-conditions", "hold", "redesign", "stop", "unresolved"] },
+    "decidedAt": { "type": "string", "format": "date-time" },
+    "expiresAt": { "type": "string", "format": "date-time" },
+    "decisionActor": {
+      "type": "object",
+      "required": ["actorId", "role", "displayName"],
+      "properties": {
+        "actorId": { "type": "string", "minLength": 1 },
+        "role": { "type": "string", "minLength": 1 },
+        "displayName": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
+    },
+    "authorityBasis": { "type": "string", "minLength": 1 },
+    "rationale": { "type": "string", "minLength": 1 },
+    "conditions": { "type": "array", "items": { "type": "string" } },
+    "inputSnapshotHash": { "$ref": "#/$defs/digest" },
+    "definitionRefs": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "format": "uri" } },
+    "evidenceClaimIds": { "type": "array", "uniqueItems": true, "items": { "type": "string" } },
+    "recordDigest": { "$ref": "#/$defs/digest" },
+    "appendOnly": { "const": true }
+  },
+  "$defs": {
+    "digest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "sequence": { "type": "integer", "minimum": 2 } }, "required": ["sequence"] },
+      "then": {
+        "properties": {
+          "supersedesDecisionId": { "type": "string", "pattern": "^gate-decision-[a-z0-9][a-z0-9-]{5,80}$" },
+          "previousDecisionDigest": { "$ref": "#/$defs/digest" }
+        },
+        "required": ["supersedesDecisionId", "previousDecisionDigest"]
+      }
+    },
+    {
+      "if": { "properties": { "outcome": { "const": "proceed-with-conditions" } }, "required": ["outcome"] },
+      "then": { "properties": { "conditions": { "type": "array", "minItems": 1 } } }
+    }
+  ],
+  "additionalProperties": false
+}

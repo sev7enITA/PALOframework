@@ -1,12 +1,12 @@
 {
   "schemaVersion": "1.0.0",
   "release": {
-    "version": "2.5.0",
-    "date": "2026-07-18",
+    "version": "3.0.0",
+    "date": "2026-08-12",
     "status": "developer-preview"
   },
   "sharedAssets": {
-    "version": "2.5.0",
+    "version": "3.0.0",
     "files": [
       "assets/palo-v21.css",
       "assets/palo-v21.js"
@@ -14,8 +14,8 @@
   },
   "components": {
     "web": {
-      "version": "2.5.0",
-      "date": "2026-07-18"
+      "version": "3.0.0",
+      "date": "2026-08-12"
     },
     "framework": {
       "version": "2.0.0",
@@ -34,6 +34,15 @@
     "agenticGovernance": {
       "version": "2.5.0",
       "date": "2026-07-18"
+    },
+    "semanticFoundation": {
+      "version": "3.0.0",
+      "date": "2026-08-12",
+      "status": "implemented",
+      "semanticSpine": "data/semantic-spine.json",
+      "semanticRelease": "data/semantic-release-manifest.json",
+      "evidenceBoundaryModel": ["canonical-definition", "source-backed-context", "illustrative-local-preview", "human-review-required"],
+      "workspaces": ["public-catalog", "case-workspace", "assurance-review"]
     },
     "agenticRuntime": {
       "version": "1.2.0",
@@ -60,13 +69,15 @@
       "productionUse": false
     },
     "agenticGovernanceHub": {
-      "version": "0.1.0",
-      "date": "2026-07-19",
+      "version": "0.2.0",
+      "date": "2026-08-12",
       "status": "interactive-product-prototype",
       "productionUse": false,
       "webEntry": "governance-hub/",
-      "roles": ["executive", "technical"],
-      "runtime": "realistic-evaluation-data"
+      "workspaceLenses": ["executive", "technical"],
+      "evidenceBoundaryModel": "illustrative-local-preview",
+      "authorityBoundary": "No live authority, source-of-record status or approval decision.",
+      "runtime": "illustrative-local-data"
     },
     "n8nGovernanceControlPlane": {
       "version": "0.2.0",
@@ -99,12 +110,16 @@
       "date": "2026-07-12"
     },
     "platformMap": {
-      "version": "1.0.0",
-      "date": "2026-07-12"
+      "version": "3.0.0",
+      "date": "2026-08-12",
+      "semanticSpine": "data/semantic-spine.json",
+      "evidenceBoundaryModel": true
     },
     "operationalizationExplorer": {
-      "version": "2.4.0",
-      "date": "2026-07-12"
+      "version": "3.0.0",
+      "date": "2026-08-12",
+      "semanticSpine": "data/semantic-spine.json",
+      "generatedProjection": "designs/theory-to-practice-infographic/assets/graph-data.js"
     },
     "policyWatcherSignalReceiver": {
       "version": "1.0.0",
@@ -119,6 +134,15 @@
     "source": "root authoring files",
     "artifact": "dist",
     "buildCommand": "npm run build",
+    "semanticFoundation": {
+      "guide": "docs/palo-v3-semantic-foundation.html",
+      "spine": "data/semantic-spine.json",
+      "lifecycle": "data/lifecycle-core.json",
+      "mappings": "data/semantic-mappings.json",
+      "releaseManifest": "data/semantic-release-manifest.json",
+      "ontology": "formal/palo-ontology-v3.ttl",
+      "shapes": "formal/palo-ontology-v3.shacl.ttl"
+    },
     "architecturePreview": {
       "status": "source-ready",
       "webEntry": "PALO_AIGovernance.html",

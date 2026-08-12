@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paloframework.org/schemas/palo-gate-instance.schema.json",
+  "title": "PALO Gate Instance",
+  "type": "object",
+  "required": ["format", "schemaVersion", "gateInstanceId", "caseId", "lifecycleDefinitionRef", "gateDefinitionRef", "phaseDefinitionRef", "openedAt", "status", "currentDecisionSequence"],
+  "properties": {
+    "format": { "const": "palo-gate-instance" },
+    "schemaVersion": { "const": "1.0.0" },
+    "gateInstanceId": { "type": "string", "pattern": "^gate-instance-[a-z0-9][a-z0-9-]{5,80}$" },
+    "caseId": { "type": "string", "pattern": "^case-[a-z0-9][a-z0-9-]{5,63}$" },
+    "lifecycleDefinitionRef": { "type": "string", "format": "uri" },
+    "gateDefinitionRef": { "type": "string", "format": "uri" },
+    "phaseDefinitionRef": { "type": "string", "format": "uri" },
+    "openedAt": { "type": "string", "format": "date-time" },
+    "closedAt": { "type": "string", "format": "date-time" },
+    "status": { "enum": ["not-started", "open", "ready-for-review", "decided", "reopened", "closed"] },
+    "currentDecisionSequence": { "type": "integer", "minimum": 0 },
+    "reopenedBy": { "type": "array", "uniqueItems": true, "items": { "type": "string" } }
+  },
+  "additionalProperties": false
+}

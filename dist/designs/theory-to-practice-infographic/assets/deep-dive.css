@@ -300,6 +300,9 @@ h1 { max-width: 850px; margin: 0; font-size: clamp(34px, 4vw, 56px); line-height
 .inspector-head { display: flex; align-items: start; justify-content: space-between; gap: 14px; }
 .entity-type { margin: 0 0 4px; color: #8ee5e8; font-size: 9px; font-weight: 850; text-transform: uppercase; }
 .inspector h3 { margin: 0; font-size: 19px; }
+.semantic-boundary { display: grid; grid-template-columns: auto 1fr auto; gap: 7px 10px; align-items: center; margin: 0 0 14px; padding: 10px; color: #d9e2ec; background: rgba(142,229,232,.08); border: 1px solid rgba(142,229,232,.28); border-radius: 4px; font-size: 9px; line-height: 1.45; }
+.semantic-boundary strong { color: #8ee5e8; text-transform: uppercase; }
+.semantic-boundary a { color: #fff0b8; font-weight: 750; }
 .entity-status { color: #bcccdc; font-size: 10px; white-space: nowrap; }
 .entity-role { margin: 10px 0 12px; color: #d9e2ec; font-size: 11px; line-height: 1.5; }
 .property-table { width: 100%; border-collapse: collapse; font-size: 10px; }
@@ -376,6 +379,7 @@ h1 { max-width: 850px; margin: 0; font-size: clamp(34px, 4vw, 56px); line-height
   .release, .view-links { display: none; }
   .icon-controls { margin-left: auto; padding-left: 0; border-left: 0; gap: 4px; }
   .icon-button { width: 44px; height: 44px; }
+  .semantic-boundary { grid-template-columns: 1fr; }
   .intro { grid-template-columns: 1fr; gap: 12px; padding: 24px 18px 20px; }
   h1 { font-size: 34px; }
   .intro-copy { font-size: 13px; }

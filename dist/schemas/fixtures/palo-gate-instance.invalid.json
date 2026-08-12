@@ -1,0 +1,12 @@
+{
+  "format": "palo-gate-instance",
+  "schemaVersion": "2.0.0",
+  "gateInstanceId": "unsafe",
+  "caseId": "wrong",
+  "lifecycleDefinitionRef": "not-a-uri",
+  "gateDefinitionRef": "not-a-uri",
+  "phaseDefinitionRef": "not-a-uri",
+  "openedAt": "tomorrow",
+  "status": "approved",
+  "currentDecisionSequence": -1
+}

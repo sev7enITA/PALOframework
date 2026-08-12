@@ -1,4 +1,5 @@
 import { access, readFile, readdir } from "node:fs/promises";
+import { createHash } from "node:crypto";
 import path from "node:path";
 import process from "node:process";
 import { fileURLToPath } from "node:url";
@@ -208,6 +209,8 @@ async function validateP2Artifacts() {
   ];
   const indexDocument = await readFile(path.join(validationRoot, "docs/p2-adoption-integration-index.md"), "utf8");
   for (const file of new Set(p2JsonFiles)) if (!indexDocument.includes(`\`${file}\``)) errors.push(`docs/p2-adoption-integration-index.md: missing JSON reference ${file}`);
+  if (!indexDocument.includes(`| ${controlIds.size} controls |`)) errors.push(`docs/p2-adoption-integration-index.md: control count must be generated from registry (${controlIds.size})`);
+  if (!indexDocument.includes(`| ${indicatorIds.size} indicators |`)) errors.push(`docs/p2-adoption-integration-index.md: indicator count must be generated from registry (${indicatorIds.size})`);
 
   p2Counts = {
     controls: controlIds.size,
@@ -221,6 +224,51 @@ async function validateP2Artifacts() {
 
 try { await validateP2Artifacts(); }
 catch (error) { errors.push(`P2 artifact validation failed: ${error.message}`); }
+
+async function validateV3SemanticContracts() {
+  const loadJson = async (file) => JSON.parse(await readFile(path.join(validationRoot, file), "utf8"));
+  const contracts = [
+    ["schemas/palo-semantic-spine.schema.json", "data/semantic-spine.json"],
+    ["schemas/palo-lifecycle-definition.schema.json", "data/lifecycle-core.json"],
+    ["schemas/palo-semantic-mapping-registry.schema.json", "data/semantic-mappings.json"],
+    ["schemas/palo-semantic-release-manifest.schema.json", "data/semantic-release-manifest.json"],
+    ["schemas/palo-semantic-change-impact.schema.json", "data/semantic-change-impact-v3.json"]
+  ];
+  const fixtureContracts = [
+    ["schemas/palo-gate-instance.schema.json", "palo-gate-instance"],
+    ["schemas/palo-gate-decision-record.schema.json", "palo-gate-decision-record"],
+    ["schemas/palo-evidence-artifact.schema.json", "palo-evidence-artifact"],
+    ["schemas/palo-evidence-claim.schema.json", "palo-evidence-claim"],
+    ["schemas/palo-evidence-evaluation.schema.json", "palo-evidence-evaluation"],
+    ["schemas/palo-evidence-bundle-manifest.schema.json", "palo-evidence-bundle-manifest"]
+  ];
+  const semanticAjv = new Ajv2020({ allErrors: true, strict: true });
+  addFormats(semanticAjv);
+  for (const [schemaFile, dataFile] of contracts) {
+    const validator = semanticAjv.compile(await loadJson(schemaFile));
+    if (!validator(await loadJson(dataFile))) errors.push(`${dataFile}: v3 semantic schema validation failed: ${semanticAjv.errorsText(validator.errors)}`);
+  }
+  for (const [schemaFile, fixtureName] of fixtureContracts) {
+    const validator = semanticAjv.compile(await loadJson(schemaFile));
+    for (const expectation of ["valid", "invalid"]) {
+      const file = `schemas/fixtures/${fixtureName}.${expectation}.json`;
+      const result = validator(await loadJson(file));
+      if (expectation === "valid" && !result) errors.push(`${file}: expected valid v3 fixture failed schema: ${semanticAjv.errorsText(validator.errors)}`);
+      if (expectation === "invalid" && result) errors.push(`${file}: intentionally invalid v3 fixture unexpectedly passed schema`);
+    }
+  }
+  const release = await loadJson("data/semantic-release-manifest.json");
+  const hash = (content) => createHash("sha256").update(content).digest("hex");
+  for (const item of release.items || []) {
+    const content = await readFile(path.join(validationRoot, item.path));
+    if (hash(content) !== item.sha256) errors.push(`data/semantic-release-manifest.json: digest mismatch for ${item.path}`);
+  }
+  const { manifestDigest, ...unsigned } = release;
+  if (manifestDigest !== `sha256:${hash(JSON.stringify(unsigned))}`) errors.push("data/semantic-release-manifest.json: manifestDigest does not bind the unsigned release inventory");
+}
+
+try { await validateV3SemanticContracts(); }
+catch (error) { errors.push(`v3 semantic contract validation failed: ${error.message}`); }
 
 const htmlFilesToValidate = [...(built ? PUBLIC_HTML : PUBLIC_SOURCE_HTML), "governance-hub/index.html"];
 for (const file of htmlFilesToValidate) {
@@ -298,6 +346,18 @@ for (const [name, component] of Object.entries(manifest.components || {})) {
 for (const [name, module] of Object.entries(manifest.modules || {})) {
   if (!/^\d+\.\d+\.\d+$/.test(module.version || "") || !/^\d{4}-\d{2}-\d{2}$/.test(module.date || "")) errors.push(`release-manifest.json: module ${name} requires SemVer version and ISO date`);
 }
+const semanticModule = manifest.modules?.semanticFoundation;
+if (semanticModule?.version !== releaseVersion || semanticModule?.date !== releaseDate) errors.push("release-manifest.json: semanticFoundation must match the root release version and date");
+if (semanticModule?.semanticSpine !== "data/semantic-spine.json" || semanticModule?.semanticRelease !== "data/semantic-release-manifest.json") errors.push("release-manifest.json: semanticFoundation canonical paths are incomplete");
+if (new Set(semanticModule?.evidenceBoundaryModel || []).size !== 4 || new Set(semanticModule?.workspaces || []).size !== 3) errors.push("release-manifest.json: semanticFoundation requires four authority classes and three workspaces");
+const hubModule = manifest.modules?.agenticGovernanceHub;
+if (hubModule?.evidenceBoundaryModel !== "illustrative-local-preview" || hubModule?.runtime !== "illustrative-local-data" || !String(hubModule?.authorityBoundary || "").includes("No live authority")) errors.push("release-manifest.json: Governance Hub illustrative authority boundary is incomplete");
+if (!built) {
+  try {
+    const packageManifest = JSON.parse(await readFile(path.join(validationRoot, "package.json"), "utf8"));
+    if (packageManifest.version !== releaseVersion) errors.push("package.json: version must equal release-manifest release.version");
+  } catch (error) { errors.push(`package.json: cannot verify root release version: ${error.message}`); }
+}
 
 let sharedReferenceCount = 0;
 for (const [file, html] of htmlByFile) {
@@ -328,7 +388,7 @@ for (const value of sitemapUrls) {
     const html = htmlByFile.get(target);
     const canonical = html?.match(/<link\b[^>]*rel=["']canonical["'][^>]*href=["']([^"']+)["'][^>]*>/i)?.[1]
       || html?.match(/<link\b[^>]*href=["']([^"']+)["'][^>]*rel=["']canonical["'][^>]*>/i)?.[1];
-    if (canonical !== value) errors.push(`sitemap.xml: canonical mismatch for ${target}; found ${canonical || "none"}, expected ${value}`);
+    if (html && canonical !== value) errors.push(`sitemap.xml: canonical mismatch for ${target}; found ${canonical || "none"}, expected ${value}`);
   } catch { errors.push(`sitemap.xml: invalid URL ${value}`); }
 }
 
@@ -406,6 +466,19 @@ if (built) {
   const onboardingHtml = htmlByFile.get("designs/theory-to-practice-infographic/index.html") || "";
   const onboardingRibbon = onboardingHtml.match(/<nav[^>]*class=["'][^"']*route-ribbon[^"']*["'][^>]*>[\s\S]*?<\/nav>/i)?.[0] || "";
   if ((onboardingRibbon.match(/class=["']route-separator["']/g) || []).length !== 4 || /<i\b/.test(onboardingRibbon)) errors.push("Stakeholder Onboarding: route separators must use dedicated semantic spans");
+  if (!/Public semantic catalog/.test(onboardingHtml) || !/Search the semantic catalog/.test(onboardingHtml)) errors.push("Operationalization Explorer: public Semantic Inspector boundary is missing");
+  const platformMapHtml = htmlByFile.get("PALO_PlatformMap.html") || "";
+  if (!/id=["']map-evidence-class["']/.test(platformMapHtml) || (platformMapHtml.match(/data-evidence-class=/g) || []).length !== 24 || !/Evidence \/ authority/.test(platformMapHtml)) errors.push("PALO_PlatformMap.html: evidence/authority filtering must align all 12 visual and table routes");
+  if (!/route-monitor[^>]+data-evidence-class=["']human-review-required["']/.test(platformMapHtml)) errors.push("PALO_PlatformMap.html: monitoring route must require human review");
+  const libraryHtml = htmlByFile.get("PALO_DocumentationLibrary.html") || "";
+  if (!/data-library-evidence/.test(libraryHtml) || !/data-library-workspace/.test(libraryHtml) || !/data-evidence-class=["']canonical-definition["']/.test(libraryHtml)) errors.push("PALO_DocumentationLibrary.html: v3 evidence and workspace filters or canonical reference card are missing");
+  let hubBundle = htmlByFile.get("governance-hub/index.html") || "";
+  try {
+    for (const entry of await readdir(path.join(validationRoot, "governance-hub/assets"), { withFileTypes: true })) {
+      if (entry.isFile() && entry.name.endsWith(".js")) hubBundle += await readFile(path.join(validationRoot, "governance-hub/assets", entry.name), "utf8");
+    }
+  } catch { /* The missing generated Hub entry is reported above. */ }
+  if (!/Illustrative local preview/.test(hubBundle) || !/Workspace lens/.test(hubBundle) || !/Semantic record/.test(hubBundle) || !/illustrative-local-preview/.test(hubBundle)) errors.push("governance-hub/index.html: v3 local-preview boundary or Semantic Record inspector is missing");
 }
 
 if (errors.length) {
@@ -413,5 +486,5 @@ if (errors.length) {
   process.exitCode = 1;
 } else {
   const p2Summary = p2Counts ? `, P2 ${p2Counts.controls} controls/${p2Counts.indicators} indicators/${p2Counts.gates} gates/${p2Counts.sources} sources/${p2Counts.cases} cases/${p2Counts.templates} templates` : "";
-  console.log(`Validation passed: ${htmlFilesToValidate.length} HTML files, P1 schemas and fixtures${p2Summary}, ${sharedReferenceCount} versioned shared assets, ${sitemapUrls.length} sitemap URLs, ${feedItems.length} RSS items.`);
+  console.log(`Validation passed: ${htmlFilesToValidate.length} HTML files, P1 schemas and fixtures${p2Summary}, v3 semantic contracts and digests, ${sharedReferenceCount} versioned shared assets, ${sitemapUrls.length} sitemap URLs, ${feedItems.length} RSS items.`);
 }
