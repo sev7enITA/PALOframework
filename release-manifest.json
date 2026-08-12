@@ -3,7 +3,8 @@
   "release": {
     "version": "3.0.0",
     "date": "2026-08-12",
-    "status": "developer-preview"
+    "status": "developer-preview",
+    "versioningModel": "platform-release-with-independent-components"
   },
   "sharedAssets": {
     "version": "3.0.0",

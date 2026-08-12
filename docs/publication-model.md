@@ -2,7 +2,11 @@
 
 Root files are the authoring source. `dist/` is generated output and must not be edited by hand.
 
+PALO uses a platform release plus independently versioned components. `release-manifest.json` is the authority for this inventory: v3.0.0 identifies the platform/web/semantic release, while PALO-AI runtime, MCP, n8n and mobile components retain their own versions and maturity boundaries. Health metadata exposes `frameworkRelease` separately from the component `version`.
+
 The publication boundary is the explicit `PUBLIC_FILES` list in `scripts/public-files.mjs`. `npm run build` deletes and recreates `dist/`, copying only those files without transforming their bytes. Working documents, workshop material, raw Android binaries, screenshots not required by a public page, hidden files other than `.well-known/security.txt`, repository metadata, and toolchain files are excluded.
+
+Local assessments and private or third-party research inputs must remain outside `PUBLIC_FILES` and are protected by explicit `.gitignore` entries. Built-artifact validation also rejects the known private-input paths if they appear in `dist`; this guard does not replace license review or remediation of material already present in Git history. Public analysis should retain attribution links to official sources without republishing local research inputs.
 
 Run the P0 release sequence with:
 

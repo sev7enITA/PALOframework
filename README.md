@@ -1,4 +1,4 @@
-# P.A.L.O. Framework
+# PALO Framework
 
 **Principled AI Lifecycle Orchestration**
 
@@ -8,7 +8,9 @@
 [![Website](https://img.shields.io/badge/Website-paloframework.org-21808D)](https://paloframework.org)
 [![GitHub](https://img.shields.io/badge/GitHub-sev7enITA%2FPALOframework-black)](https://github.com/sev7enITA/PALOframework)
 
-P.A.L.O. is an open-source framework and toolkit for operational AI governance. It helps teams translate principles, laws, and standards into lifecycle decisions, risk assessments, evidence artifacts, KPIs/KRIs, and repeatable governance gates.
+PALO is an open-source framework and toolkit for operational AI governance. It helps teams translate principles, laws, and standards into lifecycle decisions, risk assessments, evidence artifacts, KPIs/KRIs, and repeatable governance gates.
+
+**Naming convention:** PALO is the canonical project brand. The punctuated form `P.A.L.O.` is retained only where it is part of an existing publication or mobile-store title.
 
 - Website: [paloframework.org](https://paloframework.org)
 - Android: [P.A.L.O. Framework Toolbox on Google Play](https://play.google.com/store/apps/details?id=com.fabriziodegni.paloframework)
@@ -33,7 +35,7 @@ PALO is both an open-source governance framework and a published research artifa
 
 ## Overview
 
-PALO (Principled AI Lifecycle Orchestration) is designed for organizations that need practical AI governance across the full lifecycle: ideation, risk classification, design, development, deployment, monitoring, incident response, and decommissioning.
+PALO (Principled AI Lifecycle Orchestration) is designed for organizations that need practical AI governance across system-lifecycle activities such as ideation, risk classification, design, development, deployment, monitoring, incident response, and decommissioning. Across those activities, the canonical v3 governance decision loop uses six repeatable phases: **Frame, Classify, Assess, Control, Measure, and Prove & Review**. The eight system activities and six governance phases are complementary views, not competing lifecycle definitions.
 
 The framework is aligned with major AI governance references including:
 
@@ -249,7 +251,8 @@ PALOframework/
 |-- PALO_Recognition.html              # Public references and source notes
 |-- PALO_AssessmentPath.html           # Guided assessment and evidence bundle export
 |-- PALO_RegulatoryWatch.html           # Dated regulatory watchlist and sources
-|-- PALO_DocumentationHub.html          # Web-native documentation index
+|-- PALO_DocumentationLibrary.html      # Canonical searchable documentation index
+|-- PALO_DocumentationHub.html          # Backward-compatible transition page
 |-- PALO_PlatformMap.html               # Operational platform status and navigation map
 |-- designs/
 |   +-- theory-to-practice-infographic/ # Stakeholder onboarding, weighted workflow, and 3D Explorer
@@ -275,7 +278,7 @@ PALOframework/
 
 ## Documentation
 
-The [Documentation Hub](PALO_DocumentationHub.html) is the web-native entry point for the lifecycle, modules, source set, and contribution links. It is designed to be readable and indexable; the PDF remains the stable primary download record.
+The [Documentation Library](PALO_DocumentationLibrary.html) is the canonical web-native reference for the lifecycle, modules, source set, semantic contracts, and contribution links. The former [Documentation Hub](PALO_DocumentationHub.html) remains as a backward-compatible transition page; the PDF remains the stable primary download record.
 
 Primary framework documents and artifacts:
 
@@ -322,7 +325,7 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md), [CODE_OF_CONDUCT.md](CODE_OF_CON
 
 ## Roadmap
 
-Current baseline: v2.5 full-cycle developer preview, released 2026-07-18. It adds Effect Contracts, governed execution, trusted receipts, authoritative outcome verification, incident holds and tested single-instance recovery to the v2.4.1 contracts and policy foundation.
+Current baseline: v3.0.0 semantic foundation, released 2026-08-12. It establishes canonical lifecycle definitions, append-only gate decision history, atomic evidence contracts, executable RDF/SHACL validation, and digest-bound release inventory on top of the PALO-AI v2.5 full-cycle reference runtime.
 
 Completed in H1 2026:
 
@@ -352,9 +355,9 @@ Planned roadmap:
 
 | Target | Focus | Planned scope |
 | --- | --- | --- |
-| v2.6 | Identity, durability and validated connectors | Identity-aware BFF, workload identity, scoped RBAC, managed key custody, durable state/queues and fresh n8n connector validation |
-| v2.7 | Evidence and governance board packs | Board templates, decision logs, KPI/KRI registers, review packets and audit-ready summaries built on verified outcomes |
-| v3.0 | Production integration layer | Independently assessed deployment patterns and integrations for enterprise workflows, issue trackers, GRC platforms and documentation systems |
+| v3.1 | Identity, durability and validated connectors | Identity-aware BFF, workload identity, scoped RBAC, managed key custody, durable state/queues and fresh n8n connector validation |
+| v3.2 | Evidence and governance board packs | Board templates, decision logs, KPI/KRI registers, review packets and audit-ready summaries built on verified outcomes |
+| v4.0 | Production integration layer | Independently assessed deployment patterns and integrations for enterprise workflows, issue trackers, GRC platforms and documentation systems |
 
 Exploratory items:
 

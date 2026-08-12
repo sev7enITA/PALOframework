@@ -14,7 +14,7 @@
       "schemaPath": "schemas/palo-semantic-spine.schema.json",
       "semanticVersion": "3.0.0",
       "status": "approved-for-release",
-      "sha256": "686548ac2d86453b98d56df3546fcf2ae4f30050b27c9b34fd390007352b2efd"
+      "sha256": "5bdebc924a32fe79e11917f2f35f0e4a588ec3508fd6bbb6666696780859e99c"
     },
     {
       "itemId": "https://paloframework.org/semantic/release-item/lifecycle-core",
@@ -165,5 +165,5 @@
     }
   ],
   "authorityBoundary": "This manifest freezes the exact semantic artifacts used by PALO v3. It proves file identity, not legal applicability, compliance, certification, or production authorization.",
-  "manifestDigest": "sha256:0d6422b028e03254e905f339128097dcd58d9253c8e425d20ca0e8d06d87f4e6"
+  "manifestDigest": "sha256:6afafb12429b3f37838347f736c1d87b06645e4fecf86f162f666a9f60e2ba4b"
 }

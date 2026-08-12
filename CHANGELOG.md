@@ -9,42 +9,7 @@ and this project follows Semantic Versioning where practical.
 
 ## [Unreleased]
 
-### Added
-
-- Added a three-entry public governance map that keeps PALO Framework as the umbrella, positions PALO-AM as its agentic governance modality and PALO-AI as its Developer Preview technical enforcement component
-- Added canonical public "Why PALO-AI" and "PALO-AI Quickstarts" pages that separate the strategic assurance case from verified code-first, n8n/no-code and Copilot Studio/MCP evaluation routes
-- Added a browser-local comparison of direct execution, governed execution and authorized-but-wrong outcome mismatch, plus a persistent v2.5 capability/readiness/security rail across public agentic pages
-- Added a cognitive front door that routes by organizational role and objective, with a distinct "Govern agent actions" objective and conditional code-first, no-code/low-code and rapid-prototyping modes
-- Added a persistent role, objective, phase, artifact and next-action ribbon across guided onboarding and Agentic Governance orientation
-- Added safe Governance Hub deep links for executive/technical roles and known views, with deterministic fallback for malformed parameters
-- Added a public, interactive nine-gate Production Readiness route and a responsive evidence-based Capability Matrix; internal technical assessment workpapers are excluded from publication
-- Added a deterministic sanitized Markdown-to-HTML publication pipeline, searchable Documentation Library, document navigation, print/share controls and privacy-first local feedback exports
-- Added the white PALO-AI Governance Hub prototype with a shared Executive/Technical shell, an eight-step guided governance builder, portfolio and decision views, execution traces, approvals, incidents and integration boundaries
-- Added a product specification, role-based user guide, workflow reference, six Mermaid architecture diagrams, site copy, GitHub copy and a design-partner launch plan for the Governance Hub
-- Added deterministic nested Vite publication so the Governance Hub ships inside the Hostinger/GitHub Pages `dist` artifact while retaining a local development mode
-- Added a web-native PALO-AI governance entry point with task-based routes for code-first developers, no-code/low-code builders, and rapid prototypers using Copilot Studio or similar MCP-capable tools
-- Added local, hybrid, managed-cloud and private-cloud deployment guidance with explicit identity, key custody, tenant isolation, availability and evidence gates
-- Added an independent cyber-assurance and scale plan covering threat modelling, cryptographic review, penetration testing, supply-chain assessment, recovery and multi-tenant acceptance criteria
-- Added a staged n8n and broader community market-entry plan that defers npm and Creator Portal submission until real integration and security gates pass
-- Added the PALO-AI governance control-plane architecture for n8n and similar agentic automation platforms, with explicit enforcement classes for the Visual Decision Gate, Governed Executor, Digest-Bound Approval, and Workflow Admission patterns
-- Added four presentation-ready PALO-AI/n8n workflow screens illustrating the visual insertion point and enforcement boundary of each architecture pattern
-- Added a public presentation and launch playbook with audience-specific positioning, demo guidance, claim discipline, staged promotion, and design-partner outreach material
-- Added an n8n integration boundary document separating the current decision-node prototype from the planned installable connector and enforced self-hosted/OEM components
-- Added the installable `n8n-nodes-palo-ai` 0.1.0 alpha package, encrypted gateway credentials, three-way decision routing, immutable approval resume, CI and deferred provenance publishing workflow
-- Added a real n8n 2.30.7 tarball install/runtime test report, safe workflow template, community discussion draft, and feedback/design-partner issue forms
-
-### Changed
-
-- Replaced presentational italic elements with dedicated semantic separators and aligned the PALO-AM adoption link with the generated HTML documentation
-- Reduced primary navigation to Start, Agentic Governance, Governance Hub, Tools, Documentation and Readiness; consolidated the former Documentation Hub into a transition page and made the filtered HTML Library canonical
-- Refocused the homepage on PALO-AI full-cycle assurance, the eight-step Governance Hub builder and nine existing guided journeys described by outcome and artifact
-- Added Documentation Library depth, audience and task filters plus product, maturity, reading-time, prerequisite and recommended-next-step metadata
-- Updated the public Documentation Hub, PALO-AI overview, capability matrix, PALO-AM entry point and adoption/community guides to reflect the v2.5 full-cycle preview and its four n8n outcome paths
-- Aligned README, security policy, VPS guidance, Governance Hub copy and release metadata to the v2.5 full-cycle developer-preview boundary
-- Added an explicit Rego default-deny fallback and renamed canonical object comparison to avoid implying cryptographic constant-time semantics
-- Hardened Governance Hub search, download cleanup, asynchronous boundary testing, keyboard focus and Windows publication validation, with browser smoke coverage
-- Reframed PALO-AI complexity through progressive disclosure: business questions and visible outcomes are primary, while Action Claims, Effect Contracts, Rego inputs and raw evidence remain inspectable on demand
-- Positioned PALO-AI as an emerging governance control plane while retaining developer-preview disclaimers and avoiding claims of certified, production-ready, biometric, exactly-once, or unavoidable enforcement
+No unreleased changes.
 
 ## [3.0.0] - 2026-08-12
 
@@ -64,6 +29,10 @@ and this project follows Semantic Versioning where practical.
 - Executive and Technical in the Governance Hub are explicitly workspace lenses, not access-control roles; all prototype records and exports declare their non-authoritative local-preview boundary.
 - P2 registry documentation now reports the canonical 9 controls and 10 indicators.
 - Root web/package/release metadata and shared asset cache keys advance to v3.0.0.
+- Release metadata now distinguishes the PALO v3.0.0 platform release from independently versioned developer-preview components.
+- Documentation Library is the canonical source-backed documentation destination; Documentation Hub remains a backward-compatible transition page.
+- README, citation metadata, lifecycle narrative, naming convention and roadmap are reconciled with the v3.0.0 Semantic Foundation release.
+- Local assessment outputs and specifically identified private or third-party research inputs are excluded from accidental staging.
 
 ### Validation
 
@@ -72,6 +41,15 @@ and this project follows Semantic Versioning where practical.
 ## [2.5.0] - 2026-07-18
 
 **Release status: Full-Cycle Developer Preview. Isolated evaluation only.**
+
+### Public surfaces and documentation
+
+- Added the three-entry PALO/PALO-AM/PALO-AI governance map, cognitive front door, canonical Why PALO-AI and Quickstarts pages, browser-local outcome comparison, capability rail and nine-gate Production Readiness route.
+- Added the searchable Documentation Library, deterministic Markdown publication pipeline, Governance Hub prototype, product specification, role-based guide, workflows, diagrams and nested Vite publication.
+- Added local, hybrid, managed-cloud and private-cloud guidance, cyber-assurance and scale planning, staged community entry and explicit production-readiness boundaries.
+- Added n8n governance architecture patterns, presentation assets, launch material, integration-boundary documentation, installable alpha package, local n8n runtime test report and deferred provenance publishing workflow.
+- Consolidated primary navigation around Start, Agentic Governance, Governance Hub, Tools, Documentation and Readiness, with progressive disclosure of contracts and evidence.
+- Hardened Governance Hub navigation, downloads, boundary tests and accessibility while preserving the explicit developer-preview and non-certification claims.
 
 ### Added
 

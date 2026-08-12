@@ -23,6 +23,8 @@ Thumbs.db
 # Build outputs
 dist/
 build/
+output/
+outputs/
 *.min.js
 *.min.css
 
@@ -43,6 +45,7 @@ temp/
 
 # Package files
 *.zip
+*.tgz
 *.tar.gz
 *.rar
 
@@ -63,6 +66,21 @@ coverage/
 
 # Documentation build
 docs/_build/
+
+# Local assessment workspaces and reports
+.zcode/
+docs/ASSESSMENT-v3.0.md
+
+# Private or third-party research inputs: keep links and attribution in tracked content
+insights/WEBUILD.docx
+insights/2026TrendOutlookReports.pdf
+insights/Accenture-Strategy-Macro-Foresight-Brief-2026-Top-10-Trends.pdf
+insights/GIRST - bias-3.pdf
+insights/gartner-2026-top-tech-trends.pdf
+insights/mckinsey-technology-trends-outlook-2025.pdf
+insights/geopolitical-forces-shaping-business-in-2026.pdf
+insights/pwdreport.txt
+insights/toptrends2026.txt
 
 # Local package-manager configuration
 .npmrc

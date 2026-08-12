@@ -2,7 +2,7 @@
 
 ## Comparison basis
 
-- Source of truth: `/Users/fabriziodegni/.codex/generated_images/019f62b3-9cfa-7101-9ca0-d8225b34a00f/exec-a04f92b2-e4d7-47f4-83e1-bcf5cbaa3124.png`
+- Source of truth: selected generated concept, “Guided Governance Builder” (private generation path intentionally omitted)
 - Implementation: `http://localhost:4173/`
 - Primary state: Technical lens → Setup → Step 4, “Bound authority”
 - Desktop viewport: 1440 × 1024

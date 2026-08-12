@@ -39,7 +39,7 @@
     "poisoning": { name: "Poisoning Boomerang", href: "../../PALO_PoisoningStudy.html", phase: "control", artifact: "Data and model integrity controls" },
     "auditbench": { name: "AuditBench Explorer", href: "../../PALO_AuditBench.html", phase: "control", artifact: "Alignment assurance report" },
     "kpi": { name: "KPI and KRI Generator", href: "../../PALO_KPIGenerator.html", phase: "measure", artifact: "KPI/KRI register" },
-    "docs": { name: "Documentation Hub", href: "../../PALO_DocumentationHub.html", phase: "prove", artifact: "Versioned source and guidance context" },
+    "docs": { name: "Documentation Library", href: "../../PALO_DocumentationLibrary.html", phase: "prove", artifact: "Versioned source and guidance context" },
     "reg-watch": { name: "Regulatory Watch 2026", href: "../../PALO_RegulatoryWatch.html", phase: "classify", artifact: "Current official-source context" },
     "comparison": { name: "Framework Comparison", href: "../../PALO_ComparisonTool.html", phase: "classify", artifact: "Framework comparison record" },
     "palo-ai": { name: "PALO-AI Overview", href: "../../PALO_AIGovernance.html", phase: "control", artifact: "Full-cycle governance route" },

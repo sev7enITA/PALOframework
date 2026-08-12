@@ -17,14 +17,14 @@
     { sourceId: "eu-ai-act-framework", title: "EU AI Act regulatory framework", url: "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai", publisher: "European Commission" },
     { sourceId: "eu-ai-act-official-journal", title: "Regulation (EU) 2024/1689", url: "https://eur-lex.europa.eu/eli/reg/2024/1689/oj/eng", publisher: "European Union" }
   ];
-  var routeLinks = { "Risk Tiering": "PALO_RiskTiering.html", "Contextual FRIA": "PALO_FRIA.html", "Agentic governance": "PALO_AgenticGovernance.html#simulator", "AI Dev Governance": "PALO_VibeCoding.html", "Controls and KPI/KRI": "PALO_KPIGenerator.html", "Documentation Hub": "PALO_DocumentationHub.html" };
+  var routeLinks = { "Risk Tiering": "PALO_RiskTiering.html", "Contextual FRIA": "PALO_FRIA.html", "Agentic governance": "PALO_AgenticGovernance.html#simulator", "AI Dev Governance": "PALO_VibeCoding.html", "Controls and KPI/KRI": "PALO_KPIGenerator.html", "Documentation Library": "PALO_DocumentationLibrary.html" };
   var reasons = {
     "Risk Tiering": "Confirm the initial classification against purpose, affected people, and prohibited-practice questions.",
     "Contextual FRIA": "Check Article 27 scope and document fundamental-rights impacts for the deployment context.",
     "Agentic governance": "Map delegated authority, tools, action space, autonomy, controls, and agentic evidence.",
     "AI Dev Governance": "Review functional intent, controlled environments, review gates, and evidence for AI-assisted development.",
     "Controls and KPI/KRI": "Choose measurable controls and indicators for ongoing governance and review.",
-    "Documentation Hub": "Keep versioned guidance and primary source artifacts with the assessment record."
+    "Documentation Library": "Keep versioned guidance and primary source artifacts with the assessment record."
   };
 
   function value(name) {
@@ -54,7 +54,7 @@
     if (assessment.agentic) route.push({ name: "Agentic governance", reason: reasons["Agentic governance"] });
     if (assessment.aiAssisted) route.push({ name: "AI Dev Governance", reason: reasons["AI Dev Governance"] });
     route.push({ name: "Controls and KPI/KRI", reason: reasons["Controls and KPI/KRI"] });
-    route.push({ name: "Documentation Hub", reason: reasons["Documentation Hub"] });
+    route.push({ name: "Documentation Library", reason: reasons["Documentation Library"] });
     return route;
   }
 

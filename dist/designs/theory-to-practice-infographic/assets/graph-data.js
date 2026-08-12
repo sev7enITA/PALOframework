@@ -816,12 +816,12 @@
     },
     {
       "id": "docs",
-      "label": "Documentation Hub",
+      "label": "Documentation Library",
       "type": "module",
       "phaseId": "prove",
       "role": "Connects evidence to lifecycle guidance and source artifacts.",
       "status": "Available",
-      "href": "../../PALO_DocumentationHub.html",
+      "href": "../../PALO_DocumentationLibrary.html",
       "properties": {
         "When to use": "When reconstructing decisions or preparing review",
         "Key properties": "lifecycle guidance, source artifact, version",
@@ -1297,7 +1297,7 @@
       "type": "navigation",
       "phaseId": "frame",
       "role": "Routes a stakeholder intent to a working destination and named artifact.",
-      "href": "../../PALO_DocumentationHub.html",
+      "href": "../../PALO_DocumentationLibrary.html",
       "stakeholder": "Assurance and board",
       "artifact": "Source and lifecycle context",
       "status": "Implemented",
@@ -1306,16 +1306,16 @@
         "Source and lifecycle context"
       ],
       "properties": {
-        "Destination": "Documentation Hub",
+        "Destination": "Documentation Library",
         "Stakeholder": "Assurance and board",
         "Phase": "frame",
         "Artifact": "Source and lifecycle context",
         "Status": "Implemented"
       },
-      "action": "Open Documentation Hub to locate source guidance.",
+      "action": "Open Documentation Library to locate source guidance.",
       "intents": [
         "Locate source guidance",
-        "Documentation Hub",
+        "Documentation Library",
         "Assurance and board",
         "Source and lifecycle context"
       ],
@@ -2576,7 +2576,7 @@
       "type": "navigation",
       "phaseId": "frame",
       "role": "Routes a stakeholder intent to a working destination and named artifact.",
-      "href": "../../PALO_DocumentationHub.html",
+      "href": "../../PALO_DocumentationLibrary.html",
       "stakeholder": "Assurance and board",
       "artifact": "Source and lifecycle context",
       "status": "Implemented",
@@ -2585,16 +2585,16 @@
         "Source and lifecycle context"
       ],
       "properties": {
-        "Destination": "Documentation Hub",
+        "Destination": "Documentation Library",
         "Stakeholder": "Assurance and board",
         "Phase": "frame",
         "Artifact": "Source and lifecycle context",
         "Status": "Implemented"
       },
-      "action": "Open Documentation Hub to locate source guidance.",
+      "action": "Open Documentation Library to locate source guidance.",
       "intents": [
         "Locate source guidance",
-        "Documentation Hub",
+        "Documentation Library",
         "Assurance and board",
         "Source and lifecycle context"
       ],

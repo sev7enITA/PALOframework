@@ -28,6 +28,18 @@ const ajv = new Ajv2020({ allErrors: true, strict: true });
 addFormats(ajv);
 let caseFileValidator;
 let p2Counts = null;
+const privatePublicationPaths = [
+  "docs/ASSESSMENT-v3.0.md",
+  "insights/WEBUILD.docx",
+  "insights/2026TrendOutlookReports.pdf",
+  "insights/Accenture-Strategy-Macro-Foresight-Brief-2026-Top-10-Trends.pdf",
+  "insights/GIRST - bias-3.pdf",
+  "insights/gartner-2026-top-tech-trends.pdf",
+  "insights/mckinsey-technology-trends-outlook-2025.pdf",
+  "insights/geopolitical-forces-shaping-business-in-2026.pdf",
+  "insights/pwdreport.txt",
+  "insights/toptrends2026.txt"
+];
 
 const asArray = (value) => value === undefined ? [] : Array.isArray(value) ? value : [value];
 const normalizePath = (value) => value.split(path.sep).join("/");
@@ -69,6 +81,9 @@ function parseXml(file, content) {
 for (const relativePath of PUBLIC_FILES) {
   try { await access(path.join(validationRoot, relativePath)); }
   catch { errors.push(`${relativePath}: allowlisted public file is missing`); }
+}
+for (const relativePath of privatePublicationPaths) {
+  if (PUBLIC_FILES.includes(relativePath)) errors.push(`${relativePath}: private or third-party research input must not be allowlisted`);
 }
 
 async function validateP1Fixtures() {
@@ -338,6 +353,7 @@ const releaseVersion = manifest.release?.version;
 const releaseDate = manifest.release?.date;
 if (!/^\d+\.\d+\.\d+$/.test(releaseVersion || "")) errors.push("release-manifest.json: release.version must be SemVer");
 if (!/^\d{4}-\d{2}-\d{2}$/.test(releaseDate || "")) errors.push("release-manifest.json: release.date must be YYYY-MM-DD");
+if (manifest.release?.versioningModel !== "platform-release-with-independent-components") errors.push("release-manifest.json: release.versioningModel must distinguish the platform release from independently versioned components");
 if (manifest.sharedAssets?.version !== releaseVersion) errors.push("release-manifest.json: sharedAssets.version must equal release.version");
 if (manifest.components?.web?.version !== releaseVersion || manifest.components?.web?.date !== releaseDate) errors.push("release-manifest.json: web component must match the release version and date");
 for (const [name, component] of Object.entries(manifest.components || {})) {
@@ -428,6 +444,10 @@ if (built) {
       errors.push(`${relativePath}: internal build/repository file leaked into dist`);
     } catch { /* Expected. */ }
   }
+  for (const relativePath of privatePublicationPaths) {
+    try { await access(path.join(validationRoot, relativePath)); errors.push(`${relativePath}: private or third-party research input leaked into dist`); }
+    catch { /* Expected. */ }
+  }
   const internalAssessments = ["docs/palo-ai-v2.4.1-technical-assessment.md", "docs/palo-ai-v2.5-technical-assessment.md", "docs/palo-ai-v2.4.1-technical-assessment.html", "docs/palo-ai-v2.5-technical-assessment.html"];
   for (const relativePath of internalAssessments) {
     try { await access(path.join(validationRoot, relativePath)); errors.push(`${relativePath}: internal assessment leaked into dist`); }
@@ -448,6 +468,8 @@ if (built) {
   if ((whyHtml.match(/data-scenario=/g) || []).length !== 3 || !/Authorized but wrong/.test(whyHtml) || !/browser-local/i.test(whyHtml)) errors.push("PALO_AIWhy.html: comparison must expose three clearly bounded local scenarios");
   const quickstartHtml = htmlByFile.get("PALO_AIQuickstarts.html") || "";
   for (const anchor of ["code-first", "n8n", "copilot", "compare"]) if (!new RegExp(`id=[\"']${anchor}[\"']`).test(quickstartHtml)) errors.push(`PALO_AIQuickstarts.html: missing deep-link route #${anchor}`);
+  const legacyDocsHtml = htmlByFile.get("PALO_DocumentationHub.html") || "";
+  if (!/name=["']robots["'][^>]+content=["']noindex,follow["']/i.test(legacyDocsHtml) || !/rel=["']canonical["'][^>]+PALO_DocumentationLibrary\.html/i.test(legacyDocsHtml)) errors.push("PALO_DocumentationHub.html: transition page must be noindex and canonicalize to Documentation Library");
   const homeHtml = htmlByFile.get("index.html") || "";
   const governanceRoutes = homeHtml.match(/<section[^>]+id=["']palo-governance-routes["'][\s\S]*?<\/section>/i)?.[0] || "";
   for (const title of ["Govern the AI lifecycle", "Govern agentic systems", "Enforce agent actions"]) if (!governanceRoutes.includes(title)) errors.push(`index.html: umbrella governance route is missing exact title "${title}"`);

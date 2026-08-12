@@ -72,6 +72,12 @@ Delivery status such as Implemented or Foundation is independent of these classe
 
 Executive and Technical are presentation lenses inside the Governance Hub. They are not identities, permissions or RBAC roles.
 
+## Release and component versions
+
+`3.0.0` identifies the PALO platform release and its semantic contracts. Runtime, mobile and integration components retain independent semantic versions so their maturity and compatibility are not overstated. Public health and release metadata should therefore expose the platform release separately from the component version; a component version such as PALO-AI `2.5.0` does not imply that the v3 semantic foundation is stale.
+
+The authoritative version inventory is `release-manifest.json`. Component status remains independent of version: a runtime can be versioned and tested while still carrying a developer-preview or prototype boundary.
+
 ## Public contracts
 
 | Contract | Canonical asset |

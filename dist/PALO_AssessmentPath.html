@@ -34,7 +34,7 @@
                 <a href="index.html">Home</a>
                 <a href="PALO_AssessmentPath.html" aria-current="page">Assessment Path</a>
                 <a href="PALO_RegulatoryWatch.html">Regulatory Watch</a>
-                <a href="PALO_DocumentationHub.html">Documentation</a>
+                <a href="PALO_DocumentationLibrary.html">Documentation</a>
                 <a href="PALO_PlatformMap.html">Platform Map</a>
                 <a href="PALO_Recognition.html">Recognition</a>
                 <a href="PALO_Community.html">Community</a>
@@ -205,7 +205,7 @@
                 <a href="PALO_RiskTiering.html">Risk Tiering</a>
                 <a href="PALO_FRIA.html">FRIA</a>
                 <a href="PALO_KPIGenerator.html">KPI Generator</a>
-                <a href="PALO_DocumentationHub.html">Documentation Hub</a>
+                <a href="PALO_DocumentationLibrary.html">Documentation Library</a>
                 <a href="privacy-policy.html">Privacy</a>
                 <a href="security-policy.html">Security</a>
             </div>
@@ -232,7 +232,7 @@
                 'Agentic governance': 'PALO_AgenticGovernance.html',
                 'AI Dev Governance': 'PALO_VibeCoding.html',
                 'Controls and KPI/KRI': 'PALO_KPIGenerator.html',
-                'Documentation Hub': 'PALO_DocumentationHub.html'
+                'Documentation Library': 'PALO_DocumentationLibrary.html'
             };
             var esc = function (value) {
                 return String(value == null ? '' : value).replace(/[&<>"']/g, function (char) {
@@ -250,7 +250,7 @@
                     'Agentic governance': 'Map delegated authority, tools, action space, autonomy, controls, and agentic evidence.',
                     'AI Dev Governance': 'Review functional intent, controlled environments, review gates, and evidence for AI-assisted development.',
                     'Controls and KPI/KRI': 'Choose measurable controls and indicators for ongoing governance and review.',
-                    'Documentation Hub': 'Read the web-native guidance and keep the primary framework documents with the assessment record.'
+                    'Documentation Library': 'Read the source-backed guidance and keep the primary framework documents with the assessment record.'
                 };
                 return reasons[name];
             };
@@ -299,7 +299,7 @@
                 if (value('agentic')) route.push({ name: 'Agentic governance', reason: routeReason('Agentic governance') });
                 if (value('aiAssisted')) route.push({ name: 'AI Dev Governance', reason: routeReason('AI Dev Governance') });
                 route.push({ name: 'Controls and KPI/KRI', reason: routeReason('Controls and KPI/KRI') });
-                route.push({ name: 'Documentation Hub', reason: routeReason('Documentation Hub') });
+                route.push({ name: 'Documentation Library', reason: routeReason('Documentation Library') });
                 var evidence = {
                     'Data governance and provenance': value('dataGovernance'),
                     'Human oversight and escalation': value('humanOversight'),
