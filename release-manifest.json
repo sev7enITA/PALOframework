@@ -112,6 +112,26 @@
       "telemetryRequired": false,
       "accountRequired": false
     },
+    "paloGuideAgent": {
+      "version": "1.0.0",
+      "date": "2026-08-13",
+      "status": "implemented-read-only-inference",
+      "webEntry": "PALO_Guide.html",
+      "mcpPrompt": "palo_guide_agent",
+      "mcpTools": [
+        "palo_explain_framework",
+        "palo_infer_governance_route",
+        "palo_plan_product_integration"
+      ],
+      "inferenceSources": [
+        "data/semantic-spine.json",
+        "data/decision-gates.json",
+        "data/control-library.json",
+        "data/kpi-kri-registry.json",
+        "data/source-registry.json"
+      ],
+      "authorityBoundary": "Read-only route orientation; no legal conclusion, certification, case approval, deployment authorization or target-system authority."
+    },
     "operationalEvidenceCore": {
       "version": "1.0.0",
       "date": "2026-07-12"
@@ -153,6 +173,13 @@
       "releaseManifest": "data/semantic-release-manifest.json",
       "ontology": "formal/palo-ontology-v3.ttl",
       "shapes": "formal/palo-ontology-v3.shacl.ttl"
+    },
+    "guideAgent": {
+      "webEntry": "PALO_Guide.html",
+      "documentation": "docs/palo-guide-agent-and-mcp.html",
+      "server": "packages/palo-mcp-server/index.js",
+      "transport": ["stdio", "authenticated-streamable-http"],
+      "productionUse": false
     },
     "architecturePreview": {
       "status": "source-ready",

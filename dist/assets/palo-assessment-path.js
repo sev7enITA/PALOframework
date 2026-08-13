@@ -277,6 +277,8 @@
   signalInput.addEventListener("change", function () {
     var file = signalInput.files[0];
     if (!file) return;
+    var signalDisclosure = signalInput.closest("details");
+    if (signalDisclosure) signalDisclosure.open = true;
     signalStatus.classList.remove("is-error", "is-pending");
     signalStatus.innerHTML = "<strong>Validating locally.</strong> " + esc(file.name) + " is not being uploaded.";
     document.documentElement.removeAttribute("data-policywatcher-import");

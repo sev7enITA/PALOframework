@@ -2,6 +2,10 @@
 
 This package is the non-production reference implementation shipped with PALO-AI v2.5. It demonstrates the official MCP SDK over stdio and experimental bearer-authenticated Streamable HTTP, Action Claim 1.2, Effect Contracts, one-time capabilities, trusted in-process executors, authoritative verifiers, signed receipts, outcome attestations, assurance incidents and a hash-chained SQLite ledger.
 
+PALO platform v3.0.1 also adds three read-only guide tools and the `palo_guide_agent` prompt. They explain the released PALO semantic model, infer a transparent starting route and plan a least-privilege product integration without mutating case state. See the [PALO Guide Agent and MCP Integration](../../docs/palo-guide-agent-and-mcp.md) guide. Keep these orientation tools separate from protected-action authorization and execution.
+
+The VPS reference deployment defines a separately authenticated guide-only route at `https://governance.paloframework.org/mcp-guide`. It uses its own secret and sets `PALO_MCP_EXPOSED_TOOLS` to the three read-only guide tools, keeping framework orientation separate from the operational `/mcp` surface.
+
 ## Safety notice
 
 Do not use this package to authorize or execute production tools, access sensitive data, or support consequential decisions. It is not an audited security boundary, universal exactly-once executor, production identity service, trusted approval service, compliance certification, or production evidence platform.

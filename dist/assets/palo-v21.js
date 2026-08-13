@@ -10,7 +10,25 @@
         document.head.appendChild(script);
     }
 
+    function revealProgressiveHashTarget() {
+        if (!window.location.hash || window.location.hash.length < 2) return;
+        var targetId;
+        try { targetId = decodeURIComponent(window.location.hash.slice(1)); }
+        catch (error) { targetId = window.location.hash.slice(1); }
+        var target = document.getElementById(targetId);
+        if (!target) return;
+        var disclosure = target.closest('details[data-palo-progressive-background]');
+        if (!disclosure || disclosure.open) return;
+        disclosure.open = true;
+        window.requestAnimationFrame(function () {
+            target.scrollIntoView({ block: 'start', behavior: 'auto' });
+        });
+    }
+
     function boot() {
+        revealProgressiveHashTarget();
+        window.addEventListener('hashchange', revealProgressiveHashTarget);
+
         document.querySelectorAll('[data-palo-menu-toggle]').forEach(function (button) {
             var menuId = button.getAttribute('aria-controls');
             var menu = menuId ? document.getElementById(menuId) : null;

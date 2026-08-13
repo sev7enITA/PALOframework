@@ -10,6 +10,7 @@ The reference developer-preview endpoint was deployed on 17 July 2026:
 |---|---|
 | Public hostname | `https://governance.paloframework.org` |
 | MCP transport | Streamable HTTP at `/mcp`, bearer-authenticated |
+| Guide MCP transport | Prepared Streamable HTTP route at `/mcp-guide`, separately bearer-authenticated; deploy this release before treating it as live |
 | Gateway | HTTPS under `/gateway`, bearer-authenticated and route-limited |
 | Policy engine | OPA 1.17.0, Docker-internal only |
 | TLS | Let's Encrypt ECDSA certificate with automatic renewal |
@@ -28,9 +29,12 @@ The deployment deliberately uses both private and public addresses:
 | `http://palo-gateway:8787` | Docker network only | Gateway behind the TLS proxy |
 | `http://127.0.0.1:18877` | Current VPS host only | Administrative profile registration over SSH |
 | `http://127.0.0.1:18878` | Current VPS host only | nginx-to-MCP proxy target |
+| `http://127.0.0.1:18879` | Current VPS host only | nginx-to-guide-MCP proxy target |
 | `http://palo-mcp:8788` | Docker network only | MCP service behind the TLS proxy |
+| `http://palo-guide-mcp:8789` | Docker network only | Read-only PALO Guide MCP service behind the TLS proxy |
 | `https://governance.paloframework.org/gateway` | Internet, authenticated | n8n/Dify adapter base URL |
 | `https://governance.paloframework.org/mcp` | Internet, authenticated | Streamable HTTP MCP endpoint |
+| `https://governance.paloframework.org/mcp-guide` | Internet, separately authenticated | Three read-only PALO Guide tools after this release is deployed |
 
 `8181` is therefore not the public endpoint. It remains private even when the complete stack runs online on the VPS.
 
@@ -50,6 +54,7 @@ Both variants provide:
 - PALO Gateway and MCP containers built from this repository;
 - HTTPS termination and redirect through existing nginx/Certbot or Caddy 2.11.4;
 - separate Docker secret files for Gateway, MCP and HMAC material;
+- a separate Guide MCP secret and allowlist containing only the three read-only guide tools;
 - persistent PALO data and Caddy certificate volumes;
 - non-root PALO containers, read-only filesystems, dropped capabilities and health checks;
 - an explicit MCP host allowlist;
@@ -96,6 +101,17 @@ sh setup-secrets.sh
 
 The generated `.env` and `secrets/` contents are ignored by Git. Back them up through a protected secret-management process; never upload or commit them.
 
+When upgrading an existing deployment that already has the original three secret files, create only the new Guide MCP token before starting the updated Compose project:
+
+```bash
+umask 077
+test ! -e secrets/guide-mcp-token
+openssl rand -hex 32 > secrets/guide-mcp-token
+chmod 600 secrets/guide-mcp-token
+```
+
+Do not rerun `setup-secrets.sh` over an existing deployment because it deliberately refuses to overwrite any current secret.
+
 ## Firewall
 
 Preserve SSH access before enabling a firewall. A typical UFW policy is:
@@ -110,7 +126,7 @@ sudo ufw allow 443/udp
 sudo ufw enable
 ```
 
-Do not open 8181, 8787, 8788, 18877 or 18878 publicly. The Hostinger Compose variant publishes 18877 and 18878 only on the VPS loopback interface; the clean-VPS variant keeps its administration binding on loopback as documented in its Compose file.
+Do not open 8181, 8787, 8788, 8789, 18877, 18878 or 18879 publicly. The Hostinger Compose variant publishes 18877, 18878 and 18879 only on the VPS loopback interface; the clean-VPS variant keeps its administration binding on loopback as documented in its Compose file.
 
 ## Start the online stack
 
@@ -158,6 +174,8 @@ Expected public endpoints:
 ```text
 https://governance.paloframework.org/mcp-health
 https://governance.paloframework.org/mcp
+https://governance.paloframework.org/mcp-guide-health
+https://governance.paloframework.org/mcp-guide
 https://governance.paloframework.org/gateway/v1/registry
 https://governance.paloframework.org/gateway/v1/actions/verify
 ```
@@ -182,8 +200,9 @@ sh smoke-online.sh
 
 This checks:
 
-- the public MCP health endpoint over HTTPS;
-- rejection of an anonymous MCP request;
+- the operational and Guide MCP health endpoints over HTTPS;
+- rejection of anonymous operational and Guide MCP requests;
+- authenticated Guide MCP initialization;
 - authenticated access to the public Gateway registry.
 
 Inspect service-local health when troubleshooting:
@@ -217,11 +236,22 @@ Authorization: Bearer <contents of secrets/mcp-token>
 
 Expose only the PALO-governed tools to an agent. Do not make equivalent privileged target tools available through a parallel ungoverned MCP server.
 
+For products that only need PALO explanation, deterministic route inference and integration planning, use the separate guide-only endpoint and `secrets/guide-mcp-token`:
+
+```text
+Endpoint: https://governance.paloframework.org/mcp-guide
+Authorization: Bearer <contents of secrets/guide-mcp-token>
+Tools: palo_explain_framework, palo_infer_governance_route, palo_plan_product_integration
+```
+
+Issue a distinct secret per deployment boundary when moving beyond the single-tenant developer preview. Never place this token in public browser JavaScript.
+
 ## Public-route boundary
 
 The public reverse proxy currently exposes:
 
 - MCP `/mcp` and its health endpoint; the configured remote tool allowlist remains decision/status oriented and excludes administrative and execution tools;
+- Guide MCP `/mcp-guide` and its health endpoint, authenticated with a separate secret and limited to three read-only guide tools;
 - Gateway health and authenticated registry read;
 - authenticated Action Claim verification and full-cycle governed execution;
 - authenticated execution detail, outcome read and explicit re-verification addressed by execution ID;

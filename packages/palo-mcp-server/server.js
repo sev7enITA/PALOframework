@@ -1,16 +1,65 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import * as z from "zod/v4";
 import { GovernanceRuntime } from "./core.js";
+import { paloGuideAgent } from "./guide-agent.js";
 
 const jsonObject = z.record(z.string(), z.unknown());
 const result = (value) => ({ content: [{ type: "text", text: JSON.stringify(value, null, 2) }], structuredContent: value });
 const fail = (error) => ({ isError: true, content: [{ type: "text", text: error instanceof Error ? error.message : String(error) }] });
 const guarded = (handler) => async (input) => { try { return result(await handler(input)); } catch (error) { return fail(error); } };
 
+export function parseExposedTools(value) {
+  return [...new Set(String(value || "").split(",").map((name) => name.trim()).filter(Boolean))];
+}
+
 export function createPaloMcpServer(runtime = new GovernanceRuntime(), { exposedTools } = {}) {
   const server = new McpServer({ name: "palo-governance-server", version: "2.5.0", websiteUrl: "https://paloframework.org/PALO_AgenticGovernance.html" });
   const allowed = exposedTools ? new Set(exposedTools) : null;
+  const guideToolNames = ["palo_explain_framework", "palo_infer_governance_route", "palo_plan_product_integration"];
   const registerTool = (name, definition, handler) => { if (!allowed || allowed.has(name)) server.registerTool(name, definition, handler); };
+  registerTool("palo_explain_framework", {
+    description: "Explain how PALO works using the released semantic spine, decision gates and authority boundaries. Read-only orientation; no legal conclusion, certification or approval.",
+    inputSchema: {
+      query: z.string().min(1).max(4000),
+      audience: z.string().min(1).max(200).optional(),
+      limit: z.number().int().min(1).max(12).optional()
+    }
+  }, guarded((input) => paloGuideAgent.explainFramework(input)));
+  registerTool("palo_infer_governance_route", {
+    description: "Infer an explainable PALO starting route from explicit use-case signals. The result is a deterministic hypothesis that requires accountable human validation.",
+    inputSchema: {
+      useCase: z.string().min(3).max(12000),
+      role: z.string().min(1).max(200).optional(),
+      objectives: z.array(z.string().min(1).max(300)).max(12).optional(),
+      systemType: z.string().min(1).max(200).optional(),
+      currentState: z.enum(["idea", "pilot", "production", "incident", "review"]).optional(),
+      signals: z.object({
+        systemCanAct: z.boolean().optional(),
+        regulatedOrPublic: z.boolean().optional(),
+        highImpact: z.boolean().optional(),
+        aiAssistedDevelopment: z.boolean().optional(),
+        needsMetrics: z.boolean().optional(),
+        needsEvidence: z.boolean().optional(),
+        uncertainScope: z.boolean().optional(),
+        accountableOwner: z.boolean().optional(),
+        humanReviewDefined: z.boolean().optional(),
+        officialSourcesReviewed: z.boolean().optional(),
+        evidenceLocationDefined: z.boolean().optional(),
+        actionImpact: z.enum(["guidance-only", "read-only", "reversible-write", "consequential-write"]).optional()
+      }).optional()
+    }
+  }, guarded((input) => paloGuideAgent.inferRoute(input)));
+  registerTool("palo_plan_product_integration", {
+    description: "Plan how a product should consume PALO guide tools over MCP and, where relevant, separate guidance from protected-action enforcement.",
+    inputSchema: {
+      product: z.string().min(1).max(500),
+      productCategory: z.enum(["agent", "workflow", "developer-tool", "business-app", "chat-assistant", "other"]).optional(),
+      deployment: z.enum(["local", "same-network", "remote", "production"]).optional(),
+      transport: z.enum(["auto", "stdio", "streamable-http"]).optional(),
+      systemCanAct: z.boolean().optional(),
+      actionImpact: z.enum(["guidance-only", "read-only", "reversible-write", "consequential-write"]).optional()
+    }
+  }, guarded((input) => paloGuideAgent.planIntegration(input)));
   registerTool("palo_register_agent", { description: "Developer preview: register or version a local PALO agent authority profile; publisher identity is not authenticated.", inputSchema: { caseId: z.string().min(1), profile: jsonObject } }, guarded(({ caseId, profile }) => runtime.registerAgent(caseId, profile)));
   registerTool("palo_register_policy", { description: "Developer preview: register a local OPA policy manifest; bundle attestation is not provided.", inputSchema: { policy: jsonObject } }, guarded(({ policy }) => runtime.registerPolicy(policy)));
   registerTool("palo_get_registry", { description: "List locally registered profile and policy versions without secret material.", inputSchema: {} }, guarded(() => runtime.getRegistry()));
@@ -30,5 +79,30 @@ export function createPaloMcpServer(runtime = new GovernanceRuntime(), { exposed
   registerTool("palo_list_incidents", { description: "List assurance incidents opened after mismatched or inconclusive outcomes.", inputSchema: { status: z.enum(["open", "acknowledged", "resolved", "all"]).optional() } }, guarded(({ status }) => runtime.listIncidents(status || "open")));
   registerTool("palo_get_incident", { description: "Read one assurance incident.", inputSchema: { incidentId: z.string().min(1) } }, guarded(({ incidentId }) => runtime.getIncident(incidentId)));
   registerTool("palo_resolve_incident", { description: "Acknowledge or resolve an assurance incident; compensation remains a separately governed Action Claim.", inputSchema: { incidentId: z.string().min(1), status: z.enum(["acknowledged", "resolved"]), resolvedBy: z.string().min(1), resolution: z.string().min(1).max(4000) } }, guarded(({ incidentId, status, resolvedBy, resolution }) => runtime.resolveIncident(incidentId, status, resolvedBy, resolution)));
+  if (!allowed || guideToolNames.every((name) => allowed.has(name))) server.registerPrompt("palo_guide_agent", {
+    title: "PALO governance guide agent",
+    description: "Ground an assistant in PALO v3.0.1 and make route inference, evidence and product-integration boundaries explicit.",
+    argsSchema: {
+      audience: z.string().min(1).max(200).optional(),
+      product: z.string().min(1).max(500).optional()
+    }
+  }, ({ audience = "general", product = "the user's product" }) => ({
+    description: "PALO source-grounded guide agent instructions",
+    messages: [{
+      role: "user",
+      content: {
+        type: "text",
+        text: [
+          "Act as the PALO governance guide for " + audience + ".",
+          "Use palo_explain_framework before explaining PALO concepts, palo_infer_governance_route before recommending a route, and palo_plan_product_integration before proposing how " + product + " should connect.",
+          "Treat tool results as released framework orientation, not legal conclusions, certification, case approval or deployment authorization.",
+          "Show the input signals, concise because-statements, expected artifact, evidence class, authority boundary and unresolved questions.",
+          "Ask the user to confirm or correct inferred context before any downstream product changes.",
+          "For systems that can act, keep read-only guidance separate from Action Claims, policy decisions, governed execution and outcome verification.",
+          "Never imply that an advisory gate is non-bypassable or that the developer-preview PALO-AI runtime is production-ready."
+        ].join("\n")
+      }
+    }]
+  }));
   return server;
 }

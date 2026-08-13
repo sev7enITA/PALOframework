@@ -14,6 +14,8 @@
 
 ### [Run the preloaded Evidence Pack case](https://paloframework.org/PALO_AssessmentPath.html?sample=agentic-invoice#assessment-form)
 
+### [Ask PALO and find an accountable route](https://paloframework.org/PALO_Guide.html)
+
 No account. No mandatory telemetry. Your answers stay in the browser and export is voluntary. The receipt proves local schema checks and digest binding; it is not certification, legal advice, production approval or independent assurance.
 
 From a clone:
