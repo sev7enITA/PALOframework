@@ -106,16 +106,54 @@ services:
       retries: 5
       start_period: 15s
 
+  palo-guide-mcp:
+    build:
+      context: ../../..
+      dockerfile: deploy/vps/palo-ai/Dockerfile
+    command: ["node", "packages/palo-mcp-server/http.js"]
+    restart: unless-stopped
+    read_only: true
+    mem_limit: 384m
+    cap_drop: [ALL]
+    cap_add: [SETUID, SETGID]
+    security_opt:
+      - no-new-privileges:true
+    tmpfs:
+      - /tmp:size=32m,mode=1777
+    environment:
+      PALO_MCP_HTTP_HOST: 0.0.0.0
+      PALO_MCP_HTTP_PORT: 8789
+      PALO_MCP_ALLOWED_HOSTS: ${PALO_DOMAIN},127.0.0.1,localhost
+      PALO_MCP_EXPOSED_TOOLS: palo_explain_framework,palo_infer_governance_route,palo_plan_product_integration
+      PALO_MCP_HTTP_TOKEN_FILE: /run/secrets/palo_guide_mcp_token
+      PALO_DATA_DIR: /var/lib/palo-guide
+    secrets:
+      - palo_guide_mcp_token
+    volumes:
+      - palo_guide_data:/var/lib/palo-guide
+    ports:
+      - 127.0.0.1:18879:8789
+    networks: [backend, host_access]
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:8789/health',{headers:{Host:'127.0.0.1'}}).then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+
 secrets:
   palo_gateway_token:
     file: ./secrets/gateway-token
   palo_mcp_token:
     file: ./secrets/mcp-token
+  palo_guide_mcp_token:
+    file: ./secrets/guide-mcp-token
   palo_hmac_keys:
     file: ./secrets/hmac-keys.json
 
 volumes:
   palo_data:
+  palo_guide_data:
 
 networks:
   backend:

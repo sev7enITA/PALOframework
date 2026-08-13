@@ -99,6 +99,43 @@ try {
     return content;
   }
 
+  const guideNetworkWrites = [];
+  const trackGuideWrites = (request) => {
+    if (!["GET", "HEAD", "OPTIONS"].includes(request.method())) guideNetworkWrites.push({ method: request.method(), url: request.url() });
+  };
+  page.on("request", trackGuideWrites);
+  await page.goto(`${baseUrl}/PALO_Guide.html`, { waitUntil: "domcontentloaded" });
+  await page.evaluate(() => { localStorage.clear(); sessionStorage.clear(); });
+  await page.locator("#guide-role").selectOption("engineering");
+  await page.locator("#guide-objective").selectOption("integrate-product");
+  await page.locator("#guide-system").selectOption("agentic");
+  await page.locator("#guide-tools").selectOption("yes");
+  await page.locator("#guide-impact").selectOption("high");
+  await page.locator("#guide-product").fill("Internal workflow platform");
+  await page.locator("#guide-save-local").check();
+  await page.locator("#palo-guide-form").evaluate((form) => form.requestSubmit());
+  await page.waitForFunction(() => document.documentElement.hasAttribute("data-palo-guide-route"));
+  await expectAttribute(page.locator("html"), "data-palo-guide-route", "workflow-admission-governed-executor", "PALO Guide agentic integration route");
+  if (await page.locator("#palo-guide-route li").count() !== 4) failures.push("PALO Guide: agentic integration route must expose four accountable steps");
+  if (!/system can create effects or use tools[\s\S]*declared impact is consequential/i.test(await page.locator("#palo-guide-because").innerText())) failures.push("PALO Guide: visible because statement omits action or impact signals");
+  if (!await page.locator('a[href="docs/palo-guide-agent-and-mcp.html"]').first().isVisible()) failures.push("PALO Guide: agent and MCP manual is not visibly linked");
+  const storedGuideRoute = await page.evaluate(() => localStorage.getItem(window.__PALO_GUIDE.storageKey));
+  if (!storedGuideRoute || !/Internal workflow platform/.test(storedGuideRoute)) failures.push("PALO Guide: explicit device-local save did not retain the declared route");
+  await page.locator("#palo-guide-reset").click();
+  const clearedGuideRoute = await page.evaluate(() => localStorage.getItem(window.__PALO_GUIDE.storageKey));
+  if (clearedGuideRoute !== null) failures.push("PALO Guide: reset did not remove device-local answers");
+  page.off("request", trackGuideWrites);
+  if (guideNetworkWrites.length) failures.push(`PALO Guide: local inference sent a network write (${JSON.stringify(guideNetworkWrites)})`);
+
+  await page.goto(`${baseUrl}/index.html`, { waitUntil: "domcontentloaded" });
+  if (await page.locator("details[data-palo-progressive-background]").evaluate((details) => details.open)) failures.push("Homepage: framework background is not collapsed by default");
+  await page.evaluate(() => { location.hash = "#lifecycle"; });
+  await page.waitForFunction(() => document.querySelector("details[data-palo-progressive-background]")?.open === true);
+  if (!await page.locator("#lifecycle").isVisible()) failures.push("Homepage: hashchange did not reveal the legacy lifecycle target");
+  await page.goto(`${baseUrl}/index.html#principles`, { waitUntil: "domcontentloaded" });
+  await page.waitForFunction(() => document.querySelector("details[data-palo-progressive-background]")?.open === true);
+  if (!await page.locator("#principles").isVisible()) failures.push("Homepage: initial descendant hash did not reveal the background disclosure");
+
   await page.goto(`${baseUrl}/governance-hub/?role=executive&view=assurance`, { waitUntil: "networkidle" });
   await expectAttribute(page.locator("html"), "data-hub-role", "executive", "Governance Hub executive deep link");
   await expectAttribute(page.locator("html"), "data-hub-view", "assurance", "Governance Hub assurance deep link");
@@ -163,6 +200,7 @@ try {
 
   await page.goto(`${baseUrl}/PALO_AssessmentPath.html`, { waitUntil: "domcontentloaded" });
   await page.evaluate(() => { localStorage.clear(); sessionStorage.clear(); });
+  if (await page.locator("details.palo-signal-details").evaluate((details) => details.open)) failures.push("Evidence Pack: optional PolicyWatcher receiver is not collapsed by default");
   const unknownPreserved = await page.evaluate(() => {
     const base = window.PALOCaseFile.create({ title: "Unknown-field test", extensions: { vendorExtension: { retained: true } } });
     const merged = window.PALOCaseFile.merge(base, { context: { nested: { known: true } }, extraModuleData: { value: 7 } });
@@ -469,7 +507,7 @@ try {
 
   for (const viewport of [{ width: 1440, height: 900 }, { width: 1024, height: 768 }, { width: 390, height: 844 }, { width: 360, height: 800 }]) {
     await page.setViewportSize(viewport);
-    for (const file of ["index.html", "PALO_AIGovernance.html", "PALO_AIWhy.html", "PALO_AIQuickstarts.html", "PALO_AssessmentPath.html", "PALO_AgenticGovernance.html", "PALO_AgenticCapabilityMatrix.html", "PALO_AIProductionReadiness.html", "PALO_DocumentationLibrary.html", "docs/palo-ai-adoption-paths.html", "PALO_PlatformMap.html", "designs/theory-to-practice-infographic/index.html?mode=navigation"]) {
+    for (const file of ["index.html", "PALO_Guide.html", "PALO_AIGovernance.html", "PALO_AIWhy.html", "PALO_AIQuickstarts.html", "PALO_AssessmentPath.html", "PALO_AgenticGovernance.html", "PALO_AgenticCapabilityMatrix.html", "PALO_AIProductionReadiness.html", "PALO_DocumentationLibrary.html", "docs/palo-ai-adoption-paths.html", "PALO_PlatformMap.html", "designs/theory-to-practice-infographic/index.html?mode=navigation"]) {
       await page.goto(`${baseUrl}/${file}`, { waitUntil: "domcontentloaded" });
       if (file.includes("mode=navigation")) {
         const onboardingSeparators = page.locator(".route-ribbon > .route-separator");
@@ -482,6 +520,13 @@ try {
           lineageVisible: section.querySelector(".palo-umbrella-lineage")?.getBoundingClientRect().height > 0
         }));
         if (routeMap.entries !== 3 || routeMap.visibleAudiences !== 3 || !routeMap.lineageVisible) failures.push(`Homepage at ${viewport.width}x${viewport.height}: route lineage or audience labels are hidden (${JSON.stringify(routeMap)})`);
+      }
+      if (file === "PALO_Guide.html" && viewport.width <= 390) {
+        const undersizedGuideTargets = await page.evaluate(() => {
+          const selectors = ["#palo-guide-form select", "#palo-guide-form input[type=\"text\"]", "#palo-guide-form button", "#palo-guide-form .palo-guide-save", ".palo-guide-copy", ".palo-guide-handoff-ledger a"];
+          return selectors.flatMap((selector) => Array.from(document.querySelectorAll(selector))).filter((node) => node.offsetParent !== null && !node.hidden && node.getBoundingClientRect().height < 43.5).map((node) => `${node.id || node.className || node.tagName}:${node.getBoundingClientRect().height}`);
+        });
+        if (undersizedGuideTargets.length) failures.push(`PALO Guide at ${viewport.width}x${viewport.height}: interactive targets below 44px (${undersizedGuideTargets.join(", ")})`);
       }
       if (file.includes("mode=navigation")) {
         await page.waitForFunction(() => window.__graphReady === true, null, { timeout: 30_000 });

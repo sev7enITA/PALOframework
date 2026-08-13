@@ -19,9 +19,16 @@
     "PALO_DATA_DIR": "Private runtime directory containing palo-agentic.sqlite.",
     "PALO_HMAC_KEYS_JSON": "Protected keyId-to-secret map; each secret must contain at least 32 bytes.",
     "PALO_MCP_HTTP_TOKEN": "Bearer token of at least 24 bytes for Streamable HTTP.",
-    "PALO_GATEWAY_TOKEN": "Bearer token of at least 24 bytes for the connector REST gateway."
+    "PALO_GATEWAY_TOKEN": "Bearer token of at least 24 bytes for the connector REST gateway.",
+    "PALO_MCP_EXPOSED_TOOLS": "Optional comma-separated least-privilege allowlist for stdio and Streamable HTTP. For guidance-only integrations expose only palo_explain_framework, palo_infer_governance_route and palo_plan_product_integration."
   },
+  "prompts": [
+    { "name": "palo_guide_agent", "contract": "source-grounded host-agent behavior with explicit inference and authority boundaries" }
+  ],
   "tools": [
+    { "name": "palo_explain_framework", "contract": "read-only explanation over released semantic records and evidence/authority classes" },
+    { "name": "palo_infer_governance_route", "contract": "deterministic signal-to-phase starting hypothesis with reasons, artifacts and open questions" },
+    { "name": "palo_plan_product_integration", "contract": "least-privilege MCP transport and integration-class plan that separates guidance from protected execution" },
     { "name": "palo_register_agent", "contract": "locally registered versioned agent and authority profile; publisher identity is not authenticated" },
     { "name": "palo_register_policy", "contract": "locally registered versioned OPA policy manifest; bundle attestation is not provided" },
     { "name": "palo_register_executor", "contract": "versioned executor manifest; executable handler is operator-provisioned" },

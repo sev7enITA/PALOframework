@@ -32,12 +32,10 @@
             </button>
             <nav class="palo-nav" id="palo-primary-nav" aria-label="Primary navigation">
                 <a href="index.html">Home</a>
+                <a href="PALO_Guide.html">Ask PALO</a>
                 <a href="PALO_AssessmentPath.html" aria-current="page">Evidence Pack</a>
-                <a href="PALO_RegulatoryWatch.html">Regulatory Watch</a>
+                <a href="governance-hub/">Governance Hub</a>
                 <a href="PALO_DocumentationLibrary.html">Documentation</a>
-                <a href="PALO_PlatformMap.html">Platform Map</a>
-                <a href="PALO_Recognition.html">Recognition</a>
-                <a href="PALO_Community.html">Community</a>
             </nav>
         </div>
     </header>
@@ -70,7 +68,6 @@
                     <article class="palo-step"><span class="palo-step-number">05</span><h3>Evidence bundle</h3><p>Export the route, readiness, sources, and disclaimer.</p></article>
                 </div>
                 <p class="palo-small">Built on the PALO Assessment Path.</p>
-                <div class="palo-note"><strong>Optional monitoring companion.</strong> After deployment, use <a href="https://www.policywatcher.online/" target="_blank" rel="noopener noreferrer">PolicyWatcher</a> to follow public privacy-policy and terms-of-service changes that may affect the operating context. Keep the original source and human review in the PALO evidence record.</div>
             </div>
         </section>
 
@@ -85,25 +82,6 @@
                     <input id="assessment-import" type="file" accept="application/json,.json" hidden>
                     <button class="palo-btn palo-btn-muted" type="button" id="resume-local-case">Resume local case</button>
                 </div>
-                <section class="palo-signal-import" aria-labelledby="policywatcher-import-title">
-                    <div>
-                        <p class="palo-card-kicker">External monitoring companion | local receiver</p>
-                        <h3 id="policywatcher-import-title">PolicyWatcher monitoring signal</h3>
-                        <p>Import a structured observation locally. PALO preserves the complete signal and flags Measure and Prove for accountable review; confidence does not determine legal significance or control effectiveness.</p>
-                    </div>
-                    <div class="palo-actions">
-                        <label class="palo-btn" for="policywatcher-signal-import"><span data-palo-icon="upload" aria-hidden="true"></span>Import signal JSON</label>
-                        <input id="policywatcher-signal-import" type="file" accept="application/json,.json" hidden>
-                        <a class="palo-btn palo-btn-secondary" href="schemas/policywatcher-signal.schema.json">Signal schema</a>
-                    </div>
-                    <div class="palo-signal-links" aria-label="PolicyWatcher resources">
-                        <a href="https://www.policywatcher.online/" target="_blank" rel="noopener noreferrer">PolicyWatcher</a>
-                        <a href="https://www.policywatcher.online/observatory" target="_blank" rel="noopener noreferrer">Observatory</a>
-                        <a href="https://www.policywatcher.online/methodology/confidence" target="_blank" rel="noopener noreferrer">Confidence methodology</a>
-                        <a href="https://www.policywatcher.online/trust" target="_blank" rel="noopener noreferrer">Trust &amp; Quality</a>
-                    </div>
-                    <div class="palo-signal-review" id="policywatcher-import-status" role="status" aria-live="polite"><strong>No signal imported.</strong> PolicyWatcher remains separate from PALO and no case data is sent to the portal.</div>
-                </section>
                 <div class="palo-sample-status" id="evidence-sample-status" role="status" aria-live="polite">The synthetic agentic invoice case is ready to load.</div>
                 <form class="palo-form" id="palo-assessment-form">
                     <div class="palo-form-grid">
@@ -207,6 +185,33 @@
                         <p class="palo-receipt-status" id="validation-receipt-status" role="status" aria-live="polite">No validation receipt created yet.</p>
                     </section>
                 </section>
+
+                <details class="palo-signal-details">
+                    <summary>
+                        <span>Optional after-deployment monitoring signal</span>
+                        <small>Import a PolicyWatcher observation only when the core case route is ready.</small>
+                    </summary>
+                    <section class="palo-signal-import" aria-labelledby="policywatcher-import-title">
+                        <div>
+                            <p class="palo-card-kicker">External monitoring companion | local receiver</p>
+                            <h3 id="policywatcher-import-title">PolicyWatcher monitoring signal</h3>
+                            <p>Import a structured observation locally. PALO preserves the complete signal and flags Measure and Prove for accountable review; confidence does not determine legal significance or control effectiveness.</p>
+                            <p><strong>Optional companion.</strong> After deployment, PolicyWatcher can follow public privacy-policy and terms-of-service changes that may affect the operating context. Keep the original source and human review in the PALO evidence record.</p>
+                        </div>
+                        <div class="palo-actions">
+                            <label class="palo-btn" for="policywatcher-signal-import"><span data-palo-icon="upload" aria-hidden="true"></span>Import signal JSON</label>
+                            <input id="policywatcher-signal-import" type="file" accept="application/json,.json" hidden>
+                            <a class="palo-btn palo-btn-secondary" href="schemas/policywatcher-signal.schema.json">Signal schema</a>
+                        </div>
+                        <div class="palo-signal-links" aria-label="PolicyWatcher resources">
+                            <a href="https://www.policywatcher.online/" target="_blank" rel="noopener noreferrer">PolicyWatcher</a>
+                            <a href="https://www.policywatcher.online/observatory" target="_blank" rel="noopener noreferrer">Observatory</a>
+                            <a href="https://www.policywatcher.online/methodology/confidence" target="_blank" rel="noopener noreferrer">Confidence methodology</a>
+                            <a href="https://www.policywatcher.online/trust" target="_blank" rel="noopener noreferrer">Trust &amp; Quality</a>
+                        </div>
+                        <div class="palo-signal-review" id="policywatcher-import-status" role="status" aria-live="polite"><strong>No signal imported.</strong> PolicyWatcher remains separate from PALO and no case data is sent to the portal.</div>
+                    </section>
+                </details>
 
                 <div class="palo-note"><strong>Use the route as a starting point.</strong> The export includes PALO version, route logic, evidence readiness, official source links, and a plain-language disclaimer so the next reviewer can see what was assessed and what remains open.</div>
             </div>

@@ -404,6 +404,30 @@ for (const [file, html] of htmlByFile) {
 }
 if (sharedReferenceCount === 0) errors.push("shared assets: no palo-v21.css/js references found");
 
+const guideHtml = htmlByFile.get("PALO_Guide.html") || "";
+for (const field of ["role", "objective", "systemType", "canAct", "impact", "product"]) {
+  if (!new RegExp(`name=["']${field}["']`).test(guideHtml)) errors.push(`PALO_Guide.html: deterministic guide input ${field} is missing`);
+}
+for (const tool of ["palo_explain_framework", "palo_infer_governance_route", "palo_plan_product_integration"]) {
+  if (!guideHtml.includes(tool)) errors.push(`PALO_Guide.html: MCP guide tool ${tool} is missing`);
+}
+for (const label of ["Frame", "Classify", "Assess", "Control", "Measure", "Prove &amp; Review"]) {
+  if (!guideHtml.includes(`<strong>${label}</strong>`)) errors.push(`PALO_Guide.html: canonical phase ${label} is missing`);
+}
+if (!/docs\/palo-guide-agent-and-mcp\.html/.test(guideHtml) || !/Browser-local and source-grounded/.test(guideHtml) || !/not a production authorization boundary/i.test(guideHtml)) errors.push("PALO_Guide.html: agent manual, local trust line or production authority boundary is incomplete");
+
+const homeOrientationHtml = htmlByFile.get("index.html") || "";
+if (!/data-palo-progressive-background/.test(homeOrientationHtml) || !/Explore framework background and specialist modules/.test(homeOrientationHtml)) errors.push("index.html: legacy background disclosure is missing");
+if (/data-palo-progressive-background[^>]*\sopen(?:\s|=|>)/i.test(homeOrientationHtml)) errors.push("index.html: legacy background disclosure must be collapsed by default");
+if (!/PALO_Guide\.html[^>]*>[\s\S]*?(?:Ask PALO|Find my route)/.test(homeOrientationHtml)) errors.push("index.html: first-class PALO Guide route is missing");
+if (!/Complementary system-lifecycle view[\s\S]*canonical six-phase PALO governance loop/.test(homeOrientationHtml)) errors.push("index.html: five-activity system lifecycle is not explicitly separated from the canonical six-phase loop");
+
+const assessmentOrientationHtml = htmlByFile.get("PALO_AssessmentPath.html") || "";
+const assessmentFormIndex = assessmentOrientationHtml.indexOf('id="palo-assessment-form"');
+const assessmentResultsIndex = assessmentOrientationHtml.indexOf('id="assessment-results"');
+const policyWatcherIndex = assessmentOrientationHtml.indexOf('class="palo-signal-details"');
+if (assessmentFormIndex < 0 || assessmentResultsIndex < assessmentFormIndex || policyWatcherIndex < assessmentResultsIndex || !/<details class="palo-signal-details">/.test(assessmentOrientationHtml)) errors.push("PALO_AssessmentPath.html: optional PolicyWatcher receiver must follow the form and nearby results in a collapsed disclosure");
+
 let sitemap = {};
 try { sitemap = parseXml("sitemap.xml", await readFile(path.join(validationRoot, "sitemap.xml"), "utf8")); }
 catch (error) { errors.push(`sitemap.xml: ${error.message}`); }

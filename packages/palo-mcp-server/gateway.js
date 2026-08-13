@@ -42,7 +42,7 @@ async function body(request) {
 const gateway = createServer(async (request, response) => {
   try {
     const url = new URL(request.url, `http://${request.headers.host || "localhost"}`);
-    if (request.method === "GET" && url.pathname === "/health") return send(response, 200, { status: "ok", service: "palo-governance-gateway", version: "2.5.0", frameworkRelease: "3.0.0", releaseStatus: "developer-preview", assuranceCycle: "full-cycle", productionUse: false });
+    if (request.method === "GET" && url.pathname === "/health") return send(response, 200, { status: "ok", service: "palo-governance-gateway", version: "2.5.0", frameworkRelease: "3.0.1", releaseStatus: "developer-preview", assuranceCycle: "full-cycle", productionUse: false });
     if (!authorized(request)) return send(response, 401, { error: "unauthorized" });
     if (request.method === "GET" && url.pathname === "/v1/demo/catalog" && runtime.demoCatalogState) return send(response, 200, { state: runtime.demoCatalogState, synthetic: true });
     if (request.method === "POST" && url.pathname === "/v1/demo/catalog/reset" && runtime.demoCatalogState) {

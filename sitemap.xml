@@ -63,6 +63,13 @@
     </url>
 
     <url>
+        <loc>https://paloframework.org/PALO_Guide.html</loc>
+        <lastmod>2026-08-13</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <url>
         <loc>https://paloframework.org/PALO_RegulatoryWatch.html</loc>
         <lastmod>2026-07-11</lastmod>
         <changefreq>weekly</changefreq>

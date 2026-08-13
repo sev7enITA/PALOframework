@@ -9,15 +9,16 @@ COPY package.json package-lock.json ./
 RUN npm ci --omit=dev --ignore-scripts=false && npm cache clean --force
 
 COPY --chown=node:node packages/palo-mcp-server ./packages/palo-mcp-server
+COPY --chown=node:node data ./data
 COPY --chown=node:node schemas ./schemas
 COPY --chown=node:node examples/policy-as-code ./examples/policy-as-code
 COPY --chown=root:root deploy/vps/palo-ai/docker-entrypoint.sh /usr/local/bin/palo-entrypoint
 
 RUN chmod 0755 /usr/local/bin/palo-entrypoint \
-    && mkdir -p /var/lib/palo \
-    && chown node:node /var/lib/palo
+    && mkdir -p /var/lib/palo /var/lib/palo-guide \
+    && chown node:node /var/lib/palo /var/lib/palo-guide
 
-EXPOSE 8787 8788
+EXPOSE 8787 8788 8789
 
 ENTRYPOINT ["/usr/local/bin/palo-entrypoint"]
 CMD ["node", "packages/palo-mcp-server/http.js"]

@@ -4,7 +4,7 @@ import { pathToFileURL } from "node:url";
 import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/streamableHttp.js";
 import { createMcpExpressApp } from "@modelcontextprotocol/sdk/server/express.js";
 import { GovernanceRuntime } from "./core.js";
-import { createPaloMcpServer } from "./server.js";
+import { createPaloMcpServer, parseExposedTools } from "./server.js";
 import { loadEnforcementProviderFromEnvironment } from "./providers/from-environment.js";
 
 function authorized(header, token) {
@@ -22,7 +22,7 @@ export function createAuthenticatedMcpApp({ runtime, token, host = "127.0.0.1", 
   const isLoopback = ["127.0.0.1", "localhost", "::1"].includes(normalizedHost);
   if (!isLoopback && allowedHosts.length === 0) throw new Error("PALO_MCP_ALLOWED_HOSTS is required when MCP binds to a non-local interface");
   const app = createMcpExpressApp({ host, ...(allowedHosts.length ? { allowedHosts } : {}) });
-  app.get("/health", (_request, response) => response.json({ status: "ok", service: "palo-mcp-streamable-http", version: "2.5.0", frameworkRelease: "3.0.0", releaseStatus: "developer-preview", assuranceCycle: "full-cycle", productionUse: false }));
+  app.get("/health", (_request, response) => response.json({ status: "ok", service: "palo-mcp-streamable-http", version: "2.5.0", frameworkRelease: "3.0.1", releaseStatus: "developer-preview", assuranceCycle: "full-cycle", productionUse: false }));
   app.all("/mcp", async (request, response) => {
     if (!authorized(request.headers.authorization, token)) return response.status(401).set("WWW-Authenticate", "Bearer").json({ jsonrpc: "2.0", error: { code: -32001, message: "Unauthorized" }, id: null });
     if (request.method !== "POST") return response.status(405).json({ jsonrpc: "2.0", error: { code: -32000, message: "Method not allowed" }, id: null });
@@ -45,7 +45,7 @@ if (import.meta.url === pathToFileURL(process.argv[1]).href) {
   const host = process.env.PALO_MCP_HTTP_HOST || "127.0.0.1";
   const port = Number(process.env.PALO_MCP_HTTP_PORT || 8788);
   const allowedHosts = parseAllowedHosts(process.env.PALO_MCP_ALLOWED_HOSTS);
-  const exposedTools = parseAllowedHosts(process.env.PALO_MCP_EXPOSED_TOOLS);
+  const exposedTools = parseExposedTools(process.env.PALO_MCP_EXPOSED_TOOLS);
   const enforcementProvider = await loadEnforcementProviderFromEnvironment();
   const runtime = new GovernanceRuntime({ enforcementProvider });
   const app = createAuthenticatedMcpApp({ runtime, token, host, allowedHosts, exposedTools: exposedTools.length ? exposedTools : undefined });
