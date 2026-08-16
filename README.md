@@ -229,6 +229,8 @@ You can also open `index.html` directly in a browser, although serving locally i
 
 The commands below are for isolated development and testing only. Do not connect this preview to production agents, sensitive data, privileged tools, or consequential decisions.
 
+The PALO-AI v2.6 working tree uses the split MCP SDK 2.0 and serves both stateless MCP `2026-07-28` and legacy clients from one tool definition. Remote MCP can validate OIDC/JWKS access tokens with audience-bound scopes and role separation; the shared token remains a development fallback and the separate REST Gateway remains a coarse preview boundary. The runtime also supports identity-bound Action Claim 1.3, durable single-instance assurance tasks, optional RFC 8785/Ed25519 evidence and an allowlisted OpenTelemetry span bridge. See the [August 2026 technology radar](docs/palo-ai-state-of-the-art-radar-2026-08.md) for evidence, unresolved gaps and roadmap.
+
 Remote n8n and MCP clients must use the [PALO-AI Online VPS Deployment](docs/palo-ai-vps-deployment.md), which exposes authenticated HTTPS endpoints while keeping OPA on a private container network. The `127.0.0.1` commands below are only a laptop-development option.
 
 ```bash
@@ -262,6 +264,7 @@ PALOframework/
 |-- PALO_HumanAgencyRiskMap_IT.html    # Human Agency Observatory (IT)
 |-- PALO_TechTrends2026.html           # 2026 Tech Trends Observatory
 |-- PALO_AuditBench.html               # AuditBench Explorer
+|-- PALO_OWASPGenAI2026.html            # OWASP 2026 source-backed security crosswalk
 |-- PALO_PoisoningStudy.html           # Data Poisoning Governance module
 |-- PALO_VibeCoding.html               # AI-assisted development governance
 |-- PALO_AgenticGovernance.html        # PALO-AM Agentic Governance
@@ -309,6 +312,12 @@ Primary framework documents and artifacts:
 - [PALO-AI Quickstarts](PALO_AIQuickstarts.html)
 - [PALO-AI Capability Matrix](PALO_AgenticCapabilityMatrix.html)
 - [PALO-AI Production Readiness](PALO_AIProductionReadiness.html)
+- [OWASP GenAI / LLM Top 10 2026 PALO crosswalk](PALO_OWASPGenAI2026.html)
+- [OWASP GenAI / LLM Top 10 2026 governance reference](docs/owasp-genai-llm-top-10-2026-security-crosswalk.md)
+- [Pinned OWASP 2026 v1.0 source artifact](assets/OWASP-GenAI-LLM-Top-10-2026-v1.0.pdf)
+- [Machine-readable OWASP 2026 crosswalk](data/owasp-genai-2026-crosswalk.json)
+
+Generative and agentic routes now carry this source-backed lens through PALO Guide and the existing Evidence Pack. Assessment Path records all ten risks, architecture priorities, the pinned source and open security-testing evidence in the Case File; the OWASP artifact remains draft until accountable human review.
 - [PALO Documentation Library](PALO_DocumentationLibrary.html)
 - [PALO-AI Online VPS Deployment](docs/palo-ai-vps-deployment.md)
 - [PALO-AM standalone document](insights/PALO-AM_Agentic_Governance_Modality_v2_Standalone_Document.docx)

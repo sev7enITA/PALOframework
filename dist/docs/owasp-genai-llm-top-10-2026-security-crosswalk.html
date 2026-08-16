@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>OWASP GenAI / LLM Top 10 2026: PALO Security Crosswalk and Governance | PALO Documentation</title>
+  <meta name="description" content="Public PALO documentation: OWASP GenAI / LLM Top 10 2026: PALO Security Crosswalk and Governance.">
+  <link rel="canonical" href="https://paloframework.org/docs/owasp-genai-llm-top-10-2026-security-crosswalk.html">
+  <link rel="icon" type="image/webp" href="../assets/logo.webp">
+  <link rel="stylesheet" href="../assets/palo-icons.css">
+  <link rel="stylesheet" href="../assets/palo-v21.css?v=3.0.1">
+  <link rel="stylesheet" href="../assets/palo-docs.css">
+  <script src="../assets/palo-icons.js" defer></script>
+  <script src="../assets/palo-v21.js?v=3.0.1" defer></script>
+  <script src="../assets/palo-docs.js" defer></script>
+</head>
+<body class="palo-v21 palo-doc-page" data-doc-source="docs/owasp-genai-llm-top-10-2026-security-crosswalk.md">
+  <a class="palo-skip-link" href="#main-content">Skip to main content</a>
+  <header class="palo-site-header"><div class="palo-shell palo-header-inner">
+    <a class="palo-brand" href="../index.html"><img src="../assets/logo.webp" alt="PALO">PALO FRAMEWORK</a>
+    <button class="palo-menu-toggle" type="button" data-palo-menu-toggle aria-expanded="false" aria-controls="palo-primary-nav" aria-label="Open navigation"><span data-palo-icon="menu" aria-hidden="true"></span></button>
+    <nav class="palo-nav" id="palo-primary-nav" aria-label="Primary navigation"><a href="../designs/theory-to-practice-infographic/">Start</a><a href="../PALO_AIGovernance.html">Agentic Governance</a><a href="../governance-hub/">Governance Hub</a><a href="../index.html#guided-journeys">Tools</a><a href="../PALO_DocumentationLibrary.html" aria-current="page">Documentation</a><a href="../PALO_AIProductionReadiness.html">Readiness</a></nav>
+  </div></header>
+  <main id="main-content" class="palo-doc-main">
+    <div class="palo-shell">
+      <nav class="palo-doc-breadcrumb" aria-label="Breadcrumb"><a href="../PALO_DocumentationLibrary.html">Documentation Library</a><span aria-hidden="true">/</span><span>Security and production readiness</span></nav>
+      <header class="palo-doc-hero"><p class="palo-eyebrow">Security and production readiness | Public documentation</p><h1>OWASP GenAI / LLM Top 10 2026: PALO Security Crosswalk and Governance</h1><div class="palo-doc-facts"><span><small>Level</small><strong>reference</strong></span><span><small>Audience</small><strong>executive | governance | technical | builder</strong></span><span><small>Product</small><strong>PALO / PALO-AM / PALO-AI</strong></span><span><small>Status</small><strong>Source-backed context</strong></span><span><small>Read</small><strong>8 min</strong></span></div><p class="palo-doc-source">Published HTML view | Source: <code>docs/owasp-genai-llm-top-10-2026-security-crosswalk.md</code></p><div class="palo-actions"><button class="palo-btn" type="button" data-doc-copy-link>Copy link</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-share>Share page</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-print>Print</button></div><p class="palo-action-status" data-doc-action-status role="status" aria-live="polite"></p></header>
+      <details class="palo-doc-mobile-toc"><summary>On this page</summary><ol><li class="depth-2"><a href="#source-and-authority-boundary">Source and authority boundary</a></li><li class="depth-2"><a href="#how-to-read-the-ratings">How to read the ratings</a></li><li class="depth-2"><a href="#overall-fit-across-the-three-palo-routes">Overall fit across the three PALO routes</a></li><li class="depth-2"><a href="#coverage-matrix">Coverage matrix</a></li><li class="depth-2"><a href="#what-palo-can-and-cannot-resolve">What PALO can and cannot resolve</a></li><li class="depth-2"><a href="#applicability-fork">Applicability fork</a></li><li class="depth-2"><a href="#governance-operating-model">Governance operating model</a></li><li class="depth-2"><a href="#operational-integration">Operational integration</a></li><li class="depth-2"><a href="#integration-status">Integration status</a></li><li class="depth-2"><a href="#attribution-and-license">Attribution and license</a></li></ol></details>
+      <div class="palo-doc-layout"><aside class="palo-doc-sidebar" aria-label="On this page"><strong>On this page</strong><ol><li class="depth-2"><a href="#source-and-authority-boundary">Source and authority boundary</a></li><li class="depth-2"><a href="#how-to-read-the-ratings">How to read the ratings</a></li><li class="depth-2"><a href="#overall-fit-across-the-three-palo-routes">Overall fit across the three PALO routes</a></li><li class="depth-2"><a href="#coverage-matrix">Coverage matrix</a></li><li class="depth-2"><a href="#what-palo-can-and-cannot-resolve">What PALO can and cannot resolve</a></li><li class="depth-2"><a href="#applicability-fork">Applicability fork</a></li><li class="depth-2"><a href="#governance-operating-model">Governance operating model</a></li><li class="depth-2"><a href="#operational-integration">Operational integration</a></li><li class="depth-2"><a href="#integration-status">Integration status</a></li><li class="depth-2"><a href="#attribution-and-license">Attribution and license</a></li></ol></aside><article class="palo-doc-content"><h1 id="owasp-genai--llm-top-10-2026-palo-security-crosswalk-and-governance">OWASP GenAI / LLM Top 10 2026: PALO Security Crosswalk and Governance<a class="palo-doc-anchor" href="#owasp-genai--llm-top-10-2026-palo-security-crosswalk-and-governance" aria-label="Link to OWASP GenAI / LLM Top 10 2026: PALO Security Crosswalk and Governance">#</a></h1><p>This source-backed reference evaluates how the PALO Framework, PALO-AM and PALO-AI relate to the ten risks in the OWASP Top 10 for LLM Applications 2026. It separates governance fit from technical implementation and identifies where PALO needs external safeguards or a targeted extension.</p>
+<blockquote>
+<p><strong>Decision summary:</strong> PALO has a strong governance fit and incomplete technical resolution. Across the three connected routes, eight risks have a direct PALO route somewhere in the stack. LLM09 Vector and Embedding Weaknesses and LLM10 Improper Output Handling remain supporting-only areas that need targeted controls.</p>
+</blockquote>
+<p>Use the <a href="../PALO_OWASPGenAI2026.html">interactive crosswalk</a> for the complete risk dossiers. The <a href="../assets/OWASP-GenAI-LLM-Top-10-2026-v1.0.pdf">pinned source PDF</a> and <a href="../data/owasp-genai-2026-crosswalk.json">machine-readable crosswalk</a> are published with this reference.</p>
+<h2 id="source-and-authority-boundary">Source and authority boundary<a class="palo-doc-anchor" href="#source-and-authority-boundary" aria-label="Link to Source and authority boundary">#</a></h2><ul>
+<li>Source: OWASP Top 10 for LLM Applications 2026, repository artifact <code>2026-v1.0</code>.</li>
+<li>Artifact date: 4 August 2026.</li>
+<li>Review date: 13 August 2026.</li>
+<li>SHA-256: <code>ef87993a4e50ae9d83b41ff7a3d3e6320a82dfa8d4ec6bf98d0ce264b2e6108e</code>.</li>
+<li>Evidence class: source-backed context.</li>
+<li>Authority status: informative security source, not a law, standard, certification or deployment authorization.</li>
+</ul>
+<p>The PDF revision history retains the text <code>[2026 release date]</code>, and the official project page did not expose a separately indexed 2026 download when reviewed. PALO therefore preserves this exact artifact as a provisional, version-pinned source and requires official-source reverification before external assurance or formal reliance.</p>
+<p>This mapping does not establish equivalence, implementation effectiveness, OWASP endorsement, compliance or certification.</p>
+<h2 id="how-to-read-the-ratings">How to read the ratings<a class="palo-doc-anchor" href="#how-to-read-the-ratings" aria-label="Link to How to read the ratings">#</a></h2><ul>
+<li><strong>Direct:</strong> a first-class PALO artifact or control materially addresses the risk within the stated route.</li>
+<li><strong>Supporting:</strong> PALO contributes governance or containment, but OWASP-specific technical safeguards remain necessary.</li>
+<li><strong>Gap:</strong> the current route has no specific coverage for the risk's main mechanism.</li>
+</ul>
+<p>The ratings describe design fit. They do not show whether a safeguard is implemented correctly or operating effectively in a deployed system.</p>
+<h2 id="overall-fit-across-the-three-palo-routes">Overall fit across the three PALO routes<a class="palo-doc-anchor" href="#overall-fit-across-the-three-palo-routes" aria-label="Link to Overall fit across the three PALO routes">#</a></h2><div class="palo-doc-table-wrap" tabindex="0" aria-label="Scrollable documentation table"><table>
+<thead>
+<tr>
+<th>Route</th>
+<th align="right">Direct</th>
+<th align="right">Supporting</th>
+<th align="right">Gap</th>
+<th>Role and boundary</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>PALO Framework</td>
+<td align="right">6</td>
+<td align="right">4</td>
+<td align="right">0</td>
+<td>Lifecycle ownership, controls, evidence, monitoring and review. It governs the security work but is not a runtime security product.</td>
+</tr>
+<tr>
+<td>PALO-AM</td>
+<td align="right">5</td>
+<td align="right">5</td>
+<td align="right">0</td>
+<td>Agent identity, authority, autonomy, tool boundaries, oversight and circuit breakers. It is the current methodology baseline for delegated action.</td>
+</tr>
+<tr>
+<td>PALO-AI</td>
+<td align="right">4</td>
+<td align="right">4</td>
+<td align="right">2</td>
+<td>Exact claims, policy, approval, one-time capability, receipt and outcome verification. It remains a full-cycle Developer Preview, not a production security boundary.</td>
+</tr>
+</tbody></table></div>
+<h2 id="coverage-matrix">Coverage matrix<a class="palo-doc-anchor" href="#coverage-matrix" aria-label="Link to Coverage matrix">#</a></h2><div class="palo-doc-table-wrap" tabindex="0" aria-label="Scrollable documentation table"><table>
+<thead>
+<tr>
+<th>OWASP risk</th>
+<th>PALO Framework</th>
+<th>PALO-AM</th>
+<th>PALO-AI</th>
+<th>PALO response</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>LLM01 Prompt Injection</td>
+<td>Direct</td>
+<td>Direct</td>
+<td>Direct</td>
+<td>Contain the consequence through untrusted-model assumptions, deterministic mediation, least privilege, approval and adaptive testing. Do not promise complete prevention.</td>
+</tr>
+<tr>
+<td>LLM02 Sensitive Information Disclosure</td>
+<td>Direct</td>
+<td>Supporting</td>
+<td>Supporting</td>
+<td>Govern the data surface, provenance, incidents and evidence. Add retrieval-time authorization, DLP, tenant isolation and trace redaction.</td>
+</tr>
+<tr>
+<td>LLM03 Excessive Agency</td>
+<td>Direct</td>
+<td>Direct</td>
+<td>Direct</td>
+<td>Strongest fit: bind identity, authority, minimum tools, user context, approval, one-time execution and outcome evidence. The production path must be unavoidable.</td>
+</tr>
+<tr>
+<td>LLM04 Supply Chain</td>
+<td>Direct</td>
+<td>Supporting</td>
+<td>Supporting</td>
+<td>Use supplier due diligence and change gates. Add AIBOM or ML-BOM, immutable pins, signatures, vulnerability management and connector attestation.</td>
+</tr>
+<tr>
+<td>LLM05 Data and Model Poisoning</td>
+<td>Direct</td>
+<td>Supporting</td>
+<td>Gap</td>
+<td>Govern lineage, change, tests, incidents and rollback. Add pipeline integrity, poisoning and backdoor detection, signed artifacts and controlled feedback loops.</td>
+</tr>
+<tr>
+<td>LLM06 Unbounded Consumption</td>
+<td>Supporting</td>
+<td>Direct</td>
+<td>Supporting</td>
+<td>Apply PALO-AM circuit breakers and bounded action space. Add token, action, time and cost caps, queue limits, loop detection, rate limiting and infrastructure hardening.</td>
+</tr>
+<tr>
+<td>LLM07 Misinformation</td>
+<td>Direct</td>
+<td>Direct</td>
+<td>Direct</td>
+<td>Use source-backed decisions, claim-check-act, human review and post-state verification. A verified effect does not prove that a claim is true.</td>
+</tr>
+<tr>
+<td>LLM08 Hidden Context Exposure</td>
+<td>Supporting</td>
+<td>Direct</td>
+<td>Direct</td>
+<td>Keep secrets and authorization outside the model context. Use deterministic controls and test context extraction.</td>
+</tr>
+<tr>
+<td>LLM09 Vector and Embedding Weaknesses</td>
+<td>Supporting</td>
+<td>Supporting</td>
+<td>Gap</td>
+<td>Targeted extension area: add pre-retrieval chunk authorization, trust-zone-separated indexes, embedding provenance, deletion reconciliation and anomaly detection.</td>
+</tr>
+<tr>
+<td>LLM10 Improper Output Handling</td>
+<td>Supporting</td>
+<td>Supporting</td>
+<td>Supporting</td>
+<td>Add a sink-safety extension for context-aware encoding, prepared queries, CSP, terminal sanitization, outbound-fetch restrictions and generated-code security gates.</td>
+</tr>
+</tbody></table></div>
+<h2 id="what-palo-can-and-cannot-resolve">What PALO can and cannot resolve<a class="palo-doc-anchor" href="#what-palo-can-and-cannot-resolve" aria-label="Link to What PALO can and cannot resolve">#</a></h2><p>PALO can make each risk accountable by assigning ownership, routing it through lifecycle gates, connecting controls to tests and evidence, recording residual risk and reopening the case when material conditions change. PALO-AM materially strengthens the architecture when an LLM selects tools, carries memory or acts across systems. PALO-AI can make selected action-path controls executable and can distinguish an allowed action from a verified post-state.</p>
+<p>PALO cannot make an LLM immune to prompt injection, prove factual truth, secure a vector database without vector-specific controls, sanitize every downstream output sink, attest an entire AI supply chain, or make the current PALO-AI Developer Preview production-ready. Those responsibilities remain with the system owner and the relevant security, data, platform and supplier-control functions.</p>
+<h2 id="applicability-fork">Applicability fork<a class="palo-doc-anchor" href="#applicability-fork" aria-label="Link to Applicability fork">#</a></h2><p>Use this OWASP LLM Top 10 when the model is an application component. Pair it with the OWASP Top 10 for Agentic Applications and apply the PALO-AM and PALO-AI route when any of the following is present:</p>
+<ul>
+<li>tool selection or tool invocation;</li>
+<li>persistent memory or a shared RAG corpus;</li>
+<li>multi-step planning or delegation;</li>
+<li>state change, external communication or autonomous action.</li>
+</ul>
+<p>Neither list covers the combined model-and-agent risk alone.</p>
+<h2 id="governance-operating-model">Governance operating model<a class="palo-doc-anchor" href="#governance-operating-model" aria-label="Link to Governance operating model">#</a></h2><p>The accountable source owner should be Product Security or AI Governance. Individual risk ownership remains with the system roles that can change the relevant control: Data Owner, Product Owner, IAM, AppSec, MLOps, SRE, FinOps, supplier risk or vector-platform owner.</p>
+<p>Apply the following loop:</p>
+<ol>
+<li><strong>Register:</strong> preserve publisher, version, date, local artifact hash, license, authority class and source status.</li>
+<li><strong>Scope:</strong> decide which risks apply to the actual architecture and whether the Agentic Top 10 must also be used.</li>
+<li><strong>Assign:</strong> name one accountable owner and one evidence-producing control owner for each applicable risk.</li>
+<li><strong>Control:</strong> select preventive, detective and corrective safeguards. Record which are PALO controls and which are external technical controls.</li>
+<li><strong>Test:</strong> define the abuse case, method, threshold, environment, result, limitation and independent review need.</li>
+<li><strong>Decide:</strong> record residual risk, conditions, approval authority, rejected alternatives and readiness decision.</li>
+<li><strong>Reopen:</strong> reassess on a source revision, material architecture or data-scope change, incident, or failed critical test.</li>
+</ol>
+<p>Review the crosswalk at least every 90 days. Reopen it immediately when OWASP revises the source; when tools, memory, autonomy, model, corpus, vector index, output sink or supplier changes; when a material incident occurs; or when a critical adversarial test fails.</p>
+<p>Every applicable risk record should contain:</p>
+<ul>
+<li>applicability and rationale;</li>
+<li>accountable owner and control owner;</li>
+<li>implemented control and current maturity;</li>
+<li>test method, environment and result;</li>
+<li>evidence link and source status;</li>
+<li>residual risk and acceptance authority;</li>
+<li>decision, conditions and expiry;</li>
+<li>reopen trigger.</li>
+</ul>
+<h2 id="operational-integration">Operational integration<a class="palo-doc-anchor" href="#operational-integration" aria-label="Link to Operational integration">#</a></h2><p>The crosswalk runs through the existing PALO evidence loop; it is not a new module or activation route.</p>
+<ol>
+<li><strong>Guide:</strong> a generative or agentic system receives a <code>Scope OWASP GenAI 2026</code> handoff alongside the primary Evidence Pack route. The web Guide and read-only MCP Guide Agent use the same applicability boundary.</li>
+<li><strong>Assessment Path:</strong> the assessor records whether an LLM is present, whether retrieval or memory is used, and whether generated output reaches a downstream execution sink. All ten risks remain in scope; the architecture signals only select a priority subset.</li>
+<li><strong>Evidence Bundle and Case File:</strong> an applicable assessment retains the source pin, version, hash, priority list, LLM09 or LLM10 extension flags, testing readiness and human-review boundary in the existing <code>assessment-path</code> record. A separate OWASP artifact remains <code>draft</code> until accountable technical and assurance review is complete.</li>
+<li><strong>Review and reopen:</strong> Product Security or AI Governance confirms owners, external safeguards, test evidence, residual risk and the decision boundary. Reopen the case when the source, model, corpus, vector index, memory, tools, authority, output sink or supplier changes, or when an incident or critical test failure occurs.</li>
+</ol>
+<p>The route is a governance and evidence aid. It is not a scanner, certification scheme, OWASP endorsement or proof that the listed safeguards operate effectively.</p>
+<h2 id="integration-status">Integration status<a class="palo-doc-anchor" href="#integration-status" aria-label="Link to Integration status">#</a></h2><p>PALO publishes four connected artifacts for this update:</p>
+<ul>
+<li>the original source PDF as a version-pinned informative artifact;</li>
+<li>the updated PALO Source Registry entry;</li>
+<li>a schema-validated machine-readable crosswalk;</li>
+<li>the web and documentation analysis.</li>
+</ul>
+<p>The crosswalk is intentionally source-backed context. It has not been silently promoted into the canonical PALO semantic release or treated as proof of control effectiveness. That boundary preserves the active activation freeze and requires an explicit, reviewed release decision before any future canonical control-library extension.</p>
+<h2 id="attribution-and-license">Attribution and license<a class="palo-doc-anchor" href="#attribution-and-license" aria-label="Link to Attribution and license">#</a></h2><p>The source report is published by the OWASP GenAI Security Project under Creative Commons Attribution-ShareAlike 4.0. Risk names and source-derived summaries are attributed to OWASP, and this crosswalk is shared under the same CC BY-SA 4.0 license. The PALO crosswalk is an independent analysis and does not imply OWASP endorsement. Consult the pinned report and the <a href="https://genai.owasp.org/initiative/owasp-top-10-for-llm-and-genai/" target="_blank" rel="noopener noreferrer">official OWASP project page</a> for the source material and current status.</p>
+</article></div>
+      <aside class="palo-doc-next"><div><small>Prerequisite</small><strong>One scoped LLM or agentic system</strong></div><div><small>Recommended next step</small><strong>Open the interactive OWASP 2026 crosswalk</strong></div></aside>
+      <section class="palo-doc-feedback" aria-labelledby="feedback-title"><p class="palo-eyebrow">Privacy-first feedback</p><h2 id="feedback-title">Help improve this guide</h2><p>Your feedback stays in your browser until you explicitly copy it, download it, or open an email draft. Do not include secrets, personal data, credentials or production identifiers.</p><form data-doc-feedback><div class="palo-form-grid"><div class="palo-field"><label for="feedback-role">Your role</label><select id="feedback-role" name="role"><option>Executive / governance owner</option><option>Platform or security engineer</option><option>No-code / low-code builder</option><option>External reviewer</option></select></div><div class="palo-field"><label for="feedback-category">Category</label><select id="feedback-category" name="category"><option>Clarity</option><option>Technical accuracy</option><option>Missing guidance</option><option>Accessibility</option></select></div><div class="palo-field palo-field-full"><label for="feedback-message">Feedback</label><textarea id="feedback-message" name="message" maxlength="3000" required placeholder="Describe the non-sensitive improvement you recommend."></textarea></div><div class="palo-form-actions"><button class="palo-btn" type="button" data-feedback-copy>Copy feedback</button><button class="palo-btn palo-btn-secondary" type="button" data-feedback-download>Download JSON</button><button class="palo-btn palo-btn-secondary" type="button" data-feedback-email>Email draft</button></div></div><p class="palo-action-status" data-feedback-status role="status" aria-live="polite"></p></form></section>
+    </div>
+  </main>
+  <footer class="palo-footer"><div class="palo-shell"><p>PALO public documentation. Developer preview boundaries apply.</p><div class="palo-footer-links"><a href="../PALO_AIGovernance.html">PALO-AI</a><a href="../governance-hub/">Governance Hub</a><a href="../PALO_AgenticCapabilityMatrix.html">Capability Matrix</a><a href="../PALO_AIProductionReadiness.html">Production Readiness</a><a href="../privacy-policy.html">Privacy</a></div></div></footer>
+</body></html>

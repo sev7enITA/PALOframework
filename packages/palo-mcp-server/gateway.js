@@ -13,6 +13,17 @@ const enforcementProvider = await loadEnforcementProviderFromEnvironment();
 const runtime = new GovernanceRuntime({ enforcementProvider });
 if (process.env.PALO_ENABLE_DEMO_CATALOG === "true") await installDemoCatalog(runtime);
 await runtime.recoverPendingExecutions({ olderThanMs: Number(process.env.PALO_EXECUTION_RECOVERY_AGE_MS || 30000) });
+await runtime.processDueTasks({ limit: Number(process.env.PALO_TASK_RECOVERY_LIMIT || 100) });
+const taskPollIntervalMs = Math.max(250, Number(process.env.PALO_TASK_POLL_INTERVAL_MS || 1000));
+let taskProcessorRunning = false;
+const taskProcessor = setInterval(async () => {
+  if (taskProcessorRunning) return;
+  taskProcessorRunning = true;
+  try { await runtime.processDueTasks({ limit: Number(process.env.PALO_TASK_RECOVERY_LIMIT || 100) }); }
+  catch (error) { process.stderr.write(`PALO task processor failed closed: ${error.message}\n`); }
+  finally { taskProcessorRunning = false; }
+}, taskPollIntervalMs);
+taskProcessor.unref();
 
 function authorized(request) {
   const actual = Buffer.from(request.headers.authorization || "");
@@ -42,7 +53,7 @@ async function body(request) {
 const gateway = createServer(async (request, response) => {
   try {
     const url = new URL(request.url, `http://${request.headers.host || "localhost"}`);
-    if (request.method === "GET" && url.pathname === "/health") return send(response, 200, { status: "ok", service: "palo-governance-gateway", version: "2.5.0", frameworkRelease: "3.0.1", releaseStatus: "developer-preview", assuranceCycle: "full-cycle", productionUse: false });
+    if (request.method === "GET" && url.pathname === "/health") return send(response, 200, { status: "ok", service: "palo-governance-gateway", version: "2.6.0", frameworkRelease: "3.0.1", releaseStatus: "developer-preview", assuranceCycle: "identity-bound-durable", productionUse: false });
     if (!authorized(request)) return send(response, 401, { error: "unauthorized" });
     if (request.method === "GET" && url.pathname === "/v1/demo/catalog" && runtime.demoCatalogState) return send(response, 200, { state: runtime.demoCatalogState, synthetic: true });
     if (request.method === "POST" && url.pathname === "/v1/demo/catalog/reset" && runtime.demoCatalogState) {
@@ -93,6 +104,13 @@ const gateway = createServer(async (request, response) => {
       const input = await body(request);
       return send(response, 200, await runtime.resolveApproval(input.approvalId, input.status, input.resolvedBy, input.rationale));
     }
+    if (request.method === "GET" && url.pathname === "/v1/tasks") return send(response, 200, await runtime.listTasks({ status: url.searchParams.get("status") || "all", taskType: url.searchParams.get("taskType") || "all", limit: Number(url.searchParams.get("limit") || 100) }));
+    if (request.method === "GET" && url.pathname.startsWith("/v1/tasks/")) return send(response, 200, await runtime.getTask(decodeURIComponent(url.pathname.split("/").at(-1))));
+    if (request.method === "POST" && url.pathname === "/v1/tasks/process") {
+      const input = await body(request);
+      return send(response, 200, await runtime.processDueTasks({ limit: input.limit || 25 }));
+    }
+    if (request.method === "GET" && url.pathname === "/v1/operations/snapshot") return send(response, 200, await runtime.getOperationalSnapshot());
     if (request.method === "POST" && url.pathname === "/v1/evidence") {
       if (process.env.PALO_ALLOW_UNTRUSTED_EVIDENCE !== "true") return send(response, 410, { error: "deprecated_untrusted_evidence", message: "Caller-supplied execution evidence is disabled. Use the governed execution endpoint." });
       const input = await body(request);
@@ -112,4 +130,10 @@ const gateway = createServer(async (request, response) => {
   }
 });
 
-gateway.listen(port, host, () => process.stderr.write(`PALO-AI v2.5 FULL-CYCLE DEVELOPER PREVIEW gateway listening on http://${host}:${port} - isolated testing only; shared bearer token is not production identity or RBAC.\n`));
+const listener = gateway.listen(port, host, () => process.stderr.write(`PALO-AI v2.6 IDENTITY-BOUND DURABLE DEVELOPER PREVIEW gateway listening on http://${host}:${port} - isolated testing only; shared bearer token is not production identity or RBAC.\n`));
+const shutdown = () => {
+  clearInterval(taskProcessor);
+  listener.close(() => { runtime.close(); process.exit(0); });
+};
+process.on("SIGINT", shutdown);
+process.on("SIGTERM", shutdown);

@@ -19,6 +19,7 @@ test("agentic use cases receive an explainable bounded route", () => {
     useCase: "An invoice agent reads evidence and can draft then submit an exception resolution",
     role: "finance product owner",
     objectives: ["govern agent autonomy", "prepare evidence"],
+    systemType: "agentic",
     currentState: "pilot",
     signals: { systemCanAct: true, highImpact: true, needsEvidence: true, actionImpact: "reversible-write" }
   });
@@ -29,7 +30,55 @@ test("agentic use cases receive an explainable bounded route", () => {
   assert.ok(result.route.some((step) => step.id === "prove"));
   assert.equal(result.integration.class, "governed-executor");
   assert.ok(result.route.every((step) => step.reasons.length && step.expectedArtifacts.length && step.authorityBoundary));
+  assert.equal(result.owaspGenAi2026.applicable, true);
+  assert.equal(result.owaspGenAi2026.inScopeRiskIds.length, 10);
+  assert.ok(result.owaspGenAi2026.priorityRiskIds.includes("LLM03:2026"));
+  assert.match(result.owaspGenAi2026.authorityBoundary, /Human review required/i);
   assert.match(result.authorityBoundary, /starting hypothesis/i);
+});
+
+test("LLM architecture signals prioritize OWASP retrieval and output extensions", () => {
+  const result = agent.inferRoute({
+    useCase: "A generative support assistant uses RAG and sends a drafted email through an external API",
+    role: "product security",
+    systemType: "generative",
+    currentState: "pilot",
+    signals: { usesLlm: true, retrievalOrMemory: true, outputToDownstream: true }
+  });
+  assert.equal(result.owaspGenAi2026.applicable, true);
+  assert.deepEqual(result.owaspGenAi2026.inScopeRiskIds, ["LLM01:2026", "LLM02:2026", "LLM03:2026", "LLM04:2026", "LLM05:2026", "LLM06:2026", "LLM07:2026", "LLM08:2026", "LLM09:2026", "LLM10:2026"]);
+  assert.ok(result.owaspGenAi2026.priorityRiskIds.includes("LLM05:2026"));
+  assert.ok(result.owaspGenAi2026.priorityRiskIds.includes("LLM09:2026"));
+  assert.ok(result.owaspGenAi2026.priorityRiskIds.includes("LLM10:2026"));
+  assert.deepEqual(result.owaspGenAi2026.targetedExtensions, ["LLM09:2026", "LLM10:2026"]);
+  assert.deepEqual(result.owaspGenAi2026.routeFitSummary.union, { direct: 8, supporting: 2 });
+  assert.equal(result.owaspGenAi2026.referenceHref, "PALO_OWASPGenAI2026.html");
+  assert.ok(result.route.some((step) => step.id === "control"));
+  assert.ok(result.route.some((step) => step.id === "prove"));
+  assert.ok(result.openQuestions.some((question) => /adversarial/i.test(question)));
+});
+
+test("generic non-LLM AI routes explicitly exclude the OWASP LLM profile", () => {
+  const result = agent.inferRoute({
+    useCase: "A predictive model scores equipment maintenance risk",
+    role: "operations",
+    systemType: "predictive",
+    currentState: "idea",
+    signals: { needsMetrics: true }
+  });
+  assert.equal(result.owaspGenAi2026.applicable, false);
+  assert.match(result.owaspGenAi2026.applicabilityReason, /Generic AI use alone/i);
+  assert.ok(!result.openQuestions.some((question) => /adversarial/i.test(question)));
+});
+
+test("established OWASP security testing closes the testing question without closing human review", () => {
+  const result = agent.inferRoute({
+    useCase: "A generative assistant supports internal research",
+    systemType: "generative",
+    signals: { usesLlm: true, adversarialTestingEstablished: true, architectureSecurityTestingEstablished: true }
+  });
+  assert.ok(!result.openQuestions.some((question) => /adversarial/i.test(question)));
+  assert.match(result.owaspGenAi2026.authorityBoundary, /Human review required/i);
 });
 
 test("product integration planning separates guidance from protected execution", () => {

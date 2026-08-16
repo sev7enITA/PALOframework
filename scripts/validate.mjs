@@ -220,6 +220,37 @@ async function validateP2Artifacts() {
     }
   }
 
+  const owaspSchemaFile = "schemas/palo-owasp-genai-2026-crosswalk.schema.json";
+  const owaspDataFile = "data/owasp-genai-2026-crosswalk.json";
+  const owaspCrosswalk = await loadJson(owaspDataFile);
+  const owaspValidator = ajv.compile(await loadJson(owaspSchemaFile));
+  if (!owaspValidator(owaspCrosswalk)) errors.push(`${owaspDataFile}: schema validation failed: ${ajv.errorsText(owaspValidator.errors)}`);
+  checkRefs(owaspDataFile, "source", [owaspCrosswalk.source?.sourceId], sourceIds, "source");
+  const owaspRiskIds = uniqueIds(owaspDataFile, owaspCrosswalk.risks || [], "riskId");
+  const expectedOwaspRiskIds = new Set(Array.from({ length: 10 }, (_, index) => `LLM${String(index + 1).padStart(2, "0")}:2026`));
+  if (sorted(owaspRiskIds) !== sorted(expectedOwaspRiskIds)) errors.push(`${owaspDataFile}: risks must contain each LLM01:2026 through LLM10:2026 exactly once`);
+  for (const risk of owaspCrosswalk.risks || []) checkRefs(owaspDataFile, risk.riskId, risk.controlIds, controlIds, "control");
+  const routeKeys = { palo: "palo", "palo-am": "paloAm", "palo-ai": "paloAi" };
+  for (const route of owaspCrosswalk.routes || []) {
+    const observed = { direct: 0, supporting: 0, gap: 0 };
+    const key = routeKeys[route.routeId];
+    for (const risk of owaspCrosswalk.risks || []) observed[risk.routeFit?.[key]] += 1;
+    if (JSON.stringify(observed) !== JSON.stringify(route.counts)) errors.push(`${owaspDataFile}: ${route.routeId} counts do not match risk ratings`);
+  }
+  const union = { direct: 0, supporting: 0 };
+  for (const risk of owaspCrosswalk.risks || []) {
+    const ratings = Object.values(risk.routeFit || {});
+    if (ratings.includes("direct")) union.direct += 1;
+    else if (ratings.includes("supporting")) union.supporting += 1;
+  }
+  if (union.direct !== owaspCrosswalk.summary?.unionDirect || union.supporting !== owaspCrosswalk.summary?.unionSupporting) errors.push(`${owaspDataFile}: union summary does not match risk ratings`);
+  const sourceArtifact = owaspCrosswalk.source?.artifact;
+  if (sourceArtifact) {
+    const sourceContent = await readFile(path.join(validationRoot, sourceArtifact));
+    const sourceDigest = createHash("sha256").update(sourceContent).digest("hex");
+    if (sourceDigest !== owaspCrosswalk.source.sha256) errors.push(`${owaspDataFile}: source artifact SHA-256 does not match ${sourceArtifact}`);
+  }
+
   const signalValidator = ajv.compile(schemas.signal);
   for (const expectation of ["valid", "invalid"]) {
     const file = `schemas/fixtures/policywatcher-signal.${expectation}.json`;
@@ -381,6 +412,12 @@ const platformReleaseMajor = String(releaseVersion || "").split(".")[0];
 if (semanticReleaseMajor !== platformReleaseMajor || semanticModule?.date > releaseDate) errors.push("release-manifest.json: semanticFoundation must remain in the platform release major and cannot postdate it");
 if (semanticModule?.semanticSpine !== "data/semantic-spine.json" || semanticModule?.semanticRelease !== "data/semantic-release-manifest.json") errors.push("release-manifest.json: semanticFoundation canonical paths are incomplete");
 if (new Set(semanticModule?.evidenceBoundaryModel || []).size !== 4 || new Set(semanticModule?.workspaces || []).size !== 3) errors.push("release-manifest.json: semanticFoundation requires four authority classes and three workspaces");
+const platformMapReleaseHtml = htmlByFile.get("PALO_PlatformMap.html") || "";
+const [releaseYear, releaseMonth, releaseDay] = String(releaseDate || "").split("-").map(Number);
+const releaseMonthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+const releaseDisplayDate = releaseMonthNames[releaseMonth - 1] ? `${releaseDay} ${releaseMonthNames[releaseMonth - 1]} ${releaseYear}` : "";
+if (!platformMapReleaseHtml.includes(`<dt>Web release</dt><dd>v${releaseVersion} | ${releaseDisplayDate}</dd>`)) errors.push("PALO_PlatformMap.html: Web release ledger must match the top-level release manifest version and date");
+if (!platformMapReleaseHtml.includes(`<dt>Semantic core</dt><dd>v${semanticModule?.version} | digest-bound release</dd>`)) errors.push("PALO_PlatformMap.html: Semantic core ledger must match the independently versioned semantic foundation");
 const hubModule = manifest.modules?.agenticGovernanceHub;
 if (hubModule?.evidenceBoundaryModel !== "illustrative-local-preview" || hubModule?.runtime !== "illustrative-local-data" || !String(hubModule?.authorityBoundary || "").includes("No live authority")) errors.push("release-manifest.json: Governance Hub illustrative authority boundary is incomplete");
 if (!built) {

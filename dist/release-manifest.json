@@ -128,7 +128,8 @@
         "data/decision-gates.json",
         "data/control-library.json",
         "data/kpi-kri-registry.json",
-        "data/source-registry.json"
+        "data/source-registry.json",
+        "data/owasp-genai-2026-crosswalk.json"
       ],
       "authorityBoundary": "Read-only route orientation; no legal conclusion, certification, case approval, deployment authorization or target-system authority."
     },
@@ -165,6 +166,16 @@
     "source": "root authoring files",
     "artifact": "dist",
     "buildCommand": "npm run build",
+    "sourceBackedSecurityReferences": {
+      "owaspGenAILlmTop10_2026": {
+        "status": "provisional-informative",
+        "reviewedAt": "2026-08-13",
+        "artifact": "assets/OWASP-GenAI-LLM-Top-10-2026-v1.0.pdf",
+        "crosswalk": "data/owasp-genai-2026-crosswalk.json",
+        "webReference": "PALO_OWASPGenAI2026.html",
+        "authorityBoundary": "Source-backed context only; no equivalence, compliance, certification, endorsement or production-authorization claim."
+      }
+    },
     "semanticFoundation": {
       "guide": "docs/palo-v3-semantic-foundation.html",
       "spine": "data/semantic-spine.json",

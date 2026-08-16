@@ -41,6 +41,27 @@ let browser;
 try {
   browser = await chromium.launch({ headless: true });
   const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
+  // Public pages reference presentation-only third-party assets such as fonts,
+  // icon styles, Tailwind and an embedded video. The smoke suite validates the
+  // generated PALO artifact, so it must not depend on those services being
+  // reachable or fast. Return an empty successful response for non-local
+  // requests while preserving the complete local request/response checks.
+  await page.route("**/*", async (route) => {
+    const requestUrl = new URL(route.request().url());
+    if (requestUrl.origin === baseUrl) {
+      await route.continue();
+      return;
+    }
+    if (requestUrl.hostname === "cdn.tailwindcss.com") {
+      await route.fulfill({
+        status: 200,
+        contentType: "text/javascript",
+        body: "var tailwind = window.tailwind = { config: {} };"
+      });
+      return;
+    }
+    await route.fulfill({ status: 204, body: "" });
+  });
   const policyWatcherRequests = [];
   page.on("request", (request) => {
     if (new URL(request.url()).hostname === "www.policywatcher.online") policyWatcherRequests.push({ method: request.method(), url: request.url() });
@@ -118,12 +139,22 @@ try {
   await expectAttribute(page.locator("html"), "data-palo-guide-route", "workflow-admission-governed-executor", "PALO Guide agentic integration route");
   if (await page.locator("#palo-guide-route li").count() !== 4) failures.push("PALO Guide: agentic integration route must expose four accountable steps");
   if (!/system can create effects or use tools[\s\S]*declared impact is consequential/i.test(await page.locator("#palo-guide-because").innerText())) failures.push("PALO Guide: visible because statement omits action or impact signals");
+  if (!await page.locator('a[href="PALO_OWASPGenAI2026.html"]').isVisible()) failures.push("PALO Guide: agentic route does not expose the OWASP GenAI 2026 handoff");
+  if (!await page.locator('#palo-guide-handoffs a[href="PALO_AssessmentPath.html"]').isVisible()) failures.push("PALO Guide: OWASP handoff displaced the primary Evidence Pack route");
   if (!await page.locator('a[href="docs/palo-guide-agent-and-mcp.html"]').first().isVisible()) failures.push("PALO Guide: agent and MCP manual is not visibly linked");
   const storedGuideRoute = await page.evaluate(() => localStorage.getItem(window.__PALO_GUIDE.storageKey));
   if (!storedGuideRoute || !/Internal workflow platform/.test(storedGuideRoute)) failures.push("PALO Guide: explicit device-local save did not retain the declared route");
   await page.locator("#palo-guide-reset").click();
   const clearedGuideRoute = await page.evaluate(() => localStorage.getItem(window.__PALO_GUIDE.storageKey));
   if (clearedGuideRoute !== null) failures.push("PALO Guide: reset did not remove device-local answers");
+  await page.locator("#guide-role").selectOption("product");
+  await page.locator("#guide-objective").selectOption("design-controls");
+  await page.locator("#guide-system").selectOption("generative");
+  await page.locator("#guide-tools").selectOption("no");
+  await page.locator("#guide-impact").selectOption("moderate");
+  await page.locator("#palo-guide-form").evaluate((form) => form.requestSubmit());
+  await page.waitForFunction(() => document.documentElement.hasAttribute("data-palo-guide-route"));
+  if (!await page.locator('#palo-guide-handoffs a[href="PALO_OWASPGenAI2026.html"]').isVisible()) failures.push("PALO Guide: generative route does not expose the OWASP GenAI 2026 handoff");
   page.off("request", trackGuideWrites);
   if (guideNetworkWrites.length) failures.push(`PALO Guide: local inference sent a network write (${JSON.stringify(guideNetworkWrites)})`);
 
@@ -201,6 +232,10 @@ try {
   await page.goto(`${baseUrl}/PALO_AssessmentPath.html`, { waitUntil: "domcontentloaded" });
   await page.evaluate(() => { localStorage.clear(); sessionStorage.clear(); });
   if (await page.locator("details.palo-signal-details").evaluate((details) => details.open)) failures.push("Evidence Pack: optional PolicyWatcher receiver is not collapsed by default");
+  if (!await page.locator("#owasp-architecture-signals").isHidden() || !await page.locator("#retrieval-memory").isDisabled() || !await page.locator("#architecture-security-testing").isDisabled()) failures.push("Evidence Pack: OWASP dependent signals are active before the GenAI parent signal");
+  await page.locator("#gen-ai-llm").check();
+  if (!await page.locator("#owasp-architecture-signals").isVisible() || !await page.locator("#owasp-testing-signals").isVisible() || await page.locator("#retrieval-memory").isDisabled()) failures.push("Evidence Pack: GenAI parent signal did not reveal and enable architecture and testing detail");
+  await page.locator("#gen-ai-llm").uncheck();
   const unknownPreserved = await page.evaluate(() => {
     const base = window.PALOCaseFile.create({ title: "Unknown-field test", extensions: { vendorExtension: { retained: true } } });
     const merged = window.PALOCaseFile.merge(base, { context: { nested: { known: true } }, extraModuleData: { value: 7 } });
@@ -216,9 +251,25 @@ try {
   page.on("request", trackEvidenceWrites);
   await page.goto(`${baseUrl}/PALO_AssessmentPath.html?sample=agentic-invoice#assessment-form`, { waitUntil: "domcontentloaded" });
   await page.waitForFunction(() => document.documentElement.getAttribute("data-evidence-sample") === "loaded");
-  if (await page.locator("#system-name").inputValue() !== "Agentic invoice exception" || !await page.locator("#agentic").isChecked()) failures.push("Evidence Pack: the synthetic agentic invoice case was not preloaded");
+  if (await page.locator("#system-name").inputValue() !== "Agentic invoice exception" || !await page.locator("#agentic").isChecked() || !await page.locator("#gen-ai-llm").isChecked() || !await page.locator("#output-to-downstream").isChecked() || await page.locator("#retrieval-memory").isChecked()) failures.push("Evidence Pack: the synthetic agentic invoice OWASP signals were not preloaded");
   await page.locator("#palo-assessment-form").evaluate((form) => form.requestSubmit());
   await expectAttribute(page.locator("html"), "data-assessment-case", "saved", "Evidence Pack sample save");
+  const owaspBundle = JSON.parse(await page.locator("#bundle-preview").textContent());
+  const owaspArtifact = owaspBundle.artifacts.find((artifact) => artifact.kind === "owasp-genai-2026-profile");
+  if (!owaspBundle.route.some((item) => item.name === "OWASP GenAI 2026 security profile")) failures.push("Evidence Pack: LLM case is missing the OWASP route");
+  if (!owaspBundle.sourceRegistry.some((source) => source.sourceId === "src-owasp-llm-top10" && source.freshness.reviewIntervalDays === 30)) failures.push("Evidence Pack: OWASP source pin or review interval is missing");
+  if (owaspBundle.assessment.owaspGenAi2026?.inScopeRiskIds.length !== 10 || !owaspBundle.assessment.owaspGenAi2026.priorityRiskIds.includes("LLM03:2026") || !owaspBundle.assessment.owaspGenAi2026.priorityRiskIds.includes("LLM10:2026")) failures.push("Evidence Pack: OWASP in-scope or priority risks are incomplete");
+  if (!owaspArtifact || owaspArtifact.status !== "draft" || owaspArtifact.status === "ready") failures.push("Evidence Pack: OWASP profile must remain a separate draft artifact");
+  if (!await page.locator("#owasp-profile-summary").isVisible() || !/10 risks in scope/i.test(await page.locator("#owasp-profile-scope").innerText()) || !/LLM10:2026/.test(await page.locator("#owasp-targeted-extensions").innerText())) failures.push("Evidence Pack: compact OWASP summary omits scope or targeted extension detail");
+  if (await page.locator("#bundle-json-disclosure").evaluate((details) => details.open)) failures.push("Evidence Pack: full Evidence Bundle JSON disclosure is open by default");
+  if (await page.locator("#assessment-results").getAttribute("aria-live") || await page.locator("#results-intro").getAttribute("role") !== "status") failures.push("Evidence Pack: result announcements are not isolated to the concise status line");
+  if (await page.evaluate(() => document.activeElement?.id) !== "assessment-results-title") failures.push("Evidence Pack: focus did not move to the concise result heading");
+  if (!/Documentation reference \| Draft evidence \| Human review required/.test(await page.locator(".palo-route-metadata").innerText())) failures.push("Evidence Pack: OWASP route lacks the documentation, draft and human-review boundary");
+  const savedOwaspCase = await page.evaluate(() => window.PALOCaseFile.load());
+  const savedOwaspRecord = savedOwaspCase?.assessments?.slice().reverse().find((record) => record.module === "assessment-path");
+  if (!savedOwaspRecord?.data?.assessment?.owaspGenAi2026 || !savedOwaspCase.evidence.some((artifact) => artifact.kind === "owasp-genai-2026-profile" && artifact.status === "draft")) failures.push("Evidence Pack: OWASP profile or draft artifact was not retained in the existing Case File record");
+  const owaspMarkdown = await captureDownload(page.locator("#download-markdown"), "Evidence Pack OWASP Markdown export");
+  if (/\[object Object\]/.test(owaspMarkdown) || !/## OWASP GenAI 2026 security profile[\s\S]*In-scope risks:[\s\S]*Targeted extensions:[\s\S]*Authority boundary:/i.test(owaspMarkdown)) failures.push("Evidence Pack: OWASP Markdown profile is missing structured scope, extension, or authority details");
   await page.locator("#validate-evidence-case").click();
   await expectAttribute(page.locator("html"), "data-evidence-receipt", "valid", "Evidence Pack local receipt");
   const firstReceiptText = await captureDownload(page.locator("#download-validation-receipt"), "Evidence Pack receipt export");
@@ -238,6 +289,15 @@ try {
   } catch (error) { failures.push(`Evidence Pack changed receipt: invalid JSON (${error.message})`); }
   page.off("request", trackEvidenceWrites);
   if (evidenceNetworkWrites.length) failures.push(`Evidence Pack: local completion sent a network write (${JSON.stringify(evidenceNetworkWrites)})`);
+
+  await page.evaluate(() => { localStorage.clear(); sessionStorage.clear(); });
+  await page.goto(`${baseUrl}/PALO_AssessmentPath.html`, { waitUntil: "domcontentloaded" });
+  await page.locator("#system-name").fill("Predictive maintenance score");
+  await page.locator("#use-case").fill("A predictive model scores equipment maintenance risk without an LLM component.");
+  await page.locator("#palo-assessment-form").evaluate((form) => form.requestSubmit());
+  const nonLlmBundle = JSON.parse(await page.locator("#bundle-preview").textContent());
+  if (nonLlmBundle.route.some((item) => item.name === "OWASP GenAI 2026 security profile") || nonLlmBundle.sourceRegistry.some((source) => source.sourceId === "src-owasp-llm-top10") || nonLlmBundle.artifacts.some((artifact) => artifact.kind === "owasp-genai-2026-profile")) failures.push("Evidence Pack: non-LLM case incorrectly received OWASP route, source, or artifact");
+  if (!await page.locator("#owasp-profile-summary").isHidden()) failures.push("Evidence Pack: non-LLM case exposes an OWASP result summary");
 
   await page.goto(`${baseUrl}/designs/theory-to-practice-infographic/index.html`, { waitUntil: "domcontentloaded" });
   await page.evaluate(() => { localStorage.clear(); sessionStorage.clear(); });
@@ -444,7 +504,7 @@ try {
   if (paloAmHeroCraft.calloutBackground === paloAmHeroCraft.leadColor || paloAmHeroCraft.actionHeights.length !== 2 || paloAmHeroCraft.actionHeights.some((height) => height < 44) || paloAmHeroCraft.actionDisplays.some((display) => display !== "flex") || paloAmHeroCraft.governanceNavHeight < 44) failures.push(`PALO-AM hero: callout contrast, specialist action styling or 44px targets regressed (${JSON.stringify(paloAmHeroCraft)})`);
 
   await page.goto(`${baseUrl}/PALO_AgenticCapabilityMatrix.html`, { waitUntil: "domcontentloaded" });
-  if (await page.locator("[data-status]").count() !== 26) failures.push("Capability Matrix: expected 26 evidence rows");
+  if (await page.locator("[data-status]").count() !== 27) failures.push("Capability Matrix: expected 27 evidence rows");
   await page.locator("[data-matrix-search]").fill("governance hub");
   if (await page.locator("[data-status]:visible").count() !== 1) failures.push("Capability Matrix: search did not isolate Governance Hub");
   await page.locator("[data-matrix-search]").fill("");
@@ -479,6 +539,14 @@ try {
 
   await page.goto(`${baseUrl}/PALO_DocumentationLibrary.html`, { waitUntil: "domcontentloaded" });
   if (await page.locator("[data-library-card]").count() < 35) failures.push("Documentation Library: generated public index is incomplete");
+  await expectAttribute(page.locator('[data-library-depth="start"]'), "aria-pressed", "true", "Documentation Library initial depth");
+  await page.locator("[data-library-search]").fill("OWASP");
+  const allDepth = page.locator('[data-library-depth="all"]');
+  await expectAttribute(allDepth, "aria-pressed", "true", "Documentation Library global search depth");
+  if (!await allDepth.evaluate((button) => button.classList.contains("is-active"))) failures.push("Documentation Library: global search did not visibly activate the All depth");
+  const visibleOwaspCards = page.locator('[data-library-card][data-evidence-class="source-backed-context"]:visible', { hasText: "OWASP" });
+  if (await page.locator("[data-library-card]:visible").count() !== 1 || await visibleOwaspCards.count() !== 1) failures.push("Documentation Library: OWASP search must reveal exactly one source-backed document from the initial Start state");
+  await page.locator("[data-library-search]").fill("");
   await page.locator("[data-library-search]").fill("adoption");
   if (await page.locator("[data-library-card]:visible").count() < 1) failures.push("Documentation Library: search returned no relevant guide");
   await page.locator("[data-library-search]").fill("");
@@ -492,6 +560,12 @@ try {
   await page.locator("[data-library-audience]").selectOption("technical");
   await page.locator("[data-library-task]").selectOption("integrate");
   if (await page.locator('[data-library-card][data-level="guide"]:visible').count() < 1) failures.push("Documentation Library: depth, audience and task filters returned no implementation guide");
+
+  await page.goto(`${baseUrl}/PALO_OWASPGenAI2026.html`, { waitUntil: "domcontentloaded" });
+  if (await page.locator(".palo-owasp-matrix tbody tr[data-coverage]").count() !== 10 || await page.locator(".palo-owasp-dossier-list details").count() !== 10) failures.push("OWASP 2026 crosswalk: expected ten matrix rows and ten risk dossiers");
+  if (!await page.locator('a[href="data/owasp-genai-2026-crosswalk.json"]').count() || !await page.locator('a[href="assets/OWASP-GenAI-LLM-Top-10-2026-v1.0.pdf"]').count()) failures.push("OWASP 2026 crosswalk: source PDF or machine-readable crosswalk link is missing");
+  await page.locator('[data-owasp-filter="extension"]').click();
+  if (await page.locator('.palo-owasp-matrix tbody tr[data-coverage="extension"]:visible').count() !== 2 || await page.locator('.palo-owasp-matrix tbody tr[data-coverage="direct"]:visible').count() !== 0) failures.push("OWASP 2026 crosswalk: targeted-extension filter did not isolate LLM09 and LLM10");
 
   await page.goto(`${baseUrl}/docs/palo-ai-adoption-paths.html`, { waitUntil: "domcontentloaded" });
   if (!await page.locator(".palo-doc-sidebar").count() || !await page.locator("[data-doc-feedback]").count()) failures.push("Generated documentation: navigation or feedback surface is missing");
@@ -507,7 +581,7 @@ try {
 
   for (const viewport of [{ width: 1440, height: 900 }, { width: 1024, height: 768 }, { width: 390, height: 844 }, { width: 360, height: 800 }]) {
     await page.setViewportSize(viewport);
-    for (const file of ["index.html", "PALO_Guide.html", "PALO_AIGovernance.html", "PALO_AIWhy.html", "PALO_AIQuickstarts.html", "PALO_AssessmentPath.html", "PALO_AgenticGovernance.html", "PALO_AgenticCapabilityMatrix.html", "PALO_AIProductionReadiness.html", "PALO_DocumentationLibrary.html", "docs/palo-ai-adoption-paths.html", "PALO_PlatformMap.html", "designs/theory-to-practice-infographic/index.html?mode=navigation"]) {
+    for (const file of ["index.html", "PALO_Guide.html", "PALO_AIGovernance.html", "PALO_AIWhy.html", "PALO_AIQuickstarts.html", "PALO_AssessmentPath.html", "PALO_AgenticGovernance.html", "PALO_AgenticCapabilityMatrix.html", "PALO_AIProductionReadiness.html", "PALO_OWASPGenAI2026.html", "PALO_DocumentationLibrary.html", "docs/palo-ai-adoption-paths.html", "PALO_PlatformMap.html", "designs/theory-to-practice-infographic/index.html?mode=navigation"]) {
       await page.goto(`${baseUrl}/${file}`, { waitUntil: "domcontentloaded" });
       if (file.includes("mode=navigation")) {
         const onboardingSeparators = page.locator(".route-ribbon > .route-separator");

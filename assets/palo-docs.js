@@ -121,8 +121,20 @@
       if (result) result.textContent = `${visible} of ${libraryCards.length} public documents shown | ${depth === "all" ? "all depths" : depth + " depth"}.`;
       empty?.classList.toggle("is-visible", visible === 0);
     };
-    for (const button of depthButtons) button.addEventListener("click", () => { depth = button.dataset.libraryDepth; for (const item of depthButtons) { const active = item === button; item.classList.toggle("is-active", active); item.setAttribute("aria-pressed", String(active)); } update(); });
-    search?.addEventListener("input", update); category?.addEventListener("change", update); audience?.addEventListener("change", update); task?.addEventListener("change", update); evidence?.addEventListener("change", update); workspace?.addEventListener("change", update); update();
+    const selectDepth = (nextDepth) => {
+      depth = nextDepth;
+      for (const item of depthButtons) {
+        const active = item.dataset.libraryDepth === depth;
+        item.classList.toggle("is-active", active);
+        item.setAttribute("aria-pressed", String(active));
+      }
+    };
+    for (const button of depthButtons) button.addEventListener("click", () => { selectDepth(button.dataset.libraryDepth); update(); });
+    search?.addEventListener("input", () => {
+      if (String(search.value || "").trim()) selectDepth("all");
+      update();
+    });
+    category?.addEventListener("change", update); audience?.addEventListener("change", update); task?.addEventListener("change", update); evidence?.addEventListener("change", update); workspace?.addEventListener("change", update); update();
   }
 
   const gates = [...document.querySelectorAll("[data-gate-id]")];

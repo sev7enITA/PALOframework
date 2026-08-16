@@ -6,10 +6,12 @@ import Database from "better-sqlite3";
 import Ajv2020 from "ajv/dist/2020.js";
 import addFormats from "ajv-formats";
 import { createFunctionEnforcementProvider, evaluateEnforcementProvider, validateEnforcementProviderManifest } from "./enforcement-provider.js";
+import { emitTelemetry, resolveTraceId, signEd25519Envelope, validateAuthorityContext, verifyEvidenceEnvelope } from "./assurance-foundation.js";
+import { telemetryFromEnvironment } from "./telemetry-otel.js";
 
 const PROFILE_FORMAT = "palo-agentic-interface";
 const POLICY_ID = "policy-agentic-governance";
-const POLICY_VERSION = "1.2.0";
+const POLICY_VERSION = "1.3.0";
 const repositoryRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const schemaNames = [
   "palo-agentic-interface", "palo-agentic-effect-contract", "palo-agentic-action-claim", "palo-agentic-policy", "palo-agentic-policy-input",
@@ -65,6 +67,12 @@ function canonicalEqual(left, right) {
   return canonicalize(left) === canonicalize(right);
 }
 
+function jsonType(value) {
+  if (value === null) return "null";
+  if (Array.isArray(value)) return "array";
+  return typeof value;
+}
+
 function jsonPointer(value, pointer) {
   if (pointer === "") return { found: true, value };
   if (typeof pointer !== "string" || !pointer.startsWith("/")) return { found: false };
@@ -83,6 +91,7 @@ function evaluatePredicate(predicate, preState, postState, category) {
   let known = true;
   switch (predicate.operator) {
     case "exists": passed = category === "precondition" ? before.found : after.found; break;
+    case "notExists": passed = !(category === "precondition" ? before.found : after.found); break;
     case "equals": {
       const observed = category === "precondition" ? before : after;
       passed = observed.found && canonicalEqual(observed.value, predicate.value);
@@ -93,6 +102,23 @@ function evaluatePredicate(predicate, preState, postState, category) {
     case "deltaWithin": {
       if (!before.found || !after.found || typeof before.value !== "number" || typeof after.value !== "number") known = false;
       else { const delta = after.value - before.value; passed = delta >= predicate.minimumDelta && delta <= predicate.maximumDelta; }
+      break;
+    }
+    case "numberWithin": {
+      const observed = category === "precondition" ? before : after;
+      if (!observed.found || typeof observed.value !== "number") known = false;
+      else passed = observed.value >= predicate.minimum && observed.value <= predicate.maximum;
+      break;
+    }
+    case "containsAll": {
+      const observed = category === "precondition" ? before : after;
+      if (!observed.found || !Array.isArray(observed.value)) known = false;
+      else passed = predicate.values.every((expected) => observed.value.some((item) => canonicalEqual(item, expected)));
+      break;
+    }
+    case "typeIs": {
+      const observed = category === "precondition" ? before : after;
+      passed = observed.found && jsonType(observed.value) === predicate.expectedType;
       break;
     }
     default: known = false;
@@ -107,8 +133,22 @@ function evaluatePredicate(predicate, preState, postState, category) {
   };
 }
 
+function validateEffectContractSemantics(effectContract) {
+  const predicates = [...effectContract.preconditions, ...effectContract.expectedEffects, ...effectContract.forbiddenEffects];
+  const predicateIds = new Set();
+  for (const predicate of predicates) {
+    if (predicateIds.has(predicate.predicateId)) throw new Error(`Duplicate Effect Contract predicateId ${predicate.predicateId}`);
+    predicateIds.add(predicate.predicateId);
+    if (predicate.operator === "deltaWithin" && predicate.minimumDelta > predicate.maximumDelta) throw new Error(`${predicate.predicateId} minimumDelta exceeds maximumDelta`);
+    if (predicate.operator === "numberWithin" && predicate.minimum > predicate.maximum) throw new Error(`${predicate.predicateId} minimum exceeds maximum`);
+  }
+  const initialDelay = effectContract.verification.initialDelaySeconds || 0;
+  if (initialDelay >= effectContract.verification.windowSeconds) throw new Error("Effect Contract initialDelaySeconds must be smaller than windowSeconds");
+}
+
 export function evaluateEffectContract(effectContract, preState, postState, { includePreconditions = true } = {}) {
   assertSchema("palo-agentic-effect-contract", effectContract);
+  validateEffectContractSemantics(effectContract);
   const checks = [];
   if (includePreconditions) for (const predicate of effectContract.preconditions) checks.push(evaluatePredicate(predicate, preState, preState, "precondition"));
   for (const predicate of effectContract.expectedEffects) checks.push(evaluatePredicate(predicate, preState, postState, "expected"));
@@ -135,10 +175,15 @@ export function normalizeActionClaim(input) {
   if (hasNetworkIntent && !claim.action.networkHost) throw new Error("networkHost is required for external network intent");
   if (!hasNetworkIntent && claim.action.networkHost) throw new Error("networkHost is forbidden when networkIntent is none");
   if (sha256(claim.action.arguments) !== claim.action.argumentsDigest) throw new Error("argumentsDigest does not match canonical arguments");
-  if (claim.schemaVersion === "1.2.0") {
+  if (["1.2.0", "1.3.0"].includes(claim.schemaVersion)) {
     const selector = claim.effectContract.resourceSelector;
+    validateEffectContractSemantics(claim.effectContract);
     if (selector.resource !== claim.action.resource || path.posix.normalize(selector.path) !== claim.action.path) throw new Error("Effect Contract resourceSelector must bind to the normalized action resource and path");
     if (selector.tenantId && claim.metadata?.tenantId && selector.tenantId !== claim.metadata.tenantId) throw new Error("Effect Contract tenant does not match Action Claim metadata");
+  }
+  if (claim.schemaVersion === "1.3.0") {
+    if (claim.authorityContext.agentIdentity.agentId !== claim.agentId) throw new Error("authorityContext.agentIdentity.agentId must match claim.agentId");
+    if (claim.authorityContext.tenantId && claim.effectContract.resourceSelector.tenantId && claim.authorityContext.tenantId !== claim.effectContract.resourceSelector.tenantId) throw new Error("Authority Context tenant does not match Effect Contract tenant");
   }
   return claim;
 }
@@ -165,6 +210,8 @@ function openDatabase(dataDir) {
     CREATE UNIQUE INDEX IF NOT EXISTS verifiers_current ON verifiers(verifier_id) WHERE is_current = 1;
     CREATE TABLE IF NOT EXISTS execution_capabilities (capability_id TEXT PRIMARY KEY, claim_id TEXT NOT NULL UNIQUE, status TEXT NOT NULL, capability_json TEXT NOT NULL, consumed_at TEXT, updated_at TEXT NOT NULL);
     CREATE TABLE IF NOT EXISTS executions (execution_id TEXT PRIMARY KEY, claim_id TEXT NOT NULL UNIQUE, capability_id TEXT NOT NULL UNIQUE, status TEXT NOT NULL, execution_json TEXT NOT NULL, outbox_state TEXT NOT NULL, updated_at TEXT NOT NULL);
+    CREATE TABLE IF NOT EXISTS assurance_tasks (task_id TEXT PRIMARY KEY, task_type TEXT NOT NULL, subject_id TEXT NOT NULL, status TEXT NOT NULL, task_json TEXT NOT NULL, available_at TEXT NOT NULL, expires_at TEXT, created_at TEXT NOT NULL, updated_at TEXT NOT NULL, UNIQUE(task_type, subject_id));
+    CREATE INDEX IF NOT EXISTS assurance_tasks_due ON assurance_tasks(status, available_at);
     CREATE TABLE IF NOT EXISTS incidents (incident_id TEXT PRIMARY KEY, execution_id TEXT NOT NULL UNIQUE, claim_id TEXT NOT NULL, status TEXT NOT NULL, incident_json TEXT NOT NULL, updated_at TEXT NOT NULL);
     CREATE TABLE IF NOT EXISTS resource_holds (resource_key TEXT PRIMARY KEY, incident_id TEXT NOT NULL, reason TEXT NOT NULL, created_at TEXT NOT NULL, released_at TEXT);
     CREATE TABLE IF NOT EXISTS evidence (ledger_sequence INTEGER PRIMARY KEY AUTOINCREMENT, event_id TEXT NOT NULL UNIQUE, event_digest TEXT NOT NULL, previous_event_digest TEXT, envelope_json TEXT NOT NULL, recorded_at TEXT NOT NULL);
@@ -194,10 +241,36 @@ export function createOpaEvaluator({ url = process.env.PALO_OPA_URL, timeoutMs =
 }
 
 export class GovernanceRuntime {
-  constructor({ dataDir = process.env.PALO_DATA_DIR || path.resolve(".palo-agentic"), keys, policyEvaluator, enforcementProvider, executors = {}, verifiers = {} } = {}) {
+  constructor({
+    dataDir = process.env.PALO_DATA_DIR || path.resolve(".palo-agentic"),
+    keys,
+    evidenceSigning = loadEvidenceSigningFromEnvironment(),
+    evidencePublicKeys = loadJsonObjectFromEnvironment("PALO_EVIDENCE_PUBLIC_KEYS_JSON"),
+    identityPolicy = loadJsonObjectFromEnvironment("PALO_IDENTITY_POLICY_JSON"),
+    authorityVerifier,
+    telemetry = telemetryFromEnvironment(),
+    guardrails = loadJsonObjectFromEnvironment("PALO_RUNTIME_GUARDRAILS_JSON"),
+    policyEvaluator,
+    enforcementProvider,
+    executors = {},
+    verifiers = {}
+  } = {}) {
     if (policyEvaluator && enforcementProvider) throw new Error("Configure policyEvaluator or enforcementProvider, not both");
     this.dataDir = dataDir;
     this.keys = keys || loadKeysFromEnvironment();
+    this.evidenceSigning = evidenceSigning;
+    if (evidenceSigning && (!evidenceSigning.keyId || !evidenceSigning.verificationMethod || !evidenceSigning.publicKey || !evidenceSigning.privateKey)) throw new Error("Ed25519 evidence signing requires keyId, verificationMethod, privateKey and publicKey");
+    this.evidencePublicKeys = { ...evidencePublicKeys, ...(evidenceSigning ? { [evidenceSigning.keyId]: evidenceSigning.publicKey, [evidenceSigning.verificationMethod]: evidenceSigning.publicKey } : {}) };
+    this.identityPolicy = clone(identityPolicy);
+    if (authorityVerifier !== undefined && typeof authorityVerifier !== "function") throw new Error("authorityVerifier must be a function");
+    this.authorityVerifier = authorityVerifier;
+    this.authorityVerifications = new Map();
+    this.telemetry = telemetry;
+    this.guardrails = {
+      maxDelegationDepth: Number.isInteger(guardrails.maxDelegationDepth) ? guardrails.maxDelegationDepth : 8,
+      maxActionsPerMinute: Number.isInteger(guardrails.maxActionsPerMinute) ? guardrails.maxActionsPerMinute : 120,
+      maxConcurrentExecutionsPerAgent: Number.isInteger(guardrails.maxConcurrentExecutionsPerAgent) ? guardrails.maxConcurrentExecutionsPerAgent : 5
+    };
     const evaluator = policyEvaluator || createOpaEvaluator();
     this.enforcementProvider = enforcementProvider || createFunctionEnforcementProvider(evaluator, policyEvaluator ? {
       providerId: "provider-palo-custom-evaluator",
@@ -228,7 +301,8 @@ export class GovernanceRuntime {
       bundleDigest: sha256(readFileSync(path.join(repositoryRoot, "examples/policy-as-code/agent-delegation.rego"), "utf8")),
       metadata: { inputSchemaVersion: "1.0.0", source: "bundled-reference-policy" }
     };
-    if (!this.db.prepare("SELECT 1 FROM policies WHERE policy_id = ? AND is_current = 1").get(POLICY_ID)) this.registerPolicy(policy);
+    const current = this.db.prepare("SELECT policy_version, bundle_digest FROM policies WHERE policy_id = ? AND is_current = 1").get(POLICY_ID);
+    if (!current || (isNewer(policy.policyVersion, current.policy_version) && current.bundle_digest !== policy.bundleDigest)) this.registerPolicy(policy);
   }
 
   registerPolicy(policy) {
@@ -348,6 +422,177 @@ export class GovernanceRuntime {
     };
   }
 
+  emit(name, claim, attributes = {}) {
+    const traceId = attributes.traceId || resolveTraceId(claim);
+    return emitTelemetry(this.telemetry, name, {
+      traceId,
+      ...(claim?.caseId ? { caseId: claim.caseId } : {}),
+      ...(claim?.claimId ? { claimId: claim.claimId } : {}),
+      ...(claim?.agentId ? { agentId: claim.agentId } : {}),
+      ...attributes
+    });
+  }
+
+  evaluateRuntimeGuardrails(claim) {
+    const authority = validateAuthorityContext(claim, { ...this.identityPolicy, maxDelegationDepth: this.guardrails.maxDelegationDepth });
+    const violations = [...authority.violations];
+    const oneMinuteAgo = new Date(Date.now() - 60000).toISOString();
+    const recentActions = this.db.prepare("SELECT COUNT(*) AS total FROM replay_claims WHERE agent_id = ? AND reserved_at >= ?").get(claim.agentId, oneMinuteAgo).total;
+    if (recentActions >= this.guardrails.maxActionsPerMinute) violations.push(`Action rate exceeds ${this.guardrails.maxActionsPerMinute} claims per minute`);
+    const activeExecutions = this.db.prepare("SELECT execution_json FROM executions WHERE status IN ('executing','executed','execution_unknown')").all()
+      .map((row) => parse(row.execution_json))
+      .filter((execution) => execution.claim.agentId === claim.agentId).length;
+    if (activeExecutions >= this.guardrails.maxConcurrentExecutionsPerAgent) violations.push(`Concurrent execution limit ${this.guardrails.maxConcurrentExecutionsPerAgent} reached`);
+    return { allowed: violations.length === 0, authorityMode: authority.mode, recentActions, activeExecutions, violations };
+  }
+
+  async verifyCryptographicAuthority(claim) {
+    if (claim.schemaVersion !== "1.3.0") return { valid: true, verifierId: "legacy-contract", verifiedAt: nowIso() };
+    if (!this.authorityVerifier) return { valid: false, reasons: ["Action Claim 1.3 requires a configured cryptographic authority verifier"] };
+    try {
+      const result = await this.authorityVerifier(clone(claim.authorityContext), clone(claim));
+      if (!result || result.valid !== true) return { valid: false, reasons: result?.reasons?.length ? result.reasons.map(String) : ["Authority credentials or proof could not be verified"] };
+      const verification = {
+        valid: true,
+        verifierId: String(result.verifierId || "configured-authority-verifier"),
+        verifiedAt: nowIso(),
+        humanCredentialDigest: claim.authorityContext.humanPrincipal.credentialDigest,
+        workloadCredentialDigest: claim.authorityContext.workloadIdentity.credentialDigest,
+        ...(result.evidenceDigest ? { evidenceDigest: String(result.evidenceDigest) } : {})
+      };
+      this.authorityVerifications.set(claim.claimId, verification);
+      return verification;
+    } catch (error) {
+      return { valid: false, reasons: [`Authority verification unavailable: ${error.message}`] };
+    }
+  }
+
+  createTask({ taskType, subjectId, status = "queued", availableAt = nowIso(), expiresAt, claim, payload = {}, maxAttempts = 1 }) {
+    if (!["approval", "verification"].includes(taskType)) throw new Error("Unsupported assurance task type");
+    if (!["queued", "input_required"].includes(status)) throw new Error("New assurance task must be queued or input_required");
+    const existing = this.db.prepare("SELECT task_json FROM assurance_tasks WHERE task_type = ? AND subject_id = ?").get(taskType, subjectId);
+    if (existing) return parse(existing.task_json);
+    const createdAt = nowIso();
+    const task = {
+      format: "palo-assurance-task",
+      schemaVersion: "1.0.0",
+      taskId: id("task"),
+      taskType,
+      subjectId,
+      status,
+      availableAt,
+      ...(expiresAt ? { expiresAt } : {}),
+      attempts: 0,
+      maxAttempts: Math.max(1, Math.min(Number(maxAttempts) || 1, 10)),
+      createdAt,
+      updatedAt: createdAt,
+      ...(claim ? { caseId: claim.caseId, claimId: claim.claimId, agentId: claim.agentId, traceId: resolveTraceId(claim) } : {}),
+      payload: clone(payload)
+    };
+    this.db.prepare("INSERT INTO assurance_tasks VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)").run(task.taskId, task.taskType, task.subjectId, task.status, JSON.stringify(task), task.availableAt, task.expiresAt || null, task.createdAt, task.updatedAt);
+    this.emit("palo.task.created", claim, { traceId: task.traceId, taskId: task.taskId, taskType, status });
+    return clone(task);
+  }
+
+  transitionTask(taskId, nextStatus, { result, error, availableAt, incrementAttempts = false } = {}) {
+    const allowedStatuses = ["queued", "input_required", "running", "completed", "failed", "cancelled", "expired"];
+    if (!allowedStatuses.includes(nextStatus)) throw new Error("Invalid assurance task status");
+    return this.db.transaction(() => {
+      const row = this.db.prepare("SELECT task_json FROM assurance_tasks WHERE task_id = ?").get(taskId);
+      if (!row) throw new Error("Assurance task not found");
+      const task = parse(row.task_json);
+      const previousStatus = task.status;
+      const terminal = ["completed", "failed", "cancelled", "expired"];
+      if (terminal.includes(task.status)) {
+        if (task.status === nextStatus) return task;
+        throw new Error("Assurance task is already terminal");
+      }
+      task.status = nextStatus;
+      task.updatedAt = nowIso();
+      if (availableAt) task.availableAt = availableAt;
+      if (incrementAttempts) task.attempts += 1;
+      if (result !== undefined) task.result = clone(result);
+      if (error !== undefined) task.error = String(error);
+      const updated = this.db.prepare("UPDATE assurance_tasks SET status = ?, task_json = ?, available_at = ?, updated_at = ? WHERE task_id = ? AND status = ?").run(task.status, JSON.stringify(task), task.availableAt, task.updatedAt, task.taskId, previousStatus);
+      if (updated.changes !== 1) throw new Error("Assurance task was transitioned concurrently");
+      return clone(task);
+    })();
+  }
+
+  transitionTaskBySubject(taskType, subjectId, nextStatus, options = {}) {
+    const row = this.db.prepare("SELECT task_id FROM assurance_tasks WHERE task_type = ? AND subject_id = ?").get(taskType, subjectId);
+    return row ? this.transitionTask(row.task_id, nextStatus, options) : null;
+  }
+
+  async getTask(taskId) {
+    const row = this.db.prepare("SELECT task_json FROM assurance_tasks WHERE task_id = ?").get(taskId);
+    if (!row) throw new Error("Assurance task not found");
+    return parse(row.task_json);
+  }
+
+  async listTasks({ status = "all", taskType = "all", limit = 100 } = {}) {
+    const statuses = ["queued", "input_required", "running", "completed", "failed", "cancelled", "expired", "all"];
+    if (!statuses.includes(status) || !["approval", "verification", "all"].includes(taskType)) throw new Error("Invalid assurance task filter");
+    return this.db.prepare("SELECT task_json FROM assurance_tasks WHERE (? = 'all' OR status = ?) AND (? = 'all' OR task_type = ?) ORDER BY updated_at DESC LIMIT ?")
+      .all(status, status, taskType, taskType, Math.max(1, Math.min(limit, 500))).map((row) => parse(row.task_json));
+  }
+
+  async processDueTasks({ limit = 25 } = {}) {
+    const stamp = nowIso();
+    const due = this.db.prepare("SELECT task_json FROM assurance_tasks WHERE ((status = 'queued' AND available_at <= ?) OR (task_type = 'approval' AND status = 'input_required' AND expires_at IS NOT NULL AND expires_at <= ?)) ORDER BY available_at LIMIT ?")
+      .all(stamp, stamp, Math.max(1, Math.min(limit, 100))).map((row) => parse(row.task_json));
+    const processed = [];
+    for (const task of due) {
+      if (task.taskType === "approval") {
+        await this.resolveApproval(task.subjectId, "expired", "palo-task-processor", "Approval task expired before resolution");
+        processed.push(await this.getTask(task.taskId));
+        continue;
+      }
+      if (task.taskType === "verification") {
+        this.transitionTask(task.taskId, "running", { incrementAttempts: true });
+        try {
+          const result = await this.verifyOutcome(task.subjectId, { force: true });
+          const currentTask = await this.getTask(task.taskId);
+          const executionRow = this.db.prepare("SELECT execution_json FROM executions WHERE execution_id = ?").get(task.subjectId);
+          const execution = executionRow ? parse(executionRow.execution_json) : null;
+          const retryable = result.attestation?.status === "inconclusive"
+            && execution?.claim.effectContract.verification.onInconclusive === "retry_then_review"
+            && currentTask.attempts < currentTask.maxAttempts
+            && (!currentTask.expiresAt || Date.parse(currentTask.expiresAt) > Date.now());
+          const status = result.status === "verified" ? "completed" : retryable ? "queued" : "input_required";
+          const retryBackoff = execution?.claim.effectContract.verification.retryBackoffSeconds || 5;
+          const updated = this.transitionTask(task.taskId, status, { result, ...(retryable ? { availableAt: new Date(Date.now() + retryBackoff * 1000).toISOString() } : {}) });
+          processed.push(updated);
+        } catch (error) {
+          processed.push(this.transitionTask(task.taskId, "failed", { error: error.message }));
+        }
+      }
+    }
+    return { processed: processed.length, tasks: processed };
+  }
+
+  async getOperationalSnapshot() {
+    const count = (table, where = "") => this.db.prepare(`SELECT COUNT(*) AS total FROM ${table} ${where}`).get().total;
+    const ledger = await this.verifyLedger();
+    return {
+      recordedAt: nowIso(),
+      approvals: { pending: count("approvals", "WHERE status = 'pending'") },
+      tasks: {
+        queued: count("assurance_tasks", "WHERE status = 'queued'"),
+        inputRequired: count("assurance_tasks", "WHERE status = 'input_required'"),
+        failed: count("assurance_tasks", "WHERE status = 'failed'")
+      },
+      executions: {
+        active: count("executions", "WHERE status IN ('executing','executed','execution_unknown')"),
+        verified: count("executions", "WHERE status = 'verified'"),
+        reviewRequired: count("executions", "WHERE status IN ('mismatch','inconclusive')")
+      },
+      incidents: { open: count("incidents", "WHERE status != 'resolved'") },
+      evidenceLedger: ledger,
+      guardrails: clone(this.guardrails)
+    };
+  }
+
   validateArguments(claim, profile) {
     const schema = profile.authority.argumentSchemas[claim.action.tool];
     if (!schema) throw new Error(`No trusted argument schema is registered for ${claim.action.tool}`);
@@ -387,6 +632,15 @@ export class GovernanceRuntime {
     let profile; let policy;
     try { profile = await this.getProfile(claim.caseId, claim.agentId); policy = this.getPolicy(); this.validateArguments(claim, profile); }
     catch (error) { return this.persistDecision(claim, digest, { status: "denied", reasons: [error.message], obligations: ["register_trusted_authority"] }); }
+    const authorityContext = validateAuthorityContext(claim, { ...this.identityPolicy, maxDelegationDepth: this.guardrails.maxDelegationDepth });
+    if (!authorityContext.valid) return this.persistDecision(claim, digest, { status: "denied", reasons: authorityContext.violations, obligations: ["repair_authority_context"] }, profile);
+    const authorityVerification = await this.verifyCryptographicAuthority(claim);
+    if (!authorityVerification.valid) return this.persistDecision(claim, digest, { status: "denied", reasons: authorityVerification.reasons, obligations: ["configure_or_repair_authority_verifier"] }, profile);
+    if (!existingRow) {
+      const guardrailDecision = this.evaluateRuntimeGuardrails(claim);
+      if (!guardrailDecision.allowed) return this.persistDecision(claim, digest, { status: "denied", reasons: guardrailDecision.violations, obligations: ["repair_authority_or_wait_for_runtime_budget"] }, profile);
+      this.emit("palo.action.accepted_for_policy", claim, { authorityMode: guardrailDecision.authorityMode, authorityVerifierId: authorityVerification.verifierId, recentActions: guardrailDecision.recentActions, activeExecutions: guardrailDecision.activeExecutions });
+    }
     if (!existingRow) {
       try { this.reserveReplay(claim, digest); }
       catch (error) { return this.persistDecision(claim, digest, { status: "denied", reasons: [error.message], obligations: ["rotate_replay_material"] }, profile); }
@@ -425,18 +679,25 @@ export class GovernanceRuntime {
     if (result.enforcementProvider) decision.enforcementProvider = result.enforcementProvider;
     assertSchema("palo-agentic-policy-decision", decision);
     this.db.prepare("INSERT INTO decisions VALUES (?, ?, ?, ?) ON CONFLICT(claim_id) DO UPDATE SET claim_digest=excluded.claim_digest, decision_json=excluded.decision_json, updated_at=excluded.updated_at").run(claim.claimId, claimDigest, JSON.stringify(decision), nowIso());
-    if (profile) this.recordEvidence({ claim, decision, outcome: decision.status, payload: { action: claim.action, requestedScopes: claim.requestedScopes, ...(decision.enforcementProvider ? { enforcementProvider: decision.enforcementProvider } : {}) } });
+    if (profile) this.recordEvidence({ claim, decision, outcome: decision.status, payload: { action: claim.action, requestedScopes: claim.requestedScopes, ...(this.authorityVerifications.has(claim.claimId) ? { authorityVerification: this.authorityVerifications.get(claim.claimId) } : {}), ...(decision.enforcementProvider ? { enforcementProvider: decision.enforcementProvider } : {}) } });
+    this.emit("palo.policy.decision", claim, { decisionId: decision.decisionId, status: decision.status, policyVersion: decision.policyVersion });
     return decision;
   }
 
   async requestApproval(inputClaim, claimDigest, requestedBy, ttlSeconds = 900) {
     const claim = normalizeActionClaim(inputClaim); const digest = claimDigest || sha256(claim);
     const existing = this.db.prepare("SELECT approval_json FROM approvals WHERE claim_digest = ? AND status = 'pending'").get(digest);
-    if (existing) return parse(existing.approval_json);
+    if (existing) {
+      const approval = parse(existing.approval_json);
+      this.createTask({ taskType: "approval", subjectId: approval.approvalId, status: "input_required", availableAt: approval.requestedAt, expiresAt: approval.expiresAt, claim, payload: { approvalId: approval.approvalId, claimDigest: approval.claimDigest } });
+      return approval;
+    }
     const resolvedRequestedBy = requestedBy ?? claim.agentId;
     const approval = { format: "palo-agentic-approval", schemaVersion: "1.0.0", approvalId: id("approval"), claimId: claim.claimId, claimDigest: digest, caseId: claim.caseId, agentId: claim.agentId, status: "pending", requestedBy: resolvedRequestedBy, requestedAt: nowIso(), expiresAt: new Date(Date.now() + Math.max(30, Math.min(ttlSeconds, 86400)) * 1000).toISOString() };
     assertSchema("palo-agentic-approval", approval);
     this.db.prepare("INSERT INTO approvals VALUES (?, ?, ?, ?, ?, ?)").run(approval.approvalId, approval.claimId, approval.claimDigest, approval.status, JSON.stringify(approval), nowIso());
+    this.createTask({ taskType: "approval", subjectId: approval.approvalId, status: "input_required", availableAt: approval.requestedAt, expiresAt: approval.expiresAt, claim, payload: { approvalId: approval.approvalId, claimDigest: approval.claimDigest } });
+    this.emit("palo.approval.requested", claim, { approvalId: approval.approvalId, expiresAt: approval.expiresAt });
     return approval;
   }
 
@@ -455,7 +716,7 @@ export class GovernanceRuntime {
   async resolveApproval(approvalId, status, resolvedBy, rationale) {
     if (!["approved", "denied", "cancelled", "expired"].includes(status)) throw new Error("Invalid terminal approval status");
     if (!resolvedBy || !rationale) throw new Error("Resolver identity and rationale are required");
-    return this.db.transaction(() => {
+    const approval = this.db.transaction(() => {
       const row = this.db.prepare("SELECT approval_json FROM approvals WHERE approval_id = ?").get(approvalId);
       if (!row) throw new Error("Approval not found");
       const approval = parse(row.approval_json);
@@ -465,6 +726,10 @@ export class GovernanceRuntime {
       this.db.prepare("UPDATE approvals SET status = ?, approval_json = ?, updated_at = ? WHERE approval_id = ?").run(status, JSON.stringify(approval), nowIso(), approvalId);
       return clone(approval);
     })();
+    const taskStatus = status === "expired" ? "expired" : status === "cancelled" ? "cancelled" : "completed";
+    this.transitionTaskBySubject("approval", approvalId, taskStatus, { result: approval });
+    this.emit("palo.approval.resolved", null, { approvalId, status, resolvedBy });
+    return approval;
   }
 
   verifySignedContract(name, contract, keyId) {
@@ -482,7 +747,7 @@ export class GovernanceRuntime {
   }
 
   issueExecutionCapability(claim, decision, executorId, verifierId, ttlSeconds = 60) {
-    if (claim.schemaVersion !== "1.2.0" || !claim.effectContract) throw new Error("Governed execution requires Action Claim schemaVersion 1.2.0 with an Effect Contract");
+    if (!["1.2.0", "1.3.0"].includes(claim.schemaVersion) || !claim.effectContract) throw new Error("Governed execution requires Action Claim schemaVersion 1.2.0 or 1.3.0 with an Effect Contract");
     if (decision.status !== "allowed" || decision.claimId !== claim.claimId || decision.claimDigest !== sha256(claim)) throw new Error("Execution capability requires the current allowed decision for the exact Action Claim");
     const executor = this.getAdapterManifest("executor", executorId); const verifier = this.getAdapterManifest("verifier", verifierId);
     if (!executor.supportedTools.includes(claim.action.tool)) throw new Error(`Executor ${executorId} is not trusted for ${claim.action.tool}`);
@@ -553,7 +818,7 @@ export class GovernanceRuntime {
 
   async executeGovernedAction(inputClaim, { approvalId, executorId, verifierId, capabilityTtlSeconds = 60 } = {}) {
     const claim = normalizeActionClaim(inputClaim);
-    if (claim.schemaVersion !== "1.2.0") throw new Error("Full-cycle governed execution requires Action Claim schemaVersion 1.2.0");
+    if (!["1.2.0", "1.3.0"].includes(claim.schemaVersion)) throw new Error("Full-cycle governed execution requires Action Claim schemaVersion 1.2.0 or 1.3.0");
     const existing = this.db.prepare("SELECT execution_id FROM executions WHERE claim_id = ?").get(claim.claimId);
     if (existing) return this.getExecution(existing.execution_id);
     const decision = await this.verifyAction(claim, approvalId, { revalidate: true });
@@ -572,6 +837,7 @@ export class GovernanceRuntime {
       return { status: "denied", executed: false, decision, reason: "Effect Contract preconditions are not satisfied", preconditionChecks };
     }
     const execution = this.consumeCapabilityAndCreateExecution(capability, claim, decision, observed.state, observed.resourceVersion);
+    this.emit("palo.execution.started", claim, { executionId: execution.executionId, executorId, verifierId });
     const adapterManifest = this.getAdapterManifest("executor", executorId);
     let result = {}; let receiptStatus = "succeeded"; let executionError;
     try {
@@ -594,6 +860,22 @@ export class GovernanceRuntime {
       this.db.prepare("UPDATE executions SET status = ?, execution_json = ?, outbox_state = 'recorded', updated_at = ? WHERE execution_id = ?").run(execution.status, JSON.stringify(execution), completedAt, execution.executionId);
       this.recordEvidence({ claim, decision, profileVersion: decision.profileVersion, outcome: receiptStatus === "succeeded" ? "execution_succeeded" : receiptStatus === "failed" ? "execution_failed" : "execution_unknown", payload: { receipt }, executionId: execution.executionId });
     })();
+    this.emit("palo.execution.completed", claim, { executionId: execution.executionId, executorId, status: receiptStatus });
+    const initialDelaySeconds = claim.effectContract.verification.initialDelaySeconds || 0;
+    if (receiptStatus === "succeeded" && initialDelaySeconds > 0) {
+      const availableAt = new Date(Date.now() + initialDelaySeconds * 1000).toISOString();
+      const task = this.createTask({
+        taskType: "verification",
+        subjectId: execution.executionId,
+        status: "queued",
+        availableAt,
+        expiresAt: new Date(Date.now() + claim.effectContract.verification.windowSeconds * 1000).toISOString(),
+        claim,
+        payload: { executionId: execution.executionId, verifierId },
+        maxAttempts: claim.effectContract.verification.maxAttempts || 1
+      });
+      return { status: "verification_pending", executed: true, executionId: execution.executionId, decision, receipt, task };
+    }
     const verified = await this.verifyOutcome(execution.executionId);
     if (receiptStatus === "failed") return { ...verified, status: "execution_failed", executed: false };
     return verified;
@@ -603,6 +885,10 @@ export class GovernanceRuntime {
     const row = this.db.prepare("SELECT execution_json FROM executions WHERE execution_id = ?").get(executionId);
     if (!row) throw new Error("Execution not found");
     const execution = parse(row.execution_json);
+    const taskRow = this.db.prepare("SELECT task_json FROM assurance_tasks WHERE task_type = 'verification' AND subject_id = ?").get(executionId);
+    const verificationTask = taskRow ? parse(taskRow.task_json) : null;
+    if (verificationTask?.status === "queued" && Date.parse(verificationTask.availableAt) > Date.now() && !force) return { status: "verification_pending", executed: true, executionId, decision: execution.decision, receipt: execution.receipt, task: verificationTask };
+    if (verificationTask?.status === "queued") this.transitionTask(verificationTask.taskId, "running", { incrementAttempts: true });
     if (execution.attestation && !force) return this.presentExecution(execution);
     if (!execution.receipt || !this.verifySignedContract("palo-agentic-execution-receipt", execution.receipt)) throw new Error("A trusted signed Execution Receipt is required before outcome verification");
     const verifierId = execution.capability.verifierId; const verifier = this.verifierHandlers.get(verifierId);
@@ -612,6 +898,12 @@ export class GovernanceRuntime {
       if (!observed || typeof observed.state !== "object" || observed.state === null) throw new Error("Verifier returned no authoritative state");
       postState = observed.state;
       verification = evaluateEffectContract(execution.claim.effectContract, execution.preState, postState, { includePreconditions: false });
+      if (verificationTask?.expiresAt && Date.parse(verificationTask.expiresAt) <= Date.now()) {
+        verification = {
+          status: "inconclusive",
+          checks: [...verification.checks, { predicateId: "predicate-verification-window", category: "expected", status: "unknown", reason: "Authoritative verification completed after the Effect Contract window" }]
+        };
+      }
       if (execution.receipt.status === "unknown") {
         verification = {
           status: "inconclusive",
@@ -624,6 +916,10 @@ export class GovernanceRuntime {
     const { keyId, secret, profile } = this.getSigningMaterial(execution.claim, execution.decision.profileVersion);
     let incident = null;
     if (verification.status !== "verified") incident = this.openIncident(execution, verification.status, verification.checks);
+    else if (execution.incidentId) {
+      const existingIncident = await this.getIncident(execution.incidentId);
+      if (existingIncident.status !== "resolved") incident = await this.resolveIncident(execution.incidentId, "resolved", "palo-authoritative-verifier", "A subsequent authoritative verification satisfied the bound Effect Contract");
+    }
     const attestation = this.signContract("palo-agentic-outcome-attestation", {
       format: "palo-agentic-outcome-attestation", schemaVersion: "1.0.0", attestationId: id("attestation"), executionId, claimId: execution.claim.claimId,
       verifierId, status: verification.status, checkedAt: nowIso(), postStateDigest: sha256(postState), checks: verification.checks,
@@ -635,7 +931,10 @@ export class GovernanceRuntime {
       this.db.prepare("UPDATE executions SET status = ?, execution_json = ?, updated_at = ? WHERE execution_id = ?").run(execution.status, JSON.stringify(execution), nowIso(), executionId);
       this.recordEvidence({ claim: execution.claim, decision: execution.decision, profileVersion: execution.decision.profileVersion, outcome: `outcome_${verification.status}`, payload: { attestation }, executionId, attestationId: attestation.attestationId, ...(incident ? { incidentId: incident.incidentId } : {}) });
     })();
-    return this.presentExecution(execution, incident);
+    const presented = this.presentExecution(execution, incident);
+    if (verificationTask) this.transitionTask(verificationTask.taskId, verification.status === "verified" ? "completed" : "input_required", { result: presented });
+    this.emit("palo.outcome.verified", execution.claim, { executionId, verifierId, status: verification.status, ...(incident ? { incidentId: incident.incidentId } : {}) });
+    return presented;
   }
 
   async recoverPendingExecutions({ olderThanMs = 30000 } = {}) {
@@ -678,7 +977,8 @@ export class GovernanceRuntime {
     const incident = {
       format: "palo-agentic-assurance-incident", schemaVersion: "1.0.0", incidentId: id("incident"), executionId: execution.executionId,
       claimId: execution.claim.claimId, caseId: execution.claim.caseId, status: "open", severity: assuranceStatus === "mismatch" ? "high" : "medium",
-      reason: `${assuranceStatus}: ${failed}`, resourceHold: true, createdAt: stamp, updatedAt: stamp
+      reason: `${assuranceStatus}: ${failed}`, resourceHold: true, createdAt: stamp, updatedAt: stamp,
+      ...(execution.claim.effectContract.recovery?.onMismatch === "propose_compensation" ? { recommendedCompensation: { requiresNewActionClaim: true, action: clone(execution.claim.effectContract.recovery.compensationAction) } } : {})
     };
     assertSchema("palo-agentic-assurance-incident", incident);
     this.db.transaction(() => {
@@ -729,7 +1029,7 @@ export class GovernanceRuntime {
     })();
   }
 
-  recordEvidence({ claim: inputClaim, decision, profileVersion, outcome, payload = {}, executionId, attestationId, incidentId }) {
+  recordEvidence({ claim: inputClaim, decision, profileVersion, outcome, payload = {}, executionId, attestationId, incidentId, taskId }) {
     const claim = normalizeActionClaim(inputClaim); assertSchema("palo-agentic-policy-decision", decision);
     if (decision.claimId !== claim.claimId || decision.claimDigest !== sha256(claim)) throw new Error("Decision does not bind to this Action Claim");
     if (outcome === "executed" && decision.status !== "allowed") throw new Error("Execution evidence requires an allowed decision");
@@ -738,12 +1038,15 @@ export class GovernanceRuntime {
       : this.db.prepare("SELECT profile_json FROM profiles WHERE case_id = ? AND agent_id = ? AND is_current = 1").get(claim.caseId, claim.agentId);
     if (!row) throw new Error("No trusted profile is available for evidence signing");
     const profile = parse(row.profile_json); const secret = this.keys[profile.evidence.keyId];
-    if (!secret || Buffer.byteLength(secret) < 32) throw new Error(`A signing secret of at least 32 bytes is required for ${profile.evidence.keyId}`);
+    if (!this.evidenceSigning && (!secret || Buffer.byteLength(secret) < 32)) throw new Error(`A signing secret of at least 32 bytes is required for ${profile.evidence.keyId}`);
     return this.db.transaction(() => {
       const previous = this.db.prepare("SELECT event_digest FROM evidence ORDER BY ledger_sequence DESC LIMIT 1").get()?.event_digest || null;
-      const envelope = { format: "palo-agentic-evidence-envelope", schemaVersion: "1.0.0", eventId: id("event"), caseId: claim.caseId, agentId: claim.agentId, claimId: claim.claimId, decisionId: decision.decisionId, outcome, recordedAt: nowIso(), redactedPayload: redact(payload, profile.evidence.redactFields), payloadDigest: sha256(payload), previousEventDigest: previous, keyId: profile.evidence.keyId, algorithm: "HMAC-SHA256", ...(executionId ? { executionId } : {}), ...(attestationId ? { attestationId } : {}), ...(incidentId ? { incidentId } : {}) };
-      if (decision.approvalId) envelope.approvalId = decision.approvalId;
-      envelope.signature = signHmac(envelope, secret);
+      const unsigned = { format: "palo-agentic-evidence-envelope", schemaVersion: this.evidenceSigning ? "2.0.0" : "1.0.0", eventId: id("event"), caseId: claim.caseId, agentId: claim.agentId, claimId: claim.claimId, decisionId: decision.decisionId, outcome, recordedAt: nowIso(), redactedPayload: redact(payload, profile.evidence.redactFields), payloadDigest: sha256(payload), previousEventDigest: previous, traceId: resolveTraceId(claim), ...(executionId ? { executionId } : {}), ...(attestationId ? { attestationId } : {}), ...(incidentId ? { incidentId } : {}), ...(taskId ? { taskId } : {}) };
+      if (decision.approvalId) unsigned.approvalId = decision.approvalId;
+      const envelope = this.evidenceSigning
+        ? signEd25519Envelope(unsigned, this.evidenceSigning)
+        : { ...unsigned, keyId: profile.evidence.keyId, algorithm: "HMAC-SHA256" };
+      if (!this.evidenceSigning) envelope.signature = signHmac(envelope, secret);
       assertSchema("palo-agentic-evidence-envelope", envelope);
       const eventDigest = sha256(envelope);
       this.db.prepare("INSERT INTO evidence(event_id,event_digest,previous_event_digest,envelope_json,recorded_at) VALUES(?,?,?,?,?)").run(envelope.eventId, eventDigest, previous, JSON.stringify(envelope), envelope.recordedAt);
@@ -753,11 +1056,7 @@ export class GovernanceRuntime {
 
   verifyEvidence(envelope) {
     try { assertSchema("palo-agentic-evidence-envelope", envelope); } catch { return false; }
-    const secret = this.keys[envelope.keyId]; if (!secret) return false;
-    const unsigned = clone(envelope); delete unsigned.signature;
-    const expected = `hmac-sha256:${createHmac("sha256", secret).update(canonicalize(unsigned)).digest("hex")}`;
-    const actualBuffer = Buffer.from(envelope.signature); const expectedBuffer = Buffer.from(expected);
-    return actualBuffer.length === expectedBuffer.length && timingSafeEqual(actualBuffer, expectedBuffer);
+    return verifyEvidenceEnvelope(envelope, { hmacKeys: this.keys, publicKeys: this.evidencePublicKeys });
   }
 
   async verifyLedger() {
@@ -790,5 +1089,17 @@ export function loadKeysFromEnvironment() {
   const parsed = JSON.parse(process.env.PALO_HMAC_KEYS_JSON);
   if (!parsed || Array.isArray(parsed) || typeof parsed !== "object") throw new Error("PALO_HMAC_KEYS_JSON must be a keyId-to-secret object");
   for (const [keyId, secret] of Object.entries(parsed)) if (typeof secret !== "string" || Buffer.byteLength(secret) < 32) throw new Error(`${keyId} must contain at least 32 bytes of secret material`);
+  return parsed;
+}
+
+export function loadEvidenceSigningFromEnvironment() {
+  const signing = loadJsonObjectFromEnvironment("PALO_EVIDENCE_ED25519_JSON");
+  return Object.keys(signing).length ? signing : undefined;
+}
+
+export function loadJsonObjectFromEnvironment(name) {
+  if (!process.env[name]) return {};
+  const parsed = JSON.parse(process.env[name]);
+  if (!parsed || Array.isArray(parsed) || typeof parsed !== "object") throw new Error(`${name} must contain a JSON object`);
   return parsed;
 }

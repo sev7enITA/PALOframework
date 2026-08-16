@@ -9,6 +9,29 @@ and this project follows Semantic Versioning where practical.
 
 ## [Unreleased]
 
+### Added
+
+- Added PALO-AI v2.6 identity-bound Action Claim 1.3, durable approval/verification tasks, Effect Contract 1.1, RFC 8785/Ed25519 evidence verification, runtime guardrails and operational telemetry events.
+- Added OIDC/JWKS MCP resource-server authentication with issuer/audience/expiry/algorithm validation, RFC 9728 metadata, least-privilege scopes/roles, scope challenges and authenticated reviewer attribution.
+- Added an allowlisted OpenTelemetry span bridge and the dated August 2026 state-of-the-art radar covering primary sources, Eastern experimental projects and developer communities.
+- Added the version-pinned OWASP Top 10 for LLM Applications 2026 source artifact, schema-validated PALO/PALO-AM/PALO-AI crosswalk and source-backed governance reference.
+- Added a documentation-first OWASP 2026 analysis that separates direct, supporting and gap ratings from implementation effectiveness, compliance, certification and production authorization.
+- Integrated the OWASP 2026 lens into Guide, Assessment Path, Evidence Bundle, Case File and the read-only MCP Guide Agent without creating a new activation module; applicable profiles keep all ten risks in scope and retain OWASP evidence as draft pending human review.
+
+### Changed
+
+- Migrated the MCP reference server from the monolithic SDK 1.30 to split SDK 2.0 packages, with one dual-era factory for stateless `2026-07-28` and 2025 compatibility plus pinned-modern and header-consistency tests.
+- Raised the root Node.js engine baseline from 20 to 22 and patched the Hono Node adapter to a production-audit-clean version.
+- Updated the OWASP source registry entry with the 2026 v1.0 artifact boundary, provisional editorial status and a 30-day official-source reverification interval.
+- Made Documentation Library text search global across depth levels, so source-backed OWASP guidance is discoverable directly from the default Start view while the active All-depth state remains visible and accessible.
+- Reconciled the Platform Map public-web ledger with PALO Web v3.0.1 while preserving the independently versioned v3.0.0 semantic core.
+- Updated the Hostinger deployment runbook and added a verified `package:hostinger` command that produces a root-correct upload ZIP and SHA-256 sidecar.
+
+### Validation
+
+- Added crosswalk schema, source and control reference checks, route-count consistency, union-summary checks and pinned PDF SHA-256 validation.
+- Added horizontal browser coverage for the OWASP route across PALO Guide, Evidence Pack, Documentation Library and Platform Map, including mobile layouts and release-facing consistency checks.
+
 ## [3.0.1] - 2026-08-12
 
 ### Added

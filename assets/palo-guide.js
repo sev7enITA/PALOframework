@@ -222,6 +222,7 @@
     function becauseFor(input, integration) {
         var parts = [];
         parts.push(LABELS.objective[input.objective] + " is the immediate objective");
+        if (input.systemType === "generative" || input.systemType === "agentic") parts.push("the OWASP GenAI 2026 lens applies to the LLM boundary and open technical-control evidence");
         if (input.canAct === "yes" || input.canAct === "bounded" || input.systemType === "agentic") parts.push("the system can create effects or use tools");
         if (input.impact === "high") parts.push("the declared impact is consequential or hard to reverse");
         if (input.impact === "unknown") parts.push("material uncertainty remains");
@@ -238,28 +239,34 @@
             LABELS.canAct[input.canAct],
             LABELS.impact[input.impact]
         ];
+        if (input.systemType === "generative" || input.systemType === "agentic") signals.push("OWASP GenAI 2026 security profile required");
         if (input.product) signals.push("Target: " + input.product);
         return signals;
     }
 
     function handoffValues(input, route) {
         var links = [];
+        var llmApplicable = input.systemType === "generative" || input.systemType === "agentic";
+        if (llmApplicable) {
+            links.push({ href: "PALO_AssessmentPath.html", label: "Build the Evidence Pack" });
+            links.push({ href: "PALO_OWASPGenAI2026.html", label: "Scope OWASP GenAI 2026" });
+        }
+        if (input.systemType === "agentic" || input.canAct === "yes" || input.canAct === "bounded") {
+            links.push({ href: "PALO_AgenticGovernance.html#simulator", label: "Test authority in PALO-AM" });
+        }
+        if (input.objective === "integrate-product" || input.product) {
+            links.push({ href: "docs/palo-guide-agent-and-mcp.html", label: "Open the Guide and MCP manual" });
+        }
         route.forEach(function (phaseId) {
             var phase = PHASES[phaseId];
             links.push({ href: phase.href, label: phase.linkLabel });
         });
-        if (input.systemType === "agentic" || input.canAct === "yes" || input.canAct === "bounded") {
-            links.unshift({ href: "PALO_AgenticGovernance.html#simulator", label: "Test authority in PALO-AM" });
-        }
-        if (input.objective === "integrate-product" || input.product) {
-            links.unshift({ href: "docs/palo-guide-agent-and-mcp.html", label: "Open the Guide and MCP manual" });
-        }
         var seen = {};
         return links.filter(function (link) {
             if (seen[link.href]) return false;
             seen[link.href] = true;
             return true;
-        }).slice(0, 4);
+        }).slice(0, 5);
     }
 
     function infer(input) {

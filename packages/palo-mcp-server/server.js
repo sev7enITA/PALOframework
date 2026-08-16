@@ -1,4 +1,4 @@
-import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import { McpServer } from "@modelcontextprotocol/server";
 import * as z from "zod/v4";
 import { GovernanceRuntime } from "./core.js";
 import { paloGuideAgent } from "./guide-agent.js";
@@ -12,9 +12,12 @@ export function parseExposedTools(value) {
   return [...new Set(String(value || "").split(",").map((name) => name.trim()).filter(Boolean))];
 }
 
-export function createPaloMcpServer(runtime = new GovernanceRuntime(), { exposedTools } = {}) {
-  const server = new McpServer({ name: "palo-governance-server", version: "2.5.0", websiteUrl: "https://paloframework.org/PALO_AgenticGovernance.html" });
+export function createPaloMcpServer(runtime = new GovernanceRuntime(), { exposedTools, requestContext } = {}) {
+  const server = new McpServer({ name: "palo-governance-server", version: "2.6.0", websiteUrl: "https://paloframework.org/PALO_AgenticGovernance.html" });
   const allowed = exposedTools ? new Set(exposedTools) : null;
+  const verifiedActor = requestContext?.authInfo?.extra?.authMode === "oidc"
+    ? String(requestContext.authInfo.extra.subject || requestContext.authInfo.clientId)
+    : undefined;
   const guideToolNames = ["palo_explain_framework", "palo_infer_governance_route", "palo_plan_product_integration"];
   const registerTool = (name, definition, handler) => { if (!allowed || allowed.has(name)) server.registerTool(name, definition, handler); };
   registerTool("palo_explain_framework", {
@@ -35,6 +38,11 @@ export function createPaloMcpServer(runtime = new GovernanceRuntime(), { exposed
       currentState: z.enum(["idea", "pilot", "production", "incident", "review"]).optional(),
       signals: z.object({
         systemCanAct: z.boolean().optional(),
+        usesLlm: z.boolean().optional(),
+        retrievalOrMemory: z.boolean().optional(),
+        outputToDownstream: z.boolean().optional(),
+        adversarialTestingEstablished: z.boolean().optional(),
+        architectureSecurityTestingEstablished: z.boolean().optional(),
         regulatedOrPublic: z.boolean().optional(),
         highImpact: z.boolean().optional(),
         aiAssistedDevelopment: z.boolean().optional(),
@@ -66,19 +74,23 @@ export function createPaloMcpServer(runtime = new GovernanceRuntime(), { exposed
   registerTool("palo_register_executor", { description: "Register a versioned trusted-executor manifest. Executable handlers must be provisioned by the runtime operator.", inputSchema: { manifest: jsonObject } }, guarded(({ manifest }) => runtime.registerExecutor(manifest)));
   registerTool("palo_register_verifier", { description: "Register a versioned authoritative-verifier manifest. Verifier handlers must be provisioned by the runtime operator.", inputSchema: { manifest: jsonObject } }, guarded(({ manifest }) => runtime.registerVerifier(manifest)));
   registerTool("palo_verify_action_authority", { description: "Developer preview: normalize and evaluate an Action Claim through local profile data and draft OPA policy; not a production authorization decision.", inputSchema: { claim: jsonObject, approvalId: z.string().optional() } }, guarded(({ claim, approvalId }) => runtime.verifyAction(claim, approvalId)));
-  registerTool("palo_execute_governed_action", { description: "Execute an Action Claim 1.2 through a one-time capability, trusted executor and authoritative outcome verifier.", inputSchema: { claim: jsonObject, approvalId: z.string().optional(), executorId: z.string().min(1), verifierId: z.string().min(1), capabilityTtlSeconds: z.number().int().min(5).max(300).optional() } }, guarded(({ claim, approvalId, executorId, verifierId, capabilityTtlSeconds }) => runtime.executeGovernedAction(claim, { approvalId, executorId, verifierId, capabilityTtlSeconds })));
+  registerTool("palo_execute_governed_action", { description: "Execute an Action Claim 1.2 or identity-bound 1.3 through a one-time capability, trusted executor and authoritative outcome verifier.", inputSchema: { claim: jsonObject, approvalId: z.string().optional(), executorId: z.string().min(1), verifierId: z.string().min(1), capabilityTtlSeconds: z.number().int().min(5).max(300).optional() } }, guarded(({ claim, approvalId, executorId, verifierId, capabilityTtlSeconds }) => runtime.executeGovernedAction(claim, { approvalId, executorId, verifierId, capabilityTtlSeconds })));
   registerTool("palo_get_execution_status", { description: "Read the receipt, outcome attestation and incident state for one governed execution.", inputSchema: { executionId: z.string().min(1) } }, guarded(({ executionId }) => runtime.getExecution(executionId)));
   registerTool("palo_verify_outcome", { description: "Re-run authoritative outcome verification for an execution, normally after an inconclusive result.", inputSchema: { executionId: z.string().min(1), force: z.boolean().optional() } }, guarded(({ executionId, force }) => runtime.verifyOutcome(executionId, { force: Boolean(force) })));
-  registerTool("palo_request_approval", { description: "Create an expiring human approval bound to the exact Action Claim digest.", inputSchema: { claim: jsonObject, requestedBy: z.string().min(1), ttlSeconds: z.number().int().min(30).max(86400).optional() } }, guarded(({ claim, requestedBy, ttlSeconds }) => runtime.requestApproval(claim, undefined, requestedBy, ttlSeconds)));
+  registerTool("palo_request_approval", { description: "Create an expiring human approval bound to the exact Action Claim digest. On OIDC transports the verified subject replaces the caller-supplied label.", inputSchema: { claim: jsonObject, requestedBy: z.string().min(1), ttlSeconds: z.number().int().min(30).max(86400).optional() } }, guarded(({ claim, requestedBy, ttlSeconds }) => runtime.requestApproval(claim, undefined, verifiedActor || requestedBy, ttlSeconds)));
   registerTool("palo_get_approval_status", { description: "Read one approval state, including automatic expiry.", inputSchema: { approvalId: z.string().min(1) } }, guarded(({ approvalId }) => runtime.getApproval(approvalId)));
   registerTool("palo_list_approvals", { description: "List approval work items for Web and mobile review surfaces.", inputSchema: { status: z.enum(["pending", "approved", "denied", "cancelled", "expired", "all"]).optional() } }, guarded(({ status }) => runtime.listApprovals(status || "pending")));
-  registerTool("palo_resolve_approval", { description: "Prototype: resolve a pending approval once with a caller-supplied identity label and rationale; reviewer identity is not authenticated.", inputSchema: { approvalId: z.string().min(1), status: z.enum(["approved", "denied", "cancelled"]), resolvedBy: z.string().min(1), rationale: z.string().min(1).max(4000) } }, guarded(({ approvalId, status, resolvedBy, rationale }) => runtime.resolveApproval(approvalId, status, resolvedBy, rationale)));
+  registerTool("palo_resolve_approval", { description: "Resolve a pending approval once with rationale. OIDC deployments bind the decision to the verified reviewer subject.", inputSchema: { approvalId: z.string().min(1), status: z.enum(["approved", "denied", "cancelled"]), resolvedBy: z.string().min(1), rationale: z.string().min(1).max(4000) } }, guarded(({ approvalId, status, resolvedBy, rationale }) => runtime.resolveApproval(approvalId, status, verifiedActor || resolvedBy, rationale)));
+  registerTool("palo_get_assurance_task", { description: "Read one durable approval or outcome-verification task.", inputSchema: { taskId: z.string().min(1) } }, guarded(({ taskId }) => runtime.getTask(taskId)));
+  registerTool("palo_list_assurance_tasks", { description: "List durable assurance tasks by lifecycle state and type.", inputSchema: { status: z.enum(["queued", "input_required", "running", "completed", "failed", "cancelled", "expired", "all"]).optional(), taskType: z.enum(["approval", "verification", "all"]).optional(), limit: z.number().int().min(1).max(500).optional() } }, guarded(({ status, taskType, limit }) => runtime.listTasks({ status: status || "all", taskType: taskType || "all", limit: limit || 100 })));
+  registerTool("palo_process_due_tasks", { description: "Privileged runtime operation: expire approval work and process due authoritative verification tasks.", inputSchema: { limit: z.number().int().min(1).max(100).optional() } }, guarded(({ limit }) => runtime.processDueTasks({ limit: limit || 25 })));
+  registerTool("palo_get_operational_snapshot", { description: "Read a redacted operational snapshot of approvals, tasks, executions, incidents, guardrails and ledger integrity.", inputSchema: {} }, guarded(() => runtime.getOperationalSnapshot()));
   registerTool("palo_submit_evidence", { description: "Deprecated compatibility tool for explicitly trusted local callers. Governed execution generates receipt and outcome evidence internally.", inputSchema: { claim: jsonObject, decision: jsonObject, outcome: z.enum(["executed", "failed"]), payload: jsonObject.optional() } }, guarded(({ claim, decision, outcome, payload }) => runtime.recordEvidence({ claim, decision, outcome, payload })));
-  registerTool("palo_verify_evidence", { description: "Verify an evidence envelope HMAC using protected server-side key material.", inputSchema: { envelope: jsonObject } }, guarded(({ envelope }) => ({ valid: runtime.verifyEvidence(envelope), eventId: envelope.eventId })));
+  registerTool("palo_verify_evidence", { description: "Verify a legacy HMAC or RFC 8785/Ed25519 evidence envelope against configured trust material.", inputSchema: { envelope: jsonObject } }, guarded(({ envelope }) => ({ valid: runtime.verifyEvidence(envelope), eventId: envelope.eventId })));
   registerTool("palo_verify_ledger", { description: "Verify signatures and the complete append-only evidence hash chain.", inputSchema: {} }, guarded(() => runtime.verifyLedger()));
   registerTool("palo_list_incidents", { description: "List assurance incidents opened after mismatched or inconclusive outcomes.", inputSchema: { status: z.enum(["open", "acknowledged", "resolved", "all"]).optional() } }, guarded(({ status }) => runtime.listIncidents(status || "open")));
   registerTool("palo_get_incident", { description: "Read one assurance incident.", inputSchema: { incidentId: z.string().min(1) } }, guarded(({ incidentId }) => runtime.getIncident(incidentId)));
-  registerTool("palo_resolve_incident", { description: "Acknowledge or resolve an assurance incident; compensation remains a separately governed Action Claim.", inputSchema: { incidentId: z.string().min(1), status: z.enum(["acknowledged", "resolved"]), resolvedBy: z.string().min(1), resolution: z.string().min(1).max(4000) } }, guarded(({ incidentId, status, resolvedBy, resolution }) => runtime.resolveIncident(incidentId, status, resolvedBy, resolution)));
+  registerTool("palo_resolve_incident", { description: "Acknowledge or resolve an assurance incident; compensation remains a separately governed Action Claim. OIDC deployments bind the resolution to the verified reviewer subject.", inputSchema: { incidentId: z.string().min(1), status: z.enum(["acknowledged", "resolved"]), resolvedBy: z.string().min(1), resolution: z.string().min(1).max(4000) } }, guarded(({ incidentId, status, resolvedBy, resolution }) => runtime.resolveIncident(incidentId, status, verifiedActor || resolvedBy, resolution)));
   if (!allowed || guideToolNames.every((name) => allowed.has(name))) server.registerPrompt("palo_guide_agent", {
     title: "PALO governance guide agent",
     description: "Ground an assistant in PALO v3.0.1 and make route inference, evidence and product-integration boundaries explicit.",
@@ -99,6 +111,7 @@ export function createPaloMcpServer(runtime = new GovernanceRuntime(), { exposed
           "Show the input signals, concise because-statements, expected artifact, evidence class, authority boundary and unresolved questions.",
           "Ask the user to confirm or correct inferred context before any downstream product changes.",
           "For systems that can act, keep read-only guidance separate from Action Claims, policy decisions, governed execution and outcome verification.",
+          "For LLM, generative or agentic systems, show the OWASP GenAI 2026 profile, all ten in-scope risks, architecture priorities, open technical-control evidence and its human-review boundary.",
           "Never imply that an advisory gate is non-bypassable or that the developer-preview PALO-AI runtime is production-ready."
         ].join("\n")
       }

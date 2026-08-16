@@ -7,7 +7,7 @@
   "required": ["format", "schemaVersion", "claimId", "agentId", "caseId", "action", "requestedScopes", "externalNetwork", "delegation", "requestedAt", "expiresAt", "nonce", "idempotencyKey", "sequenceNumber"],
   "properties": {
     "format": { "const": "palo-agentic-action-claim" },
-    "schemaVersion": { "enum": ["1.1.0", "1.2.0"] },
+    "schemaVersion": { "enum": ["1.1.0", "1.2.0", "1.3.0"] },
     "claimId": { "type": "string", "pattern": "^claim-[a-f0-9-]{36}$" },
     "agentId": { "type": "string", "pattern": "^agent-[a-zA-Z0-9][a-zA-Z0-9-]{5,63}$" },
     "caseId": { "type": "string", "minLength": 1, "maxLength": 128 },
@@ -48,6 +48,74 @@
       },
       "additionalProperties": false
     },
+    "authorityContext": {
+      "type": "object",
+      "required": ["authorityContextId", "humanPrincipal", "workloadIdentity", "agentIdentity", "delegationChain"],
+      "properties": {
+        "authorityContextId": { "type": "string", "pattern": "^authority-[a-f0-9-]{36}$" },
+        "humanPrincipal": {
+          "type": "object",
+          "required": ["subject", "issuer", "authenticatedAt", "credentialDigest"],
+          "properties": {
+            "subject": { "type": "string", "minLength": 1, "maxLength": 512 },
+            "issuer": { "type": "string", "format": "uri", "maxLength": 1000 },
+            "authenticatedAt": { "type": "string", "format": "date-time" },
+            "credentialDigest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+            "proofReference": { "type": "string", "format": "uri", "maxLength": 2000 }
+          },
+          "additionalProperties": false
+        },
+        "workloadIdentity": {
+          "type": "object",
+          "required": ["subject", "issuer", "audience", "proofType", "credentialDigest"],
+          "properties": {
+            "subject": { "type": "string", "minLength": 1, "maxLength": 1000 },
+            "issuer": { "type": "string", "format": "uri", "maxLength": 1000 },
+            "audience": { "type": "string", "minLength": 1, "maxLength": 1000 },
+            "proofType": { "enum": ["mtls", "dpop", "http-message-signature", "spiffe-svid"] },
+            "credentialDigest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+            "proofReference": { "type": "string", "format": "uri", "maxLength": 2000 }
+          },
+          "additionalProperties": false
+        },
+        "agentIdentity": {
+          "type": "object",
+          "required": ["agentId", "instanceId"],
+          "properties": {
+            "agentId": { "type": "string", "pattern": "^agent-[a-zA-Z0-9][a-zA-Z0-9-]{5,63}$" },
+            "instanceId": { "type": "string", "minLength": 1, "maxLength": 256 }
+          },
+          "additionalProperties": false
+        },
+        "tenantId": { "type": "string", "minLength": 1, "maxLength": 128 },
+        "delegationChain": {
+          "type": "array",
+          "maxItems": 16,
+          "items": {
+            "type": "object",
+            "required": ["delegationId", "from", "to", "scopes", "issuedAt", "expiresAt"],
+            "properties": {
+              "delegationId": { "type": "string", "pattern": "^delegation-[a-f0-9-]{36}$" },
+              "from": { "type": "string", "minLength": 1, "maxLength": 1000 },
+              "to": { "type": "string", "minLength": 1, "maxLength": 1000 },
+              "scopes": {
+                "type": "object",
+                "required": ["read", "write"],
+                "properties": {
+                  "read": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+                  "write": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1 } }
+                },
+                "additionalProperties": false
+              },
+              "issuedAt": { "type": "string", "format": "date-time" },
+              "expiresAt": { "type": "string", "format": "date-time" }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
     "requestedAt": { "type": "string", "format": "date-time" },
     "expiresAt": { "type": "string", "format": "date-time" },
     "nonce": { "type": "string", "pattern": "^[a-zA-Z0-9_-]{16,128}$" },
@@ -58,8 +126,16 @@
   },
   "allOf": [
     {
+      "if": { "properties": { "schemaVersion": { "enum": ["1.1.0", "1.2.0"] } }, "required": ["schemaVersion"] },
+      "then": { "properties": { "authorityContext": false } }
+    },
+    {
       "if": { "properties": { "schemaVersion": { "const": "1.2.0" } }, "required": ["schemaVersion"] },
       "then": { "properties": { "effectContract": { "$ref": "palo-agentic-effect-contract.schema.json" } }, "required": ["effectContract"] }
+    },
+    {
+      "if": { "properties": { "schemaVersion": { "const": "1.3.0" } }, "required": ["schemaVersion"] },
+      "then": { "properties": { "effectContract": { "$ref": "palo-agentic-effect-contract.schema.json" }, "authorityContext": { "type": "object" } }, "required": ["effectContract", "authorityContext"] }
     }
   ],
   "additionalProperties": false

@@ -10,8 +10,11 @@ const decisionGates = readJson("data/decision-gates.json");
 const controlLibrary = readJson("data/control-library.json");
 const indicatorRegistry = readJson("data/kpi-kri-registry.json");
 const sourceRegistry = readJson("data/source-registry.json");
+const owaspGenAiCrosswalk = readJson("data/owasp-genai-2026-crosswalk.json");
 
 const stageOrder = ["frame", "classify", "assess", "control", "measure", "prove"];
+const owaspRiskIds = owaspGenAiCrosswalk.risks.map((risk) => risk.riskId);
+const baseOwaspPriorityIds = ["LLM01:2026", "LLM02:2026", "LLM04:2026", "LLM06:2026", "LLM07:2026", "LLM08:2026"];
 const stopWords = new Set(["a", "an", "and", "are", "as", "at", "be", "by", "for", "from", "how", "i", "in", "is", "it", "of", "on", "or", "the", "to", "we", "what", "with"]);
 
 function normalize(value) {
@@ -114,6 +117,57 @@ function classExplanation(value) {
   }[value];
 }
 
+function stableOwaspOrder(ids) {
+  return owaspRiskIds.filter((riskId) => ids.includes(riskId));
+}
+
+function buildOwaspGenAiProfile({ cleanUseCase, systemType, signals, combined }) {
+  const normalizedSystemType = normalize(systemType);
+  const clearLlmUseCase = /\b(llm|large language model|generative|genai|chatbot|chat assistant|multimodal model|foundation model|rag|retrieval augmented|embedding|vector search|prompt injection)\b/.test(normalize(cleanUseCase));
+  const applicable = Boolean(signals.usesLlm || /\b(generative|genai|llm|agentic)\b/.test(normalizedSystemType) || clearLlmUseCase);
+  if (!applicable) {
+    return {
+      applicable: false,
+      applicabilityReason: "No explicit LLM, generative, multimodal, or agentic model signal was detected. Generic AI use alone does not activate the OWASP LLM profile.",
+      authorityBoundary: "This exclusion is a routing hypothesis. A human reviewer must reopen the profile if an LLM or generative model is part of the architecture."
+    };
+  }
+
+  const agentic = /\b(agent|agentic|autonom|tool|workflow|delegat|action)\b/.test(combined) || Boolean(signals.systemCanAct);
+  const priorityRiskIds = baseOwaspPriorityIds.slice();
+  const targetedExtensions = [];
+  if (agentic) priorityRiskIds.push("LLM03:2026");
+  if (signals.retrievalOrMemory) {
+    priorityRiskIds.push("LLM05:2026", "LLM09:2026");
+    targetedExtensions.push("LLM09:2026");
+  }
+  if (signals.outputToDownstream) {
+    priorityRiskIds.push("LLM10:2026");
+    targetedExtensions.push("LLM10:2026");
+  }
+
+  return {
+    applicable: true,
+    sourceId: owaspGenAiCrosswalk.source.sourceId,
+    sourceVersion: owaspGenAiCrosswalk.source.version,
+    sourceStatus: owaspGenAiCrosswalk.source.editorialStatus,
+    inScopeRiskIds: owaspRiskIds.slice(),
+    priorityRiskIds: stableOwaspOrder(priorityRiskIds),
+    targetedExtensions: stableOwaspOrder(targetedExtensions),
+    routeFitSummary: {
+      palo: owaspGenAiCrosswalk.routes.find((route) => route.routeId === "palo").counts,
+      paloAm: owaspGenAiCrosswalk.routes.find((route) => route.routeId === "palo-am").counts,
+      paloAi: owaspGenAiCrosswalk.routes.find((route) => route.routeId === "palo-ai").counts,
+      union: { direct: owaspGenAiCrosswalk.summary.unionDirect, supporting: owaspGenAiCrosswalk.summary.unionSupporting }
+    },
+    referenceHref: "PALO_OWASPGenAI2026.html",
+    pairingGuidance: agentic
+      ? "Pair the LLM profile with the OWASP Agentic Top 10 and PALO-AM/PALO-AI. The Agentic Top 10 source is not present in this repository."
+      : "Use this profile for the model-as-component boundary and reassess it if tools, delegation, persistent memory, or autonomous action are introduced.",
+    authorityBoundary: "Human review required. All ten risks remain in scope; priority risks are architecture triage only. PALO does not establish implementation effectiveness, compliance, certification, OWASP endorsement, or production authorization."
+  };
+}
+
 export class PaloGuideAgent {
   explainFramework({ query, audience = "general", limit = 6 } = {}) {
     const cleanQuery = String(query || "").trim();
@@ -163,6 +217,7 @@ export class PaloGuideAgent {
     const scores = new Map(stageOrder.map((stageId) => [stageId, 0]));
     const reasons = new Map(stageOrder.map((stageId) => [stageId, []]));
     const combined = normalize([cleanUseCase, role, objectives, systemType].join(" "));
+    const owaspGenAi2026 = buildOwaspGenAiProfile({ cleanUseCase, systemType, signals, combined });
 
     addStageScore(scores, reasons, "frame", 18, "Every route starts with an explicit purpose, owner, affected people and operating boundary.");
     addStageScore(scores, reasons, "classify", 16, "The initial risk and obligation route must be recorded before controls are selected.");
@@ -193,6 +248,10 @@ export class PaloGuideAgent {
       addStageScore(scores, reasons, "frame", 20, "Uncertain scope should be resolved before downstream governance choices are treated as stable.");
       addStageScore(scores, reasons, "classify", 12, "Unknown applicability must remain an explicit open review question.");
     }
+    if (owaspGenAi2026.applicable) {
+      addStageScore(scores, reasons, "control", 24, "The OWASP GenAI 2026 lens requires owned model, retrieval, output-sink and authority-boundary safeguards, including external technical controls where PALO is supporting-only.");
+      addStageScore(scores, reasons, "prove", 26, "All ten OWASP LLM risks, architecture priorities, source pin, test status and unresolved LLM09 or LLM10 extensions must remain reviewable evidence.");
+    }
 
     const selected = stageOrder
       .map((stageId) => ({ stageId, score: scores.get(stageId) || 0 }))
@@ -200,11 +259,24 @@ export class PaloGuideAgent {
       .sort((left, right) => right.score - left.score || stageOrder.indexOf(left.stageId) - stageOrder.indexOf(right.stageId))
       .slice(0, 4)
       .sort((left, right) => stageOrder.indexOf(left.stageId) - stageOrder.indexOf(right.stageId));
-    if (!selected.some((item) => item.stageId === "prove") && (signals.systemCanAct || signals.needsEvidence || ["production", "incident", "review"].includes(currentState))) {
-      if (selected.length === 4) selected.pop();
-      selected.push({ stageId: "prove", score: scores.get("prove") || 18 });
-      selected.sort((left, right) => stageOrder.indexOf(left.stageId) - stageOrder.indexOf(right.stageId));
+    const protectedStages = new Set(owaspGenAi2026.applicable ? ["control", "prove"] : ["prove"]);
+    const ensureSelected = (stageId) => {
+      if (selected.some((item) => item.stageId === stageId)) return;
+      if (selected.length === 4) {
+        const removable = selected
+          .filter((item) => !protectedStages.has(item.stageId))
+          .sort((left, right) => left.score - right.score || stageOrder.indexOf(right.stageId) - stageOrder.indexOf(left.stageId))[0];
+        selected.splice(removable ? selected.indexOf(removable) : selected.length - 1, 1);
+      }
+      selected.push({ stageId, score: scores.get(stageId) || 18 });
+    };
+    if (owaspGenAi2026.applicable) {
+      ensureSelected("control");
+      ensureSelected("prove");
+    } else if (signals.systemCanAct || signals.needsEvidence || ["production", "incident", "review"].includes(currentState)) {
+      ensureSelected("prove");
     }
+    selected.sort((left, right) => stageOrder.indexOf(left.stageId) - stageOrder.indexOf(right.stageId));
 
     const actionImpact = signals.actionImpact || (signals.systemCanAct ? "reversible-write" : "guidance-only");
     const recommendedIntegrationClass = integrationClass({ systemCanAct: Boolean(signals.systemCanAct), actionImpact, currentState });
@@ -214,7 +286,7 @@ export class PaloGuideAgent {
       frameworkRelease: "3.0.1",
       semanticVersion: semanticSpine.semanticVersion,
       input: { useCase: cleanUseCase, role, objectives, systemType, currentState, signals: { ...signals, actionImpact } },
-      inferenceMethod: "Deterministic signal-to-phase rules over released PALO semantic, gate, control and indicator registries.",
+      inferenceMethod: "Deterministic signal-to-phase rules over released PALO semantic, gate, control and indicator registries, with the version-pinned OWASP GenAI 2026 crosswalk when applicable.",
       route: selected.map(({ stageId, score }, index) => ({
         position: index + 1,
         score,
@@ -226,10 +298,12 @@ export class PaloGuideAgent {
         explanation: classExplanation(recommendedIntegrationClass),
         nextTool: "palo_plan_product_integration"
       },
+      owaspGenAi2026,
       openQuestions: [
         !signals.accountableOwner ? "Who owns the case and can accept, condition, hold, redesign or stop it?" : null,
         signals.systemCanAct && !signals.humanReviewDefined ? "Which actions require human review, and can the reviewer actually pause or change the outcome?" : null,
         signals.highImpact && !signals.officialSourcesReviewed ? "Which current official sources establish applicability for this context?" : null,
+        owaspGenAi2026.applicable && (!signals.adversarialTestingEstablished || !signals.architectureSecurityTestingEstablished) ? "What adaptive adversarial, retrieval, output-sink and authority-boundary security testing is established, and where are the results retained?" : null,
         !signals.evidenceLocationDefined ? "Where will versioned evidence, exceptions and review decisions be retained?" : null
       ].filter(Boolean),
       authorityBoundary: "This route is an explainable starting hypothesis. Accountable people must validate applicability, controls, evidence and the decision to proceed.",

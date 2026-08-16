@@ -23,6 +23,10 @@
 		reverse_proxy palo-mcp:8788
 	}
 
+	handle /.well-known/oauth-protected-resource/mcp {
+		reverse_proxy palo-mcp:8788
+	}
+
 	handle /mcp {
 		reverse_proxy palo-mcp:8788
 	}
@@ -32,13 +36,17 @@
 		reverse_proxy palo-guide-mcp:8789
 	}
 
+	handle /.well-known/oauth-protected-resource/mcp-guide {
+		reverse_proxy palo-guide-mcp:8789
+	}
+
 	handle /mcp-guide {
 		rewrite * /mcp
 		reverse_proxy palo-guide-mcp:8789
 	}
 
 	@blockedGateway {
-		path /gateway/v1/agents/* /gateway/v1/policies/* /gateway/v1/executors/* /gateway/v1/verifiers/* /gateway/v1/approvals /gateway/v1/approvals/resolve /gateway/v1/incidents /gateway/v1/incidents/resolve /gateway/v1/evidence
+		path /gateway/v1/agents/* /gateway/v1/policies/* /gateway/v1/executors/* /gateway/v1/verifiers/* /gateway/v1/approvals /gateway/v1/approvals/resolve /gateway/v1/tasks /gateway/v1/tasks/* /gateway/v1/operations/* /gateway/v1/incidents /gateway/v1/incidents/resolve /gateway/v1/evidence
 	}
 	handle @blockedGateway {
 		respond "Not found" 404
