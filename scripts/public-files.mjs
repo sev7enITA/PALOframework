@@ -104,6 +104,7 @@ export const PUBLIC_FILES = [
   "docs/p1-case-file-and-migration.md",
   "docs/activation-freeze-2026-08.md",
   "docs/owasp-genai-llm-top-10-2026-security-crosswalk.md",
+  "docs/palo-repository-reading-guide.md",
   "docs/palo-v3-semantic-foundation.md",
   "docs/palo-guide-agent-and-mcp.md",
   "docs/palo-ai-n8n-alpha-test-report.md",

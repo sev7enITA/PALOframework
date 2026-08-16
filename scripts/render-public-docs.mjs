@@ -43,6 +43,7 @@ function documentCategory(file) {
 }
 
 const importantMetadata = {
+  "docs/palo-repository-reading-guide.md": { level: "start", audience: "executive governance technical builder", task: "understand integrate assure", product: "PALO Platform", status: "Current Guidance", evidenceClass: "canonical-definition", workspace: "public-catalog", prerequisite: "No specialist prerequisite", next: "Choose the role-based repository path" },
   "docs/palo-v3-semantic-foundation.md": { level: "reference", audience: "executive governance technical builder", task: "understand design assure", product: "PALO Core", status: "Canonical v3.0.0", evidenceClass: "canonical-definition", workspace: "public-catalog", prerequisite: "No specialist prerequisite", next: "Open the Semantic Inspector" },
   "docs/palo-ai-adoption-paths.md": { level: "start", audience: "technical builder governance", task: "understand design", product: "PALO-AI", status: "Developer Preview", prerequisite: "Choose an organizational role and objective", next: "Open the guided Start" },
   "docs/palo-ai-governance-integration-guide.md": { level: "guide", audience: "technical", task: "integrate", product: "PALO-AI", status: "Developer Preview", prerequisite: "One reversible tool and authority profile", next: "Configure the Governance Hub technical setup" },

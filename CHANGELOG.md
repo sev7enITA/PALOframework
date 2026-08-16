@@ -17,6 +17,7 @@ and this project follows Semantic Versioning where practical.
 - Added the version-pinned OWASP Top 10 for LLM Applications 2026 source artifact, schema-validated PALO/PALO-AM/PALO-AI crosswalk and source-backed governance reference.
 - Added a documentation-first OWASP 2026 analysis that separates direct, supporting and gap ratings from implementation effectiveness, compliance, certification and production authorization.
 - Integrated the OWASP 2026 lens into Guide, Assessment Path, Evidence Bundle, Case File and the read-only MCP Guide Agent without creating a new activation module; applicable profiles keep all ten risks in scope and retain OWASP evidence as draft pending human review.
+- Added a role-based repository reading guide that explains release tags, `main`, open pull requests, authoring files, generated `dist`, validation, contribution and authority boundaries.
 
 ### Changed
 
@@ -26,6 +27,7 @@ and this project follows Semantic Versioning where practical.
 - Made Documentation Library text search global across depth levels, so source-backed OWASP guidance is discoverable directly from the default Start view while the active All-depth state remains visible and accessible.
 - Reconciled the Platform Map public-web ledger with PALO Web v3.0.1 while preserving the independently versioned v3.0.0 semantic core.
 - Updated the Hostinger deployment runbook and added a verified `package:hostinger` command that produces a root-correct upload ZIP and SHA-256 sidecar.
+- Updated `SECURITY.md` for the PALO Web v3.0.x baseline and unreleased PALO-AI v2.6 boundary, and corrected the fork clone path in `CONTRIBUTING.md`.
 
 ### Validation
 

@@ -4,9 +4,11 @@
 
 | Version | Supported          |
 | ------- | ------------------ |
-| 2.5.x website and static tools | :white_check_mark: |
+| 3.0.x website and static tools | :white_check_mark: |
+| PALO-AI 2.6 working tree | :x: unreleased developer preview; non-production |
 | 2.5.0 PALO-AI full-cycle runtime and Governance Hub | :x: developer preview; non-production |
-| 2.4.x website and static tools | :white_check_mark: security fixes only |
+| 2.5.x website and static tools | :white_check_mark: security fixes only |
+| 2.4.x website and static tools | :x: superseded |
 | 2.4.1 PALO-AI developer preview runtime | :x: superseded; non-production |
 | 1.3.x   | :white_check_mark: |
 | 1.2.x   | :white_check_mark: |
@@ -17,15 +19,15 @@
 
 We take the security of PALO Framework seriously. If you believe you have found a security vulnerability, please report it to us as described below.
 
-## PALO-AI v2.5 developer-preview boundary
+## PALO-AI developer-preview boundary
 
-PALO-AI v2.5 runtime code, Governance Hub, remote MCP transport, approval flows, HMAC/SQLite evidence chain, governed-execution reference adapters, Vibe Gate metadata, and n8n/Dify examples are published for isolated developer evaluation. They are not supported for production authorization, consequential tool execution, compliance certification, or multi-tenant operation.
+PALO-AI v2.5 runtime code and the unreleased v2.6 working tree, Governance Hub, remote MCP transport, approval flows, evidence chain, governed-execution reference adapters, Vibe Gate metadata, and n8n/Dify examples are published for isolated developer evaluation. They are not supported for production authorization, consequential tool execution, compliance certification, or multi-tenant operation.
 
 Known preview limitations are documented in the public `PALO_AIProductionReadiness.html`, `PALO_AgenticCapabilityMatrix.html`, `docs/palo-ai-governance-integration-guide.md`, `packages/palo-mcp-server/README.md`, and `agentic/capability-matrix.json`. Internal assessment workpapers are intentionally not published. In particular:
 
 - the Governance Hub is an interactive mock-data prototype and does not connect directly to the Gateway;
 - the browser must never receive the shared preview bearer token; online Hub operation requires a backend-for-frontend, OIDC, tenant-aware RBAC/ABAC, redaction, and separation of duties;
-- Gateway and MCP authentication use coarse shared preview tokens rather than principal or workload identity;
+- the v2.5 baseline uses coarse shared preview tokens; the v2.6 working tree can validate OIDC/JWKS identity and scopes for remote MCP, while the REST Gateway still retains a separate coarse preview token;
 - environment/file-provided HMAC keys, SQLite WAL, in-process adapters, and single-instance recovery are reference mechanisms rather than production key custody or distributed durability;
 - PALO-to-OPA traffic is restricted to the internal Docker network in the reference deployment but is not mutually authenticated; production requires a threat-modelled policy plane, signed bundle promotion, evaluated-bundle attestation, and service identity appropriate to the deployment;
 - exactly-once behavior is not universally claimed, protected credentials may remain bypassable unless isolated behind the governed executor, and n8n/Dify integrations are not certified production connectors;

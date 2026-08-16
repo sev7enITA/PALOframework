@@ -304,6 +304,7 @@ The [Documentation Library](PALO_DocumentationLibrary.html) is the canonical web
 
 Primary framework documents and artifacts:
 
+- [How to read and use the PALO repository](docs/palo-repository-reading-guide.md)
 - [PALOFrameworkV2.pdf](PALOFrameworkV2.pdf)
 - [The PALO Framework v1 paper, Feb 2026](ThePALOFramework_%20A_Paradigm_for_Principled_AI_Lifecycle_OrchestrationInBusiness%20v1%20Feb%202026.pdf)
 - [PALO-AM Agentic Governance page](PALO_AgenticGovernance.html)

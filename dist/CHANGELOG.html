@@ -37,6 +37,7 @@ and this project follows Semantic Versioning where practical.</p>
 <li>Added the version-pinned OWASP Top 10 for LLM Applications 2026 source artifact, schema-validated PALO/PALO-AM/PALO-AI crosswalk and source-backed governance reference.</li>
 <li>Added a documentation-first OWASP 2026 analysis that separates direct, supporting and gap ratings from implementation effectiveness, compliance, certification and production authorization.</li>
 <li>Integrated the OWASP 2026 lens into Guide, Assessment Path, Evidence Bundle, Case File and the read-only MCP Guide Agent without creating a new activation module; applicable profiles keep all ten risks in scope and retain OWASP evidence as draft pending human review.</li>
+<li>Added a role-based repository reading guide that explains release tags, <code>main</code>, open pull requests, authoring files, generated <code>dist</code>, validation, contribution and authority boundaries.</li>
 </ul>
 <h3 id="changed">Changed<a class="palo-doc-anchor" href="#changed" aria-label="Link to Changed">#</a></h3><ul>
 <li>Migrated the MCP reference server from the monolithic SDK 1.30 to split SDK 2.0 packages, with one dual-era factory for stateless <code>2026-07-28</code> and 2025 compatibility plus pinned-modern and header-consistency tests.</li>
@@ -45,6 +46,7 @@ and this project follows Semantic Versioning where practical.</p>
 <li>Made Documentation Library text search global across depth levels, so source-backed OWASP guidance is discoverable directly from the default Start view while the active All-depth state remains visible and accessible.</li>
 <li>Reconciled the Platform Map public-web ledger with PALO Web v3.0.1 while preserving the independently versioned v3.0.0 semantic core.</li>
 <li>Updated the Hostinger deployment runbook and added a verified <code>package:hostinger</code> command that produces a root-correct upload ZIP and SHA-256 sidecar.</li>
+<li>Updated <code>SECURITY.md</code> for the PALO Web v3.0.x baseline and unreleased PALO-AI v2.6 boundary, and corrected the fork clone path in <code>CONTRIBUTING.md</code>.</li>
 </ul>
 <h3 id="validation">Validation<a class="palo-doc-anchor" href="#validation" aria-label="Link to Validation">#</a></h3><ul>
 <li>Added crosswalk schema, source and control reference checks, route-count consistency, union-summary checks and pinned PDF SHA-256 validation.</li>
