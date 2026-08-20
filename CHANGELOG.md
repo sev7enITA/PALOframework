@@ -21,6 +21,7 @@ and this project follows Semantic Versioning where practical.
 
 ### Changed
 
+- Added authorized public credit to Arshi Chadha, OWASP LLM09:2026 co-lead, for the focused technical review covering embedding inversion, retrieval-evasion testing and the LLM05/LLM09 ownership boundary; the credit is explicitly a personal contribution and does not imply OWASP review or endorsement.
 - Refined the LLM09 crosswalk following an interaction with the dedicated LLM09 group: added explicit embedding-inversion, retrieval-evasion, similarity-collision and threshold-straddling evidence requirements; clarified the LLM05/LLM09 vector-poisoning boundary and accountable owners; retained the existing Supporting/Supporting/Gap rating and non-elimination boundary.
 - Migrated the MCP reference server from the monolithic SDK 1.30 to split SDK 2.0 packages, with one dual-era factory for stateless `2026-07-28` and 2025 compatibility plus pinned-modern and header-consistency tests.
 - Raised the root Node.js engine baseline from 20 to 22 and patched the Hono Node adapter to a production-audit-clean version.

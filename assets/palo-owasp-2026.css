@@ -266,6 +266,15 @@
 .palo-owasp-limitations { padding: 66px 0; background: var(--owasp-paper); }
 .palo-owasp-limitations-grid { display: grid; grid-template-columns: minmax(280px, .7fr) minmax(0, 1.3fr); gap: 38px 80px; }
 .palo-owasp-limitations h2 { font-size: clamp(2rem, 3.5vw, 3.5rem); line-height: 1; letter-spacing: -.04em; }
+.palo-owasp-review-credit { margin: 0 0 28px; padding: 22px 24px; background: #fff; border-top: 4px solid var(--owasp-teal); box-shadow: 0 14px 34px rgba(15, 61, 76, .08); }
+.palo-owasp-review-credit p,
+.palo-owasp-review-credit h3,
+.palo-owasp-review-credit small { margin: 0; }
+.palo-owasp-review-credit > p:first-child { color: var(--owasp-cyan); font-size: .68rem; font-weight: 850; letter-spacing: .08em; text-transform: uppercase; }
+.palo-owasp-review-credit h3 { margin-top: 8px; color: var(--owasp-ink); font-size: 1.35rem; }
+.palo-owasp-review-credit span { display: block; margin-top: 4px; color: var(--owasp-teal); font-size: .8rem; font-weight: 800; }
+.palo-owasp-review-credit h3 + span + p { margin-top: 14px; color: #334e68; font-size: .9rem; line-height: 1.6; }
+.palo-owasp-review-credit small { display: block; margin-top: 14px; padding-top: 12px; color: #627d98; line-height: 1.5; border-top: 1px solid var(--owasp-line); }
 .palo-owasp-limitations ul { margin: 0; padding-left: 22px; color: #334e68; }
 .palo-owasp-limitations li { padding: 5px 0; }
 .palo-owasp-limitations li::marker { color: var(--owasp-gold); }

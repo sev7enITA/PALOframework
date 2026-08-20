@@ -238,6 +238,9 @@ async function validateP2Artifacts() {
   for (const [label, pattern] of [["embedding inversion", /embedding[- ]inversion|Vec2Text/i], ["zero-shot inversion", /ZSInvert|Zero2Text/i], ["adversarial-query retrieval evasion", /adversarial-query.*retrieval-evasion/i], ["similarity collision", /similarity-collision/i], ["LLM05 handoff", /LLM05.*persistent corpus corruption/i]]) {
     if (!pattern.test(llm09Evidence)) errors.push(`${owaspDataFile}: LLM09 must retain ${label} evidence and ownership language`);
   }
+  const owaspReview = owaspCrosswalk.technicalReview || {};
+  if (owaspReview.reviewer !== "Arshi Chadha" || !/LLM09:2026 co-lead/i.test(owaspReview.publicRole || "")) errors.push(`${owaspDataFile}: authorized LLM09 reviewer credit is missing or inaccurate`);
+  if (!/personal technical contribution/i.test(owaspReview.independenceBoundary || "") || !/does not imply OWASP review or endorsement/i.test(owaspReview.independenceBoundary || "")) errors.push(`${owaspDataFile}: reviewer credit must retain the personal-contribution and no-endorsement boundary`);
   const routeKeys = { palo: "palo", "palo-am": "paloAm", "palo-ai": "paloAi" };
   for (const route of owaspCrosswalk.routes || []) {
     const observed = { direct: 0, supporting: 0, gap: 0 };

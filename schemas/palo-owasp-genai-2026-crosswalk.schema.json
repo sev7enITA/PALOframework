@@ -24,6 +24,23 @@
     "analysisVersion": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
     "status": { "const": "source-backed-context" },
     "reviewedAt": { "type": "string", "format": "date" },
+    "technicalReview": {
+      "type": "object",
+      "required": ["reviewer", "publicRole", "scope", "creditAuthorizedAt", "independenceBoundary"],
+      "properties": {
+        "reviewer": { "type": "string", "minLength": 3 },
+        "publicRole": { "type": "string", "minLength": 10 },
+        "scope": {
+          "type": "array",
+          "minItems": 3,
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 10 }
+        },
+        "creditAuthorizedAt": { "type": "string", "format": "date" },
+        "independenceBoundary": { "type": "string", "minLength": 40 }
+      },
+      "additionalProperties": false
+    },
     "source": {
       "type": "object",
       "required": ["sourceId", "version", "artifact", "sha256", "officialProjectUrl", "editorialStatus"],

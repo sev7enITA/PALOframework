@@ -1,9 +1,20 @@
 {
   "format": "palo-owasp-genai-2026-crosswalk",
   "schemaVersion": "1.0.0",
-  "analysisVersion": "1.0.1",
+  "analysisVersion": "1.0.2",
   "status": "source-backed-context",
   "reviewedAt": "2026-08-20",
+  "technicalReview": {
+    "reviewer": "Arshi Chadha",
+    "publicRole": "OWASP LLM09:2026 co-lead",
+    "scope": [
+      "Embedding inversion evidence requirements",
+      "Adversarial-query retrieval-evasion, similarity-collision and threshold-straddling testing",
+      "LLM05 and LLM09 vector-poisoning ownership boundary"
+    ],
+    "creditAuthorizedAt": "2026-08-20",
+    "independenceBoundary": "Personal technical contribution to the PALO crosswalk; this credit does not imply OWASP review or endorsement."
+  },
   "source": {
     "sourceId": "src-owasp-llm-top10",
     "version": "2026-v1.0",

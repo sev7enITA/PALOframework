@@ -12,11 +12,15 @@ Use the [interactive crosswalk](../PALO_OWASPGenAI2026.html) for the complete ri
 - Artifact date: 4 August 2026.
 - Source review date: 13 August 2026.
 - Crosswalk technical review date: 20 August 2026.
+- Technical review contributor: Arshi Chadha, OWASP LLM09:2026 co-lead.
+- Review scope: embedding inversion, adversarial-query retrieval evasion, and the LLM05/LLM09 vector-poisoning ownership boundary.
 - SHA-256: `ef87993a4e50ae9d83b41ff7a3d3e6320a82dfa8d4ec6bf98d0ce264b2e6108e`.
 - Evidence class: source-backed context.
 - Authority status: informative security source, not a law, standard, certification or deployment authorization.
 
 The PDF revision history retains the text `[2026 release date]`, and the official project page did not expose a separately indexed 2026 download when reviewed. PALO therefore preserves this exact artifact as a provisional, version-pinned source and requires official-source reverification before external assurance or formal reliance.
+
+Public credit is recorded with the reviewer's permission. The focused review was a personal technical contribution to the PALO crosswalk; it does not mean that OWASP reviewed or endorsed this analysis.
 
 This mapping does not establish equivalence, implementation effectiveness, OWASP endorsement, compliance or certification.
 
@@ -129,4 +133,4 @@ The crosswalk is intentionally source-backed context. It has not been silently p
 
 ## Attribution and license
 
-The source report is published by the OWASP GenAI Security Project under Creative Commons Attribution-ShareAlike 4.0. Risk names and source-derived summaries are attributed to OWASP, and this crosswalk is shared under the same CC BY-SA 4.0 license. The PALO crosswalk is an independent analysis and does not imply OWASP endorsement. Consult the pinned report and the [official OWASP project page](https://genai.owasp.org/initiative/owasp-top-10-for-llm-and-genai/) for the source material and current status.
+The source report is published by the OWASP GenAI Security Project under Creative Commons Attribution-ShareAlike 4.0. Risk names and source-derived summaries are attributed to OWASP, and this crosswalk is shared under the same CC BY-SA 4.0 license. Arshi Chadha is credited, with permission, for a focused personal technical review of the LLM09 treatment; that credit does not convert the independent PALO analysis into an OWASP review or endorsement. Consult the pinned report and the [official OWASP project page](https://genai.owasp.org/initiative/owasp-top-10-for-llm-and-genai/) for the source material and current status.
