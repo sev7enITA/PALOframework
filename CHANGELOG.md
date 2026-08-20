@@ -21,6 +21,7 @@ and this project follows Semantic Versioning where practical.
 
 ### Changed
 
+- Refined the LLM09 crosswalk after external subject-matter review: added explicit embedding-inversion, retrieval-evasion, similarity-collision and threshold-straddling evidence requirements; clarified the LLM05/LLM09 vector-poisoning boundary and accountable owners; retained the existing Supporting/Supporting/Gap rating and non-elimination boundary.
 - Migrated the MCP reference server from the monolithic SDK 1.30 to split SDK 2.0 packages, with one dual-era factory for stateless `2026-07-28` and 2025 compatibility plus pinned-modern and header-consistency tests.
 - Raised the root Node.js engine baseline from 20 to 22 and patched the Hono Node adapter to a production-audit-clean version.
 - Updated the OWASP source registry entry with the 2026 v1.0 artifact boundary, provisional editorial status and a 30-day official-source reverification interval.
@@ -31,6 +32,7 @@ and this project follows Semantic Versioning where practical.
 
 ### Validation
 
+- Added validation assertions that keep the LLM09 inversion, adversarial-query and LLM05 ownership-handoff requirements present in the machine-readable crosswalk and public dossier.
 - Added crosswalk schema, source and control reference checks, route-count consistency, union-summary checks and pinned PDF SHA-256 validation.
 - Added horizontal browser coverage for the OWASP route across PALO Guide, Evidence Pack, Documentation Library and Platform Map, including mobile layouts and release-facing consistency checks.
 

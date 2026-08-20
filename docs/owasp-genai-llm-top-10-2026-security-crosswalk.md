@@ -10,7 +10,8 @@ Use the [interactive crosswalk](../PALO_OWASPGenAI2026.html) for the complete ri
 
 - Source: OWASP Top 10 for LLM Applications 2026, repository artifact `2026-v1.0`.
 - Artifact date: 4 August 2026.
-- Review date: 13 August 2026.
+- Source review date: 13 August 2026.
+- Crosswalk technical review date: 20 August 2026.
 - SHA-256: `ef87993a4e50ae9d83b41ff7a3d3e6320a82dfa8d4ec6bf98d0ce264b2e6108e`.
 - Evidence class: source-backed context.
 - Authority status: informative security source, not a law, standard, certification or deployment authorization.
@@ -43,18 +44,28 @@ The ratings describe design fit. They do not show whether a safeguard is impleme
 | LLM02 Sensitive Information Disclosure | Direct | Supporting | Supporting | Govern the data surface, provenance, incidents and evidence. Add retrieval-time authorization, DLP, tenant isolation and trace redaction. |
 | LLM03 Excessive Agency | Direct | Direct | Direct | Strongest fit: bind identity, authority, minimum tools, user context, approval, one-time execution and outcome evidence. The production path must be unavoidable. |
 | LLM04 Supply Chain | Direct | Supporting | Supporting | Use supplier due diligence and change gates. Add AIBOM or ML-BOM, immutable pins, signatures, vulnerability management and connector attestation. |
-| LLM05 Data and Model Poisoning | Direct | Supporting | Gap | Govern lineage, change, tests, incidents and rollback. Add pipeline integrity, poisoning and backdoor detection, signed artifacts and controlled feedback loops. |
+| LLM05 Data and Model Poisoning | Direct | Supporting | Gap | Govern lineage, change, tests, incidents and rollback. Add pipeline integrity, persistent source, chunk and embedding-model poisoning detection, signed artifacts and controlled feedback loops. |
 | LLM06 Unbounded Consumption | Supporting | Direct | Supporting | Apply PALO-AM circuit breakers and bounded action space. Add token, action, time and cost caps, queue limits, loop detection, rate limiting and infrastructure hardening. |
 | LLM07 Misinformation | Direct | Direct | Direct | Use source-backed decisions, claim-check-act, human review and post-state verification. A verified effect does not prove that a claim is true. |
 | LLM08 Hidden Context Exposure | Supporting | Direct | Direct | Keep secrets and authorization outside the model context. Use deterministic controls and test context extraction. |
-| LLM09 Vector and Embedding Weaknesses | Supporting | Supporting | Gap | Targeted extension area: add pre-retrieval chunk authorization, trust-zone-separated indexes, embedding provenance, deletion reconciliation and anomaly detection. |
+| LLM09 Vector and Embedding Weaknesses | Supporting | Supporting | Gap | Targeted extension area: add pre-retrieval chunk authorization, trust-zone-separated indexes, embedding provenance, inversion testing, retrieval-evasion and similarity-collision testing, deletion reconciliation and anomaly detection. |
 | LLM10 Improper Output Handling | Supporting | Supporting | Supporting | Add a sink-safety extension for context-aware encoding, prepared queries, CSP, terminal sanitization, outbound-fetch restrictions and generated-code security gates. |
+
+### LLM05 / LLM09 boundary and ownership
+
+Vector-store poisoning is routed by the mechanism that makes the attack succeed, not merely by the component name:
+
+- **LLM05 owns persistent integrity corruption:** malicious or contaminated source documents, chunks, training data or embedding-model inputs introduced through ingestion, retraining or promotion. The accountable roles are the Data or Model Owner and MLOps Owner.
+- **LLM09 owns embedding-geometry exploitation:** crafted content or queries that manipulate similarity ranking, retrieval thresholds, semantic-cache collisions, cross-tenant inference, membership inference or embedding inversion. The accountable roles are the Vector Store Owner and Product Security.
+- **Joint cases require both records:** if a poisoned chunk is persistently admitted and then geometrically optimized to dominate retrieval, LLM05 owns admission, provenance, removal and rollback while LLM09 owns ranking behavior, retrieval testing and vector-layer containment. Neither owner may close the other record by reference alone.
+
+For LLM09, a static chunk-ACL test is necessary but insufficient. Minimum technical evidence must also include a quantified embedding-inversion exercise using Vec2Text, ZSInvert, Zero2Text or a threat-model-equivalent technique; adversarial-query retrieval-evasion, similarity-collision and threshold-straddling tests; and a vector-layer poisoning or ranking-manipulation test. Exported vectors and vector backups are handled at the same sensitivity tier as their source data unless a reviewed threat model and test evidence support a narrower treatment.
 
 ## What PALO can and cannot resolve
 
 PALO can make each risk accountable by assigning ownership, routing it through lifecycle gates, connecting controls to tests and evidence, recording residual risk and reopening the case when material conditions change. PALO-AM materially strengthens the architecture when an LLM selects tools, carries memory or acts across systems. PALO-AI can make selected action-path controls executable and can distinguish an allowed action from a verified post-state.
 
-PALO cannot make an LLM immune to prompt injection, prove factual truth, secure a vector database without vector-specific controls, sanitize every downstream output sink, attest an entire AI supply chain, or make the current PALO-AI Developer Preview production-ready. Those responsibilities remain with the system owner and the relevant security, data, platform and supplier-control functions.
+PALO cannot make an LLM immune to prompt injection, prove factual truth, secure a vector database without vector-specific controls, demonstrate resistance to embedding inversion or retrieval evasion without adversarial test evidence, sanitize every downstream output sink, attest an entire AI supply chain, or make the current PALO-AI Developer Preview production-ready. Those responsibilities remain with the system owner and the relevant security, data, platform and supplier-control functions.
 
 ## Applicability fork
 

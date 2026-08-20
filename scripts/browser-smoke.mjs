@@ -564,6 +564,8 @@ try {
   await page.goto(`${baseUrl}/PALO_OWASPGenAI2026.html`, { waitUntil: "domcontentloaded" });
   if (await page.locator(".palo-owasp-matrix tbody tr[data-coverage]").count() !== 10 || await page.locator(".palo-owasp-dossier-list details").count() !== 10) failures.push("OWASP 2026 crosswalk: expected ten matrix rows and ten risk dossiers");
   if (!await page.locator('a[href="data/owasp-genai-2026-crosswalk.json"]').count() || !await page.locator('a[href="assets/OWASP-GenAI-LLM-Top-10-2026-v1.0.pdf"]').count()) failures.push("OWASP 2026 crosswalk: source PDF or machine-readable crosswalk link is missing");
+  const llm09Text = await page.locator("#llm09").innerText();
+  if (!/Vec2Text/i.test(llm09Text) || !/ZSInvert/i.test(llm09Text) || !/retrieval-evasion/i.test(llm09Text) || !/similarity-collision/i.test(llm09Text) || !/LLM05/i.test(llm09Text)) failures.push("OWASP 2026 crosswalk: LLM09 dossier omits inversion, adversarial-query or LLM05 boundary evidence");
   await page.locator('[data-owasp-filter="extension"]').click();
   if (await page.locator('.palo-owasp-matrix tbody tr[data-coverage="extension"]:visible').count() !== 2 || await page.locator('.palo-owasp-matrix tbody tr[data-coverage="direct"]:visible').count() !== 0) failures.push("OWASP 2026 crosswalk: targeted-extension filter did not isolate LLM09 and LLM10");
 

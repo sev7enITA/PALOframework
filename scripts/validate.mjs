@@ -230,6 +230,14 @@ async function validateP2Artifacts() {
   const expectedOwaspRiskIds = new Set(Array.from({ length: 10 }, (_, index) => `LLM${String(index + 1).padStart(2, "0")}:2026`));
   if (sorted(owaspRiskIds) !== sorted(expectedOwaspRiskIds)) errors.push(`${owaspDataFile}: risks must contain each LLM01:2026 through LLM10:2026 exactly once`);
   for (const risk of owaspCrosswalk.risks || []) checkRefs(owaspDataFile, risk.riskId, risk.controlIds, controlIds, "control");
+  const llm05 = (owaspCrosswalk.risks || []).find((risk) => risk.riskId === "LLM05:2026");
+  const llm09 = (owaspCrosswalk.risks || []).find((risk) => risk.riskId === "LLM09:2026");
+  const llm05Boundary = `${llm05?.paloResponse || ""} ${(llm05?.minimumEvidence || []).join(" ")}`;
+  const llm09Evidence = `${llm09?.paloResponse || ""} ${(llm09?.externalSafeguards || []).join(" ")} ${(llm09?.minimumEvidence || []).join(" ")}`;
+  if (!/LLM05 owns persistent corruption/i.test(llm05Boundary) || !/persistent corpus poisoning/i.test(llm05Boundary)) errors.push(`${owaspDataFile}: LLM05 must retain the persistent vector-poisoning ownership boundary and evidence`);
+  for (const [label, pattern] of [["embedding inversion", /embedding[- ]inversion|Vec2Text/i], ["zero-shot inversion", /ZSInvert|Zero2Text/i], ["adversarial-query retrieval evasion", /adversarial-query.*retrieval-evasion/i], ["similarity collision", /similarity-collision/i], ["LLM05 handoff", /LLM05.*persistent corpus corruption/i]]) {
+    if (!pattern.test(llm09Evidence)) errors.push(`${owaspDataFile}: LLM09 must retain ${label} evidence and ownership language`);
+  }
   const routeKeys = { palo: "palo", "palo-am": "paloAm", "palo-ai": "paloAi" };
   for (const route of owaspCrosswalk.routes || []) {
     const observed = { direct: 0, supporting: 0, gap: 0 };

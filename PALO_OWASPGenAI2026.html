@@ -50,7 +50,7 @@
                 </nav>
                 <div class="palo-owasp-hero-grid">
                     <div class="palo-owasp-hero-copy">
-                        <p class="palo-eyebrow">Documentation reference | source-backed crosswalk | reviewed 13 August 2026</p>
+                        <p class="palo-eyebrow">Documentation reference | source-backed crosswalk | technically reviewed 20 August 2026</p>
                         <h1 id="page-title">OWASP GenAI / LLM Top 10 2026 <span>x PALO</span></h1>
                         <p class="palo-owasp-hero-lead">PALO is a governance and assurance system; OWASP is a security risk catalog. The relationship is complementary, not equivalent. This page is a documentation reference - not a new PALO module or activation route.</p>
                         <p class="palo-owasp-verdict"><span>Overall verdict</span><strong>Strong governance fit. Incomplete technical resolution.</strong></p>
@@ -231,9 +231,9 @@
                     <details id="llm05" open>
                         <summary><span><small>LLM05</small> Data and Model Poisoning</span><span class="palo-owasp-dossier-verdict">Govern integrity; technical gap in PALO-AI</span></summary>
                         <div class="palo-owasp-dossier-body">
-                            <div><h3>PALO contribution</h3><p>Maintain lineage, change control, adversarial test expectations, accountable release decisions and rollback governance.</p></div>
+                            <div><h3>PALO contribution</h3><p>Maintain lineage, change control, adversarial test expectations, accountable release decisions and rollback governance. LLM05 owns persistent corruption of source data, chunks, training inputs or the embedding model; the Data or Model Owner and MLOps Owner remain accountable.</p></div>
                             <div><h3>External safeguards required</h3><p>Pipeline integrity, poisoning and backdoor detection, signed artifacts, sandboxing and monitored feedback loops.</p></div>
-                            <div><h3>Minimum evidence</h3><p>Dataset and model lineage, artifact signatures, adversarial results, pipeline attestations, monitored feedback records and tested rollback decision.</p></div>
+                            <div><h3>Minimum evidence</h3><p>Dataset and model lineage, artifact signatures, persistent corpus-poisoning and retrieval-impact results, pipeline attestations, monitored feedback records and a tested rollback decision.</p></div>
                         </div>
                     </details>
                     <details id="llm06" open>
@@ -263,9 +263,9 @@
                     <details id="llm09" class="is-extension" open>
                         <summary><span><small>LLM09</small> Vector and Embedding Weaknesses</span><span class="palo-owasp-dossier-verdict is-gap">Current targeted gap</span></summary>
                         <div class="palo-owasp-dossier-body">
-                            <div><h3>PALO contribution</h3><p>PALO can assign ownership, classify data, require controls, record evidence and decide residual risk, but does not currently implement the main retrieval mechanism.</p></div>
-                            <div><h3>External safeguards required</h3><p>Pre-retrieval chunk authorization, trust-zone-separated indexes, embedding provenance, deletion reconciliation, anomaly detection and immutable retrieval logs.</p></div>
-                            <div><h3>Minimum evidence</h3><p>Index topology, chunk-ACL test, provenance record, deletion-reconciliation result, anomaly rule and tamper-evident retrieval trace.</p></div>
+                            <div><h3>PALO contribution and ownership</h3><p>PALO can assign ownership, classify data, require controls, record evidence and decide residual risk, but does not implement the retrieval mechanism. LLM09 and the Vector Store Owner own attacks that depend on embedding geometry, similarity ranking, collisions, membership inference or inversion. Persistent source or chunk corruption is handed to the LLM05 Data or Model Owner.</p></div>
+                            <div><h3>External safeguards required</h3><p>Pre-retrieval chunk authorization, trust-zone-separated indexes, embedding provenance and lifecycle controls, inversion resistance assessment, adversarial-query retrieval-evasion and similarity-collision testing, deletion reconciliation, ranking anomaly detection and immutable retrieval logs. Treat exported vectors and backups at source-data sensitivity.</p></div>
+                            <div><h3>Minimum evidence</h3><p>Index topology; tenant and chunk-ACL tests; provenance and deletion reconciliation; quantified Vec2Text, ZSInvert, Zero2Text or threat-model-equivalent inversion results; retrieval-evasion, collision and threshold-straddling tests; vector-layer poisoning and ranking-manipulation results; tamper-evident trace; residual-risk decision.</p></div>
                         </div>
                     </details>
                     <details id="llm10" class="is-extension" open>

@@ -1,9 +1,9 @@
 {
   "format": "palo-owasp-genai-2026-crosswalk",
   "schemaVersion": "1.0.0",
-  "analysisVersion": "1.0.0",
+  "analysisVersion": "1.0.1",
   "status": "source-backed-context",
-  "reviewedAt": "2026-08-13",
+  "reviewedAt": "2026-08-20",
   "source": {
     "sourceId": "src-owasp-llm-top10",
     "version": "2026-v1.0",
@@ -150,11 +150,12 @@
       "title": "Data and Model Poisoning",
       "routeFit": { "palo": "direct", "paloAm": "supporting", "paloAi": "gap" },
       "verdict": "PALO can govern integrity decisions, but current PALO-AI does not detect poisoning.",
-      "paloResponse": "PALO provides provenance, change gates, adversarial testing, incident response and rollback governance. PALO-AM adds memory lifecycle and authority boundaries, but poisoning detection and model-pipeline integrity remain external.",
+      "paloResponse": "PALO provides provenance, change gates, adversarial testing, incident response and rollback governance. PALO-AM adds memory lifecycle and authority boundaries, but poisoning detection and model-pipeline integrity remain external. Boundary: LLM05 owns persistent corruption of source, chunk, training or embedding-model inputs; LLM09 owns attacks that require embedding geometry, similarity ranking, collision, inference or inversion.",
       "controlIds": ["ctrl-data-provenance", "ctrl-adversarial-testing", "ctrl-change-gate", "ctrl-incident-response"],
       "externalSafeguards": [
         "Dataset and model lineage with signatures",
-        "Ingestion validation and trust boundaries",
+        "Ingestion validation, source authentication and trust boundaries",
+        "Persistent RAG corpus and embedding-model poisoning detection",
         "Poisoning, drift and trigger-backdoor detection",
         "Sandboxing and network isolation",
         "Controlled feedback and retraining loops"
@@ -162,6 +163,7 @@
       "minimumEvidence": [
         "Dataset and model lineage",
         "Integrity and anomaly test results",
+        "Persistent corpus poisoning and retrieval-impact test",
         "Backdoor trigger evaluation",
         "Rollback and forensic exercise"
       ],
@@ -240,23 +242,28 @@
       "title": "Vector and Embedding Weaknesses",
       "routeFit": { "palo": "supporting", "paloAm": "supporting", "paloAi": "gap" },
       "verdict": "This is a targeted PALO extension area; current governance controls do not secure the vector layer by themselves.",
-      "paloResponse": "PALO data provenance, adversarial testing and incident response provide the governance shell. PALO-AM can restrict who and what may query tools, but current PALO-AI has no vector-store enforcement or embedding lifecycle control.",
+      "paloResponse": "PALO data provenance, adversarial testing and incident response provide the governance shell. PALO-AM can restrict who and what may query tools, but current PALO-AI has no vector-store enforcement or embedding lifecycle control. Boundary: LLM09 owns attacks that depend on embedding geometry, similarity ranking, threshold collision, membership inference or inversion; persistent source or chunk corruption is handed to the LLM05 owner.",
       "controlIds": ["ctrl-data-provenance", "ctrl-adversarial-testing", "ctrl-incident-response", "ctrl-agentic-authority"],
       "externalSafeguards": [
         "Pre-retrieval document and chunk authorization",
         "Trust-zone-separated indexes",
         "Embedding provenance and model-version tracking",
-        "Deletion reconciliation and encrypted backups",
-        "Ingest and retrieval anomaly detection"
+        "Deletion reconciliation and encrypted backups treated at source-data sensitivity",
+        "Embedding inversion resistance assessment and source-leak incident classification",
+        "Adversarial-query, similarity-collision and threshold-evasion testing",
+        "Ingest, retrieval and ranking anomaly detection"
       ],
       "minimumEvidence": [
         "Index topology and trust-zone record",
-        "Chunk-level authorization test",
-        "Embedding deletion reconciliation",
-        "Poisoning and inversion test results"
+        "Pre-retrieval chunk-level authorization and tenant-isolation test",
+        "Embedding provenance and deletion-reconciliation result",
+        "Quantified embedding-inversion test using Vec2Text, ZSInvert, Zero2Text or a threat-model-equivalent technique",
+        "Adversarial-query retrieval-evasion, similarity-collision and threshold-straddling test results",
+        "Vector-layer poisoning and ranking-manipulation test with an explicit LLM05 handoff for persistent corpus corruption",
+        "Tamper-evident retrieval trace and residual-risk decision"
       ],
-      "accountableOwner": "Data Platform and Vector Store Owner",
-      "reopenTriggers": ["New index or embedding model", "Tenant topology change", "Corpus ingestion change", "Vector leak or retrieval anomaly"]
+      "accountableOwner": "Vector Store Owner and Product Security",
+      "reopenTriggers": ["New index or embedding model", "Tenant topology change", "Corpus ingestion change", "Vector leak, inversion result or retrieval anomaly"]
     },
     {
       "riskId": "LLM10:2026",
@@ -286,7 +293,7 @@
     "sourceClass": "informative-security-source",
     "accountableOwner": "Product Security or AI Governance",
     "reviewIntervalDays": 90,
-    "nextReviewAt": "2026-11-11",
+    "nextReviewAt": "2026-11-18",
     "applicabilityRule": "Use this LLM Top 10 when the model is an application component. Pair it with the OWASP Agentic Top 10 and apply PALO-AM and PALO-AI when tools, persistent memory, multi-step planning or autonomous action are present.",
     "requiredRiskRecord": ["applicability", "owner", "implemented control", "test", "evidence link", "residual risk", "decision", "reopen trigger"],
     "reopenTriggers": ["OWASP source revision", "Material architecture, tool, memory or data-scope change", "Material incident", "Failed critical adversarial test"]
