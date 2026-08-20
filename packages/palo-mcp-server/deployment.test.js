@@ -35,6 +35,9 @@ test("public Caddy routes do not expose approval enumeration", async () => {
   assert.ok(!publicPaths.includes("/gateway/v1/incidents"), "incident enumeration must not be public");
   assert.ok(blockedPaths.includes("/gateway/v1/incidents"), "incident enumeration is explicitly rejected");
   assert.ok(blockedPaths.includes("/gateway/v1/incidents/resolve"), "incident mutation is not exposed by the public reverse proxy");
+  assert.ok(blockedPaths.includes("/gateway/v1/tasks"), "task enumeration is not exposed by the public reverse proxy");
+  assert.ok(blockedPaths.includes("/gateway/v1/tasks/*"), "task inspection and processing are not exposed by the public reverse proxy");
+  assert.ok(blockedPaths.includes("/gateway/v1/operations/*"), "operational snapshots are not exposed by the public reverse proxy");
 });
 
 test("guide MCP has a separate authenticated route and least-privilege service", async () => {
@@ -57,7 +60,11 @@ test("guide MCP has a separate authenticated route and least-privilege service",
     assert.doesNotMatch(service, /palo_verify_action_authority|palo_execute_governed_action|palo_request_approval/);
   }
   assert.match(caddy, /handle \/mcp-guide[\s\S]*?rewrite \* \/mcp[\s\S]*?reverse_proxy palo-guide-mcp:8789/);
+  assert.match(caddy, /handle \/\.well-known\/oauth-protected-resource\/mcp[\s\S]*?reverse_proxy palo-mcp:8788/);
+  assert.match(caddy, /handle \/\.well-known\/oauth-protected-resource\/mcp-guide[\s\S]*?reverse_proxy palo-guide-mcp:8789/);
   assert.match(nginx, /location = \/mcp-guide[\s\S]*?proxy_pass http:\/\/127\.0\.0\.1:18879\/mcp/);
+  assert.match(nginx, /location = \/\.well-known\/oauth-protected-resource\/mcp[\s\S]*?proxy_pass http:\/\/127\.0\.0\.1:18878/);
+  assert.match(nginx, /location = \/\.well-known\/oauth-protected-resource\/mcp-guide[\s\S]*?proxy_pass http:\/\/127\.0\.0\.1:18879/);
   assert.match(dockerfile, /COPY --chown=node:node data \.\/data/);
   assert.match(setupSecrets, /secrets\/guide-mcp-token/);
   assert.match(smoke, /mcp-guide-health/);

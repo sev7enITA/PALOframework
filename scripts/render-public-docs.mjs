@@ -36,18 +36,20 @@ function documentCategory(file) {
   if (file.startsWith("templates/") || file.startsWith("examples/")) return "Templates and examples";
   if (file.startsWith("docs/community/") || file === "CONTRIBUTING.md") return "Community and contribution";
   if (file.includes("governance-hub")) return "Governance Hub and UX";
-  if (/security|production-readiness/i.test(file) || file === "SECURITY.md") return "Security and production readiness";
+  if (/security|production-readiness|state-of-the-art|radar/i.test(file) || file === "SECURITY.md") return "Security and production readiness";
   if (/deployment|cloud|vps|publication-status/i.test(file)) return "Operations and deployment";
   if (/architecture|integration|connector|module-contract|full-cycle|n8n/i.test(file)) return "Architecture and integration";
   return "Start and adoption";
 }
 
 const importantMetadata = {
+  "docs/palo-repository-reading-guide.md": { level: "start", audience: "executive governance technical builder", task: "understand integrate assure", product: "PALO Platform", status: "Current Guidance", evidenceClass: "canonical-definition", workspace: "public-catalog", prerequisite: "No specialist prerequisite", next: "Choose the role-based repository path" },
   "docs/palo-v3-semantic-foundation.md": { level: "reference", audience: "executive governance technical builder", task: "understand design assure", product: "PALO Core", status: "Canonical v3.0.0", evidenceClass: "canonical-definition", workspace: "public-catalog", prerequisite: "No specialist prerequisite", next: "Open the Semantic Inspector" },
   "docs/palo-ai-adoption-paths.md": { level: "start", audience: "technical builder governance", task: "understand design", product: "PALO-AI", status: "Developer Preview", prerequisite: "Choose an organizational role and objective", next: "Open the guided Start" },
   "docs/palo-ai-governance-integration-guide.md": { level: "guide", audience: "technical", task: "integrate", product: "PALO-AI", status: "Developer Preview", prerequisite: "One reversible tool and authority profile", next: "Configure the Governance Hub technical setup" },
   "docs/palo-ai-n8n-governance-control-plane.md": { level: "guide", audience: "technical builder", task: "integrate design", product: "PALO-AI", status: "Developer Preview", prerequisite: "Self-hosted n8n evaluation canvas", next: "Run the governed-action demo" },
   "docs/palo-ai-full-cycle-assurance.md": { level: "reference", audience: "technical governance", task: "assure design", product: "PALO-AI", status: "Developer Preview", prerequisite: "Action Claim and Effect Contract concepts", next: "Inspect the Capability Matrix" },
+  "docs/palo-ai-state-of-the-art-radar-2026-08.md": { level: "reference", audience: "executive governance technical", task: "understand assure design", product: "PALO-AI", status: "Dated technology radar", evidenceClass: "source-backed-context", workspace: "assurance-review", prerequisite: "Current PALO-AI architecture and dependency inventory", next: "Review Production Readiness" },
   "docs/palo-ai-governance-hub-user-guide.md": { level: "start", audience: "executive governance technical builder", task: "understand design", product: "PALO-AI", status: "Interactive Prototype", prerequisite: "No technical prerequisite", next: "Open the Governance Hub" },
   "docs/palo-ai-governance-hub-product-spec.md": { level: "reference", audience: "technical governance", task: "design assure", product: "PALO-AI", status: "Prototype Specification", prerequisite: "Read the Governance Hub user guide", next: "Review the workflow reference" },
   "docs/palo-ai-governance-hub-workflows.md": { level: "guide", audience: "technical governance", task: "design integrate", product: "PALO-AI", status: "Prototype Workflow", prerequisite: "Governance Hub product model", next: "Test the eight-step builder" },
@@ -55,7 +57,8 @@ const importantMetadata = {
   "docs/palo-ai-cloud-reference-architecture.md": { level: "reference", audience: "technical governance", task: "deploy design", product: "PALO-AI", status: "Target Architecture", prerequisite: "Threat model and deployment owner", next: "Review Production Readiness" },
   "docs/palo-ai-vps-deployment.md": { level: "guide", audience: "technical", task: "deploy", product: "PALO-AI", status: "Evaluation Deployment", prerequisite: "Isolated VPS and non-production secrets", next: "Run deployment validation" },
   "docs/palo-ai-security-assurance-and-scale.md": { level: "reference", audience: "technical governance", task: "assure deploy", product: "PALO-AI", status: "Assurance Plan", prerequisite: "Architecture and threat boundaries", next: "Track the nine readiness gates" },
-  "docs/palo-ai-production-readiness-plan.md": { level: "reference", audience: "executive governance technical", task: "assure deploy", product: "PALO-AI", status: "Planning Baseline", prerequisite: "Capability Matrix", next: "Open Production Readiness" }
+  "docs/palo-ai-production-readiness-plan.md": { level: "reference", audience: "executive governance technical", task: "assure deploy", product: "PALO-AI", status: "Planning Baseline", prerequisite: "Capability Matrix", next: "Open Production Readiness" },
+  "docs/owasp-genai-llm-top-10-2026-security-crosswalk.md": { level: "reference", audience: "executive governance technical builder", task: "understand assure design", product: "PALO / PALO-AM / PALO-AI", status: "Source-backed context", evidenceClass: "source-backed-context", workspace: "assurance-review", prerequisite: "One scoped LLM or agentic system", next: "Open the interactive OWASP 2026 crosswalk" }
 };
 
 const canonicalStartDocuments = new Set([

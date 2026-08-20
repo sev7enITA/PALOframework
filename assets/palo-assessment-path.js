@@ -6,6 +6,19 @@
   var routeList = document.getElementById("route-list");
   var preview = document.getElementById("bundle-preview");
   var intro = document.getElementById("results-intro");
+  var resultsTitle = document.getElementById("assessment-results-title");
+  var owaspSummary = document.getElementById("owasp-profile-summary");
+  var owaspSource = document.getElementById("owasp-profile-source");
+  var owaspScope = document.getElementById("owasp-profile-scope");
+  var owaspPriorityRisks = document.getElementById("owasp-priority-risks");
+  var owaspTargetedExtensions = document.getElementById("owasp-targeted-extensions");
+  var owaspTestingReadiness = document.getElementById("owasp-testing-readiness");
+  var owaspAuthorityBoundary = document.getElementById("owasp-authority-boundary");
+  var bundleDisclosure = document.getElementById("bundle-json-disclosure");
+  var owaspArchitectureSignals = document.getElementById("owasp-architecture-signals");
+  var owaspArchitectureStatus = document.getElementById("owasp-architecture-status");
+  var owaspTestingSignals = document.getElementById("owasp-testing-signals");
+  var owaspTestingStatus = document.getElementById("owasp-testing-status");
   var status = document.getElementById("case-workspace-status");
   var importInput = document.getElementById("assessment-import");
   var signalInput = document.getElementById("policywatcher-signal-import");
@@ -24,12 +37,15 @@
     { sourceId: "eu-ai-act-framework", title: "EU AI Act regulatory framework", url: "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai", publisher: "European Commission" },
     { sourceId: "eu-ai-act-official-journal", title: "Regulation (EU) 2024/1689", url: "https://eur-lex.europa.eu/eli/reg/2024/1689/oj/eng", publisher: "European Union" }
   ];
-  var routeLinks = { "Risk Tiering": "PALO_RiskTiering.html", "Contextual FRIA": "PALO_FRIA.html", "Agentic governance": "PALO_AgenticGovernance.html#simulator", "AI Dev Governance": "PALO_VibeCoding.html", "Controls and KPI/KRI": "PALO_KPIGenerator.html", "Documentation Library": "PALO_DocumentationLibrary.html" };
+  var owaspRiskIds = ["LLM01:2026", "LLM02:2026", "LLM03:2026", "LLM04:2026", "LLM05:2026", "LLM06:2026", "LLM07:2026", "LLM08:2026", "LLM09:2026", "LLM10:2026"];
+  var baseOwaspPriorityIds = ["LLM01:2026", "LLM02:2026", "LLM04:2026", "LLM06:2026", "LLM07:2026", "LLM08:2026"];
+  var routeLinks = { "Risk Tiering": "PALO_RiskTiering.html", "Contextual FRIA": "PALO_FRIA.html", "Agentic governance": "PALO_AgenticGovernance.html#simulator", "AI Dev Governance": "PALO_VibeCoding.html", "OWASP GenAI 2026 security profile": "PALO_OWASPGenAI2026.html", "Controls and KPI/KRI": "PALO_KPIGenerator.html", "Documentation Library": "PALO_DocumentationLibrary.html" };
   var reasons = {
     "Risk Tiering": "Confirm the initial classification against purpose, affected people, and prohibited-practice questions.",
     "Contextual FRIA": "Check Article 27 scope and document fundamental-rights impacts for the deployment context.",
     "Agentic governance": "Map delegated authority, tools, action space, autonomy, controls, and agentic evidence.",
     "AI Dev Governance": "Review functional intent, controlled environments, review gates, and evidence for AI-assisted development.",
+    "OWASP GenAI 2026 security profile": "Keep all ten LLM risks in review, prioritize the architecture-specific subset, and retain open external technical-control work as draft evidence.",
     "Controls and KPI/KRI": "Choose measurable controls and indicators for ongoing governance and review.",
     "Documentation Library": "Keep versioned guidance and primary source artifacts with the assessment record."
   };
@@ -43,6 +59,20 @@
     var field = form.elements[name];
     if (!field || next == null) return;
     if (field.type === "checkbox") field.checked = Boolean(next); else field.value = String(next);
+  }
+
+  function syncOwaspSignals() {
+    var applicable = Boolean(value("genAiLlm"));
+    owaspArchitectureSignals.hidden = !applicable;
+    owaspArchitectureStatus.hidden = applicable;
+    owaspTestingSignals.hidden = !applicable;
+    owaspTestingStatus.hidden = applicable;
+    ["retrievalMemory", "outputToDownstream", "adversarialTesting", "architectureSecurityTesting"].forEach(function (name) {
+      var field = form.elements[name];
+      field.disabled = !applicable;
+      if (!applicable) field.checked = false;
+    });
+    form.elements.genAiLlm.setAttribute("aria-expanded", applicable ? "true" : "false");
   }
 
   function canonicalJson(input) {
@@ -100,6 +130,9 @@
     setValue("useCase", nextCase.context.scenario);
     setValue("riskTier", "unknown");
     setValue("article27Scope", "no");
+    setValue("genAiLlm", true);
+    setValue("retrievalMemory", false);
+    setValue("outputToDownstream", true);
     setValue("agentic", true);
     setValue("aiAssisted", false);
     setValue("dataGovernance", true);
@@ -107,6 +140,9 @@
     setValue("monitoring", true);
     setValue("incidentResponse", false);
     setValue("transparency", true);
+    setValue("adversarialTesting", true);
+    setValue("architectureSecurityTesting", false);
+    syncOwaspSignals();
     api.save(caseFile);
     resetReceipt();
     status.innerHTML = "<strong>Synthetic case loaded locally.</strong> Review the declared authority, then build the route.";
@@ -128,9 +164,80 @@
     return String(valueToEscape == null ? "" : valueToEscape).replace(/[&<>"']/g, function (character) { return ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[character]; });
   }
 
-  function sources(stamp) {
+  function sources(stamp, assessment) {
     var next = new Date(Date.parse(stamp) + 90 * 86400000).toISOString();
-    return sourceTemplates.map(function (source) { return Object.assign({}, source, { sourceType: "official", checkedAt: stamp, freshness: { status: "unknown", reviewIntervalDays: 90, nextReviewAt: next } }); });
+    var records = sourceTemplates.map(function (source) { return Object.assign({}, source, { sourceType: "official", checkedAt: stamp, freshness: { status: "unknown", reviewIntervalDays: 90, nextReviewAt: next } }); });
+    if (assessment.genAiLlm) {
+      records.push({
+        sourceId: "src-owasp-llm-top10",
+        title: "OWASP Top 10 for LLM Applications 2026",
+        url: "https://genai.owasp.org/initiative/owasp-top-10-for-llm-and-genai/",
+        sourceType: "organizational",
+        publisher: "OWASP Foundation",
+        checkedAt: stamp,
+        freshness: { status: "unknown", reviewIntervalDays: 30, nextReviewAt: new Date(Date.parse(stamp) + 30 * 86400000).toISOString() },
+        authorityStatus: "informative",
+        editorialStatus: "provisional",
+        sourcePin: {
+          version: "2026-v1.0",
+          artifact: "assets/OWASP-GenAI-LLM-Top-10-2026-v1.0.pdf",
+          sha256: "ef87993a4e50ae9d83b41ff7a3d3e6320a82dfa8d4ec6bf98d0ce264b2e6108e"
+        },
+        usageNote: "Provisional informative security context. This source and PALO profile do not prove control effectiveness, compliance, certification, OWASP endorsement, or deployment authorization."
+      });
+    }
+    return records;
+  }
+
+  function stableRiskOrder(ids) {
+    return owaspRiskIds.filter(function (riskId) { return ids.indexOf(riskId) !== -1; });
+  }
+
+  function buildOwaspProfile(assessment) {
+    var priorityIds = baseOwaspPriorityIds.slice();
+    var targetedExtensions = [];
+    if (assessment.agentic) priorityIds.push("LLM03:2026");
+    if (assessment.retrievalMemory) {
+      priorityIds.push("LLM05:2026", "LLM09:2026");
+      targetedExtensions.push("LLM09:2026");
+    }
+    if (assessment.outputToDownstream) {
+      priorityIds.push("LLM10:2026");
+      targetedExtensions.push("LLM10:2026");
+    }
+    return {
+      format: "palo-owasp-genai-2026-profile",
+      schemaVersion: "1.0.0",
+      source: {
+        sourceId: "src-owasp-llm-top10",
+        version: "2026-v1.0",
+        sha256: "ef87993a4e50ae9d83b41ff7a3d3e6320a82dfa8d4ec6bf98d0ce264b2e6108e",
+        editorialStatus: "provisional"
+      },
+      applicable: true,
+      architectureSignals: {
+        genAiLlm: Boolean(assessment.genAiLlm),
+        retrievalMemory: Boolean(assessment.retrievalMemory),
+        outputToDownstream: Boolean(assessment.outputToDownstream),
+        agentic: Boolean(assessment.agentic)
+      },
+      inScopeRiskIds: owaspRiskIds.slice(),
+      priorityRiskIds: stableRiskOrder(priorityIds),
+      routeFitSnapshot: {
+        palo: { direct: 6, supporting: 4, gap: 0 },
+        paloAm: { direct: 5, supporting: 5, gap: 0 },
+        paloAi: { direct: 4, supporting: 4, gap: 2 },
+        union: { direct: 8, supporting: 2 }
+      },
+      targetedExtensions: stableRiskOrder(targetedExtensions),
+      pairingGuidance: assessment.agentic
+        ? "Pair this LLM profile with the OWASP Agentic Top 10 and the PALO-AM and PALO-AI routes. The Agentic Top 10 source is not present in this repository."
+        : "Use this LLM profile for the model-as-component boundary. Reassess pairing if tools, delegation, persistent memory, or autonomous action are introduced.",
+      authorityBoundary: {
+        status: "human-review-required",
+        statement: "All ten risks remain in scope. Priority risks are architecture triage only; accountable security and governance reviewers must validate applicability, technical safeguards, test evidence, residual risk, and any decision to proceed."
+      }
+    };
   }
 
   function buildRoute(assessment) {
@@ -139,6 +246,7 @@
     if (assessment.article27Scope !== "no" || roleNeedsFria) route.push({ name: "Contextual FRIA", reason: reasons["Contextual FRIA"] });
     if (assessment.agentic) route.push({ name: "Agentic governance", reason: reasons["Agentic governance"] });
     if (assessment.aiAssisted) route.push({ name: "AI Dev Governance", reason: reasons["AI Dev Governance"] });
+    if (assessment.genAiLlm) route.push({ name: "OWASP GenAI 2026 security profile", reason: reasons["OWASP GenAI 2026 security profile"] });
     route.push({ name: "Controls and KPI/KRI", reason: reasons["Controls and KPI/KRI"] });
     route.push({ name: "Documentation Library", reason: reasons["Documentation Library"] });
     return route;
@@ -150,13 +258,24 @@
       "Human oversight and escalation": value("humanOversight"),
       "Monitoring and change control": value("monitoring"),
       "Incident response and remediation": value("incidentResponse"),
-      "Transparency and user information": value("transparency")
+      "Transparency and user information": value("transparency"),
+      "Adaptive red-team and abuse-case testing": value("adversarialTesting"),
+      "Retrieval, output-sink and authority-boundary security testing": value("architectureSecurityTesting")
+    };
+  }
+
+  function owaspReadiness(readiness) {
+    return {
+      "Adaptive red-team and abuse-case testing": readiness["Adaptive red-team and abuse-case testing"],
+      "Retrieval, output-sink and authority-boundary security testing": readiness["Retrieval, output-sink and authority-boundary security testing"]
     };
   }
 
   function createBundle(assessment, route, stamp) {
     var readiness = evidenceReadiness();
-    var sourceRegistry = sources(stamp);
+    var sourceRegistry = sources(stamp, assessment);
+    var artifacts = [{ artifactId: "assessment-route-" + String(Date.parse(stamp)), title: "Assessment Path route", kind: "assessment-route", status: "ready", content: { route: route, evidenceReadiness: readiness } }];
+    if (assessment.owaspGenAi2026) artifacts.push({ artifactId: "owasp-genai-2026-profile-" + String(Date.parse(stamp)), title: "OWASP GenAI 2026 security profile", kind: "owasp-genai-2026-profile", status: "draft", content: { profile: assessment.owaspGenAi2026, evidenceReadiness: owaspReadiness(readiness) } });
     return {
       format: "palo-evidence-bundle",
       schemaVersion: "1.0.0",
@@ -166,7 +285,7 @@
       assessment: assessment,
       route: route,
       evidenceReadiness: readiness,
-      artifacts: [{ artifactId: "assessment-route-" + String(Date.parse(stamp)), title: "Assessment Path route", kind: "assessment-route", status: "ready", content: { route: route, evidenceReadiness: readiness } }],
+      artifacts: artifacts,
       sourceRegistry: sourceRegistry,
       freshness: { evaluatedAt: stamp, status: "unknown" },
       disclaimer: api.disclaimer
@@ -187,7 +306,11 @@
 
   function bundleMarkdown(data) {
     var lines = ["# PALO Evidence Bundle", "", "- Format: " + data.format + " " + data.schemaVersion, "- Case: " + data.caseId, "- Generated: " + data.generatedAt, "", "## Assessment", ""];
-    Object.keys(data.assessment).forEach(function (key) { lines.push("- " + key + ": " + String(data.assessment[key]).replace(/\r?\n/g, " ")); });
+    Object.keys(data.assessment).filter(function (key) { return key !== "owaspGenAi2026"; }).forEach(function (key) { lines.push("- " + key + ": " + String(data.assessment[key]).replace(/\r?\n/g, " ")); });
+    if (data.assessment.owaspGenAi2026) {
+      var profile = data.assessment.owaspGenAi2026;
+      lines.push("", "## OWASP GenAI 2026 security profile", "", "- Source: " + profile.source.sourceId + " " + profile.source.version, "- Editorial status: " + profile.source.editorialStatus, "- Source SHA-256: " + profile.source.sha256, "- In-scope risks: " + profile.inScopeRiskIds.join(", "), "- Priority risks: " + profile.priorityRiskIds.join(", "), "- Targeted extensions: " + (profile.targetedExtensions.length ? profile.targetedExtensions.join(", ") : "None selected by current architecture signals"), "- Pairing guidance: " + profile.pairingGuidance, "- Authority status: " + profile.authorityBoundary.status, "- Authority boundary: " + profile.authorityBoundary.statement, "", "All ten risks remain in scope; the priority list is architecture triage, not automatic applicability exclusion.");
+    }
     lines.push("", "## Recommended route", "");
     data.route.forEach(function (item) { lines.push("- **" + item.name + "**: " + item.reason); });
     lines.push("", "## Evidence readiness", "");
@@ -199,15 +322,45 @@
   }
 
   function assessmentFromForm() {
-    return { systemName: value("systemName"), organization: value("organization"), deployerRole: value("deployerRole"), sector: value("sector"), useCase: value("useCase"), riskTier: value("riskTier"), article27Scope: value("article27Scope"), agentic: value("agentic"), aiAssisted: value("aiAssisted") };
+    var assessment = { systemName: value("systemName"), organization: value("organization"), deployerRole: value("deployerRole"), sector: value("sector"), useCase: value("useCase"), riskTier: value("riskTier"), article27Scope: value("article27Scope"), genAiLlm: value("genAiLlm"), retrievalMemory: value("retrievalMemory"), outputToDownstream: value("outputToDownstream"), agentic: value("agentic"), aiAssisted: value("aiAssisted") };
+    if (assessment.genAiLlm) assessment.owaspGenAi2026 = buildOwaspProfile(assessment);
+    return assessment;
+  }
+
+  function renderOwaspSummary(profile, readiness) {
+    if (!profile) {
+      owaspSummary.hidden = true;
+      document.documentElement.removeAttribute("data-owasp-profile-summary");
+      return;
+    }
+    owaspSource.textContent = profile.source.version + " | " + profile.source.editorialStatus;
+    owaspScope.textContent = profile.inScopeRiskIds.length + " risks in scope";
+    owaspPriorityRisks.replaceChildren();
+    profile.priorityRiskIds.forEach(function (riskId) {
+      var item = document.createElement("li");
+      item.textContent = riskId;
+      owaspPriorityRisks.appendChild(item);
+    });
+    owaspTargetedExtensions.textContent = profile.targetedExtensions.length ? profile.targetedExtensions.join(", ") + (profile.targetedExtensions.length === 1 ? " requires" : " require") + " external technical-control work." : "No LLM09 or LLM10 extension selected by the current architecture signals.";
+    owaspTestingReadiness.replaceChildren();
+    Object.keys(owaspReadiness(readiness)).forEach(function (label) {
+      var item = document.createElement("li");
+      item.textContent = (readiness[label] ? "Started: " : "Open: ") + label;
+      owaspTestingReadiness.appendChild(item);
+    });
+    owaspAuthorityBoundary.textContent = profile.authorityBoundary.statement;
+    owaspSummary.hidden = false;
+    document.documentElement.setAttribute("data-owasp-profile-summary", "draft-human-review");
   }
 
   function renderBundle() {
-    routeList.innerHTML = bundle.route.map(function (item) { var href = routeLinks[item.name]; return '<li><span data-palo-icon="check" aria-hidden="true"></span><div><strong>' + (href ? '<a href="' + href + '">' + esc(item.name) + "</a>" : esc(item.name)) + '</strong><br><span class="palo-small">' + esc(item.reason) + "</span></div></li>"; }).join("");
+    routeList.innerHTML = bundle.route.map(function (item) { var href = routeLinks[item.name]; var metadata = item.name === "OWASP GenAI 2026 security profile" ? '<small class="palo-route-metadata">Documentation reference | Draft evidence | Human review required</small>' : ""; return '<li><span data-palo-icon="check" aria-hidden="true"></span><div><strong>' + (href ? '<a href="' + href + '">' + esc(item.name) + "</a>" : esc(item.name)) + '</strong><br><span class="palo-small">' + esc(item.reason) + "</span>" + metadata + "</div></li>"; }).join("");
     intro.textContent = 'The route for "' + bundle.assessment.systemName + '" has ' + bundle.route.length + " linked steps and is saved in " + caseFile.caseId + ".";
+    renderOwaspSummary(bundle.assessment.owaspGenAi2026, bundle.evidenceReadiness);
     preview.textContent = JSON.stringify(bundle, null, 2);
+    bundleDisclosure.open = false;
     results.classList.add("is-visible");
-    results.focus();
+    resultsTitle.focus();
     status.innerHTML = "<strong>Case saved locally.</strong> " + esc(caseFile.title) + " | " + esc(caseFile.status) + " | unknown imported fields retained.";
     document.documentElement.setAttribute("data-assessment-case", "saved");
     if (window.paloRenderIcons) window.paloRenderIcons(results);
@@ -225,7 +378,7 @@
       status: "active",
       context: { organization: assessment.organization, sector: assessment.sector, intendedUse: assessment.useCase },
       assessments: [{ assessmentId: "assessment-path-" + String(Date.parse(stamp)), module: "assessment-path", recordedAt: stamp, data: { assessment: assessment, route: route, evidenceReadiness: bundle.evidenceReadiness, bundleId: bundle.bundleId } }],
-      evidence: [{ evidenceId: bundle.artifacts[0].artifactId, title: "Assessment Path route", kind: "assessment-route", status: "ready", recordedAt: stamp, content: bundle.artifacts[0].content }],
+      evidence: bundle.artifacts.map(function (artifact) { return { evidenceId: artifact.artifactId, title: artifact.title, kind: artifact.kind, status: artifact.status, recordedAt: stamp, content: artifact.content }; }),
       sources: bundle.sourceRegistry,
       latestEvidenceBundle: bundle
     });
@@ -244,10 +397,11 @@
     var record = caseFile.assessments.slice().reverse().find(function (item) { return item.module === "assessment-path" && item.data && item.data.assessment; });
     var assessment = record ? record.data.assessment : { systemName: caseFile.title, organization: caseFile.context.organization, sector: caseFile.context.sector, useCase: caseFile.context.intendedUse };
     Object.keys(assessment || {}).forEach(function (key) { setValue(key, assessment[key]); });
-    ["dataGovernance", "humanOversight", "monitoring", "incidentResponse", "transparency"].forEach(function (name) {
-      var labelMap = { dataGovernance: "Data governance and provenance", humanOversight: "Human oversight and escalation", monitoring: "Monitoring and change control", incidentResponse: "Incident response and remediation", transparency: "Transparency and user information" };
+    ["dataGovernance", "humanOversight", "monitoring", "incidentResponse", "transparency", "adversarialTesting", "architectureSecurityTesting"].forEach(function (name) {
+      var labelMap = { dataGovernance: "Data governance and provenance", humanOversight: "Human oversight and escalation", monitoring: "Monitoring and change control", incidentResponse: "Incident response and remediation", transparency: "Transparency and user information", adversarialTesting: "Adaptive red-team and abuse-case testing", architectureSecurityTesting: "Retrieval, output-sink and authority-boundary security testing" };
       if (record && record.data.evidenceReadiness) setValue(name, record.data.evidenceReadiness[labelMap[name]]);
     });
+    syncOwaspSignals();
     status.innerHTML = "<strong>Case resumed locally.</strong> " + esc(caseFile.title) + " | " + caseFile.assessments.length + " assessment record(s).";
     renderMonitoringReview(caseFile.context && caseFile.context.policyWatcherReview);
     if (announce) status.scrollIntoView({ block: "center" });
@@ -256,7 +410,8 @@
   }
 
   form.addEventListener("submit", function (event) { event.preventDefault(); saveAssessment(); });
-  form.addEventListener("reset", function () { results.classList.remove("is-visible"); bundle = null; resetReceipt(); });
+  form.addEventListener("reset", function () { results.classList.remove("is-visible"); owaspSummary.hidden = true; bundle = null; resetReceipt(); window.setTimeout(syncOwaspSignals, 0); });
+  form.elements.genAiLlm.addEventListener("change", syncOwaspSignals);
   loadGoldCaseButton.addEventListener("click", function () { loadGoldCase(true); });
   document.getElementById("resume-local-case").addEventListener("click", function () { restore(api.load(), true); });
   importInput.addEventListener("change", function () {
@@ -369,6 +524,7 @@
 
   var handoff = api.consumeHandoff("assessment-path");
   var params = new URLSearchParams(window.location.search);
+  syncOwaspSignals();
   if (params.get("sample") === "agentic-invoice") loadGoldCase(false);
   else restore(handoff ? handoff.caseFile : api.load(), false);
 }());

@@ -4,177 +4,1562 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recognition & Sources | PALO Framework</title>
-    <meta name="description" content="Public references, primary sources, and verification notes for the PALO Framework and P.A.L.O. Framework Toolbox.">
+    <title>Recognition &amp; Evidence Ledger | PALO Framework</title>
+    <meta name="description" content="The traceable public record behind PALO: research publications, applied extensions, project references, GitHub proposals, public coverage and preferred citation.">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://paloframework.org/PALO_Recognition.html">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://paloframework.org/PALO_Recognition.html">
-    <meta property="og:title" content="Recognition & Sources | PALO Framework">
-    <meta property="og:description" content="Public references, primary sources, and verification notes for the PALO Framework.">
+    <meta property="og:title" content="Recognition &amp; Evidence Ledger | PALO Framework">
+    <meta property="og:description" content="A traceable ledger of PALO research, projects, public references and primary sources.">
     <meta property="og:image" content="https://paloframework.org/assets/logo.webp">
     <meta property="og:site_name" content="PALO Framework">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Recognition & Sources | PALO Framework">
-    <meta name="twitter:description" content="Public references, primary sources, and verification notes for the PALO Framework.">
+    <meta name="twitter:title" content="Recognition &amp; Evidence Ledger | PALO Framework">
+    <meta name="twitter:description" content="A traceable ledger of PALO research, projects, public references and primary sources.">
     <meta name="twitter:image" content="https://paloframework.org/assets/logo.webp">
     <link rel="icon" type="image/webp" href="assets/logo.webp">
     <link rel="stylesheet" href="assets/palo-icons.css">
     <link rel="stylesheet" href="assets/palo-v21.css?v=3.0.1">
     <script src="assets/palo-icons.js"></script>
     <style>
-        :root {
-            --ink: #102a43;
-            --muted: #52616b;
-            --line: #d9e2ec;
-            --surface: #f7fafc;
-            --teal: #147d8b;
-            --teal-dark: #0b3c49;
-            --gold: #d69e2e;
+        .palo-recognition-page {
+            --palo-recognition-ink: #0b2832;
+            --palo-recognition-ink-2: #123b45;
+            --palo-recognition-teal: #126c72;
+            --palo-recognition-paper: #f3eee3;
+            --palo-recognition-paper-light: #fbf8f0;
+            --palo-recognition-gold: #c89a42;
+            --palo-recognition-gold-dark: #7a5617;
+            --palo-recognition-rule: #cfc6b4;
+            --palo-recognition-muted: #52666b;
+            overflow-x: hidden;
+            color: var(--palo-recognition-ink);
+            background: var(--palo-recognition-paper-light);
         }
 
-        * { box-sizing: border-box; }
+        .palo-recognition-page .palo-site-header {
+            border-bottom: 0;
+            background: var(--palo-recognition-ink);
+        }
 
-        body {
+        .palo-recognition-page .palo-header-inner {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+        }
+
+        .palo-recognition-page .palo-nav a[aria-current="page"] {
+            color: #ffffff !important;
+            box-shadow: inset 0 -2px var(--palo-recognition-gold);
+        }
+
+        .palo-recognition-page .palo-main {
+            padding: 0;
+        }
+
+        .palo-recognition-page h1,
+        .palo-recognition-page h2,
+        .palo-recognition-page .palo-recognition-paper-title,
+        .palo-recognition-page .palo-recognition-quote {
+            font-family: Georgia, "Times New Roman", serif;
+            font-weight: 400;
+        }
+
+        .palo-recognition-page h2 {
             margin: 0;
-            color: var(--ink);
-            background: #ffffff;
-            font-family: Inter, Arial, sans-serif;
-            line-height: 1.6;
+            color: var(--palo-recognition-ink);
+            font-size: clamp(2rem, 4vw, 3.55rem);
+            line-height: 1.03;
+            letter-spacing: -0.025em;
         }
 
-        a { color: var(--teal-dark); }
-        a:hover { color: var(--teal); }
+        .palo-recognition-page h3 {
+            margin: 0;
+            color: var(--palo-recognition-ink);
+            font-size: 1.15rem;
+            line-height: 1.28;
+        }
 
-        .skip-link {
+        .palo-recognition-page a {
+            text-underline-offset: 0.2em;
+            text-decoration-thickness: 1px;
+        }
+
+        .palo-recognition-hero {
+            position: relative;
+            padding: clamp(56px, 8vw, 102px) 0 48px;
+            color: #ffffff;
+            background-color: var(--palo-recognition-ink);
+            background-image:
+                linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+            background-size: 44px 44px;
+        }
+
+        .palo-recognition-hero::after {
             position: absolute;
-            left: -999px;
-            top: 0;
-            background: #ffffff;
-            color: var(--ink);
-            padding: 10px 14px;
-            z-index: 10;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            height: 5px;
+            content: "";
+            background: var(--palo-recognition-gold);
         }
 
-        .skip-link:focus { left: 16px; top: 16px; }
-
-        .site-header {
-            background: var(--teal-dark);
-            color: #ffffff;
-            border-bottom: 4px solid var(--gold);
-        }
-
-        .shell {
-            width: min(1120px, calc(100% - 40px));
-            margin: 0 auto;
-        }
-
-        .nav {
-            min-height: 76px;
-            display: flex;
+        .palo-recognition-hero-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.08fr) minmax(360px, .92fr);
+            gap: clamp(44px, 7vw, 96px);
             align-items: center;
-            justify-content: space-between;
-            gap: 24px;
         }
 
-        .brand {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            color: #ffffff;
-            font-size: 0.92rem;
-            font-weight: 700;
-            letter-spacing: 0.06em;
-            text-decoration: none;
-        }
-
-        .brand img { width: 34px; height: 34px; object-fit: contain; }
-
-        .nav-links { display: flex; flex-wrap: wrap; gap: 18px; }
-        .nav-links a { color: #d9f3f4; text-decoration: none; font-size: 0.9rem; }
-        .nav-links a:hover { color: #ffffff; }
-
-        .hero { padding: 76px 0 64px; }
-        .eyebrow {
-            margin: 0 0 16px;
-            color: var(--gold);
-            font-size: 0.78rem;
-            font-weight: 700;
-            letter-spacing: 0.12em;
+        .palo-recognition-eyebrow,
+        .palo-recognition-meta,
+        .palo-recognition-type {
+            margin: 0;
+            font-size: .72rem;
+            font-weight: 850;
+            letter-spacing: .12em;
+            line-height: 1.4;
             text-transform: uppercase;
         }
 
-        h1, h2, h3 { line-height: 1.2; }
-        h1 { max-width: 760px; margin: 0; font-size: clamp(2.2rem, 5vw, 4.4rem); letter-spacing: 0; }
-        .hero p:last-child { max-width: 720px; margin: 24px 0 0; color: #d9f3f4; font-size: 1.12rem; }
-
-        main { padding: 56px 0 72px; }
-        .section { padding: 44px 0; border-top: 1px solid var(--line); }
-        .section:first-child { padding-top: 0; border-top: 0; }
-        h2 { margin: 0 0 12px; font-size: clamp(1.55rem, 3vw, 2.3rem); }
-        .intro { max-width: 800px; margin: 0; color: var(--muted); }
-
-        .references {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 22px;
-            margin-top: 28px;
+        .palo-recognition-eyebrow {
+            margin-bottom: 20px;
+            color: #e2bc71;
         }
 
-        .reference {
-            padding: 24px 0;
-            border-top: 3px solid var(--teal);
+        .palo-recognition-hero h1 {
+            max-width: 720px;
+            margin: 0;
+            color: #fffdf8;
+            font-size: clamp(3rem, 6.5vw, 6.5rem);
+            line-height: .91;
+            letter-spacing: -.05em;
         }
 
-        .reference h3 { margin: 0 0 10px; font-size: 1.18rem; }
-        .reference p { margin: 0 0 14px; color: var(--muted); }
-        .reference a { font-weight: 700; }
-
-        .source-note {
-            display: grid;
-            grid-template-columns: 1fr auto;
-            gap: 24px;
-            align-items: start;
-            margin-top: 28px;
-            padding: 28px;
-            background: var(--surface);
-            border-left: 4px solid var(--gold);
+        .palo-recognition-hero-lead {
+            max-width: 690px;
+            margin: 28px 0 0;
+            color: #c7dbdc;
+            font-size: clamp(1rem, 1.5vw, 1.18rem);
+            line-height: 1.7;
         }
 
-        .source-note p { margin: 0; color: var(--muted); }
-        .source-note .palo-svg-icon { color: var(--teal); }
+        .palo-recognition-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 30px;
+        }
 
-        .source-list { margin: 22px 0 0; padding-left: 20px; }
-        .source-list li { margin: 8px 0; }
-
-        .status {
+        .palo-recognition-button {
+            min-height: 48px;
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            color: var(--teal-dark);
-            font-size: 0.9rem;
+            justify-content: center;
+            gap: 9px;
+            padding: 10px 17px;
+            color: var(--palo-recognition-ink) !important;
+            background: #f3d79f;
+            border: 1px solid #f3d79f;
+            border-radius: 2px;
+            font-weight: 850;
+            text-decoration: none;
+            transition: transform .18s ease, background-color .18s ease;
+        }
+
+        .palo-recognition-button:hover {
+            color: var(--palo-recognition-ink) !important;
+            background: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        .palo-recognition-button-secondary {
+            color: #ffffff !important;
+            background: transparent;
+            border-color: rgba(255, 255, 255, .48);
+        }
+
+        .palo-recognition-button-secondary:hover {
+            color: var(--palo-recognition-ink) !important;
+            background: #ffffff;
+        }
+
+        .palo-recognition-ledger-visual {
+            position: relative;
+            min-height: 468px;
+            isolation: isolate;
+        }
+
+        .palo-recognition-ledger-visual::before {
+            position: absolute;
+            z-index: -1;
+            top: 18px;
+            right: -48px;
+            width: 330px;
+            height: 330px;
+            content: "";
+            border: 1px solid rgba(226, 188, 113, .34);
+            border-radius: 50%;
+        }
+
+        .palo-recognition-cover {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: min(290px, 75%);
+            min-height: 396px;
+            display: flex;
+            flex-direction: column;
+            padding: 28px 26px 24px;
+            color: var(--palo-recognition-ink);
+            background: var(--palo-recognition-paper);
+            border: 1px solid #ded3bc;
+            box-shadow: 18px 22px 0 rgba(0, 0, 0, .18);
+            transform: rotate(-2.2deg);
+            animation: palo-recognition-enter .7s ease-out both;
+        }
+
+        .palo-recognition-cover-mark {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding-bottom: 18px;
+            border-bottom: 1px solid var(--palo-recognition-gold);
+            color: var(--palo-recognition-teal);
+            font-size: .67rem;
+            font-weight: 900;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+        }
+
+        .palo-recognition-cover-mark img {
+            width: 29px;
+            height: 29px;
+            object-fit: contain;
+        }
+
+        .palo-recognition-cover-title {
+            margin: 34px 0 22px;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 1.55rem;
+            line-height: 1.05;
+        }
+
+        .palo-recognition-cover-author {
+            margin: auto 0 20px;
+            color: var(--palo-recognition-muted);
+            font-size: .78rem;
+        }
+
+        .palo-recognition-cover-foot {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            padding-top: 15px;
+            border-top: 1px solid var(--palo-recognition-rule);
+            color: var(--palo-recognition-muted);
+            font-size: .62rem;
+            font-weight: 800;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+        }
+
+        .palo-recognition-branch {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 58%;
+            padding: 20px 20px 17px;
+            color: #ffffff;
+            background: #16515a;
+            border-top: 3px solid var(--palo-recognition-gold);
+            box-shadow: 0 16px 38px rgba(0, 0, 0, .25);
+            animation: palo-recognition-enter .7s .14s ease-out both;
+        }
+
+        .palo-recognition-branch::before {
+            position: absolute;
+            bottom: 100%;
+            left: 28px;
+            width: 1px;
+            height: 66px;
+            content: "";
+            background: var(--palo-recognition-gold);
+        }
+
+        .palo-recognition-branch::after {
+            position: absolute;
+            bottom: calc(100% + 65px);
+            left: 24px;
+            width: 9px;
+            height: 9px;
+            content: "";
+            background: var(--palo-recognition-gold);
+            border-radius: 50%;
+        }
+
+        .palo-recognition-branch-label {
+            margin: 0 0 13px;
+            color: #a9cbcd;
+            font-size: .66rem;
+            font-weight: 850;
+            letter-spacing: .11em;
+            text-transform: uppercase;
+        }
+
+        .palo-recognition-branch-list {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .palo-recognition-branch-list li {
+            display: grid;
+            grid-template-columns: 13px 1fr;
+            gap: 10px;
+            padding: 9px 0;
+            border-top: 1px solid rgba(255, 255, 255, .15);
+            font-size: .78rem;
             font-weight: 700;
         }
 
-        footer {
-            padding: 32px 0;
-            background: #102a43;
-            color: #d9e2ec;
-            font-size: 0.88rem;
+        .palo-recognition-branch-list li::before {
+            width: 6px;
+            height: 6px;
+            align-self: center;
+            content: "";
+            background: var(--palo-recognition-gold);
+            border-radius: 50%;
         }
 
-        footer p { margin: 0; }
-        footer a { color: #b6e3e7; }
+        .palo-recognition-markers {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            margin-top: clamp(48px, 7vw, 84px);
+            border-top: 1px solid rgba(255, 255, 255, .18);
+        }
 
-        @media (max-width: 720px) {
-            .nav { align-items: flex-start; flex-direction: column; padding: 18px 0; }
-            .references { grid-template-columns: 1fr; }
-            .source-note { grid-template-columns: 1fr; }
+        .palo-recognition-marker {
+            min-width: 0;
+            padding: 20px 24px 0 0;
+        }
+
+        .palo-recognition-marker + .palo-recognition-marker {
+            padding-left: 24px;
+            border-left: 1px solid rgba(255, 255, 255, .18);
+        }
+
+        .palo-recognition-marker strong {
+            display: block;
+            color: #ffffff;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 1.25rem;
+            font-weight: 400;
+        }
+
+        .palo-recognition-marker span {
+            color: #9fc3c6;
+            font-size: .78rem;
+        }
+
+        .palo-recognition-index-wrap {
+            position: sticky;
+            z-index: 15;
+            top: 0;
+            color: var(--palo-recognition-ink);
+            background: rgba(251, 248, 240, .97);
+            border-bottom: 1px solid var(--palo-recognition-rule);
+        }
+
+        .palo-recognition-index {
+            min-height: 62px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            overflow-x: auto;
+        }
+
+        .palo-recognition-index-label {
+            flex: 0 0 auto;
+            color: var(--palo-recognition-gold-dark);
+            font-size: .68rem;
+            font-weight: 900;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+        }
+
+        .palo-recognition-index a {
+            min-height: 44px;
+            display: inline-flex;
+            align-items: center;
+            flex: 0 0 auto;
+            color: var(--palo-recognition-ink);
+            font-size: .84rem;
+            font-weight: 800;
+            text-decoration: none;
+        }
+
+        .palo-recognition-index a:hover {
+            color: var(--palo-recognition-teal);
+            box-shadow: inset 0 -2px var(--palo-recognition-teal);
+        }
+
+        .palo-recognition-section {
+            padding: clamp(68px, 9vw, 118px) 0;
+            scroll-margin-top: 66px;
+        }
+
+        .palo-recognition-section-head {
+            display: grid;
+            grid-template-columns: minmax(260px, .78fr) minmax(0, 1.22fr);
+            gap: clamp(34px, 7vw, 90px);
+            align-items: end;
+            margin-bottom: 46px;
+        }
+
+        .palo-recognition-section-no {
+            display: block;
+            margin-bottom: 18px;
+            color: var(--palo-recognition-gold-dark);
+            font-size: .69rem;
+            font-weight: 900;
+            letter-spacing: .15em;
+            text-transform: uppercase;
+        }
+
+        .palo-recognition-section-intro {
+            max-width: 690px;
+            margin: 0;
+            color: var(--palo-recognition-muted);
+            font-size: 1.02rem;
+            line-height: 1.75;
+        }
+
+        .palo-recognition-featured {
+            display: grid;
+            grid-template-columns: minmax(280px, .72fr) minmax(0, 1.28fr);
+            gap: clamp(34px, 6vw, 76px);
+            align-items: stretch;
+            padding: clamp(26px, 4vw, 48px);
+            background: var(--palo-recognition-paper);
+            border-top: 6px solid var(--palo-recognition-ink);
+            box-shadow: 0 25px 54px rgba(34, 50, 50, .09);
+        }
+
+        .palo-recognition-paper-miniature {
+            position: relative;
+            min-height: 560px;
+            display: flex;
+            flex-direction: column;
+            padding: 34px 30px 26px;
+            overflow: hidden;
+            color: #f9f5ea;
+            background: var(--palo-recognition-ink-2);
+        }
+
+        .palo-recognition-paper-miniature::after {
+            position: absolute;
+            right: -78px;
+            bottom: 54px;
+            width: 210px;
+            height: 210px;
+            content: "";
+            border: 1px solid rgba(226, 188, 113, .38);
+            border-radius: 50%;
+        }
+
+        .palo-recognition-paper-miniature img {
+            width: 42px;
+            height: 42px;
+            object-fit: contain;
+        }
+
+        .palo-recognition-paper-kicker {
+            margin: 30px 0 20px;
+            color: #e2bc71;
+            font-size: .69rem;
+            font-weight: 900;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+        }
+
+        .palo-recognition-paper-title {
+            position: relative;
+            z-index: 1;
+            margin: 0;
+            font-size: clamp(1.65rem, 3vw, 2.45rem);
+            line-height: 1.08;
+        }
+
+        .palo-recognition-paper-byline {
+            position: relative;
+            z-index: 1;
+            margin: auto 0 22px;
+            padding-top: 30px;
+            color: #b8d2d3;
+            font-size: .82rem;
+        }
+
+        .palo-recognition-paper-issue {
+            position: relative;
+            z-index: 1;
+            margin: 0;
+            padding-top: 16px;
+            border-top: 1px solid rgba(226, 188, 113, .55);
+            color: #ffffff;
+            font-size: .72rem;
+            font-weight: 800;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+        }
+
+        .palo-recognition-feature-copy {
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .palo-recognition-type {
+            width: fit-content;
+            margin-bottom: 20px;
+            padding-bottom: 7px;
+            color: var(--palo-recognition-teal);
+            border-bottom: 2px solid var(--palo-recognition-gold);
+        }
+
+        .palo-recognition-feature-copy h3 {
+            max-width: 760px;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: clamp(1.55rem, 3vw, 2.65rem);
+            font-weight: 400;
+            line-height: 1.13;
+        }
+
+        .palo-recognition-feature-copy > p {
+            margin: 22px 0 0;
+            color: var(--palo-recognition-muted);
+            line-height: 1.7;
+        }
+
+        .palo-recognition-facts {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            margin: 30px 0 0;
+            padding: 0;
+            border-top: 1px solid var(--palo-recognition-rule);
+        }
+
+        .palo-recognition-facts div {
+            padding: 16px 15px 16px 0;
+            border-bottom: 1px solid var(--palo-recognition-rule);
+        }
+
+        .palo-recognition-facts div:nth-child(even) {
+            padding-left: 18px;
+            border-left: 1px solid var(--palo-recognition-rule);
+        }
+
+        .palo-recognition-facts dt {
+            color: var(--palo-recognition-muted);
+            font-size: .67rem;
+            font-weight: 850;
+            letter-spacing: .09em;
+            text-transform: uppercase;
+        }
+
+        .palo-recognition-facts dd {
+            margin: 4px 0 0;
+            color: var(--palo-recognition-ink);
+            font-weight: 750;
+        }
+
+        .palo-recognition-feature-copy .palo-recognition-actions {
+            margin-top: auto;
+            padding-top: 30px;
+        }
+
+        .palo-recognition-feature-copy .palo-recognition-button,
+        .palo-recognition-project-copy .palo-recognition-button {
+            color: #ffffff !important;
+            background: var(--palo-recognition-teal);
+            border-color: var(--palo-recognition-teal);
+        }
+
+        .palo-recognition-feature-copy .palo-recognition-button:hover,
+        .palo-recognition-project-copy .palo-recognition-button:hover {
+            color: #ffffff !important;
+            background: var(--palo-recognition-ink);
+        }
+
+        .palo-recognition-feature-copy .palo-recognition-button-secondary,
+        .palo-recognition-project-copy .palo-recognition-button-secondary {
+            color: var(--palo-recognition-ink) !important;
+            background: transparent;
+            border-color: var(--palo-recognition-ink);
+        }
+
+        .palo-recognition-feature-copy .palo-recognition-button-secondary:hover,
+        .palo-recognition-project-copy .palo-recognition-button-secondary:hover {
+            color: #ffffff !important;
+            background: var(--palo-recognition-ink);
+        }
+
+        .palo-recognition-secondary-research {
+            margin-top: 52px;
+            padding-top: 46px;
+            border-top: 1px solid var(--palo-recognition-rule);
+        }
+
+        .palo-recognition-orbital {
+            display: grid;
+            grid-template-columns: minmax(260px, .78fr) minmax(0, 1.22fr);
+            gap: clamp(36px, 6vw, 74px);
+            align-items: center;
+        }
+
+        .palo-recognition-orbit-art {
+            position: relative;
+            min-height: 360px;
+            overflow: hidden;
+            background: var(--palo-recognition-ink);
+            border-bottom: 5px solid var(--palo-recognition-gold);
+        }
+
+        .palo-recognition-orbit-art::before,
+        .palo-recognition-orbit-art::after {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            content: "";
+            border: 1px solid rgba(185, 220, 220, .4);
+            border-radius: 50%;
+            transform: translate(-50%, -50%) rotate(-22deg);
+        }
+
+        .palo-recognition-orbit-art::before {
+            width: 270px;
+            height: 135px;
+        }
+
+        .palo-recognition-orbit-art::after {
+            width: 205px;
+            height: 205px;
+        }
+
+        .palo-recognition-orbit-core {
+            position: absolute;
+            z-index: 2;
+            top: 50%;
+            left: 50%;
+            width: 84px;
+            height: 84px;
+            display: grid;
+            place-items: center;
+            color: var(--palo-recognition-ink);
+            background: var(--palo-recognition-gold);
+            border: 10px solid rgba(255, 255, 255, .08);
+            border-radius: 50%;
+            box-shadow: 0 0 0 24px rgba(200, 154, 66, .08);
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 1.1rem;
+            transform: translate(-50%, -50%);
+        }
+
+        .palo-recognition-orbit-point {
+            position: absolute;
+            z-index: 3;
+            width: 12px;
+            height: 12px;
+            background: #d9eeee;
+            border: 3px solid var(--palo-recognition-teal);
+            border-radius: 50%;
+        }
+
+        .palo-recognition-orbit-point-a { top: 24%; left: 20%; }
+        .palo-recognition-orbit-point-b { right: 17%; bottom: 26%; }
+
+        .palo-recognition-orbit-label {
+            position: absolute;
+            right: 22px;
+            bottom: 20px;
+            left: 22px;
+            z-index: 4;
+            color: #b8d2d3;
+            font-size: .65rem;
+            font-weight: 800;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+        }
+
+        .palo-recognition-orbital-copy h3 {
+            max-width: 760px;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: clamp(1.55rem, 3.2vw, 2.8rem);
+            font-weight: 400;
+            line-height: 1.12;
+        }
+
+        .palo-recognition-orbital-copy > p {
+            margin: 20px 0 0;
+            color: var(--palo-recognition-muted);
+            line-height: 1.7;
+        }
+
+        .palo-recognition-boundary {
+            margin-top: 24px;
+            padding: 15px 18px;
+            color: var(--palo-recognition-ink);
+            background: #efe2c5;
+            border-left: 4px solid var(--palo-recognition-gold-dark);
+            font-size: .9rem;
+        }
+
+        .palo-recognition-text-link {
+            min-height: 44px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 15px;
+            color: var(--palo-recognition-teal) !important;
+            font-weight: 850;
+        }
+
+        .palo-recognition-artifacts {
+            display: grid;
+            grid-template-columns: 160px minmax(0, 1fr) auto;
+            gap: 20px;
+            align-items: center;
+            margin-top: 50px;
+            padding: 24px 0;
+            border-top: 1px solid var(--palo-recognition-rule);
+            border-bottom: 1px solid var(--palo-recognition-rule);
+        }
+
+        .palo-recognition-artifacts-title {
+            margin: 0;
+            color: var(--palo-recognition-gold-dark);
+            font-size: .68rem;
+            font-weight: 900;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+        }
+
+        .palo-recognition-artifacts p {
+            margin: 0;
+            color: var(--palo-recognition-muted);
+            font-size: .9rem;
+        }
+
+        .palo-recognition-artifact-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            gap: 8px 20px;
+        }
+
+        .palo-recognition-artifact-links a {
+            min-height: 44px;
+            display: inline-flex;
+            align-items: center;
+            color: var(--palo-recognition-ink);
+            font-weight: 800;
+        }
+
+        .palo-recognition-projects-section {
+            color: #ffffff;
+            background: var(--palo-recognition-ink);
+        }
+
+        .palo-recognition-projects-section h2,
+        .palo-recognition-projects-section h3 {
+            color: #ffffff;
+        }
+
+        .palo-recognition-projects-section .palo-recognition-section-no {
+            color: #e2bc71;
+        }
+
+        .palo-recognition-projects-section .palo-recognition-section-intro {
+            color: #b8d2d3;
+        }
+
+        .palo-recognition-project {
+            display: grid;
+            grid-template-columns: minmax(0, .82fr) minmax(420px, 1.18fr);
+            gap: clamp(36px, 6vw, 76px);
+            align-items: center;
+            padding: 42px 0;
+            border-top: 1px solid rgba(255, 255, 255, .17);
+        }
+
+        .palo-recognition-project:first-of-type {
+            padding-top: 0;
+            border-top: 0;
+        }
+
+        .palo-recognition-project:nth-of-type(2) {
+            grid-template-columns: minmax(420px, 1.18fr) minmax(0, .82fr);
+        }
+
+        .palo-recognition-project-copy .palo-recognition-type {
+            color: #e2bc71;
+        }
+
+        .palo-recognition-project-copy h3 {
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: clamp(1.7rem, 3.2vw, 3rem);
+            font-weight: 400;
+        }
+
+        .palo-recognition-project-copy p {
+            margin: 18px 0 0;
+            color: #b8d2d3;
+            line-height: 1.7;
+        }
+
+        .palo-recognition-project-copy .palo-recognition-button {
+            color: var(--palo-recognition-ink) !important;
+            background: #f3d79f;
+            border-color: #f3d79f;
+        }
+
+        .palo-recognition-project-copy .palo-recognition-button:hover {
+            color: var(--palo-recognition-ink) !important;
+            background: #ffffff;
+        }
+
+        .palo-recognition-page .palo-recognition-project-copy .palo-recognition-button-secondary {
+            color: #ffffff !important;
+            background: transparent;
+            border-color: rgba(255, 255, 255, .48);
+        }
+
+        .palo-recognition-page .palo-recognition-project-copy .palo-recognition-button-secondary:hover {
+            color: var(--palo-recognition-ink) !important;
+            background: #ffffff;
+            border-color: #ffffff;
+        }
+
+        .palo-recognition-policy-map {
+            min-height: 276px;
+            display: grid;
+            grid-template-columns: 1fr 1px 1fr;
+            gap: 24px;
+            align-items: center;
+            padding: 30px;
+            background: #113b45;
+            border: 1px solid rgba(255, 255, 255, .14);
+        }
+
+        .palo-recognition-policy-map-divider {
+            align-self: stretch;
+            background: rgba(226, 188, 113, .45);
+        }
+
+        .palo-recognition-policy-stage span {
+            color: #95b9bb;
+            font-size: .64rem;
+            font-weight: 850;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+        }
+
+        .palo-recognition-policy-stage strong {
+            display: block;
+            margin-top: 8px;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 1.45rem;
+            font-weight: 400;
+            line-height: 1.2;
+        }
+
+        .palo-recognition-policy-stage p {
+            margin: 14px 0 0;
+            color: #b8d2d3;
+            font-size: .82rem;
+            line-height: 1.55;
+        }
+
+        .palo-recognition-agt-figure {
+            margin: 0;
+        }
+
+        .palo-recognition-agt-figure a {
+            position: relative;
+            display: block;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, .16);
+            background: #ffffff;
+        }
+
+        .palo-recognition-agt-figure img {
+            width: 100%;
+            height: auto;
+            display: block;
+            aspect-ratio: 2700 / 1262;
+            object-fit: cover;
+            transition: transform .35s ease;
+        }
+
+        .palo-recognition-agt-figure a:hover img {
+            transform: scale(1.015);
+        }
+
+        .palo-recognition-agt-figure figcaption {
+            padding-top: 13px;
+            color: #95b9bb;
+            font-size: .75rem;
+        }
+
+        .palo-recognition-disclaimer {
+            margin-top: 22px !important;
+            padding: 16px 18px;
+            color: #ffffff !important;
+            background: rgba(200, 154, 66, .12);
+            border-left: 4px solid var(--palo-recognition-gold);
+            font-weight: 750;
+        }
+
+        .palo-recognition-transparency {
+            display: grid;
+            grid-template-columns: auto minmax(0, 1fr) auto;
+            gap: 20px;
+            align-items: center;
+            margin-top: 34px;
+            padding: 22px 0;
+            border-top: 1px solid rgba(255, 255, 255, .17);
+            border-bottom: 1px solid rgba(255, 255, 255, .17);
+        }
+
+        .palo-recognition-transparency .palo-svg-icon {
+            width: 27px;
+            height: 27px;
+            color: #e2bc71;
+        }
+
+        .palo-recognition-transparency p {
+            margin: 0;
+            color: #b8d2d3;
+            font-size: .88rem;
+            line-height: 1.6;
+        }
+
+        .palo-recognition-page .palo-recognition-transparency a {
+            min-height: 44px;
+            display: inline-flex;
+            align-items: center;
+            color: #f3d79f;
+            font-weight: 850;
+        }
+
+        .palo-recognition-page .palo-recognition-transparency a:hover {
+            color: #ffffff;
+        }
+
+        .palo-recognition-timeline {
+            margin: 0;
+            padding: 0;
+            border-top: 2px solid var(--palo-recognition-ink);
+            list-style: none;
+        }
+
+        .palo-recognition-timeline li {
+            position: relative;
+            display: grid;
+            grid-template-columns: 150px minmax(220px, .7fr) minmax(0, 1.3fr) 32px;
+            gap: 24px;
+            align-items: start;
+            padding: 25px 0;
+            border-bottom: 1px solid var(--palo-recognition-rule);
+        }
+
+        .palo-recognition-timeline-date,
+        .palo-recognition-timeline-kind {
+            color: var(--palo-recognition-muted);
+            font-size: .7rem;
+            font-weight: 850;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+        }
+
+        .palo-recognition-timeline-kind {
+            color: var(--palo-recognition-gold-dark);
+        }
+
+        .palo-recognition-timeline h3 {
+            margin-bottom: 8px;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 1.4rem;
+            font-weight: 400;
+        }
+
+        .palo-recognition-timeline p {
+            margin: 0;
+            color: var(--palo-recognition-muted);
+            font-size: .9rem;
+            line-height: 1.6;
+        }
+
+        .palo-recognition-timeline a {
+            min-width: 44px;
+            height: 44px;
+            display: inline-grid;
+            place-items: center;
+            color: var(--palo-recognition-ink);
+        }
+
+        .palo-recognition-timeline a:hover {
+            color: var(--palo-recognition-teal);
+            transform: translateX(3px);
+        }
+
+        .palo-recognition-extensions {
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            margin: 44px 0 0;
+            padding: 0;
+            border-top: 1px solid var(--palo-recognition-rule);
+            border-bottom: 1px solid var(--palo-recognition-rule);
+            list-style: none;
+        }
+
+        .palo-recognition-extension {
+            position: relative;
+            min-height: 226px;
+            padding: 25px 20px;
+        }
+
+        .palo-recognition-extension + .palo-recognition-extension {
+            border-left: 1px solid var(--palo-recognition-rule);
+        }
+
+        .palo-recognition-extension::before {
+            position: absolute;
+            top: -5px;
+            left: 19px;
+            width: 9px;
+            height: 9px;
+            content: "";
+            background: var(--palo-recognition-gold);
+            border-radius: 50%;
+        }
+
+        .palo-recognition-extension span {
+            color: var(--palo-recognition-gold-dark);
+            font-size: .65rem;
+            font-weight: 900;
+            letter-spacing: .09em;
+            text-transform: uppercase;
+        }
+
+        .palo-recognition-extension h3 {
+            margin-top: 15px;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 1.32rem;
+            font-weight: 400;
+        }
+
+        .palo-recognition-extension p {
+            margin: 12px 0 0;
+            color: var(--palo-recognition-muted);
+            font-size: .83rem;
+            line-height: 1.55;
+        }
+
+        .palo-recognition-extension a {
+            min-height: 44px;
+            display: inline-flex;
+            align-items: center;
+            margin-top: 10px;
+            color: var(--palo-recognition-teal);
+            font-size: .82rem;
+            font-weight: 850;
+        }
+
+        .palo-recognition-owned-note {
+            max-width: 760px;
+            margin: 26px 0 0;
+            color: var(--palo-recognition-muted);
+            font-size: .87rem;
+        }
+
+        .palo-recognition-page .palo-recognition-owned-note a {
+            min-height: 44px;
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 4px;
+            color: var(--palo-recognition-teal);
+            font-weight: 800;
+        }
+
+        .palo-recognition-page .palo-recognition-owned-note a:hover {
+            color: var(--palo-recognition-ink);
+        }
+
+        .palo-recognition-cite-section {
+            color: #ffffff;
+            background: var(--palo-recognition-ink-2);
+        }
+
+        .palo-recognition-cite-section h2 {
+            color: #ffffff;
+        }
+
+        .palo-recognition-cite-section .palo-recognition-section-no {
+            color: #e2bc71;
+        }
+
+        .palo-recognition-cite-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.3fr) minmax(290px, .7fr);
+            gap: clamp(42px, 7vw, 90px);
+            align-items: start;
+        }
+
+        .palo-recognition-citation-panel {
+            position: relative;
+            margin-top: 35px;
+            padding: clamp(28px, 4vw, 44px);
+            background: var(--palo-recognition-paper);
+            border-top: 5px solid var(--palo-recognition-gold);
+        }
+
+        .palo-recognition-citation-label {
+            margin: 0 0 18px;
+            color: var(--palo-recognition-gold-dark);
+            font-size: .69rem;
+            font-weight: 900;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+        }
+
+        .palo-recognition-quote {
+            margin: 0;
+            color: var(--palo-recognition-ink);
+            font-size: clamp(1.15rem, 2.3vw, 1.65rem);
+            line-height: 1.55;
+        }
+
+        .palo-recognition-copy-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px 18px;
+            align-items: center;
+            margin-top: 26px;
+            padding-top: 20px;
+            border-top: 1px solid var(--palo-recognition-rule);
+        }
+
+        .palo-recognition-copy {
+            min-height: 44px;
+            display: none;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 13px;
+            color: #ffffff;
+            background: var(--palo-recognition-teal);
+            border: 1px solid var(--palo-recognition-teal);
+            border-radius: 2px;
+            font: inherit;
+            font-size: .86rem;
+            font-weight: 850;
+            cursor: pointer;
+        }
+
+        .palo-recognition-js .palo-recognition-copy {
+            display: inline-flex;
+        }
+
+        .palo-recognition-copy:hover {
+            background: var(--palo-recognition-ink);
+        }
+
+        .palo-recognition-copy-status {
+            color: var(--palo-recognition-muted);
+            font-size: .82rem;
+        }
+
+        .palo-recognition-source-list {
+            margin: 0;
+            padding: 0;
+            border-top: 1px solid rgba(255, 255, 255, .2);
+            list-style: none;
+        }
+
+        .palo-recognition-source-list li {
+            border-bottom: 1px solid rgba(255, 255, 255, .2);
+        }
+
+        .palo-recognition-page .palo-recognition-source-list a {
+            min-height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            color: #ffffff;
+            font-weight: 800;
+            text-decoration: none;
+        }
+
+        .palo-recognition-page .palo-recognition-source-list a:hover {
+            color: #f3d79f;
+        }
+
+        .palo-recognition-page .palo-recognition-source-list a::after {
+            content: "↗";
+            color: #e2bc71;
+        }
+
+        .palo-recognition-legal-note {
+            margin: 30px 0 0;
+            padding: 18px 20px;
+            color: #c7dbdc;
+            background: rgba(255, 255, 255, .055);
+            border-left: 4px solid var(--palo-recognition-gold);
+            font-size: .88rem;
+            line-height: 1.65;
+        }
+
+        .palo-recognition-verification {
+            padding: 25px 0;
+            color: #495f64;
+            background: #e9e1d1;
+            border-top: 1px solid var(--palo-recognition-rule);
+        }
+
+        .palo-recognition-verification .palo-shell {
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+        }
+
+        .palo-recognition-verification .palo-svg-icon {
+            flex: 0 0 auto;
+            margin-top: 2px;
+            color: var(--palo-recognition-teal);
+        }
+
+        .palo-recognition-verification p {
+            margin: 0;
+            font-size: .82rem;
+            line-height: 1.65;
+        }
+
+        @keyframes palo-recognition-enter {
+            from { opacity: 0; transform: translateY(18px) rotate(-2.2deg); }
+            to { opacity: 1; transform: translateY(0) rotate(-2.2deg); }
+        }
+
+        @media (max-width: 1040px) {
+            .palo-recognition-hero-grid,
+            .palo-recognition-featured,
+            .palo-recognition-orbital,
+            .palo-recognition-project,
+            .palo-recognition-project:nth-of-type(2),
+            .palo-recognition-cite-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .palo-recognition-ledger-visual {
+                width: min(620px, 100%);
+                min-height: 430px;
+                margin: 0 auto;
+            }
+
+            .palo-recognition-paper-miniature {
+                min-height: 480px;
+            }
+
+            .palo-recognition-project:nth-of-type(2) .palo-recognition-agt-figure {
+                order: 2;
+            }
+
+            .palo-recognition-extensions {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .palo-recognition-extension + .palo-recognition-extension {
+                border-left: 0;
+            }
+
+            .palo-recognition-extension:nth-child(even) {
+                border-left: 1px solid var(--palo-recognition-rule);
+            }
+
+            .palo-recognition-extension:nth-child(n+3) {
+                border-top: 1px solid var(--palo-recognition-rule);
+            }
+        }
+
+        @media (max-width: 1100px) {
+            .palo-recognition-page .palo-header-inner {
+                position: relative;
+                min-height: 68px;
+            }
+
+            .palo-recognition-page .palo-menu-toggle {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .palo-recognition-page .palo-nav {
+                position: absolute;
+                z-index: 20;
+                top: 68px;
+                right: 0;
+                left: 0;
+                display: none;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0;
+                padding: 8px 14px 14px;
+                background: var(--palo-recognition-ink);
+                border-bottom: 1px solid rgba(255, 255, 255, .22);
+            }
+
+            .palo-recognition-page .palo-nav.is-open {
+                display: flex;
+            }
+
+            .palo-recognition-page .palo-nav a {
+                padding: 4px 0;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .palo-recognition-page .palo-nav a[aria-current="page"] {
+                box-shadow: none;
+                border-left: 2px solid var(--palo-recognition-gold);
+                padding-left: 10px;
+            }
+
+            .palo-recognition-hero-grid,
+            .palo-recognition-section-head {
+                grid-template-columns: 1fr;
+            }
+
+            .palo-recognition-hero h1 {
+                font-size: clamp(3rem, 17vw, 5.1rem);
+            }
+
+            .palo-recognition-ledger-visual {
+                min-height: 385px;
+            }
+
+            .palo-recognition-ledger-visual::before {
+                right: -10px;
+                width: 270px;
+                height: 270px;
+            }
+
+            .palo-recognition-cover {
+                width: 69%;
+                min-height: 340px;
+                padding: 23px 21px 20px;
+            }
+
+            .palo-recognition-cover-title {
+                margin-top: 25px;
+                font-size: 1.2rem;
+            }
+
+            .palo-recognition-branch {
+                width: 55%;
+                padding: 16px;
+            }
+
+            .palo-recognition-markers {
+                grid-template-columns: 1fr;
+            }
+
+            .palo-recognition-marker,
+            .palo-recognition-marker + .palo-recognition-marker {
+                display: grid;
+                grid-template-columns: minmax(140px, .7fr) 1fr;
+                gap: 18px;
+                padding: 15px 0;
+                border-top: 1px solid rgba(255, 255, 255, .14);
+                border-left: 0;
+            }
+
+            .palo-recognition-marker:first-child {
+                border-top: 0;
+            }
+
+            .palo-recognition-index {
+                gap: 16px;
+            }
+
+            .palo-recognition-index-label {
+                display: none;
+            }
+
+            .palo-recognition-section-head {
+                gap: 22px;
+            }
+
+            .palo-recognition-paper-miniature {
+                min-height: 460px;
+            }
+
+            .palo-recognition-artifacts {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .palo-recognition-artifact-links {
+                justify-content: flex-start;
+            }
+
+            .palo-recognition-timeline li {
+                grid-template-columns: 105px minmax(0, 1fr) 30px;
+                gap: 14px;
+            }
+
+            .palo-recognition-timeline-kind {
+                grid-column: 2;
+            }
+
+            .palo-recognition-timeline div {
+                grid-column: 2;
+            }
+
+            .palo-recognition-timeline a {
+                grid-column: 3;
+                grid-row: 1 / span 3;
+            }
+
+            .palo-recognition-transparency {
+                grid-template-columns: auto minmax(0, 1fr);
+            }
+
+            .palo-recognition-transparency a {
+                grid-column: 2;
+            }
+        }
+
+        @media (max-width: 540px) {
+            .palo-recognition-page .palo-header-inner {
+                gap: 8px;
+            }
+
+            .palo-recognition-page .palo-brand {
+                gap: 7px;
+                font-size: .78rem;
+            }
+
+            .palo-recognition-page .palo-brand img {
+                width: 30px;
+                height: 30px;
+            }
+
+            .palo-recognition-actions,
+            .palo-recognition-actions .palo-recognition-button {
+                width: 100%;
+            }
+
+            .palo-recognition-ledger-visual {
+                min-height: 360px;
+            }
+
+            .palo-recognition-cover {
+                width: 75%;
+                min-height: 325px;
+            }
+
+            .palo-recognition-cover-author {
+                margin-bottom: 12px;
+            }
+
+            .palo-recognition-branch {
+                right: -6px;
+                width: 50%;
+            }
+
+            .palo-recognition-branch-list li {
+                grid-template-columns: 9px 1fr;
+                gap: 7px;
+                font-size: .69rem;
+            }
+
+            .palo-recognition-featured {
+                padding: 18px;
+            }
+
+            .palo-recognition-paper-miniature {
+                min-height: 420px;
+                padding: 27px 23px 23px;
+            }
+
+            .palo-recognition-facts {
+                grid-template-columns: 1fr;
+            }
+
+            .palo-recognition-facts div:nth-child(even) {
+                padding-left: 0;
+                border-left: 0;
+            }
+
+            .palo-recognition-policy-map {
+                grid-template-columns: 1fr;
+            }
+
+            .palo-recognition-policy-map-divider {
+                width: 100%;
+                height: 1px;
+            }
+
+            .palo-recognition-timeline li {
+                grid-template-columns: 1fr 30px;
+                gap: 8px 14px;
+            }
+
+            .palo-recognition-timeline-date,
+            .palo-recognition-timeline-kind,
+            .palo-recognition-timeline div {
+                grid-column: 1;
+            }
+
+            .palo-recognition-timeline a {
+                grid-column: 2;
+                grid-row: 1 / span 3;
+            }
+
+            .palo-recognition-extensions {
+                grid-template-columns: 1fr;
+            }
+
+            .palo-recognition-extension:nth-child(even) {
+                border-left: 0;
+            }
+
+            .palo-recognition-extension + .palo-recognition-extension {
+                border-top: 1px solid var(--palo-recognition-rule);
+            }
+
+            .palo-recognition-extension {
+                min-height: auto;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .palo-recognition-cover,
+            .palo-recognition-branch {
+                animation: none;
+            }
+
+            .palo-recognition-button:hover,
+            .palo-recognition-timeline a:hover,
+            .palo-recognition-agt-figure a:hover img {
+                transform: none;
+            }
         }
     </style>
 </head>
 
-<body class="palo-v21">
+<body class="palo-v21 palo-recognition-page">
     <a class="palo-skip-link" href="#main-content">Skip to main content</a>
     <header class="palo-site-header">
         <div class="palo-shell palo-header-inner">
@@ -190,122 +1575,327 @@
                 <a href="PALO_PlatformMap.html">Platform Map</a>
                 <a href="PALO_Recognition.html" aria-current="page">Recognition</a>
                 <a href="PALO_Community.html">Community</a>
-                <a href="https://github.com/sev7enITA/PALOframework" target="_blank" rel="noopener noreferrer">GitHub</a>
             </nav>
         </div>
-        <div class="palo-shell palo-hero">
-            <p class="eyebrow">Public references and source notes</p>
-            <h1>Recognition should be traceable.</h1>
-            <p>PALO is an open framework. This page distinguishes primary implementation sources from independent public references and records the date on which links were reviewed.</p>
+
+        <div class="palo-recognition-hero">
+            <div class="palo-shell">
+                <div class="palo-recognition-hero-grid">
+                    <div>
+                        <p class="palo-recognition-eyebrow">Recognition &amp; evidence ledger</p>
+                        <h1>The public record behind PALO.</h1>
+                        <p class="palo-recognition-hero-lead">Formal publications, applied extensions, public presentations, project references and independent coverage&mdash;each identified by evidence type, provenance and relationship to the framework.</p>
+                        <div class="palo-recognition-actions">
+                            <a class="palo-recognition-button" href="#featured-publication"><span data-palo-icon="book" aria-hidden="true"></span>Read the featured publication</a>
+                            <a class="palo-recognition-button palo-recognition-button-secondary" href="https://github.com/sev7enITA/PALOframework" target="_blank" rel="noopener noreferrer"><span data-palo-icon="code" aria-hidden="true"></span>Open repository</a>
+                        </div>
+                    </div>
+
+                    <div class="palo-recognition-ledger-visual" role="img" aria-label="One featured publication branching into research, projects and public record">
+                        <div class="palo-recognition-cover">
+                            <div class="palo-recognition-cover-mark"><img src="assets/logo.webp" alt="">PALO / Publication 01</div>
+                            <p class="palo-recognition-cover-title">Il Framework PALO per la Corporate Governance dell&rsquo;IA</p>
+                            <p class="palo-recognition-cover-author">Fabrizio Degni</p>
+                            <div class="palo-recognition-cover-foot"><span>Special issue</span><span>04.03.2026</span></div>
+                        </div>
+                        <div class="palo-recognition-branch">
+                            <p class="palo-recognition-branch-label">Evidence branches</p>
+                            <ul class="palo-recognition-branch-list">
+                                <li>Research &amp; extensions</li>
+                                <li>Projects &amp; GitHub</li>
+                                <li>Public record</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="palo-recognition-markers" role="group" aria-label="Evidence summary">
+                    <div class="palo-recognition-marker"><strong>2 published studies</strong><span>Clearly differentiated below</span></div>
+                    <div class="palo-recognition-marker"><strong>2 public project references</strong><span>Integration and proposal records</span></div>
+                    <div class="palo-recognition-marker"><strong>Reviewed 13 Aug 2026</strong><span>Link and provenance review</span></div>
+                </div>
+            </div>
         </div>
     </header>
 
+    <nav class="palo-recognition-index-wrap" aria-label="Evidence ledger sections">
+        <div class="palo-shell palo-recognition-index">
+            <span class="palo-recognition-index-label">Ledger index</span>
+            <a href="#research">Research</a>
+            <a href="#projects">Projects</a>
+            <a href="#public-record">Public record</a>
+            <a href="#cite-palo">Cite PALO</a>
+        </div>
+    </nav>
+
     <main id="main-content" class="palo-main">
-        <section class="palo-section">
-            <p class="status"><span data-palo-icon=check class="palo-icon-inline"></span>Links reviewed on 11 July 2026</p>
-            <h2>Public references</h2>
-            <p class="intro">The following sources provide public context about PALO and its creator. They retain their own editorial responsibility; inclusion here does not imply endorsement or replace the framework documentation.</p>
-            <div class="references">
-                <article class="reference">
-                    <h3>World AI Council</h3>
-                    <p>A public World AI Council post refers to PALO and notes recognition through Reuters coverage.</p>
-                    <a href="https://www.linkedin.com/posts/world-ai-council_at-the-world-ai-council-we-are-incredibly-activity-7438233663349133312-9akN" target="_blank" rel="noopener noreferrer">Read the public reference</a>
-                </article>
-                <article class="reference">
-                    <h3>Rivista AI</h3>
-                    <p>Rivista AI covered the P.A.L.O. Framework Toolbox 2.0 in the context of governance and the Human Economic Forum.</p>
-                    <a href="https://www.rivista.ai/2026/03/25/p-a-l-o-framework-toolbox-2-0-governance-in-your-pocket-o-lillusione-portatile-del-controllo-algoritmico/" target="_blank" rel="noopener noreferrer">Read the article</a>
-                </article>
-                <article class="reference">
-                    <h3>Rivista Corporate Governance</h3>
-                    <p>The 2026 special issue index includes a reference to "The PALO Framework for AI Corporate Governance."</p>
-                    <a href="https://images.rivistacorporategovernance.it/f/indici/NumeroStraordinario_2026_tUAZh_RCG.pdf" target="_blank" rel="noopener noreferrer">Open the special issue index</a>
-                </article>
-                <article class="reference">
-                    <h3>Human Economic Forum</h3>
-                    <p>The Human Economic Forum 2025 programme lists Fabrizio Degni as creator of the PALO Framework.</p>
-                    <a href="https://www.humaneconomicforum.org/documents/programma_9-dic-2025.pdf" target="_blank" rel="noopener noreferrer">Open the programme</a>
-                </article>
-            </div>
-        </section>
-
-        <section class="palo-section">
-            <h2>Primary sources</h2>
-            <p class="intro">For the method, controls, interactive tools, and release history, these are the authoritative PALO sources.</p>
-            <div class="source-note">
-                <div>
-                    <p><strong>Source of truth.</strong> The open repository and framework documents describe the implementation. Regulatory links should always be checked against the official source because guidance and application dates can change.</p>
-                    <ul class="source-list">
-                        <li><a href="https://github.com/sev7enITA/PALOframework" target="_blank" rel="noopener noreferrer">PALO Framework GitHub repository</a></li>
-                        <li><a href="PALO_AgenticGovernance.html">PALO-AM Agentic Governance Modality</a></li>
-                        <li><a href="PALO_RiskTiering.html">Risk Tiering Calculator</a> and <a href="PALO_FRIA.html">FRIA Assessment</a></li>
-                        <li><a href="https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai" target="_blank" rel="noopener noreferrer">European Commission AI Act information</a></li>
-                    </ul>
+        <section class="palo-recognition-section" id="research">
+            <div class="palo-shell">
+                <div class="palo-recognition-section-head">
+                    <div>
+                        <span class="palo-recognition-section-no">01 / Research</span>
+                        <h2>Published work, with provenance intact.</h2>
+                    </div>
+                    <p class="palo-recognition-section-intro">The ledger separates the foundational corporate-governance publication from a later, author-led research extension. Both are published studies; the second is not presented as an independent citation.</p>
                 </div>
-                <span data-palo-icon=book class="palo-icon-inline"></span>
+
+                <article class="palo-recognition-featured" id="featured-publication">
+                    <div class="palo-recognition-paper-miniature" role="img" aria-label="Publication cover miniature">
+                        <img src="assets/logo.webp" alt="PALO Framework logo">
+                        <p class="palo-recognition-paper-kicker">Research publication &middot; 2026</p>
+                        <p class="palo-recognition-paper-title" lang="it">Il Framework PALO per la Corporate Governance dell&rsquo;IA</p>
+                        <p class="palo-recognition-paper-byline">Fabrizio Degni</p>
+                        <p class="palo-recognition-paper-issue">Rivista Corporate Governance<br>Numero Straordinario</p>
+                    </div>
+
+                    <div class="palo-recognition-feature-copy">
+                        <p class="palo-recognition-type">Research publication &middot; Preferred citation</p>
+                        <h3 lang="it">Il Framework PALO per la Corporate Governance dell'IA: un paradigma per l'orchestrazione del ciclo di vita dell'Intelligenza Artificiale basato su principi in ambito aziendale</h3>
+                        <p>The foundational journal publication presents PALO as a principle-based paradigm for orchestrating the AI lifecycle in a corporate-governance context.</p>
+                        <dl class="palo-recognition-facts">
+                            <div><dt>Author</dt><dd>Fabrizio Degni</dd></div>
+                            <div><dt>Published</dt><dd>4 March 2026</dd></div>
+                            <div><dt>Journal</dt><dd>Rivista Corporate Governance</dd></div>
+                            <div><dt>Issue</dt><dd>Numero Straordinario 2026</dd></div>
+                            <div><dt>Publisher</dt><dd>G. Giappichelli Editore</dd></div>
+                            <div><dt>Identifiers</dt><dd>ISSN 2724-1068 &middot; EISSN 2784-8647</dd></div>
+                        </dl>
+                        <div class="palo-recognition-actions">
+                            <a class="palo-recognition-button" href="https://www.rivistacorporategovernance.it/Tool/NewsletterArchive/Detail/view_html?anno=2026&amp;id_newsletter=27" target="_blank" rel="noopener noreferrer"><span data-palo-icon="book" aria-hidden="true"></span>Open the journal issue</a>
+                            <a class="palo-recognition-button palo-recognition-button-secondary" href="https://images.rivistacorporategovernance.it/f/indici/NumeroStraordinario_2026_tUAZh_RCG.pdf" target="_blank" rel="noopener noreferrer">View issue index</a>
+                        </div>
+                    </div>
+                </article>
+
+                <div class="palo-recognition-secondary-research">
+                    <article class="palo-recognition-orbital">
+                        <div class="palo-recognition-orbit-art" aria-hidden="true">
+                            <span class="palo-recognition-orbit-core">PALO</span>
+                            <span class="palo-recognition-orbit-point palo-recognition-orbit-point-a"></span>
+                            <span class="palo-recognition-orbit-point palo-recognition-orbit-point-b"></span>
+                            <span class="palo-recognition-orbit-label">Graduated Cosmic Ethics &middot; 7 cosmic KPIs</span>
+                        </div>
+                        <div class="palo-recognition-orbital-copy">
+                            <p class="palo-recognition-type">Published extension &middot; Downstream research</p>
+                            <h3>Orbital intelligence and the knightian Void: A Graduated Governance Model for Autonomous AI in Cosmic Exploration, Grounded in the P.A.L.O. Framework</h3>
+                            <p><strong>Political Science International</strong>, Volume 4, Issue 1, pages 1&ndash;20. Published 22 May 2026. ISSN 2995-326X.</p>
+                            <p>The paper develops the Graduated Cosmic Ethics model as an extension of PALO and adds seven cosmic KPIs for autonomous AI in space exploration.</p>
+                            <p class="palo-recognition-boundary"><strong>Provenance boundary:</strong> this extension is authored by Fabrizio Degni. It is published downstream research, not an independent citation of PALO.</p>
+                            <a class="palo-recognition-text-link" href="https://www.opastpublishers.com/open-access-articles/orbital-intelligence-and-the-knightian-void-a-graduated-governance-model-for-autonomous-ai-in-cosmic-exploration-grounded-in-the-p-10761.html" target="_blank" rel="noopener noreferrer">Open the published paper <span aria-hidden="true">↗</span></a>
+                        </div>
+                    </article>
+
+                    <div class="palo-recognition-artifacts">
+                        <p class="palo-recognition-artifacts-title">Primary research artifacts</p>
+                        <p>The repository PDFs preserve the PALO v1 research artifact and current framework document. They are primary sources, not additional journal publications.</p>
+                        <div class="palo-recognition-artifact-links">
+                            <a href="ThePALOFramework_ A_Paradigm_for_Principled_AI_Lifecycle_OrchestrationInBusiness v1 Feb 2026.pdf">PALO v1 research PDF</a>
+                            <a href="PALOFrameworkV2.pdf">PALO Framework PDF</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <section class="palo-section">
-            <h2>Verification note</h2>
-            <p class="intro">PALO is an educational, governance-support, and pre-screening toolkit. It does not certify compliance or provide legal advice. Each assessment must be reviewed against the applicable law, sector requirements, and deployment context.</p>
-        </section>
+        <section class="palo-recognition-section palo-recognition-projects-section" id="projects">
+            <div class="palo-shell">
+                <div class="palo-recognition-section-head">
+                    <div>
+                        <span class="palo-recognition-section-no">02 / Projects &amp; GitHub</span>
+                        <h2>Referenced in public work.</h2>
+                    </div>
+                    <p class="palo-recognition-section-intro">These records show an explicit integration and an open interoperability proposal. They are evidence of public use or discussion&mdash;not proof of endorsement, upstream adoption or certification.</p>
+                </div>
 
-        <section class="palo-section">
-            <h2>Related ecosystem</h2>
-            <p class="intro">PolicyWatcher is a separate civic-tech portal by Fabrizio Degni. It monitors public privacy policies and terms of service and provides a complementary operational view for policy change, evidence traceability, and source quality.</p>
-            <div class="references">
-                <article class="reference">
-                    <h3>PolicyWatcher</h3>
-                    <p>Use PolicyWatcher as an external monitoring companion for public policy changes. It is not a PALO module or a legal certification service.</p>
-                    <a href="https://www.policywatcher.online/" target="_blank" rel="noopener noreferrer">Open PolicyWatcher</a>
+                <article class="palo-recognition-project">
+                    <div class="palo-recognition-project-copy">
+                        <p class="palo-recognition-type">Related project &middot; Explicit PALO integration</p>
+                        <h3>PolicyWatcher</h3>
+                        <p>A separate civic-tech project by the same creator. Its public README aligns the methodology with PALO, locates PolicyWatcher in Deployment &amp; Monitoring / Phase 4, and derives the KPI approach from PALO's ethical KPI paradigm.</p>
+                        <div class="palo-recognition-actions">
+                            <a class="palo-recognition-button" href="https://github.com/sev7enITA/policywatcher" target="_blank" rel="noopener noreferrer">View GitHub repository</a>
+                            <a class="palo-recognition-button palo-recognition-button-secondary" href="https://www.policywatcher.online/" target="_blank" rel="noopener noreferrer">Open live project</a>
+                        </div>
+                    </div>
+                    <div class="palo-recognition-policy-map" role="img" aria-label="Relationship between PALO phase four and PolicyWatcher monitoring">
+                        <div class="palo-recognition-policy-stage">
+                            <span>PALO lifecycle</span>
+                            <strong>Phase 4</strong>
+                            <p>Deployment &amp; Monitoring</p>
+                        </div>
+                        <span class="palo-recognition-policy-map-divider" aria-hidden="true"></span>
+                        <div class="palo-recognition-policy-stage">
+                            <span>Related project</span>
+                            <strong>PolicyWatcher</strong>
+                            <p>Public policy-change signals and ethical KPI alignment</p>
+                        </div>
+                    </div>
                 </article>
-                <article class="reference">
-                    <h3>Methodology and trust</h3>
-                    <p>Review the portal's confidence methodology and public Trust &amp; Quality materials before using an AI-assisted policy signal in a governance record.</p>
-                    <a href="https://www.policywatcher.online/methodology/confidence" target="_blank" rel="noopener noreferrer">Read the methodology</a> | <a href="https://www.policywatcher.online/trust" target="_blank" rel="noopener noreferrer">Open Trust &amp; Quality</a>
+
+                <article class="palo-recognition-project">
+                    <figure class="palo-recognition-agt-figure">
+                        <a href="https://github.com/microsoft/agent-governance-toolkit/discussions/3647" target="_blank" rel="noopener noreferrer">
+                            <img src="assets/palo-ai-integrations/microsoft-agt/palo-microsoft-agt-interoperability-workflow.png" alt="Workflow showing the proposed connection from Microsoft Agent Governance Toolkit pre-action policy evaluation to PALO downstream outcome assurance" loading="lazy" width="2700" height="1262">
+                        </a>
+                        <figcaption>Public proposal workflow &middot; select the image to open GitHub Discussion #3647.</figcaption>
+                    </figure>
+                    <div class="palo-recognition-project-copy">
+                        <p class="palo-recognition-type">Community interoperability proposal &middot; Evaluation open</p>
+                        <h3>Microsoft Agent Governance Toolkit discussion</h3>
+                        <p>The PALO-maintained adapter proposal connects AGT ACS pre-action policy evaluation to PALO downstream outcome assurance. The proposal is public and remains open for evaluation.</p>
+                        <p class="palo-recognition-disclaimer">Not maintained, certified, sponsored or endorsed by Microsoft.</p>
+                        <div class="palo-recognition-actions">
+                            <a class="palo-recognition-button" href="https://github.com/microsoft/agent-governance-toolkit/discussions/3647" target="_blank" rel="noopener noreferrer">Open GitHub discussion</a>
+                            <a class="palo-recognition-button palo-recognition-button-secondary" href="docs/community/palo-microsoft-agt-interoperability-proposal.html">Read local proposal</a>
+                        </div>
+                    </div>
                 </article>
+
+                <aside class="palo-recognition-transparency" aria-label="Listing and adoption boundary">
+                    <span data-palo-icon="shield" aria-hidden="true"></span>
+                    <p><strong>Listing boundary.</strong> Only forks, implementations or citations with a stable public URL are listed. No fork count or adoption claim is inferred from private work, unstable mentions or repository activity alone.</p>
+                    <a href="PALO_Community.html">Submit a verifiable link</a>
+                </aside>
             </div>
         </section>
 
-        <section class="palo-section">
-            <h2>Media kit and community links</h2>
-            <p class="intro">Use these links to verify the open project, share the framework, or access the mobile companion apps.</p>
-            <div class="references">
-                <article class="reference">
-                    <h3>Open repository</h3>
-                    <p>Source code, interactive modules, documentation, releases, and contribution history.</p>
-                    <a href="https://github.com/sev7enITA/PALOframework" target="_blank" rel="noopener noreferrer">Open PALO on GitHub</a>
-                </article>
-                <article class="reference">
-                    <h3>Android toolbox</h3>
-                    <p>P.A.L.O. Framework Toolbox for Android, with local-first governance workflows.</p>
-                    <a href="https://play.google.com/store/apps/details?id=com.fabriziodegni.paloframework" target="_blank" rel="noopener noreferrer">Open Google Play listing</a>
-                </article>
-                <article class="reference">
-                    <h3>iOS and iPadOS toolbox</h3>
-                    <p>P.A.L.O. Framework Toolbox for iPhone and iPad.</p>
-                    <a href="https://apps.apple.com/it/app/p-a-l-o-framework-toolbox/id6761771299" target="_blank" rel="noopener noreferrer">Open App Store listing</a>
-                </article>
-                <article class="reference">
-                    <h3>Media assets</h3>
-                    <p>Use the framework logo and primary documentation when preparing a reference or announcement.</p>
-                    <a href="assets/logo.webp">Open framework logo</a> | <a href="PALOFrameworkV2.pdf">Open framework PDF</a>
-                </article>
-                <article class="reference">
-                    <h3>Community</h3>
-                    <p>Meet the open community around the framework and its contribution paths.</p>
-                    <a href="PALO_Community.html">Open community page</a>
-                </article>
+        <section class="palo-recognition-section" id="public-record">
+            <div class="palo-shell">
+                <div class="palo-recognition-section-head">
+                    <div>
+                        <span class="palo-recognition-section-no">03 / Public record</span>
+                        <h2>Coverage and public provenance.</h2>
+                    </div>
+                    <p class="palo-recognition-section-intro">A dated record of programme listings, independent reporting and public references. Each source retains its own editorial responsibility.</p>
+                </div>
+
+                <ol class="palo-recognition-timeline">
+                    <li>
+                        <time class="palo-recognition-timeline-date" datetime="2025-12-09">09 Dec 2025</time>
+                        <span class="palo-recognition-timeline-kind">Official programme / public provenance</span>
+                        <div><h3>Human Economic Forum 2025</h3><p>The official programme for the event at the Italian Chamber of Deputies lists Fabrizio Degni as creator of PALO.</p></div>
+                        <a href="https://www.humaneconomicforum.org/documents/programma_9-dic-2025.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open Human Economic Forum official programme"><span aria-hidden="true">↗</span></a>
+                    </li>
+                    <li>
+                        <time class="palo-recognition-timeline-date" datetime="2026-03-25">25 Mar 2026</time>
+                        <span class="palo-recognition-timeline-kind">Independent coverage</span>
+                        <div><h3>Rivista AI</h3><p>Coverage of the P.A.L.O. Framework Toolbox 2.0 and its wider AI-governance context.</p></div>
+                        <a href="https://www.rivista.ai/2026/03/25/p-a-l-o-framework-toolbox-2-0-governance-in-your-pocket-o-lillusione-portatile-del-controllo-algoritmico/" target="_blank" rel="noopener noreferrer" aria-label="Open Rivista AI coverage"><span aria-hidden="true">↗</span></a>
+                    </li>
+                    <li>
+                        <time class="palo-recognition-timeline-date" datetime="2026-04-17">17 Apr 2026</time>
+                        <span class="palo-recognition-timeline-kind">Public coverage</span>
+                        <div><h3>Indie Hackers</h3><p>&ldquo;Fabrizio Degni Introduces PALO Framework to Advance Responsible AI Governance.&rdquo;</p></div>
+                        <a href="https://www.indiehackers.com/post/fabrizio-degni-introduces-palo-framework-to-advance-responsible-ai-governance-z1YV72vN9fQo83V234Ws" target="_blank" rel="noopener noreferrer" aria-label="Open Indie Hackers article"><span aria-hidden="true">↗</span></a>
+                    </li>
+                    <li>
+                        <span class="palo-recognition-timeline-date">Public post</span>
+                        <span class="palo-recognition-timeline-kind">Public reference</span>
+                        <div><h3>World AI Council</h3><p>A public LinkedIn post refers to PALO and notes Reuters coverage. This ledger does not present the post as a direct Reuters source.</p></div>
+                        <a href="https://www.linkedin.com/posts/world-ai-council_at-the-world-ai-council-we-are-incredibly-activity-7438233663349133312-9akN" target="_blank" rel="noopener noreferrer" aria-label="Open World AI Council public reference"><span aria-hidden="true">↗</span></a>
+                    </li>
+                </ol>
+
+                <div class="palo-recognition-secondary-research">
+                    <span class="palo-recognition-section-no">Official PALO extensions &amp; spin-offs</span>
+                    <h2>An authored ecosystem, not independent recognition.</h2>
+                    <ul class="palo-recognition-extensions">
+                        <li class="palo-recognition-extension"><span>Author-maintained</span><h3>PALO-AM</h3><p>Agentic governance modality for delegated action and autonomy.</p><a href="PALO_AgenticGovernance.html">Explore PALO-AM</a></li>
+                        <li class="palo-recognition-extension"><span>Developer preview</span><h3>PALO-AI</h3><p>Technical control-plane for governance integration.</p><a href="PALO_AIGovernance.html">Explore PALO-AI</a></li>
+                        <li class="palo-recognition-extension"><span>PALO-owned product</span><h3>Framework Toolbox</h3><p>Mobile companion for local-first governance workflows.</p><a href="PALO_CompanionApp.html">View the companion app</a></li>
+                        <li class="palo-recognition-extension"><span>Research extension</span><h3>Graduated Cosmic Ethics</h3><p>Author-led extension in the published orbital-intelligence paper.</p><a href="https://www.opastpublishers.com/open-access-articles/orbital-intelligence-and-the-knightian-void-a-graduated-governance-model-for-autonomous-ai-in-cosmic-exploration-grounded-in-the-p-10761.html" target="_blank" rel="noopener noreferrer">Read the paper</a></li>
+                        <li class="palo-recognition-extension"><span>Ecosystem companion</span><h3>PolicyWatcher</h3><p>Separate civic-tech project by the same creator.</p><a href="https://www.policywatcher.online/" target="_blank" rel="noopener noreferrer">Open PolicyWatcher</a></li>
+                    </ul>
+                    <p class="palo-recognition-owned-note">App availability: <a href="https://play.google.com/store/apps/details?id=com.fabriziodegni.paloframework" target="_blank" rel="noopener noreferrer">Google Play</a> and <a href="https://apps.apple.com/it/app/p-a-l-o-framework-toolbox/id6761771299" target="_blank" rel="noopener noreferrer">App Store</a>. These extensions are PALO-owned or author-maintained and are shown for relationship clarity.</p>
+                </div>
             </div>
         </section>
+
+        <section class="palo-recognition-section palo-recognition-cite-section" id="cite-palo">
+            <div class="palo-shell palo-recognition-cite-grid">
+                <div>
+                    <span class="palo-recognition-section-no">04 / Cite PALO</span>
+                    <h2>Use the preferred citation.</h2>
+                    <div class="palo-recognition-citation-panel">
+                        <p class="palo-recognition-citation-label">Preferred citation</p>
+                        <blockquote class="palo-recognition-quote" id="palo-preferred-citation">Degni, Fabrizio. &ldquo;Il Framework PALO per la Corporate Governance dell'IA: un paradigma per l'orchestrazione del ciclo di vita dell'Intelligenza Artificiale basato su principi in ambito aziendale.&rdquo; <em>Rivista Corporate Governance</em>, Numero Straordinario 2026, G. Giappichelli Editore, 4 Mar. 2026. ISSN 2724-1068; EISSN 2784-8647.</blockquote>
+                        <div class="palo-recognition-copy-row">
+                            <button class="palo-recognition-copy" type="button" data-palo-copy-citation aria-describedby="palo-copy-status"><span data-palo-icon="clipboard" aria-hidden="true"></span>Copy citation</button>
+                            <span class="palo-recognition-copy-status" id="palo-copy-status" role="status" aria-live="polite"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <p class="palo-recognition-eyebrow">Sources of truth</p>
+                    <ul class="palo-recognition-source-list">
+                        <li><a href="https://github.com/sev7enITA/PALOframework/blob/main/CITATION.cff" target="_blank" rel="noopener noreferrer">CITATION.cff</a></li>
+                        <li><a href="https://github.com/sev7enITA/PALOframework" target="_blank" rel="noopener noreferrer">Canonical repository</a></li>
+                        <li><a href="PALOFrameworkV2.pdf">PALO Framework PDF</a></li>
+                        <li><a href="PALO_DocumentationLibrary.html">Documentation Library</a></li>
+                        <li><a href="https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai" target="_blank" rel="noopener noreferrer">European Commission AI Act</a></li>
+                    </ul>
+                    <p class="palo-recognition-legal-note"><strong>Educational boundary.</strong> PALO supports governance and pre-screening. It does not certify compliance or provide legal advice. Review every use against applicable law, sector requirements and deployment context.</p>
+                </div>
+            </div>
+        </section>
+
+        <aside class="palo-recognition-verification" aria-label="Verification note">
+            <div class="palo-shell">
+                <span data-palo-icon="check" aria-hidden="true"></span>
+                <p><strong>Verification note:</strong> links and evidence labels reviewed 13 August 2026. External sources retain editorial responsibility; inclusion does not imply endorsement. Relationship labels are used to distinguish independent coverage, same-author work, PALO-owned extensions and open community proposals.</p>
+            </div>
+        </aside>
     </main>
 
     <footer class="palo-footer">
         <div class="palo-shell">
-            <p>Copyright 2026 PALO Framework. <a href="privacy-policy.html">Privacy</a> | <a href="accessibility.html">Accessibility</a> | <a href="security-policy.html">Security</a></p>
+            <p>Copyright 2026 PALO Framework.</p>
+            <div class="palo-footer-links">
+                <a href="privacy-policy.html">Privacy</a>
+                <a href="accessibility.html">Accessibility</a>
+                <a href="security-policy.html">Security</a>
+                <a href="PALO_Community.html">Community</a>
+            </div>
         </div>
     </footer>
+
+    <script>
+        (function () {
+            document.body.classList.add('palo-recognition-js');
+            var button = document.querySelector('[data-palo-copy-citation]');
+            var citation = document.getElementById('palo-preferred-citation');
+            var status = document.getElementById('palo-copy-status');
+            if (!button || !citation || !status) return;
+
+            function fallbackCopy(text) {
+                var area = document.createElement('textarea');
+                area.value = text;
+                area.setAttribute('readonly', '');
+                area.style.position = 'fixed';
+                area.style.opacity = '0';
+                document.body.appendChild(area);
+                area.select();
+                var copied = document.execCommand('copy');
+                area.remove();
+                if (!copied) throw new Error('Copy command unavailable');
+            }
+
+            button.addEventListener('click', async function () {
+                var text = citation.textContent.trim().replace(/\s+/g, ' ');
+                try {
+                    if (navigator.clipboard && window.isSecureContext) {
+                        await navigator.clipboard.writeText(text);
+                    } else {
+                        fallbackCopy(text);
+                    }
+                    status.textContent = 'Citation copied to clipboard.';
+                } catch (error) {
+                    status.textContent = 'Copy failed. Select the citation text and copy it manually.';
+                }
+            });
+        }());
+    </script>
     <script src="assets/palo-v21.js?v=3.0.1"></script>
 </body>
 

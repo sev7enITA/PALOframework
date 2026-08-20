@@ -1,4 +1,4 @@
-# Hostinger deployment - PALO Web v3.0.0
+# Hostinger deployment - PALO Web v3.0.1
 
 The canonical deploy input is the `dist/` directory produced by:
 
@@ -9,9 +9,10 @@ npm run build
 npm run validate:dist
 npm run build:check
 npm run smoke
+npm run package:hostinger
 ```
 
-The ready-to-upload artifact is generated as `PALO-Hostinger-<release>.zip`. Its contents are the **contents** of `dist/` at the ZIP root, plus `hosting/hostinger/.htaccess`; extracting it into Hostinger `public_html` must produce `public_html/index.html`.
+The ready-to-upload artifact is generated in `output/` as `PALO-Hostinger-<release>.zip`, with a matching `.sha256` checksum file. Its contents are the **contents** of `dist/` at the ZIP root, plus `hosting/hostinger/.htaccess`; extracting it into Hostinger `public_html` must produce `public_html/index.html`.
 
 ## Hostinger File Manager
 
@@ -29,9 +30,12 @@ Upload the ZIP contents (not the enclosing folder) with an FTP client to `public
 ## Post-deploy checks
 
 ```sh
-curl -fsSL https://paloframework.org/ | grep -F "v3.0.0 - Semantic Foundation"
+curl -fsSL https://paloframework.org/ | grep -F "v3.0.1 - Evidence Pack Activation"
 curl -fsSI https://paloframework.org/docs/palo-v3-semantic-foundation.html
 curl -fsSL https://paloframework.org/data/semantic-release-manifest.json
+curl -fsSI https://paloframework.org/PALO_OWASPGenAI2026.html
+curl -fsSI https://paloframework.org/assets/OWASP-GenAI-LLM-Top-10-2026-v1.0.pdf
+curl -fsSL https://paloframework.org/data/owasp-genai-2026-crosswalk.json
 curl -fsSI https://paloframework.org/docs/palo-ai-full-cycle-assurance.md
 curl -fsSI https://paloframework.org/assets/palo-ai-n8n-scenarios/palo-ai-n8n-governance-hero-v2.png
 curl -fsSI https://paloframework.org/media/palo-ai-n8n-architecture-preview-3min.mp4

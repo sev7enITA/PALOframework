@@ -6,7 +6,7 @@ This folder contains the Apache/LiteSpeed rules to place at the root of the stat
 
 1. Create a backup of the current Hostinger `public_html` directory.
 2. Open Hostinger File Manager -> the domain -> `public_html`.
-3. Upload the generated `PALO-Hostinger-...zip` file.
+3. Run `npm run package:hostinger`, verify the checksum in `output/`, then upload the generated `PALO-Hostinger-...zip` file.
 4. Extract it **inside `public_html`**, so `public_html/index.html` exists directly (do not leave a nested `dist/` folder).
 5. Upload or overwrite `.htaccess` from this folder at `public_html/.htaccess`.
 6. Keep `.well-known/security.txt`, `robots.txt`, and `sitemap.xml` at the public root.
@@ -14,10 +14,13 @@ This folder contains the Apache/LiteSpeed rules to place at the root of the stat
 
 ## Smoke test
 
-Verify the homepage, the PALO-AI release note, the four-pattern infographic, the n8n demo, and the security file:
+Verify the homepage, the OWASP 2026 reference and pinned artifacts, the PALO-AI release note, the n8n demo, and the security file:
 
 ```sh
-curl -fsSL https://paloframework.org/ | grep -F "v2.5.0 - Full-Cycle Agentic Assurance"
+curl -fsSL https://paloframework.org/ | grep -F "v3.0.1 - Evidence Pack Activation"
+curl -fsSI https://paloframework.org/PALO_OWASPGenAI2026.html
+curl -fsSI https://paloframework.org/assets/OWASP-GenAI-LLM-Top-10-2026-v1.0.pdf
+curl -fsSL https://paloframework.org/data/owasp-genai-2026-crosswalk.json
 curl -fsSI https://paloframework.org/docs/palo-ai-full-cycle-assurance.md
 curl -fsSI https://paloframework.org/assets/palo-ai-n8n-scenarios/palo-ai-n8n-governance-hero-v2.png
 curl -fsSI https://paloframework.org/media/palo-ai-n8n-architecture-preview-3min.mp4

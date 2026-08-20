@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OWASP GenAI / LLM Top 10 2026 x PALO</title>
+    <meta name="description" content="A source-backed crosswalk showing how the PALO Framework, PALO-AM and PALO-AI route the OWASP GenAI / LLM Top 10 2026 risks, where external safeguards remain required, and how to govern the source.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://paloframework.org/PALO_OWASPGenAI2026.html">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://paloframework.org/PALO_OWASPGenAI2026.html">
+    <meta property="og:title" content="OWASP GenAI / LLM Top 10 2026 x PALO">
+    <meta property="og:description" content="Direct routes, supporting governance and targeted extensions across the PALO governance stack.">
+    <meta property="og:image" content="https://paloframework.org/assets/logo.webp">
+    <meta property="og:site_name" content="PALO Framework">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" type="image/webp" href="assets/logo.webp">
+    <link rel="stylesheet" href="assets/palo-icons.css">
+    <link rel="stylesheet" href="assets/palo-v21.css?v=3.0.1">
+    <link rel="stylesheet" href="assets/palo-owasp-2026.css?v=1.0.0">
+    <script>document.documentElement.classList.add('js');</script>
+    <script src="assets/palo-icons.js"></script>
+    <script src="assets/palo-v21.js?v=3.0.1"></script>
+    <script src="assets/palo-owasp-2026.js?v=1.0.0" defer></script>
+</head>
+<body class="palo-v21 palo-owasp-page">
+    <a class="palo-skip-link" href="#main-content">Skip to main content</a>
+    <header class="palo-site-header">
+        <div class="palo-shell palo-header-inner">
+            <a class="palo-brand" href="index.html"><img src="assets/logo.webp" alt="PALO">PALO FRAMEWORK</a>
+            <button class="palo-menu-toggle" type="button" data-palo-menu-toggle aria-expanded="false" aria-controls="palo-primary-nav" aria-label="Open navigation">
+                <span data-palo-icon="menu" aria-hidden="true"></span>
+            </button>
+            <nav class="palo-nav" id="palo-primary-nav" aria-label="Primary navigation">
+                <a href="designs/theory-to-practice-infographic/#onboarding">Start</a>
+                <a href="PALO_AIGovernance.html">Agentic Governance</a>
+                <a href="governance-hub/">Governance Hub</a>
+                <a href="index.html#guided-journeys">Tools</a>
+                <a href="PALO_DocumentationLibrary.html">Documentation</a>
+                <a href="PALO_AIProductionReadiness.html">Readiness</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content" class="palo-main palo-owasp-main">
+        <section class="palo-owasp-hero" aria-labelledby="page-title">
+            <div class="palo-shell">
+                <nav class="palo-owasp-lineage" aria-label="Crosswalk context">
+                    <a href="index.html">PALO Framework</a><span aria-hidden="true">/</span><a href="PALO_AgenticGovernance.html">PALO-AM</a><span aria-hidden="true">/</span><a href="PALO_AIGovernance.html">PALO-AI</a><span aria-hidden="true">/</span><strong>OWASP crosswalk</strong>
+                </nav>
+                <div class="palo-owasp-hero-grid">
+                    <div class="palo-owasp-hero-copy">
+                        <p class="palo-eyebrow">Documentation reference | source-backed crosswalk | technically reviewed 20 August 2026</p>
+                        <h1 id="page-title">OWASP GenAI / LLM Top 10 2026 <span>x PALO</span></h1>
+                        <p class="palo-owasp-hero-lead">PALO is a governance and assurance system; OWASP is a security risk catalog. The relationship is complementary, not equivalent. This page is a documentation reference - not a new PALO module or activation route.</p>
+                        <p class="palo-owasp-verdict"><span>Overall verdict</span><strong>Strong governance fit. Incomplete technical resolution.</strong></p>
+                        <div class="palo-actions">
+                            <a class="palo-btn" href="PALO_AssessmentPath.html">Open Assessment Path</a>
+                            <a class="palo-btn palo-btn-secondary" href="assets/OWASP-GenAI-LLM-Top-10-2026-v1.0.pdf" target="_blank" rel="noopener">Open source PDF</a>
+                            <a class="palo-btn palo-btn-secondary" href="data/owasp-genai-2026-crosswalk.json" target="_blank" rel="noopener">View crosswalk JSON</a>
+                            <a class="palo-owasp-text-link" href="https://genai.owasp.org/initiative/owasp-top-10-for-llm-and-genai/" target="_blank" rel="noopener noreferrer">OWASP GenAI initiative <span aria-hidden="true">-&gt;</span></a>
+                        </div>
+                    </div>
+                    <aside class="palo-owasp-briefing" aria-label="Crosswalk briefing facts">
+                        <div class="palo-owasp-briefing-head">
+                            <span>Assessment snapshot</span>
+                            <strong>10 / 10 risks routed</strong>
+                        </div>
+                        <dl class="palo-owasp-facts">
+                            <div><dt>Risks assessed</dt><dd>10</dd></div>
+                            <div><dt>Direct route somewhere in PALO</dt><dd>8</dd></div>
+                            <div><dt>Targeted extensions</dt><dd>2 <small>LLM09 + LLM10</small></dd></div>
+                            <div><dt>PALO-AI maturity</dt><dd><small>Developer Preview</small></dd></div>
+                        </dl>
+                        <div class="palo-owasp-risk-flow" aria-hidden="true">
+                            <span>Govern</span><span>Contain</span><span>Evidence</span><i></i>
+                        </div>
+                        <p>Coverage indicates a route for accountable treatment - not elimination of the underlying threat.</p>
+                    </aside>
+                </div>
+                <aside class="palo-owasp-source-notice" aria-labelledby="source-notice-title">
+                    <div><span class="palo-owasp-source-index">Source note / 01</span><h2 id="source-notice-title">Use this artifact with version discipline.</h2></div>
+                    <p>The repository artifact is identified as <strong>v1.0</strong> and dated <strong>4 August 2026</strong>. Its revision-history line still contains <code>[2026 release date]</code>, and the visible OWASP project site did not expose a separately indexed 2026 download when reviewed. Treat it as a version-pinned informative source and reverify the official project page before external assurance or formal reliance.</p>
+                </aside>
+            </div>
+        </section>
+
+        <nav class="palo-owasp-section-nav" aria-label="On this page">
+            <div class="palo-shell">
+                <a href="#overall">Conclusion</a>
+                <a href="#routes">Three routes</a>
+                <a href="#coverage">Coverage matrix</a>
+                <a href="#risk-dossiers">Risk dossiers</a>
+                <a href="#governance">Governance</a>
+                <a href="#provenance">Provenance</a>
+            </div>
+        </nav>
+
+        <section class="palo-section palo-owasp-overall" id="overall" aria-labelledby="overall-title">
+            <div class="palo-shell palo-owasp-editorial-grid">
+                <div>
+                    <p class="palo-eyebrow">Overall conclusion</p>
+                    <h2 id="overall-title">PALO routes the work. It does not erase the risk.</h2>
+                    <p class="palo-lead">The crosswalk is strongest where security requires ownership, bounded decisions, evidence and review. Mechanism-specific safeguards - retrieval authorization, model and data integrity, rate controls, output encoding and production identity - remain separate engineering obligations.</p>
+                </div>
+                <div class="palo-owasp-conclusion-ledger">
+                    <article><span>01</span><div><h3>No elimination or certification claim</h3><p>PALO does not eliminate any OWASP risk and does not certify OWASP compliance.</p></div></article>
+                    <article><span>02</span><div><h3>Lifecycle assurance</h3><p>The framework supplies ownership, decision gates, control records, evidence and residual-risk review.</p></div></article>
+                    <article><span>03</span><div><h3>Delegated authority</h3><p>PALO-AM addresses identity, authority and blast radius when an LLM becomes an actor.</p></div></article>
+                    <article><span>04</span><div><h3>Selected action-path enforcement</h3><p>PALO-AI can enforce exact claims, policy, approval, capability and outcome evidence, but remains a non-production Developer Preview.</p></div></article>
+                </div>
+            </div>
+            <div class="palo-shell">
+                <p class="palo-owasp-effect-note"><strong>Evidence boundary:</strong> a verified effect proves authoritative post-state against an Effect Contract. It does not prove factual truth or causal correctness.</p>
+            </div>
+        </section>
+
+        <section class="palo-section palo-owasp-routes-section" id="routes" aria-labelledby="routes-title">
+            <div class="palo-shell">
+                <p class="palo-eyebrow">One framework | three connected routes</p>
+                <h2 id="routes-title">Coverage deepens as the system gains authority.</h2>
+                <p class="palo-lead">Read each route as a distinct governance layer. A "Direct" rating in one layer does not replace an OWASP-specific safeguard in another.</p>
+                <div class="palo-owasp-route-ledger">
+                    <article class="is-framework">
+                        <header><span>01 / Umbrella system</span><h3>PALO Framework</h3></header>
+                        <div class="palo-owasp-route-count" aria-label="6 Direct, 4 Supporting, 0 Gap"><strong>6</strong><span>Direct</span><strong>4</strong><span>Supporting</span><strong>0</strong><span>Gap</span></div>
+                        <p>Lifecycle governance, accountable owners, control selection, evidence, monitoring and review.</p>
+                        <a href="index.html#palo-governance-routes">See the framework route</a>
+                    </article>
+                    <article class="is-method">
+                        <header><span>02 / Specialist method</span><h3>PALO-AM</h3></header>
+                        <div class="palo-owasp-route-count" aria-label="5 Direct, 5 Supporting, 0 Gap"><strong>5</strong><span>Direct</span><strong>5</strong><span>Supporting</span><strong>0</strong><span>Gap</span></div>
+                        <p>Agent identity, delegated authority, autonomy, tool boundaries, meaningful human oversight and circuit breakers.</p>
+                        <a href="PALO_AgenticGovernance.html">Open PALO-AM</a>
+                    </article>
+                    <article class="is-enforcement">
+                        <header><span>03 / Technical route</span><h3>PALO-AI <small>Developer Preview</small></h3></header>
+                        <div class="palo-owasp-route-count" aria-label="4 Direct, 4 Supporting, 2 Gap"><strong>4</strong><span>Direct</span><strong>4</strong><span>Supporting</span><strong>2</strong><span>Gap</span></div>
+                        <p>Exact claims, policy, approval, one-time capability, trusted receipt and outcome verification. Production security gaps remain.</p>
+                        <a href="PALO_AgenticCapabilityMatrix.html">Review the evidence boundary</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="palo-section palo-owasp-matrix-section" id="coverage" aria-labelledby="coverage-title">
+            <div class="palo-shell">
+                <div class="palo-owasp-section-heading">
+                    <div>
+                        <p class="palo-eyebrow">Coverage matrix</p>
+                        <h2 id="coverage-title">Ten risks. Three governance lenses.</h2>
+                    </div>
+                    <p>Ratings describe design fit - not implementation effectiveness, compliance or certification.</p>
+                </div>
+                <div class="palo-owasp-legend" aria-label="Coverage rating legend">
+                    <div><span class="palo-owasp-rating is-direct">Direct</span><p>A first-class PALO artifact or control materially addresses the risk.</p></div>
+                    <div><span class="palo-owasp-rating is-supporting">Supporting</span><p>PALO contributes governance or containment; OWASP-specific safeguards are still required.</p></div>
+                    <div><span class="palo-owasp-rating is-gap">Gap</span><p>No specific current PALO-AI coverage for the main mechanism.</p></div>
+                </div>
+                <div class="palo-owasp-filters" data-owasp-filters hidden aria-label="Filter coverage matrix">
+                    <span>Show</span>
+                    <button type="button" class="is-active" data-owasp-filter="all" aria-pressed="true">All <small>10</small></button>
+                    <button type="button" data-owasp-filter="direct" aria-pressed="false">Direct route exists <small>8</small></button>
+                    <button type="button" data-owasp-filter="extension" aria-pressed="false">Targeted extension <small>2</small></button>
+                </div>
+                <p class="palo-owasp-filter-status" data-owasp-filter-status aria-live="polite">Showing all 10 risks.</p>
+                <div class="palo-owasp-table-wrap">
+                    <table class="palo-owasp-matrix">
+                        <caption>Coverage ratings for the OWASP GenAI / LLM Top 10 2026 across the PALO Framework, PALO-AM and PALO-AI</caption>
+                        <thead>
+                            <tr><th scope="col">OWASP risk</th><th scope="col">PALO Framework</th><th scope="col">PALO-AM</th><th scope="col">PALO-AI</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr data-coverage="direct"><th scope="row"><a href="#llm01"><span>LLM01</span> Prompt Injection</a></th><td data-label="PALO Framework"><span class="palo-owasp-rating is-direct">Direct</span></td><td data-label="PALO-AM"><span class="palo-owasp-rating is-direct">Direct</span></td><td data-label="PALO-AI"><span class="palo-owasp-rating is-direct">Direct</span></td></tr>
+                            <tr data-coverage="direct"><th scope="row"><a href="#llm02"><span>LLM02</span> Sensitive Information Disclosure</a></th><td data-label="PALO Framework"><span class="palo-owasp-rating is-direct">Direct</span></td><td data-label="PALO-AM"><span class="palo-owasp-rating is-supporting">Supporting</span></td><td data-label="PALO-AI"><span class="palo-owasp-rating is-supporting">Supporting</span></td></tr>
+                            <tr data-coverage="direct"><th scope="row"><a href="#llm03"><span>LLM03</span> Excessive Agency</a></th><td data-label="PALO Framework"><span class="palo-owasp-rating is-direct">Direct</span></td><td data-label="PALO-AM"><span class="palo-owasp-rating is-direct">Direct</span></td><td data-label="PALO-AI"><span class="palo-owasp-rating is-direct">Direct</span></td></tr>
+                            <tr data-coverage="direct"><th scope="row"><a href="#llm04"><span>LLM04</span> Supply Chain</a></th><td data-label="PALO Framework"><span class="palo-owasp-rating is-direct">Direct</span></td><td data-label="PALO-AM"><span class="palo-owasp-rating is-supporting">Supporting</span></td><td data-label="PALO-AI"><span class="palo-owasp-rating is-supporting">Supporting</span></td></tr>
+                            <tr data-coverage="direct"><th scope="row"><a href="#llm05"><span>LLM05</span> Data and Model Poisoning</a></th><td data-label="PALO Framework"><span class="palo-owasp-rating is-direct">Direct</span></td><td data-label="PALO-AM"><span class="palo-owasp-rating is-supporting">Supporting</span></td><td data-label="PALO-AI"><span class="palo-owasp-rating is-gap">Gap</span></td></tr>
+                            <tr data-coverage="direct"><th scope="row"><a href="#llm06"><span>LLM06</span> Unbounded Consumption</a></th><td data-label="PALO Framework"><span class="palo-owasp-rating is-supporting">Supporting</span></td><td data-label="PALO-AM"><span class="palo-owasp-rating is-direct">Direct</span></td><td data-label="PALO-AI"><span class="palo-owasp-rating is-supporting">Supporting</span></td></tr>
+                            <tr data-coverage="direct"><th scope="row"><a href="#llm07"><span>LLM07</span> Misinformation</a></th><td data-label="PALO Framework"><span class="palo-owasp-rating is-direct">Direct</span></td><td data-label="PALO-AM"><span class="palo-owasp-rating is-direct">Direct</span></td><td data-label="PALO-AI"><span class="palo-owasp-rating is-direct">Direct</span></td></tr>
+                            <tr data-coverage="direct"><th scope="row"><a href="#llm08"><span>LLM08</span> Hidden Context Exposure</a></th><td data-label="PALO Framework"><span class="palo-owasp-rating is-supporting">Supporting</span></td><td data-label="PALO-AM"><span class="palo-owasp-rating is-direct">Direct</span></td><td data-label="PALO-AI"><span class="palo-owasp-rating is-direct">Direct</span></td></tr>
+                            <tr data-coverage="extension"><th scope="row"><a href="#llm09"><span>LLM09</span> Vector and Embedding Weaknesses</a></th><td data-label="PALO Framework"><span class="palo-owasp-rating is-supporting">Supporting</span></td><td data-label="PALO-AM"><span class="palo-owasp-rating is-supporting">Supporting</span></td><td data-label="PALO-AI"><span class="palo-owasp-rating is-gap">Gap</span></td></tr>
+                            <tr data-coverage="extension"><th scope="row"><a href="#llm10"><span>LLM10</span> Improper Output Handling</a></th><td data-label="PALO Framework"><span class="palo-owasp-rating is-supporting">Supporting</span></td><td data-label="PALO-AM"><span class="palo-owasp-rating is-supporting">Supporting</span></td><td data-label="PALO-AI"><span class="palo-owasp-rating is-supporting">Supporting</span></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="palo-owasp-matrix-note"><strong>Interpretation:</strong> "Direct" means a relevant route exists in PALO. It never means that the risk is prevented, resolved in every deployment or safe without the listed technical safeguards.</p>
+            </div>
+        </section>
+
+        <section class="palo-section palo-owasp-dossiers" id="risk-dossiers" aria-labelledby="dossiers-title">
+            <div class="palo-shell">
+                <div class="palo-owasp-section-heading">
+                    <div><p class="palo-eyebrow">Can PALO solve it?</p><h2 id="dossiers-title">A precise answer, risk by risk.</h2></div>
+                    <p>Each dossier separates PALO's governance contribution from the safeguards that must exist in the model, data, retrieval, infrastructure or application layer.</p>
+                </div>
+
+                <div class="palo-owasp-dossier-list">
+                    <details id="llm01" open>
+                        <summary><span><small>LLM01</small> Prompt Injection</span><span class="palo-owasp-dossier-verdict">Contain - do not promise prevention</span></summary>
+                        <div class="palo-owasp-dossier-body">
+                            <div><h3>PALO contribution</h3><p>Treat model output as untrusted; apply least privilege, deterministic mediation, meaningful approval and adaptive testing around consequential actions.</p></div>
+                            <div><h3>External safeguards required</h3><p>Multimodal filters, Unicode normalization, content provenance and red teaming that reflects the defenses actually disclosed and deployed.</p></div>
+                            <div><h3>Minimum evidence</h3><p>Threat model, injection test suite, policy decision logs, approval records and failed-path evidence showing that privileged execution cannot bypass mediation.</p></div>
+                        </div>
+                    </details>
+                    <details id="llm02" open>
+                        <summary><span><small>LLM02</small> Sensitive Information Disclosure</span><span class="palo-owasp-dossier-verdict">Govern exposure; engineer isolation</span></summary>
+                        <div class="palo-owasp-dossier-body">
+                            <div><h3>PALO contribution</h3><p>Set data-minimization and provenance requirements, establish accountable ownership, and connect detection to incident and residual-risk review.</p></div>
+                            <div><h3>External safeguards required</h3><p>Retrieval-time chunk ACLs, tenant isolation, DLP, log and trace redaction, and protection of vector stores and credentials.</p></div>
+                            <div><h3>Minimum evidence</h3><p>Data-flow map, access-control tests, redaction samples, tenant-boundary tests, incident route and approved retention decisions.</p></div>
+                        </div>
+                    </details>
+                    <details id="llm03" open>
+                        <summary><span><small>LLM03</small> Excessive Agency</span><span class="palo-owasp-dossier-verdict is-strong">Strongest PALO fit</span></summary>
+                        <div class="palo-owasp-dossier-body">
+                            <div><h3>PALO contribution</h3><p>Define the authority profile, minimum tools and permissions, user context, meaningful approval, one-time capability and evidence of both execution and outcome.</p></div>
+                            <div><h3>External safeguards required</h3><p>Production identity, tenant-aware RBAC and execution architecture in which the governed path is unavoidable remain prerequisites.</p></div>
+                            <div><h3>Minimum evidence</h3><p>Agent registry, authority profile, tool inventory, policy tests, immutable approval, capability record, trusted receipt and authoritative post-state verification.</p></div>
+                        </div>
+                    </details>
+                    <details id="llm04" open>
+                        <summary><span><small>LLM04</small> Supply Chain</span><span class="palo-owasp-dossier-verdict">Gate suppliers and change</span></summary>
+                        <div class="palo-owasp-dossier-body">
+                            <div><h3>PALO contribution</h3><p>Route supplier due diligence, ownership, acceptance criteria and material component changes through evidence-backed review gates.</p></div>
+                            <div><h3>External safeguards required</h3><p>AIBOM or ML-BOM, pinned artifacts, signatures and transparency, vulnerability management, patching, and connector attestation.</p></div>
+                            <div><h3>Minimum evidence</h3><p>Supplier assessment, component inventory, artifact digest, verification result, vulnerability status, connector attestation and approved change record.</p></div>
+                        </div>
+                    </details>
+                    <details id="llm05" open>
+                        <summary><span><small>LLM05</small> Data and Model Poisoning</span><span class="palo-owasp-dossier-verdict">Govern integrity; technical gap in PALO-AI</span></summary>
+                        <div class="palo-owasp-dossier-body">
+                            <div><h3>PALO contribution</h3><p>Maintain lineage, change control, adversarial test expectations, accountable release decisions and rollback governance. LLM05 owns persistent corruption of source data, chunks, training inputs or the embedding model; the Data or Model Owner and MLOps Owner remain accountable.</p></div>
+                            <div><h3>External safeguards required</h3><p>Pipeline integrity, poisoning and backdoor detection, signed artifacts, sandboxing and monitored feedback loops.</p></div>
+                            <div><h3>Minimum evidence</h3><p>Dataset and model lineage, artifact signatures, persistent corpus-poisoning and retrieval-impact results, pipeline attestations, monitored feedback records and a tested rollback decision.</p></div>
+                        </div>
+                    </details>
+                    <details id="llm06" open>
+                        <summary><span><small>LLM06</small> Unbounded Consumption</span><span class="palo-owasp-dossier-verdict">Bound action; add production abuse controls</span></summary>
+                        <div class="palo-owasp-dossier-body">
+                            <div><h3>PALO contribution</h3><p>PALO-AM circuit breakers and a bounded action space constrain delegated behavior and supply escalation and stop conditions.</p></div>
+                            <div><h3>External safeguards required</h3><p>PALO-AI lacks production rate limiting and abuse controls. Add token, action, time and cost caps, queue limits, loop detection, graceful degradation and infrastructure hardening.</p></div>
+                            <div><h3>Minimum evidence</h3><p>Limit configuration, exhaustion and loop tests, cost alerts, circuit-breaker events, degradation test and capacity or resilience review.</p></div>
+                        </div>
+                    </details>
+                    <details id="llm07" open>
+                        <summary><span><small>LLM07</small> Misinformation</span><span class="palo-owasp-dossier-verdict">Verify decisions and effects - not truth by default</span></summary>
+                        <div class="palo-owasp-dossier-body">
+                            <div><h3>PALO contribution</h3><p>Require source-backed decisions, claim-check-act separation, human review and authoritative post-state verification for consequential actions.</p></div>
+                            <div><h3>External safeguards required</h3><p>Grounding and verified effect do not prove factual truth. Add domain evaluation, omission checks and evidence-freshness controls.</p></div>
+                            <div><h3>Minimum evidence</h3><p>Claim-to-source trace, domain evaluation set, omission tests, reviewer decision, freshness threshold and effect-verification record.</p></div>
+                        </div>
+                    </details>
+                    <details id="llm08" open>
+                        <summary><span><small>LLM08</small> Hidden Context Exposure</span><span class="palo-owasp-dossier-verdict is-strong">Externalize authority from prompts</span></summary>
+                        <div class="palo-owasp-dossier-body">
+                            <div><h3>PALO contribution</h3><p>PALO-AM and PALO-AI move critical authorization out of the prompt and into explicit authority, policy and protected execution contracts.</p></div>
+                            <div><h3>External safeguards required</h3><p>Remove secrets from hidden context, externalize credentials and configuration, and test systematic extraction across supported modalities.</p></div>
+                            <div><h3>Minimum evidence</h3><p>Prompt and context inventory, secret-scanning result, credential-flow diagram, extraction tests and proof of external policy enforcement.</p></div>
+                        </div>
+                    </details>
+                    <details id="llm09" class="is-extension" open>
+                        <summary><span><small>LLM09</small> Vector and Embedding Weaknesses</span><span class="palo-owasp-dossier-verdict is-gap">Current targeted gap</span></summary>
+                        <div class="palo-owasp-dossier-body">
+                            <div><h3>PALO contribution and ownership</h3><p>PALO can assign ownership, classify data, require controls, record evidence and decide residual risk, but does not implement the retrieval mechanism. LLM09 and the Vector Store Owner own attacks that depend on embedding geometry, similarity ranking, collisions, membership inference or inversion. Persistent source or chunk corruption is handed to the LLM05 Data or Model Owner.</p></div>
+                            <div><h3>External safeguards required</h3><p>Pre-retrieval chunk authorization, trust-zone-separated indexes, embedding provenance and lifecycle controls, inversion resistance assessment, adversarial-query retrieval-evasion and similarity-collision testing, deletion reconciliation, ranking anomaly detection and immutable retrieval logs. Treat exported vectors and backups at source-data sensitivity.</p></div>
+                            <div><h3>Minimum evidence</h3><p>Index topology; tenant and chunk-ACL tests; provenance and deletion reconciliation; quantified Vec2Text, ZSInvert, Zero2Text or threat-model-equivalent inversion results; retrieval-evasion, collision and threshold-straddling tests; vector-layer poisoning and ranking-manipulation results; tamper-evident trace; residual-risk decision.</p></div>
+                        </div>
+                    </details>
+                    <details id="llm10" class="is-extension" open>
+                        <summary><span><small>LLM10</small> Improper Output Handling</span><span class="palo-owasp-dossier-verdict">Current targeted extension</span></summary>
+                        <div class="palo-owasp-dossier-body">
+                            <div><h3>PALO contribution</h3><p>PALO validates governance claims and can mediate consequential actions, but does not validate or sanitize every downstream content sink.</p></div>
+                            <div><h3>External safeguards required</h3><p>Context-specific encoding, prepared queries, CSP, terminal-control sanitization, outbound fetch restrictions and generated-code security tests.</p></div>
+                            <div><h3>Minimum evidence</h3><p>Sink inventory, encoding and injection tests, CSP policy, query binding evidence, egress controls and generated-code security results.</p></div>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <section class="palo-section palo-owasp-governance" id="governance" aria-labelledby="governance-title">
+            <div class="palo-shell">
+                <p class="palo-eyebrow">Governance operating model</p>
+                <div class="palo-owasp-governance-head">
+                    <h2 id="governance-title">Make the crosswalk a living review object.</h2>
+                    <p>OWASP supplies risk context. PALO supplies the accountable loop that keeps applicability, controls, tests, evidence and decisions reviewable as the system changes.</p>
+                </div>
+                <dl class="palo-owasp-governance-ledger">
+                    <div><dt>Classification</dt><dd>Informative security source - not law, standard or certification.</dd></div>
+                    <div><dt>Accountable owner</dt><dd>Product Security or AI Governance owns the crosswalk process; system-level risk owners remain accountable for treatment decisions.</dd></div>
+                    <div><dt>Review cadence</dt><dd>Every 90 days, and immediately after an OWASP revision, architecture/tool/memory/data-scope change, material incident or failed critical test.</dd></div>
+                    <div><dt>Required per-risk record</dt><dd>Applicability, owner, implemented control, test, evidence link, residual risk, decision and reopen trigger.</dd></div>
+                    <div><dt>Source discipline</dt><dd>Preserve version, date, hash, attribution and source status. Treat mappings as source-backed context, never canonical equivalence.</dd></div>
+                </dl>
+
+                <div class="palo-owasp-applicability">
+                    <div><span>Model as component</span><h3>Apply this LLM Top 10</h3><p>Use the present crosswalk for applications in which the model is a component within a bounded product or workflow.</p></div>
+                    <div><span>Tools | persistent memory | multi-step or autonomous action</span><h3>Pair with the OWASP Agentic Top 10</h3><p>Apply the PALO-AM and PALO-AI route when delegated authority, tool execution, persistence or autonomous action expands the control surface.</p></div>
+                </div>
+
+                <div class="palo-owasp-loop" aria-labelledby="loop-title">
+                    <div><p class="palo-eyebrow">Seven-step operating loop</p><h3 id="loop-title">A source becomes useful when it changes a decision.</h3></div>
+                    <ol>
+                        <li><span>01</span><strong>Register</strong><small>Pin the source and hash.</small></li>
+                        <li><span>02</span><strong>Scope</strong><small>Decide applicability.</small></li>
+                        <li><span>03</span><strong>Assign</strong><small>Name the risk owner.</small></li>
+                        <li><span>04</span><strong>Control</strong><small>Record treatment.</small></li>
+                        <li><span>05</span><strong>Test</strong><small>Exercise the mechanism.</small></li>
+                        <li><span>06</span><strong>Decide</strong><small>Accept residual risk.</small></li>
+                        <li><span>07</span><strong>Reopen</strong><small>Act on change or failure.</small></li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <section class="palo-section palo-owasp-integrated" id="provenance" aria-labelledby="integrated-title">
+            <div class="palo-shell">
+                <div class="palo-owasp-section-heading">
+                    <div><p class="palo-eyebrow">What was integrated</p><h2 id="integrated-title">Four artifacts. One explicit source boundary.</h2></div>
+                    <p>The integration preserves the report as external security context. Nothing is silently promoted into a canonical PALO equivalence.</p>
+                </div>
+                <ol class="palo-owasp-artifact-ledger">
+                    <li><span>01 / Source</span><h3>Version-pinned local PDF</h3><p>The reviewed OWASP GenAI / LLM Top 10 2026 v1.0 artifact.</p><a href="assets/OWASP-GenAI-LLM-Top-10-2026-v1.0.pdf" target="_blank" rel="noopener">Open PDF</a></li>
+                    <li><span>02 / Registry</span><h3>Source registry entry</h3><p>Publisher, official URL, check date, freshness, authority and use boundary.</p></li>
+                    <li><span>03 / Data</span><h3>Versioned crosswalk JSON</h3><p>Machine-readable ratings and risk-level rationale, with the PDF hash pinned for downstream review.</p><a href="data/owasp-genai-2026-crosswalk.json" target="_blank" rel="noopener">Open JSON</a></li>
+                    <li><span>04 / Analysis</span><h3>This web dossier</h3><p>A board-readable comparison of fit, safeguards, evidence and governance cadence.</p><a href="#coverage">Review matrix</a></li>
+                </ol>
+                <p class="palo-owasp-no-equivalence"><strong>No silent promotion:</strong> source terms remain attributed to OWASP; PALO mappings remain interpretive governance context and must be revalidated as either source changes.</p>
+            </div>
+        </section>
+
+        <section class="palo-section palo-owasp-limitations" aria-labelledby="limitations-title">
+            <div class="palo-shell palo-owasp-limitations-grid">
+                <div>
+                    <p class="palo-eyebrow">Limitations and attribution</p>
+                    <h2 id="limitations-title">Use the mapping. Preserve the boundary.</h2>
+                </div>
+                <div>
+                    <aside class="palo-owasp-review-credit" aria-labelledby="review-credit-title">
+                        <p>Technical review contribution</p>
+                        <h3 id="review-credit-title">Arshi Chadha</h3>
+                        <span>OWASP LLM09:2026 co-lead</span>
+                        <p>Focused review of embedding inversion, adversarial-query retrieval evasion, and the LLM05/LLM09 vector-poisoning ownership boundary. Public credit is included with her permission.</p>
+                        <small>Personal technical contribution to the PALO crosswalk. It does not imply OWASP review or endorsement.</small>
+                    </aside>
+                    <ul>
+                        <li>PALO support does not imply OWASP endorsement.</li>
+                        <li>The OWASP source is licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a>. This page's source-derived category names, summaries and crosswalk are also published under CC BY-SA 4.0; consult the source for the complete risk descriptions and guidance.</li>
+                        <li>The credited personal contribution does not mean that OWASP reviewed or endorsed the PALO analysis.</li>
+                        <li>The report covers LLM applications. Agentic deployments require the paired Agentic list and the PALO-AM/PALO-AI route.</li>
+                    </ul>
+                    <p class="palo-owasp-hash"><span>PDF SHA-256</span><code>ef87993a4e50ae9d83b41ff7a3d3e6320a82dfa8d4ec6bf98d0ce264b2e6108e</code></p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="palo-footer">
+        <div class="palo-shell">
+            <p>This crosswalk is an informative, version-pinned governance analysis. It is not OWASP endorsement, compliance or certification.</p>
+            <div class="palo-footer-links"><a href="PALO_DocumentationLibrary.html">Documentation</a><a href="PALO_AgenticGovernance.html">PALO-AM</a><a href="PALO_AIGovernance.html">PALO-AI</a><a href="security-policy.html">Security policy</a><a href="privacy-policy.html">Privacy</a><a href="PALO_Community.html">Community</a></div>
+        </div>
+    </footer>
+</body>
+</html>

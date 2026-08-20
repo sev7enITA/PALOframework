@@ -133,8 +133,17 @@
                         <fieldset class="palo-fieldset palo-field-full">
                             <legend>Additional routing signals</legend>
                             <div class="palo-checks">
+                                <label class="palo-check" for="gen-ai-llm"><input id="gen-ai-llm" name="genAiLlm" type="checkbox" aria-controls="owasp-architecture-signals owasp-testing-signals"> The system includes an LLM or multimodal generative model</label>
                                 <label class="palo-check" for="agentic"><input id="agentic" name="agentic" type="checkbox"> This system can take delegated actions or use tools</label>
                                 <label class="palo-check" for="ai-assisted"><input id="ai-assisted" name="aiAssisted" type="checkbox"> The system is being built with AI-assisted development</label>
+                            </div>
+                            <p class="palo-dependent-status" id="owasp-architecture-status">OWASP architecture questions are not applicable until an LLM or generative model is selected.</p>
+                            <div class="palo-dependent-signals" id="owasp-architecture-signals" hidden>
+                                <p class="palo-small"><strong>LLM architecture detail.</strong> These signals prioritize review work; they do not exclude any of the ten risks.</p>
+                                <div class="palo-checks">
+                                    <label class="palo-check" for="retrieval-memory"><input id="retrieval-memory" name="retrievalMemory" type="checkbox"> It uses RAG, vector search, persistent memory, automated feedback, or retraining</label>
+                                    <label class="palo-check" for="output-to-downstream"><input id="output-to-downstream" name="outputToDownstream" type="checkbox"> Generated output reaches code, HTML, SQL, shell, email, APIs, external systems, or another execution sink</label>
+                                </div>
                             </div>
                         </fieldset>
                         <fieldset class="palo-fieldset palo-field-full">
@@ -146,6 +155,14 @@
                                 <label class="palo-check" for="incident-response"><input id="incident-response" name="incidentResponse" type="checkbox"> Incident response and remediation</label>
                                 <label class="palo-check" for="transparency"><input id="transparency" name="transparency" type="checkbox"> Transparency and user information</label>
                             </div>
+                            <p class="palo-dependent-status" id="owasp-testing-status">OWASP-specific testing evidence is not applicable until an LLM or generative model is selected.</p>
+                            <div class="palo-dependent-signals" id="owasp-testing-signals" hidden>
+                                <p class="palo-small"><strong>OWASP-specific readiness.</strong> Leave a question open until the test is defined or started and its evidence location is known.</p>
+                                <div class="palo-checks">
+                                    <label class="palo-check" for="adversarial-testing"><input id="adversarial-testing" name="adversarialTesting" type="checkbox"> Adaptive red-team or abuse-case testing is defined or started</label>
+                                    <label class="palo-check" for="architecture-security-testing"><input id="architecture-security-testing" name="architectureSecurityTesting" type="checkbox"> Retrieval, output-sink, and authority-boundary security tests are defined or started</label>
+                                </div>
+                            </div>
                         </fieldset>
                         <div class="palo-form-actions">
                             <button class="palo-btn" type="submit"><span data-palo-icon="rocket" aria-hidden="true"></span>Build my route</button>
@@ -154,9 +171,9 @@
                     </div>
                 </form>
 
-                <section class="palo-results" id="assessment-results" aria-live="polite" tabindex="-1">
-                    <h2>Your PALO route</h2>
-                    <p id="results-intro" class="palo-lead"></p>
+                <section class="palo-results" id="assessment-results">
+                    <h2 id="assessment-results-title" tabindex="-1">Your PALO route</h2>
+                    <p id="results-intro" class="palo-lead" role="status" aria-live="polite" aria-atomic="true"></p>
                     <div class="palo-results-grid">
                         <div>
                             <h3>Recommended next steps</h3>
@@ -169,8 +186,34 @@
                             </div>
                         </div>
                         <div>
-                            <h3>Bundle preview</h3>
-                            <pre class="palo-output" id="bundle-preview"></pre>
+                            <section class="palo-owasp-profile-summary" id="owasp-profile-summary" aria-labelledby="owasp-profile-summary-title" hidden>
+                                <p class="palo-card-kicker">Documentation reference | Draft evidence | Human review required</p>
+                                <h3 id="owasp-profile-summary-title">OWASP GenAI 2026 review profile</h3>
+                                <dl class="palo-profile-facts">
+                                    <div><dt>Source</dt><dd id="owasp-profile-source"></dd></div>
+                                    <div><dt>Scope</dt><dd id="owasp-profile-scope"></dd></div>
+                                    <div><dt>Evidence status</dt><dd>Draft</dd></div>
+                                </dl>
+                                <div class="palo-profile-section">
+                                    <h4>Architecture-prioritized risks</h4>
+                                    <ul class="palo-risk-ids" id="owasp-priority-risks"></ul>
+                                    <p class="palo-small">All ten risks remain in scope. Priorities are triage, not automatic exclusion.</p>
+                                </div>
+                                <div class="palo-profile-section">
+                                    <h4>Targeted extensions</h4>
+                                    <p id="owasp-targeted-extensions"></p>
+                                </div>
+                                <div class="palo-profile-section">
+                                    <h4>Testing evidence</h4>
+                                    <ul class="palo-readiness-list" id="owasp-testing-readiness"></ul>
+                                </div>
+                                <p class="palo-profile-boundary" id="owasp-authority-boundary"></p>
+                                <a href="PALO_OWASPGenAI2026.html">Review the source-backed crosswalk</a>
+                            </section>
+                            <details class="palo-bundle-disclosure" id="bundle-json-disclosure">
+                                <summary>Inspect full Evidence Bundle JSON</summary>
+                                <pre class="palo-output" id="bundle-preview" tabindex="0" aria-label="Full Evidence Bundle JSON"></pre>
+                            </details>
                         </div>
                     </div>
                     <section class="palo-validation-receipt" aria-labelledby="validation-receipt-title">

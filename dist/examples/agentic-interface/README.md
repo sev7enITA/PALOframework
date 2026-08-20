@@ -1,17 +1,17 @@
 # PALO Agentic Interface (PALO-AI) - Full-Cycle Developer Preview
 
-PALO-AI v2.5 publishes governance contracts and a non-production reference runtime for autonomous agents and agent teams. It demonstrates registered authority profiles, Action Claim 1.2, digest-bound approval, one-time execution capabilities, trusted receipts, authoritative outcome attestations and held assurance incidents.
+PALO-AI v2.6 publishes governance contracts and a non-production reference runtime for autonomous agents and agent teams. It demonstrates registered authority profiles, fail-closed identity-bound Action Claim 1.3, durable approval and verification tasks, Effect Contract 1.1, digest-bound approval, one-time execution capabilities, trusted receipts, optional Ed25519 evidence envelopes, authoritative outcome attestations and held assurance incidents. Action Claim 1.1/1.2 remain compatible.
 
 > **Do not use this developer preview to authorize or execute production tools, access sensitive data, or support consequential decisions.** It is not an audited security boundary, compliance certification, exactly-once executor, production identity service, trusted human-approval system, or production evidence platform. Mode A is partially prototyped; Mode B collaborative agent teams remain specified only.
 
 ## Demonstrated trust model and missing production controls
 
-- The reference API can register versioned agent profiles, executors and verifiers, but v2.5 does not authenticate distinct administrative roles or cryptographically attest publishers and connector binaries.
-- Signing secrets stay in `PALO_HMAC_KEYS_JSON` or the deployment secret manager. Public profiles contain only a `keyId`.
+- The MCP Streamable HTTP resource can authenticate OIDC/JWKS principals and separate agent, reviewer, auditor, observer and administrator scopes. It does not issue tokens, implement EMA ID-JAG exchange, attest publishers/connectors/workloads, provide proof-of-possession or isolate production tenants. Action Claim 1.3 still requires a host-provided `authorityVerifier`; issuer labels alone fail closed.
+- Internal contract signing secrets stay in `PALO_HMAC_KEYS_JSON` or the deployment secret manager. Evidence Envelope 2.0 can use an independently verifiable Ed25519 key, while production KMS/HSM custody remains outside this preview.
 - Dify and n8n are thin clients of the authenticated PALO gateway. They do not decide locally or sign evidence.
 - OPA outages, malformed claims, missing adapters and failed authoritative reads fail closed. Exactly-once external execution is claimed only where the connector provides reliable idempotency; multi-replica durability remains future work.
 - Tool arguments are schema-validated and their canonical digest is verified. Evidence is redacted; secrets must never be admitted by a tool argument schema.
-- The default gateway binds to `127.0.0.1`. The included bearer token is a developer control only and does not provide principal identity, role separation, workload identity, reviewer authentication, administrative authorization, rotation, rate limiting, or TLS termination.
+- The default gateway binds to `127.0.0.1`. The included bearer token is a developer control only and does not provide principal identity, role separation, workload identity, reviewer authentication, administrative authorization, rotation, transport-level rate limiting, or TLS termination.
 - For remote clients, use the repository's VPS topology and public HTTPS Gateway/MCP endpoints; `127.0.0.1` remains only the local default or a VPS-local administration binding.
 
 ## Canonical contracts
@@ -26,7 +26,7 @@ PALO-AI v2.5 publishes governance contracts and a non-production reference runti
 | `schemas/palo-agentic-enforcement-provider.schema.json` | Vendor-neutral pre-action enforcement-provider manifest |
 | `schemas/palo-agentic-policy-decision.schema.json` | Policy decision, obligations and provider evidence reference |
 | `schemas/palo-agentic-approval.schema.json` | Human approval bound to an exact claim digest |
-| `schemas/palo-agentic-evidence-envelope.schema.json` | Redacted, HMAC-signed, hash-chained audit event |
+| `schemas/palo-agentic-evidence-envelope.schema.json` | Redacted, hash-chained HMAC 1.0 or RFC 8785/Ed25519 2.0 audit event |
 | `schemas/palo-agentic-execution-capability.schema.json` | Short-lived, one-time execution authority |
 | `schemas/palo-agentic-execution-receipt.schema.json` | Trusted record of the actual execution attempt |
 | `schemas/palo-agentic-outcome-attestation.schema.json` | Verified, mismatched or inconclusive observed outcome |
@@ -48,7 +48,7 @@ export PALO_HMAC_KEYS_JSON='{"key-support-2026":"replace-with-at-least-32-secret
 npm run palo:mcp
 ```
 
-Use `PALO_MCP_HTTP_TOKEN=... npm run palo:mcp:http` only for isolated testing of the experimental Streamable HTTP transport. Use `npm run palo:gateway` with a strong `PALO_GATEWAY_TOKEN` only for local evaluation of Web, Android, Dify and n8n examples. Run `npm run validate:agentic` to validate all thirteen contracts, compile and test Rego, exercise both MCP transports, test replay, approval, governed execution, mismatch and incident behavior, and verify the SQLite hash chain. Passing these tests does not establish production readiness.
+Use `PALO_MCP_HTTP_TOKEN=... npm run palo:mcp:http` only for isolated shared-token testing, or configure the OIDC variables documented in [`packages/palo-mcp-server/README.md`](../../packages/palo-mcp-server/README.md) for the scoped resource-server path. Use `npm run palo:gateway` with a strong `PALO_GATEWAY_TOKEN` only for local evaluation of Web, Android, Dify and n8n examples. Run `npm run validate:agentic` to validate all thirteen contracts, compile and test Rego, exercise modern and legacy MCP transports, test replay, approval, governed execution, mismatch and incident behavior, and verify the SQLite hash chain. Passing these tests does not establish production readiness.
 
 ## Optional Microsoft AGT ACS provider
 
@@ -59,6 +59,9 @@ The [Microsoft AGT integration proposal](https://github.com/sev7enITA/PALOframew
 The executable catalog is synchronized with `mcp-server-spec.json`:
 
 - `palo_register_agent`
+- `palo_explain_framework`
+- `palo_infer_governance_route`
+- `palo_plan_product_integration`
 - `palo_register_policy`
 - `palo_register_executor`
 - `palo_register_verifier`
@@ -71,6 +74,10 @@ The executable catalog is synchronized with `mcp-server-spec.json`:
 - `palo_get_approval_status`
 - `palo_list_approvals`
 - `palo_resolve_approval`
+- `palo_get_assurance_task`
+- `palo_list_assurance_tasks`
+- `palo_process_due_tasks`
+- `palo_get_operational_snapshot`
 - `palo_submit_evidence`
 - `palo_verify_evidence`
 - `palo_verify_ledger`
@@ -82,16 +89,16 @@ An allowed policy decision remains only permission to attempt the action. Full-c
 
 ## Approval delivery boundary
 
-The reference runtime provides a prototype approval state machine and MCP/gateway resolution endpoints. It does not provide authenticated reviewer identity, a production approval roster, sufficient human-readable action context, device attestation, or hosted push notifications. Web and mobile clients demonstrate the contract only; they must not be used for real authorization decisions.
+The reference runtime provides a prototype approval state machine and MCP/gateway resolution endpoints. OIDC-protected MCP resolutions bind the reviewer to the verified token subject/client; the shared-token MCP fallback and REST Gateway do not. No path provides a production approval roster, sufficient human-readable action context, device attestation or hosted push notifications. Web and mobile clients demonstrate the contract only; they must not be used for real authorization decisions.
 
 ## Known limitations before production use
 
 - Separate and authenticate administrator, agent, reviewer, auditor, and connector roles.
-- Replace the SQLite/outbox preview with PostgreSQL, durable work queues and explicit connector idempotency contracts.
-- Revalidate claim expiry, current authority, policy version, and approval on every execution attempt.
+- Replace the single-instance SQLite/outbox/task preview with PostgreSQL, durable multi-replica leases and explicit connector idempotency contracts.
+- Integrate the `authorityVerifier` with authenticated OIDC/workload-attestation material and separate transport roles.
 - Attest executor and verifier workloads, protect their credentials and separate their identities from agent callers.
-- Replace environment-only HMAC secrets with organization-owned key custody, rotation, revocation, and external anchoring.
+- Move HMAC and Ed25519 private material to organization-owned KMS/HSM custody, rotation, revocation and external anchoring.
 - Replace self-attested Vibe Gate metadata with trusted signed gate evidence and an unavoidable tool proxy.
 - Preserve the exact immutable claim across connector retries and approval resume.
 - Implement the Mode B Team Registry, Shared Task Claim, peer assignment, leases, conflicts, and team evidence model.
-- Complete threat modelling, security testing, observability, backup/restore, retention, incident response, and a distributed staging E2E.
+- Connect the telemetry sink to OpenTelemetry with redaction, then complete threat modelling, security testing, backup/restore, retention, incident response, and a distributed staging E2E.

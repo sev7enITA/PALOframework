@@ -25,8 +25,8 @@
     <div class="palo-shell">
       <nav class="palo-doc-breadcrumb" aria-label="Breadcrumb"><a href="PALO_DocumentationLibrary.html">Documentation Library</a><span aria-hidden="true">/</span><span>Security and production readiness</span></nav>
       <header class="palo-doc-hero"><p class="palo-eyebrow">Security and production readiness | Public documentation</p><h1>Security Policy</h1><div class="palo-doc-facts"><span><small>Level</small><strong>reference</strong></span><span><small>Audience</small><strong>governance | executive | technical</strong></span><span><small>Product</small><strong>PALO Core</strong></span><span><small>Status</small><strong>Current Guidance</strong></span><span><small>Read</small><strong>4 min</strong></span></div><p class="palo-doc-source">Published HTML view | Source: <code>SECURITY.md</code></p><div class="palo-actions"><button class="palo-btn" type="button" data-doc-copy-link>Copy link</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-share>Share page</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-print>Print</button></div><p class="palo-action-status" data-doc-action-status role="status" aria-live="polite"></p></header>
-      <details class="palo-doc-mobile-toc"><summary>On this page</summary><ol><li class="depth-2"><a href="#supported-versions">Supported Versions</a></li><li class="depth-2"><a href="#reporting-a-vulnerability">Reporting a Vulnerability</a></li><li class="depth-2"><a href="#palo-ai-v25-developer-preview-boundary">PALO-AI v2.5 developer-preview boundary</a></li><li class="depth-3"><a href="#please-do-not">Please do NOT:</a></li><li class="depth-3"><a href="#please-do">Please DO:</a></li><li class="depth-2"><a href="#what-to-expect">What to Expect</a></li><li class="depth-2"><a href="#security-measures">Security Measures</a></li><li class="depth-3"><a href="#technical-controls">Technical Controls</a></li><li class="depth-3"><a href="#data-privacy">Data Privacy</a></li><li class="depth-2"><a href="#securitytxt">Security.txt</a></li><li class="depth-2"><a href="#responsible-disclosure">Responsible Disclosure</a></li></ol></details>
-      <div class="palo-doc-layout"><aside class="palo-doc-sidebar" aria-label="On this page"><strong>On this page</strong><ol><li class="depth-2"><a href="#supported-versions">Supported Versions</a></li><li class="depth-2"><a href="#reporting-a-vulnerability">Reporting a Vulnerability</a></li><li class="depth-2"><a href="#palo-ai-v25-developer-preview-boundary">PALO-AI v2.5 developer-preview boundary</a></li><li class="depth-3"><a href="#please-do-not">Please do NOT:</a></li><li class="depth-3"><a href="#please-do">Please DO:</a></li><li class="depth-2"><a href="#what-to-expect">What to Expect</a></li><li class="depth-2"><a href="#security-measures">Security Measures</a></li><li class="depth-3"><a href="#technical-controls">Technical Controls</a></li><li class="depth-3"><a href="#data-privacy">Data Privacy</a></li><li class="depth-2"><a href="#securitytxt">Security.txt</a></li><li class="depth-2"><a href="#responsible-disclosure">Responsible Disclosure</a></li></ol></aside><article class="palo-doc-content"><h1 id="security-policy">Security Policy<a class="palo-doc-anchor" href="#security-policy" aria-label="Link to Security Policy">#</a></h1><h2 id="supported-versions">Supported Versions<a class="palo-doc-anchor" href="#supported-versions" aria-label="Link to Supported Versions">#</a></h2><div class="palo-doc-table-wrap" tabindex="0" aria-label="Scrollable documentation table"><table>
+      <details class="palo-doc-mobile-toc"><summary>On this page</summary><ol><li class="depth-2"><a href="#supported-versions">Supported Versions</a></li><li class="depth-2"><a href="#reporting-a-vulnerability">Reporting a Vulnerability</a></li><li class="depth-2"><a href="#palo-ai-developer-preview-boundary">PALO-AI developer-preview boundary</a></li><li class="depth-3"><a href="#please-do-not">Please do NOT:</a></li><li class="depth-3"><a href="#please-do">Please DO:</a></li><li class="depth-2"><a href="#what-to-expect">What to Expect</a></li><li class="depth-2"><a href="#security-measures">Security Measures</a></li><li class="depth-3"><a href="#technical-controls">Technical Controls</a></li><li class="depth-3"><a href="#data-privacy">Data Privacy</a></li><li class="depth-2"><a href="#securitytxt">Security.txt</a></li><li class="depth-2"><a href="#responsible-disclosure">Responsible Disclosure</a></li></ol></details>
+      <div class="palo-doc-layout"><aside class="palo-doc-sidebar" aria-label="On this page"><strong>On this page</strong><ol><li class="depth-2"><a href="#supported-versions">Supported Versions</a></li><li class="depth-2"><a href="#reporting-a-vulnerability">Reporting a Vulnerability</a></li><li class="depth-2"><a href="#palo-ai-developer-preview-boundary">PALO-AI developer-preview boundary</a></li><li class="depth-3"><a href="#please-do-not">Please do NOT:</a></li><li class="depth-3"><a href="#please-do">Please DO:</a></li><li class="depth-2"><a href="#what-to-expect">What to Expect</a></li><li class="depth-2"><a href="#security-measures">Security Measures</a></li><li class="depth-3"><a href="#technical-controls">Technical Controls</a></li><li class="depth-3"><a href="#data-privacy">Data Privacy</a></li><li class="depth-2"><a href="#securitytxt">Security.txt</a></li><li class="depth-2"><a href="#responsible-disclosure">Responsible Disclosure</a></li></ol></aside><article class="palo-doc-content"><h1 id="security-policy">Security Policy<a class="palo-doc-anchor" href="#security-policy" aria-label="Link to Security Policy">#</a></h1><h2 id="supported-versions">Supported Versions<a class="palo-doc-anchor" href="#supported-versions" aria-label="Link to Supported Versions">#</a></h2><div class="palo-doc-table-wrap" tabindex="0" aria-label="Scrollable documentation table"><table>
 <thead>
 <tr>
 <th>Version</th>
@@ -34,16 +34,24 @@
 </tr>
 </thead>
 <tbody><tr>
-<td>2.5.x website and static tools</td>
+<td>3.0.x website and static tools</td>
 <td>:white_check_mark:</td>
+</tr>
+<tr>
+<td>PALO-AI 2.6 working tree</td>
+<td>:x: unreleased developer preview; non-production</td>
 </tr>
 <tr>
 <td>2.5.0 PALO-AI full-cycle runtime and Governance Hub</td>
 <td>:x: developer preview; non-production</td>
 </tr>
 <tr>
-<td>2.4.x website and static tools</td>
+<td>2.5.x website and static tools</td>
 <td>:white_check_mark: security fixes only</td>
+</tr>
+<tr>
+<td>2.4.x website and static tools</td>
+<td>:x: superseded</td>
 </tr>
 <tr>
 <td>2.4.1 PALO-AI developer preview runtime</td>
@@ -67,12 +75,12 @@
 </tr>
 </tbody></table></div>
 <h2 id="reporting-a-vulnerability">Reporting a Vulnerability<a class="palo-doc-anchor" href="#reporting-a-vulnerability" aria-label="Link to Reporting a Vulnerability">#</a></h2><p>We take the security of PALO Framework seriously. If you believe you have found a security vulnerability, please report it to us as described below.</p>
-<h2 id="palo-ai-v25-developer-preview-boundary">PALO-AI v2.5 developer-preview boundary<a class="palo-doc-anchor" href="#palo-ai-v25-developer-preview-boundary" aria-label="Link to PALO-AI v2.5 developer-preview boundary">#</a></h2><p>PALO-AI v2.5 runtime code, Governance Hub, remote MCP transport, approval flows, HMAC/SQLite evidence chain, governed-execution reference adapters, Vibe Gate metadata, and n8n/Dify examples are published for isolated developer evaluation. They are not supported for production authorization, consequential tool execution, compliance certification, or multi-tenant operation.</p>
+<h2 id="palo-ai-developer-preview-boundary">PALO-AI developer-preview boundary<a class="palo-doc-anchor" href="#palo-ai-developer-preview-boundary" aria-label="Link to PALO-AI developer-preview boundary">#</a></h2><p>PALO-AI v2.5 runtime code and the unreleased v2.6 working tree, Governance Hub, remote MCP transport, approval flows, evidence chain, governed-execution reference adapters, Vibe Gate metadata, and n8n/Dify examples are published for isolated developer evaluation. They are not supported for production authorization, consequential tool execution, compliance certification, or multi-tenant operation.</p>
 <p>Known preview limitations are documented in the public <code>PALO_AIProductionReadiness.html</code>, <code>PALO_AgenticCapabilityMatrix.html</code>, <code>docs/palo-ai-governance-integration-guide.md</code>, <code>packages/palo-mcp-server/README.md</code>, and <code>agentic/capability-matrix.json</code>. Internal assessment workpapers are intentionally not published. In particular:</p>
 <ul>
 <li>the Governance Hub is an interactive mock-data prototype and does not connect directly to the Gateway;</li>
 <li>the browser must never receive the shared preview bearer token; online Hub operation requires a backend-for-frontend, OIDC, tenant-aware RBAC/ABAC, redaction, and separation of duties;</li>
-<li>Gateway and MCP authentication use coarse shared preview tokens rather than principal or workload identity;</li>
+<li>the v2.5 baseline uses coarse shared preview tokens; the v2.6 working tree can validate OIDC/JWKS identity and scopes for remote MCP, while the REST Gateway still retains a separate coarse preview token;</li>
 <li>environment/file-provided HMAC keys, SQLite WAL, in-process adapters, and single-instance recovery are reference mechanisms rather than production key custody or distributed durability;</li>
 <li>PALO-to-OPA traffic is restricted to the internal Docker network in the reference deployment but is not mutually authenticated; production requires a threat-modelled policy plane, signed bundle promotion, evaluated-bundle attestation, and service identity appropriate to the deployment;</li>
 <li>exactly-once behavior is not universally claimed, protected credentials may remain bypassable unless isolated behind the governed executor, and n8n/Dify integrations are not certified production connectors;</li>

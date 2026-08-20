@@ -20,7 +20,26 @@
     "updatedAt": { "type": "string", "format": "date-time" },
     "resolvedBy": { "type": "string", "minLength": 1, "maxLength": 320 },
     "resolution": { "type": "string", "minLength": 1, "maxLength": 4000 },
-    "resolvedAt": { "type": "string", "format": "date-time" }
+    "resolvedAt": { "type": "string", "format": "date-time" },
+    "recommendedCompensation": {
+      "type": "object",
+      "required": ["requiresNewActionClaim", "action"],
+      "properties": {
+        "requiresNewActionClaim": { "const": true },
+        "action": {
+          "type": "object",
+          "required": ["tool", "operation", "resource", "path"],
+          "properties": {
+            "tool": { "type": "string", "minLength": 1, "maxLength": 200 },
+            "operation": { "enum": ["create", "update", "delete", "execute"] },
+            "resource": { "type": "string", "minLength": 1, "maxLength": 1000 },
+            "path": { "type": "string", "minLength": 1, "maxLength": 1000, "pattern": "^/" }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    }
   },
   "additionalProperties": false
 }

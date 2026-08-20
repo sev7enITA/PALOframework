@@ -41,7 +41,7 @@
 </tr>
 <tr>
 <td>MCP transport</td>
-<td>Streamable HTTP at <code>/mcp</code>, bearer-authenticated</td>
+<td>Dual-era Streamable HTTP at <code>/mcp</code>; current Compose uses shared bearer, while the runtime also supports OIDC/JWKS resource-server mode</td>
 </tr>
 <tr>
 <td>Guide MCP transport</td>
@@ -222,7 +222,8 @@ curl --fail http://127.0.0.1:18877/health</code></pre></figure><h2 id="connect-n
 <figure class="palo-doc-code"><figcaption>text code</figcaption><pre tabindex="0"><code class="language-text">Gateway URL: https://governance.paloframework.org/gateway
 Bearer Token: contents of secrets/gateway-token</code></pre></figure><p>Use n8n encrypted credentials; never put the token in workflow JSON or node output.</p>
 <p>The online <code>/mcp</code> endpoint uses MCP Streamable HTTP. Current n8n documentation describes an SSE endpoint for its MCP Client Tool. Until an SSE adapter or confirmed Streamable HTTP support is tested on the target n8n version, n8n should use the HTTPS Gateway integration rather than being presented as directly compatible with this MCP transport.</p>
-<h2 id="connect-other-mcp-clients">Connect other MCP clients<a class="palo-doc-anchor" href="#connect-other-mcp-clients" aria-label="Link to Connect other MCP clients">#</a></h2><p>For clients that support Streamable HTTP:</p>
+<h2 id="connect-other-mcp-clients">Connect other MCP clients<a class="palo-doc-anchor" href="#connect-other-mcp-clients" aria-label="Link to Connect other MCP clients">#</a></h2><p>The v2.6 runtime can replace the shared MCP token with OIDC/JWKS validation by setting <code>PALO_AUTH_MODE=oidc</code>, the canonical <code>PALO_MCP_PUBLIC_URL</code>, issuer, audience and JWKS URI described in <code>packages/palo-mcp-server/README.md</code>. The reverse-proxy configurations expose the matching RFC 9728 <code>/.well-known/oauth-protected-resource/mcp</code> route. This changes only the MCP resource; the REST Gateway retains its separate preview token until an identity-aware BFF is implemented. An EMA-capable authorization server may issue the accepted access token, but PALO does not implement the EMA ID-JAG exchange.</p>
+<p>For clients that support Streamable HTTP:</p>
 <figure class="palo-doc-code"><figcaption>text code</figcaption><pre tabindex="0"><code class="language-text">Endpoint: https://governance.paloframework.org/mcp
 Authorization: Bearer &lt;contents of secrets/mcp-token&gt;</code></pre></figure><p>Expose only the PALO-governed tools to an agent. Do not make equivalent privileged target tools available through a parallel ungoverned MCP server.</p>
 <p>For products that only need PALO explanation, deterministic route inference and integration planning, use the separate guide-only endpoint and <code>secrets/guide-mcp-token</code>:</p>
@@ -231,7 +232,7 @@ Authorization: Bearer &lt;contents of secrets/guide-mcp-token&gt;
 Tools: palo_explain_framework, palo_infer_governance_route, palo_plan_product_integration</code></pre></figure><p>Issue a distinct secret per deployment boundary when moving beyond the single-tenant developer preview. Never place this token in public browser JavaScript.</p>
 <h2 id="public-route-boundary">Public-route boundary<a class="palo-doc-anchor" href="#public-route-boundary" aria-label="Link to Public-route boundary">#</a></h2><p>The public reverse proxy currently exposes:</p>
 <ul>
-<li>MCP <code>/mcp</code> and its health endpoint; the configured remote tool allowlist remains decision/status oriented and excludes administrative and execution tools;</li>
+<li>MCP <code>/mcp</code>, its health endpoint and the OIDC protected-resource metadata path; the configured remote tool allowlist remains decision/status oriented and excludes administrative and execution tools;</li>
 <li>Guide MCP <code>/mcp-guide</code> and its health endpoint, authenticated with a separate secret and limited to three read-only guide tools;</li>
 <li>Gateway health and authenticated registry read;</li>
 <li>authenticated Action Claim verification and full-cycle governed execution;</li>

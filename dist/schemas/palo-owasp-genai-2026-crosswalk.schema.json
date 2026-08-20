@@ -1,0 +1,211 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paloframework.org/schemas/palo-owasp-genai-2026-crosswalk.schema.json",
+  "title": "PALO OWASP GenAI LLM Top 10 2026 Crosswalk",
+  "type": "object",
+  "required": [
+    "format",
+    "schemaVersion",
+    "analysisVersion",
+    "status",
+    "reviewedAt",
+    "source",
+    "licensing",
+    "authorityBoundary",
+    "ratingScale",
+    "routes",
+    "summary",
+    "risks",
+    "governance"
+  ],
+  "properties": {
+    "format": { "const": "palo-owasp-genai-2026-crosswalk" },
+    "schemaVersion": { "const": "1.0.0" },
+    "analysisVersion": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+    "status": { "const": "source-backed-context" },
+    "reviewedAt": { "type": "string", "format": "date" },
+    "technicalReview": {
+      "type": "object",
+      "required": ["reviewer", "publicRole", "scope", "creditAuthorizedAt", "independenceBoundary"],
+      "properties": {
+        "reviewer": { "type": "string", "minLength": 3 },
+        "publicRole": { "type": "string", "minLength": 10 },
+        "scope": {
+          "type": "array",
+          "minItems": 3,
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 10 }
+        },
+        "creditAuthorizedAt": { "type": "string", "format": "date" },
+        "independenceBoundary": { "type": "string", "minLength": 40 }
+      },
+      "additionalProperties": false
+    },
+    "source": {
+      "type": "object",
+      "required": ["sourceId", "version", "artifact", "sha256", "officialProjectUrl", "editorialStatus"],
+      "properties": {
+        "sourceId": { "type": "string", "pattern": "^src-[a-z0-9-]+$" },
+        "version": { "const": "2026-v1.0" },
+        "artifact": { "const": "assets/OWASP-GenAI-LLM-Top-10-2026-v1.0.pdf" },
+        "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "officialProjectUrl": { "type": "string", "format": "uri" },
+        "editorialStatus": { "enum": ["verified", "provisional", "superseded"] }
+      },
+      "additionalProperties": false
+    },
+    "licensing": {
+      "type": "object",
+      "required": ["sourceLicense", "sourceLicenseUrl", "crosswalkLicense", "attribution", "endorsementBoundary"],
+      "properties": {
+        "sourceLicense": { "const": "CC BY-SA 4.0" },
+        "sourceLicenseUrl": { "type": "string", "format": "uri" },
+        "crosswalkLicense": { "const": "CC BY-SA 4.0" },
+        "attribution": { "type": "string", "minLength": 20 },
+        "endorsementBoundary": { "type": "string", "minLength": 20 }
+      },
+      "additionalProperties": false
+    },
+    "authorityBoundary": { "type": "string", "minLength": 40 },
+    "ratingScale": {
+      "type": "object",
+      "required": ["direct", "supporting", "gap"],
+      "properties": {
+        "direct": { "type": "string", "minLength": 20 },
+        "supporting": { "type": "string", "minLength": 20 },
+        "gap": { "type": "string", "minLength": 20 }
+      },
+      "additionalProperties": false
+    },
+    "routes": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "required": ["routeId", "label", "role", "maturity", "counts"],
+        "properties": {
+          "routeId": { "enum": ["palo", "palo-am", "palo-ai"] },
+          "label": { "type": "string", "minLength": 1 },
+          "role": { "type": "string", "minLength": 10 },
+          "maturity": { "type": "string", "minLength": 5 },
+          "counts": {
+            "type": "object",
+            "required": ["direct", "supporting", "gap"],
+            "properties": {
+              "direct": { "type": "integer", "minimum": 0, "maximum": 10 },
+              "supporting": { "type": "integer", "minimum": 0, "maximum": 10 },
+              "gap": { "type": "integer", "minimum": 0, "maximum": 10 }
+            },
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "summary": {
+      "type": "object",
+      "required": ["overallFit", "unionDirect", "unionSupporting", "targetedExtensions"],
+      "properties": {
+        "overallFit": { "type": "string", "minLength": 20 },
+        "unionDirect": { "type": "integer", "const": 8 },
+        "unionSupporting": { "type": "integer", "const": 2 },
+        "targetedExtensions": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "uniqueItems": true,
+          "items": { "enum": ["LLM09:2026", "LLM10:2026"] }
+        }
+      },
+      "additionalProperties": false
+    },
+    "risks": {
+      "type": "array",
+      "minItems": 10,
+      "maxItems": 10,
+      "items": {
+        "type": "object",
+        "required": [
+          "riskId",
+          "title",
+          "routeFit",
+          "verdict",
+          "paloResponse",
+          "controlIds",
+          "externalSafeguards",
+          "minimumEvidence",
+          "accountableOwner",
+          "reopenTriggers"
+        ],
+        "properties": {
+          "riskId": { "type": "string", "pattern": "^LLM(0[1-9]|10):2026$" },
+          "title": { "type": "string", "minLength": 1 },
+          "routeFit": {
+            "type": "object",
+            "required": ["palo", "paloAm", "paloAi"],
+            "properties": {
+              "palo": { "enum": ["direct", "supporting", "gap"] },
+              "paloAm": { "enum": ["direct", "supporting", "gap"] },
+              "paloAi": { "enum": ["direct", "supporting", "gap"] }
+            },
+            "additionalProperties": false
+          },
+          "verdict": { "type": "string", "minLength": 20 },
+          "paloResponse": { "type": "string", "minLength": 30 },
+          "controlIds": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": { "type": "string", "pattern": "^ctrl-[a-z0-9-]+$" }
+          },
+          "externalSafeguards": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": { "type": "string", "minLength": 5 }
+          },
+          "minimumEvidence": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": { "type": "string", "minLength": 5 }
+          },
+          "accountableOwner": { "type": "string", "minLength": 5 },
+          "reopenTriggers": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": { "type": "string", "minLength": 5 }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "governance": {
+      "type": "object",
+      "required": ["sourceClass", "accountableOwner", "reviewIntervalDays", "nextReviewAt", "applicabilityRule", "requiredRiskRecord", "reopenTriggers"],
+      "properties": {
+        "sourceClass": { "const": "informative-security-source" },
+        "accountableOwner": { "type": "string", "minLength": 5 },
+        "reviewIntervalDays": { "type": "integer", "const": 90 },
+        "nextReviewAt": { "type": "string", "format": "date" },
+        "applicabilityRule": { "type": "string", "minLength": 40 },
+        "requiredRiskRecord": {
+          "type": "array",
+          "minItems": 7,
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 3 }
+        },
+        "reopenTriggers": {
+          "type": "array",
+          "minItems": 4,
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 5 }
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

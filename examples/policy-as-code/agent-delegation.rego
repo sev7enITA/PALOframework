@@ -7,7 +7,7 @@ import rego.v1
 # locally registered profile, but production publisher identity and policy attestation
 # remain the responsibility of the adopting organization.
 
-policy_version := "palo-agentic-governance/1.2.0"
+policy_version := "palo-agentic-governance/1.3.0"
 
 # Defense-in-depth fallback. The complete rules below already deny malformed
 # input explicitly; this default preserves fail-closed behavior if a future
@@ -16,7 +16,7 @@ default action_decision := {
 	"status": "denied",
 	"reasons": ["policy input did not match a supported decision path"],
 	"obligations": ["stop_action", "repair_policy_input"],
-	"policyVersion": "palo-agentic-governance/1.2.0",
+	"policyVersion": "palo-agentic-governance/1.3.0",
 }
 
 claim_contract_valid if {
@@ -27,9 +27,21 @@ claim_contract_valid if {
 	input.claim.schemaVersion == "1.2.0"
 	is_object(input.claim.effectContract)
 	input.claim.effectContract.format == "palo-agentic-effect-contract"
-	input.claim.effectContract.schemaVersion == "1.0.0"
+	input.claim.effectContract.schemaVersion in {"1.0.0", "1.1.0"}
 	input.claim.effectContract.resourceSelector.resource == input.claim.action.resource
 	input.claim.effectContract.resourceSelector.path == input.claim.action.path
+}
+
+claim_contract_valid if {
+	input.claim.schemaVersion == "1.3.0"
+	is_object(input.claim.effectContract)
+	input.claim.effectContract.format == "palo-agentic-effect-contract"
+	input.claim.effectContract.schemaVersion in {"1.0.0", "1.1.0"}
+	input.claim.effectContract.resourceSelector.resource == input.claim.action.resource
+	input.claim.effectContract.resourceSelector.path == input.claim.action.path
+	is_object(input.claim.authorityContext)
+	input.claim.authorityContext.agentIdentity.agentId == input.claim.agentId
+	count(input.claim.authorityContext.delegationChain) == input.claim.delegation.depth
 }
 
 input_valid if {

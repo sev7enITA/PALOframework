@@ -1,0 +1,312 @@
+{
+  "format": "palo-owasp-genai-2026-crosswalk",
+  "schemaVersion": "1.0.0",
+  "analysisVersion": "1.0.2",
+  "status": "source-backed-context",
+  "reviewedAt": "2026-08-20",
+  "technicalReview": {
+    "reviewer": "Arshi Chadha",
+    "publicRole": "OWASP LLM09:2026 co-lead",
+    "scope": [
+      "Embedding inversion evidence requirements",
+      "Adversarial-query retrieval-evasion, similarity-collision and threshold-straddling testing",
+      "LLM05 and LLM09 vector-poisoning ownership boundary"
+    ],
+    "creditAuthorizedAt": "2026-08-20",
+    "independenceBoundary": "Personal technical contribution to the PALO crosswalk; this credit does not imply OWASP review or endorsement."
+  },
+  "source": {
+    "sourceId": "src-owasp-llm-top10",
+    "version": "2026-v1.0",
+    "artifact": "assets/OWASP-GenAI-LLM-Top-10-2026-v1.0.pdf",
+    "sha256": "ef87993a4e50ae9d83b41ff7a3d3e6320a82dfa8d4ec6bf98d0ce264b2e6108e",
+    "officialProjectUrl": "https://genai.owasp.org/initiative/owasp-top-10-for-llm-and-genai/",
+    "editorialStatus": "provisional"
+  },
+  "licensing": {
+    "sourceLicense": "CC BY-SA 4.0",
+    "sourceLicenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "crosswalkLicense": "CC BY-SA 4.0",
+    "attribution": "Based on the OWASP Top 10 for LLM Applications 2026 published by the OWASP GenAI Security Project.",
+    "endorsementBoundary": "This independent PALO crosswalk does not imply OWASP review or endorsement."
+  },
+  "authorityBoundary": "This crosswalk expresses PALO design fit and governance routing. It does not establish equivalence, implementation effectiveness, OWASP endorsement, compliance, certification, or production authorization.",
+  "ratingScale": {
+    "direct": "A first-class PALO artifact or control materially addresses the risk within the stated route.",
+    "supporting": "PALO contributes governance or containment, but risk-specific technical safeguards remain necessary.",
+    "gap": "The current route has no specific coverage for the risk's main technical mechanism."
+  },
+  "routes": [
+    {
+      "routeId": "palo",
+      "label": "PALO Framework",
+      "role": "Lifecycle governance, accountable ownership, controls, evidence, monitoring and review.",
+      "maturity": "Released governance framework",
+      "counts": { "direct": 6, "supporting": 4, "gap": 0 }
+    },
+    {
+      "routeId": "palo-am",
+      "label": "PALO-AM",
+      "role": "Agent identity, authority, autonomy, tool boundaries, oversight and circuit breakers.",
+      "maturity": "Current methodology baseline",
+      "counts": { "direct": 5, "supporting": 5, "gap": 0 }
+    },
+    {
+      "routeId": "palo-ai",
+      "label": "PALO-AI",
+      "role": "Exact claims, policy, approval, one-time capability, execution receipt and outcome verification.",
+      "maturity": "Full-cycle Developer Preview",
+      "counts": { "direct": 4, "supporting": 4, "gap": 2 }
+    }
+  ],
+  "summary": {
+    "overallFit": "Strong governance fit with incomplete technical resolution. PALO routes all ten risks, but LLM09 and LLM10 need targeted control-library and runtime extensions.",
+    "unionDirect": 8,
+    "unionSupporting": 2,
+    "targetedExtensions": ["LLM09:2026", "LLM10:2026"]
+  },
+  "risks": [
+    {
+      "riskId": "LLM01:2026",
+      "title": "Prompt Injection",
+      "routeFit": { "palo": "direct", "paloAm": "direct", "paloAi": "direct" },
+      "verdict": "Contain the consequence; do not promise complete prompt-injection prevention.",
+      "paloResponse": "PALO treats the model as untrusted, requires adversarial testing and meaningful review, and uses PALO-AM and PALO-AI to constrain authority through deterministic policy, approval and one-time execution capabilities.",
+      "controlIds": ["ctrl-purpose-boundary", "ctrl-adversarial-testing", "ctrl-human-review", "ctrl-agentic-authority"],
+      "externalSafeguards": [
+        "Multimodal boundary filters",
+        "Invisible Unicode normalization",
+        "Content provenance and trust labeling",
+        "Adaptive red-team testing with the defense disclosed"
+      ],
+      "minimumEvidence": [
+        "Prompt-injection threat model",
+        "Adaptive red-team results",
+        "Denied tool-call and approval records",
+        "Residual-risk decision"
+      ],
+      "accountableOwner": "Product Security and Agent Owner",
+      "reopenTriggers": ["New input modality", "New tool or external communication path", "Persistent memory enabled", "Critical injection test failure"]
+    },
+    {
+      "riskId": "LLM02:2026",
+      "title": "Sensitive Information Disclosure",
+      "routeFit": { "palo": "direct", "paloAm": "supporting", "paloAi": "supporting" },
+      "verdict": "Govern the data surface and evidence, but add dedicated privacy and data-security controls.",
+      "paloResponse": "PALO provides data provenance, change control, adversarial testing and incident handling. PALO-AM can narrow tool access and data clearance, while PALO-AI can bind selected actions, but neither replaces retrieval authorization or DLP.",
+      "controlIds": ["ctrl-data-provenance", "ctrl-adversarial-testing", "ctrl-incident-response", "ctrl-agentic-authority"],
+      "externalSafeguards": [
+        "Retrieval-time document and chunk authorization",
+        "Tenant and trust-zone isolation",
+        "DLP and output classification",
+        "Prompt, trace and observability redaction",
+        "Vector encryption and export controls"
+      ],
+      "minimumEvidence": [
+        "Data-flow and sensitivity inventory",
+        "Retrieval authorization tests",
+        "DLP and log-redaction tests",
+        "Disclosure incident exercise"
+      ],
+      "accountableOwner": "Data Owner and Privacy or Security Owner",
+      "reopenTriggers": ["New sensitive data class", "New tenant or corpus", "Observability change", "Disclosure or inversion incident"]
+    },
+    {
+      "riskId": "LLM03:2026",
+      "title": "Excessive Agency",
+      "routeFit": { "palo": "direct", "paloAm": "direct", "paloAi": "direct" },
+      "verdict": "This is the strongest PALO fit, provided the governed path cannot be bypassed.",
+      "paloResponse": "PALO-AM defines identity, authority, autonomy, minimum tools, oversight and reversibility. PALO-AI can bind an exact action to policy, approval, a one-time capability, an execution receipt and post-state verification.",
+      "controlIds": ["ctrl-purpose-boundary", "ctrl-agentic-authority", "ctrl-human-review", "ctrl-decision-trace"],
+      "externalSafeguards": [
+        "Production workload identity and principal-level RBAC",
+        "Least-privilege credentials and user-context propagation",
+        "Removal of alternate privileged execution paths",
+        "Independently assessed connectors and policy distribution"
+      ],
+      "minimumEvidence": [
+        "Agent identity and authority profile",
+        "Tool and permission inventory",
+        "Approval and policy decision record",
+        "Execution receipt and outcome attestation"
+      ],
+      "accountableOwner": "Accountable System Owner and IAM or Security Owner",
+      "reopenTriggers": ["Authority expansion", "Autonomy increase", "New downstream system", "Approval bypass or verifier mismatch"]
+    },
+    {
+      "riskId": "LLM04:2026",
+      "title": "Supply Chain",
+      "routeFit": { "palo": "direct", "paloAm": "supporting", "paloAi": "supporting" },
+      "verdict": "PALO governs supplier and change decisions; artifact integrity remains a dedicated engineering duty.",
+      "paloResponse": "PALO supplier due diligence, data provenance and material-change gates create accountable promotion decisions. PALO-AM inventories agent tools, while PALO-AI registers executors and verifiers but does not yet attest the complete supply chain.",
+      "controlIds": ["ctrl-third-party-due-diligence", "ctrl-change-gate", "ctrl-data-provenance"],
+      "externalSafeguards": [
+        "AIBOM, ML-BOM and SBOM inventory",
+        "Pinned immutable artifact references",
+        "Cryptographic signing and transparency evidence",
+        "Vulnerability management and patching",
+        "Connector and build-pipeline attestation"
+      ],
+      "minimumEvidence": [
+        "Supplier due-diligence record",
+        "Signed component inventory",
+        "Artifact hashes and provenance",
+        "Promotion and change approval log"
+      ],
+      "accountableOwner": "Supplier Risk and ML Platform Owner",
+      "reopenTriggers": ["Supplier or terms change", "Dependency or model update", "Signing or provenance failure", "Supply-chain incident"]
+    },
+    {
+      "riskId": "LLM05:2026",
+      "title": "Data and Model Poisoning",
+      "routeFit": { "palo": "direct", "paloAm": "supporting", "paloAi": "gap" },
+      "verdict": "PALO can govern integrity decisions, but current PALO-AI does not detect poisoning.",
+      "paloResponse": "PALO provides provenance, change gates, adversarial testing, incident response and rollback governance. PALO-AM adds memory lifecycle and authority boundaries, but poisoning detection and model-pipeline integrity remain external. Boundary: LLM05 owns persistent corruption of source, chunk, training or embedding-model inputs; LLM09 owns attacks that require embedding geometry, similarity ranking, collision, inference or inversion.",
+      "controlIds": ["ctrl-data-provenance", "ctrl-adversarial-testing", "ctrl-change-gate", "ctrl-incident-response"],
+      "externalSafeguards": [
+        "Dataset and model lineage with signatures",
+        "Ingestion validation, source authentication and trust boundaries",
+        "Persistent RAG corpus and embedding-model poisoning detection",
+        "Poisoning, drift and trigger-backdoor detection",
+        "Sandboxing and network isolation",
+        "Controlled feedback and retraining loops"
+      ],
+      "minimumEvidence": [
+        "Dataset and model lineage",
+        "Integrity and anomaly test results",
+        "Persistent corpus poisoning and retrieval-impact test",
+        "Backdoor trigger evaluation",
+        "Rollback and forensic exercise"
+      ],
+      "accountableOwner": "Data or Model Owner and MLOps Owner",
+      "reopenTriggers": ["New training or RAG source", "Model or adapter update", "Automated retraining enabled", "Behavioral anomaly"]
+    },
+    {
+      "riskId": "LLM06:2026",
+      "title": "Unbounded Consumption",
+      "routeFit": { "palo": "supporting", "paloAm": "direct", "paloAi": "supporting" },
+      "verdict": "PALO-AM supplies the governance pattern; production runtime budgets are not yet delivered by PALO-AI.",
+      "paloResponse": "PALO-AM requires bounded action space, circuit breakers, abort conditions and monitoring. PALO can assign thresholds and escalation ownership, but PALO-AI lists rate limiting and abuse controls as production-readiness gaps.",
+      "controlIds": ["ctrl-purpose-boundary", "ctrl-agentic-authority", "ctrl-incident-response"],
+      "externalSafeguards": [
+        "Token, action, time and cost caps",
+        "Per-principal rate limits and hard spending ceilings",
+        "Queue and recursion-depth limits",
+        "Loop detection and graceful degradation",
+        "Inference infrastructure hardening"
+      ],
+      "minimumEvidence": [
+        "Budget and limit configuration",
+        "Load and abuse test results",
+        "Circuit-breaker activation logs",
+        "FinOps and SRE threshold ownership"
+      ],
+      "accountableOwner": "Platform or SRE and FinOps Owner",
+      "reopenTriggers": ["Model or modality cost change", "New recursive workflow", "Capacity architecture change", "Budget or availability incident"]
+    },
+    {
+      "riskId": "LLM07:2026",
+      "title": "Misinformation",
+      "routeFit": { "palo": "direct", "paloAm": "direct", "paloAi": "direct" },
+      "verdict": "PALO can prevent unverified claims from silently becoming high-impact actions; it cannot guarantee truth.",
+      "paloResponse": "PALO connects current sources, claims, review and decision evidence. PALO-AM separates recommendation from authority, while PALO-AI can verify authoritative post-state against an Effect Contract after a governed action.",
+      "controlIds": ["ctrl-decision-trace", "ctrl-human-review", "ctrl-adversarial-testing", "ctrl-agentic-authority"],
+      "externalSafeguards": [
+        "Authoritative grounding and citation validation",
+        "Domain-specific factual and omission evaluation",
+        "Source freshness and conflict checks",
+        "Calibrated human review for consequential claims"
+      ],
+      "minimumEvidence": [
+        "Grounding and factuality evaluation",
+        "Claim-to-source record",
+        "Human review sample",
+        "Outcome attestation with stated causal limits"
+      ],
+      "accountableOwner": "Product Owner and Domain Reviewer",
+      "reopenTriggers": ["Source freshness failure", "Material misinformation incident", "New decision automation", "Verifier mismatch or inconclusive outcome"]
+    },
+    {
+      "riskId": "LLM08:2026",
+      "title": "Hidden Context Exposure",
+      "routeFit": { "palo": "supporting", "paloAm": "direct", "paloAi": "direct" },
+      "verdict": "Move secrets and authority outside the model context; do not rely on hidden prompts as controls.",
+      "paloResponse": "PALO-AM treats the model as an untrusted reasoning engine and requires deterministic authorization. PALO-AI keeps policy, approval and execution authority in the control path rather than in prompt instructions.",
+      "controlIds": ["ctrl-purpose-boundary", "ctrl-agentic-authority", "ctrl-adversarial-testing"],
+      "externalSafeguards": [
+        "Secret and credential externalization",
+        "Independent authorization and behavior controls",
+        "Prompt and context secret scanning",
+        "Context-extraction red teaming"
+      ],
+      "minimumEvidence": [
+        "Hidden-context inventory",
+        "Secret scan result",
+        "Authorization boundary test",
+        "Context-extraction test result"
+      ],
+      "accountableOwner": "Security Architect and Application Owner",
+      "reopenTriggers": ["System prompt change", "New tool schema or credential", "Guardrail redesign", "Context extraction finding"]
+    },
+    {
+      "riskId": "LLM09:2026",
+      "title": "Vector and Embedding Weaknesses",
+      "routeFit": { "palo": "supporting", "paloAm": "supporting", "paloAi": "gap" },
+      "verdict": "This is a targeted PALO extension area; current governance controls do not secure the vector layer by themselves.",
+      "paloResponse": "PALO data provenance, adversarial testing and incident response provide the governance shell. PALO-AM can restrict who and what may query tools, but current PALO-AI has no vector-store enforcement or embedding lifecycle control. Boundary: LLM09 owns attacks that depend on embedding geometry, similarity ranking, threshold collision, membership inference or inversion; persistent source or chunk corruption is handed to the LLM05 owner.",
+      "controlIds": ["ctrl-data-provenance", "ctrl-adversarial-testing", "ctrl-incident-response", "ctrl-agentic-authority"],
+      "externalSafeguards": [
+        "Pre-retrieval document and chunk authorization",
+        "Trust-zone-separated indexes",
+        "Embedding provenance and model-version tracking",
+        "Deletion reconciliation and encrypted backups treated at source-data sensitivity",
+        "Embedding inversion resistance assessment and source-leak incident classification",
+        "Adversarial-query, similarity-collision and threshold-evasion testing",
+        "Ingest, retrieval and ranking anomaly detection"
+      ],
+      "minimumEvidence": [
+        "Index topology and trust-zone record",
+        "Pre-retrieval chunk-level authorization and tenant-isolation test",
+        "Embedding provenance and deletion-reconciliation result",
+        "Quantified embedding-inversion test using Vec2Text, ZSInvert, Zero2Text or a threat-model-equivalent technique",
+        "Adversarial-query retrieval-evasion, similarity-collision and threshold-straddling test results",
+        "Vector-layer poisoning and ranking-manipulation test with an explicit LLM05 handoff for persistent corpus corruption",
+        "Tamper-evident retrieval trace and residual-risk decision"
+      ],
+      "accountableOwner": "Vector Store Owner and Product Security",
+      "reopenTriggers": ["New index or embedding model", "Tenant topology change", "Corpus ingestion change", "Vector leak, inversion result or retrieval anomaly"]
+    },
+    {
+      "riskId": "LLM10:2026",
+      "title": "Improper Output Handling",
+      "routeFit": { "palo": "supporting", "paloAm": "supporting", "paloAi": "supporting" },
+      "verdict": "PALO can gate actions and evidence decisions, but sink-safe output handling needs an explicit extension.",
+      "paloResponse": "PALO adversarial testing and PALO-AM tool-schema controls reduce unsafe propagation. PALO-AI validates governance contracts and exact action claims, not every generated HTML, SQL, shell, terminal, email or code sink.",
+      "controlIds": ["ctrl-adversarial-testing", "ctrl-agentic-authority", "ctrl-human-review"],
+      "externalSafeguards": [
+        "Context-specific output encoding and sanitization",
+        "Parameterized database queries",
+        "Content Security Policy",
+        "Terminal control-character sanitization",
+        "Outbound fetch restrictions and generated-code security tests"
+      ],
+      "minimumEvidence": [
+        "Downstream sink inventory",
+        "Encoding and parameterization test results",
+        "CSP and outbound-fetch configuration",
+        "Generated-code security gate evidence"
+      ],
+      "accountableOwner": "Application Security and Downstream Sink Owner",
+      "reopenTriggers": ["New output sink", "Renderer or email-client change", "Generated code reaches deployment", "Injection or exfiltration finding"]
+    }
+  ],
+  "governance": {
+    "sourceClass": "informative-security-source",
+    "accountableOwner": "Product Security or AI Governance",
+    "reviewIntervalDays": 90,
+    "nextReviewAt": "2026-11-18",
+    "applicabilityRule": "Use this LLM Top 10 when the model is an application component. Pair it with the OWASP Agentic Top 10 and apply PALO-AM and PALO-AI when tools, persistent memory, multi-step planning or autonomous action are present.",
+    "requiredRiskRecord": ["applicability", "owner", "implemented control", "test", "evidence link", "residual risk", "decision", "reopen trigger"],
+    "reopenTriggers": ["OWASP source revision", "Material architecture, tool, memory or data-scope change", "Material incident", "Failed critical adversarial test"]
+  }
+}

@@ -9,7 +9,7 @@ The reference developer-preview endpoint was deployed on 17 July 2026:
 | Item | Live state |
 |---|---|
 | Public hostname | `https://governance.paloframework.org` |
-| MCP transport | Streamable HTTP at `/mcp`, bearer-authenticated |
+| MCP transport | Dual-era Streamable HTTP at `/mcp`; current Compose uses shared bearer, while the runtime also supports OIDC/JWKS resource-server mode |
 | Guide MCP transport | Prepared Streamable HTTP route at `/mcp-guide`, separately bearer-authenticated; deploy this release before treating it as live |
 | Gateway | HTTPS under `/gateway`, bearer-authenticated and route-limited |
 | Policy engine | OPA 1.17.0, Docker-internal only |
@@ -227,6 +227,8 @@ The online `/mcp` endpoint uses MCP Streamable HTTP. Current n8n documentation d
 
 ## Connect other MCP clients
 
+The v2.6 runtime can replace the shared MCP token with OIDC/JWKS validation by setting `PALO_AUTH_MODE=oidc`, the canonical `PALO_MCP_PUBLIC_URL`, issuer, audience and JWKS URI described in `packages/palo-mcp-server/README.md`. The reverse-proxy configurations expose the matching RFC 9728 `/.well-known/oauth-protected-resource/mcp` route. This changes only the MCP resource; the REST Gateway retains its separate preview token until an identity-aware BFF is implemented. An EMA-capable authorization server may issue the accepted access token, but PALO does not implement the EMA ID-JAG exchange.
+
 For clients that support Streamable HTTP:
 
 ```text
@@ -250,7 +252,7 @@ Issue a distinct secret per deployment boundary when moving beyond the single-te
 
 The public reverse proxy currently exposes:
 
-- MCP `/mcp` and its health endpoint; the configured remote tool allowlist remains decision/status oriented and excludes administrative and execution tools;
+- MCP `/mcp`, its health endpoint and the OIDC protected-resource metadata path; the configured remote tool allowlist remains decision/status oriented and excludes administrative and execution tools;
 - Guide MCP `/mcp-guide` and its health endpoint, authenticated with a separate secret and limited to three read-only guide tools;
 - Gateway health and authenticated registry read;
 - authenticated Action Claim verification and full-cycle governed execution;

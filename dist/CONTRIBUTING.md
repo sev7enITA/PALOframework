@@ -101,8 +101,8 @@ To add a new language:
 
 ```bash
 # Clone your fork
-git clone https://github.com/YOUR-USERNAME/palo.git
-cd palo
+git clone https://github.com/YOUR-USERNAME/PALOframework.git
+cd PALOframework
 
 # Create a branch for your feature
 git checkout -b feature/your-feature-name
