@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paloframework.org/schemas/palo-system-card.schema.json",
+  "title": "PALO System and Model Card",
+  "type": "object",
+  "required": ["format", "schemaVersion", "cardId", "caseId", "system", "purpose", "stakeholders", "components", "data", "performance", "limitations", "humanOversight", "transparency", "monitoring", "changeHistory", "owner", "review"],
+  "properties": {
+    "format": { "const": "palo-system-card" },
+    "schemaVersion": { "const": "1.0.0" },
+    "cardId": { "type": "string", "minLength": 1 },
+    "caseId": { "type": "string", "minLength": 1 },
+    "system": { "type": "object", "required": ["name", "version", "releaseStatus"], "properties": { "name": { "type": "string", "minLength": 1 }, "version": { "type": "string", "minLength": 1 }, "releaseStatus": { "enum": ["development", "pilot", "production", "retiring", "retired"] } }, "additionalProperties": false },
+    "purpose": { "type": "object", "required": ["intendedUses", "prohibitedUses", "decisionSignificance"], "properties": { "intendedUses": { "$ref": "#/$defs/nonEmptyStrings" }, "prohibitedUses": { "$ref": "#/$defs/nonEmptyStrings" }, "decisionSignificance": { "type": "string", "minLength": 20 } }, "additionalProperties": false },
+    "stakeholders": { "type": "array", "minItems": 1, "items": { "type": "object", "required": ["group", "relationship", "explanationNeed"], "properties": { "group": { "type": "string", "minLength": 1 }, "relationship": { "type": "string", "minLength": 1 }, "explanationNeed": { "type": "string", "minLength": 10 } }, "additionalProperties": false } },
+    "components": { "type": "array", "minItems": 1, "items": { "type": "object", "required": ["componentId", "type", "provider", "version"], "properties": { "componentId": { "type": "string" }, "type": { "enum": ["model", "rule", "retrieval", "tool", "dataset", "human-process", "other"] }, "provider": { "type": "string" }, "version": { "type": "string" } }, "additionalProperties": false } },
+    "data": { "type": "object", "required": ["lineageRecordIds", "sensitiveData", "knownLimits"], "properties": { "lineageRecordIds": { "$ref": "#/$defs/nonEmptyStrings" }, "sensitiveData": { "type": "boolean" }, "knownLimits": { "$ref": "#/$defs/nonEmptyStrings" } }, "additionalProperties": false },
+    "performance": { "type": "array", "minItems": 1, "items": { "type": "object", "required": ["metric", "scope", "value", "thresholdDecision"], "properties": { "metric": { "type": "string" }, "scope": { "type": "string" }, "value": { "oneOf": [{ "type": "number" }, { "type": "string" }] }, "thresholdDecision": { "enum": ["pass", "conditional", "fail"] } }, "additionalProperties": false } },
+    "limitations": { "$ref": "#/$defs/nonEmptyStrings" },
+    "humanOversight": { "type": "object", "required": ["roles", "interventions", "escalation"], "properties": { "roles": { "$ref": "#/$defs/nonEmptyStrings" }, "interventions": { "$ref": "#/$defs/nonEmptyStrings" }, "escalation": { "type": "string", "minLength": 10 } }, "additionalProperties": false },
+    "transparency": { "type": "object", "required": ["notice", "explanationArtifacts", "appealRoute"], "properties": { "notice": { "type": "string", "minLength": 10 }, "explanationArtifacts": { "$ref": "#/$defs/nonEmptyStrings" }, "appealRoute": { "type": "string", "minLength": 5 } }, "additionalProperties": false },
+    "monitoring": { "type": "object", "required": ["indicatorIds", "reviewCadence", "reopenTriggers"], "properties": { "indicatorIds": { "$ref": "#/$defs/nonEmptyStrings" }, "reviewCadence": { "type": "string", "minLength": 1 }, "reopenTriggers": { "$ref": "#/$defs/nonEmptyStrings" } }, "additionalProperties": false },
+    "changeHistory": { "type": "array", "minItems": 1, "items": { "type": "object", "required": ["version", "changedAt", "summary"], "properties": { "version": { "type": "string" }, "changedAt": { "type": "string", "format": "date-time" }, "summary": { "type": "string", "minLength": 10 } }, "additionalProperties": false } },
+    "owner": { "type": "string", "minLength": 1 },
+    "review": { "type": "object", "required": ["status", "reviewedAt", "reviewedBy", "validUntil"], "properties": { "status": { "enum": ["accepted", "conditional", "rejected"] }, "reviewedAt": { "type": "string", "format": "date-time" }, "reviewedBy": { "type": "string", "minLength": 1 }, "validUntil": { "type": "string", "format": "date-time" } }, "additionalProperties": false }
+  },
+  "$defs": { "nonEmptyStrings": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 1 } } },
+  "additionalProperties": false
+}

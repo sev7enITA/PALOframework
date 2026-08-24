@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>PALO Guide Agent and MCP Integration | PALO Documentation</title>
+  <meta name="description" content="Public PALO documentation: PALO Guide Agent and MCP Integration.">
+  <link rel="canonical" href="https://paloframework.org/docs/palo-guide-agent-and-mcp.html">
+  <link rel="icon" type="image/webp" href="../assets/logo.webp">
+  <link rel="stylesheet" href="../assets/palo-icons.css">
+  <link rel="stylesheet" href="../assets/palo-v21.css?v=3.1.0">
+  <link rel="stylesheet" href="../assets/palo-docs.css">
+  <script src="../assets/palo-icons.js" defer></script>
+  <script src="../assets/palo-v21.js?v=3.1.0" defer></script>
+  <script src="../assets/palo-docs.js" defer></script>
+</head>
+<body class="palo-v21 palo-doc-page" data-doc-source="docs/palo-guide-agent-and-mcp.md">
+  <a class="palo-skip-link" href="#main-content">Skip to main content</a>
+  <header class="palo-site-header"><div class="palo-shell palo-header-inner">
+    <a class="palo-brand" href="../index.html"><img src="../assets/logo.webp" alt="PALO">PALO FRAMEWORK</a>
+    <button class="palo-menu-toggle" type="button" data-palo-menu-toggle aria-expanded="false" aria-controls="palo-primary-nav" aria-label="Open navigation"><span data-palo-icon="menu" aria-hidden="true"></span></button>
+    <nav class="palo-nav" id="palo-primary-nav" aria-label="Primary navigation"><a href="../designs/theory-to-practice-infographic/">Start</a><a href="../PALO_AIGovernance.html">Agentic Governance</a><a href="../governance-hub/">Governance Hub</a><a href="../index.html#guided-journeys">Tools</a><a href="../PALO_DocumentationLibrary.html" aria-current="page">Documentation</a><a href="../PALO_AIProductionReadiness.html">Readiness</a></nav>
+  </div></header>
+  <main id="main-content" class="palo-doc-main">
+    <div class="palo-shell">
+      <nav class="palo-doc-breadcrumb" aria-label="Breadcrumb"><a href="../PALO_DocumentationLibrary.html">Documentation Library</a><span aria-hidden="true">/</span><span>Start and adoption</span></nav>
+      <header class="palo-doc-hero"><p class="palo-eyebrow">Start and adoption | Public documentation</p><h1>PALO Guide Agent and MCP Integration</h1><div class="palo-doc-facts"><span><small>Level</small><strong>reference</strong></span><span><small>Audience</small><strong>technical | builder</strong></span><span><small>Product</small><strong>PALO Core</strong></span><span><small>Status</small><strong>Current Guidance</strong></span><span><small>Read</small><strong>6 min</strong></span></div><p class="palo-doc-source">Published HTML view | Source: <code>docs/palo-guide-agent-and-mcp.md</code></p><div class="palo-actions"><button class="palo-btn" type="button" data-doc-copy-link>Copy link</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-share>Share page</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-print>Print</button></div><p class="palo-action-status" data-doc-action-status role="status" aria-live="polite"></p></header>
+      <details class="palo-doc-mobile-toc"><summary>On this page</summary><ol><li class="depth-2"><a href="#purpose">Purpose</a></li><li class="depth-2"><a href="#what-is-implemented">What is implemented</a></li><li class="depth-2"><a href="#inference-contract">Inference contract</a></li><li class="depth-3"><a href="#explain-palo">Explain PALO</a></li><li class="depth-3"><a href="#infer-a-starting-route">Infer a starting route</a></li><li class="depth-3"><a href="#plan-a-product-integration">Plan a product integration</a></li><li class="depth-2"><a href="#local-mcp-stdio">Local MCP stdio</a></li><li class="depth-2"><a href="#authenticated-streamable-http">Authenticated Streamable HTTP</a></li><li class="depth-2"><a href="#host-agent-behavior">Host-agent behavior</a></li><li class="depth-2"><a href="#web-desktop-and-mobile-product-ux">Web, desktop and mobile product UX</a></li><li class="depth-2"><a href="#verification">Verification</a></li></ol></details>
+      <div class="palo-doc-layout"><aside class="palo-doc-sidebar" aria-label="On this page"><strong>On this page</strong><ol><li class="depth-2"><a href="#purpose">Purpose</a></li><li class="depth-2"><a href="#what-is-implemented">What is implemented</a></li><li class="depth-2"><a href="#inference-contract">Inference contract</a></li><li class="depth-3"><a href="#explain-palo">Explain PALO</a></li><li class="depth-3"><a href="#infer-a-starting-route">Infer a starting route</a></li><li class="depth-3"><a href="#plan-a-product-integration">Plan a product integration</a></li><li class="depth-2"><a href="#local-mcp-stdio">Local MCP stdio</a></li><li class="depth-2"><a href="#authenticated-streamable-http">Authenticated Streamable HTTP</a></li><li class="depth-2"><a href="#host-agent-behavior">Host-agent behavior</a></li><li class="depth-2"><a href="#web-desktop-and-mobile-product-ux">Web, desktop and mobile product UX</a></li><li class="depth-2"><a href="#verification">Verification</a></li></ol></aside><article class="palo-doc-content"><h1 id="palo-guide-agent-and-mcp-integration">PALO Guide Agent and MCP Integration<a class="palo-doc-anchor" href="#palo-guide-agent-and-mcp-integration" aria-label="Link to PALO Guide Agent and MCP Integration">#</a></h1><p>Status: PALO platform v3.1.0 guide-agent contract. The guide tools are implemented as deterministic, read-only inference over released PALO registries and the twelve governance control packs. The protected-action runtime remains a separate PALO-AI v2.6 developer preview.</p>
+<h2 id="purpose">Purpose<a class="palo-doc-anchor" href="#purpose" aria-label="Link to Purpose">#</a></h2><p>The PALO Guide Agent lets a person or product ask three practical questions without first knowing PALO module names:</p>
+<ol>
+<li>How does PALO address this governance question?</li>
+<li>Which PALO phases, controls and artifacts should this case start with?</li>
+<li>How should another product consume this guidance through MCP, and when must guidance be separated from protected-action enforcement?</li>
+</ol>
+<p>The agent is deliberately split into two layers:</p>
+<figure class="palo-doc-code"><figcaption>text code</figcaption><pre tabindex="0"><code class="language-text">host assistant or product UI
+  -&gt; PALO guide prompt
+  -&gt; read-only guide tools
+  -&gt; released semantic spine, gates, controls, indicators and sources
+  -&gt; applicability-aware governance control packs and evidence contracts
+
+protected action, only when needed
+  -&gt; Action Claim
+  -&gt; policy decision / approval
+  -&gt; one-time capability
+  -&gt; PALO-owned executor
+  -&gt; receipt and outcome verification</code></pre></figure><p>The first layer explains and recommends. It cannot approve a case, determine legal applicability, certify compliance or authorize deployment. The second layer demonstrates a protected-action lifecycle, but remains non-production in the current release.</p>
+<h2 id="what-is-implemented">What is implemented<a class="palo-doc-anchor" href="#what-is-implemented" aria-label="Link to What is implemented">#</a></h2><p>The reference MCP server exposes one prompt and three guide tools:</p>
+<div class="palo-doc-table-wrap" tabindex="0" aria-label="Scrollable documentation table"><table>
+<thead>
+<tr>
+<th>MCP capability</th>
+<th>Purpose</th>
+<th>State change</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>palo_guide_agent</code> prompt</td>
+<td>Grounds a host assistant in PALO terminology, sources and authority boundaries</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>palo_explain_framework</code></td>
+<td>Searches released semantic records and explains relevant phases, modules and artifacts</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>palo_infer_governance_route</code></td>
+<td>Maps explicit use-case signals to an explainable 2-4 step starting route</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>palo_plan_product_integration</code></td>
+<td>Selects a transport and integration class, with trust boundaries and a least-privilege tool set</td>
+<td>None</td>
+</tr>
+</tbody></table></div>
+<p>The inference code is in <code>packages/palo-mcp-server/guide-agent.js</code>. It reads:</p>
+<ul>
+<li><code>data/semantic-spine.json</code>;</li>
+<li><code>data/decision-gates.json</code>;</li>
+<li><code>data/control-library.json</code>;</li>
+<li><code>data/kpi-kri-registry.json</code>;</li>
+<li><code>data/source-registry.json</code>;</li>
+<li><code>data/governance-control-packs.json</code>.</li>
+</ul>
+<p>It does not call a model, send telemetry, fetch external content or mutate a Case File. A host assistant can reason over the structured result, but must preserve its sources, input signals, "because" statements, applicability questions, stop conditions, residual boundaries and authority boundary.</p>
+<h2 id="inference-contract">Inference contract<a class="palo-doc-anchor" href="#inference-contract" aria-label="Link to Inference contract">#</a></h2><h3 id="explain-palo">Explain PALO<a class="palo-doc-anchor" href="#explain-palo" aria-label="Link to Explain PALO">#</a></h3><p>Call <code>palo_explain_framework</code> with a plain-language question:</p>
+<figure class="palo-doc-code"><figcaption>json code</figcaption><pre tabindex="0"><code class="language-json">{
+  "query": "How should I govern an agent that can update supplier records?",
+  "audience": "procurement product owner",
+  "limit": 6
+}</code></pre></figure><p>The result includes the canonical six-phase loop, relevant semantic records, evidence class, expected artifacts and the authority boundary of each record.</p>
+<h3 id="infer-a-starting-route">Infer a starting route<a class="palo-doc-anchor" href="#infer-a-starting-route" aria-label="Link to Infer a starting route">#</a></h3><p>Call <code>palo_infer_governance_route</code> with the use case and only the signals that are known:</p>
+<figure class="palo-doc-code"><figcaption>json code</figcaption><pre tabindex="0"><code class="language-json">{
+  "useCase": "An agent reads invoice evidence and can submit an exception resolution.",
+  "role": "finance product owner",
+  "objectives": ["bound delegated action", "prepare review evidence"],
+  "systemType": "agentic workflow",
+  "currentState": "pilot",
+  "signals": {
+    "systemCanAct": true,
+    "highImpact": true,
+    "needsEvidence": true,
+    "humanReviewDefined": false,
+    "actionImpact": "reversible-write"
+  }
+}</code></pre></figure><p>The result contains an ordered route, the rules that selected each step, linked modules, expected artifacts, starter controls, indicators and unanswered governance questions. It is a starting hypothesis. The host must let an accountable person confirm or correct it before treating the route as case state.</p>
+<h3 id="plan-a-product-integration">Plan a product integration<a class="palo-doc-anchor" href="#plan-a-product-integration" aria-label="Link to Plan a product integration">#</a></h3><p>Call <code>palo_plan_product_integration</code> before configuring a product:</p>
+<figure class="palo-doc-code"><figcaption>json code</figcaption><pre tabindex="0"><code class="language-json">{
+  "product": "Procurement workflow",
+  "productCategory": "workflow",
+  "deployment": "remote",
+  "transport": "auto",
+  "systemCanAct": true,
+  "actionImpact": "consequential-write"
+}</code></pre></figure><p>The result chooses one of four explicit integration classes:</p>
+<div class="palo-doc-table-wrap" tabindex="0" aria-label="Scrollable documentation table"><table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Use</th>
+<th>Important limit</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Guidance only</td>
+<td>Explain PALO and recommend a route</td>
+<td>No target-system authority</td>
+</tr>
+<tr>
+<td>Advisory gate</td>
+<td>Display a pre-action decision</td>
+<td>Bypassable if the target tool remains directly available</td>
+</tr>
+<tr>
+<td>Governed executor</td>
+<td>Keep the target credential behind a PALO-owned broker</td>
+<td>Current implementation is a developer preview</td>
+</tr>
+<tr>
+<td>Workflow admission + governed executor</td>
+<td>Reject uncovered workflows and broker protected actions</td>
+<td>Requires production identity, RBAC, attestation, HA and connector assurance not supplied here</td>
+</tr>
+</tbody></table></div>
+<h2 id="local-mcp-stdio">Local MCP stdio<a class="palo-doc-anchor" href="#local-mcp-stdio" aria-label="Link to Local MCP stdio">#</a></h2><p>Install and validate from the repository root:</p>
+<figure class="palo-doc-code"><figcaption>sh code</figcaption><pre tabindex="0"><code class="language-sh">npm ci
+npm run validate:agentic</code></pre></figure><p>Use a private runtime directory and expose only the three read-only guide tools when the product needs guidance:</p>
+<figure class="palo-doc-code"><figcaption>json code</figcaption><pre tabindex="0"><code class="language-json">{
+  "mcpServers": {
+    "palo-guide": {
+      "command": "node",
+      "args": ["/absolute/path/to/PALO/packages/palo-mcp-server/index.js"],
+      "env": {
+        "PALO_DATA_DIR": "/private/path/palo-guide-runtime",
+        "PALO_MCP_EXPOSED_TOOLS": "palo_explain_framework,palo_infer_governance_route,palo_plan_product_integration"
+      }
+    }
+  }
+}</code></pre></figure><p>Use absolute paths. Do not place target-system credentials, production records or sensitive case data in this configuration or in guide-tool arguments.</p>
+<h2 id="authenticated-streamable-http">Authenticated Streamable HTTP<a class="palo-doc-anchor" href="#authenticated-streamable-http" aria-label="Link to Authenticated Streamable HTTP">#</a></h2><p>For a remote MCP client, terminate TLS at a controlled reverse proxy and configure a strong bearer secret through the deployment secret manager:</p>
+<figure class="palo-doc-code"><figcaption>sh code</figcaption><pre tabindex="0"><code class="language-sh">export PALO_MCP_HTTP_HOST='127.0.0.1'
+export PALO_MCP_HTTP_PORT='8788'
+export PALO_MCP_HTTP_TOKEN='replace-with-at-least-24-random-bytes'
+export PALO_MCP_EXPOSED_TOOLS='palo_explain_framework,palo_infer_governance_route,palo_plan_product_integration'
+npm run palo:mcp:http</code></pre></figure><p>Client shape:</p>
+<figure class="palo-doc-code"><figcaption>json code</figcaption><pre tabindex="0"><code class="language-json">{
+  "url": "https://governance.example.org/mcp",
+  "headers": {
+    "Authorization": "Bearer &lt;secret-from-your-secret-manager&gt;"
+  }
+}</code></pre></figure><p>The shared preview token authenticates transport access only. It is not a principal identity, role, reviewer signature, case approval or authorization to operate a production system.</p>
+<p>The supplied VPS deployment provides a separately authenticated guide-only route:</p>
+<figure class="palo-doc-code"><figcaption>text code</figcaption><pre tabindex="0"><code class="language-text">https://governance.paloframework.org/mcp-guide</code></pre></figure><p>It uses <code>secrets/guide-mcp-token</code> and exposes only <code>palo_explain_framework</code>, <code>palo_infer_governance_route</code> and <code>palo_plan_product_integration</code>. Deploy the matching repository release before treating the route as live.</p>
+<h2 id="host-agent-behavior">Host-agent behavior<a class="palo-doc-anchor" href="#host-agent-behavior" aria-label="Link to Host-agent behavior">#</a></h2><p>MCP clients that support prompts can load <code>palo_guide_agent</code>. Otherwise use the same behavior as a host system instruction:</p>
+<ol>
+<li>Call <code>palo_explain_framework</code> before explaining a PALO concept.</li>
+<li>Call <code>palo_infer_governance_route</code> before recommending a route.</li>
+<li>Show the signals used, concise reasons, expected artifact and unresolved questions.</li>
+<li>Let the user correct the context before creating or changing downstream state.</li>
+<li>Call <code>palo_plan_product_integration</code> before proposing a connector or MCP configuration.</li>
+<li>Keep guide output separate from Action Claims, approval and protected execution.</li>
+<li>Never describe a developer-preview control as production-ready or a PALO route as legal advice, certification or deployment approval.</li>
+</ol>
+<h2 id="web-desktop-and-mobile-product-ux">Web, desktop and mobile product UX<a class="palo-doc-anchor" href="#web-desktop-and-mobile-product-ux" aria-label="Link to Web, desktop and mobile product UX">#</a></h2><p>Use the same reasoning contract on every surface, but adapt the interaction:</p>
+<ul>
+<li><strong>Web desktop:</strong> keep inputs and the inferred route visible together; show "because" reasons beside each phase and artifact.</li>
+<li><strong>Mobile:</strong> ask only the minimum signals in one vertical flow, then move focus to a concise result; keep configuration code behind disclosure controls.</li>
+<li><strong>Desktop products:</strong> prefer local stdio for read-only guidance when the MCP client and PALO run on the same trusted machine.</li>
+<li><strong>Cloud products:</strong> use authenticated Streamable HTTP with a narrow tool allowlist and a backend-for-frontend; never put the bearer token in browser code or browser storage.</li>
+<li><strong>Products that execute actions:</strong> do not let the guide tool call the privileged target. Introduce the protected-action path as a distinct architecture and preserve the user-visible authority boundary.</li>
+</ul>
+<h2 id="verification">Verification<a class="palo-doc-anchor" href="#verification" aria-label="Link to Verification">#</a></h2><p>Run the guide and MCP contract tests:</p>
+<figure class="palo-doc-code"><figcaption>sh code</figcaption><pre tabindex="0"><code class="language-sh">node --test packages/palo-mcp-server/guide-agent.test.js packages/palo-mcp-server/mcp.test.js</code></pre></figure><p>Run the complete agentic validation before publishing changes:</p>
+<figure class="palo-doc-code"><figcaption>sh code</figcaption><pre tabindex="0"><code class="language-sh">npm run validate:agentic</code></pre></figure><p>Passing tests confirms the documented reference behavior only. It does not establish production readiness, control effectiveness, legal applicability or independent assurance.</p>
+</article></div>
+      <aside class="palo-doc-next"><div><small>Prerequisite</small><strong>No specialist prerequisite stated</strong></div><div><small>Recommended next step</small><strong>Return to the Documentation Library</strong></div></aside>
+      <section class="palo-doc-feedback" aria-labelledby="feedback-title"><p class="palo-eyebrow">Privacy-first feedback</p><h2 id="feedback-title">Help improve this guide</h2><p>Your feedback stays in your browser until you explicitly copy it, download it, or open an email draft. Do not include secrets, personal data, credentials or production identifiers.</p><form data-doc-feedback><div class="palo-form-grid"><div class="palo-field"><label for="feedback-role">Your role</label><select id="feedback-role" name="role"><option>Executive / governance owner</option><option>Platform or security engineer</option><option>No-code / low-code builder</option><option>External reviewer</option></select></div><div class="palo-field"><label for="feedback-category">Category</label><select id="feedback-category" name="category"><option>Clarity</option><option>Technical accuracy</option><option>Missing guidance</option><option>Accessibility</option></select></div><div class="palo-field palo-field-full"><label for="feedback-message">Feedback</label><textarea id="feedback-message" name="message" maxlength="3000" required placeholder="Describe the non-sensitive improvement you recommend."></textarea></div><div class="palo-form-actions"><button class="palo-btn" type="button" data-feedback-copy>Copy feedback</button><button class="palo-btn palo-btn-secondary" type="button" data-feedback-download>Download JSON</button><button class="palo-btn palo-btn-secondary" type="button" data-feedback-email>Email draft</button></div></div><p class="palo-action-status" data-feedback-status role="status" aria-live="polite"></p></form></section>
+    </div>
+  </main>
+  <footer class="palo-footer"><div class="palo-shell"><p>PALO public documentation. Developer preview boundaries apply.</p><div class="palo-footer-links"><a href="../PALO_AIGovernance.html">PALO-AI</a><a href="../governance-hub/">Governance Hub</a><a href="../PALO_AgenticCapabilityMatrix.html">Capability Matrix</a><a href="../PALO_AIProductionReadiness.html">Production Readiness</a><a href="../privacy-policy.html">Privacy</a></div></div></footer>
+</body></html>

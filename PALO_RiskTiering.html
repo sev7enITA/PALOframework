@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Risk Tiering Calculator | PALO Framework</title>
     <meta name="description"
-        content="Classify AI use cases into risk tiers (Minimal, Limited, High, Unacceptable) per EU AI Act and PALO Framework Section 3.3">
+        content="Generate a non-authoritative EU AI Act risk-screening hypothesis and preserve the conditions and questions requiring accountable legal review.">
 
     <!-- SEO Meta Tags -->
     <meta name="keywords"
@@ -502,8 +502,8 @@
         <!-- Header -->
         <header class="header" role="banner">
             <h1 id="main-content" tabindex="-1"><span data-palo-icon=scale class=palo-icon-inline></span>AI Risk Tiering Calculator</h1>
-            <p>Classify your AI use case into risk tiers per EU AI Act and PALO Framework Section 3.3. Get instant
-                guidance on compliance requirements.</p>
+            <p>Generate an initial risk-screening hypothesis under the EU AI Act and PALO Framework Section 3.3.
+                The result is not a legal classification and must be reviewed against actor roles, conditions, exceptions and current official sources.</p>
         </header>
 
         <!-- Wizard -->
@@ -704,14 +704,14 @@
             unacceptable: {
                 badge: ' UNACCEPTABLE RISK',
                 class: 'unacceptable',
-                message: 'This AI application is prohibited under the EU AI Act.',
+                message: 'This selection raises a potential prohibited-practice signal that requires immediate review of Article 5 conditions and exceptions.',
                 documents: [],
                 euReference: 'Article 5 - Prohibited Artificial Intelligence Practices'
             },
             high: {
                 badge: ' HIGH RISK',
                 class: 'high',
-                message: 'This AI system requires comprehensive compliance measures.',
+                message: 'This selection raises a potential high-risk signal. Confirm Annex I or III scope, actor role, intended purpose, exceptions and product-law dependencies.',
                 documents: [
                     { name: 'PALO Comprehensive Impact Assessment', description: 'Full risk assessment per Phase 2 of PALO lifecycle' },
                     { name: 'Risk Mitigation Plan', description: 'Documented strategies to address identified risks' },
@@ -735,12 +735,12 @@
             minimal: {
                 badge: ' MINIMAL RISK',
                 class: 'minimal',
-                message: 'This AI system has no specific regulatory requirements, but PALO best practices are recommended.',
+                message: 'This limited input set did not activate a listed signal. Other AI Act, data, consumer, accessibility, sector or national obligations may still apply.',
                 documents: [
                     { name: 'PALO Ethical Screening Questionnaire', description: 'Recommended ethical review per Phase 1' },
                     { name: 'Voluntary Code of Conduct', description: 'Optional adherence to AI ethics guidelines' }
                 ],
-                euReference: 'Article 69 - Codes of Conduct'
+                euReference: 'Article 95 - Voluntary Codes of Conduct'
             }
         };
 
@@ -784,6 +784,10 @@
             const req = requirements[tier];
 
             let html = `
+                <div style="background: #eef6f7; border: 2px solid var(--color-primary); padding: 18px; border-radius: 10px; margin-bottom: 20px;">
+                    <h3 style="color: var(--color-primary-dark); margin-bottom: 8px;">Initial screening hypothesis</h3>
+                    <p style="font-size: 14px;">This deterministic result cannot establish legal classification. Before relying on it, review the exact intended purpose, provider/deployer role, affected people, Article 5 conditions and exceptions, Annex I and III scope, material modification, product legislation, human involvement and current official guidance.</p>
+                </div>
                 <div class="risk-badge ${req.class}">
                     ${req.badge}
                 </div>
@@ -804,8 +808,8 @@
             if (tier === 'unacceptable') {
                 html += `
                     <div style="background: rgba(124, 45, 18, 0.1); border: 2px solid var(--color-unacceptable); padding: 20px; border-radius: 10px;">
-                        <h3 style="color: var(--color-unacceptable); margin-bottom: 8px;"><span data-palo-icon=warning class=palo-icon-inline></span>Prohibited Application</h3>
-                        <p style="font-size: 14px;">This type of AI system is explicitly prohibited under the EU AI Act and cannot be deployed in the European Union. Consider alternative approaches that do not fall under prohibited categories.</p>
+                        <h3 style="color: var(--color-unacceptable); margin-bottom: 8px;"><span data-palo-icon=warning class=palo-icon-inline></span>Potential prohibited-practice signal</h3>
+                        <p style="font-size: 14px;">Place the case on hold and obtain accountable review of the precise Article 5 practice, purpose, actor, context, conditions and exceptions before development or deployment proceeds.</p>
                     </div>
                 `;
             } else {
@@ -843,13 +847,14 @@
             const tier = calculateRiskTier();
             const req = requirements[tier];
 
-            let report = `# PALO Risk Tiering Assessment Report\n\n`;
+            let report = `# PALO Initial Risk-Screening Hypothesis\n\n`;
             report += `**Generated:** ${new Date().toISOString().slice(0, 10)}\n\n`;
+            report += `> Non-authoritative screening only. This output does not determine legal classification or compliance. Review actor roles, intended purpose, Article 5 conditions and exceptions, Annex I and III scope, material modification, product legislation and current official sources.\n\n`;
             report += `## Assessment Summary\n\n`;
             report += `- **Sector:** ${selections.sector}\n`;
             report += `- **AI Function:** ${selections.function}\n`;
             report += `- **Autonomy Level:** ${selections.autonomy}\n\n`;
-            report += `## Risk Classification\n\n`;
+            report += `## Screening Hypothesis\n\n`;
             report += `**${req.badge}**\n\n`;
             report += `${req.message}\n\n`;
             report += `## Required Documentation\n\n`;
@@ -857,7 +862,7 @@
                 report += `### ${doc.name}\n${doc.description}\n\n`;
             });
             report += `## EU AI Act Reference\n\n${req.euReference}\n\n`;
-            report += `---\n*Generated by PALO Framework Risk Tiering Calculator*\n`;
+            report += `---\n*Generated by the PALO Framework non-authoritative Risk Tiering screener*\n`;
 
             const blob = new Blob([report], { type: 'text/markdown' });
             const url = URL.createObjectURL(blob);

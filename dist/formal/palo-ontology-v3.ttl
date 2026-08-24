@@ -6,7 +6,7 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 palo: a owl:Ontology ;
-  owl:versionInfo "3.0.0" ;
+  owl:versionInfo "3.1.0" ;
   dcterms:title "PALO Semantic Spine" ;
   dcterms:description "A lightweight semantic profile for versioned PALO definitions, runtime governance records, evidence and mappings." .
 

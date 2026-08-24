@@ -4,11 +4,13 @@ import { timingSafeEqual } from "node:crypto";
 import { GovernanceRuntime } from "./core.js";
 import { installDemoCatalog } from "./demo-catalog.js";
 import { loadEnforcementProviderFromEnvironment } from "./providers/from-environment.js";
+import { loadProductionProfileFromEnvironment } from "./production-admission.js";
 
 const host = process.env.PALO_GATEWAY_HOST || "127.0.0.1";
 const port = Number(process.env.PALO_GATEWAY_PORT || 8787);
 const token = process.env.PALO_GATEWAY_TOKEN;
 if (!token || token.length < 24) throw new Error("PALO_GATEWAY_TOKEN must contain at least 24 characters");
+loadProductionProfileFromEnvironment();
 const enforcementProvider = await loadEnforcementProviderFromEnvironment();
 const runtime = new GovernanceRuntime({ enforcementProvider });
 if (process.env.PALO_ENABLE_DEMO_CATALOG === "true") await installDemoCatalog(runtime);
@@ -53,7 +55,7 @@ async function body(request) {
 const gateway = createServer(async (request, response) => {
   try {
     const url = new URL(request.url, `http://${request.headers.host || "localhost"}`);
-    if (request.method === "GET" && url.pathname === "/health") return send(response, 200, { status: "ok", service: "palo-governance-gateway", version: "2.6.0", frameworkRelease: "3.0.1", releaseStatus: "developer-preview", assuranceCycle: "identity-bound-durable", productionUse: false });
+    if (request.method === "GET" && url.pathname === "/health") return send(response, 200, { status: "ok", service: "palo-governance-gateway", version: "2.6.0", frameworkRelease: "3.1.0", releaseStatus: "developer-preview", assuranceCycle: "identity-bound-durable", productionUse: false });
     if (!authorized(request)) return send(response, 401, { error: "unauthorized" });
     if (request.method === "GET" && url.pathname === "/v1/demo/catalog" && runtime.demoCatalogState) return send(response, 200, { state: runtime.demoCatalogState, synthetic: true });
     if (request.method === "POST" && url.pathname === "/v1/demo/catalog/reset" && runtime.demoCatalogState) {

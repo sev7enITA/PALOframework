@@ -6,8 +6,8 @@ import { fileURLToPath } from "node:url";
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const check = process.argv.includes("--check");
-const semanticVersion = "3.0.0";
-const releaseDate = "2026-08-12";
+const semanticVersion = "3.1.0";
+const releaseDate = "2026-08-23";
 const namespace = "https://paloframework.org/semantic/";
 const mappingPath = "data/semantic-mappings.json";
 const manifestPath = "data/semantic-release-manifest.json";
@@ -32,10 +32,10 @@ function mappingRecord(mappingType, source, target, coverageType, generatedFrom,
     approval: {
       status: "approved",
       scope: "PALO framework publication only; not a legal applicability or certification decision.",
-      decidedAt: "2026-08-12T08:00:00Z",
+      decidedAt: "2026-08-23T08:00:00Z",
       decidedBy: "PALO framework release process",
     },
-    validFrom: "2026-08-12T00:00:00Z",
+    validFrom: "2026-08-23T00:00:00Z",
     provenance: { generatedFrom, generationRule: `${mappingType}: one immutable source-target pair per declared ID reference.` },
   };
 }
@@ -73,6 +73,11 @@ async function generateMappings() {
 const releaseItems = [
   ["semantic-spine", "data/semantic-spine.json", "canonical-catalog", "schemas/palo-semantic-spine.schema.json"],
   ["lifecycle-core", "data/lifecycle-core.json", "lifecycle-definition", "schemas/palo-lifecycle-definition.schema.json"],
+  ["control-library", "data/control-library.json", "control-registry", "schemas/palo-control-library.schema.json"],
+  ["indicator-registry", "data/kpi-kri-registry.json", "indicator-registry", "schemas/palo-kpi-kri-registry.schema.json"],
+  ["decision-gates", "data/decision-gates.json", "gate-registry", "schemas/palo-decision-gates.schema.json"],
+  ["source-registry", "data/source-registry.json", "source-registry", "schemas/palo-source-registry.schema.json"],
+  ["governance-control-packs", "data/governance-control-packs.json", "control-pack-registry", "schemas/palo-governance-control-packs.schema.json"],
   ["semantic-mappings", mappingPath, "mapping-registry", "schemas/palo-semantic-mapping-registry.schema.json"],
   ["semantic-invariants", "data/semantic-invariants.json", "invariant-registry", null],
   ["semantic-context", "data/palo-semantic-context.jsonld", "json-ld-context", null],
@@ -90,6 +95,17 @@ const releaseItems = [
   ["evidence-claim-schema", "schemas/palo-evidence-claim.schema.json", "schema", null],
   ["evidence-evaluation-schema", "schemas/palo-evidence-evaluation.schema.json", "schema", null],
   ["evidence-bundle-manifest-schema", "schemas/palo-evidence-bundle-manifest.schema.json", "schema", null],
+  ["governance-control-packs-schema", "schemas/palo-governance-control-packs.schema.json", "schema", null],
+  ["governance-assurance-record-schema", "schemas/palo-governance-assurance-record.schema.json", "schema", null],
+  ["system-card-schema", "schemas/palo-system-card.schema.json", "schema", null],
+  ["affected-person-case-schema", "schemas/palo-affected-person-case.schema.json", "schema", null],
+  ["article50-transparency-record-schema", "schemas/palo-article50-transparency-record.schema.json", "schema", null],
+  ["data-lineage-record-schema", "schemas/palo-data-lineage-record.schema.json", "schema", null],
+  ["gpai-systemic-risk-record-schema", "schemas/palo-gpai-systemic-risk-record.schema.json", "schema", null],
+  ["serious-incident-record-schema", "schemas/palo-serious-incident-record.schema.json", "schema", null],
+  ["decommission-record-schema", "schemas/palo-decommission-record.schema.json", "schema", null],
+  ["aims-overlay-record-schema", "schemas/palo-aims-overlay-record.schema.json", "schema", null],
+  ["production-profile-schema", "schemas/palo-production-profile.schema.json", "schema", null],
 ];
 
 async function generateManifest(mappingContent) {
@@ -115,7 +131,7 @@ async function generateManifest(mappingContent) {
     status: "approved-for-release",
     digestAlgorithm: "sha256",
     items,
-    authorityBoundary: "This manifest freezes the exact semantic artifacts used by PALO v3. It proves file identity, not legal applicability, compliance, certification, or production authorization.",
+    authorityBoundary: "This manifest freezes the exact semantic and governance-control artifacts used by PALO v3.1. It proves file identity, not legal applicability, compliance, certification, operating effectiveness, or production authorization.",
   };
   return { ...unsigned, manifestDigest: `sha256:${sha256(JSON.stringify(unsigned))}` };
 }

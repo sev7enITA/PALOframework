@@ -9,8 +9,17 @@ and this project follows Semantic Versioning where practical.
 
 ## [Unreleased]
 
+## [3.1.0] - 2026-08-23
+
+**Release status: Governance control plane released. PALO-AI v2.6 remains a non-production developer preview.**
+
 ### Added
 
+- Added twelve canonical, applicability-aware governance control packs for fairness, system cards, affected-person notice and remedy, Article 50 transparency, data lifecycle, GPAI and systemic risk, serious incidents and decommissioning, accessibility, environment, AI literacy, ISO/IEC 42001 and PALO-AI production admission.
+- Expanded the released registries from 9 to 31 controls and from 10 to 38 KPI/KRI definitions, with every new control mapped into one or more lifecycle gates.
+- Added ten schema-validated evidence-contract families with valid and invalid fixtures for assurance results, system cards, affected-person cases, Article 50, data lineage, GPAI, serious incidents, decommissioning, AIMS and production profiles.
+- Added explicit definitions of governance-complete, operationally complete, production-complete and certification-complete status, with stop conditions and residual boundaries for every domain.
+- Added fail-closed PALO-AI production admission and OIDC tenant-to-Action Claim 1.3 binding. The bundled SQLite and in-process runtime is intentionally denied by its own production profile.
 - Added PALO-AI v2.6 identity-bound Action Claim 1.3, durable approval/verification tasks, Effect Contract 1.1, RFC 8785/Ed25519 evidence verification, runtime guardrails and operational telemetry events.
 - Added OIDC/JWKS MCP resource-server authentication with issuer/audience/expiry/algorithm validation, RFC 9728 metadata, least-privilege scopes/roles, scope challenges and authenticated reviewer attribution.
 - Added an allowlisted OpenTelemetry span bridge and the dated August 2026 state-of-the-art radar covering primary sources, Eastern experimental projects and developer communities.
@@ -21,18 +30,24 @@ and this project follows Semantic Versioning where practical.
 
 ### Changed
 
+- Replaced categorical output from the public Risk Tiering tool with an explicitly non-authoritative screening hypothesis and corrected the voluntary-code reference from Article 69 to Article 95.
+- Updated Regulatory Watch for the final Article 50 guidance, provider/deployer separation, GPAI sources and effectiveness evidence for AI literacy.
+- Made source freshness date-driven so a source marked current fails validation when its next review date has passed.
+- Advanced the platform and semantic release to v3.1.0 and the separately versioned PALO-AI capability baseline to v2.6.0.
 - Added authorized public credit to Arshi Chadha, OWASP LLM09:2026 co-lead, for the focused technical review covering embedding inversion, retrieval-evasion testing and the LLM05/LLM09 ownership boundary; the credit is explicitly a personal contribution and does not imply OWASP review or endorsement.
 - Refined the LLM09 crosswalk following an interaction with the dedicated LLM09 group: added explicit embedding-inversion, retrieval-evasion, similarity-collision and threshold-straddling evidence requirements; clarified the LLM05/LLM09 vector-poisoning boundary and accountable owners; retained the existing Supporting/Supporting/Gap rating and non-elimination boundary.
 - Migrated the MCP reference server from the monolithic SDK 1.30 to split SDK 2.0 packages, with one dual-era factory for stateless `2026-07-28` and 2025 compatibility plus pinned-modern and header-consistency tests.
 - Raised the root Node.js engine baseline from 20 to 22 and patched the Hono Node adapter to a production-audit-clean version.
 - Updated the OWASP source registry entry with the 2026 v1.0 artifact boundary, provisional editorial status and a 30-day official-source reverification interval.
 - Made Documentation Library text search global across depth levels, so source-backed OWASP guidance is discoverable directly from the default Start view while the active All-depth state remains visible and accessible.
-- Reconciled the Platform Map public-web ledger with PALO Web v3.0.1 while preserving the independently versioned v3.0.0 semantic core.
+- Reconciled the Platform Map public-web ledger with PALO Web and semantic release v3.1.0 while preserving independently versioned runtime and mobile components.
 - Updated the Hostinger deployment runbook and added a verified `package:hostinger` command that produces a root-correct upload ZIP and SHA-256 sidecar.
-- Updated `SECURITY.md` for the PALO Web v3.0.x baseline and unreleased PALO-AI v2.6 boundary, and corrected the fork clone path in `CONTRIBUTING.md`.
+- Updated `SECURITY.md` for the PALO Web v3.1.x baseline and released non-production PALO-AI v2.6 boundary, and corrected the fork clone path in `CONTRIBUTING.md`.
 
 ### Validation
 
+- Added cross-registry validation for the twelve control packs, exact control/indicator/gate references, minimum evidence kinds, conditional gate integration, evidence schemas and invalid-fixture rejection.
+- Added production-admission tests for schema validity, placeholder and expiry rejection, runtime incompatibility and cross-tenant Action Claim rejection.
 - Added validation assertions that keep the LLM09 inversion, adversarial-query and LLM05 ownership-handoff requirements present in the machine-readable crosswalk and public dossier.
 - Added crosswalk schema, source and control reference checks, route-count consistency, union-summary checks and pinned PDF SHA-256 validation.
 - Added horizontal browser coverage for the OWASP route across PALO Guide, Evidence Pack, Documentation Library and Platform Map, including mobile layouts and release-facing consistency checks.

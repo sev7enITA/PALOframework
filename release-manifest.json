@@ -1,13 +1,13 @@
 {
   "schemaVersion": "1.0.0",
   "release": {
-    "version": "3.0.1",
-    "date": "2026-08-12",
+    "version": "3.1.0",
+    "date": "2026-08-23",
     "status": "developer-preview",
     "versioningModel": "platform-release-with-independent-components"
   },
   "sharedAssets": {
-    "version": "3.0.1",
+    "version": "3.1.0",
     "files": [
       "assets/palo-v21.css",
       "assets/palo-v21.js"
@@ -15,8 +15,8 @@
   },
   "components": {
     "web": {
-      "version": "3.0.1",
-      "date": "2026-08-12"
+      "version": "3.1.0",
+      "date": "2026-08-23"
     },
     "framework": {
       "version": "2.0.0",
@@ -33,12 +33,12 @@
   },
   "modules": {
     "agenticGovernance": {
-      "version": "2.5.0",
-      "date": "2026-07-18"
+      "version": "2.6.0",
+      "date": "2026-08-23"
     },
     "semanticFoundation": {
-      "version": "3.0.0",
-      "date": "2026-08-12",
+      "version": "3.1.0",
+      "date": "2026-08-23",
       "status": "implemented",
       "semanticSpine": "data/semantic-spine.json",
       "semanticRelease": "data/semantic-release-manifest.json",
@@ -46,26 +46,28 @@
       "workspaces": ["public-catalog", "case-workspace", "assurance-review"]
     },
     "agenticRuntime": {
-      "version": "1.2.0",
-      "date": "2026-07-18",
+      "version": "1.3.0",
+      "date": "2026-08-23",
       "status": "prototype",
       "productionUse": false
     },
     "agenticRemoteMcp": {
-      "version": "1.0.0",
+      "version": "1.1.0",
       "transport": "authenticated-streamable-http",
-      "date": "2026-07-17",
+      "date": "2026-08-23",
       "status": "prototype",
       "productionUse": false
     },
     "agenticCapabilityMatrix": {
-      "version": "1.1.0",
-      "date": "2026-07-18",
-      "status": "developer-preview"
+      "version": "1.2.0",
+      "date": "2026-08-23",
+      "status": "developer-preview",
+      "capabilityCount": 34,
+      "productionReadyCount": 0
     },
     "agenticConnectorGateway": {
-      "version": "1.1.0",
-      "date": "2026-07-18",
+      "version": "1.2.0",
+      "date": "2026-08-23",
       "status": "prototype",
       "productionUse": false
     },
@@ -92,15 +94,15 @@
       "testedWith": "n8n 2.30.7"
     },
     "stakeholderOnboarding": {
-      "version": "2.5.0",
-      "date": "2026-07-19",
+      "version": "2.6.0",
+      "date": "2026-08-23",
       "objectiveAxis": ["approve", "build", "govern", "govern-agent-actions", "deploy", "verify"],
       "agenticBuildModes": ["code-first", "no-code-low-code", "rapid-prototyping"],
       "routeRibbon": true
     },
     "assessmentPath": {
-      "version": "3.0.1",
-      "date": "2026-08-12"
+      "version": "3.1.0",
+      "date": "2026-08-23"
     },
     "evidencePack": {
       "version": "1.0.0",
@@ -113,8 +115,8 @@
       "accountRequired": false
     },
     "paloGuideAgent": {
-      "version": "1.0.0",
-      "date": "2026-08-13",
+      "version": "1.1.0",
+      "date": "2026-08-23",
       "status": "implemented-read-only-inference",
       "webEntry": "PALO_Guide.html",
       "mcpPrompt": "palo_guide_agent",
@@ -129,9 +131,23 @@
         "data/control-library.json",
         "data/kpi-kri-registry.json",
         "data/source-registry.json",
+        "data/governance-control-packs.json",
         "data/owasp-genai-2026-crosswalk.json"
       ],
       "authorityBoundary": "Read-only route orientation; no legal conclusion, certification, case approval, deployment authorization or target-system authority."
+    },
+    "governanceControlPlane": {
+      "version": "1.0.0",
+      "date": "2026-08-23",
+      "status": "implemented-governance-specification",
+      "productionUse": false,
+      "domainCount": 12,
+      "controlCount": 31,
+      "indicatorCount": 38,
+      "registry": "data/governance-control-packs.json",
+      "documentation": "docs/palo-v3.1-governance-control-plane.html",
+      "evidenceContractFamilies": 10,
+      "authorityBoundary": "Governance-complete contracts do not establish adopter operating effectiveness, deployment production readiness, legal compliance or ISO/IEC 42001 certification."
     },
     "operationalEvidenceCore": {
       "version": "1.0.0",
@@ -142,14 +158,14 @@
       "date": "2026-07-12"
     },
     "platformMap": {
-      "version": "3.0.0",
-      "date": "2026-08-12",
+      "version": "3.1.0",
+      "date": "2026-08-23",
       "semanticSpine": "data/semantic-spine.json",
       "evidenceBoundaryModel": true
     },
     "operationalizationExplorer": {
-      "version": "3.0.0",
-      "date": "2026-08-12",
+      "version": "3.1.0",
+      "date": "2026-08-23",
       "semanticSpine": "data/semantic-spine.json",
       "generatedProjection": "designs/theory-to-practice-infographic/assets/graph-data.js"
     },
@@ -184,6 +200,12 @@
       "releaseManifest": "data/semantic-release-manifest.json",
       "ontology": "formal/palo-ontology-v3.ttl",
       "shapes": "formal/palo-ontology-v3.shacl.ttl"
+    },
+    "governanceControlPlane": {
+      "documentation": "docs/palo-v3.1-governance-control-plane.html",
+      "registry": "data/governance-control-packs.json",
+      "productionProfile": "schemas/palo-production-profile.schema.json",
+      "productionUse": false
     },
     "guideAgent": {
       "webEntry": "PALO_Guide.html",

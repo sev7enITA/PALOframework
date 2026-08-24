@@ -2,7 +2,7 @@
 
 This package is the non-production reference implementation shipped with PALO-AI v2.6. It uses the split MCP TypeScript SDK 2.0 over stdio and Streamable HTTP, serving the stateless 2026-07-28 protocol and a 2025-era compatibility path from the same tool factory. Remote MCP supports OIDC/JWKS with issuer, audience, expiry, algorithm and scope validation, or an explicit shared-token development mode. The runtime demonstrates identity-bound Action Claim 1.3, Effect Contract 1.1, durable approval and verification tasks, runtime guardrails, one-time capabilities, trusted in-process executors, authoritative verifiers, signed receipts, optional RFC 8785/Ed25519 evidence envelopes, outcome attestations, assurance incidents and a hash-chained SQLite ledger. Action Claim 1.1/1.2 and HMAC Evidence Envelope 1.0 remain supported for compatibility.
 
-PALO platform v3.0.1 also adds three read-only guide tools and the `palo_guide_agent` prompt. They explain the released PALO semantic model, infer a transparent starting route and plan a least-privilege product integration without mutating case state. See the [PALO Guide Agent and MCP Integration](../../docs/palo-guide-agent-and-mcp.md) guide. Keep these orientation tools separate from protected-action authorization and execution.
+PALO platform v3.1.0 also exposes twelve applicability-aware governance control packs through the three read-only guide tools and the `palo_guide_agent` prompt. They explain the released PALO semantic model, infer a transparent starting route and plan a least-privilege product integration without mutating case state. See the [PALO Guide Agent and MCP Integration](../../docs/palo-guide-agent-and-mcp.md) guide and the [v3.1 Governance Control Plane](../../docs/palo-v3.1-governance-control-plane.md). Keep these orientation tools separate from protected-action authorization and execution.
 
 The VPS reference deployment defines a separately authenticated guide-only route at `https://governance.paloframework.org/mcp-guide`. It uses its own secret and sets `PALO_MCP_EXPOSED_TOOLS` to the three read-only guide tools, keeping framework orientation separate from the operational `/mcp` surface.
 
@@ -23,6 +23,22 @@ The following controls are not provided in v2.6:
 - trusted Vibe Gate attestation or an unavoidable pre-tool-call execution proxy;
 - Mode B Team Registry, Shared Task Claims, peer coordination, leases, conflict handling, or team-level evidence;
 - monitoring, backup/restore, retention, incident response, penetration testing, or distributed staging validation.
+
+The v2.6 runtime adds a strict production profile and fail-closed startup admission check, but the bundled capability attestation deliberately cannot satisfy that profile. This makes the remaining boundary executable instead of aspirational: the SQLite, process-key and in-process connector runtime cannot start with `PALO_RUNTIME_MODE=production`.
+
+Validate a deployment profile independently of runtime compatibility:
+
+```bash
+npm run production:admission -- schemas/fixtures/palo-production-profile.valid.json --schema-only
+```
+
+Evaluate it against the bundled reference runtime:
+
+```bash
+npm run production:admission -- schemas/fixtures/palo-production-profile.valid.json
+```
+
+The second command is expected to deny the fixture. For runtime startup, set `PALO_RUNTIME_MODE=production` and `PALO_PRODUCTION_PROFILE_PATH` to a deployment-specific profile. The bundled server compares the profile with its fixed reference capability declaration and therefore fails closed; a future production host must inject and independently attest a different capability implementation before admission can be possible. OIDC-protected Action Claim 1.3 processing additionally requires the token tenant to match the authority, Effect Contract and optional metadata tenant values. This request check does not provide tenant-isolated storage.
 
 Use only isolated development data and unprivileged mock executors. Read the repository-level capability matrix and integration guide before running the server.
 

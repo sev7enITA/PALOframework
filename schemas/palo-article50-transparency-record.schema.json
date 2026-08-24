@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paloframework.org/schemas/palo-article50-transparency-record.schema.json",
+  "title": "PALO Article 50 Transparency Record",
+  "type": "object",
+  "required": ["format", "schemaVersion", "recordId", "caseId", "systemVersion", "actorRoles", "modalities", "interactionNotice", "marking", "deployerLabelling", "provenance", "exceptions", "releaseDecision"],
+  "properties": {
+    "format": { "const": "palo-article50-transparency-record" },
+    "schemaVersion": { "const": "1.0.0" },
+    "recordId": { "type": "string" },
+    "caseId": { "type": "string" },
+    "systemVersion": { "type": "string" },
+    "actorRoles": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "enum": ["provider", "deployer", "importer", "distributor", "authorized-representative"] } },
+    "modalities": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "enum": ["interactive", "text", "image", "audio", "video", "biometric-categorisation", "emotion-recognition"] } },
+    "interactionNotice": { "$ref": "#/$defs/testedMeasure" },
+    "marking": { "type": "object", "required": ["required", "method", "machineReadable", "standardOrProfile", "keyOrIssuer", "coverageTest"], "properties": { "required": { "type": "boolean" }, "method": { "type": "string", "minLength": 3 }, "machineReadable": { "type": "boolean" }, "standardOrProfile": { "type": "string", "minLength": 3 }, "keyOrIssuer": { "type": "string", "minLength": 3 }, "coverageTest": { "$ref": "#/$defs/testedMeasure" } }, "additionalProperties": false },
+    "deployerLabelling": { "type": "array", "items": { "type": "object", "required": ["contentType", "required", "label", "placement", "testResult"], "properties": { "contentType": { "type": "string" }, "required": { "type": "boolean" }, "label": { "type": "string" }, "placement": { "type": "string" }, "testResult": { "enum": ["pass", "conditional", "fail", "not-applicable"] } }, "additionalProperties": false } },
+    "provenance": { "type": "object", "required": ["assertionFormat", "boundToContentDigest", "verificationTool", "transformationTests"], "properties": { "assertionFormat": { "type": "string" }, "boundToContentDigest": { "type": "boolean" }, "verificationTool": { "type": "string" }, "transformationTests": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/testedMeasure" } } }, "additionalProperties": false },
+    "exceptions": { "type": "array", "items": { "type": "object", "required": ["obligation", "basis", "sourceProvision", "approvedBy"], "properties": { "obligation": { "type": "string" }, "basis": { "type": "string", "minLength": 20 }, "sourceProvision": { "type": "string" }, "approvedBy": { "type": "string" } }, "additionalProperties": false } },
+    "releaseDecision": { "type": "object", "required": ["status", "decidedAt", "decidedBy", "validUntil"], "properties": { "status": { "enum": ["accepted", "conditional", "rejected"] }, "decidedAt": { "type": "string", "format": "date-time" }, "decidedBy": { "type": "string" }, "validUntil": { "type": "string", "format": "date-time" } }, "additionalProperties": false }
+  },
+  "$defs": { "testedMeasure": { "type": "object", "required": ["required", "implementation", "testedAt", "result", "evidenceRef"], "properties": { "required": { "type": "boolean" }, "implementation": { "type": "string" }, "testedAt": { "type": "string", "format": "date-time" }, "result": { "enum": ["pass", "conditional", "fail", "not-applicable"] }, "evidenceRef": { "type": "string" } }, "additionalProperties": false } },
+  "additionalProperties": false
+}

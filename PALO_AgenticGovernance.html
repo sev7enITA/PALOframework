@@ -20,7 +20,7 @@
 <link rel="stylesheet" href="agentic/style.css">
     <link rel="stylesheet" href="assets/palo-icons.css">
 <script src="assets/palo-icons.js"></script>
-<script src="assets/palo-v21.js?v=3.0.1"></script>
+<script src="assets/palo-v21.js?v=3.1.0"></script>
 <script src="assets/palo-case-file.js?v=2.4.1"></script>
 </head>
 <body>
@@ -69,7 +69,7 @@
   <h1>Agentic Governance Modality<br><span class="gradient-text">From Model Governance to Delegated-Action Governance</span></h1>
   <p class="hero-subtitle"><span data-palo-icon=robot class=palo-icon-inline></span>PALO-AM is the agentic governance modality inside the PALO Framework. It is distinct from the PALO-AI runtime. It defines the identity, delegated authority, autonomy, oversight, reversibility and assurance model for AI systems that select tools, write to systems, trigger workflows and act on behalf of the organization.</p>
   <aside class="am-version-callout">
-    <strong>Two separate version streams.</strong> PALO-AM v2.0 remains the current governance modality and methodology baseline published in June 2026. PALO-AI v2.5 is the July 2026 full-cycle runtime and contracts developer preview that operationalizes parts of this modality. Neither label makes the runtime production-ready.
+    <strong>Two separate version streams.</strong> PALO-AM v2.0 remains the current governance modality and methodology baseline published in June 2026. PALO-AI v2.6 is the August 2026 identity-bound runtime and contracts developer preview that operationalizes parts of this modality. Neither label makes the runtime production-ready.
   </aside>
   <div class="am-hero-actions"><a href="governance-hub/" class="am-action">Open PALO-AI Governance Hub</a><a href="PALO_AIProductionReadiness.html" class="am-action am-action-secondary">View Production Readiness</a></div>
   <div class="hero-meta">
@@ -441,7 +441,7 @@
     <p class="section-desc">Developer-preview contracts and reference components for exploring governance of autonomous agents and agent teams.</p>
   </div>
   <div class="simulator-disclaimer" style="margin-bottom:24px;padding:18px;border:1px solid var(--am-border);border-radius:10px;">
-    <strong>Full-Cycle Developer Preview. Not for production authorization.</strong> PALO-AI v2.5 adds Action Claim 1.2, Effect Contracts, one-time execution capabilities, trusted receipts, authoritative outcome attestations and assurance incidents. The reference runtime can demonstrate the complete cycle with operator-provisioned in-process connectors and synthetic data. Production identity, KMS/HSM, distributed exactly-once guarantees, high availability, independently assessed connectors and collaborative-agent-team runtime semantics remain under development.
+    <strong>Identity-Bound Developer Preview. Not for production authorization.</strong> PALO-AI v2.6 adds Action Claim 1.3, OIDC/JWKS resource-server validation, tenant-to-claim request binding, Effect Contracts, one-time execution capabilities, trusted receipts, authoritative outcome attestations and assurance incidents. The reference runtime can demonstrate the cycle with operator-provisioned in-process connectors and synthetic data, but its strict production profile denies the bundled runtime. Storage-level tenant isolation, KMS/HSM, distributed exactly-once guarantees, high availability, independently assessed connectors and collaborative-agent-team runtime semantics remain under development.
   </div>
   <div style="display:flex;flex-wrap:wrap;gap:12px;margin-bottom:28px;">
     <a href="governance-hub/" class="palo-btn"><span data-palo-icon="robot" class="palo-icon-inline"></span>Open the PALO-AI Governance Hub</a>
@@ -552,7 +552,7 @@
 <div class="container">
   <div class="coming-soon">
     <h3><span data-palo-icon=rocket class=palo-icon-inline></span>Developer preview available</h3>
-    <p>v2.5 extends canonical governance into a complete reference assurance cycle: Action Claim 1.2, Effect Contract, one-time capability, trusted receipt, authoritative outcome attestation and held assurance incident. These components remain a developer preview and are not a production authorization or evidence service.</p>
+    <p>v2.6 extends the reference assurance cycle with identity-bound Action Claim 1.3, OIDC tenant binding and fail-closed production admission. Effect Contract, one-time capability, trusted receipt, authoritative outcome attestation and held assurance incident remain developer-preview components and are not a production authorization or evidence service.</p>
     <div class="roadmap-grid" style="max-width:900px;margin:0 auto;">
       <div class="roadmap-card"><div class="roadmap-ver">Available</div><p>Twelve contracts, nineteen MCP tools, full-cycle runtime tests and an n8n governed-action preview.</p></div>
       <div class="roadmap-card"><div class="roadmap-ver">Harden</div><p>Add durable distributed processing, connector attestation, workload identity, KMS/HSM and policy attestation.</p></div>
@@ -590,6 +590,6 @@
 
 <script src="assets/palo-am-simulator.js?v=2.4.1"></script>
 <script src="assets/palo-am-runtime-console.js?v=2.4.1"></script>
-<script src="assets/palo-am-nav.js?v=2.5.0"></script>
+<script src="assets/palo-am-nav.js?v=2.6.0"></script>
 </body>
 </html>

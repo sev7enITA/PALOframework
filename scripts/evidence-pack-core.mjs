@@ -67,7 +67,7 @@ export function createLocalReceipt(caseFile, { generatedAt = new Date().toISOStr
     ],
     validator: {
       name: "PALO Evidence Pack local validator",
-      version: "3.0.1",
+      version: "3.1.0",
       execution
     },
     privacyBoundary: "The receipt contains a case identifier, validation checks and an artifact digest. Sharing is voluntary. Schema conformance is not certification, legal advice, production approval or independent assurance.",

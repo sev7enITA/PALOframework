@@ -1,0 +1,9 @@
+{
+  "format": "palo-serious-incident-record", "schemaVersion": "1.0.0", "incidentId": "incident-1", "caseId": "case-example", "systemVersion": "1.0.0", "detectedAt": "2026-08-20T10:00:00Z", "containedAt": "2026-08-20T11:00:00Z", "severity": "high",
+  "effects": [{ "effectType": "rights-infringement", "description": "A synthetic fixture representing a potentially material rights impact.", "affectedScope": "one test cohort" }],
+  "jurisdictions": [{ "jurisdiction": "EU", "sourceProvision": "AI Act Article 73 applicability to be reviewed", "clockStart": "2026-08-20T10:00:00Z", "deadline": "2026-08-22T10:00:00Z", "authorityRoute": "competent-authority register" }],
+  "reportability": { "status": "reportable", "decidedAt": "2026-08-20T12:00:00Z", "decidedBy": "incident-legal-owner", "rationale": "The synthetic fixture assumes the organization determined the incident reportable.", "legalReviewRef": "legal-review-incident-1" },
+  "notifications": [{ "recipient": "competent authority", "notificationType": "initial", "submittedAt": "2026-08-20T13:00:00Z", "receiptRef": "receipt-1" }],
+  "correctiveActions": [{ "actionId": "action-1", "owner": "system-owner", "dueAt": "2026-08-25T10:00:00Z", "status": "verified-closed", "effectivenessEvidenceRef": "effectiveness-1" }],
+  "closure": { "status": "closed", "closedAt": "2026-08-26T10:00:00Z", "closedBy": "incident-owner", "postIncidentReviewRef": "pir-1" }
+}

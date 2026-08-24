@@ -1,0 +1,10 @@
+{
+  "format": "palo-gpai-systemic-risk-record", "schemaVersion": "1.0.0", "recordId": "gpai-1", "caseId": "case-example",
+  "model": { "modelId": "model-example", "provider": "Example provider", "version": "1.0.0", "releaseDate": "2026-08-01", "componentInventoryRef": "inventory-1" },
+  "roleAssessment": { "roles": ["deployer"], "materialModification": false, "systemicRiskStatus": "not-designated", "legalReviewRef": "legal-review-1" },
+  "providerObligations": [{ "obligationId": "provider-documentation-review", "applicable": false, "evidenceRef": "role-assessment-1", "status": "not-applicable" }],
+  "deployerControls": [{ "obligationId": "provider-evidence-review", "applicable": true, "evidenceRef": "provider-pack-1", "status": "accepted" }],
+  "systemicRisk": { "scenarios": ["high-impact misuse"], "evaluations": ["capability and misuse evaluation"], "mitigations": ["restricted deployment and monitoring"], "residualFindings": [], "modelReportingRoute": "provider-security@example.test" },
+  "incidents": { "providerRoute": "provider-security@example.test", "authorityRoute": "legal escalation register", "sharingProtocol": "approved incident information-sharing procedure" },
+  "review": { "status": "accepted", "reviewedAt": "2026-08-23T10:00:00Z", "reviewedBy": "gpai-owner", "validUntil": "2026-11-23T10:00:00Z" }
+}

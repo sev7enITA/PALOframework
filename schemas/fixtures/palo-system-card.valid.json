@@ -1,0 +1,15 @@
+{
+  "format": "palo-system-card", "schemaVersion": "1.0.0", "cardId": "card-1", "caseId": "case-example",
+  "system": { "name": "Example assistant", "version": "1.0.0", "releaseStatus": "pilot" },
+  "purpose": { "intendedUses": ["Summarize internal guidance"], "prohibitedUses": ["Make final employment decisions"], "decisionSignificance": "Outputs inform staff but cannot make or execute consequential decisions." },
+  "stakeholders": [{ "group": "Staff users", "relationship": "operator", "explanationNeed": "Understand source limits and escalation." }],
+  "components": [{ "componentId": "model-1", "type": "model", "provider": "Example", "version": "1" }],
+  "data": { "lineageRecordIds": ["lineage-1"], "sensitiveData": false, "knownLimits": ["English-language coverage only"] },
+  "performance": [{ "metric": "grounded-answer-rate", "scope": "pilot test", "value": 0.95, "thresholdDecision": "pass" }],
+  "limitations": ["Can produce plausible incorrect summaries"],
+  "humanOversight": { "roles": ["Reviewer"], "interventions": ["Reject and correct output"], "escalation": "Escalate material errors to the system owner." },
+  "transparency": { "notice": "Users are informed that content is AI generated.", "explanationArtifacts": ["source citations"], "appealRoute": "support@example.test" },
+  "monitoring": { "indicatorIds": ["kpi-system-card-coverage"], "reviewCadence": "monthly", "reopenTriggers": ["model version change"] },
+  "changeHistory": [{ "version": "1.0.0", "changedAt": "2026-08-23T10:00:00Z", "summary": "Initial synthetic fixture release." }],
+  "owner": "system-owner", "review": { "status": "accepted", "reviewedAt": "2026-08-23T11:00:00Z", "reviewedBy": "reviewer-1", "validUntil": "2026-11-23T11:00:00Z" }
+}

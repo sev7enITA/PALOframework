@@ -44,7 +44,8 @@ function documentCategory(file) {
 
 const importantMetadata = {
   "docs/palo-repository-reading-guide.md": { level: "start", audience: "executive governance technical builder", task: "understand integrate assure", product: "PALO Platform", status: "Current Guidance", evidenceClass: "canonical-definition", workspace: "public-catalog", prerequisite: "No specialist prerequisite", next: "Choose the role-based repository path" },
-  "docs/palo-v3-semantic-foundation.md": { level: "reference", audience: "executive governance technical builder", task: "understand design assure", product: "PALO Core", status: "Canonical v3.0.0", evidenceClass: "canonical-definition", workspace: "public-catalog", prerequisite: "No specialist prerequisite", next: "Open the Semantic Inspector" },
+  "docs/palo-v3-semantic-foundation.md": { level: "reference", audience: "executive governance technical builder", task: "understand design assure", product: "PALO Core", status: "Canonical v3.1.0", evidenceClass: "canonical-definition", workspace: "public-catalog", prerequisite: "No specialist prerequisite", next: "Open the Semantic Inspector" },
+  "docs/palo-v3.1-governance-control-plane.md": { level: "reference", audience: "executive governance technical builder", task: "understand design assure deploy", product: "PALO / PALO-AI", status: "Canonical v3.1.0", evidenceClass: "canonical-definition", workspace: "assurance-review", prerequisite: "One scoped AI system or AIMS", next: "Apply the relevant control packs to a Case File" },
   "docs/palo-ai-adoption-paths.md": { level: "start", audience: "technical builder governance", task: "understand design", product: "PALO-AI", status: "Developer Preview", prerequisite: "Choose an organizational role and objective", next: "Open the guided Start" },
   "docs/palo-ai-governance-integration-guide.md": { level: "guide", audience: "technical", task: "integrate", product: "PALO-AI", status: "Developer Preview", prerequisite: "One reversible tool and authority profile", next: "Configure the Governance Hub technical setup" },
   "docs/palo-ai-n8n-governance-control-plane.md": { level: "guide", audience: "technical builder", task: "integrate design", product: "PALO-AI", status: "Developer Preview", prerequisite: "Self-hosted n8n evaluation canvas", next: "Run the governed-action demo" },
@@ -170,10 +171,10 @@ function renderDocument(markdown, file) {
   <link rel="canonical" href="${escapeHtml(canonical)}">
   <link rel="icon" type="image/webp" href="${asset("assets/logo.webp")}">
   <link rel="stylesheet" href="${asset("assets/palo-icons.css")}">
-  <link rel="stylesheet" href="${asset("assets/palo-v21.css")}?v=3.0.1">
+  <link rel="stylesheet" href="${asset("assets/palo-v21.css")}?v=3.1.0">
   <link rel="stylesheet" href="${asset("assets/palo-docs.css")}">
   <script src="${asset("assets/palo-icons.js")}" defer></script>
-  <script src="${asset("assets/palo-v21.js")}?v=3.0.1" defer></script>
+  <script src="${asset("assets/palo-v21.js")}?v=3.1.0" defer></script>
   <script src="${asset("assets/palo-docs.js")}" defer></script>
 </head>
 <body class="palo-v21 palo-doc-page" data-doc-source="${escapeHtml(file)}">

@@ -9,15 +9,15 @@ This is the index document for every P2 JSON artifact. The machine-readable cros
 
 | JSON artifact | Schema | Records | Purpose |
 | --- | --- | ---: | --- |
-| `data/control-library.json` | `schemas/palo-control-library.schema.json` | 9 controls | Tailorable purpose, data, review, supplier, testing, incident, change and trace controls. |
-| `data/kpi-kri-registry.json` | `schemas/palo-kpi-kri-registry.schema.json` | 10 indicators | Illustrative formulas, cadences, thresholds and caveats linked to controls and gates. |
+| `data/control-library.json` | `schemas/palo-control-library.schema.json` | 31 controls | Tailorable lifecycle, human-impact, transparency, data, GPAI, management-system and runtime-boundary controls. |
+| `data/kpi-kri-registry.json` | `schemas/palo-kpi-kri-registry.schema.json` | 38 indicators | Illustrative formulas, cadences, thresholds and caveats linked to controls and gates. |
 | `data/decision-gates.json` | `schemas/palo-decision-gates.schema.json` | 6 gates | Frame through Prove and Review decision prompts with controls, indicators, sources and templates. |
 | `data/source-registry.json` | `schemas/palo-source-registry.schema.json` | 6 sources | Authority status, usage limits and freshness checkpoints. |
 | `data/p2-adoption-index.json` | `schemas/palo-p2-index.schema.json` | 6 artifacts, 6 cases, 5 templates | Canonical P2 paths and case-to-library connections. |
 
 Schemas are JSON documents and are published at the paths above. IDs are stable interoperability keys, not equivalence claims to external frameworks.
 
-PALO v3.0.0 projects these stable P2 IDs into `data/semantic-spine.json` and publishes atomic cross-register mappings in `data/semantic-mappings.json`. The P2 files remain the canonical content registries for their records; the semantic release manifest binds their reviewed projection by digest.
+PALO v3.1.0 projects these stable P2 IDs into `data/semantic-spine.json` and publishes atomic cross-register mappings in `data/semantic-mappings.json`. The P2 files remain the canonical content registries for their records; the semantic release manifest binds their reviewed projection by digest.
 
 ## PolicyWatcher signal
 

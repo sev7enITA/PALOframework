@@ -7,7 +7,7 @@ const agent = new PaloGuideAgent();
 test("PALO guide explanations are grounded in released semantic records", () => {
   const result = agent.explainFramework({ query: "How do I govern an agent that uses tools?", audience: "product engineering", limit: 5 });
   assert.equal(result.format, "palo-guide-explanation");
-  assert.equal(result.frameworkRelease, "3.0.1");
+  assert.equal(result.frameworkRelease, "3.1.0");
   assert.deepEqual(result.canonicalLoop.map((stage) => stage.id), ["frame", "classify", "assess", "control", "measure", "prove"]);
   assert.ok(result.matches.some((match) => match.id === "palo-am" || match.phaseId === "assess"));
   assert.ok(result.matches.every((match) => match.evidenceClass && match.authorityBoundary));

@@ -1,0 +1,11 @@
+{
+  "format": "palo-production-profile", "schemaVersion": "1.0.0", "profileId": "production-profile-1", "deploymentId": "deployment-1", "environment": "production",
+  "identity": { "mode": "oidc", "issuer": "https://identity.example.test", "audience": "https://palo.example.test/mcp", "workloadIdentity": true, "reviewerIdentity": true, "tokenExpiryEnforced": true, "evidenceRef": "identity-test-1" },
+  "tenantIsolation": { "mode": "database-per-tenant", "tokenTenantBound": true, "claimTenantBound": true, "storageTenantBound": true, "negativeTestRef": "tenant-negative-test-1" },
+  "persistence": { "driver": "postgresql", "highAvailability": true, "durableQueue": true, "backupRecoveryTestRef": "recovery-test-1", "migrationControlRef": "migration-control-1" },
+  "keyCustody": { "provider": "hsm", "privateKeyInProcess": false, "rotationRef": "rotation-1", "revocationRef": "revocation-1", "attestationRef": "hsm-attestation-1" },
+  "executionBoundary": { "connectorMode": "remote-attested", "inProcessBypassDisabled": true, "oneTimeCapabilities": true, "receiptRequired": true, "outcomeVerificationRequired": true, "bypassResistanceTestRef": "bypass-test-1", "connectorAttestationRef": "connector-attestation-1" },
+  "observability": { "securityEvents": true, "tenantSafeTelemetry": true, "alerting": true, "incidentRunbookRef": "runbook-1", "evidenceRef": "observability-test-1" },
+  "independentAssurance": { "completed": true, "scope": "Identity, tenancy, persistence, keys, execution and recovery", "reportRef": "assurance-report-1", "openCriticalFindings": 0 },
+  "decision": { "status": "admitted", "decidedAt": "2026-08-23T00:00:00Z", "decidedBy": "production-authority", "validUntil": "2026-11-23T10:00:00Z", "reasons": ["All mandatory deployment-specific evidence was independently accepted."] }
+}

@@ -5,8 +5,8 @@
         <link>https://paloframework.org</link>
         <description>Latest updates, tools, and insights from the PALO Framework - Principled AI Lifecycle Orchestration for responsible AI governance.</description>
         <language>en</language>
-        <lastBuildDate>Wed, 12 Aug 2026 12:00:00 +0200</lastBuildDate>
-        <pubDate>Wed, 12 Aug 2026 12:00:00 +0200</pubDate>
+        <lastBuildDate>Sun, 23 Aug 2026 18:00:00 +0200</lastBuildDate>
+        <pubDate>Sun, 23 Aug 2026 18:00:00 +0200</pubDate>
         <ttl>60</ttl>
         <atom:link href="https://paloframework.org/feed.xml" rel="self" type="application/rss+xml"/>
         <image>
@@ -20,6 +20,17 @@
         <category>AI Governance</category>
         <category>Responsible AI</category>
         <category>EU AI Act</category>
+        <item>
+            <title>PALO v3.1.0 - Governance Control Plane</title>
+            <link>https://paloframework.org/docs/palo-v3.1-governance-control-plane.html</link>
+            <description><![CDATA[PALO v3.1.0 adds twelve applicability-aware governance control packs, 31 controls, 38 indicators, ten evidence-contract families and an explicit distinction between governance, operational, production and certification completion. PALO-AI v2.6 adds a strict production profile and remains denied for production by the bundled runtime capability declaration.]]></description>
+            <pubDate>Sun, 23 Aug 2026 18:00:00 +0200</pubDate>
+            <guid isPermaLink="true">https://paloframework.org/docs/palo-v3.1-governance-control-plane.html</guid>
+            <dc:creator>PALO Framework</dc:creator>
+            <category>Governance Control Plane</category>
+            <category>Operational Evidence</category>
+            <category>Production Boundary</category>
+        </item>
         <item>
             <title>PALO v3.0.1 - Evidence Pack Activation</title>
             <link>https://paloframework.org/PALO_AssessmentPath.html</link>

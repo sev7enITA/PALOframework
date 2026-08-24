@@ -1,0 +1,21 @@
+{
+  "format": "palo-governance-assurance-record",
+  "schemaVersion": "1.0.0",
+  "recordId": "assurance-fairness-001",
+  "caseId": "case-example",
+  "domainId": "domain-fairness-subgroups",
+  "systemVersion": "1.0.0",
+  "applicability": "applicable",
+  "applicabilityRationale": "The system ranks people and outcome quality may differ across affected groups.",
+  "controlIds": ["ctrl-fairness-quality-of-service"],
+  "owner": { "actorId": "owner-1", "role": "Responsible AI owner" },
+  "status": "accepted",
+  "evidenceItems": [{ "evidenceId": "ev-1", "kind": "fairness-test-result", "artifactRef": "evidence/fairness.json", "sha256": "0000000000000000000000000000000000000000000000000000000000000000", "capturedAt": "2026-08-23T10:00:00Z", "evaluation": "accepted" }],
+  "measurements": [{ "indicatorId": "kpi-subgroup-evaluation-coverage", "observedValue": 100, "thresholdDecision": "pass", "measuredAt": "2026-08-23T10:00:00Z" }],
+  "findings": [],
+  "gateDecisionRef": "gate-prove-001",
+  "reviewedAt": "2026-08-23T11:00:00Z",
+  "reviewedBy": { "actorId": "reviewer-1", "role": "Independent fairness reviewer", "independenceStatement": "Not involved in model development or the release decision." },
+  "validUntil": "2026-11-23T11:00:00Z",
+  "authorityBoundary": "Synthetic fixture demonstrating schema validity; it is not operational evidence."
+}

@@ -1,9 +1,9 @@
 {
   "format": "palo-semantic-release-manifest",
   "schemaVersion": "1.0.0",
-  "releaseId": "https://paloframework.org/semantic/release/3.0.0",
-  "semanticVersion": "3.0.0",
-  "releasedAt": "2026-08-12",
+  "releaseId": "https://paloframework.org/semantic/release/3.1.0",
+  "semanticVersion": "3.1.0",
+  "releasedAt": "2026-08-23",
   "status": "approved-for-release",
   "digestAlgorithm": "sha256",
   "items": [
@@ -12,41 +12,86 @@
       "path": "data/semantic-spine.json",
       "role": "canonical-catalog",
       "schemaPath": "schemas/palo-semantic-spine.schema.json",
-      "semanticVersion": "3.0.0",
+      "semanticVersion": "3.1.0",
       "status": "approved-for-release",
-      "sha256": "5bdebc924a32fe79e11917f2f35f0e4a588ec3508fd6bbb6666696780859e99c"
+      "sha256": "992caee32172dd42b0090c4ce54d278fe1e4bd6ef59c915accefe711513fb999"
     },
     {
       "itemId": "https://paloframework.org/semantic/release-item/lifecycle-core",
       "path": "data/lifecycle-core.json",
       "role": "lifecycle-definition",
       "schemaPath": "schemas/palo-lifecycle-definition.schema.json",
-      "semanticVersion": "3.0.0",
+      "semanticVersion": "3.1.0",
       "status": "approved-for-release",
-      "sha256": "766f0be8d952132f7cba6e6477842b5e3ae673f2b358e9de0873b4d857fbd616"
+      "sha256": "0bd8bf49ed62e9de378f2353c54f7011a2f38246cf0ed9b4757ed181cbd47f9a"
+    },
+    {
+      "itemId": "https://paloframework.org/semantic/release-item/control-library",
+      "path": "data/control-library.json",
+      "role": "control-registry",
+      "schemaPath": "schemas/palo-control-library.schema.json",
+      "semanticVersion": "3.1.0",
+      "status": "approved-for-release",
+      "sha256": "3c9dfbb9eddbd238a1bf2c9e266b51afd944cb9ec7d5566aee5dcda76d63a925"
+    },
+    {
+      "itemId": "https://paloframework.org/semantic/release-item/indicator-registry",
+      "path": "data/kpi-kri-registry.json",
+      "role": "indicator-registry",
+      "schemaPath": "schemas/palo-kpi-kri-registry.schema.json",
+      "semanticVersion": "3.1.0",
+      "status": "approved-for-release",
+      "sha256": "f668924aeb7727a16764f4daa5165b5ec9dfbe3640219c0298ad240760ac31bc"
+    },
+    {
+      "itemId": "https://paloframework.org/semantic/release-item/decision-gates",
+      "path": "data/decision-gates.json",
+      "role": "gate-registry",
+      "schemaPath": "schemas/palo-decision-gates.schema.json",
+      "semanticVersion": "3.1.0",
+      "status": "approved-for-release",
+      "sha256": "b8978bb6cf9dfae5e7091a6439b7baaf3969b9905606be79423f21717a7f3d04"
+    },
+    {
+      "itemId": "https://paloframework.org/semantic/release-item/source-registry",
+      "path": "data/source-registry.json",
+      "role": "source-registry",
+      "schemaPath": "schemas/palo-source-registry.schema.json",
+      "semanticVersion": "3.1.0",
+      "status": "approved-for-release",
+      "sha256": "97670954d2b22c13b81ad99f20c1a22d409dedaf6fd19ee485983b50a9a64d13"
+    },
+    {
+      "itemId": "https://paloframework.org/semantic/release-item/governance-control-packs",
+      "path": "data/governance-control-packs.json",
+      "role": "control-pack-registry",
+      "schemaPath": "schemas/palo-governance-control-packs.schema.json",
+      "semanticVersion": "3.1.0",
+      "status": "approved-for-release",
+      "sha256": "0c10f5f0fc15d64502455fc7366091184d0a83e0e260f948096867efd0fad6ad"
     },
     {
       "itemId": "https://paloframework.org/semantic/release-item/semantic-mappings",
       "path": "data/semantic-mappings.json",
       "role": "mapping-registry",
       "schemaPath": "schemas/palo-semantic-mapping-registry.schema.json",
-      "semanticVersion": "3.0.0",
+      "semanticVersion": "3.1.0",
       "status": "approved-for-release",
-      "sha256": "1a6539088805aa336d1fe25581b5c3f546c67e1e7eff84729093461fb8c88a27"
+      "sha256": "12186d707efd3ec298fafb35a22bd8457e31860f954c381818d7c1cb6341a389"
     },
     {
       "itemId": "https://paloframework.org/semantic/release-item/semantic-invariants",
       "path": "data/semantic-invariants.json",
       "role": "invariant-registry",
-      "semanticVersion": "3.0.0",
+      "semanticVersion": "3.1.0",
       "status": "approved-for-release",
-      "sha256": "0a121eb0ad87c500641260e579e335449a9af1365c17b685a08efbfd33aebf29"
+      "sha256": "dae3e4e985700720d656987bdb7296347531ba4e7cb0406d890b8f77c44a012f"
     },
     {
       "itemId": "https://paloframework.org/semantic/release-item/semantic-context",
       "path": "data/palo-semantic-context.jsonld",
       "role": "json-ld-context",
-      "semanticVersion": "3.0.0",
+      "semanticVersion": "3.1.0",
       "status": "approved-for-release",
       "sha256": "57d8edc1b925104917ffae2dd9c04729f25116f0eec67eb3042a57aab793de6e"
     },
@@ -54,15 +99,15 @@
       "itemId": "https://paloframework.org/semantic/release-item/palo-ontology-v3",
       "path": "formal/palo-ontology-v3.ttl",
       "role": "ontology",
-      "semanticVersion": "3.0.0",
+      "semanticVersion": "3.1.0",
       "status": "approved-for-release",
-      "sha256": "8d0ed5ac7d788150fd5a210863ea8c764359e6195bb7f292459d42268c7ff5d8"
+      "sha256": "7633eb1aaf5c5abe71d09874e124a16ef17300cda4f47c23e4b9e1ff344c74a2"
     },
     {
       "itemId": "https://paloframework.org/semantic/release-item/palo-shacl-v3",
       "path": "formal/palo-ontology-v3.shacl.ttl",
       "role": "constraint-profile",
-      "semanticVersion": "3.0.0",
+      "semanticVersion": "3.1.0",
       "status": "approved-for-release",
       "sha256": "0c76be0e1be47e00f51254960b2c47d17c133a58e4dec71602c23bd74969452c"
     },
@@ -71,15 +116,15 @@
       "path": "data/semantic-change-impact-v3.json",
       "role": "change-impact",
       "schemaPath": "schemas/palo-semantic-change-impact.schema.json",
-      "semanticVersion": "3.0.0",
+      "semanticVersion": "3.1.0",
       "status": "approved-for-release",
-      "sha256": "5db1740d8470eb4a21ace53943a573d32a073f8d721ec235dabe8a2eb7f4e740"
+      "sha256": "f99a17463882db95d4c2b663a3c8af30e20cef96cc1c756182acd42691e2785d"
     },
     {
       "itemId": "https://paloframework.org/semantic/release-item/semantic-spine-schema",
       "path": "schemas/palo-semantic-spine.schema.json",
       "role": "schema",
-      "semanticVersion": "3.0.0",
+      "semanticVersion": "3.1.0",
       "status": "compatibility-contract",
       "sha256": "c220b61e3d5e7ac554b4efbf690342136e1bcd350a5b835c4bd707c2af3b20bd"
     },
@@ -87,15 +132,15 @@
       "itemId": "https://paloframework.org/semantic/release-item/lifecycle-definition-schema",
       "path": "schemas/palo-lifecycle-definition.schema.json",
       "role": "schema",
-      "semanticVersion": "3.0.0",
+      "semanticVersion": "3.1.0",
       "status": "compatibility-contract",
-      "sha256": "2c4d856c587de1c02e2cf7464a8f91e633aab59035b6670cdee23fa4b517438b"
+      "sha256": "72d3645887a9abb400a1a35e8d35c986741a15c40249af21d0023fffaae5dd10"
     },
     {
       "itemId": "https://paloframework.org/semantic/release-item/semantic-mapping-schema",
       "path": "schemas/palo-semantic-mapping-registry.schema.json",
       "role": "schema",
-      "semanticVersion": "3.0.0",
+      "semanticVersion": "3.1.0",
       "status": "compatibility-contract",
       "sha256": "b9957b2315d2e77f47937a40492ef45cb6f4ec4bc345e7564d26031ea3fa7a36"
     },
@@ -103,15 +148,15 @@
       "itemId": "https://paloframework.org/semantic/release-item/semantic-release-schema",
       "path": "schemas/palo-semantic-release-manifest.schema.json",
       "role": "schema",
-      "semanticVersion": "3.0.0",
+      "semanticVersion": "3.1.0",
       "status": "compatibility-contract",
-      "sha256": "adf3d2c413c9372ac5423ccdf74ead2bc14c698e52e30e3bc72aadb0ed9d8724"
+      "sha256": "5c767b152fc3f32a095ee2be5cb42530255bb5919351e89b4f8627830b2d5651"
     },
     {
       "itemId": "https://paloframework.org/semantic/release-item/semantic-change-impact-schema",
       "path": "schemas/palo-semantic-change-impact.schema.json",
       "role": "schema",
-      "semanticVersion": "3.0.0",
+      "semanticVersion": "3.1.0",
       "status": "compatibility-contract",
       "sha256": "d62adcc0f792460da7a35c495c2b14707ae9e8a2aa615d33fdf37a4832a9e6b9"
     },
@@ -119,7 +164,7 @@
       "itemId": "https://paloframework.org/semantic/release-item/gate-instance-schema",
       "path": "schemas/palo-gate-instance.schema.json",
       "role": "schema",
-      "semanticVersion": "3.0.0",
+      "semanticVersion": "3.1.0",
       "status": "compatibility-contract",
       "sha256": "2eb0137149b83fe72ff418b870e3636d31c8319cac231c10339783de8aa024b7"
     },
@@ -127,7 +172,7 @@
       "itemId": "https://paloframework.org/semantic/release-item/gate-decision-schema",
       "path": "schemas/palo-gate-decision-record.schema.json",
       "role": "schema",
-      "semanticVersion": "3.0.0",
+      "semanticVersion": "3.1.0",
       "status": "compatibility-contract",
       "sha256": "4d2067061eed19b2e0515ecbb702f86ad99e199a62481d2df558c046d688ba6d"
     },
@@ -135,7 +180,7 @@
       "itemId": "https://paloframework.org/semantic/release-item/evidence-artifact-schema",
       "path": "schemas/palo-evidence-artifact.schema.json",
       "role": "schema",
-      "semanticVersion": "3.0.0",
+      "semanticVersion": "3.1.0",
       "status": "compatibility-contract",
       "sha256": "04aeef159d698f6d47336b9ce97b53ddefc5dbd7bd97da447b2fec82cbdb5866"
     },
@@ -143,7 +188,7 @@
       "itemId": "https://paloframework.org/semantic/release-item/evidence-claim-schema",
       "path": "schemas/palo-evidence-claim.schema.json",
       "role": "schema",
-      "semanticVersion": "3.0.0",
+      "semanticVersion": "3.1.0",
       "status": "compatibility-contract",
       "sha256": "5d2a7738b65bdd1b02aaaaa9ff8c567725f6236906a7ef3df6d14c62e6c6af26"
     },
@@ -151,7 +196,7 @@
       "itemId": "https://paloframework.org/semantic/release-item/evidence-evaluation-schema",
       "path": "schemas/palo-evidence-evaluation.schema.json",
       "role": "schema",
-      "semanticVersion": "3.0.0",
+      "semanticVersion": "3.1.0",
       "status": "compatibility-contract",
       "sha256": "56afbd727e7fe385c548b08157fc9136fea264a62d64cb869f196f6c1d7c2b7a"
     },
@@ -159,11 +204,99 @@
       "itemId": "https://paloframework.org/semantic/release-item/evidence-bundle-manifest-schema",
       "path": "schemas/palo-evidence-bundle-manifest.schema.json",
       "role": "schema",
-      "semanticVersion": "3.0.0",
+      "semanticVersion": "3.1.0",
       "status": "compatibility-contract",
       "sha256": "281721c89e58bee9d83b1fcc5d93748f210e81136df685f75e2847736163648c"
+    },
+    {
+      "itemId": "https://paloframework.org/semantic/release-item/governance-control-packs-schema",
+      "path": "schemas/palo-governance-control-packs.schema.json",
+      "role": "schema",
+      "semanticVersion": "3.1.0",
+      "status": "compatibility-contract",
+      "sha256": "fb224947d64ba02ae6114b12630506ed1c4bcd700fb93b23e63c3beb83951f8f"
+    },
+    {
+      "itemId": "https://paloframework.org/semantic/release-item/governance-assurance-record-schema",
+      "path": "schemas/palo-governance-assurance-record.schema.json",
+      "role": "schema",
+      "semanticVersion": "3.1.0",
+      "status": "compatibility-contract",
+      "sha256": "e3ec11948715afdb173397f956432f32048620bee4628ce7ad832a19d5fe5ae5"
+    },
+    {
+      "itemId": "https://paloframework.org/semantic/release-item/system-card-schema",
+      "path": "schemas/palo-system-card.schema.json",
+      "role": "schema",
+      "semanticVersion": "3.1.0",
+      "status": "compatibility-contract",
+      "sha256": "dca5641ff89e6cca553c62b624479f251928c16ffa8eb79dc164862994f8ab28"
+    },
+    {
+      "itemId": "https://paloframework.org/semantic/release-item/affected-person-case-schema",
+      "path": "schemas/palo-affected-person-case.schema.json",
+      "role": "schema",
+      "semanticVersion": "3.1.0",
+      "status": "compatibility-contract",
+      "sha256": "1ad9b0f8f3296a5325d1707780025f56d09ee702d4a3d2be4578dfcac06e403b"
+    },
+    {
+      "itemId": "https://paloframework.org/semantic/release-item/article50-transparency-record-schema",
+      "path": "schemas/palo-article50-transparency-record.schema.json",
+      "role": "schema",
+      "semanticVersion": "3.1.0",
+      "status": "compatibility-contract",
+      "sha256": "cf8abd6dd4c77a2e535d0fd95120ce2a705cf2b40e4d8646c08b0d36eedbef36"
+    },
+    {
+      "itemId": "https://paloframework.org/semantic/release-item/data-lineage-record-schema",
+      "path": "schemas/palo-data-lineage-record.schema.json",
+      "role": "schema",
+      "semanticVersion": "3.1.0",
+      "status": "compatibility-contract",
+      "sha256": "538adf333ea86e4f2063e13891d89f501e67b19253ce3fa0f49b97dc44842991"
+    },
+    {
+      "itemId": "https://paloframework.org/semantic/release-item/gpai-systemic-risk-record-schema",
+      "path": "schemas/palo-gpai-systemic-risk-record.schema.json",
+      "role": "schema",
+      "semanticVersion": "3.1.0",
+      "status": "compatibility-contract",
+      "sha256": "6c2f549d77a0087071c1563cf5894f3949b1dabb8ce193fd14971a387a22d1fd"
+    },
+    {
+      "itemId": "https://paloframework.org/semantic/release-item/serious-incident-record-schema",
+      "path": "schemas/palo-serious-incident-record.schema.json",
+      "role": "schema",
+      "semanticVersion": "3.1.0",
+      "status": "compatibility-contract",
+      "sha256": "08f9e13eb0f64f4f53ba3444775e602e6e0feb136dcc780896b019d7373bd134"
+    },
+    {
+      "itemId": "https://paloframework.org/semantic/release-item/decommission-record-schema",
+      "path": "schemas/palo-decommission-record.schema.json",
+      "role": "schema",
+      "semanticVersion": "3.1.0",
+      "status": "compatibility-contract",
+      "sha256": "018c57495377614b351d1f5405e035a31f19e8eb5670033789c055a3a461168c"
+    },
+    {
+      "itemId": "https://paloframework.org/semantic/release-item/aims-overlay-record-schema",
+      "path": "schemas/palo-aims-overlay-record.schema.json",
+      "role": "schema",
+      "semanticVersion": "3.1.0",
+      "status": "compatibility-contract",
+      "sha256": "e15aea133a492100e77f018a2d78b6065272791fdfb383eb9ef632e3cfa119c2"
+    },
+    {
+      "itemId": "https://paloframework.org/semantic/release-item/production-profile-schema",
+      "path": "schemas/palo-production-profile.schema.json",
+      "role": "schema",
+      "semanticVersion": "3.1.0",
+      "status": "compatibility-contract",
+      "sha256": "6f9a3b82be945effc720f87e3dee238deda4728f9c0f68758cddadd8d2d1b13f"
     }
   ],
-  "authorityBoundary": "This manifest freezes the exact semantic artifacts used by PALO v3. It proves file identity, not legal applicability, compliance, certification, or production authorization.",
-  "manifestDigest": "sha256:6afafb12429b3f37838347f736c1d87b06645e4fecf86f162f666a9f60e2ba4b"
+  "authorityBoundary": "This manifest freezes the exact semantic and governance-control artifacts used by PALO v3.1. It proves file identity, not legal applicability, compliance, certification, operating effectiveness, or production authorization.",
+  "manifestDigest": "sha256:b2037807263d94a59e7b73e108f112a97685a66afff06b238a74238ad5f7afad"
 }

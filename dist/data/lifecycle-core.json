@@ -2,10 +2,10 @@
   "format": "palo-lifecycle-definition",
   "schemaVersion": "1.0.0",
   "lifecycleId": "https://paloframework.org/semantic/lifecycle/palo-core",
-  "definitionVersion": "3.0.0",
+  "definitionVersion": "3.1.0",
   "label": "PALO Core Lifecycle",
   "status": "approved-for-release",
-  "releasedAt": "2026-08-12",
+  "releasedAt": "2026-08-23",
   "frameworkRef": "https://paloframework.org/semantic/framework/palo",
   "phases": [
     {
@@ -15,7 +15,7 @@
       "ordinal": 1,
       "label": "Frame",
       "purpose": "Define the use case, its boundary, owners and affected people before governance choices are made.",
-      "gateDefinitionRef": "https://paloframework.org/semantic/gate/frame?v=3.0.0"
+      "gateDefinitionRef": "https://paloframework.org/semantic/gate/frame?v=3.1.0"
     },
     {
       "phaseDefinitionId": "phase-classify",
@@ -24,7 +24,7 @@
       "ordinal": 2,
       "label": "Classify",
       "purpose": "Establish the applicable risk route, obligations and level of scrutiny.",
-      "gateDefinitionRef": "https://paloframework.org/semantic/gate/classify?v=3.0.0"
+      "gateDefinitionRef": "https://paloframework.org/semantic/gate/classify?v=3.1.0"
     },
     {
       "phaseDefinitionId": "phase-assess",
@@ -33,7 +33,7 @@
       "ordinal": 3,
       "label": "Assess",
       "purpose": "Evaluate impacts, rights, delegated authority, autonomy and oversight conditions.",
-      "gateDefinitionRef": "https://paloframework.org/semantic/gate/assess?v=3.0.0"
+      "gateDefinitionRef": "https://paloframework.org/semantic/gate/assess?v=3.1.0"
     },
     {
       "phaseDefinitionId": "phase-control",
@@ -42,7 +42,7 @@
       "ordinal": 4,
       "label": "Control",
       "purpose": "Translate findings into owned, testable engineering, process and assurance controls.",
-      "gateDefinitionRef": "https://paloframework.org/semantic/gate/control?v=3.0.0"
+      "gateDefinitionRef": "https://paloframework.org/semantic/gate/control?v=3.1.0"
     },
     {
       "phaseDefinitionId": "phase-measure",
@@ -51,7 +51,7 @@
       "ordinal": 5,
       "label": "Measure",
       "purpose": "Define how accountability, performance, risk and drift will be observed over time.",
-      "gateDefinitionRef": "https://paloframework.org/semantic/gate/measure?v=3.0.0"
+      "gateDefinitionRef": "https://paloframework.org/semantic/gate/measure?v=3.1.0"
     },
     {
       "phaseDefinitionId": "phase-prove",
@@ -60,14 +60,14 @@
       "ordinal": 6,
       "label": "Prove & Review",
       "purpose": "Assemble reconstructable evidence, decide readiness and feed findings into the next cycle.",
-      "gateDefinitionRef": "https://paloframework.org/semantic/gate/prove?v=3.0.0"
+      "gateDefinitionRef": "https://paloframework.org/semantic/gate/prove?v=3.1.0"
     }
   ],
   "gateDefinitions": [
     {
-      "gateDefinitionId": "https://paloframework.org/semantic/gate/frame?v=3.0.0",
+      "gateDefinitionId": "https://paloframework.org/semantic/gate/frame?v=3.1.0",
       "gateId": "frame",
-      "definitionVersion": "3.0.0",
+      "definitionVersion": "3.1.0",
       "label": "Frame",
       "purpose": "Agree the problem, affected stakeholders, intended benefit, owner and non-AI alternatives.",
       "entryCriteria": [
@@ -85,8 +85,21 @@
       "requiredControlIds": [
         "ctrl-purpose-boundary"
       ],
+      "conditionalControlIds": [
+        "ctrl-system-card-explanations",
+        "ctrl-data-governance-lifecycle",
+        "ctrl-privacy-lifecycle",
+        "ctrl-environmental-performance",
+        "ctrl-ai-literacy-effectiveness",
+        "ctrl-aims-leadership-objectives"
+      ],
       "indicatorIds": [
-        "kri-scope-change-rate"
+        "kri-scope-change-rate",
+        "kpi-system-card-coverage",
+        "kpi-data-lifecycle-coverage",
+        "kpi-energy-measurement-coverage",
+        "kpi-ai-literacy-competence-rate",
+        "kpi-aims-objective-coverage"
       ],
       "sourceIds": [
         "src-oecd-ai-principles",
@@ -97,9 +110,9 @@
       ]
     },
     {
-      "gateDefinitionId": "https://paloframework.org/semantic/gate/classify?v=3.0.0",
+      "gateDefinitionId": "https://paloframework.org/semantic/gate/classify?v=3.1.0",
       "gateId": "classify",
-      "definitionVersion": "3.0.0",
+      "definitionVersion": "3.1.0",
       "label": "Classify",
       "purpose": "Identify system type, authority, affected rights, jurisdictions, suppliers and preliminary risk posture.",
       "entryCriteria": [
@@ -118,8 +131,26 @@
         "ctrl-third-party-due-diligence",
         "ctrl-change-gate"
       ],
+      "conditionalControlIds": [
+        "ctrl-fair-allocation",
+        "ctrl-system-card-explanations",
+        "ctrl-affected-person-notice",
+        "ctrl-article50-transparency",
+        "ctrl-privacy-lifecycle",
+        "ctrl-gpai-provider",
+        "ctrl-gpai-deployer",
+        "ctrl-systemic-risk",
+        "ctrl-regulatory-incident-reporting",
+        "ctrl-runtime-production-boundary",
+        "ctrl-aims-leadership-objectives"
+      ],
       "indicatorIds": [
-        "kri-scope-change-rate"
+        "kri-scope-change-rate",
+        "kpi-system-card-coverage",
+        "kpi-notice-delivery-coverage",
+        "kpi-gpai-obligation-evidence-coverage",
+        "kpi-production-admission-coverage",
+        "kpi-aims-objective-coverage"
       ],
       "sourceIds": [
         "src-eu-ai-act",
@@ -130,9 +161,9 @@
       ]
     },
     {
-      "gateDefinitionId": "https://paloframework.org/semantic/gate/assess?v=3.0.0",
+      "gateDefinitionId": "https://paloframework.org/semantic/gate/assess?v=3.1.0",
       "gateId": "assess",
-      "definitionVersion": "3.0.0",
+      "definitionVersion": "3.1.0",
       "label": "Assess",
       "purpose": "Test impacts, data, misuse, limitations, alternatives and residual uncertainty.",
       "entryCriteria": [
@@ -153,10 +184,32 @@
         "ctrl-adversarial-testing",
         "ctrl-change-gate"
       ],
+      "conditionalControlIds": [
+        "ctrl-agentic-authority",
+        "ctrl-fairness-quality-of-service",
+        "ctrl-fair-allocation",
+        "ctrl-harmful-representation",
+        "ctrl-system-card-explanations",
+        "ctrl-data-governance-lifecycle",
+        "ctrl-annotation-quality",
+        "ctrl-privacy-lifecycle",
+        "ctrl-gpai-deployer",
+        "ctrl-systemic-risk",
+        "ctrl-ai-output-accessibility",
+        "ctrl-environmental-performance"
+      ],
       "indicatorIds": [
         "kpi-provenance-coverage",
         "kpi-vendor-evidence-coverage",
-        "kri-critical-test-failure-rate"
+        "kri-critical-test-failure-rate",
+        "kpi-subgroup-evaluation-coverage",
+        "kri-residual-disparity-rate",
+        "kpi-explanation-comprehension",
+        "kpi-data-lifecycle-coverage",
+        "kpi-annotation-quality-coverage",
+        "kri-systemic-risk-finding-rate",
+        "kpi-accessibility-test-pass-rate",
+        "kpi-energy-measurement-coverage"
       ],
       "sourceIds": [
         "src-nist-ai-rmf",
@@ -168,9 +221,9 @@
       ]
     },
     {
-      "gateDefinitionId": "https://paloframework.org/semantic/gate/control?v=3.0.0",
+      "gateDefinitionId": "https://paloframework.org/semantic/gate/control?v=3.1.0",
       "gateId": "control",
-      "definitionVersion": "3.0.0",
+      "definitionVersion": "3.1.0",
       "label": "Control",
       "purpose": "Assign safeguards, owners, escalation, human authority, technical limits and supplier obligations.",
       "entryCriteria": [
@@ -191,11 +244,36 @@
         "ctrl-third-party-due-diligence",
         "ctrl-incident-response"
       ],
+      "conditionalControlIds": [
+        "ctrl-system-card-explanations",
+        "ctrl-affected-person-notice",
+        "ctrl-appeal-remedy",
+        "ctrl-article50-transparency",
+        "ctrl-data-governance-lifecycle",
+        "ctrl-privacy-lifecycle",
+        "ctrl-gpai-provider",
+        "ctrl-gpai-deployer",
+        "ctrl-systemic-risk",
+        "ctrl-regulatory-incident-reporting",
+        "ctrl-decommissioning",
+        "ctrl-ai-output-accessibility",
+        "ctrl-ai-literacy-effectiveness",
+        "ctrl-runtime-production-boundary"
+      ],
       "indicatorIds": [
         "kpi-review-completion",
         "kpi-vendor-evidence-coverage",
         "kri-sensitive-data-events",
-        "kri-override-failure-rate"
+        "kri-override-failure-rate",
+        "kpi-notice-delivery-coverage",
+        "kpi-appeal-resolution-sla",
+        "kpi-machine-readable-marking-coverage",
+        "kpi-data-lifecycle-coverage",
+        "kpi-gpai-obligation-evidence-coverage",
+        "kpi-regulatory-reporting-clock-compliance",
+        "kpi-accessibility-test-pass-rate",
+        "kpi-ai-literacy-competence-rate",
+        "kpi-production-admission-coverage"
       ],
       "sourceIds": [
         "src-iso-42001",
@@ -207,9 +285,9 @@
       ]
     },
     {
-      "gateDefinitionId": "https://paloframework.org/semantic/gate/measure?v=3.0.0",
+      "gateDefinitionId": "https://paloframework.org/semantic/gate/measure?v=3.1.0",
       "gateId": "measure",
-      "definitionVersion": "3.0.0",
+      "definitionVersion": "3.1.0",
       "label": "Measure",
       "purpose": "Set baselines, indicators, thresholds, monitoring ownership and response timing.",
       "entryCriteria": [
@@ -229,11 +307,49 @@
         "ctrl-incident-response",
         "ctrl-decision-trace"
       ],
+      "conditionalControlIds": [
+        "ctrl-fairness-quality-of-service",
+        "ctrl-fair-allocation",
+        "ctrl-harmful-representation",
+        "ctrl-system-card-explanations",
+        "ctrl-affected-person-notice",
+        "ctrl-appeal-remedy",
+        "ctrl-article50-transparency",
+        "ctrl-data-governance-lifecycle",
+        "ctrl-annotation-quality",
+        "ctrl-gpai-provider",
+        "ctrl-gpai-deployer",
+        "ctrl-systemic-risk",
+        "ctrl-regulatory-incident-reporting",
+        "ctrl-decommissioning",
+        "ctrl-ai-output-accessibility",
+        "ctrl-environmental-performance",
+        "ctrl-ai-literacy-effectiveness",
+        "ctrl-aims-internal-audit",
+        "ctrl-aims-management-review-capa",
+        "ctrl-runtime-production-boundary"
+      ],
       "indicatorIds": [
         "kpi-review-completion",
         "kpi-incident-triage-time",
         "kri-sensitive-data-events",
-        "kri-critical-test-failure-rate"
+        "kri-critical-test-failure-rate",
+        "kri-residual-disparity-rate",
+        "kri-harmful-representation-rate",
+        "kpi-explanation-comprehension",
+        "kpi-appeal-resolution-sla",
+        "kri-overdue-remedy-rate",
+        "kri-provenance-verification-failure-rate",
+        "kpi-deletion-verification-coverage",
+        "kri-systemic-risk-finding-rate",
+        "kpi-regulatory-reporting-clock-compliance",
+        "kpi-decommissioning-evidence-coverage",
+        "kri-accessibility-blocker-rate",
+        "kri-environmental-budget-variance",
+        "kri-trained-control-error-rate",
+        "kpi-aims-audit-completion",
+        "kpi-corrective-action-closure",
+        "kri-execution-bypass-rate"
       ],
       "sourceIds": [
         "src-nist-ai-rmf"
@@ -244,9 +360,9 @@
       ]
     },
     {
-      "gateDefinitionId": "https://paloframework.org/semantic/gate/prove?v=3.0.0",
+      "gateDefinitionId": "https://paloframework.org/semantic/gate/prove?v=3.1.0",
       "gateId": "prove",
-      "definitionVersion": "3.0.0",
+      "definitionVersion": "3.1.0",
       "label": "Prove and Review",
       "purpose": "Assemble decision evidence, exceptions, source status, approvals and triggers for reopening.",
       "entryCriteria": [
@@ -268,11 +384,54 @@
         "ctrl-change-gate",
         "ctrl-decision-trace"
       ],
+      "conditionalControlIds": [
+        "ctrl-fairness-quality-of-service",
+        "ctrl-fair-allocation",
+        "ctrl-harmful-representation",
+        "ctrl-system-card-explanations",
+        "ctrl-affected-person-notice",
+        "ctrl-appeal-remedy",
+        "ctrl-article50-transparency",
+        "ctrl-data-governance-lifecycle",
+        "ctrl-annotation-quality",
+        "ctrl-privacy-lifecycle",
+        "ctrl-gpai-provider",
+        "ctrl-gpai-deployer",
+        "ctrl-systemic-risk",
+        "ctrl-regulatory-incident-reporting",
+        "ctrl-decommissioning",
+        "ctrl-ai-output-accessibility",
+        "ctrl-environmental-performance",
+        "ctrl-ai-literacy-effectiveness",
+        "ctrl-aims-leadership-objectives",
+        "ctrl-aims-internal-audit",
+        "ctrl-aims-management-review-capa",
+        "ctrl-runtime-production-boundary"
+      ],
       "indicatorIds": [
         "kpi-provenance-coverage",
         "kpi-review-completion",
         "kpi-incident-triage-time",
-        "kri-scope-change-rate"
+        "kri-scope-change-rate",
+        "kpi-subgroup-evaluation-coverage",
+        "kri-residual-disparity-rate",
+        "kpi-system-card-coverage",
+        "kpi-explanation-comprehension",
+        "kpi-notice-delivery-coverage",
+        "kpi-appeal-resolution-sla",
+        "kpi-machine-readable-marking-coverage",
+        "kpi-data-lifecycle-coverage",
+        "kpi-annotation-quality-coverage",
+        "kpi-gpai-obligation-evidence-coverage",
+        "kpi-regulatory-reporting-clock-compliance",
+        "kpi-decommissioning-evidence-coverage",
+        "kpi-accessibility-test-pass-rate",
+        "kpi-energy-measurement-coverage",
+        "kpi-ai-literacy-competence-rate",
+        "kpi-aims-objective-coverage",
+        "kpi-aims-audit-completion",
+        "kpi-corrective-action-closure",
+        "kpi-production-admission-coverage"
       ],
       "sourceIds": [
         "src-nist-ai-rmf",

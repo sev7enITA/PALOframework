@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paloframework.org/schemas/palo-governance-control-packs.schema.json",
+  "title": "PALO Governance Control Packs",
+  "type": "object",
+  "required": ["format", "schemaVersion", "releaseVersion", "status", "updatedAt", "authorityBoundary", "completionDefinitions", "domains"],
+  "properties": {
+    "format": { "const": "palo-governance-control-packs" },
+    "schemaVersion": { "const": "1.0.0" },
+    "releaseVersion": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "status": { "const": "approved-for-release" },
+    "updatedAt": { "type": "string", "format": "date" },
+    "authorityBoundary": { "type": "string", "minLength": 40 },
+    "completionDefinitions": {
+      "type": "object",
+      "required": ["governanceComplete", "operationalComplete", "productionComplete", "certificationComplete"],
+      "properties": {
+        "governanceComplete": { "type": "string", "minLength": 40 },
+        "operationalComplete": { "type": "string", "minLength": 40 },
+        "productionComplete": { "type": "string", "minLength": 40 },
+        "certificationComplete": { "type": "string", "minLength": 40 }
+      },
+      "additionalProperties": false
+    },
+    "domains": {
+      "type": "array",
+      "minItems": 12,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "required": ["domainId", "title", "objective", "completionLevel", "applicabilityQuestions", "controlIds", "indicatorIds", "gateIds", "evidenceContractRefs", "minimumEvidenceKinds", "completionCriteria", "stopConditions", "residualBoundary"],
+        "properties": {
+          "domainId": { "type": "string", "pattern": "^domain-[a-z0-9-]+$" },
+          "title": { "type": "string", "minLength": 1 },
+          "objective": { "type": "string", "minLength": 20 },
+          "completionLevel": { "enum": ["governance-control-plane", "reference-runtime-only"] },
+          "applicabilityQuestions": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 10 } },
+          "controlIds": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "pattern": "^ctrl-[a-z0-9-]+$" } },
+          "indicatorIds": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "pattern": "^(kpi|kri)-[a-z0-9-]+$" } },
+          "gateIds": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "enum": ["frame", "classify", "assess", "control", "measure", "prove"] } },
+          "evidenceContractRefs": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "pattern": "^schemas/[a-z0-9-]+\\.schema\\.json$" } },
+          "minimumEvidenceKinds": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "pattern": "^[a-z0-9-]+$" } },
+          "completionCriteria": { "type": "array", "minItems": 2, "uniqueItems": true, "items": { "type": "string", "minLength": 15 } },
+          "stopConditions": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 15 } },
+          "residualBoundary": { "type": "string", "minLength": 30 }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

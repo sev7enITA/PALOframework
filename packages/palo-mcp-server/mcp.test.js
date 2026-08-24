@@ -95,7 +95,7 @@ test("authenticated Streamable HTTP rejects anonymous clients and exposes the sa
   const endpoint = new URL(`http://127.0.0.1:${port}/mcp`);
   const health = await fetch(`http://127.0.0.1:${port}/health`).then((response) => response.json());
   assert.equal(health.version, "2.6.0");
-  assert.equal(health.frameworkRelease, "3.0.1");
+  assert.equal(health.frameworkRelease, "3.1.0");
   assert.equal(health.productionUse, false);
   const unauthorized = await fetch(endpoint, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ jsonrpc: "2.0", id: 1, method: "initialize", params: { protocolVersion: "2025-06-18", capabilities: {}, clientInfo: { name: "anonymous", version: "1" } } }) });
   assert.equal(unauthorized.status, 401);

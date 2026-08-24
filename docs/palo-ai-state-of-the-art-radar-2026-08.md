@@ -4,7 +4,7 @@
 | --- | --- |
 | Data dello snapshot | 14 agosto 2026, Europe/Rome |
 | Scope | Algoritmi, SLM, runtime agentico, protocolli, identità, policy, evidenza, osservabilità, dipendenze e segnali di adozione |
-| Repository verificato | PALO Platform 3.0.1; baseline PALO-AI 2.5 con addendum implementativo sul working tree 2.6 |
+| Repository verificato | PALO Platform 3.1.0; baseline PALO-AI 2.6 developer preview |
 | Metodo | Ispezione del codice e dei lockfile, test locali, advisory scan, confronto con fonti primarie e ricerca esplorativa in community tecniche |
 | Autorità del report | Technology radar interno e riproducibile; non è un audit di sicurezza indipendente né una certificazione |
 

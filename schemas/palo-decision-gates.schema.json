@@ -14,7 +14,7 @@
       "type": "array", "minItems": 1,
       "items": {
         "type": "object",
-        "required": ["gateId", "label", "purpose", "entryCriteria", "decisionOptions", "requiredControlIds", "indicatorIds", "sourceIds", "templateIds"],
+        "required": ["gateId", "label", "purpose", "entryCriteria", "decisionOptions", "requiredControlIds", "conditionalControlIds", "indicatorIds", "sourceIds", "templateIds"],
         "properties": {
           "gateId": { "enum": ["frame", "classify", "assess", "control", "measure", "prove"] },
           "label": { "type": "string", "minLength": 1 },
@@ -22,6 +22,7 @@
           "entryCriteria": { "type": "array", "minItems": 1, "items": { "type": "string" } },
           "decisionOptions": { "type": "array", "minItems": 2, "uniqueItems": true, "items": { "enum": ["proceed", "proceed-with-conditions", "hold", "redesign", "stop"] } },
           "requiredControlIds": { "type": "array", "uniqueItems": true, "items": { "type": "string" } },
+          "conditionalControlIds": { "type": "array", "uniqueItems": true, "items": { "type": "string" } },
           "indicatorIds": { "type": "array", "uniqueItems": true, "items": { "type": "string" } },
           "sourceIds": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string" } },
           "templateIds": { "type": "array", "uniqueItems": true, "items": { "type": "string" } }

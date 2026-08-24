@@ -1,24 +1,26 @@
 {
   "format": "palo-agentic-capability-matrix",
-  "schemaVersion": "1.0.0",
-  "release": "2.5.0",
+  "schemaVersion": "1.2.0",
+  "release": "2.6.0",
   "releaseStatus": "developer-preview",
-  "updatedAt": "2026-07-19",
+  "updatedAt": "2026-08-23",
   "statusVocabulary": [
     "specified",
     "prototype",
     "implemented",
     "production-ready"
   ],
-  "disclaimer": "PALO-AI v2.5.0 is a developer preview and reference implementation. It is not a production authorization service, security boundary, compliance certification, or substitute for organization-owned identity, access control, key management, monitoring, backup, retention, legal review, and security assurance.",
+  "disclaimer": "PALO-AI v2.6.0 is a developer preview and reference implementation. Its production profile and fail-closed admission check specify controls that the bundled SQLite and in-process runtime does not satisfy. It is not a production authorization service, security boundary, compliance certification, or substitute for organization-owned identity, tenant isolation, managed key custody, monitoring, backup, retention, legal review, independent assurance and security testing.",
   "capabilities": [
     { "id": "mcp-stdio", "status": "implemented", "note": "Official SDK reference transport covered by protocol tests; deployment hardening remains the adopter's responsibility." },
-    { "id": "mcp-streamable-http-auth", "status": "prototype", "note": "Bearer-token developer transport; no principal-level RBAC, workload identity, TLS termination, rotation, or rate limiting is provided." },
+    { "id": "mcp-streamable-http-auth", "status": "prototype", "note": "The resource-server path validates OIDC/JWKS issuer, audience, expiry, algorithms and least-privilege scopes. It does not issue or rotate tokens, terminate TLS, attest workloads or provide rate limiting; shared-token mode remains development-only." },
     { "id": "trusted-registry", "status": "prototype", "note": "Versioned SQLite records exist, but administrative authorization, publisher signatures, backup, and recovery are not implemented." },
-    { "id": "canonical-action-claim", "status": "implemented", "note": "Action Claim 1.1 remains compatible; Action Claim 1.2 immutably binds a declared Effect Contract to the proposed action." },
+    { "id": "canonical-action-claim", "status": "implemented", "note": "Action Claim 1.3 binds human and workload principals, credential digests, agent instance, delegation chain, tenant and Effect Contract. Action Claim 1.1 and 1.2 remain compatibility contracts." },
     { "id": "effect-contract", "status": "implemented", "note": "A closed JSON-Pointer predicate DSL represents preconditions, expected effects, forbidden effects and inconclusive handling without arbitrary executable expressions." },
     { "id": "rego-default-deny", "status": "implemented", "note": "Rego v1 reference policy and tests are included; production policy distribution and bundle attestation are not provided." },
-    { "id": "hmac-signatures", "status": "prototype", "note": "Reference HMAC signing is implemented with environment-supplied keys; KMS/HSM integration, rotation, and external anchoring remain under development." },
+    { "id": "evidence-signatures", "status": "prototype", "note": "Evidence Envelope 2.0 supports RFC 8785 canonicalization and Ed25519, while internal runtime records retain HMAC compatibility. Keys still enter the application process; KMS/HSM custody, automated rotation, revocation and external anchoring are not implemented." },
+    { "id": "oidc-identity-binding", "status": "prototype", "note": "OIDC subjects, clients and scopes are bound to protected MCP requests and reviewer attribution. Identity issuance, workload attestation, proof-of-possession and an organization-owned authorization service remain external dependencies." },
+    { "id": "oidc-tenant-claim-binding", "status": "prototype", "note": "The request path requires the configured OIDC tenant claim to match every Action Claim 1.3 tenant location before protected processing. This does not provide tenant-isolated storage, per-tenant encryption, tenant-scoped backup or negative-isolation assurance." },
     { "id": "replay-protection", "status": "prototype", "note": "Nonce, idempotency-key, and sequence checks exist, but the reference executor does not provide production-grade exactly-once execution." },
     { "id": "transactional-ledger", "status": "prototype", "note": "SQLite WAL, append-only triggers, capability consumption, execution intent and hash-chain verification are implemented; external tools cannot participate in the local transaction and production durability remains incomplete." },
     { "id": "single-instance-execution-recovery", "status": "prototype", "note": "Startup recovery converts stale pending outbox entries into signed unknown receipts, inconclusive attestations, incidents and resource holds; distributed leasing and exactly-once execution are not provided." },
@@ -37,6 +39,12 @@
     { "id": "n8n-secure-approval-resume", "status": "specified", "note": "The exact-claim approval contract is prototyped; authenticated reviewer delivery and one-time backend-controlled n8n resume are not implemented." },
     { "id": "n8n-workflow-admission", "status": "specified", "note": "Workflow assessment, digest registration and activation/pre-execution enforcement hooks are architected but not implemented." },
     { "id": "governance-e2e", "status": "prototype", "note": "Automated tests cover authorize, approval, one-time execution, signed receipt, verified effect, stale-state prevention, mismatch incident, inconclusive verification and ledger integrity; distributed production staging remains incomplete." },
-    { "id": "governance-hub-gui", "status": "prototype", "note": "A white role-adaptive Executive and Technical interface demonstrates guided authority setup, portfolio signals, decision queues, execution traces, approvals and incidents with realistic evaluation data. It is not yet connected to production identity, tenant authorization, managed keys or an independently assessed runtime boundary." }
+    { "id": "opentelemetry-assurance-bridge", "status": "prototype", "note": "An allowlisted lifecycle-event bridge can create trace-correlated OpenTelemetry spans without arbitrary payload or token fields. The host must supply the SDK, exporter, sampling, metrics, dashboards and SIEM controls." },
+    { "id": "governance-hub-gui", "status": "prototype", "note": "A white role-adaptive Executive and Technical interface demonstrates guided authority setup, portfolio signals, decision queues, execution traces, approvals and incidents with realistic evaluation data. It is not yet connected to production identity, tenant authorization, managed keys or an independently assessed runtime boundary." },
+    { "id": "production-admission-contract", "status": "implemented", "note": "A schema-validated production profile and startup admission check fail closed on identity, tenant isolation, persistence, durable work, key custody, connector boundary, observability and independent-assurance requirements. The reference runtime is intentionally denied because it cannot truthfully attest these capabilities." },
+    { "id": "production-persistence", "status": "specified", "note": "The production profile requires an organization-operated production database, high availability, a durable queue, backup-recovery evidence and controlled migrations. The bundled runtime remains SQLite and single-instance." },
+    { "id": "managed-key-custody", "status": "specified", "note": "The production profile requires KMS, HSM or managed signing with no private signing key in the application process plus rotation, revocation and attestation evidence. The reference runtime does not implement this boundary." },
+    { "id": "non-bypassable-remote-connectors", "status": "specified", "note": "The production profile requires allowlisted or remote governed connectors, disabled in-process bypass, one-time capabilities, verified receipts and authoritative outcomes. The reference in-process connector path is not an unavoidable execution boundary." },
+    { "id": "independent-production-assurance", "status": "specified", "note": "Production admission requires a current independent assurance report and an accountable approval decision. The repository supplies the contract and testable denial, not the external assessment or deployment evidence." }
   ]
 }

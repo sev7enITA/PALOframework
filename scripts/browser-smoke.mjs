@@ -504,12 +504,12 @@ try {
   if (paloAmHeroCraft.calloutBackground === paloAmHeroCraft.leadColor || paloAmHeroCraft.actionHeights.length !== 2 || paloAmHeroCraft.actionHeights.some((height) => height < 44) || paloAmHeroCraft.actionDisplays.some((display) => display !== "flex") || paloAmHeroCraft.governanceNavHeight < 44) failures.push(`PALO-AM hero: callout contrast, specialist action styling or 44px targets regressed (${JSON.stringify(paloAmHeroCraft)})`);
 
   await page.goto(`${baseUrl}/PALO_AgenticCapabilityMatrix.html`, { waitUntil: "domcontentloaded" });
-  if (await page.locator("[data-status]").count() !== 27) failures.push("Capability Matrix: expected 27 evidence rows");
+  if (await page.locator("[data-status]").count() !== 34) failures.push("Capability Matrix: expected 34 evidence rows");
   await page.locator("[data-matrix-search]").fill("governance hub");
   if (await page.locator("[data-status]:visible").count() !== 1) failures.push("Capability Matrix: search did not isolate Governance Hub");
   await page.locator("[data-matrix-search]").fill("");
   await page.locator('[data-matrix-filter="specified"]').click();
-  if (await page.locator('[data-status="specified"]:visible').count() !== 3 || await page.locator('[data-status="prototype"]:visible').count() !== 0) failures.push("Capability Matrix: status filtering is incorrect");
+  if (await page.locator('[data-status="specified"]:visible').count() !== 7 || await page.locator('[data-status="prototype"]:visible').count() !== 0) failures.push("Capability Matrix: status filtering is incorrect");
 
   await page.goto(`${baseUrl}/PALO_AIWhy.html`, { waitUntil: "domcontentloaded" });
   if (await page.locator('[data-palo-ai-demo] [role="tab"]').count() !== 3) failures.push("Why PALO-AI: expected three comparison scenarios");

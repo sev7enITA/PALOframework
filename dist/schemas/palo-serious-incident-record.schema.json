@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paloframework.org/schemas/palo-serious-incident-record.schema.json",
+  "title": "PALO Serious Incident and Regulatory Clock Record",
+  "type": "object",
+  "required": ["format", "schemaVersion", "incidentId", "caseId", "systemVersion", "detectedAt", "containedAt", "severity", "effects", "jurisdictions", "reportability", "notifications", "correctiveActions", "closure"],
+  "properties": {
+    "format": { "const": "palo-serious-incident-record" }, "schemaVersion": { "const": "1.0.0" }, "incidentId": { "type": "string" }, "caseId": { "type": "string" }, "systemVersion": { "type": "string" },
+    "detectedAt": { "type": "string", "format": "date-time" }, "containedAt": { "type": "string", "format": "date-time" }, "severity": { "enum": ["low", "moderate", "high", "critical"] },
+    "effects": { "type": "array", "minItems": 1, "items": { "type": "object", "required": ["effectType", "description", "affectedScope"], "properties": { "effectType": { "enum": ["death", "serious-harm", "rights-infringement", "critical-infrastructure", "property-environment", "cybersecurity", "other"] }, "description": { "type": "string", "minLength": 10 }, "affectedScope": { "type": "string" } }, "additionalProperties": false } },
+    "jurisdictions": { "type": "array", "minItems": 1, "items": { "type": "object", "required": ["jurisdiction", "sourceProvision", "clockStart", "deadline", "authorityRoute"], "properties": { "jurisdiction": { "type": "string" }, "sourceProvision": { "type": "string" }, "clockStart": { "type": "string", "format": "date-time" }, "deadline": { "type": "string", "format": "date-time" }, "authorityRoute": { "type": "string" } }, "additionalProperties": false } },
+    "reportability": { "type": "object", "required": ["status", "decidedAt", "decidedBy", "rationale", "legalReviewRef"], "properties": { "status": { "enum": ["reportable", "not-reportable", "undetermined"] }, "decidedAt": { "type": "string", "format": "date-time" }, "decidedBy": { "type": "string" }, "rationale": { "type": "string", "minLength": 20 }, "legalReviewRef": { "type": "string" } }, "additionalProperties": false },
+    "notifications": { "type": "array", "items": { "type": "object", "required": ["recipient", "notificationType", "submittedAt", "receiptRef"], "properties": { "recipient": { "type": "string" }, "notificationType": { "enum": ["initial", "follow-up", "final", "affected-person", "provider", "other"] }, "submittedAt": { "type": "string", "format": "date-time" }, "receiptRef": { "type": "string" } }, "additionalProperties": false } },
+    "correctiveActions": { "type": "array", "minItems": 1, "items": { "type": "object", "required": ["actionId", "owner", "dueAt", "status", "effectivenessEvidenceRef"], "properties": { "actionId": { "type": "string" }, "owner": { "type": "string" }, "dueAt": { "type": "string", "format": "date-time" }, "status": { "enum": ["open", "in-progress", "completed", "verified-closed"] }, "effectivenessEvidenceRef": { "type": "string" } }, "additionalProperties": false } },
+    "closure": { "type": "object", "required": ["status", "closedAt", "closedBy", "postIncidentReviewRef"], "properties": { "status": { "enum": ["open", "contained", "reporting", "correcting", "closed"] }, "closedAt": { "type": "string", "format": "date-time" }, "closedBy": { "type": "string" }, "postIncidentReviewRef": { "type": "string" } }, "additionalProperties": false }
+  },
+  "additionalProperties": false
+}

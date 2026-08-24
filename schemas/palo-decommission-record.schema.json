@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paloframework.org/schemas/palo-decommission-record.schema.json",
+  "title": "PALO AI System Decommission Record",
+  "type": "object",
+  "required": ["format", "schemaVersion", "recordId", "caseId", "systemVersion", "reason", "plan", "stakeholders", "capabilityRevocation", "dataDisposition", "supplierExit", "residualMonitoring", "closureDecision"],
+  "properties": {
+    "format": { "const": "palo-decommission-record" }, "schemaVersion": { "const": "1.0.0" }, "recordId": { "type": "string" }, "caseId": { "type": "string" }, "systemVersion": { "type": "string" }, "reason": { "type": "string", "minLength": 20 },
+    "plan": { "type": "object", "required": ["owner", "approvedAt", "targetEndAt", "rollbackWindow", "dependencies"], "properties": { "owner": { "type": "string" }, "approvedAt": { "type": "string", "format": "date-time" }, "targetEndAt": { "type": "string", "format": "date-time" }, "rollbackWindow": { "type": "string" }, "dependencies": { "type": "array", "items": { "type": "string" } } }, "additionalProperties": false },
+    "stakeholders": { "type": "array", "minItems": 1, "items": { "type": "object", "required": ["group", "noticeAt", "transitionRoute", "supportOwner"], "properties": { "group": { "type": "string" }, "noticeAt": { "type": "string", "format": "date-time" }, "transitionRoute": { "type": "string" }, "supportOwner": { "type": "string" } }, "additionalProperties": false } },
+    "capabilityRevocation": { "$ref": "#/$defs/closureCheck" },
+    "dataDisposition": { "type": "array", "minItems": 1, "items": { "type": "object", "required": ["assetId", "action", "dueAt", "verificationRef", "status"], "properties": { "assetId": { "type": "string" }, "action": { "enum": ["delete", "archive", "return", "transfer", "legal-hold", "anonymize"] }, "dueAt": { "type": "string", "format": "date-time" }, "verificationRef": { "type": "string" }, "status": { "enum": ["planned", "in-progress", "verified-complete"] } }, "additionalProperties": false } },
+    "supplierExit": { "$ref": "#/$defs/closureCheck" },
+    "residualMonitoring": { "type": "object", "required": ["period", "owner", "indicators", "reopenTriggers"], "properties": { "period": { "type": "string" }, "owner": { "type": "string" }, "indicators": { "type": "array", "minItems": 1, "items": { "type": "string" } }, "reopenTriggers": { "type": "array", "minItems": 1, "items": { "type": "string" } } }, "additionalProperties": false },
+    "closureDecision": { "type": "object", "required": ["status", "decidedAt", "decidedBy", "evidenceRefs"], "properties": { "status": { "enum": ["conditional", "closed", "rejected"] }, "decidedAt": { "type": "string", "format": "date-time" }, "decidedBy": { "type": "string" }, "evidenceRefs": { "type": "array", "minItems": 1, "items": { "type": "string" } } }, "additionalProperties": false }
+  },
+  "$defs": { "closureCheck": { "type": "object", "required": ["status", "verifiedAt", "verifiedBy", "evidenceRef"], "properties": { "status": { "enum": ["planned", "in-progress", "verified-complete", "not-applicable"] }, "verifiedAt": { "type": "string", "format": "date-time" }, "verifiedBy": { "type": "string" }, "evidenceRef": { "type": "string" } }, "additionalProperties": false } },
+  "additionalProperties": false
+}

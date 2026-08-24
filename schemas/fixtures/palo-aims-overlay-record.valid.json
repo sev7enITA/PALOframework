@@ -1,0 +1,12 @@
+{
+  "format": "palo-aims-overlay-record", "schemaVersion": "1.0.0", "recordId": "aims-1", "organization": "Example organization",
+  "scope": { "owner": "aims-owner", "requirements": ["Define organizational and AI-system boundaries"], "evidenceRefs": ["aims-scope-1"], "status": "implemented", "reviewedAt": "2026-08-23T10:00:00Z", "reviewedBy": "reviewer-1", "findings": [] },
+  "context": { "owner": "aims-owner", "requirements": ["Identify interested parties and external issues"], "evidenceRefs": ["context-1"], "status": "implemented", "reviewedAt": "2026-08-23T10:00:00Z", "reviewedBy": "reviewer-1", "findings": [] },
+  "leadership": { "owner": "executive-owner", "requirements": ["Approve AI policy, roles and resources"], "evidenceRefs": ["policy-1"], "status": "implemented", "reviewedAt": "2026-08-23T10:00:00Z", "reviewedBy": "reviewer-1", "findings": [] },
+  "planning": { "owner": "risk-owner", "requirements": ["Plan risks, opportunities and measurable objectives"], "evidenceRefs": ["objectives-1"], "status": "implemented", "reviewedAt": "2026-08-23T10:00:00Z", "reviewedBy": "reviewer-1", "findings": [] },
+  "support": { "owner": "operations-owner", "requirements": ["Provide competence, awareness, communication and document control"], "evidenceRefs": ["support-1"], "status": "implemented", "reviewedAt": "2026-08-23T10:00:00Z", "reviewedBy": "reviewer-1", "findings": [] },
+  "operation": { "owner": "operations-owner", "requirements": ["Operate impact, risk and control processes"], "evidenceRefs": ["operation-1"], "status": "implemented", "reviewedAt": "2026-08-23T10:00:00Z", "reviewedBy": "reviewer-1", "findings": [] },
+  "performanceEvaluation": { "owner": "audit-owner", "requirements": ["Monitor, audit and perform management review"], "evidenceRefs": ["audit-1"], "status": "implemented", "reviewedAt": "2026-08-23T10:00:00Z", "reviewedBy": "reviewer-1", "findings": [] },
+  "improvement": { "owner": "aims-owner", "requirements": ["Correct nonconformities and verify effectiveness"], "evidenceRefs": ["capa-1"], "status": "implemented", "reviewedAt": "2026-08-23T10:00:00Z", "reviewedBy": "reviewer-1", "findings": [] },
+  "authorityBoundary": "Synthetic fixture for the PALO overlay; it is not ISO certification or operational conformance evidence."
+}

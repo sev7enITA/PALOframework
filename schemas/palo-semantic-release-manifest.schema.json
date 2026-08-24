@@ -21,7 +21,7 @@
         "properties": {
           "itemId": { "type": "string", "format": "uri" },
           "path": { "type": "string", "pattern": "^(data|formal|schemas)/" },
-          "role": { "enum": ["canonical-catalog", "lifecycle-definition", "mapping-registry", "invariant-registry", "json-ld-context", "ontology", "constraint-profile", "schema", "change-impact"] },
+          "role": { "enum": ["canonical-catalog", "lifecycle-definition", "control-registry", "indicator-registry", "gate-registry", "source-registry", "control-pack-registry", "mapping-registry", "invariant-registry", "json-ld-context", "ontology", "constraint-profile", "schema", "change-impact"] },
           "schemaPath": { "type": "string", "pattern": "^schemas/" },
           "semanticVersion": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
           "status": { "enum": ["approved-for-release", "compatibility-contract"] },

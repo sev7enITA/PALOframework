@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paloframework.org/schemas/palo-gpai-systemic-risk-record.schema.json",
+  "title": "PALO GPAI and Systemic-Risk Record",
+  "type": "object",
+  "required": ["format", "schemaVersion", "recordId", "caseId", "model", "roleAssessment", "providerObligations", "deployerControls", "systemicRisk", "incidents", "review"],
+  "properties": {
+    "format": { "const": "palo-gpai-systemic-risk-record" }, "schemaVersion": { "const": "1.0.0" }, "recordId": { "type": "string" }, "caseId": { "type": "string" },
+    "model": { "type": "object", "required": ["modelId", "provider", "version", "releaseDate", "componentInventoryRef"], "properties": { "modelId": { "type": "string" }, "provider": { "type": "string" }, "version": { "type": "string" }, "releaseDate": { "type": "string", "format": "date" }, "componentInventoryRef": { "type": "string" } }, "additionalProperties": false },
+    "roleAssessment": { "type": "object", "required": ["roles", "materialModification", "systemicRiskStatus", "legalReviewRef"], "properties": { "roles": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "enum": ["provider", "downstream-provider", "deployer", "importer", "distributor"] } }, "materialModification": { "type": "boolean" }, "systemicRiskStatus": { "enum": ["designated", "presumed", "not-designated", "undetermined"] }, "legalReviewRef": { "type": "string" } }, "additionalProperties": false },
+    "providerObligations": { "type": "array", "items": { "$ref": "#/$defs/obligation" } },
+    "deployerControls": { "type": "array", "items": { "$ref": "#/$defs/obligation" } },
+    "systemicRisk": { "type": "object", "required": ["scenarios", "evaluations", "mitigations", "residualFindings", "modelReportingRoute"], "properties": { "scenarios": { "$ref": "#/$defs/strings" }, "evaluations": { "$ref": "#/$defs/strings" }, "mitigations": { "$ref": "#/$defs/strings" }, "residualFindings": { "type": "array", "items": { "type": "string" } }, "modelReportingRoute": { "type": "string" } }, "additionalProperties": false },
+    "incidents": { "type": "object", "required": ["providerRoute", "authorityRoute", "sharingProtocol"], "properties": { "providerRoute": { "type": "string" }, "authorityRoute": { "type": "string" }, "sharingProtocol": { "type": "string" } }, "additionalProperties": false },
+    "review": { "type": "object", "required": ["status", "reviewedAt", "reviewedBy", "validUntil"], "properties": { "status": { "enum": ["accepted", "conditional", "rejected"] }, "reviewedAt": { "type": "string", "format": "date-time" }, "reviewedBy": { "type": "string" }, "validUntil": { "type": "string", "format": "date-time" } }, "additionalProperties": false }
+  },
+  "$defs": {
+    "strings": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string" } },
+    "obligation": { "type": "object", "required": ["obligationId", "applicable", "evidenceRef", "status"], "properties": { "obligationId": { "type": "string" }, "applicable": { "type": "boolean" }, "evidenceRef": { "type": "string" }, "status": { "enum": ["accepted", "conditional", "missing", "not-applicable"] } }, "additionalProperties": false }
+  },
+  "additionalProperties": false
+}

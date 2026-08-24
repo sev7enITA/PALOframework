@@ -1,0 +1,10 @@
+{
+  "format": "palo-affected-person-case", "schemaVersion": "1.0.0", "caseId": "appeal-1", "systemCaseId": "case-example", "systemVersion": "1.0.0",
+  "notice": { "noticeId": "notice-1", "deliveredAt": "2026-08-20T09:00:00Z", "channel": "web", "accessibleFormats": ["html", "plain-language"], "aiRole": "AI supported the preliminary recommendation.", "significance": "A human makes the final decision.", "humanContact": "review@example.test", "appealRoute": "appeal@example.test" },
+  "intake": { "receivedAt": "2026-08-20T10:00:00Z", "acknowledgedAt": "2026-08-20T10:10:00Z", "requestType": "appeal", "urgency": "standard", "deadlineAt": "2026-08-27T10:00:00Z" },
+  "review": { "reviewerId": "reviewer-2", "reviewerRole": "Independent reviewer", "independentFromOriginalDecision": true, "conflictCheck": "Reviewer had no role in the original decision.", "evidenceReviewed": ["decision-record-1"], "completedAt": "2026-08-21T10:00:00Z" },
+  "outcome": { "decision": "overturned", "reasons": "The source record used by the original recommendation was incomplete.", "communicatedAt": "2026-08-21T11:00:00Z" },
+  "remedy": { "required": true, "actions": ["Correct the source record"], "owner": "case-owner", "dueAt": "2026-08-24T10:00:00Z", "status": "completed", "verified": true },
+  "privacyBoundary": "Personal details are retained only in the authorized case-management system.",
+  "audit": { "createdAt": "2026-08-20T10:00:00Z", "updatedAt": "2026-08-22T10:00:00Z", "recordDigest": "sha256:0000000000000000000000000000000000000000000000000000000000000000" }
+}

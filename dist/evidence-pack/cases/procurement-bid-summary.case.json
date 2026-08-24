@@ -1,0 +1,63 @@
+{
+  "format": "palo-case-file",
+  "schemaVersion": "1.0.0",
+  "caseId": "case-gold-procurement-bids",
+  "title": "Gold case: procurement bid summarization",
+  "status": "review",
+  "createdAt": "2026-08-12T08:00:00Z",
+  "updatedAt": "2026-08-12T08:00:00Z",
+  "owner": "PALO Evidence Pack educational review",
+  "context": {
+    "domain": "procurement",
+    "scenario": "A supplier-hosted assistant summarizes synthetic bids but may not rank suppliers, award a contract or alter evaluation records.",
+    "exampleStatus": "educational-non-production",
+    "goldCase": true,
+    "completionMinutes": 8,
+    "learningObjective": "Connect supplier due diligence, authority boundaries and evidence gaps before pilot approval.",
+    "sourceStatus": "Starter references were checked on the recorded date; applicability and current status require human review.",
+    "limitations": "Fictional suppliers and bids; no procurement procedure, data flow, security control or jurisdiction is validated.",
+    "decisionQuestion": "May the assistant summarize bids without influencing scoring or award authority?",
+    "declaredAuthority": {
+      "allowed": ["Summarize synthetic bid text", "Flag missing fields"],
+      "prohibited": ["Rank suppliers", "Score bids", "Award a contract", "Modify the evaluation record"]
+    },
+    "expectedEffect": "Reviewers receive traceable summaries while the authoritative evaluation record remains unchanged.",
+    "verificationMethod": "Sample summaries against source text and verify that scoring and award systems received no writes."
+  },
+  "assessments": [
+    {
+      "assessmentId": "assessment-gold-procurement",
+      "module": "PALO Evidence Pack",
+      "recordedAt": "2026-08-12T08:00:00Z",
+      "data": {
+        "decision": "proceed-with-conditions",
+        "conditions": ["Complete supplier evidence gaps", "Keep award authority with named reviewers", "Log source-to-summary traceability"]
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "evidenceId": "evidence-gold-procurement-gaps",
+      "title": "Synthetic supplier evidence gap list",
+      "kind": "supplier-questionnaire",
+      "status": "ready",
+      "recordedAt": "2026-08-12T08:00:00Z",
+      "content": {
+        "openItems": ["Subprocessor inventory", "Retention and deletion evidence", "Change notification route"]
+      }
+    }
+  ],
+  "sources": [
+    {
+      "sourceId": "src-iso-42001",
+      "title": "ISO/IEC 42001 AI management systems",
+      "url": "https://www.iso.org/standard/81230.html",
+      "sourceType": "standard",
+      "publisher": "International Organization for Standardization",
+      "checkedAt": "2026-08-12T08:00:00Z",
+      "freshness": { "status": "current", "reviewIntervalDays": 180, "nextReviewAt": "2027-02-08T08:00:00Z" }
+    }
+  ],
+  "incidents": [],
+  "handoffs": []
+}

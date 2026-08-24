@@ -15,6 +15,7 @@ import {
 } from "./auth.js";
 import { createPaloMcpServer, parseExposedTools } from "./server.js";
 import { loadEnforcementProviderFromEnvironment } from "./providers/from-environment.js";
+import { loadProductionProfileFromEnvironment } from "./production-admission.js";
 
 export function parseAllowedHosts(value) {
   return [...new Set(String(value || "").split(",").map((host) => host.trim().toLowerCase()).filter(Boolean))];
@@ -30,7 +31,7 @@ export function createAuthenticatedMcpApp({ runtime, token, oidc, host = "127.0.
     exposedTools: authorizedToolNames(requestContext.authInfo, exposedTools),
     requestContext
   }), { legacy: "stateless" });
-  app.get("/health", (context) => context.json({ status: "ok", service: "palo-mcp-streamable-http", version: "2.6.0", frameworkRelease: "3.0.1", releaseStatus: "developer-preview", assuranceCycle: "identity-bound-durable", mcpProtocol: ["2026-07-28", "2025-era-stateless"], authentication: auth.mode, enterpriseManagedAuthorization: auth.mode === "oidc" ? "resource-server-ready" : "disabled", productionUse: false }));
+  app.get("/health", (context) => context.json({ status: "ok", service: "palo-mcp-streamable-http", version: "2.6.0", frameworkRelease: "3.1.0", releaseStatus: "developer-preview", assuranceCycle: "identity-bound-durable", mcpProtocol: ["2026-07-28", "2025-era-stateless"], authentication: auth.mode, enterpriseManagedAuthorization: auth.mode === "oidc" ? "resource-server-ready" : "disabled", productionUse: false }));
   if (auth.metadata) {
     const metadataPath = new URL(auth.resourceMetadataUrl).pathname;
     app.get(metadataPath, (context) => context.json(auth.metadata));
@@ -58,6 +59,7 @@ export function listenMcpApp(app, { port, host }, onListening) {
 }
 
 if (import.meta.url === pathToFileURL(process.argv[1]).href) {
+  loadProductionProfileFromEnvironment();
   const token = process.env.PALO_MCP_HTTP_TOKEN;
   const host = process.env.PALO_MCP_HTTP_HOST || "127.0.0.1";
   const port = Number(process.env.PALO_MCP_HTTP_PORT || 8788);

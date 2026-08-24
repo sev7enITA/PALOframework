@@ -289,6 +289,17 @@
     });
   }
 
+  function semanticVersionAtMost(version, release) {
+    var left = String(version || "").match(/^(\d+)\.(\d+)\.(\d+)$/);
+    var right = String(release || "").match(/^(\d+)\.(\d+)\.(\d+)$/);
+    if (!left || !right) return false;
+    for (var index = 1; index <= 3; index += 1) {
+      if (Number(left[index]) < Number(right[index])) return true;
+      if (Number(left[index]) > Number(right[index])) return false;
+    }
+    return true;
+  }
+
   function runSelfTest() {
     var canvas = graphElement.querySelector("canvas");
     var checks = [
@@ -296,7 +307,7 @@
       { name: "fifteen unique modules", pass: new Set(data.nodes.filter(function (node) { return node.type === "module"; }).map(function (node) { return node.id; })).size === 15 },
       { name: "all graph entity types", pass: ["stage", "module", "artifact", "control", "metric", "source", "actor"].every(function (type) { return data.nodes.some(function (node) { return node.type === type; }); }) },
       { name: "weighted relationships", pass: data.links.every(function (link) { return /^W[2-5]$/.test(link.weight) && link.artifactTransferred; }) },
-      { name: "versioned semantic nodes", pass: data.nodes.every(function (node) { return node.semanticId && node.definitionVersion === data.semanticVersion && node.evidenceClass && node.authorityBoundary && node.lastReviewed; }) },
+      { name: "independently versioned semantic nodes", pass: data.nodes.every(function (node) { return node.semanticId && semanticVersionAtMost(node.definitionVersion, data.semanticVersion) && node.evidenceClass && node.authorityBoundary && node.lastReviewed; }) },
       { name: "versioned relationship mappings", pass: data.links.every(function (link) { return link.semanticId && link.relationshipVersion && link.mappingBasis; }) },
       { name: "navigation entity properties", pass: data.navigation.length === 12 && data.navigation.every(function (node) { return node.properties.Destination && node.properties.Stakeholder && node.properties.Phase && node.properties.Artifact && node.properties.Status; }) },
       { name: "navigation relationships", pass: data.links.filter(function (link) { return link.relationType === "navigation"; }).length >= 11 },

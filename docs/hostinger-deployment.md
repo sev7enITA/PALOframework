@@ -1,4 +1,4 @@
-# Hostinger deployment - PALO Web v3.0.1
+# Hostinger deployment - PALO Web v3.1.0
 
 The canonical deploy input is the `dist/` directory produced by:
 
@@ -30,7 +30,9 @@ Upload the ZIP contents (not the enclosing folder) with an FTP client to `public
 ## Post-deploy checks
 
 ```sh
-curl -fsSL https://paloframework.org/ | grep -F "v3.0.1 - Evidence Pack Activation"
+curl -fsSL https://paloframework.org/ | grep -F "v3.1.0 - Governance Control Plane"
+curl -fsSI https://paloframework.org/docs/palo-v3.1-governance-control-plane.html
+curl -fsSL https://paloframework.org/data/governance-control-packs.json
 curl -fsSI https://paloframework.org/docs/palo-v3-semantic-foundation.html
 curl -fsSL https://paloframework.org/data/semantic-release-manifest.json
 curl -fsSI https://paloframework.org/PALO_OWASPGenAI2026.html

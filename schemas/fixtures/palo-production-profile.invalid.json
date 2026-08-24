@@ -1,0 +1,11 @@
+{
+  "format": "palo-production-profile", "schemaVersion": "1.0.0", "profileId": "unsafe", "deploymentId": "unsafe", "environment": "production",
+  "identity": { "mode": "shared-token", "issuer": "", "audience": "", "workloadIdentity": false, "reviewerIdentity": false, "tokenExpiryEnforced": false, "evidenceRef": "none" },
+  "tenantIsolation": { "mode": "none", "tokenTenantBound": false, "claimTenantBound": false, "storageTenantBound": false, "negativeTestRef": "none" },
+  "persistence": { "driver": "sqlite", "highAvailability": false, "durableQueue": false, "backupRecoveryTestRef": "none", "migrationControlRef": "none" },
+  "keyCustody": { "provider": "process-environment", "privateKeyInProcess": true, "rotationRef": "none", "revocationRef": "none", "attestationRef": "none" },
+  "executionBoundary": { "connectorMode": "in-process", "inProcessBypassDisabled": false, "oneTimeCapabilities": true, "receiptRequired": true, "outcomeVerificationRequired": true, "bypassResistanceTestRef": "none", "connectorAttestationRef": "none" },
+  "observability": { "securityEvents": false, "tenantSafeTelemetry": false, "alerting": false, "incidentRunbookRef": "none", "evidenceRef": "none" },
+  "independentAssurance": { "completed": false, "scope": "none", "reportRef": "none", "openCriticalFindings": 1 },
+  "decision": { "status": "admitted", "decidedAt": "2026-08-23T10:00:00Z", "decidedBy": "nobody", "validUntil": "2026-11-23T10:00:00Z", "reasons": ["unsafe"] }
+}

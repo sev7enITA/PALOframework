@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paloframework.org/schemas/palo-affected-person-case.schema.json",
+  "title": "PALO Affected-Person Notice, Appeal and Remedy Case",
+  "type": "object",
+  "required": ["format", "schemaVersion", "caseId", "systemCaseId", "systemVersion", "notice", "intake", "review", "outcome", "remedy", "privacyBoundary", "audit"],
+  "properties": {
+    "format": { "const": "palo-affected-person-case" },
+    "schemaVersion": { "const": "1.0.0" },
+    "caseId": { "type": "string", "minLength": 1 },
+    "systemCaseId": { "type": "string", "minLength": 1 },
+    "systemVersion": { "type": "string", "minLength": 1 },
+    "notice": { "type": "object", "required": ["noticeId", "deliveredAt", "channel", "accessibleFormats", "aiRole", "significance", "humanContact", "appealRoute"], "properties": { "noticeId": { "type": "string" }, "deliveredAt": { "type": "string", "format": "date-time" }, "channel": { "type": "string" }, "accessibleFormats": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string" } }, "aiRole": { "type": "string", "minLength": 10 }, "significance": { "type": "string", "minLength": 10 }, "humanContact": { "type": "string", "minLength": 3 }, "appealRoute": { "type": "string", "minLength": 3 } }, "additionalProperties": false },
+    "intake": { "type": "object", "required": ["receivedAt", "acknowledgedAt", "requestType", "urgency", "deadlineAt"], "properties": { "receivedAt": { "type": "string", "format": "date-time" }, "acknowledgedAt": { "type": "string", "format": "date-time" }, "requestType": { "enum": ["explanation", "correction", "appeal", "human-review", "remedy", "other"] }, "urgency": { "enum": ["standard", "urgent", "immediate-harm"] }, "deadlineAt": { "type": "string", "format": "date-time" } }, "additionalProperties": false },
+    "review": { "type": "object", "required": ["reviewerId", "reviewerRole", "independentFromOriginalDecision", "conflictCheck", "evidenceReviewed", "completedAt"], "properties": { "reviewerId": { "type": "string" }, "reviewerRole": { "type": "string" }, "independentFromOriginalDecision": { "const": true }, "conflictCheck": { "type": "string", "minLength": 10 }, "evidenceReviewed": { "type": "array", "minItems": 1, "items": { "type": "string" } }, "completedAt": { "type": "string", "format": "date-time" } }, "additionalProperties": false },
+    "outcome": { "type": "object", "required": ["decision", "reasons", "communicatedAt"], "properties": { "decision": { "enum": ["upheld", "varied", "overturned", "withdrawn", "inconclusive"] }, "reasons": { "type": "string", "minLength": 20 }, "communicatedAt": { "type": "string", "format": "date-time" } }, "additionalProperties": false },
+    "remedy": { "type": "object", "required": ["required", "actions", "owner", "dueAt", "status", "verified"], "properties": { "required": { "type": "boolean" }, "actions": { "type": "array", "items": { "type": "string" } }, "owner": { "type": "string" }, "dueAt": { "type": "string", "format": "date-time" }, "status": { "enum": ["not-required", "planned", "in-progress", "completed", "overdue"] }, "verified": { "type": "boolean" } }, "additionalProperties": false },
+    "privacyBoundary": { "type": "string", "minLength": 20 },
+    "audit": { "type": "object", "required": ["createdAt", "updatedAt", "recordDigest"], "properties": { "createdAt": { "type": "string", "format": "date-time" }, "updatedAt": { "type": "string", "format": "date-time" }, "recordDigest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" } }, "additionalProperties": false }
+  },
+  "additionalProperties": false
+}

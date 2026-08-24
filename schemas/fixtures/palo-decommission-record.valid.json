@@ -1,0 +1,10 @@
+{
+  "format": "palo-decommission-record", "schemaVersion": "1.0.0", "recordId": "decommission-1", "caseId": "case-example", "systemVersion": "1.0.0", "reason": "The synthetic system has reached its approved end of service.",
+  "plan": { "owner": "service-owner", "approvedAt": "2026-08-01T10:00:00Z", "targetEndAt": "2026-09-01T10:00:00Z", "rollbackWindow": "14 days", "dependencies": ["provider contract"] },
+  "stakeholders": [{ "group": "users", "noticeAt": "2026-08-02T10:00:00Z", "transitionRoute": "replacement service", "supportOwner": "support-owner" }],
+  "capabilityRevocation": { "status": "verified-complete", "verifiedAt": "2026-09-01T10:00:00Z", "verifiedBy": "security-owner", "evidenceRef": "revocation-1" },
+  "dataDisposition": [{ "assetId": "dataset-1", "action": "delete", "dueAt": "2026-09-05T10:00:00Z", "verificationRef": "deletion-1", "status": "verified-complete" }],
+  "supplierExit": { "status": "verified-complete", "verifiedAt": "2026-09-01T10:00:00Z", "verifiedBy": "procurement-owner", "evidenceRef": "supplier-exit-1" },
+  "residualMonitoring": { "period": "90 days", "owner": "risk-owner", "indicators": ["open incidents"], "reopenTriggers": ["post-retirement harm report"] },
+  "closureDecision": { "status": "closed", "decidedAt": "2026-09-06T10:00:00Z", "decidedBy": "governance-owner", "evidenceRefs": ["revocation-1", "deletion-1"] }
+}

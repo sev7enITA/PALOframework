@@ -3,7 +3,9 @@ import { serveStdio } from "@modelcontextprotocol/server/stdio";
 import { GovernanceRuntime } from "./core.js";
 import { createPaloMcpServer, parseExposedTools } from "./server.js";
 import { loadEnforcementProviderFromEnvironment } from "./providers/from-environment.js";
+import { loadProductionProfileFromEnvironment } from "./production-admission.js";
 
+loadProductionProfileFromEnvironment();
 const enforcementProvider = await loadEnforcementProviderFromEnvironment();
 const runtime = new GovernanceRuntime({ enforcementProvider });
 const exposedTools = parseExposedTools(process.env.PALO_MCP_EXPOSED_TOOLS);

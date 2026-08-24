@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>PALO v3.1 Governance Control Plane | PALO Documentation</title>
+  <meta name="description" content="Public PALO documentation: PALO v3.1 Governance Control Plane.">
+  <link rel="canonical" href="https://paloframework.org/docs/palo-v3.1-governance-control-plane.html">
+  <link rel="icon" type="image/webp" href="../assets/logo.webp">
+  <link rel="stylesheet" href="../assets/palo-icons.css">
+  <link rel="stylesheet" href="../assets/palo-v21.css?v=3.1.0">
+  <link rel="stylesheet" href="../assets/palo-docs.css">
+  <script src="../assets/palo-icons.js" defer></script>
+  <script src="../assets/palo-v21.js?v=3.1.0" defer></script>
+  <script src="../assets/palo-docs.js" defer></script>
+</head>
+<body class="palo-v21 palo-doc-page" data-doc-source="docs/palo-v3.1-governance-control-plane.md">
+  <a class="palo-skip-link" href="#main-content">Skip to main content</a>
+  <header class="palo-site-header"><div class="palo-shell palo-header-inner">
+    <a class="palo-brand" href="../index.html"><img src="../assets/logo.webp" alt="PALO">PALO FRAMEWORK</a>
+    <button class="palo-menu-toggle" type="button" data-palo-menu-toggle aria-expanded="false" aria-controls="palo-primary-nav" aria-label="Open navigation"><span data-palo-icon="menu" aria-hidden="true"></span></button>
+    <nav class="palo-nav" id="palo-primary-nav" aria-label="Primary navigation"><a href="../designs/theory-to-practice-infographic/">Start</a><a href="../PALO_AIGovernance.html">Agentic Governance</a><a href="../governance-hub/">Governance Hub</a><a href="../index.html#guided-journeys">Tools</a><a href="../PALO_DocumentationLibrary.html" aria-current="page">Documentation</a><a href="../PALO_AIProductionReadiness.html">Readiness</a></nav>
+  </div></header>
+  <main id="main-content" class="palo-doc-main">
+    <div class="palo-shell">
+      <nav class="palo-doc-breadcrumb" aria-label="Breadcrumb"><a href="../PALO_DocumentationLibrary.html">Documentation Library</a><span aria-hidden="true">/</span><span>Start and adoption</span></nav>
+      <header class="palo-doc-hero"><p class="palo-eyebrow">Start and adoption | Public documentation</p><h1>PALO v3.1 Governance Control Plane</h1><div class="palo-doc-facts"><span><small>Level</small><strong>reference</strong></span><span><small>Audience</small><strong>executive | governance | technical | builder</strong></span><span><small>Product</small><strong>PALO / PALO-AI</strong></span><span><small>Status</small><strong>Canonical v3.1.0</strong></span><span><small>Read</small><strong>7 min</strong></span></div><p class="palo-doc-source">Published HTML view | Source: <code>docs/palo-v3.1-governance-control-plane.md</code></p><div class="palo-actions"><button class="palo-btn" type="button" data-doc-copy-link>Copy link</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-share>Share page</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-print>Print</button></div><p class="palo-action-status" data-doc-action-status role="status" aria-live="polite"></p></header>
+      <details class="palo-doc-mobile-toc"><summary>On this page</summary><ol><li class="depth-2"><a href="#what-complete-means">What complete means</a></li><li class="depth-2"><a href="#canonical-implementation">Canonical implementation</a></li><li class="depth-2"><a href="#applicability-and-lifecycle-gates">Applicability and lifecycle gates</a></li><li class="depth-2"><a href="#evidence-contracts">Evidence contracts</a></li><li class="depth-2"><a href="#palo-ai-production-admission">PALO-AI production admission</a></li><li class="depth-2"><a href="#policywatcher-relationship">PolicyWatcher relationship</a></li><li class="depth-2"><a href="#validation">Validation</a></li><li class="depth-2"><a href="#primary-normative-references">Primary normative references</a></li></ol></details>
+      <div class="palo-doc-layout"><aside class="palo-doc-sidebar" aria-label="On this page"><strong>On this page</strong><ol><li class="depth-2"><a href="#what-complete-means">What complete means</a></li><li class="depth-2"><a href="#canonical-implementation">Canonical implementation</a></li><li class="depth-2"><a href="#applicability-and-lifecycle-gates">Applicability and lifecycle gates</a></li><li class="depth-2"><a href="#evidence-contracts">Evidence contracts</a></li><li class="depth-2"><a href="#palo-ai-production-admission">PALO-AI production admission</a></li><li class="depth-2"><a href="#policywatcher-relationship">PolicyWatcher relationship</a></li><li class="depth-2"><a href="#validation">Validation</a></li><li class="depth-2"><a href="#primary-normative-references">Primary normative references</a></li></ol></aside><article class="palo-doc-content"><h1 id="palo-v31-governance-control-plane">PALO v3.1 Governance Control Plane<a class="palo-doc-anchor" href="#palo-v31-governance-control-plane" aria-label="Link to PALO v3.1 Governance Control Plane">#</a></h1><p>Status: Released governance specification and evidence contracts, 23 August 2026. PALO-AI remains a developer-preview reference runtime and is not admitted for production use by the bundled production profile check.</p>
+<p>PALO v3.1 turns twelve previously incomplete governance areas into canonical, applicability-aware control packs. Each pack connects controls, indicators, lifecycle gates, evidence contracts, completion criteria, stop conditions and a residual boundary. This release makes the governance expectations complete at the control-plane level. It does not assert that any adopting organization has implemented them or that the bundled PALO-AI runtime is production ready.</p>
+<h2 id="what-complete-means">What complete means<a class="palo-doc-anchor" href="#what-complete-means" aria-label="Link to What complete means">#</a></h2><p>The word <code>complete</code> has four deliberately separate meanings:</p>
+<div class="palo-doc-table-wrap" tabindex="0" aria-label="Scrollable documentation table"><table>
+<thead>
+<tr>
+<th>Level</th>
+<th>Meaning</th>
+<th>Who can establish it</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Governance complete</td>
+<td>Every applicable domain has canonical owned controls, schema-valid evidence records, indicators and thresholds, gate integration, stop conditions and an accepted decision. A non-applicable decision is reasoned and accountable.</td>
+<td>PALO defines the contract; the case authority accepts the scoped record.</td>
+</tr>
+<tr>
+<td>Operational complete</td>
+<td>The organization has implemented the controls in real people, processes and technology, populated current evidence from the actual system and tested operating effectiveness over an appropriate period.</td>
+<td>The adopting organization and its assurance functions.</td>
+</tr>
+<tr>
+<td>Production complete</td>
+<td>Operational controls are non-bypassable in the deployed architecture; identity, tenant, persistence, key, connector and recovery boundaries are demonstrated and independently challenged.</td>
+<td>The accountable production authority, supported by independent assurance.</td>
+</tr>
+<tr>
+<td>Certification complete</td>
+<td>An authorized independent body has certified a defined management-system scope against the relevant standard.</td>
+<td>An accredited or otherwise authorized certification body, never PALO itself.</td>
+</tr>
+</tbody></table></div>
+<p>Therefore, PALO v3.1 is governance complete for the twelve domains listed below. It is not automatically operationally complete for an adopter, production complete for a deployment or certification complete for ISO/IEC 42001.</p>
+<h2 id="canonical-implementation">Canonical implementation<a class="palo-doc-anchor" href="#canonical-implementation" aria-label="Link to Canonical implementation">#</a></h2><p>The machine-readable registry is <a href="../data/governance-control-packs.json">governance-control-packs.json</a>. It is validated against <a href="../schemas/palo-governance-control-packs.schema.json">palo-governance-control-packs.schema.json</a>. The v3.1 semantic release binds the registry, its referenced controls, indicators, gates and evidence schemas by digest.</p>
+<div class="palo-doc-table-wrap" tabindex="0" aria-label="Scrollable documentation table"><table>
+<thead>
+<tr>
+<th>Domain</th>
+<th>v3.1 implementation</th>
+<th>Remaining deployment or authority boundary</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Fairness and subgroup testing</td>
+<td>Quality-of-service, allocation and representational-harm controls; intersectional group register; approved metrics, sample adequacy and thresholds; disparity and harmful-representation indicators.</td>
+<td>PALO cannot select a scientifically or socially valid fairness objective for the adopter. Metric choice, trade-offs and residual disparity need accountable review.</td>
+</tr>
+<tr>
+<td>System cards and explanations</td>
+<td>Version-bound system card plus explanation artifacts and stakeholder comprehension tests for affected people, operators, reviewers and customers.</td>
+<td>A passing template does not prove that every affected person understands an outcome or that an explanation is legally sufficient.</td>
+</tr>
+<tr>
+<td>Notice, appeal, review and remedy</td>
+<td>Affected-person case contract with notice delivery, accessible intake, deadline, independence check, reasoned outcome, remedy and verified closure.</td>
+<td>Legal rights, deadlines, reviewer independence and available remedies remain jurisdiction and context specific.</td>
+</tr>
+<tr>
+<td>Article 50 transparency</td>
+<td>Provider/deployer role assessment, AI interaction notice, machine-readable marking, deployer label, content identity and provenance verification.</td>
+<td>PALO does not prescribe a single watermark standard or decide legal equivalence. Content-path testing and current legal review remain required.</td>
+</tr>
+<tr>
+<td>Data lifecycle</td>
+<td>Lineage for training, evaluation, prompt, retrieval, embedding and operational data; annotation protocol and quality; permission, sensitivity, purpose, lawful-basis record, retention and deletion verification.</td>
+<td>Schema validity cannot establish legal basis, ownership, representativeness or actual deletion without operational evidence.</td>
+</tr>
+<tr>
+<td>GPAI and systemic risk</td>
+<td>Provider, modifier and deployer role pack; model and dependency inventory; downstream evidence; systemic-risk scenarios, evaluation, mitigation and residual findings.</td>
+<td>PALO does not designate systemic-risk GPAI, verify provider disclosures or establish conformity with the voluntary GPAI Code.</td>
+</tr>
+<tr>
+<td>Serious incidents and decommissioning</td>
+<td>Timestamped reporting-clock record, reportability decision and authority receipt; retirement gate for transition, revocation, data disposition and residual monitoring.</td>
+<td>Reportability, authority routing and deadlines require current jurisdiction-specific analysis.</td>
+</tr>
+<tr>
+<td>Accessibility</td>
+<td>Automated and manual testing of critical journeys and generated outcomes, assistive-technology results, representative disabled-user evaluation and remediation.</td>
+<td>PALO does not certify WCAG conformance or replace product, sector and jurisdiction-specific accessibility assessment.</td>
+</tr>
+<tr>
+<td>Environmental performance</td>
+<td>Boundary, measurement or estimation method, energy, emissions, water and hardware evidence, alternatives and accountable budget decisions.</td>
+<td>Supplier data, lifecycle-accounting method and external environmental claims require independent verification.</td>
+</tr>
+<tr>
+<td>AI literacy effectiveness</td>
+<td>Role-competence matrix, role-specific learning, practical assessment, observed control behavior, refresh triggers and post-training error indicators.</td>
+<td>Attendance or a generic quiz is not accepted as proof of competence. The organization owns curriculum and job-specific standards.</td>
+</tr>
+<tr>
+<td>ISO/IEC 42001 AIMS overlay</td>
+<td>Scope, context, leadership, policy, objectives, support, operation, performance evaluation, internal audit, management review, nonconformity and corrective action.</td>
+<td>This overlay is not the licensed standard, a clause-by-clause interpretation or certification.</td>
+</tr>
+<tr>
+<td>PALO-AI production boundary</td>
+<td>Strict production profile, OIDC tenant-to-claim binding and fail-closed startup admission covering persistence, tenancy, key custody, connector bypass, observability and independent assurance.</td>
+<td>The bundled SQLite, in-process, process-key reference runtime is denied by its own admission check. Production completion requires a different deployment capability attestation and independent evidence.</td>
+</tr>
+</tbody></table></div>
+<h2 id="applicability-and-lifecycle-gates">Applicability and lifecycle gates<a class="palo-doc-anchor" href="#applicability-and-lifecycle-gates" aria-label="Link to Applicability and lifecycle gates">#</a></h2><p>Not every control applies to every system. Each gate now has unconditional and conditional controls. The conditional list means that the case team must answer the domain applicability questions and then either:</p>
+<ol>
+<li>bring the controls and minimum evidence into scope; or</li>
+<li>record a reasoned non-applicability decision with an accountable reviewer and current evidence.</li>
+</ol>
+<p>Silence, a blank field or the absence of an artifact is not a non-applicability decision. If a pack stop condition is present, the relevant lifecycle gate cannot pass without a recorded mitigation, condition or accountable exception allowed by organizational policy.</p>
+<p>The six gates are Frame, Classify, Assess, Control, Measure and Prove. Their canonical control and indicator projections are generated from the v3.1 registries, which prevents a control pack from existing only in narrative documentation.</p>
+<h2 id="evidence-contracts">Evidence contracts<a class="palo-doc-anchor" href="#evidence-contracts" aria-label="Link to Evidence contracts">#</a></h2><p>PALO v3.1 adds the following schema families, each with one valid and one deliberately invalid fixture:</p>
+<ul>
+<li><code>palo-governance-assurance-record</code>: common control test, result, finding, corrective-action and accountable decision record.</li>
+<li><code>palo-system-card</code>: deployed-system identity, intended use, architecture, data, evaluation, limitations, oversight, monitoring and stakeholder explanations.</li>
+<li><code>palo-affected-person-case</code>: notice, appeal, independent review, outcome, remedy and closure.</li>
+<li><code>palo-article50-transparency-record</code>: actor role, content modality, obligation, exception, marking, label and provenance test.</li>
+<li><code>palo-data-lineage-record</code>: asset origin, transformations, annotations, permissions, quality, lawful-use record, retention and disposition.</li>
+<li><code>palo-gpai-systemic-risk-record</code>: GPAI role, model identity, provider/deployer evidence, scenario evaluation, mitigation, incident and downstream information.</li>
+<li><code>palo-serious-incident-record</code>: discovery, severity, reportability analysis, regulatory clocks, notification and corrective action.</li>
+<li><code>palo-decommission-record</code>: retirement scope, dependencies, stakeholder transition, access revocation, data disposition and residual monitoring.</li>
+<li><code>palo-aims-overlay-record</code>: AIMS scope, context, leadership, objectives, operations, performance evaluation, audit, management review and corrective action.</li>
+<li><code>palo-production-profile</code>: production identity, tenant isolation, persistence, durable work, key custody, execution boundary, observability, independent assurance and admission decision.</li>
+</ul>
+<p>Evidence references are claims about artifacts, not proof by themselves. The adopter must make the referenced records retrievable, current, access controlled and independently challengeable.</p>
+<h2 id="palo-ai-production-admission">PALO-AI production admission<a class="palo-doc-anchor" href="#palo-ai-production-admission" aria-label="Link to PALO-AI production admission">#</a></h2><p>Set <code>PALO_RUNTIME_MODE=production</code> and provide <code>PALO_PRODUCTION_PROFILE_PATH</code>. Startup validates the profile and compares it with the runtime capability attestation. Missing evidence, expired decisions, non-HTTPS identity metadata or an unmet deployment capability fails closed.</p>
+<p>The bundled capability attestation declares SQLite storage, no tenant storage isolation, in-process connectors, process-held signing material, no high availability, no durable distributed queue and no independent deployment assurance. As a result, even the schema-valid production fixture is denied. This is intentional: the repository now distinguishes a complete production-control contract from a production-capable implementation.</p>
+<p>OIDC-protected action processing also binds the configured token tenant to <code>authorityContext.tenantId</code>, <code>effectContract.resourceSelector.tenantId</code> and, when present, claim metadata. Production tenant-bound execution requires Action Claim 1.3. This prevents cross-tenant request substitution at the MCP boundary but does not create database-level isolation.</p>
+<h2 id="policywatcher-relationship">PolicyWatcher relationship<a class="palo-doc-anchor" href="#policywatcher-relationship" aria-label="Link to PolicyWatcher relationship">#</a></h2><p>PolicyWatcher remains an external change signal. It can identify a source or obligation change and create human-review-required evidence, but it does not silently rewrite PALO controls or decide legal applicability. The source registry now includes current EU AI Act, Article 50, GPAI, GDPR, ISO and WCAG references with review dates. A stale source marked <code>current</code> fails validation.</p>
+<p>The governance sequence is:</p>
+<ol>
+<li>PolicyWatcher produces a source-backed signal.</li>
+<li>An accountable reviewer verifies relevance and applicability.</li>
+<li>PALO maps the accepted change to affected packs, controls, indicators, gates and evidence contracts.</li>
+<li>A case decision records implementation, conditions, residual risk and the next review.</li>
+<li>A semantic release updates only after generated mappings and digests validate.</li>
+</ol>
+<h2 id="validation">Validation<a class="palo-doc-anchor" href="#validation" aria-label="Link to Validation">#</a></h2><p>Run:</p>
+<figure class="palo-doc-code"><figcaption>bash code</figcaption><pre tabindex="0"><code class="language-bash">npm run validate
+npm run validate:agentic
+npm run production:admission -- schemas/fixtures/palo-production-profile.valid.json</code></pre></figure><p>The third command is expected to return a denied runtime compatibility result for the bundled reference runtime. Use <code>--schema-only</code> to validate the profile contract without asserting runtime compatibility.</p>
+<h2 id="primary-normative-references">Primary normative references<a class="palo-doc-anchor" href="#primary-normative-references" aria-label="Link to Primary normative references">#</a></h2><ul>
+<li><a href="https://eur-lex.europa.eu/eli/reg/2024/1689/oj" target="_blank" rel="noopener noreferrer">Regulation (EU) 2024/1689, current consolidated text</a></li>
+<li><a href="https://digital-strategy.ec.europa.eu/en/policies/guidelines-ai-transparency-obligations" target="_blank" rel="noopener noreferrer">European Commission Article 50 transparency guidance</a></li>
+<li><a href="https://digital-strategy.ec.europa.eu/en/policies/contents-code-gpai" target="_blank" rel="noopener noreferrer">European Commission GPAI Code of Practice</a></li>
+<li><a href="https://digital-strategy.ec.europa.eu/en/policies/guidelines-gpai-providers" target="_blank" rel="noopener noreferrer">European Commission guidelines for GPAI providers</a></li>
+<li><a href="https://www.iso.org/standard/42001" target="_blank" rel="noopener noreferrer">ISO/IEC 42001 overview</a></li>
+<li><a href="https://www.iso.org/standard/42005" target="_blank" rel="noopener noreferrer">ISO/IEC 42005 overview</a></li>
+<li><a href="https://www.w3.org/TR/WCAG22/" target="_blank" rel="noopener noreferrer">W3C WCAG 2.2</a></li>
+</ul>
+<p>These links support applicability review. They do not make the PALO crosswalk authoritative over the source instruments.</p>
+</article></div>
+      <aside class="palo-doc-next"><div><small>Prerequisite</small><strong>One scoped AI system or AIMS</strong></div><div><small>Recommended next step</small><strong>Apply the relevant control packs to a Case File</strong></div></aside>
+      <section class="palo-doc-feedback" aria-labelledby="feedback-title"><p class="palo-eyebrow">Privacy-first feedback</p><h2 id="feedback-title">Help improve this guide</h2><p>Your feedback stays in your browser until you explicitly copy it, download it, or open an email draft. Do not include secrets, personal data, credentials or production identifiers.</p><form data-doc-feedback><div class="palo-form-grid"><div class="palo-field"><label for="feedback-role">Your role</label><select id="feedback-role" name="role"><option>Executive / governance owner</option><option>Platform or security engineer</option><option>No-code / low-code builder</option><option>External reviewer</option></select></div><div class="palo-field"><label for="feedback-category">Category</label><select id="feedback-category" name="category"><option>Clarity</option><option>Technical accuracy</option><option>Missing guidance</option><option>Accessibility</option></select></div><div class="palo-field palo-field-full"><label for="feedback-message">Feedback</label><textarea id="feedback-message" name="message" maxlength="3000" required placeholder="Describe the non-sensitive improvement you recommend."></textarea></div><div class="palo-form-actions"><button class="palo-btn" type="button" data-feedback-copy>Copy feedback</button><button class="palo-btn palo-btn-secondary" type="button" data-feedback-download>Download JSON</button><button class="palo-btn palo-btn-secondary" type="button" data-feedback-email>Email draft</button></div></div><p class="palo-action-status" data-feedback-status role="status" aria-live="polite"></p></form></section>
+    </div>
+  </main>
+  <footer class="palo-footer"><div class="palo-shell"><p>PALO public documentation. Developer preview boundaries apply.</p><div class="palo-footer-links"><a href="../PALO_AIGovernance.html">PALO-AI</a><a href="../governance-hub/">Governance Hub</a><a href="../PALO_AgenticCapabilityMatrix.html">Capability Matrix</a><a href="../PALO_AIProductionReadiness.html">Production Readiness</a><a href="../privacy-policy.html">Privacy</a></div></div></footer>
+</body></html>

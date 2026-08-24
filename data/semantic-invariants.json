@@ -1,7 +1,7 @@
 {
   "format": "palo-semantic-invariants",
   "schemaVersion": "1.0.0",
-  "semanticVersion": "3.0.0",
+  "semanticVersion": "3.1.0",
   "invariants": [
     { "invariantId": "SEM-01", "statement": "Every semantic entity has exactly one stable identifier.", "enforcedBy": ["SHACL", "JSON Schema"] },
     { "invariantId": "SEM-02", "statement": "Every canonical definition has exactly one semantic version.", "enforcedBy": ["SHACL", "generator"] },

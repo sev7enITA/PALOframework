@@ -4,7 +4,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![EU AI Act](https://img.shields.io/badge/EU%20AI%20Act-aligned-success)](https://eur-lex.europa.eu/eli/reg/2024/1689/oj)
-[![WCAG 2.1 AA target](https://img.shields.io/badge/WCAG%202.1-AA%20target-yellow)](https://www.w3.org/WAI/WCAG21/quickref/)
+[![WCAG 2.2 AA target](https://img.shields.io/badge/WCAG%202.2-AA%20target-yellow)](https://www.w3.org/TR/WCAG22/)
 [![Website](https://img.shields.io/badge/Website-paloframework.org-21808D)](https://paloframework.org)
 [![GitHub](https://img.shields.io/badge/GitHub-sev7enITA%2FPALOframework-black)](https://github.com/sev7enITA/PALOframework)
 
@@ -66,9 +66,9 @@ The framework is aligned with major AI governance references including:
 
 PALO is not a certification body and does not provide legal advice. It is a practical pre-screening, documentation, and governance support toolkit.
 
-> **PALO v3.0.0 semantic foundation:** canonical lifecycle definitions, relationships, decision history, evidence claims/evaluations and control-to-gate/source mappings now have stable semantic identity, explicit authority boundaries and executable schema/RDF/SHACL validation. The public Explorer is generated from this spine, and the semantic release inventory is digest-bound. See the [v3 semantic foundation guide](docs/palo-v3-semantic-foundation.md).
+> **PALO v3.1.0 governance control plane:** the v3 semantic foundation now binds twelve applicability-aware control packs, 31 controls, 38 indicators, conditional lifecycle gates and ten evidence-contract families. The packs cover fairness, system cards, affected-person rights, Article 50, data lifecycle, GPAI, serious incidents, accessibility, environment, AI literacy, ISO/IEC 42001 and the PALO-AI production boundary. See the [v3.1 governance control-plane guide](docs/palo-v3.1-governance-control-plane.md) and [semantic foundation](docs/palo-v3-semantic-foundation.md).
 
-> **PALO-AI v2.5 full-cycle developer preview:** the reference runtime now separates permission from outcome assurance through Effect Contracts, one-time execution capabilities, signed receipts, authoritative post-state verification, incident holds and single-instance recovery. The Governance Hub is an implemented React/Vite interface prototype using illustrative local data. These components are for isolated evaluation: they are not a production authorization service, an unavoidable execution boundary, a compliance certification, or a replacement for organization-owned identity, access control, key management, monitoring, backup, retention, legal review and independent security assurance.
+> **PALO-AI v2.6 developer preview:** the reference runtime adds identity-bound Action Claim 1.3, OIDC/JWKS resource-server checks, tenant-to-claim request binding, durable single-instance tasks, optional RFC 8785/Ed25519 evidence and a strict production-admission contract. Its own capability declaration denies production startup because SQLite, storage tenancy, managed keys, distributed durability, non-bypassable connectors and independent assurance are not implemented.
 
 ### PALO-AI for agentic automation platforms
 
@@ -106,6 +106,7 @@ n8n orchestrates what automation does. PALO governs whether an identified agent 
 - [Three-minute architecture-preview demo](media/palo-ai-n8n-architecture-preview-3min.mp4)
 - [Evidence-based capability matrix](agentic/capability-matrix.json)
 - [Public Production Readiness route](PALO_AIProductionReadiness.html)
+- [PALO v3.1 governance control-plane implementation](docs/palo-v3.1-governance-control-plane.md)
 
 ## Why PALO?
 
@@ -144,6 +145,7 @@ n8n orchestrates what automation does. PALO governs whether an identified agent 
 | [Platform Map](PALO_PlatformMap.html) | Operational status, stakeholder-intent routes, modules, artifacts, research boundaries, and accessible table navigation | Live |
 | [Operationalization Explorer / Stakeholder Onboarding](designs/theory-to-practice-infographic/) | Three-step local stakeholder routing into the six-phase weighted workflow and interactive 3D knowledge graph | Live |
 | [PALO v3 Semantic Foundation](docs/palo-v3-semantic-foundation.md) | Versioned semantic spine, lifecycle and gate history, atomic evidence contracts, mappings, RDF/SHACL and digest-bound release inventory | Live |
+| [PALO v3.1 Governance Control Plane](docs/palo-v3.1-governance-control-plane.md) | Twelve applicability-aware control packs with completion levels, canonical controls, indicators, gates, evidence schemas, stop conditions and residual boundaries | Live |
 
 ## Mobile Toolbox
 
@@ -158,6 +160,7 @@ The app is designed as a privacy-first mobile workspace for contextual AI govern
 
 | Date | Release | Highlights |
 | --- | --- | --- |
+| 2026-08-23 | v3.1.0 - Governance Control Plane | Twelve canonical control packs, 31 controls, 38 indicators, ten evidence-contract families, conditional gate integration, current source review and fail-closed PALO-AI production admission |
 | 2026-08-12 | v3.0.1 - Evidence Pack Activation | One primary activation route, preloaded local case, voluntary digest-bound validation receipt, three gold cases, `case:contribute` and a 30-day new-module freeze |
 | 2026-08-12 | v3.0.0 - Semantic Foundation | Canonical semantic spine, append-only gate decisions, atomic evidence/claim/evaluation contracts, RDF/SHACL invariants, mapping governance, Semantic Inspector and digest-bound releases |
 | 2026-07-18 | v2.5.0 - Full-Cycle Agentic Assurance | Effect Contracts, one-time execution capabilities, trusted receipts, authoritative outcome attestations, held assurance incidents, crash recovery, and the n8n Governed Action preview |
@@ -207,7 +210,7 @@ Open the [PALO Evidence Pack](https://paloframework.org/PALO_AssessmentPath.html
 
 ### Run locally
 
-The website remains static. The optional, non-production PALO-AI reference runtime uses Node.js 20+ and OPA.
+The website remains static. The optional, non-production PALO-AI reference runtime uses Node.js 22+ and OPA.
 
 To validate or regenerate the v3 semantic foundation, use `npm run semantic:validate`, `npm run semantic:generate`, and `npm run semantic:release`. The full release gate remains `npm run p0`; it bootstraps the locked Governance Hub dependencies and the verified OPA binary so the gate is reproducible from a clean clone after the root `npm ci`.
 
@@ -229,7 +232,7 @@ You can also open `index.html` directly in a browser, although serving locally i
 
 The commands below are for isolated development and testing only. Do not connect this preview to production agents, sensitive data, privileged tools, or consequential decisions.
 
-The PALO-AI v2.6 working tree uses the split MCP SDK 2.0 and serves both stateless MCP `2026-07-28` and legacy clients from one tool definition. Remote MCP can validate OIDC/JWKS access tokens with audience-bound scopes and role separation; the shared token remains a development fallback and the separate REST Gateway remains a coarse preview boundary. The runtime also supports identity-bound Action Claim 1.3, durable single-instance assurance tasks, optional RFC 8785/Ed25519 evidence and an allowlisted OpenTelemetry span bridge. See the [August 2026 technology radar](docs/palo-ai-state-of-the-art-radar-2026-08.md) for evidence, unresolved gaps and roadmap.
+PALO-AI v2.6 uses the split MCP SDK 2.0 and serves both stateless MCP `2026-07-28` and legacy clients from one tool definition. Remote MCP can validate OIDC/JWKS access tokens with audience-bound scopes, role separation and tenant-to-claim binding; the shared token remains a development fallback and the separate REST Gateway remains a coarse preview boundary. The runtime also supports identity-bound Action Claim 1.3, durable single-instance assurance tasks, optional RFC 8785/Ed25519 evidence, an allowlisted OpenTelemetry span bridge and a fail-closed production profile. See the [August 2026 technology radar](docs/palo-ai-state-of-the-art-radar-2026-08.md) and [v3.1 control-plane guide](docs/palo-v3.1-governance-control-plane.md) for evidence, unresolved gaps and the production boundary.
 
 Remote n8n and MCP clients must use the [PALO-AI Online VPS Deployment](docs/palo-ai-vps-deployment.md), which exposes authenticated HTTPS endpoints while keeping OPA on a private container network. The `127.0.0.1` commands below are only a laptop-development option.
 
@@ -368,7 +371,7 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md), [CODE_OF_CONDUCT.md](CODE_OF_CON
 
 ## Roadmap
 
-Current baseline: v3.0.1 Evidence Pack Activation, released 2026-08-12. It adds one focused local activation route, three gold cases, voluntary digest-bound receipts and a Community Casebook contribution path on top of the v3.0.0 semantic foundation and PALO-AI v2.5 full-cycle reference runtime.
+Current baseline: v3.1.0 Governance Control Plane, released 2026-08-23. It adds twelve applicability-aware governance domains, 31 controls, 38 indicators, ten evidence-contract families and a fail-closed PALO-AI production-admission boundary on top of the v3 semantic foundation and Evidence Pack activation path.
 
 Activation focus: new non-essential modules are frozen from 2026-08-12 through 2026-09-10. Work is concentrated on Evidence Pack completion, external review, accessibility, negative tests and Community Casebook contributions. See the [activation freeze](docs/activation-freeze-2026-08.md).
 
@@ -414,7 +417,7 @@ Exploratory items:
 
 PALO is an educational, governance-support, and pre-screening toolkit. It does not provide legal advice, does not certify compliance, and does not replace professional legal, technical, security, or conformity-assessment review.
 
-PALO-AI v2.5 is explicitly non-production. `Allowed` records a policy decision; only a matching authoritative outcome may be labelled `verified`, and even that does not certify that an action was safe or lawful. Deployers remain responsible for independent threat modelling, authenticated identities and roles, least privilege, policy ownership, connector idempotency, trusted approval context, key custody and rotation, observability, incident response, backup, retention and validation against their real tools and environments.
+PALO-AI v2.6 is explicitly non-production. `Allowed` records a policy decision; only a matching authoritative outcome may be labelled `verified`, and even that does not certify that an action was safe or lawful. The bundled runtime is denied by its strict production profile. Deployers remain responsible for independent threat modelling, authenticated identities and roles, least privilege, tenant isolation, policy ownership, connector idempotency, trusted approval context, key custody and rotation, observability, incident response, backup, retention and validation against their real tools and environments.
 
 ## License
 

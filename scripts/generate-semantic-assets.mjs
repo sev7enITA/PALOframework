@@ -11,8 +11,8 @@ const lifecyclePath = path.join(projectRoot, "data/lifecycle-core.json");
 const bootstrap = process.argv.includes("--bootstrap");
 const check = process.argv.includes("--check");
 const namespace = "https://paloframework.org/semantic/";
-const semanticVersion = "3.0.0";
-const releaseDate = "2026-08-12";
+const semanticVersion = "3.1.0";
+const releaseDate = "2026-08-23";
 
 const sourceRefsByNode = {
   "model-canvas": ["src-nist-ai-rmf"],
@@ -163,6 +163,7 @@ function lifecycleProjection(spine, gateRegistry) {
       entryCriteria: gate.entryCriteria,
       decisionOptions: gate.decisionOptions,
       requiredControlIds: gate.requiredControlIds,
+      conditionalControlIds: gate.conditionalControlIds,
       indicatorIds: gate.indicatorIds,
       sourceIds: gate.sourceIds,
       templateIds: gate.templateIds,

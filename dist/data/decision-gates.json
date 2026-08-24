@@ -2,7 +2,7 @@
   "format": "palo-decision-gates",
   "schemaVersion": "1.0.0",
   "status": "educational-non-production",
-  "updatedAt": "2026-07-12",
+  "updatedAt": "2026-08-23",
   "disclaimer": "These gate prompts support accountable deliberation. They do not authorize deployment, determine legal status, or replace organization-specific decision rights.",
   "gates": [
     {
@@ -12,7 +12,8 @@
       "entryCriteria": ["Named accountable owner", "Problem and affected population described", "Non-AI option considered"],
       "decisionOptions": ["proceed", "proceed-with-conditions", "hold", "redesign", "stop"],
       "requiredControlIds": ["ctrl-purpose-boundary"],
-      "indicatorIds": ["kri-scope-change-rate"],
+      "conditionalControlIds": ["ctrl-system-card-explanations", "ctrl-data-governance-lifecycle", "ctrl-privacy-lifecycle", "ctrl-environmental-performance", "ctrl-ai-literacy-effectiveness", "ctrl-aims-leadership-objectives"],
+      "indicatorIds": ["kri-scope-change-rate", "kpi-system-card-coverage", "kpi-data-lifecycle-coverage", "kpi-energy-measurement-coverage", "kpi-ai-literacy-competence-rate", "kpi-aims-objective-coverage"],
       "sourceIds": ["src-oecd-ai-principles", "src-nist-ai-rmf"],
       "templateIds": ["tpl-contribution-starter"]
     },
@@ -23,7 +24,8 @@
       "entryCriteria": ["Purpose boundary recorded", "Material system and supplier dependencies listed"],
       "decisionOptions": ["proceed", "proceed-with-conditions", "hold", "redesign", "stop"],
       "requiredControlIds": ["ctrl-purpose-boundary", "ctrl-third-party-due-diligence", "ctrl-change-gate"],
-      "indicatorIds": ["kri-scope-change-rate"],
+      "conditionalControlIds": ["ctrl-fair-allocation", "ctrl-system-card-explanations", "ctrl-affected-person-notice", "ctrl-article50-transparency", "ctrl-privacy-lifecycle", "ctrl-gpai-provider", "ctrl-gpai-deployer", "ctrl-systemic-risk", "ctrl-regulatory-incident-reporting", "ctrl-runtime-production-boundary", "ctrl-aims-leadership-objectives"],
+      "indicatorIds": ["kri-scope-change-rate", "kpi-system-card-coverage", "kpi-notice-delivery-coverage", "kpi-gpai-obligation-evidence-coverage", "kpi-production-admission-coverage", "kpi-aims-objective-coverage"],
       "sourceIds": ["src-eu-ai-act", "src-nist-ai-rmf"],
       "templateIds": ["tpl-procurement"]
     },
@@ -34,7 +36,8 @@
       "entryCriteria": ["Classification reviewed", "Data and affected-stakeholder context available", "Test scope agreed"],
       "decisionOptions": ["proceed", "proceed-with-conditions", "hold", "redesign", "stop"],
       "requiredControlIds": ["ctrl-data-provenance", "ctrl-third-party-due-diligence", "ctrl-adversarial-testing", "ctrl-change-gate"],
-      "indicatorIds": ["kpi-provenance-coverage", "kpi-vendor-evidence-coverage", "kri-critical-test-failure-rate"],
+      "conditionalControlIds": ["ctrl-agentic-authority", "ctrl-fairness-quality-of-service", "ctrl-fair-allocation", "ctrl-harmful-representation", "ctrl-system-card-explanations", "ctrl-data-governance-lifecycle", "ctrl-annotation-quality", "ctrl-privacy-lifecycle", "ctrl-gpai-deployer", "ctrl-systemic-risk", "ctrl-ai-output-accessibility", "ctrl-environmental-performance"],
+      "indicatorIds": ["kpi-provenance-coverage", "kpi-vendor-evidence-coverage", "kri-critical-test-failure-rate", "kpi-subgroup-evaluation-coverage", "kri-residual-disparity-rate", "kpi-explanation-comprehension", "kpi-data-lifecycle-coverage", "kpi-annotation-quality-coverage", "kri-systemic-risk-finding-rate", "kpi-accessibility-test-pass-rate", "kpi-energy-measurement-coverage"],
       "sourceIds": ["src-nist-ai-rmf", "src-nist-genai-profile"],
       "templateIds": ["tpl-red-team-evidence", "tpl-procurement"]
     },
@@ -45,7 +48,8 @@
       "entryCriteria": ["Material risks and uncertainty recorded", "Control owners available", "Residual-risk decision route named"],
       "decisionOptions": ["proceed", "proceed-with-conditions", "hold", "redesign", "stop"],
       "requiredControlIds": ["ctrl-data-provenance", "ctrl-human-review", "ctrl-third-party-due-diligence", "ctrl-incident-response"],
-      "indicatorIds": ["kpi-review-completion", "kpi-vendor-evidence-coverage", "kri-sensitive-data-events", "kri-override-failure-rate"],
+      "conditionalControlIds": ["ctrl-system-card-explanations", "ctrl-affected-person-notice", "ctrl-appeal-remedy", "ctrl-article50-transparency", "ctrl-data-governance-lifecycle", "ctrl-privacy-lifecycle", "ctrl-gpai-provider", "ctrl-gpai-deployer", "ctrl-systemic-risk", "ctrl-regulatory-incident-reporting", "ctrl-decommissioning", "ctrl-ai-output-accessibility", "ctrl-ai-literacy-effectiveness", "ctrl-runtime-production-boundary"],
+      "indicatorIds": ["kpi-review-completion", "kpi-vendor-evidence-coverage", "kri-sensitive-data-events", "kri-override-failure-rate", "kpi-notice-delivery-coverage", "kpi-appeal-resolution-sla", "kpi-machine-readable-marking-coverage", "kpi-data-lifecycle-coverage", "kpi-gpai-obligation-evidence-coverage", "kpi-regulatory-reporting-clock-compliance", "kpi-accessibility-test-pass-rate", "kpi-ai-literacy-competence-rate", "kpi-production-admission-coverage"],
       "sourceIds": ["src-iso-42001", "src-nist-ai-rmf"],
       "templateIds": ["tpl-incident-response", "tpl-procurement"]
     },
@@ -56,7 +60,8 @@
       "entryCriteria": ["Controls and owners assigned", "Data collection feasibility checked", "Threshold decision rights named"],
       "decisionOptions": ["proceed", "proceed-with-conditions", "hold", "redesign", "stop"],
       "requiredControlIds": ["ctrl-adversarial-testing", "ctrl-incident-response", "ctrl-decision-trace"],
-      "indicatorIds": ["kpi-review-completion", "kpi-incident-triage-time", "kri-sensitive-data-events", "kri-critical-test-failure-rate"],
+      "conditionalControlIds": ["ctrl-fairness-quality-of-service", "ctrl-fair-allocation", "ctrl-harmful-representation", "ctrl-system-card-explanations", "ctrl-affected-person-notice", "ctrl-appeal-remedy", "ctrl-article50-transparency", "ctrl-data-governance-lifecycle", "ctrl-annotation-quality", "ctrl-gpai-provider", "ctrl-gpai-deployer", "ctrl-systemic-risk", "ctrl-regulatory-incident-reporting", "ctrl-decommissioning", "ctrl-ai-output-accessibility", "ctrl-environmental-performance", "ctrl-ai-literacy-effectiveness", "ctrl-aims-internal-audit", "ctrl-aims-management-review-capa", "ctrl-runtime-production-boundary"],
+      "indicatorIds": ["kpi-review-completion", "kpi-incident-triage-time", "kri-sensitive-data-events", "kri-critical-test-failure-rate", "kri-residual-disparity-rate", "kri-harmful-representation-rate", "kpi-explanation-comprehension", "kpi-appeal-resolution-sla", "kri-overdue-remedy-rate", "kri-provenance-verification-failure-rate", "kpi-deletion-verification-coverage", "kri-systemic-risk-finding-rate", "kpi-regulatory-reporting-clock-compliance", "kpi-decommissioning-evidence-coverage", "kri-accessibility-blocker-rate", "kri-environmental-budget-variance", "kri-trained-control-error-rate", "kpi-aims-audit-completion", "kpi-corrective-action-closure", "kri-execution-bypass-rate"],
       "sourceIds": ["src-nist-ai-rmf"],
       "templateIds": ["tpl-incident-response", "tpl-red-team-evidence"]
     },
@@ -67,7 +72,8 @@
       "entryCriteria": ["Required evidence indexed", "Exceptions and residual risk recorded", "Review and reopening schedule assigned"],
       "decisionOptions": ["proceed", "proceed-with-conditions", "hold", "redesign", "stop"],
       "requiredControlIds": ["ctrl-human-review", "ctrl-adversarial-testing", "ctrl-incident-response", "ctrl-change-gate", "ctrl-decision-trace"],
-      "indicatorIds": ["kpi-provenance-coverage", "kpi-review-completion", "kpi-incident-triage-time", "kri-scope-change-rate"],
+      "conditionalControlIds": ["ctrl-fairness-quality-of-service", "ctrl-fair-allocation", "ctrl-harmful-representation", "ctrl-system-card-explanations", "ctrl-affected-person-notice", "ctrl-appeal-remedy", "ctrl-article50-transparency", "ctrl-data-governance-lifecycle", "ctrl-annotation-quality", "ctrl-privacy-lifecycle", "ctrl-gpai-provider", "ctrl-gpai-deployer", "ctrl-systemic-risk", "ctrl-regulatory-incident-reporting", "ctrl-decommissioning", "ctrl-ai-output-accessibility", "ctrl-environmental-performance", "ctrl-ai-literacy-effectiveness", "ctrl-aims-leadership-objectives", "ctrl-aims-internal-audit", "ctrl-aims-management-review-capa", "ctrl-runtime-production-boundary"],
+      "indicatorIds": ["kpi-provenance-coverage", "kpi-review-completion", "kpi-incident-triage-time", "kri-scope-change-rate", "kpi-subgroup-evaluation-coverage", "kri-residual-disparity-rate", "kpi-system-card-coverage", "kpi-explanation-comprehension", "kpi-notice-delivery-coverage", "kpi-appeal-resolution-sla", "kpi-machine-readable-marking-coverage", "kpi-data-lifecycle-coverage", "kpi-annotation-quality-coverage", "kpi-gpai-obligation-evidence-coverage", "kpi-regulatory-reporting-clock-compliance", "kpi-decommissioning-evidence-coverage", "kpi-accessibility-test-pass-rate", "kpi-energy-measurement-coverage", "kpi-ai-literacy-competence-rate", "kpi-aims-objective-coverage", "kpi-aims-audit-completion", "kpi-corrective-action-closure", "kpi-production-admission-coverage"],
       "sourceIds": ["src-nist-ai-rmf", "src-iso-42001"],
       "templateIds": ["tpl-board-review", "tpl-contribution-starter"]
     }

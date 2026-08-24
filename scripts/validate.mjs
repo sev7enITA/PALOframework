@@ -194,6 +194,7 @@ async function validateP2Artifacts() {
   }
   for (const gate of data.gates.gates) {
     checkRefs(dataFiles.gates, gate.gateId, gate.requiredControlIds, controlIds, "control");
+    checkRefs(dataFiles.gates, gate.gateId, gate.conditionalControlIds, controlIds, "conditional control");
     checkRefs(dataFiles.gates, gate.gateId, gate.indicatorIds, indicatorIds, "indicator");
     checkRefs(dataFiles.gates, gate.gateId, gate.sourceIds, sourceIds, "source");
     checkRefs(dataFiles.gates, gate.gateId, gate.templateIds, templateIds, "template");
@@ -294,6 +295,75 @@ async function validateP2Artifacts() {
 
 try { await validateP2Artifacts(); }
 catch (error) { errors.push(`P2 artifact validation failed: ${error.message}`); }
+
+async function validateGovernanceControlPlane() {
+  const loadJson = async (file) => JSON.parse(await readFile(path.join(validationRoot, file), "utf8"));
+  const controls = await loadJson("data/control-library.json");
+  const indicators = await loadJson("data/kpi-kri-registry.json");
+  const gates = await loadJson("data/decision-gates.json");
+  const sources = await loadJson("data/source-registry.json");
+  const packs = await loadJson("data/governance-control-packs.json");
+  const packSchema = await loadJson("schemas/palo-governance-control-packs.schema.json");
+  const governanceAjv = new Ajv2020({ allErrors: true, strict: true });
+  addFormats(governanceAjv);
+  const packValidator = governanceAjv.compile(packSchema);
+  if (!packValidator(packs)) errors.push(`data/governance-control-packs.json: schema validation failed: ${governanceAjv.errorsText(packValidator.errors)}`);
+
+  const controlById = new Map(controls.controls.map((item) => [item.controlId, item]));
+  const indicatorIds = new Set(indicators.indicators.map((item) => item.indicatorId));
+  const gateIds = new Set(gates.gates.map((item) => item.gateId));
+  const expectedDomains = new Set([
+    "domain-fairness-subgroups", "domain-system-card-explanations", "domain-notice-appeal-remedy", "domain-article50-transparency",
+    "domain-data-lifecycle", "domain-gpai-systemic-risk", "domain-serious-incident-decommissioning", "domain-accessibility",
+    "domain-environment", "domain-ai-literacy", "domain-iso42001-aims", "domain-palo-ai-production"
+  ]);
+  const observedDomains = new Set();
+  const domainControlIds = new Set();
+  for (const domain of packs.domains || []) {
+    if (observedDomains.has(domain.domainId)) errors.push(`data/governance-control-packs.json: duplicate domain ${domain.domainId}`);
+    observedDomains.add(domain.domainId);
+    const evidenceKinds = new Set();
+    for (const controlId of domain.controlIds || []) {
+      const control = controlById.get(controlId);
+      if (!control) errors.push(`data/governance-control-packs.json: ${domain.domainId} references missing control ${controlId}`);
+      for (const kind of control?.evidenceKinds || []) evidenceKinds.add(kind);
+      domainControlIds.add(controlId);
+    }
+    for (const indicatorId of domain.indicatorIds || []) if (!indicatorIds.has(indicatorId)) errors.push(`data/governance-control-packs.json: ${domain.domainId} references missing indicator ${indicatorId}`);
+    for (const gateId of domain.gateIds || []) if (!gateIds.has(gateId)) errors.push(`data/governance-control-packs.json: ${domain.domainId} references missing gate ${gateId}`);
+    for (const kind of domain.minimumEvidenceKinds || []) if (!evidenceKinds.has(kind)) errors.push(`data/governance-control-packs.json: ${domain.domainId} minimum evidence kind ${kind} is not declared by a referenced control`);
+    for (const schemaRef of domain.evidenceContractRefs || []) await access(path.join(validationRoot, schemaRef));
+  }
+  if ([...expectedDomains].some((id) => !observedDomains.has(id)) || [...observedDomains].some((id) => !expectedDomains.has(id))) errors.push("data/governance-control-packs.json: domains must contain the 12 canonical v3.1 domains exactly once");
+
+  const conditionalGateControls = new Set(gates.gates.flatMap((gate) => gate.conditionalControlIds || []));
+  for (const controlId of domainControlIds) if (!conditionalGateControls.has(controlId) && !gates.gates.some((gate) => gate.requiredControlIds.includes(controlId))) errors.push(`data/decision-gates.json: governance-pack control ${controlId} is not integrated into any gate`);
+
+  const evidenceContracts = [
+    "palo-governance-assurance-record", "palo-system-card", "palo-affected-person-case", "palo-article50-transparency-record",
+    "palo-data-lineage-record", "palo-gpai-systemic-risk-record", "palo-serious-incident-record", "palo-decommission-record",
+    "palo-aims-overlay-record", "palo-production-profile"
+  ];
+  for (const name of evidenceContracts) {
+    const schema = await loadJson(`schemas/${name}.schema.json`);
+    const validator = governanceAjv.compile(schema);
+    for (const expectation of ["valid", "invalid"]) {
+      const fixtureFile = `schemas/fixtures/${name}.${expectation}.json`;
+      const result = validator(await loadJson(fixtureFile));
+      if (expectation === "valid" && !result) errors.push(`${fixtureFile}: expected valid governance fixture failed schema: ${governanceAjv.errorsText(validator.errors)}`);
+      if (expectation === "invalid" && result) errors.push(`${fixtureFile}: intentionally invalid governance fixture unexpectedly passed schema`);
+    }
+  }
+
+  const validationInstant = Date.now();
+  for (const source of sources.sources || []) {
+    const reviewAt = Date.parse(source.freshness?.nextReviewAt || "");
+    if (source.freshness?.status === "current" && Number.isFinite(reviewAt) && reviewAt < validationInstant) errors.push(`data/source-registry.json: ${source.sourceId} is marked current after nextReviewAt ${source.freshness.nextReviewAt}`);
+  }
+}
+
+try { await validateGovernanceControlPlane(); }
+catch (error) { errors.push(`v3.1 governance control-plane validation failed: ${error.message}`); }
 
 async function validateV3SemanticContracts() {
   const loadJson = async (file) => JSON.parse(await readFile(path.join(validationRoot, file), "utf8"));

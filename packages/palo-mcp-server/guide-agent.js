@@ -11,6 +11,7 @@ const controlLibrary = readJson("data/control-library.json");
 const indicatorRegistry = readJson("data/kpi-kri-registry.json");
 const sourceRegistry = readJson("data/source-registry.json");
 const owaspGenAiCrosswalk = readJson("data/owasp-genai-2026-crosswalk.json");
+const governanceControlPacks = readJson("data/governance-control-packs.json");
 
 const stageOrder = ["frame", "classify", "assess", "control", "measure", "prove"];
 const owaspRiskIds = owaspGenAiCrosswalk.risks.map((risk) => risk.riskId);
@@ -85,6 +86,8 @@ function stageRecord(stageId) {
     action: node.action,
     expectedArtifacts: node.outputs || [],
     decisionOptions: gate?.decisionOptions || [],
+    unconditionalControlIds: gate?.requiredControlIds || [],
+    conditionalControlIds: gate?.conditionalControlIds || [],
     modules: modules.map((item) => ({ id: item.id, label: item.label, href: publicHref(item.href) })),
     controls: controls.map((item) => ({ controlId: item.controlId, title: item.title, controlType: item.controlType })),
     indicators: indicators.map((item) => ({ indicatorId: item.indicatorId, type: item.type, name: item.name })),
@@ -196,7 +199,7 @@ export class PaloGuideAgent {
     return {
       format: "palo-guide-explanation",
       schemaVersion: "1.0.0",
-      frameworkRelease: "3.0.1",
+      frameworkRelease: "3.1.0",
       semanticVersion: semanticSpine.semanticVersion,
       query: cleanQuery,
       audience,
@@ -207,6 +210,11 @@ export class PaloGuideAgent {
         status: sourceRegistry.status,
         updatedAt: sourceRegistry.updatedAt,
         reminder: sourceRegistry.disclaimer
+      },
+      governanceControlPlane: {
+        releaseVersion: governanceControlPacks.releaseVersion,
+        completionDefinitions: governanceControlPacks.completionDefinitions,
+        domains: governanceControlPacks.domains.map((domain) => ({ domainId: domain.domainId, title: domain.title, completionLevel: domain.completionLevel, applicabilityQuestions: domain.applicabilityQuestions, residualBoundary: domain.residualBoundary }))
       }
     };
   }
@@ -283,7 +291,7 @@ export class PaloGuideAgent {
     return {
       format: "palo-governance-route-inference",
       schemaVersion: "1.0.0",
-      frameworkRelease: "3.0.1",
+      frameworkRelease: "3.1.0",
       semanticVersion: semanticSpine.semanticVersion,
       input: { useCase: cleanUseCase, role, objectives, systemType, currentState, signals: { ...signals, actionImpact } },
       inferenceMethod: "Deterministic signal-to-phase rules over released PALO semantic, gate, control and indicator registries, with the version-pinned OWASP GenAI 2026 crosswalk when applicable.",
@@ -299,6 +307,14 @@ export class PaloGuideAgent {
         nextTool: "palo_plan_product_integration"
       },
       owaspGenAi2026,
+      governanceDomains: governanceControlPacks.domains.map((domain) => ({
+        domainId: domain.domainId,
+        title: domain.title,
+        completionLevel: domain.completionLevel,
+        applicabilityQuestions: domain.applicabilityQuestions,
+        stopConditions: domain.stopConditions,
+        authorityBoundary: domain.residualBoundary
+      })),
       openQuestions: [
         !signals.accountableOwner ? "Who owns the case and can accept, condition, hold, redesign or stop it?" : null,
         signals.systemCanAct && !signals.humanReviewDefined ? "Which actions require human review, and can the reviewer actually pause or change the outcome?" : null,
@@ -324,7 +340,7 @@ export class PaloGuideAgent {
     return {
       format: "palo-product-integration-plan",
       schemaVersion: "1.0.0",
-      frameworkRelease: "3.0.1",
+      frameworkRelease: "3.1.0",
       product: cleanProduct,
       productCategory,
       deployment,
@@ -334,7 +350,7 @@ export class PaloGuideAgent {
       architecture: [
         `${cleanProduct} MCP client`,
         "PALO guide tools (read-only inference)",
-        "Released semantic spine, decision gates, control and indicator registries",
+        "Released semantic spine, decision gates, governance control packs, control and indicator registries",
         ...(protectedActionTools.length ? ["PALO Action Claim and policy decision", "PALO-owned executor and outcome verifier"] : []),
         "Accountable human review and evidence record"
       ],
@@ -356,6 +372,7 @@ export class PaloGuideAgent {
         selectedClass.includes("governed-executor") ? "Target credentials must not be exposed through a parallel ungoverned route." : null
       ].filter(Boolean),
       references: [
+        "docs/palo-v3.1-governance-control-plane.md",
         "docs/palo-guide-agent-and-mcp.md",
         "docs/palo-ai-governance-integration-guide.md",
         "docs/palo-ai-vps-deployment.md",

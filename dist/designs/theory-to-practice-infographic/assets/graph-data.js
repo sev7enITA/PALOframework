@@ -4,9 +4,9 @@
   window.PALO_GRAPH_DATA = {
   "format": "palo-semantic-spine",
   "schemaVersion": "1.0.0",
-  "semanticVersion": "3.0.0",
+  "semanticVersion": "3.1.0",
   "namespace": "https://paloframework.org/semantic/",
-  "releasedAt": "2026-08-12",
+  "releasedAt": "2026-08-23",
   "status": "approved-for-release",
   "authorityClasses": {
     "canonical-definition": {

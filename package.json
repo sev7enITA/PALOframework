@@ -1,6 +1,6 @@
 {
   "name": "palo-platform",
-  "version": "3.0.1",
+  "version": "3.1.0",
   "private": true,
   "description": "Deterministic validation, publication, and browser smoke tooling for the PALO static platform.",
   "type": "module",
@@ -26,6 +26,7 @@
     "palo:mcp:http": "node packages/palo-mcp-server/http.js",
     "palo:gateway": "node packages/palo-mcp-server/gateway.js",
     "palo:evidence:verify": "node packages/palo-mcp-server/verify-evidence.js",
+    "production:admission": "node scripts/validate-production-profile.mjs",
     "demo:hands-on": "node examples/hands-on-demo/run-assurance-cycle.mjs",
     "demo:microsoft-agt": "node examples/agentic-interface/integrations/microsoft-agt/run-demo.mjs",
     "demo:hands-on:legacy": "node examples/hands-on-demo/run-support-case.mjs",

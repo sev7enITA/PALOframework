@@ -8,9 +8,9 @@ Repository: [sev7enITA/PALOframework](https://github.com/sev7enITA/PALOframework
 
 Use three Git signals before interpreting a file:
 
-1. **Release tag:** the latest public platform baseline is `v3.0.1`, PALO Evidence Pack Activation, released on 12 August 2026.
+1. **Release metadata:** this source baseline is `v3.1.0`, PALO Governance Control Plane, dated 23 August 2026. A Git tag is authoritative only after the maintainer publishes it.
 2. **Main branch:** `main` is the reviewed public baseline after merged pull requests. It can move beyond a tag without creating a new release.
-3. **Open pull request or feature branch:** this is proposed or unreleased work. PALO-AI v2.6 remains an `Unreleased` developer-preview working tree until it is reviewed, merged and explicitly released.
+3. **Open pull request or feature branch:** this is proposed or unreleased work even when its files carry a candidate version. PALO-AI v2.6 is a released component baseline only when the maintainer publishes the corresponding platform release or tag.
 
 The PALO Web platform and PALO-AI runtime have independent version lines. A website release number must not be used to imply that a developer-preview runtime is production-ready.
 

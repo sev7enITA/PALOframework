@@ -17,7 +17,9 @@ This folder contains the Apache/LiteSpeed rules to place at the root of the stat
 Verify the homepage, the OWASP 2026 reference and pinned artifacts, the PALO-AI release note, the n8n demo, and the security file:
 
 ```sh
-curl -fsSL https://paloframework.org/ | grep -F "v3.0.1 - Evidence Pack Activation"
+curl -fsSL https://paloframework.org/ | grep -F "v3.1.0 - Governance Control Plane"
+curl -fsSI https://paloframework.org/docs/palo-v3.1-governance-control-plane.html
+curl -fsSL https://paloframework.org/data/governance-control-packs.json
 curl -fsSI https://paloframework.org/PALO_OWASPGenAI2026.html
 curl -fsSI https://paloframework.org/assets/OWASP-GenAI-LLM-Top-10-2026-v1.0.pdf
 curl -fsSL https://paloframework.org/data/owasp-genai-2026-crosswalk.json

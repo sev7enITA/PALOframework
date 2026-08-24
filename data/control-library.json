@@ -2,7 +2,7 @@
   "format": "palo-control-library",
   "schemaVersion": "1.0.0",
   "status": "educational-non-production",
-  "updatedAt": "2026-07-12",
+  "updatedAt": "2026-08-23",
   "disclaimer": "These starter controls are educational examples for tailoring. They are not production-ready safeguards, legal advice, certification criteria, or evidence that risk is acceptable.",
   "controls": [
     {
@@ -103,6 +103,248 @@
       "indicatorIds": ["kpi-review-completion", "kri-scope-change-rate"],
       "sourceIds": ["src-nist-ai-rmf", "src-iso-42001"],
       "templateIds": ["tpl-board-review"]
+    },
+    {
+      "controlId": "ctrl-fairness-quality-of-service",
+      "title": "Test quality of service across affected groups",
+      "objective": "Define relevant demographic and intersectional groups, approved metrics and release thresholds, then test component and whole-system performance before release and after material change.",
+      "controlType": "preventive",
+      "lifecycleGates": ["assess", "measure", "prove"],
+      "evidenceKinds": ["subgroup-register", "evaluation-dataset-record", "fairness-test-result", "threshold-approval"],
+      "indicatorIds": ["kpi-subgroup-evaluation-coverage", "kri-residual-disparity-rate"],
+      "sourceIds": ["src-nist-ai-rmf", "src-iso-42005", "src-eu-ai-act"],
+      "templateIds": ["tpl-red-team-evidence", "tpl-board-review"]
+    },
+    {
+      "controlId": "ctrl-fair-allocation",
+      "title": "Test allocation effects and disparities",
+      "objective": "Evaluate whether decisions, rankings or allocations create unjustified differences in resources or opportunities and record mitigation and residual disparity decisions.",
+      "controlType": "preventive",
+      "lifecycleGates": ["classify", "assess", "prove"],
+      "evidenceKinds": ["allocation-impact-assessment", "group-outcome-test", "trade-off-decision", "residual-disparity-disclosure"],
+      "indicatorIds": ["kpi-subgroup-evaluation-coverage", "kri-residual-disparity-rate"],
+      "sourceIds": ["src-nist-ai-rmf", "src-iso-42005", "src-eu-ai-act"],
+      "templateIds": ["tpl-board-review"]
+    },
+    {
+      "controlId": "ctrl-harmful-representation",
+      "title": "Detect stereotyping, demeaning and erasing outputs",
+      "objective": "Test representational harms across languages, cultures and intersecting groups, including refusal, omission and generated-content failure modes.",
+      "controlType": "detective",
+      "lifecycleGates": ["assess", "measure", "prove"],
+      "evidenceKinds": ["representation-test-set", "harmful-output-evaluation", "mitigation-result", "residual-harm-record"],
+      "indicatorIds": ["kri-harmful-representation-rate"],
+      "sourceIds": ["src-nist-genai-profile", "src-iso-42005"],
+      "templateIds": ["tpl-red-team-evidence"]
+    },
+    {
+      "controlId": "ctrl-system-card-explanations",
+      "title": "Maintain a system card and test stakeholder explanations",
+      "objective": "Keep intended use, components, data, performance, limitations, human authority and monitoring current, and test whether each stakeholder group can understand and act on the explanation provided.",
+      "controlType": "directive",
+      "lifecycleGates": ["frame", "assess", "control", "prove"],
+      "evidenceKinds": ["system-card", "stakeholder-explanation", "comprehension-test", "limitation-disclosure"],
+      "indicatorIds": ["kpi-system-card-coverage", "kpi-explanation-comprehension"],
+      "sourceIds": ["src-nist-ai-rmf", "src-iso-42005", "src-eu-ai-act"],
+      "templateIds": ["tpl-board-review", "tpl-contribution-starter"]
+    },
+    {
+      "controlId": "ctrl-affected-person-notice",
+      "title": "Provide timely notice to affected people",
+      "objective": "Inform affected people about material AI involvement, decision significance, available human contact, explanation and challenge routes in an accessible form.",
+      "controlType": "directive",
+      "lifecycleGates": ["classify", "control", "measure"],
+      "evidenceKinds": ["notice-template", "delivery-log", "accessibility-review", "channel-coverage-test"],
+      "indicatorIds": ["kpi-notice-delivery-coverage"],
+      "sourceIds": ["src-eu-ai-act", "src-eu-article50-guidelines", "src-wcag-22"],
+      "templateIds": ["tpl-incident-response"]
+    },
+    {
+      "controlId": "ctrl-appeal-remedy",
+      "title": "Operate appeal, independent review and remedy",
+      "objective": "Provide an accessible intake route, conflict-independent reviewer, decision deadline, reasoned outcome and tracked correction, restoration or compensation route where applicable.",
+      "controlType": "corrective",
+      "lifecycleGates": ["control", "measure", "prove"],
+      "evidenceKinds": ["appeal-case", "independence-check", "review-outcome", "remedy-record"],
+      "indicatorIds": ["kpi-appeal-resolution-sla", "kri-overdue-remedy-rate"],
+      "sourceIds": ["src-eu-ai-act", "src-iso-42005"],
+      "templateIds": ["tpl-incident-response", "tpl-board-review"]
+    },
+    {
+      "controlId": "ctrl-article50-transparency",
+      "title": "Enforce Article 50 notices, marking, labelling and provenance",
+      "objective": "Determine provider and deployer duties, disclose direct AI interaction, apply detectable machine-readable marks to in-scope synthetic content, preserve provenance and test required labels and exceptions.",
+      "controlType": "preventive",
+      "lifecycleGates": ["classify", "control", "measure", "prove"],
+      "evidenceKinds": ["article50-applicability-record", "interaction-notice-test", "machine-readable-marking-test", "deployer-label-record", "content-provenance-record"],
+      "indicatorIds": ["kpi-machine-readable-marking-coverage", "kri-provenance-verification-failure-rate"],
+      "sourceIds": ["src-eu-ai-act", "src-eu-article50-guidelines"],
+      "templateIds": ["tpl-board-review"]
+    },
+    {
+      "controlId": "ctrl-data-governance-lifecycle",
+      "title": "Govern complete data and knowledge-source lifecycles",
+      "objective": "Trace datasets, prompts, retrieval corpora, embeddings and derived data through origin, transformation, permission, quality, use, retention, deletion and change impact.",
+      "controlType": "preventive",
+      "lifecycleGates": ["frame", "assess", "control", "measure", "prove"],
+      "evidenceKinds": ["dataset-lineage-record", "transformation-log", "permission-record", "retention-schedule", "deletion-verification"],
+      "indicatorIds": ["kpi-data-lifecycle-coverage", "kpi-deletion-verification-coverage", "kpi-provenance-coverage"],
+      "sourceIds": ["src-eu-gdpr", "src-eu-ai-act", "src-nist-ai-rmf"],
+      "templateIds": ["tpl-procurement", "tpl-board-review"]
+    },
+    {
+      "controlId": "ctrl-annotation-quality",
+      "title": "Assure annotation and ground-truth quality",
+      "objective": "Define annotation instructions, annotator competence, sampling, agreement, dispute resolution, drift review and known ground-truth limitations.",
+      "controlType": "detective",
+      "lifecycleGates": ["assess", "measure", "prove"],
+      "evidenceKinds": ["annotation-protocol", "annotator-competence-record", "inter-annotator-test", "quality-sample", "dispute-log"],
+      "indicatorIds": ["kpi-annotation-quality-coverage"],
+      "sourceIds": ["src-nist-ai-rmf", "src-iso-42005"],
+      "templateIds": ["tpl-red-team-evidence"]
+    },
+    {
+      "controlId": "ctrl-privacy-lifecycle",
+      "title": "Apply privacy obligations across the AI lifecycle",
+      "objective": "Record actor roles, purposes, lawful basis, necessity, minimisation, data-subject rights, retention, deletion and privacy-risk decisions for personal data used by or exposed to AI.",
+      "controlType": "preventive",
+      "lifecycleGates": ["frame", "classify", "assess", "control", "prove"],
+      "evidenceKinds": ["privacy-role-record", "lawful-basis-record", "necessity-test", "rights-procedure", "retention-schedule", "deletion-verification"],
+      "indicatorIds": ["kpi-data-lifecycle-coverage", "kpi-deletion-verification-coverage", "kri-sensitive-data-events"],
+      "sourceIds": ["src-eu-gdpr", "src-nist-ai-rmf"],
+      "templateIds": ["tpl-procurement", "tpl-board-review"]
+    },
+    {
+      "controlId": "ctrl-gpai-provider",
+      "title": "Operate the GPAI provider obligation pack",
+      "objective": "For in-scope providers, maintain technical documentation, downstream information, copyright policy, training-content summary and Code-of-Practice or equivalent compliance evidence.",
+      "controlType": "directive",
+      "lifecycleGates": ["classify", "control", "measure", "prove"],
+      "evidenceKinds": ["gpai-role-assessment", "technical-documentation", "downstream-information-pack", "copyright-policy", "training-content-summary", "code-conformity-record"],
+      "indicatorIds": ["kpi-gpai-obligation-evidence-coverage"],
+      "sourceIds": ["src-eu-ai-act", "src-eu-gpai-code"],
+      "templateIds": ["tpl-procurement", "tpl-board-review"]
+    },
+    {
+      "controlId": "ctrl-gpai-deployer",
+      "title": "Operate the GPAI deployer and integrator control pack",
+      "objective": "Record model selection, contractual rights, provider documentation, configuration, downstream context, evaluation, monitoring and material modifications for GPAI use.",
+      "controlType": "preventive",
+      "lifecycleGates": ["classify", "assess", "control", "measure", "prove"],
+      "evidenceKinds": ["gpai-role-assessment", "model-component-inventory", "provider-evidence-review", "deployment-evaluation", "material-modification-record"],
+      "indicatorIds": ["kpi-gpai-obligation-evidence-coverage", "kpi-vendor-evidence-coverage"],
+      "sourceIds": ["src-eu-ai-act", "src-eu-gpai-code", "src-nist-genai-profile"],
+      "templateIds": ["tpl-procurement", "tpl-red-team-evidence"]
+    },
+    {
+      "controlId": "ctrl-systemic-risk",
+      "title": "Evaluate and mitigate GPAI systemic risk",
+      "objective": "Identify model-capability, misuse, cyber, autonomy, societal and cascading risks; run proportionate evaluations and adversarial tests; document mitigations and unresolved systemic-risk findings.",
+      "controlType": "preventive",
+      "lifecycleGates": ["classify", "assess", "control", "measure", "prove"],
+      "evidenceKinds": ["systemic-risk-assessment", "model-evaluation", "adversarial-test-result", "risk-mitigation-record", "systemic-incident-record"],
+      "indicatorIds": ["kri-systemic-risk-finding-rate", "kri-critical-test-failure-rate"],
+      "sourceIds": ["src-eu-ai-act", "src-eu-gpai-code", "src-nist-genai-profile", "src-owasp-llm-top10"],
+      "templateIds": ["tpl-red-team-evidence", "tpl-incident-response"]
+    },
+    {
+      "controlId": "ctrl-regulatory-incident-reporting",
+      "title": "Classify and report serious incidents within applicable clocks",
+      "objective": "Start a jurisdiction-specific clock at detection, preserve evidence, determine reportability, notify competent authorities and affected parties, and document updates and closure without delaying containment.",
+      "controlType": "corrective",
+      "lifecycleGates": ["control", "measure", "prove"],
+      "evidenceKinds": ["serious-incident-record", "reportability-decision", "regulatory-clock-log", "notification-receipt", "corrective-action-record"],
+      "indicatorIds": ["kpi-regulatory-reporting-clock-compliance", "kpi-incident-triage-time"],
+      "sourceIds": ["src-eu-ai-act", "src-iso-42001"],
+      "templateIds": ["tpl-incident-response", "tpl-board-review"]
+    },
+    {
+      "controlId": "ctrl-decommissioning",
+      "title": "Gate withdrawal, retirement and decommissioning",
+      "objective": "Plan service withdrawal, customer transition, model and data disposition, capability revocation, residual monitoring and accountable closure before operation ends.",
+      "controlType": "corrective",
+      "lifecycleGates": ["control", "measure", "prove"],
+      "evidenceKinds": ["decommission-plan", "stakeholder-notice", "data-disposition-record", "access-revocation-log", "retirement-verification"],
+      "indicatorIds": ["kpi-decommissioning-evidence-coverage"],
+      "sourceIds": ["src-iso-42001", "src-nist-ai-rmf", "src-eu-ai-act"],
+      "templateIds": ["tpl-board-review", "tpl-incident-response"]
+    },
+    {
+      "controlId": "ctrl-ai-output-accessibility",
+      "title": "Test accessible AI interactions and generated outcomes",
+      "objective": "Test interfaces, notices, explanations, generated content, review and appeal routes with assistive technologies and representative disabled users across supported modalities.",
+      "controlType": "preventive",
+      "lifecycleGates": ["assess", "control", "measure", "prove"],
+      "evidenceKinds": ["accessibility-test-plan", "assistive-technology-result", "user-evaluation", "conformance-report", "remediation-record"],
+      "indicatorIds": ["kpi-accessibility-test-pass-rate", "kri-accessibility-blocker-rate"],
+      "sourceIds": ["src-wcag-22", "src-iso-42005", "src-eu-ai-act"],
+      "templateIds": ["tpl-red-team-evidence", "tpl-board-review"]
+    },
+    {
+      "controlId": "ctrl-environmental-performance",
+      "title": "Measure and govern AI environmental performance",
+      "objective": "Define material energy, carbon, water and hardware indicators, establish baselines and budgets, compare alternatives and gate material environmental regressions.",
+      "controlType": "preventive",
+      "lifecycleGates": ["frame", "assess", "measure", "prove"],
+      "evidenceKinds": ["environmental-boundary-record", "energy-measurement", "emissions-calculation", "alternative-analysis", "budget-decision"],
+      "indicatorIds": ["kpi-energy-measurement-coverage", "kri-environmental-budget-variance"],
+      "sourceIds": ["src-iso-42001", "src-iso-42005", "src-eu-ai-act"],
+      "templateIds": ["tpl-board-review"]
+    },
+    {
+      "controlId": "ctrl-ai-literacy-effectiveness",
+      "title": "Measure role-based AI literacy effectiveness",
+      "objective": "Map role competencies, deliver contextual learning, assess demonstrated ability, refresh after material change and track whether trained people apply required controls.",
+      "controlType": "directive",
+      "lifecycleGates": ["frame", "control", "measure", "prove"],
+      "evidenceKinds": ["role-competence-matrix", "learning-record", "competence-assessment", "observed-practice-test", "refresh-record"],
+      "indicatorIds": ["kpi-ai-literacy-competence-rate", "kri-trained-control-error-rate"],
+      "sourceIds": ["src-eu-ai-act", "src-iso-42001"],
+      "templateIds": ["tpl-board-review"]
+    },
+    {
+      "controlId": "ctrl-aims-leadership-objectives",
+      "title": "Establish AIMS context, leadership, policy and objectives",
+      "objective": "Define organizational scope, interested parties, accountable leadership, AI policy, measurable objectives, roles, resources and controlled documented information.",
+      "controlType": "directive",
+      "lifecycleGates": ["frame", "classify", "prove"],
+      "evidenceKinds": ["aims-scope", "ai-policy", "leadership-commitment", "roles-and-authorities", "aims-objectives", "document-control-record"],
+      "indicatorIds": ["kpi-aims-objective-coverage"],
+      "sourceIds": ["src-iso-42001"],
+      "templateIds": ["tpl-board-review"]
+    },
+    {
+      "controlId": "ctrl-aims-internal-audit",
+      "title": "Operate risk-based AIMS internal audits",
+      "objective": "Maintain an independent audit programme covering system and organizational controls, evidence quality, nonconformities and follow-up verification.",
+      "controlType": "detective",
+      "lifecycleGates": ["measure", "prove"],
+      "evidenceKinds": ["audit-programme", "auditor-independence-record", "audit-plan", "audit-report", "nonconformity-record"],
+      "indicatorIds": ["kpi-aims-audit-completion", "kpi-corrective-action-closure"],
+      "sourceIds": ["src-iso-42001"],
+      "templateIds": ["tpl-board-review"]
+    },
+    {
+      "controlId": "ctrl-aims-management-review-capa",
+      "title": "Perform management review and corrective action",
+      "objective": "Review AIMS performance, source and context changes, incidents, audit results, resources and objectives; assign corrective actions and verify effectiveness before closure.",
+      "controlType": "corrective",
+      "lifecycleGates": ["measure", "prove"],
+      "evidenceKinds": ["management-review-record", "performance-evaluation", "corrective-action", "effectiveness-check", "continual-improvement-record"],
+      "indicatorIds": ["kpi-corrective-action-closure", "kpi-aims-objective-coverage"],
+      "sourceIds": ["src-iso-42001"],
+      "templateIds": ["tpl-board-review"]
+    },
+    {
+      "controlId": "ctrl-runtime-production-boundary",
+      "title": "Enforce PALO-AI production admission and non-bypassable execution",
+      "objective": "Refuse production claims unless workload identity, tenant isolation, durable state, external key custody, policy enforcement, trusted connectors, outcome verification and recovery controls are configured and tested.",
+      "controlType": "preventive",
+      "lifecycleGates": ["classify", "control", "measure", "prove"],
+      "evidenceKinds": ["production-profile", "identity-test", "tenant-isolation-test", "persistence-recovery-test", "key-custody-attestation", "bypass-resistance-test", "connector-attestation"],
+      "indicatorIds": ["kpi-production-admission-coverage", "kri-execution-bypass-rate"],
+      "sourceIds": ["src-iso-42001", "src-nist-ai-rmf", "src-owasp-llm-top10"],
+      "templateIds": ["tpl-red-team-evidence", "tpl-board-review"]
     }
   ]
 }

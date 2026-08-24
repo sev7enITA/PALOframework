@@ -1,0 +1,8 @@
+{
+  "format": "palo-article50-transparency-record", "schemaVersion": "1.0.0", "recordId": "art50-1", "caseId": "case-example", "systemVersion": "1.0.0", "actorRoles": ["provider", "deployer"], "modalities": ["interactive", "image"],
+  "interactionNotice": { "required": true, "implementation": "Pre-interaction visible and audible notice", "testedAt": "2026-08-23T10:00:00Z", "result": "pass", "evidenceRef": "evidence/notice.json" },
+  "marking": { "required": true, "method": "Signed content credential", "machineReadable": true, "standardOrProfile": "organization-approved interoperable profile", "keyOrIssuer": "issuer-1", "coverageTest": { "required": true, "implementation": "Independent detector sample", "testedAt": "2026-08-23T10:00:00Z", "result": "pass", "evidenceRef": "evidence/marking.json" } },
+  "deployerLabelling": [{ "contentType": "deepfake image", "required": true, "label": "AI-generated", "placement": "adjacent to content", "testResult": "pass" }],
+  "provenance": { "assertionFormat": "signed content credential", "boundToContentDigest": true, "verificationTool": "independent verifier", "transformationTests": [{ "required": true, "implementation": "metadata-preserving resize", "testedAt": "2026-08-23T10:00:00Z", "result": "pass", "evidenceRef": "evidence/transform.json" }] },
+  "exceptions": [], "releaseDecision": { "status": "accepted", "decidedAt": "2026-08-23T11:00:00Z", "decidedBy": "transparency-owner", "validUntil": "2026-11-23T11:00:00Z" }
+}

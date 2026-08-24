@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paloframework.org/schemas/palo-governance-assurance-record.schema.json",
+  "title": "PALO Governance Assurance Record",
+  "type": "object",
+  "required": ["format", "schemaVersion", "recordId", "caseId", "domainId", "systemVersion", "applicability", "applicabilityRationale", "controlIds", "owner", "status", "evidenceItems", "measurements", "findings", "authorityBoundary"],
+  "properties": {
+    "format": { "const": "palo-governance-assurance-record" },
+    "schemaVersion": { "const": "1.0.0" },
+    "recordId": { "type": "string", "pattern": "^assurance-[a-zA-Z0-9._-]+$" },
+    "caseId": { "type": "string", "minLength": 1 },
+    "domainId": { "enum": ["domain-fairness-subgroups", "domain-system-card-explanations", "domain-notice-appeal-remedy", "domain-article50-transparency", "domain-data-lifecycle", "domain-gpai-systemic-risk", "domain-serious-incident-decommissioning", "domain-accessibility", "domain-environment", "domain-ai-literacy", "domain-iso42001-aims", "domain-palo-ai-production"] },
+    "systemVersion": { "type": "string", "minLength": 1 },
+    "applicability": { "enum": ["applicable", "not-applicable", "undetermined"] },
+    "applicabilityRationale": { "type": "string", "minLength": 20 },
+    "controlIds": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "pattern": "^ctrl-[a-z0-9-]+$" } },
+    "owner": { "$ref": "#/$defs/actor" },
+    "status": { "enum": ["draft", "in-review", "accepted", "rejected", "expired"] },
+    "evidenceItems": { "type": "array", "items": { "$ref": "#/$defs/evidenceItem" } },
+    "measurements": { "type": "array", "items": { "$ref": "#/$defs/measurement" } },
+    "findings": { "type": "array", "items": { "$ref": "#/$defs/finding" } },
+    "gateDecisionRef": { "type": "string", "minLength": 1 },
+    "reviewedAt": { "type": "string", "format": "date-time" },
+    "reviewedBy": { "$ref": "#/$defs/actor" },
+    "validUntil": { "type": "string", "format": "date-time" },
+    "authorityBoundary": { "type": "string", "minLength": 30 }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "applicability": { "const": "applicable" } }, "required": ["applicability"] },
+      "then": { "properties": { "evidenceItems": { "type": "array", "minItems": 1 }, "measurements": { "type": "array", "minItems": 1 } } }
+    },
+    {
+      "if": { "properties": { "status": { "const": "accepted" } }, "required": ["status"] },
+      "then": {
+        "required": ["gateDecisionRef", "reviewedAt", "reviewedBy", "validUntil"],
+        "properties": {
+          "gateDecisionRef": { "type": "string", "minLength": 1 },
+          "reviewedAt": { "type": "string", "format": "date-time" },
+          "reviewedBy": { "$ref": "#/$defs/actor" },
+          "validUntil": { "type": "string", "format": "date-time" }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "actor": {
+      "type": "object",
+      "required": ["actorId", "role"],
+      "properties": { "actorId": { "type": "string", "minLength": 1 }, "role": { "type": "string", "minLength": 1 }, "independenceStatement": { "type": "string", "minLength": 10 } },
+      "additionalProperties": false
+    },
+    "evidenceItem": {
+      "type": "object",
+      "required": ["evidenceId", "kind", "artifactRef", "sha256", "capturedAt", "evaluation"],
+      "properties": {
+        "evidenceId": { "type": "string", "minLength": 1 },
+        "kind": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+        "artifactRef": { "type": "string", "minLength": 1 },
+        "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "capturedAt": { "type": "string", "format": "date-time" },
+        "evaluation": { "enum": ["accepted", "conditional", "rejected", "not-evaluated"] }
+      },
+      "additionalProperties": false
+    },
+    "measurement": {
+      "type": "object",
+      "required": ["indicatorId", "observedValue", "thresholdDecision", "measuredAt"],
+      "properties": {
+        "indicatorId": { "type": "string", "pattern": "^(kpi|kri)-[a-z0-9-]+$" },
+        "observedValue": { "oneOf": [{ "type": "number" }, { "type": "string", "minLength": 1 }] },
+        "thresholdDecision": { "enum": ["pass", "conditional", "fail", "not-established"] },
+        "measuredAt": { "type": "string", "format": "date-time" }
+      },
+      "additionalProperties": false
+    },
+    "finding": {
+      "type": "object",
+      "required": ["findingId", "severity", "description", "status", "actionOwner", "dueAt"],
+      "properties": {
+        "findingId": { "type": "string", "minLength": 1 },
+        "severity": { "enum": ["low", "moderate", "high", "critical"] },
+        "description": { "type": "string", "minLength": 10 },
+        "status": { "enum": ["open", "accepted-risk", "remediated", "verified-closed"] },
+        "actionOwner": { "type": "string", "minLength": 1 },
+        "dueAt": { "type": "string", "format": "date-time" }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,6 +1,6 @@
-# PALO v3.0.0 Semantic Foundation
+# PALO v3.1.0 Semantic Foundation
 
-PALO v3.0.0 introduces a versioned semantic foundation for definitions, lifecycle decisions, evidence, mappings and public exploration. It is a major contract release: machine-readable identity and authority boundaries are now first-class, while existing P1 Case File and Evidence Bundle consumers remain supported.
+PALO v3.0.0 introduced the versioned semantic foundation for definitions, lifecycle decisions, evidence, mappings and public exploration. PALO v3.1.0 preserves that contract and adds applicability-aware governance control packs, 31 controls, 38 indicators, conditional gate integration and ten evidence-contract families. Machine-readable identity and authority boundaries remain first-class, while existing P1 Case File and Evidence Bundle consumers remain supported.
 
 ## Outcome
 
@@ -74,7 +74,7 @@ Executive and Technical are presentation lenses inside the Governance Hub. They 
 
 ## Release and component versions
 
-`3.0.0` identifies the PALO platform release and its semantic contracts. Runtime, mobile and integration components retain independent semantic versions so their maturity and compatibility are not overstated. Public health and release metadata should therefore expose the platform release separately from the component version; a component version such as PALO-AI `2.5.0` does not imply that the v3 semantic foundation is stale.
+`3.1.0` identifies the current PALO platform release and its additive semantic contracts. Runtime, mobile and integration components retain independent semantic versions so their maturity and compatibility are not overstated. Public health and release metadata should therefore expose the platform release separately from the component version; PALO-AI `2.6.0` remains a developer preview even when it consumes the v3.1 governance control plane.
 
 The authoritative version inventory is `release-manifest.json`. Component status remains independent of version: a runtime can be versioned and tested while still carrying a developer-preview or prototype boundary.
 
@@ -87,6 +87,7 @@ The authoritative version inventory is `release-manifest.json`. Component status
 | Semantic mappings | `data/semantic-mappings.json` |
 | Change impact | `data/semantic-change-impact-v3.json` |
 | Semantic release manifest | `data/semantic-release-manifest.json` |
+| Governance control packs | `data/governance-control-packs.json` |
 | JSON-LD context | `data/palo-semantic-context.jsonld` |
 | RDF ontology | `formal/palo-ontology-v3.ttl` |
 | SHACL shapes | `formal/palo-ontology-v3.shacl.ttl` |

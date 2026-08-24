@@ -1,0 +1,14 @@
+{
+  "format": "palo-data-lineage-record", "schemaVersion": "1.0.0", "recordId": "lineage-1", "caseId": "case-example",
+  "asset": { "assetId": "dataset-1", "name": "Synthetic evaluation set", "version": "1.0.0", "role": "evaluation", "digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000", "materiality": "high" },
+  "origins": [{ "sourceId": "synthetic-generator-1", "sourceType": "synthetic", "collectedAt": "2026-08-20T10:00:00Z", "collector": "evaluation-team", "geography": "EU" }],
+  "transformations": [{ "stepId": "step-1", "operation": "deduplication", "performedAt": "2026-08-21T10:00:00Z", "toolVersion": "tool-1.0", "outputDigest": "sha256:1111111111111111111111111111111111111111111111111111111111111111" }],
+  "permissions": { "basis": "ownership", "licenseOrTerms": "Organization-generated synthetic data", "permittedUses": ["model evaluation"], "prohibitedUses": ["production training"], "reviewedBy": "data-owner" },
+  "privacy": { "personalData": false, "specialCategoryData": false, "controllerOrProcessorRole": "not-applicable", "lawfulBasis": "Not applicable to synthetic non-personal fixture", "necessityAssessment": "No personal data is required for this evaluation purpose.", "rightsRoute": "privacy@example.test" },
+  "annotation": { "applicable": true, "protocolRef": "protocol-1", "annotatorCompetenceRef": "competence-1", "agreementMeasure": "Krippendorff alpha 0.82", "disputeRoute": "annotation-owner" },
+  "quality": { "dimensions": [{ "name": "completeness", "result": "99%", "thresholdDecision": "pass" }], "knownLimits": ["Synthetic distribution may differ from production"], "acceptedAt": "2026-08-22T10:00:00Z", "acceptedBy": "quality-owner" },
+  "uses": [{ "systemVersion": "1.0.0", "purpose": "pre-release evaluation", "approved": true }],
+  "retention": { "period": "180 days", "trigger": "evaluation completion", "legalHoldRoute": "legal@example.test", "nextReviewAt": "2026-11-23T10:00:00Z" },
+  "deletion": { "method": "verified object and replica deletion", "covers": ["primary", "replicas", "embeddings", "caches"], "verification": "storage deletion receipt", "dueAt": "2027-02-23T10:00:00Z" },
+  "owner": "data-owner", "review": { "status": "accepted", "reviewedAt": "2026-08-23T10:00:00Z", "reviewedBy": "reviewer-1", "validUntil": "2026-11-23T10:00:00Z" }
+}
