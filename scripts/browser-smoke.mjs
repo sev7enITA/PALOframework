@@ -398,20 +398,22 @@ try {
 
   await page.goto(`${baseUrl}/index.html`, { waitUntil: "domcontentloaded" });
   if (await page.locator('a[href="PALO_PlatformMap.html"]').count() < 2) failures.push("homepage: Platform Map is not linked from primary and content navigation");
+  if (await page.locator('#changelog a[href="CHANGELOG.html"]').count() !== 1 || await page.locator('#changelog a[href="release-manifest.json"]').count() !== 1 || await page.locator('#release-palo-ai-v2-7-0').count() !== 1) failures.push("homepage: current PALO-AI changelog or authoritative release references are incomplete");
   await page.goto(`${baseUrl}/PALO_DocumentationHub.html`, { waitUntil: "domcontentloaded" });
   if (await page.locator('a[href="PALO_PlatformMap.html"]').count() < 2) failures.push("Documentation Hub: Platform Map entry is missing");
+  if (await page.locator('a[href="CHANGELOG.html"]').count() < 2 || await page.locator('a[href="release-manifest.json"]').count() < 2) failures.push("Documentation Hub: release-history references are incomplete");
 
   await page.goto(`${baseUrl}/PALO_PlatformMap.html`, { waitUntil: "domcontentloaded" });
   if (!await page.getByRole("heading", { name: "PALO Platform Map" }).isVisible()) failures.push("Platform Map: primary heading did not render");
   for (const state of ["Implemented", "Foundation", "Research"]) {
     if (!await page.locator(".state-badge", { hasText: state }).first().isVisible()) failures.push(`Platform Map: ${state} state is missing`);
   }
-  if (await page.locator("[data-map-route]").count() !== 12 || await page.locator("[data-map-row]").count() !== 12) failures.push("Platform Map: topology and table must both contain 12 routes");
+  if (await page.locator("[data-map-route]").count() !== 13 || await page.locator("[data-map-row]").count() !== 13) failures.push("Platform Map: topology and table must both contain 13 routes");
   await page.locator("#map-stakeholder").selectOption("risk");
   await page.waitForFunction(() => document.documentElement.getAttribute("data-platform-map-results") === "3");
   if (await page.locator("[data-map-route]:visible").count() !== 3 || await page.locator("[data-map-row]:visible").count() !== 3) failures.push("Platform Map: visual and table filters are not synchronized");
   await page.locator("#map-reset").click();
-  await page.waitForFunction(() => document.documentElement.getAttribute("data-platform-map-results") === "12");
+  await page.waitForFunction(() => document.documentElement.getAttribute("data-platform-map-results") === "13");
   await page.locator("#map-evidence-class").selectOption("human-review-required");
   await page.waitForFunction(() => document.documentElement.getAttribute("data-platform-map-results") === "1");
   if (await page.locator('[data-map-route][data-evidence-class="human-review-required"]:visible').count() !== 1 || await page.locator('[data-map-row][data-evidence-class="human-review-required"]:visible').count() !== 1) failures.push("Platform Map: evidence/authority filter is not synchronized");
@@ -423,6 +425,9 @@ try {
   if (await page.locator('[data-route-id="route-monitor"] a[href="schemas/policywatcher-signal.schema.json"]').count() < 2) failures.push("Platform Map: signal schema is not exposed in both map and table routes");
   const mapMonitorText = await page.locator('[data-map-route][data-route-id="route-monitor"]').innerText();
   if (!/External companion:[\s\S]*PolicyWatcher/.test(mapMonitorText) || !/pending human review/.test(mapMonitorText) || !/Authority boundary/.test(mapMonitorText)) failures.push("Platform Map: PolicyWatcher route omits companion, review, or authority-boundary text");
+  const mapPaloAiText = await page.locator('[data-map-route][data-route-id="route-palo-ai-data"]').innerText();
+  if (!/PALO-AI v2\.7/.test(mapPaloAiText) || !/Data Fitness Decision/.test(mapPaloAiText) || !/not a production authorization service/.test(mapPaloAiText)) failures.push("Platform Map: current PALO-AI data-assurance route or production boundary is missing");
+  if (await page.locator('a[href="CHANGELOG.html"]').count() < 3 || await page.locator('a[href="feed.xml"]').count() < 3) failures.push("Platform Map: changelog or release-feed references are incomplete");
 
   await page.goto(`${baseUrl}/designs/theory-to-practice-infographic/index.html?mode=navigation&selfTest=1`, { waitUntil: "domcontentloaded" });
   await page.waitForFunction(() => window.__graphReady === true && window.__PALO_SELF_TEST?.passed === true, null, { timeout: 30_000 });
@@ -540,6 +545,7 @@ try {
   } catch { failures.push("Production Readiness: export is not valid JSON"); }
 
   await page.goto(`${baseUrl}/PALO_DocumentationLibrary.html`, { waitUntil: "domcontentloaded" });
+  if (await page.locator('a[href="CHANGELOG.html"]').count() < 2 || await page.locator('a[href="release-manifest.json"]').count() < 2) failures.push("Documentation Library: release-history references are incomplete");
   if (await page.locator("[data-library-card]").count() < 35) failures.push("Documentation Library: generated public index is incomplete");
   await expectAttribute(page.locator('[data-library-depth="start"]'), "aria-pressed", "true", "Documentation Library initial depth");
   await page.locator("[data-library-search]").fill("OWASP");

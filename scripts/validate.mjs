@@ -500,6 +500,11 @@ const releaseMonthNames = ["January", "February", "March", "April", "May", "June
 const releaseDisplayDate = releaseMonthNames[releaseMonth - 1] ? `${releaseDay} ${releaseMonthNames[releaseMonth - 1]} ${releaseYear}` : "";
 if (!platformMapReleaseHtml.includes(`<dt>Web release</dt><dd>v${releaseVersion} | ${releaseDisplayDate}</dd>`)) errors.push("PALO_PlatformMap.html: Web release ledger must match the top-level release manifest version and date");
 if (!platformMapReleaseHtml.includes(`<dt>Semantic core</dt><dd>v${semanticModule?.version} | digest-bound release</dd>`)) errors.push("PALO_PlatformMap.html: Semantic core ledger must match the independently versioned semantic foundation");
+const agenticGovernanceModule = manifest.modules?.agenticGovernance;
+const [agenticYear, agenticMonth, agenticDay] = String(agenticGovernanceModule?.date || "").split("-").map(Number);
+const agenticDisplayDate = releaseMonthNames[agenticMonth - 1] ? `${agenticDay} ${releaseMonthNames[agenticMonth - 1]} ${agenticYear}` : "";
+if (!platformMapReleaseHtml.includes(`<dt>PALO-AI</dt><dd>v${agenticGovernanceModule?.version} | ${agenticDisplayDate} | Developer Preview</dd>`)) errors.push("PALO_PlatformMap.html: PALO-AI ledger must match the independently versioned agentic-governance module");
+if (!platformMapReleaseHtml.includes(`<dt>Android / iOS</dt><dd>v${manifest.components?.mobileAndroid?.version} / v${manifest.components?.mobileIos?.version}</dd>`)) errors.push("PALO_PlatformMap.html: mobile ledger must match the release manifest");
 const hubModule = manifest.modules?.agenticGovernanceHub;
 if (hubModule?.evidenceBoundaryModel !== "illustrative-local-preview" || hubModule?.runtime !== "illustrative-local-data" || !String(hubModule?.authorityBoundary || "").includes("No live authority")) errors.push("release-manifest.json: Governance Hub illustrative authority boundary is incomplete");
 if (!built) {
@@ -651,10 +656,13 @@ if (built) {
   if ((onboardingRibbon.match(/class=["']route-separator["']/g) || []).length !== 4 || /<i\b/.test(onboardingRibbon)) errors.push("Stakeholder Onboarding: route separators must use dedicated semantic spans");
   if (!/Public semantic catalog/.test(onboardingHtml) || !/Search the semantic catalog/.test(onboardingHtml)) errors.push("Operationalization Explorer: public Semantic Inspector boundary is missing");
   const platformMapHtml = htmlByFile.get("PALO_PlatformMap.html") || "";
-  if (!/id=["']map-evidence-class["']/.test(platformMapHtml) || (platformMapHtml.match(/data-evidence-class=/g) || []).length !== 24 || !/Evidence \/ authority/.test(platformMapHtml)) errors.push("PALO_PlatformMap.html: evidence/authority filtering must align all 12 visual and table routes");
+  if (!/id=["']map-evidence-class["']/.test(platformMapHtml) || (platformMapHtml.match(/data-evidence-class=/g) || []).length !== 26 || !/Evidence \/ authority/.test(platformMapHtml)) errors.push("PALO_PlatformMap.html: evidence/authority filtering must align all 13 visual and table routes");
   if (!/route-monitor[^>]+data-evidence-class=["']human-review-required["']/.test(platformMapHtml)) errors.push("PALO_PlatformMap.html: monitoring route must require human review");
+  if (!/route-palo-ai-data[^>]+data-evidence-class=["']canonical-definition["']/.test(platformMapHtml) || !/PALO-AI v2\.7[\s\S]*Data Fitness Decision[\s\S]*not a production authorization service/.test(platformMapHtml)) errors.push("PALO_PlatformMap.html: current PALO-AI data-assurance route and production boundary are missing");
+  if ((platformMapHtml.match(/href=["']CHANGELOG\.html["']/g) || []).length < 3 || (platformMapHtml.match(/href=["']feed\.xml["']/g) || []).length < 3) errors.push("PALO_PlatformMap.html: changelog and release-feed references must be available in the atlas, evidence section and footer");
   const libraryHtml = htmlByFile.get("PALO_DocumentationLibrary.html") || "";
   if (!/data-library-evidence/.test(libraryHtml) || !/data-library-workspace/.test(libraryHtml) || !/data-library-lifecycle/.test(libraryHtml) || !/data-evidence-class=["']canonical-definition["']/.test(libraryHtml) || !/data-lifecycle=["']current["']/.test(libraryHtml) || !/data-lifecycle=["']historical["']/.test(libraryHtml) || !/data-lifecycle=["']superseded["']/.test(libraryHtml) || !/data-lifecycle=["']compatibility["']/.test(libraryHtml)) errors.push("PALO_DocumentationLibrary.html: evidence, workspace or lifecycle taxonomy is incomplete");
+  if ((libraryHtml.match(/href=["']CHANGELOG\.html["']/g) || []).length < 2 || (libraryHtml.match(/href=["']release-manifest\.json["']/g) || []).length < 2) errors.push("PALO_DocumentationLibrary.html: release-history and version-inventory references are incomplete");
   for (const file of ["docs/palo-ai-community-and-market-entry.html", "docs/community/n8n-architecture-preview-post.html", "docs/palo-ai-n8n-alpha-test-report.html", "docs/palo-ai-governance-hub-github-copy.html", "docs/palo-ai-governance-hub-launch-plan.html", "docs/site/palo-ai-governance-hub-page-copy.html"]) {
     if (!/name=["']robots["'][^>]+content=["']noindex,follow["']/i.test(htmlByFile.get(file) || "")) errors.push(`${file}: historical or superseded documentation must be noindex,follow`);
   }

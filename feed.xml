@@ -34,7 +34,7 @@
         <item>
             <title>PALO v3.1.0 - Governance Control Plane</title>
             <link>https://paloframework.org/docs/palo-v3.1-governance-control-plane.html</link>
-            <description><![CDATA[PALO v3.1.0 adds twelve applicability-aware governance control packs, 31 controls, 38 indicators, ten evidence-contract families and an explicit distinction between governance, operational, production and certification completion. PALO-AI v2.6 adds a strict production profile and remains denied for production by the bundled runtime capability declaration.]]></description>
+            <description><![CDATA[PALO v3.1.0 adds twelve applicability-aware governance control packs, 31 controls, 38 indicators, ten evidence-contract families and an explicit distinction between governance, operational, production and certification completion. At the 23 August platform release, the independently versioned PALO-AI v2.6 baseline added a strict production profile; the newer PALO-AI v2.7 component release is documented separately above.]]></description>
             <pubDate>Sun, 23 Aug 2026 18:00:00 +0200</pubDate>
             <guid isPermaLink="true">https://paloframework.org/docs/palo-v3.1-governance-control-plane.html</guid>
             <dc:creator>PALO Framework</dc:creator>
