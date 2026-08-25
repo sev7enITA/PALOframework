@@ -12,6 +12,7 @@ export const PUBLIC_FILES = [
   "PALO_AIQuickstarts.html",
   "PALO_AgenticCapabilityMatrix.html",
   "PALO_AIProductionReadiness.html",
+  "PALO_VerificationNote.html",
   "PALO_AssessmentPath.html",
   "PALO_Guide.html",
   "PALO_AuditBench.html",

@@ -107,6 +107,7 @@ n8n orchestrates what automation does. PALO governs whether an identified agent 
 - [Three-minute architecture-preview demo](media/palo-ai-n8n-architecture-preview-3min.mp4)
 - [Evidence-based capability matrix](agentic/capability-matrix.json)
 - [Public Production Readiness route](PALO_AIProductionReadiness.html)
+- [PALO 3.1 and PALO-AI 2.7 release verification record](PALO_VerificationNote.html)
 - [PALO v3.1 governance control-plane implementation](docs/palo-v3.1-governance-control-plane.md)
 
 ## Why PALO?
@@ -144,6 +145,7 @@ n8n orchestrates what automation does. PALO governs whether an identified agent 
 | [Regulatory Watch 2026](PALO_RegulatoryWatch.html) | Dated AI Act watchlist with Article 4, Article 50, high-risk milestones, and official sources | Live |
 | [Documentation Library](PALO_DocumentationLibrary.html) | Searchable HTML documentation with Start, Guide and Reference depth plus audience, task, product and maturity metadata | Live |
 | [Platform Map](PALO_PlatformMap.html) | Operational status, stakeholder-intent routes, modules, artifacts, research boundaries, and accessible table navigation | Live |
+| [Release Verification Record](PALO_VerificationNote.html) | Source revision, CI run, automated validation totals, tagged artifact checksum and maturity limits for the PALO 3.1 / PALO-AI 2.7 baseline | Live |
 | [Operationalization Explorer / Stakeholder Onboarding](designs/theory-to-practice-infographic/) | Three-step local stakeholder routing into the six-phase weighted workflow and interactive 3D knowledge graph | Live |
 | [PALO v3 Semantic Foundation](docs/palo-v3-semantic-foundation.md) | Versioned semantic spine, lifecycle and gate history, atomic evidence contracts, mappings, RDF/SHACL and digest-bound release inventory | Live |
 | [PALO v3.1 Governance Control Plane](docs/palo-v3.1-governance-control-plane.md) | Twelve applicability-aware control packs with completion levels, canonical controls, indicators, gates, evidence schemas, stop conditions and residual boundaries | Live |
@@ -281,6 +283,7 @@ PALOframework/
 |-- PALO_DocumentationLibrary.html      # Canonical searchable documentation index
 |-- PALO_DocumentationHub.html          # Backward-compatible transition page
 |-- PALO_PlatformMap.html               # Operational platform status and navigation map
+|-- PALO_VerificationNote.html          # PALO 3.1 and PALO-AI 2.7 baseline verification record
 |-- designs/
 |   +-- theory-to-practice-infographic/ # Stakeholder onboarding, weighted workflow, and 3D Explorer
 |-- AppStoreListing.md                 # Store listing copy and source notes
@@ -318,6 +321,7 @@ Primary framework documents and artifacts:
 - [PALO-AI Quickstarts](PALO_AIQuickstarts.html)
 - [PALO-AI Capability Matrix](PALO_AgenticCapabilityMatrix.html)
 - [PALO-AI Production Readiness](PALO_AIProductionReadiness.html)
+- [PALO 3.1 and PALO-AI 2.7 release verification record](PALO_VerificationNote.html)
 - [OWASP GenAI / LLM Top 10 2026 PALO crosswalk](PALO_OWASPGenAI2026.html)
 - [OWASP GenAI / LLM Top 10 2026 governance reference](docs/owasp-genai-llm-top-10-2026-security-crosswalk.md)
 - [Pinned OWASP 2026 v1.0 source artifact](assets/OWASP-GenAI-LLM-Top-10-2026-v1.0.pdf)

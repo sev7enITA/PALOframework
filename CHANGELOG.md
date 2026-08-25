@@ -9,6 +9,10 @@ and this project follows Semantic Versioning where practical.
 
 ## [Unreleased]
 
+### Added
+
+- Added a public PALO 3.1 and PALO-AI 2.7 release verification record with the baseline source revision, CI run, validation totals, negative-test coverage, tagged artifact checksum and current maturity limits.
+
 ## [PALO-AI 2.7.0] - 2026-08-25
 
 **Release status: Data-assurance developer preview. The bundled runtime remains denied for production use.**

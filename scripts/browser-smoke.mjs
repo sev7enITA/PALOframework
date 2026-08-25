@@ -398,10 +398,17 @@ try {
 
   await page.goto(`${baseUrl}/index.html`, { waitUntil: "domcontentloaded" });
   if (await page.locator('a[href="PALO_PlatformMap.html"]').count() < 2) failures.push("homepage: Platform Map is not linked from primary and content navigation");
+  if (await page.locator('a[href="PALO_VerificationNote.html"]').count() < 3) failures.push("homepage: release verification record is missing from content, release controls or footer");
   if (await page.locator('#changelog a[href="CHANGELOG.html"]').count() !== 1 || await page.locator('#changelog a[href="release-manifest.json"]').count() !== 1 || await page.locator('#release-palo-ai-v2-7-0').count() !== 1) failures.push("homepage: current PALO-AI changelog or authoritative release references are incomplete");
   await page.goto(`${baseUrl}/PALO_DocumentationHub.html`, { waitUntil: "domcontentloaded" });
   if (await page.locator('a[href="PALO_PlatformMap.html"]').count() < 2) failures.push("Documentation Hub: Platform Map entry is missing");
   if (await page.locator('a[href="CHANGELOG.html"]').count() < 2 || await page.locator('a[href="release-manifest.json"]').count() < 2) failures.push("Documentation Hub: release-history references are incomplete");
+  if (await page.locator('a[href="PALO_VerificationNote.html"]').count() < 2) failures.push("Documentation Hub: release verification record is missing");
+
+  await page.goto(`${baseUrl}/PALO_VerificationNote.html`, { waitUntil: "domcontentloaded" });
+  if (!await page.getByRole("heading", { name: "PALO 3.1 and PALO-AI 2.7 release verification record" }).isVisible()) failures.push("Release verification record: primary heading did not render");
+  if (!/a8673d2a472108c7b1d8a056c3a6af9962687bee/.test(await page.locator("main").innerText()) || await page.locator('a[href*="actions/runs/32828014857"]').count() < 1) failures.push("Release verification record: baseline commit or CI run is missing");
+  if (!/0 production-ready/i.test(await page.locator("main").innerText()) || !/no analysis found/i.test(await page.locator("main").innerText())) failures.push("Release verification record: maturity or code-scanning boundary is missing");
 
   await page.goto(`${baseUrl}/PALO_PlatformMap.html`, { waitUntil: "domcontentloaded" });
   if (!await page.getByRole("heading", { name: "PALO Platform Map" }).isVisible()) failures.push("Platform Map: primary heading did not render");
@@ -546,6 +553,7 @@ try {
 
   await page.goto(`${baseUrl}/PALO_DocumentationLibrary.html`, { waitUntil: "domcontentloaded" });
   if (await page.locator('a[href="CHANGELOG.html"]').count() < 2 || await page.locator('a[href="release-manifest.json"]').count() < 2) failures.push("Documentation Library: release-history references are incomplete");
+  if (await page.locator('a[href="PALO_VerificationNote.html"]').count() < 2) failures.push("Documentation Library: release verification record is missing");
   if (await page.locator("[data-library-card]").count() < 35) failures.push("Documentation Library: generated public index is incomplete");
   await expectAttribute(page.locator('[data-library-depth="start"]'), "aria-pressed", "true", "Documentation Library initial depth");
   await page.locator("[data-library-search]").fill("OWASP");
@@ -596,7 +604,7 @@ try {
 
   for (const viewport of [{ width: 1440, height: 900 }, { width: 1024, height: 768 }, { width: 390, height: 844 }, { width: 360, height: 800 }]) {
     await page.setViewportSize(viewport);
-    for (const file of ["index.html", "PALO_Guide.html", "PALO_AIGovernance.html", "PALO_AIWhy.html", "PALO_AIQuickstarts.html", "PALO_AssessmentPath.html", "PALO_AgenticGovernance.html", "PALO_AgenticCapabilityMatrix.html", "PALO_AIProductionReadiness.html", "PALO_OWASPGenAI2026.html", "PALO_DocumentationLibrary.html", "docs/palo-ai-adoption-paths.html", "PALO_PlatformMap.html", "designs/theory-to-practice-infographic/index.html?mode=navigation"]) {
+    for (const file of ["index.html", "PALO_Guide.html", "PALO_AIGovernance.html", "PALO_AIWhy.html", "PALO_AIQuickstarts.html", "PALO_AssessmentPath.html", "PALO_AgenticGovernance.html", "PALO_AgenticCapabilityMatrix.html", "PALO_AIProductionReadiness.html", "PALO_VerificationNote.html", "PALO_OWASPGenAI2026.html", "PALO_DocumentationLibrary.html", "docs/palo-ai-adoption-paths.html", "PALO_PlatformMap.html", "designs/theory-to-practice-infographic/index.html?mode=navigation"]) {
       await page.goto(`${baseUrl}/${file}`, { waitUntil: "domcontentloaded" });
       if (file.includes("mode=navigation")) {
         const onboardingSeparators = page.locator(".route-ribbon > .route-separator");

@@ -625,11 +625,16 @@ if (built) {
   const readinessHtml = htmlByFile.get("PALO_AIProductionReadiness.html") || "";
   if ((readinessHtml.match(/data-gate-id=/g) || []).length !== 9) errors.push("PALO_AIProductionReadiness.html: must expose exactly nine readiness gates");
   if (!/PALO-AM v2\.0[\s\S]*current governance modality/i.test(htmlByFile.get("PALO_AgenticGovernance.html") || "")) errors.push("PALO_AgenticGovernance.html: PALO-AM/PALO-AI version relationship is missing");
-  const assurancePages = ["PALO_AIWhy.html", "PALO_AIQuickstarts.html", "PALO_AIGovernance.html", "PALO_AgenticCapabilityMatrix.html", "PALO_AIProductionReadiness.html"];
+  const assurancePages = ["PALO_AIWhy.html", "PALO_AIQuickstarts.html", "PALO_AIGovernance.html", "PALO_AgenticCapabilityMatrix.html", "PALO_AIProductionReadiness.html", "PALO_VerificationNote.html"];
   for (const file of assurancePages) {
     const html = htmlByFile.get(file) || "";
-    if (!/palo-ai-status-rail/.test(html) || !/PALO_AgenticCapabilityMatrix\.html/.test(html) || !/PALO_AIProductionReadiness\.html/.test(html) || !/security-policy\.html/.test(html)) errors.push(`${file}: persistent assurance status rail is incomplete`);
+    if (!/palo-ai-status-rail/.test(html) || !/PALO_AgenticCapabilityMatrix\.html/.test(html) || !/PALO_AIProductionReadiness\.html/.test(html) || !/PALO_VerificationNote\.html/.test(html) || !/security-policy\.html/.test(html)) errors.push(`${file}: persistent assurance status rail is incomplete`);
   }
+  const verificationHtml = htmlByFile.get("PALO_VerificationNote.html") || "";
+  if (!/a8673d2a472108c7b1d8a056c3a6af9962687bee/.test(verificationHtml) || !/actions\/runs\/32828014857/.test(verificationHtml) || !/pull\/29/.test(verificationHtml)) errors.push("PALO_VerificationNote.html: baseline commit, pull request or CI run reference is incomplete");
+  if (!/f33b272414a6df25eb0b7a6933eb32ab155ee6e546b1de66e8ed17b22ca6aa2b/.test(verificationHtml) || !/40 (?:tracked )?capabilities/i.test(verificationHtml) || !/0 production-ready/i.test(verificationHtml)) errors.push("PALO_VerificationNote.html: tagged artifact digest or maturity totals are incomplete");
+  if (!/AI-assisted engineering and documentation tools under human direction and review/.test(verificationHtml) || !/does not demonstrate that every task was performed without assistance/.test(verificationHtml)) errors.push("PALO_VerificationNote.html: development-method disclosure is incomplete");
+  if (!/no analysis found/i.test(verificationHtml) || /CodeQL[^<\n]{0,80}(?:0|zero) (?:alert|finding)/i.test(verificationHtml)) errors.push("PALO_VerificationNote.html: code-scanning status must distinguish no analysis from zero findings");
   const whyHtml = htmlByFile.get("PALO_AIWhy.html") || "";
   if ((whyHtml.match(/data-scenario=/g) || []).length !== 3 || !/Authorized but wrong/.test(whyHtml) || !/browser-local/i.test(whyHtml)) errors.push("PALO_AIWhy.html: comparison must expose three clearly bounded local scenarios");
   const quickstartHtml = htmlByFile.get("PALO_AIQuickstarts.html") || "";
@@ -637,6 +642,7 @@ if (built) {
   const legacyDocsHtml = htmlByFile.get("PALO_DocumentationHub.html") || "";
   if (!/name=["']robots["'][^>]+content=["']noindex,follow["']/i.test(legacyDocsHtml) || !/rel=["']canonical["'][^>]+PALO_DocumentationLibrary\.html/i.test(legacyDocsHtml)) errors.push("PALO_DocumentationHub.html: transition page must be noindex and canonicalize to Documentation Library");
   const homeHtml = htmlByFile.get("index.html") || "";
+  if ((homeHtml.match(/href=["']PALO_VerificationNote\.html["']/g) || []).length < 3) errors.push("index.html: release verification record must be linked from content, release controls and footer");
   const governanceRoutes = homeHtml.match(/<section[^>]+id=["']palo-governance-routes["'][\s\S]*?<\/section>/i)?.[0] || "";
   for (const title of ["Govern the AI lifecycle", "Govern agentic systems", "Enforce agent actions"]) if (!governanceRoutes.includes(title)) errors.push(`index.html: umbrella governance route is missing exact title "${title}"`);
   for (const destination of ["designs/theory-to-practice-infographic/#onboarding", "#guided-journeys", "PALO_AgenticGovernance.html", "PALO_AgenticGovernance.html#simulator", "PALO_AIGovernance.html", "governance-hub/", "PALO_AIQuickstarts.html"]) if (!governanceRoutes.includes(`href="${destination}"`)) errors.push(`index.html: umbrella governance route is missing destination ${destination}`);
@@ -660,9 +666,11 @@ if (built) {
   if (!/route-monitor[^>]+data-evidence-class=["']human-review-required["']/.test(platformMapHtml)) errors.push("PALO_PlatformMap.html: monitoring route must require human review");
   if (!/route-palo-ai-data[^>]+data-evidence-class=["']canonical-definition["']/.test(platformMapHtml) || !/PALO-AI v2\.7[\s\S]*Data Fitness Decision[\s\S]*not a production authorization service/.test(platformMapHtml)) errors.push("PALO_PlatformMap.html: current PALO-AI data-assurance route and production boundary are missing");
   if ((platformMapHtml.match(/href=["']CHANGELOG\.html["']/g) || []).length < 3 || (platformMapHtml.match(/href=["']feed\.xml["']/g) || []).length < 3) errors.push("PALO_PlatformMap.html: changelog and release-feed references must be available in the atlas, evidence section and footer");
+  if (!/Platform evidence[\s\S]*PALO_VerificationNote\.html/.test(platformMapHtml)) errors.push("PALO_PlatformMap.html: release verification record is missing from Platform evidence");
   const libraryHtml = htmlByFile.get("PALO_DocumentationLibrary.html") || "";
   if (!/data-library-evidence/.test(libraryHtml) || !/data-library-workspace/.test(libraryHtml) || !/data-library-lifecycle/.test(libraryHtml) || !/data-evidence-class=["']canonical-definition["']/.test(libraryHtml) || !/data-lifecycle=["']current["']/.test(libraryHtml) || !/data-lifecycle=["']historical["']/.test(libraryHtml) || !/data-lifecycle=["']superseded["']/.test(libraryHtml) || !/data-lifecycle=["']compatibility["']/.test(libraryHtml)) errors.push("PALO_DocumentationLibrary.html: evidence, workspace or lifecycle taxonomy is incomplete");
   if ((libraryHtml.match(/href=["']CHANGELOG\.html["']/g) || []).length < 2 || (libraryHtml.match(/href=["']release-manifest\.json["']/g) || []).length < 2) errors.push("PALO_DocumentationLibrary.html: release-history and version-inventory references are incomplete");
+  if ((libraryHtml.match(/href=["']PALO_VerificationNote\.html["']/g) || []).length < 2 || !/PALO_VerificationNote\.html/.test(legacyDocsHtml) || !/PALO_VerificationNote\.html/.test(htmlByFile.get("PALO_Recognition.html") || "")) errors.push("public documentation and recognition surfaces must link the release verification record");
   for (const file of ["docs/palo-ai-community-and-market-entry.html", "docs/community/n8n-architecture-preview-post.html", "docs/palo-ai-n8n-alpha-test-report.html", "docs/palo-ai-governance-hub-github-copy.html", "docs/palo-ai-governance-hub-launch-plan.html", "docs/site/palo-ai-governance-hub-page-copy.html"]) {
     if (!/name=["']robots["'][^>]+content=["']noindex,follow["']/i.test(htmlByFile.get(file) || "")) errors.push(`${file}: historical or superseded documentation must be noindex,follow`);
   }
