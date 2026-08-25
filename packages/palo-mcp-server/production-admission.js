@@ -99,7 +99,7 @@ export function assertRequestTenant(authInfo, claim) {
   if (authInfo?.extra?.authMode !== "oidc") throw new Error("Production tenant binding requires an OIDC-authenticated request");
   const tokenTenant = authInfo.extra.tenantId;
   if (!tokenTenant) throw new Error("OIDC token is missing the configured tenant claim");
-  if (claim?.schemaVersion !== "1.3.0") throw new Error("Tenant-bound execution requires Action Claim 1.3");
+  if (!["1.3.0", "1.4.0"].includes(claim?.schemaVersion)) throw new Error("Tenant-bound execution requires Action Claim 1.3 or 1.4");
   const values = [
     ["authority context", claim?.authorityContext?.tenantId],
     ["effect contract", claim?.effectContract?.resourceSelector?.tenantId],

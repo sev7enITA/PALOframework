@@ -55,7 +55,7 @@ async function body(request) {
 const gateway = createServer(async (request, response) => {
   try {
     const url = new URL(request.url, `http://${request.headers.host || "localhost"}`);
-    if (request.method === "GET" && url.pathname === "/health") return send(response, 200, { status: "ok", service: "palo-governance-gateway", version: "2.6.0", frameworkRelease: "3.1.0", releaseStatus: "developer-preview", assuranceCycle: "identity-bound-durable", productionUse: false });
+    if (request.method === "GET" && url.pathname === "/health") return send(response, 200, { status: "ok", service: "palo-governance-gateway", version: "2.7.0", frameworkRelease: "3.1.0", releaseStatus: "developer-preview", assuranceCycle: "data-fitness-disclosure-outcome", productionUse: false });
     if (!authorized(request)) return send(response, 401, { error: "unauthorized" });
     if (request.method === "GET" && url.pathname === "/v1/demo/catalog" && runtime.demoCatalogState) return send(response, 200, { state: runtime.demoCatalogState, synthetic: true });
     if (request.method === "POST" && url.pathname === "/v1/demo/catalog/reset" && runtime.demoCatalogState) {
@@ -132,7 +132,7 @@ const gateway = createServer(async (request, response) => {
   }
 });
 
-const listener = gateway.listen(port, host, () => process.stderr.write(`PALO-AI v2.6 IDENTITY-BOUND DURABLE DEVELOPER PREVIEW gateway listening on http://${host}:${port} - isolated testing only; shared bearer token is not production identity or RBAC.\n`));
+const listener = gateway.listen(port, host, () => process.stderr.write(`PALO-AI v2.7 DATA-ASSURANCE DEVELOPER PREVIEW gateway listening on http://${host}:${port} - isolated testing only; shared bearer token is not production identity or RBAC.\n`));
 const shutdown = () => {
   clearInterval(taskProcessor);
   listener.close(() => { runtime.close(); process.exit(0); });

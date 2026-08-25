@@ -5,7 +5,7 @@
 | Version | Supported          |
 | ------- | ------------------ |
 | 3.1.x website, schemas and static tools | :white_check_mark: |
-| PALO-AI 2.6 reference runtime | :x: released developer preview; non-production |
+| PALO-AI 2.7 reference runtime | :x: released developer preview; non-production |
 | 3.0.x website and static tools | :white_check_mark: security fixes only |
 | 2.5.0 PALO-AI full-cycle runtime and Governance Hub | :x: developer preview; non-production |
 | 2.5.x website and static tools | :white_check_mark: security fixes only |
@@ -22,19 +22,19 @@ We take the security of PALO Framework seriously. If you believe you have found 
 
 ## PALO-AI developer-preview boundary
 
-PALO-AI v2.5 runtime code and the released v2.6 reference runtime, Governance Hub, remote MCP transport, approval flows, evidence chain, governed-execution reference adapters, Vibe Gate metadata, and n8n/Dify examples are published for isolated developer evaluation. They are not supported for production authorization, consequential tool execution, compliance certification, or multi-tenant operation.
+PALO-AI v2.7 runtime code, the Governance Hub, remote MCP transport, data-fitness/disclosure flows, approval flows, evidence chain, governed-execution reference adapters, Vibe Gate metadata, and n8n/Dify examples are published for isolated developer evaluation. They are not supported for production authorization, sensitive-data processing, consequential tool execution, compliance certification, or multi-tenant operation.
 
 Known preview limitations are documented in the public `PALO_AIProductionReadiness.html`, `PALO_AgenticCapabilityMatrix.html`, `docs/palo-ai-governance-integration-guide.md`, `packages/palo-mcp-server/README.md`, and `agentic/capability-matrix.json`. Internal assessment workpapers are intentionally not published. In particular:
 
 - the Governance Hub is an interactive mock-data prototype and does not connect directly to the Gateway;
 - the browser must never receive the shared preview bearer token; online Hub operation requires a backend-for-frontend, OIDC, tenant-aware RBAC/ABAC, redaction, and separation of duties;
-- the v2.5 baseline uses coarse shared preview tokens; v2.6 can validate OIDC/JWKS identity, tenant claim and scopes for remote MCP, while the REST Gateway still retains a separate coarse preview token;
+- the v2.5 baseline uses coarse shared preview tokens; v2.7 can validate OIDC/JWKS identity, tenant claim and scopes for remote MCP, while the REST Gateway still retains a separate coarse preview token;
 - environment/file-provided HMAC keys, SQLite WAL, in-process adapters, and single-instance recovery are reference mechanisms rather than production key custody or distributed durability;
 - PALO-to-OPA traffic is restricted to the internal Docker network in the reference deployment but is not mutually authenticated; production requires a threat-modelled policy plane, signed bundle promotion, evaluated-bundle attestation, and service identity appropriate to the deployment;
 - exactly-once behavior is not universally claimed, protected credentials may remain bypassable unless isolated behind the governed executor, and n8n/Dify integrations are not certified production connectors;
 - reviewer authentication, multi-tenant isolation, HA, backup/restore, external evidence anchoring, incident operations, and independent penetration/cryptographic assessment remain open production gates.
 
-PALO-AI v2.6 includes a strict production profile and fail-closed startup check. The bundled runtime declares SQLite persistence, no storage-level tenant isolation, process-held keys and in-process connectors, so it is denied by its own production admission contract. Passing the schema or supplying evidence references must not be represented as production assurance.
+PALO-AI v2.7 includes a strict production profile and fail-closed startup check. The bundled runtime declares SQLite persistence, no storage-level tenant isolation, process-held keys and in-process connectors, so it is denied by its own production admission contract. Context evidence and disclosure observations are connector assertions, not independent proof of source truth or non-bypassability. Passing the schema or supplying evidence references must not be represented as production assurance.
 
 The append-only SQLite triggers and HMAC/hash-chain checks detect selected modifications inside the reference key and host boundary. They do not make evidence immutable against a privileged host operator and do not provide third-party non-repudiation.
 

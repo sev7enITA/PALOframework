@@ -1,0 +1,17 @@
+{
+  "assetId": "customer-orders",
+  "assetVersion": "42",
+  "catalogUri": "https://catalog.example.org/assets/customer-orders",
+  "observedAt": "2026-08-25T08:00:00Z",
+  "qualityScore": 96,
+  "freshnessAt": "2026-08-25T08:00:00Z",
+  "classifications": ["internal"],
+  "owner": "data-owner@example.org",
+  "approved": true,
+  "accessState": "granted",
+  "lineageComplete": true,
+  "permittedPurposes": ["support-analytics"],
+  "lifecycleState": "approved",
+  "incidentOpen": false,
+  "authorityVerified": true
+}

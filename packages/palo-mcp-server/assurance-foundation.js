@@ -79,7 +79,7 @@ function scopeCovers(granted, requested) {
 }
 
 export function validateAuthorityContext(claim, policy = {}) {
-  if (claim.schemaVersion !== "1.3.0") return { valid: true, mode: "legacy", violations: [] };
+  if (!["1.3.0", "1.4.0"].includes(claim.schemaVersion)) return { valid: true, mode: "legacy", violations: [] };
   const context = claim.authorityContext;
   const violations = [];
   const requestedAt = Date.parse(claim.requestedAt);

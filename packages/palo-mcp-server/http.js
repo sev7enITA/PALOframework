@@ -31,7 +31,7 @@ export function createAuthenticatedMcpApp({ runtime, token, oidc, host = "127.0.
     exposedTools: authorizedToolNames(requestContext.authInfo, exposedTools),
     requestContext
   }), { legacy: "stateless" });
-  app.get("/health", (context) => context.json({ status: "ok", service: "palo-mcp-streamable-http", version: "2.6.0", frameworkRelease: "3.1.0", releaseStatus: "developer-preview", assuranceCycle: "identity-bound-durable", mcpProtocol: ["2026-07-28", "2025-era-stateless"], authentication: auth.mode, enterpriseManagedAuthorization: auth.mode === "oidc" ? "resource-server-ready" : "disabled", productionUse: false }));
+  app.get("/health", (context) => context.json({ status: "ok", service: "palo-mcp-streamable-http", version: "2.7.0", frameworkRelease: "3.1.0", releaseStatus: "developer-preview", assuranceCycle: "data-fitness-disclosure-outcome", mcpProtocol: ["2026-07-28", "2025-era-stateless"], authentication: auth.mode, enterpriseManagedAuthorization: auth.mode === "oidc" ? "resource-server-ready" : "disabled", productionUse: false }));
   if (auth.metadata) {
     const metadataPath = new URL(auth.resourceMetadataUrl).pathname;
     app.get(metadataPath, (context) => context.json(auth.metadata));

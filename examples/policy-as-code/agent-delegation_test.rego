@@ -47,11 +47,12 @@ base_input := {
 }
 
 test_valid_claim_waits_for_human if {
-	governance.action_decision with input as base_input == {
+	decision := governance.action_decision with input as base_input
+	decision == {
 		"status": "pending_approval",
 		"reasons": ["human validation is required for this exact action claim"],
 		"obligations": ["obtain_bound_human_approval"],
-		"policyVersion": "palo-agentic-governance/1.2.0",
+		"policyVersion": "palo-agentic-governance/1.4.0",
 	}
 }
 
@@ -64,6 +65,32 @@ test_exact_approved_claim_is_allowed if {
 	}
 	decision := governance.action_decision with input as object.union(base_input, {"approval": approval})
 	decision.status == "allowed"
+	decision.obligations == ["record_execution_outcome", "verify_declared_effects"]
+}
+
+test_action_claim_1_4_adds_data_disclosure_obligation if {
+	effect_contract := {
+		"format": "palo-agentic-effect-contract",
+		"schemaVersion": "1.1.0",
+		"resourceSelector": {"resource": base_claim.action.resource, "path": base_claim.action.path},
+	}
+	authority_context := {
+		"agentIdentity": {"agentId": base_claim.agentId},
+		"delegationChain": [],
+	}
+	data_governance := {
+		"subject": {"type": "dataset", "id": "dataset-support"},
+		"purpose": "support",
+		"fitnessDecisionId": "fitness-decision-11111111-1111-4111-8111-111111111111",
+		"fitnessDecisionDigest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+		"disclosureContractId": "disclosure-11111111-1111-4111-8111-111111111111",
+		"disclosureContractDigest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+	}
+	claim := object.union(base_claim, {"schemaVersion": "1.4.0", "effectContract": effect_contract, "authorityContext": authority_context, "dataGovernance": data_governance})
+	profile := object.union(base_profile, {"delegation": object.union(base_profile.delegation, {"requireHumanValidation": false})})
+	decision := governance.action_decision with input as object.union(base_input, {"profile": profile, "claim": claim})
+	decision.status == "allowed"
+	decision.obligations == ["record_execution_outcome", "verify_declared_effects", "verify_data_disclosure"]
 }
 
 test_forged_approval_digest_does_not_authorize if {

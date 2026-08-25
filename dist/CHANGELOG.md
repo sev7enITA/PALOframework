@@ -9,6 +9,38 @@ and this project follows Semantic Versioning where practical.
 
 ## [Unreleased]
 
+## [PALO-AI 2.7.0] - 2026-08-25
+
+**Release status: Data-assurance developer preview. The bundled runtime remains denied for production use.**
+
+### Added
+
+- Added the PALO-AI v2.7 data-assurance vertical slice: immutable external context evidence, deterministic purpose-bound Data Fitness Decisions, signed Data Disclosure Contracts and Receipts, AI System & Agent Registry records and continuous-assurance signals.
+- Added Action Claim 1.4, binding an identity/tenant/Effect Contract to exact current Data Fitness and Disclosure Contract digests before policy evaluation and one-time capability issuance.
+- Added zero-row, aggregated and row-level disclosure checks across source/read fields, row limits, sensitive categories, redaction, recipient, provider, model, region, endpoint, trace retention, export and output schema.
+- Added an Actian Context Bridge normalization profile that retains normalized claims and a source-payload digest without retaining sample rows or the source payload.
+- Added fail-closed invalidation of prior allowed fitness decisions and revocation of matching unconsumed capabilities after quality, classification, lineage, access, contract, incident, system or policy signals.
+- Added 8 JSON Schema contracts, valid fixtures, 12 MCP tools and end-to-end tests for payload minimization, verified disclosure, mismatch incidents and stale-decision denial.
+
+### Changed
+
+- Action Claim 1.4 executor results are digest-only in persistent execution state; row payloads are not retained by the PALO runtime record.
+- Execution Receipt 1.1 binds the signed Data Disclosure Receipt, and authoritative outcome verification treats disclosure mismatch as a held high-severity assurance incident.
+- Data Fitness now denies conflicting current assertions conservatively, binds evaluated normalized claims into its evidence digest and preserves policy, decision and AI System record versions with database immutability guards.
+- Data Fitness freshness now evaluates the oldest current evidence reference and caps each decision at both source validity and `observedAt + maxEvidenceAgeSeconds`, preventing a recent assertion from masking stale evidence.
+- OIDC data-assurance operations now have explicit least-privilege scopes and tenant-scoped registry, execution and incident reads; the Rego network-intent check is explicit and disclosure obligations apply only to Action Claim 1.4.
+- OIDC deployments can configure the tenant-claim name through `PALO_OIDC_TENANT_CLAIM`; disclosure observations must fall inside both the signed contract window and the governed execution window.
+- Advanced the independently versioned PALO-AI developer-preview capability baseline to v2.7.0 while retaining zero production-ready capability claims and strict production-admission denial.
+- Authority Context 1.4 now enforces trusted issuers, workload audience, authentication age, delegation continuity, claim-window coverage and non-widening scope instead of falling through the legacy validation path.
+- Cached Action Claim 1.4 decisions are re-evaluated against current authority, Data Fitness and Disclosure Contract state, so continuous-assurance invalidation denies the same previously allowed claim.
+- Post-effect disclosure-receipt failure now produces an unknown Execution Receipt, an inconclusive held incident and digest-only execution state without persisting executor row payloads.
+- Tenant-aware execution and incident lookup now falls back to legacy Effect Contract or metadata bindings, scopes incident lists in one joined query and safely excludes unscoped legacy records from OIDC results.
+
+### Validation
+
+- Added negative Action Claim 1.4 authority tests for untrusted issuers and delegation windows that do not cover the full live claim.
+- Added same-claim cache-invalidation, conservative freshness/expiry, OIDC cross-tenant and configurable-tenant-claim MCP, replayed disclosure observation, post-effect disclosure-receipt failure and legacy-incident isolation regressions.
+
 ## [3.1.0] - 2026-08-23
 
 **Release status: Governance control plane released. PALO-AI v2.6 remains a non-production developer preview.**

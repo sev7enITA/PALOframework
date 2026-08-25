@@ -2,7 +2,7 @@
 
 Root files are the authoring source. `dist/` is generated output and must not be edited by hand.
 
-PALO uses a platform release plus independently versioned components. `release-manifest.json` is the authority for this inventory: v3.1.0 identifies the platform/web and semantic governance-control-plane release, while PALO-AI runtime, MCP, n8n and mobile components retain their own versions and maturity boundaries. Health metadata exposes `frameworkRelease` separately from the component `version`; PALO-AI v2.6 remains a non-production developer preview.
+PALO uses a platform release plus independently versioned components. `release-manifest.json` is the authority for this inventory: v3.1.0 identifies the platform/web and semantic governance-control-plane release, while PALO-AI runtime, MCP, n8n and mobile components retain their own versions and maturity boundaries. Health metadata exposes `frameworkRelease` separately from the component `version`; PALO-AI v2.7 remains a non-production developer preview.
 
 The publication boundary is the explicit `PUBLIC_FILES` list in `scripts/public-files.mjs`. `npm run build` deletes and recreates `dist/`, copying only those files without transforming their bytes. Working documents, workshop material, raw Android binaries, screenshots not required by a public page, hidden files other than `.well-known/security.txt`, repository metadata, and toolchain files are excluded.
 

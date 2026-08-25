@@ -7,7 +7,7 @@
   "required": ["format", "schemaVersion", "capabilityId", "claimId", "claimDigest", "decisionId", "caseId", "agentId", "executorId", "verifierId", "resource", "path", "issuedAt", "expiresAt", "singleUse", "status", "keyId", "algorithm", "signature"],
   "properties": {
     "format": { "const": "palo-agentic-execution-capability" },
-    "schemaVersion": { "const": "1.0.0" },
+    "schemaVersion": { "enum": ["1.0.0", "1.1.0"] },
     "capabilityId": { "type": "string", "pattern": "^capability-[a-f0-9-]{36}$" },
     "claimId": { "type": "string", "pattern": "^claim-[a-f0-9-]{36}$" },
     "claimDigest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
@@ -19,6 +19,10 @@
     "resource": { "type": "string", "minLength": 1, "maxLength": 1000 },
     "path": { "type": "string", "pattern": "^/", "maxLength": 1000 },
     "tenantId": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "fitnessDecisionId": { "type": "string", "pattern": "^fitness-decision-[a-f0-9-]{36}$" },
+    "fitnessDecisionDigest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+    "disclosureContractId": { "type": "string", "pattern": "^disclosure-[a-f0-9-]{36}$" },
+    "disclosureContractDigest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
     "issuedAt": { "type": "string", "format": "date-time" },
     "expiresAt": { "type": "string", "format": "date-time" },
     "singleUse": { "const": true },
@@ -27,5 +31,11 @@
     "algorithm": { "const": "HMAC-SHA256" },
     "signature": { "type": "string", "pattern": "^hmac-sha256:[a-f0-9]{64}$" }
   },
+  "allOf": [
+    {
+      "if": { "properties": { "schemaVersion": { "const": "1.1.0" } }, "required": ["schemaVersion"] },
+      "then": { "properties": { "fitnessDecisionId": {}, "fitnessDecisionDigest": {}, "disclosureContractId": {}, "disclosureContractDigest": {} }, "required": ["fitnessDecisionId", "fitnessDecisionDigest", "disclosureContractId", "disclosureContractDigest"] }
+    }
+  ],
   "additionalProperties": false
 }

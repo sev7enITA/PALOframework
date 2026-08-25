@@ -34,7 +34,7 @@ function parentContext(traceId, traceApi, contextApi) {
 }
 
 export function createOpenTelemetrySink({
-  tracer = trace.getTracer("org.paloframework.assurance", "2.6.0"),
+  tracer = trace.getTracer("org.paloframework.assurance", "2.7.0"),
   traceApi = trace,
   contextApi = context
 } = {}) {

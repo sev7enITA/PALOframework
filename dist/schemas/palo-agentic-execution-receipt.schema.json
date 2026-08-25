@@ -7,7 +7,7 @@
   "required": ["format", "schemaVersion", "executionId", "capabilityId", "claimId", "claimDigest", "executorId", "status", "startedAt", "completedAt", "preStateDigest", "requestDigest", "resultDigest", "keyId", "algorithm", "signature"],
   "properties": {
     "format": { "const": "palo-agentic-execution-receipt" },
-    "schemaVersion": { "const": "1.0.0" },
+    "schemaVersion": { "enum": ["1.0.0", "1.1.0"] },
     "executionId": { "type": "string", "pattern": "^execution-[a-f0-9-]{36}$" },
     "capabilityId": { "type": "string", "pattern": "^capability-[a-f0-9-]{36}$" },
     "claimId": { "type": "string", "pattern": "^claim-[a-f0-9-]{36}$" },
@@ -20,10 +20,18 @@
     "resourceVersion": { "type": "string", "maxLength": 500 },
     "requestDigest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
     "resultDigest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+    "disclosureReceiptId": { "type": "string", "pattern": "^disclosure-receipt-[a-f0-9-]{36}$" },
+    "disclosureReceiptDigest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
     "error": { "type": "string", "maxLength": 4000 },
     "keyId": { "type": "string", "pattern": "^key-[a-zA-Z0-9._-]{3,100}$" },
     "algorithm": { "const": "HMAC-SHA256" },
     "signature": { "type": "string", "pattern": "^hmac-sha256:[a-f0-9]{64}$" }
   },
+  "allOf": [
+    {
+      "if": { "properties": { "schemaVersion": { "const": "1.1.0" } }, "required": ["schemaVersion"] },
+      "then": { "properties": { "disclosureReceiptId": {}, "disclosureReceiptDigest": {} }, "required": ["disclosureReceiptId", "disclosureReceiptDigest"] }
+    }
+  ],
   "additionalProperties": false
 }

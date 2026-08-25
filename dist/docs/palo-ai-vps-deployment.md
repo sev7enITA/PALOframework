@@ -1,6 +1,6 @@
 # PALO-AI Online VPS Deployment
 
-Status: Internet-reachable developer-preview deployment for PALO-AI v2.5. This topology provides HTTPS and network isolation, but it does not remove the blockers tracked in the public [Production Readiness plan](../PALO_AIProductionReadiness.html).
+Status: Internet-reachable developer-preview deployment topology documented for PALO-AI v2.7. Deployments created from the v2.5 baseline must be upgraded and revalidated separately; this document does not assert that a live endpoint has already been upgraded. HTTPS and network isolation do not remove the blockers tracked in the public [Production Readiness plan](../PALO_AIProductionReadiness.html).
 
 ## Live deployment status
 
@@ -227,7 +227,7 @@ The online `/mcp` endpoint uses MCP Streamable HTTP. Current n8n documentation d
 
 ## Connect other MCP clients
 
-The v2.6 runtime can replace the shared MCP token with OIDC/JWKS validation by setting `PALO_AUTH_MODE=oidc`, the canonical `PALO_MCP_PUBLIC_URL`, issuer, audience and JWKS URI described in `packages/palo-mcp-server/README.md`. The reverse-proxy configurations expose the matching RFC 9728 `/.well-known/oauth-protected-resource/mcp` route. This changes only the MCP resource; the REST Gateway retains its separate preview token until an identity-aware BFF is implemented. An EMA-capable authorization server may issue the accepted access token, but PALO does not implement the EMA ID-JAG exchange.
+The v2.7 runtime can replace the shared MCP token with OIDC/JWKS validation by setting `PALO_AUTH_MODE=oidc`, the canonical `PALO_MCP_PUBLIC_URL`, issuer, audience and JWKS URI described in `packages/palo-mcp-server/README.md`. The reverse-proxy configurations expose the matching RFC 9728 `/.well-known/oauth-protected-resource/mcp` route. This changes only the MCP resource; the REST Gateway retains its separate preview token until an identity-aware BFF is implemented. An EMA-capable authorization server may issue the accepted access token, but PALO does not implement the EMA ID-JAG exchange.
 
 For clients that support Streamable HTTP:
 

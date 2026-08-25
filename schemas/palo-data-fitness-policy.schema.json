@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paloframework.org/schemas/palo-data-fitness-policy.schema.json",
+  "title": "PALO Data Fitness Policy",
+  "description": "Deterministic policy for deciding whether externally referenced data context is fit for a declared purpose.",
+  "type": "object",
+  "required": ["format", "schemaVersion", "policyId", "policyVersion", "tenantId", "targetTypes", "requiredEvidenceTypes", "requirements", "onMissing", "effectiveAt", "status"],
+  "properties": {
+    "format": { "const": "palo-data-fitness-policy" },
+    "schemaVersion": { "const": "1.0.0" },
+    "policyId": { "type": "string", "pattern": "^fitness-policy-[a-zA-Z0-9][a-zA-Z0-9._-]{2,100}$" },
+    "policyVersion": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "tenantId": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "targetTypes": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "enum": ["dataset", "data-product", "model", "ai-system", "agent", "tool", "access-entitlement", "other"] } },
+    "requiredEvidenceTypes": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "enum": ["metadata", "lineage", "quality", "classification", "ownership", "access", "data-contract", "audit", "incident", "other"] } },
+    "requirements": {
+      "type": "object",
+      "minProperties": 1,
+      "properties": {
+        "minQualityScore": { "type": "number", "minimum": 0, "maximum": 100 },
+        "maxEvidenceAgeSeconds": { "type": "integer", "minimum": 1, "maximum": 31536000 },
+        "requireVerifiedAuthority": { "type": "boolean" },
+        "requireOwner": { "type": "boolean" },
+        "requireApproved": { "type": "boolean" },
+        "requireLineage": { "type": "boolean" },
+        "requireAccessGranted": { "type": "boolean" },
+        "denyOpenIncident": { "type": "boolean" },
+        "prohibitedClassifications": { "type": "array", "uniqueItems": true, "maxItems": 100, "items": { "type": "string", "minLength": 1, "maxLength": 200 } },
+        "allowedPurposes": { "type": "array", "minItems": 1, "uniqueItems": true, "maxItems": 100, "items": { "type": "string", "minLength": 1, "maxLength": 300 } }
+      },
+      "additionalProperties": false
+    },
+    "onMissing": { "enum": ["deny", "review"] },
+    "effectiveAt": { "type": "string", "format": "date-time" },
+    "status": { "enum": ["active", "inactive"] }
+  },
+  "additionalProperties": false
+}

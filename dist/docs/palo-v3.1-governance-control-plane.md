@@ -70,7 +70,7 @@ Set `PALO_RUNTIME_MODE=production` and provide `PALO_PRODUCTION_PROFILE_PATH`. S
 
 The bundled capability attestation declares SQLite storage, no tenant storage isolation, in-process connectors, process-held signing material, no high availability, no durable distributed queue and no independent deployment assurance. As a result, even the schema-valid production fixture is denied. This is intentional: the repository now distinguishes a complete production-control contract from a production-capable implementation.
 
-OIDC-protected action processing also binds the configured token tenant to `authorityContext.tenantId`, `effectContract.resourceSelector.tenantId` and, when present, claim metadata. Production tenant-bound execution requires Action Claim 1.3. This prevents cross-tenant request substitution at the MCP boundary but does not create database-level isolation.
+OIDC-protected action processing also binds the configured token tenant to `authorityContext.tenantId`, `effectContract.resourceSelector.tenantId` and, when present, claim metadata. Tenant-bound execution requires Action Claim 1.3 or data-governed 1.4. Action Claim 1.4 additionally binds current Data Fitness and signed Disclosure Contract digests. This prevents cross-tenant request substitution at the MCP boundary but does not create database-level isolation.
 
 ## PolicyWatcher relationship
 

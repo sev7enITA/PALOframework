@@ -1,6 +1,6 @@
 # PALO Agentic Interface (PALO-AI) - Full-Cycle Developer Preview
 
-PALO-AI v2.6 publishes governance contracts and a non-production reference runtime for autonomous agents and agent teams. It demonstrates registered authority profiles, fail-closed identity-bound Action Claim 1.3, durable approval and verification tasks, Effect Contract 1.1, digest-bound approval, one-time execution capabilities, trusted receipts, optional Ed25519 evidence envelopes, authoritative outcome attestations and held assurance incidents. Action Claim 1.1/1.2 remain compatible.
+PALO-AI v2.7 publishes governance and data-assurance contracts plus a non-production reference runtime for autonomous agents and agent teams. It demonstrates external context references, purpose-bound Data Fitness Decisions, signed Data Disclosure Contracts and Receipts, AI system registry, continuous invalidation, fail-closed Action Claim 1.4, durable approval and verification tasks, Effect Contract 1.1, one-time capabilities, authoritative outcome attestations and held incidents. Action Claim 1.1/1.2/1.3 remain compatible.
 
 > **Do not use this developer preview to authorize or execute production tools, access sensitive data, or support consequential decisions.** It is not an audited security boundary, compliance certification, exactly-once executor, production identity service, trusted human-approval system, or production evidence platform. Mode A is partially prototyped; Mode B collaborative agent teams remain specified only.
 

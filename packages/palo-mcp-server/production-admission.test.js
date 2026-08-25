@@ -25,7 +25,7 @@ test("production admission rejects placeholders and expired decisions", async ()
   assert.throws(() => validateProductionProfile(expired, { now: Date.parse("2026-08-24T00:00:00Z") }), /expired/);
 });
 
-test("OIDC tenant is bound to every Action Claim 1.3 tenant location", () => {
+test("OIDC tenant is bound to every Action Claim 1.3 and 1.4 tenant location", () => {
   const authInfo = { extra: { authMode: "oidc", tenantId: "tenant-a" } };
   const claim = {
     schemaVersion: "1.3.0",
@@ -34,7 +34,8 @@ test("OIDC tenant is bound to every Action Claim 1.3 tenant location", () => {
     metadata: { tenantId: "tenant-a" }
   };
   assert.equal(assertRequestTenant(authInfo, claim), claim);
+  assert.equal(assertRequestTenant(authInfo, { ...claim, schemaVersion: "1.4.0" }).schemaVersion, "1.4.0");
   assert.throws(() => assertRequestTenant(authInfo, { ...claim, effectContract: { resourceSelector: { tenantId: "tenant-b" } } }), /does not match/);
   assert.throws(() => assertRequestTenant({ extra: { authMode: "oidc" } }, claim), /missing the configured tenant claim/);
-  assert.throws(() => assertRequestTenant(authInfo, { ...claim, schemaVersion: "1.2.0" }), /Action Claim 1.3/);
+  assert.throws(() => assertRequestTenant(authInfo, { ...claim, schemaVersion: "1.2.0" }), /Action Claim 1.3 or 1.4/);
 });

@@ -7,7 +7,7 @@
   "required": ["format", "schemaVersion", "claimId", "agentId", "caseId", "action", "requestedScopes", "externalNetwork", "delegation", "requestedAt", "expiresAt", "nonce", "idempotencyKey", "sequenceNumber"],
   "properties": {
     "format": { "const": "palo-agentic-action-claim" },
-    "schemaVersion": { "enum": ["1.1.0", "1.2.0", "1.3.0"] },
+    "schemaVersion": { "enum": ["1.1.0", "1.2.0", "1.3.0", "1.4.0"] },
     "claimId": { "type": "string", "pattern": "^claim-[a-f0-9-]{36}$" },
     "agentId": { "type": "string", "pattern": "^agent-[a-zA-Z0-9][a-zA-Z0-9-]{5,63}$" },
     "caseId": { "type": "string", "minLength": 1, "maxLength": 128 },
@@ -122,6 +122,27 @@
     "idempotencyKey": { "type": "string", "pattern": "^[a-zA-Z0-9._:-]{16,200}$" },
     "sequenceNumber": { "type": "integer", "minimum": 1, "maximum": 9007199254740991 },
     "effectContract": { "$ref": "palo-agentic-effect-contract.schema.json" },
+    "dataGovernance": {
+      "type": "object",
+      "required": ["subject", "purpose", "fitnessDecisionId", "fitnessDecisionDigest", "disclosureContractId", "disclosureContractDigest"],
+      "properties": {
+        "subject": {
+          "type": "object",
+          "required": ["type", "id"],
+          "properties": {
+            "type": { "enum": ["dataset", "data-product", "model", "ai-system", "agent", "tool", "access-entitlement", "other"] },
+            "id": { "type": "string", "minLength": 1, "maxLength": 1000 }
+          },
+          "additionalProperties": false
+        },
+        "purpose": { "type": "string", "minLength": 1, "maxLength": 300 },
+        "fitnessDecisionId": { "type": "string", "pattern": "^fitness-decision-[a-f0-9-]{36}$" },
+        "fitnessDecisionDigest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+        "disclosureContractId": { "type": "string", "pattern": "^disclosure-[a-f0-9-]{36}$" },
+        "disclosureContractDigest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" }
+      },
+      "additionalProperties": false
+    },
     "metadata": { "type": "object", "additionalProperties": true }
   },
   "allOf": [
@@ -136,6 +157,10 @@
     {
       "if": { "properties": { "schemaVersion": { "const": "1.3.0" } }, "required": ["schemaVersion"] },
       "then": { "properties": { "effectContract": { "$ref": "palo-agentic-effect-contract.schema.json" }, "authorityContext": { "type": "object" } }, "required": ["effectContract", "authorityContext"] }
+    },
+    {
+      "if": { "properties": { "schemaVersion": { "const": "1.4.0" } }, "required": ["schemaVersion"] },
+      "then": { "properties": { "effectContract": { "$ref": "palo-agentic-effect-contract.schema.json" }, "authorityContext": { "type": "object" }, "dataGovernance": { "type": "object" } }, "required": ["effectContract", "authorityContext", "dataGovernance"] }
     }
   ],
   "additionalProperties": false

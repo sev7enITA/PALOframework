@@ -74,7 +74,7 @@ Executive and Technical are presentation lenses inside the Governance Hub. They 
 
 ## Release and component versions
 
-`3.1.0` identifies the current PALO platform release and its additive semantic contracts. Runtime, mobile and integration components retain independent semantic versions so their maturity and compatibility are not overstated. Public health and release metadata should therefore expose the platform release separately from the component version; PALO-AI `2.6.0` remains a developer preview even when it consumes the v3.1 governance control plane.
+`3.1.0` identifies the current PALO platform release and its additive semantic contracts. Runtime, mobile and integration components retain independent semantic versions so their maturity and compatibility are not overstated. Public health and release metadata should therefore expose the platform release separately from the component version; PALO-AI `2.7.0` remains a developer preview even when it consumes the v3.1 governance control plane.
 
 The authoritative version inventory is `release-manifest.json`. Component status remains independent of version: a runtime can be versioned and tested while still carrying a developer-preview or prototype boundary.
 

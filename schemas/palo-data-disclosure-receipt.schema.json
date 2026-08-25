@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paloframework.org/schemas/palo-data-disclosure-receipt.schema.json",
+  "title": "PALO Data Disclosure Receipt",
+  "description": "Signed comparison between a Data Disclosure Contract and payload-minimized executor observations.",
+  "type": "object",
+  "required": ["format", "schemaVersion", "receiptId", "disclosureContractId", "executionId", "claimId", "executorId", "status", "observationDigest", "checks", "checkedAt", "keyId", "algorithm", "signature"],
+  "properties": {
+    "format": { "const": "palo-data-disclosure-receipt" },
+    "schemaVersion": { "const": "1.0.0" },
+    "receiptId": { "type": "string", "pattern": "^disclosure-receipt-[a-f0-9-]{36}$" },
+    "disclosureContractId": { "type": "string", "pattern": "^disclosure-[a-f0-9-]{36}$" },
+    "executionId": { "type": "string", "pattern": "^execution-[a-f0-9-]{36}$" },
+    "claimId": { "type": "string", "pattern": "^claim-[a-f0-9-]{36}$" },
+    "executorId": { "type": "string", "pattern": "^executor-[a-zA-Z0-9][a-zA-Z0-9._-]{2,100}$" },
+    "status": { "enum": ["verified", "mismatch", "inconclusive"] },
+    "observationDigest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+    "observedSummary": { "$ref": "palo-data-disclosure-observation.schema.json" },
+    "checks": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 200,
+      "items": {
+        "type": "object",
+        "required": ["predicateId", "category", "status", "reason"],
+        "properties": {
+          "predicateId": { "type": "string", "pattern": "^predicate-[a-zA-Z0-9._-]{1,100}$" },
+          "category": { "const": "forbidden" },
+          "status": { "enum": ["pass", "fail", "unknown"] },
+          "reason": { "type": "string", "minLength": 1, "maxLength": 1000 }
+        },
+        "additionalProperties": false
+      }
+    },
+    "checkedAt": { "type": "string", "format": "date-time" },
+    "keyId": { "type": "string", "pattern": "^key-[a-zA-Z0-9._-]{3,100}$" },
+    "algorithm": { "const": "HMAC-SHA256" },
+    "signature": { "type": "string", "pattern": "^hmac-sha256:[a-f0-9]{64}$" }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "status": { "enum": ["verified", "mismatch"] } }, "required": ["status"] },
+      "then": { "properties": { "observedSummary": {} }, "required": ["observedSummary"] }
+    }
+  ],
+  "additionalProperties": false
+}

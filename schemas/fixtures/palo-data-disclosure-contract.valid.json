@@ -1,0 +1,22 @@
+{
+  "format": "palo-data-disclosure-contract",
+  "schemaVersion": "1.0.0",
+  "disclosureContractId": "disclosure-33333333-3333-4333-8333-333333333333",
+  "tenantId": "tenant-a",
+  "subject": { "type": "dataset", "id": "actian:asset/customer-orders" },
+  "purpose": "support-analytics",
+  "lawfulBasis": "legitimate-interests",
+  "dataScope": { "sourceRefs": ["actian:asset/customer-orders"], "allowedFields": ["order_status", "country"], "deniedFields": ["email"], "maxRowsRead": 10000 },
+  "egressPolicy": { "mode": "zero-row", "maxRows": 0, "allowedFields": [], "prohibitedCategories": ["personal-data", "special-category"], "requiredRedactions": [] },
+  "destinationPolicy": { "allowedRecipients": ["support-agent"], "allowedProviders": ["local-rules"], "allowedModels": ["deterministic-summary-v1"], "allowedRegions": ["eu-west-1"], "allowedEndpointHosts": ["analytics.internal.example.org"] },
+  "tracePolicy": { "allowedModes": ["metadata-only"], "maxRetentionSeconds": 86400 },
+  "outputPolicy": { "exportAllowed": false },
+  "boundFitnessDecision": { "decisionId": "fitness-decision-22222222-2222-4222-8222-222222222222", "decisionDigest": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc" },
+  "approvedBy": "privacy-owner@example.org",
+  "issuedAt": "2026-08-25T08:03:00Z",
+  "expiresAt": "2026-08-25T09:03:00Z",
+  "status": "active",
+  "keyId": "key-disclosure-test",
+  "algorithm": "HMAC-SHA256",
+  "signature": "hmac-sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+}

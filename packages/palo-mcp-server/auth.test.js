@@ -46,6 +46,25 @@ async function oidcFixture(t) {
   };
 }
 
+test("data-assurance tools are covered by explicit least-privilege scopes", () => {
+  const expected = {
+    palo_import_context_evidence: "palo:admin",
+    palo_list_context_evidence: "palo:read",
+    palo_register_data_fitness_policy: "palo:admin",
+    palo_evaluate_data_fitness: "palo:execute",
+    palo_get_data_fitness_decision: "palo:read",
+    palo_register_disclosure_contract: "palo:admin",
+    palo_get_disclosure_contract: "palo:read",
+    palo_register_ai_system: "palo:admin",
+    palo_get_ai_system: "palo:read",
+    palo_list_ai_systems: "palo:read",
+    palo_ingest_assurance_signal: "palo:admin",
+    palo_list_assurance_signals: "palo:audit"
+  };
+  for (const [tool, scope] of Object.entries(expected)) assert.equal(TOOL_SCOPE_REQUIREMENTS[tool], scope);
+  assert.equal(Object.keys(TOOL_SCOPE_REQUIREMENTS).length, 38);
+});
+
 test("OIDC access tokens are issuer/audience bound and roles expand to least-privilege scopes", async (t) => {
   const fixture = await oidcFixture(t);
   const auth = createPaloAuth({ oidc: fixture.oidc });
@@ -61,6 +80,15 @@ test("OIDC access tokens are issuer/audience bound and roles expand to least-pri
   assert.ok(tools.includes("palo_resolve_approval"));
   assert.ok(tools.includes("palo_verify_ledger"));
   assert.ok(!tools.includes("palo_execute_governed_action"));
+});
+
+test("OIDC tenant binding supports an explicitly configured claim name", async (t) => {
+  const fixture = await oidcFixture(t);
+  const auth = createPaloAuth({ oidc: { ...fixture.oidc, tenantClaim: "org_id" } });
+  const token = await fixture.sign({ azp: "palo-tenant-client", scope: "palo:read", org_id: "tenant-configured" });
+  const result = await auth.authenticate(new Request(fixture.audience, { headers: { authorization: `Bearer ${token}` } }));
+  assert.ok(!(result instanceof Response));
+  assert.equal(result.extra.tenantId, "tenant-configured");
 });
 
 test("OIDC rejects a token minted for another MCP audience and advertises resource metadata", async (t) => {
@@ -95,12 +123,20 @@ test("OIDC configuration rejects insecure remote metadata and honors an explicit
     jwksUri: "https://identity.example.test/jwks"
   } }), /canonical MCP resource URL/);
   assert.equal(oidcConfigurationFromEnvironment({ PALO_AUTH_MODE: "shared-token", PALO_OIDC_ISSUER: "https://identity.example.test" }), undefined);
+  assert.equal(oidcConfigurationFromEnvironment({
+    PALO_AUTH_MODE: "oidc",
+    PALO_OIDC_ISSUER: "https://identity.example.test",
+    PALO_OIDC_AUDIENCE: "https://governance.example.test/mcp",
+    PALO_OIDC_JWKS_URI: "https://identity.example.test/jwks",
+    PALO_MCP_PUBLIC_URL: "https://governance.example.test/mcp",
+    PALO_OIDC_TENANT_CLAIM: "org_id"
+  }).tenantClaim, "org_id");
   assert.throws(() => oidcConfigurationFromEnvironment({ PALO_AUTH_MODE: "anonymous" }), /oidc or shared-token/);
 });
 
 test("OIDC scopes filter the MCP catalog and produce a step-up challenge for protected tools", async (t) => {
   const fixture = await oidcFixture(t);
-  const token = await fixture.sign({ azp: "palo-observer-ui", roles: ["palo-observer"] });
+  const token = await fixture.sign({ azp: "palo-observer-ui", roles: ["palo-observer"], tid: "tenant-a" });
   const dataDir = await mkdtemp(path.join(os.tmpdir(), "palo-oidc-http-"));
   const runtime = new GovernanceRuntime({ dataDir });
   const app = createAuthenticatedMcpApp({ runtime, oidc: fixture.oidc });
@@ -133,6 +169,18 @@ test("OIDC scopes filter the MCP catalog and produce a step-up challenge for pro
       () => client.callTool({ name: "palo_execute_governed_action", arguments: {} }),
       (error) => error instanceof InsufficientScopeError && error.requiredScope === "palo:execute"
     );
+    const ownTenant = await client.callTool({
+      name: "palo_list_context_evidence",
+      arguments: { tenantId: "tenant-a", subjectType: "dataset", subjectId: "dataset-empty" }
+    });
+    assert.equal(ownTenant.isError, undefined);
+    assert.deepEqual(ownTenant.structuredContent, []);
+    const crossTenant = await client.callTool({
+      name: "palo_list_context_evidence",
+      arguments: { tenantId: "tenant-b", subjectType: "dataset", subjectId: "dataset-empty" }
+    });
+    assert.equal(crossTenant.isError, true);
+    assert.match(crossTenant.content[0].text, /OIDC tenant does not match/i);
   } finally {
     await client.close();
   }

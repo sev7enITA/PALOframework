@@ -1,0 +1,14 @@
+{
+  "format": "palo-assurance-signal",
+  "schemaVersion": "1.0.0",
+  "signalId": "assurance-signal-77777777-7777-4777-8777-777777777777",
+  "tenantId": "tenant-a",
+  "subject": { "type": "dataset", "id": "actian:asset/customer-orders" },
+  "sourceSystem": "actian-data-observability",
+  "signalType": "quality-changed",
+  "severity": "high",
+  "observedAt": "2026-08-25T08:06:00Z",
+  "evidenceRefId": "evidence-ref-11111111-1111-4111-8111-111111111111",
+  "changeDigest": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+  "reason": "Quality score dropped below the governed threshold."
+}

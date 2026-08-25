@@ -33,8 +33,8 @@
   },
   "modules": {
     "agenticGovernance": {
-      "version": "2.6.0",
-      "date": "2026-08-23"
+      "version": "2.7.0",
+      "date": "2026-08-25"
     },
     "semanticFoundation": {
       "version": "3.1.0",
@@ -46,10 +46,29 @@
       "workspaces": ["public-catalog", "case-workspace", "assurance-review"]
     },
     "agenticRuntime": {
-      "version": "1.3.0",
-      "date": "2026-08-23",
+      "version": "1.4.0",
+      "date": "2026-08-25",
       "status": "prototype",
       "productionUse": false
+    },
+    "dataAssuranceControlPlane": {
+      "version": "0.1.0",
+      "date": "2026-08-25",
+      "status": "developer-preview-prototype",
+      "productionUse": false,
+      "actionClaimVersion": "1.4.0",
+      "contracts": [
+        "schemas/palo-external-evidence-ref.schema.json",
+        "schemas/palo-data-fitness-policy.schema.json",
+        "schemas/palo-data-fitness-decision.schema.json",
+        "schemas/palo-data-disclosure-contract.schema.json",
+        "schemas/palo-data-disclosure-observation.schema.json",
+        "schemas/palo-data-disclosure-receipt.schema.json",
+        "schemas/palo-ai-system-record.schema.json",
+        "schemas/palo-assurance-signal.schema.json"
+      ],
+      "contextProfiles": ["actian-data-intelligence"],
+      "documentation": "docs/palo-data-assurance-control-plane.md"
     },
     "agenticRemoteMcp": {
       "version": "1.1.0",
@@ -59,10 +78,10 @@
       "productionUse": false
     },
     "agenticCapabilityMatrix": {
-      "version": "1.2.0",
-      "date": "2026-08-23",
+      "version": "1.3.0",
+      "date": "2026-08-25",
       "status": "developer-preview",
-      "capabilityCount": 34,
+      "capabilityCount": 40,
       "productionReadyCount": 0
     },
     "agenticConnectorGateway": {

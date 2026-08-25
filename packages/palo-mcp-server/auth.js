@@ -24,6 +24,18 @@ export const TOOL_SCOPE_REQUIREMENTS = Object.freeze({
   palo_register_agent: "palo:admin",
   palo_register_policy: "palo:admin",
   palo_get_registry: "palo:read",
+  palo_import_context_evidence: "palo:admin",
+  palo_list_context_evidence: "palo:read",
+  palo_register_data_fitness_policy: "palo:admin",
+  palo_evaluate_data_fitness: "palo:execute",
+  palo_get_data_fitness_decision: "palo:read",
+  palo_register_disclosure_contract: "palo:admin",
+  palo_get_disclosure_contract: "palo:read",
+  palo_register_ai_system: "palo:admin",
+  palo_get_ai_system: "palo:read",
+  palo_list_ai_systems: "palo:read",
+  palo_ingest_assurance_signal: "palo:admin",
+  palo_list_assurance_signals: "palo:audit",
   palo_register_executor: "palo:admin",
   palo_register_verifier: "palo:admin",
   palo_verify_action_authority: "palo:execute",
@@ -104,6 +116,7 @@ export function createOidcTokenVerifier(configuration) {
   const scopeClaim = configuration.scopeClaim || "scope";
   const roleClaim = configuration.roleClaim || "roles";
   const clientIdClaim = configuration.clientIdClaim || "azp";
+  const tenantClaim = configuration.tenantClaim || "tid";
   return {
     async verifyAccessToken(token) {
       try {
@@ -133,7 +146,7 @@ export function createOidcTokenVerifier(configuration) {
             subject: typeof payload.sub === "string" ? payload.sub : undefined,
             issuer: payload.iss,
             roles,
-            tenantId: typeof payload.tid === "string" ? payload.tid : undefined,
+            tenantId: typeof payload[tenantClaim] === "string" ? payload[tenantClaim] : undefined,
             keyId: protectedHeader.kid
           }
         };
@@ -213,6 +226,7 @@ export function oidcConfigurationFromEnvironment(environment = process.env) {
     roleClaim: environment.PALO_OIDC_ROLE_CLAIM || "roles",
     scopeClaim: environment.PALO_OIDC_SCOPE_CLAIM || "scope",
     clientIdClaim: environment.PALO_OIDC_CLIENT_ID_CLAIM || "azp",
+    tenantClaim: environment.PALO_OIDC_TENANT_CLAIM || "tid",
     algorithms: values(environment.PALO_OIDC_ALGORITHMS || "RS256 PS256 ES256 EdDSA")
   };
 }

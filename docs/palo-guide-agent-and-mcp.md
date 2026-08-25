@@ -1,6 +1,6 @@
 # PALO Guide Agent and MCP Integration
 
-Status: PALO platform v3.1.0 guide-agent contract. The guide tools are implemented as deterministic, read-only inference over released PALO registries and the twelve governance control packs. The protected-action runtime remains a separate PALO-AI v2.6 developer preview.
+Status: PALO platform v3.1.0 guide-agent contract. The guide tools are implemented as deterministic, read-only inference over released PALO registries and the twelve governance control packs. The protected-action and data-assurance runtime remains a separate PALO-AI v2.7 developer preview.
 
 ## Purpose
 

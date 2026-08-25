@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paloframework.org/schemas/palo-external-evidence-ref.schema.json",
+  "title": "PALO External Evidence Reference",
+  "description": "Immutable, payload-minimized reference to context asserted by an external catalog, observability, identity or source system.",
+  "type": "object",
+  "required": ["format", "schemaVersion", "evidenceRefId", "tenantId", "subject", "source", "evidenceType", "normalizedClaims", "observedAt", "validUntil", "payloadDigest", "authority", "connector", "status"],
+  "properties": {
+    "format": { "const": "palo-external-evidence-ref" },
+    "schemaVersion": { "const": "1.0.0" },
+    "evidenceRefId": { "type": "string", "pattern": "^evidence-ref-[a-f0-9-]{36}$" },
+    "tenantId": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "subject": { "$ref": "#/$defs/subject" },
+    "source": {
+      "type": "object",
+      "required": ["system", "objectId"],
+      "properties": {
+        "system": { "type": "string", "minLength": 1, "maxLength": 100 },
+        "objectId": { "type": "string", "minLength": 1, "maxLength": 1000 },
+        "objectVersion": { "type": "string", "minLength": 1, "maxLength": 500 },
+        "uri": { "type": "string", "format": "uri", "maxLength": 2000 }
+      },
+      "additionalProperties": false
+    },
+    "evidenceType": { "enum": ["metadata", "lineage", "quality", "classification", "ownership", "access", "data-contract", "audit", "incident", "other"] },
+    "normalizedClaims": {
+      "type": "object",
+      "minProperties": 1,
+      "properties": {
+        "qualityScore": { "type": "number", "minimum": 0, "maximum": 100 },
+        "freshnessAt": { "type": "string", "format": "date-time" },
+        "classifications": { "type": "array", "uniqueItems": true, "maxItems": 100, "items": { "type": "string", "minLength": 1, "maxLength": 200 } },
+        "owner": { "type": "string", "minLength": 1, "maxLength": 500 },
+        "approved": { "type": "boolean" },
+        "accessState": { "enum": ["granted", "requested", "denied", "revoked", "unknown"] },
+        "lineageComplete": { "type": "boolean" },
+        "permittedPurposes": { "type": "array", "uniqueItems": true, "maxItems": 100, "items": { "type": "string", "minLength": 1, "maxLength": 300 } },
+        "lifecycleState": { "type": "string", "minLength": 1, "maxLength": 100 },
+        "incidentOpen": { "type": "boolean" },
+        "contractVersion": { "type": "string", "minLength": 1, "maxLength": 100 },
+        "additionalClaimsDigest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" }
+      },
+      "additionalProperties": false
+    },
+    "observedAt": { "type": "string", "format": "date-time" },
+    "validUntil": { "type": "string", "format": "date-time" },
+    "payloadDigest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+    "authority": {
+      "type": "object",
+      "required": ["type", "assertedBy", "verified"],
+      "properties": {
+        "type": { "enum": ["source-api", "catalog-api", "observability-api", "identity-api", "signed-import", "manual-attestation"] },
+        "assertedBy": { "type": "string", "minLength": 1, "maxLength": 500 },
+        "verified": { "type": "boolean" }
+      },
+      "additionalProperties": false
+    },
+    "connector": {
+      "type": "object",
+      "required": ["connectorId", "version", "mode", "importedAt"],
+      "properties": {
+        "connectorId": { "type": "string", "pattern": "^connector-[a-zA-Z0-9][a-zA-Z0-9._-]{2,100}$" },
+        "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+(?:-[0-9A-Za-z.-]+)?$" },
+        "mode": { "const": "read-only" },
+        "importedAt": { "type": "string", "format": "date-time" }
+      },
+      "additionalProperties": false
+    },
+    "status": { "enum": ["active", "revoked"] }
+  },
+  "$defs": {
+    "subject": {
+      "type": "object",
+      "required": ["type", "id"],
+      "properties": {
+        "type": { "enum": ["dataset", "data-product", "model", "ai-system", "agent", "tool", "access-entitlement", "other"] },
+        "id": { "type": "string", "minLength": 1, "maxLength": 1000 }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

@@ -13,9 +13,8 @@ const listenTestApp = (app) => new Promise((resolve) => {
 });
 
 const expectedTools = [
-  "palo_execute_governed_action", "palo_explain_framework", "palo_get_approval_status", "palo_get_assurance_task", "palo_get_execution_status", "palo_get_incident", "palo_get_operational_snapshot", "palo_get_registry", "palo_infer_governance_route", "palo_list_approvals", "palo_list_assurance_tasks", "palo_list_incidents",
-  "palo_plan_product_integration",
-  "palo_process_due_tasks", "palo_register_agent", "palo_register_executor", "palo_register_policy", "palo_register_verifier", "palo_request_approval", "palo_resolve_approval", "palo_resolve_incident",
+  "palo_evaluate_data_fitness", "palo_execute_governed_action", "palo_explain_framework", "palo_get_ai_system", "palo_get_approval_status", "palo_get_assurance_task", "palo_get_data_fitness_decision", "palo_get_disclosure_contract", "palo_get_execution_status", "palo_get_incident", "palo_get_operational_snapshot", "palo_get_registry", "palo_import_context_evidence", "palo_infer_governance_route", "palo_ingest_assurance_signal", "palo_list_ai_systems", "palo_list_approvals", "palo_list_assurance_signals", "palo_list_assurance_tasks", "palo_list_context_evidence", "palo_list_incidents", "palo_plan_product_integration",
+  "palo_process_due_tasks", "palo_register_agent", "palo_register_ai_system", "palo_register_data_fitness_policy", "palo_register_disclosure_contract", "palo_register_executor", "palo_register_policy", "palo_register_verifier", "palo_request_approval", "palo_resolve_approval", "palo_resolve_incident",
   "palo_submit_evidence", "palo_verify_action_authority", "palo_verify_evidence", "palo_verify_ledger", "palo_verify_outcome"
 ];
 
@@ -94,7 +93,7 @@ test("authenticated Streamable HTTP rejects anonymous clients and exposes the sa
   t.after(async () => { await app.closeMcp(); await new Promise((resolve) => listener.close(resolve)); runtime.close(); await rm(dataDir, { recursive: true, force: true }); });
   const endpoint = new URL(`http://127.0.0.1:${port}/mcp`);
   const health = await fetch(`http://127.0.0.1:${port}/health`).then((response) => response.json());
-  assert.equal(health.version, "2.6.0");
+  assert.equal(health.version, "2.7.0");
   assert.equal(health.frameworkRelease, "3.1.0");
   assert.equal(health.productionUse, false);
   const unauthorized = await fetch(endpoint, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ jsonrpc: "2.0", id: 1, method: "initialize", params: { protocolVersion: "2025-06-18", capabilities: {}, clientInfo: { name: "anonymous", version: "1" } } }) });

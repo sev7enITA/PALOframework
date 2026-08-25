@@ -68,7 +68,7 @@ PALO is not a certification body and does not provide legal advice. It is a prac
 
 > **PALO v3.1.0 governance control plane:** the v3 semantic foundation now binds twelve applicability-aware control packs, 31 controls, 38 indicators, conditional lifecycle gates and ten evidence-contract families. The packs cover fairness, system cards, affected-person rights, Article 50, data lifecycle, GPAI, serious incidents, accessibility, environment, AI literacy, ISO/IEC 42001 and the PALO-AI production boundary. See the [v3.1 governance control-plane guide](docs/palo-v3.1-governance-control-plane.md) and [semantic foundation](docs/palo-v3-semantic-foundation.md).
 
-> **PALO-AI v2.6 developer preview:** the reference runtime adds identity-bound Action Claim 1.3, OIDC/JWKS resource-server checks, tenant-to-claim request binding, durable single-instance tasks, optional RFC 8785/Ed25519 evidence and a strict production-admission contract. Its own capability declaration denies production startup because SQLite, storage tenancy, managed keys, distributed durability, non-bypassable connectors and independent assurance are not implemented.
+> **PALO-AI v2.7 developer preview:** Action Claim 1.4 binds agent authority to current Data Fitness Decisions and signed Data Disclosure Contracts. The runtime imports payload-minimized catalog/observability evidence, registers AI systems and agent relationships, verifies rows/fields/provider/region/tracing against signed disclosure receipts, invalidates stale decisions on assurance signals and opens held incidents on mismatch. It retains OIDC/JWKS, one-time capabilities, authoritative outcome verification and the strict production-admission denial because SQLite, storage tenancy, managed keys, distributed durability, non-bypassable connectors and independent assurance remain incomplete.
 
 ### PALO-AI for agentic automation platforms
 
@@ -91,6 +91,7 @@ n8n orchestrates what automation does. PALO governs whether an identified agent 
 - [PALO-AI quickstarts: code, n8n and Copilot Studio/MCP](PALO_AIQuickstarts.html)
 - [PALO-AI cloud reference architecture](docs/palo-ai-cloud-reference-architecture.md)
 - [PALO-AI security assurance and scale plan](docs/palo-ai-security-assurance-and-scale.md)
+- [PALO Data Assurance Control Plane and Actian Context Bridge](docs/palo-data-assurance-control-plane.md)
 - [PALO-AI community and market-entry plan](docs/palo-ai-community-and-market-entry.md)
 - [Governance Hub product specification](docs/palo-ai-governance-hub-product-spec.md)
 - [Governance Hub user guide](docs/palo-ai-governance-hub-user-guide.md)
@@ -232,7 +233,7 @@ You can also open `index.html` directly in a browser, although serving locally i
 
 The commands below are for isolated development and testing only. Do not connect this preview to production agents, sensitive data, privileged tools, or consequential decisions.
 
-PALO-AI v2.6 uses the split MCP SDK 2.0 and serves both stateless MCP `2026-07-28` and legacy clients from one tool definition. Remote MCP can validate OIDC/JWKS access tokens with audience-bound scopes, role separation and tenant-to-claim binding; the shared token remains a development fallback and the separate REST Gateway remains a coarse preview boundary. The runtime also supports identity-bound Action Claim 1.3, durable single-instance assurance tasks, optional RFC 8785/Ed25519 evidence, an allowlisted OpenTelemetry span bridge and a fail-closed production profile. See the [August 2026 technology radar](docs/palo-ai-state-of-the-art-radar-2026-08.md) and [v3.1 control-plane guide](docs/palo-v3.1-governance-control-plane.md) for evidence, unresolved gaps and the production boundary.
+PALO-AI v2.7 uses the split MCP SDK 2.0 and serves both stateless MCP `2026-07-28` and legacy clients from one tool definition. Remote MCP can validate OIDC/JWKS access tokens with audience-bound scopes, role separation and tenant-to-claim binding; the shared token remains a development fallback and the separate REST Gateway remains a coarse preview boundary. The runtime supports data-governed Action Claim 1.4, Context Bridge evidence, Data Fitness and Disclosure Contracts, AI system registry, continuous invalidation, durable single-instance assurance tasks, optional RFC 8785/Ed25519 evidence, OpenTelemetry and a fail-closed production profile. See the [Data Assurance Control Plane](docs/palo-data-assurance-control-plane.md), [August 2026 technology radar](docs/palo-ai-state-of-the-art-radar-2026-08.md) and [v3.1 control-plane guide](docs/palo-v3.1-governance-control-plane.md).
 
 Remote n8n and MCP clients must use the [PALO-AI Online VPS Deployment](docs/palo-ai-vps-deployment.md), which exposes authenticated HTTPS endpoints while keeping OPA on a private container network. The `127.0.0.1` commands below are only a laptop-development option.
 
@@ -417,7 +418,7 @@ Exploratory items:
 
 PALO is an educational, governance-support, and pre-screening toolkit. It does not provide legal advice, does not certify compliance, and does not replace professional legal, technical, security, or conformity-assessment review.
 
-PALO-AI v2.6 is explicitly non-production. `Allowed` records a policy decision; only a matching authoritative outcome may be labelled `verified`, and even that does not certify that an action was safe or lawful. The bundled runtime is denied by its strict production profile. Deployers remain responsible for independent threat modelling, authenticated identities and roles, least privilege, tenant isolation, policy ownership, connector idempotency, trusted approval context, key custody and rotation, observability, incident response, backup, retention and validation against their real tools and environments.
+PALO-AI v2.7 is explicitly non-production. `Allowed` records a policy decision; a Data Disclosure Receipt records what a trusted executor asserted about information flow; only a matching authoritative outcome may be labelled `verified`. None of these records certifies that an action was safe or lawful, and the in-process connector is not independently attested. The bundled runtime is denied by its strict production profile. Deployers remain responsible for independent threat modelling, authenticated identities and roles, least privilege, tenant isolation, policy ownership, connector idempotency, trusted approval context, key custody and rotation, observability, incident response, backup, retention and validation against their real tools and environments.
 
 ## License
 

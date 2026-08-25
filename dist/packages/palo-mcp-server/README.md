@@ -1,6 +1,6 @@
 # PALO MCP reference server - Developer Preview
 
-This package is the non-production reference implementation shipped with PALO-AI v2.6. It uses the split MCP TypeScript SDK 2.0 over stdio and Streamable HTTP, serving the stateless 2026-07-28 protocol and a 2025-era compatibility path from the same tool factory. Remote MCP supports OIDC/JWKS with issuer, audience, expiry, algorithm and scope validation, or an explicit shared-token development mode. The runtime demonstrates identity-bound Action Claim 1.3, Effect Contract 1.1, durable approval and verification tasks, runtime guardrails, one-time capabilities, trusted in-process executors, authoritative verifiers, signed receipts, optional RFC 8785/Ed25519 evidence envelopes, outcome attestations, assurance incidents and a hash-chained SQLite ledger. Action Claim 1.1/1.2 and HMAC Evidence Envelope 1.0 remain supported for compatibility.
+This package is the non-production reference implementation shipped with PALO-AI v2.7. It uses the split MCP TypeScript SDK 2.0 over stdio and Streamable HTTP, serving the stateless 2026-07-28 protocol and a 2025-era compatibility path from the same tool factory. Remote MCP supports OIDC/JWKS with issuer, audience, expiry, algorithm and scope validation, or an explicit shared-token development mode. The runtime demonstrates data-governed Action Claim 1.4, Data Fitness Decisions, signed Data Disclosure Contracts and Receipts, external context evidence, continuous invalidation, an AI System & Agent Registry, Effect Contract 1.1, one-time capabilities, trusted in-process executors, authoritative outcome verification, evidence signatures, incidents and a hash-chained SQLite ledger. Action Claim 1.1/1.2/1.3 and HMAC Evidence Envelope 1.0 remain supported for compatibility.
 
 PALO platform v3.1.0 also exposes twelve applicability-aware governance control packs through the three read-only guide tools and the `palo_guide_agent` prompt. They explain the released PALO semantic model, infer a transparent starting route and plan a least-privilege product integration without mutating case state. See the [PALO Guide Agent and MCP Integration](../../docs/palo-guide-agent-and-mcp.md) guide and the [v3.1 Governance Control Plane](../../docs/palo-v3.1-governance-control-plane.md). Keep these orientation tools separate from protected-action authorization and execution.
 
@@ -10,7 +10,7 @@ The VPS reference deployment defines a separately authenticated guide-only route
 
 Do not use this package to authorize or execute production tools, access sensitive data, or support consequential decisions. It is not an audited security boundary, universal exactly-once executor, production identity service, trusted approval service, compliance certification, or production evidence platform.
 
-The following controls are not provided in v2.6:
+The following controls are not provided in v2.7:
 
 - an authorization server, interactive OAuth login, EMA ID-JAG exchange, proof-of-possession, workload attestation, token issuance or rotation; OIDC mode is the MCP resource-server side of that architecture;
 - TLS termination, device/session assurance, rate limiting, tenant data isolation, or network perimeter controls;
@@ -24,7 +24,7 @@ The following controls are not provided in v2.6:
 - Mode B Team Registry, Shared Task Claims, peer coordination, leases, conflict handling, or team-level evidence;
 - monitoring, backup/restore, retention, incident response, penetration testing, or distributed staging validation.
 
-The v2.6 runtime adds a strict production profile and fail-closed startup admission check, but the bundled capability attestation deliberately cannot satisfy that profile. This makes the remaining boundary executable instead of aspirational: the SQLite, process-key and in-process connector runtime cannot start with `PALO_RUNTIME_MODE=production`.
+The v2.7 runtime retains a strict production profile and fail-closed startup admission check, but the bundled capability attestation deliberately cannot satisfy that profile. This makes the remaining boundary executable instead of aspirational: the SQLite, process-key and in-process connector runtime cannot start with `PALO_RUNTIME_MODE=production`.
 
 Validate a deployment profile independently of runtime compatibility:
 
@@ -38,11 +38,21 @@ Evaluate it against the bundled reference runtime:
 npm run production:admission -- schemas/fixtures/palo-production-profile.valid.json
 ```
 
-The second command is expected to deny the fixture. For runtime startup, set `PALO_RUNTIME_MODE=production` and `PALO_PRODUCTION_PROFILE_PATH` to a deployment-specific profile. The bundled server compares the profile with its fixed reference capability declaration and therefore fails closed; a future production host must inject and independently attest a different capability implementation before admission can be possible. OIDC-protected Action Claim 1.3 processing additionally requires the token tenant to match the authority, Effect Contract and optional metadata tenant values. This request check does not provide tenant-isolated storage.
+The second command is expected to deny the fixture. For runtime startup, set `PALO_RUNTIME_MODE=production` and `PALO_PRODUCTION_PROFILE_PATH` to a deployment-specific profile. The bundled server compares the profile with its fixed reference capability declaration and therefore fails closed; a future production host must inject and independently attest a different capability implementation before admission can be possible. OIDC-protected Action Claim 1.3/1.4 processing additionally requires the token tenant to match the authority, Effect Contract and optional metadata tenant values. This request check does not provide tenant-isolated storage.
 
 Use only isolated development data and unprivileged mock executors. Read the repository-level capability matrix and integration guide before running the server.
 
-## v2.6 assurance evolution
+## v2.7 data assurance evolution
+
+Action Claim 1.4 binds the exact claim to an allowed, unexpired, non-invalidated `palo-data-fitness-decision` and a signed `palo-data-disclosure-contract`. The runtime revalidates both before policy evaluation and before issuing the one-time execution capability. The trusted executor returns a payload-minimized `palo-data-disclosure-observation`; PALO compares actual sources, fields, rows, sensitive categories, redactions, recipient, provider, model, region, endpoint, trace mode, retention and export behavior with the contract.
+
+The resulting signed `palo-data-disclosure-receipt` is bound into Execution Receipt 1.1 and the authoritative outcome attestation. A mismatch opens the same high-severity resource hold used for incorrect write effects. Executor result payloads are not persisted for Action Claim 1.4: the runtime stores only their digest and the disclosure receipt. This proves the declared observation boundary; it does not independently attest an in-process connector or make the connector non-bypassable.
+
+External context is imported as immutable `palo-external-evidence-ref` records. They retain source/version/URI, normalized claims, authority and connector provenance plus a source-payload digest, but not the source payload. Fitness decisions bind the evaluated normalized claims and treat conflicting current assertions conservatively. Signed disclosure contracts and observations must remain inside the bound fitness and contract time windows. The included Actian mapper is a read-only normalization profile, not an authenticated Actian SaaS client. Continuous assurance signals invalidate prior allowed fitness decisions and revoke matching capabilities that have not yet been consumed.
+
+See [PALO Data Assurance Control Plane](../../docs/palo-data-assurance-control-plane.md) for contracts, tools, compliance boundaries and the testable Actian vertical slice.
+
+## v2.6 identity and durability baseline
 
 Action Claim 1.3 adds a human principal, workload identity, credential digests, agent instance and contiguous delegation chain. The runtime validates issuer/audience constraints, delegation time windows, non-widening scopes, tenant binding and terminal agent identity before policy evaluation. Configure trust constraints with `PALO_IDENTITY_POLICY_JSON` and provision an `authorityVerifier` callback in the runtime host to validate the bound credential digests against authenticated or attested material obtained out of band. Claim 1.3 fails closed when that verifier is absent; declared issuer strings alone never authorize an action.
 
@@ -73,6 +83,7 @@ export PALO_OIDC_ISSUER='https://identity.example.org'
 export PALO_OIDC_AUDIENCE='https://governance.example.org/mcp'
 export PALO_OIDC_JWKS_URI='https://identity.example.org/.well-known/jwks.json'
 export PALO_OIDC_ALGORITHMS='RS256 PS256 ES256 EdDSA'
+export PALO_OIDC_TENANT_CLAIM='tid'
 ```
 
 The resource publishes RFC 9728 protected-resource metadata and sends scope-aware `WWW-Authenticate` challenges. Direct scopes are `palo:guide`, `palo:read`, `palo:execute`, `palo:review`, `palo:audit` and `palo:admin`; `palo:*` is reserved for administrators. Role aliases `palo-agent`, `palo-reviewer`, `palo-auditor`, `palo-observer` and `palo-admin` expand to fixed least-privilege scope sets. `tools/list` is filtered per authenticated request, and approval or incident resolution records the verified OIDC subject/client rather than trusting the supplied identity label.

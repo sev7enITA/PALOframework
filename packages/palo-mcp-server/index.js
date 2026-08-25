@@ -9,7 +9,7 @@ loadProductionProfileFromEnvironment();
 const enforcementProvider = await loadEnforcementProviderFromEnvironment();
 const runtime = new GovernanceRuntime({ enforcementProvider });
 const exposedTools = parseExposedTools(process.env.PALO_MCP_EXPOSED_TOOLS);
-process.stderr.write("PALO-AI v2.6 IDENTITY-BOUND DURABLE DEVELOPER PREVIEW - isolated testing only; not a production authorization or execution boundary.\n");
+process.stderr.write("PALO-AI v2.7 DATA-ASSURANCE DEVELOPER PREVIEW - isolated testing only; not a production authorization or execution boundary.\n");
 const handle = serveStdio(() => createPaloMcpServer(runtime, { exposedTools: exposedTools.length ? exposedTools : undefined }));
 const shutdown = async () => {
   await handle.close();

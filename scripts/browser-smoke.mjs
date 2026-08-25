@@ -9,6 +9,8 @@ import { PUBLIC_HTML } from "./public-files.mjs";
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const distRoot = path.join(projectRoot, "dist");
+const capabilityMatrix = JSON.parse(await readFile(path.join(distRoot, "agentic", "capability-matrix.json"), "utf8"));
+const expectedCapabilityRows = capabilityMatrix.capabilities.length;
 const mimeTypes = { ".css": "text/css", ".html": "text/html", ".js": "text/javascript", ".json": "application/json", ".png": "image/png", ".svg": "image/svg+xml", ".webp": "image/webp", ".xml": "application/xml" };
 
 const server = createServer(async (request, response) => {
@@ -504,7 +506,7 @@ try {
   if (paloAmHeroCraft.calloutBackground === paloAmHeroCraft.leadColor || paloAmHeroCraft.actionHeights.length !== 2 || paloAmHeroCraft.actionHeights.some((height) => height < 44) || paloAmHeroCraft.actionDisplays.some((display) => display !== "flex") || paloAmHeroCraft.governanceNavHeight < 44) failures.push(`PALO-AM hero: callout contrast, specialist action styling or 44px targets regressed (${JSON.stringify(paloAmHeroCraft)})`);
 
   await page.goto(`${baseUrl}/PALO_AgenticCapabilityMatrix.html`, { waitUntil: "domcontentloaded" });
-  if (await page.locator("[data-status]").count() !== 34) failures.push("Capability Matrix: expected 34 evidence rows");
+  if (await page.locator("[data-status]").count() !== expectedCapabilityRows) failures.push(`Capability Matrix: expected ${expectedCapabilityRows} evidence rows`);
   await page.locator("[data-matrix-search]").fill("governance hub");
   if (await page.locator("[data-status]:visible").count() !== 1) failures.push("Capability Matrix: search did not isolate Governance Hub");
   await page.locator("[data-matrix-search]").fill("");

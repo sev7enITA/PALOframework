@@ -7,16 +7,19 @@ import Ajv2020 from "ajv/dist/2020.js";
 import addFormats from "ajv-formats";
 import { createFunctionEnforcementProvider, evaluateEnforcementProvider, validateEnforcementProviderManifest } from "./enforcement-provider.js";
 import { emitTelemetry, resolveTraceId, signEd25519Envelope, validateAuthorityContext, verifyEvidenceEnvelope } from "./assurance-foundation.js";
+import { evaluateDataDisclosureContract, evaluateDataFitnessPolicy, sameSubject } from "./data-assurance.js";
 import { telemetryFromEnvironment } from "./telemetry-otel.js";
 
 const PROFILE_FORMAT = "palo-agentic-interface";
 const POLICY_ID = "policy-agentic-governance";
-const POLICY_VERSION = "1.3.0";
+const POLICY_VERSION = "1.4.0";
 const repositoryRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const schemaNames = [
   "palo-agentic-interface", "palo-agentic-effect-contract", "palo-agentic-action-claim", "palo-agentic-policy", "palo-agentic-policy-input",
   "palo-agentic-policy-decision", "palo-agentic-approval", "palo-agentic-evidence-envelope", "palo-agentic-execution-capability",
-  "palo-agentic-execution-receipt", "palo-agentic-outcome-attestation", "palo-agentic-assurance-incident", "palo-agentic-enforcement-provider"
+  "palo-agentic-execution-receipt", "palo-agentic-outcome-attestation", "palo-agentic-assurance-incident", "palo-agentic-enforcement-provider",
+  "palo-external-evidence-ref", "palo-data-fitness-policy", "palo-data-fitness-decision", "palo-data-disclosure-contract",
+  "palo-data-disclosure-observation", "palo-data-disclosure-receipt", "palo-ai-system-record", "palo-assurance-signal"
 ];
 const schemas = Object.fromEntries(schemaNames.map((name) => [name, JSON.parse(readFileSync(path.join(repositoryRoot, "schemas", `${name}.schema.json`), "utf8"))]));
 const ajv = new Ajv2020({ allErrors: true, strict: true });
@@ -28,6 +31,7 @@ function clone(value) { return JSON.parse(JSON.stringify(value)); }
 function nowIso() { return new Date().toISOString(); }
 function id(prefix) { return `${prefix}-${randomUUID()}`; }
 function parse(value) { return typeof value === "string" ? JSON.parse(value) : value; }
+function boundedError(...parts) { return parts.filter(Boolean).map(String).join("; ").slice(0, 4000); }
 
 export function assertSchema(name, value) {
   const validator = validators[name];
@@ -175,13 +179,13 @@ export function normalizeActionClaim(input) {
   if (hasNetworkIntent && !claim.action.networkHost) throw new Error("networkHost is required for external network intent");
   if (!hasNetworkIntent && claim.action.networkHost) throw new Error("networkHost is forbidden when networkIntent is none");
   if (sha256(claim.action.arguments) !== claim.action.argumentsDigest) throw new Error("argumentsDigest does not match canonical arguments");
-  if (["1.2.0", "1.3.0"].includes(claim.schemaVersion)) {
+  if (["1.2.0", "1.3.0", "1.4.0"].includes(claim.schemaVersion)) {
     const selector = claim.effectContract.resourceSelector;
     validateEffectContractSemantics(claim.effectContract);
     if (selector.resource !== claim.action.resource || path.posix.normalize(selector.path) !== claim.action.path) throw new Error("Effect Contract resourceSelector must bind to the normalized action resource and path");
     if (selector.tenantId && claim.metadata?.tenantId && selector.tenantId !== claim.metadata.tenantId) throw new Error("Effect Contract tenant does not match Action Claim metadata");
   }
-  if (claim.schemaVersion === "1.3.0") {
+  if (["1.3.0", "1.4.0"].includes(claim.schemaVersion)) {
     if (claim.authorityContext.agentIdentity.agentId !== claim.agentId) throw new Error("authorityContext.agentIdentity.agentId must match claim.agentId");
     if (claim.authorityContext.tenantId && claim.effectContract.resourceSelector.tenantId && claim.authorityContext.tenantId !== claim.effectContract.resourceSelector.tenantId) throw new Error("Authority Context tenant does not match Effect Contract tenant");
   }
@@ -214,6 +218,33 @@ function openDatabase(dataDir) {
     CREATE INDEX IF NOT EXISTS assurance_tasks_due ON assurance_tasks(status, available_at);
     CREATE TABLE IF NOT EXISTS incidents (incident_id TEXT PRIMARY KEY, execution_id TEXT NOT NULL UNIQUE, claim_id TEXT NOT NULL, status TEXT NOT NULL, incident_json TEXT NOT NULL, updated_at TEXT NOT NULL);
     CREATE TABLE IF NOT EXISTS resource_holds (resource_key TEXT PRIMARY KEY, incident_id TEXT NOT NULL, reason TEXT NOT NULL, created_at TEXT NOT NULL, released_at TEXT);
+    CREATE TABLE IF NOT EXISTS external_evidence (evidence_ref_id TEXT PRIMARY KEY, tenant_id TEXT NOT NULL, subject_type TEXT NOT NULL, subject_id TEXT NOT NULL, evidence_type TEXT NOT NULL, status TEXT NOT NULL, evidence_json TEXT NOT NULL, observed_at TEXT NOT NULL, valid_until TEXT NOT NULL, imported_at TEXT NOT NULL);
+    CREATE INDEX IF NOT EXISTS external_evidence_subject ON external_evidence(tenant_id, subject_type, subject_id, evidence_type, valid_until);
+    CREATE TRIGGER IF NOT EXISTS external_evidence_no_update BEFORE UPDATE ON external_evidence BEGIN SELECT RAISE(ABORT, 'external evidence references are immutable'); END;
+    CREATE TRIGGER IF NOT EXISTS external_evidence_no_delete BEFORE DELETE ON external_evidence BEGIN SELECT RAISE(ABORT, 'external evidence references are immutable'); END;
+    CREATE TABLE IF NOT EXISTS fitness_policies (policy_id TEXT NOT NULL, policy_version TEXT NOT NULL, tenant_id TEXT NOT NULL, status TEXT NOT NULL, is_current INTEGER NOT NULL, policy_json TEXT NOT NULL, registered_at TEXT NOT NULL, PRIMARY KEY(policy_id, policy_version));
+    CREATE UNIQUE INDEX IF NOT EXISTS fitness_policies_current ON fitness_policies(policy_id) WHERE is_current = 1;
+    CREATE TRIGGER IF NOT EXISTS fitness_policies_content_immutable BEFORE UPDATE ON fitness_policies WHEN NEW.policy_id != OLD.policy_id OR NEW.policy_version != OLD.policy_version OR NEW.tenant_id != OLD.tenant_id OR NEW.status != OLD.status OR NEW.policy_json != OLD.policy_json OR NEW.registered_at != OLD.registered_at BEGIN SELECT RAISE(ABORT, 'fitness policy versions are immutable'); END;
+    CREATE TRIGGER IF NOT EXISTS fitness_policies_no_delete BEFORE DELETE ON fitness_policies BEGIN SELECT RAISE(ABORT, 'fitness policy versions are immutable'); END;
+    CREATE TABLE IF NOT EXISTS fitness_decisions (decision_id TEXT PRIMARY KEY, tenant_id TEXT NOT NULL, subject_type TEXT NOT NULL, subject_id TEXT NOT NULL, status TEXT NOT NULL, decision_json TEXT NOT NULL, invalidated_at TEXT, invalidation_signal_id TEXT, created_at TEXT NOT NULL);
+    CREATE INDEX IF NOT EXISTS fitness_decisions_subject ON fitness_decisions(tenant_id, subject_type, subject_id, status, invalidated_at);
+    CREATE TRIGGER IF NOT EXISTS fitness_decisions_content_immutable BEFORE UPDATE ON fitness_decisions WHEN NEW.decision_id != OLD.decision_id OR NEW.tenant_id != OLD.tenant_id OR NEW.subject_type != OLD.subject_type OR NEW.subject_id != OLD.subject_id OR NEW.status != OLD.status OR NEW.decision_json != OLD.decision_json OR NEW.created_at != OLD.created_at OR OLD.invalidated_at IS NOT NULL OR NEW.invalidated_at IS NULL OR NEW.invalidation_signal_id IS NULL BEGIN SELECT RAISE(ABORT, 'fitness decisions are immutable except for one invalidation'); END;
+    CREATE TRIGGER IF NOT EXISTS fitness_decisions_no_delete BEFORE DELETE ON fitness_decisions BEGIN SELECT RAISE(ABORT, 'fitness decisions are immutable'); END;
+    CREATE TABLE IF NOT EXISTS disclosure_contracts (contract_id TEXT PRIMARY KEY, tenant_id TEXT NOT NULL, subject_type TEXT NOT NULL, subject_id TEXT NOT NULL, status TEXT NOT NULL, contract_digest TEXT NOT NULL, contract_json TEXT NOT NULL, registered_at TEXT NOT NULL);
+    CREATE INDEX IF NOT EXISTS disclosure_contracts_subject ON disclosure_contracts(tenant_id, subject_type, subject_id, status);
+    CREATE TRIGGER IF NOT EXISTS disclosure_contracts_no_update BEFORE UPDATE ON disclosure_contracts BEGIN SELECT RAISE(ABORT, 'disclosure contracts are immutable'); END;
+    CREATE TRIGGER IF NOT EXISTS disclosure_contracts_no_delete BEFORE DELETE ON disclosure_contracts BEGIN SELECT RAISE(ABORT, 'disclosure contracts are immutable'); END;
+    CREATE TABLE IF NOT EXISTS disclosure_receipts (receipt_id TEXT PRIMARY KEY, contract_id TEXT NOT NULL, execution_id TEXT NOT NULL UNIQUE, status TEXT NOT NULL, receipt_json TEXT NOT NULL, recorded_at TEXT NOT NULL);
+    CREATE TRIGGER IF NOT EXISTS disclosure_receipts_no_update BEFORE UPDATE ON disclosure_receipts BEGIN SELECT RAISE(ABORT, 'disclosure receipts are immutable'); END;
+    CREATE TRIGGER IF NOT EXISTS disclosure_receipts_no_delete BEFORE DELETE ON disclosure_receipts BEGIN SELECT RAISE(ABORT, 'disclosure receipts are immutable'); END;
+    CREATE TABLE IF NOT EXISTS ai_systems (system_id TEXT NOT NULL, record_version TEXT NOT NULL, tenant_id TEXT NOT NULL, status TEXT NOT NULL, is_current INTEGER NOT NULL, record_digest TEXT NOT NULL, record_json TEXT NOT NULL, registered_at TEXT NOT NULL, PRIMARY KEY(system_id, record_version));
+    CREATE UNIQUE INDEX IF NOT EXISTS ai_systems_current ON ai_systems(system_id) WHERE is_current = 1;
+    CREATE TRIGGER IF NOT EXISTS ai_systems_content_immutable BEFORE UPDATE ON ai_systems WHEN NEW.system_id != OLD.system_id OR NEW.record_version != OLD.record_version OR NEW.tenant_id != OLD.tenant_id OR NEW.status != OLD.status OR NEW.record_digest != OLD.record_digest OR NEW.record_json != OLD.record_json OR NEW.registered_at != OLD.registered_at BEGIN SELECT RAISE(ABORT, 'AI System record versions are immutable'); END;
+    CREATE TRIGGER IF NOT EXISTS ai_systems_no_delete BEFORE DELETE ON ai_systems BEGIN SELECT RAISE(ABORT, 'AI System record versions are immutable'); END;
+    CREATE TABLE IF NOT EXISTS assurance_signals (signal_id TEXT PRIMARY KEY, tenant_id TEXT NOT NULL, subject_type TEXT NOT NULL, subject_id TEXT NOT NULL, signal_type TEXT NOT NULL, severity TEXT NOT NULL, signal_json TEXT NOT NULL, recorded_at TEXT NOT NULL);
+    CREATE INDEX IF NOT EXISTS assurance_signals_subject ON assurance_signals(tenant_id, subject_type, subject_id, recorded_at);
+    CREATE TRIGGER IF NOT EXISTS assurance_signals_no_update BEFORE UPDATE ON assurance_signals BEGIN SELECT RAISE(ABORT, 'assurance signals are immutable'); END;
+    CREATE TRIGGER IF NOT EXISTS assurance_signals_no_delete BEFORE DELETE ON assurance_signals BEGIN SELECT RAISE(ABORT, 'assurance signals are immutable'); END;
     CREATE TABLE IF NOT EXISTS evidence (ledger_sequence INTEGER PRIMARY KEY AUTOINCREMENT, event_id TEXT NOT NULL UNIQUE, event_digest TEXT NOT NULL, previous_event_digest TEXT, envelope_json TEXT NOT NULL, recorded_at TEXT NOT NULL);
     CREATE TRIGGER IF NOT EXISTS evidence_no_update BEFORE UPDATE ON evidence BEGIN SELECT RAISE(ABORT, 'evidence ledger is append-only'); END;
     CREATE TRIGGER IF NOT EXISTS evidence_no_delete BEFORE DELETE ON evidence BEGIN SELECT RAISE(ABORT, 'evidence ledger is append-only'); END;
@@ -412,14 +443,240 @@ export class GovernanceRuntime {
     return parse(row.policy_json);
   }
 
-  async getRegistry() {
+  async getRegistry({ tenantId } = {}) {
+    const tenantClause = tenantId ? " WHERE tenant_id = ?" : "";
+    const tenantArgs = tenantId ? [tenantId] : [];
     return {
       enforcementProvider: clone(this.enforcementProvider.manifest),
       profiles: this.db.prepare("SELECT case_id AS caseId, agent_id AS agentId, profile_version AS profileVersion, profile_digest AS profileDigest, status, registered_at AS registeredAt, updated_at AS updatedAt FROM profiles ORDER BY agent_id, profile_version").all(),
       policies: this.db.prepare("SELECT policy_id AS policyId, policy_version AS policyVersion, bundle_digest AS bundleDigest, status, registered_at AS registeredAt FROM policies ORDER BY policy_id, policy_version").all(),
       executors: this.db.prepare("SELECT executor_id AS executorId, executor_version AS version, status, registered_at AS registeredAt FROM executors ORDER BY executor_id, executor_version").all(),
-      verifiers: this.db.prepare("SELECT verifier_id AS verifierId, verifier_version AS version, status, registered_at AS registeredAt FROM verifiers ORDER BY verifier_id, verifier_version").all()
+      verifiers: this.db.prepare("SELECT verifier_id AS verifierId, verifier_version AS version, status, registered_at AS registeredAt FROM verifiers ORDER BY verifier_id, verifier_version").all(),
+      dataFitnessPolicies: this.db.prepare(`SELECT policy_id AS policyId, policy_version AS policyVersion, tenant_id AS tenantId, status, registered_at AS registeredAt FROM fitness_policies${tenantClause} ORDER BY policy_id, policy_version`).all(...tenantArgs),
+      disclosureContracts: this.db.prepare(`SELECT contract_id AS disclosureContractId, tenant_id AS tenantId, subject_type AS subjectType, subject_id AS subjectId, status, contract_digest AS contractDigest, registered_at AS registeredAt FROM disclosure_contracts${tenantClause} ORDER BY registered_at`).all(...tenantArgs),
+      aiSystems: this.db.prepare(`SELECT system_id AS systemId, record_version AS recordVersion, tenant_id AS tenantId, status, record_digest AS recordDigest, registered_at AS registeredAt FROM ai_systems${tenantClause} ORDER BY system_id, record_version`).all(...tenantArgs)
     };
+  }
+
+  registerExternalEvidence(evidence) {
+    assertSchema("palo-external-evidence-ref", evidence);
+    const currentTime = Date.now();
+    if (Date.parse(evidence.observedAt) >= Date.parse(evidence.validUntil)) throw new Error("External evidence validUntil must be later than observedAt");
+    if (Date.parse(evidence.observedAt) > currentTime + 30000 || Date.parse(evidence.connector.importedAt) > currentTime + 30000) throw new Error("External evidence timestamps cannot be in the future");
+    if (Date.parse(evidence.connector.importedAt) + 30000 < Date.parse(evidence.observedAt)) throw new Error("External evidence cannot be imported before it was observed");
+    const existing = this.db.prepare("SELECT evidence_json FROM external_evidence WHERE evidence_ref_id = ?").get(evidence.evidenceRefId);
+    if (existing) {
+      const stored = parse(existing.evidence_json);
+      if (sha256(stored) !== sha256(evidence)) throw new Error("Evidence reference identifier is already bound to different content");
+      return stored;
+    }
+    this.db.prepare("INSERT INTO external_evidence VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)").run(
+      evidence.evidenceRefId, evidence.tenantId, evidence.subject.type, evidence.subject.id, evidence.evidenceType, evidence.status,
+      JSON.stringify(evidence), evidence.observedAt, evidence.validUntil, evidence.connector.importedAt
+    );
+    this.emit("palo.context.evidence_imported", null, { tenantId: evidence.tenantId, evidenceRefId: evidence.evidenceRefId, subjectType: evidence.subject.type, evidenceType: evidence.evidenceType, sourceSystem: evidence.source.system });
+    return clone(evidence);
+  }
+
+  async listExternalEvidence({ tenantId, subjectType, subjectId, evidenceType = "all", includeExpired = false, limit = 100 } = {}) {
+    if (!tenantId || !subjectType || !subjectId) throw new Error("tenantId, subjectType and subjectId are required");
+    return this.db.prepare("SELECT evidence_json FROM external_evidence WHERE tenant_id = ? AND subject_type = ? AND subject_id = ? AND (? = 'all' OR evidence_type = ?) AND (? = 1 OR valid_until > ?) ORDER BY observed_at DESC LIMIT ?")
+      .all(tenantId, subjectType, subjectId, evidenceType, evidenceType, includeExpired ? 1 : 0, nowIso(), Math.max(1, Math.min(limit, 500))).map((row) => parse(row.evidence_json));
+  }
+
+  registerDataFitnessPolicy(policy) {
+    assertSchema("palo-data-fitness-policy", policy);
+    const tx = this.db.transaction(() => {
+      const exact = this.db.prepare("SELECT policy_json FROM fitness_policies WHERE policy_id = ? AND policy_version = ?").get(policy.policyId, policy.policyVersion);
+      if (exact) {
+        const stored = parse(exact.policy_json);
+        if (sha256(stored) !== sha256(policy)) throw new Error("Data Fitness Policy identity and version are already bound to different content");
+        return stored;
+      }
+      const current = this.db.prepare("SELECT tenant_id, policy_version, policy_json FROM fitness_policies WHERE policy_id = ? AND is_current = 1").get(policy.policyId);
+      if (current && current.tenant_id !== policy.tenantId) throw new Error("Data Fitness Policy tenant cannot change across versions");
+      if (current && sha256(parse(current.policy_json)) !== sha256(policy) && !isNewer(policy.policyVersion, current.policy_version)) throw new Error("Data Fitness Policy replacement requires a strictly newer policyVersion");
+      this.db.prepare("UPDATE fitness_policies SET is_current = 0 WHERE policy_id = ?").run(policy.policyId);
+      this.db.prepare("INSERT INTO fitness_policies VALUES (?, ?, ?, ?, 1, ?, ?)").run(policy.policyId, policy.policyVersion, policy.tenantId, policy.status, JSON.stringify(policy), nowIso());
+      return policy;
+    });
+    return clone(tx());
+  }
+
+  async evaluateDataFitness({ tenantId, subject, purpose, policyId }) {
+    if (!tenantId || !subject || !purpose || !policyId) throw new Error("tenantId, subject, purpose and policyId are required");
+    const policyRow = this.db.prepare("SELECT policy_json FROM fitness_policies WHERE policy_id = ? AND tenant_id = ? AND is_current = 1 AND status = 'active'").get(policyId, tenantId);
+    if (!policyRow) throw new Error("No active Data Fitness Policy is registered for this tenant and policyId");
+    const policy = parse(policyRow.policy_json);
+    if (Date.parse(policy.effectiveAt) > Date.now()) throw new Error("Data Fitness Policy is not yet effective");
+    const evidence = this.db.prepare("SELECT evidence_json FROM external_evidence WHERE tenant_id = ? AND subject_type = ? AND subject_id = ? AND status = 'active'").all(tenantId, subject.type, subject.id).map((row) => parse(row.evidence_json));
+    const evaluated = evaluateDataFitnessPolicy(policy, evidence, { subject, purpose, now: nowIso() });
+    const decision = {
+      format: "palo-data-fitness-decision", schemaVersion: "1.0.0", decisionId: id("fitness-decision"), tenantId, subject: clone(subject), purpose,
+      policyId: policy.policyId, policyVersion: policy.policyVersion, status: evaluated.status, checks: evaluated.checks, evidenceRefs: evaluated.evidenceRefs,
+      evidenceDigest: evaluated.evidenceDigest, decidedAt: nowIso(), expiresAt: evaluated.expiresAt
+    };
+    assertSchema("palo-data-fitness-decision", decision);
+    this.db.prepare("INSERT INTO fitness_decisions VALUES (?, ?, ?, ?, ?, ?, NULL, NULL, ?)").run(decision.decisionId, tenantId, subject.type, subject.id, decision.status, JSON.stringify(decision), decision.decidedAt);
+    this.emit("palo.data_fitness.decision", null, { tenantId, decisionId: decision.decisionId, subjectType: subject.type, status: decision.status, policyId: policy.policyId, policyVersion: policy.policyVersion });
+    return decision;
+  }
+
+  async getDataFitnessDecision(decisionId) {
+    const row = this.db.prepare("SELECT decision_json, invalidated_at, invalidation_signal_id FROM fitness_decisions WHERE decision_id = ?").get(decisionId);
+    if (!row) throw new Error("Data Fitness Decision not found");
+    return { ...parse(row.decision_json), ...(row.invalidated_at ? { invalidatedAt: row.invalidated_at, invalidationSignalId: row.invalidation_signal_id } : {}) };
+  }
+
+  registerDisclosureContract(contract) {
+    assertSchema("palo-data-disclosure-contract", contract);
+    if (!this.verifySignedContract("palo-data-disclosure-contract", contract)) throw new Error("Data Disclosure Contract signature is invalid or its key is unavailable");
+    if (contract.status !== "active" || Date.parse(contract.expiresAt) <= Date.now() || Date.parse(contract.issuedAt) > Date.now() + 30000 || Date.parse(contract.issuedAt) >= Date.parse(contract.expiresAt)) throw new Error("Data Disclosure Contract must be active inside a valid current time window");
+    if (!contract.approvedBy || contract.lawfulBasis === "pending-review") throw new Error("An active Data Disclosure Contract requires accountable approval and a resolved lawful-basis classification");
+    if (!contract.dataScope.sourceRefs.includes(contract.subject.id)) throw new Error("Data Disclosure Contract sourceRefs must include its bound subject identifier");
+    if (contract.dataScope.allowedFields.some((field) => contract.dataScope.deniedFields.includes(field))) throw new Error("Data Disclosure Contract cannot both allow and deny the same read field");
+    if (contract.egressPolicy.maxRows > contract.dataScope.maxRowsRead) throw new Error("Data Disclosure Contract cannot permit more egress rows than source rows read");
+    const decisionRow = this.db.prepare("SELECT decision_json, invalidated_at FROM fitness_decisions WHERE decision_id = ?").get(contract.boundFitnessDecision.decisionId);
+    if (!decisionRow) throw new Error("Bound Data Fitness Decision is not registered");
+    const decision = parse(decisionRow.decision_json);
+    if (decisionRow.invalidated_at || decision.status !== "allowed" || Date.parse(decision.expiresAt) <= Date.now()) throw new Error("Bound Data Fitness Decision is not currently allowed");
+    if (contract.boundFitnessDecision.decisionDigest !== sha256(decision)) throw new Error("Data Disclosure Contract does not bind the exact Data Fitness Decision");
+    if (contract.tenantId !== decision.tenantId || !sameSubject(contract.subject, decision.subject) || contract.purpose !== decision.purpose) throw new Error("Data Disclosure Contract tenant, subject or purpose differs from the Data Fitness Decision");
+    if (Date.parse(contract.issuedAt) + 30000 < Date.parse(decision.decidedAt)) throw new Error("Data Disclosure Contract cannot predate its Data Fitness Decision");
+    if (Date.parse(contract.expiresAt) > Date.parse(decision.expiresAt)) throw new Error("Data Disclosure Contract cannot outlive its Data Fitness Decision");
+    const existing = this.db.prepare("SELECT contract_json FROM disclosure_contracts WHERE contract_id = ?").get(contract.disclosureContractId);
+    if (existing) {
+      const stored = parse(existing.contract_json);
+      if (sha256(stored) !== sha256(contract)) throw new Error("Disclosure contract identifier is already bound to different content");
+      return stored;
+    }
+    this.db.prepare("INSERT INTO disclosure_contracts VALUES (?, ?, ?, ?, ?, ?, ?, ?)").run(contract.disclosureContractId, contract.tenantId, contract.subject.type, contract.subject.id, contract.status, sha256(contract), JSON.stringify(contract), nowIso());
+    return clone(contract);
+  }
+
+  async getDisclosureContract(disclosureContractId) {
+    const row = this.db.prepare("SELECT contract_json FROM disclosure_contracts WHERE contract_id = ?").get(disclosureContractId);
+    if (!row) throw new Error("Data Disclosure Contract not found");
+    return parse(row.contract_json);
+  }
+
+  registerAiSystem(record) {
+    assertSchema("palo-ai-system-record", record);
+    for (const evidenceRefId of record.evidenceRefs || []) {
+      const evidence = this.db.prepare("SELECT tenant_id FROM external_evidence WHERE evidence_ref_id = ?").get(evidenceRefId);
+      if (!evidence || evidence.tenant_id !== record.tenantId) throw new Error(`AI System record references unavailable cross-tenant evidence ${evidenceRefId}`);
+    }
+    const stored = this.db.transaction(() => {
+      const exact = this.db.prepare("SELECT record_json FROM ai_systems WHERE system_id = ? AND record_version = ?").get(record.systemId, record.recordVersion);
+      if (exact) {
+        const existing = parse(exact.record_json);
+        if (sha256(existing) !== sha256(record)) throw new Error("AI System identity and version are already bound to different content");
+        return existing;
+      }
+      const current = this.db.prepare("SELECT tenant_id, record_version, record_json FROM ai_systems WHERE system_id = ? AND is_current = 1").get(record.systemId);
+      if (current && current.tenant_id !== record.tenantId) throw new Error("AI System tenant cannot change across versions");
+      if (current && sha256(parse(current.record_json)) !== sha256(record) && !isNewer(record.recordVersion, current.record_version)) throw new Error("AI System replacement requires a strictly newer recordVersion");
+      this.db.prepare("UPDATE ai_systems SET is_current = 0 WHERE system_id = ?").run(record.systemId);
+      this.db.prepare("INSERT INTO ai_systems VALUES (?, ?, ?, ?, 1, ?, ?, ?)").run(record.systemId, record.recordVersion, record.tenantId, record.status, sha256(record), JSON.stringify(record), nowIso());
+      return record;
+    })();
+    return clone(stored);
+  }
+
+  async getAiSystem(systemId) {
+    const row = this.db.prepare("SELECT record_json FROM ai_systems WHERE system_id = ? AND is_current = 1").get(systemId);
+    if (!row) throw new Error("AI System record not found");
+    return parse(row.record_json);
+  }
+
+  async listAiSystems({ tenantId, status = "all", limit = 100 } = {}) {
+    if (!tenantId) throw new Error("tenantId is required");
+    return this.db.prepare("SELECT record_json FROM ai_systems WHERE tenant_id = ? AND is_current = 1 AND (? = 'all' OR status = ?) ORDER BY system_id LIMIT ?")
+      .all(tenantId, status, status, Math.max(1, Math.min(limit, 500))).map((row) => parse(row.record_json));
+  }
+
+  async ingestAssuranceSignal(signal) {
+    assertSchema("palo-assurance-signal", signal);
+    if (Date.parse(signal.observedAt) > Date.now() + 30000) throw new Error("Assurance Signal observedAt cannot be in the future");
+    if (signal.evidenceRefId) {
+      const evidence = this.db.prepare("SELECT tenant_id, subject_type, subject_id FROM external_evidence WHERE evidence_ref_id = ?").get(signal.evidenceRefId);
+      if (!evidence || evidence.tenant_id !== signal.tenantId || evidence.subject_type !== signal.subject.type || evidence.subject_id !== signal.subject.id) throw new Error("Assurance Signal evidence reference is missing or bound to another tenant/subject");
+    }
+    const existing = this.db.prepare("SELECT signal_json FROM assurance_signals WHERE signal_id = ?").get(signal.signalId);
+    if (existing) {
+      const stored = parse(existing.signal_json);
+      if (sha256(stored) !== sha256(signal)) throw new Error("Assurance Signal identifier is already bound to different content");
+      return { signal: stored, duplicate: true, invalidatedDecisionIds: [], revokedCapabilityIds: [] };
+    }
+    const invalidatedDecisionIds = this.db.transaction(() => {
+      this.db.prepare("INSERT INTO assurance_signals VALUES (?, ?, ?, ?, ?, ?, ?, ?)").run(signal.signalId, signal.tenantId, signal.subject.type, signal.subject.id, signal.signalType, signal.severity, JSON.stringify(signal), signal.observedAt);
+      const ids = this.db.prepare("SELECT decision_id FROM fitness_decisions WHERE tenant_id = ? AND subject_type = ? AND subject_id = ? AND invalidated_at IS NULL AND status = 'allowed'").all(signal.tenantId, signal.subject.type, signal.subject.id).map((row) => row.decision_id);
+      this.db.prepare("UPDATE fitness_decisions SET invalidated_at = ?, invalidation_signal_id = ? WHERE tenant_id = ? AND subject_type = ? AND subject_id = ? AND invalidated_at IS NULL AND status = 'allowed'").run(signal.observedAt, signal.signalId, signal.tenantId, signal.subject.type, signal.subject.id);
+      return ids;
+    })();
+    const invalidated = new Set(invalidatedDecisionIds); const revokedCapabilityIds = [];
+    for (const row of this.db.prepare("SELECT capability_json FROM execution_capabilities WHERE status = 'issued'").all()) {
+      const capability = parse(row.capability_json);
+      if (capability.fitnessDecisionId && invalidated.has(capability.fitnessDecisionId)) revokedCapabilityIds.push(this.revokeExecutionCapability(capability.capabilityId).capabilityId);
+    }
+    this.emit("palo.assurance.signal", null, { tenantId: signal.tenantId, signalId: signal.signalId, signalType: signal.signalType, severity: signal.severity, invalidatedDecisions: invalidatedDecisionIds.length, revokedCapabilities: revokedCapabilityIds.length });
+    return { signal: clone(signal), duplicate: false, invalidatedDecisionIds, revokedCapabilityIds };
+  }
+
+  async listAssuranceSignals({ tenantId, subjectType, subjectId, limit = 100 } = {}) {
+    if (!tenantId) throw new Error("tenantId is required");
+    return this.db.prepare("SELECT signal_json FROM assurance_signals WHERE tenant_id = ? AND (? IS NULL OR subject_type = ?) AND (? IS NULL OR subject_id = ?) ORDER BY recorded_at DESC LIMIT ?")
+      .all(tenantId, subjectType || null, subjectType || null, subjectId || null, subjectId || null, Math.max(1, Math.min(limit, 500))).map((row) => parse(row.signal_json));
+  }
+
+  validateDataGovernanceBinding(claim) {
+    if (claim.schemaVersion !== "1.4.0") return { allowed: true };
+    const binding = claim.dataGovernance; const reasons = [];
+    const decisionRow = this.db.prepare("SELECT decision_json, invalidated_at, invalidation_signal_id FROM fitness_decisions WHERE decision_id = ?").get(binding.fitnessDecisionId);
+    const decision = decisionRow ? parse(decisionRow.decision_json) : null;
+    if (!decision) reasons.push("Bound Data Fitness Decision is not registered");
+    else {
+      if (binding.fitnessDecisionDigest !== sha256(decision)) reasons.push("Data Fitness Decision digest mismatch");
+      if (decision.status !== "allowed") reasons.push("Data Fitness Decision is not allowed");
+      if (decisionRow.invalidated_at) reasons.push(`Data Fitness Decision was invalidated by ${decisionRow.invalidation_signal_id}`);
+      if (Date.parse(decision.expiresAt) <= Date.now()) reasons.push("Data Fitness Decision is expired");
+      if (!sameSubject(binding.subject, decision.subject) || binding.purpose !== decision.purpose) reasons.push("Action Claim subject or purpose differs from the Data Fitness Decision");
+    }
+    const contractRow = this.db.prepare("SELECT contract_json, contract_digest FROM disclosure_contracts WHERE contract_id = ?").get(binding.disclosureContractId);
+    const contract = contractRow ? parse(contractRow.contract_json) : null;
+    if (!contract) reasons.push("Bound Data Disclosure Contract is not registered");
+    else {
+      if (binding.disclosureContractDigest !== contractRow.contract_digest || binding.disclosureContractDigest !== sha256(contract)) reasons.push("Data Disclosure Contract digest mismatch");
+      if (!this.verifySignedContract("palo-data-disclosure-contract", contract)) reasons.push("Data Disclosure Contract signature is invalid");
+      if (contract.status !== "active" || Date.parse(contract.issuedAt) > Date.now() + 30000 || Date.parse(contract.expiresAt) <= Date.now()) reasons.push("Data Disclosure Contract is inactive or outside its current time window");
+      if (!sameSubject(binding.subject, contract.subject) || binding.purpose !== contract.purpose) reasons.push("Action Claim subject or purpose differs from the Data Disclosure Contract");
+      if (contract.boundFitnessDecision.decisionId !== binding.fitnessDecisionId || contract.boundFitnessDecision.decisionDigest !== binding.fitnessDecisionDigest) reasons.push("Data Disclosure Contract is not bound to the Action Claim fitness decision");
+    }
+    const tenantId = claim.authorityContext?.tenantId || claim.effectContract?.resourceSelector?.tenantId || claim.metadata?.tenantId;
+    if (decision && decision.tenantId !== tenantId) reasons.push("Data Fitness Decision tenant mismatch");
+    if (contract && contract.tenantId !== tenantId) reasons.push("Data Disclosure Contract tenant mismatch");
+    return { allowed: reasons.length === 0, reasons, decision, contract };
+  }
+
+  createDisclosureReceipt(execution, observation) {
+    const contract = parse(this.db.prepare("SELECT contract_json FROM disclosure_contracts WHERE contract_id = ?").get(execution.claim.dataGovernance.disclosureContractId)?.contract_json || "null");
+    if (!contract || !this.verifySignedContract("palo-data-disclosure-contract", contract)) throw new Error("A current signed Data Disclosure Contract is required at execution time");
+    let evaluated; let observedSummary;
+    try {
+      assertSchema("palo-data-disclosure-observation", observation);
+      evaluated = evaluateDataDisclosureContract(contract, observation, { now: nowIso(), notBefore: execution.startedAt });
+      observedSummary = clone(observation);
+    } catch (error) {
+      evaluated = { status: "inconclusive", checks: [{ predicateId: "predicate-disclosure.observation", category: "forbidden", status: "unknown", reason: `Trusted disclosure observation unavailable: ${error.message}` }] };
+    }
+    const { keyId, secret } = this.getSigningMaterial(execution.claim, execution.decision.profileVersion);
+    const receipt = this.signContract("palo-data-disclosure-receipt", {
+      format: "palo-data-disclosure-receipt", schemaVersion: "1.0.0", receiptId: id("disclosure-receipt"), disclosureContractId: contract.disclosureContractId,
+      executionId: execution.executionId, claimId: execution.claim.claimId, executorId: execution.capability.executorId, status: evaluated.status,
+      observationDigest: sha256(observation ?? { unavailable: true }), ...(observedSummary ? { observedSummary } : {}), checks: evaluated.checks, checkedAt: nowIso(),
+      keyId, algorithm: "HMAC-SHA256"
+    }, secret);
+    return receipt;
   }
 
   emit(name, claim, attributes = {}) {
@@ -447,8 +704,8 @@ export class GovernanceRuntime {
   }
 
   async verifyCryptographicAuthority(claim) {
-    if (claim.schemaVersion !== "1.3.0") return { valid: true, verifierId: "legacy-contract", verifiedAt: nowIso() };
-    if (!this.authorityVerifier) return { valid: false, reasons: ["Action Claim 1.3 requires a configured cryptographic authority verifier"] };
+    if (!["1.3.0", "1.4.0"].includes(claim.schemaVersion)) return { valid: true, verifierId: "legacy-contract", verifiedAt: nowIso() };
+    if (!this.authorityVerifier) return { valid: false, reasons: [`Action Claim ${claim.schemaVersion} requires a configured cryptographic authority verifier`] };
     try {
       const result = await this.authorityVerifier(clone(claim.authorityContext), clone(claim));
       if (!result || result.valid !== true) return { valid: false, reasons: result?.reasons?.length ? result.reasons.map(String) : ["Authority credentials or proof could not be verified"] };
@@ -588,6 +845,16 @@ export class GovernanceRuntime {
         reviewRequired: count("executions", "WHERE status IN ('mismatch','inconclusive')")
       },
       incidents: { open: count("incidents", "WHERE status != 'resolved'") },
+      dataAssurance: {
+        currentEvidenceRefs: count("external_evidence", `WHERE status = 'active' AND valid_until > '${nowIso()}'`),
+        activeFitnessPolicies: count("fitness_policies", "WHERE is_current = 1 AND status = 'active'"),
+        allowedFitnessDecisions: count("fitness_decisions", "WHERE status = 'allowed' AND invalidated_at IS NULL"),
+        invalidatedFitnessDecisions: count("fitness_decisions", "WHERE invalidated_at IS NOT NULL"),
+        activeDisclosureContracts: count("disclosure_contracts", "WHERE status = 'active'"),
+        disclosureMismatches: count("disclosure_receipts", "WHERE status != 'verified'"),
+        registeredAiSystems: count("ai_systems", "WHERE is_current = 1"),
+        assuranceSignals: count("assurance_signals")
+      },
       evidenceLedger: ledger,
       guardrails: clone(this.guardrails)
     };
@@ -624,10 +891,14 @@ export class GovernanceRuntime {
     const digest = sha256(claim);
     const existingRow = this.db.prepare("SELECT claim_digest, decision_json FROM decisions WHERE claim_id = ?").get(claim.claimId);
     if (Date.parse(claim.expiresAt) <= Date.now() || Date.parse(claim.requestedAt) > Date.now() + 30000) return this.persistDecision(claim, digest, { status: "denied", reasons: ["Claim is expired or not yet valid"], obligations: [] });
+    let existingDecision = null;
     if (existingRow) {
       if (existingRow.claim_digest !== digest) return this.persistDecision(claim, digest, { status: "denied", reasons: ["claimId replayed with different content"], obligations: ["rotate_claim_id"] });
       const existing = parse(existingRow.decision_json);
-      if (!revalidate && (!approvalId || existing.status !== "pending_approval")) return existing;
+      existingDecision = existing;
+      // Data-governance evidence is mutable by design. A cached 1.4 decision must
+      // therefore be re-evaluated against the current fitness/disclosure state.
+      if (claim.schemaVersion !== "1.4.0" && !revalidate && (!approvalId || existing.status !== "pending_approval")) return existing;
     }
     let profile; let policy;
     try { profile = await this.getProfile(claim.caseId, claim.agentId); policy = this.getPolicy(); this.validateArguments(claim, profile); }
@@ -636,6 +907,8 @@ export class GovernanceRuntime {
     if (!authorityContext.valid) return this.persistDecision(claim, digest, { status: "denied", reasons: authorityContext.violations, obligations: ["repair_authority_context"] }, profile);
     const authorityVerification = await this.verifyCryptographicAuthority(claim);
     if (!authorityVerification.valid) return this.persistDecision(claim, digest, { status: "denied", reasons: authorityVerification.reasons, obligations: ["configure_or_repair_authority_verifier"] }, profile);
+    const dataGovernance = this.validateDataGovernanceBinding(claim);
+    if (!dataGovernance.allowed) return this.persistDecision(claim, digest, { status: "denied", reasons: dataGovernance.reasons, obligations: ["refresh_data_fitness_and_disclosure_contract"] }, profile);
     if (!existingRow) {
       const guardrailDecision = this.evaluateRuntimeGuardrails(claim);
       if (!guardrailDecision.allowed) return this.persistDecision(claim, digest, { status: "denied", reasons: guardrailDecision.violations, obligations: ["repair_authority_or_wait_for_runtime_budget"] }, profile);
@@ -658,6 +931,19 @@ export class GovernanceRuntime {
       const pendingApproval = approval?.status === "pending" ? approval : await this.requestApproval(claim, digest, "palo-policy-engine");
       result.approvalId = pendingApproval.approvalId;
     }
+    if (existingDecision) {
+      const nextStatus = result.status === "allowed" ? "allowed" : result.status === "pending_approval" ? "pending_approval" : "denied";
+      const nextReasons = result.reasons?.length ? result.reasons : ["Policy returned no explanatory reason"];
+      const nextPolicyVersion = result.policyVersion || `${POLICY_ID}/${POLICY_VERSION}`;
+      const equivalent = existingDecision.status === nextStatus
+        && existingDecision.policyVersion === nextPolicyVersion
+        && existingDecision.profileVersion === (profile?.profileVersion || "unknown")
+        && sha256(existingDecision.reasons) === sha256(nextReasons)
+        && sha256(existingDecision.obligations) === sha256(result.obligations || [])
+        && (existingDecision.approvalId || null) === (result.approvalId || null)
+        && sha256(existingDecision.enforcementProvider || null) === sha256(result.enforcementProvider || null);
+      if (equivalent) return existingDecision;
+    }
     return this.persistDecision(claim, digest, result, profile);
   }
 
@@ -679,7 +965,7 @@ export class GovernanceRuntime {
     if (result.enforcementProvider) decision.enforcementProvider = result.enforcementProvider;
     assertSchema("palo-agentic-policy-decision", decision);
     this.db.prepare("INSERT INTO decisions VALUES (?, ?, ?, ?) ON CONFLICT(claim_id) DO UPDATE SET claim_digest=excluded.claim_digest, decision_json=excluded.decision_json, updated_at=excluded.updated_at").run(claim.claimId, claimDigest, JSON.stringify(decision), nowIso());
-    if (profile) this.recordEvidence({ claim, decision, outcome: decision.status, payload: { action: claim.action, requestedScopes: claim.requestedScopes, ...(this.authorityVerifications.has(claim.claimId) ? { authorityVerification: this.authorityVerifications.get(claim.claimId) } : {}), ...(decision.enforcementProvider ? { enforcementProvider: decision.enforcementProvider } : {}) } });
+    if (profile) this.recordEvidence({ claim, decision, outcome: decision.status, payload: { action: claim.action, requestedScopes: claim.requestedScopes, ...(claim.dataGovernance ? { dataGovernance: claim.dataGovernance } : {}), ...(this.authorityVerifications.has(claim.claimId) ? { authorityVerification: this.authorityVerifications.get(claim.claimId) } : {}), ...(decision.enforcementProvider ? { enforcementProvider: decision.enforcementProvider } : {}) } });
     this.emit("palo.policy.decision", claim, { decisionId: decision.decisionId, status: decision.status, policyVersion: decision.policyVersion });
     return decision;
   }
@@ -747,8 +1033,10 @@ export class GovernanceRuntime {
   }
 
   issueExecutionCapability(claim, decision, executorId, verifierId, ttlSeconds = 60) {
-    if (!["1.2.0", "1.3.0"].includes(claim.schemaVersion) || !claim.effectContract) throw new Error("Governed execution requires Action Claim schemaVersion 1.2.0 or 1.3.0 with an Effect Contract");
+    if (!["1.2.0", "1.3.0", "1.4.0"].includes(claim.schemaVersion) || !claim.effectContract) throw new Error("Governed execution requires Action Claim schemaVersion 1.2.0, 1.3.0 or 1.4.0 with an Effect Contract");
     if (decision.status !== "allowed" || decision.claimId !== claim.claimId || decision.claimDigest !== sha256(claim)) throw new Error("Execution capability requires the current allowed decision for the exact Action Claim");
+    const dataGovernance = this.validateDataGovernanceBinding(claim);
+    if (!dataGovernance.allowed) throw new Error(`Execution capability denied by current data governance: ${dataGovernance.reasons.join("; ")}`);
     const executor = this.getAdapterManifest("executor", executorId); const verifier = this.getAdapterManifest("verifier", verifierId);
     if (!executor.supportedTools.includes(claim.action.tool)) throw new Error(`Executor ${executorId} is not trusted for ${claim.action.tool}`);
     if (!verifier.supportedResources.includes(claim.action.resource) && !verifier.supportedResources.includes("*")) throw new Error(`Verifier ${verifierId} is not trusted for ${claim.action.resource}`);
@@ -758,13 +1046,15 @@ export class GovernanceRuntime {
     if (existing) {
       const capability = parse(existing.capability_json);
       if (capability.claimDigest !== sha256(claim) || capability.executorId !== executorId || capability.verifierId !== verifierId) throw new Error("Claim already has a differently bound execution capability");
+      if (capability.decisionId !== decision.decisionId) throw new Error("Claim already has an execution capability bound to a superseded policy decision");
       return capability;
     }
     const { keyId, secret } = this.getSigningMaterial(claim); const issuedAt = nowIso();
     const capability = this.signContract("palo-agentic-execution-capability", {
-      format: "palo-agentic-execution-capability", schemaVersion: "1.0.0", capabilityId: id("capability"), claimId: claim.claimId,
+      format: "palo-agentic-execution-capability", schemaVersion: claim.schemaVersion === "1.4.0" ? "1.1.0" : "1.0.0", capabilityId: id("capability"), claimId: claim.claimId,
       claimDigest: sha256(claim), decisionId: decision.decisionId, caseId: claim.caseId, agentId: claim.agentId, executorId, verifierId,
       resource: claim.action.resource, path: claim.action.path, ...(claim.effectContract.resourceSelector.tenantId ? { tenantId: claim.effectContract.resourceSelector.tenantId } : {}),
+      ...(claim.dataGovernance ? { fitnessDecisionId: claim.dataGovernance.fitnessDecisionId, fitnessDecisionDigest: claim.dataGovernance.fitnessDecisionDigest, disclosureContractId: claim.dataGovernance.disclosureContractId, disclosureContractDigest: claim.dataGovernance.disclosureContractDigest } : {}),
       issuedAt, expiresAt: new Date(Date.now() + Math.max(5, Math.min(ttlSeconds, 300)) * 1000).toISOString(), singleUse: true, status: "issued", keyId, algorithm: "HMAC-SHA256"
     }, secret);
     this.db.prepare("INSERT INTO execution_capabilities VALUES (?, ?, ?, ?, NULL, ?)").run(capability.capabilityId, capability.claimId, capability.status, JSON.stringify(capability), issuedAt);
@@ -789,6 +1079,8 @@ export class GovernanceRuntime {
     const result = this.db.transaction(() => {
       const existing = this.db.prepare("SELECT execution_json FROM executions WHERE claim_id = ?").get(claim.claimId);
       if (existing) return { execution: parse(existing.execution_json) };
+      const dataGovernance = this.validateDataGovernanceBinding(claim);
+      if (!dataGovernance.allowed) throw new Error(`Execution capability denied by current data governance: ${dataGovernance.reasons.join("; ")}`);
       const row = this.db.prepare("SELECT capability_json, status FROM execution_capabilities WHERE capability_id = ?").get(capability.capabilityId);
       if (!row) throw new Error("Execution capability not found");
       const current = parse(row.capability_json);
@@ -818,7 +1110,7 @@ export class GovernanceRuntime {
 
   async executeGovernedAction(inputClaim, { approvalId, executorId, verifierId, capabilityTtlSeconds = 60 } = {}) {
     const claim = normalizeActionClaim(inputClaim);
-    if (!["1.2.0", "1.3.0"].includes(claim.schemaVersion)) throw new Error("Full-cycle governed execution requires Action Claim schemaVersion 1.2.0 or 1.3.0");
+    if (!["1.2.0", "1.3.0", "1.4.0"].includes(claim.schemaVersion)) throw new Error("Full-cycle governed execution requires Action Claim schemaVersion 1.2.0, 1.3.0 or 1.4.0");
     const existing = this.db.prepare("SELECT execution_id FROM executions WHERE claim_id = ?").get(claim.claimId);
     if (existing) return this.getExecution(existing.execution_id);
     const decision = await this.verifyAction(claim, approvalId, { revalidate: true });
@@ -843,22 +1135,43 @@ export class GovernanceRuntime {
     try {
       result = await executor({ claim: clone(claim), arguments: clone(claim.action.arguments), idempotencyKey: claim.idempotencyKey, preState: clone(observed.state), resourceVersion: observed.resourceVersion, supportsIdempotency: adapterManifest.supportsIdempotency });
     } catch (error) {
-      executionError = error instanceof Error ? error.message : String(error);
+      executionError = boundedError(error instanceof Error ? error.message : String(error));
       receiptStatus = error?.unknownOutcome ? "unknown" : "failed";
       result = { error: executionError };
     }
+    let disclosureReceipt = null;
+    if (claim.schemaVersion === "1.4.0") {
+      try {
+        disclosureReceipt = this.createDisclosureReceipt(execution, result?.disclosureObservation);
+      } catch (error) {
+        const disclosureError = error instanceof Error ? error.message : String(error);
+        receiptStatus = "unknown";
+        executionError = boundedError(executionError, `Disclosure assurance unavailable after executor invocation: ${disclosureError}`);
+        this.emit("palo.disclosure.receipt_unavailable", claim, { executionId: execution.executionId, error: disclosureError });
+      }
+    }
     const { keyId, secret, profile } = this.getSigningMaterial(claim, decision.profileVersion); const completedAt = nowIso();
     const receipt = this.signContract("palo-agentic-execution-receipt", {
-      format: "palo-agentic-execution-receipt", schemaVersion: "1.0.0", executionId: execution.executionId, capabilityId: execution.capability.capabilityId,
+      format: "palo-agentic-execution-receipt", schemaVersion: disclosureReceipt ? "1.1.0" : "1.0.0", executionId: execution.executionId, capabilityId: execution.capability.capabilityId,
       claimId: claim.claimId, claimDigest: sha256(claim), executorId, status: receiptStatus, startedAt: execution.startedAt, completedAt,
       preStateDigest: execution.preStateDigest, ...(execution.resourceVersion ? { resourceVersion: execution.resourceVersion } : {}), requestDigest: sha256(claim.action.arguments),
-      resultDigest: sha256(result), ...(executionError ? { error: executionError } : {}), keyId, algorithm: "HMAC-SHA256"
+      resultDigest: sha256(result), ...(disclosureReceipt ? { disclosureReceiptId: disclosureReceipt.receiptId, disclosureReceiptDigest: sha256(disclosureReceipt) } : {}),
+      ...(executionError ? { error: executionError } : {}), keyId, algorithm: "HMAC-SHA256"
     }, secret);
     execution.status = receiptStatus === "succeeded" ? "executed" : receiptStatus === "failed" ? "execution_failed" : "execution_unknown";
-    execution.completedAt = completedAt; execution.receipt = receipt; execution.result = redact(result, profile.evidence.redactFields);
+    execution.completedAt = completedAt; execution.receipt = receipt;
+    if (claim.schemaVersion === "1.4.0") {
+      if (disclosureReceipt) execution.disclosureReceipt = disclosureReceipt;
+      execution.result = {
+        resultDigest: sha256(result),
+        payloadStored: false,
+        ...(disclosureReceipt ? { disclosureReceiptId: disclosureReceipt.receiptId } : {})
+      };
+    } else execution.result = redact(result, profile.evidence.redactFields);
     this.db.transaction(() => {
+      if (disclosureReceipt) this.db.prepare("INSERT INTO disclosure_receipts VALUES (?, ?, ?, ?, ?, ?)").run(disclosureReceipt.receiptId, disclosureReceipt.disclosureContractId, disclosureReceipt.executionId, disclosureReceipt.status, JSON.stringify(disclosureReceipt), disclosureReceipt.checkedAt);
       this.db.prepare("UPDATE executions SET status = ?, execution_json = ?, outbox_state = 'recorded', updated_at = ? WHERE execution_id = ?").run(execution.status, JSON.stringify(execution), completedAt, execution.executionId);
-      this.recordEvidence({ claim, decision, profileVersion: decision.profileVersion, outcome: receiptStatus === "succeeded" ? "execution_succeeded" : receiptStatus === "failed" ? "execution_failed" : "execution_unknown", payload: { receipt }, executionId: execution.executionId });
+      this.recordEvidence({ claim, decision, profileVersion: decision.profileVersion, outcome: receiptStatus === "succeeded" ? "execution_succeeded" : receiptStatus === "failed" ? "execution_failed" : "execution_unknown", payload: { receipt, ...(disclosureReceipt ? { disclosureReceipt } : {}) }, executionId: execution.executionId });
     })();
     this.emit("palo.execution.completed", claim, { executionId: execution.executionId, executorId, status: receiptStatus });
     const initialDelaySeconds = claim.effectContract.verification.initialDelaySeconds || 0;
@@ -909,6 +1222,18 @@ export class GovernanceRuntime {
           status: "inconclusive",
           checks: [...verification.checks, { predicateId: "predicate-execution-attribution", category: "expected", status: "unknown", reason: "The recovered execution has no conclusive trusted completion receipt" }]
         };
+      }
+      if (execution.claim.schemaVersion === "1.4.0") {
+        if (!execution.disclosureReceipt || !this.verifySignedContract("palo-data-disclosure-receipt", execution.disclosureReceipt)) {
+          verification = {
+            status: "inconclusive",
+            checks: [...verification.checks, { predicateId: "predicate-disclosure.receipt", category: "forbidden", status: "unknown", reason: "A valid trusted Data Disclosure Receipt is unavailable" }]
+          };
+        } else {
+          verification.checks.push(...execution.disclosureReceipt.checks);
+          if (execution.disclosureReceipt.status === "mismatch") verification.status = "mismatch";
+          else if (execution.disclosureReceipt.status === "inconclusive" && verification.status === "verified") verification.status = "inconclusive";
+        }
       }
     } catch (error) {
       verification = { status: "inconclusive", checks: execution.claim.effectContract.expectedEffects.map((predicate) => ({ predicateId: predicate.predicateId, category: "expected", status: "unknown", reason: `Authoritative post-state unavailable: ${error.message}` })) };
@@ -993,6 +1318,7 @@ export class GovernanceRuntime {
     return {
       status: execution.status === "verified" ? "verified" : execution.status === "mismatch" || execution.status === "inconclusive" ? "review_required" : execution.status,
       executed: Boolean(execution.receipt), executionId: execution.executionId, decision: execution.decision, receipt: execution.receipt,
+      ...(execution.disclosureReceipt ? { disclosureReceipt: execution.disclosureReceipt } : {}),
       attestation: execution.attestation, ...(resolvedIncident ? { incident: parse(resolvedIncident.incident_json || resolvedIncident) } : {})
     };
   }
@@ -1003,15 +1329,50 @@ export class GovernanceRuntime {
     return this.presentExecution(parse(row.execution_json));
   }
 
+  async getExecutionTenant(executionId) {
+    const row = this.db.prepare("SELECT execution_json FROM executions WHERE execution_id = ?").get(executionId);
+    if (!row) throw new Error("Execution not found");
+    const tenantId = this.resolveClaimTenant(parse(row.execution_json).claim);
+    if (!tenantId) throw new Error("Execution is not bound to a tenant-aware Action Claim");
+    return tenantId;
+  }
+
+  resolveClaimTenant(claim) {
+    return claim?.authorityContext?.tenantId || claim?.effectContract?.resourceSelector?.tenantId || claim?.metadata?.tenantId || null;
+  }
+
   async getIncident(incidentId) {
     const row = this.db.prepare("SELECT incident_json FROM incidents WHERE incident_id = ?").get(incidentId);
     if (!row) throw new Error("Assurance incident not found");
     return parse(row.incident_json);
   }
 
-  async listIncidents(status = "open") {
+  async getIncidentTenant(incidentId) {
+    const row = this.db.prepare(`
+      SELECT i.incident_id, e.execution_json
+      FROM incidents i
+      LEFT JOIN executions e ON e.execution_id = i.execution_id
+      WHERE i.incident_id = ?
+    `).get(incidentId);
+    if (!row) throw new Error("Assurance incident not found");
+    const tenantId = row.execution_json ? this.resolveClaimTenant(parse(row.execution_json).claim) : null;
+    if (!tenantId) throw new Error("Assurance incident is not bound to a tenant-aware Action Claim");
+    return tenantId;
+  }
+
+  async listIncidents(status = "open", { tenantId } = {}) {
     if (!["open", "acknowledged", "resolved", "all"].includes(status)) throw new Error("Invalid incident status filter");
-    return this.db.prepare("SELECT incident_json FROM incidents WHERE (? = 'all' OR status = ?) ORDER BY updated_at DESC").all(status, status).map((row) => parse(row.incident_json));
+    const rows = this.db.prepare(`
+      SELECT i.incident_json, e.execution_json
+      FROM incidents i
+      LEFT JOIN executions e ON e.execution_id = i.execution_id
+      WHERE (? = 'all' OR i.status = ?)
+      ORDER BY i.updated_at DESC
+    `).all(status, status);
+    if (!tenantId) return rows.map((row) => parse(row.incident_json));
+    return rows
+      .filter((row) => row.execution_json && this.resolveClaimTenant(parse(row.execution_json).claim) === tenantId)
+      .map((row) => parse(row.incident_json));
   }
 
   async resolveIncident(incidentId, status, resolvedBy, resolution) {
