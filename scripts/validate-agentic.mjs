@@ -38,6 +38,9 @@ const expectedTools = [
 const spec = JSON.parse(await readFile("examples/agentic-interface/mcp-server-spec.json", "utf8"));
 const documentedTools = (spec.tools || []).map((tool) => tool.name).sort();
 if (JSON.stringify(documentedTools) !== JSON.stringify(expectedTools)) errors.push("MCP server specification is out of sync with executable tools");
+const governancePage = await readFile("PALO_AgenticGovernance.html", "utf8");
+if (!new RegExp(`${names.length} versioned contracts`, "i").test(governancePage)) errors.push(`Agentic Governance page does not publish the validated ${names.length}-contract count`);
+if (!new RegExp(`${expectedTools.length} (?:reference |MCP )?tools`, "i").test(governancePage)) errors.push(`Agentic Governance page does not publish the validated ${expectedTools.length}-tool count`);
 
 let opa = process.env.PALO_OPA_BIN || path.resolve(".tools/opa/opa");
 try { await access(opa); }

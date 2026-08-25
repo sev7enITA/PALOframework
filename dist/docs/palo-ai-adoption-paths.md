@@ -1,6 +1,6 @@
 # PALO-AI Adoption Paths
 
-Status: audience guide for the PALO-AI v2.5 full-cycle developer preview, updated 18 July 2026.
+Status: current audience guide for the PALO-AI v2.7 data-assurance developer preview, updated 25 August 2026.
 
 > Do not use this preview as a production authorization boundary. Use isolated data, mock or reversible actions, short-lived preview credentials, and an accountable test owner.
 

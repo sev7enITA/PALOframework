@@ -298,7 +298,7 @@ The current registry write endpoints do not implement this lifecycle. Treat this
 
 #### Code-first or MCP
 
-1. Validate Action Claim 1.2.
+1. Validate Action Claim 1.4, including Authority Context and required data-governance bindings; accept earlier versions only through an explicit compatibility path.
 2. Register profiles, policy, executor, and verifier.
 3. Expose only the required PALO MCP tools.
 4. Keep target credentials inside the governed executor.

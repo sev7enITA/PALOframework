@@ -85,6 +85,7 @@
     const task = document.querySelector("[data-library-task]");
     const evidence = document.querySelector("[data-library-evidence]");
     const workspace = document.querySelector("[data-library-workspace]");
+    const lifecycle = document.querySelector("[data-library-lifecycle]");
     const depthButtons = [...document.querySelectorAll("[data-library-depth]")];
     let depth = depthButtons.find((button) => button.classList.contains("is-active"))?.dataset.libraryDepth || "start";
     const result = document.querySelector("[data-library-result]");
@@ -104,16 +105,17 @@
       const chosenTask = String(task?.value || "all");
       const chosenEvidence = String(evidence?.value || "all");
       const chosenWorkspace = String(workspace?.value || "all");
+      const chosenLifecycle = String(lifecycle?.value || "all");
       let visible = 0;
       for (const card of libraryCards) {
-        const show = (depth === "all" || card.dataset.level === depth) && (chosen === "all" || card.dataset.category === chosen) && (chosenAudience === "all" || card.dataset.audience.split(" ").includes(chosenAudience)) && (chosenTask === "all" || card.dataset.task.split(" ").includes(chosenTask)) && (chosenEvidence === "all" || card.dataset.evidenceClass === chosenEvidence) && (chosenWorkspace === "all" || card.dataset.workspace === chosenWorkspace) && (!query || card.dataset.search.includes(query));
+        const show = (depth === "all" || card.dataset.level === depth) && (chosen === "all" || card.dataset.category === chosen) && (chosenAudience === "all" || card.dataset.audience.split(" ").includes(chosenAudience)) && (chosenTask === "all" || card.dataset.task.split(" ").includes(chosenTask)) && (chosenEvidence === "all" || card.dataset.evidenceClass === chosenEvidence) && (chosenWorkspace === "all" || card.dataset.workspace === chosenWorkspace) && (chosenLifecycle === "all" || card.dataset.lifecycle === chosenLifecycle) && (!query || card.dataset.search.includes(query));
         card.hidden = !show;
         if (show) visible += 1;
       }
       for (const group of document.querySelectorAll("[data-library-group]")) {
         const hasMatches = Boolean(group.querySelector("[data-library-card]:not([hidden])"));
         group.hidden = !hasMatches;
-        if (hasMatches && (query || chosen !== "all" || chosenAudience !== "all" || chosenTask !== "all" || chosenEvidence !== "all" || chosenWorkspace !== "all" || depth !== "start")) {
+        if (hasMatches && (query || chosen !== "all" || chosenAudience !== "all" || chosenTask !== "all" || chosenEvidence !== "all" || chosenWorkspace !== "all" || chosenLifecycle !== "all" || depth !== "start")) {
           group.classList.remove("is-mobile-collapsed");
           group.querySelector("[data-library-toggle]")?.setAttribute("aria-expanded", "true");
         }
@@ -134,7 +136,7 @@
       if (String(search.value || "").trim()) selectDepth("all");
       update();
     });
-    category?.addEventListener("change", update); audience?.addEventListener("change", update); task?.addEventListener("change", update); evidence?.addEventListener("change", update); workspace?.addEventListener("change", update); update();
+    category?.addEventListener("change", update); audience?.addEventListener("change", update); task?.addEventListener("change", update); evidence?.addEventListener("change", update); workspace?.addEventListener("change", update); lifecycle?.addEventListener("change", update); update();
   }
 
   const gates = [...document.querySelectorAll("[data-gate-id]")];

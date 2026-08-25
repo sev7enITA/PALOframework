@@ -15,7 +15,7 @@ The target architecture and public claim discipline are documented in [`docs/pal
 
 ## Installable alpha
 
-The `n8n-nodes-palo-ai` 0.2.0 source package retains the three-output decision gate and adds a four-output PALO Governed Action node for Action Claim 1.2, trusted receipt and outcome assurance. The original 0.1.0 runtime evidence is recorded in the [test report](../../../../docs/palo-ai-n8n-alpha-test-report.md); package 0.2 remains unpublished and requires a new real n8n runtime validation before any publication claim.
+The `n8n-nodes-palo-ai` 0.2.0 source package retains the three-output decision gate and adds a four-output PALO Governed Action node. It supports the gateway's compatibility claims and the current data-governed Action Claim 1.4 path, trusted execution/disclosure receipts and outcome assurance. The original 0.1.0 runtime evidence is retained as a [historical test report](../../../../docs/palo-ai-n8n-alpha-test-report.md); package 0.2 remains unpublished and requires a new real n8n runtime validation before any publication claim.
 
 The [`palo-visual-governance-gate.json`](templates/palo-visual-governance-gate.json) workflow is for local mock evaluation only. Select a PALO API credential after import.
 

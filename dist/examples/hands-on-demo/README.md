@@ -1,11 +1,13 @@
-# PALO-AI v2.5 hands-on demo - permission is not correctness
+# PALO-AI v2.7 compatibility demo - permission is not correctness
+
+Status: compatibility demonstration retained for the Action Claim 1.2 path in the PALO-AI v2.7 gateway. It demonstrates outcome assurance, not the newer Action Claim 1.4 Authority Context, Data Fitness or disclosure controls.
 
 This no-slides demonstration compares a direct agent tool call with full-cycle assurance over a synthetic multi-tenant catalog. It uses no production system, personal data or consequential action.
 
 ## What the audience sees
 
 1. **Without PALO:** the agent has a tool, so the update executes. There is no authority decision and nobody verifies whether the catalog now reflects the intended result.
-2. **With PALO:** the same intent becomes Action Claim 1.2 plus an Effect Contract.
+2. **With PALO:** the same intent becomes a compatibility Action Claim 1.2 plus an Effect Contract.
 3. Policy requests human approval for the exact immutable claim.
 4. PALO issues and consumes a one-time capability, then invokes its trusted synthetic executor.
 5. A separate verifier reads authoritative post-state.

@@ -1,6 +1,6 @@
 # PALO-AI Governance Integration Guide
 
-Status: full-cycle developer-preview integration guide for PALO-AI v2.5, updated 18 July 2026.
+Status: current data-assurance developer-preview integration guide for PALO-AI v2.7, updated 25 August 2026.
 
 > **Do not use this release as a production authorization boundary.** The current implementation is intended for isolated evaluation with mock or non-consequential tools. It does not yet provide production workload identity, reviewer authentication, unavoidable execution, distributed exactly-once semantics, KMS/HSM-backed keys, high availability, or connector certification.
 
@@ -18,11 +18,11 @@ Choose the audience-specific starting point in the [PALO-AI adoption paths](palo
 
 ## Current release assessment
 
-PALO-AI v2.5 contains a working full-cycle reference core, but not yet a production control plane.
+PALO-AI v2.7 contains a working data-assurance reference core, but not yet a production control plane.
 
 | Capability | Current evidence | Status | What is still required |
 |---|---|---|---|
-| Canonical Action Claim and Effect Contract | Action Claim 1.1 compatibility, Action Claim 1.2, closed predicate DSL and resource binding | Implemented | Domain predicate packs and interoperability validation |
+| Canonical Action Claim and Effect Contract | Action Claim 1.1-1.3 compatibility, data-governed Action Claim 1.4, Authority Context, closed predicate DSL and resource binding | Implemented / prototype | Domain predicate packs and interoperability validation |
 | Rego enforcement | Rego v1 policy, input schema, default deny, OPA tests | Implemented | Signed bundles, controlled promotion, provenance and rollback |
 | MCP | Official-SDK stdio server and authenticated Streamable HTTP prototype | Implemented / prototype | Workload identity, TLS boundary, RBAC, rotation and rate limiting |
 | Trusted registry | Versioned agent profiles and policies in SQLite | Prototype | Administrative authorization, publisher signatures, backup and recovery |
@@ -293,7 +293,7 @@ The mobile or Web reviewer must resolve an approval through an authenticated PAL
 
 n8n's official [MCP Client Tool](https://docs.n8n.io/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.toolmcp/) can expose selected MCP tools to an AI Agent. Select an explicit allowlist and do not connect equivalent target tools directly to the same agent.
 
-Client compatibility depends on the MCP transport and product version. PALO v2.5 provides stdio and authenticated Streamable HTTP; do not claim plug-and-play compatibility with clients that require SSE or another transport until that exact combination has been tested and documented.
+Client compatibility depends on the MCP transport and product version. PALO-AI v2.7 provides stdio and authenticated Streamable HTTP; do not claim plug-and-play compatibility with clients that require SSE or another transport until that exact combination has been tested and documented.
 
 ### Production path for n8n
 
@@ -373,7 +373,7 @@ A standalone 'check policy' step followed by a native vendor action is advisory 
 
 ## MCP-based platforms
 
-For MCP clients, expose only PALO-governed tools to the agent. Do not expose the same privileged target tools alongside their PALO wrappers. The v2.5 stdio server can remain local to a trusted host; the authenticated Streamable HTTP transport remains a shared-token prototype and requires an explicit host allowlist for every non-loopback binding.
+For MCP clients, expose only PALO-governed tools to the agent. Do not expose the same privileged target tools alongside their PALO wrappers. The v2.7 stdio server can remain local to a trusted host; the authenticated Streamable HTTP transport supports an OIDC-aware resource-server mode, while shared-token compatibility mode remains a prototype and every non-loopback binding requires an explicit host allowlist.
 
 n8n also documents an [instance-level MCP server](https://docs.n8n.io/advanced-ai/mcp/accessing-n8n-mcp-server/). That server exposes selected n8n workflows to clients; it does not by itself enforce PALO authority over actions inside those workflows.
 

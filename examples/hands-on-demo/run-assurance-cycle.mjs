@@ -49,10 +49,11 @@ async function waitForApproval() {
 }
 
 const health = await gateway("/health");
-if (health.version !== "2.5.0") throw new Error("The v2.5 full-cycle gateway is not running");
+if (health.version !== "2.7.0") throw new Error("The PALO-AI v2.7 gateway is not running");
 await gateway("/v1/demo/catalog/reset", { method: "POST", body: { price: 100, version: staleState ? 4 : 3 } });
 
-console.log(`${colors.bold}PALO-AI v2.5 full-cycle assurance - synthetic catalog demo${colors.reset}`);
+console.log(`${colors.bold}PALO-AI v2.7 compatibility assurance - synthetic catalog demo${colors.reset}`);
+console.log("This demo intentionally exercises the Action Claim 1.2 compatibility path, not the v1.4 data-assurance controls.");
 console.log("No production system, customer data or consequential tool is used.");
 
 headline(0, "WITHOUT PALO - possession becomes permission");

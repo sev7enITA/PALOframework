@@ -1,6 +1,6 @@
 # PALO-AI Security Assurance and Scale Plan
 
-Status: external-assurance plan for the PALO-AI v2.5 full-cycle developer preview, updated 19 July 2026.
+Status: current external-assurance plan for the PALO-AI v2.7 data-assurance developer preview, updated 25 August 2026.
 
 ## Recommendation
 

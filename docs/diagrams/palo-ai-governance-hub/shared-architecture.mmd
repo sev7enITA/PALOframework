@@ -9,7 +9,7 @@ flowchart TB
     MOCK["Illustrative local data<br/>CURRENT PROTOTYPE"]
     BFF["Hub API / backend-for-frontend<br/>REQUIRED FOR LIVE DATA: OIDC, RBAC, tenant context, redaction"]
 
-    subgraph Runtime["PALO-AI v2.5 developer-preview runtime"]
+    subgraph Runtime["PALO-AI v2.7 developer-preview runtime"]
         GW["Gateway + MCP server<br/>current: shared bearer token"]
         REG["Versioned registry<br/>agents, policies, executors, verifiers"]
         OPA["OPA / Rego v1<br/>default deny"]

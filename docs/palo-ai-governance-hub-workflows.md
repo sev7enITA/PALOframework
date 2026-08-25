@@ -1,6 +1,6 @@
 # PALO-AI Governance Hub - Workflow and Diagram Specification
 
-Status: design specification for a role-based GUI over the PALO-AI v2.5 developer preview.
+Status: current design specification for a role-based GUI over the PALO-AI v2.7 developer preview, updated 25 August 2026.
 
 > **Developer-preview boundary.** This document does not turn the reference runtime into a production authorization boundary. Use synthetic or isolated data and non-consequential tools only. Production use still requires workload and human identity, tenant RBAC, KMS/HSM-backed keys, durable distributed state, high availability, connector isolation, monitoring and independent security assessment.
 
@@ -11,7 +11,7 @@ The proposed **PALO-AI Governance Hub** is one product with two primary lenses o
 - **Executive Cockpit** - communicates exposure, ownership, decisions and verified outcomes without requiring knowledge of JSON, Rego or MCP.
 - **Technical Workbench** - configures, tests, publishes and operates the controls behind those outcomes, with progressive access to generated contracts and evidence.
 
-The Hub must not maintain a separate governance truth. It reads and acts through PALO-AI contracts: Action Claim 1.2, Effect Contract 1.0, Policy Decision 1.0, Approval 1.0, Execution Capability 1.0, Execution Receipt 1.0, Outcome Attestation 1.0 and Assurance Incident 1.0.
+The Hub must not maintain a separate governance truth. It reads and acts through PALO-AI contracts: data-governed Action Claim 1.4 (with compatibility for earlier claim versions), Effect Contract 1.0, Policy Decision 1.0, Approval 1.0, Execution Capability 1.0, Execution Receipt 1.0, Disclosure Receipt 1.0, Outcome Attestation 1.0 and Assurance Incident 1.0.
 
 ## Diagram set
 
@@ -32,7 +32,7 @@ The Hub introduces a role-aware presentation and orchestration layer without rep
 
 ### Inputs
 
-- Authenticated human principal, role, tenant/project and selected environment - **required, not implemented in v2.5**.
+- Authenticated human principal, role, tenant/project and selected environment - **required; OIDC tenant-aware resource-server checks are prototyped in v2.7, while production human identity and separation of duties remain incomplete**.
 - Registry records for agents, policies, executors and verifiers.
 - Decisions, approvals, executions, receipts, attestations, incidents and ledger status.
 - Platform correlation identifiers such as workflow, execution and node IDs.
@@ -144,7 +144,7 @@ An approval is not a mutable flag. It is bound to the exact claim digest and mus
 
 ### Inputs
 
-- Canonical Action Claim 1.2 with nonce, idempotency key, sequence number and Effect Contract.
+- Canonical Action Claim 1.4 with nonce, idempotency key, sequence number, Authority Context, Data Fitness binding, Disclosure Contract and Effect Contract.
 - Active agent profile, policy, executor and verifier manifests.
 - Exact approval ID when policy requires review.
 - Authoritative pre- and post-state observations.
@@ -202,18 +202,18 @@ A `mismatch` or `inconclusive` attestation opens an Assurance Incident and a hol
 | Executor workload | Consume a bound one-time capability | Holds target credential; cannot expand the claim. |
 | Verifier workload | Read authoritative state and attest the Effect Contract | Separate trust path from the executor wherever practical. |
 
-The v2.5 preview uses shared bearer tokens and caller-supplied human labels. Those controls are insufficient for the role model above. The target requires OIDC for people, workload identity/mTLS for services, tenant/project RBAC, scoped credentials, separation of duties and a complete administrative audit trail.
+The v2.7 preview can operate in shared-bearer compatibility mode or as an OIDC-aware resource server, but reviewer identities remain caller-supplied labels. Those controls are insufficient for the role model above. The target requires authenticated people, workload identity/mTLS for services, tenant/project RBAC, scoped credentials, separation of duties and a complete administrative audit trail.
 
 ## Current and required API surface
 
-### Available in the v2.5 reference Gateway
+### Available in the v2.7 reference Gateway
 
 | Workflow | Current endpoint(s) | Notes |
 | --- | --- | --- |
 | Health | `GET /health` | Unauthenticated preview health only. |
 | Registry read | `GET /v1/registry` | Aggregate preview registry; needs pagination, filters and tenant scoping. |
 | Registration | `POST /v1/agents/register`, `/v1/policies/register`, `/v1/executors/register`, `/v1/verifiers/register` | Immediate version registration; no draft/review/promotion lifecycle. |
-| Decision gate | `POST /v1/actions/verify` | Action Claim 1.1/1.2 compatibility; fail-closed reference behavior. |
+| Decision gate | `POST /v1/actions/verify` | Action Claim 1.1-1.4 compatibility; fail-closed reference behavior, including Authority Context and data-governance bindings for 1.4. |
 | Governed action | `POST /v1/actions/execute` | Full-cycle reference execution using in-process adapters. |
 | Execution read/verify | `GET /v1/executions/{id}`, `GET /v1/executions/{id}/outcome`, `POST /v1/executions/{id}/verify` | Suitable for execution drill-down; lacks search/list endpoint. |
 | Approvals | `GET /v1/approvals`, `GET /v1/approvals/{id}`, `POST /v1/approvals/resolve` | Caller-supplied reviewer identity; list endpoint must not be public without RBAC. |

@@ -1,6 +1,6 @@
 # PALO-AI Cloud Reference Architecture
 
-Status: target architecture and deployment decision record for the PALO-AI v2.5 full-cycle developer preview, updated 19 July 2026.
+Status: current target architecture and deployment decision record for the PALO-AI v2.7 data-assurance developer preview, updated 25 August 2026.
 
 > The live Hostinger VPS is an Internet-reachable developer preview. HTTPS and private container networking do not make the current runtime a production authorization boundary.
 

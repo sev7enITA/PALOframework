@@ -7,7 +7,7 @@
     <!-- Homepage -->
     <url>
         <loc>https://paloframework.org/</loc>
-        <lastmod>2026-08-12</lastmod>
+        <lastmod>2026-08-25</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
@@ -15,35 +15,35 @@
     <!-- Core Tools -->
     <url>
         <loc>https://paloframework.org/PALO_FRIA.html</loc>
-        <lastmod>2026-07-11</lastmod>
+        <lastmod>2026-08-25</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
 
     <url>
         <loc>https://paloframework.org/PALO_RiskTiering.html</loc>
-        <lastmod>2026-07-11</lastmod>
+        <lastmod>2026-08-25</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
 
     <url>
         <loc>https://paloframework.org/PALO_KPIGenerator.html</loc>
-        <lastmod>2025-12-17</lastmod>
+        <lastmod>2026-08-25</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
 
     <url>
         <loc>https://paloframework.org/PALO_ModelCanvasAI.html</loc>
-        <lastmod>2026-07-11</lastmod>
+        <lastmod>2026-08-25</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
 
     <url>
         <loc>https://paloframework.org/PALO_ComparisonTool.html</loc>
-        <lastmod>2026-07-11</lastmod>
+        <lastmod>2026-08-25</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -51,68 +51,68 @@
     <!-- Guided workflow and documentation -->
     <url>
         <loc>https://paloframework.org/docs/palo-v3-semantic-foundation.html</loc>
-        <lastmod>2026-08-12</lastmod>
+        <lastmod>2026-08-25</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://paloframework.org/docs/owasp-genai-llm-top-10-2026-security-crosswalk.html</loc>
-        <lastmod>2026-08-13</lastmod>
+        <lastmod>2026-08-25</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://paloframework.org/PALO_AssessmentPath.html</loc>
-        <lastmod>2026-07-11</lastmod>
+        <lastmod>2026-08-25</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
 
     <url>
         <loc>https://paloframework.org/PALO_Guide.html</loc>
-        <lastmod>2026-08-13</lastmod>
+        <lastmod>2026-08-25</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
 
     <url>
         <loc>https://paloframework.org/PALO_RegulatoryWatch.html</loc>
-        <lastmod>2026-07-11</lastmod>
+        <lastmod>2026-08-25</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
 
     <url>
         <loc>https://paloframework.org/PALO_AIGovernance.html</loc>
-        <lastmod>2026-07-20</lastmod>
+        <lastmod>2026-08-25</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
 
     <url>
         <loc>https://paloframework.org/PALO_AIWhy.html</loc>
-        <lastmod>2026-07-20</lastmod>
+        <lastmod>2026-08-25</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
 
     <url>
         <loc>https://paloframework.org/PALO_AIQuickstarts.html</loc>
-        <lastmod>2026-07-20</lastmod>
+        <lastmod>2026-08-25</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
 
     <url>
         <loc>https://paloframework.org/PALO_PlatformMap.html</loc>
-        <lastmod>2026-07-12</lastmod>
+        <lastmod>2026-08-25</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
 
     <url>
         <loc>https://paloframework.org/designs/theory-to-practice-infographic/</loc>
-        <lastmod>2026-07-11</lastmod>
+        <lastmod>2026-08-25</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
@@ -120,84 +120,84 @@
     <!-- Observatories and Research Modules -->
     <url>
         <loc>https://paloframework.org/PALO_HumanAgencyRiskMap.html</loc>
-        <lastmod>2026-01-02</lastmod>
+        <lastmod>2026-08-25</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
 
     <url>
         <loc>https://paloframework.org/PALO_HumanAgencyRiskMap_IT.html</loc>
-        <lastmod>2026-01-02</lastmod>
+        <lastmod>2026-08-25</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
 
     <url>
         <loc>https://paloframework.org/PALO_TechTrends2026.html</loc>
-        <lastmod>2026-01-04</lastmod>
+        <lastmod>2026-08-25</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
 
     <url>
         <loc>https://paloframework.org/PALO_AuditBench.html</loc>
-        <lastmod>2026-03-03</lastmod>
+        <lastmod>2026-08-25</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
 
     <url>
         <loc>https://paloframework.org/PALO_OWASPGenAI2026.html</loc>
-        <lastmod>2026-08-13</lastmod>
+        <lastmod>2026-08-25</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
 
     <url>
         <loc>https://paloframework.org/PALO_PoisoningStudy.html</loc>
-        <lastmod>2026-03-25</lastmod>
+        <lastmod>2026-08-25</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
 
     <url>
         <loc>https://paloframework.org/PALO_VibeCoding.html</loc>
-        <lastmod>2026-05-15</lastmod>
+        <lastmod>2026-08-25</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
 
     <url>
         <loc>https://paloframework.org/PALO_AgenticGovernance.html</loc>
-        <lastmod>2026-07-19</lastmod>
+        <lastmod>2026-08-25</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
 
     <url>
         <loc>https://paloframework.org/PALO_DocumentationLibrary.html</loc>
-        <lastmod>2026-07-19</lastmod>
+        <lastmod>2026-08-25</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
 
     <url>
         <loc>https://paloframework.org/PALO_AIProductionReadiness.html</loc>
-        <lastmod>2026-07-19</lastmod>
+        <lastmod>2026-08-25</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
 
     <url>
         <loc>https://paloframework.org/PALO_AgenticCapabilityMatrix.html</loc>
-        <lastmod>2026-07-19</lastmod>
+        <lastmod>2026-08-25</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
 
     <url>
         <loc>https://paloframework.org/governance-hub/</loc>
-        <lastmod>2026-07-19</lastmod>
+        <lastmod>2026-08-25</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
@@ -205,21 +205,21 @@
     <!-- Mobile and Community -->
     <url>
         <loc>https://paloframework.org/PALO_CompanionApp.html</loc>
-        <lastmod>2026-07-11</lastmod>
+        <lastmod>2026-08-25</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
 
     <url>
         <loc>https://paloframework.org/PALO_Community.html</loc>
-        <lastmod>2026-08-08</lastmod>
+        <lastmod>2026-08-25</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
 
     <url>
         <loc>https://paloframework.org/PALO_Recognition.html</loc>
-        <lastmod>2026-07-11</lastmod>
+        <lastmod>2026-08-25</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -227,21 +227,21 @@
     <!-- Policy Pages -->
     <url>
         <loc>https://paloframework.org/accessibility.html</loc>
-        <lastmod>2026-07-11</lastmod>
+        <lastmod>2026-08-25</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.6</priority>
     </url>
 
     <url>
         <loc>https://paloframework.org/privacy-policy.html</loc>
-        <lastmod>2026-07-11</lastmod>
+        <lastmod>2026-08-25</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.6</priority>
     </url>
 
     <url>
         <loc>https://paloframework.org/security-policy.html</loc>
-        <lastmod>2026-07-11</lastmod>
+        <lastmod>2026-08-25</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.6</priority>
     </url>

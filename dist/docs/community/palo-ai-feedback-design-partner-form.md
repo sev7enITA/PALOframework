@@ -1,6 +1,6 @@
 # PALO-AI developer-preview feedback and design-partner intake
 
-This document is the canonical, safe intake for the PALO-AI v2.5 full-cycle architecture preview. It can be used as a GitHub issue, a private form, or a facilitated interview. It is not a support or security-incident channel.
+This document is the canonical, safe intake for the PALO-AI v2.7 data-assurance architecture preview. It can be used as a GitHub issue, a private form, or a facilitated interview. It is not a support or security-incident channel.
 
 ## Safety and scope
 

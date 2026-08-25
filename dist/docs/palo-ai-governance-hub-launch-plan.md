@@ -1,6 +1,8 @@
 # PALO-AI Governance Hub - status, gaps and staged launch plan
 
-Status: evidence-led launch plan updated 19 July 2026 for the PALO-AI v2.5 developer preview and implemented role-based GUI prototype.
+Status: superseded PALO-AI v2.5 launch plan, retained for decision traceability. Do not use as the current v2.7 release plan.
+
+> **Superseded document.** Current status is governed by the [Governance Hub status](palo-ai-governance-hub-status.md), [Production Readiness plan](palo-ai-production-readiness-plan.md) and release manifest.
 
 ## Executive conclusion
 
