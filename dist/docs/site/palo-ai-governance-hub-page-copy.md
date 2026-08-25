@@ -1,6 +1,8 @@
 # PALO-AI Governance Hub - website copy draft
 
-Status: English copy deck for the implemented role-based Governance Hub prototype, updated 19 July 2026.
+Status: superseded PALO-AI v2.5 website copy deck, retained for traceability. Do not deploy this draft as current v2.7 site copy.
+
+> **Superseded document.** The published Governance Hub, current [user guide](../palo-ai-governance-hub-user-guide.md) and [status boundary](../palo-ai-governance-hub-status.md) are authoritative for current public wording.
 
 The Governance Hub user interface is now implemented and tested as a React/Vite prototype using illustrative local data. This copy is not evidence of a live runtime connection or production security boundary. Any live page must retain the developer-preview boundary below until the capability matrix and independent assurance gates support stronger claims.
 

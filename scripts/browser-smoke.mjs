@@ -558,6 +558,9 @@ try {
   if (await page.locator('[data-library-card][data-evidence-class="canonical-definition"][data-workspace="public-catalog"]:visible').count() < 1) failures.push("Documentation Library: canonical public-catalog filter returned no reference");
   await page.locator("[data-library-evidence]").selectOption("all");
   await page.locator("[data-library-workspace]").selectOption("all");
+  await page.locator("[data-library-lifecycle]").selectOption("historical");
+  if (await page.locator('[data-library-card][data-lifecycle="historical"]:visible').count() < 1 || await page.locator('[data-library-card]:visible:not([data-lifecycle="historical"])').count() !== 0) failures.push("Documentation Library: lifecycle filter did not isolate historical documents");
+  await page.locator("[data-library-lifecycle]").selectOption("all");
   await page.locator('[data-library-depth="guide"]').click();
   await page.locator("[data-library-audience]").selectOption("technical");
   await page.locator("[data-library-task]").selectOption("integrate");

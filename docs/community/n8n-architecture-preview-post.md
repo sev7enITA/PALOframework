@@ -1,5 +1,9 @@
 # n8n Community Discussion Draft
 
+Status: historical PALO-AI v2.5 discussion draft, retained for traceability and not approved as current v2.7 publication copy.
+
+> **Historical document.** Use the current [n8n launch playbook](../palo-ai-n8n-launch-playbook.md) and [publication status](../palo-ai-n8n-publication-status.md) before any external post.
+
 ## Title
 
 Architecture preview: a governance control plane for agent authority, policy gates, HITL and evidence in n8n

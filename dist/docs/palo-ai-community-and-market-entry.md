@@ -1,6 +1,8 @@
 # PALO-AI Community and Market-Entry Plan
 
-Status: staged communication plan for the PALO-AI v2.5 full-cycle developer preview, updated 19 July 2026.
+Status: historical PALO-AI v2.5 communication plan, retained for traceability. Superseded by the current PALO-AI v2.7 positioning and publication status.
+
+> **Historical document.** Do not use its release counts, status language or launch sequence as current guidance. Start from the [PALO-AI adoption paths](palo-ai-adoption-paths.md) and [n8n launch playbook](palo-ai-n8n-launch-playbook.md).
 
 ## Positioning
 

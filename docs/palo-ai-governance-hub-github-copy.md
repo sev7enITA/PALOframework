@@ -1,6 +1,8 @@
 # PALO-AI Governance Hub - GitHub copy draft
 
-Status: ready-to-adapt English repository copy for the v2.5 developer preview, prepared 19 July 2026.
+Status: superseded PALO-AI v2.5 repository copy draft, retained for traceability. Do not publish as current v2.7 copy.
+
+> **Superseded document.** Use the current repository README, [Governance Hub status](palo-ai-governance-hub-status.md) and [PALO-AI adoption paths](palo-ai-adoption-paths.md).
 
 This file does not modify `README.md`, `CHANGELOG.md` or the existing issue templates. It supplies reviewed copy blocks for a later, intentional repository update.
 

@@ -1,6 +1,6 @@
 # PALO-AI Governance Hub - Product Specification
 
-Status: implemented interactive product prototype for the PALO-AI v2.5 developer preview, updated 19 July 2026.
+Status: current interactive product prototype specification for the PALO-AI v2.7 developer preview, updated 25 August 2026.
 
 > **Important boundary.** The repository now contains a tested React/Vite GUI using illustrative local data. It does not yet contain the production backend-for-frontend, identity, tenant isolation, or authorization boundary required to connect that GUI to live runtime state. Use the runtime only with synthetic or isolated data and non-consequential tools. Current implementation status remains authoritative in [`agentic/capability-matrix.json`](../agentic/capability-matrix.json).
 

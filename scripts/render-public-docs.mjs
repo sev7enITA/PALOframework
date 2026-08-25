@@ -62,6 +62,16 @@ const importantMetadata = {
   "docs/owasp-genai-llm-top-10-2026-security-crosswalk.md": { level: "reference", audience: "executive governance technical builder", task: "understand assure design", product: "PALO / PALO-AM / PALO-AI", status: "Source-backed context", evidenceClass: "source-backed-context", workspace: "assurance-review", prerequisite: "One scoped LLM or agentic system", next: "Open the interactive OWASP 2026 crosswalk" }
 };
 
+const documentLifecycle = {
+  "docs/palo-ai-community-and-market-entry.md": "Historical",
+  "docs/community/n8n-architecture-preview-post.md": "Historical",
+  "docs/palo-ai-n8n-alpha-test-report.md": "Historical",
+  "docs/palo-ai-governance-hub-github-copy.md": "Superseded",
+  "docs/palo-ai-governance-hub-launch-plan.md": "Superseded",
+  "docs/site/palo-ai-governance-hub-page-copy.md": "Superseded",
+  "examples/hands-on-demo/README.md": "Compatibility"
+};
+
 const canonicalStartDocuments = new Set([
   "docs/palo-ai-adoption-paths.md",
   "docs/palo-ai-governance-hub-user-guide.md"
@@ -84,7 +94,8 @@ function documentMetadata(file, markdown) {
     prerequisite: explicit?.prerequisite || "No specialist prerequisite stated",
     next: explicit?.next || "Return to the Documentation Library",
     evidenceClass: explicit?.evidenceClass || (lower.includes("governance-hub") ? "illustrative-local-preview" : /monitor|watch|signal/.test(lower) ? "human-review-required" : "source-backed-context"),
-    workspace: explicit?.workspace || (/case-file|template|worked-case/.test(lower) ? "case-workspace" : /assurance|security|incident|board-review/.test(lower) ? "assurance-review" : "public-catalog")
+    workspace: explicit?.workspace || (/case-file|template|worked-case/.test(lower) ? "case-workspace" : /assurance|security|incident|board-review/.test(lower) ? "assurance-review" : "public-catalog"),
+    lifecycle: documentLifecycle[file] || "Current"
   };
 }
 
@@ -168,6 +179,7 @@ function renderDocument(markdown, file) {
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>${escapeHtml(title)} | PALO Documentation</title>
   <meta name="description" content="Public PALO documentation: ${escapeHtml(title)}.">
+  ${["Historical", "Superseded"].includes(metadata.lifecycle) ? '<meta name="robots" content="noindex,follow">' : '<meta name="robots" content="index,follow">'}
   <link rel="canonical" href="${escapeHtml(canonical)}">
   <link rel="icon" type="image/webp" href="${asset("assets/logo.webp")}">
   <link rel="stylesheet" href="${asset("assets/palo-icons.css")}">
@@ -187,7 +199,7 @@ function renderDocument(markdown, file) {
   <main id="main-content" class="palo-doc-main">
     <div class="palo-shell">
       <nav class="palo-doc-breadcrumb" aria-label="Breadcrumb"><a href="${asset("PALO_DocumentationLibrary.html")}">Documentation Library</a><span aria-hidden="true">/</span><span>${escapeHtml(category)}</span></nav>
-      <header class="palo-doc-hero"><p class="palo-eyebrow">${escapeHtml(category)} | Public documentation</p><h1>${escapeHtml(title)}</h1><div class="palo-doc-facts"><span><small>Level</small><strong>${escapeHtml(metadata.level)}</strong></span><span><small>Audience</small><strong>${escapeHtml(metadata.audience.replaceAll(" ", " | "))}</strong></span><span><small>Product</small><strong>${escapeHtml(metadata.product)}</strong></span><span><small>Status</small><strong>${escapeHtml(metadata.status)}</strong></span><span><small>Read</small><strong>${escapeHtml(metadata.readingTime)}</strong></span></div><p class="palo-doc-source">Published HTML view | Source: <code>${escapeHtml(file)}</code></p><div class="palo-actions"><button class="palo-btn" type="button" data-doc-copy-link>Copy link</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-share>Share page</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-print>Print</button></div><p class="palo-action-status" data-doc-action-status role="status" aria-live="polite"></p></header>
+      <header class="palo-doc-hero"><p class="palo-eyebrow">${escapeHtml(category)} | Public documentation</p><h1>${escapeHtml(title)}</h1><div class="palo-doc-facts"><span><small>Level</small><strong>${escapeHtml(metadata.level)}</strong></span><span><small>Audience</small><strong>${escapeHtml(metadata.audience.replaceAll(" ", " | "))}</strong></span><span><small>Product</small><strong>${escapeHtml(metadata.product)}</strong></span><span><small>Status</small><strong>${escapeHtml(metadata.status)}</strong></span><span><small>Lifecycle</small><strong>${escapeHtml(metadata.lifecycle)}</strong></span><span><small>Read</small><strong>${escapeHtml(metadata.readingTime)}</strong></span></div><p class="palo-doc-source">Published HTML view | Source: <code>${escapeHtml(file)}</code></p><div class="palo-actions"><button class="palo-btn" type="button" data-doc-copy-link>Copy link</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-share>Share page</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-print>Print</button></div><p class="palo-action-status" data-doc-action-status role="status" aria-live="polite"></p></header>
       <details class="palo-doc-mobile-toc"><summary>On this page</summary>${toc}</details>
       <div class="palo-doc-layout"><aside class="palo-doc-sidebar" aria-label="On this page"><strong>On this page</strong>${toc}</aside><article class="palo-doc-content">${body}</article></div>
       <aside class="palo-doc-next"><div><small>Prerequisite</small><strong>${escapeHtml(metadata.prerequisite)}</strong></div><div><small>Recommended next step</small><strong>${escapeHtml(metadata.next)}</strong></div></aside>
@@ -212,7 +224,7 @@ export async function renderPublicDocs({ sourceRoot, targetRoot }) {
   }
   const categories = ["Semantic foundation and contracts", "Start and adoption", "Architecture and integration", "Operations and deployment", "Security and production readiness", "Governance Hub and UX", "Community and contribution", "Templates and examples"];
   const groups = categories.map((category, index) => {
-    const cards = documents.filter((document) => document.category === category).map((document) => `<article class="palo-library-card" data-library-card data-category="${escapeHtml(category)}" data-level="${escapeHtml(document.metadata.level)}" data-audience="${escapeHtml(document.metadata.audience)}" data-task="${escapeHtml(document.metadata.task)}" data-product="${escapeHtml(document.metadata.product)}" data-evidence-class="${escapeHtml(document.metadata.evidenceClass)}" data-workspace="${escapeHtml(document.metadata.workspace)}" data-search="${escapeHtml(`${document.title} ${document.summary} ${document.file} ${document.metadata.audience} ${document.metadata.task} ${document.metadata.product} ${document.metadata.evidenceClass} ${document.metadata.workspace}`.toLowerCase())}"><div><p class="palo-card-kicker">${escapeHtml(document.metadata.product)}</p><span class="palo-library-status">${escapeHtml(document.metadata.status)}</span></div><h3>${escapeHtml(document.title)}</h3><p>${escapeHtml(document.summary)}</p><details class="palo-library-meta" open data-library-meta-details><summary>Document details</summary><div class="palo-library-tags"><span>${escapeHtml(document.metadata.level)}</span><span>${escapeHtml(document.metadata.readingTime)}</span><span>${escapeHtml(document.metadata.evidenceClass)}</span><span>${escapeHtml(document.metadata.workspace)}</span></div><small><strong>Prerequisite:</strong> ${escapeHtml(document.metadata.prerequisite)}</small><small><strong>Next:</strong> ${escapeHtml(document.metadata.next)}</small><code>${escapeHtml(document.file)}</code><a href="${escapeHtml(document.output)}">Open HTML guide<span aria-hidden="true"> -></span></a></details></article>`).join("");
+    const cards = documents.filter((document) => document.category === category).map((document) => `<article class="palo-library-card" data-library-card data-category="${escapeHtml(category)}" data-level="${escapeHtml(document.metadata.level)}" data-audience="${escapeHtml(document.metadata.audience)}" data-task="${escapeHtml(document.metadata.task)}" data-product="${escapeHtml(document.metadata.product)}" data-evidence-class="${escapeHtml(document.metadata.evidenceClass)}" data-workspace="${escapeHtml(document.metadata.workspace)}" data-lifecycle="${escapeHtml(document.metadata.lifecycle.toLowerCase())}" data-search="${escapeHtml(`${document.title} ${document.summary} ${document.file} ${document.metadata.audience} ${document.metadata.task} ${document.metadata.product} ${document.metadata.evidenceClass} ${document.metadata.workspace} ${document.metadata.lifecycle}`.toLowerCase())}"><div><p class="palo-card-kicker">${escapeHtml(document.metadata.product)}</p><span class="palo-library-status">${escapeHtml(document.metadata.status)} | ${escapeHtml(document.metadata.lifecycle)}</span></div><h3>${escapeHtml(document.title)}</h3><p>${escapeHtml(document.summary)}</p><details class="palo-library-meta" open data-library-meta-details><summary>Document details</summary><div class="palo-library-tags"><span>${escapeHtml(document.metadata.level)}</span><span>${escapeHtml(document.metadata.readingTime)}</span><span>${escapeHtml(document.metadata.lifecycle)}</span><span>${escapeHtml(document.metadata.evidenceClass)}</span><span>${escapeHtml(document.metadata.workspace)}</span></div><small><strong>Prerequisite:</strong> ${escapeHtml(document.metadata.prerequisite)}</small><small><strong>Next:</strong> ${escapeHtml(document.metadata.next)}</small><code>${escapeHtml(document.file)}</code><a href="${escapeHtml(document.output)}">Open HTML guide<span aria-hidden="true"> -></span></a></details></article>`).join("");
     const count = documents.filter((document) => document.category === category).length;
     const groupId = `library-group-${index + 1}`;
     return cards ? `<section class="palo-library-group${index ? " is-mobile-collapsed" : ""}" data-library-group><div class="palo-library-group-heading"><h2>${escapeHtml(category)}</h2><button type="button" data-library-toggle aria-expanded="${index ? "false" : "true"}" aria-controls="${groupId}">${count} documents <span aria-hidden="true">v</span></button></div><div class="palo-library-list" id="${groupId}">${cards}</div></section>` : "";

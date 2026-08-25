@@ -3,8 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>PALO-AI v2.5 - Full-Cycle Agentic Assurance | PALO Documentation</title>
-  <meta name="description" content="Public PALO documentation: PALO-AI v2.5 - Full-Cycle Agentic Assurance.">
+  <title>PALO-AI v2.7 - Full-Cycle and Data-Assurance Guide | PALO Documentation</title>
+  <meta name="description" content="Public PALO documentation: PALO-AI v2.7 - Full-Cycle and Data-Assurance Guide.">
+  <meta name="robots" content="index,follow">
   <link rel="canonical" href="https://paloframework.org/docs/palo-ai-full-cycle-assurance.html">
   <link rel="icon" type="image/webp" href="../assets/logo.webp">
   <link rel="stylesheet" href="../assets/palo-icons.css">
@@ -24,12 +25,13 @@
   <main id="main-content" class="palo-doc-main">
     <div class="palo-shell">
       <nav class="palo-doc-breadcrumb" aria-label="Breadcrumb"><a href="../PALO_DocumentationLibrary.html">Documentation Library</a><span aria-hidden="true">/</span><span>Architecture and integration</span></nav>
-      <header class="palo-doc-hero"><p class="palo-eyebrow">Architecture and integration | Public documentation</p><h1>PALO-AI v2.5 - Full-Cycle Agentic Assurance</h1><div class="palo-doc-facts"><span><small>Level</small><strong>reference</strong></span><span><small>Audience</small><strong>technical | governance</strong></span><span><small>Product</small><strong>PALO-AI</strong></span><span><small>Status</small><strong>Developer Preview</strong></span><span><small>Read</small><strong>5 min</strong></span></div><p class="palo-doc-source">Published HTML view | Source: <code>docs/palo-ai-full-cycle-assurance.md</code></p><div class="palo-actions"><button class="palo-btn" type="button" data-doc-copy-link>Copy link</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-share>Share page</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-print>Print</button></div><p class="palo-action-status" data-doc-action-status role="status" aria-live="polite"></p></header>
+      <header class="palo-doc-hero"><p class="palo-eyebrow">Architecture and integration | Public documentation</p><h1>PALO-AI v2.7 - Full-Cycle and Data-Assurance Guide</h1><div class="palo-doc-facts"><span><small>Level</small><strong>reference</strong></span><span><small>Audience</small><strong>technical | governance</strong></span><span><small>Product</small><strong>PALO-AI</strong></span><span><small>Status</small><strong>Developer Preview</strong></span><span><small>Lifecycle</small><strong>Current</strong></span><span><small>Read</small><strong>6 min</strong></span></div><p class="palo-doc-source">Published HTML view | Source: <code>docs/palo-ai-full-cycle-assurance.md</code></p><div class="palo-actions"><button class="palo-btn" type="button" data-doc-copy-link>Copy link</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-share>Share page</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-print>Print</button></div><p class="palo-action-status" data-doc-action-status role="status" aria-live="polite"></p></header>
       <details class="palo-doc-mobile-toc"><summary>On this page</summary><ol><li class="depth-2"><a href="#why-the-cycle-extends-beyond-authorization">Why the cycle extends beyond authorization</a></li><li class="depth-2"><a href="#contracts">Contracts</a></li><li class="depth-2"><a href="#trusted-runtime-flow">Trusted runtime flow</a></li><li class="depth-2"><a href="#rest-interface">REST interface</a></li><li class="depth-2"><a href="#n8n-experience">n8n experience</a></li><li class="depth-2"><a href="#run-the-synthetic-catalog-demonstration">Run the synthetic catalog demonstration</a></li><li class="depth-2"><a href="#migration-from-v241">Migration from v2.4.1</a></li><li class="depth-2"><a href="#production-boundary">Production boundary</a></li></ol></details>
-      <div class="palo-doc-layout"><aside class="palo-doc-sidebar" aria-label="On this page"><strong>On this page</strong><ol><li class="depth-2"><a href="#why-the-cycle-extends-beyond-authorization">Why the cycle extends beyond authorization</a></li><li class="depth-2"><a href="#contracts">Contracts</a></li><li class="depth-2"><a href="#trusted-runtime-flow">Trusted runtime flow</a></li><li class="depth-2"><a href="#rest-interface">REST interface</a></li><li class="depth-2"><a href="#n8n-experience">n8n experience</a></li><li class="depth-2"><a href="#run-the-synthetic-catalog-demonstration">Run the synthetic catalog demonstration</a></li><li class="depth-2"><a href="#migration-from-v241">Migration from v2.4.1</a></li><li class="depth-2"><a href="#production-boundary">Production boundary</a></li></ol></aside><article class="palo-doc-content"><h1 id="palo-ai-v25---full-cycle-agentic-assurance">PALO-AI v2.5 - Full-Cycle Agentic Assurance<a class="palo-doc-anchor" href="#palo-ai-v25---full-cycle-agentic-assurance" aria-label="Link to PALO-AI v2.5 - Full-Cycle Agentic Assurance">#</a></h1><blockquote>
+      <div class="palo-doc-layout"><aside class="palo-doc-sidebar" aria-label="On this page"><strong>On this page</strong><ol><li class="depth-2"><a href="#why-the-cycle-extends-beyond-authorization">Why the cycle extends beyond authorization</a></li><li class="depth-2"><a href="#contracts">Contracts</a></li><li class="depth-2"><a href="#trusted-runtime-flow">Trusted runtime flow</a></li><li class="depth-2"><a href="#rest-interface">REST interface</a></li><li class="depth-2"><a href="#n8n-experience">n8n experience</a></li><li class="depth-2"><a href="#run-the-synthetic-catalog-demonstration">Run the synthetic catalog demonstration</a></li><li class="depth-2"><a href="#migration-from-v241">Migration from v2.4.1</a></li><li class="depth-2"><a href="#production-boundary">Production boundary</a></li></ol></aside><article class="palo-doc-content"><h1 id="palo-ai-v27---full-cycle-and-data-assurance-guide">PALO-AI v2.7 - Full-Cycle and Data-Assurance Guide<a class="palo-doc-anchor" href="#palo-ai-v27---full-cycle-and-data-assurance-guide" aria-label="Link to PALO-AI v2.7 - Full-Cycle and Data-Assurance Guide">#</a></h1><p>Status: current guide for PALO-AI v2.7, updated 25 August 2026. Earlier Action Claim versions remain compatibility inputs; new data-governed integrations should use Action Claim 1.4.</p>
+<blockquote>
 <p><strong>Developer preview.</strong> Use synthetic or isolated data and non-consequential tools only. This implementation is not an independently assessed security boundary, compliance certification, production identity service or universal exactly-once executor.</p>
 </blockquote>
-<h2 id="why-the-cycle-extends-beyond-authorization">Why the cycle extends beyond authorization<a class="palo-doc-anchor" href="#why-the-cycle-extends-beyond-authorization" aria-label="Link to Why the cycle extends beyond authorization">#</a></h2><p>A policy can determine that an action is permitted. It cannot prove that the action was correct, that the state observed by the agent was current, or that the external system produced the intended result. PALO-AI v2.5 therefore separates permission from assurance:</p>
+<h2 id="why-the-cycle-extends-beyond-authorization">Why the cycle extends beyond authorization<a class="palo-doc-anchor" href="#why-the-cycle-extends-beyond-authorization" aria-label="Link to Why the cycle extends beyond authorization">#</a></h2><p>A policy can determine that an action is permitted. It cannot prove that the action was correct, that the data disclosed to a model matched policy, that the state observed by the agent was current, or that the external system produced the intended result. PALO-AI v2.7 therefore separates permission from data and outcome assurance:</p>
 <figure class="palo-doc-code"><figcaption>text code</figcaption><pre tabindex="0"><code class="language-text">Propose -&gt; Authorize -&gt; Approve -&gt; Capability -&gt; Execute -&gt; Receipt -&gt; Observe -&gt; Verify -&gt; Escalate</code></pre></figure><p>An action is <code>verified</code> only when a registered verifier observes authoritative post-state that satisfies the immutable Effect Contract. A policy decision by itself remains <code>allowed</code>, not <code>verified</code>.</p>
 <h2 id="contracts">Contracts<a class="palo-doc-anchor" href="#contracts" aria-label="Link to Contracts">#</a></h2><div class="palo-doc-table-wrap" tabindex="0" aria-label="Scrollable documentation table"><table>
 <thead>
@@ -39,8 +41,8 @@
 </tr>
 </thead>
 <tbody><tr>
-<td>Action Claim 1.2</td>
-<td>Binds identity, tool, arguments, tenant, replay material and Effect Contract</td>
+<td>Action Claim 1.4</td>
+<td>Binds identity, Authority Context, tool, arguments, tenant, replay material, Data Fitness decision, Disclosure Contract and Effect Contract</td>
 </tr>
 <tr>
 <td>Effect Contract 1.0</td>
@@ -65,7 +67,7 @@
 </tbody></table></div>
 <p>The Effect Contract uses a closed predicate DSL. Paths are JSON Pointers and supported operators are <code>exists</code>, <code>equals</code>, <code>unchanged</code>, <code>changedTo</code> and <code>deltaWithin</code>. PALO never evaluates caller-provided JavaScript or arbitrary expressions.</p>
 <h2 id="trusted-runtime-flow">Trusted runtime flow<a class="palo-doc-anchor" href="#trusted-runtime-flow" aria-label="Link to Trusted runtime flow">#</a></h2><ol>
-<li>Normalize and validate Action Claim 1.2.</li>
+<li>Normalize and validate Action Claim 1.4, including Authority Context and data-governance bindings.</li>
 <li>Revalidate profile, current policy, replay material, expiry and exact approval.</li>
 <li>Resolve active executor and verifier manifests from the trusted registry.</li>
 <li>Issue a signed capability bound to claim digest, decision, tenant, resource, executor and verifier.</li>
@@ -159,7 +161,7 @@ npm run demo:hands-on -- --auto-approve</code></pre></figure><p>Restart the Gate
 <h2 id="migration-from-v241">Migration from v2.4.1<a class="palo-doc-anchor" href="#migration-from-v241" aria-label="Link to Migration from v2.4.1">#</a></h2><ol>
 <li>Leave existing Action Claim 1.1 decision gates unchanged.</li>
 <li>Upgrade the n8n package from 0.1 to 0.2; the original node remains registered.</li>
-<li>For each protected action, declare an Effect Contract and move to Action Claim 1.2.</li>
+<li>For each protected action, declare an Effect Contract and use Action Claim 1.4 for new integrations; retain 1.2/1.3 only where compatibility is explicitly required.</li>
 <li>Register an executor manifest and provision its handler inside the runtime operator boundary.</li>
 <li>Register a separately trusted verifier capable of authoritative pre- and post-state reads.</li>
 <li>Replace caller-submitted execution evidence with <code>POST /v1/actions/execute</code>.</li>

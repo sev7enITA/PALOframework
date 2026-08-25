@@ -32,9 +32,19 @@
     }
   },
   "modules": {
+    "agenticMethodology": {
+      "name": "PALO-AM",
+      "version": "2.0.0",
+      "date": "2026-06-22",
+      "status": "methodology",
+      "relationship": "Defines delegated authority and agentic governance methodology; PALO-AI implements reference technical controls against it."
+    },
     "agenticGovernance": {
+      "name": "PALO-AI",
       "version": "2.7.0",
-      "date": "2026-08-25"
+      "date": "2026-08-25",
+      "status": "developer-preview",
+      "methodologyRef": "agenticMethodology"
     },
     "semanticFoundation": {
       "version": "3.1.0",

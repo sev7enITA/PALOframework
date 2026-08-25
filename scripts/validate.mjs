@@ -487,6 +487,7 @@ for (const [name, component] of Object.entries(manifest.components || {})) {
 for (const [name, module] of Object.entries(manifest.modules || {})) {
   if (!/^\d+\.\d+\.\d+$/.test(module.version || "") || !/^\d{4}-\d{2}-\d{2}$/.test(module.date || "")) errors.push(`release-manifest.json: module ${name} requires SemVer version and ISO date`);
 }
+if (manifest.modules?.agenticMethodology?.name !== "PALO-AM" || manifest.modules?.agenticGovernance?.name !== "PALO-AI" || manifest.modules?.agenticGovernance?.methodologyRef !== "agenticMethodology") errors.push("release-manifest.json: PALO-AM methodology and PALO-AI implementation relationship is incomplete");
 const semanticModule = manifest.modules?.semanticFoundation;
 const semanticReleaseMajor = String(semanticModule?.version || "").split(".")[0];
 const platformReleaseMajor = String(releaseVersion || "").split(".")[0];
@@ -549,9 +550,12 @@ if (assessmentFormIndex < 0 || assessmentResultsIndex < assessmentFormIndex || p
 let sitemap = {};
 try { sitemap = parseXml("sitemap.xml", await readFile(path.join(validationRoot, "sitemap.xml"), "utf8")); }
 catch (error) { errors.push(`sitemap.xml: ${error.message}`); }
-const sitemapUrls = asArray(sitemap.urlset?.url).map((entry) => entry.loc).filter(Boolean);
+const sitemapEntries = asArray(sitemap.urlset?.url);
+const sitemapUrls = sitemapEntries.map((entry) => entry.loc).filter(Boolean);
 const sitemapSet = new Set(sitemapUrls);
 if (sitemapSet.size !== sitemapUrls.length) errors.push("sitemap.xml: duplicate URL entries");
+const publicationDate = [releaseDate, ...Object.values(manifest.components || {}).map((component) => component.date), ...Object.values(manifest.modules || {}).map((module) => module.date)].filter(Boolean).sort().at(-1);
+for (const entry of sitemapEntries) if (entry.lastmod !== publicationDate) errors.push(`sitemap.xml: ${entry.loc || "entry"} lastmod must match current publication date ${publicationDate}`);
 for (const value of sitemapUrls) {
   try {
     const url = new URL(value);
@@ -650,7 +654,11 @@ if (built) {
   if (!/id=["']map-evidence-class["']/.test(platformMapHtml) || (platformMapHtml.match(/data-evidence-class=/g) || []).length !== 24 || !/Evidence \/ authority/.test(platformMapHtml)) errors.push("PALO_PlatformMap.html: evidence/authority filtering must align all 12 visual and table routes");
   if (!/route-monitor[^>]+data-evidence-class=["']human-review-required["']/.test(platformMapHtml)) errors.push("PALO_PlatformMap.html: monitoring route must require human review");
   const libraryHtml = htmlByFile.get("PALO_DocumentationLibrary.html") || "";
-  if (!/data-library-evidence/.test(libraryHtml) || !/data-library-workspace/.test(libraryHtml) || !/data-evidence-class=["']canonical-definition["']/.test(libraryHtml)) errors.push("PALO_DocumentationLibrary.html: v3 evidence and workspace filters or canonical reference card are missing");
+  if (!/data-library-evidence/.test(libraryHtml) || !/data-library-workspace/.test(libraryHtml) || !/data-library-lifecycle/.test(libraryHtml) || !/data-evidence-class=["']canonical-definition["']/.test(libraryHtml) || !/data-lifecycle=["']current["']/.test(libraryHtml) || !/data-lifecycle=["']historical["']/.test(libraryHtml) || !/data-lifecycle=["']superseded["']/.test(libraryHtml) || !/data-lifecycle=["']compatibility["']/.test(libraryHtml)) errors.push("PALO_DocumentationLibrary.html: evidence, workspace or lifecycle taxonomy is incomplete");
+  for (const file of ["docs/palo-ai-community-and-market-entry.html", "docs/community/n8n-architecture-preview-post.html", "docs/palo-ai-n8n-alpha-test-report.html", "docs/palo-ai-governance-hub-github-copy.html", "docs/palo-ai-governance-hub-launch-plan.html", "docs/site/palo-ai-governance-hub-page-copy.html"]) {
+    if (!/name=["']robots["'][^>]+content=["']noindex,follow["']/i.test(htmlByFile.get(file) || "")) errors.push(`${file}: historical or superseded documentation must be noindex,follow`);
+  }
+  if (!/name=["']robots["'][^>]+content=["']index,follow["']/i.test(htmlByFile.get("docs/palo-ai-adoption-paths.html") || "")) errors.push("docs/palo-ai-adoption-paths.html: current guidance must remain indexable");
   let hubBundle = htmlByFile.get("governance-hub/index.html") || "";
   try {
     for (const entry of await readdir(path.join(validationRoot, "governance-hub/assets"), { withFileTypes: true })) {

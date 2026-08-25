@@ -2,15 +2,15 @@
 
 | Campo | Valore |
 | --- | --- |
-| Data dello snapshot | 14 agosto 2026, Europe/Rome |
+| Data dello snapshot | 14 agosto 2026; addendum corrente 25 agosto 2026, Europe/Rome |
 | Scope | Algoritmi, SLM, runtime agentico, protocolli, identità, policy, evidenza, osservabilità, dipendenze e segnali di adozione |
-| Repository verificato | PALO Platform 3.1.0; baseline PALO-AI 2.6 developer preview |
+| Repository verificato | PALO Platform 3.1.0; baseline PALO-AI 2.7 developer preview |
 | Metodo | Ispezione del codice e dei lockfile, test locali, advisory scan, confronto con fonti primarie e ricerca esplorativa in community tecniche |
 | Autorità del report | Technology radar interno e riproducibile; non è un audit di sicurezza indipendente né una certificazione |
 
-## Addendum implementativo del 14 agosto 2026
+## Addendum implementativo: v2.6 del 14 agosto e v2.7 del 25 agosto 2026
 
-Il primo incremento PALO-AI v2.6 successivo a questo radar è ora implementato nel working tree e copre cinque priorità:
+Il primo incremento PALO-AI v2.6 successivo allo snapshot originale ha coperto cinque priorità:
 
 - Action Claim 1.3 con human principal, workload identity, credential digest, agent instance, tenant e delegation chain non ampliabile; il percorso fallisce chiuso senza un `authorityVerifier` configurato;
 - task SQLite durevoli per approval e verification, con stato, scadenza, retry e quattro nuovi tool MCP;
@@ -26,7 +26,9 @@ Il secondo incremento implementato nello stesso working tree chiude altri tre ga
 
 Il percorso shared-token resta soltanto come modalità di sviluppo. La compatibilità EMA riguarda il resource server: l'authorization server e lo scambio ID-JAG non sono implementati da PALO. Restano inoltre i limiti production più importanti: task e ledger single-instance SQLite, nessun lease multi-replica, nessun KMS/HSM, nessun proof-of-possession o workload attestation, nessun exporter/sampler OpenTelemetry incluso e `authorityVerifier` fornito dall'host.
 
-Validazione successiva al secondo incremento: **49/49 test Node**, 3/3 test Dify, 13 contratti, 26 tool MCP e test OPA passano; l'audit completo delle dipendenze root riporta **0 vulnerabilità note**.
+Validazione registrata per il secondo incremento v2.6: **49/49 test Node**, 3/3 test Dify, 13 contratti, 26 tool MCP e test OPA passavano; l'audit completo delle dipendenze root riportava **0 vulnerabilità note**. Questi numeri restano evidenza datata, non il conteggio della baseline corrente.
+
+La baseline corrente PALO-AI v2.7 aggiunge il vertical slice di Data Assurance: Action Claim 1.4 con Authority Context, External Evidence Ref immutabili, Data Fitness deterministico, Disclosure Contract/Observation/Receipt firmati, AI System & Agent Registry, invalidazione continua e persistenza digest-only dei risultati di esecuzione. L'inventario validato sale a **21 contratti e 38 tool MCP**. La capability matrix continua a dichiarare zero capability production-ready e il profilo di production admission resta fail-closed per il runtime bundled.
 
 ## Verdetto esecutivo
 

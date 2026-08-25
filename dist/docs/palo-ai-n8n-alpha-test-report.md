@@ -8,6 +8,8 @@ Target: n8n 2.30.7
 
 Status: passed for isolated developer-preview evaluation; not production-ready
 
+Lifecycle: historical evidence for package 0.1.0. It does not establish the current package 0.2.0 or PALO-AI v2.7 runtime status; use the current [publication status](palo-ai-n8n-publication-status.md) and rerun the current verification pipeline.
+
 ## Scope
 
 This report records the evidence used to decide whether the connector source is ready to be published as an architecture/installable alpha. It does not establish security assurance, n8n verification, production support or an unavoidable execution boundary.

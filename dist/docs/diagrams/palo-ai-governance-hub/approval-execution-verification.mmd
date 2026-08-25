@@ -8,7 +8,7 @@ sequenceDiagram
     participant V as Authoritative verifier
     participant L as Ledger / incidents
 
-    P->>G: Submit canonical Action Claim 1.2
+    P->>G: Submit canonical Action Claim 1.4
     G->>G: Validate schema, expiry and replay material
     G->>R: Resolve active profiles and evaluate policy
     alt malformed, missing profile, policy unavailable or denied
