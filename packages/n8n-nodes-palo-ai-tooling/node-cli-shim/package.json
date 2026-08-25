@@ -1,0 +1,9 @@
+{
+  "name": "@n8n/node-cli",
+  "version": "0.39.3-palo-tooling",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./eslint": "./eslint.mjs"
+  }
+}

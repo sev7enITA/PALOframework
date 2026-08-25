@@ -16,6 +16,8 @@ function assert(condition, message) {
 assert(manifest.name === 'n8n-nodes-palo-ai', 'package name must remain stable');
 assert(manifest.version === '0.2.0', 'full-cycle preview package version must remain 0.2.0');
 assert(manifest.n8n?.strict === true, 'n8n strict package metadata is required');
+assert(!('overrides' in manifest), 'the published community-node manifest must not contain overrides');
+assert(!('dependencies' in manifest), 'the published community node must remain runtime-dependency free');
 assert(
 	manifest.n8n?.nodes?.includes('dist/nodes/PaloGovernance/PaloGovernance.node.js'),
 	'compiled governance node must be registered in package metadata',
@@ -30,6 +32,7 @@ assert(
 );
 assert(distManifest.name === manifest.name, 'dist manifest must match package name');
 assert(distManifest.version === manifest.version, 'dist manifest must match package version');
+assert(!fs.existsSync(path.join(root, 'dist', 'tooling')), 'private tooling must never enter dist');
 
 for (const file of [
 	'dist/nodes/PaloGovernance/PaloGovernance.node.js',

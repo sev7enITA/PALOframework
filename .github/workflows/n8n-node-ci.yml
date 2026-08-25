@@ -4,11 +4,13 @@ on:
   pull_request:
     paths:
       - 'packages/n8n-nodes-palo-ai/**'
+      - 'packages/n8n-nodes-palo-ai-tooling/**'
       - '.github/workflows/n8n-node-ci.yml'
   push:
     branches: [main]
     paths:
       - 'packages/n8n-nodes-palo-ai/**'
+      - 'packages/n8n-nodes-palo-ai-tooling/**'
       - '.github/workflows/n8n-node-ci.yml'
 
 permissions:
@@ -24,9 +26,13 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 24
           cache: npm
-          cache-dependency-path: packages/n8n-nodes-palo-ai/package-lock.json
+          cache-dependency-path: |
+            packages/n8n-nodes-palo-ai/package-lock.json
+            packages/n8n-nodes-palo-ai-tooling/package-lock.json
       - run: npm ci
+      - run: npm ci --prefix ../n8n-nodes-palo-ai-tooling --ignore-scripts
+      - run: npm run security:audit
       - run: npm run verify
       - run: npm pack --dry-run

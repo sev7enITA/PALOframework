@@ -48,8 +48,11 @@
 </ul>
 <p>The original node is visible and removable on the canvas and remains decision-only. The Governed Action node calls the PALO-owned execution endpoint; the workflow must not retain another direct credential path to the protected target.</p>
 <h2 id="installation-for-local-evaluation">Installation for local evaluation<a class="palo-doc-anchor" href="#installation-for-local-evaluation" aria-label="Link to Installation for local evaluation">#</a></h2><p>Build and package from the PALO repository:</p>
+<p>The isolated build toolchain requires Node.js 24. The generated community node remains dependency-free and uses the <code>n8n-workflow</code> peer supplied by the target n8n instance.</p>
 <figure class="palo-doc-code"><figcaption>bash code</figcaption><pre tabindex="0"><code class="language-bash">cd packages/n8n-nodes-palo-ai
 npm ci
+npm ci --prefix ../n8n-nodes-palo-ai-tooling
+npm run security:audit
 npm run verify
 npm pack</code></pre></figure><p>Install the generated <code>.tgz</code> in a disposable self-hosted n8n instance using the community-node installation flow, or run the official node development environment:</p>
 <figure class="palo-doc-code"><figcaption>bash code</figcaption><pre tabindex="0"><code class="language-bash">npm run dev</code></pre></figure><p>The package is intentionally not published to npm until the local install and runtime test gates are complete.</p>

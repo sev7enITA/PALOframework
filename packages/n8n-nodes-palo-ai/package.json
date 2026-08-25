@@ -1,67 +1,68 @@
 {
-    "name": "n8n-nodes-palo-ai",
-    "version": "0.2.0",
-    "description": "Developer-preview decision gate and full-cycle outcome assurance nodes for n8n agentic workflows.",
-    "license": "MIT",
-    "homepage": "https://github.com/sev7enITA/PALOframework/blob/main/docs/palo-ai-governance-integration-guide.md",
-    "keywords": [
-        "n8n-community-node-package",
-        "n8n",
-        "palo",
-        "governance",
-        "agentic-ai",
-        "human-in-the-loop",
-        "opa",
-        "mcp"
-    ],
-    "author": {
-        "name": "Fabrizio Degni",
-        "email": "5058737+sev7enITA@users.noreply.github.com"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/sev7enITA/PALOframework.git",
-        "directory": "packages/n8n-nodes-palo-ai"
-    },
-    "bugs": {
-        "url": "https://github.com/sev7enITA/PALOframework/issues"
-    },
-   "scripts": {
-		"build": "n8n-node build",
-		"build:watch": "tsc --watch",
-		"dev": "n8n-node dev",
-		"lint": "n8n-node lint",
-		"lint:fix": "n8n-node lint --fix",
+	"name": "n8n-nodes-palo-ai",
+	"version": "0.2.0",
+	"description": "Developer-preview decision gate and full-cycle outcome assurance nodes for n8n agentic workflows.",
+	"license": "MIT",
+	"homepage": "https://github.com/sev7enITA/PALOframework/blob/main/docs/palo-ai-governance-integration-guide.md",
+	"keywords": [
+		"n8n-community-node-package",
+		"n8n",
+		"palo",
+		"governance",
+		"agentic-ai",
+		"human-in-the-loop",
+		"opa",
+		"mcp"
+	],
+	"author": {
+		"name": "Fabrizio Degni",
+		"email": "5058737+sev7enITA@users.noreply.github.com"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/sev7enITA/PALOframework.git",
+		"directory": "packages/n8n-nodes-palo-ai"
+	},
+	"bugs": {
+		"url": "https://github.com/sev7enITA/PALOframework/issues"
+	},
+	"scripts": {
+		"build": "node ../n8n-nodes-palo-ai-tooling/run-bin.mjs n8n-node build",
+		"build:watch": "node ../n8n-nodes-palo-ai-tooling/run-bin.mjs tsc --watch",
+		"dev": "node ../n8n-nodes-palo-ai-tooling/run-bin.mjs n8n-node dev",
+		"lint": "node ../n8n-nodes-palo-ai-tooling/run-bin.mjs n8n-node lint",
+		"lint:fix": "node ../n8n-nodes-palo-ai-tooling/run-bin.mjs n8n-node lint --fix",
 		"test": "node test/paloUtils.test.cjs && node test/package.test.cjs",
 		"verify": "npm run lint && npm run build && npm run test",
+		"security:audit": "npm audit --package-lock-only --audit-level=low && npm audit --prefix ../n8n-nodes-palo-ai-tooling --package-lock-only --audit-level=low",
 		"package:check": "npm pack --dry-run",
-		"release": "n8n-node release",
-		"prepublishOnly": "npm run verify && n8n-node prerelease"
+		"release": "node ../n8n-nodes-palo-ai-tooling/run-bin.mjs n8n-node release",
+		"prepublishOnly": "npm run verify && node ../n8n-nodes-palo-ai-tooling/run-bin.mjs n8n-node prerelease"
 	},
-    "files": [
-        "dist",
-        "README.md",
-        "LICENSE"
-    ],
-    "n8n": {
-        "n8nNodesApiVersion": 1,
-        "strict": true,
-        "credentials": [
-            "dist/credentials/PaloApi.credentials.js"
-        ],
-        "nodes": [
-            "dist/nodes/PaloGovernance/PaloGovernance.node.js",
-            "dist/nodes/PaloGovernedAction/PaloGovernedAction.node.js"
-        ]
-    },
-    "devDependencies": {
-        "@n8n/node-cli": "0.39.3",
-        "eslint": "9.32.0",
-        "prettier": "3.6.2",
-        "release-it": "^19.0.4",
-        "typescript": "5.9.2"
-    },
-    "peerDependencies": {
-        "n8n-workflow": "*"
-    }
+	"files": [
+		"dist",
+		"README.md",
+		"LICENSE"
+	],
+	"n8n": {
+		"n8nNodesApiVersion": 1,
+		"strict": true,
+		"credentials": [
+			"dist/credentials/PaloApi.credentials.js"
+		],
+		"nodes": [
+			"dist/nodes/PaloGovernance/PaloGovernance.node.js",
+			"dist/nodes/PaloGovernedAction/PaloGovernedAction.node.js"
+		]
+	},
+	"devDependencies": {
+		"eslint": "9.32.0",
+		"n8n-workflow": "2.36.3",
+		"prettier": "3.6.2",
+		"typescript": "5.9.2",
+		"zod": "3.25.76"
+	},
+	"peerDependencies": {
+		"n8n-workflow": "*"
+	}
 }
