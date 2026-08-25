@@ -21,6 +21,17 @@
         <category>Responsible AI</category>
         <category>EU AI Act</category>
         <item>
+            <title>PALO 3.1 and PALO-AI 2.7 release verification record</title>
+            <link>https://paloframework.org/PALO_VerificationNote.html</link>
+            <description><![CDATA[This record identifies the PALO 3.1 and PALO-AI 2.7 source baseline, CI run, automated validation results, negative-test coverage, published artifact checksum and current non-production boundaries.]]></description>
+            <pubDate>Tue, 25 Aug 2026 18:00:00 +0200</pubDate>
+            <guid isPermaLink="true">https://paloframework.org/PALO_VerificationNote.html</guid>
+            <dc:creator>PALO Framework</dc:creator>
+            <category>Release Engineering</category>
+            <category>Verification</category>
+            <category>Production Boundary</category>
+        </item>
+        <item>
             <title>PALO-AI v2.7 - Data Assurance Control Plane</title>
             <link>https://paloframework.org/docs/palo-data-assurance-control-plane.html</link>
             <description><![CDATA[PALO-AI v2.7 adds Action Claim 1.4, payload-minimized context evidence, purpose-bound Data Fitness Decisions, signed Data Disclosure Contracts and Receipts, AI system registry records, tenant-bound MCP operations and continuous-assurance invalidation. The bundled SQLite and in-process runtime remains a non-production developer preview denied by its own production profile.]]></description>

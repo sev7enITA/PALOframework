@@ -40,7 +40,7 @@ try {
 
   const { stdout } = await execFileAsync("unzip", ["-Z1", archivePath], { maxBuffer: 10 * 1024 * 1024 });
   const entries = stdout.split(/\r?\n/).filter(Boolean).map((entry) => entry.replace(/^\.\//, ""));
-  for (const required of ["index.html", ".htaccess", ".well-known/security.txt", "CHANGELOG.md", "PALO_OWASPGenAI2026.html", "assets/OWASP-GenAI-LLM-Top-10-2026-v1.0.pdf", "data/owasp-genai-2026-crosswalk.json"]) {
+  for (const required of ["index.html", ".htaccess", ".well-known/security.txt", "CHANGELOG.md", "PALO_VerificationNote.html", "PALO_OWASPGenAI2026.html", "assets/OWASP-GenAI-LLM-Top-10-2026-v1.0.pdf", "data/owasp-genai-2026-crosswalk.json"]) {
     if (!entries.includes(required)) throw new Error(`Hostinger archive is missing required root entry: ${required}`);
   }
   if (entries.some((entry) => entry === "dist" || entry.startsWith("dist/"))) {

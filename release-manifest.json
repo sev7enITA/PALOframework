@@ -250,6 +250,7 @@
       "documentationLibrary": "PALO_DocumentationLibrary.html",
       "capabilityMatrix": "PALO_AgenticCapabilityMatrix.html",
       "productionReadiness": "PALO_AIProductionReadiness.html",
+      "verificationNote": "PALO_VerificationNote.html",
       "governanceHubProductSpec": "docs/palo-ai-governance-hub-product-spec.html",
       "governanceHubUserGuide": "docs/palo-ai-governance-hub-user-guide.html",
       "governanceHubWorkflows": "docs/palo-ai-governance-hub-workflows.html",
