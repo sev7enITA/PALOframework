@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Platform Map | PALO Framework</title>
-    <meta name="description" content="Operational map of the PALO platform, its implemented and foundation capabilities, research boundaries, modules, lifecycle routes, and public artifacts.">
+    <meta name="description" content="Operational atlas of PALO v3.1 and the independently versioned PALO-AI v2.7 developer preview, with lifecycle routes, public artifacts, release evidence and authority boundaries.">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://paloframework.org/PALO_PlatformMap.html">
     <meta property="og:type" content="website">
@@ -45,7 +45,7 @@
                 <div>
                     <p class="palo-eyebrow">Operational architecture</p>
                     <h1>PALO Platform Map</h1>
-                    <p>Find the next governance decision, the module that supports it, and the artifact the accountable team should retain. Status labels distinguish working product surfaces from reusable foundations and unresolved research.</p>
+                    <p>Find the next governance decision, the module that supports it, and the artifact the accountable team should retain. This operational atlas keeps the PALO platform release, independently versioned components, delivery state, evidence class and unresolved research visibly separate.</p>
                     <div class="state-key" aria-label="Delivery status key">
                         <span class="state-badge state-implemented">Implemented</span>
                         <span class="state-badge state-foundation">Foundation</span>
@@ -55,6 +55,7 @@
                     <div class="palo-actions">
                         <a class="palo-btn" href="#navigation-map"><span data-palo-icon="target" aria-hidden="true"></span>Navigate the platform</a>
                         <a class="palo-btn palo-btn-secondary" href="designs/theory-to-practice-infographic/?mode=navigation"><span data-palo-icon="search" aria-hidden="true"></span>Open navigation graph</a>
+                        <a class="palo-btn palo-btn-secondary" href="CHANGELOG.html"><span data-palo-icon="clipboard" aria-hidden="true"></span>Read full changelog</a>
                     </div>
                 </div>
                 <aside aria-labelledby="release-title">
@@ -62,11 +63,14 @@
                     <dl class="release-ledger">
                         <div><dt>Web release</dt><dd>v3.1.0 | 23 August 2026</dd></div>
                         <div><dt>Semantic core</dt><dd>v3.1.0 | digest-bound release</dd></div>
+                        <div><dt>PALO-AM methodology</dt><dd>v2.0.0 | current modality</dd></div>
+                        <div><dt>PALO-AI</dt><dd>v2.7.0 | 25 August 2026 | Developer Preview</dd></div>
                         <div><dt>Framework</dt><dd>v2.0.0</dd></div>
-                        <div><dt>Android / iOS</dt><dd>v2.0.0 / v1.7.1</dd></div>
+                        <div><dt>Android / iOS</dt><dd>v2.4.1 / v1.7.1</dd></div>
                         <div><dt>Publication</dt><dd>Root authoring to deterministic <code>dist</code></dd></div>
                     </dl>
-                    <div class="palo-actions"><a class="palo-btn palo-btn-secondary" href="release-manifest.json"><span data-palo-icon="file" aria-hidden="true"></span>Open release manifest</a></div>
+                    <p class="palo-note">Versions are independent: PALO-AI v2.7 consumes the PALO v3.1 governance foundation but remains non-production and is denied by the bundled runtime production profile.</p>
+                    <div class="palo-actions"><a class="palo-btn palo-btn-secondary" href="release-manifest.json"><span data-palo-icon="file" aria-hidden="true"></span>Open release manifest</a><a class="palo-btn palo-btn-secondary" href="feed.xml">Follow release feed</a></div>
                 </aside>
             </div>
         </section>
@@ -99,7 +103,7 @@
                     <label for="map-evidence-class">Evidence / authority<select id="map-evidence-class"><option value="">All classes</option><option value="canonical-definition">Canonical definition</option><option value="source-backed-context">Source-backed context</option><option value="illustrative-local-preview">Illustrative local preview</option><option value="human-review-required">Human review required</option></select></label>
                     <button class="palo-btn palo-btn-secondary" id="map-reset" type="button">Reset filters</button>
                 </div>
-                <p class="map-count" id="map-count" aria-live="polite">12 routes shown</p>
+                <p class="map-count" id="map-count" aria-live="polite">13 routes shown</p>
                 <div class="map-empty" id="map-empty" role="status">No route matches all filters. Reset one filter to widen the map.</div>
 
                 <div class="intent-map" aria-label="Interactive platform topology">
@@ -115,6 +119,7 @@
                     </div></section>
                     <section class="intent-group"><div class="intent-heading"><span>Intent 03</span><h3>Control and measure</h3></div><div class="intent-routes">
                         <article class="map-route" data-map-route data-route-id="route-controls" data-evidence-class="illustrative-local-preview" data-stakeholder="delivery" data-phase="control" data-status="foundation"><div class="route-meta"><span class="route-phase">Control</span><span class="state-badge state-foundation">Foundation</span></div><h4>Select owned controls</h4><p>Product and engineering | Control Library</p><p class="route-output"><strong>Artifact:</strong> Calibrated control plan</p><a href="data/control-library.json">Open Control Library</a></article>
+                        <article class="map-route" data-map-route data-route-id="route-palo-ai-data" data-evidence-class="canonical-definition" data-stakeholder="delivery" data-phase="control" data-status="foundation"><div class="route-meta"><span class="route-phase">Control</span><span class="state-badge state-foundation">Foundation</span></div><h4>Bind agent action to governed data</h4><p>Product and engineering | PALO-AI v2.7</p><p class="route-output"><strong>Artifact:</strong> Data Fitness Decision, Disclosure Contract and Receipt</p><p><strong>Authority boundary:</strong> developer-preview contracts and runtime; not a production authorization service.</p><a href="docs/palo-data-assurance-control-plane.html">Open Data Assurance</a></article>
                         <article class="map-route" data-map-route data-route-id="route-vibe" data-evidence-class="canonical-definition" data-stakeholder="delivery" data-phase="control" data-status="implemented"><div class="route-meta"><span class="route-phase">Control</span><span class="state-badge state-implemented">Implemented</span></div><h4>Govern AI-assisted delivery</h4><p>Product and engineering | Vibe Coding Governance</p><p class="route-output"><strong>Artifact:</strong> Development controls and gates</p><a href="PALO_VibeCoding.html">Open Vibe Coding</a></article>
                         <article class="map-route" data-map-route data-route-id="route-kpi" data-evidence-class="canonical-definition" data-stakeholder="assurance" data-phase="measure" data-status="implemented"><div class="route-meta"><span class="route-phase">Measure</span><span class="state-badge state-implemented">Implemented</span></div><h4>Define observable indicators</h4><p>Assurance and board | KPI and KRI Generator</p><p class="route-output"><strong>Artifact:</strong> KPI/KRI register</p><a href="PALO_KPIGenerator.html">Open KPI Generator</a></article>
                     </div></section>
@@ -140,6 +145,7 @@
                     <tr data-map-row data-route-id="route-fria" data-evidence-class="source-backed-context"><td data-label="Intent">Evaluate rights impacts</td><td data-label="Stakeholder">Risk and legal</td><td data-label="Phase">Assess</td><td data-label="Destination"><a href="PALO_FRIA.html">FRIA Assessment</a></td><td data-label="Artifact">FRIA record</td><td data-label="State">Implemented</td></tr>
                     <tr data-map-row data-route-id="route-agentic" data-evidence-class="canonical-definition"><td data-label="Intent">Bound delegated action</td><td data-label="Stakeholder">Product and engineering</td><td data-label="Phase">Assess</td><td data-label="Destination"><a href="PALO_AgenticGovernance.html#simulator">PALO-AM</a></td><td data-label="Artifact">Agentic evidence plan</td><td data-label="State">Implemented</td></tr>
                     <tr data-map-row data-route-id="route-controls" data-evidence-class="illustrative-local-preview"><td data-label="Intent">Select owned controls</td><td data-label="Stakeholder">Product and engineering</td><td data-label="Phase">Control</td><td data-label="Destination"><a href="data/control-library.json">Control Library</a></td><td data-label="Artifact">Control plan</td><td data-label="State">Foundation</td></tr>
+                    <tr data-map-row data-route-id="route-palo-ai-data" data-evidence-class="canonical-definition"><td data-label="Intent">Bind agent action to governed data</td><td data-label="Stakeholder">Product and engineering</td><td data-label="Phase">Control</td><td data-label="Destination"><a href="docs/palo-data-assurance-control-plane.html">PALO-AI v2.7 Data Assurance</a><small><strong>Boundary:</strong> developer-preview contracts and runtime; not a production authorization service.</small></td><td data-label="Artifact">Data Fitness Decision, Disclosure Contract and Receipt</td><td data-label="State">Foundation</td></tr>
                     <tr data-map-row data-route-id="route-vibe" data-evidence-class="canonical-definition"><td data-label="Intent">Govern AI-assisted delivery</td><td data-label="Stakeholder">Product and engineering</td><td data-label="Phase">Control</td><td data-label="Destination"><a href="PALO_VibeCoding.html">Vibe Coding</a></td><td data-label="Artifact">Delivery controls</td><td data-label="State">Implemented</td></tr>
                     <tr data-map-row data-route-id="route-kpi" data-evidence-class="canonical-definition"><td data-label="Intent">Define indicators</td><td data-label="Stakeholder">Assurance and board</td><td data-label="Phase">Measure</td><td data-label="Destination"><a href="PALO_KPIGenerator.html">KPI/KRI Generator</a></td><td data-label="Artifact">Indicator register</td><td data-label="State">Implemented</td></tr>
                     <tr data-map-row data-route-id="route-assess" data-evidence-class="illustrative-local-preview"><td data-label="Intent">Assemble the record</td><td data-label="Stakeholder">Assurance and board</td><td data-label="Phase">Prove</td><td data-label="Destination"><a href="PALO_AssessmentPath.html">Assessment Path</a></td><td data-label="Artifact">Evidence Bundle</td><td data-label="State">Implemented</td></tr>
@@ -159,7 +165,8 @@
                     <section class="resource-group"><h3>Starter libraries</h3><ul><li><a href="data/control-library.json">Control Library</a></li><li><a href="data/kpi-kri-registry.json">KPI/KRI Registry</a></li><li><a href="data/decision-gates.json">Decision Gates</a></li><li><a href="data/source-registry.json">Source Registry</a></li><li><a href="docs/p2-adoption-integration-index.html">Adoption index</a></li></ul></section>
                     <section class="resource-group"><h3>Working templates</h3><ul><li><a href="templates/procurement.html">Procurement</a></li><li><a href="templates/incident-response.html">Incident response</a></li><li><a href="templates/board-review.html">Board review</a></li><li><a href="templates/red-team-evidence.html">Red-team evidence</a></li><li><a href="templates/contribution-starter.html">Contribution starter</a></li></ul></section>
                     <section class="resource-group"><h3>Integration foundations</h3><ul><li><a href="docs/p2-module-contracts.html">Module contracts</a></li><li><a href="docs/p2-connector-patterns.html">Connector patterns</a></li><li><a href="examples/policy-as-code/README.html">Policy-as-code examples</a></li><li><a href="docs/p2-dependency-inventory.html">Dependency inventory</a></li></ul></section>
-                    <section class="resource-group"><h3>Platform evidence</h3><ul><li><a href="docs/platform-evolution-analysis.html">P0-P4 lateral analysis</a></li><li><a href="CHANGELOG.html">Changelog</a></li><li><a href="https://github.com/sev7enITA/PALOframework#readme">Repository guide</a></li><li><a href="release-manifest.json">Release manifest</a></li></ul></section>
+                    <section class="resource-group"><h3>Platform evidence</h3><ul><li><a href="docs/platform-evolution-analysis.html">P0-P4 lateral analysis</a></li><li><a href="CHANGELOG.html">Full changelog</a></li><li><a href="feed.xml">Release RSS feed</a></li><li><a href="https://github.com/sev7enITA/PALOframework#readme">Repository guide</a></li><li><a href="release-manifest.json">Release manifest</a></li></ul></section>
+                    <section class="resource-group"><h3>PALO-AI v2.7 data assurance</h3><ul><li><a href="docs/palo-data-assurance-control-plane.html">Control-plane guide</a></li><li><a href="PALO_AgenticCapabilityMatrix.html">Capability Matrix</a></li><li><a href="PALO_AIProductionReadiness.html">Production Readiness</a></li><li><a href="agentic/capability-matrix.json">Machine-readable capability evidence</a></li></ul></section>
                     <section class="resource-group"><h3>Working interfaces</h3><ul><li><a href="designs/theory-to-practice-infographic/#onboarding">Stakeholder Onboarding</a></li><li><a href="designs/theory-to-practice-infographic/?mode=navigation">Operationalization Explorer</a></li><li><a href="PALO_AssessmentPath.html">Assessment Path</a></li><li><a href="PALO_DocumentationLibrary.html">Documentation Library</a></li></ul></section>
                     <section class="resource-group"><h3>PolicyWatcher ecosystem</h3><p>Separate civic-tech portal and external monitoring companion. Signals remain non-authoritative until the primary policy and relevance are reviewed.</p><ul><li><a href="https://www.policywatcher.online/" target="_blank" rel="noopener noreferrer">PolicyWatcher</a></li><li><a href="https://www.policywatcher.online/observatory" target="_blank" rel="noopener noreferrer">Observatory</a></li><li><a href="https://www.policywatcher.online/timeline" target="_blank" rel="noopener noreferrer">Timeline</a></li><li><a href="https://www.policywatcher.online/methodology/confidence" target="_blank" rel="noopener noreferrer">Confidence methodology</a></li><li><a href="https://www.policywatcher.online/trust" target="_blank" rel="noopener noreferrer">Trust &amp; Quality</a></li></ul></section>
                 </div>
@@ -174,6 +181,6 @@
         </section>
     </main>
 
-    <footer class="palo-footer"><div class="palo-shell"><p>Copyright <span data-current-year>2026</span> PALO Framework. Educational governance support, not legal advice or certification.</p><div class="palo-footer-links"><a href="PALO_DocumentationLibrary.html">Documentation</a><a href="PALO_AssessmentPath.html">Assessment Path</a><a href="privacy-policy.html">Privacy</a><a href="security-policy.html">Security</a><a href="accessibility.html">Accessibility</a></div></div></footer>
+    <footer class="palo-footer"><div class="palo-shell"><p>Copyright <span data-current-year>2026</span> PALO Framework. Educational governance support, not legal advice or certification.</p><div class="palo-footer-links"><a href="PALO_DocumentationLibrary.html">Documentation</a><a href="CHANGELOG.html">Changelog</a><a href="release-manifest.json">Release manifest</a><a href="feed.xml">RSS</a><a href="PALO_AssessmentPath.html">Assessment Path</a><a href="privacy-policy.html">Privacy</a><a href="security-policy.html">Security</a><a href="accessibility.html">Accessibility</a></div></div></footer>
 </body>
 </html>

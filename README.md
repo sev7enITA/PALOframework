@@ -161,6 +161,7 @@ The app is designed as a privacy-first mobile workspace for contextual AI govern
 
 | Date | Release | Highlights |
 | --- | --- | --- |
+| 2026-08-25 | PALO-AI v2.7.0 - Data Assurance Control Plane | Action Claim 1.4, payload-minimized context evidence, purpose-bound Data Fitness Decisions, signed Disclosure Contracts and Receipts, AI System Registry, tenant-bound MCP operations, continuous invalidation and fail-closed disclosure incidents; non-production developer preview |
 | 2026-08-23 | v3.1.0 - Governance Control Plane | Twelve canonical control packs, 31 controls, 38 indicators, ten evidence-contract families, conditional gate integration, current source review and fail-closed PALO-AI production admission |
 | 2026-08-12 | v3.0.1 - Evidence Pack Activation | One primary activation route, preloaded local case, voluntary digest-bound validation receipt, three gold cases, `case:contribute` and a 30-day new-module freeze |
 | 2026-08-12 | v3.0.0 - Semantic Foundation | Canonical semantic spine, append-only gate decisions, atomic evidence/claim/evaluation contracts, RDF/SHACL invariants, mapping governance, Semantic Inspector and digest-bound releases |
