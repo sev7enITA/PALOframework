@@ -28,9 +28,13 @@ The original node is visible and removable on the canvas and remains decision-on
 
 Build and package from the PALO repository:
 
+The isolated build toolchain requires Node.js 24. The generated community node remains dependency-free and uses the `n8n-workflow` peer supplied by the target n8n instance.
+
 ```bash
 cd packages/n8n-nodes-palo-ai
 npm ci
+npm ci --prefix ../n8n-nodes-palo-ai-tooling
+npm run security:audit
 npm run verify
 npm pack
 ```
