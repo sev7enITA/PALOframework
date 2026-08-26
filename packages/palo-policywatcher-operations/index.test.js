@@ -85,6 +85,7 @@ test("a complete later traversal revokes missing signals and removes their paylo
   assert.equal(revoked.signal, null);
   assert.equal(revoked.revokedAt, "2026-08-26T13:00:00.000Z");
   assert.deepEqual(registry.alerts.map((item) => item.code), ["signal-revoked"]);
+  assert.equal(registry.alerts[0].severity, "warning");
 });
 
 test("transport failure preserves the last validated active registry and alerts fail-closed", async () => {

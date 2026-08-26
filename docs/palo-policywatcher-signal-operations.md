@@ -20,7 +20,7 @@ npm run policywatcher-signals:check
 npm run policywatcher-signals:check -- --fail-on-alert
 ```
 
-The scheduled workflow runs every six hours and can be dispatched manually after an urgent PolicyWatcher withdrawal. The post-deploy alert job fails visibly when transport is degraded or a warning/critical alert exists; the safe static deployment and last validated registry remain available.
+The scheduled workflow runs hourly and can be dispatched manually after an urgent PolicyWatcher withdrawal. The source endpoints are no-store, so the source withdrawal has no cache grace window; the static PALO registry reflects it on the next complete scheduled or manual traversal. The post-deploy alert job fails visibly when transport is degraded, a signal is revoked, or another warning/critical alert exists; the safe static deployment and last validated registry remain available.
 
 ## Authority boundary
 

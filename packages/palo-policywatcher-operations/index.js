@@ -236,7 +236,7 @@ export async function synchronizePolicyWatcherSignals({
       if (observed.has(prior.signalId)) continue;
       if (prior.transportStatus === "active") {
         changed += 1;
-        currentAlerts.push(alert("signal-revoked", "info", now, "The signal is no longer in the complete public snapshot and was removed from the active queue.", prior.signalId));
+        currentAlerts.push(alert("signal-revoked", "warning", now, "The signal is no longer in the complete public snapshot and was removed from the active queue.", prior.signalId));
         revoked.push({ ...prior, transportStatus: "revoked", lastValidatedAt: now, revokedAt: now, signal: null });
       } else {
         revoked.push(prior);
