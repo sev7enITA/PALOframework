@@ -273,6 +273,7 @@ export const PUBLIC_FILES = [
   "schemas/fixtures/palo-agentic-assurance-incident.valid.json",
   "schemas/fixtures/palo-agentic-enforcement-provider.valid.json",
   "schemas/fixtures/palo-external-evidence-ref.valid.json",
+  "schemas/fixtures/policywatcher-signal.policywatcher.valid.json",
   "examples/external-evidence/rogue-ai-tracker-metadata.example.json",
   "schemas/fixtures/palo-data-fitness-policy.valid.json",
   "schemas/fixtures/palo-data-fitness-decision.valid.json",
