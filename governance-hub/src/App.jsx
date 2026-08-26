@@ -60,6 +60,14 @@ import {
 } from "./mockData.js";
 import capabilityCrosswalk from "../../data/external-evidence/palo-agentic-capability-crosswalk.json";
 import externalProviderRegistry from "../../data/external-evidence/provider-registry.json";
+import policyWatcherSignalRegistry from "../../data/integrations/policywatcher-signal-registry.json";
+import {
+  buildReviewLedger,
+  effectiveReviewState,
+  loadReviewMap,
+  POLICYWATCHER_REVIEW_STATES,
+  saveReviewState,
+} from "./policyWatcherReviewLedger.js";
 
 const technicalNav = [
   ["setup", "Setup", RocketLaunch],
@@ -574,6 +582,71 @@ function IntegrationsView() {
   return <><PageHeader eyebrow="Integrations" title="Connect orchestration without exposing protected credentials" description="The Governance Hub remains the control path; platforms propose actions and consume assurance results." actions={<button className="button button-primary"><PlugsConnected />Add integration</button>} /><section className="integration-list">{integrations.map(([name, status, detail]) => <article key={name}><div className="integration-icon"><PlugsConnected weight="duotone" /></div><div><h2>{name}</h2><p>{detail}</p></div><StatusPill>{status}</StatusPill><button className="button button-secondary">Configure</button></article>)}</section><div className="security-boundary"><LockKey /><div><strong>Browser security boundary</strong><span>This preview does not place a shared gateway bearer token in browser storage. Online multi-user operation requires a BFF, OIDC and server-enforced RBAC.</span></div></div></>;
 }
 
+function SignalOperationsRegistry() {
+  const [reviewMap, setReviewMap] = useState(() => loadReviewMap(window.localStorage, policyWatcherSignalRegistry));
+  const [notice, setNotice] = useState("");
+  const activeEntries = policyWatcherSignalRegistry.entries.filter((entry) => entry.transportStatus === "active");
+  const formatDate = (value) => value ? new Intl.DateTimeFormat("en", { dateStyle: "medium", timeStyle: "short" }).format(new Date(value)) : "Never";
+  const updateReview = (entry, reviewState) => {
+    try {
+      setReviewMap((current) => saveReviewState(window.localStorage, policyWatcherSignalRegistry, current, entry.signalId, reviewState));
+      setNotice(`Local review state updated for ${entry.signalId}.`);
+    } catch (error) {
+      setNotice(error instanceof Error ? error.message : "The local review state could not be saved.");
+    }
+  };
+  const exportLedger = () => {
+    const ledger = buildReviewLedger(policyWatcherSignalRegistry, reviewMap);
+    downloadBlob(new Blob([`${JSON.stringify(ledger, null, 2)}\n`], { type: "application/json" }), "palo-policywatcher-review-ledger.json");
+  };
+  const downloadSignal = (entry) => {
+    if (!entry.signal) return;
+    downloadBlob(new Blob([`${JSON.stringify(entry.signal, null, 2)}\n`], { type: "application/json" }), `${entry.signalId}.json`);
+  };
+
+  return (
+    <section className="signal-operations" data-policywatcher-transport-state={policyWatcherSignalRegistry.transport.state} aria-labelledby="policywatcher-operations-title">
+      <div className="signal-operations-heading">
+        <div>
+          <p className="eyebrow">Optional pull transport | operational registry</p>
+          <h2 id="policywatcher-operations-title">PolicyWatcher signal queue</h2>
+          <p>Validated public observations arrive as non-authoritative signals. Transport state and local review state remain separate.</p>
+        </div>
+        <div className="signal-operations-actions">
+          <StatusPill tone={policyWatcherSignalRegistry.transport.state === "healthy" ? "positive" : policyWatcherSignalRegistry.transport.state === "not-synchronized" ? "neutral" : "negative"}>{policyWatcherSignalRegistry.transport.state.replaceAll("-", " ")}</StatusPill>
+          <button className="button button-secondary" onClick={exportLedger}><DownloadSimple />Export review ledger</button>
+        </div>
+      </div>
+      <div className="signal-operation-metrics">
+        <div><span>Active signals</span><strong>{policyWatcherSignalRegistry.statistics.active}</strong></div>
+        <div><span>Revoked records</span><strong>{policyWatcherSignalRegistry.statistics.revoked}</strong></div>
+        <div><span>Last successful sync</span><strong>{formatDate(policyWatcherSignalRegistry.transport.lastSuccessfulSyncAt)}</strong></div>
+        <div><span>Registry digest</span><strong><code>{policyWatcherSignalRegistry.collectionDigest.slice(0, 12)}...</code></strong></div>
+      </div>
+      {policyWatcherSignalRegistry.transport.stale && <div className="warning-banner"><Warning /><div><strong>Last validated registry in use</strong><span>The current pull did not complete. Missing upstream entries were not treated as revoked.</span></div></div>}
+      {policyWatcherSignalRegistry.alerts.length > 0 && <div className="signal-alerts" aria-label="PolicyWatcher transport alerts">{policyWatcherSignalRegistry.alerts.map((item, index) => <div key={`${item.code}-${item.signalId || index}`}><WarningCircle /><span><strong>{item.code.replaceAll("-", " ")}</strong>{item.message}</span><StatusPill tone={item.severity === "critical" ? "negative" : item.severity === "warning" ? "attention" : "neutral"}>{item.severity}</StatusPill></div>)}</div>}
+      {notice && <p className="signal-local-notice" role="status">{notice}</p>}
+      {policyWatcherSignalRegistry.entries.length === 0 ? (
+        <div className="signal-empty"><Database weight="duotone" /><div><strong>No synchronized signals in this static build.</strong><span>PALO remains fully available. The scheduled transport or a manual workflow dispatch can publish the next validated registry.</span></div></div>
+      ) : (
+        <div className="table-wrap signal-table"><table><thead><tr><th>Signal</th><th>Transport</th><th>Review state</th><th>Validated</th><th>Digest</th><th><span className="sr-only">Actions</span></th></tr></thead><tbody>{policyWatcherSignalRegistry.entries.map((entry) => {
+          const state = effectiveReviewState(entry, reviewMap);
+          return <tr key={entry.signalId} className={entry.transportStatus === "revoked" ? "signal-revoked" : ""}>
+            <td><strong>{entry.signal?.source?.title || "Withdrawn PolicyWatcher signal"}</strong><small>{entry.changeId}</small></td>
+            <td><StatusPill tone={entry.transportStatus === "active" ? "positive" : "negative"}>{entry.transportStatus}</StatusPill></td>
+            <td><label className="sr-only" htmlFor={`review-${entry.signalId}`}>Review state for {entry.signalId}</label><select id={`review-${entry.signalId}`} value={state} disabled={entry.transportStatus !== "active"} onChange={(event) => updateReview(entry, event.target.value)}>{POLICYWATCHER_REVIEW_STATES.map((value) => <option key={value} value={value}>{value.replaceAll("-", " ")}</option>)}</select></td>
+            <td>{formatDate(entry.lastValidatedAt)}</td>
+            <td><code>{entry.signalDigest.slice(0, 12)}...</code></td>
+            <td><div className="table-actions">{entry.signal && <button className="text-button" onClick={() => downloadSignal(entry)}>Download</button>}<a className="text-button" href="../PALO_AssessmentPath.html">Review path</a></div></td>
+          </tr>;
+        })}</tbody></table></div>
+      )}
+      <div className="signal-authority-boundary"><ShieldCheck /><span><strong>Authority boundary</strong>{policyWatcherSignalRegistry.authorityBoundary} Browser-local review state is workflow evidence only, not identity-backed approval.</span></div>
+      <p className="signal-count-boundary">{activeEntries.length} active signal(s) in this build. A zero count or unavailable transport does not establish that no relevant public policy change exists.</p>
+    </section>
+  );
+}
+
 function ExternalEvidenceView() {
   const [query, setQuery] = useState("");
   const [selectedId, setSelectedId] = useState(capabilityCrosswalk.capabilities[0].capabilityId);
@@ -605,6 +678,7 @@ function ExternalEvidenceView() {
         <div><strong>PALO operates offline and independently</strong><span>No provider is required. External scores remain contextual observations and never become a PALO use-case risk score or gate decision.</span></div>
         <StatusPill tone="positive">Offline ready</StatusPill>
       </section>
+      <SignalOperationsRegistry />
       <section className="provider-strip" aria-label="Registered external evidence providers">
         {externalProviderRegistry.providers.map((provider) => (
           <article key={provider.providerId}>

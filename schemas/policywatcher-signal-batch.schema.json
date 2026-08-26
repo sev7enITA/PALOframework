@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paloframework.org/schemas/policywatcher-signal-batch.schema.json",
+  "title": "PALO PolicyWatcher Signal Batch",
+  "type": "object",
+  "required": ["format", "schemaVersion", "mode", "locale", "count", "limit", "hasMore", "nextCursor", "signals", "boundary"],
+  "properties": {
+    "format": { "const": "palo-policywatcher-signal-batch" },
+    "schemaVersion": { "const": "1.0.0" },
+    "mode": { "const": "complete-active-snapshot" },
+    "locale": { "enum": ["en", "it"] },
+    "count": { "type": "integer", "minimum": 0, "maximum": 25 },
+    "limit": { "type": "integer", "minimum": 1, "maximum": 25 },
+    "hasMore": { "type": "boolean" },
+    "nextCursor": {
+      "oneOf": [
+        { "type": "string", "pattern": "^[A-Za-z0-9_-]{1,256}$" },
+        { "type": "null" }
+      ]
+    },
+    "signals": {
+      "type": "array",
+      "maxItems": 25,
+      "items": { "$ref": "https://paloframework.org/schemas/policywatcher-signal.schema.json" }
+    },
+    "boundary": { "type": "string", "minLength": 80, "maxLength": 1000 }
+  },
+  "additionalProperties": false
+}

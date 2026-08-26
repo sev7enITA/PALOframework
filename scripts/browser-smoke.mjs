@@ -206,6 +206,17 @@ try {
 
   await page.getByRole("button", { name: "Technical" }).click();
   if (!/Illustrative local preview/.test(await page.locator(".preview-boundary").innerText())) failures.push("Governance Hub technical lens: persistent local-preview boundary is missing");
+  await page.getByRole("button", { name: "External evidence" }).click();
+  await expectAttribute(page.locator(".signal-operations"), "data-policywatcher-transport-state", "not-synchronized", "PolicyWatcher offline-safe operational baseline");
+  const signalOperationsText = await page.locator(".signal-operations").innerText();
+  if (!/PolicyWatcher signal queue[\s\S]*No synchronized signals[\s\S]*PALO remains fully available[\s\S]*Authority boundary/i.test(signalOperationsText)) failures.push("Governance Hub: PolicyWatcher registry omits its empty-state or authority boundary");
+  const reviewLedgerExport = await captureDownload(page.getByRole("button", { name: "Export review ledger" }), "PolicyWatcher local review ledger");
+  try {
+    const parsed = JSON.parse(reviewLedgerExport);
+    if (parsed.format !== "palo-policywatcher-review-ledger" || parsed.localOnly !== true || parsed.sourceRegistryDigest?.length !== 64 || parsed.reviews?.length !== 0) failures.push("Governance Hub: empty PolicyWatcher review ledger has an invalid contract or boundary");
+  } catch {
+    failures.push("Governance Hub: PolicyWatcher review ledger is not valid JSON");
+  }
   await page.getByRole("button", { name: "Setup" }).click();
   await page.getByRole("button", { name: /Bound authority/ }).click();
   await page.getByRole("button", { name: "Test this boundary" }).click();
