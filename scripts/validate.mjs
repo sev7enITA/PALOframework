@@ -284,14 +284,20 @@ async function validateP2Artifacts() {
   const operationalRegistryFile = "data/integrations/policywatcher-signal-registry.json";
   try { assertPolicyWatcherRegistry(await loadJson(operationalRegistryFile), operationsValidators); }
   catch (error) { errors.push(`${operationalRegistryFile}: ${error.message}`); }
+  const reviewLedgerSchemaFile = "schemas/palo-policywatcher-review-ledger.schema.json";
+  const reviewLedgerFixtureFile = "schemas/fixtures/palo-policywatcher-review-ledger.valid.json";
+  const reviewLedgerValidator = ajv.compile(await loadJson(reviewLedgerSchemaFile));
+  if (!reviewLedgerValidator(await loadJson(reviewLedgerFixtureFile))) errors.push(`${reviewLedgerFixtureFile}: expected valid review ledger failed schema: ${ajv.errorsText(reviewLedgerValidator.errors)}`);
 
   const p2JsonFiles = [
     ...Object.values(schemaFiles), ...Object.values(dataFiles),
     "schemas/policywatcher-signal-batch.schema.json",
     "schemas/palo-policywatcher-signal-registry.schema.json",
+    reviewLedgerSchemaFile,
     "schemas/fixtures/policywatcher-signal.valid.json",
     "schemas/fixtures/policywatcher-signal.policywatcher.valid.json",
     batchFixtureFile,
+    reviewLedgerFixtureFile,
     "schemas/fixtures/policywatcher-signal.invalid.json",
     operationalRegistryFile,
     ...data.index.workedCases.map((entry) => entry.path)

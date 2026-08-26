@@ -1,4 +1,4 @@
-# PALO ↔ PolicyWatcher signal operations
+# PALO and PolicyWatcher signal operations
 
 Status: optional production pull transport. PALO remains autonomous and PolicyWatcher remains an external public-evidence source.
 
