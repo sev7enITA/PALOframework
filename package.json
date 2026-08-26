@@ -22,6 +22,8 @@
     "external-evidence:check": "npm run external-evidence:validate && npm run external-evidence:test",
     "external-evidence:sync": "node scripts/sync-external-agentic-evidence.mjs",
     "policywatcher-signal:validate": "node scripts/validate-policywatcher-signal.mjs",
+    "policywatcher-signals:sync": "node scripts/sync-policywatcher-signals.mjs",
+    "policywatcher-signals:check": "node scripts/check-policywatcher-signal-operations.mjs",
     "case:contribute": "node scripts/case-contribute.mjs",
     "activation:publish-issues": "node scripts/publish-activation-issues.mjs",
     "validate": "npm run validate:text-style && npm run external-evidence:check && npm run semantic:check && npm run semantic:validate && npm run semantic:release:check && node scripts/validate.mjs --root .",

@@ -1,0 +1,33 @@
+{
+  "format": "palo-policywatcher-signal-registry",
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-08-26T00:00:00.000Z",
+  "source": {
+    "providerId": "policywatcher",
+    "origin": "https://policywatcher.online",
+    "endpoint": "/api/v1/integrations/palo/signals",
+    "mode": "optional-pull",
+    "networkOptional": true
+  },
+  "transport": {
+    "state": "not-synchronized",
+    "lastAttemptAt": null,
+    "lastSuccessfulSyncAt": null,
+    "completeTraversal": false,
+    "pageCount": 0,
+    "stale": false,
+    "errorCode": null
+  },
+  "statistics": {
+    "active": 0,
+    "revoked": 0,
+    "received": 0,
+    "accepted": 0,
+    "rejected": 0,
+    "changed": 0
+  },
+  "entries": [],
+  "alerts": [],
+  "authorityBoundary": "Automated transport moves validated public monitoring signals only. PALO remains fully operable without PolicyWatcher, does not infer applicability, risk, control effectiveness or gate decisions, and requires accountable local review before use.",
+  "collectionDigest": "1103461b9552a0380df352b804f303ee46ce6762104a204daa8104d29daca996"
+}

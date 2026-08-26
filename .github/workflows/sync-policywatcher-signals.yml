@@ -1,0 +1,84 @@
+name: Sync PolicyWatcher signals and deploy PALO
+
+on:
+  schedule:
+    - cron: '17 */6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  sync-build:
+    runs-on: ubuntu-latest
+    outputs:
+      transport-state: ${{ steps.operations.outputs.transport-state }}
+      alert-count: ${{ steps.operations.outputs.alert-count }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22.22.0
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            governance-hub/package-lock.json
+      - name: Restore last validated transport registry
+        uses: actions/cache@v4
+        with:
+          path: .cache/integrations
+          key: policywatcher-signals-${{ runner.os }}-${{ github.run_id }}
+          restore-keys: |
+            policywatcher-signals-${{ runner.os }}-
+      - name: Install deterministic toolchain
+        run: |
+          npm ci
+          npm ci --prefix governance-hub
+      - name: Pull and validate the complete active PolicyWatcher snapshot
+        run: npm run policywatcher-signals:sync
+      - name: Validate source and transport contracts
+        run: |
+          npm run policywatcher-signals:check
+          npm run validate
+      - name: Build and verify the allowlisted publication artifact
+        run: |
+          npm run build
+          npm run validate:dist
+          npm run build:check
+      - name: Expose operational alert state
+        id: operations
+        shell: bash
+        run: |
+          node -e "const r=require('./data/integrations/policywatcher-signal-registry.json'); console.log('transport-state='+r.transport.state); console.log('alert-count='+r.alerts.filter(a=>a.severity==='critical'||a.severity==='warning').length)" >> "$GITHUB_OUTPUT"
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: sync-build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy the validated registry with PALO
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+  alert:
+    if: ${{ always() && needs.deploy.result == 'success' && (needs.sync-build.outputs.transport-state != 'healthy' || needs.sync-build.outputs.alert-count != '0') }}
+    needs: [sync-build, deploy]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Raise a visible transport alert after the safe deployment
+        run: |
+          echo "::error::PolicyWatcher transport state=${{ needs.sync-build.outputs.transport-state }}, actionable alerts=${{ needs.sync-build.outputs.alert-count }}. PALO deployed the last validated offline-safe registry."
+          exit 1

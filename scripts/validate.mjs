@@ -8,6 +8,7 @@ import { HtmlValidate } from "html-validate";
 import Ajv2020 from "ajv/dist/2020.js";
 import addFormats from "ajv-formats";
 import { PUBLIC_FILES, PUBLIC_GENERATED_HTML, PUBLIC_HTML, PUBLIC_SOURCE_HTML } from "./public-files.mjs";
+import { assertRegistry as assertPolicyWatcherRegistry, createValidators as createPolicyWatcherValidators } from "../packages/palo-policywatcher-operations/index.js";
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const rootArgument = process.argv[process.argv.indexOf("--root") + 1] || ".";
@@ -275,11 +276,24 @@ async function validateP2Artifacts() {
     if (expectation === "invalid" && result) errors.push(`${file}: intentionally invalid signal unexpectedly passed schema`);
   }
 
+  const operationsValidators = await createPolicyWatcherValidators(validationRoot);
+  const batchFixtureFile = "schemas/fixtures/policywatcher-signal-batch.policywatcher.valid.json";
+  const batchFixture = await loadJson(batchFixtureFile);
+  if (!operationsValidators.batch(batchFixture)) errors.push(`${batchFixtureFile}: expected valid batch failed schema: ${operationsValidators.ajv.errorsText(operationsValidators.batch.errors)}`);
+  if (batchFixture.count !== batchFixture.signals.length) errors.push(`${batchFixtureFile}: count must match the embedded signal array`);
+  const operationalRegistryFile = "data/integrations/policywatcher-signal-registry.json";
+  try { assertPolicyWatcherRegistry(await loadJson(operationalRegistryFile), operationsValidators); }
+  catch (error) { errors.push(`${operationalRegistryFile}: ${error.message}`); }
+
   const p2JsonFiles = [
     ...Object.values(schemaFiles), ...Object.values(dataFiles),
+    "schemas/policywatcher-signal-batch.schema.json",
+    "schemas/palo-policywatcher-signal-registry.schema.json",
     "schemas/fixtures/policywatcher-signal.valid.json",
     "schemas/fixtures/policywatcher-signal.policywatcher.valid.json",
+    batchFixtureFile,
     "schemas/fixtures/policywatcher-signal.invalid.json",
+    operationalRegistryFile,
     ...data.index.workedCases.map((entry) => entry.path)
   ];
   const indexDocument = await readFile(path.join(validationRoot, "docs/p2-adoption-integration-index.md"), "utf8");
