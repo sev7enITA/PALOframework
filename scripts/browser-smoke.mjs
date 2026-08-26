@@ -172,7 +172,7 @@ try {
   await page.goto(`${baseUrl}/governance-hub/?role=executive&view=assurance`, { waitUntil: "networkidle" });
   await expectAttribute(page.locator("html"), "data-hub-role", "executive", "Governance Hub executive deep link");
   await expectAttribute(page.locator("html"), "data-hub-view", "assurance", "Governance Hub assurance deep link");
-  if (!/Illustrative local preview/.test(await page.locator(".preview-boundary").innerText())) failures.push("Governance Hub executive lens: persistent local-preview boundary is missing");
+  if (!/Static verification console/.test(await page.locator(".preview-boundary").innerText())) failures.push("Governance Hub executive lens: persistent verification boundary is missing");
   await page.goto(`${baseUrl}/governance-hub/?role=unknown&view=secrets`, { waitUntil: "networkidle" });
   await expectAttribute(page.locator("html"), "data-hub-role", "technical", "Governance Hub invalid role fallback");
   await expectAttribute(page.locator("html"), "data-hub-view", "setup", "Governance Hub invalid view fallback");
@@ -205,7 +205,7 @@ try {
   if (!executiveBrief.includes("Developer preview")) failures.push("Governance Hub: executive brief omits its release boundary");
 
   await page.getByRole("button", { name: "Technical" }).click();
-  if (!/Illustrative local preview/.test(await page.locator(".preview-boundary").innerText())) failures.push("Governance Hub technical lens: persistent local-preview boundary is missing");
+  if (!/Static verification console/.test(await page.locator(".preview-boundary").innerText())) failures.push("Governance Hub technical lens: persistent verification boundary is missing");
   await page.getByRole("button", { name: "External evidence" }).click();
   await expectAttribute(page.locator(".signal-operations"), "data-policywatcher-transport-state", "not-synchronized", "PolicyWatcher offline-safe operational baseline");
   const signalOperationsText = await page.locator(".signal-operations").innerText();
@@ -218,11 +218,28 @@ try {
     failures.push("Governance Hub: PolicyWatcher review ledger is not valid JSON");
   }
   await page.getByRole("button", { name: "Setup" }).click();
+  await page.getByRole("button", { name: "Check connection" }).click();
+  const connectionReceipt = page.locator('.action-trace[data-action-receipt="check-connection"]');
+  await connectionReceipt.waitFor();
+  const connectionReceiptText = await connectionReceipt.innerText();
+  if (!/not configured/i.test(connectionReceiptText) || /\bReady\b/.test(await page.locator("main").innerText())) failures.push("Governance Hub: connection check presents an unsupported ready state");
+  await connectionReceipt.locator(":scope > summary").click();
+  if (!/Network requests\s*0/i.test(await connectionReceipt.innerText()) || !/No DNS lookup or HTTP request/.test(await connectionReceipt.innerText())) failures.push("Governance Hub: connection receipt omits its zero-network boundary");
   await page.getByRole("button", { name: /Bound authority/ }).click();
+  await page.getByLabel("Automatic change limit").selectOption("20%");
   await page.getByRole("button", { name: "Test this boundary" }).click();
-  const runningBoundaryTest = page.getByRole("button", { name: "Testing..." });
-  if (!await runningBoundaryTest.isDisabled()) failures.push("Governance Hub: boundary test remains enabled while simulation is running");
-  await page.getByRole("button", { name: "Test this boundary" }).waitFor({ timeout: 2_000 });
+  await page.getByRole("button", { name: /Simulate/ }).click();
+  const simulationReceipt = page.locator('.action-trace[data-action-receipt="run-boundary-simulation"]');
+  await simulationReceipt.waitFor();
+  if (!/Action above 20%/.test(await page.locator(".test-results").innerText()) || !/7 deterministic scenarios passed/.test(await simulationReceipt.innerText())) failures.push("Governance Hub: simulation is not derived from the current authority boundary");
+  await page.getByRole("button", { name: /Generate bundle/ }).click();
+  const localBundle = await captureDownload(page.getByRole("button", { name: "Generate and download local bundle" }), "Governance Hub local sandbox bundle");
+  try {
+    const parsed = JSON.parse(localBundle);
+    if (parsed.authoritative !== false || parsed.publication?.performed !== false || !/^[a-f0-9]{64}$/.test(parsed.bundleDigest)) failures.push("Governance Hub: local sandbox bundle has an invalid authority, publication or digest boundary");
+  } catch {
+    failures.push("Governance Hub: local sandbox bundle is not valid JSON");
+  }
 
   await page.getByRole("button", { name: "Executions" }).click();
   await page.getByRole("button", { name: /Trace Catalog price update/ }).click();

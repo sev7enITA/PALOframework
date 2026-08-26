@@ -3,7 +3,6 @@ import {
   Pulse,
   ArrowRight,
   ArrowSquareOut,
-  Bell,
   Briefcase,
   CaretDown,
   ChartLineUp,
@@ -36,7 +35,6 @@ import {
   SignOut,
   SlidersHorizontal,
   Stack,
-  Stamp,
   TrendUp,
   UserCircle,
   UsersThree,
@@ -68,6 +66,22 @@ import {
   POLICYWATCHER_REVIEW_STATES,
   saveReviewState,
 } from "./policyWatcherReviewLedger.js";
+import {
+  AGENT_PROFILES,
+  AUTHORITY_ENVIRONMENTS,
+  CONNECTION_ENVIRONMENTS,
+  CONNECTION_PLATFORMS,
+  agentFor,
+  authorityDefaultsForAgent,
+  authorityDefaultsForTool,
+  buildDraftContract,
+  generateSandboxBundle,
+  platformFor,
+  runBoundarySimulation,
+  runConnectionCheck,
+  toolFor,
+  validateAuthorityConfiguration,
+} from "./governanceVerification.js";
 
 const technicalNav = [
   ["setup", "Setup", RocketLaunch],
@@ -119,15 +133,7 @@ function rowContainsQuery(row, query) {
   return Object.values(row).some((value) => String(value ?? "").toLocaleLowerCase().includes(normalizedQuery));
 }
 
-const defaultAuthority = {
-  agent: "Catalog Assistant",
-  environment: "n8n - Sandbox",
-  tool: "Catalog Update",
-  operation: "Update",
-  resource: "Tenant A / Catalog items",
-  limit: "10%",
-  network: "None",
-};
+const defaultAuthority = authorityDefaultsForAgent("Catalog Assistant", "n8n - Sandbox");
 
 const toneFor = (value = "") => {
   const lowered = value.toLowerCase();
@@ -183,9 +189,8 @@ function Shell({ role, onRoleChange, view, onViewChange, children }) {
           <img src={`${import.meta.env.BASE_URL}logo.webp`} alt="PALO Framework" />
         </div>
         <div className="profile-menu">
-          <div className="avatar">SK</div>
-          <div><strong>Sam Kim</strong><span>Platform Admin</span></div>
-          <CaretDown />
+          <div className="avatar">LV</div>
+          <div><strong>Local visitor</strong><span>No authenticated role</span></div>
         </div>
         <button className="mobile-close" onClick={() => setMobileOpen(false)} aria-label="Close navigation"><X /></button>
       </aside>
@@ -197,10 +202,9 @@ function Shell({ role, onRoleChange, view, onViewChange, children }) {
           <div className="topbar-actions">
             <StatusPill tone="attention">Developer preview</StatusPill>
             <div className="role-lens"><span>Workspace lens | not access control</span><RoleSwitch role={role} onChange={onRoleChange} /></div>
-            <button className="icon-button" aria-label="Notifications"><Bell /></button>
           </div>
         </header>
-        <div className="preview-boundary" role="note"><WarningCircle weight="fill" /><span><strong>Illustrative local preview</strong> | no live authority, source-of-record status, or approval decision.</span></div>
+        <div className="preview-boundary" role="note"><WarningCircle weight="fill" /><span><strong>Static verification console | Illustrative local preview</strong> | local checks are evidenced; remote runtime, identity, authority and publication remain unavailable without an operator BFF.</span></div>
         <main className="main-content">{children}</main>
       </section>
     </div>
@@ -221,11 +225,16 @@ function PageHeader({ eyebrow, title, description, actions }) {
 }
 
 function TechnicalSetup() {
-  const [step, setStep] = useState(3);
+  const [step, setStep] = useState(0);
+  const [connection, setConnection] = useState({ platform: CONNECTION_PLATFORMS[0].label, environment: CONNECTION_ENVIRONMENTS[0] });
   const [authority, setAuthority] = useState(defaultAuthority);
   const [oversight, setOversight] = useState("approval");
-  const [simulation, setSimulation] = useState("idle");
-  const [published, setPublished] = useState(false);
+  const [connectionReceipt, setConnectionReceipt] = useState(null);
+  const [connectionRunning, setConnectionRunning] = useState(false);
+  const [simulationReceipt, setSimulationReceipt] = useState(null);
+  const [simulationRunning, setSimulationRunning] = useState(false);
+  const [bundleReceipt, setBundleReceipt] = useState(null);
+  const [actionError, setActionError] = useState("");
   const [purpose, setPurpose] = useState({ objective: "Maintain accurate catalog pricing", owner: "Commerce Platform", impact: "Material operational impact" });
   const [effect, setEffect] = useState({ precondition: "Catalog version is unchanged", expected: "Price changes to the proposed value", forbidden: "Tenant ID and product identity remain unchanged" });
 
@@ -234,72 +243,134 @@ function TechnicalSetup() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  const input = useMemo(() => ({ connection, authority, oversight, purpose, effect }), [connection, authority, oversight, purpose, effect]);
+  const validation = useMemo(() => validateAuthorityConfiguration(input), [input]);
+  const selectedTool = validation.tool ?? toolFor(authority.agent, authority.tool);
   const enforcement = [
     `Only ${authority.agent} may call ${authority.tool}`,
-    `Only ${authority.resource} are in scope`,
-    `Changes above ${authority.limit} will require human approval`,
+    `Only ${authority.resource} is in scope`,
+    selectedTool?.operation === "Read" ? "This reference action is read-only" : authority.limit === "No automatic change" ? "Every write requires human approval" : `Actions above ${authority.limit} are denied or require approval`,
     authority.network === "None" ? "External network access will be denied" : `Network access is limited to ${authority.network}`,
   ];
 
-  const generated = useMemo(() => ({
-    agentId: "agent-catalog-demo",
-    environment: authority.environment,
-    action: { tool: authority.tool, operation: authority.operation.toLowerCase(), resource: authority.resource, networkIntent: authority.network.toLowerCase() },
-    authority: { maximumPriceChange: authority.limit, oversight },
-    effectContract: effect,
-  }), [authority, effect, oversight]);
+  const generated = useMemo(() => buildDraftContract(input), [input]);
 
-  const runBoundaryTest = () => {
-    setSimulation("running");
-    window.setTimeout(() => setSimulation("passed"), 800);
+  const invalidateAssurance = () => {
+    setSimulationReceipt(null);
+    setBundleReceipt(null);
+    setActionError("");
   };
+  const updateConnection = (next) => {
+    setConnection(next);
+    setConnectionReceipt(null);
+    invalidateAssurance();
+  };
+  const updateAuthority = (next) => { setAuthority(next); invalidateAssurance(); };
+  const updatePurpose = (next) => { setPurpose(next); invalidateAssurance(); };
+  const updateOversight = (next) => { setOversight(next); invalidateAssurance(); };
+  const updateEffect = (next) => { setEffect(next); invalidateAssurance(); };
+
+  const checkConnection = async () => {
+    setConnectionRunning(true);
+    setActionError("");
+    try {
+      setConnectionReceipt(await runConnectionCheck(connection));
+    } catch (error) {
+      setActionError(error instanceof Error ? error.message : "Connection profile validation failed.");
+    } finally {
+      setConnectionRunning(false);
+    }
+  };
+
+  const runBoundaryTest = async () => {
+    setSimulationRunning(true);
+    setActionError("");
+    try {
+      setSimulationReceipt(await runBoundarySimulation(input));
+      setBundleReceipt(null);
+    } catch (error) {
+      setActionError(error instanceof Error ? error.message : "Boundary simulation failed.");
+    } finally {
+      setSimulationRunning(false);
+    }
+  };
+
+  const generateBundle = async () => {
+    setActionError("");
+    try {
+      const generatedArtifact = await generateSandboxBundle(input, simulationReceipt);
+      setBundleReceipt(generatedArtifact.receipt);
+      downloadBlob(new Blob([`${JSON.stringify(generatedArtifact.bundle, null, 2)}\n`], { type: "application/json" }), `${generatedArtifact.bundle.version}.json`);
+    } catch (error) {
+      setActionError(error instanceof Error ? error.message : "The local sandbox bundle could not be generated.");
+    }
+  };
+
+  const stepStates = [
+    connectionReceipt ? "checked" : "pending",
+    authority.agent ? "configured" : "pending",
+    purpose.objective.trim() && purpose.owner.trim() ? "configured" : "blocked",
+    validation.valid ? "configured" : "blocked",
+    oversight ? "configured" : "pending",
+    effect.precondition.trim() && effect.expected.trim() && effect.forbidden.trim() ? "configured" : "blocked",
+    simulationReceipt?.result.status === "passed" ? "evidenced" : "pending",
+    bundleReceipt?.result.status === "generated-locally" ? "evidenced" : "pending",
+  ];
 
   return (
     <>
-      <PageHeader eyebrow="Guided governance builder" title="Create a governed agent capability" description="Move from business intent to validated contracts in eight clear steps." />
-      <WizardProgress current={step} onSelect={setStep} />
+      <PageHeader eyebrow="Guided governance builder | evidence mode" title="Create a governed agent capability" description="Validate a reference configuration, simulate its boundaries, and export a local draft without implying a live connection or publication." />
+      <section className="verification-strip" aria-label="Setup verification boundary">
+        <div><span>Console mode</span><strong>Static | no credentials</strong></div>
+        <div><span>Remote adapter</span><strong className="attention-text">Not configured</strong></div>
+        <div><span>Current contract</span><strong className={validation.valid ? "positive-text" : "negative-text"}>{validation.valid ? "Locally valid" : "Blocked"}</strong></div>
+        <div><span>Publication</span><strong>Local file only</strong></div>
+      </section>
+      {actionError && <div className="action-error" role="alert"><WarningCircle weight="fill" /><span>{actionError}</span></div>}
+      <WizardProgress current={step} onSelect={setStep} states={stepStates} />
       <section className="builder-layout">
         <div className="builder-main">
           <div className="step-label">Step {step + 1} of {wizardSteps.length}</div>
-          {step === 0 && <ConnectStep />}
-          {step === 1 && <DiscoverStep />}
-          {step === 2 && <PurposeStep value={purpose} onChange={setPurpose} />}
-          {step === 3 && <AuthorityStep value={authority} onChange={setAuthority} />}
-          {step === 4 && <OversightStep value={oversight} onChange={setOversight} />}
-          {step === 5 && <OutcomeStep value={effect} onChange={setEffect} />}
-          {step === 6 && <SimulationStep state={simulation} onRun={runBoundaryTest} />}
-          {step === 7 && <PublishStep published={published} onPublish={() => setPublished(true)} />}
+          {step === 0 && <ConnectStep value={connection} onChange={updateConnection} receipt={connectionReceipt} running={connectionRunning} onCheck={checkConnection} />}
+          {step === 1 && <DiscoverStep selectedAgent={authority.agent} onSelectAgent={(agent) => updateAuthority(authorityDefaultsForAgent(agent, authority.environment))} />}
+          {step === 2 && <PurposeStep value={purpose} onChange={updatePurpose} />}
+          {step === 3 && <AuthorityStep value={authority} onChange={updateAuthority} findings={validation.findings} />}
+          {step === 4 && <OversightStep value={oversight} onChange={updateOversight} />}
+          {step === 5 && <OutcomeStep value={effect} onChange={updateEffect} tool={selectedTool} />}
+          {step === 6 && <SimulationStep receipt={simulationReceipt} running={simulationRunning} onRun={runBoundaryTest} findings={validation.findings} />}
+          {step === 7 && <PublishStep receipt={bundleReceipt} simulationReceipt={simulationReceipt} canGenerate={validation.valid && simulationReceipt?.result.status === "passed"} onGenerate={generateBundle} />}
           <div className="wizard-actions">
             <button className="button button-secondary" disabled={step === 0} onClick={() => move(-1)}>Back</button>
-            {step === 3 && <button className="button button-secondary" disabled={simulation === "running"} onClick={runBoundaryTest}><Flask />{simulation === "running" ? "Testing..." : "Test this boundary"}</button>}
+            {step === 3 && <button className="button button-secondary" disabled={simulationRunning || !validation.valid} onClick={runBoundaryTest}><Flask />{simulationRunning ? "Testing..." : "Test this boundary"}</button>}
             {step < 7 ? <button className="button button-primary" onClick={() => move(1)}>{step === 3 ? "Continue to oversight" : "Continue"}<ArrowRight /></button> : null}
           </div>
         </div>
         <aside className="enforcement-panel">
-          <div className="enforcement-title"><ShieldCheck weight="duotone" /><h2>What PALO-AI will enforce</h2></div>
+          <div className="enforcement-title"><ShieldCheck weight="duotone" /><h2>What this draft would enforce</h2></div>
           <div className="enforcement-list">
             {enforcement.map((item, index) => <div key={item}><span>{index + 1}</span><p>{item}</p></div>)}
           </div>
           <details className="disclosure">
             <summary><Code />View generated contracts<CaretDown /></summary>
             <pre>{JSON.stringify(generated, null, 2)}</pre>
-            <p>Rego and Action Claim templates are generated from this validated configuration. They remain editable in expert mode.</p>
+            <p>This is an unsigned, non-authoritative draft. No Rego policy, Action Claim, credential or runtime registration is created in the browser.</p>
           </details>
-          <div className="boundary-note"><LockKey /><p><strong>Default deny</strong><span>Anything not explicitly described here remains unavailable.</span></p></div>
+          <div className="boundary-note"><LockKey /><p><strong>Truthful boundary</strong><span>The public console can validate and simulate this draft. Enforcement begins only inside an operator-controlled PALO runtime.</span></p></div>
         </aside>
       </section>
     </>
   );
 }
 
-function WizardProgress({ current, onSelect }) {
+function WizardProgress({ current, onSelect, states }) {
   return (
     <ol className="wizard-progress" aria-label="Governance setup progress">
       {wizardSteps.map((label, index) => (
-        <li key={label} className={index === current ? "current" : index < current ? "complete" : ""}>
+        <li key={label} className={`${index === current ? "current" : ""} ${states[index] === "evidenced" ? "complete" : ""} ${states[index] === "blocked" ? "blocked" : ""}`.trim()} data-step-state={states[index]}>
           <button onClick={() => onSelect(index)} aria-current={index === current ? "step" : undefined}>
-            <span>{index < current ? <Check weight="bold" /> : index + 1}</span>
+            <span>{states[index] === "evidenced" ? <Check weight="bold" /> : index + 1}</span>
             <strong>{label}</strong>
+            <small>{states[index]}</small>
           </button>
         </li>
       ))}
@@ -321,42 +392,77 @@ function FieldRow({ icon: Icon, label, value, options, onChange, hint }) {
   );
 }
 
-function ConnectStep() {
-  const [health, setHealth] = useState("idle");
-  const [platform, setPlatform] = useState("n8n self-hosted");
-  const [environment, setEnvironment] = useState("Sandbox");
+function ActionTrace({ receipt }) {
+  if (!receipt) return null;
+  const status = receipt.result.status;
+  const tone = /passed|generated-locally/.test(status) ? "positive" : /invalid|blocked|failed/.test(status) ? "negative" : "attention";
+  return (
+    <details className="action-trace" data-action-receipt={receipt.action}>
+      <summary>
+        <Code weight="bold" />
+        <span><strong>What happened</strong><small>{receipt.result.summary}</small></span>
+        <StatusPill tone={tone}>{status.replaceAll("-", " ")}</StatusPill>
+        <CaretDown />
+      </summary>
+      <div className="trace-body">
+        <div className="trace-metrics">
+          <div><span>Action</span><strong>{receipt.action}</strong></div>
+          <div><span>Duration</span><strong>{receipt.durationMs} ms</strong></div>
+          <div><span>Network requests</span><strong>{receipt.network.requests}</strong></div>
+          <div><span>Input digest</span><code>{receipt.inputDigest.slice(0, 16)}...</code></div>
+        </div>
+        <section className="trace-section">
+          <h3>Execution trace</h3>
+          <ol>{receipt.steps.map((item, index) => <li key={item.id} className={`trace-${item.status}`}><span>{String(index + 1).padStart(2, "0")}</span><div><strong>{item.id.replaceAll("-", " ")}</strong><small>{item.detail}</small></div><StatusPill tone={item.status === "passed" ? "positive" : item.status === "failed" ? "negative" : "neutral"}>{item.status}</StatusPill></li>)}</ol>
+        </section>
+        <section className="trace-section trace-negative-space">
+          <h3>What did not happen</h3>
+          <ul>{receipt.whatDidNotHappen.map((item) => <li key={item}>{item}</li>)}</ul>
+        </section>
+        <div className="trace-boundaries"><strong>Boundaries</strong><span>{receipt.boundaries.join(" | ")}</span></div>
+        <details className="trace-raw"><summary>View raw receipt<CaretDown /></summary><pre>{JSON.stringify(receipt, null, 2)}</pre></details>
+      </div>
+    </details>
+  );
+}
+
+function ConnectStep({ value, onChange, receipt, running, onCheck }) {
+  const profile = platformFor(value.platform);
   return (
     <div className="step-content">
       <h2>Where will this agent operate?</h2>
-      <p>Connect an isolated environment first. Production credentials are intentionally excluded from this preview.</p>
-      <FieldRow icon={PlugsConnected} label="Platform" value={platform} options={["n8n self-hosted", "MCP client", "Custom application", "Dify"]} onChange={setPlatform} />
-      <FieldRow icon={Cloud} label="Environment" value={environment} options={["Sandbox", "Development", "Isolated pilot"]} onChange={setEnvironment} />
-      <div className="inline-test">
-        <div><strong>Reference gateway</strong><span>Uses synthetic data and non-consequential connectors.</span></div>
-        <button className="button button-secondary" onClick={() => { setHealth("testing"); window.setTimeout(() => setHealth("ready"), 600); }}>
-          {health === "testing" ? "Checking..." : "Check connection"}
-        </button>
-        {health === "ready" && <StatusPill>Ready</StatusPill>}
+      <p>Choose a versioned reference profile. This static console can validate the profile, but it cannot contact a private runtime or handle its credentials.</p>
+      <FieldRow icon={PlugsConnected} label="Platform" value={value.platform} options={CONNECTION_PLATFORMS.map((item) => item.label)} onChange={(platform) => onChange({ ...value, platform })} />
+      <FieldRow icon={Cloud} label="Environment" value={value.environment} options={CONNECTION_ENVIRONMENTS} onChange={(environment) => onChange({ ...value, environment })} />
+      <div className="profile-boundary">
+        <div><span>Reference path</span><strong>{profile?.integration}</strong></div>
+        <div><span>Maturity</span><strong>{profile?.maturity}</strong></div>
+        <div><span>Live browser probe</span><strong>No</strong></div>
       </div>
+      <div className="inline-test">
+        <div><strong>Validate connection profile</strong><span>Checks the local contract and reports the exact missing live dependency.</span></div>
+        <button className="button button-secondary" onClick={onCheck} disabled={running}>{running ? "Checking..." : "Check connection"}</button>
+        {receipt && <StatusPill tone="attention">Not configured</StatusPill>}
+      </div>
+      <ActionTrace receipt={receipt} />
     </div>
   );
 }
 
-function DiscoverStep() {
-  const [selected, setSelected] = useState(["Catalog Assistant"]);
-  const choices = ["Catalog Assistant", "Refund Approval Agent", "Vendor Onboarding Agent"];
+function DiscoverStep({ selectedAgent, onSelectAgent }) {
   return (
     <div className="step-content">
-      <h2>Which agents and tools are in scope?</h2>
-      <p>PALO-AI discovered three agents and seven tool connections in the selected sandbox.</p>
+      <h2>Select a reference inventory record</h2>
+      <p>These records ship with the repository. No runtime discovery call has occurred; an operator BFF must replace this catalog with authorized inventory data.</p>
+      <div className="inventory-disclosure"><Database weight="duotone" /><div><strong>Repository reference catalog</strong><span>{AGENT_PROFILES.length} agents | {AGENT_PROFILES.reduce((total, agent) => total + agent.tools.length, 0)} tools | network requests: 0</span></div><StatusPill tone="attention">Not discovered</StatusPill></div>
       <div className="choice-list">
-        {choices.map((choice) => (
-          <label key={choice} className={selected.includes(choice) ? "selected" : ""}>
-            <input type="checkbox" checked={selected.includes(choice)} onChange={() => setSelected((items) => items.includes(choice) ? items.filter((item) => item !== choice) : [...items, choice])} />
+        {AGENT_PROFILES.map((agent) => (
+          <button key={agent.id} className={selectedAgent === agent.label ? "selected" : ""} onClick={() => onSelectAgent(agent.label)} aria-pressed={selectedAgent === agent.label}>
             <Robot weight="duotone" />
-            <span><strong>{choice}</strong><small>{choice === "Catalog Assistant" ? "Catalog Update | Catalog Read" : "2 connected tools"}</small></span>
-            {selected.includes(choice) && <CheckCircle weight="fill" />}
-          </label>
+            <span><strong>{agent.label}</strong><small>{agent.tools.map((tool) => tool.label).join(" | ")}</small></span>
+            <StatusPill tone="neutral">{agent.inventoryStatus}</StatusPill>
+            {selectedAgent === agent.label && <CheckCircle weight="fill" />}
+          </button>
         ))}
       </div>
     </div>
@@ -375,21 +481,29 @@ function PurposeStep({ value, onChange }) {
   );
 }
 
-function AuthorityStep({ value, onChange }) {
+function AuthorityStep({ value, onChange, findings }) {
+  const agent = agentFor(value.agent) ?? AGENT_PROFILES[0];
+  const tool = toolFor(value.agent, value.tool) ?? agent.tools[0];
   const update = (field) => (nextValue) => onChange({ ...value, [field]: nextValue });
   return (
     <div className="step-content">
       <h2>What may this agent change?</h2>
       <p>Define the exact action, resource scope and limits. Broader possession of credentials does not expand this authority.</p>
-      <FieldRow icon={Robot} label="Agent" value={value.agent} options={["Catalog Assistant", "Refund Approval Agent"]} onChange={update("agent")} />
-      <FieldRow icon={Cloud} label="Environment" value={value.environment} options={["n8n - Sandbox", "MCP - Sandbox", "Custom runtime - Development"]} onChange={update("environment")} />
-      <FieldRow icon={Wrench} label="Permitted tool" value={value.tool} options={["Catalog Update", "Catalog Read", "No tool"]} onChange={update("tool")} />
-      <FieldRow icon={SlidersHorizontal} label="Operation" value={value.operation} options={["Update", "Read", "Create"]} onChange={update("operation")} />
-      <FieldRow icon={Folder} label="Resource scope" value={value.resource} options={["Tenant A / Catalog items", "Tenant A / Item 1", "All sandbox tenants"]} onChange={update("resource")} />
-      <FieldRow icon={CurrencyDollar} label="Maximum price change" value={value.limit} options={["5%", "10%", "20%", "No automatic change"]} onChange={update("limit")} />
-      <FieldRow icon={Globe} label="External network access" value={value.network} options={["None", "api.catalog.example", "Approved hosts only"]} onChange={update("network")} />
+      <FieldRow icon={Robot} label="Agent" value={value.agent} options={AGENT_PROFILES.map((item) => item.label)} onChange={(agentLabel) => onChange(authorityDefaultsForAgent(agentLabel, value.environment))} />
+      <FieldRow icon={Cloud} label="Environment" value={value.environment} options={AUTHORITY_ENVIRONMENTS} onChange={update("environment")} />
+      <FieldRow icon={Wrench} label="Permitted tool" value={value.tool} options={agent.tools.map((item) => item.label)} onChange={(toolLabel) => onChange(authorityDefaultsForTool(value, toolLabel))} />
+      <FieldRow icon={SlidersHorizontal} label="Operation" value={value.operation} options={[tool.operation]} onChange={update("operation")} hint="Derived from the versioned tool profile" />
+      <FieldRow icon={Folder} label="Resource scope" value={value.resource} options={tool.resources} onChange={update("resource")} />
+      <FieldRow icon={CurrencyDollar} label="Automatic change limit" value={value.limit} options={tool.limits} onChange={update("limit")} />
+      <FieldRow icon={Globe} label="External network access" value={value.network} options={tool.networks} onChange={update("network")} />
+      <ValidationFindings findings={findings} />
     </div>
   );
+}
+
+function ValidationFindings({ findings }) {
+  if (!findings.length) return <div className="validation-findings valid"><CheckCircle weight="fill" /><div><strong>Selectable combination is locally valid</strong><span>Compatibility was evaluated from the versioned reference profiles. This does not establish a live connector.</span></div></div>;
+  return <div className="validation-findings-list" aria-label="Configuration findings">{findings.map((item) => <div key={item.code} className={`finding-${item.severity}`}>{item.severity === "error" ? <XCircle weight="fill" /> : item.severity === "warning" ? <WarningCircle weight="fill" /> : <Warning weight="fill" />}<div><strong>{item.code.replaceAll("-", " ")}</strong><span>{item.message}</span></div><StatusPill tone={item.severity === "error" ? "negative" : item.severity === "warning" ? "attention" : "neutral"}>{item.severity}</StatusPill></div>)}</div>;
 }
 
 function OversightStep({ value, onChange }) {
@@ -409,7 +523,7 @@ function OversightStep({ value, onChange }) {
   );
 }
 
-function OutcomeStep({ value, onChange }) {
+function OutcomeStep({ value, onChange, tool }) {
   return (
     <div className="step-content">
       <h2>How will success be verified?</h2>
@@ -419,43 +533,44 @@ function OutcomeStep({ value, onChange }) {
         <label><span>Expected after execution</span><textarea value={value.expected} onChange={(event) => onChange({ ...value, expected: event.target.value })} /></label>
         <label><span>Must never change</span><textarea value={value.forbidden} onChange={(event) => onChange({ ...value, forbidden: event.target.value })} /></label>
       </div>
-      <div className="source-row"><Database weight="duotone" /><div><strong>Authoritative verifier</strong><span>Catalog API read-back | separate from the update connector</span></div><StatusPill>Configured</StatusPill></div>
+      <div className="source-row"><Database weight="duotone" /><div><strong>Reference verifier</strong><span>{tool?.verifier ?? "No verifier mapped"} | declared separately from the executor</span></div><StatusPill tone="attention">Not connected</StatusPill></div>
     </div>
   );
 }
 
-function SimulationStep({ state, onRun }) {
-  const tests = [
-    ["Allowed action", "Exact boundary", "pass"],
-    ["Cross-tenant update", "Default deny", "pass"],
-    ["Change above 10%", "Approval required", "pass"],
-    ["Stale catalog version", "Tool does not execute", "pass"],
-    ["Wrong post-state", "Mismatch and resource hold", "pass"],
-    ["Verifier unavailable", "Inconclusive; never verified", "pass"],
-  ];
+function SimulationStep({ receipt, running, onRun, findings }) {
+  const scenarios = receipt?.result?.scenarios ?? [];
+  const blocked = findings.some((item) => item.severity === "error");
   return (
     <div className="step-content">
-      <h2>Prove the control before publishing</h2>
-      <p>Run both the expected path and the failure modes against synthetic sandbox data.</p>
-      <button className="button button-primary" onClick={onRun} disabled={state === "running"}><Flask />{state === "running" ? "Running assurance suite..." : "Run assurance suite"}</button>
-      <div className={`test-results ${state}`}>
-        {state === "idle" && <div className="empty-state"><Flask /><strong>No simulation run yet</strong><span>The suite does not execute consequential tools.</span></div>}
-        {state === "running" && <div className="loading-state"><Pulse /><strong>Evaluating six scenarios...</strong></div>}
-        {state === "passed" && tests.map(([name, expectation]) => <div key={name}><CheckCircle weight="fill" /><span><strong>{name}</strong><small>{expectation}</small></span><StatusPill>Passed</StatusPill></div>)}
+      <h2>Prove the control before generating a bundle</h2>
+      <p>The suite derives expected and adverse paths from the current selections. It evaluates contract behavior locally and never calls a protected tool.</p>
+      <button className="button button-primary" onClick={onRun} disabled={running || blocked}><Flask />{running ? "Running assurance suite..." : "Run assurance suite"}</button>
+      {blocked && <ValidationFindings findings={findings} />}
+      <div className={`test-results ${receipt?.result?.status ?? "idle"}`}>
+        {!receipt && !running && <div className="empty-state"><Flask /><strong>No simulation receipt</strong><span>Change any input and the previous evidence is invalidated.</span></div>}
+        {running && <div className="loading-state"><Pulse /><strong>Evaluating the current contract...</strong></div>}
+        {!running && scenarios.map((scenario) => <div key={scenario.id}><CheckCircle weight="fill" /><span><strong>{scenario.name}</strong><small>Expected {scenario.expected} | observed {scenario.observed}</small></span><StatusPill tone={scenario.passed ? "positive" : "negative"}>{scenario.passed ? "Passed" : "Failed"}</StatusPill></div>)}
       </div>
+      <ActionTrace receipt={receipt} />
     </div>
   );
 }
 
-function PublishStep({ published, onPublish }) {
+function PublishStep({ receipt, simulationReceipt, canGenerate, onGenerate }) {
   return (
     <div className="step-content">
-      <h2>Publish a versioned governance bundle</h2>
-      <p>The bundle contains the profile, policy, Effect Contract and tests. Publishing does not make the developer preview a production security boundary.</p>
+      <h2>Generate a local sandbox bundle</h2>
+      <p>This public console has no registry write API, signing key, authenticated publisher or environment authorization. It can only download a non-authoritative local artifact.</p>
       <div className="publish-summary">
-        {["Agent profile 2.1.4", "Authority profile 1.0.0", "Rego policy 3.2.0", "Effect Contract 1.0.0", "Assurance tests 6 / 6"].map((item) => <div key={item}><CheckCircle weight="fill" /><span>{item}</span></div>)}
+        <div>{simulationReceipt?.result.status === "passed" ? <CheckCircle weight="fill" /> : <WarningCircle weight="fill" />}<span>Current-input simulation receipt</span><StatusPill tone={simulationReceipt?.result.status === "passed" ? "positive" : "attention"}>{simulationReceipt?.result.status ?? "missing"}</StatusPill></div>
+        <div><WarningCircle weight="fill" /><span>Runtime signature</span><StatusPill tone="attention">Unavailable</StatusPill></div>
+        <div><WarningCircle weight="fill" /><span>Registry publication</span><StatusPill tone="attention">Not performed</StatusPill></div>
       </div>
-      {published ? <div className="success-banner"><CheckCircle weight="fill" /><div><strong>Bundle published to the sandbox registry</strong><span>Version 2026.07.19-rc1 is ready for isolated evaluation.</span></div></div> : <button className="button button-primary" onClick={onPublish}><Stamp />Publish sandbox bundle</button>}
+      <button className="button button-primary" onClick={onGenerate} disabled={!canGenerate}><DownloadSimple />Generate and download local bundle</button>
+      {!canGenerate && <p className="publish-blocker">Run the assurance suite for the current valid configuration first.</p>}
+      {receipt && <div className="success-banner local-only"><CheckCircle weight="fill" /><div><strong>Local bundle generated</strong><span>Nothing was published. Digest: {receipt.result.bundleDigest.slice(0, 16)}...</span></div></div>}
+      <ActionTrace receipt={receipt} />
     </div>
   );
 }
@@ -578,8 +693,8 @@ function ExecutionDetail({ onBack }) {
 }
 
 function IntegrationsView() {
-  const integrations = [["n8n - Sandbox", "Connected", "Visual governed actions"], ["MCP - Local", "Connected", "19 validated tools"], ["Dify example", "Reference", "Non-production adapter"], ["Copilot Studio", "Planned", "Design partner required"]];
-  return <><PageHeader eyebrow="Integrations" title="Connect orchestration without exposing protected credentials" description="The Governance Hub remains the control path; platforms propose actions and consume assurance results." actions={<button className="button button-primary"><PlugsConnected />Add integration</button>} /><section className="integration-list">{integrations.map(([name, status, detail]) => <article key={name}><div className="integration-icon"><PlugsConnected weight="duotone" /></div><div><h2>{name}</h2><p>{detail}</p></div><StatusPill>{status}</StatusPill><button className="button button-secondary">Configure</button></article>)}</section><div className="security-boundary"><LockKey /><div><strong>Browser security boundary</strong><span>This preview does not place a shared gateway bearer token in browser storage. Online multi-user operation requires a BFF, OIDC and server-enforced RBAC.</span></div></div></>;
+  const integrations = [...CONNECTION_PLATFORMS, { id: "copilot-studio", label: "Copilot Studio", maturity: "planned", integration: "Design-partner adapter required", liveProbe: false }];
+  return <><PageHeader eyebrow="Integrations | capability inventory" title="Reference paths, not claimed connections" description="Each row states what exists in the repository. A platform is connected only when an operator BFF supplies authenticated health and registry evidence." actions={<a className="button button-primary" href="?role=technical&view=setup"><PlugsConnected />Open verifiable setup</a>} /><section className="integration-list">{integrations.map((item) => <article key={item.id}><div className="integration-icon"><PlugsConnected weight="duotone" /></div><div><h2>{item.label}</h2><p>{item.integration}</p></div><StatusPill tone="attention">{item.maturity}</StatusPill><StatusPill tone="neutral">Not connected</StatusPill></article>)}</section><div className="security-boundary"><LockKey /><div><strong>Browser security boundary</strong><span>No shared Gateway bearer token is placed in browser storage. Live connection checks require a BFF, OIDC, server-enforced RBAC and an adapter-specific conformance receipt.</span></div></div></>;
 }
 
 function SignalOperationsRegistry() {

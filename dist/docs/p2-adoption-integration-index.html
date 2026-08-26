@@ -73,9 +73,15 @@
 <p>PALO v3.1.0 projects these stable P2 IDs into <code>data/semantic-spine.json</code> and publishes atomic cross-register mappings in <code>data/semantic-mappings.json</code>. The P2 files remain the canonical content registries for their records; the semantic release manifest binds their reviewed projection by digest.</p>
 <h2 id="policywatcher-signal">PolicyWatcher signal<a class="palo-doc-anchor" href="#policywatcher-signal" aria-label="Link to PolicyWatcher signal">#</a></h2><ul>
 <li>Schema: <code>schemas/policywatcher-signal.schema.json</code></li>
+<li>Complete active snapshot schema: <code>schemas/policywatcher-signal-batch.schema.json</code></li>
+<li>Operational registry schema: <code>schemas/palo-policywatcher-signal-registry.schema.json</code></li>
+<li>Browser-local review ledger schema: <code>schemas/palo-policywatcher-review-ledger.schema.json</code></li>
 <li>Valid educational example: <code>schemas/fixtures/policywatcher-signal.valid.json</code></li>
 <li>PolicyWatcher production-emitter compatibility example: <code>schemas/fixtures/policywatcher-signal.policywatcher.valid.json</code></li>
+<li>PolicyWatcher batch-emitter compatibility example: <code>schemas/fixtures/policywatcher-signal-batch.policywatcher.valid.json</code></li>
 <li>Intentionally invalid validator fixture: <code>schemas/fixtures/policywatcher-signal.invalid.json</code></li>
+<li>Offline-safe operational baseline: <code>data/integrations/policywatcher-signal-registry.json</code></li>
+<li>Valid local review ledger: <code>schemas/fixtures/palo-policywatcher-review-ledger.valid.json</code></li>
 <li>Browser event: <code>palo:policywatcher:signal</code></li>
 <li>Contract: <code>docs/p2-module-contracts.md</code></li>
 </ul>

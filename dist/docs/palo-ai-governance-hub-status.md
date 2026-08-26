@@ -1,22 +1,24 @@
 # PALO-AI Governance Hub - Delivery Status
 
-**Assessment date:** 2026-08-12
+**Assessment date:** 2026-08-26
 
-**Product status:** v3-aligned interactive product prototype on top of a full-cycle developer-preview runtime
+**Product status:** v3-aligned static verification console plus a separate full-cycle developer-preview runtime
 **Production use:** not approved
 
 ## Executive summary
 
 PALO-AI now has a coherent product surface for two audiences without splitting the governance model. The Executive lens answers whether agentic operations are governed, appropriately authorized, producing verified outcomes and operationally healthy. The Technical lens turns business intent into a bounded agent capability and exposes the underlying registry, policy, approval, execution, evidence and incident state.
 
-The interface is ready for controlled demonstrations and structured design-partner evaluation. It is not yet a multi-user cloud control plane. Every current record is labelled `illustrative-local-preview`, carries a v3 definition version and states that it is not a source of record, live authority or approval decision. Executive and Technical are workspace lenses, not RBAC roles. The browser prototype does not embed the preview Gateway bearer token.
+The interface supports controlled demonstrations and structured design-partner evaluation. It is not a multi-user cloud control plane. Every current record is labelled `illustrative-local-preview`, carries a v3 definition version and states that it is not a source of record, live authority or approval decision. Executive and Technical are workspace lenses, not RBAC roles. The browser console does not embed the preview Gateway bearer token.
+
+The guided setup no longer simulates connection readiness or registry publication with timers. Its connection action validates a local, versioned reference profile and returns `not-configured` because the public GitHub Pages build has no operator BFF. Its assurance suite evaluates seven deterministic scenarios derived from current inputs and emits a digest-bound, expandable receipt. The final action downloads a non-authoritative local bundle and explicitly records that no signing, registry write, promotion or production authorization occurred.
 
 ## What is available now
 
 | Area | Status | Evidence |
 | --- | --- | --- |
 | White responsive Governance Hub | Prototype | Executive/Technical shell, mobile navigation and production Vite build |
-| Guided technical setup | Prototype | Eight steps from connection through sandbox publication |
+| Guided technical setup | Implemented static verifier | Eight steps from reference-profile validation through deterministic simulation and local artifact generation; 3,528 selectable combinations tested |
 | Executive cockpit | Prototype | Four independent signals, portfolio, decision queue, assurance and report views |
 | Operational workbench | Prototype | Registry, policy, execution, approval, incident and integration views |
 | Full-cycle trace | Prototype UI over implemented contracts | Proposed -> authorized -> approved -> capability -> executed -> receipt -> outcome |
@@ -25,6 +27,17 @@ The interface is ready for controlled demonstrations and structured design-partn
 | Policy evaluation | Implemented reference policy | Rego v1 compile and policy tests, default deny and fail closed |
 | Runtime assurance | Prototype | one-time capability, signed receipt, authoritative verifier and held incident |
 | Publication pipeline | Implemented | deterministic root build, validated `dist`, Hostinger full and delta packages |
+
+## Verification-console evidence boundary
+
+| Action | What the public console performs | What it does not claim |
+| --- | --- | --- |
+| Check connection | Normalizes platform/environment, matches the versioned reference profile and produces a SHA-256-bound receipt | Runtime health, connectivity, identity, registry state or credentials |
+| Select inventory | Selects from repository reference records | Runtime discovery or source-of-record inventory |
+| Test boundary | Validates compatibility and evaluates seven positive/adverse scenarios from the selected contract | Policy deployment, tool execution, approval or authoritative outcome verification |
+| Generate bundle | Downloads an unsigned local JSON artifact with a bundle digest and simulation reference | Registry publication, signing, environment promotion or production authorization |
+
+Any future live adapter must run server-side, return evidence of the remote operation and preserve these distinctions. A missing adapter remains `not-configured`; it must not degrade to an optimistic status.
 
 ## What still blocks production
 
