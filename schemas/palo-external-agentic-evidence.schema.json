@@ -1,0 +1,157 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paloframework.org/schemas/palo-external-agentic-evidence.schema.json",
+  "title": "PALO External Agentic Evidence Collection",
+  "description": "Metadata-minimized external observations that can inform, but never replace, a PALO use-case assessment.",
+  "type": "object",
+  "required": ["format", "schemaVersion", "providerId", "retrievedAt", "sourcePayloadDigest", "signals", "ingestion", "boundary", "collectionDigest"],
+  "properties": {
+    "format": { "const": "palo-external-agentic-evidence-collection" },
+    "schemaVersion": { "const": "1.0.0" },
+    "providerId": { "type": "string", "pattern": "^[a-z][a-z0-9-]{2,63}$" },
+    "retrievedAt": { "type": "string", "format": "date-time" },
+    "sourcePayloadDigest": { "$ref": "#/$defs/digest" },
+    "signals": {
+      "type": "array",
+      "maxItems": 1000,
+      "items": { "$ref": "#/$defs/signal" }
+    },
+    "ingestion": {
+      "type": "object",
+      "required": ["received", "accepted", "deduplicated", "skipped"],
+      "properties": {
+        "received": { "type": "integer", "minimum": 0 },
+        "accepted": { "type": "integer", "minimum": 0 },
+        "deduplicated": { "type": "integer", "minimum": 0 },
+        "skipped": { "type": "integer", "minimum": 0 }
+      },
+      "additionalProperties": false
+    },
+    "boundary": { "$ref": "#/$defs/boundary" },
+    "collectionDigest": { "$ref": "#/$defs/digest" }
+  },
+  "$defs": {
+    "digest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+    "boundary": {
+      "type": "object",
+      "required": ["externalCapabilityEvidence", "notUseCaseRiskScore", "requiresLocalAssessment", "networkOptional"],
+      "properties": {
+        "externalCapabilityEvidence": { "const": true },
+        "notUseCaseRiskScore": { "const": true },
+        "requiresLocalAssessment": { "const": true },
+        "networkOptional": { "const": true }
+      },
+      "additionalProperties": false
+    },
+    "signal": {
+      "type": "object",
+      "required": ["signalId", "externalId", "provider", "title", "canonicalUrl", "observedContext", "capabilityObservations", "provenance", "review", "confidence", "retrievedAt", "signalDigest", "boundary"],
+      "properties": {
+        "signalId": { "type": "string", "pattern": "^eas-[a-f0-9]{64}$" },
+        "externalId": { "type": "string", "minLength": 1, "maxLength": 500 },
+        "provider": {
+          "type": "object",
+          "required": ["providerId", "adapterVersion", "contractVersion"],
+          "properties": {
+            "providerId": { "type": "string", "pattern": "^[a-z][a-z0-9-]{2,63}$" },
+            "adapterVersion": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+            "contractVersion": { "const": "1.0.0" }
+          },
+          "additionalProperties": false
+        },
+        "title": { "type": "string", "minLength": 1, "maxLength": 300 },
+        "canonicalUrl": { "type": "string", "format": "uri", "pattern": "^https://" },
+        "observedContext": {
+          "type": "object",
+          "required": ["setting", "agency"],
+          "properties": {
+            "eventAt": { "type": "string", "format": "date-time" },
+            "publishedAt": { "type": "string", "format": "date-time" },
+            "setting": { "enum": ["laboratory", "field", "mixed", "unknown"] },
+            "agency": { "enum": ["human-directed", "agent-initiated", "mixed", "unknown"] }
+          },
+          "additionalProperties": false
+        },
+        "capabilityObservations": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 32,
+          "items": { "$ref": "#/$defs/capabilityObservation" }
+        },
+        "provenance": {
+          "type": "object",
+          "required": ["retrievalDigest", "sources"],
+          "properties": {
+            "retrievalDigest": { "$ref": "#/$defs/digest" },
+            "sources": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 20,
+              "items": {
+                "type": "object",
+                "required": ["name", "url", "role"],
+                "properties": {
+                  "name": { "type": "string", "minLength": 1, "maxLength": 200 },
+                  "url": { "type": "string", "format": "uri", "pattern": "^https://" },
+                  "role": { "enum": ["primary", "supporting"] },
+                  "publishedAt": { "type": "string", "format": "date-time" }
+                },
+                "additionalProperties": false
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "review": {
+          "type": "object",
+          "required": ["reviewState", "providerReviewState"],
+          "properties": {
+            "reviewState": { "enum": ["unreviewed", "in-review", "reviewed", "rejected", "superseded"] },
+            "providerReviewState": { "type": "string", "minLength": 1, "maxLength": 80 }
+          },
+          "additionalProperties": false
+        },
+        "confidence": {
+          "type": "object",
+          "required": ["state", "basis"],
+          "properties": {
+            "state": { "enum": ["not-assessed", "low", "moderate", "high"] },
+            "basis": { "type": "string", "minLength": 20, "maxLength": 500 }
+          },
+          "additionalProperties": false
+        },
+        "retrievedAt": { "type": "string", "format": "date-time" },
+        "signalDigest": { "$ref": "#/$defs/digest" },
+        "boundary": { "$ref": "#/$defs/boundary" }
+      },
+      "additionalProperties": false
+    },
+    "capabilityObservation": {
+      "type": "object",
+      "required": ["observationId", "paloCapabilityId", "providerCapabilityId", "providerLabel", "providerScore", "providerScale", "providerRubricVersion", "mappingVersion", "mappingReviewState", "contextOnly", "notUseCaseRiskScore"],
+      "properties": {
+        "observationId": { "type": "string", "pattern": "^eao-[a-f0-9]{64}$" },
+        "paloCapabilityId": { "type": "string", "pattern": "^palo-cap-[a-z0-9-]+$" },
+        "providerCapabilityId": { "type": "string", "minLength": 1, "maxLength": 120 },
+        "providerLabel": { "type": "string", "minLength": 1, "maxLength": 160 },
+        "providerScore": { "type": "number" },
+        "providerScale": {
+          "type": "object",
+          "required": ["minimum", "maximum"],
+          "properties": {
+            "minimum": { "type": "number" },
+            "maximum": { "type": "number" }
+          },
+          "additionalProperties": false
+        },
+        "providerRubricVersion": { "type": "string", "minLength": 1, "maxLength": 100 },
+        "mappingVersion": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+        "mappingReviewState": { "enum": ["draft", "in-review", "approved", "rejected", "superseded"] },
+        "contextOnly": { "const": true },
+        "notUseCaseRiskScore": { "const": true }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

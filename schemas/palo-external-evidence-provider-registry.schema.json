@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paloframework.org/schemas/palo-external-evidence-provider-registry.schema.json",
+  "title": "PALO External Agentic Evidence Provider Registry",
+  "description": "Provider-neutral registry for optional, read-only external agentic evidence adapters.",
+  "type": "object",
+  "required": ["format", "schemaVersion", "updatedAt", "authorityBoundary", "providers"],
+  "properties": {
+    "format": { "const": "palo-external-evidence-provider-registry" },
+    "schemaVersion": { "const": "1.0.0" },
+    "updatedAt": { "type": "string", "format": "date" },
+    "authorityBoundary": { "type": "string", "minLength": 40 },
+    "providers": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/provider" }
+    }
+  },
+  "$defs": {
+    "provider": {
+      "type": "object",
+      "required": ["providerId", "displayName", "sourceId", "adapter", "mode", "defaultState", "networkOptional", "dataPolicy", "reviewBoundary"],
+      "properties": {
+        "providerId": { "type": "string", "pattern": "^[a-z][a-z0-9-]{2,63}$" },
+        "displayName": { "type": "string", "minLength": 1, "maxLength": 120 },
+        "sourceId": { "type": "string", "pattern": "^src-[a-z0-9-]+$" },
+        "adapter": {
+          "type": "object",
+          "required": ["adapterId", "adapterVersion", "contractVersion"],
+          "properties": {
+            "adapterId": { "type": "string", "pattern": "^adapter-[a-z0-9-]+$" },
+            "adapterVersion": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+            "contractVersion": { "const": "1.0.0" }
+          },
+          "additionalProperties": false
+        },
+        "mode": { "enum": ["local-import", "http-pull"] },
+        "defaultState": { "enum": ["enabled", "disabled"] },
+        "networkOptional": { "const": true },
+        "endpoint": { "type": "string", "format": "uri", "pattern": "^https://" },
+        "fetchPolicy": {
+          "type": "object",
+          "required": ["timeoutMs", "maxResponseBytes", "maxRecords", "redirects"],
+          "properties": {
+            "timeoutMs": { "type": "integer", "minimum": 500, "maximum": 30000 },
+            "maxResponseBytes": { "type": "integer", "minimum": 1024, "maximum": 5242880 },
+            "maxRecords": { "type": "integer", "minimum": 1, "maximum": 1000 },
+            "redirects": { "const": "reject" }
+          },
+          "additionalProperties": false
+        },
+        "cachePolicy": {
+          "type": "object",
+          "required": ["content", "ttlSeconds", "maxStaleSeconds", "staleIfError", "rawPayloadStored"],
+          "properties": {
+            "content": { "const": "normalized-metadata-only" },
+            "ttlSeconds": { "type": "integer", "minimum": 60, "maximum": 2592000 },
+            "maxStaleSeconds": { "type": "integer", "minimum": 60, "maximum": 7776000 },
+            "staleIfError": { "type": "boolean" },
+            "rawPayloadStored": { "const": false }
+          },
+          "additionalProperties": false
+        },
+        "dataPolicy": {
+          "type": "object",
+          "required": ["metadataOnly", "prohibitedFields"],
+          "properties": {
+            "metadataOnly": { "const": true },
+            "prohibitedFields": {
+              "type": "array",
+              "minItems": 5,
+              "uniqueItems": true,
+              "items": { "enum": ["fullText", "sourceBody", "details", "summary", "whyItMatters", "justificationText"] }
+            }
+          },
+          "additionalProperties": false
+        },
+        "reviewBoundary": { "type": "string", "minLength": 30 }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "mode": { "const": "http-pull" } } },
+          "then": {
+            "required": ["endpoint", "fetchPolicy", "cachePolicy"],
+            "properties": {
+              "endpoint": true,
+              "fetchPolicy": true,
+              "cachePolicy": true
+            }
+          }
+        }
+      ],
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

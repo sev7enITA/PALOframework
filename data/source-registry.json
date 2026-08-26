@@ -2,7 +2,7 @@
   "format": "palo-source-registry",
   "schemaVersion": "1.0.0",
   "status": "educational-non-production",
-  "updatedAt": "2026-08-23",
+  "updatedAt": "2026-08-26",
   "disclaimer": "This registry is an educational starting point. Source presence and freshness metadata do not establish legal applicability, compliance, certification, or completeness.",
   "sources": [
     {
@@ -125,6 +125,28 @@
       "freshness": { "status": "current", "reviewIntervalDays": 90, "nextReviewAt": "2026-11-21T08:00:00Z" },
       "authorityStatus": "authoritative-primary",
       "usageNote": "Use the current official text with qualified privacy review. PALO does not determine lawful basis, controller or processor status, or data-subject-rights compliance."
+    },
+    {
+      "sourceId": "src-palo-external-evidence-contract",
+      "title": "PALO External Agentic Evidence Contract",
+      "url": "https://paloframework.org/docs/palo-external-agentic-evidence.html",
+      "sourceType": "organizational",
+      "publisher": "PALO Framework",
+      "checkedAt": "2026-08-26T08:00:00Z",
+      "freshness": { "status": "current", "reviewIntervalDays": 90, "nextReviewAt": "2026-11-24T08:00:00Z" },
+      "authorityStatus": "informative",
+      "usageNote": "Use as the canonical PALO normalization and governance boundary for optional external agentic evidence; it does not accept or validate any imported claim."
+    },
+    {
+      "sourceId": "src-rogue-ai-tracker",
+      "title": "Rogue AI Tracker methodology",
+      "url": "https://rogueaitracker.com/methodology/",
+      "sourceType": "monitoring-signal",
+      "publisher": "Rogue AI Tracker",
+      "checkedAt": "2026-08-26T08:00:00Z",
+      "freshness": { "status": "current", "reviewIntervalDays": 30, "nextReviewAt": "2026-09-25T08:00:00Z" },
+      "authorityStatus": "non-authoritative-monitoring-signal",
+      "usageNote": "Use metadata and links as external capability context only. Do not mirror narrative content or treat provider scores as PALO use-case risk scores, findings or deployment decisions."
     }
   ]
 }

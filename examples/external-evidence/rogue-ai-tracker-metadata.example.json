@@ -1,0 +1,90 @@
+{
+  "format": "palo-external-agentic-evidence-collection",
+  "schemaVersion": "1.0.0",
+  "providerId": "rogue-ai-tracker",
+  "retrievedAt": "2026-08-26T12:00:00.000Z",
+  "sourcePayloadDigest": "sha256:067c0f601fdd6df7f22a8e82208205035e2f23d1ef90df9d1421c402ffd6c0bf",
+  "signals": [
+    {
+      "signalId": "eas-9ec62c86f552f27d395984d10dba20ef53c8f9422ff7ab3dfd8eee557dc30f90",
+      "externalId": "synthetic-boundary-observation-2026-08-26",
+      "provider": {
+        "providerId": "rogue-ai-tracker",
+        "adapterVersion": "1.0.0",
+        "contractVersion": "1.0.0"
+      },
+      "title": "Synthetic agent crossed a controlled test boundary",
+      "canonicalUrl": "https://rogueaitracker.com/incidents/synthetic-boundary-observation",
+      "observedContext": {
+        "eventAt": "2026-08-25T10:00:00.000Z",
+        "publishedAt": "2026-08-26T09:00:00.000Z",
+        "setting": "field",
+        "agency": "agent-initiated"
+      },
+      "capabilityObservations": [
+        {
+          "observationId": "eao-db02cbcddbf2738657ca90b9474598b0a15babbb3282fcbdf8184163751e4e43",
+          "paloCapabilityId": "palo-cap-purpose-boundary-deviation",
+          "providerCapabilityId": "scope-breach",
+          "providerLabel": "Task overreach",
+          "providerScore": 5,
+          "providerScale": {
+            "minimum": 1,
+            "maximum": 10
+          },
+          "providerRubricVersion": "methodology-checked-2026-08-26",
+          "mappingVersion": "1.0.0",
+          "mappingReviewState": "approved",
+          "contextOnly": true,
+          "notUseCaseRiskScore": true
+        }
+      ],
+      "provenance": {
+        "retrievalDigest": "sha256:067c0f601fdd6df7f22a8e82208205035e2f23d1ef90df9d1421c402ffd6c0bf",
+        "sources": [
+          {
+            "name": "Synthetic primary source",
+            "url": "https://example.test/research/synthetic-boundary-observation",
+            "role": "primary",
+            "publishedAt": "2026-08-26T09:00:00.000Z"
+          },
+          {
+            "name": "Synthetic corroborating source",
+            "url": "https://example.org/research/corroboration",
+            "role": "supporting",
+            "publishedAt": "2026-08-26T10:00:00.000Z"
+          }
+        ]
+      },
+      "review": {
+        "reviewState": "unreviewed",
+        "providerReviewState": "proposed"
+      },
+      "confidence": {
+        "state": "not-assessed",
+        "basis": "PALO preserves provider metadata and source links but does not infer confidence before accountable local review."
+      },
+      "retrievedAt": "2026-08-26T12:00:00.000Z",
+      "boundary": {
+        "externalCapabilityEvidence": true,
+        "notUseCaseRiskScore": true,
+        "requiresLocalAssessment": true,
+        "networkOptional": true
+      },
+      "signalDigest": "sha256:bb14910572f293399b2ae233857eb8b369ccf5d2fb06f100a62184f9f1f05ef1"
+    }
+  ],
+  "ingestion": {
+    "received": 1,
+    "accepted": 1,
+    "deduplicated": 0,
+    "skipped": 0
+  },
+  "boundary": {
+    "externalCapabilityEvidence": true,
+    "notUseCaseRiskScore": true,
+    "requiresLocalAssessment": true,
+    "networkOptional": true
+  },
+  "collectionDigest": "sha256:d61b40b66ea10ac95d6dd072769d2658a13f22de074941a712ec15d9c97d3b5a"
+}

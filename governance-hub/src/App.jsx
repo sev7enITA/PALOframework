@@ -58,6 +58,8 @@ import {
   registryRows,
   wizardSteps,
 } from "./mockData.js";
+import capabilityCrosswalk from "../../data/external-evidence/palo-agentic-capability-crosswalk.json";
+import externalProviderRegistry from "../../data/external-evidence/provider-registry.json";
 
 const technicalNav = [
   ["setup", "Setup", RocketLaunch],
@@ -66,6 +68,7 @@ const technicalNav = [
   ["executions", "Executions", PlayCircle],
   ["approvals", "Approvals", UsersThree],
   ["incidents", "Incidents", WarningCircle],
+  ["evidence", "External evidence", Pulse],
   ["integrations", "Integrations", PlugsConnected],
 ];
 
@@ -571,6 +574,96 @@ function IntegrationsView() {
   return <><PageHeader eyebrow="Integrations" title="Connect orchestration without exposing protected credentials" description="The Governance Hub remains the control path; platforms propose actions and consume assurance results." actions={<button className="button button-primary"><PlugsConnected />Add integration</button>} /><section className="integration-list">{integrations.map(([name, status, detail]) => <article key={name}><div className="integration-icon"><PlugsConnected weight="duotone" /></div><div><h2>{name}</h2><p>{detail}</p></div><StatusPill>{status}</StatusPill><button className="button button-secondary">Configure</button></article>)}</section><div className="security-boundary"><LockKey /><div><strong>Browser security boundary</strong><span>This preview does not place a shared gateway bearer token in browser storage. Online multi-user operation requires a BFF, OIDC and server-enforced RBAC.</span></div></div></>;
 }
 
+function ExternalEvidenceView() {
+  const [query, setQuery] = useState("");
+  const [selectedId, setSelectedId] = useState(capabilityCrosswalk.capabilities[0].capabilityId);
+  const capabilities = capabilityCrosswalk.capabilities.filter((capability) => rowContainsQuery(capability, query));
+  const selected = capabilityCrosswalk.capabilities.find((capability) => capability.capabilityId === selectedId) ?? capabilities[0] ?? capabilityCrosswalk.capabilities[0];
+  const providerMappings = capabilityCrosswalk.providerMappings.filter((mapping) => mapping.paloCapabilityIds.includes(selected.capabilityId));
+  const exportResponse = () => {
+    const payload = {
+      format: capabilityCrosswalk.format,
+      schemaVersion: capabilityCrosswalk.schemaVersion,
+      crosswalkVersion: capabilityCrosswalk.crosswalkVersion,
+      authorityBoundary: capabilityCrosswalk.authorityBoundary,
+      capability: selected,
+      providerMappings,
+    };
+    downloadBlob(new Blob([`${JSON.stringify(payload, null, 2)}\n`], { type: "application/json" }), `${selected.capabilityId}.json`);
+  };
+
+  return (
+    <>
+      <PageHeader
+        eyebrow="External agentic evidence"
+        title="Turn observations into PALO-owned governance tests"
+        description="Use optional provider signals to select questions and evidence requirements. PALO remains the authority for capability concepts, controls, gates and local risk assessment."
+        actions={<button className="button button-secondary" onClick={exportResponse}><DownloadSimple />Export response</button>}
+      />
+      <section className="external-boundary" aria-label="External evidence authority boundary">
+        <ShieldCheck weight="duotone" />
+        <div><strong>PALO operates offline and independently</strong><span>No provider is required. External scores remain contextual observations and never become a PALO use-case risk score or gate decision.</span></div>
+        <StatusPill tone="positive">Offline ready</StatusPill>
+      </section>
+      <section className="provider-strip" aria-label="Registered external evidence providers">
+        {externalProviderRegistry.providers.map((provider) => (
+          <article key={provider.providerId}>
+            <div className="provider-icon">{provider.mode === "local-import" ? <Folder weight="duotone" /> : <Globe weight="duotone" />}</div>
+            <div><p className="eyebrow">{provider.mode === "local-import" ? "Canonical local path" : "Optional adapter"}</p><h2>{provider.displayName}</h2><span>{provider.mode === "local-import" ? "Reviewed metadata packages; no network required" : "Metadata and links only; disabled by default"}</span></div>
+            <StatusPill tone={provider.defaultState === "enabled" ? "positive" : "neutral"}>{provider.defaultState === "enabled" ? "Available" : "Optional"}</StatusPill>
+          </article>
+        ))}
+      </section>
+      <section className="evidence-workbench">
+        <aside className="capability-browser">
+          <div className="capability-search"><MagnifyingGlass /><input aria-label="Search PALO capabilities" placeholder="Search 14 PALO capabilities" value={query} onChange={(event) => setQuery(event.target.value)} /></div>
+          <div className="capability-list" role="listbox" aria-label="PALO capability concepts">
+            {capabilities.map((capability) => (
+              <button key={capability.capabilityId} role="option" aria-selected={selected.capabilityId === capability.capabilityId} className={selected.capabilityId === capability.capabilityId ? "selected" : ""} onClick={() => setSelectedId(capability.capabilityId)}>
+                <span>{capability.primaryConcern}</span><strong>{capability.title}</strong><small>{capability.controlIds.length} controls | {capability.evidenceKinds.length} evidence kinds</small>
+              </button>
+            ))}
+            {capabilities.length === 0 && <div className="capability-empty">No PALO capability matches this search.</div>}
+          </div>
+        </aside>
+        <article className="governance-response">
+          <div className="response-heading">
+            <div><p className="eyebrow">PALO canonical capability | v{capabilityCrosswalk.crosswalkVersion}</p><h2>{selected.title}</h2><p>{selected.definition}</p></div>
+            <StatusPill tone="positive">PALO-owned</StatusPill>
+          </div>
+          <div className="response-metadata">
+            <div><span>Primary concern</span><strong>{selected.primaryConcern}</strong></div>
+            <div><span>Lifecycle gates</span><strong>{selected.gateIds.join(" | ")}</strong></div>
+            <div><span>External mappings</span><strong>{providerMappings.length || "None required"}</strong></div>
+          </div>
+          <div className="response-section">
+            <h3><ClipboardText weight="duotone" />Assessment questions</h3>
+            <ol>{selected.assessmentQuestions.map((question) => <li key={question}>{question}</li>)}</ol>
+          </div>
+          <div className="response-grid">
+            <section><h3>Controls</h3><div className="token-list">{selected.controlIds.map((id) => <code key={id}>{id}</code>)}</div></section>
+            <section><h3>Required evidence</h3><div className="token-list">{selected.evidenceKinds.map((id) => <code key={id}>{id}</code>)}</div></section>
+            <section><h3>KPI / KRI</h3><div className="token-list">{selected.indicatorIds.map((id) => <code key={id}>{id}</code>)}</div></section>
+          </div>
+          <section className="change-evidence">
+            <div><Flask weight="duotone" /><h3>What evidence would change this assessment?</h3></div>
+            <ul>{selected.whatEvidenceWouldChangeThis.map((item) => <li key={item}>{item}</li>)}</ul>
+          </section>
+          {providerMappings.length > 0 && <section className="provider-mapping-note">
+            <div><Globe /><div><strong>Contextual mapping</strong><span>{providerMappings.map((mapping) => `${mapping.providerLabel} (${mapping.providerId})`).join(", ")}</span></div></div>
+            <p>{providerMappings[0].rationale}</p>
+          </section>}
+          <details className="disclosure light">
+            <summary><Code />View contract and score boundary<CaretDown /></summary>
+            <pre>{JSON.stringify({ capabilityId: selected.capabilityId, crosswalkVersion: capabilityCrosswalk.crosswalkVersion, externalMappings: providerMappings, boundary: { externalCapabilityEvidence: true, notUseCaseRiskScore: true, requiresLocalAssessment: true, networkOptional: true } }, null, 2)}</pre>
+            <p>{selected.limitations}</p>
+          </details>
+        </article>
+      </section>
+    </>
+  );
+}
+
 export function App() {
   const initial = useMemo(initialRoute, []);
   const [role, setRole] = useState(initial.role);
@@ -604,6 +697,7 @@ export function App() {
     if (selectedExecution) content = <ExecutionDetail onBack={() => setSelectedExecution(null)} />;
     else if (view === "setup") content = <TechnicalSetup />;
     else if (["registry", "policies", "executions", "approvals", "incidents"].includes(view)) content = <DataPage type={view} onExecutionSelect={setSelectedExecution} approvals={approvals} onApproval={resolveApproval} incidents={incidents} onIncident={resolveIncident} />;
+    else if (view === "evidence") content = <ExternalEvidenceView />;
     else content = <IntegrationsView />;
   } else {
     if (view === "today") content = <ExecutiveToday decisions={decisions} onDecisionView={() => setExecutiveView("decisions")} onAssuranceView={() => setExecutiveView("assurance")} />;

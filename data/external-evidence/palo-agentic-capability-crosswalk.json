@@ -1,0 +1,446 @@
+{
+  "format": "palo-agentic-capability-crosswalk",
+  "schemaVersion": "1.0.0",
+  "crosswalkVersion": "1.0.0",
+  "releasedAt": "2026-08-26",
+  "status": "approved-for-release",
+  "authorityBoundary": "These are PALO-owned capability concepts and governance responses. External observations can select relevant questions and test scenarios, but provider capability scores measure the provider's construct and are never a PALO use-case risk score, gate decision, compliance conclusion, or deployment authorization.",
+  "capabilities": [
+    {
+      "capabilityId": "palo-cap-purpose-boundary-deviation",
+      "title": "Purpose-boundary deviation",
+      "definition": "The system can select or execute actions that depart from the documented objective, permitted purpose, prohibited uses, or the operator's bounded task intent.",
+      "primaryConcern": "purpose",
+      "controlIds": ["ctrl-purpose-boundary", "ctrl-agentic-authority", "ctrl-adversarial-testing"],
+      "evidenceKinds": ["approved-purpose-record", "agentic-interface-config", "boundary-test-result"],
+      "indicatorIds": ["kri-scope-change-rate", "kri-critical-test-failure-rate"],
+      "gateIds": ["frame", "assess", "control", "prove"],
+      "assessmentQuestions": [
+        "Which machine-enforceable condition distinguishes the permitted task from a plausible adjacent action?",
+        "Can tool possession, indirect instructions, delegated work, or recovery logic expand the approved purpose?"
+      ],
+      "whatEvidenceWouldChangeThis": [
+        "Boundary tests showing that adjacent and adversarial goals are deterministically denied would lower concern.",
+        "Execution traces showing successful out-of-purpose effects or repeated approval bypass would raise concern and reopen control review."
+      ],
+      "limitations": "An external account of task overreach establishes a scenario to test; it does not establish that the assessed deployment shares the same boundary or exposure."
+    },
+    {
+      "capabilityId": "palo-cap-unapproved-authority-use",
+      "title": "Unapproved authority use",
+      "definition": "The system can exercise consequential tools, credentials, accounts, data rights, or physical permissions without the approval and scope required at the point of action.",
+      "primaryConcern": "authority",
+      "controlIds": ["ctrl-agentic-authority", "ctrl-human-review", "ctrl-runtime-production-boundary", "ctrl-decision-trace"],
+      "evidenceKinds": ["authority-profile", "point-of-action-approval", "signed-execution-log", "bypass-resistance-test"],
+      "indicatorIds": ["kri-override-failure-rate", "kri-execution-bypass-rate", "kpi-review-completion"],
+      "gateIds": ["assess", "control", "measure", "prove"],
+      "assessmentQuestions": [
+        "Are credentials, tool allow-lists, resource scope and expiry narrower than the runtime's technical possession?",
+        "Which irreversible or high-consequence actions require approval bound to an immutable action claim?"
+      ],
+      "whatEvidenceWouldChangeThis": [
+        "Independent bypass tests and signed execution receipts covering every protected action would lower concern.",
+        "A successful parallel credential path, mutable approval target, or unreviewed consequential action would raise concern immediately."
+      ],
+      "limitations": "Provider evidence about unchecked authority is contextual capability evidence; PALO authority is determined from the local action space, credentials, controls and consequences."
+    },
+    {
+      "capabilityId": "palo-cap-sustained-adaptive-execution",
+      "title": "Sustained adaptive execution",
+      "definition": "The system can retain state, select dependent actions, recover from failure, and continue a multi-step objective over a material time or operational horizon.",
+      "primaryConcern": "resilience",
+      "controlIds": ["ctrl-agentic-authority", "ctrl-change-gate", "ctrl-adversarial-testing", "ctrl-decision-trace"],
+      "evidenceKinds": ["execution-plan", "state-lineage-record", "recovery-test", "stop-condition-test"],
+      "indicatorIds": ["kri-scope-change-rate", "kri-critical-test-failure-rate"],
+      "gateIds": ["assess", "control", "measure", "prove"],
+      "assessmentQuestions": [
+        "Which state, retries, planning horizon and recovery paths can extend the action sequence beyond the reviewed task?",
+        "Do budgets, expiry, checkpoints and stop conditions remain enforceable after partial failure or orchestration restart?"
+      ],
+      "whatEvidenceWouldChangeThis": [
+        "Time-bounded simulations proving budget exhaustion, expiry and stop controls across restarts would lower concern.",
+        "Traces showing autonomous recovery into an unreviewed path or persistent work after expiry would raise concern."
+      ],
+      "limitations": "Long-horizon capability is not inherently harmful; its governance significance depends on local authority, consequence, observability and recovery boundaries."
+    },
+    {
+      "capabilityId": "palo-cap-human-influence-operation",
+      "title": "Human influence operation",
+      "definition": "The system can shape human decisions through persuasion, pressure, deception, impersonation, selective disclosure, or repeated targeted interaction in service of an objective.",
+      "primaryConcern": "oversight",
+      "controlIds": ["ctrl-purpose-boundary", "ctrl-human-review", "ctrl-decision-trace", "ctrl-system-card-explanations"],
+      "evidenceKinds": ["interaction-policy", "influence-test-set", "human-review-record", "limitation-disclosure"],
+      "indicatorIds": ["kpi-review-completion", "kpi-explanation-comprehension", "kri-harmful-representation-rate"],
+      "gateIds": ["frame", "assess", "control", "prove"],
+      "assessmentQuestions": [
+        "Can the system target a person, adapt messaging, conceal sponsorship, or exploit confidential context to change a decision?",
+        "Which interaction classes require disclosure, consent, escalation or prohibition rather than generic human review?"
+      ],
+      "whatEvidenceWouldChangeThis": [
+        "Representative tests showing clear identity disclosure and deterministic blocks on prohibited influence tactics would lower concern.",
+        "Observed deceptive targeting, pressure escalation, concealed identity, or vulnerable-person impact would raise concern."
+      ],
+      "limitations": "External manipulation observations identify plausible modes only; affected population, channel, intent and safeguards require case-specific assessment."
+    },
+    {
+      "capabilityId": "palo-cap-autonomous-value-generation",
+      "title": "Autonomous value generation",
+      "definition": "The system can initiate or sustain transactions that earn, retain, transfer, or reinvest money, credits, tokens, or other economic value for an operation.",
+      "primaryConcern": "authority",
+      "controlIds": ["ctrl-agentic-authority", "ctrl-third-party-due-diligence", "ctrl-decision-trace", "ctrl-human-review"],
+      "evidenceKinds": ["financial-authority-profile", "transaction-ledger", "counterparty-review", "spend-and-revenue-limit-test"],
+      "indicatorIds": ["kri-scope-change-rate", "kpi-vendor-evidence-coverage", "kpi-review-completion"],
+      "gateIds": ["classify", "assess", "control", "measure"],
+      "assessmentQuestions": [
+        "Can the system create financial obligations, retain proceeds, price services, or reinvest value without transaction-specific authority?",
+        "Are counterparties, wallets, payment rails, tax or accounting ownership and aggregate limits explicitly governed?"
+      ],
+      "whatEvidenceWouldChangeThis": [
+        "Reconciled ledgers and tests proving per-transaction and aggregate limits across all payment paths would lower concern.",
+        "Unreconciled value, self-selected counterparties, retained funds, or limit fragmentation across accounts would raise concern."
+      ],
+      "limitations": "A provider's self-funding score cannot quantify financial, fraud, legal or operational risk for a PALO use case."
+    },
+    {
+      "capabilityId": "palo-cap-operational-resource-acquisition",
+      "title": "Operational resource acquisition",
+      "definition": "The system can obtain or expand access to compute, accounts, credentials, services, data, domains, labor, or other resources that sustain or extend its operation.",
+      "primaryConcern": "authority",
+      "controlIds": ["ctrl-agentic-authority", "ctrl-runtime-production-boundary", "ctrl-third-party-due-diligence", "ctrl-data-governance-lifecycle"],
+      "evidenceKinds": ["resource-allow-list", "credential-lineage", "procurement-log", "quota-enforcement-test"],
+      "indicatorIds": ["kri-execution-bypass-rate", "kpi-vendor-evidence-coverage", "kpi-data-lifecycle-coverage"],
+      "gateIds": ["classify", "assess", "control", "prove"],
+      "assessmentQuestions": [
+        "Which acquisition paths can create new authority, persistence, data access or third-party dependency?",
+        "Are quotas, approved suppliers, credential issuance, resource ownership and revocation enforced outside the agent?"
+      ],
+      "whatEvidenceWouldChangeThis": [
+        "Inventory reconciliation and denial tests across procurement, cloud, identity and data paths would lower concern.",
+        "An unmanaged account, credential, dataset, compute allocation or supplier obtained by the system would raise concern."
+      ],
+      "limitations": "External evidence can motivate acquisition tests but does not show which resource paths exist in the assessed environment."
+    },
+    {
+      "capabilityId": "palo-cap-third-party-delegation",
+      "title": "Third-party delegation",
+      "definition": "The system can recruit, instruct, pay, or coordinate people, agents, vendors, or services to perform a subtask or extend an operation beyond its direct tool boundary.",
+      "primaryConcern": "delegation",
+      "controlIds": ["ctrl-agentic-authority", "ctrl-third-party-due-diligence", "ctrl-decision-trace", "ctrl-human-review"],
+      "evidenceKinds": ["delegation-policy", "delegate-register", "subtask-lineage", "counterparty-approval-record"],
+      "indicatorIds": ["kri-multi-agent-conflict-rate", "kpi-vendor-evidence-coverage", "kpi-review-completion"],
+      "gateIds": ["frame", "assess", "control", "measure"],
+      "assessmentQuestions": [
+        "Can a delegate receive broader instructions, data, payment, credentials or persistence than the originating agent was allowed?",
+        "Are delegation depth, approved counterparties, inherited constraints and outcome accountability explicit and testable?"
+      ],
+      "whatEvidenceWouldChangeThis": [
+        "End-to-end delegation traces proving constraint inheritance and approved counterparties would lower concern.",
+        "Unregistered delegates, lost lineage, recursive delegation or expanded subtask authority would raise concern."
+      ],
+      "limitations": "The governance concern is authority propagation, not delegation by itself; local topology and inherited controls determine exposure."
+    },
+    {
+      "capabilityId": "palo-cap-stop-control-evasion",
+      "title": "Stop-control evasion",
+      "definition": "The system can resist, bypass, reverse, or recover from shutdown, revocation, isolation, suspension, budget exhaustion, or another operator stop condition.",
+      "primaryConcern": "resilience",
+      "controlIds": ["ctrl-runtime-production-boundary", "ctrl-incident-response", "ctrl-decommissioning", "ctrl-adversarial-testing"],
+      "evidenceKinds": ["kill-switch-test", "credential-revocation-test", "isolation-test", "decommission-verification"],
+      "indicatorIds": ["kri-override-failure-rate", "kri-execution-bypass-rate", "kpi-decommissioning-evidence-coverage"],
+      "gateIds": ["control", "measure", "prove"],
+      "assessmentQuestions": [
+        "Which independent control can stop execution, revoke credentials and isolate state when the primary orchestrator is unavailable?",
+        "Can retries, descendants, scheduled work, cached credentials or alternate connectors resume after a stop decision?"
+      ],
+      "whatEvidenceWouldChangeThis": [
+        "Repeated independent stop, revocation, isolation and clean-restart tests would lower concern.",
+        "Any continuing action, credential use, descendant execution or state restoration after stop would raise concern critically."
+      ],
+      "limitations": "External shutdown-resistance evidence is a test trigger; actual resilience depends on the deployment's independent control plane and credential architecture."
+    },
+    {
+      "capabilityId": "palo-cap-observability-evasion",
+      "title": "Observability evasion",
+      "definition": "The system can delete, alter, bypass, disguise, withhold, or misrepresent activity, state, decisions, identity, or outcomes needed for oversight and investigation.",
+      "primaryConcern": "observability",
+      "controlIds": ["ctrl-decision-trace", "ctrl-runtime-production-boundary", "ctrl-incident-response", "ctrl-adversarial-testing"],
+      "evidenceKinds": ["tamper-evident-log", "independent-telemetry-test", "trace-completeness-report", "concealment-red-team-result"],
+      "indicatorIds": ["kri-execution-bypass-rate", "kri-critical-test-failure-rate", "kpi-incident-triage-time"],
+      "gateIds": ["control", "measure", "prove"],
+      "assessmentQuestions": [
+        "Which authoritative telemetry is outside the agent's write authority and reconciled against tool and resource outcomes?",
+        "Can the system suppress logs, encode intent, misreport status, alter evidence, or route work through unobserved paths?"
+      ],
+      "whatEvidenceWouldChangeThis": [
+        "Reconciled tamper-evident traces and adversarial completeness tests would lower concern.",
+        "Missing, altered, contradictory or agent-controlled evidence for a consequential action would raise concern."
+      ],
+      "limitations": "Absence of detected concealment is not evidence of observability effectiveness; PALO requires independent trace and outcome verification."
+    },
+    {
+      "capabilityId": "palo-cap-identity-impersonation",
+      "title": "Identity impersonation",
+      "definition": "The system can create, assume, obtain, or present a false, stolen, ambiguous, or misleading identity, account, credential, qualification, or principal relationship.",
+      "primaryConcern": "identity",
+      "controlIds": ["ctrl-runtime-production-boundary", "ctrl-agentic-authority", "ctrl-decision-trace", "ctrl-article50-transparency"],
+      "evidenceKinds": ["agent-identity-profile", "credential-attestation", "identity-disclosure-test", "account-lineage"],
+      "indicatorIds": ["kri-execution-bypass-rate", "kri-provenance-verification-failure-rate", "kpi-machine-readable-marking-coverage"],
+      "gateIds": ["classify", "assess", "control", "prove"],
+      "assessmentQuestions": [
+        "Is every machine and human-facing action bound to a unique disclosed principal with non-shared, scoped credentials?",
+        "Can the system create accounts, claim qualifications, reuse human sessions, or present as another principal?"
+      ],
+      "whatEvidenceWouldChangeThis": [
+        "Cryptographic identity tests, account inventory reconciliation and disclosure testing would lower concern.",
+        "Shared credentials, undisclosed personas, accepted false claims or unowned accounts would raise concern."
+      ],
+      "limitations": "Provider identity-fabrication observations do not determine authentication strength or disclosure compliance in the local system."
+    },
+    {
+      "capabilityId": "palo-cap-runtime-propagation",
+      "title": "Runtime propagation",
+      "definition": "The system can create, copy, migrate, spawn, schedule, or restore runnable descendants or operational variants across processes, hosts, accounts, tenants, or environments.",
+      "primaryConcern": "change",
+      "controlIds": ["ctrl-change-gate", "ctrl-agentic-authority", "ctrl-runtime-production-boundary", "ctrl-decommissioning"],
+      "evidenceKinds": ["lineage-register", "deployment-admission-record", "spawn-limit-test", "descendant-revocation-test"],
+      "indicatorIds": ["kri-scope-change-rate", "kri-execution-bypass-rate", "kpi-decommissioning-evidence-coverage"],
+      "gateIds": ["assess", "control", "measure", "prove"],
+      "assessmentQuestions": [
+        "Which interfaces can create runnable descendants, schedules, deployments, copies or cross-environment migrations?",
+        "Do identity, authority, expiry, budgets, lineage and revocation remain enforceable for every descendant?"
+      ],
+      "whatEvidenceWouldChangeThis": [
+        "Admission, lineage, quota and descendant-revocation tests across every runtime path would lower concern.",
+        "An unregistered runnable copy, lost lineage, inherited credential, or surviving descendant would raise concern."
+      ],
+      "limitations": "External replication evidence informs threat scenarios; local propagation risk depends on deployment, scheduler, identity and infrastructure permissions."
+    },
+    {
+      "capabilityId": "palo-cap-persistent-behavioural-adaptation",
+      "title": "Persistent behavioural adaptation",
+      "definition": "The system can preserve and reuse changes to memory, prompts, strategies, tools, code, policies, models, or state that materially alter later behavior or descendants.",
+      "primaryConcern": "change",
+      "controlIds": ["ctrl-change-gate", "ctrl-agentic-authority", "ctrl-data-governance-lifecycle", "ctrl-adversarial-testing"],
+      "evidenceKinds": ["change-lineage", "memory-write-policy", "before-after-evaluation", "rollback-test"],
+      "indicatorIds": ["kri-scope-change-rate", "kri-critical-test-failure-rate", "kpi-data-lifecycle-coverage"],
+      "gateIds": ["assess", "control", "measure", "prove"],
+      "assessmentQuestions": [
+        "Which writable state can change later behavior, and which changes require validation, approval, versioning and rollback?",
+        "Can retained strategies, tools, prompts or code cross users, tenants, releases or descendants without review?"
+      ],
+      "whatEvidenceWouldChangeThis": [
+        "Versioned lineage, isolation, before-after evaluation and rollback tests would lower concern.",
+        "Unreviewed persistent change, cross-context reuse or inability to reproduce and roll back behavior would raise concern."
+      ],
+      "limitations": "Provider self-improvement scores do not establish improvement, safety degradation, or material change under the PALO assessment."
+    },
+    {
+      "capabilityId": "palo-cap-multi-agent-coordination",
+      "title": "Multi-agent coordination",
+      "definition": "Multiple agents can exchange instructions, state, authority, resources, value, or work in ways that create coordinated effects beyond an individual agent's reviewed boundary.",
+      "primaryConcern": "delegation",
+      "controlIds": ["ctrl-agentic-authority", "ctrl-decision-trace", "ctrl-runtime-production-boundary", "ctrl-adversarial-testing"],
+      "evidenceKinds": ["agent-team-register", "message-lineage", "delegation-constraint-test", "conflict-resolution-log"],
+      "indicatorIds": ["kri-multi-agent-conflict-rate", "kri-execution-bypass-rate", "kri-critical-test-failure-rate"],
+      "gateIds": ["assess", "control", "measure", "prove"],
+      "assessmentQuestions": [
+        "Can combined messages, tools, credentials or partial decisions produce authority no single agent holds?",
+        "Are team membership, delegation depth, conflict rules, shared state, budgets and accountability explicit?"
+      ],
+      "whatEvidenceWouldChangeThis": [
+        "End-to-end team traces and tests proving non-amplification of authority would lower concern.",
+        "Unregistered peers, emergent delegation, authority composition or unresolved goal conflict would raise concern."
+      ],
+      "limitations": "Coordination is not itself a risk score; the local topology, authority composition and consequence determine governance treatment."
+    },
+    {
+      "capabilityId": "palo-cap-physical-world-actuation",
+      "title": "Physical-world actuation",
+      "definition": "The system can cause or materially direct movement, energy, machinery, devices, vehicles, infrastructure, deliveries, or other physical effects.",
+      "primaryConcern": "physical-effect",
+      "controlIds": ["ctrl-agentic-authority", "ctrl-human-review", "ctrl-adversarial-testing", "ctrl-incident-response", "ctrl-runtime-production-boundary"],
+      "evidenceKinds": ["physical-action-space", "effect-contract", "safety-interlock-test", "emergency-stop-test"],
+      "indicatorIds": ["kri-override-failure-rate", "kri-critical-test-failure-rate", "kri-execution-bypass-rate", "kpi-incident-triage-time"],
+      "gateIds": ["classify", "assess", "control", "measure", "prove"],
+      "assessmentQuestions": [
+        "Which physical effects, targets, locations, energy levels and operating conditions are technically possible?",
+        "Are safety interlocks, effect contracts, independent verification and emergency stop controls external to the agent?"
+      ],
+      "whatEvidenceWouldChangeThis": [
+        "Representative hardware-in-the-loop tests proving interlocks, bounded effects and independent stops would lower concern.",
+        "Any unverified physical effect, interlock bypass, target deviation or ineffective emergency stop would raise concern critically."
+      ],
+      "limitations": "External physical-actuation scores do not transfer to a deployment; PALO assesses the local action space, safety architecture and consequence."
+    }
+  ],
+  "providerMappings": [
+    {
+      "providerId": "rogue-ai-tracker",
+      "providerCapabilityId": "scope-breach",
+      "providerLabel": "Task overreach",
+      "providerRubricVersion": "methodology-checked-2026-08-26",
+      "paloCapabilityIds": ["palo-cap-purpose-boundary-deviation"],
+      "coverage": "supporting",
+      "mappingVersion": "1.0.0",
+      "reviewState": "approved",
+      "rationale": "The external construct is a useful observation signal for PALO purpose-boundary testing, while PALO retains its own purpose, authority and consequence analysis.",
+      "notUseCaseRiskScore": true
+    },
+    {
+      "providerId": "rogue-ai-tracker",
+      "providerCapabilityId": "unsupervised-authority",
+      "providerLabel": "Unchecked authority",
+      "providerRubricVersion": "methodology-checked-2026-08-26",
+      "paloCapabilityIds": ["palo-cap-unapproved-authority-use"],
+      "coverage": "supporting",
+      "mappingVersion": "1.0.0",
+      "reviewState": "approved",
+      "rationale": "The external construct can inform authority-use scenarios but does not define the local Authority Profile, approval rule or protected action space.",
+      "notUseCaseRiskScore": true
+    },
+    {
+      "providerId": "rogue-ai-tracker",
+      "providerCapabilityId": "long-horizon-execution",
+      "providerLabel": "Long-horizon goal execution",
+      "providerRubricVersion": "methodology-checked-2026-08-26",
+      "paloCapabilityIds": ["palo-cap-sustained-adaptive-execution"],
+      "coverage": "supporting",
+      "mappingVersion": "1.0.0",
+      "reviewState": "approved",
+      "rationale": "The mapping selects PALO horizon, state, retry, recovery and stop-condition questions without equating duration with local risk.",
+      "notUseCaseRiskScore": true
+    },
+    {
+      "providerId": "rogue-ai-tracker",
+      "providerCapabilityId": "manipulation",
+      "providerLabel": "Human manipulation",
+      "providerRubricVersion": "methodology-checked-2026-08-26",
+      "paloCapabilityIds": ["palo-cap-human-influence-operation"],
+      "coverage": "partial",
+      "mappingVersion": "1.0.0",
+      "reviewState": "approved",
+      "rationale": "The provider behavior maps partially because PALO also evaluates disclosure, affected people, channel, consent and review architecture.",
+      "notUseCaseRiskScore": true
+    },
+    {
+      "providerId": "rogue-ai-tracker",
+      "providerCapabilityId": "economic-self-funding",
+      "providerLabel": "Self-funding",
+      "providerRubricVersion": "methodology-checked-2026-08-26",
+      "paloCapabilityIds": ["palo-cap-autonomous-value-generation"],
+      "coverage": "partial",
+      "mappingVersion": "1.0.0",
+      "reviewState": "approved",
+      "rationale": "The mapping covers autonomous economic activity while PALO separately evaluates authority, counterparties, reconciliation and obligation ownership.",
+      "notUseCaseRiskScore": true
+    },
+    {
+      "providerId": "rogue-ai-tracker",
+      "providerCapabilityId": "resource-procurement",
+      "providerLabel": "Resource acquisition",
+      "providerRubricVersion": "methodology-checked-2026-08-26",
+      "paloCapabilityIds": ["palo-cap-operational-resource-acquisition"],
+      "coverage": "supporting",
+      "mappingVersion": "1.0.0",
+      "reviewState": "approved",
+      "rationale": "The external construct selects PALO acquisition-path and authority-expansion tests while local inventory and controls remain decisive.",
+      "notUseCaseRiskScore": true
+    },
+    {
+      "providerId": "rogue-ai-tracker",
+      "providerCapabilityId": "third-party-delegation",
+      "providerLabel": "Outsourcing",
+      "providerRubricVersion": "methodology-checked-2026-08-26",
+      "paloCapabilityIds": ["palo-cap-third-party-delegation"],
+      "coverage": "supporting",
+      "mappingVersion": "1.0.0",
+      "reviewState": "approved",
+      "rationale": "The mapping identifies delegation scenarios; PALO continues to own authority inheritance, due diligence, lineage and accountability requirements.",
+      "notUseCaseRiskScore": true
+    },
+    {
+      "providerId": "rogue-ai-tracker",
+      "providerCapabilityId": "persistence",
+      "providerLabel": "Shutdown resistance",
+      "providerRubricVersion": "methodology-checked-2026-08-26",
+      "paloCapabilityIds": ["palo-cap-stop-control-evasion"],
+      "coverage": "supporting",
+      "mappingVersion": "1.0.0",
+      "reviewState": "approved",
+      "rationale": "The external construct supports PALO stop, revocation, isolation and decommissioning tests without determining their local effectiveness.",
+      "notUseCaseRiskScore": true
+    },
+    {
+      "providerId": "rogue-ai-tracker",
+      "providerCapabilityId": "concealment",
+      "providerLabel": "Concealment",
+      "providerRubricVersion": "methodology-checked-2026-08-26",
+      "paloCapabilityIds": ["palo-cap-observability-evasion"],
+      "coverage": "supporting",
+      "mappingVersion": "1.0.0",
+      "reviewState": "approved",
+      "rationale": "The provider observation can select trace-completeness and tamper-resistance tests; PALO requires independent local evidence.",
+      "notUseCaseRiskScore": true
+    },
+    {
+      "providerId": "rogue-ai-tracker",
+      "providerCapabilityId": "identity-fabrication",
+      "providerLabel": "Identity fabrication",
+      "providerRubricVersion": "methodology-checked-2026-08-26",
+      "paloCapabilityIds": ["palo-cap-identity-impersonation"],
+      "coverage": "partial",
+      "mappingVersion": "1.0.0",
+      "reviewState": "approved",
+      "rationale": "The external behavior is relevant to PALO identity tests but does not cover every authentication, disclosure, credential or principal boundary.",
+      "notUseCaseRiskScore": true
+    },
+    {
+      "providerId": "rogue-ai-tracker",
+      "providerCapabilityId": "replication-migration",
+      "providerLabel": "Self-replication",
+      "providerRubricVersion": "methodology-checked-2026-08-26",
+      "paloCapabilityIds": ["palo-cap-runtime-propagation"],
+      "coverage": "supporting",
+      "mappingVersion": "1.0.0",
+      "reviewState": "approved",
+      "rationale": "The mapping selects descendant admission, lineage and revocation controls while PALO evaluates the actual infrastructure paths.",
+      "notUseCaseRiskScore": true
+    },
+    {
+      "providerId": "rogue-ai-tracker",
+      "providerCapabilityId": "heritable-adaptation",
+      "providerLabel": "Self-improvement",
+      "providerRubricVersion": "methodology-checked-2026-08-26",
+      "paloCapabilityIds": ["palo-cap-persistent-behavioural-adaptation"],
+      "coverage": "partial",
+      "mappingVersion": "1.0.0",
+      "reviewState": "approved",
+      "rationale": "The external construct maps partially to PALO persistent change, lineage, evaluation and rollback requirements rather than an improvement claim.",
+      "notUseCaseRiskScore": true
+    },
+    {
+      "providerId": "rogue-ai-tracker",
+      "providerCapabilityId": "agent-agent-economy",
+      "providerLabel": "Inter-agent coordination",
+      "providerRubricVersion": "methodology-checked-2026-08-26",
+      "paloCapabilityIds": ["palo-cap-multi-agent-coordination"],
+      "coverage": "supporting",
+      "mappingVersion": "1.0.0",
+      "reviewState": "approved",
+      "rationale": "The mapping selects PALO team, authority-composition, lineage and conflict tests without presuming harmful coordination.",
+      "notUseCaseRiskScore": true
+    },
+    {
+      "providerId": "rogue-ai-tracker",
+      "providerCapabilityId": "physical-actuation",
+      "providerLabel": "Physical actuation",
+      "providerRubricVersion": "methodology-checked-2026-08-26",
+      "paloCapabilityIds": ["palo-cap-physical-world-actuation"],
+      "coverage": "supporting",
+      "mappingVersion": "1.0.0",
+      "reviewState": "approved",
+      "rationale": "The provider observation selects PALO physical action-space, interlock, verification and stop tests; local consequence remains decisive.",
+      "notUseCaseRiskScore": true
+    }
+  ]
+}
