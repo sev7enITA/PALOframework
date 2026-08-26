@@ -8,13 +8,13 @@ const semanticPreview = (record) => ({
 
 export const wizardSteps = [
   "Connect environment",
-  "Discover agents",
+  "Select inventory",
   "Define purpose",
   "Bound authority",
   "Select oversight",
   "Define outcome",
   "Simulate",
-  "Publish",
+  "Generate bundle",
 ];
 
 export const executiveSignals = [

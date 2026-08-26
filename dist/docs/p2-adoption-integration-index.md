@@ -22,9 +22,15 @@ PALO v3.1.0 projects these stable P2 IDs into `data/semantic-spine.json` and pub
 ## PolicyWatcher signal
 
 - Schema: `schemas/policywatcher-signal.schema.json`
+- Complete active snapshot schema: `schemas/policywatcher-signal-batch.schema.json`
+- Operational registry schema: `schemas/palo-policywatcher-signal-registry.schema.json`
+- Browser-local review ledger schema: `schemas/palo-policywatcher-review-ledger.schema.json`
 - Valid educational example: `schemas/fixtures/policywatcher-signal.valid.json`
 - PolicyWatcher production-emitter compatibility example: `schemas/fixtures/policywatcher-signal.policywatcher.valid.json`
+- PolicyWatcher batch-emitter compatibility example: `schemas/fixtures/policywatcher-signal-batch.policywatcher.valid.json`
 - Intentionally invalid validator fixture: `schemas/fixtures/policywatcher-signal.invalid.json`
+- Offline-safe operational baseline: `data/integrations/policywatcher-signal-registry.json`
+- Valid local review ledger: `schemas/fixtures/palo-policywatcher-review-ledger.valid.json`
 - Browser event: `palo:policywatcher:signal`
 - Contract: `docs/p2-module-contracts.md`
 

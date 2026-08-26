@@ -1,8 +1,8 @@
 # PALO-AI Governance Hub - User and Interaction Guide
 
-Status: interaction guide for the v3-aligned PALO-AI Governance Hub prototype, updated 12 August 2026.
+Status: interaction guide for the v3-aligned PALO-AI Governance Hub static verification console, updated 26 August 2026.
 
-> **The Governance Hub is an interactive product prototype, not a production application.** The current React/Vite interface uses `illustrative-local-preview` data and demonstrates Executive and Technical workspace lenses. Those lenses are not identities, permissions or access-control roles. Records and exports are not a source of record, live authority or approval decision, and the interface is not connected directly to the Gateway. Use the repository's REST, MCP, n8n, and demonstration instructions only with synthetic or isolated data until an authenticated BFF and the remaining production controls exist.
+> **The Governance Hub is a static verification console, not a production control plane.** The current React/Vite interface uses `illustrative-local-preview` data and demonstrates Executive and Technical workspace lenses. Those lenses are not identities, permissions or access-control roles. Records and exports are not a source of record, live authority or approval decision, and the interface is not connected directly to the Gateway. A local `passed` status proves only the named deterministic check; `not-configured` means no live operator adapter was contacted.
 
 ## 1. Choose your mode
 
@@ -186,7 +186,7 @@ Select one deployment mode:
 | Cloud | Managed control plane | Requires identity, tenant isolation, durable state, managed keys, and independent assurance |
 | Private | Customer VPC/private cloud | Integrates with customer identity, network, KMS, SIEM, and retention controls |
 
-The connection wizard must show:
+The target connection wizard must show:
 
 - runtime version and release status;
 - REST and MCP health;
@@ -195,7 +195,9 @@ The connection wizard must show:
 - registry, policy, database, connector, verifier, and ledger status;
 - known missing controls and supported operations.
 
-The current gateway can provide a basic `GET /health` response. Dependency health and historical telemetry require new APIs.
+The current gateway can provide a basic `GET /health` response. Dependency health and historical telemetry require new APIs. The public static console does not call that endpoint: **Check connection** validates the selected repository profile, reports zero network requests and identifies the missing server-side adapter. Expand **What happened** to inspect the input digest, ordered steps, network activity, boundaries, raw receipt and the explicit list of actions that did not occur.
+
+Do not interpret `locally valid` as connected. A live state is permitted only when an operator-controlled BFF supplies an authenticated, adapter-specific health and conformance receipt.
 
 ### 6.2 Discover or register inventory
 
@@ -259,7 +261,9 @@ Choose a registered verifier and specify behavior when authoritative state is un
 
 #### Step 5 - Inspect generated artifacts
 
-Switch among:
+The current console generates an unsigned local draft. It does not publish a policy bundle. After the current configuration passes the seven-scenario assurance suite, **Generate and download local bundle** creates a digest-bound JSON file with `authoritative: false` and `publication.performed: false`. Changing any authority, oversight, purpose, effect or connection input invalidates the prior simulation receipt and blocks generation until the suite is rerun.
+
+The current console exposes the plain-language enforcement summary and canonical draft JSON. A future authenticated workbench may switch among:
 
 - plain-language policy;
 - structured field view;

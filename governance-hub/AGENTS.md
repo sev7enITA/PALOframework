@@ -12,3 +12,6 @@ When implementing from a selected generated mock, treat that image as the source
 - Keep the interface predominantly white with deep navy text, PALO teal selected states, restrained gold attention states, generous whitespace, and progressive disclosure.
 - Default to plain-language questions and generated enforcement explanations. Keep JSON, Rego, signatures, and raw evidence behind explicit disclosure controls.
 - Build one shared Governance Hub with role-aware Executive and Technical lenses rather than separate applications.
+- Never present `Ready`, `Connected`, `Configured`, `Published`, or `Verified` unless the corresponding operation produced inspectable evidence. Static/reference-only states must be named explicitly.
+- After an action, provide an expandable receipt showing what happened, what did not happen, the input digest, network activity, ordered steps, boundaries, and raw JSON.
+- All selectable guided-setup combinations must be compatible by construction or show a specific blocking finding; changing a digest-bound input invalidates prior simulation and bundle evidence.
