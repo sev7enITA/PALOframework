@@ -59,7 +59,25 @@
       "schemaPath": "schemas/palo-source-registry.schema.json",
       "semanticVersion": "3.1.0",
       "status": "approved-for-release",
-      "sha256": "97670954d2b22c13b81ad99f20c1a22d409dedaf6fd19ee485983b50a9a64d13"
+      "sha256": "01eb0cb408f243b030ee1753f7e060220e3801a2b968d17dcaa35cb0836a143b"
+    },
+    {
+      "itemId": "https://paloframework.org/semantic/release-item/external-evidence-provider-registry",
+      "path": "data/external-evidence/provider-registry.json",
+      "role": "provider-registry",
+      "schemaPath": "schemas/palo-external-evidence-provider-registry.schema.json",
+      "semanticVersion": "3.1.0",
+      "status": "approved-for-release",
+      "sha256": "b7879620eb97b2009af47b5b7251a60e7fc2105693a95bb7d729e37420450af2"
+    },
+    {
+      "itemId": "https://paloframework.org/semantic/release-item/agentic-capability-crosswalk",
+      "path": "data/external-evidence/palo-agentic-capability-crosswalk.json",
+      "role": "crosswalk-registry",
+      "schemaPath": "schemas/palo-agentic-capability-crosswalk.schema.json",
+      "semanticVersion": "3.1.0",
+      "status": "approved-for-release",
+      "sha256": "769a970a02ab70101fc104cdb5d6d9403237113665194844b4c0f49a0a2ed0f2"
     },
     {
       "itemId": "https://paloframework.org/semantic/release-item/governance-control-packs",
@@ -150,7 +168,7 @@
       "role": "schema",
       "semanticVersion": "3.1.0",
       "status": "compatibility-contract",
-      "sha256": "5c767b152fc3f32a095ee2be5cb42530255bb5919351e89b4f8627830b2d5651"
+      "sha256": "4fcd1a8c0db4a46a514963b82b1aa84d824e544aba6cf16f9d8f45f9dbecb0b6"
     },
     {
       "itemId": "https://paloframework.org/semantic/release-item/semantic-change-impact-schema",
@@ -159,6 +177,30 @@
       "semanticVersion": "3.1.0",
       "status": "compatibility-contract",
       "sha256": "d62adcc0f792460da7a35c495c2b14707ae9e8a2aa615d33fdf37a4832a9e6b9"
+    },
+    {
+      "itemId": "https://paloframework.org/semantic/release-item/external-evidence-provider-registry-schema",
+      "path": "schemas/palo-external-evidence-provider-registry.schema.json",
+      "role": "schema",
+      "semanticVersion": "3.1.0",
+      "status": "compatibility-contract",
+      "sha256": "03641c58054c4b2e461480f0e6bc6119fa4b200c8a0b92e9ac0b5eb3eab98a75"
+    },
+    {
+      "itemId": "https://paloframework.org/semantic/release-item/external-agentic-evidence-schema",
+      "path": "schemas/palo-external-agentic-evidence.schema.json",
+      "role": "schema",
+      "semanticVersion": "3.1.0",
+      "status": "compatibility-contract",
+      "sha256": "67c9271bd5f5996a0648262de4a1a7c207b21b3245fc50b8c651e807fdfc4c28"
+    },
+    {
+      "itemId": "https://paloframework.org/semantic/release-item/agentic-capability-crosswalk-schema",
+      "path": "schemas/palo-agentic-capability-crosswalk.schema.json",
+      "role": "schema",
+      "semanticVersion": "3.1.0",
+      "status": "compatibility-contract",
+      "sha256": "7a807689a90d8e217788fea4c666c446fada952196505d5dd86a17d0476cd380"
     },
     {
       "itemId": "https://paloframework.org/semantic/release-item/gate-instance-schema",
@@ -298,5 +340,5 @@
     }
   ],
   "authorityBoundary": "This manifest freezes the exact semantic and governance-control artifacts used by PALO v3.1. It proves file identity, not legal applicability, compliance, certification, operating effectiveness, or production authorization.",
-  "manifestDigest": "sha256:b2037807263d94a59e7b73e108f112a97685a66afff06b238a74238ad5f7afad"
+  "manifestDigest": "sha256:a1a2ba275d0c920abc6d1b433f2e86a369535de738dff7b8bfe6b110a4a7676b"
 }
