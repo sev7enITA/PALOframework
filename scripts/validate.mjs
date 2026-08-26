@@ -264,8 +264,11 @@ async function validateP2Artifacts() {
   }
 
   const signalValidator = ajv.compile(schemas.signal);
-  for (const expectation of ["valid", "invalid"]) {
-    const file = `schemas/fixtures/policywatcher-signal.${expectation}.json`;
+  for (const [file, expectation] of [
+    ["schemas/fixtures/policywatcher-signal.valid.json", "valid"],
+    ["schemas/fixtures/policywatcher-signal.policywatcher.valid.json", "valid"],
+    ["schemas/fixtures/policywatcher-signal.invalid.json", "invalid"],
+  ]) {
     const fixture = await loadJson(file);
     const result = signalValidator(fixture);
     if (expectation === "valid" && !result) errors.push(`${file}: expected valid signal failed schema: ${ajv.errorsText(signalValidator.errors)}`);
@@ -275,6 +278,7 @@ async function validateP2Artifacts() {
   const p2JsonFiles = [
     ...Object.values(schemaFiles), ...Object.values(dataFiles),
     "schemas/fixtures/policywatcher-signal.valid.json",
+    "schemas/fixtures/policywatcher-signal.policywatcher.valid.json",
     "schemas/fixtures/policywatcher-signal.invalid.json",
     ...data.index.workedCases.map((entry) => entry.path)
   ];

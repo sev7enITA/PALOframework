@@ -23,6 +23,7 @@ PALO v3.1.0 projects these stable P2 IDs into `data/semantic-spine.json` and pub
 
 - Schema: `schemas/policywatcher-signal.schema.json`
 - Valid educational example: `schemas/fixtures/policywatcher-signal.valid.json`
+- PolicyWatcher production-emitter compatibility example: `schemas/fixtures/policywatcher-signal.policywatcher.valid.json`
 - Intentionally invalid validator fixture: `schemas/fixtures/policywatcher-signal.invalid.json`
 - Browser event: `palo:policywatcher:signal`
 - Contract: `docs/p2-module-contracts.md`
@@ -30,6 +31,8 @@ PALO v3.1.0 projects these stable P2 IDs into `data/semantic-spine.json` and pub
 Every signal is required to state `non-authoritative-monitoring-signal`. Detection confidence describes the observation, not policy significance, applicability or legal effect.
 
 PALO v2.4.0 adds a local receiver in Assessment Path. Additive fields are allowed and retained as a minor-version compatibility rule. A valid observation is stored as a `monitoring-signal` source with the original URL, observed/retrieved dates, change summary, confidence rationale and full imported document. It creates an open evidence record, marks the Case File reopened, and flags Measure and Prove for human review. Invalid signals do not mutate the Case File, and no network submission is part of import.
+
+PolicyWatcher exposes the same PALO-owned v1 format for changes that already pass its public-evidence gate. Each public change event can link to one downloadable JSON handoff. Validate a downloaded file before browser import with `npm run policywatcher-signal:validate -- <signal.json>`. Validation and import are local and use zero network calls; PolicyWatcher screening remains an additive contextual record and never becomes a PALO risk, applicability or gate decision.
 
 ## Worked Case File fixtures
 
