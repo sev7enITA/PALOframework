@@ -4,9 +4,9 @@ Status: production-candidate implementation; production admission remains fail-c
 
 The public GitHub Pages Hub remains an autonomous static verifier. The operational product is a separate, opt-in deployment at:
 
-- `https://<PALO_DOMAIN>/hub/` — browser application;
-- `https://<PALO_DOMAIN>/control-plane/` — browser-safe backend-for-frontend;
-- an operator-selected, tenant-enforcing adapter — never a browser-held Gateway token;
+- `https://<PALO_DOMAIN>/hub/`: browser application;
+- `https://<PALO_DOMAIN>/control-plane/`: browser-safe backend-for-frontend;
+- an operator-selected, tenant-enforcing adapter, never a browser-held Gateway token;
 - managed PostgreSQL and a remote KMS/HSM signing service.
 
 Starting containers, returning HTTP 200 or rendering a green pill is not production admission. `/health` deliberately returns `productionUse:false`; the UI says `configured-not-independently-assured` until assurance is completed outside the application.
@@ -29,7 +29,7 @@ The control plane implements:
 - remote signing with response caps and digest matching; no private signing key in the application process;
 - an expandable receipt for connection, inventory, simulation and lifecycle actions;
 - an automatically expanded, digest-bound persisted-contract view for reviewers;
-- structured access logs containing only bounded route metadata, status, request ID and a tenant digest — never query strings, payloads or credentials.
+- structured access logs containing only bounded route metadata, status, request ID and a tenant digest, never query strings, payloads or credentials.
 
 The package does not make the preview SQLite execution runtime, its shared-token Gateway or any protected tool path production-ready. The current preview Gateway does not enforce tenant-scoped inventory and is therefore unsuitable as a production Hub adapter.
 
