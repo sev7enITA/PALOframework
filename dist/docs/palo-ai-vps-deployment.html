@@ -25,7 +25,7 @@
   <main id="main-content" class="palo-doc-main">
     <div class="palo-shell">
       <nav class="palo-doc-breadcrumb" aria-label="Breadcrumb"><a href="../PALO_DocumentationLibrary.html">Documentation Library</a><span aria-hidden="true">/</span><span>Operations and deployment</span></nav>
-      <header class="palo-doc-hero"><p class="palo-eyebrow">Operations and deployment | Public documentation</p><h1>PALO-AI Online VPS Deployment</h1><div class="palo-doc-facts"><span><small>Level</small><strong>guide</strong></span><span><small>Audience</small><strong>technical</strong></span><span><small>Product</small><strong>PALO-AI</strong></span><span><small>Status</small><strong>Evaluation Deployment</strong></span><span><small>Lifecycle</small><strong>Current</strong></span><span><small>Read</small><strong>9 min</strong></span></div><p class="palo-doc-source">Published HTML view | Source: <code>docs/palo-ai-vps-deployment.md</code></p><div class="palo-actions"><button class="palo-btn" type="button" data-doc-copy-link>Copy link</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-share>Share page</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-print>Print</button></div><p class="palo-action-status" data-doc-action-status role="status" aria-live="polite"></p></header>
+      <header class="palo-doc-hero"><p class="palo-eyebrow">Operations and deployment | Public documentation</p><h1>PALO-AI Online VPS Deployment</h1><div class="palo-doc-facts"><span><small>Level</small><strong>guide</strong></span><span><small>Audience</small><strong>technical</strong></span><span><small>Product</small><strong>PALO-AI</strong></span><span><small>Status</small><strong>Evaluation Deployment</strong></span><span><small>Lifecycle</small><strong>Current</strong></span><span><small>Read</small><strong>10 min</strong></span></div><p class="palo-doc-source">Published HTML view | Source: <code>docs/palo-ai-vps-deployment.md</code></p><div class="palo-actions"><button class="palo-btn" type="button" data-doc-copy-link>Copy link</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-share>Share page</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-print>Print</button></div><p class="palo-action-status" data-doc-action-status role="status" aria-live="polite"></p></header>
       <details class="palo-doc-mobile-toc"><summary>On this page</summary><ol><li class="depth-2"><a href="#live-deployment-status">Live deployment status</a></li><li class="depth-2"><a href="#address-model">Address model</a></li><li class="depth-2"><a href="#supplied-deployment">Supplied deployment</a></li><li class="depth-2"><a href="#prerequisites">Prerequisites</a></li><li class="depth-2"><a href="#configure-the-vps">Configure the VPS</a></li><li class="depth-2"><a href="#firewall">Firewall</a></li><li class="depth-2"><a href="#start-the-online-stack">Start the online stack</a></li><li class="depth-2"><a href="#register-an-authority-profile">Register an authority profile</a></li><li class="depth-2"><a href="#verify-the-online-endpoint">Verify the online endpoint</a></li><li class="depth-2"><a href="#connect-n8n">Connect n8n</a></li><li class="depth-2"><a href="#connect-other-mcp-clients">Connect other MCP clients</a></li><li class="depth-2"><a href="#public-route-boundary">Public-route boundary</a></li><li class="depth-2"><a href="#next-implementation-gates">Next implementation gates</a></li><li class="depth-2"><a href="#update-and-rollback">Update and rollback</a></li><li class="depth-2"><a href="#backup-warning">Backup warning</a></li><li class="depth-2"><a href="#remaining-production-boundary">Remaining production boundary</a></li></ol></details>
       <div class="palo-doc-layout"><aside class="palo-doc-sidebar" aria-label="On this page"><strong>On this page</strong><ol><li class="depth-2"><a href="#live-deployment-status">Live deployment status</a></li><li class="depth-2"><a href="#address-model">Address model</a></li><li class="depth-2"><a href="#supplied-deployment">Supplied deployment</a></li><li class="depth-2"><a href="#prerequisites">Prerequisites</a></li><li class="depth-2"><a href="#configure-the-vps">Configure the VPS</a></li><li class="depth-2"><a href="#firewall">Firewall</a></li><li class="depth-2"><a href="#start-the-online-stack">Start the online stack</a></li><li class="depth-2"><a href="#register-an-authority-profile">Register an authority profile</a></li><li class="depth-2"><a href="#verify-the-online-endpoint">Verify the online endpoint</a></li><li class="depth-2"><a href="#connect-n8n">Connect n8n</a></li><li class="depth-2"><a href="#connect-other-mcp-clients">Connect other MCP clients</a></li><li class="depth-2"><a href="#public-route-boundary">Public-route boundary</a></li><li class="depth-2"><a href="#next-implementation-gates">Next implementation gates</a></li><li class="depth-2"><a href="#update-and-rollback">Update and rollback</a></li><li class="depth-2"><a href="#backup-warning">Backup warning</a></li><li class="depth-2"><a href="#remaining-production-boundary">Remaining production boundary</a></li></ol></aside><article class="palo-doc-content"><h1 id="palo-ai-online-vps-deployment">PALO-AI Online VPS Deployment<a class="palo-doc-anchor" href="#palo-ai-online-vps-deployment" aria-label="Link to PALO-AI Online VPS Deployment">#</a></h1><p>Status: Internet-reachable developer-preview deployment topology documented for PALO-AI v2.7. Deployments created from the v2.5 baseline must be upgraded and revalidated separately; this document does not assert that a live endpoint has already been upgraded. HTTPS and network isolation do not remove the blockers tracked in the public <a href="../PALO_AIProductionReadiness.html">Production Readiness plan</a>.</p>
 <h2 id="live-deployment-status">Live deployment status<a class="palo-doc-anchor" href="#live-deployment-status" aria-label="Link to Live deployment status">#</a></h2><p>The reference developer-preview endpoint was deployed on 17 July 2026:</p>
@@ -105,6 +105,16 @@
 <td>nginx-to-guide-MCP proxy target</td>
 </tr>
 <tr>
+<td><code>http://127.0.0.1:18880</code></td>
+<td>Current VPS host only</td>
+<td>nginx-to-Hub-control-plane target when the opt-in profile is enabled</td>
+</tr>
+<tr>
+<td><code>http://127.0.0.1:18881</code></td>
+<td>Current VPS host only</td>
+<td>nginx-to-Hub-UI target when the opt-in profile is enabled</td>
+</tr>
+<tr>
 <td><code>http://palo-mcp:8788</code></td>
 <td>Docker network only</td>
 <td>MCP service behind the TLS proxy</td>
@@ -129,6 +139,16 @@
 <td>Internet, separately authenticated</td>
 <td>Three read-only PALO Guide tools after this release is deployed</td>
 </tr>
+<tr>
+<td><code>https://governance.paloframework.org/hub/</code></td>
+<td>Internet, organization-authenticated</td>
+<td>Operational Governance Builder after external prerequisites and profile activation</td>
+</tr>
+<tr>
+<td><code>https://governance.paloframework.org/control-plane/</code></td>
+<td>Internet, browser BFF only</td>
+<td>OIDC session, adapter, simulation and configuration lifecycle APIs</td>
+</tr>
 </tbody></table></div>
 <p><code>8181</code> is therefore not the public endpoint. It remains private even when the complete stack runs online on the VPS.</p>
 <p>Private does not mean production-authenticated. The reference PALO services call OPA over HTTP inside the isolated Docker network. Before consequential deployment, threat-model sibling-container and host compromise, add authenticated policy distribution and evaluated-bundle provenance, and use mTLS or an equivalent workload-identity control when the deployment boundary requires it.</p>
@@ -151,6 +171,7 @@
 <li>public blocking of registry administration, policy registration, approval resolution and direct evidence submission;</li>
 <li>a VPS-local administration port bound only to <code>127.0.0.1</code>.</li>
 </ul>
+<p>They also contain opt-in <code>hub-migration</code> and <code>hub-control-plane</code> profiles. These profiles are inactive by default and require externally provisioned OIDC, managed PostgreSQL, a tenant-enforcing adapter and remote signer. Follow the <a href="https://github.com/sev7enITA/PALOframework/blob/main/docs/palo-governance-hub-operations.md" target="_blank" rel="noopener noreferrer">Governance Hub control-plane operations runbook</a>; do not activate them with the bundled unscoped preview Gateway presented as a production tenant adapter.</p>
 <p>The OPA and Caddy versions were current stable releases when this file was prepared. Pin image digests as well as tags before a consequential deployment.</p>
 <h2 id="prerequisites">Prerequisites<a class="palo-doc-anchor" href="#prerequisites" aria-label="Link to Prerequisites">#</a></h2><ol>
 <li>A Linux VPS with a public IP and SSH access.</li>
@@ -183,6 +204,7 @@ sudo ufw allow 80/tcp
 sudo ufw allow 443/tcp
 sudo ufw allow 443/udp
 sudo ufw enable</code></pre></figure><p>Do not open 8181, 8787, 8788, 8789, 18877, 18878 or 18879 publicly. The Hostinger Compose variant publishes 18877, 18878 and 18879 only on the VPS loopback interface; the clean-VPS variant keeps its administration binding on loopback as documented in its Compose file.</p>
+<p>When the Hub profile is enabled, do not open 18880 or 18881 publicly either. nginx or Caddy is the only Internet-facing path.</p>
 <h2 id="start-the-online-stack">Start the online stack<a class="palo-doc-anchor" href="#start-the-online-stack" aria-label="Link to Start the online stack">#</a></h2><p>The supplied VPS currently runs nginx and Certbot for other services. On that host, use <code>compose.host-nginx.yaml</code>; it binds PALO only to loopback ports <code>18877</code> and <code>18878</code>, leaving the existing ports and sites untouched. The generic <code>compose.yaml</code> with Caddy is for a clean VPS where ports 80/443 are free.</p>
 <p>For the existing Hostinger VPS:</p>
 <figure class="palo-doc-code"><figcaption>bash code</figcaption><pre tabindex="0"><code class="language-bash">docker compose -f compose.host-nginx.yaml config
@@ -206,7 +228,9 @@ https://governance.paloframework.org/mcp
 https://governance.paloframework.org/mcp-guide-health
 https://governance.paloframework.org/mcp-guide
 https://governance.paloframework.org/gateway/v1/registry
-https://governance.paloframework.org/gateway/v1/actions/verify</code></pre></figure><h2 id="register-an-authority-profile">Register an authority profile<a class="palo-doc-anchor" href="#register-an-authority-profile" aria-label="Link to Register an authority profile">#</a></h2><p>Administrative registration is intentionally not exposed through the public reverse proxy. SSH into the VPS and use the loopback-only gateway. The current Hostinger deployment reads <code>PALO_ADMIN_URL=http://127.0.0.1:18877</code> from <code>.env</code>:</p>
+https://governance.paloframework.org/gateway/v1/actions/verify</code></pre></figure><p>After the separate Hub admission prerequisites, migration and opt-in profile are complete, the additional endpoints are:</p>
+<figure class="palo-doc-code"><figcaption>text code</figcaption><pre tabindex="0"><code class="language-text">https://governance.paloframework.org/hub/
+https://governance.paloframework.org/control-plane/health</code></pre></figure><h2 id="register-an-authority-profile">Register an authority profile<a class="palo-doc-anchor" href="#register-an-authority-profile" aria-label="Link to Register an authority profile">#</a></h2><p>Administrative registration is intentionally not exposed through the public reverse proxy. SSH into the VPS and use the loopback-only gateway. The current Hostinger deployment reads <code>PALO_ADMIN_URL=http://127.0.0.1:18877</code> from <code>.env</code>:</p>
 <figure class="palo-doc-code"><figcaption>bash code</figcaption><pre tabindex="0"><code class="language-bash">sh register-profile.sh \
   case-runtime-example \
   ../../../schemas/fixtures/palo-agentic-interface.valid.json</code></pre></figure><p>The supplied profile is development data. Before external testing, create a new versioned profile with the correct agent ID, case, tools, hosts, argument schemas, scopes and HMAC key ID.</p>
@@ -242,7 +266,8 @@ Tools: palo_explain_framework, palo_infer_governance_route, palo_plan_product_in
 <li>authenticated incident detail read only when addressed by incident ID;</li>
 <li>authenticated ledger verification.</li>
 </ul>
-<p>It blocks public agent/policy/executor/verifier registration, approval enumeration, approval resolution, incident enumeration, incident resolution and direct evidence submission. Every non-health Gateway route still relies on one coarse preview bearer token. The execution routes are provided only for isolated n8n/Dify evaluation with mock or reversible actions; they are not a browser API or a multi-tenant authorization boundary. A future Governance Hub must call a BFF that applies OIDC, tenant context, RBAC/ABAC, redaction and separation of duties rather than placing this bearer token in browser code or storage.</p>
+<p>It blocks public agent/policy/executor/verifier registration, approval enumeration, approval resolution, incident enumeration, incident resolution and direct evidence submission. Every non-health Gateway route still relies on one coarse preview bearer token. The execution routes are provided only for isolated n8n/Dify evaluation with mock or reversible actions; they are not a browser API or a multi-tenant authorization boundary.</p>
+<p>The opt-in Governance Hub now calls a separate BFF that implements OIDC, tenant context, RBAC, redaction, CSRF and author/reviewer separation without placing this bearer token in browser code or storage. The BFF accepts a production adapter only when its deployment configuration attests upstream tenant enforcement. The bundled Gateway does not meet that condition, so this implementation does not upgrade the Gateway or execution runtime to production.</p>
 <h2 id="next-implementation-gates">Next implementation gates<a class="palo-doc-anchor" href="#next-implementation-gates" aria-label="Link to Next implementation gates">#</a></h2><p>The online endpoint is ready for a controlled design-partner pilot with mock or reversible actions. The next gates are:</p>
 <ol>
 <li>install the packed <code>n8n-nodes-palo-ai</code> alpha in a disposable self-hosted n8n instance;</li>

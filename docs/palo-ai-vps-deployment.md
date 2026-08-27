@@ -30,11 +30,15 @@ The deployment deliberately uses both private and public addresses:
 | `http://127.0.0.1:18877` | Current VPS host only | Administrative profile registration over SSH |
 | `http://127.0.0.1:18878` | Current VPS host only | nginx-to-MCP proxy target |
 | `http://127.0.0.1:18879` | Current VPS host only | nginx-to-guide-MCP proxy target |
+| `http://127.0.0.1:18880` | Current VPS host only | nginx-to-Hub-control-plane target when the opt-in profile is enabled |
+| `http://127.0.0.1:18881` | Current VPS host only | nginx-to-Hub-UI target when the opt-in profile is enabled |
 | `http://palo-mcp:8788` | Docker network only | MCP service behind the TLS proxy |
 | `http://palo-guide-mcp:8789` | Docker network only | Read-only PALO Guide MCP service behind the TLS proxy |
 | `https://governance.paloframework.org/gateway` | Internet, authenticated | n8n/Dify adapter base URL |
 | `https://governance.paloframework.org/mcp` | Internet, authenticated | Streamable HTTP MCP endpoint |
 | `https://governance.paloframework.org/mcp-guide` | Internet, separately authenticated | Three read-only PALO Guide tools after this release is deployed |
+| `https://governance.paloframework.org/hub/` | Internet, organization-authenticated | Operational Governance Builder after external prerequisites and profile activation |
+| `https://governance.paloframework.org/control-plane/` | Internet, browser BFF only | OIDC session, adapter, simulation and configuration lifecycle APIs |
 
 `8181` is therefore not the public endpoint. It remains private even when the complete stack runs online on the VPS.
 
@@ -60,6 +64,8 @@ Both variants provide:
 - an explicit MCP host allowlist;
 - public blocking of registry administration, policy registration, approval resolution and direct evidence submission;
 - a VPS-local administration port bound only to `127.0.0.1`.
+
+They also contain opt-in `hub-migration` and `hub-control-plane` profiles. These profiles are inactive by default and require externally provisioned OIDC, managed PostgreSQL, a tenant-enforcing adapter and remote signer. Follow the [Governance Hub control-plane operations runbook](palo-governance-hub-operations.md); do not activate them with the bundled unscoped preview Gateway presented as a production tenant adapter.
 
 The OPA and Caddy versions were current stable releases when this file was prepared. Pin image digests as well as tags before a consequential deployment.
 
@@ -128,6 +134,8 @@ sudo ufw enable
 
 Do not open 8181, 8787, 8788, 8789, 18877, 18878 or 18879 publicly. The Hostinger Compose variant publishes 18877, 18878 and 18879 only on the VPS loopback interface; the clean-VPS variant keeps its administration binding on loopback as documented in its Compose file.
 
+When the Hub profile is enabled, do not open 18880 or 18881 publicly either. nginx or Caddy is the only Internet-facing path.
+
 ## Start the online stack
 
 The supplied VPS currently runs nginx and Certbot for other services. On that host, use `compose.host-nginx.yaml`; it binds PALO only to loopback ports `18877` and `18878`, leaving the existing ports and sites untouched. The generic `compose.yaml` with Caddy is for a clean VPS where ports 80/443 are free.
@@ -178,6 +186,13 @@ https://governance.paloframework.org/mcp-guide-health
 https://governance.paloframework.org/mcp-guide
 https://governance.paloframework.org/gateway/v1/registry
 https://governance.paloframework.org/gateway/v1/actions/verify
+```
+
+After the separate Hub admission prerequisites, migration and opt-in profile are complete, the additional endpoints are:
+
+```text
+https://governance.paloframework.org/hub/
+https://governance.paloframework.org/control-plane/health
 ```
 
 ## Register an authority profile
@@ -261,7 +276,9 @@ The public reverse proxy currently exposes:
 - authenticated incident detail read only when addressed by incident ID;
 - authenticated ledger verification.
 
-It blocks public agent/policy/executor/verifier registration, approval enumeration, approval resolution, incident enumeration, incident resolution and direct evidence submission. Every non-health Gateway route still relies on one coarse preview bearer token. The execution routes are provided only for isolated n8n/Dify evaluation with mock or reversible actions; they are not a browser API or a multi-tenant authorization boundary. A future Governance Hub must call a BFF that applies OIDC, tenant context, RBAC/ABAC, redaction and separation of duties rather than placing this bearer token in browser code or storage.
+It blocks public agent/policy/executor/verifier registration, approval enumeration, approval resolution, incident enumeration, incident resolution and direct evidence submission. Every non-health Gateway route still relies on one coarse preview bearer token. The execution routes are provided only for isolated n8n/Dify evaluation with mock or reversible actions; they are not a browser API or a multi-tenant authorization boundary.
+
+The opt-in Governance Hub now calls a separate BFF that implements OIDC, tenant context, RBAC, redaction, CSRF and author/reviewer separation without placing this bearer token in browser code or storage. The BFF accepts a production adapter only when its deployment configuration attests upstream tenant enforcement. The bundled Gateway does not meet that condition, so this implementation does not upgrade the Gateway or execution runtime to production.
 
 ## Next implementation gates
 

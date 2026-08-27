@@ -26,6 +26,7 @@
     "policywatcher-signals:check": "node scripts/check-policywatcher-signal-operations.mjs",
     "policywatcher-signals:test": "node --test packages/palo-policywatcher-operations/index.test.js governance-hub/src/policyWatcherReviewLedger.test.js",
     "governance-hub:verification:test": "node --test governance-hub/src/governanceVerification.test.js",
+    "governance-hub:operational-smoke": "node scripts/browser-hub-control-plane-smoke.mjs",
     "case:contribute": "node scripts/case-contribute.mjs",
     "activation:publish-issues": "node scripts/publish-activation-issues.mjs",
     "validate": "npm run validate:text-style && npm run external-evidence:check && npm run policywatcher-signals:test && npm run governance-hub:verification:test && npm run semantic:check && npm run semantic:validate && npm run semantic:release:check && node scripts/validate.mjs --root .",
@@ -34,6 +35,9 @@
     "palo:mcp": "node packages/palo-mcp-server/index.js",
     "palo:mcp:http": "node packages/palo-mcp-server/http.js",
     "palo:gateway": "node packages/palo-mcp-server/gateway.js",
+    "palo:hub:control-plane": "node packages/palo-governance-control-plane/index.js",
+    "palo:hub:migrate": "node packages/palo-governance-control-plane/migrate.js",
+    "palo:hub:control-plane:test": "node --test packages/palo-governance-control-plane/*.test.js",
     "palo:evidence:verify": "node packages/palo-mcp-server/verify-evidence.js",
     "production:admission": "node scripts/validate-production-profile.mjs",
     "demo:hands-on": "node examples/hands-on-demo/run-assurance-cycle.mjs",
@@ -46,7 +50,7 @@
     "package:hostinger": "node scripts/package-hostinger.mjs",
     "smoke": "node scripts/browser-smoke.mjs",
     "p0:bootstrap": "npm ci --prefix governance-hub --ignore-scripts && npm run opa:install",
-    "p0": "npm run p0:bootstrap && npm run validate:agentic && npm run validate && npm run build && npm run validate:dist && npm run build:check && npm run smoke"
+    "p0": "npm run p0:bootstrap && npm run palo:hub:control-plane:test && npm run validate:agentic && npm run validate && npm run build && npm run validate:dist && npm run build:check && npm run smoke && npm run governance-hub:operational-smoke"
   },
   "devDependencies": {
     "@modelcontextprotocol/client": "2.0.0",
@@ -67,6 +71,7 @@
     "hono": "4.13.2",
     "jose": "6.2.8",
     "n3": "2.1.1",
+    "pg": "8.16.3",
     "zod": "4.4.3"
   }
 }

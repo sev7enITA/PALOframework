@@ -40,6 +40,20 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:17.6-alpine
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: palo_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres -d palo_test"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -64,6 +78,11 @@ jobs:
       - name: Install checksum-verified OPA
         run: npm run opa:install
 
+      - name: Validate Governance Hub control plane and PostgreSQL RLS
+        env:
+          PALO_HUB_TEST_DATABASE_URL: postgresql://postgres:postgres@127.0.0.1:5432/palo_test
+        run: npm run palo:hub:control-plane:test
+
       - name: Validate agentic contracts, policy, runtime, protocol, and connectors
         run: npm run validate:agentic
 
@@ -81,6 +100,14 @@ jobs:
 
       - name: Browser smoke
         run: npm run smoke
+
+      - name: Governance Hub operational browser smoke
+        run: npm run governance-hub:operational-smoke
+
+      - name: Build Governance Hub deployment images
+        run: |
+          docker build -f deploy/vps/palo-ai/Dockerfile -t palo-runtime:ci .
+          docker build -f deploy/vps/palo-ai/Dockerfile.hub -t palo-hub-ui:ci .
 
       - name: Setup Pages
         if: github.event_name == 'push'

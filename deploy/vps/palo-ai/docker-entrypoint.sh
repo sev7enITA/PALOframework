@@ -16,6 +16,11 @@ if [ -n "${PALO_HMAC_KEYS_JSON_FILE:-}" ]; then
   export PALO_HMAC_KEYS_JSON
 fi
 
+if [ -n "${PALO_HUB_ADAPTER_TOKEN_FILE:-}" ]; then
+  PALO_HUB_ADAPTER_TOKEN="$(cat "$PALO_HUB_ADAPTER_TOKEN_FILE")"
+  export PALO_HUB_ADAPTER_TOKEN
+fi
+
 if [ "$(id -u)" = "0" ]; then
   exec setpriv --reuid=1000 --regid=1000 --init-groups "$@"
 fi

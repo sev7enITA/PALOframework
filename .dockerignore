@@ -1,0 +1,8 @@
+.git
+.github
+.cache
+**/node_modules
+**/dist
+deploy/vps/palo-ai/.env
+deploy/vps/palo-ai/secrets
+*.log

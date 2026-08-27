@@ -10,6 +10,7 @@
 		X-Content-Type-Options "nosniff"
 		Referrer-Policy "no-referrer"
 		Permissions-Policy "camera=(), microphone=(), geolocation=()"
+		Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'"
 		-Server
 	}
 
@@ -43,6 +44,18 @@
 	handle /mcp-guide {
 		rewrite * /mcp
 		reverse_proxy palo-guide-mcp:8789
+	}
+
+	handle /hub {
+		redir /hub/ 308
+	}
+
+	handle_path /hub/* {
+		reverse_proxy palo-hub-ui:8080
+	}
+
+	handle_path /control-plane/* {
+		reverse_proxy palo-hub-control-plane:8790
 	}
 
 	@blockedGateway {
