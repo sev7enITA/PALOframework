@@ -102,7 +102,7 @@ try {
   servers.push(controlPlaneServer);
   await waitFor(`${controlPlaneOrigin}/health`);
 
-  const vite = startChild("npm", ["run", "dev", "--prefix", "governance-hub", "--", "--host", "127.0.0.1", "--port", String(uiPort), "--strictPort"], { cwd: repositoryRoot, env: { ...process.env, VITE_PALO_CONTROL_PLANE_URL: controlPlaneOrigin } });
+  const vite = startChild(process.execPath, ["node_modules/vite/bin/vite.js", "--host", "127.0.0.1", "--port", String(uiPort), "--strictPort"], { cwd: path.join(repositoryRoot, "governance-hub"), env: { ...process.env, VITE_PALO_CONTROL_PLANE_URL: controlPlaneOrigin } });
   await waitFor(`${uiOrigin}/`).catch((error) => { throw new Error(`${error.message}\n${vite.output()}`); });
 
   browser = await chromium.launch({ headless: true });
