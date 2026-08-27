@@ -82,6 +82,7 @@ import {
   toolFor,
   validateAuthorityConfiguration,
 } from "./governanceVerification.js";
+import { createControlPlaneClient } from "./controlPlaneClient.js";
 
 const technicalNav = [
   ["setup", "Setup", RocketLaunch],
@@ -93,6 +94,9 @@ const technicalNav = [
   ["evidence", "External evidence", Pulse],
   ["integrations", "Integrations", PlugsConnected],
 ];
+
+const publicSiteBase = (import.meta.env?.VITE_PALO_PUBLIC_SITE_URL?.trim().replace(/\/$/, "") || "..");
+const publicSiteUrl = (path) => `${publicSiteBase}/${path}`;
 
 const executiveNav = [
   ["today", "Today", House],
@@ -137,7 +141,7 @@ const defaultAuthority = authorityDefaultsForAgent("Catalog Assistant", "n8n - S
 
 const toneFor = (value = "") => {
   const lowered = value.toLowerCase();
-  if (/verified|active|published|allowed|healthy|good|on track|complete/.test(lowered)) return "positive";
+  if (/verified|active|published|allowed|healthy|checked|discovered|good|on track|complete/.test(lowered)) return "positive";
   if (/denied|mismatch|high|failed|held|requires decision/.test(lowered)) return "negative";
   if (/attention|pending|approval|required|review|draft|medium|inconclusive/.test(lowered)) return "attention";
   return "neutral";
@@ -149,7 +153,7 @@ function StatusPill({ children, tone = toneFor(String(children)) }) {
 
 function AppMark() {
   return (
-    <a className="app-mark" href="../PALO_AIGovernance.html" aria-label="PALO-AI Governance Hub - return to public overview">
+    <a className="app-mark" href={publicSiteUrl("PALO_AIGovernance.html")} aria-label="PALO-AI Governance Hub - return to public overview">
       <div className="app-mark-icon"><ShieldCheck weight="duotone" /></div>
       <div><strong>PALO-AI</strong><span>Governance Hub</span></div>
     </a>
@@ -165,7 +169,7 @@ function RoleSwitch({ role, onChange }) {
   );
 }
 
-function Shell({ role, onRoleChange, view, onViewChange, children }) {
+function Shell({ role, onRoleChange, view, onViewChange, controlPlane, onLogin, onDevelopmentLogin, onLogout, children }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const navItems = role === "technical" ? technicalNav : executiveNav;
   return (
@@ -182,16 +186,18 @@ function Shell({ role, onRoleChange, view, onViewChange, children }) {
           ))}
         </nav>
         <nav className="public-links" aria-label="Public PALO resources">
-          <a href="../PALO_DocumentationLibrary.html"><FileText /><span>Documentation</span></a>
-          <a href="../PALO_AIProductionReadiness.html"><ShieldCheck /><span>Readiness</span></a>
+          <a href={publicSiteUrl("PALO_DocumentationLibrary.html")}><FileText /><span>Documentation</span></a>
+          <a href={publicSiteUrl("PALO_AIProductionReadiness.html")}><ShieldCheck /><span>Readiness</span></a>
         </nav>
         <div className="sidebar-brand">
           <img src={`${import.meta.env.BASE_URL}logo.webp`} alt="PALO Framework" />
         </div>
         <div className="profile-menu">
-          <div className="avatar">LV</div>
-          <div><strong>Local visitor</strong><span>No authenticated role</span></div>
+          <div className="avatar">{controlPlane.principal?.displayName?.split(/\s+/).map((item) => item[0]).join("").slice(0, 2).toUpperCase() || "LV"}</div>
+          <div><strong>{controlPlane.principal?.displayName || "Local visitor"}</strong><span>{controlPlane.authenticated ? `${controlPlane.principal.tenantId} | ${controlPlane.principal.roles.join(", ")}` : controlPlane.state === "static" ? "Static mode | no identity" : "No authenticated session"}</span></div>
         </div>
+        {controlPlane.state === "unauthenticated" && <button className="text-button session-action" onClick={controlPlane.capabilities?.mode === "development" ? onDevelopmentLogin : onLogin}><Key />{controlPlane.capabilities?.mode === "development" ? "Development login" : "Sign in with organization"}</button>}
+        {controlPlane.authenticated && <button className="text-button session-action" onClick={onLogout}><SignOut />Sign out</button>}
         <button className="mobile-close" onClick={() => setMobileOpen(false)} aria-label="Close navigation"><X /></button>
       </aside>
       {mobileOpen && <button className="sidebar-backdrop" onClick={() => setMobileOpen(false)} aria-label="Close navigation" />}
@@ -200,11 +206,11 @@ function Shell({ role, onRoleChange, view, onViewChange, children }) {
           <button className="mobile-menu" onClick={() => setMobileOpen(true)} aria-label="Open navigation"><List /></button>
           <div className="breadcrumb"><span>{role === "technical" ? "Workspace" : "Portfolio"}</span><ArrowRight /><strong>{navItems.find(([id]) => id === view)?.[1]}</strong></div>
           <div className="topbar-actions">
-            <StatusPill tone="attention">Developer preview</StatusPill>
+            <StatusPill tone={controlPlane.authenticated ? "positive" : "attention"}>{controlPlane.authenticated ? "Operator session" : controlPlane.state === "unavailable" ? "Control plane unavailable" : "Static preview"}</StatusPill>
             <div className="role-lens"><span>Workspace lens | not access control</span><RoleSwitch role={role} onChange={onRoleChange} /></div>
           </div>
         </header>
-        <div className="preview-boundary" role="note"><WarningCircle weight="fill" /><span><strong>Static verification console | Illustrative local preview</strong> | local checks are evidenced; remote runtime, identity, authority and publication remain unavailable without an operator BFF.</span></div>
+        <div className={`preview-boundary ${controlPlane.authenticated ? "operational-boundary" : ""}`} role="note">{controlPlane.authenticated ? <ShieldCheck weight="fill" /> : <WarningCircle weight="fill" />}<span>{controlPlane.authenticated ? <><strong>Authenticated operator control plane</strong> | tenant {controlPlane.principal.tenantId}; server operations are evidenced, while independent deployment assurance remains separate.</> : controlPlane.state === "unavailable" ? <><strong>Control plane configured but unavailable</strong> | {controlPlane.error}; actions fail back to the explicit local verifier only.</> : <><strong>Static verification console | Illustrative local preview</strong> | local checks are evidenced; remote runtime, identity, authority and publication remain unavailable without an operator BFF.</>}</span></div>
         <main className="main-content">{children}</main>
       </section>
     </div>
@@ -224,7 +230,7 @@ function PageHeader({ eyebrow, title, description, actions }) {
   );
 }
 
-function TechnicalSetup() {
+function TechnicalSetup({ controlPlane }) {
   const [step, setStep] = useState(0);
   const [connection, setConnection] = useState({ platform: CONNECTION_PLATFORMS[0].label, environment: CONNECTION_ENVIRONMENTS[0] });
   const [authority, setAuthority] = useState(defaultAuthority);
@@ -233,10 +239,34 @@ function TechnicalSetup() {
   const [connectionRunning, setConnectionRunning] = useState(false);
   const [simulationReceipt, setSimulationReceipt] = useState(null);
   const [simulationRunning, setSimulationRunning] = useState(false);
-  const [bundleReceipt, setBundleReceipt] = useState(null);
+  const [localBundleReceipt, setLocalBundleReceipt] = useState(null);
+  const [inventory, setInventory] = useState(null);
+  const [inventoryRunning, setInventoryRunning] = useState(false);
+  const [bundleRecord, setBundleRecord] = useState(null);
+  const [bundleQueue, setBundleQueue] = useState([]);
+  const [lifecycleRunning, setLifecycleRunning] = useState(false);
+  const [reviewRationale, setReviewRationale] = useState("Reviewed against the current ownership, authority and seven boundary scenarios.");
   const [actionError, setActionError] = useState("");
   const [purpose, setPurpose] = useState({ objective: "Maintain accurate catalog pricing", owner: "Commerce Platform", impact: "Material operational impact" });
   const [effect, setEffect] = useState({ precondition: "Catalog version is unchanged", expected: "Price changes to the proposed value", forbidden: "Tenant ID and product identity remain unchanged" });
+  const operational = controlPlane.authenticated;
+  const scopes = controlPlane.principal?.scopes ?? [];
+
+  useEffect(() => {
+    if (!operational) return;
+    const bundleId = new URLSearchParams(window.location.search).get("bundle");
+    if (!bundleId) return;
+    let cancelled = false;
+    controlPlane.client.getBundle(bundleId).then((record) => { if (!cancelled) setBundleRecord(record); }).catch((error) => { if (!cancelled) setActionError(error.message); });
+    return () => { cancelled = true; };
+  }, [operational, controlPlane.client]);
+
+  useEffect(() => {
+    if (!operational) return;
+    let cancelled = false;
+    controlPlane.client.listBundles().then((result) => { if (!cancelled) setBundleQueue(result.items); }).catch((error) => { if (!cancelled) setActionError(error.message); });
+    return () => { cancelled = true; };
+  }, [operational, controlPlane.client]);
 
   const move = (direction) => {
     setStep((current) => Math.max(0, Math.min(wizardSteps.length - 1, current + direction)));
@@ -257,12 +287,14 @@ function TechnicalSetup() {
 
   const invalidateAssurance = () => {
     setSimulationReceipt(null);
-    setBundleReceipt(null);
+    setLocalBundleReceipt(null);
+    setBundleRecord(null);
     setActionError("");
   };
   const updateConnection = (next) => {
     setConnection(next);
     setConnectionReceipt(null);
+    setInventory(null);
     invalidateAssurance();
   };
   const updateAuthority = (next) => { setAuthority(next); invalidateAssurance(); };
@@ -274,7 +306,7 @@ function TechnicalSetup() {
     setConnectionRunning(true);
     setActionError("");
     try {
-      setConnectionReceipt(await runConnectionCheck(connection));
+      setConnectionReceipt(operational ? await controlPlane.client.checkConnection(connection) : await runConnectionCheck(connection));
     } catch (error) {
       setActionError(error instanceof Error ? error.message : "Connection profile validation failed.");
     } finally {
@@ -282,12 +314,22 @@ function TechnicalSetup() {
     }
   };
 
+  const discoverInventory = async () => {
+    if (!operational) return;
+    setInventoryRunning(true);
+    setActionError("");
+    try { setInventory(await controlPlane.client.inventory(connection)); }
+    catch (error) { setActionError(error instanceof Error ? error.message : "Inventory discovery failed closed."); }
+    finally { setInventoryRunning(false); }
+  };
+
   const runBoundaryTest = async () => {
     setSimulationRunning(true);
     setActionError("");
     try {
-      setSimulationReceipt(await runBoundarySimulation(input));
-      setBundleReceipt(null);
+      setSimulationReceipt(operational ? await controlPlane.client.simulate(input) : await runBoundarySimulation(input));
+      setLocalBundleReceipt(null);
+      setBundleRecord(null);
     } catch (error) {
       setActionError(error instanceof Error ? error.message : "Boundary simulation failed.");
     } finally {
@@ -295,50 +337,81 @@ function TechnicalSetup() {
     }
   };
 
-  const generateBundle = async () => {
+  const generateLocalBundle = async () => {
     setActionError("");
     try {
       const generatedArtifact = await generateSandboxBundle(input, simulationReceipt);
-      setBundleReceipt(generatedArtifact.receipt);
+      setLocalBundleReceipt(generatedArtifact.receipt);
       downloadBlob(new Blob([`${JSON.stringify(generatedArtifact.bundle, null, 2)}\n`], { type: "application/json" }), `${generatedArtifact.bundle.version}.json`);
     } catch (error) {
       setActionError(error instanceof Error ? error.message : "The local sandbox bundle could not be generated.");
     }
   };
 
+  const updateBundleUrl = (record) => {
+    const url = new URL(window.location.href);
+    url.searchParams.set("bundle", record.bundleId);
+    window.history.replaceState(null, "", `${url.pathname}${url.search}${url.hash}`);
+  };
+
+  const lifecycleAction = async (action) => {
+    setLifecycleRunning(true);
+    setActionError("");
+    try {
+      let record;
+      if (action === "draft") record = await controlPlane.client.createDraft(input, simulationReceipt.actionId);
+      else if (action === "submit") record = await controlPlane.client.submitReview(bundleRecord.bundleId);
+      else if (action === "approve" || action === "reject") record = await controlPlane.client.review(bundleRecord.bundleId, action === "approve" ? "approved" : "rejected", reviewRationale);
+      else if (action === "publish") record = await controlPlane.client.publish(bundleRecord.bundleId);
+      if (record) {
+        setBundleRecord(record);
+        setBundleQueue((current) => [{ bundleId: record.bundleId, inputDigest: record.inputDigest, status: record.status, authorId: record.authorId, reviewerId: record.reviewerId, publisherId: record.publisherId, createdAt: record.createdAt, updatedAt: record.updatedAt }, ...current.filter((item) => item.bundleId !== record.bundleId)]);
+        updateBundleUrl(record);
+      }
+    } catch (error) { setActionError(error instanceof Error ? error.message : "The lifecycle transition failed closed."); }
+    finally { setLifecycleRunning(false); }
+  };
+
+  const loadBundle = async (bundleId) => {
+    setLifecycleRunning(true); setActionError("");
+    try { const record = await controlPlane.client.getBundle(bundleId); setBundleRecord(record); updateBundleUrl(record); setStep(7); }
+    catch (error) { setActionError(error instanceof Error ? error.message : "The bundle could not be loaded."); }
+    finally { setLifecycleRunning(false); }
+  };
+
   const stepStates = [
-    connectionReceipt ? "checked" : "pending",
-    authority.agent ? "configured" : "pending",
+    connectionReceipt?.result.status === "checked" ? "evidenced" : connectionReceipt ? "checked" : "pending",
+    operational ? inventory ? "evidenced" : "pending" : authority.agent ? "configured" : "pending",
     purpose.objective.trim() && purpose.owner.trim() ? "configured" : "blocked",
     validation.valid ? "configured" : "blocked",
     oversight ? "configured" : "pending",
     effect.precondition.trim() && effect.expected.trim() && effect.forbidden.trim() ? "configured" : "blocked",
     simulationReceipt?.result.status === "passed" ? "evidenced" : "pending",
-    bundleReceipt?.result.status === "generated-locally" ? "evidenced" : "pending",
+    bundleRecord?.status === "published" || localBundleReceipt?.result.status === "generated-locally" ? "evidenced" : bundleRecord ? bundleRecord.status : "pending",
   ];
 
   return (
     <>
-      <PageHeader eyebrow="Guided governance builder | evidence mode" title="Create a governed agent capability" description="Validate a reference configuration, simulate its boundaries, and export a local draft without implying a live connection or publication." />
+      <PageHeader eyebrow="Guided governance builder | evidence mode" title="Create a governed agent capability" description={operational ? "Use authenticated tenant operations to check an adapter, discover inventory, simulate server-side and move a digest-bound bundle through review and signed publication." : "Validate a reference configuration, simulate its boundaries, and export a local draft without implying a live connection or publication."} />
       <section className="verification-strip" aria-label="Setup verification boundary">
-        <div><span>Console mode</span><strong>Static | no credentials</strong></div>
-        <div><span>Remote adapter</span><strong className="attention-text">Not configured</strong></div>
+        <div><span>Console mode</span><strong>{operational ? `Operator | ${controlPlane.principal.tenantId}` : "Static | no credentials"}</strong></div>
+        <div><span>Remote adapter</span><strong className={connectionReceipt?.result.status === "checked" ? "positive-text" : "attention-text"}>{connectionReceipt?.result.status === "checked" ? "Checked with evidence" : operational ? "Not checked" : "Not configured"}</strong></div>
         <div><span>Current contract</span><strong className={validation.valid ? "positive-text" : "negative-text"}>{validation.valid ? "Locally valid" : "Blocked"}</strong></div>
-        <div><span>Publication</span><strong>Local file only</strong></div>
+        <div><span>Publication</span><strong>{bundleRecord?.status ?? (operational ? (controlPlane.capabilities?.lifecycle?.publication ? "Available after review" : "Signer unavailable") : "Local file only")}</strong></div>
       </section>
       {actionError && <div className="action-error" role="alert"><WarningCircle weight="fill" /><span>{actionError}</span></div>}
       <WizardProgress current={step} onSelect={setStep} states={stepStates} />
       <section className="builder-layout">
         <div className="builder-main">
           <div className="step-label">Step {step + 1} of {wizardSteps.length}</div>
-          {step === 0 && <ConnectStep value={connection} onChange={updateConnection} receipt={connectionReceipt} running={connectionRunning} onCheck={checkConnection} />}
-          {step === 1 && <DiscoverStep selectedAgent={authority.agent} onSelectAgent={(agent) => updateAuthority(authorityDefaultsForAgent(agent, authority.environment))} />}
+          {step === 0 && <ConnectStep value={connection} onChange={updateConnection} receipt={connectionReceipt} running={connectionRunning} onCheck={checkConnection} operational={operational} />}
+          {step === 1 && <DiscoverStep selectedAgent={authority.agent} onSelectAgent={(agent) => updateAuthority(authorityDefaultsForAgent(agent, authority.environment))} operational={operational} inventory={inventory} running={inventoryRunning} onDiscover={discoverInventory} />}
           {step === 2 && <PurposeStep value={purpose} onChange={updatePurpose} />}
           {step === 3 && <AuthorityStep value={authority} onChange={updateAuthority} findings={validation.findings} />}
           {step === 4 && <OversightStep value={oversight} onChange={updateOversight} />}
           {step === 5 && <OutcomeStep value={effect} onChange={updateEffect} tool={selectedTool} />}
-          {step === 6 && <SimulationStep receipt={simulationReceipt} running={simulationRunning} onRun={runBoundaryTest} findings={validation.findings} />}
-          {step === 7 && <PublishStep receipt={bundleReceipt} simulationReceipt={simulationReceipt} canGenerate={validation.valid && simulationReceipt?.result.status === "passed"} onGenerate={generateBundle} />}
+          {step === 6 && <SimulationStep receipt={simulationReceipt} running={simulationRunning} onRun={runBoundaryTest} findings={validation.findings} operational={operational} />}
+          {step === 7 && <PublishStep localReceipt={localBundleReceipt} bundle={bundleRecord} bundleQueue={bundleQueue} onLoadBundle={loadBundle} simulationReceipt={simulationReceipt} canGenerate={validation.valid && simulationReceipt?.result.status === "passed"} onGenerateLocal={generateLocalBundle} operational={operational} lifecycleRunning={lifecycleRunning} onLifecycle={lifecycleAction} scopes={scopes} principal={controlPlane.principal} rationale={reviewRationale} onRationale={setReviewRationale} publicationAvailable={controlPlane.capabilities?.lifecycle?.publication} stepUpRequired={controlPlane.capabilities?.controls?.stepUpForReviewAndPublish && !controlPlane.capabilities?.controls?.stepUpSatisfied} onStepUp={() => controlPlane.client.login(true)} />}
           <div className="wizard-actions">
             <button className="button button-secondary" disabled={step === 0} onClick={() => move(-1)}>Back</button>
             {step === 3 && <button className="button button-secondary" disabled={simulationRunning || !validation.valid} onClick={runBoundaryTest}><Flask />{simulationRunning ? "Testing..." : "Test this boundary"}</button>}
@@ -426,35 +499,44 @@ function ActionTrace({ receipt }) {
   );
 }
 
-function ConnectStep({ value, onChange, receipt, running, onCheck }) {
+function ConnectStep({ value, onChange, receipt, running, onCheck, operational }) {
   const profile = platformFor(value.platform);
   return (
     <div className="step-content">
       <h2>Where will this agent operate?</h2>
-      <p>Choose a versioned reference profile. This static console can validate the profile, but it cannot contact a private runtime or handle its credentials.</p>
+      <p>{operational ? "Choose a versioned profile. The control plane resolves only operator-configured server-side adapters; its credential never crosses into the browser." : "Choose a versioned reference profile. This static console can validate the profile, but it cannot contact a private runtime or handle its credentials."}</p>
       <FieldRow icon={PlugsConnected} label="Platform" value={value.platform} options={CONNECTION_PLATFORMS.map((item) => item.label)} onChange={(platform) => onChange({ ...value, platform })} />
       <FieldRow icon={Cloud} label="Environment" value={value.environment} options={CONNECTION_ENVIRONMENTS} onChange={(environment) => onChange({ ...value, environment })} />
       <div className="profile-boundary">
         <div><span>Reference path</span><strong>{profile?.integration}</strong></div>
         <div><span>Maturity</span><strong>{profile?.maturity}</strong></div>
-        <div><span>Live browser probe</span><strong>No</strong></div>
+        <div><span>Probe boundary</span><strong>{operational ? "Server-side only" : "No live probe"}</strong></div>
       </div>
       <div className="inline-test">
-        <div><strong>Validate connection profile</strong><span>Checks the local contract and reports the exact missing live dependency.</span></div>
+        <div><strong>{operational ? "Check configured adapter" : "Validate connection profile"}</strong><span>{operational ? "Runs one capped allowlisted health request and returns its digest and boundary." : "Checks the local contract and reports the exact missing live dependency."}</span></div>
         <button className="button button-secondary" onClick={onCheck} disabled={running}>{running ? "Checking..." : "Check connection"}</button>
-        {receipt && <StatusPill tone="attention">Not configured</StatusPill>}
+        {receipt && <StatusPill>{receipt.result.status}</StatusPill>}
       </div>
       <ActionTrace receipt={receipt} />
     </div>
   );
 }
 
-function DiscoverStep({ selectedAgent, onSelectAgent }) {
+function DiscoverStep({ selectedAgent, onSelectAgent, operational, inventory, running, onDiscover }) {
+  const counts = inventory?.counts;
   return (
     <div className="step-content">
-      <h2>Select a reference inventory record</h2>
-      <p>These records ship with the repository. No runtime discovery call has occurred; an operator BFF must replace this catalog with authorized inventory data.</p>
-      <div className="inventory-disclosure"><Database weight="duotone" /><div><strong>Repository reference catalog</strong><span>{AGENT_PROFILES.length} agents | {AGENT_PROFILES.reduce((total, agent) => total + agent.tools.length, 0)} tools | network requests: 0</span></div><StatusPill tone="attention">Not discovered</StatusPill></div>
+      <h2>{operational ? "Discover tenant inventory" : "Select a reference inventory record"}</h2>
+      <p>{operational ? "Discovery reads a redacted projection of the configured PALO registry. Tenant scope is claimed only when the adapter attests upstream enforcement. Repository records remain guided templates." : "These records ship with the repository. No runtime discovery call has occurred; an operator BFF must replace this catalog with authorized inventory data."}</p>
+      <div className={`inventory-disclosure ${inventory ? "inventory-live" : ""}`}><Database weight="duotone" /><div><strong>{inventory ? (inventory.tenantIsolation === "upstream-enforced" ? "Tenant-enforced registry projection" : "Live unscoped registry projection") : "Repository reference catalog"}</strong><span>{inventory ? `${counts.profiles} profiles | ${counts.policies} policies | ${counts.executors} executors | ${counts.verifiers} verifiers | digest ${inventory.responseDigest.slice(0, 12)}...` : `${AGENT_PROFILES.length} agents | ${AGENT_PROFILES.reduce((total, agent) => total + agent.tools.length, 0)} tools | network requests: 0`}</span></div><StatusPill tone={inventory?.tenantIsolation === "upstream-enforced" ? "positive" : "attention"}>{inventory ? (inventory.tenantIsolation === "upstream-enforced" ? "Tenant enforced" : "Unscoped") : "Not discovered"}</StatusPill></div>
+      {inventory && <p className="inventory-authority-boundary"><ShieldCheck />{inventory.authorityBoundary}</p>}
+      {operational && <button className="button button-secondary discover-action" onClick={onDiscover} disabled={running}>{running ? "Discovering..." : "Discover inventory"}</button>}
+      {inventory && <div className="live-inventory-grid" aria-label="Live registry records">
+        {inventory.inventory.profiles.map((record) => <article key={`${record.caseId}-${record.agentId}-${record.profileVersion}`}><Robot /><div><strong>{record.agentId}</strong><span>Profile {record.profileVersion} | {record.status}</span><code>{record.profileDigest?.slice(0, 12)}...</code></div></article>)}
+        {inventory.inventory.profiles.length === 0 && <div className="empty-state"><Database /><strong>No tenant profiles returned</strong><span>A successful empty projection does not establish platform-wide absence.</span></div>}
+      </div>}
+      {inventory?.operationReceipt && <ActionTrace receipt={inventory.operationReceipt} />}
+      <p className="reference-divider">Guided repository templates</p>
       <div className="choice-list">
         {AGENT_PROFILES.map((agent) => (
           <button key={agent.id} className={selectedAgent === agent.label ? "selected" : ""} onClick={() => onSelectAgent(agent.label)} aria-pressed={selectedAgent === agent.label}>
@@ -538,13 +620,13 @@ function OutcomeStep({ value, onChange, tool }) {
   );
 }
 
-function SimulationStep({ receipt, running, onRun, findings }) {
+function SimulationStep({ receipt, running, onRun, findings, operational }) {
   const scenarios = receipt?.result?.scenarios ?? [];
   const blocked = findings.some((item) => item.severity === "error");
   return (
     <div className="step-content">
       <h2>Prove the control before generating a bundle</h2>
-      <p>The suite derives expected and adverse paths from the current selections. It evaluates contract behavior locally and never calls a protected tool.</p>
+      <p>The suite derives expected and adverse paths from the current selections. It evaluates contract behavior {operational ? "inside the authenticated control plane" : "locally"} and never calls a protected tool.</p>
       <button className="button button-primary" onClick={onRun} disabled={running || blocked}><Flask />{running ? "Running assurance suite..." : "Run assurance suite"}</button>
       {blocked && <ValidationFindings findings={findings} />}
       <div className={`test-results ${receipt?.result?.status ?? "idle"}`}>
@@ -557,20 +639,52 @@ function SimulationStep({ receipt, running, onRun, findings }) {
   );
 }
 
-function PublishStep({ receipt, simulationReceipt, canGenerate, onGenerate }) {
+function PublishStep({ localReceipt, bundle, bundleQueue, onLoadBundle, simulationReceipt, canGenerate, onGenerateLocal, operational, lifecycleRunning, onLifecycle, scopes, principal, rationale, onRationale, publicationAvailable, stepUpRequired, onStepUp }) {
+  const canSubmit = bundle?.status === "draft" && (bundle.authorId === principal?.subject || scopes.includes("publish"));
+  const canReview = bundle?.status === "in-review" && scopes.includes("review") && bundle.authorId !== principal?.subject && !stepUpRequired;
+  const canPublish = bundle?.status === "approved" && scopes.includes("publish") && publicationAvailable && !stepUpRequired;
   return (
     <div className="step-content">
-      <h2>Generate a local sandbox bundle</h2>
-      <p>This public console has no registry write API, signing key, authenticated publisher or environment authorization. It can only download a non-authoritative local artifact.</p>
+      <h2>{operational ? "Review and publish a governed bundle" : "Generate a local sandbox bundle"}</h2>
+      <p>{operational ? "The control plane persists a digest-bound draft, enforces a separate reviewer, and calls the remote signer only after approval. Publication registers configuration; it does not authorize or execute an agent action." : "This public console has no registry write API, signing key, authenticated publisher or environment authorization. It can only download a non-authoritative local artifact."}</p>
+      {operational && bundleQueue.length > 0 && <details className="bundle-queue" open={!bundle}>
+        <summary><Stack />Tenant bundle queue <StatusPill tone="neutral">{bundleQueue.length}</StatusPill><CaretDown /></summary>
+        <div>{bundleQueue.map((record) => <button key={record.bundleId} className={bundle?.bundleId === record.bundleId ? "selected" : ""} onClick={() => onLoadBundle(record.bundleId)} disabled={lifecycleRunning}><span><strong>{record.bundleId}</strong><small>{record.authorId} | {new Date(record.updatedAt).toLocaleString()}</small><code>{record.inputDigest.slice(0, 12)}...</code></span><StatusPill>{record.status}</StatusPill></button>)}</div>
+      </details>}
       <div className="publish-summary">
         <div>{simulationReceipt?.result.status === "passed" ? <CheckCircle weight="fill" /> : <WarningCircle weight="fill" />}<span>Current-input simulation receipt</span><StatusPill tone={simulationReceipt?.result.status === "passed" ? "positive" : "attention"}>{simulationReceipt?.result.status ?? "missing"}</StatusPill></div>
-        <div><WarningCircle weight="fill" /><span>Runtime signature</span><StatusPill tone="attention">Unavailable</StatusPill></div>
-        <div><WarningCircle weight="fill" /><span>Registry publication</span><StatusPill tone="attention">Not performed</StatusPill></div>
+        <div>{publicationAvailable ? <ShieldCheck weight="fill" /> : <WarningCircle weight="fill" />}<span>Remote signature</span><StatusPill tone={publicationAvailable ? "positive" : "attention"}>{publicationAvailable ? "Configured" : "Unavailable"}</StatusPill></div>
+        <div>{bundle?.status === "published" ? <CheckCircle weight="fill" /> : <WarningCircle weight="fill" />}<span>Registry lifecycle</span><StatusPill tone={bundle?.status === "published" ? "positive" : "attention"}>{bundle?.status ?? "Not started"}</StatusPill></div>
       </div>
-      <button className="button button-primary" onClick={onGenerate} disabled={!canGenerate}><DownloadSimple />Generate and download local bundle</button>
+      {bundle && <details className="persisted-bundle-review" open={bundle.status === "in-review"}>
+        <summary><ClipboardText weight="bold" /><span><strong>Inspect the exact persisted bundle</strong><small>Review the content bound to {bundle.bundle.bundleDigest.slice(0, 16)}... before deciding.</small></span><StatusPill tone={bundle.status === "published" ? "positive" : "attention"}>{bundle.status}</StatusPill><CaretDown /></summary>
+        <div className="persisted-bundle-body">
+          <div className="trace-metrics">
+            <div><span>Author</span><strong>{bundle.authorId}</strong></div>
+            <div><span>Reviewer</span><strong>{bundle.reviewerId ?? "Not assigned"}</strong></div>
+            <div><span>Input digest</span><code>{bundle.inputDigest}</code></div>
+            <div><span>Bundle digest</span><code>{bundle.bundle.bundleDigest}</code></div>
+          </div>
+          <div className="trace-boundaries"><strong>Decision boundary</strong><span>The review applies only to this immutable bundle digest. It does not execute an agent action or establish deployment assurance.</span></div>
+          <details className="trace-raw"><summary>View persisted contract and signature<CaretDown /></summary><pre>{JSON.stringify({ lifecycle: { status: bundle.status, authorId: bundle.authorId, reviewerId: bundle.reviewerId, publisherId: bundle.publisherId, createdAt: bundle.createdAt, updatedAt: bundle.updatedAt }, bundle: bundle.bundle, signature: bundle.signature }, null, 2)}</pre></details>
+        </div>
+      </details>}
+      {operational && <div className="lifecycle-actions">
+        {stepUpRequired && ["in-review", "approved"].includes(bundle?.status) && <button className="button button-secondary" onClick={onStepUp}><Key />Reauthenticate for this decision</button>}
+        {!bundle && <button className="button button-primary" onClick={() => onLifecycle("draft")} disabled={!canGenerate || lifecycleRunning}><Database />{lifecycleRunning ? "Saving..." : "Save authenticated draft"}</button>}
+        {canSubmit && <button className="button button-primary" onClick={() => onLifecycle("submit")} disabled={lifecycleRunning}><ArrowRight />Submit for separate review</button>}
+        {bundle?.status === "in-review" && <label className="text-field review-rationale"><span>Review rationale</span><textarea value={rationale} onChange={(event) => onRationale(event.target.value)} disabled={!canReview} /></label>}
+        {canReview && <><button className="button button-primary" onClick={() => onLifecycle("approve")} disabled={lifecycleRunning}><CheckCircle />Approve digest</button><button className="button button-secondary" onClick={() => onLifecycle("reject")} disabled={lifecycleRunning}><XCircle />Reject digest</button></>}
+        {bundle?.status === "in-review" && !canReview && <p className="publish-blocker">{bundle.authorId === principal?.subject ? "A different authenticated principal with reviewer scope must decide this bundle. Share the current URL; it contains the non-secret bundle identifier." : !scopes.includes("review") ? "This identity does not have reviewer scope." : "Recent step-up authentication is required before recording the decision."}</p>}
+        {canPublish && <button className="button button-primary" onClick={() => onLifecycle("publish")} disabled={lifecycleRunning}><RocketLaunch />Sign remotely and publish</button>}
+        {bundle?.status === "approved" && !canPublish && <p className="publish-blocker">Publication requires publisher scope and an available remote signer.</p>}
+      </div>}
+      <button className={`button ${operational ? "button-secondary local-download" : "button-primary"}`} onClick={onGenerateLocal} disabled={!canGenerate}><DownloadSimple />Generate and download local bundle</button>
       {!canGenerate && <p className="publish-blocker">Run the assurance suite for the current valid configuration first.</p>}
-      {receipt && <div className="success-banner local-only"><CheckCircle weight="fill" /><div><strong>Local bundle generated</strong><span>Nothing was published. Digest: {receipt.result.bundleDigest.slice(0, 16)}...</span></div></div>}
-      <ActionTrace receipt={receipt} />
+      {bundle && <div className={`success-banner ${bundle.status === "published" ? "" : "local-only"}`}><CheckCircle weight="fill" /><div><strong>Bundle {bundle.status}</strong><span>ID {bundle.bundleId} | digest {bundle.bundle.bundleDigest.slice(0, 16)}...{bundle.signature ? ` | key ${bundle.signature.keyId}` : ""}</span></div></div>}
+      {localReceipt && <div className="success-banner local-only"><CheckCircle weight="fill" /><div><strong>Local bundle generated</strong><span>Nothing was published. Digest: {localReceipt.result.bundleDigest.slice(0, 16)}...</span></div></div>}
+      <ActionTrace receipt={bundle?.operationReceipt} />
+      <ActionTrace receipt={localReceipt} />
     </div>
   );
 }
@@ -752,7 +866,7 @@ function SignalOperationsRegistry() {
             <td><label className="sr-only" htmlFor={`review-${entry.signalId}`}>Review state for {entry.signalId}</label><select id={`review-${entry.signalId}`} value={state} disabled={entry.transportStatus !== "active"} onChange={(event) => updateReview(entry, event.target.value)}>{POLICYWATCHER_REVIEW_STATES.map((value) => <option key={value} value={value}>{value.replaceAll("-", " ")}</option>)}</select></td>
             <td>{formatDate(entry.lastValidatedAt)}</td>
             <td><code>{entry.signalDigest.slice(0, 12)}...</code></td>
-            <td><div className="table-actions">{entry.signal && <button className="text-button" onClick={() => downloadSignal(entry)}>Download</button>}<a className="text-button" href="../PALO_AssessmentPath.html">Review path</a></div></td>
+            <td><div className="table-actions">{entry.signal && <button className="text-button" onClick={() => downloadSignal(entry)}>Download</button>}<a className="text-button" href={publicSiteUrl("PALO_AssessmentPath.html")}>Review path</a></div></td>
           </tr>;
         })}</tbody></table></div>
       )}
@@ -855,6 +969,8 @@ function ExternalEvidenceView() {
 
 export function App() {
   const initial = useMemo(initialRoute, []);
+  const controlPlaneClient = useMemo(createControlPlaneClient, []);
+  const [controlPlane, setControlPlane] = useState({ state: controlPlaneClient.configured ? "loading" : "static", configured: controlPlaneClient.configured, authenticated: false, client: controlPlaneClient });
   const [role, setRole] = useState(initial.role);
   const [technicalView, setTechnicalView] = useState(initial.role === "technical" ? initial.view : "setup");
   const [executiveView, setExecutiveView] = useState(initial.role === "executive" ? initial.view : "today");
@@ -862,6 +978,9 @@ export function App() {
   const [approvals, setApprovals] = useState(initialApprovalRows);
   const [incidents, setIncidents] = useState(initialIncidentRows);
   const [decisions, setDecisions] = useState(initialDecisionQueue);
+
+  const refreshControlPlane = async () => setControlPlane({ ...(await controlPlaneClient.boot()), client: controlPlaneClient });
+  useEffect(() => { let cancelled = false; controlPlaneClient.boot().then((state) => { if (!cancelled) setControlPlane({ ...state, client: controlPlaneClient }); }); return () => { cancelled = true; }; }, [controlPlaneClient]);
 
   const view = role === "technical" ? technicalView : executiveView;
   const setView = role === "technical" ? setTechnicalView : setExecutiveView;
@@ -884,7 +1003,7 @@ export function App() {
   let content;
   if (role === "technical") {
     if (selectedExecution) content = <ExecutionDetail onBack={() => setSelectedExecution(null)} />;
-    else if (view === "setup") content = <TechnicalSetup />;
+    else if (view === "setup") content = <TechnicalSetup controlPlane={controlPlane} />;
     else if (["registry", "policies", "executions", "approvals", "incidents"].includes(view)) content = <DataPage type={view} onExecutionSelect={setSelectedExecution} approvals={approvals} onApproval={resolveApproval} incidents={incidents} onIncident={resolveIncident} />;
     else if (view === "evidence") content = <ExternalEvidenceView />;
     else content = <IntegrationsView />;
@@ -896,5 +1015,9 @@ export function App() {
     else content = <ReportsView />;
   }
 
-  return <Shell role={role} onRoleChange={changeRole} view={view} onViewChange={(nextView) => { setView(nextView); setSelectedExecution(null); }}>{content}</Shell>;
+  const login = () => controlPlaneClient.login();
+  const developmentLogin = async () => { await controlPlaneClient.developmentLogin(); await refreshControlPlane(); };
+  const logout = async () => { await controlPlaneClient.logout(); await refreshControlPlane(); };
+
+  return <Shell role={role} onRoleChange={changeRole} view={view} onViewChange={(nextView) => { setView(nextView); setSelectedExecution(null); }} controlPlane={controlPlane} onLogin={login} onDevelopmentLogin={developmentLogin} onLogout={logout}>{content}</Shell>;
 }

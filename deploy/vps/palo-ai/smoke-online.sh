@@ -43,5 +43,15 @@ printf '%s' "$guide_initialize" | grep -F 'serverInfo' > /dev/null
 curl --fail --silent --show-error \
   -H "Authorization: Bearer $gateway_token" \
   "https://${PALO_DOMAIN}/gateway/v1/registry"
+
+if [ "${PALO_HUB_ENABLED:-false}" = "true" ]; then
+  hub_health="$(curl --fail --silent --show-error "https://${PALO_DOMAIN}/control-plane/health")"
+  printf '%s' "$hub_health" | grep -F '"service":"palo-governance-hub-control-plane"' > /dev/null
+  printf '%s' "$hub_health" | grep -F '"schemaCurrent":true' > /dev/null
+  printf '%s' "$hub_health" | grep -F '"productionUse":false' > /dev/null
+  curl --fail --silent --show-error "https://${PALO_DOMAIN}/hub/" | grep -F '<div id="root"></div>' > /dev/null
+  printf '\nGovernance Hub UI and control-plane health passed; independent production assurance was not inferred.\n'
+  unset hub_health
+fi
 printf '\nOnline operational and guide MCP health, authentication, and gateway checks passed.\n'
 unset gateway_token guide_mcp_token guide_initialize

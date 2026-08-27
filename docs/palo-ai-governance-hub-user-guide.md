@@ -199,6 +199,8 @@ The current gateway can provide a basic `GET /health` response. Dependency healt
 
 Do not interpret `locally valid` as connected. A live state is permitted only when an operator-controlled BFF supplies an authenticated, adapter-specific health and conformance receipt.
 
+The opt-in control-plane build implements that BFF boundary. After OIDC login, **Check connection** resolves only a server-configured adapter, makes one capped request and shows its timestamp, latency, response digest and exact negative space. The browser never receives the adapter credential. A result of `checked` describes the observed health response; it does not mean production-admitted.
+
 ### 6.2 Discover or register inventory
 
 Open **Inventory** and work through:
@@ -210,7 +212,9 @@ Open **Inventory** and work through:
 5. Tools, operations, resources, and network destinations.
 6. Business owners, impact classes, and environments.
 
-For the current preview, the registry can be read through `GET /v1/registry` or `palo_get_registry`. Registration exists for agents, policies, executors, and verifiers, but authenticated publishers, promotion, signed bundles, and conformance health are not yet implemented.
+For the public preview, the registry can be read through `GET /v1/registry` or `palo_get_registry`. The operational Hub obtains a strict redacted projection through its BFF. It shows `Tenant enforced` only when the selected adapter is configured as `upstream-enforced`; the bundled preview Gateway is displayed as `Unscoped` and must not be used as a production tenant boundary.
+
+The final Setup step in the operational Hub now supports a configuration lifecycle: save a digest-bound draft, submit it, require a different reviewer, require recent step-up authentication in production, and invoke a remote signer only after approval. That publication registers a governance configuration bundle. It does not authorize or execute an agent action and it does not mark any outcome verified.
 
 ### 6.3 Build governance from intent
 

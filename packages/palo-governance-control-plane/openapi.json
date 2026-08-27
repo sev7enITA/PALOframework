@@ -1,0 +1,138 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "PALO Governance Hub control plane",
+    "version": "1.0.0",
+    "description": "Browser-safe API for authenticated adapter checks, deterministic governance simulation and digest-bound configuration lifecycle. Availability does not establish independent production assurance."
+  },
+  "servers": [{ "url": "/control-plane" }],
+  "paths": {
+    "/health": {
+      "get": { "operationId": "getHealth", "security": [], "responses": { "200": { "description": "Dependency observation", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Health" } } } }, "503": { "description": "Dependency observation with degraded status", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Health" } } } } } }
+    },
+    "/openapi.json": {
+      "get": { "operationId": "getOpenApi", "security": [], "responses": { "200": { "description": "This contract", "content": { "application/json": { "schema": { "type": "object" } } } } } }
+    },
+    "/auth/login": {
+      "get": { "operationId": "startLogin", "security": [], "parameters": [{ "name": "returnTo", "in": "query", "schema": { "type": "string", "format": "uri", "maxLength": 2048 } }, { "name": "stepUp", "in": "query", "schema": { "type": "boolean" } }], "responses": { "302": { "description": "Redirect to the configured OIDC authorization endpoint" } } }
+    },
+    "/auth/callback": {
+      "get": { "operationId": "completeLogin", "security": [], "parameters": [{ "name": "state", "in": "query", "required": true, "schema": { "type": "string" } }, { "name": "code", "in": "query", "required": true, "schema": { "type": "string" } }], "responses": { "302": { "description": "Opaque session created and browser redirected to an allowlisted return target" }, "400": { "$ref": "#/components/responses/Rejected" }, "401": { "$ref": "#/components/responses/Rejected" } } }
+    },
+    "/v1/capabilities": {
+      "get": { "operationId": "getCapabilities", "security": [], "responses": { "200": { "description": "Observable control-plane capabilities and assurance boundary", "content": { "application/json": { "schema": { "type": "object", "required": ["format", "schemaVersion", "mode", "controls", "adapters", "lifecycle", "admission"] } } } } } }
+    },
+    "/v1/session": {
+      "get": { "operationId": "getSession", "security": [], "responses": { "200": { "description": "Authenticated or anonymous session state", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Session" } } } } } }
+    },
+    "/v1/logout": {
+      "post": { "operationId": "logout", "security": [{ "cookieAuth": [] }], "parameters": [{ "$ref": "#/components/parameters/Csrf" }], "responses": { "200": { "description": "Session invalidated" }, "401": { "$ref": "#/components/responses/Unauthenticated" }, "403": { "$ref": "#/components/responses/Rejected" } } }
+    },
+    "/v1/setup/connection-check": {
+      "post": { "operationId": "checkConnection", "security": [{ "cookieAuth": [] }], "parameters": [{ "$ref": "#/components/parameters/Csrf" }], "requestBody": { "required": true, "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Connection" } } } }, "responses": { "200": { "description": "Observed or explicitly unconfigured connection receipt", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Receipt" } } } }, "401": { "$ref": "#/components/responses/Unauthenticated" }, "403": { "$ref": "#/components/responses/Rejected" } } }
+    },
+    "/v1/setup/inventory": {
+      "post": { "operationId": "discoverInventory", "security": [{ "cookieAuth": [] }], "parameters": [{ "$ref": "#/components/parameters/Csrf" }], "requestBody": { "required": true, "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Connection" } } } }, "responses": { "200": { "description": "Strict redacted registry projection", "content": { "application/json": { "schema": { "type": "object", "required": ["format", "schemaVersion", "adapterId", "tenantIsolation", "observedAt", "responseDigest", "counts", "inventory", "authorityBoundary", "operationReceipt"] } } } }, "409": { "$ref": "#/components/responses/Rejected" } } }
+    },
+    "/v1/setup/simulations": {
+      "post": { "operationId": "runSimulation", "security": [{ "cookieAuth": [] }], "parameters": [{ "$ref": "#/components/parameters/Csrf" }], "requestBody": { "required": true, "content": { "application/json": { "schema": { "$ref": "#/components/schemas/SetupInput" } } } }, "responses": { "200": { "description": "Persisted deterministic server simulation receipt", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Receipt" } } } }, "422": { "$ref": "#/components/responses/Rejected" } } }
+    },
+    "/v1/setup/bundles": {
+      "get": {
+        "operationId": "listBundles",
+        "security": [{ "cookieAuth": [] }],
+        "parameters": [
+          { "name": "status", "in": "query", "schema": { "enum": ["all", "draft", "in-review", "approved", "rejected", "published"], "default": "all" } },
+          { "name": "limit", "in": "query", "schema": { "type": "integer", "minimum": 1, "maximum": 100, "default": 50 } },
+          { "name": "before", "in": "query", "schema": { "type": "string", "format": "date-time" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "Tenant-scoped bundle work queue",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": ["items", "count", "nextBefore"],
+                  "properties": {
+                    "items": { "type": "array", "maxItems": 100, "items": { "$ref": "#/components/schemas/BundleQueueItem" } },
+                    "count": { "type": "integer" },
+                    "nextBefore": { "type": ["string", "null"], "format": "date-time" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createBundleDraft",
+        "security": [{ "cookieAuth": [] }],
+        "parameters": [{ "$ref": "#/components/parameters/Csrf" }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["input", "simulationReceiptId"],
+                "properties": {
+                  "input": { "$ref": "#/components/schemas/SetupInput" },
+                  "simulationReceiptId": { "type": "string", "maxLength": 200 }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Digest-bound draft",
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/BundleRecord" } } }
+          },
+          "409": { "$ref": "#/components/responses/Rejected" }
+        }
+      }
+    },
+    "/v1/setup/bundles/{bundleId}": {
+      "get": { "operationId": "getBundle", "security": [{ "cookieAuth": [] }], "parameters": [{ "$ref": "#/components/parameters/BundleId" }], "responses": { "200": { "description": "Tenant-bound bundle", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/BundleRecord" } } } }, "404": { "$ref": "#/components/responses/Rejected" } } }
+    },
+    "/v1/setup/bundles/{bundleId}/submit-review": {
+      "post": { "operationId": "submitBundleReview", "security": [{ "cookieAuth": [] }], "parameters": [{ "$ref": "#/components/parameters/BundleId" }, { "$ref": "#/components/parameters/Csrf" }], "responses": { "200": { "description": "Bundle transitioned to in-review", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/BundleRecord" } } } }, "409": { "$ref": "#/components/responses/Rejected" } } }
+    },
+    "/v1/setup/bundles/{bundleId}/review": {
+      "post": { "operationId": "reviewBundle", "security": [{ "cookieAuth": [] }], "parameters": [{ "$ref": "#/components/parameters/BundleId" }, { "$ref": "#/components/parameters/Csrf" }], "requestBody": { "required": true, "content": { "application/json": { "schema": { "type": "object", "additionalProperties": false, "required": ["decision", "rationale"], "properties": { "decision": { "enum": ["approved", "rejected"] }, "rationale": { "type": "string", "minLength": 12, "maxLength": 2000 } } } } }, "responses": { "200": { "description": "Separate identity review recorded", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/BundleRecord" } } } }, "401": { "description": "Session missing or step-up required", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Error" } } } }, "403": { "$ref": "#/components/responses/Rejected" } } } }
+    },
+    "/v1/setup/bundles/{bundleId}/publish": {
+      "post": { "operationId": "publishBundle", "security": [{ "cookieAuth": [] }], "parameters": [{ "$ref": "#/components/parameters/BundleId" }, { "$ref": "#/components/parameters/Csrf" }], "responses": { "200": { "description": "Approved bundle remotely signed and atomically published", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/BundleRecord" } } } }, "401": { "description": "Session missing or step-up required", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Error" } } } }, "409": { "$ref": "#/components/responses/Rejected" }, "502": { "$ref": "#/components/responses/Unavailable" } } }
+    },
+    "/v1/audit": {
+      "get": { "operationId": "getAuditEvents", "security": [{ "cookieAuth": [] }], "parameters": [{ "name": "limit", "in": "query", "schema": { "type": "integer", "minimum": 1, "maximum": 500, "default": 100 } }], "responses": { "200": { "description": "Tenant-bound audit events", "content": { "application/json": { "schema": { "type": "object", "required": ["events", "count"], "properties": { "events": { "type": "array", "maxItems": 500, "items": { "type": "object" } }, "count": { "type": "integer" } } } } }, "403": { "$ref": "#/components/responses/Rejected" } } } }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "cookieAuth": { "type": "apiKey", "in": "cookie", "name": "__Host-palo_hub_session", "description": "Opaque HttpOnly production session cookie. Development uses an unprefixed cookie on loopback only." }
+    },
+    "parameters": {
+      "Csrf": { "name": "x-palo-csrf", "in": "header", "required": true, "schema": { "type": "string", "minLength": 32, "maxLength": 256 } },
+      "BundleId": { "name": "bundleId", "in": "path", "required": true, "schema": { "type": "string", "pattern": "^bundle-[a-f0-9-]{36}$" } }
+    },
+    "responses": {
+      "Unauthenticated": { "description": "Authenticated session required", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Error" } } } },
+      "Rejected": { "description": "Request failed closed", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Error" } } } },
+      "Unavailable": { "description": "A required dependency is unavailable or invalid", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Error" } } } }
+    },
+    "schemas": {
+      "Error": { "type": "object", "additionalProperties": false, "required": ["error", "requestId"], "properties": { "error": { "type": "string" }, "message": { "type": "string" }, "requestId": { "type": "string" } } },
+      "Health": { "type": "object", "required": ["status", "service", "version", "mode", "persistence", "oidcConfigured", "adapterCount", "signerConfigured", "productionUse", "assurance"], "properties": { "status": { "enum": ["ok", "degraded"] }, "service": { "const": "palo-governance-hub-control-plane" }, "version": { "type": "string" }, "mode": { "enum": ["development", "staging", "production"] }, "persistence": { "type": "object" }, "oidcConfigured": { "type": "boolean" }, "adapterCount": { "type": "integer" }, "signerConfigured": { "type": "boolean" }, "productionUse": { "const": false }, "assurance": { "type": "string" } } },
+      "Session": { "oneOf": [{ "type": "object", "additionalProperties": false, "required": ["authenticated"], "properties": { "authenticated": { "const": false } } }, { "type": "object", "required": ["authenticated", "principal", "csrfToken", "expiresAt"], "properties": { "authenticated": { "const": true }, "principal": { "$ref": "#/components/schemas/Principal" }, "csrfToken": { "type": "string" }, "expiresAt": { "type": "string", "format": "date-time" } } }] },
+      "Principal": { "type": "object", "required": ["subject", "tenantId", "displayName", "roles", "scopes"], "properties": { "subject": { "type": "string" }, "tenantId": { "type": "string" }, "displayName": { "type": "string" }, "roles": { "type": "array", "items": { "type": "string" } }, "scopes": { "type": "array", "items": { "type": "string" } } } },
+      "Connection": { "type": "object", "additionalProperties": false, "required": ["platform", "environment"], "properties": { "platform": { "enum": ["n8n self-hosted", "MCP client", "Custom application", "Dify"] }, "environment": { "enum": ["Sandbox", "Development", "Isolated pilot"] } } },
+      "SetupInput": { "type": "object", "additionalProperties": false, "required": ["connection", "authority", "oversight", "purpose", "effect"], "properties": { "connection": { "$ref": "#/components/schemas/Connection" }, "authority": { "type": "object", "additionalProperties": false, "required": ["agent", "environment", "tool", "operation", "resource", "limit", "network"], "properties": { "agent": { "type": "string", "maxLength": 500 }, "environment": { "type": "string", "maxLength": 500 }, "tool": { "type": "string", "maxLength": 500 }, "operation": { "type": "string", "maxLength": 500 }, "resource": { "type": "string", "maxLength": 500 }, "limit": { "type": "string", "maxLength": 500 }, "network": { "type": "string", "maxLength": 500 } } }, "oversight": { "enum": ["automatic", "approval", "always"] }, "purpose": { "type": "object", "additionalProperties": false, "required": ["objective", "owner", "impact"], "properties": { "objective": { "type": "string", "maxLength": 2000 }, "owner": { "type": "string", "maxLength": 300 }, "impact": { "type": "string", "maxLength": 200 } } }, "effect": { "type": "object", "additionalProperties": false, "required": ["precondition", "expected", "forbidden"], "properties": { "precondition": { "type": "string", "maxLength": 2000 }, "expected": { "type": "string", "maxLength": 2000 }, "forbidden": { "type": "string", "maxLength": 2000 } } } } },
+      "Receipt": { "type": "object", "required": ["format", "schemaVersion", "actionId", "action", "authoritative", "evidenceClass", "startedAt", "completedAt", "durationMs", "inputDigest", "adapter", "network", "steps", "result", "boundaries", "whatDidNotHappen"], "properties": { "format": { "const": "palo-governance-action-receipt" }, "schemaVersion": { "const": "1.0.0" }, "actionId": { "type": "string" }, "action": { "type": "string" }, "authoritative": { "type": "boolean" }, "evidenceClass": { "type": "string" }, "startedAt": { "type": "string", "format": "date-time" }, "completedAt": { "type": "string", "format": "date-time" }, "durationMs": { "type": "integer", "minimum": 0 }, "inputDigest": { "type": "string", "pattern": "^[a-f0-9]{64}$" }, "adapter": { "type": "string" }, "network": { "type": "object" }, "steps": { "type": "array", "items": { "type": "object" } }, "result": { "type": "object", "required": ["status", "summary"] }, "boundaries": { "type": "array", "items": { "type": "string" } }, "whatDidNotHappen": { "type": "array", "items": { "type": "string" } } } },
+      "BundleQueueItem": { "type": "object", "required": ["bundleId", "inputDigest", "status", "authorId", "createdAt", "updatedAt"], "properties": { "bundleId": { "type": "string" }, "inputDigest": { "type": "string", "pattern": "^[a-f0-9]{64}$" }, "status": { "enum": ["draft", "in-review", "approved", "rejected", "published"] }, "authorId": { "type": "string" }, "reviewerId": { "type": ["string", "null"] }, "publisherId": { "type": "string" }, "createdAt": { "type": "string", "format": "date-time" }, "updatedAt": { "type": "string", "format": "date-time" } } },
+      "BundleRecord": { "allOf": [{ "$ref": "#/components/schemas/BundleQueueItem" }, { "type": "object", "required": ["bundle"], "properties": { "bundle": { "type": "object" }, "signature": { "type": ["object", "null"] }, "operationReceipt": { "$ref": "#/components/schemas/Receipt" } } }] }
+    }
+  }
+}

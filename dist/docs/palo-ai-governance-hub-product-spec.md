@@ -321,13 +321,13 @@ The current gateway uses one shared bearer token and a single runtime context. T
 | Ledger verification | `GET /v1/evidence/verify-ledger`; `palo_verify_ledger` | Prototype | Scoped export, background verification, external anchoring, retention, KMS/HSM signature verification |
 | Executive portfolio | No aggregate API | Not implemented | Read model, inventory denominator, KPI service, ownership graph, snapshots and trends |
 | Risk decisions/exceptions | No dedicated API | Not implemented | Separate risk-decision contract and workflow; do not overload Action Claim approvals |
-| Configuration lifecycle | Registry write APIs only | Not implemented | Draft/review/publish/rollback state machine, diff, signatures, promotion policy |
+| Configuration lifecycle | Hub control-plane `/v1/setup/bundles` lifecycle | Implemented production candidate | Rollback and version diff remain; deployment requires OIDC, PostgreSQL RLS and remote signer evidence |
 | Notifications | No service | Not implemented | Email/push/webhook delivery, signed deep links, retries, escalation and preference management |
-| User/session administration | No human identity API | Not implemented | OIDC, SCIM/JIT as selected, sessions, MFA/step-up, RBAC/ABAC and tenant administration |
+| User/session administration | Hub OIDC code+PKCE, opaque session and tenant/role scopes | Implemented production candidate | SCIM/JIT and tenant administration remain deployment/product work; production requires configured MFA/step-up evidence |
 
 ## 11. Backend capabilities required for the Hub
 
-### Priority 0 - required before an Internet-facing multi-user GUI
+### Priority 0 - implemented in the opt-in control plane; deployment evidence still required
 
 - OIDC-based human authentication with secure server-side sessions.
 - Tenant, project, environment, and resource scopes attached to every request.
@@ -337,6 +337,8 @@ The current gateway uses one shared bearer token and a single runtime context. T
 - Pagination, filtering, deterministic sorting, and field-level redaction for list APIs.
 - Authenticated reviewer assignment and immutable identity on approval/incident transitions.
 - Audit events for all administrative reads of sensitive evidence and all writes.
+
+The implementation lives in `packages/palo-governance-control-plane/`. It fails closed in production without OIDC, PostgreSQL, an exact HTTPS origin, an upstream tenant-enforcing adapter, step-up ACR values and a remote signer. Implementation presence is not deployment assurance; use the [control-plane operations runbook](palo-governance-hub-operations.md).
 
 ### Priority 1 - needed for a useful technical preview
 

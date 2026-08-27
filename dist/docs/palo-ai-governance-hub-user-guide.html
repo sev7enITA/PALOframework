@@ -296,6 +296,7 @@
 </ul>
 <p>The current gateway can provide a basic <code>GET /health</code> response. Dependency health and historical telemetry require new APIs. The public static console does not call that endpoint: <strong>Check connection</strong> validates the selected repository profile, reports zero network requests and identifies the missing server-side adapter. Expand <strong>What happened</strong> to inspect the input digest, ordered steps, network activity, boundaries, raw receipt and the explicit list of actions that did not occur.</p>
 <p>Do not interpret <code>locally valid</code> as connected. A live state is permitted only when an operator-controlled BFF supplies an authenticated, adapter-specific health and conformance receipt.</p>
+<p>The opt-in control-plane build implements that BFF boundary. After OIDC login, <strong>Check connection</strong> resolves only a server-configured adapter, makes one capped request and shows its timestamp, latency, response digest and exact negative space. The browser never receives the adapter credential. A result of <code>checked</code> describes the observed health response; it does not mean production-admitted.</p>
 <h3 id="62-discover-or-register-inventory">6.2 Discover or register inventory<a class="palo-doc-anchor" href="#62-discover-or-register-inventory" aria-label="Link to 6.2 Discover or register inventory">#</a></h3><p>Open <strong>Inventory</strong> and work through:</p>
 <ol>
 <li>Agents and Authority Profiles.</li>
@@ -305,7 +306,8 @@
 <li>Tools, operations, resources, and network destinations.</li>
 <li>Business owners, impact classes, and environments.</li>
 </ol>
-<p>For the current preview, the registry can be read through <code>GET /v1/registry</code> or <code>palo_get_registry</code>. Registration exists for agents, policies, executors, and verifiers, but authenticated publishers, promotion, signed bundles, and conformance health are not yet implemented.</p>
+<p>For the public preview, the registry can be read through <code>GET /v1/registry</code> or <code>palo_get_registry</code>. The operational Hub obtains a strict redacted projection through its BFF. It shows <code>Tenant enforced</code> only when the selected adapter is configured as <code>upstream-enforced</code>; the bundled preview Gateway is displayed as <code>Unscoped</code> and must not be used as a production tenant boundary.</p>
+<p>The final Setup step in the operational Hub now supports a configuration lifecycle: save a digest-bound draft, submit it, require a different reviewer, require recent step-up authentication in production, and invoke a remote signer only after approval. That publication registers a governance configuration bundle. It does not authorize or execute an agent action and it does not mark any outcome verified.</p>
 <h3 id="63-build-governance-from-intent">6.3 Build governance from intent<a class="palo-doc-anchor" href="#63-build-governance-from-intent" aria-label="Link to 6.3 Build governance from intent">#</a></h3><p>Open <strong>Govern &gt; New governed action type</strong>.</p>
 <h4 id="step-1---purpose-and-ownership">Step 1 - Purpose and ownership<a class="palo-doc-anchor" href="#step-1---purpose-and-ownership" aria-label="Link to Step 1 - Purpose and ownership">#</a></h4><p>Define:</p>
 <ul>

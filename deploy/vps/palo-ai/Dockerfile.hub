@@ -1,0 +1,20 @@
+FROM node:22-bookworm-slim AS build
+
+WORKDIR /opt/palo/governance-hub
+COPY governance-hub/package.json governance-hub/package-lock.json ./
+RUN npm ci --ignore-scripts && npm cache clean --force
+COPY governance-hub/ ./
+COPY data/ /opt/palo/data/
+
+ARG VITE_PALO_CONTROL_PLANE_URL=/control-plane
+ARG VITE_PALO_PUBLIC_SITE_URL=https://sev7enita.github.io/PALOframework
+ENV VITE_PALO_CONTROL_PLANE_URL=${VITE_PALO_CONTROL_PLANE_URL} \
+    VITE_PALO_PUBLIC_SITE_URL=${VITE_PALO_PUBLIC_SITE_URL}
+RUN npm run build
+
+FROM caddy:2.11.4-alpine
+ENV HOME=/tmp
+COPY --from=build --chown=caddy:caddy /opt/palo/governance-hub/dist /srv
+USER caddy
+EXPOSE 8080
+CMD ["caddy", "file-server", "--root", "/srv", "--listen", ":8080"]

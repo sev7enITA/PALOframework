@@ -118,4 +118,6 @@ test("setup source contains no timer-based readiness or fake publication copy", 
   assert.doesNotMatch(source, /PALO-AI discovered three agents/);
   assert.match(source, /What did not happen/);
   assert.match(source, /Generate and download local bundle/);
+  assert.match(source, /Inspect the exact persisted bundle/);
+  assert.match(source, /The review applies only to this immutable bundle digest/);
 });

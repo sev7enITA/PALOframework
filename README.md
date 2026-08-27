@@ -257,6 +257,18 @@ npm run palo:gateway
 
 The canonical contracts are under `schemas/`; executable runtime code is under `packages/palo-mcp-server/`; the synchronized MCP catalog and connector examples are under `examples/agentic-interface/`.
 
+### Operate the Governance Hub control plane
+
+`packages/palo-governance-control-plane/` contains the production-candidate browser BFF for the Setup Builder: OIDC/PKCE sessions, tenant/role binding, CSRF/origin controls, server-side adapters, deterministic simulation, PostgreSQL RLS, atomic audit, separate review and remote signed publication. It is not enabled in the public GitHub Pages build and it does not make the SQLite execution runtime production-ready.
+
+Run its local tests with:
+
+```bash
+npm run palo:hub:control-plane:test
+```
+
+Deployment is opt-in and fail-closed. Follow the [Governance Hub control-plane operations runbook](docs/palo-governance-hub-operations.md) to provision external OIDC, managed PostgreSQL, a tenant-enforcing adapter and KMS/HSM signer before enabling the Compose profile.
+
 ## Repository Structure
 
 ```text

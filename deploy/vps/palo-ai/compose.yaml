@@ -134,6 +134,96 @@ services:
       retries: 5
       start_period: 15s
 
+  palo-hub-migrate:
+    profiles: [hub-migration]
+    build:
+      context: ../../..
+      dockerfile: deploy/vps/palo-ai/Dockerfile
+    command: ["node", "packages/palo-governance-control-plane/migrate.js"]
+    read_only: true
+    cap_drop: [ALL]
+    security_opt:
+      - no-new-privileges:true
+    tmpfs:
+      - /tmp:size=16m,mode=1777
+    environment:
+      PALO_HUB_MODE: production
+      PALO_HUB_DATABASE_URL_FILE: /run/secrets/palo_hub_migration_database_url
+      PALO_HUB_DATABASE_APPLICATION_ROLE: ${PALO_HUB_DATABASE_APPLICATION_ROLE:-}
+    secrets:
+      - palo_hub_migration_database_url
+    networks: [edge]
+
+  palo-hub-control-plane:
+    profiles: [hub-control-plane]
+    build:
+      context: ../../..
+      dockerfile: deploy/vps/palo-ai/Dockerfile
+    command: ["node", "packages/palo-governance-control-plane/index.js"]
+    restart: unless-stopped
+    read_only: true
+    cap_drop: [ALL]
+    security_opt:
+      - no-new-privileges:true
+    tmpfs:
+      - /tmp:size=32m,mode=1777
+    environment:
+      PALO_HUB_MODE: production
+      PALO_HUB_HOST: 0.0.0.0
+      PALO_HUB_PORT: 8790
+      PALO_HUB_PUBLIC_URL: https://${PALO_DOMAIN}/control-plane
+      PALO_HUB_ALLOWED_ORIGINS: https://${PALO_DOMAIN}
+      PALO_HUB_DATABASE_URL_FILE: /run/secrets/palo_hub_database_url
+      PALO_HUB_OIDC_ISSUER: ${PALO_HUB_OIDC_ISSUER:-}
+      PALO_HUB_OIDC_AUTHORIZATION_ENDPOINT: ${PALO_HUB_OIDC_AUTHORIZATION_ENDPOINT:-}
+      PALO_HUB_OIDC_TOKEN_ENDPOINT: ${PALO_HUB_OIDC_TOKEN_ENDPOINT:-}
+      PALO_HUB_OIDC_JWKS_URI: ${PALO_HUB_OIDC_JWKS_URI:-}
+      PALO_HUB_OIDC_CLIENT_ID: ${PALO_HUB_OIDC_CLIENT_ID:-}
+      PALO_HUB_OIDC_AUDIENCE: ${PALO_HUB_OIDC_AUDIENCE:-}
+      PALO_HUB_OIDC_CLIENT_SECRET_FILE: /run/secrets/palo_hub_oidc_client_secret
+      PALO_HUB_STEP_UP_ACR_VALUES: ${PALO_HUB_STEP_UP_ACR_VALUES:-}
+      PALO_HUB_ADAPTERS_JSON: "${PALO_HUB_ADAPTERS_JSON:-[]}"
+      PALO_HUB_ADAPTER_TOKEN_FILE: /run/secrets/palo_hub_adapter_token
+      PALO_HUB_SIGNER_URL: ${PALO_HUB_SIGNER_URL:-}
+      PALO_HUB_SIGNER_TOKEN_FILE: /run/secrets/palo_hub_signer_token
+      PALO_HUB_RUN_MIGRATIONS: "false"
+      PALO_HUB_TRUST_PROXY: "true"
+    secrets:
+      - palo_hub_database_url
+      - palo_hub_oidc_client_secret
+      - palo_hub_adapter_token
+      - palo_hub_signer_token
+    networks: [backend, edge]
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:8790/health').then(r=>r.json().then(j=>{if(!r.ok||j.status!=='ok'||!j.persistence.schemaCurrent)process.exit(1)})).catch(()=>process.exit(1))"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+
+  palo-hub-ui:
+    profiles: [hub-control-plane]
+    build:
+      context: ../../..
+      dockerfile: deploy/vps/palo-ai/Dockerfile.hub
+      args:
+        VITE_PALO_CONTROL_PLANE_URL: /control-plane
+        VITE_PALO_PUBLIC_SITE_URL: https://sev7enita.github.io/PALOframework
+    restart: unless-stopped
+    read_only: true
+    cap_drop: [ALL]
+    security_opt:
+      - no-new-privileges:true
+    tmpfs:
+      - /tmp:size=16m,mode=1777
+    networks: [backend]
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://127.0.0.1:8080/"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
   caddy:
     image: ${CADDY_IMAGE:-caddy:2.11.4-alpine}
     restart: unless-stopped
@@ -174,6 +264,16 @@ secrets:
     file: ./secrets/guide-mcp-token
   palo_hmac_keys:
     file: ./secrets/hmac-keys.json
+  palo_hub_database_url:
+    file: ./secrets/hub-database-url
+  palo_hub_migration_database_url:
+    file: ./secrets/hub-migration-database-url
+  palo_hub_oidc_client_secret:
+    file: ./secrets/hub-oidc-client-secret
+  palo_hub_adapter_token:
+    file: ./secrets/hub-adapter-token
+  palo_hub_signer_token:
+    file: ./secrets/hub-signer-token
 
 volumes:
   palo_data:
