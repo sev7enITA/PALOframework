@@ -112,7 +112,7 @@ function snippet(record, queryTokens) {
   const normalized = normalize(content);
   const positions = queryTokens.map((token) => normalized.indexOf(token)).filter((index) => index >= 0);
   const start = Math.max(0, (positions.length ? Math.min(...positions) : 0) - 160);
-  return `${start ? "…" : ""}${content.slice(start, start + 700)}${start + 700 < content.length ? "…" : ""}`;
+  return `${start ? "..." : ""}${content.slice(start, start + 700)}${start + 700 < content.length ? "..." : ""}`;
 }
 
 export class PaloKnowledgeBase {
