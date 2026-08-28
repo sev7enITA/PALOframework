@@ -67,7 +67,7 @@ Superseded local-image SBOMs are intentionally excluded from the release branch.
 - Live unapproved Host and Origin requests both return HTTP 403 before authentication with a controlled JSON-RPC error. Redacted evidence: [edge Host/Origin denial on 28 August 2026](edge-host-origin-denial-2026-08-28.json).
 - nginx now returns the required 429 status for pre-authentication rate limiting; a 25-request burst produced both admitted 401 challenges and 11 edge 429 responses.
 - Sample nginx and container logs contain request method/path/status and startup state only; they do not contain Authorization headers or MCP bodies.
-- The tokenless synthetic monitor passed public health invariants, OAuth metadata and anonymous denial with 132/109/43 ms probe latencies. Redacted evidence: [synthetic monitor on 28 August 2026](synthetic-monitor-2026-08-28.json). A 15-minute GitHub Actions canary is prepared but becomes active only after the workflow reaches the default branch; central one-minute alerting remains an operations gate.
+- The tokenless synthetic monitor passed public health invariants, OAuth metadata and anonymous denial with 132/109/43 ms probe latencies. Redacted evidence: [synthetic monitor on 28 August 2026](synthetic-monitor-2026-08-28.json). The 15-minute GitHub Actions canary is active on the default branch, and manual run [33141882612](https://github.com/sev7enITA/PALOframework/actions/runs/33141882612) passed against the deployed service on commit `18ab62306b3811b8b3861299a63b24ae6d2c6892`; central one-minute alerting remains an operations gate.
 
 ## Known local blockers
 
