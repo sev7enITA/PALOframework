@@ -1,0 +1,62 @@
+{
+  "schemaVersion": "1.0.0",
+  "deployedAt": "2026-08-28T04:19:29Z",
+  "hostname": "guide-api.paloframework.org",
+  "resource": "https://guide-api.paloframework.org/mcp-guide",
+  "release": {
+    "tag": "reader-v1.0.0",
+    "image": "ghcr.io/sev7enita/palo-knowledge-reader",
+    "digest": "sha256:950a3625148c47587741f4b10a126acbba19f1429e2ade6bdcd6b2aa70b15915",
+    "sourceCommit": "68153b957df919f0b4481930a3b1d068933d7539",
+    "workflowRun": "https://github.com/sev7enITA/PALOframework/actions/runs/33141000528",
+    "registryAnonymousPullVerified": true,
+    "platforms": [
+      "linux/amd64",
+      "linux/arm64"
+    ],
+    "trivyHighCriticalFindings": 0,
+    "sbom": "SPDX JSON",
+    "signature": "Sigstore keyless",
+    "admission": "demo owner self-review; independent production approval pending"
+  },
+  "container": {
+    "health": "healthy",
+    "configuredImageEqualsDigest": true,
+    "localImageIdEqualsDigest": true,
+    "user": "65532:65532",
+    "readOnlyRootFilesystem": true,
+    "capabilitiesDropped": [
+      "ALL"
+    ],
+    "noNewPrivileges": true,
+    "pidsLimit": 128
+  },
+  "publicVerification": {
+    "result": "PASS",
+    "serviceVersion": "1.0.0",
+    "bundleSha256": "5b6543618a51029e22ab6ee0aaa38c3ffe157215ae91b0ba6582992fad435cbb",
+    "healthStatus": 200,
+    "healthLatencyMs": 219,
+    "oauthMetadataLatencyMs": 101,
+    "anonymousChallengeStatus": 401,
+    "anonymousChallengeLatencyMs": 48,
+    "unapprovedHostStatus": 403,
+    "unapprovedOriginStatus": 403,
+    "oversizeBodyStatus": 413,
+    "rateLimitBurst": {
+      "requests": 25,
+      "unauthorized": 11,
+      "rateLimited": 14
+    },
+    "hsts": "max-age=31536000; includeSubDomains",
+    "tlsSubject": "CN=guide-api.paloframework.org",
+    "tlsIssuer": "Let's Encrypt YE2",
+    "tlsNotAfter": "2026-11-25T14:49:32Z"
+  },
+  "rollback": {
+    "previousEnvironmentSnapshotCreated": true,
+    "previousImageRetained": true
+  },
+  "secretsRetained": false,
+  "qualification": "production-candidate"
+}
