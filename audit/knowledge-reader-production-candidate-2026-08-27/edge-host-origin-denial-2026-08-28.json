@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "1.0.0",
+  "testedAt": "2026-08-28T02:37:44Z",
+  "publicEndpoint": "https://guide-api.paloframework.org/mcp-guide",
+  "tests": [
+    {
+      "name": "unapproved-host",
+      "requestHost": "untrusted.example.invalid",
+      "status": 403,
+      "jsonRpcCode": -32000,
+      "result": "PASS"
+    },
+    {
+      "name": "unapproved-origin",
+      "requestOrigin": "https://untrusted.example.invalid",
+      "status": 403,
+      "jsonRpcCode": -32000,
+      "result": "PASS"
+    }
+  ],
+  "secretsRetained": false,
+  "authorizationUsed": false,
+  "overall": "PASS"
+}

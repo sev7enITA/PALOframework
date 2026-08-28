@@ -1,0 +1,64 @@
+# Use this complete HTTP virtual host only when deploying on another VPS with a
+# new dedicated hostname such as guide-api.paloframework.org. Replace the
+# server_name, install it as a new nginx site, then let Certbot add HTTPS.
+
+server {
+    listen 80;
+    listen [::]:80;
+    server_name guide-api.paloframework.org;
+
+    access_log /var/log/nginx/palo-guide-mcp-access.log;
+    error_log /var/log/nginx/palo-guide-mcp-error.log warn;
+    add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
+
+    location = /mcp-guide-health {
+        proxy_pass http://127.0.0.1:18879/health;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_connect_timeout 5s;
+        proxy_read_timeout 10s;
+    }
+
+    location = /.well-known/oauth-protected-resource/mcp-guide {
+        proxy_pass http://127.0.0.1:18879/.well-known/oauth-protected-resource/mcp-guide;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_connect_timeout 5s;
+        proxy_read_timeout 10s;
+    }
+
+    location = /mcp-guide {
+        limit_req zone=palo_guide_mcp burst=10 nodelay;
+        limit_req_status 429;
+        client_max_body_size 64k;
+        proxy_pass http://127.0.0.1:18879/mcp;
+        proxy_http_version 1.1;
+        proxy_buffering off;
+        proxy_connect_timeout 5s;
+        proxy_read_timeout 30s;
+        proxy_send_timeout 30s;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+
+    # Compatibility alias; keep /mcp-guide as the OAuth resource/audience.
+    location = /mcp-guide/mcp {
+        limit_req zone=palo_guide_mcp burst=10 nodelay;
+        limit_req_status 429;
+        client_max_body_size 64k;
+        proxy_pass http://127.0.0.1:18879/mcp;
+        proxy_http_version 1.1;
+        proxy_buffering off;
+        proxy_connect_timeout 5s;
+        proxy_read_timeout 30s;
+        proxy_send_timeout 30s;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+
+    location / {
+        return 404;
+    }
+}

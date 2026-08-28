@@ -11,10 +11,21 @@ import {
   authorizedToolNames,
   createPaloAuth,
   hasScope,
+  isHttpResponse,
   oidcConfigurationFromEnvironment
 } from "./auth.js";
 import { GovernanceRuntime } from "./core.js";
 import { createAuthenticatedMcpApp, listenMcpApp } from "./http.js";
+
+test("HTTP responses are recognized across Fetch implementation realms", () => {
+  assert.equal(isHttpResponse(new Response(null, { status: 401 })), true);
+  assert.equal(isHttpResponse({
+    status: 401,
+    headers: { get() {} },
+    async arrayBuffer() { return new ArrayBuffer(0); }
+  }), true);
+  assert.equal(isHttpResponse({ clientId: "palo-client", scopes: [] }), false);
+});
 
 async function oidcFixture(t) {
   const issuer = "https://identity.example.test";
@@ -30,24 +41,46 @@ async function oidcFixture(t) {
   });
   const port = await new Promise((resolve) => server.listen(0, "127.0.0.1", () => resolve(server.address().port)));
   t.after(() => new Promise((resolve) => server.close(resolve)));
-  const sign = (claims = {}) => new SignJWT(claims)
-    .setProtectedHeader({ alg: "RS256", kid: jwk.kid })
+  const sign = (claims = {}, protectedHeader = {}) => new SignJWT(claims)
+    .setProtectedHeader({ alg: "RS256", kid: jwk.kid, ...protectedHeader })
     .setIssuer(issuer)
     .setAudience(audience)
     .setSubject(claims.sub || "reviewer-42")
     .setIssuedAt()
     .setExpirationTime("5m")
     .sign(privateKey);
+  const signExpired = (claims = {}, protectedHeader = {}) => {
+    const now = Math.floor(Date.now() / 1000);
+    return new SignJWT(claims)
+      .setProtectedHeader({ alg: "RS256", kid: jwk.kid, ...protectedHeader })
+      .setIssuer(issuer)
+      .setAudience(audience)
+      .setSubject(claims.sub || "reviewer-42")
+      .setIssuedAt(now - 600)
+      .setExpirationTime(now - 300)
+      .sign(privateKey);
+  };
   return {
     issuer,
     audience,
     sign,
+    signExpired,
     oidc: { issuer, audience, resourceUrl: audience, jwksUri: `http://127.0.0.1:${port}/jwks`, algorithms: ["RS256"] }
   };
 }
 
 test("data-assurance tools are covered by explicit least-privilege scopes", () => {
   const expected = {
+    palo_explain_framework: "palo:guide",
+    palo_infer_governance_route: "palo:guide",
+    palo_plan_product_integration: "palo:guide",
+    palo_list_knowledge_sources: "palo:knowledge:read",
+    palo_search_knowledge: "palo:knowledge:read",
+    palo_get_knowledge_record: "palo:knowledge:read",
+    palo_submit_knowledge_draft: "palo:knowledge:write",
+    palo_list_knowledge_drafts: "palo:knowledge:write",
+    palo_get_knowledge_draft: "palo:knowledge:write",
+    palo_review_knowledge_draft: "palo:knowledge:review",
     palo_import_context_evidence: "palo:admin",
     palo_list_context_evidence: "palo:read",
     palo_register_data_fitness_policy: "palo:admin",
@@ -62,7 +95,25 @@ test("data-assurance tools are covered by explicit least-privilege scopes", () =
     palo_list_assurance_signals: "palo:audit"
   };
   for (const [tool, scope] of Object.entries(expected)) assert.equal(TOOL_SCOPE_REQUIREMENTS[tool], scope);
-  assert.equal(Object.keys(TOOL_SCOPE_REQUIREMENTS).length, 38);
+  assert.equal(Object.keys(TOOL_SCOPE_REQUIREMENTS).length, 45);
+});
+
+test("knowledge scopes filter Reader and Curator least-privilege catalogs", () => {
+  const reader = { scopes: ["palo:guide", "palo:knowledge:read"] };
+  assert.deepEqual(authorizedToolNames(reader).sort(), [
+    "palo_explain_framework",
+    "palo_get_knowledge_record",
+    "palo_infer_governance_route",
+    "palo_list_knowledge_sources",
+    "palo_plan_product_integration",
+    "palo_search_knowledge"
+  ]);
+  const curator = { scopes: ["palo:guide", "palo:knowledge:read", "palo:knowledge:write", "palo:knowledge:review"] };
+  const curatorTools = authorizedToolNames(curator);
+  assert.equal(curatorTools.length, 10);
+  assert.ok(curatorTools.includes("palo_submit_knowledge_draft"));
+  assert.ok(curatorTools.includes("palo_review_knowledge_draft"));
+  assert.ok(!curatorTools.includes("palo_execute_governed_action"));
 });
 
 test("OIDC access tokens are issuer/audience bound and roles expand to least-privilege scopes", async (t) => {
@@ -79,6 +130,13 @@ test("OIDC access tokens are issuer/audience bound and roles expand to least-pri
   const tools = authorizedToolNames(result);
   assert.ok(tools.includes("palo_resolve_approval"));
   assert.ok(tools.includes("palo_verify_ledger"));
+
+  const expiredToken = await fixture.signExpired({ azp: "palo-review-ui", roles: ["palo-reviewer"] });
+  const expiredResult = await auth.authenticate(new Request(fixture.audience, {
+    headers: { authorization: `Bearer ${expiredToken}` }
+  }));
+  assert.ok(expiredResult instanceof Response);
+  assert.equal(expiredResult.status, 401);
   assert.ok(!tools.includes("palo_execute_governed_action"));
 });
 
@@ -89,6 +147,39 @@ test("OIDC tenant binding supports an explicitly configured claim name", async (
   const result = await auth.authenticate(new Request(fixture.audience, { headers: { authorization: `Bearer ${token}` } }));
   assert.ok(!(result instanceof Response));
   assert.equal(result.extra.tenantId, "tenant-configured");
+});
+
+test("strict OIDC policy binds access-token type, configured client and tenant", async (t) => {
+  const fixture = await oidcFixture(t);
+  const strictOidc = {
+    ...fixture.oidc,
+    tokenType: "at+jwt",
+    allowedClientIds: ["approved-reader"],
+    allowedTenantIds: ["tenant-a"]
+  };
+  const auth = createPaloAuth({ oidc: strictOidc });
+  const requestFor = (token) => new Request(fixture.audience, { headers: { authorization: `Bearer ${token}` } });
+
+  const valid = await auth.authenticate(requestFor(await fixture.sign({
+    azp: "approved-reader",
+    tid: "tenant-a",
+    scope: "palo:guide palo:knowledge:read"
+  }, { typ: "at+jwt" })));
+  assert.ok(!(valid instanceof Response));
+  assert.equal(valid.clientId, "approved-reader");
+  assert.equal(valid.extra.tenantId, "tenant-a");
+
+  for (const token of [
+    await fixture.sign({ azp: "approved-reader", tid: "tenant-a", scope: "palo:*" }),
+    await fixture.sign({ azp: "wrong-client", tid: "tenant-a", scope: "palo:*" }, { typ: "at+jwt" }),
+    await fixture.sign({ sub: "approved-reader", tid: "tenant-a", scope: "palo:*" }, { typ: "at+jwt" }),
+    await fixture.sign({ azp: "approved-reader", tid: "wrong-tenant", scope: "palo:*" }, { typ: "at+jwt" }),
+    await fixture.sign({ azp: "approved-reader", tid: ["tenant-a"], scope: "palo:*" }, { typ: "at+jwt" })
+  ]) {
+    const result = await auth.authenticate(requestFor(token));
+    assert.ok(result instanceof Response);
+    assert.equal(result.status, 401);
+  }
 });
 
 test("OIDC rejects a token minted for another MCP audience and advertises resource metadata", async (t) => {
@@ -109,19 +200,20 @@ test("OIDC rejects a token minted for another MCP audience and advertises resour
   assert.deepEqual(auth.metadata.bearer_methods_supported, ["header"]);
 });
 
-test("OIDC configuration rejects insecure remote metadata and honors an explicit development auth mode", () => {
+test("OIDC configuration rejects insecure remote metadata and supports an exact audience distinct from the resource URL", () => {
   assert.throws(() => createPaloAuth({ oidc: {
     issuer: "http://identity.example.test",
     audience: "https://governance.example.test/mcp",
     resourceUrl: "https://governance.example.test/mcp",
     jwksUri: "https://identity.example.test/jwks"
   } }), /HTTPS/);
-  assert.throws(() => createPaloAuth({ oidc: {
+  const distinctAudience = createPaloAuth({ oidc: {
     issuer: "https://identity.example.test",
-    audience: "https://another-resource.example.test",
+    audience: "11111111-2222-3333-4444-555555555555",
     resourceUrl: "https://governance.example.test/mcp",
     jwksUri: "https://identity.example.test/jwks"
-  } }), /canonical MCP resource URL/);
+  } });
+  assert.equal(distinctAudience.metadata.resource, "https://governance.example.test/mcp");
   assert.equal(oidcConfigurationFromEnvironment({ PALO_AUTH_MODE: "shared-token", PALO_OIDC_ISSUER: "https://identity.example.test" }), undefined);
   assert.equal(oidcConfigurationFromEnvironment({
     PALO_AUTH_MODE: "oidc",
@@ -129,8 +221,30 @@ test("OIDC configuration rejects insecure remote metadata and honors an explicit
     PALO_OIDC_AUDIENCE: "https://governance.example.test/mcp",
     PALO_OIDC_JWKS_URI: "https://identity.example.test/jwks",
     PALO_MCP_PUBLIC_URL: "https://governance.example.test/mcp",
-    PALO_OIDC_TENANT_CLAIM: "org_id"
+    PALO_OIDC_TENANT_CLAIM: "org_id",
+    PALO_OIDC_TOKEN_TYPE: "at+jwt",
+    PALO_OIDC_ADVERTISED_SCOPES: "https://governance.example.test/mcp/palo:guide https://governance.example.test/mcp/palo:knowledge:read",
+    PALO_OIDC_ALLOWED_CLIENT_IDS: "client-a,client-b",
+    PALO_OIDC_ALLOWED_TENANTS: "tenant-a tenant-b"
   }).tenantClaim, "org_id");
+  const strict = oidcConfigurationFromEnvironment({
+    PALO_AUTH_MODE: "oidc",
+    PALO_OIDC_ISSUER: "https://identity.example.test",
+    PALO_OIDC_AUDIENCE: "https://governance.example.test/mcp",
+    PALO_OIDC_JWKS_URI: "https://identity.example.test/jwks",
+    PALO_MCP_PUBLIC_URL: "https://governance.example.test/mcp",
+    PALO_OIDC_TOKEN_TYPE: "at+jwt",
+    PALO_OIDC_ADVERTISED_SCOPES: "https://governance.example.test/mcp/palo:guide https://governance.example.test/mcp/palo:knowledge:read",
+    PALO_OIDC_ALLOWED_CLIENT_IDS: "client-a,client-b",
+    PALO_OIDC_ALLOWED_TENANTS: "tenant-a tenant-b"
+  });
+  assert.equal(strict.tokenType, "at+jwt");
+  assert.deepEqual(strict.advertisedScopes, [
+    "https://governance.example.test/mcp/palo:guide",
+    "https://governance.example.test/mcp/palo:knowledge:read"
+  ]);
+  assert.deepEqual(strict.allowedClientIds, ["client-a", "client-b"]);
+  assert.deepEqual(strict.allowedTenantIds, ["tenant-a", "tenant-b"]);
   assert.throws(() => oidcConfigurationFromEnvironment({ PALO_AUTH_MODE: "anonymous" }), /oidc or shared-token/);
 });
 

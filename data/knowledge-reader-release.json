@@ -1,0 +1,40 @@
+{
+  "format": "palo-knowledge-reader-release",
+  "schemaVersion": "1.0.0",
+  "serviceVersion": "1.0.0",
+  "frameworkRelease": "3.1.0",
+  "releasedAt": "2026-08-27",
+  "status": "production-candidate",
+  "contentPolicy": "canonical-immutable-only",
+  "files": [
+    {
+      "path": "data/semantic-spine.json",
+      "sha256": "992caee32172dd42b0090c4ce54d278fe1e4bd6ef59c915accefe711513fb999"
+    },
+    {
+      "path": "data/decision-gates.json",
+      "sha256": "b8978bb6cf9dfae5e7091a6439b7baaf3969b9905606be79423f21717a7f3d04"
+    },
+    {
+      "path": "data/control-library.json",
+      "sha256": "3c9dfbb9eddbd238a1bf2c9e266b51afd944cb9ec7d5566aee5dcda76d63a925"
+    },
+    {
+      "path": "data/kpi-kri-registry.json",
+      "sha256": "f668924aeb7727a16764f4daa5165b5ec9dfbe3640219c0298ad240760ac31bc"
+    },
+    {
+      "path": "data/source-registry.json",
+      "sha256": "01eb0cb408f243b030ee1753f7e060220e3801a2b968d17dcaa35cb0836a143b"
+    },
+    {
+      "path": "data/governance-control-packs.json",
+      "sha256": "0c10f5f0fc15d64502455fc7366091184d0a83e0e260f948096867efd0fad6ad"
+    },
+    {
+      "path": "data/owasp-genai-2026-crosswalk.json",
+      "sha256": "3df4a5bfce2d375cafe5746806a90e62a436eb9cd63cee8afc55f249a4703c39"
+    }
+  ],
+  "bundleSha256": "5b6543618a51029e22ab6ee0aaa38c3ffe157215ae91b0ba6582992fad435cbb"
+}

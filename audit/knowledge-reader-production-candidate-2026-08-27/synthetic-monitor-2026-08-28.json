@@ -1,0 +1,12 @@
+{
+  "checkedAt": "2026-08-28T02:44:46.045Z",
+  "endpoint": "https://guide-api.paloframework.org/mcp-guide",
+  "result": "PASS",
+  "healthLatencyMs": 132,
+  "metadataLatencyMs": 109,
+  "anonymousChallengeLatencyMs": 43,
+  "bundleSha256": "5b6543618a51029e22ab6ee0aaa38c3ffe157215ae91b0ba6582992fad435cbb",
+  "serviceVersion": "1.0.0",
+  "authorizationUsed": false,
+  "knowledgeQuerySent": false
+}

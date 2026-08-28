@@ -1,0 +1,51 @@
+name: palo-guide-mcp
+
+services:
+  palo-guide-mcp:
+    image: ${PALO_GUIDE_IMAGE:-palo-knowledge-reader:local}
+    build:
+      context: ../../..
+      dockerfile: deploy/vps/palo-guide-mcp-standalone/Dockerfile
+    command: ["packages/palo-mcp-server/reader-http.js"]
+    restart: unless-stopped
+    read_only: true
+    mem_limit: 384m
+    cpus: 1.0
+    pids_limit: 128
+    cap_drop: [ALL]
+    security_opt:
+      - no-new-privileges:true
+    environment:
+      PALO_MCP_HTTP_HOST: 0.0.0.0
+      PALO_MCP_HTTP_PORT: 8789
+      PALO_MCP_ALLOWED_HOSTS: ${PALO_DOMAIN:?Set PALO_DOMAIN in .env},127.0.0.1,localhost
+      PALO_READER_RUNTIME_MODE: production
+      PALO_READER_MAX_BODY_BYTES: 65536
+      PALO_READER_RATE_LIMIT_PER_MINUTE: ${PALO_READER_RATE_LIMIT_PER_MINUTE:-120}
+      PALO_READER_MAX_CONCURRENCY: ${PALO_READER_MAX_CONCURRENCY:-32}
+      PALO_READER_MAX_CONCURRENCY_PER_CLIENT: ${PALO_READER_MAX_CONCURRENCY_PER_CLIENT:-4}
+      PALO_KNOWLEDGE_WRITE_ENABLED: "false"
+      PALO_KNOWLEDGE_REVIEW_ENABLED: "false"
+      PALO_KNOWLEDGE_INCLUDE_CURATED_LOCAL: "false"
+      PALO_AUTH_MODE: oidc
+      PALO_MCP_PUBLIC_URL: ${PALO_GUIDE_PUBLIC_URL:?Set PALO_GUIDE_PUBLIC_URL in .env}
+      PALO_OIDC_ISSUER: ${PALO_OIDC_ISSUER:?Set PALO_OIDC_ISSUER in .env}
+      PALO_OIDC_AUDIENCE: ${PALO_OIDC_AUDIENCE:?Set PALO_OIDC_AUDIENCE in .env}
+      PALO_OIDC_JWKS_URI: ${PALO_OIDC_JWKS_URI:?Set PALO_OIDC_JWKS_URI in .env}
+      PALO_OIDC_ALGORITHMS: ${PALO_OIDC_ALGORITHMS:-RS256 PS256 ES256 EdDSA}
+      PALO_OIDC_ROLE_CLAIM: ${PALO_OIDC_ROLE_CLAIM:-roles}
+      PALO_OIDC_SCOPE_CLAIM: ${PALO_OIDC_SCOPE_CLAIM:-scope}
+      PALO_OIDC_CLIENT_ID_CLAIM: ${PALO_OIDC_CLIENT_ID_CLAIM:-azp}
+      PALO_OIDC_TENANT_CLAIM: ${PALO_OIDC_TENANT_CLAIM:-tid}
+      PALO_OIDC_TOKEN_TYPE: ${PALO_OIDC_TOKEN_TYPE:?Set PALO_OIDC_TOKEN_TYPE in .env}
+      PALO_OIDC_ADVERTISED_SCOPES: ${PALO_OIDC_ADVERTISED_SCOPES:-}
+      PALO_OIDC_ALLOWED_CLIENT_IDS: ${PALO_OIDC_ALLOWED_CLIENT_IDS:?Set PALO_OIDC_ALLOWED_CLIENT_IDS in .env}
+      PALO_OIDC_ALLOWED_TENANTS: ${PALO_OIDC_ALLOWED_TENANTS:?Set PALO_OIDC_ALLOWED_TENANTS in .env}
+    ports:
+      - 127.0.0.1:${PALO_GUIDE_LOOPBACK_PORT:-18879}:8789
+    healthcheck:
+      test: ["CMD", "/nodejs/bin/node", "-e", "fetch('http://127.0.0.1:8789/health',{headers:{Host:'127.0.0.1'}}).then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 15s

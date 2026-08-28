@@ -1,0 +1,267 @@
+{
+  "schemaVersion": "1.0.0",
+  "goldSetId": "palo-reader-it-en-v1",
+  "frameworkRelease": "3.1.0",
+  "serviceVersion": "1.0.0",
+  "status": "candidate-independent-review-pending",
+  "labeling": {
+    "method": "expected canonical record selected from the immutable release before automated evaluation",
+    "preparedBy": "PALO production qualification",
+    "independentReviewer": null,
+    "reviewedAt": null
+  },
+  "acceptance": {
+    "top5ExpectedRecordHitRate": 1,
+    "bilingualTop5OverlapRate": 1,
+    "unknownQueryEmptyRate": 1,
+    "provenanceCompletenessRate": 1
+  },
+  "cases": [
+    {
+      "id": "human-oversight-it",
+      "pairId": "human-oversight",
+      "language": "it",
+      "query": "supervisione umana significativa",
+      "expectedRecordIds": ["semantic-spine:agency-map", "control-library:ctrl-human-review"]
+    },
+    {
+      "id": "human-oversight-en",
+      "pairId": "human-oversight",
+      "language": "en",
+      "query": "meaningful human oversight",
+      "expectedRecordIds": ["semantic-spine:agency-map", "control-library:ctrl-human-review"]
+    },
+    {
+      "id": "risk-management-it",
+      "pairId": "risk-management",
+      "language": "it",
+      "query": "gestione del rischio AI",
+      "expectedRecordIds": ["source-registry:src-nist-ai-rmf", "control-library:ctrl-systemic-risk"]
+    },
+    {
+      "id": "risk-management-en",
+      "pairId": "risk-management",
+      "language": "en",
+      "query": "AI risk management",
+      "expectedRecordIds": ["source-registry:src-nist-ai-rmf", "control-library:ctrl-systemic-risk"]
+    },
+    {
+      "id": "data-deletion-it",
+      "pairId": "data-deletion",
+      "language": "it",
+      "query": "verifica della cancellazione dati",
+      "expectedRecordIds": ["indicator-registry:kpi-deletion-verification-coverage", "control-library:ctrl-data-governance-lifecycle"]
+    },
+    {
+      "id": "data-deletion-en",
+      "pairId": "data-deletion",
+      "language": "en",
+      "query": "data deletion verification",
+      "expectedRecordIds": ["indicator-registry:kpi-deletion-verification-coverage", "control-library:ctrl-data-governance-lifecycle"]
+    },
+    {
+      "id": "accountability-it",
+      "pairId": "accountability",
+      "language": "it",
+      "query": "responsabilita accountable owner",
+      "expectedRecordIds": ["semantic-spine:accountable-owner"]
+    },
+    {
+      "id": "accountability-en",
+      "pairId": "accountability",
+      "language": "en",
+      "query": "accountability accountable owner",
+      "expectedRecordIds": ["semantic-spine:accountable-owner"]
+    },
+    {
+      "id": "transparency-it",
+      "pairId": "transparency",
+      "language": "it",
+      "query": "trasparenza articolo 50",
+      "expectedRecordIds": ["source-registry:src-eu-article50-guidelines", "governance-control-packs:domain-article50-transparency"]
+    },
+    {
+      "id": "transparency-en",
+      "pairId": "transparency",
+      "language": "en",
+      "query": "Article 50 transparency",
+      "expectedRecordIds": ["source-registry:src-eu-article50-guidelines", "governance-control-packs:domain-article50-transparency"]
+    },
+    {
+      "id": "agentic-governance-it",
+      "pairId": "agentic-governance",
+      "language": "it",
+      "query": "governance agentica e autorita",
+      "expectedRecordIds": ["control-library:ctrl-agentic-authority", "source-registry:src-palo-external-evidence-contract"]
+    },
+    {
+      "id": "agentic-governance-en",
+      "pairId": "agentic-governance",
+      "language": "en",
+      "query": "agentic governance and authority",
+      "expectedRecordIds": ["control-library:ctrl-agentic-authority", "source-registry:src-palo-external-evidence-contract"]
+    },
+    {
+      "id": "continuous-monitoring-it",
+      "pairId": "continuous-monitoring",
+      "language": "it",
+      "query": "monitoraggio continuo dei segnali",
+      "expectedRecordIds": ["semantic-spine:nav-monitor"]
+    },
+    {
+      "id": "continuous-monitoring-en",
+      "pairId": "continuous-monitoring",
+      "language": "en",
+      "query": "continuous monitoring signals",
+      "expectedRecordIds": ["semantic-spine:nav-monitor"]
+    },
+    {
+      "id": "risk-classification-it",
+      "pairId": "risk-classification",
+      "language": "it",
+      "query": "classificazione del rischio sistemico",
+      "expectedRecordIds": ["governance-control-packs:domain-gpai-systemic-risk", "control-library:ctrl-systemic-risk"]
+    },
+    {
+      "id": "risk-classification-en",
+      "pairId": "risk-classification",
+      "language": "en",
+      "query": "systemic risk classification",
+      "expectedRecordIds": ["governance-control-packs:domain-gpai-systemic-risk", "control-library:ctrl-systemic-risk"]
+    },
+    {
+      "id": "verifiable-evidence-it",
+      "pairId": "verifiable-evidence",
+      "language": "it",
+      "query": "prova verificabile e tracciabilita decisionale",
+      "expectedRecordIds": ["control-library:ctrl-decision-trace"]
+    },
+    {
+      "id": "verifiable-evidence-en",
+      "pairId": "verifiable-evidence",
+      "language": "en",
+      "query": "verifiable evidence and decision traceability",
+      "expectedRecordIds": ["control-library:ctrl-decision-trace"]
+    },
+    {
+      "id": "access-control-it",
+      "pairId": "access-control",
+      "language": "it",
+      "query": "controllo accessi e dati sensibili",
+      "expectedRecordIds": ["indicator-registry:kri-sensitive-data-events"]
+    },
+    {
+      "id": "access-control-en",
+      "pairId": "access-control",
+      "language": "en",
+      "query": "access control and sensitive data",
+      "expectedRecordIds": ["indicator-registry:kri-sensitive-data-events"]
+    },
+    {
+      "id": "incident-response-it",
+      "pairId": "incident-response",
+      "language": "it",
+      "query": "risposta incidenti ed escalation",
+      "expectedRecordIds": ["control-library:ctrl-incident-response"]
+    },
+    {
+      "id": "incident-response-en",
+      "pairId": "incident-response",
+      "language": "en",
+      "query": "incident response and escalation",
+      "expectedRecordIds": ["control-library:ctrl-incident-response"]
+    },
+    {
+      "id": "security-testing-it",
+      "pairId": "security-testing",
+      "language": "it",
+      "query": "test sicurezza e scenari avversariali",
+      "expectedRecordIds": ["control-library:ctrl-adversarial-testing"]
+    },
+    {
+      "id": "security-testing-en",
+      "pairId": "security-testing",
+      "language": "en",
+      "query": "security testing and adversarial scenarios",
+      "expectedRecordIds": ["control-library:ctrl-adversarial-testing"]
+    },
+    {
+      "id": "internal-audit-it",
+      "pairId": "internal-audit",
+      "language": "it",
+      "query": "audit interno AIMS",
+      "expectedRecordIds": ["control-library:ctrl-aims-internal-audit", "indicator-registry:kpi-aims-audit-completion"]
+    },
+    {
+      "id": "internal-audit-en",
+      "pairId": "internal-audit",
+      "language": "en",
+      "query": "AIMS internal audit",
+      "expectedRecordIds": ["control-library:ctrl-aims-internal-audit", "indicator-registry:kpi-aims-audit-completion"]
+    },
+    {
+      "id": "data-lineage-it",
+      "pairId": "data-lineage",
+      "language": "it",
+      "query": "lineage dati e ciclo di vita",
+      "expectedRecordIds": ["control-library:ctrl-data-governance-lifecycle"]
+    },
+    {
+      "id": "data-lineage-en",
+      "pairId": "data-lineage",
+      "language": "en",
+      "query": "data lineage and lifecycle",
+      "expectedRecordIds": ["control-library:ctrl-data-governance-lifecycle"]
+    },
+    {
+      "id": "system-inventory-it",
+      "pairId": "system-inventory",
+      "language": "it",
+      "query": "inventario sistemi e system card",
+      "expectedRecordIds": ["governance-control-packs:domain-system-card-explanations", "indicator-registry:kpi-system-card-coverage"]
+    },
+    {
+      "id": "system-inventory-en",
+      "pairId": "system-inventory",
+      "language": "en",
+      "query": "system inventory and system card",
+      "expectedRecordIds": ["governance-control-packs:domain-system-card-explanations", "indicator-registry:kpi-system-card-coverage"]
+    },
+    {
+      "id": "legal-applicability-it",
+      "pairId": "legal-applicability",
+      "language": "it",
+      "query": "applicabilita legale e governance",
+      "expectedRecordIds": ["semantic-spine:legal-governance", "source-registry:src-eu-article50-guidelines"]
+    },
+    {
+      "id": "legal-applicability-en",
+      "pairId": "legal-applicability",
+      "language": "en",
+      "query": "legal applicability and governance",
+      "expectedRecordIds": ["semantic-spine:legal-governance", "source-registry:src-eu-article50-guidelines"]
+    }
+  ],
+  "unknownCases": [
+    {
+      "id": "unknown-it-1",
+      "language": "it",
+      "query": "termineinventatochenonesiste"
+    },
+    {
+      "id": "unknown-it-2",
+      "language": "it",
+      "query": "fenomenoquasarmonicofittizio"
+    },
+    {
+      "id": "unknown-en-1",
+      "language": "en",
+      "query": "nonexistentquasargovernanceterm"
+    },
+    {
+      "id": "unknown-en-2",
+      "language": "en",
+      "query": "imaginarynebulacontrolword"
+    }
+  ]
+}
