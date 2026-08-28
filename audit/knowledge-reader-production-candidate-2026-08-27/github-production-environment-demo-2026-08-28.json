@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "1.0.0",
+  "capturedAt": "2026-08-28T03:01:00Z",
+  "repository": "sev7enITA/PALOframework",
+  "environment": {
+    "name": "knowledge-reader-production",
+    "id": 20756174582,
+    "requiredReviewers": [
+      {
+        "type": "User",
+        "login": "sev7enITA",
+        "id": 5058737
+      }
+    ],
+    "preventSelfReview": false,
+    "canAdminsBypass": true,
+    "deploymentBranchPolicy": {
+      "mode": "custom",
+      "allowed": [
+        "main"
+      ]
+    }
+  },
+  "qualification": {
+    "classification": "demo-only",
+    "workflowPresentOnDefaultBranch": false,
+    "independentSecurityApproval": false,
+    "productionRequirement": "Replace the temporary reviewer, enable self-review prevention and bind approval to the exact published digest."
+  },
+  "secretsRetained": false
+}

@@ -10,6 +10,9 @@ import { createRemoteJWKSet, jwtVerify } from "jose";
 
 export const PALO_SCOPES = Object.freeze([
   "palo:guide",
+  "palo:knowledge:read",
+  "palo:knowledge:write",
+  "palo:knowledge:review",
   "palo:read",
   "palo:execute",
   "palo:review",
@@ -21,6 +24,13 @@ export const TOOL_SCOPE_REQUIREMENTS = Object.freeze({
   palo_explain_framework: "palo:guide",
   palo_infer_governance_route: "palo:guide",
   palo_plan_product_integration: "palo:guide",
+  palo_list_knowledge_sources: "palo:knowledge:read",
+  palo_search_knowledge: "palo:knowledge:read",
+  palo_get_knowledge_record: "palo:knowledge:read",
+  palo_submit_knowledge_draft: "palo:knowledge:write",
+  palo_list_knowledge_drafts: "palo:knowledge:write",
+  palo_get_knowledge_draft: "palo:knowledge:write",
+  palo_review_knowledge_draft: "palo:knowledge:review",
   palo_register_agent: "palo:admin",
   palo_register_policy: "palo:admin",
   palo_get_registry: "palo:read",
@@ -60,6 +70,8 @@ export const TOOL_SCOPE_REQUIREMENTS = Object.freeze({
 
 const ROLE_SCOPES = Object.freeze({
   "palo-admin": ["palo:*"],
+  "palo-knowledge-reader": ["palo:guide", "palo:knowledge:read"],
+  "palo-knowledge-curator": ["palo:guide", "palo:knowledge:read", "palo:knowledge:write", "palo:knowledge:review"],
   "palo-agent": ["palo:guide", "palo:read", "palo:execute"],
   "palo-reviewer": ["palo:guide", "palo:read", "palo:review"],
   "palo-auditor": ["palo:guide", "palo:read", "palo:audit"],
@@ -73,6 +85,21 @@ const values = (value) => {
 };
 
 const unique = (items) => [...new Set(items)];
+
+// Response objects can come from a different Fetch implementation than the
+// Node global (for example the MCP SDK shim on Node 22). Avoid instanceof,
+// which is realm-specific and can otherwise turn an OAuth challenge into an
+// apparent AuthInfo object.
+export function isHttpResponse(value) {
+  return Boolean(
+    value
+    && typeof value === "object"
+    && Number.isInteger(value.status)
+    && value.headers
+    && typeof value.headers.get === "function"
+    && typeof value.arrayBuffer === "function"
+  );
+}
 
 function secureConfigurationUrl(value, label) {
   const url = new URL(value);
@@ -106,7 +133,6 @@ export function createOidcTokenVerifier(configuration) {
   if (!issuer || !audience || !jwksUri || !resourceUrl) throw new Error("OIDC requires issuer, audience, jwksUri and resourceUrl");
   secureConfigurationUrl(issuer, "OIDC issuer");
   secureConfigurationUrl(resourceUrl, "MCP resource URL");
-  if (!values(audience).includes(resourceUrl)) throw new Error("OIDC audience must include the canonical MCP resource URL");
   const jwks = createRemoteJWKSet(secureConfigurationUrl(jwksUri, "OIDC JWKS URI"), {
     cooldownDuration: configuration.jwksCooldownMs ?? 30_000,
     cacheMaxAge: configuration.jwksCacheMaxAgeMs ?? 600_000,
@@ -117,6 +143,11 @@ export function createOidcTokenVerifier(configuration) {
   const roleClaim = configuration.roleClaim || "roles";
   const clientIdClaim = configuration.clientIdClaim || "azp";
   const tenantClaim = configuration.tenantClaim || "tid";
+  const tokenType = String(configuration.tokenType || "").trim() || undefined;
+  const allowedClientIds = new Set(values(configuration.allowedClientIds));
+  const allowedTenantIds = new Set(values(configuration.allowedTenantIds));
+  if (allowedClientIds.has("*")) throw new Error("OIDC allowed client IDs must not contain a wildcard");
+  if (allowedTenantIds.has("*")) throw new Error("OIDC allowed tenant IDs must not contain a wildcard");
   return {
     async verifyAccessToken(token) {
       try {
@@ -124,7 +155,8 @@ export function createOidcTokenVerifier(configuration) {
           issuer,
           audience,
           algorithms,
-          clockTolerance: configuration.clockToleranceSeconds ?? 5
+          clockTolerance: configuration.clockToleranceSeconds ?? 5,
+          ...(tokenType ? { typ: tokenType } : {})
         });
         if (!payload.exp) throw new Error("Token expiry is required");
         const roles = rolesFromPayload(payload, roleClaim);
@@ -133,8 +165,17 @@ export function createOidcTokenVerifier(configuration) {
           ...values(payload.scp),
           ...roles.flatMap((role) => ROLE_SCOPES[role] || [])
         ]);
-        const clientId = String(payload[clientIdClaim] || payload.client_id || payload.sub || "");
+        const configuredClientId = payload[clientIdClaim];
+        const clientId = allowedClientIds.size
+          ? (typeof configuredClientId === "string" ? configuredClientId : "")
+          : String(configuredClientId || payload.client_id || payload.sub || "");
         if (!clientId) throw new Error("Token client identity is required");
+        if (allowedClientIds.size && !allowedClientIds.has(clientId)) throw new Error("Token client identity is not allowed");
+        const configuredTenantId = payload[tenantClaim];
+        const tenantId = typeof configuredTenantId === "string" ? configuredTenantId : undefined;
+        if (allowedTenantIds.size && (!tenantId || !allowedTenantIds.has(tenantId))) {
+          throw new Error("Token tenant identity is not allowed");
+        }
         return {
           token,
           clientId,
@@ -146,7 +187,7 @@ export function createOidcTokenVerifier(configuration) {
             subject: typeof payload.sub === "string" ? payload.sub : undefined,
             issuer: payload.iss,
             roles,
-            tenantId: typeof payload[tenantClaim] === "string" ? payload[tenantClaim] : undefined,
+            tenantId,
             keyId: protectedHeader.kid
           }
         };
@@ -173,7 +214,7 @@ function constantTimeBearer(header, token) {
   return actual.length === expected.length && timingSafeEqual(actual, expected);
 }
 
-export function createPaloAuth({ token, oidc } = {}) {
+export function createPaloAuth({ token, oidc, scopes = PALO_SCOPES, resourceName = "PALO governance MCP" } = {}) {
   if (oidc) {
     const verifier = createOidcTokenVerifier(oidc);
     const resourceMetadataUrl = getOAuthProtectedResourceMetadataUrl(new URL(oidc.resourceUrl));
@@ -184,9 +225,9 @@ export function createPaloAuth({ token, oidc } = {}) {
       metadata: {
         resource: oidc.resourceUrl,
         authorization_servers: [oidc.issuer],
-        scopes_supported: PALO_SCOPES,
+        scopes_supported: oidc.advertisedScopes?.length ? oidc.advertisedScopes : scopes,
         bearer_methods_supported: ["header"],
-        resource_name: "PALO governance MCP"
+        resource_name: resourceName
       },
       authenticate: gate
     };
@@ -227,6 +268,10 @@ export function oidcConfigurationFromEnvironment(environment = process.env) {
     scopeClaim: environment.PALO_OIDC_SCOPE_CLAIM || "scope",
     clientIdClaim: environment.PALO_OIDC_CLIENT_ID_CLAIM || "azp",
     tenantClaim: environment.PALO_OIDC_TENANT_CLAIM || "tid",
-    algorithms: values(environment.PALO_OIDC_ALGORITHMS || "RS256 PS256 ES256 EdDSA")
+    algorithms: values(environment.PALO_OIDC_ALGORITHMS || "RS256 PS256 ES256 EdDSA"),
+    tokenType: String(environment.PALO_OIDC_TOKEN_TYPE || "").trim() || undefined,
+    advertisedScopes: values(environment.PALO_OIDC_ADVERTISED_SCOPES),
+    allowedClientIds: values(environment.PALO_OIDC_ALLOWED_CLIENT_IDS),
+    allowedTenantIds: values(environment.PALO_OIDC_ALLOWED_TENANTS)
   };
 }

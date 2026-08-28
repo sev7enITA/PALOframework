@@ -1,0 +1,17 @@
+{
+  "name": "@palo/knowledge-reader-runtime",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22 <25"
+  },
+  "dependencies": {
+    "@hono/node-server": "1.19.17",
+    "@modelcontextprotocol/hono": "2.0.0",
+    "@modelcontextprotocol/server": "2.0.0",
+    "hono": "4.13.2",
+    "jose": "6.2.8",
+    "zod": "4.4.3"
+  }
+}

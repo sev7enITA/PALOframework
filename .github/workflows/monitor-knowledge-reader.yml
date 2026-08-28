@@ -1,0 +1,27 @@
+name: Monitor PALO Knowledge Reader
+
+on:
+  schedule:
+    - cron: "7,22,37,52 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: monitor-palo-knowledge-reader
+  cancel-in-progress: true
+
+jobs:
+  synthetic:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout monitor
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Setup Node
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 22.22.0
+      - name: Probe public health, OAuth metadata and anonymous denial
+        run: node deploy/vps/palo-guide-mcp-standalone/synthetic-monitor.mjs https://guide-api.paloframework.org/mcp-guide
