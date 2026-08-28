@@ -1,6 +1,6 @@
 # PALO Knowledge Reader: production profile
 
-Status: production-capable candidate for the narrow informational, canonical-only service as of 27 August 2026. Repository tests pass without a network listener. Production qualification remains deployment-specific and requires the live acceptance gates below.
+Status: production-capable candidate for the narrow informational, canonical-only service as of 28 August 2026. Repository tests pass, a signed multi-architecture registry digest is deployed on Hostinger, and public edge checks pass. Production qualification remains deployment-specific and requires the remaining live acceptance gates below.
 
 ## Decision
 
@@ -89,6 +89,14 @@ PALO_KNOWLEDGE_INCLUDE_CURATED_LOCAL=false
 ```
 
 Use [the dedicated deployment profile](../deploy/vps/palo-guide-mcp-standalone/README.md) or the `palo-guide-mcp` service in `deploy/vps/palo-ai`. The Curator and operational PALO-AI services remain separate and retain their own maturity status.
+
+### Signed release deployed on 28 August 2026
+
+`reader-v1.0.0` was built from `main` commit `68153b957df919f0b4481930a3b1d068933d7539` as a public Linux amd64/arm64 OCI index at `ghcr.io/sev7enita/palo-knowledge-reader@sha256:950a3625148c47587741f4b10a126acbba19f1429e2ade6bdcd6b2aa70b15915`. The GitHub workflow validated the Reader, published the immutable tag, found zero High/Critical Trivy findings on that digest, generated an SPDX JSON SBOM, paused on the `knowledge-reader-production` environment and then keyless-signed and attested the admitted digest with Sigstore.
+
+The Hostinger standalone service now runs that exact digest as UID/GID `65532:65532`, with a read-only root filesystem, all capabilities dropped, `no-new-privileges` and PID limit 128. Post-deploy public checks passed health, OAuth metadata, anonymous 401 challenge, Host/Origin 403, 64 KiB edge rejection, pre-authentication 429, HSTS and TLS-chain verification. See [release admission evidence](../audit/knowledge-reader-production-candidate-2026-08-27/reader-v1.0.0-release-evidence.json), [live deployment evidence](../audit/knowledge-reader-production-candidate-2026-08-27/reader-v1.0.0-live-deployment-2026-08-28.json), [exact-digest SBOM](../audit/knowledge-reader-production-candidate-2026-08-27/reader-v1.0.0.spdx.json) and [exact-digest vulnerability report](../audit/knowledge-reader-production-candidate-2026-08-27/reader-v1.0.0-trivy-high-critical.json).
+
+The environment approval was intentionally performed by the repository owner with self-review enabled to demonstrate the complete release loop. It is not independent security acceptance. The service therefore remains `production-candidate` until independent review and the other live gates are complete.
 
 ### Microsoft Entra ID profile deployed on 27 August 2026
 

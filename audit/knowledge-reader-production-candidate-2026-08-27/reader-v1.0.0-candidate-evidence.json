@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "1.0.0",
+  "status": "candidate-awaiting-environment-approval",
+  "image": "ghcr.io/sev7enita/palo-knowledge-reader",
+  "digest": "sha256:950a3625148c47587741f4b10a126acbba19f1429e2ade6bdcd6b2aa70b15915",
+  "tag": "reader-v1.0.0",
+  "commit": "68153b957df919f0b4481930a3b1d068933d7539",
+  "publishedBy": "sev7enITA",
+  "approvalReference": "demo-owner-self-review-pr-36",
+  "workflowRun": "https://github.com/sev7enITA/PALOframework/actions/runs/33141000528",
+  "trivyPolicy": "zero HIGH and CRITICAL",
+  "sbom": "SPDX JSON"
+}

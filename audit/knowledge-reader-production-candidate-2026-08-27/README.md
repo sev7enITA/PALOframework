@@ -1,12 +1,12 @@
 # PALO Knowledge Reader local production-candidate evidence
 
-Date: 2026-08-27
+Date: 2026-08-28
 
 Scope: dedicated informational, canonical-only, read-only MCP Reader. This evidence does not qualify the Curator or operational PALO-AI runtime.
 
 ## Result
 
-Local code, configuration, proxy and container gates passed. Hostinger DNS, TLS, Microsoft Entra resource configuration and the dedicated distroless image are deployed. Positive and negative authenticated Entra qualification passed with a temporary certificate client, which was then revoked. A real least-privilege Copilot Studio client is now registered and allowlisted, but its live host qualification is blocked before callback generation because the tenant has no Copilot Studio environment with Dataverse. The release remains `production-candidate` because host qualification, a signed registry digest and accountable security approval are still pending.
+Local code, configuration, proxy and container gates passed. Hostinger DNS, TLS, Microsoft Entra resource configuration and exact signed registry digest `sha256:950a3625148c47587741f4b10a126acbba19f1429e2ade6bdcd6b2aa70b15915` are deployed. Positive and negative authenticated Entra qualification passed with a temporary certificate client, which was then revoked. A real least-privilege Copilot Studio client is registered and allowlisted, but its live host qualification is blocked before callback generation because the tenant has no Copilot Studio environment with Dataverse. The release remains `production-candidate` because host qualification and independent accountable security approval are still pending.
 
 ## Verified locally
 
@@ -21,7 +21,7 @@ Local code, configuration, proxy and container gates passed. Hostinger DNS, TLS,
 - Both integrated and standalone dedicated Reader images built successfully from the pinned lockfile; `docker buildx build --check` reported no Dockerfile warnings for either profile.
 - The updated standalone image also pins the Node 22 builder index at `sha256:83f487e0a63425e5b4d146fb5e5be574bcbe1b7b843d3ebafdd95eaf7767a7e5`. A fresh 28 August build produced local arm64 manifest-list digest `sha256:830344895b4094beda92624b79c01725bc3ec0d45b11bb68a64106a3edd91abe` with no Dockerfile warnings. Strict production startup passed as UID/GID `65532:65532`, read-only root, all capabilities dropped and PID limit 128; health/integrity passed and anonymous initialize returned 401. The isolated test container and network were removed after the probe.
 - Trivy 0.73.0 rescanned that fresh local digest against the 28 August 2026 database and found zero High/Critical Debian 13.6 or Node-package vulnerabilities. Docker Scout remains unavailable without a Docker ID, so the prepared GHCR workflow repeats the mandatory Trivy gate against the exact published digest before signing it.
-- A manually dispatched, action-SHA-pinned GHCR workflow is prepared for main-branch-only immutable tags, multi-architecture build, exact-digest Trivy gate, SPDX SBOM, candidate evidence and a separate `knowledge-reader-production` environment approval before Sigstore keyless signing/attestation. The GitHub environment now exists, permits only `main` and temporarily uses repository owner `sev7enITA` with self-review allowed to demonstrate the gate. This is not independent security approval. The workflow still cannot execute until its changes are safely isolated and committed to `main`.
+- The action-SHA-pinned GHCR admission workflow is active on `main` for immutable tags, multi-architecture builds, exact-digest Trivy gating, SPDX SBOM generation and a separate `knowledge-reader-production` environment approval before Sigstore keyless signing/attestation. The GitHub environment permits only `main` and temporarily uses repository owner `sev7enITA` with self-review allowed to demonstrate the gate. This is not independent security approval.
 - Local image: `sha256:86fe3731757cb3e602331909c56119edb075c08b1a017f29c4ed3005ad2ba776`, `linux/arm64`, configured user `node`.
 - The image started in strict production mode with no secret file, all capabilities dropped and a read-only root filesystem.
 - Runtime health reported immutable bundle integrity, six tools, no mutation, no persistence, OIDC, rejected JSON-RPC batching and `productionQualified:false`.
@@ -30,22 +30,21 @@ Local code, configuration, proxy and container gates passed. Hostinger DNS, TLS,
 - The pre-fix batch amplification trigger now returns HTTP 400 / JSON-RPC `-32600` and no longer dispatches batch members. Single-message legacy MCP remains functional.
 - `npm run build` and `npm run build:check` passed; `dist` exactly matches the 440 allowlisted build outputs. Direct source and built-artifact structural validation also passed.
 
-The earlier local-image SPDX SBOM is [reader-image.spdx.json](reader-image.spdx.json). Docker Scout indexed 322 OS, Node-distribution and application packages for that superseded build.
+Superseded local-image SBOMs are intentionally excluded from the release branch. The admission workflow regenerates the SBOM and vulnerability evidence against the exact new registry digest.
 
 ## Verified on the Hostinger production candidate
 
 - Dedicated DNS `guide-api.paloframework.org` resolves to the existing PALO VPS with TTL 300.
 - Let's Encrypt issued an ECDSA certificate valid through 25 November 2026; Certbot renewal is scheduled, HTTP redirects to HTTPS and HSTS is emitted.
 - nginx uses a separate virtual host, a 64 KiB body limit, bounded proxy timeouts and a pre-authentication rate-limit zone. It proxies only to loopback port `18882`.
-- The replacement runtime uses the signed upstream Node 22 Distroless Debian 13 nonroot base pinned at `sha256:4e4fb0ce55fd73901600796ef079a9490369d2515d7da31633a91608c82ca13b`.
-- Superseded first distroless image ID: `sha256:1cee3f0555d480cf55c386fccae92a8668ae6e9bea12cb7504e4d38b052b975b`. Current Entra-v2-capable candidate image ID: `sha256:c12628d7abecca56965f74215ee71a44702ed8b9bb687ea4c43882ae1d0daf86`; configured user `65532:65532`; read-only root filesystem; all capabilities dropped; `no-new-privileges`; no shell.
+- The release runtime uses the signed upstream Node 22 Distroless Debian 13 nonroot base pinned at `sha256:4e4fb0ce55fd73901600796ef079a9490369d2515d7da31633a91608c82ca13b`.
+- Superseded deployment image IDs are `sha256:1cee3f0555d480cf55c386fccae92a8668ae6e9bea12cb7504e4d38b052b975b` and `sha256:c12628d7abecca56965f74215ee71a44702ed8b9bb687ea4c43882ae1d0daf86`. The current registry release is the exact digest `sha256:950a3625148c47587741f4b10a126acbba19f1429e2ade6bdcd6b2aa70b15915`; configured user `65532:65532`; read-only root filesystem; all capabilities dropped; `no-new-privileges`; no shell.
 - A live write probe failed with `EROFS`; the health record reported the expected six-tool, immutable, non-persistent, OIDC-only boundary.
 - Trivy 0.73.0 scanned Debian 13.6 and the Node dependency tree using the 27 August 2026 vulnerability database: zero Critical and zero High findings.
-- Exact-image evidence: [distroless SPDX SBOM](reader-image-distroless.spdx.json) and [High/Critical vulnerability report](reader-image-distroless-trivy-high-critical.json).
 - Current Entra-v2 exact-image evidence: [SPDX SBOM](reader-image-entra-v2.spdx.json) and [High/Critical vulnerability report](reader-image-entra-v2-trivy-high-critical.json). Trivy 0.73.0 reported zero High and zero Critical findings against the current image.
 - `paloframework.org` is verified as a custom domain in Microsoft Entra tenant `4c32824e-a9c2-4f83-be20-c0d6bb24faae`.
 - Single-tenant resource application `PALO Knowledge Reader API` has client ID `9e5bc7d7-df74-47ff-8864-ea4b4c5cefd3`, the exact HTTPS Application ID URI, two admin-only delegated Reader scopes and the `palo-knowledge-reader` role for users/groups and applications. It has no redirect URI or credential.
-- The Reader container is healthy on loopback port `18882` and runs exact image ID `sha256:c12628d7abecca56965f74215ee71a44702ed8b9bb687ea4c43882ae1d0daf86` with read-only root, UID/GID `65532:65532`, all capabilities dropped, `no-new-privileges` and PID limit 128.
+- The Reader container is healthy on loopback port `18882` and runs exact registry digest `sha256:950a3625148c47587741f4b10a126acbba19f1429e2ade6bdcd6b2aa70b15915` with read-only root, UID/GID `65532:65532`, all capabilities dropped, `no-new-privileges` and PID limit 128.
 - OAuth protected-resource metadata now advertises the tenant-specific Entra v2 authorization server and the two fully qualified scope identifiers, while token validation binds the exact API client-ID audience and `azp` caller claim separately from the public MCP resource URL.
 - The resource manifest now requests v2 access tokens and both resource and qualification applications have `sev7en@yvvrh.onmicrosoft.com` as owner.
 - The certificate-authenticated token contained the exact v2 issuer, API audience, qualification-client `azp`, tenant and only the `palo-knowledge-reader` role. Both public MCP paths passed the exact six-tool/canonical/bilingual smoke.
@@ -61,6 +60,8 @@ The earlier local-image SPDX SBOM is [reader-image.spdx.json](reader-image.spdx.
 - Payment remains paused. PALO is not a registered legal entity, so Microsoft for Startups business verification and Investor Network benefits are unavailable. The supplied institutional account could not be used for Azure for Students; no subscription or credit was obtained. GitHub Education reapplication was not submitted because the available records do not visibly prove current enrollment strongly enough. Student routes supplied no Dataverse or Copilot Studio capacity. See [the funding decision note](../../docs/palo-microsoft-startup-student-credits.md).
 - GitHub Education account readiness was checked without retaining personal addresses or documents: the academic email is verified and the profile and billing names match. The 17 April 2025 application was rejected for insufficient dated affiliation evidence. The available Politecnico evidence describes a completed program, and the active doctorate card lacks a visible current-validity or expected-completion date and belongs to another institution. Reapplication is paused until a current official doctorate letter is available. See [the student-route evidence](student-funding-route-2026-08-28.json).
 - GitHub admission-gate configuration is recorded in [the demo environment evidence](github-production-environment-demo-2026-08-28.json). `sev7enITA` is the temporary required reviewer, self-review is enabled and only `main` may deploy. Replace this configuration with independent review before production qualification.
+- PR #36 merged the isolated Reader into `main` after Linux and Windows checks passed. Workflow run [33141000528](https://github.com/sev7enITA/PALOframework/actions/runs/33141000528) published `reader-v1.0.0`, scanned the exact multi-architecture digest with zero High/Critical findings, generated an SPDX SBOM, paused on the demo environment gate, and keyless-signed plus attested the admitted digest. Durable evidence: [candidate](reader-v1.0.0-candidate-evidence.json), [release](reader-v1.0.0-release-evidence.json), [SBOM](reader-v1.0.0.spdx.json) and [Trivy report](reader-v1.0.0-trivy-high-critical.json).
+- Hostinger now runs the exact signed digest as UID/GID `65532:65532`, read-only root, capabilities dropped, `no-new-privileges` and PID limit 128. The post-deploy synthetic monitor passed at 219/101/48 ms for health/metadata/anonymous challenge; Host and Origin denial returned 403, oversize input returned 413, and a 25-request burst produced 14 pre-authentication 429 responses. See [live deployment evidence](reader-v1.0.0-live-deployment-2026-08-28.json).
 - Redacted machine-readable evidence: [Copilot Studio staging on 28 August 2026](copilot-studio-staging-2026-08-28.json).
 - Public health and OAuth protected-resource metadata return 200; anonymous calls return 401; HTTP redirects to HTTPS; the certificate chain verifies; HSTS is present; a 70,000-byte body returns 413 before authentication.
 - Live unapproved Host and Origin requests both return HTTP 403 before authentication with a controlled JSON-RPC error. Redacted evidence: [edge Host/Origin denial on 28 August 2026](edge-host-origin-denial-2026-08-28.json).
@@ -73,7 +74,7 @@ The earlier local-image SPDX SBOM is [reader-image.spdx.json](reader-image.spdx.
 - Docker Scout still requires a Docker account login on this workstation. The equivalent blocking policy was completed with Trivy against the exact Hostinger image; Docker Scout remains optional corroboration.
 - The repository-wide `npm run validate` text-style stage is blocked by 19 forbidden typographic characters in pre-existing dirty changes under `governance-hub/AGENTS.md`, `governance-hub/src/App.jsx` and `scripts/browser-smoke.mjs`.
 - `npm run validate:dist` is consequently blocked by 39 generated occurrences in the Governance Hub bundle. Reader/agentic validators and build exactness pass.
-- The Hostinger candidate is a local amd64 image ID, not yet a signed registry digest or multi-architecture artifact.
+- The signed amd64/arm64 registry digest is now deployed. Release artifacts and the previous local image are retained for rollback; a full rollback rehearsal and independent approval remain pending.
 
 ## Mandatory live gates still pending
 
@@ -81,9 +82,8 @@ The earlier local-image SPDX SBOM is [reader-image.spdx.json](reader-image.spdx.
 2. Recreate the prepared non-default production environment with Dataverse, assign Copilot Studio capacity, then resume the staged OAuth wizard and register its generated callback URI.
 3. Complete a controlled upstream-timeout fault injection. Live Host/Origin denial, DNS, certificate chain, HTTPS redirect, HSTS, body-limit and pre-authentication 429 already pass.
 4. Confirm the log result in the organization's central traces/APM, if enabled; deployed nginx and container samples already contain neither Authorization headers nor MCP bodies.
-5. Publish and sign the image, then repeat the scanner policy against the exact registry digest; the exact Hostinger image already passes the zero High/Critical gate.
-6. Obtain an independent reviewer for the versioned bilingual Q&A labels and run host-model grounded-answer scoring. Automated retrieval/provenance thresholds already pass.
-7. Rehearse monitoring, rollback and the required availability/failover behavior.
-8. Execute the standalone smoke on canonical and compatibility URLs with a short-lived token.
-9. Complete `PASS-LIVE` for each approved MCP host and retain tenant/build/transcript evidence.
-10. Replace the temporary self-reviewing GitHub gate with an independent security reviewer, assign accountable application/service ownership and record both approvals for the exact hostname, IdP client/tenant policy and signed image digest.
+5. Obtain an independent reviewer for the versioned bilingual Q&A labels and run host-model grounded-answer scoring. Automated retrieval/provenance thresholds already pass.
+6. Rehearse monitoring, rollback and the required availability/failover behavior.
+7. Execute the standalone smoke on canonical and compatibility URLs with a short-lived token.
+8. Complete `PASS-LIVE` for each approved MCP host and retain tenant/build/transcript evidence.
+9. Replace the temporary self-reviewing GitHub gate with an independent security reviewer, assign accountable application/service ownership and record both approvals for the exact hostname, IdP client/tenant policy and signed image digest.
