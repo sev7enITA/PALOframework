@@ -17,8 +17,8 @@ COPY --chown=node:node examples/policy-as-code ./examples/policy-as-code
 COPY --chown=root:root deploy/vps/palo-ai/docker-entrypoint.sh /usr/local/bin/palo-entrypoint
 
 RUN chmod 0755 /usr/local/bin/palo-entrypoint \
-    && mkdir -p /var/lib/palo /var/lib/palo-guide \
-    && chown node:node /var/lib/palo /var/lib/palo-guide
+    && mkdir -p /var/lib/palo /var/lib/palo-guide /var/lib/palo-guide-curator /var/lib/palo-knowledge \
+    && chown node:node /var/lib/palo /var/lib/palo-guide /var/lib/palo-guide-curator /var/lib/palo-knowledge
 
 EXPOSE 8787 8788 8789 8790
 

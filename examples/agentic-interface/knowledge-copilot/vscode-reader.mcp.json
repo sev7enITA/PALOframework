@@ -1,0 +1,19 @@
+{
+  "servers": {
+    "palo-knowledge-reader": {
+      "type": "http",
+      "url": "https://governance.paloframework.org/mcp-guide",
+      "headers": {
+        "Authorization": "Bearer ${input:palo-guide-token}"
+      }
+    }
+  },
+  "inputs": [
+    {
+      "id": "palo-guide-token",
+      "type": "promptString",
+      "description": "PALO Knowledge Reader token",
+      "password": true
+    }
+  ]
+}

@@ -180,6 +180,32 @@ test("strict OIDC policy binds access-token type, configured client and tenant",
     assert.ok(result instanceof Response);
     assert.equal(result.status, 401);
   }
+
+  const customClaimsAuth = createPaloAuth({
+    oidc: {
+      ...fixture.oidc,
+      clientIdClaim: "appid",
+      tenantClaim: "org_id",
+      allowedClientIds: ["custom-client"],
+      allowedTenantIds: ["custom-tenant"]
+    }
+  });
+  const customClaims = await customClaimsAuth.authenticate(requestFor(await fixture.sign({
+    appid: "custom-client",
+    org_id: "custom-tenant",
+    scope: "palo:guide"
+  })));
+  assert.ok(!(customClaims instanceof Response));
+  assert.equal(customClaims.clientId, "custom-client");
+  assert.equal(customClaims.extra.tenantId, "custom-tenant");
+
+  const wrongClaimNames = await customClaimsAuth.authenticate(requestFor(await fixture.sign({
+    azp: "custom-client",
+    tid: "custom-tenant",
+    scope: "palo:guide"
+  })));
+  assert.ok(wrongClaimNames instanceof Response);
+  assert.equal(wrongClaimNames.status, 401);
 });
 
 test("OIDC rejects a token minted for another MCP audience and advertises resource metadata", async (t) => {

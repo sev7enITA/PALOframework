@@ -1,0 +1,15 @@
+{
+  "artifactType": "agentcore-mcp-target-worksheet",
+  "importable": false,
+  "name": "palo-knowledge-reader",
+  "endpoint": "https://governance.paloframework.org/mcp-guide",
+  "listingMode": "DEFAULT",
+  "expectedProtocolVersion": "2026-07-28",
+  "expectedToolCount": 6,
+  "outboundAuthorization": {
+    "recommended": "OAUTH",
+    "grantType": "CLIENT_CREDENTIALS",
+    "identityProviderResource": "REPLACE_WITH_AGENTCORE_IDENTITY_PROVIDER_ARN"
+  },
+  "postCreateActions": ["SynchronizeGatewayTargets", "GetGatewayTarget", "verify exact Reader catalog"]
+}

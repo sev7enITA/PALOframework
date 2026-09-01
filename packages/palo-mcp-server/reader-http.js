@@ -18,8 +18,7 @@ import {
 } from "./reader-server.js";
 import { verifyKnowledgeReaderRelease } from "./reader-integrity.js";
 import { PaloCanonicalKnowledgeBase } from "./reader-knowledge-base.js";
-
-const loopbackHosts = new Set(["127.0.0.1", "localhost", "::1", "[::1]"]);
+import { assertValidatedBindHost, bindAppToValidatedHost, isLoopbackHost, normalizeNetworkHost } from "./network.js";
 
 export function parseReaderAllowedHosts(value) {
   return [...new Set(String(value || "").split(",").map((host) => host.trim().toLowerCase()).filter(Boolean))];
@@ -69,11 +68,11 @@ function assertProductionReaderConfiguration({ environment, oidc, host, allowedH
   }
   const resourceUrl = new URL(oidc.resourceUrl);
   if (resourceUrl.protocol !== "https:") throw new Error("Production Knowledge Reader public URL must use HTTPS");
-  if (loopbackHosts.has(resourceUrl.hostname.toLowerCase())) throw new Error("Production Knowledge Reader public URL must not use a loopback host");
+  if (isLoopbackHost(resourceUrl.hostname)) throw new Error("Production Knowledge Reader public URL must not use a loopback host");
   if (!allowedHosts.length || allowedHosts.includes("*") || !allowedHosts.includes(resourceUrl.hostname.toLowerCase())) {
     throw new Error("PALO_MCP_ALLOWED_HOSTS must explicitly include the production public hostname");
   }
-  if (loopbackHosts.has(String(host).toLowerCase())) throw new Error("Production Knowledge Reader must bind to an internal network interface, not loopback");
+  if (isLoopbackHost(host)) throw new Error("Production Knowledge Reader must bind to an internal network interface, not loopback");
   if (maxBodyBytes > 65_536) throw new Error("Production Knowledge Reader request bodies must be limited to 65536 bytes or less");
   if (rateLimitPerMinute > 600) throw new Error("Production Knowledge Reader rate limit must be 600 requests per minute or less");
   if (maxConcurrency > 64 || maxConcurrencyPerClient > 8 || maxConcurrencyPerClient > maxConcurrency) {
@@ -231,18 +230,18 @@ export function createKnowledgeReaderApp({
   release = verifyKnowledgeReaderRelease(),
   knowledgeBase = new PaloCanonicalKnowledgeBase()
 } = {}) {
-  const normalizedHost = String(host).trim().toLowerCase();
-  if (!loopbackHosts.has(normalizedHost) && allowedHosts.length === 0) {
+  const normalizedHost = normalizeNetworkHost(host);
+  if (!isLoopbackHost(normalizedHost) && allowedHosts.length === 0) {
     throw new Error("PALO_MCP_ALLOWED_HOSTS is required when Knowledge Reader binds to a non-local interface");
   }
   if (runtimeMode === "production") {
     if (!oidc) throw new Error("Production Knowledge Reader requires OIDC authentication");
     if (token) throw new Error("Production Knowledge Reader forbids shared-token configuration");
     const resourceUrl = new URL(oidc.resourceUrl);
-    if (resourceUrl.protocol !== "https:" || loopbackHosts.has(resourceUrl.hostname.toLowerCase())) {
+    if (resourceUrl.protocol !== "https:" || isLoopbackHost(resourceUrl.hostname)) {
       throw new Error("Production Knowledge Reader requires a non-loopback HTTPS resource URL");
     }
-    if (loopbackHosts.has(normalizedHost)) throw new Error("Production Knowledge Reader must not bind to loopback");
+    if (isLoopbackHost(normalizedHost)) throw new Error("Production Knowledge Reader must not bind to loopback");
     if (allowedHosts.includes("*") || !allowedHosts.includes(resourceUrl.hostname.toLowerCase())) {
       throw new Error("Production Knowledge Reader allowed hosts must include the public resource hostname");
     }
@@ -259,7 +258,8 @@ export function createKnowledgeReaderApp({
     token,
     oidc,
     scopes: PALO_KNOWLEDGE_READER_SCOPES,
-    resourceName: "PALO Knowledge Reader"
+    resourceName: "PALO Knowledge Reader",
+    requireOidcClientAndTenantAllowLists: Boolean(oidc && !isLoopbackHost(normalizedHost))
   });
   const mcpApp = createMcpHonoApp({
     host,
@@ -356,10 +356,11 @@ export function createKnowledgeReaderApp({
   }));
   app.route("/", mcpApp);
   app.closeMcp = () => handler.close();
-  return app;
+  return bindAppToValidatedHost(app, normalizedHost);
 }
 
 export function listenKnowledgeReaderApp(app, { port, host }, onListening) {
+  assertValidatedBindHost(app, host, "Knowledge Reader");
   return serve({ fetch: app.fetch, port, hostname: host }, onListening);
 }
 

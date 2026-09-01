@@ -1,0 +1,25 @@
+{
+  "parameters": {
+    "endpointUrl": "https://governance.paloframework.org/mcp-guide-curator/mcp",
+    "serverTransport": "=httpStreamable",
+    "authentication": "mcpOAuth2Api",
+    "include": "selected",
+    "includeTools": [
+      "palo_explain_framework",
+      "palo_infer_governance_route",
+      "palo_plan_product_integration",
+      "palo_list_knowledge_sources",
+      "palo_search_knowledge",
+      "palo_get_knowledge_record",
+      "palo_submit_knowledge_draft",
+      "palo_list_knowledge_drafts",
+      "palo_get_knowledge_draft",
+      "palo_review_knowledge_draft"
+    ],
+    "options": { "timeout": 60000 }
+  },
+  "type": "@n8n/n8n-nodes-langchain.mcpClientTool",
+  "typeVersion": 1.4,
+  "name": "PALO Knowledge Curator",
+  "position": [0, 0]
+}

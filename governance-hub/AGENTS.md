@@ -15,3 +15,10 @@ When implementing from a selected generated mock, treat that image as the source
 - Never present `Ready`, `Connected`, `Configured`, `Published`, or `Verified` unless the corresponding operation produced inspectable evidence. Static/reference-only states must be named explicitly.
 - After an action, provide an expandable receipt showing what happened, what did not happen, the input digest, network activity, ordered steps, boundaries, and raw JSON.
 - All selectable guided-setup combinations must be compatible by construction or show a specific blocking finding; changing a digest-bound input invalidates prior simulation and bundle evidence.
+
+## Durable connector setup feedback
+
+- Name the actual vendor host (for example Claude, ChatGPT, Codex or Copilot Studio); do not collapse different installation surfaces into a generic "MCP client" option.
+- Explain the transport, deployment, authentication and authority consequences of every selectable choice in plain language.
+- Never use "Ready" for a locally valid profile. Keep local contract validity, public endpoint preflight and vendor-host acceptance as independent evidence levels.
+- Every connection or verification action must expose an expandable trace with the method, target, expected and observed result, duration, remediation and remaining acceptance boundary.

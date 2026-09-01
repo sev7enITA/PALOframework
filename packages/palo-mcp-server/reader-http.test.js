@@ -4,6 +4,7 @@ import {
   createConcurrencyLimiter,
   createFixedWindowRateLimiter,
   createKnowledgeReaderApp,
+  listenKnowledgeReaderApp,
   parseReaderAllowedHosts,
   readerConfigurationFromEnvironment
 } from "./reader-http.js";
@@ -23,6 +24,24 @@ const productionEnvironment = Object.freeze({
   PALO_OIDC_ADVERTISED_SCOPES: "https://reader.example.test/mcp-guide/palo:guide https://reader.example.test/mcp-guide/palo:knowledge:read",
   PALO_OIDC_ALLOWED_CLIENT_IDS: "approved-reader-client",
   PALO_OIDC_ALLOWED_TENANTS: "tenant-a"
+});
+
+const localOidc = Object.freeze({
+  issuer: "http://[::1]:9000",
+  audience: "api://palo-reader-local",
+  jwksUri: "http://[::1]:9000/jwks",
+  resourceUrl: "http://[::1]:8788/mcp-guide"
+});
+
+test("Knowledge Reader preserves loopback OIDC and rejects listener host changes", () => {
+  for (const host of ["127.0.0.2", "0:0:0:0:0:0:0:1"]) {
+    const app = createKnowledgeReaderApp({ host, oidc: localOidc });
+    assert.throws(
+      () => listenKnowledgeReaderApp(app, { port: 0, host: "0.0.0.0" }),
+      /listener host must match/i
+    );
+    app.closeMcp();
+  }
 });
 
 test("production Knowledge Reader admission requires OIDC, HTTPS and explicit host protection", () => {

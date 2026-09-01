@@ -1,6 +1,89 @@
 name: palo-ai-governance
 
 services:
+  palo-identity-db:
+    image: postgres:17.6-alpine
+    restart: unless-stopped
+    mem_limit: 384m
+    cpus: 0.5
+    pids_limit: 128
+    cap_drop: [ALL]
+    cap_add: [CHOWN, DAC_OVERRIDE, FOWNER, SETGID, SETUID]
+    security_opt:
+      - no-new-privileges:true
+    environment:
+      POSTGRES_DB: keycloak
+      POSTGRES_USER: keycloak
+      POSTGRES_PASSWORD_FILE: /run/secrets/palo_identity_db_password
+    secrets:
+      - palo_identity_db_password
+    volumes:
+      - palo_identity_db:/var/lib/postgresql/data
+    networks: [identity_db]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U keycloak -d keycloak"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 15s
+
+  palo-identity:
+    build:
+      context: ../../..
+      dockerfile: deploy/vps/palo-ai/Containerfile.identity
+    entrypoint: ["/bin/bash", "-ec"]
+    command:
+      - |
+        export KC_BOOTSTRAP_ADMIN_PASSWORD="$$(cat /run/secrets/palo_identity_admin_password)"
+        export KC_DB_PASSWORD="$$(cat /run/secrets/palo_identity_db_password)"
+        export PALO_READER_SMOKE_CLIENT_SECRET="$$(cat /run/secrets/palo_reader_smoke_client_secret)"
+        export PALO_CURATOR_SMOKE_CLIENT_SECRET="$$(cat /run/secrets/palo_curator_smoke_client_secret)"
+        exec /opt/keycloak/bin/kc.sh start --optimized --import-realm --server-async-bootstrap=false
+    restart: unless-stopped
+    mem_limit: 896m
+    cpus: 1.0
+    pids_limit: 256
+    cap_drop: [ALL]
+    security_opt:
+      - no-new-privileges:true
+    environment:
+      KC_BOOTSTRAP_ADMIN_USERNAME: palo-admin
+      KC_DB: postgres
+      KC_DB_URL_HOST: palo-identity-db
+      KC_DB_URL_DATABASE: keycloak
+      KC_DB_USERNAME: keycloak
+      KC_HTTP_ENABLED: "true"
+      KC_HTTP_RELATIVE_PATH: /identity
+      KC_HOSTNAME: https://${PALO_DOMAIN}/identity
+      KC_HOSTNAME_STRICT: "true"
+      KC_PROXY_HEADERS: xforwarded
+      KC_CACHE: local
+      KC_HEALTH_ENABLED: "true"
+      KC_METRICS_ENABLED: "true"
+      KC_FEATURES: cimd
+      KC_LOG: console
+      KC_LOG_CONSOLE_OUTPUT: json
+      KC_LOG_LEVEL: INFO
+      JAVA_OPTS_KC_HEAP: -XX:InitialRAMPercentage=30 -XX:MaxRAMPercentage=65
+      PALO_DOMAIN: ${PALO_DOMAIN}
+    secrets:
+      - palo_identity_admin_password
+      - palo_identity_db_password
+      - palo_reader_smoke_client_secret
+      - palo_curator_smoke_client_secret
+    volumes:
+      - ./identity/palo-realm.json:/opt/keycloak/data/import/palo-realm.json:ro
+    networks: [identity_db, identity_edge, identity_egress]
+    depends_on:
+      palo-identity-db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "/bin/bash", "-ec", "exec 3<>/dev/tcp/127.0.0.1/9000; printf 'GET /identity/health/ready HTTP/1.0\r\nHost: localhost\r\n\r\n' >&3; grep -q '200 OK' <&3"]
+      interval: 15s
+      timeout: 5s
+      retries: 10
+      start_period: 45s
+
   opa:
     image: ${OPA_IMAGE:-openpolicyagent/opa:1.17.0-static}
     command:
@@ -105,6 +188,84 @@ services:
   palo-guide-mcp:
     build:
       context: ../../..
+      dockerfile: deploy/vps/palo-ai/Dockerfile.reader
+    command: ["packages/palo-mcp-server/reader-http.js"]
+    restart: unless-stopped
+    read_only: true
+    mem_limit: 384m
+    cpus: 1.0
+    pids_limit: 128
+    cap_drop: [ALL]
+    security_opt:
+      - no-new-privileges:true
+    environment:
+      PALO_MCP_HTTP_HOST: 0.0.0.0
+      PALO_MCP_HTTP_PORT: 8789
+      PALO_MCP_ALLOWED_HOSTS: ${PALO_DOMAIN},127.0.0.1,localhost
+      PALO_MCP_ALLOWED_ORIGINS: ${PALO_MCP_ALLOWED_ORIGINS:-sev7enita.github.io}
+      PALO_READER_RUNTIME_MODE: production
+      PALO_READER_MAX_BODY_BYTES: 65536
+      PALO_READER_RATE_LIMIT_PER_MINUTE: ${PALO_READER_RATE_LIMIT_PER_MINUTE:-120}
+      PALO_READER_MAX_CONCURRENCY: ${PALO_READER_MAX_CONCURRENCY:-32}
+      PALO_READER_MAX_CONCURRENCY_PER_CLIENT: ${PALO_READER_MAX_CONCURRENCY_PER_CLIENT:-4}
+      PALO_KNOWLEDGE_WRITE_ENABLED: "false"
+      PALO_KNOWLEDGE_REVIEW_ENABLED: "false"
+      PALO_KNOWLEDGE_INCLUDE_CURATED_LOCAL: "false"
+      PALO_AUTH_MODE: oidc
+      PALO_MCP_PUBLIC_URL: https://${PALO_DOMAIN}/mcp-guide
+      PALO_OIDC_ISSUER: https://${PALO_DOMAIN}/identity/realms/palo
+      PALO_OIDC_AUDIENCE: https://${PALO_DOMAIN}/mcp-guide
+      PALO_OIDC_JWKS_URI: https://${PALO_DOMAIN}/identity/realms/palo/protocol/openid-connect/certs
+      PALO_OIDC_ALGORITHMS: ${PALO_OIDC_ALGORITHMS:-RS256}
+      PALO_OIDC_ROLE_CLAIM: ${PALO_OIDC_ROLE_CLAIM:-roles}
+      PALO_OIDC_SCOPE_CLAIM: ${PALO_OIDC_SCOPE_CLAIM:-scope}
+      PALO_OIDC_CLIENT_ID_CLAIM: ${PALO_OIDC_CLIENT_ID_CLAIM:-azp}
+      PALO_OIDC_TENANT_CLAIM: ${PALO_OIDC_TENANT_CLAIM:-tid}
+      PALO_OIDC_TOKEN_TYPE: ${PALO_OIDC_TOKEN_TYPE:-JWT}
+      PALO_OIDC_ALLOWED_CLIENT_IDS: ${PALO_READER_OIDC_ALLOWED_CLIENT_IDS:-palo-reader-smoke}
+      PALO_OIDC_ALLOWED_TENANTS: ${PALO_OIDC_ALLOWED_TENANTS:-palo}
+    networks: [reader_edge, reader_egress]
+    depends_on:
+      palo-identity:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "/nodejs/bin/node", "-e", "fetch('http://127.0.0.1:8789/health',{headers:{Host:'127.0.0.1'}}).then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+
+  palo-guide-edge:
+    image: ${NGINX_IMAGE:-nginx:1.29.1-alpine}
+    entrypoint: ["nginx"]
+    command: ["-g", "daemon off;"]
+    user: "101:101"
+    restart: unless-stopped
+    read_only: true
+    mem_limit: 64m
+    cpus: 0.25
+    pids_limit: 32
+    cap_drop: [ALL]
+    security_opt:
+      - no-new-privileges:true
+    tmpfs:
+      - /tmp:size=16m,mode=1777
+    volumes:
+      - ./nginx-reader-edge.conf:/etc/nginx/nginx.conf:ro
+    networks: [reader_edge]
+    depends_on:
+      palo-guide-mcp:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "--header=Host: 127.0.0.1", "http://127.0.0.1:8080/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  palo-guide-curator-mcp:
+    build:
+      context: ../../..
       dockerfile: deploy/vps/palo-ai/Dockerfile
     command: ["node", "packages/palo-mcp-server/http.js"]
     restart: unless-stopped
@@ -117,18 +278,37 @@ services:
       - /tmp:size=32m,mode=1777
     environment:
       PALO_MCP_HTTP_HOST: 0.0.0.0
-      PALO_MCP_HTTP_PORT: 8789
+      PALO_MCP_HTTP_PORT: 8790
       PALO_MCP_ALLOWED_HOSTS: ${PALO_DOMAIN},127.0.0.1,localhost
-      PALO_MCP_EXPOSED_TOOLS: palo_explain_framework,palo_infer_governance_route,palo_plan_product_integration
-      PALO_MCP_HTTP_TOKEN_FILE: /run/secrets/palo_guide_mcp_token
-      PALO_DATA_DIR: /var/lib/palo-guide
-    secrets:
-      - palo_guide_mcp_token
+      PALO_MCP_ALLOWED_ORIGINS: ${PALO_MCP_ALLOWED_ORIGINS:-sev7enita.github.io}
+      PALO_MCP_EXPOSED_TOOLS: palo_explain_framework,palo_infer_governance_route,palo_plan_product_integration,palo_list_knowledge_sources,palo_search_knowledge,palo_get_knowledge_record,palo_submit_knowledge_draft,palo_list_knowledge_drafts,palo_get_knowledge_draft,palo_review_knowledge_draft
+      PALO_DATA_DIR: /var/lib/palo-guide-curator
+      PALO_KNOWLEDGE_DIR: /var/lib/palo-knowledge
+      PALO_KNOWLEDGE_WRITE_ENABLED: "true"
+      PALO_KNOWLEDGE_REVIEW_ENABLED: "true"
+      PALO_KNOWLEDGE_REQUIRE_REVIEWER_SEPARATION: "true"
+      PALO_AUTH_MODE: oidc
+      PALO_MCP_PUBLIC_URL: https://${PALO_DOMAIN}/mcp-guide-curator
+      PALO_OIDC_ISSUER: https://${PALO_DOMAIN}/identity/realms/palo
+      PALO_OIDC_AUDIENCE: https://${PALO_DOMAIN}/mcp-guide-curator
+      PALO_OIDC_JWKS_URI: https://${PALO_DOMAIN}/identity/realms/palo/protocol/openid-connect/certs
+      PALO_OIDC_ALGORITHMS: ${PALO_OIDC_ALGORITHMS:-RS256}
+      PALO_OIDC_ROLE_CLAIM: ${PALO_OIDC_ROLE_CLAIM:-roles}
+      PALO_OIDC_SCOPE_CLAIM: ${PALO_OIDC_SCOPE_CLAIM:-scope}
+      PALO_OIDC_CLIENT_ID_CLAIM: ${PALO_OIDC_CLIENT_ID_CLAIM:-azp}
+      PALO_OIDC_TENANT_CLAIM: ${PALO_OIDC_TENANT_CLAIM:-tid}
+      PALO_OIDC_TOKEN_TYPE: ${PALO_OIDC_TOKEN_TYPE:-JWT}
+      PALO_OIDC_ALLOWED_CLIENT_IDS: ${PALO_CURATOR_OIDC_ALLOWED_CLIENT_IDS:-palo-curator-smoke}
+      PALO_OIDC_ALLOWED_TENANTS: ${PALO_OIDC_ALLOWED_TENANTS:-palo}
     volumes:
-      - palo_guide_data:/var/lib/palo-guide
+      - palo_guide_curator_data:/var/lib/palo-guide-curator
+      - palo_knowledge:/var/lib/palo-knowledge
     networks: [backend]
+    depends_on:
+      palo-identity:
+        condition: service_healthy
     healthcheck:
-      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:8789/health',{headers:{Host:'127.0.0.1'}}).then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"]
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:8790/health',{headers:{Host:'127.0.0.1'}}).then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"]
       interval: 15s
       timeout: 5s
       retries: 5
@@ -243,11 +423,17 @@ services:
       - ./Caddyfile:/etc/caddy/Caddyfile:ro
       - caddy_data:/data
       - caddy_config:/config
-    networks: [edge, backend]
+    networks: [edge, backend, reader_edge, identity_edge]
     depends_on:
       palo-mcp:
         condition: service_healthy
       palo-guide-mcp:
+        condition: service_healthy
+      palo-guide-edge:
+        condition: service_healthy
+      palo-guide-curator-mcp:
+        condition: service_healthy
+      palo-identity:
         condition: service_healthy
     healthcheck:
       test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://127.0.0.1:2019/config/"]
@@ -260,8 +446,6 @@ secrets:
     file: ./secrets/gateway-token
   palo_mcp_token:
     file: ./secrets/mcp-token
-  palo_guide_mcp_token:
-    file: ./secrets/guide-mcp-token
   palo_hmac_keys:
     file: ./secrets/hmac-keys.json
   palo_hub_database_url:
@@ -274,10 +458,20 @@ secrets:
     file: ./secrets/hub-adapter-token
   palo_hub_signer_token:
     file: ./secrets/hub-signer-token
+  palo_identity_admin_password:
+    file: ./secrets/identity-admin-password
+  palo_identity_db_password:
+    file: ./secrets/identity-db-password
+  palo_reader_smoke_client_secret:
+    file: ./secrets/reader-smoke-client-secret
+  palo_curator_smoke_client_secret:
+    file: ./secrets/curator-smoke-client-secret
 
 volumes:
   palo_data:
-  palo_guide_data:
+  palo_guide_curator_data:
+  palo_knowledge:
+  palo_identity_db:
   caddy_data:
   caddy_config:
 
@@ -285,3 +479,11 @@ networks:
   edge:
   backend:
     internal: true
+  reader_edge:
+    internal: true
+  reader_egress:
+  identity_db:
+    internal: true
+  identity_edge:
+    internal: true
+  identity_egress:

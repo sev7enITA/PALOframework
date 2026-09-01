@@ -1,0 +1,15 @@
+{
+  "artifactType": "agentcore-mcp-target-worksheet",
+  "importable": false,
+  "name": "palo-knowledge-curator",
+  "endpoint": "https://governance.paloframework.org/mcp-guide-curator",
+  "listingMode": "DEFAULT",
+  "expectedProtocolVersion": "2026-07-28",
+  "expectedToolCount": 10,
+  "outboundAuthorization": {
+    "recommended": "OAUTH",
+    "grantType": "CLIENT_CREDENTIALS",
+    "identityProviderResource": "REPLACE_WITH_RESTRICTED_AGENTCORE_IDENTITY_PROVIDER_ARN"
+  },
+  "postCreateActions": ["SynchronizeGatewayTargets", "GetGatewayTarget", "verify exact Curator catalog and restricted principals"]
+}

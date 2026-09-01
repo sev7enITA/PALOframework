@@ -1,0 +1,19 @@
+{
+  "servers": {
+    "palo-knowledge-curator": {
+      "type": "http",
+      "url": "https://governance.paloframework.org/mcp-guide-curator",
+      "headers": {
+        "Authorization": "Bearer ${input:palo-guide-curator-token}"
+      }
+    }
+  },
+  "inputs": [
+    {
+      "id": "palo-guide-curator-token",
+      "type": "promptString",
+      "description": "PALO Knowledge Curator token",
+      "password": true
+    }
+  ]
+}

@@ -11,25 +11,15 @@
   },
   "githubEducation": {
     "status": "paused-insufficient-current-enrollment-evidence",
-    "account": "sev7enITA",
-    "academicEmailVerified": true,
+    "accountRetained": false,
     "academicEmailRetained": false,
-    "profileAndBillingNameAligned": true,
-    "previousApplication": {
-      "type": "Student",
-      "submittedOn": "2025-04-17",
-      "status": "rejected",
-      "documentIssues": [
-        "complete school name not visible",
-        "current academic-affiliation date not visible"
-      ]
-    },
+    "applicationHistoryRetained": false,
     "evaluatedEvidence": {
       "politecnicoProgram": "completed",
       "activeDoctorateCard": "institution and program visible, but no visible current-validity or expected-completion date",
       "documentsRetained": false
     },
-    "nextAction": "Do not reapply unless a current official doctorate letter shows full name, complete institution name, explicit current enrollment, issue date and expected completion or validity date.",
+    "nextAction": "Do not reapply unless current official evidence satisfies the provider's published enrollment requirements.",
     "approvalRecorded": false
   },
   "sensitiveDataRetained": false,

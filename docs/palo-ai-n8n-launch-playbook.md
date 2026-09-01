@@ -143,7 +143,7 @@ The proposed model introduces four complementary patterns:
 - digest-bound human approval and secure resume;
 - workflow admission and continuous governance.
 
-PALO-AI v2.7 is a data-assurance developer preview. It includes 21 versioned JSON contracts, 38 reference MCP tools, Rego policies, Authority Context, Data Fitness and disclosure controls, replay controls, exact-claim approval, one-time execution capabilities, signed receipts and authoritative outcome verification. Production identity, unavoidable enforcement, secure mobile approval delivery, durable multi-instance recovery and certified connectors remain under development.
+PALO-AI v2.7 is a data-assurance developer preview. It includes 21 versioned JSON contracts, 45 reference MCP tools (including isolated Knowledge Reader and Curator profiles), Rego policies, Authority Context, Data Fitness and disclosure controls, replay controls, exact-claim approval, one-time execution capabilities, signed receipts and authoritative outcome verification. Production identity, unavoidable enforcement, secure mobile approval delivery, durable multi-instance recovery and certified connectors remain under development.
 
 We are looking for n8n builders, security engineers, policy authors and design partners willing to review the contracts and test safe non-production workflows.
 

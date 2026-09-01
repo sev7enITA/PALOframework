@@ -148,6 +148,12 @@ export function createOidcTokenVerifier(configuration) {
   const allowedTenantIds = new Set(values(configuration.allowedTenantIds));
   if (allowedClientIds.has("*")) throw new Error("OIDC allowed client IDs must not contain a wildcard");
   if (allowedTenantIds.has("*")) throw new Error("OIDC allowed tenant IDs must not contain a wildcard");
+  if (configuration.requireClientAndTenantAllowLists && allowedClientIds.size === 0) {
+    throw new Error("Remote OIDC requires an explicit client allowlist");
+  }
+  if (configuration.requireClientAndTenantAllowLists && allowedTenantIds.size === 0) {
+    throw new Error("Remote OIDC requires an explicit tenant allowlist");
+  }
   return {
     async verifyAccessToken(token) {
       try {
@@ -214,9 +220,18 @@ function constantTimeBearer(header, token) {
   return actual.length === expected.length && timingSafeEqual(actual, expected);
 }
 
-export function createPaloAuth({ token, oidc, scopes = PALO_SCOPES, resourceName = "PALO governance MCP" } = {}) {
+export function createPaloAuth({
+  token,
+  oidc,
+  scopes = PALO_SCOPES,
+  resourceName = "PALO governance MCP",
+  requireOidcClientAndTenantAllowLists = false
+} = {}) {
   if (oidc) {
-    const verifier = createOidcTokenVerifier(oidc);
+    const verifier = createOidcTokenVerifier({
+      ...oidc,
+      requireClientAndTenantAllowLists: requireOidcClientAndTenantAllowLists
+    });
     const resourceMetadataUrl = getOAuthProtectedResourceMetadataUrl(new URL(oidc.resourceUrl));
     const gate = requireBearerAuth({ verifier, resourceMetadataUrl });
     return {

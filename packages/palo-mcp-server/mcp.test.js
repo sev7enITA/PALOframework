@@ -7,15 +7,16 @@ import { Client, StreamableHTTPClientTransport } from "@modelcontextprotocol/cli
 import { StdioClientTransport } from "@modelcontextprotocol/client/stdio";
 import { GovernanceRuntime } from "./core.js";
 import { createAuthenticatedMcpApp, listenMcpApp, parseAllowedHosts } from "./http.js";
+import { PALO_KNOWLEDGE_CURATOR_TOOLS, PALO_KNOWLEDGE_READER_TOOLS } from "./knowledge-base.js";
 
 const listenTestApp = (app) => new Promise((resolve) => {
   const listener = listenMcpApp(app, { port: 0, host: "127.0.0.1" }, (info) => resolve({ listener, port: info.port }));
 });
 
 const expectedTools = [
-  "palo_evaluate_data_fitness", "palo_execute_governed_action", "palo_explain_framework", "palo_get_ai_system", "palo_get_approval_status", "palo_get_assurance_task", "palo_get_data_fitness_decision", "palo_get_disclosure_contract", "palo_get_execution_status", "palo_get_incident", "palo_get_operational_snapshot", "palo_get_registry", "palo_import_context_evidence", "palo_infer_governance_route", "palo_ingest_assurance_signal", "palo_list_ai_systems", "palo_list_approvals", "palo_list_assurance_signals", "palo_list_assurance_tasks", "palo_list_context_evidence", "palo_list_incidents", "palo_plan_product_integration",
+  "palo_evaluate_data_fitness", "palo_execute_governed_action", "palo_explain_framework", "palo_get_ai_system", "palo_get_approval_status", "palo_get_assurance_task", "palo_get_data_fitness_decision", "palo_get_disclosure_contract", "palo_get_execution_status", "palo_get_incident", "palo_get_knowledge_draft", "palo_get_knowledge_record", "palo_get_operational_snapshot", "palo_get_registry", "palo_import_context_evidence", "palo_infer_governance_route", "palo_ingest_assurance_signal", "palo_list_ai_systems", "palo_list_approvals", "palo_list_assurance_signals", "palo_list_assurance_tasks", "palo_list_context_evidence", "palo_list_incidents", "palo_list_knowledge_drafts", "palo_list_knowledge_sources", "palo_plan_product_integration",
   "palo_process_due_tasks", "palo_register_agent", "palo_register_ai_system", "palo_register_data_fitness_policy", "palo_register_disclosure_contract", "palo_register_executor", "palo_register_policy", "palo_register_verifier", "palo_request_approval", "palo_resolve_approval", "palo_resolve_incident",
-  "palo_submit_evidence", "palo_verify_action_authority", "palo_verify_evidence", "palo_verify_ledger", "palo_verify_outcome"
+  "palo_review_knowledge_draft", "palo_search_knowledge", "palo_submit_evidence", "palo_submit_knowledge_draft", "palo_verify_action_authority", "palo_verify_evidence", "palo_verify_ledger", "palo_verify_outcome"
 ];
 
 test("remote MCP binding requires an explicit host allowlist", () => {
@@ -23,10 +24,107 @@ test("remote MCP binding requires an explicit host allowlist", () => {
   assert.throws(() => createAuthenticatedMcpApp({ runtime: {}, token: "test-streamable-http-token-32-bytes", host: "0.0.0.0" }), /allowed_hosts/i);
   assert.throws(() => createAuthenticatedMcpApp({ runtime: {}, token: "test-streamable-http-token-32-bytes", host: "192.0.2.10" }), /allowed_hosts/i);
   assert.throws(() => createAuthenticatedMcpApp({ runtime: {}, token: "test-streamable-http-token-32-bytes", host: "203.0.113.10" }), /allowed_hosts/i);
-  for (const host of ["127.0.0.1", "localhost", "LOCALHOST", "::1"]) {
+  for (const host of ["127.0.0.1", "127.0.0.2", "localhost", "LOCALHOST", "::1", "0:0:0:0:0:0:0:1"]) {
     assert.doesNotThrow(() => createAuthenticatedMcpApp({ runtime: {}, token: "test-streamable-http-token-32-bytes", host }));
   }
   assert.doesNotThrow(() => createAuthenticatedMcpApp({ runtime: {}, token: "test-streamable-http-token-32-bytes", host: "192.0.2.10", allowedHosts: ["governance.example.org"] }));
+});
+
+test("remote OIDC binding requires explicit client and tenant allowlists", () => {
+  const oidc = {
+    issuer: "https://identity.example.org/realms/palo",
+    audience: "api://palo-governance",
+    jwksUri: "https://identity.example.org/realms/palo/certs",
+    resourceUrl: "https://governance.example.org/mcp"
+  };
+  const remote = {
+    runtime: {},
+    host: "0.0.0.0",
+    allowedHosts: ["governance.example.org"]
+  };
+  assert.throws(() => createAuthenticatedMcpApp({ ...remote, oidc }), /client allowlist/i);
+  assert.throws(() => createAuthenticatedMcpApp({
+    ...remote,
+    oidc: { ...oidc, allowedClientIds: ["approved-client"] }
+  }), /tenant allowlist/i);
+  const app = createAuthenticatedMcpApp({
+    ...remote,
+    oidc: {
+      ...oidc,
+      allowedClientIds: ["approved-client"],
+      allowedTenantIds: ["approved-tenant"]
+    }
+  });
+  assert.doesNotThrow(() => app);
+  app.closeMcp();
+  const loopback = createAuthenticatedMcpApp({ runtime: {}, host: "127.0.0.1", oidc });
+  assert.throws(
+    () => listenMcpApp(loopback, { port: 0, host: "0.0.0.0" }),
+    /listener host must match/i
+  );
+  loopback.closeMcp();
+  for (const host of ["127.0.0.2", "0:0:0:0:0:0:0:1"]) {
+    const alternateLoopback = createAuthenticatedMcpApp({ runtime: {}, host, oidc });
+    alternateLoopback.closeMcp();
+  }
+});
+
+test("remote MCP uses an origin allowlist separate from Host validation", async (t) => {
+  const app = createAuthenticatedMcpApp({
+    runtime: {},
+    token: "test-streamable-http-token-32-bytes",
+    host: "0.0.0.0",
+    allowedHosts: ["governance.example.org"],
+    allowedOrigins: ["console.example.org"]
+  });
+  t.after(() => app.closeMcp());
+  const allowed = await app.request("/health", {
+    headers: { host: "governance.example.org", origin: "https://console.example.org" }
+  });
+  assert.equal(allowed.status, 200);
+  const rejected = await app.request("/health", {
+    headers: { host: "governance.example.org", origin: "https://untrusted.example.org" }
+  });
+  assert.equal(rejected.status, 403);
+});
+
+test("an exposed tool subset narrows protected-resource scopes", async (t) => {
+  const app = createAuthenticatedMcpApp({
+    runtime: {},
+    oidc: {
+      issuer: "https://identity.example.org/realms/palo",
+      audience: "https://governance.example.org/mcp-guide-curator",
+      jwksUri: "https://identity.example.org/realms/palo/certs",
+      resourceUrl: "https://governance.example.org/mcp-guide-curator",
+      allowedClientIds: ["approved-curator"],
+      allowedTenantIds: ["approved-tenant"]
+    },
+    host: "0.0.0.0",
+    allowedHosts: ["governance.example.org"],
+    exposedTools: [...PALO_KNOWLEDGE_CURATOR_TOOLS]
+  });
+  t.after(() => app.closeMcp());
+  const response = await app.request("/.well-known/oauth-protected-resource/mcp-guide-curator", {
+    headers: { host: "governance.example.org" }
+  });
+  assert.equal(response.status, 200);
+  const metadata = await response.json();
+  assert.deepEqual(metadata.scopes_supported, [
+    "palo:guide",
+    "palo:knowledge:read",
+    "palo:knowledge:write",
+    "palo:knowledge:review"
+  ]);
+  const anonymous = await app.request("/mcp", {
+    method: "POST",
+    headers: {
+      host: "governance.example.org",
+      "content-type": "application/json",
+      accept: "application/json, text/event-stream"
+    },
+    body: JSON.stringify({ jsonrpc: "2.0", id: 1, method: "initialize", params: {} })
+  });
+  assert.equal(anonymous.status, 401);
 });
 
 test("remote MCP can expose a least-privilege tool subset", async (t) => {
@@ -39,6 +137,7 @@ test("remote MCP can expose a least-privilege tool subset", async (t) => {
   const client = new Client({ name: "palo-http-subset-test", version: "1.0.0" });
   try {
     await client.connect(transport);
+    assert.match(client.getInstructions(), /PALO-AI developer-preview governance tools/);
     const response = await client.listTools();
     assert.deepEqual(response.tools.map((tool) => tool.name).sort(), exposedTools);
     assert.deepEqual((await client.listPrompts()).prompts, []);
@@ -85,6 +184,48 @@ test("stdio MCP supports a guidance-only least-privilege allowlist", async () =>
     const prompts = await client.listPrompts();
     assert.ok(prompts.prompts.some((prompt) => prompt.name === "palo_guide_agent"));
   } finally { await client.close(); }
+});
+
+test("stdio MCP exposes exact knowledge Reader and Curator profiles", async () => {
+  for (const profile of [
+    { name: "reader", tools: PALO_KNOWLEDGE_READER_TOOLS, write: false },
+    { name: "curator", tools: PALO_KNOWLEDGE_CURATOR_TOOLS, write: true }
+  ]) {
+    const dataDir = path.join(os.tmpdir(), `palo-knowledge-${profile.name}-${crypto.randomUUID()}`);
+    const transport = new StdioClientTransport({
+      command: process.execPath,
+      args: ["packages/palo-mcp-server/index.js"],
+      cwd: process.cwd(),
+      stderr: "pipe",
+      env: {
+        ...process.env,
+        PALO_DATA_DIR: dataDir,
+        PALO_KNOWLEDGE_DIR: path.join(dataDir, "knowledge"),
+        PALO_KNOWLEDGE_WRITE_ENABLED: String(profile.write),
+        PALO_KNOWLEDGE_REVIEW_ENABLED: String(profile.write),
+        PALO_MCP_EXPOSED_TOOLS: profile.tools.join(",")
+      }
+    });
+    const client = new Client({ name: `palo-knowledge-${profile.name}-test`, version: "1.0.0" });
+    try {
+      await client.connect(transport);
+      assert.match(client.getInstructions(), new RegExp(`PALO Knowledge ${profile.write ? "Curator" : "Reader"}`));
+      assert.match(client.getInstructions(), /cite recordId plus sourcePath/);
+      assert.match(client.getInstructions(), profile.write ? /immutable local drafts\/reviews/ : /profile is read-only/);
+      const response = await client.listTools();
+      assert.deepEqual(response.tools.map((tool) => tool.name).sort(), [...profile.tools].sort());
+      const searchTool = response.tools.find((tool) => tool.name === "palo_search_knowledge");
+      assert.equal(searchTool.annotations?.readOnlyHint, true);
+      assert.ok(!response.tools.some((tool) => tool.name === "palo_execute_governed_action"));
+      if (profile.write) {
+        const submitTool = response.tools.find((tool) => tool.name === "palo_submit_knowledge_draft");
+        assert.equal(submitTool.annotations?.readOnlyHint, false);
+      }
+    } finally {
+      await client.close();
+      await rm(dataDir, { recursive: true, force: true });
+    }
+  }
 });
 
 test("authenticated Streamable HTTP rejects anonymous clients and exposes the same MCP tools", async (t) => {

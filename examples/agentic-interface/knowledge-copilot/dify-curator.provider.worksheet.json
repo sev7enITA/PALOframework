@@ -1,0 +1,10 @@
+{
+  "artifactType": "dify-native-mcp-provider-worksheet",
+  "importable": false,
+  "name": "PALO Knowledge Curator",
+  "server_url": "https://governance.paloframework.org/mcp-guide-curator/mcp",
+  "authentication": "OAuth with restricted Curator role or protected Authorization header",
+  "expected_tool_count": 10,
+  "identity_mode": "off unless Dify Enterprise user identity forwarding is deliberately configured",
+  "fallback": "Do not map curation to the operational Gateway; qualify the native MCP path or keep Curator disabled."
+}

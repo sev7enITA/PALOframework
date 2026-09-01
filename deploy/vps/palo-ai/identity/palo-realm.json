@@ -1,0 +1,199 @@
+{
+  "realm": "palo",
+  "displayName": "PALO Identity",
+  "enabled": true,
+  "sslRequired": "external",
+  "registrationAllowed": false,
+  "registrationEmailAsUsername": false,
+  "rememberMe": false,
+  "verifyEmail": true,
+  "loginWithEmailAllowed": true,
+  "duplicateEmailsAllowed": false,
+  "resetPasswordAllowed": true,
+  "editUsernameAllowed": false,
+  "bruteForceProtected": true,
+  "permanentLockout": false,
+  "maxFailureWaitSeconds": 900,
+  "minimumQuickLoginWaitSeconds": 60,
+  "waitIncrementSeconds": 60,
+  "quickLoginCheckMilliSeconds": 1000,
+  "maxDeltaTimeSeconds": 43200,
+  "failureFactor": 5,
+  "accessTokenLifespan": 300,
+  "accessTokenLifespanForImplicitFlow": 300,
+  "ssoSessionIdleTimeout": 1800,
+  "ssoSessionMaxLifespan": 28800,
+  "offlineSessionIdleTimeout": 2592000,
+  "revokeRefreshToken": true,
+  "refreshTokenMaxReuse": 0,
+  "defaultSignatureAlgorithm": "RS256",
+  "oauth2DeviceCodeLifespan": 600,
+  "oauth2DevicePollingInterval": 5,
+  "roles": {
+    "realm": [
+      {
+        "name": "palo-knowledge-reader",
+        "description": "Read-only access to the canonical PALO knowledge catalog"
+      },
+      {
+        "name": "palo-knowledge-curator",
+        "description": "Restricted draft and review access to the PALO knowledge curator"
+      }
+    ]
+  },
+  "clientScopes": [
+    {
+      "name": "palo:guide",
+      "description": "Explain and route the PALO framework",
+      "protocol": "openid-connect",
+      "attributes": {
+        "display.on.consent.screen": "true",
+        "include.in.token.scope": "true"
+      }
+    },
+    {
+      "name": "palo:knowledge:read",
+      "description": "Read the immutable PALO knowledge catalog",
+      "protocol": "openid-connect",
+      "attributes": {
+        "display.on.consent.screen": "true",
+        "include.in.token.scope": "true"
+      }
+    },
+    {
+      "name": "palo:knowledge:write",
+      "description": "Submit immutable PALO knowledge drafts",
+      "protocol": "openid-connect",
+      "attributes": {
+        "display.on.consent.screen": "true",
+        "include.in.token.scope": "true"
+      }
+    },
+    {
+      "name": "palo:knowledge:review",
+      "description": "Perform terminal review of PALO knowledge drafts",
+      "protocol": "openid-connect",
+      "attributes": {
+        "display.on.consent.screen": "true",
+        "include.in.token.scope": "true"
+      }
+    }
+  ],
+  "clients": [
+    {
+      "clientId": "palo-reader-smoke",
+      "name": "PALO Reader deployment verification",
+      "description": "Non-interactive client restricted to Reader release verification",
+      "enabled": true,
+      "clientAuthenticatorType": "client-secret",
+      "secret": "${PALO_READER_SMOKE_CLIENT_SECRET}",
+      "serviceAccountsEnabled": true,
+      "standardFlowEnabled": false,
+      "directAccessGrantsEnabled": false,
+      "implicitFlowEnabled": false,
+      "publicClient": false,
+      "frontchannelLogout": false,
+      "fullScopeAllowed": false,
+      "defaultClientScopes": [
+        "palo:guide",
+        "palo:knowledge:read"
+      ],
+      "protocol": "openid-connect",
+      "protocolMappers": [
+        {
+          "name": "reader-audience",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-audience-mapper",
+          "consentRequired": false,
+          "config": {
+            "included.custom.audience": "https://${PALO_DOMAIN}/mcp-guide",
+            "id.token.claim": "false",
+            "access.token.claim": "true",
+            "introspection.token.claim": "true"
+          }
+        },
+        {
+          "name": "palo-tenant",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-hardcoded-claim-mapper",
+          "consentRequired": false,
+          "config": {
+            "claim.name": "tid",
+            "claim.value": "palo",
+            "jsonType.label": "String",
+            "id.token.claim": "false",
+            "access.token.claim": "true",
+            "userinfo.token.claim": "false",
+            "introspection.token.claim": "true"
+          }
+        }
+      ]
+    },
+    {
+      "clientId": "palo-curator-smoke",
+      "name": "PALO Curator deployment verification",
+      "description": "Non-interactive client restricted to Curator release verification",
+      "enabled": true,
+      "clientAuthenticatorType": "client-secret",
+      "secret": "${PALO_CURATOR_SMOKE_CLIENT_SECRET}",
+      "serviceAccountsEnabled": true,
+      "standardFlowEnabled": false,
+      "directAccessGrantsEnabled": false,
+      "implicitFlowEnabled": false,
+      "publicClient": false,
+      "frontchannelLogout": false,
+      "fullScopeAllowed": false,
+      "defaultClientScopes": [
+        "palo:guide",
+        "palo:knowledge:read",
+        "palo:knowledge:write",
+        "palo:knowledge:review"
+      ],
+      "protocol": "openid-connect",
+      "protocolMappers": [
+        {
+          "name": "curator-audience",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-audience-mapper",
+          "consentRequired": false,
+          "config": {
+            "included.custom.audience": "https://${PALO_DOMAIN}/mcp-guide-curator",
+            "id.token.claim": "false",
+            "access.token.claim": "true",
+            "introspection.token.claim": "true"
+          }
+        },
+        {
+          "name": "palo-tenant",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-hardcoded-claim-mapper",
+          "consentRequired": false,
+          "config": {
+            "claim.name": "tid",
+            "claim.value": "palo",
+            "jsonType.label": "String",
+            "id.token.claim": "false",
+            "access.token.claim": "true",
+            "userinfo.token.claim": "false",
+            "introspection.token.claim": "true"
+          }
+        }
+      ]
+    }
+  ],
+  "eventsEnabled": true,
+  "eventsExpiration": 604800,
+  "enabledEventTypes": [
+    "LOGIN",
+    "LOGIN_ERROR",
+    "LOGOUT",
+    "CODE_TO_TOKEN",
+    "CODE_TO_TOKEN_ERROR",
+    "CLIENT_LOGIN",
+    "CLIENT_LOGIN_ERROR",
+    "REFRESH_TOKEN",
+    "REFRESH_TOKEN_ERROR"
+  ],
+  "adminEventsEnabled": true,
+  "adminEventsDetailsEnabled": false
+}

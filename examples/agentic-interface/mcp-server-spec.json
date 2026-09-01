@@ -31,9 +31,17 @@
     "PALO_OIDC_AUDIENCE": "Required audience for every accepted MCP access token.",
     "PALO_OIDC_JWKS_URI": "HTTPS JWKS endpoint used for signature verification; loopback HTTP is accepted only for development tests.",
     "PALO_OIDC_ALGORITHMS": "Optional space-separated asymmetric algorithm allowlist; defaults to RS256, PS256, ES256 and EdDSA.",
+    "PALO_OIDC_CLIENT_ID_CLAIM": "Access-token claim containing the calling OAuth client ID; defaults to azp.",
+    "PALO_OIDC_ALLOWED_CLIENT_IDS": "Required non-empty client allowlist for every non-loopback OIDC listener.",
+    "PALO_OIDC_TENANT_CLAIM": "Access-token claim containing the tenant ID; defaults to tid.",
+    "PALO_OIDC_ALLOWED_TENANTS": "Required non-empty tenant allowlist for every non-loopback OIDC listener.",
     "PALO_OTEL_ENABLED": "Set to true to emit allowlisted assurance spans through a host-registered OpenTelemetry SDK/provider.",
     "PALO_GATEWAY_TOKEN": "Bearer token of at least 24 bytes for the connector REST gateway.",
-    "PALO_MCP_EXPOSED_TOOLS": "Optional comma-separated least-privilege allowlist for stdio and Streamable HTTP. For guidance-only integrations expose only palo_explain_framework, palo_infer_governance_route and palo_plan_product_integration."
+    "PALO_MCP_EXPOSED_TOOLS": "Optional comma-separated least-privilege allowlist for stdio and Streamable HTTP. Use the documented six-tool Knowledge Reader or ten-tool Knowledge Curator profiles rather than exposing the operational runtime to knowledge copilots.",
+    "PALO_KNOWLEDGE_DIR": "Shared runtime workspace for immutable knowledge drafts, terminal reviews and accepted curated-local records.",
+    "PALO_KNOWLEDGE_WRITE_ENABLED": "Set to true only on a Curator service that may create and inspect knowledge drafts.",
+    "PALO_KNOWLEDGE_REVIEW_ENABLED": "Set to true only on a Curator/reviewer service that may accept or reject knowledge drafts.",
+    "PALO_KNOWLEDGE_REQUIRE_REVIEWER_SEPARATION": "When true, the verified reviewer identity must differ from the draft submitter."
   },
   "prompts": [
     { "name": "palo_guide_agent", "contract": "source-grounded host-agent behavior with explicit inference and authority boundaries" }
@@ -42,6 +50,13 @@
     { "name": "palo_explain_framework", "contract": "read-only explanation over released semantic records and evidence/authority classes" },
     { "name": "palo_infer_governance_route", "contract": "deterministic signal-to-phase starting hypothesis with reasons, artifacts and open questions" },
     { "name": "palo_plan_product_integration", "contract": "least-privilege MCP transport and integration-class plan that separates guidance from protected execution" },
+    { "name": "palo_list_knowledge_sources", "contract": "read-only source inventory that separates canonical, source-backed and curated-local knowledge" },
+    { "name": "palo_search_knowledge", "contract": "provenance-preserving search over released PALO registries and accepted local contributions" },
+    { "name": "palo_get_knowledge_record", "contract": "complete knowledge record retrieval with source and authority boundary" },
+    { "name": "palo_submit_knowledge_draft", "contract": "immutable local knowledge contribution that cannot publish itself or modify released PALO files" },
+    { "name": "palo_list_knowledge_drafts", "contract": "curator-only draft and terminal review inventory" },
+    { "name": "palo_get_knowledge_draft", "contract": "curator-only immutable draft and review retrieval" },
+    { "name": "palo_review_knowledge_draft", "contract": "terminal accept/reject review with source, authority and prompt-injection checklist; acceptance creates a curated-local record" },
     { "name": "palo_register_agent", "contract": "locally registered versioned agent and authority profile; publisher identity is not authenticated" },
     { "name": "palo_register_policy", "contract": "locally registered versioned OPA policy manifest; bundle attestation is not provided" },
     { "name": "palo_register_executor", "contract": "versioned executor manifest; executable handler is operator-provisioned" },

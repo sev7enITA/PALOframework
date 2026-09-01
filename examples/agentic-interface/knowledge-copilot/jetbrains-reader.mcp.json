@@ -1,0 +1,7 @@
+{
+  "mcpServers": {
+    "palo-knowledge-reader": {
+      "url": "https://governance.paloframework.org/mcp-guide"
+    }
+  }
+}

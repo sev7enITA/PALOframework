@@ -8,6 +8,7 @@ import addFormats from "ajv-formats";
 import { createFunctionEnforcementProvider, evaluateEnforcementProvider, validateEnforcementProviderManifest } from "./enforcement-provider.js";
 import { emitTelemetry, resolveTraceId, signEd25519Envelope, validateAuthorityContext, verifyEvidenceEnvelope } from "./assurance-foundation.js";
 import { evaluateDataDisclosureContract, evaluateDataFitnessPolicy, sameSubject } from "./data-assurance.js";
+import { PaloKnowledgeBase } from "./knowledge-base.js";
 import { telemetryFromEnvironment } from "./telemetry-otel.js";
 
 const PROFILE_FORMAT = "palo-agentic-interface";
@@ -283,6 +284,7 @@ export class GovernanceRuntime {
     guardrails = loadJsonObjectFromEnvironment("PALO_RUNTIME_GUARDRAILS_JSON"),
     policyEvaluator,
     enforcementProvider,
+    knowledgeBase,
     executors = {},
     verifiers = {}
   } = {}) {
@@ -317,6 +319,7 @@ export class GovernanceRuntime {
     this.executorHandlers = new Map(Object.entries(executors));
     this.verifierHandlers = new Map(Object.entries(verifiers));
     this.db = openDatabase(dataDir);
+    this.knowledgeBase = knowledgeBase || new PaloKnowledgeBase({ workspaceDir: process.env.PALO_KNOWLEDGE_DIR || path.resolve(dataDir, "knowledge") });
     this.bootstrapPolicy();
   }
 

@@ -10,23 +10,37 @@ import {
   createPaloAuth,
   hasScope,
   insufficientScopeResponse,
+  isHttpResponse,
   oidcConfigurationFromEnvironment,
   toolNameFromRequest
 } from "./auth.js";
 import { createPaloMcpServer, parseExposedTools } from "./server.js";
 import { loadEnforcementProviderFromEnvironment } from "./providers/from-environment.js";
 import { loadProductionProfileFromEnvironment } from "./production-admission.js";
+import { assertValidatedBindHost, bindAppToValidatedHost, isLoopbackHost, normalizeNetworkHost } from "./network.js";
 
 export function parseAllowedHosts(value) {
   return [...new Set(String(value || "").split(",").map((host) => host.trim().toLowerCase()).filter(Boolean))];
 }
 
-export function createAuthenticatedMcpApp({ runtime, token, oidc, host = "127.0.0.1", allowedHosts = [], exposedTools }) {
-  const normalizedHost = String(host).trim().toLowerCase();
-  const isLoopback = ["127.0.0.1", "localhost", "::1"].includes(normalizedHost);
+export function createAuthenticatedMcpApp({ runtime, token, oidc, host = "127.0.0.1", allowedHosts = [], allowedOrigins = allowedHosts, exposedTools }) {
+  const normalizedHost = normalizeNetworkHost(host);
+  const isLoopback = isLoopbackHost(normalizedHost);
   if (!isLoopback && allowedHosts.length === 0) throw new Error("PALO_MCP_ALLOWED_HOSTS is required when MCP binds to a non-local interface");
-  const auth = createPaloAuth({ token, oidc });
-  const app = createMcpHonoApp({ host, ...(allowedHosts.length ? { allowedHosts, allowedOrigins: allowedHosts } : {}) });
+  const exposedScopes = exposedTools?.length
+    ? [...new Set(exposedTools.map((name) => TOOL_SCOPE_REQUIREMENTS[name]).filter(Boolean))]
+    : undefined;
+  const auth = createPaloAuth({
+    token,
+    oidc,
+    ...(exposedScopes ? { scopes: exposedScopes } : {}),
+    requireOidcClientAndTenantAllowLists: Boolean(oidc && !isLoopback)
+  });
+  const app = createMcpHonoApp({
+    host,
+    ...(allowedHosts.length ? { allowedHosts } : {}),
+    ...(allowedOrigins.length ? { allowedOrigins } : {})
+  });
   const handler = createMcpHandler((requestContext) => createPaloMcpServer(runtime, {
     exposedTools: authorizedToolNames(requestContext.authInfo, exposedTools),
     requestContext
@@ -40,7 +54,7 @@ export function createAuthenticatedMcpApp({ runtime, token, oidc, host = "127.0.
   app.all("/mcp", async (context) => {
     if (context.req.method !== "POST") return context.json({ jsonrpc: "2.0", error: { code: -32000, message: "Method not allowed" }, id: null }, 405);
     const authResult = await auth.authenticate(context.req.raw);
-    if (authResult instanceof Response) return authResult;
+    if (isHttpResponse(authResult)) return authResult;
     const parsedBody = context.get("parsedBody");
     const toolName = toolNameFromRequest(context.req.raw, parsedBody);
     const requiredScope = TOOL_SCOPE_REQUIREMENTS[toolName];
@@ -51,10 +65,11 @@ export function createAuthenticatedMcpApp({ runtime, token, oidc, host = "127.0.
     });
   });
   app.closeMcp = () => handler.close();
-  return app;
+  return bindAppToValidatedHost(app, normalizedHost);
 }
 
 export function listenMcpApp(app, { port, host }, onListening) {
+  assertValidatedBindHost(app, host, "MCP");
   return serve({ fetch: app.fetch, port, hostname: host }, onListening);
 }
 
@@ -64,11 +79,12 @@ if (import.meta.url === pathToFileURL(process.argv[1]).href) {
   const host = process.env.PALO_MCP_HTTP_HOST || "127.0.0.1";
   const port = Number(process.env.PALO_MCP_HTTP_PORT || 8788);
   const allowedHosts = parseAllowedHosts(process.env.PALO_MCP_ALLOWED_HOSTS);
+  const allowedOrigins = parseAllowedHosts(process.env.PALO_MCP_ALLOWED_ORIGINS || process.env.PALO_MCP_ALLOWED_HOSTS);
   const exposedTools = parseExposedTools(process.env.PALO_MCP_EXPOSED_TOOLS);
   const oidc = oidcConfigurationFromEnvironment();
   const enforcementProvider = await loadEnforcementProviderFromEnvironment();
   const runtime = new GovernanceRuntime({ enforcementProvider });
-  const app = createAuthenticatedMcpApp({ runtime, token, oidc, host, allowedHosts, exposedTools: exposedTools.length ? exposedTools : undefined });
+  const app = createAuthenticatedMcpApp({ runtime, token, oidc, host, allowedHosts, allowedOrigins, exposedTools: exposedTools.length ? exposedTools : undefined });
   const listener = listenMcpApp(app, { port, host }, () => process.stderr.write(`PALO-AI DEVELOPER PREVIEW listening on http://${host}:${port}/mcp - isolated testing only; not a production authorization boundary.\n`));
   const shutdown = async () => {
     await app.closeMcp();

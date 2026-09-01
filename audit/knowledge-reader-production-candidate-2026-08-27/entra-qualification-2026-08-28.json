@@ -1,11 +1,11 @@
 {
   "testedAt": "2026-08-28T01:47:13Z",
-  "tenantId": "4c32824e-a9c2-4f83-be20-c0d6bb24faae",
+  "tenantId": "redacted-tenant-id",
   "resourceApplication": {
     "displayName": "PALO Knowledge Reader API",
-    "clientId": "9e5bc7d7-df74-47ff-8864-ea4b4c5cefd3",
+    "clientId": "redacted-resource-application-id",
     "requestedAccessTokenVersion": 2,
-    "owner": "sev7en@yvvrh.onmicrosoft.com",
+    "owner": "redacted-deployment-owner",
     "applicationIdUri": "https://guide-api.paloframework.org/mcp-guide",
     "delegatedScopes": [
       "palo:guide",
@@ -15,8 +15,8 @@
   },
   "qualificationClient": {
     "displayName": "PALO Reader Qualification Client",
-    "clientId": "bb6fb0a4-8d06-4fe5-8932-df9fcdb685b9",
-    "owner": "sev7en@yvvrh.onmicrosoft.com",
+    "clientId": "redacted-qualification-client-id",
+    "owner": "redacted-deployment-owner",
     "redirectUris": [],
     "clientSecrets": 0,
     "permissions": [
@@ -24,8 +24,8 @@
     ],
     "adminConsent": "granted",
     "temporaryCertificate": {
-      "sha1Thumbprint": "46B2BE1A0518B5FFCC56BA038F9B74AE6A7F1201",
-      "credentialId": "320f6ffe-1e3d-4b36-b28c-04edf03d3cd0",
+      "sha1Thumbprint": "redacted",
+      "credentialId": "redacted-credential-id",
       "notBefore": "2026-08-28",
       "notAfter": "2026-09-04",
       "status": "revoked-after-qualification"
@@ -34,11 +34,11 @@
     "accessTokenStatus": "removed"
   },
   "observedAccessTokenProfile": {
-    "issuer": "https://login.microsoftonline.com/4c32824e-a9c2-4f83-be20-c0d6bb24faae/v2.0",
-    "audience": "9e5bc7d7-df74-47ff-8864-ea4b4c5cefd3",
+    "issuer": "https://login.microsoftonline.com/<tenant-id>/v2.0",
+    "audience": "redacted-resource-application-id",
     "version": "2.0",
-    "authorizedParty": "bb6fb0a4-8d06-4fe5-8932-df9fcdb685b9",
-    "tenantId": "4c32824e-a9c2-4f83-be20-c0d6bb24faae",
+    "authorizedParty": "redacted-qualification-client-id",
+    "tenantId": "redacted-tenant-id",
     "roles": [
       "palo-knowledge-reader"
     ],

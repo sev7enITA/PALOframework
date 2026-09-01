@@ -1,0 +1,10 @@
+{
+  "artifactType": "dify-native-mcp-provider-worksheet",
+  "importable": false,
+  "name": "PALO Knowledge Reader",
+  "server_url": "https://governance.paloframework.org/mcp-guide/mcp",
+  "authentication": "OAuth or protected Authorization header",
+  "expected_tool_count": 6,
+  "identity_mode": "off unless Dify Enterprise user identity forwarding is deliberately configured",
+  "fallback": "Use the tested PALO HTTPS Gateway adapter if the installed Dify version cannot complete Streamable HTTP discovery."
+}

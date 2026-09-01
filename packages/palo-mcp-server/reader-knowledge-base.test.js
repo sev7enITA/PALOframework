@@ -30,3 +30,29 @@ test("Reader lexical matching uses complete terms and fails closed for unknown e
   assert.ok(!access.matches.some(({ recordId }) => recordId === "indicator-registry:kpi-accessibility-test-pass-rate"));
   assert.deepEqual(knowledgeBase.search({ query: "termineinventatochenonesiste" }).matches, []);
 });
+
+test("Reader snippets retain original offsets after punctuation normalization", () => {
+  const knowledgeBase = new PaloCanonicalKnowledgeBase();
+  const content = `Prefix ${"!".repeat(900)} boundarysignal remains visible in the source excerpt ${"tail ".repeat(180)}`;
+  const record = {
+    recordId: "test:snippet-offset",
+    sourceId: "test",
+    sourcePath: "test/snippet-offset.json",
+    recordType: "test-record",
+    title: "Offset regression fixture",
+    summary: "",
+    content,
+    language: "en",
+    tags: [],
+    sourceRefs: [],
+    authorityClass: "source-backed-context",
+    authorityBoundary: "Test fixture",
+    updatedAt: null,
+    payload: {}
+  };
+  knowledgeBase.canonical = [record];
+  knowledgeBase.canonicalById = new Map([[record.recordId, record]]);
+  const result = knowledgeBase.search({ query: "boundarysignal" });
+  assert.equal(result.matches.length, 1);
+  assert.match(result.matches[0].snippet, /boundarysignal remains visible/);
+});

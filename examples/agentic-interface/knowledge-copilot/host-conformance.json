@@ -1,0 +1,182 @@
+{
+  "schemaVersion": "1.0.0",
+  "reviewedAt": "2026-08-27",
+  "scope": "PALO Knowledge Reader and Knowledge Curator remote MCP profiles",
+  "validationLevels": {
+    "protocol": "PALO initialize, tools/list, annotations and profile tool calls executed with the official MCP client against the local reference server.",
+    "configuration": "The checked-in example follows the current vendor-documented configuration shape and contains no usable credential.",
+    "live": "The exact vendor product, account, tenant, network path and identity provider completed discovery and representative tool calls against the deployed endpoint."
+  },
+  "profiles": {
+    "reader": {
+      "url": "https://governance.paloframework.org/mcp-guide",
+      "compatibilityUrl": "https://governance.paloframework.org/mcp-guide/mcp",
+      "toolCount": 6,
+      "access": "read",
+      "serviceVersion": "1.0.0",
+      "serviceStatus": "production-candidate",
+      "contentPolicy": "canonical-immutable-only",
+      "productionQualification": "pending-live-deployment-and-host-acceptance",
+      "tools": [
+        "palo_explain_framework",
+        "palo_infer_governance_route",
+        "palo_plan_product_integration",
+        "palo_list_knowledge_sources",
+        "palo_search_knowledge",
+        "palo_get_knowledge_record"
+      ]
+    },
+    "curator": {
+      "url": "https://governance.paloframework.org/mcp-guide-curator",
+      "compatibilityUrl": "https://governance.paloframework.org/mcp-guide-curator/mcp",
+      "toolCount": 10,
+      "access": "read-write-controlled",
+      "tools": [
+        "palo_explain_framework",
+        "palo_infer_governance_route",
+        "palo_plan_product_integration",
+        "palo_list_knowledge_sources",
+        "palo_search_knowledge",
+        "palo_get_knowledge_record",
+        "palo_submit_knowledge_draft",
+        "palo_list_knowledge_drafts",
+        "palo_get_knowledge_draft",
+        "palo_review_knowledge_draft"
+      ]
+    }
+  },
+  "hosts": [
+    {
+      "id": "copilot-studio",
+      "label": "Microsoft Copilot Studio",
+      "path": "wizard or Power Apps custom MCP connector",
+      "transport": "streamable-http",
+      "authentication": ["api-key-header", "oauth2-manual", "oauth2-dynamic", "oauth2-dynamic-discovery"],
+      "readerArtifact": "copilot-studio-reader.openapi.yaml",
+      "curatorArtifact": "copilot-studio-curator.openapi.yaml",
+      "officialSource": "https://learn.microsoft.com/en-us/microsoft-copilot-studio/mcp-add-existing-server-to-agent",
+      "validation": { "protocol": "pass", "configuration": "pass", "live": "pending" }
+    },
+    {
+      "id": "claude",
+      "label": "Claude, Claude Desktop and Cowork",
+      "path": "remote custom connector plus optional PALO skill/plugin packaging",
+      "transport": "remote-mcp",
+      "authentication": ["oauth2"],
+      "readerArtifact": "../../../skills/palo-knowledge-copilot/SKILL.md",
+      "curatorArtifact": "../../../skills/palo-knowledge-copilot/SKILL.md",
+      "officialSource": "https://support.claude.com/en/articles/11175166-get-started-with-custom-connectors-using-remote-mcp",
+      "validation": { "protocol": "pass", "configuration": "pass", "live": "pending" }
+    },
+    {
+      "id": "openai",
+      "label": "ChatGPT, Codex and OpenAI Responses API",
+      "path": "ChatGPT plugin, Codex Streamable HTTP config or Responses API remote MCP tool",
+      "transport": "streamable-http",
+      "authentication": ["oauth2", "bearer-token-environment"],
+      "readerArtifact": "codex-reader.config.toml",
+      "curatorArtifact": "codex-curator.config.toml",
+      "officialSource": "https://developers.openai.com/codex/mcp",
+      "validation": { "protocol": "pass", "configuration": "pass", "live": "pending" }
+    },
+    {
+      "id": "github-copilot",
+      "label": "GitHub Copilot CLI",
+      "path": "user or repository MCP configuration",
+      "transport": "streamable-http",
+      "authentication": ["authorization-header"],
+      "readerArtifact": "github-copilot-reader.mcp.json",
+      "curatorArtifact": "github-copilot-curator.mcp.json",
+      "officialSource": "https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/add-mcp-servers",
+      "validation": { "protocol": "pass", "configuration": "pass", "live": "pending" }
+    },
+    {
+      "id": "vscode",
+      "label": "VS Code and GitHub Copilot Chat",
+      "path": "workspace or user mcp.json",
+      "transport": "streamable-http",
+      "authentication": ["protected-input-header", "oauth2-host-flow"],
+      "readerArtifact": "vscode-reader.mcp.json",
+      "curatorArtifact": "vscode-curator.mcp.json",
+      "officialSource": "https://code.visualstudio.com/docs/agent-customization/mcp-servers",
+      "validation": { "protocol": "pass", "configuration": "pass", "live": "pending" }
+    },
+    {
+      "id": "cursor",
+      "label": "Cursor",
+      "path": "project or user mcp.json",
+      "transport": "streamable-http",
+      "authentication": ["oauth2"],
+      "readerArtifact": "cursor-reader.mcp.json",
+      "curatorArtifact": "cursor-curator.mcp.json",
+      "officialSource": "https://docs.cursor.com/context/model-context-protocol",
+      "validation": { "protocol": "pass", "configuration": "pass", "live": "pending" }
+    },
+    {
+      "id": "gemini",
+      "label": "Gemini CLI",
+      "path": "user or workspace settings.json",
+      "transport": "streamable-http",
+      "authentication": ["oauth2-dynamic-discovery"],
+      "readerArtifact": "gemini-reader.settings.json",
+      "curatorArtifact": "gemini-curator.settings.json",
+      "officialSource": "https://geminicli.com/docs/tools/mcp-server/",
+      "validation": { "protocol": "pass", "configuration": "pass", "live": "pending" }
+    },
+    {
+      "id": "jetbrains",
+      "label": "JetBrains AI Assistant",
+      "path": "AI Assistant MCP settings",
+      "transport": "streamable-http",
+      "authentication": ["host-or-upstream-dependent"],
+      "readerArtifact": "jetbrains-reader.mcp.json",
+      "curatorArtifact": "jetbrains-curator.mcp.json",
+      "officialSource": "https://www.jetbrains.com/help/ai-assistant/mcp.html",
+      "validation": { "protocol": "pass", "configuration": "partial", "live": "pending" }
+    },
+    {
+      "id": "aws-agentcore",
+      "label": "Amazon Bedrock AgentCore Gateway",
+      "path": "external MCP server target and SynchronizeGatewayTargets",
+      "transport": "streamable-http",
+      "authentication": ["oauth2", "api-key"],
+      "readerArtifact": "aws-agentcore-reader-target.worksheet.json",
+      "curatorArtifact": "aws-agentcore-curator-target.worksheet.json",
+      "officialSource": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/gateway-target-MCPservers.html",
+      "validation": { "protocol": "pass", "configuration": "partial", "live": "pending" }
+    },
+    {
+      "id": "n8n",
+      "label": "n8n MCP Client Tool",
+      "path": "MCP Client Tool v1.4+ attached to an AI Agent",
+      "transport": "streamable-http",
+      "authentication": ["mcp-oauth2", "bearer", "header"],
+      "readerArtifact": "n8n-reader.node.json",
+      "curatorArtifact": "n8n-curator.node.json",
+      "officialSource": "https://docs.n8n.io/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.toolmcp/",
+      "validation": { "protocol": "pass", "configuration": "pass", "live": "pending" }
+    },
+    {
+      "id": "dify",
+      "label": "Dify native MCP provider",
+      "path": "Tools > MCP provider, with Gateway adapter retained as fallback",
+      "transport": "streamable-http",
+      "authentication": ["oauth2", "headers"],
+      "readerArtifact": "dify-reader.provider.worksheet.json",
+      "curatorArtifact": "dify-curator.provider.worksheet.json",
+      "officialSource": "https://github.com/langgenius/dify/blob/main/api/services/tools/mcp_tools_manage_service.py",
+      "validation": { "protocol": "pass", "configuration": "partial", "live": "pending" }
+    },
+    {
+      "id": "qualification-template",
+      "label": "Other MCP host qualification",
+      "path": "vendor-neutral conformance checklist",
+      "transport": "streamable-http-required-for-direct-remote",
+      "authentication": ["oauth2-or-protected-header"],
+      "readerArtifact": "../../../docs/palo-mcp-host-qualification.md",
+      "curatorArtifact": "../../../docs/palo-mcp-host-qualification.md",
+      "officialSource": "https://modelcontextprotocol.io/specification/2025-06-18/basic/transports",
+      "validation": { "protocol": "pass", "configuration": "pending", "live": "pending" }
+    }
+  ]
+}

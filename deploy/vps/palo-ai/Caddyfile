@@ -33,17 +33,124 @@
 	}
 
 	handle /mcp-guide-health {
+		header Access-Control-Allow-Origin "https://sev7enita.github.io"
+		header Vary "Origin"
+		header Cache-Control "no-store"
 		rewrite * /health
-		reverse_proxy palo-guide-mcp:8789
+		reverse_proxy palo-guide-edge:8080 {
+			header_up X-Forwarded-For {remote_host}
+			transport http {
+				dial_timeout 5s
+				response_header_timeout 30s
+				read_timeout 30s
+				write_timeout 30s
+			}
+		}
 	}
 
 	handle /.well-known/oauth-protected-resource/mcp-guide {
-		reverse_proxy palo-guide-mcp:8789
+		header Access-Control-Allow-Origin "https://sev7enita.github.io"
+		header Vary "Origin"
+		header Cache-Control "no-store"
+		reverse_proxy palo-guide-edge:8080 {
+			header_up X-Forwarded-For {remote_host}
+			transport http {
+				dial_timeout 5s
+				response_header_timeout 30s
+				read_timeout 30s
+				write_timeout 30s
+			}
+		}
 	}
 
 	handle /mcp-guide {
+		request_body {
+			max_size 64KB
+		}
 		rewrite * /mcp
-		reverse_proxy palo-guide-mcp:8789
+		reverse_proxy palo-guide-edge:8080 {
+			header_up X-Forwarded-For {remote_host}
+			transport http {
+				dial_timeout 5s
+				response_header_timeout 30s
+				read_timeout 30s
+				write_timeout 30s
+			}
+		}
+	}
+
+	handle /mcp-guide/mcp {
+		request_body {
+			max_size 64KB
+		}
+		rewrite * /mcp
+		reverse_proxy palo-guide-edge:8080 {
+			header_up X-Forwarded-For {remote_host}
+			transport http {
+				dial_timeout 5s
+				response_header_timeout 30s
+				read_timeout 30s
+				write_timeout 30s
+			}
+		}
+	}
+
+	handle /mcp-guide-curator-health {
+		header Access-Control-Allow-Origin "https://sev7enita.github.io"
+		header Vary "Origin"
+		header Cache-Control "no-store"
+		rewrite * /health
+		reverse_proxy palo-guide-curator-mcp:8790
+	}
+
+	handle /.well-known/oauth-protected-resource/mcp-guide-curator {
+		header Access-Control-Allow-Origin "https://sev7enita.github.io"
+		header Vary "Origin"
+		header Cache-Control "no-store"
+		reverse_proxy palo-guide-curator-mcp:8790
+	}
+
+	handle /mcp-guide-curator {
+		rewrite * /mcp
+		reverse_proxy palo-guide-curator-mcp:8790
+	}
+
+	handle /mcp-guide-curator/mcp {
+		rewrite * /mcp
+		reverse_proxy palo-guide-curator-mcp:8790
+	}
+
+	handle /identity-health {
+		header Cache-Control "no-store"
+		rewrite * /identity/health/ready
+		reverse_proxy palo-identity:9000
+	}
+
+	handle /identity/admin/* {
+		respond "Not found" 404
+	}
+
+	handle /identity/realms/master/* {
+		respond "Not found" 404
+	}
+
+	handle /identity/realms/palo/.well-known/openid-configuration {
+		header Access-Control-Allow-Origin "https://sev7enita.github.io"
+		header Vary "Origin"
+		header Cache-Control "no-store"
+		reverse_proxy palo-identity:8080
+	}
+
+	handle /identity/realms/palo/* {
+		reverse_proxy palo-identity:8080
+	}
+
+	handle /identity/resources/* {
+		reverse_proxy palo-identity:8080
+	}
+
+	handle /identity/* {
+		respond "Not found" 404
 	}
 
 	handle /hub {

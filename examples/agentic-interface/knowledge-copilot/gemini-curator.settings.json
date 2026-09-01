@@ -1,0 +1,26 @@
+{
+  "mcpServers": {
+    "palo-knowledge-curator": {
+      "httpUrl": "https://governance.paloframework.org/mcp-guide-curator",
+      "authProviderType": "dynamic_discovery",
+      "oauth": {
+        "enabled": true,
+        "scopes": ["palo:guide", "palo:knowledge:read", "palo:knowledge:write", "palo:knowledge:review"],
+        "audiences": ["https://governance.paloframework.org/mcp-guide-curator"]
+      },
+      "includeTools": [
+        "palo_explain_framework",
+        "palo_infer_governance_route",
+        "palo_plan_product_integration",
+        "palo_list_knowledge_sources",
+        "palo_search_knowledge",
+        "palo_get_knowledge_record",
+        "palo_submit_knowledge_draft",
+        "palo_list_knowledge_drafts",
+        "palo_get_knowledge_draft",
+        "palo_review_knowledge_draft"
+      ],
+      "trust": false
+    }
+  }
+}

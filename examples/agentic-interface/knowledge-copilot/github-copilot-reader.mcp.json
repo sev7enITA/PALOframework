@@ -1,0 +1,19 @@
+{
+  "mcpServers": {
+    "palo-knowledge-reader": {
+      "type": "http",
+      "url": "https://governance.paloframework.org/mcp-guide",
+      "headers": {
+        "Authorization": "Bearer REPLACE_FROM_LOCAL_SECRET_STORE"
+      },
+      "tools": [
+        "palo_explain_framework",
+        "palo_infer_governance_route",
+        "palo_plan_product_integration",
+        "palo_list_knowledge_sources",
+        "palo_search_knowledge",
+        "palo_get_knowledge_record"
+      ]
+    }
+  }
+}

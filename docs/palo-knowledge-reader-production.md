@@ -2,6 +2,8 @@
 
 Status: production-capable candidate for the narrow informational, canonical-only service as of 28 August 2026. Repository tests pass, a signed multi-architecture registry digest is deployed on Hostinger, and public edge checks pass. Production qualification remains deployment-specific and requires the remaining live acceptance gates below.
 
+Publication boundary: this public document records control design, verification status and non-sensitive endpoints. Tenant IDs, application and object IDs, account addresses, credential labels, rotation dates, billing records and private environment identifiers remain in the deployment-owned secret and asset inventory, not in the public repository.
+
 ## Decision
 
 The read-only Reader can use a materially smaller production boundary than the operational PALO-AI runtime. It does not need PostgreSQL/RLS, a distributed queue, KMS signing or an executor because it stores no tenant state, performs no background work, signs no evidence and has no target-system authority.
@@ -100,18 +102,17 @@ The environment approval was intentionally performed by the repository owner wit
 
 ### Microsoft Entra ID profile deployed on 27 August 2026
 
-The current Hostinger production candidate uses:
+The current Hostinger production candidate uses the following public-safe profile:
 
 ```text
 Public OAuth resource: https://guide-api.paloframework.org/mcp-guide
-Token audience: 9e5bc7d7-df74-47ff-8864-ea4b4c5cefd3
-Tenant: 4c32824e-a9c2-4f83-be20-c0d6bb24faae
+Token audience: deployment-owned resource application identifier
+Tenant: deployment-owned single-tenant directory
 Resource application: PALO Knowledge Reader API
-Application/client ID: 9e5bc7d7-df74-47ff-8864-ea4b4c5cefd3
 Delegated scopes: palo:guide, palo:knowledge:read
 Application role: palo-knowledge-reader
-Issuer: https://login.microsoftonline.com/4c32824e-a9c2-4f83-be20-c0d6bb24faae/v2.0
-JWKS: https://login.microsoftonline.com/4c32824e-a9c2-4f83-be20-c0d6bb24faae/discovery/v2.0/keys
+Issuer pattern: https://login.microsoftonline.com/<tenant-id>/v2.0
+JWKS pattern: https://login.microsoftonline.com/<tenant-id>/discovery/v2.0/keys
 Scope claim: scp
 Client claim: azp
 Tenant claim: tid
@@ -120,9 +121,9 @@ Algorithm: RS256
 Advertised scopes: https://guide-api.paloframework.org/mcp-guide/palo:guide and https://guide-api.paloframework.org/mcp-guide/palo:knowledge:read
 ```
 
-`paloframework.org` is a verified custom domain in this tenant. Both delegated scopes are enabled with admin-only consent. The application role is enabled for users/groups and applications. The resource application has no redirect URI or credential.
+`paloframework.org` is a verified custom domain in the deployment tenant. Both delegated scopes are enabled with admin-only consent. The application role is enabled for users/groups and applications. The resource application has no redirect URI or credential.
 
-The Reader is currently started with the dedicated Copilot Studio client `2c9f6938-de0d-424b-892a-13dea146557f` in `PALO_OIDC_ALLOWED_CLIENT_IDS`. The client is single-tenant, is owned by `sev7en@yvvrh.onmicrosoft.com`, has only the two delegated Reader scopes and has tenant-wide admin consent. Microsoft Graph `User.Read` was removed. Anonymous requests remain rejected with HTTP 401. Allowlisting is not equivalent to host qualification: Copilot Studio remains `PARTIAL` until its generated OAuth callback is registered and an authenticated end-to-end session earns `PASS-LIVE`.
+The Reader uses a dedicated, single-tenant Copilot Studio client in `PALO_OIDC_ALLOWED_CLIENT_IDS`, with only the two Reader scopes and tenant-wide admin consent. Microsoft Graph `User.Read` was removed. Anonymous requests remain rejected with HTTP 401. The exact client, tenant and object identifiers are intentionally retained only in the private deployment inventory. Allowlisting is not equivalent to host qualification: Copilot Studio remains `PARTIAL` until its generated OAuth callback is registered and an authenticated end-to-end session earns `PASS-LIVE`.
 
 The profile uses Entra v2 access-token semantics: Microsoft emits the resource application's client ID as `aud` and `azp` as the calling client claim. The Reader keeps the public HTTPS MCP resource separate, validates the GUID audience exactly and advertises the fully qualified Entra scope identifiers clients must request. The resource app manifest now sets `api.requestedAccessTokenVersion` to `2`; a certificate-authenticated qualification token confirmed the expected issuer, audience, version, client, tenant and `palo-knowledge-reader` role on 28 August 2026.
 
@@ -130,15 +131,15 @@ The temporary qualification client passed the complete smoke against both `/mcp-
 
 ### Copilot Studio client staged on 28 August 2026
 
-The dedicated confidential client is `PALO Reader - Copilot Studio` (`2c9f6938-de0d-424b-892a-13dea146557f`, object `962d0163-ee13-4c6d-9fde-88aa288434d2`). Its one client secret is labelled `PALO Copilot Studio - rotate by 2026-11-26` and expires on 26 November 2026; the secret value is neither documented nor stored in repository evidence. The OAuth redirect URI is intentionally still empty because the current Copilot Studio MCP wizard generates the callback only after server creation.
+The dedicated confidential client is recorded in the private deployment inventory. Its credential value, label, rotation schedule, application ID and object ID are not published. The OAuth redirect URI is intentionally still empty because the current Copilot Studio MCP wizard generates the callback only after server creation.
 
-The attempted live qualification is `PARTIAL`. Copilot Studio is reachable in tenant environment `94ba1b2c-dc17-425b-b5de-972fe6cb78a7`, but that default environment has no Dataverse data store and the environment switcher reports no other available environments. Copilot Studio therefore refuses agent creation before the MCP onboarding wizard can generate the callback. The Power Platform licensing view also reports zero billing plans, zero purchased/assigned Copilot Credits and explicitly recommends creating a billing plan.
+The attempted live qualification is `PARTIAL`. The available tenant environment does not provide the Dataverse and licensing capacity needed to create the agent and reach the MCP onboarding wizard. Private environment identifiers and tenant billing state are intentionally omitted.
 
-The production environment was prepared with the following least-privilege settings: `PALO Copilot Production`, Production type, `European Union & EFTA` data boundary, Managed Environment, Dataverse, `italiano (Italia)`, `EUR`, no Dynamics 365 sample applications, and the custom Dataverse URL `palo-copilot-prod`. Access is restricted to the assigned Entra security group `PALO Copilot Makers` (`efabfb60-e255-41c4-a6ed-9bf0d5d2edc2`), with `sev7en@yvvrh.onmicrosoft.com` as its owner and sole member.
+The proposed production environment uses a managed production boundary, an EU and EFTA data location, Dataverse, no Dynamics 365 sample applications and access restricted to a dedicated Entra security group. Group identifiers, membership and account addresses remain private deployment records.
 
-Microsoft rejected environment creation because the tenant has less than the required 1 GB of available Dataverse database capacity. The minimum direct-purchase SKU shown in the tenant Marketplace is one `Dataverse Database Capacity add-on`: USD 40 per month with a USD 480 annual commitment, billed monthly. Checkout is staged but not submitted because the tenant billing profile lacks a valid organization address and payment method. No order or charge was created. A Copilot Studio billing plan is also still required; pay-as-you-go cannot be configured because the tenant exposes no Azure subscription or resource group. After billing is completed, recreate the prepared environment, assign Copilot capacity, register the exact wizard callback, create the OAuth connection and execute the six-tool bilingual smoke.
+Environment creation remains blocked by insufficient Dataverse capacity and the absence of an approved Copilot Studio capacity route. No purchase status, address, payment information or private billing detail belongs in this repository. After an accountable owner approves capacity, recreate the environment, assign capacity, register the exact wizard callback, create the OAuth connection and execute the six-tool bilingual smoke.
 
-The purchase remains intentionally paused. PALO is not a registered legal entity, so Microsoft for Startups business verification and Investor Network benefits are unavailable. Azure for Students could not be activated with the supplied institutional account, and GitHub Education reapplication was not submitted because the available documents do not visibly prove current enrollment strongly enough. Neither route supplied Dataverse or Copilot Studio capacity. Technical Reader qualification continues independently; commercial Copilot Studio qualification remains blocked until a valid capacity route is chosen. See [Microsoft funding routes for PALO](palo-microsoft-startup-student-credits.md).
+Commercial Copilot Studio qualification remains blocked until a valid capacity route is approved. Individual program applications, eligibility evidence and account histories are handled outside the public repository. Technical Reader qualification continues independently. See [Microsoft funding routes for PALO](palo-microsoft-startup-student-credits.md).
 
 ## Repository acceptance
 

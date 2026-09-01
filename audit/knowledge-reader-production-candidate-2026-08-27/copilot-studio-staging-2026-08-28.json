@@ -5,15 +5,15 @@
   "qualification": "PARTIAL",
   "resource": {
     "endpoint": "https://guide-api.paloframework.org/mcp-guide",
-    "applicationClientId": "9e5bc7d7-df74-47ff-8864-ea4b4c5cefd3",
-    "tenantId": "4c32824e-a9c2-4f83-be20-c0d6bb24faae"
+    "applicationClientId": "redacted-resource-application-id",
+    "tenantId": "redacted-tenant-id"
   },
   "client": {
     "displayName": "PALO Reader - Copilot Studio",
-    "applicationClientId": "2c9f6938-de0d-424b-892a-13dea146557f",
-    "objectId": "962d0163-ee13-4c6d-9fde-88aa288434d2",
+    "applicationClientId": "redacted-client-id",
+    "objectId": "redacted-object-id",
     "accountType": "single-tenant",
-    "owner": "sev7en@yvvrh.onmicrosoft.com",
+    "owner": "redacted-deployment-owner",
     "delegatedScopes": [
       "palo:guide",
       "palo:knowledge:read"
@@ -22,8 +22,8 @@
     "microsoftGraphPermissions": [],
     "redirectUris": [],
     "credential": {
-      "description": "PALO Copilot Studio - rotate by 2026-11-26",
-      "expiresOn": "2026-11-26",
+      "description": "redacted-private-rotation-record",
+      "expiresOn": "redacted",
       "secretValueRetained": false
     }
   },
@@ -35,7 +35,7 @@
     "imageId": "sha256:c12628d7abecca56965f74215ee71a44702ed8b9bb687ea4c43882ae1d0daf86"
   },
   "copilotStudio": {
-    "environmentId": "94ba1b2c-dc17-425b-b5de-972fe6cb78a7",
+    "environmentId": "redacted-environment-id",
     "environmentName": "Default Environment",
     "dataverseConfigured": false,
     "alternativeEnvironmentsAvailable": false,
@@ -63,23 +63,16 @@
     "sampleData": false,
     "securityGroup": {
       "displayName": "PALO Copilot Makers",
-      "objectId": "efabfb60-e255-41c4-a6ed-9bf0d5d2edc2",
-      "owner": "sev7en@yvvrh.onmicrosoft.com",
-      "soleMember": "sev7en@yvvrh.onmicrosoft.com"
+      "objectId": "redacted-group-object-id",
+      "owner": "redacted-deployment-owner",
+      "soleMember": "redacted-deployment-owner"
     },
     "creationBlocker": "Tenant needs at least 1 GB of available Dataverse database capacity."
   },
-  "billing": {
-    "dataverseMinimumSku": "Dataverse Database Capacity add-on",
-    "quantity": 1,
-    "capacityGb": 1,
-    "currency": "USD",
-    "monthlyCharge": 40,
-    "annualCommitment": 480,
-    "billingFrequency": "monthly",
-    "orderPlaced": false,
-    "chargeOccurred": false,
-    "checkoutBlocker": "Valid legal organization profile and payment method are required."
+  "capacity": {
+    "dataverseAvailable": false,
+    "copilotStudioCapacityApproved": false,
+    "privateBillingDetailsRetained": false
   },
   "secretsOrTokensIncluded": false
 }

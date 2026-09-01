@@ -1,0 +1,19 @@
+{
+  "type": "mcp",
+  "server_label": "palo_knowledge_curator",
+  "server_description": "Restricted PALO knowledge drafting and terminal review workflow; canonical files remain unchanged.",
+  "server_url": "https://governance.paloframework.org/mcp-guide-curator",
+  "require_approval": "always",
+  "allowed_tools": [
+    "palo_explain_framework",
+    "palo_infer_governance_route",
+    "palo_plan_product_integration",
+    "palo_list_knowledge_sources",
+    "palo_search_knowledge",
+    "palo_get_knowledge_record",
+    "palo_submit_knowledge_draft",
+    "palo_list_knowledge_drafts",
+    "palo_get_knowledge_draft",
+    "palo_review_knowledge_draft"
+  ]
+}

@@ -1,21 +1,21 @@
 # Microsoft funding routes for PALO
 
-Verified against official Microsoft, GitHub and Politecnico di Milano sources on 28 August 2026. This note separates commercial production funding from student entitlements and does not treat a program application as an approved benefit.
+Verified against official Microsoft, GitHub and Politecnico di Milano sources on 28 August 2026. Next scheduled review: 30 September 2026. This note separates commercial production funding from student entitlements and does not treat a program application as an approved benefit.
+
+Publication boundary: this document records program-level eligibility and product implications only. Personal application histories, account addresses, identity documents, enrollment evidence, billing profiles and payment information must remain outside the public repository.
 
 ## Current PALO decision
 
-PALO is not currently a registered legal entity. The Microsoft for Startups business-verification and Investor Network routes are therefore unavailable today and must not be represented as pending company benefits. A personal consumer Microsoft account is available for a future application, but its address is not retained in this repository and it must not be used to invent a legal entity.
+Microsoft for Startups business-verification and Investor Network benefits must not be represented as available until an eligible legal entity and an accepted application are independently evidenced. No personal or company application data is retained in this repository.
 
-The academic no-payment routes were closed on 28 August 2026. The institutional account could not be used for Azure for Students, so no Azure student subscription or credit was obtained. GitHub Education account prerequisites pass, but the available evidence does not visibly prove current enrollment: the Politecnico records describe a completed program, while the active doctorate card lacks a visible current-validity or expected-completion date and belongs to a different institution from the verified academic email. The founder chose not to submit a weak application. Exact email and billing addresses, identity documents, passwords, MFA codes and verification artifacts are not stored here.
-
-The previous GitHub Education student application, submitted on 17 April 2025, was rejected because the academic-affiliation image did not clearly show the school's complete name or a date demonstrating current enrollment. Reapplication remains possible only after obtaining a current official document that visibly contains the applicant's full name, the complete doctorate institution name, an explicit current-enrollment statement, issue date and expected completion or validity date. Approval remains a GitHub decision and is not recorded until the benefits page reports acceptance.
+No academic entitlement is currently assumed. A future student-benefit application may proceed only with current, program-compliant enrollment evidence and must be completed directly on the provider's system. Approval remains the provider's decision and is not recorded until its authenticated benefits page confirms acceptance.
 
 For the release-pipeline demonstration, GitHub environment `knowledge-reader-production` temporarily names repository owner `sev7enITA` as the required reviewer, permits self-review and accepts deployments only from `main`. This proves the mechanics of the approval gate but is not independent security approval. Before production qualification, enable prevention of self-review and replace the temporary reviewer with an accountable person who did not initiate the release.
 
 ## Recommended order
 
 1. Continue the technical production-candidate gates without assuming startup or student funding.
-2. Treat Azure for Students and GitHub Education as unavailable for the current demonstration; reconsider GitHub only if stronger current doctorate evidence becomes available.
+2. Treat Azure for Students and GitHub Education as unavailable for the current demonstration; reconsider them only when current eligibility evidence satisfies the provider's published requirements.
 3. Keep the staged Dataverse purchase unsubmitted; no free route currently removes the tenant's 1 GB Dataverse gate.
 4. If PALO later becomes a registered, privately held, for-profit company, ask PoliHub whether it is a Microsoft for Startups Investor Network partner and can sponsor the legal entity with a 10-character referral code.
 5. Apply to Microsoft for Startups only after incorporation, using a qualifying personal Microsoft account rather than the Politecnico work/school account.

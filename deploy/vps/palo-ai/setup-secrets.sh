@@ -4,7 +4,7 @@ set -eu
 umask 077
 mkdir -p secrets
 
-for file in secrets/gateway-token secrets/mcp-token secrets/guide-mcp-token secrets/hmac-keys.json; do
+for file in secrets/gateway-token secrets/mcp-token secrets/hmac-keys.json; do
   if [ -e "$file" ]; then
     echo "Refusing to overwrite existing secret: $file" >&2
     exit 1
@@ -13,10 +13,9 @@ done
 
 openssl rand -hex 32 > secrets/gateway-token
 openssl rand -hex 32 > secrets/mcp-token
-openssl rand -hex 32 > secrets/guide-mcp-token
 hmac_secret="$(openssl rand -hex 32)"
 printf '{"key-support-2026":"%s"}\n' "$hmac_secret" > secrets/hmac-keys.json
 unset hmac_secret
-chmod 600 secrets/gateway-token secrets/mcp-token secrets/guide-mcp-token secrets/hmac-keys.json
+chmod 600 secrets/gateway-token secrets/mcp-token secrets/hmac-keys.json
 
-echo "Generated four protected secret files. Values were not printed."
+echo "Generated three protected core secret files. Values were not printed. Reader and Curator use the separately bootstrapped PALO identity service."
