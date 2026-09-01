@@ -1,561 +1,127 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Community & Open Collaboration | PALO Framework</title>
-    <meta name="description"
-        content="Meet the PALO Framework community, collaborators, and partner organizations supporting responsible AI governance through open-source collaboration and peer review.">
-
-    <!-- SEO and Trust Meta Tags -->
-    <meta name="keywords"
-        content="PALO Framework, open source AI governance, peer review, AI ethics, collaborators, partners">
-    <meta name="author" content="PALO Framework">
+    <title>Community and Open Collaboration | PALO Framework</title>
+    <meta name="description" content="Meet the PALO Framework community and partner organizations supporting responsible AI governance through open collaboration and peer review.">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://paloframework.org/PALO_Community.html">
-
-    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://paloframework.org/PALO_Community.html">
-    <meta property="og:title" content="Community & Open Collaboration | PALO Framework">
-    <meta property="og:description"
-        content="Meet the community and organizations supporting responsible AI governance through the PALO Framework.">
+    <meta property="og:title" content="Community and Open Collaboration | PALO Framework">
+    <meta property="og:description" content="Contribute to practical, evidence-first AI governance through the PALO Framework.">
     <meta property="og:image" content="https://paloframework.org/assets/logo.webp">
-
-    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://paloframework.org/PALO_Community.html">
-    <meta name="twitter:title" content="Community & Open Collaboration | PALO Framework">
-    <meta name="twitter:description"
-        content="Meet the community and organizations supporting responsible AI governance through the PALO Framework.">
-    <meta name="twitter:image" content="https://paloframework.org/assets/logo.webp">
-
-    <!-- Favicon -->
     <link rel="icon" type="image/webp" href="assets/logo.webp">
     <link rel="apple-touch-icon" href="assets/logo.webp">
-
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-
-    <!-- Font Awesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <!-- Custom Config for Tailwind colors matching PALO identity -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        palo: {
-                            teal: '#0d9488',
-                            dark: '#0f172a',
-                            light: '#f1f5f9',
-                            accent: '#f59e0b',
-                        }
-                    },
-                    animation: {
-                        'float': 'float 6s ease-in-out infinite',
-                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
-                    },
-                    keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-20px)' },
-                        },
-                        fadeInUp: {
-                            '0%': { opacity: '0', transform: 'translateY(20px)' },
-                            '100%': { opacity: '1', transform: 'translateY(0)' },
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-
-    <style>
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #f1f5f9;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
-            border-radius: 5px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: #94a3b8;
-        }
-
-        /* Glassmorphism for Nav */
-        .glass-nav {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
-        }
-
-        /* EN 301549 / WCAG 2.1 Focus Visible Styles */
-        *:focus-visible {
-            outline: 3px solid #0d9488;
-            outline-offset: 2px;
-        }
-
-        /* Ensure minimum touch target size of 44x44px */
-        button,
-        a,
-        input,
-        select,
-        textarea {
-            min-height: 44px;
-        }
-
-        /* Reduced motion for vestibular disorders */
-        @media (prefers-reduced-motion: reduce) {
-
-            *,
-            *::before,
-            *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-        }
-
-        /* Card hover effects */
-        .team-card {
-            transition: all 0.3s ease;
-        }
-
-        .team-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-
-        .team-card:hover .avatar-ring {
-            border-color: #0d9488;
-        }
-    </style>
     <link rel="stylesheet" href="assets/palo-icons.css">
     <link rel="stylesheet" href="assets/palo-v21.css?v=3.1.0">
+    <link rel="stylesheet" href="assets/palo-community.css?v=3.1.0">
     <script src="assets/palo-icons.js"></script>
     <script src="assets/palo-v21.js?v=3.1.0"></script>
 </head>
-
-<body class="text-slate-800 bg-white font-sans antialiased">
-
-    <!-- Skip Link for Accessibility -->
-    <a href="#main-content"
-        class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:bg-palo-teal focus:text-white focus:px-4 focus:py-2 focus:rounded-lg focus:shadow-lg focus:outline-none">
-        Skip to main content
-    </a>
-
-    <!-- PALO command bar -->
-    <header class="palo-command-bar" id="navbar">
-        <div class="palo-command-inner">
-            <a class="palo-command-brand" href="index.html" aria-label="PALO Framework home">
-                <img src="assets/logo.webp" alt="PALO">
-                <span><strong>PALO</strong><small>Framework</small></span>
-            </a>
-            <div class="palo-command-context">
-                <span class="palo-command-kicker">Open AI governance toolkit</span>
-                <span class="palo-command-release">v2.4.0</span>
-            </div>
-            <button class="palo-command-toggle" type="button" data-palo-menu-toggle aria-expanded="false" aria-controls="palo-community-nav" aria-label="Open main navigation">
-                <span data-palo-icon="menu" aria-hidden="true"></span>
-            </button>
-            <nav class="palo-command-nav" id="palo-community-nav" aria-label="Main navigation">
-                <a class="palo-command-link" href="designs/theory-to-practice-infographic/#onboarding"><span data-palo-icon="target" aria-hidden="true"></span>Start here</a>
-                <a class="palo-command-link" href="PALO_AssessmentPath.html"><span data-palo-icon="clipboard" aria-hidden="true"></span>Assess</a>
-                <a class="palo-command-link" href="PALO_RegulatoryWatch.html"><span data-palo-icon="scale" aria-hidden="true"></span>Observe</a>
-                <a class="palo-command-link" href="PALO_DocumentationLibrary.html"><span data-palo-icon="book" aria-hidden="true"></span>Docs</a>
-                <a class="palo-command-link is-active" href="PALO_Community.html"><span data-palo-icon="users" aria-hidden="true"></span>Community</a>
-                <a class="palo-command-action" href="PALO_CompanionApp.html"><span data-palo-icon="mobile" aria-hidden="true"></span>Toolbox</a>
+<body class="palo-v21">
+    <a class="palo-skip-link" href="#main-content">Skip to main content</a>
+    <header class="palo-site-header">
+        <div class="palo-shell palo-header-inner">
+            <a class="palo-brand" href="index.html"><img src="assets/logo.webp" alt="PALO">PALO FRAMEWORK</a>
+            <button class="palo-menu-toggle" type="button" data-palo-menu-toggle aria-expanded="false" aria-controls="palo-primary-nav" aria-label="Open navigation"><span data-palo-icon="menu" aria-hidden="true"></span></button>
+            <nav class="palo-nav" id="palo-primary-nav" aria-label="Primary navigation">
+                <a href="index.html">Home</a>
+                <a href="PALO_AssessmentPath.html">Assessment Path</a>
+                <a href="PALO_Observatories.html">Observatories</a>
+                <a href="PALO_PlatformMap.html">Platform Map</a>
+                <a href="PALO_DocumentationLibrary.html">Documentation</a>
+                <a href="PALO_Community.html" aria-current="page">Community</a>
             </nav>
         </div>
     </header>
-    <!-- Main Content -->
-    <main id="main-content" role="main">
 
-        <!-- Hero Section -->
-        <section
-            class="relative pt-32 pb-16 lg:pt-40 lg:pb-24 overflow-hidden bg-gradient-to-br from-slate-50 to-teal-50">
-            <!-- Background Decor -->
-            <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-teal-100 rounded-full blur-3xl opacity-50"
-                aria-hidden="true"></div>
-            <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-72 h-72 bg-blue-100 rounded-full blur-3xl opacity-50"
-                aria-hidden="true"></div>
-
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <div class="text-center max-w-4xl mx-auto">
-                    <div
-                        class="inline-flex items-center px-4 py-2 rounded-full bg-teal-50 border border-teal-300 text-teal-800 text-sm font-semibold mb-6">
-                        <span class="flex h-2 w-2 rounded-full bg-palo-teal mr-2"></span>
-                        Open-Source & Peer Review
+    <main id="main-content" class="palo-main">
+        <section class="palo-hero community-hero">
+            <div class="palo-shell community-hero-grid">
+                <div>
+                    <p class="palo-eyebrow">Open governance practice</p>
+                    <h1>Governance improves when the evidence is challenged.</h1>
+                    <p>Meet collaborators and partner organizations supporting responsible AI governance through open collaboration, rigorous peer review and accountable implementation.</p>
+                    <div class="palo-actions">
+                        <a class="palo-btn" href="https://github.com/sev7enITA/PALOframework" target="_blank" rel="noopener noreferrer"><span data-palo-icon="github" aria-hidden="true"></span>Explore the repository</a>
+                        <a class="palo-btn palo-btn-secondary" href="#contribute"><span data-palo-icon="users" aria-hidden="true"></span>Find a contribution route</a>
                     </div>
-                    <h1 class="text-4xl md:text-6xl font-extrabold text-slate-900 tracking-tight leading-tight mb-6">
-                        <span data-palo-icon=users class=palo-icon-inline></span>Community & <br>
-                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-palo-teal to-blue-600">Open
-                            Collaboration</span>
-                    </h1>
-                    <p class="text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">
-                        Meet collaborators and partner organizations supporting responsible AI governance through
-                        open-source collaboration and rigorous peer review.
-                    </p>
+                </div>
+                <aside class="community-release" aria-label="Community release context">
+                    <p class="palo-card-kicker">Public release ledger</p>
+                    <strong>v3.1.0</strong>
+                    <p>Community proposals and contributions are public inputs. Inclusion in the repository does not by itself create certification, legal advice or normative authority.</p>
+                    <a href="CHANGELOG.html">Review the published changelog</a>
+                </aside>
+            </div>
+        </section>
+
+        <section class="palo-section" id="community-proposals" aria-labelledby="proposal-title">
+            <div class="palo-shell community-proposal">
+                <div>
+                    <p class="palo-eyebrow">Open interoperability proposal</p>
+                    <h2 id="proposal-title">PALO and Microsoft Agent Governance Toolkit</h2>
+                    <p class="palo-lead">A public proposal maps PALO evidence objects and decision gates to Microsoft Agent Governance Toolkit concepts. It is an interoperability contribution for review, not a Microsoft endorsement or a completed integration.</p>
+                    <div class="proposal-boundary">
+                        <strong>Review boundary</strong>
+                        <p>Adopters must validate mappings, control ownership and implementation behavior in their own environment before relying on them.</p>
+                    </div>
+                    <div class="palo-actions">
+                        <a class="palo-btn" href="docs/community/palo-microsoft-agt-interoperability-proposal.html"><span data-palo-icon="file" aria-hidden="true"></span>Read the proposal</a>
+                        <a class="palo-btn palo-btn-secondary" href="https://github.com/microsoft/agent-governance-toolkit/discussions/368" target="_blank" rel="noopener noreferrer"><span data-palo-icon="message" aria-hidden="true"></span>Open the discussion</a>
+                    </div>
+                </div>
+                <figure class="proposal-figure">
+                    <img src="assets/palo-ai-integrations/microsoft-agt/palo-microsoft-agt-interoperability-workflow.png" alt="Workflow showing PALO evidence and governance concepts mapped to the Microsoft Agent Governance Toolkit proposal">
+                    <figcaption>Public proposal workflow. Source review and local validation remain required.</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <section class="palo-section community-roles" aria-labelledby="roles-title">
+            <div class="palo-shell">
+                <p class="palo-eyebrow">Open roles</p>
+                <h2 id="roles-title">Where specialist review strengthens PALO</h2>
+                <p class="palo-lead">Contribution routes are organized around concrete review responsibilities. Role titles describe collaboration needs, not employment offers or formal appointments.</p>
+                <div class="role-grid">
+                    <article class="role-card"><span data-palo-icon="users" aria-hidden="true"></span><div><h3>Open Source Community Lead</h3><p>Coordinate issue triage, contributor onboarding, review cadence and inclusive participation practices.</p></div></article>
+                    <article class="role-card"><span data-palo-icon="scale" aria-hidden="true"></span><div><h3>Ethics and Policy Advisor</h3><p>Challenge policy mappings, rights impacts and claims that could overstate legal or ethical authority.</p></div></article>
+                    <article class="role-card"><span data-palo-icon="book" aria-hidden="true"></span><div><h3>Technical Documentation Lead</h3><p>Improve implementation guidance, traceability and the clarity of evidence and boundary statements.</p></div></article>
+                    <article class="role-card"><span data-palo-icon="shield" aria-hidden="true"></span><div><h3>Data Privacy Specialist</h3><p>Review data handling, minimization, retention and privacy risk across governance workflows.</p></div></article>
+                    <article class="role-card"><span data-palo-icon="cpu" aria-hidden="true"></span><div><h3>AI and ML Research Advisor</h3><p>Test assumptions, research methods and operational claims against current technical evidence.</p></div></article>
+                    <article class="role-card"><span data-palo-icon="check" aria-hidden="true"></span><div><h3>Peer Review Committee</h3><p>Conduct structured, conflict-aware review of major releases, methods and public evidence claims.</p></div></article>
                 </div>
             </div>
         </section>
 
-        <section id="community-proposals" class="py-16 bg-white">
-            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="rounded-2xl border border-teal-200 bg-teal-50 p-8 md:p-10">
-                    <span class="text-teal-700 font-bold tracking-wider uppercase text-sm">Open evaluation</span>
-                    <h2 class="text-3xl font-bold text-slate-900 mt-2">PALO + Microsoft Agent Governance Toolkit</h2>
-                    <p class="mt-4 text-slate-700 leading-relaxed">
-                        Review PALO's vendor-neutral interoperability proposal for ACS pre-action decisions and
-                        independent post-action outcome assurance. The adapter is maintained by PALO and is not a
-                        Microsoft endorsement or certification.
-                    </p>
-                    <figure class="mt-6 overflow-hidden rounded-xl border border-teal-200 bg-white">
-                        <a href="assets/palo-ai-integrations/microsoft-agt/palo-microsoft-agt-interoperability-workflow.png">
-                            <img src="assets/palo-ai-integrations/microsoft-agt/palo-microsoft-agt-interoperability-workflow.png"
-                                alt="PALO and Microsoft AGT interoperability workflow showing the ACS pre-action policy boundary, PALO-controlled execution and independent outcome verification"
-                                width="2700" height="1262" loading="lazy" decoding="async"
-                                class="block w-full h-auto">
-                        </a>
-                        <figcaption class="px-4 py-3 text-sm text-slate-600 border-t border-slate-200">
-                            AGT evaluates the ACS pre-action policy decision; PALO retains digest-bound authorization,
-                            execution evidence and independent outcome assurance.
-                        </figcaption>
-                    </figure>
-                    <div class="mt-6 flex flex-col sm:flex-row gap-3">
-                        <a href="docs/community/palo-microsoft-agt-interoperability-proposal.html"
-                            class="px-5 py-3 bg-palo-teal text-white font-bold rounded-lg hover:bg-teal-700 transition-colors inline-flex items-center justify-center gap-2">
-                            Read the proposal
-                        </a>
-                        <a href="https://github.com/microsoft/agent-governance-toolkit/discussions/3647" target="_blank" rel="noopener noreferrer"
-                            class="px-5 py-3 bg-white text-slate-800 border border-slate-300 font-bold rounded-lg hover:bg-slate-50 transition-colors inline-flex items-center justify-center gap-2">
-                            Join the AGT discussion
-                        </a>
+        <section class="palo-section" id="contribute" aria-labelledby="contribute-title">
+            <div class="palo-shell contribution-grid">
+                <article class="contribution-panel contribution-panel-primary">
+                    <p class="palo-eyebrow">Contribute</p>
+                    <h2 id="contribute-title">Bring evidence, critique or implementation experience</h2>
+                    <p>Open an issue or proposal with a clear problem statement, source trail, authority boundary and the artifact you want to improve.</p>
+                    <div class="palo-actions">
+                        <a class="palo-btn" href="https://github.com/sev7enITA/PALOframework" target="_blank" rel="noopener noreferrer"><span data-palo-icon="github" aria-hidden="true"></span>Contribute on GitHub</a>
+                        <a class="palo-btn palo-btn-secondary" href="mailto:paloframework@gmail.com"><span data-palo-icon="mail" aria-hidden="true"></span>Contact the maintainers</a>
                     </div>
-                </div>
+                </article>
+                <article class="contribution-panel">
+                    <p class="palo-eyebrow">Partner routes</p>
+                    <h2>Build a review relationship</h2>
+                    <ul class="partner-list">
+                        <li><strong>Academic</strong><span>Methods, empirical studies and reproducibility.</span></li>
+                        <li><strong>Industry</strong><span>Implementation feedback and sector-specific evidence.</span></li>
+                        <li><strong>Standards</strong><span>Terminology, mapping quality and assurance boundaries.</span></li>
+                    </ul>
+                    <a class="palo-evidence-quiet-link" href="mailto:partnerships@paloframework.org">Discuss a partnership</a>
+                </article>
             </div>
         </section>
-
-        <!-- Open Roles Section (for Open-Source/Peer Review) -->
-        <section id="open-roles" class="py-20 bg-slate-50">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-16">
-                    <span class="text-blue-600 font-bold tracking-wider uppercase text-sm">Join Us</span>
-                    <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mt-2">Open Collaboration Roles</h2>
-                    <p class="mt-4 text-slate-600 max-w-2xl mx-auto">
-                        We're building an open-source ecosystem. These key roles support peer review, community
-                        contributions, and framework evolution.
-                    </p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-                    <!-- Open Source Community Lead -->
-                    <div
-                        class="bg-white rounded-xl p-6 border-2 border-dashed border-slate-300 hover:border-palo-teal transition-colors">
-                        <div
-                            class="w-14 h-14 bg-gradient-to-br from-green-400 to-green-600 rounded-xl flex items-center justify-center text-white text-2xl mb-4">
-                            <i class="fa-solid fa-users-gear"></i>
-                        </div>
-                        <h3 class="text-lg font-bold text-slate-800 mb-2">Open Source Community Lead</h3>
-                        <p class="text-slate-600 text-sm mb-4">
-                            Coordinate community contributions, manage GitHub workflows, and foster an inclusive
-                            contributor ecosystem.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span
-                                class="px-2 py-1 bg-green-100 text-green-700 text-xs font-medium rounded">GitHub</span>
-                            <span class="px-2 py-1 bg-green-100 text-green-700 text-xs font-medium rounded"><span data-palo-icon=users class=palo-icon-inline></span>Community
-                                Building</span>
-                            <span
-                                class="px-2 py-1 bg-green-100 text-green-700 text-xs font-medium rounded">Documentation</span>
-                        </div>
-                        <span class="inline-flex items-center text-sm text-slate-500">
-                            <i class="fa-solid fa-hourglass-half mr-2"></i> Looking for contributors
-                        </span>
-                    </div>
-
-                    <!-- Ethics & Policy Advisor -->
-                    <div
-                        class="bg-white rounded-xl p-6 border-2 border-dashed border-slate-300 hover:border-palo-teal transition-colors">
-                        <div
-                            class="w-14 h-14 bg-gradient-to-br from-purple-400 to-purple-600 rounded-xl flex items-center justify-center text-white text-2xl mb-4">
-                            <i class="fa-solid fa-balance-scale"></i>
-                        </div>
-                        <h3 class="text-lg font-bold text-slate-800 mb-2">Ethics & Policy Advisor</h3>
-                        <p class="text-slate-600 text-sm mb-4">
-                            Provide academic and research perspective on AI ethics, policy implications, and regulatory
-                            alignment.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-2 py-1 bg-purple-100 text-purple-700 text-xs font-medium rounded">AI
-                                Ethics</span>
-                            <span class="px-2 py-1 bg-purple-100 text-purple-700 text-xs font-medium rounded">Policy
-                                Research</span>
-                            <span
-                                class="px-2 py-1 bg-purple-100 text-purple-700 text-xs font-medium rounded">Academia</span>
-                        </div>
-                        <span class="inline-flex items-center text-sm text-slate-500">
-                            <i class="fa-solid fa-hourglass-half mr-2"></i> Looking for contributors
-                        </span>
-                    </div>
-
-                    <!-- Technical Documentation Lead -->
-                    <div
-                        class="bg-white rounded-xl p-6 border-2 border-dashed border-slate-300 hover:border-palo-teal transition-colors">
-                        <div
-                            class="w-14 h-14 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center text-white text-2xl mb-4">
-                            <i class="fa-solid fa-book-open"></i>
-                        </div>
-                        <h3 class="text-lg font-bold text-slate-800 mb-2">Technical Documentation Lead</h3>
-                        <p class="text-slate-600 text-sm mb-4">
-                            Ensure framework documentation quality, maintain API references, and create implementation
-                            guides.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-2 py-1 bg-blue-100 text-blue-700 text-xs font-medium rounded">Technical
-                                Writing</span>
-                            <span
-                                class="px-2 py-1 bg-blue-100 text-blue-700 text-xs font-medium rounded">Documentation</span>
-                            <span
-                                class="px-2 py-1 bg-blue-100 text-blue-700 text-xs font-medium rounded">Tutorials</span>
-                        </div>
-                        <span class="inline-flex items-center text-sm text-slate-500">
-                            <i class="fa-solid fa-hourglass-half mr-2"></i> Looking for contributors
-                        </span>
-                    </div>
-
-                    <!-- Data Privacy Specialist -->
-                    <div
-                        class="bg-white rounded-xl p-6 border-2 border-dashed border-slate-300 hover:border-palo-teal transition-colors">
-                        <div
-                            class="w-14 h-14 bg-gradient-to-br from-rose-400 to-rose-600 rounded-xl flex items-center justify-center text-white text-2xl mb-4">
-                            <i class="fa-solid fa-shield-halved"></i>
-                        </div>
-                        <h3 class="text-lg font-bold text-slate-800 mb-2">Data Privacy Specialist</h3>
-                        <p class="text-slate-600 text-sm mb-4">
-                            GDPR and privacy compliance expertise for AI systems, data protection impact assessments,
-                            and privacy-by-design.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-2 py-1 bg-rose-100 text-rose-700 text-xs font-medium rounded">GDPR</span>
-                            <span class="px-2 py-1 bg-rose-100 text-rose-700 text-xs font-medium rounded">Privacy</span>
-                            <span class="px-2 py-1 bg-rose-100 text-rose-700 text-xs font-medium rounded">Data
-                                Protection</span>
-                        </div>
-                        <span class="inline-flex items-center text-sm text-slate-500">
-                            <i class="fa-solid fa-hourglass-half mr-2"></i> Looking for contributors
-                        </span>
-                    </div>
-
-                    <!-- AI/ML Research Advisor -->
-                    <div
-                        class="bg-white rounded-xl p-6 border-2 border-dashed border-slate-300 hover:border-palo-teal transition-colors">
-                        <div
-                            class="w-14 h-14 bg-gradient-to-br from-indigo-400 to-indigo-600 rounded-xl flex items-center justify-center text-white text-2xl mb-4">
-                            <i class="fa-solid fa-brain"></i>
-                        </div>
-                        <h3 class="text-lg font-bold text-slate-800 mb-2">AI/ML Research Advisor</h3>
-                        <p class="text-slate-600 text-sm mb-4">
-                            Academic research liaison for AI/ML innovations, fairness metrics, and cutting-edge
-                            governance research.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-2 py-1 bg-indigo-100 text-indigo-700 text-xs font-medium rounded">Machine
-                                Learning</span>
-                            <span
-                                class="px-2 py-1 bg-indigo-100 text-indigo-700 text-xs font-medium rounded">Research</span>
-                            <span
-                                class="px-2 py-1 bg-indigo-100 text-indigo-700 text-xs font-medium rounded">Fairness</span>
-                        </div>
-                        <span class="inline-flex items-center text-sm text-slate-500">
-                            <i class="fa-solid fa-hourglass-half mr-2"></i> Looking for contributors
-                        </span>
-                    </div>
-
-                    <!-- Peer Reviewer -->
-                    <div
-                        class="bg-white rounded-xl p-6 border-2 border-dashed border-slate-300 hover:border-palo-teal transition-colors">
-                        <div
-                            class="w-14 h-14 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-xl flex items-center justify-center text-white text-2xl mb-4">
-                            <i class="fa-solid fa-magnifying-glass-chart"></i>
-                        </div>
-                        <h3 class="text-lg font-bold text-slate-800 mb-2">Peer Review Committee</h3>
-                        <p class="text-slate-600 text-sm mb-4">
-                            Independent reviewers to validate framework updates, assess new tools, and ensure scientific
-                            rigor.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-2 py-1 bg-orange-100 text-orange-700 text-xs font-medium rounded">Peer
-                                Review</span>
-                            <span
-                                class="px-2 py-1 bg-orange-100 text-orange-700 text-xs font-medium rounded">Validation</span>
-                            <span class="px-2 py-1 bg-orange-100 text-orange-700 text-xs font-medium rounded">Quality
-                                Assurance</span>
-                        </div>
-                        <span class="inline-flex items-center text-sm text-slate-500">
-                            <i class="fa-solid fa-hourglass-half mr-2"></i> Looking for contributors
-                        </span>
-                    </div>
-                </div>
-
-                <!-- Call to Action -->
-                <div class="mt-12 text-center">
-                    <div class="bg-gradient-to-r from-palo-teal to-blue-600 rounded-2xl p-8 text-white">
-                        <h3 class="text-2xl font-bold mb-4">Interested in Contributing?</h3>
-                        <p class="text-teal-100 mb-6 max-w-xl mx-auto">
-                            Join our community of experts shaping the future of responsible AI governance.
-                            Whether you're a researcher, practitioner, or enthusiast, we welcome your contributions.
-                        </p>
-                        <div class="flex flex-col sm:flex-row justify-center gap-4">
-                            <a href="mailto:info@paloframework.org"
-                                class="px-6 py-3 bg-white text-teal-700 font-bold rounded-lg hover:bg-teal-50 transition-colors inline-flex items-center justify-center gap-2">
-                                <i class="fa-solid fa-envelope"></i> Contact Us
-                            </a>
-                            <a href="https://github.com/sev7enITA/PALOframework" target="_blank" rel="noopener noreferrer"
-                                class="px-6 py-3 bg-slate-900 text-white font-bold rounded-lg hover:bg-slate-800 transition-colors inline-flex items-center justify-center gap-2">
-                                <i class="fa-brands fa-github"></i>
-                                View on GitHub
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Partners Section -->
-        <section id="partners" class="py-20 bg-white">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-16">
-                    <span class="text-amber-600 font-bold tracking-wider uppercase text-sm">Ecosystem</span>
-                    <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mt-2">Partners & Partnerships</h2>
-                    <p class="mt-4 text-slate-600 max-w-2xl mx-auto">
-                        Organizations collaborating with PALO Framework to advance responsible AI governance worldwide.
-                    </p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-
-                    <!-- University/Research Partner Placeholder -->
-                    <div class="bg-slate-50 rounded-2xl p-8 border border-slate-200 text-center">
-                        <div
-                            class="w-20 h-20 bg-gradient-to-br from-blue-100 to-blue-200 rounded-full flex items-center justify-center mx-auto mb-6">
-                            <i class="fa-solid fa-graduation-cap text-blue-600 text-3xl"></i>
-                        </div>
-                        <h3 class="text-lg font-bold text-slate-800 mb-2">Academic Partners</h3>
-                        <p class="text-slate-600 text-sm mb-4">
-                            Universities and research institutions contributing to AI ethics research and framework
-                            validation.
-                        </p>
-                        <span class="text-palo-teal text-sm font-semibold">Partnerships Open</span>
-                    </div>
-
-                    <!-- Industry Partner Placeholder -->
-                    <div class="bg-slate-50 rounded-2xl p-8 border border-slate-200 text-center">
-                        <div
-                            class="w-20 h-20 bg-gradient-to-br from-teal-100 to-teal-200 rounded-full flex items-center justify-center mx-auto mb-6">
-                            <i class="fa-solid fa-building text-teal-600 text-3xl"></i>
-                        </div>
-                        <h3 class="text-lg font-bold text-slate-800 mb-2">Industry Partners</h3>
-                        <p class="text-slate-600 text-sm mb-4">
-                            Companies implementing PALO Framework and contributing real-world case studies and feedback.
-                        </p>
-                        <span class="text-palo-teal text-sm font-semibold">Partnerships Open</span>
-                    </div>
-
-                    <!-- Standards Body Placeholder -->
-                    <div class="bg-slate-50 rounded-2xl p-8 border border-slate-200 text-center">
-                        <div
-                            class="w-20 h-20 bg-gradient-to-br from-amber-100 to-amber-200 rounded-full flex items-center justify-center mx-auto mb-6">
-                            <i class="fa-solid fa-certificate text-amber-600 text-3xl"></i>
-                        </div>
-                        <h3 class="text-lg font-bold text-slate-800 mb-2">Standards Bodies</h3>
-                        <p class="text-slate-600 text-sm mb-4">
-                            Collaboration with ISO, IEEE, and other standards organizations for framework alignment.
-                        </p>
-                        <span class="text-palo-teal text-sm font-semibold">Partnerships Open</span>
-                    </div>
-                </div>
-
-                <!-- Partnership CTA -->
-                <div class="mt-12 text-center">
-                    <p class="text-slate-600 mb-4">Interested in becoming a partner organization?</p>
-                    <a href="mailto:partnerships@paloframework.org"
-                        class="inline-flex items-center gap-2 text-palo-teal font-semibold hover:underline">
-                        <i class="fa-solid fa-handshake"></i>
-                        partnerships@paloframework.org
-                    </a>
-                </div>
-            </div>
-        </section>
-
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-slate-50 border-t border-slate-200 pt-16 pb-8" role="contentinfo">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row justify-between items-center mb-8">
-                <a href="index.html" class="flex items-center gap-2 mb-4 md:mb-0">
-                    <img src="assets/logo.webp" alt="PALO Logo" class="w-8 h-8 rounded bg-palo-teal"
-                        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-                    <div class="w-8 h-8 bg-palo-teal text-white rounded hidden items-center justify-center font-bold">P
-                    </div>
-                    <span class="font-bold text-lg text-slate-800">PALO Framework</span>
-                </a>
-                <div class="flex gap-6 text-sm text-slate-600 mb-4 md:mb-0 flex-wrap justify-center">
-                    <a href="privacy-policy.html" class="hover:text-palo-teal transition-colors"><span data-palo-icon=lock class=palo-icon-inline></span>Privacy Policy</a>
-                    <a href="security-policy.html" class="hover:text-palo-teal transition-colors"><span data-palo-icon=lock class=palo-icon-inline></span>Security Policy</a>
-                    <a href="accessibility.html" class="hover:text-palo-teal transition-colors">Accessibility</a>
-                    <a href="PALO_Community.html"
-                        class="hover:text-palo-teal transition-colors font-semibold"><span data-palo-icon=users class=palo-icon-inline></span>Community</a>
-                    <a href="mailto:info@paloframework.org" class="hover:text-palo-teal transition-colors"><span data-palo-icon=mail class=palo-icon-inline></span>Contact</a>
-                </div>
-            </div>
-
-            <div class="text-center text-slate-500 text-sm border-t border-slate-200 pt-6">
-                Copyright 2025-2026 Fabrizio Degni & PALO Framework. All Rights Reserved.
-            </div>
-        </div>
-    </footer>
-
-    <!-- Scripts -->
-    <script>
-        window.addEventListener('scroll', function () {
-            var nav = document.getElementById('navbar');
-            if (nav) nav.classList.toggle('is-scrolled', window.scrollY > 8);
-        });
-    </script>
-    <!-- JSON-LD Structured Data -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "WebPage",
-        "name": "Community & Open Collaboration - PALO Framework",
-        "description": "Meet the PALO Framework community, collaborators, and partners supporting responsible AI governance.",
-        "url": "https://paloframework.org/PALO_Community.html",
-        "isPartOf": {
-            "@type": "WebSite",
-            "name": "PALO Framework",
-            "url": "https://paloframework.org"
-        }
-    }
-    </script>
+    <footer class="palo-footer"><div class="palo-shell"><p>Copyright <span data-current-year>2026</span> PALO Framework. Educational governance support, not legal advice or certification.</p><div class="palo-footer-links"><a href="PALO_Observatories.html">Observatories</a><a href="PALO_DocumentationLibrary.html">Documentation</a><a href="CHANGELOG.html">Changelog</a><a href="release-manifest.json">Release manifest</a><a href="privacy-policy.html">Privacy</a><a href="security-policy.html">Security</a><a href="accessibility.html">Accessibility</a></div></div></footer>
 </body>
-
 </html>

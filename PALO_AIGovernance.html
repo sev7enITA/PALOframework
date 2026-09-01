@@ -220,9 +220,9 @@
                     <table class="palo-table palo-ai-platform-table">
                         <thead><tr><th>Platform</th><th>Visual gate</th><th>Brokered execution</th><th>Runtime interception</th><th>Authoritative today?</th></tr></thead>
                         <tbody>
-                            <tr><th scope="row">n8n</th><td>Package 0.2 compatibility decision node</td><td>Package 0.2 Governed Action prototype</td><td>Not implemented; alternate credentials or tool paths can bypass the node</td><td>No. Unpublished and not n8n-verified</td></tr>
-                            <tr><th scope="row">Copilot Studio</th><td>MCP tools can surface governance actions</td><td>Target via narrow PALO tools</td><td>Platform-owned controls</td><td>No. Integration guidance only</td></tr>
-                            <tr><th scope="row">Dify</th><td>Non-production tool example</td><td>Agent Strategy target</td><td>Plugin-owned target</td><td>No. Reference example</td></tr>
+                            <tr><th scope="row">n8n</th><td>Package 0.2 gate or MCP Knowledge Reader</td><td>Package 0.2 Governed Action prototype</td><td>Not implemented; alternate credentials or tool paths can bypass the node</td><td>No. MCP config validated; package unpublished and unverified</td></tr>
+                            <tr><th scope="row">Copilot Studio</th><td>Reader/Curator over Streamable HTTP</td><td>Target via narrow PALO operational tools</td><td>Platform-owned controls</td><td>No. Config validated; live tenant pending</td></tr>
+                            <tr><th scope="row">Dify</th><td>Native MCP Knowledge provider</td><td>Gateway example or Agent Strategy target</td><td>Plugin-owned target</td><td>No. Partial config; live build pending</td></tr>
                             <tr><th scope="row">LangChain / LangGraph</th><td>Middleware decision feedback</td><td>Recommended adapter shape</td><td>Before-tool middleware / interrupt</td><td>No. Adapter not packaged</td></tr>
                             <tr><th scope="row">Node-RED</th><td>Custom node or subflow target</td><td>Broker required</td><td>Self-hosted hook target</td><td>No. Specified pattern</td></tr>
                             <tr><th scope="row">Make</th><td>HTTP or custom-app step</td><td>PALO-controlled API target</td><td>No universal interceptor</td><td>No. Direct actions must be removed</td></tr>
@@ -231,6 +231,7 @@
                     </table>
                 </div>
                 <p class="palo-note"><strong>Enforcement invariant:</strong> do not expose a direct privileged tool path beside its PALO-governed broker and then describe the flow as enforced.</p>
+                <p class="palo-note"><strong>Knowledge integrations:</strong> the dedicated canonical-only Reader is a production candidate with separate <a href="docs/palo-knowledge-reader-production.html">live acceptance gates</a>. Reader/Curator configurations for 11 MCP hosts are tracked in the <a href="docs/palo-knowledge-copilot-integrations.html">Knowledge Copilot matrix</a>; protocol or configuration validation is not live host qualification, and the Curator does not inherit Reader status.</p>
             </div>
         </section>
 

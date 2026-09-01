@@ -261,7 +261,7 @@
                         <p class="palo-eyebrow">Integrate PALO into your product</p>
                         <h2 id="integrate-title">Guide first. Protect actions separately.</h2>
                     </div>
-                    <p>The three guide tools explain and plan. They do not authorize deployment or execute protected actions. Add the PALO-AI governed path only when a product can cause effects.</p>
+                    <p>The dedicated six-tool Knowledge Reader explains, plans, searches and retrieves only digest-bound canonical PALO records. Its stateless production candidate requires live deployment qualification. The restricted ten-tool Curator adds immutable draft and review operations under a separate boundary. Neither profile authorizes deployment or executes protected actions; add the PALO-AI governed path only when a product can cause effects.</p>
                 </header>
 
                 <div class="palo-guide-architecture" aria-label="PALO product integration architecture">
@@ -316,24 +316,29 @@
                     </article>
                     <article class="palo-guide-config">
                         <div class="palo-guide-config-head">
-                            <div><span>Remote preview</span><h3>Authenticated Streamable HTTP</h3></div>
+                            <div><span>Remote Reader</span><h3>Authenticated Streamable HTTP</h3></div>
                             <button type="button" class="palo-guide-copy" data-copy-target="palo-http-config">Copy</button>
                         </div>
                         <pre id="palo-http-config"><code>{
   "type": "streamable-http",
-  "url": "https://your-palo-host.example/mcp",
+  "url": "https://your-palo-host.example/mcp-guide",
   "headers": {
     "Authorization": "Bearer ${PALO_MCP_TOKEN}"
   }
 }</code></pre>
-                        <p>Keep tokens in the client's secret store, require TLS, minimize exposed tools and configure the server host allowlist.</p>
+                        <p>The Reader exposes exactly six knowledge tools. Production mode accepts only short-lived OIDC access tokens for the exact resource audience and requires TLS, the fixed two-scope role, an explicit host allowlist and the canonical-only release.</p>
                     </article>
                 </div>
                 <p class="palo-guide-copy-status" id="palo-guide-copy-status" role="status" aria-live="polite">Configuration examples are ready to copy.</p>
                 <div class="palo-guide-integration-caution">
+                    <strong>Eleven host paths, one qualification rule</strong>
+                    <p>Paired Reader and Curator configurations are available for Copilot Studio, Claude, ChatGPT/Codex, GitHub Copilot, VS Code, Cursor, Gemini, JetBrains, AWS AgentCore, n8n and Dify. Repository validation covers protocol and configuration; every tenant remains pending until a live authenticated test is recorded.</p>
+                    <a href="docs/palo-knowledge-copilot-integrations.html">Open the Knowledge Copilot integration matrix</a>
+                </div>
+                <div class="palo-guide-integration-caution">
                     <strong>Production boundary check</strong>
-                    <p>Product identity, tenant scope, tool allowlists, credential custody, unavoidable enforcement, durable execution, reviewer authentication, monitoring and independent security assurance remain product-side and deployment responsibilities.</p>
-                    <a href="PALO_AIProductionReadiness.html">Review the production-readiness route</a>
+                    <p>The Reader code is a production candidate for informational Q&amp;A; IdP, proxy, logging, monitoring, rollback and host checks remain deployment responsibilities. Curator and protected-action PALO-AI retain their separate non-production boundaries.</p>
+                    <a href="docs/palo-knowledge-reader-production.html">Review the Reader production profile</a>
                 </div>
             </div>
         </section>

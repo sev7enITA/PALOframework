@@ -314,8 +314,8 @@
               </p>
               <strong>What it does not prove</strong>
               <p>
-                Universal interception, OAuth/OIDC production identity or
-                removal of direct equivalent actions.
+                Universal interception, a live-qualified tenant or removal of
+                direct equivalent actions.
               </p>
             </div>
           </div>
@@ -331,24 +331,28 @@
               <li>
                 <strong>Expose only the required PALO tools.</strong>
                 <p>
-                  Use the server tool allowlist; do not publish the entire
-                  governance surface to the agent.
+                  Connect the dedicated Reader and verify its fixed six-tool
+                  catalog; do not publish the operational governance surface to
+                  the agent.
                 </p>
               </li>
               <li>
-                <strong>Use preview authentication deliberately.</strong>
+                <strong>Use the Reader production identity boundary.</strong>
                 <p>
-                  The current reference remote transport supports a shared
-                  API-key/bearer preview boundary. OAuth/OIDC workload identity
-                  is the recommended production design and remains a readiness
-                  gate.
+                  Copilot Studio's wizard supports API key and OAuth 2.0. Use a
+                  short-lived OIDC access token with the exact Reader audience
+                  and two Reader scopes. Static bearer/API-key mode is limited
+                  to isolated local evaluation and is rejected by the production
+                  Reader.
                 </p>
               </li>
               <li>
                 <strong>Add the existing MCP server in Copilot Studio.</strong>
                 <p>
-                  Follow Microsoft's Streamable HTTP MCP onboarding flow, then
-                  inspect every imported tool.
+                  Follow Microsoft's Streamable HTTP MCP onboarding flow. Use
+                  Reader for six read-only tools, or the separately authorized
+                  ten-tool Curator only for editorial workflows, then inspect
+                  every imported tool.
                 </p>
               </li>
               <li>
@@ -360,23 +364,30 @@
               </li>
             </ol>
             <p>
-              <strong>Expected result:</strong> the agent sees only selected
-              governance tools and evaluation remains inside a declared preview
-              boundary.
+              <strong>Expected result:</strong> the agent sees exactly six
+              canonical read-only Reader tools. The code is a production
+              candidate; the actual tenant remains pending until IdP, proxy and
+              host qualification pass. Curator and operational actions retain
+              their separate preview boundaries.
             </p>
             <div class="palo-actions">
               <a
                 class="palo-btn"
-                href="docs/palo-ai-governance-integration-guide.html"
-                >PALO integration guide</a
+                href="docs/palo-knowledge-copilot-integrations.html"
+                >Knowledge Copilot integration matrix</a
               ><a
                 class="palo-btn palo-btn-secondary"
                 href="https://learn.microsoft.com/en-us/microsoft-copilot-studio/mcp-add-existing-server-to-agent"
                 >Microsoft MCP onboarding</a
               ><a
                 class="palo-btn palo-btn-secondary"
-                href="PALO_AIProductionReadiness.html"
-                >Identity readiness gate</a
+                href="docs/palo-knowledge-reader-production.html"
+                >Reader production gates</a
+              >
+              <a
+                class="palo-btn palo-btn-secondary"
+                href="docs/palo-mcp-host-qualification.html"
+                >Host qualification procedure</a
               >
             </div>
           </div>
