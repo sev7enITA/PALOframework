@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Production release commit checklist | PALO Documentation</title>
+  <meta name="description" content="Public PALO documentation: Production release commit checklist.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://paloframework.org/docs/production-release-commit-checklist.html">
+  <link rel="icon" type="image/webp" href="../assets/logo.webp">
+  <link rel="stylesheet" href="../assets/palo-icons.css">
+  <link rel="stylesheet" href="../assets/palo-v21.css?v=3.1.0">
+  <link rel="stylesheet" href="../assets/palo-docs.css">
+  <script src="../assets/palo-icons.js" defer></script>
+  <script src="../assets/palo-v21.js?v=3.1.0" defer></script>
+  <script src="../assets/palo-docs.js" defer></script>
+</head>
+<body class="palo-v21 palo-doc-page" data-doc-source="docs/production-release-commit-checklist.md">
+  <a class="palo-skip-link" href="#main-content">Skip to main content</a>
+  <header class="palo-site-header"><div class="palo-shell palo-header-inner">
+    <a class="palo-brand" href="../index.html"><img src="../assets/logo.webp" alt="PALO">PALO FRAMEWORK</a>
+    <button class="palo-menu-toggle" type="button" data-palo-menu-toggle aria-expanded="false" aria-controls="palo-primary-nav" aria-label="Open navigation"><span data-palo-icon="menu" aria-hidden="true"></span></button>
+    <nav class="palo-nav" id="palo-primary-nav" aria-label="Primary navigation"><a href="../designs/theory-to-practice-infographic/">Start</a><a href="../PALO_AIGovernance.html">Agentic Governance</a><a href="../governance-hub/">Governance Hub</a><a href="../index.html#guided-journeys">Tools</a><a href="../PALO_DocumentationLibrary.html" aria-current="page">Documentation</a><a href="../PALO_AIProductionReadiness.html">Readiness</a></nav>
+  </div></header>
+  <main id="main-content" class="palo-doc-main">
+    <div class="palo-shell">
+      <nav class="palo-doc-breadcrumb" aria-label="Breadcrumb"><a href="../PALO_DocumentationLibrary.html">Documentation Library</a><span aria-hidden="true">/</span><span>Start and adoption</span></nav>
+      <header class="palo-doc-hero"><p class="palo-eyebrow">Start and adoption | Public documentation</p><h1>Production release commit checklist</h1><div class="palo-doc-facts"><span><small>Level</small><strong>guide</strong></span><span><small>Audience</small><strong>technical</strong></span><span><small>Product</small><strong>PALO Platform</strong></span><span><small>Status</small><strong>Maintainer Runbook</strong></span><span><small>Lifecycle</small><strong>Current</strong></span><span><small>Read</small><strong>4 min</strong></span></div><p class="palo-doc-source">Published HTML view | Source: <code>docs/production-release-commit-checklist.md</code></p><div class="palo-actions"><button class="palo-btn" type="button" data-doc-copy-link>Copy link</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-share>Share page</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-print>Print</button></div><p class="palo-action-status" data-doc-action-status role="status" aria-live="polite"></p></header>
+      <details class="palo-doc-mobile-toc"><summary>On this page</summary><ol><li class="depth-2"><a href="#safety-rule">Safety rule</a></li><li class="depth-2"><a href="#required-branch-state">Required branch state</a></li><li class="depth-2"><a href="#commit-group-1-knowledge-services-host-profiles-and-mcp-hardening">Commit group 1: Knowledge services, host profiles and MCP hardening</a></li><li class="depth-2"><a href="#commit-group-2-observatory-and-website-source">Commit group 2: Observatory and website source</a></li><li class="depth-2"><a href="#commit-group-3-release-metadata-validation-and-generated-site">Commit group 3: Release metadata, validation and generated site</a></li><li class="depth-2"><a href="#mandatory-validation-gates">Mandatory validation gates</a></li><li class="depth-2"><a href="#production-handoff-record">Production handoff record</a></li></ol></details>
+      <div class="palo-doc-layout"><aside class="palo-doc-sidebar" aria-label="On this page"><strong>On this page</strong><ol><li class="depth-2"><a href="#safety-rule">Safety rule</a></li><li class="depth-2"><a href="#required-branch-state">Required branch state</a></li><li class="depth-2"><a href="#commit-group-1-knowledge-services-host-profiles-and-mcp-hardening">Commit group 1: Knowledge services, host profiles and MCP hardening</a></li><li class="depth-2"><a href="#commit-group-2-observatory-and-website-source">Commit group 2: Observatory and website source</a></li><li class="depth-2"><a href="#commit-group-3-release-metadata-validation-and-generated-site">Commit group 3: Release metadata, validation and generated site</a></li><li class="depth-2"><a href="#mandatory-validation-gates">Mandatory validation gates</a></li><li class="depth-2"><a href="#production-handoff-record">Production handoff record</a></li></ol></aside><article class="palo-doc-content"><h1 id="production-release-commit-checklist">Production release commit checklist<a class="palo-doc-anchor" href="#production-release-commit-checklist" aria-label="Link to Production release commit checklist">#</a></h1><p>Status: maintainer runbook for the synchronized Observatory, Knowledge Copilot and MCP hardening release. This checklist does not qualify PALO-AI as a production authorization service.</p>
+<h2 id="safety-rule">Safety rule<a class="palo-doc-anchor" href="#safety-rule" aria-label="Link to Safety rule">#</a></h2><p>Never use <code>git add -A</code> for this release. Stage only the explicit paths in the relevant commit group, inspect the staged diff, and stop if the branch is not synchronized with <code>origin/main</code>.</p>
+<p>Private research inputs, local browser data, unpublished papers, personal application records, deployment secrets and superseded evidence do not belong in the release. The supplied Hugging Face incident PDF is a private research input and must not be staged or copied into <code>dist</code>.</p>
+<h2 id="required-branch-state">Required branch state<a class="palo-doc-anchor" href="#required-branch-state" aria-label="Link to Required branch state">#</a></h2><p>Run these read-only checks before staging:</p>
+<figure class="palo-doc-code"><figcaption>sh code</figcaption><pre tabindex="0"><code class="language-sh">git fetch origin main
+git status --short
+git rev-list --left-right --count HEAD...origin/main</code></pre></figure><p>The final command must report <code>0 0</code> before the first release commit. If the branch diverges, create a clean worktree from the current <code>origin/main</code>, transfer only the reviewed changes and rerun every validation gate. Do not rebase a dirty worktree and do not force-push a release branch.</p>
+<h2 id="commit-group-1-knowledge-services-host-profiles-and-mcp-hardening">Commit group 1: Knowledge services, host profiles and MCP hardening<a class="palo-doc-anchor" href="#commit-group-1-knowledge-services-host-profiles-and-mcp-hardening" aria-label="Link to Commit group 1: Knowledge services, host profiles and MCP hardening">#</a></h2><p>Purpose: extend the existing Knowledge Reader candidate with the bounded Curator and 11-host integration set, require explicit remote OIDC client and tenant binding, prevent listener-host substitution, preserve real loopback development, correct snippet offsets and keep public deployment evidence free of private identifiers.</p>
+<p>Stage only:</p>
+<figure class="palo-doc-code"><figcaption>text code</figcaption><pre tabindex="0"><code class="language-text">.dockerignore
+audit/knowledge-reader-production-candidate-2026-08-27/README.md
+audit/knowledge-reader-production-candidate-2026-08-27/copilot-studio-staging-2026-08-28.json
+audit/knowledge-reader-production-candidate-2026-08-27/entra-qualification-2026-08-28.json
+audit/knowledge-reader-production-candidate-2026-08-27/reader-v1.0.0.spdx.json
+audit/knowledge-reader-production-candidate-2026-08-27/student-funding-route-2026-08-28.json
+deploy/vps/palo-ai/.env.example
+deploy/vps/palo-ai/Caddyfile
+deploy/vps/palo-ai/Containerfile.identity
+deploy/vps/palo-ai/Dockerfile
+deploy/vps/palo-ai/Dockerfile.reader
+deploy/vps/palo-ai/compose.host-nginx.yaml
+deploy/vps/palo-ai/compose.yaml
+deploy/vps/palo-ai/identity/palo-realm.json
+deploy/vps/palo-ai/nginx-governance.conf
+deploy/vps/palo-ai/nginx-reader-edge.conf
+deploy/vps/palo-ai/setup-identity-secrets.sh
+deploy/vps/palo-ai/setup-secrets.sh
+deploy/vps/palo-ai/smoke-online.sh
+docs/palo-ai-governance-integration-guide.md
+docs/palo-ai-n8n-launch-playbook.md
+docs/palo-ai-vps-deployment.md
+docs/palo-guide-agent-and-mcp.md
+docs/palo-knowledge-copilot-integrations.md
+docs/palo-knowledge-reader-production.md
+docs/palo-microsoft-startup-student-credits.md
+examples/agentic-interface/README.md
+examples/agentic-interface/knowledge-copilot/
+examples/agentic-interface/mcp-server-spec.json
+governance-hub/AGENTS.md
+package.json
+packages/palo-mcp-server/README.md
+packages/palo-mcp-server/auth.js
+packages/palo-mcp-server/auth.test.js
+packages/palo-mcp-server/core.js
+packages/palo-mcp-server/deployment.test.js
+packages/palo-mcp-server/http.js
+packages/palo-mcp-server/mcp.test.js
+packages/palo-mcp-server/network.js
+packages/palo-mcp-server/reader-http.js
+packages/palo-mcp-server/reader-http.test.js
+packages/palo-mcp-server/reader-knowledge-base.js
+packages/palo-mcp-server/reader-knowledge-base.test.js
+packages/palo-mcp-server/server.js
+scripts/validate-knowledge-copilot-integrations.mjs
+skills/palo-knowledge-copilot/</code></pre></figure><p>Do not stage a deployment <code>.env</code>, secret directory, token, certificate, private tenant inventory, personal account address, unredacted qualification record or superseded local-image SBOM.</p>
+<p>Suggested subject: <code>feat(knowledge): harden Reader and Curator integrations</code></p>
+<h2 id="commit-group-2-observatory-and-website-source">Commit group 2: Observatory and website source<a class="palo-doc-anchor" href="#commit-group-2-observatory-and-website-source" aria-label="Link to Commit group 2: Observatory and website source">#</a></h2><p>Purpose: publish the Observatory index and AI incident case, migrate Community to the shared visual system, add the incident route to Platform Map and synchronize navigation across the affected public pages.</p>
+<p>Stage only:</p>
+<figure class="palo-doc-code"><figcaption>text code</figcaption><pre tabindex="0"><code class="language-text">index.html
+PALO_AIGovernance.html
+PALO_AIIncidentObservatory.html
+PALO_AIQuickstarts.html
+PALO_AgenticCapabilityMatrix.html
+PALO_AgenticGovernance.html
+PALO_Community.html
+PALO_DocumentationLibrary.html
+PALO_Guide.html
+PALO_HumanAgencyRiskMap.html
+PALO_Observatories.html
+PALO_PlatformMap.html
+PALO_RegulatoryWatch.html
+PALO_TechTrends2026.html
+assets/palo-ai-incident-observatory.css
+assets/palo-ai-incident-observatory.js
+assets/palo-community.css
+assets/palo-observatories.css
+assets/palo-v21.css
+media/social/hugging-face-incident-palo/</code></pre></figure><p>The public case may publish source-bounded analysis and original PALO graphics only. It must label report facts, PALO counterfactuals and PolicyWatcher correlations separately and must not imply causation from correlation.</p>
+<p>Suggested subject: <code>feat(web): publish the PALO Observatory system</code></p>
+<h2 id="commit-group-3-release-metadata-validation-and-generated-site">Commit group 3: Release metadata, validation and generated site<a class="palo-doc-anchor" href="#commit-group-3-release-metadata-validation-and-generated-site" aria-label="Link to Commit group 3: Release metadata, validation and generated site">#</a></h2><p>Purpose: synchronize repository guidance, release metadata, publication allowlists, validation rules and deterministic output after groups 1 and 2 are present.</p>
+<p>Stage source files first:</p>
+<figure class="palo-doc-code"><figcaption>text code</figcaption><pre tabindex="0"><code class="language-text">.gitignore
+CHANGELOG.md
+README.md
+feed.xml
+release-manifest.json
+sitemap.xml
+docs/production-release-commit-checklist.md
+scripts/browser-smoke.mjs
+scripts/public-files.mjs
+scripts/render-public-docs.mjs
+scripts/validate-agentic.mjs
+scripts/validate-external-evidence.mjs
+scripts/validate-text-style.mjs
+scripts/validate.mjs</code></pre></figure><p>After a clean build, stage the deterministic public output. <code>dist</code> is tracked as the published static release, so include updated and newly generated files explicitly:</p>
+<figure class="palo-doc-code"><figcaption>sh code</figcaption><pre tabindex="0"><code class="language-sh">git add -u -- dist
+git add -f -- dist</code></pre></figure><p>Suggested subject: <code>docs(release): synchronize the production web package</code></p>
+<h2 id="mandatory-validation-gates">Mandatory validation gates<a class="palo-doc-anchor" href="#mandatory-validation-gates" aria-label="Link to Mandatory validation gates">#</a></h2><p>Run from the repository root:</p>
+<figure class="palo-doc-code"><figcaption>sh code</figcaption><pre tabindex="0"><code class="language-sh">npm ci
+npm ci --prefix governance-hub --ignore-scripts
+npm run opa:install
+npm run validate:agentic
+npm run validate:knowledge-reader
+npm run validate:knowledge-gold
+npm run validate:knowledge-copilot
+npm run validate
+npm run build
+npm run validate:dist
+npm run build:check
+npm run smoke
+npm run governance-hub:operational-smoke
+docker compose --env-file deploy/vps/palo-ai/.env.example -f deploy/vps/palo-ai/compose.host-nginx.yaml config --quiet
+docker compose --env-file deploy/vps/palo-ai/.env.example -f deploy/vps/palo-ai/compose.yaml config --quiet
+npm run package:hostinger</code></pre></figure><p>Then inspect each staged group:</p>
+<figure class="palo-doc-code"><figcaption>sh code</figcaption><pre tabindex="0"><code class="language-sh">git diff --cached --check
+git diff --cached --stat
+git diff --cached --name-status
+git status --short</code></pre></figure><p>The staged set and generated site must contain no U+2014 character, secret value, private key, bearer token, personal account address, private tenant identifier or third-party research PDF. A passing repository test suite proves conformance to the checked assertions, not independent production qualification.</p>
+<h2 id="production-handoff-record">Production handoff record<a class="palo-doc-anchor" href="#production-handoff-record" aria-label="Link to Production handoff record">#</a></h2><p>Record the following outside the source commits and attach it to the release review:</p>
+<ul>
+<li>source commit and tree digest;</li>
+<li>build and package checksums;</li>
+<li>test command, timestamp and result;</li>
+<li>container digest and SBOM reference where applicable;</li>
+<li>accountable release owner and independent reviewer;</li>
+<li>target hostname and rollback reference;</li>
+<li>unresolved gates and exact maturity label.</li>
+</ul>
+<p>Only a synchronized, reviewed and reproducible commit may be promoted to the production branch or deployment workflow.</p>
+</article></div>
+      <aside class="palo-doc-next"><div><small>Prerequisite</small><strong>Synchronized release branch and reviewed change groups</strong></div><div><small>Recommended next step</small><strong>Run the mandatory validation gates</strong></div></aside>
+      <section class="palo-doc-feedback" aria-labelledby="feedback-title"><p class="palo-eyebrow">Privacy-first feedback</p><h2 id="feedback-title">Help improve this guide</h2><p>Your feedback stays in your browser until you explicitly copy it, download it, or open an email draft. Do not include secrets, personal data, credentials or production identifiers.</p><form data-doc-feedback><div class="palo-form-grid"><div class="palo-field"><label for="feedback-role">Your role</label><select id="feedback-role" name="role"><option>Executive / governance owner</option><option>Platform or security engineer</option><option>No-code / low-code builder</option><option>External reviewer</option></select></div><div class="palo-field"><label for="feedback-category">Category</label><select id="feedback-category" name="category"><option>Clarity</option><option>Technical accuracy</option><option>Missing guidance</option><option>Accessibility</option></select></div><div class="palo-field palo-field-full"><label for="feedback-message">Feedback</label><textarea id="feedback-message" name="message" maxlength="3000" required placeholder="Describe the non-sensitive improvement you recommend."></textarea></div><div class="palo-form-actions"><button class="palo-btn" type="button" data-feedback-copy>Copy feedback</button><button class="palo-btn palo-btn-secondary" type="button" data-feedback-download>Download JSON</button><button class="palo-btn palo-btn-secondary" type="button" data-feedback-email>Email draft</button></div></div><p class="palo-action-status" data-feedback-status role="status" aria-live="polite"></p></form></section>
+    </div>
+  </main>
+  <footer class="palo-footer"><div class="palo-shell"><p>PALO public documentation. Developer preview boundaries apply.</p><div class="palo-footer-links"><a href="../PALO_AIGovernance.html">PALO-AI</a><a href="../governance-hub/">Governance Hub</a><a href="../PALO_AgenticCapabilityMatrix.html">Capability Matrix</a><a href="../PALO_AIProductionReadiness.html">Production Readiness</a><a href="../privacy-policy.html">Privacy</a></div></div></footer>
+</body></html>

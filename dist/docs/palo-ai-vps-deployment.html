@@ -25,7 +25,7 @@
   <main id="main-content" class="palo-doc-main">
     <div class="palo-shell">
       <nav class="palo-doc-breadcrumb" aria-label="Breadcrumb"><a href="../PALO_DocumentationLibrary.html">Documentation Library</a><span aria-hidden="true">/</span><span>Operations and deployment</span></nav>
-      <header class="palo-doc-hero"><p class="palo-eyebrow">Operations and deployment | Public documentation</p><h1>PALO-AI Online VPS Deployment</h1><div class="palo-doc-facts"><span><small>Level</small><strong>guide</strong></span><span><small>Audience</small><strong>technical</strong></span><span><small>Product</small><strong>PALO-AI</strong></span><span><small>Status</small><strong>Evaluation Deployment</strong></span><span><small>Lifecycle</small><strong>Current</strong></span><span><small>Read</small><strong>10 min</strong></span></div><p class="palo-doc-source">Published HTML view | Source: <code>docs/palo-ai-vps-deployment.md</code></p><div class="palo-actions"><button class="palo-btn" type="button" data-doc-copy-link>Copy link</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-share>Share page</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-print>Print</button></div><p class="palo-action-status" data-doc-action-status role="status" aria-live="polite"></p></header>
+      <header class="palo-doc-hero"><p class="palo-eyebrow">Operations and deployment | Public documentation</p><h1>PALO-AI Online VPS Deployment</h1><div class="palo-doc-facts"><span><small>Level</small><strong>guide</strong></span><span><small>Audience</small><strong>technical</strong></span><span><small>Product</small><strong>PALO-AI</strong></span><span><small>Status</small><strong>Evaluation Deployment</strong></span><span><small>Lifecycle</small><strong>Current</strong></span><span><small>Read</small><strong>12 min</strong></span></div><p class="palo-doc-source">Published HTML view | Source: <code>docs/palo-ai-vps-deployment.md</code></p><div class="palo-actions"><button class="palo-btn" type="button" data-doc-copy-link>Copy link</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-share>Share page</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-print>Print</button></div><p class="palo-action-status" data-doc-action-status role="status" aria-live="polite"></p></header>
       <details class="palo-doc-mobile-toc"><summary>On this page</summary><ol><li class="depth-2"><a href="#live-deployment-status">Live deployment status</a></li><li class="depth-2"><a href="#address-model">Address model</a></li><li class="depth-2"><a href="#supplied-deployment">Supplied deployment</a></li><li class="depth-2"><a href="#prerequisites">Prerequisites</a></li><li class="depth-2"><a href="#configure-the-vps">Configure the VPS</a></li><li class="depth-2"><a href="#firewall">Firewall</a></li><li class="depth-2"><a href="#start-the-online-stack">Start the online stack</a></li><li class="depth-2"><a href="#register-an-authority-profile">Register an authority profile</a></li><li class="depth-2"><a href="#verify-the-online-endpoint">Verify the online endpoint</a></li><li class="depth-2"><a href="#connect-n8n">Connect n8n</a></li><li class="depth-2"><a href="#connect-other-mcp-clients">Connect other MCP clients</a></li><li class="depth-2"><a href="#public-route-boundary">Public-route boundary</a></li><li class="depth-2"><a href="#next-implementation-gates">Next implementation gates</a></li><li class="depth-2"><a href="#update-and-rollback">Update and rollback</a></li><li class="depth-2"><a href="#backup-warning">Backup warning</a></li><li class="depth-2"><a href="#remaining-production-boundary">Remaining production boundary</a></li></ol></details>
       <div class="palo-doc-layout"><aside class="palo-doc-sidebar" aria-label="On this page"><strong>On this page</strong><ol><li class="depth-2"><a href="#live-deployment-status">Live deployment status</a></li><li class="depth-2"><a href="#address-model">Address model</a></li><li class="depth-2"><a href="#supplied-deployment">Supplied deployment</a></li><li class="depth-2"><a href="#prerequisites">Prerequisites</a></li><li class="depth-2"><a href="#configure-the-vps">Configure the VPS</a></li><li class="depth-2"><a href="#firewall">Firewall</a></li><li class="depth-2"><a href="#start-the-online-stack">Start the online stack</a></li><li class="depth-2"><a href="#register-an-authority-profile">Register an authority profile</a></li><li class="depth-2"><a href="#verify-the-online-endpoint">Verify the online endpoint</a></li><li class="depth-2"><a href="#connect-n8n">Connect n8n</a></li><li class="depth-2"><a href="#connect-other-mcp-clients">Connect other MCP clients</a></li><li class="depth-2"><a href="#public-route-boundary">Public-route boundary</a></li><li class="depth-2"><a href="#next-implementation-gates">Next implementation gates</a></li><li class="depth-2"><a href="#update-and-rollback">Update and rollback</a></li><li class="depth-2"><a href="#backup-warning">Backup warning</a></li><li class="depth-2"><a href="#remaining-production-boundary">Remaining production boundary</a></li></ol></aside><article class="palo-doc-content"><h1 id="palo-ai-online-vps-deployment">PALO-AI Online VPS Deployment<a class="palo-doc-anchor" href="#palo-ai-online-vps-deployment" aria-label="Link to PALO-AI Online VPS Deployment">#</a></h1><p>Status: Internet-reachable developer-preview deployment topology documented for PALO-AI v2.7. Deployments created from the v2.5 baseline must be upgraded and revalidated separately; this document does not assert that a live endpoint has already been upgraded. HTTPS and network isolation do not remove the blockers tracked in the public <a href="../PALO_AIProductionReadiness.html">Production Readiness plan</a>.</p>
 <h2 id="live-deployment-status">Live deployment status<a class="palo-doc-anchor" href="#live-deployment-status" aria-label="Link to Live deployment status">#</a></h2><p>The reference developer-preview endpoint was deployed on 17 July 2026:</p>
@@ -45,8 +45,12 @@
 <td>Dual-era Streamable HTTP at <code>/mcp</code>; current Compose uses shared bearer, while the runtime also supports OIDC/JWKS resource-server mode</td>
 </tr>
 <tr>
-<td>Guide MCP transport</td>
-<td>Prepared Streamable HTTP route at <code>/mcp-guide</code>, separately bearer-authenticated; deploy this release before treating it as live</td>
+<td>Knowledge MCP transport</td>
+<td>Dedicated OIDC-only Reader at <code>/mcp-guide</code> and separate ten-tool Curator at <code>/mcp-guide-curator</code>, backed by the self-hosted PALO identity realm; each release still requires live qualification</td>
+</tr>
+<tr>
+<td>Identity</td>
+<td>Keycloak 26.7.2 and PostgreSQL, self-hosted on the PALO VPS; public realm/OIDC routes only, with administration excluded from nginx/Caddy</td>
 </tr>
 <tr>
 <td>Gateway</td>
@@ -115,6 +119,21 @@
 <td>nginx-to-Hub-UI target when the opt-in profile is enabled</td>
 </tr>
 <tr>
+<td><code>http://127.0.0.1:18882</code></td>
+<td>Current VPS host only</td>
+<td>nginx-to-Knowledge-Curator MCP proxy target</td>
+</tr>
+<tr>
+<td><code>http://127.0.0.1:18883</code></td>
+<td>Current VPS host only</td>
+<td>nginx-to-PALO-identity proxy target; the admin route is not published</td>
+</tr>
+<tr>
+<td><code>http://127.0.0.1:19000</code></td>
+<td>Current VPS host only</td>
+<td>Keycloak management health target</td>
+</tr>
+<tr>
 <td><code>http://palo-mcp:8788</code></td>
 <td>Docker network only</td>
 <td>MCP service behind the TLS proxy</td>
@@ -122,7 +141,17 @@
 <tr>
 <td><code>http://palo-guide-mcp:8789</code></td>
 <td>Docker network only</td>
-<td>Read-only PALO Guide MCP service behind the TLS proxy</td>
+<td>Six-tool PALO Knowledge Reader behind the TLS proxy</td>
+</tr>
+<tr>
+<td><code>http://palo-guide-curator-mcp:8790</code></td>
+<td>Docker network only</td>
+<td>Ten-tool PALO Knowledge Curator behind the TLS proxy</td>
+</tr>
+<tr>
+<td><code>http://palo-identity:8080</code></td>
+<td>Docker network or VPS loopback only</td>
+<td>PALO-owned OIDC authorization server</td>
 </tr>
 <tr>
 <td><code>https://governance.paloframework.org/gateway</code></td>
@@ -137,7 +166,22 @@
 <tr>
 <td><code>https://governance.paloframework.org/mcp-guide</code></td>
 <td>Internet, separately authenticated</td>
-<td>Three read-only PALO Guide tools after this release is deployed</td>
+<td>Six read-only PALO Knowledge tools after this release is deployed</td>
+</tr>
+<tr>
+<td><code>https://governance.paloframework.org/mcp-guide/mcp</code></td>
+<td>Internet, separately authenticated</td>
+<td>Reader compatibility alias for clients that infer Streamable HTTP from the final path segment</td>
+</tr>
+<tr>
+<td><code>https://governance.paloframework.org/mcp-guide-curator</code></td>
+<td>Internet, separately authenticated</td>
+<td>Four curation operations plus Reader after this release is deployed</td>
+</tr>
+<tr>
+<td><code>https://governance.paloframework.org/mcp-guide-curator/mcp</code></td>
+<td>Internet, separately authenticated</td>
+<td>Curator compatibility alias; canonical OAuth audience remains the non-alias endpoint</td>
 </tr>
 <tr>
 <td><code>https://governance.paloframework.org/hub/</code></td>
@@ -160,11 +204,12 @@
 <p>Both variants provide:</p>
 <ul>
 <li>Docker Compose orchestration;</li>
+<li>PALO-owned Keycloak 26.7.2 identity service with a separate PostgreSQL volume, five-minute access tokens, brute-force protection and audience-bound Reader/Curator clients;</li>
 <li>OPA 1.17.0 on a private internal network;</li>
 <li>PALO Gateway and MCP containers built from this repository;</li>
 <li>HTTPS termination and redirect through existing nginx/Certbot or Caddy 2.11.4;</li>
-<li>separate Docker secret files for Gateway, MCP and HMAC material;</li>
-<li>a separate Guide MCP secret and allowlist containing only the three read-only guide tools;</li>
+<li>separate Docker secret files for Gateway, MCP, HMAC, identity database/admin and deployment-smoke clients;</li>
+<li>a dedicated volume-free Reader image with exact six-tool catalog, immutable release digest, strict OIDC audience and no PALO-AI runtime; Curator uses a different OIDC client allowlist, audience, storage boundary and exact ten-tool catalog;</li>
 <li>persistent PALO data and Caddy certificate volumes;</li>
 <li>non-root PALO containers, read-only filesystems, dropped capabilities and health checks;</li>
 <li>an explicit MCP host allowlist;</li>
@@ -188,14 +233,18 @@ cp .env.example .env</code></pre></figure><p>Edit <code>.env</code>:</p>
 <figure class="palo-doc-code"><figcaption>dotenv code</figcaption><pre tabindex="0"><code class="language-dotenv">PALO_DOMAIN=governance.paloframework.org
 ACME_EMAIL=security@paloframework.org
 PALO_ADMIN_URL=http://127.0.0.1:18877
+PALO_OIDC_ALGORITHMS=RS256
+PALO_OIDC_TOKEN_TYPE=JWT
+PALO_READER_OIDC_ALLOWED_CLIENT_IDS=palo-reader-smoke
+PALO_CURATOR_OIDC_ALLOWED_CLIENT_IDS=palo-curator-smoke
+PALO_OIDC_ALLOWED_TENANTS=palo
+PALO_READER_RATE_LIMIT_PER_MINUTE=120
 OPA_IMAGE=openpolicyagent/opa:1.17.0-static
 CADDY_IMAGE=caddy:2.11.4-alpine</code></pre></figure><p>Generate protected secrets without printing them:</p>
-<figure class="palo-doc-code"><figcaption>bash code</figcaption><pre tabindex="0"><code class="language-bash">sh setup-secrets.sh</code></pre></figure><p>The generated <code>.env</code> and <code>secrets/</code> contents are ignored by Git. Back them up through a protected secret-management process; never upload or commit them.</p>
-<p>When upgrading an existing deployment that already has the original three secret files, create only the new Guide MCP token before starting the updated Compose project:</p>
-<figure class="palo-doc-code"><figcaption>bash code</figcaption><pre tabindex="0"><code class="language-bash">umask 077
-test ! -e secrets/guide-mcp-token
-openssl rand -hex 32 &gt; secrets/guide-mcp-token
-chmod 600 secrets/guide-mcp-token</code></pre></figure><p>Do not rerun <code>setup-secrets.sh</code> over an existing deployment because it deliberately refuses to overwrite any current secret.</p>
+<figure class="palo-doc-code"><figcaption>bash code</figcaption><pre tabindex="0"><code class="language-bash">sh setup-secrets.sh
+sh setup-identity-secrets.sh</code></pre></figure><p>The generated <code>.env</code> and <code>secrets/</code> contents are ignored by Git. Back them up through a protected secret-management process; never upload or commit them.</p>
+<p>When upgrading an existing deployment, preserve the existing core secrets and create only the four missing identity secrets:</p>
+<figure class="palo-doc-code"><figcaption>bash code</figcaption><pre tabindex="0"><code class="language-bash">sh setup-identity-secrets.sh</code></pre></figure><p>Neither setup script overwrites an existing secret. Back up the new PostgreSQL volume and identity secrets through the protected VPS process before onboarding users or clients.</p>
 <h2 id="firewall">Firewall<a class="palo-doc-anchor" href="#firewall" aria-label="Link to Firewall">#</a></h2><p>Preserve SSH access before enabling a firewall. A typical UFW policy is:</p>
 <figure class="palo-doc-code"><figcaption>bash code</figcaption><pre tabindex="0"><code class="language-bash">sudo ufw default deny incoming
 sudo ufw default allow outgoing
@@ -203,7 +252,7 @@ sudo ufw allow OpenSSH
 sudo ufw allow 80/tcp
 sudo ufw allow 443/tcp
 sudo ufw allow 443/udp
-sudo ufw enable</code></pre></figure><p>Do not open 8181, 8787, 8788, 8789, 18877, 18878 or 18879 publicly. The Hostinger Compose variant publishes 18877, 18878 and 18879 only on the VPS loopback interface; the clean-VPS variant keeps its administration binding on loopback as documented in its Compose file.</p>
+sudo ufw enable</code></pre></figure><p>Do not open 8181, 8787, 8788, 8789, 18877, 18878, 18879, 18882, 18883 or 19000 publicly. The Hostinger Compose variant publishes these service ports only on the VPS loopback interface; the clean-VPS variant keeps its administration binding on loopback as documented in its Compose file.</p>
 <p>When the Hub profile is enabled, do not open 18880 or 18881 publicly either. nginx or Caddy is the only Internet-facing path.</p>
 <h2 id="start-the-online-stack">Start the online stack<a class="palo-doc-anchor" href="#start-the-online-stack" aria-label="Link to Start the online stack">#</a></h2><p>The supplied VPS currently runs nginx and Certbot for other services. On that host, use <code>compose.host-nginx.yaml</code>; it binds PALO only to loopback ports <code>18877</code> and <code>18878</code>, leaving the existing ports and sites untouched. The generic <code>compose.yaml</code> with Caddy is for a clean VPS where ports 80/443 are free.</p>
 <p>For the existing Hostinger VPS:</p>
@@ -227,6 +276,12 @@ docker compose ps</code></pre></figure><p>Follow startup and certificate issuanc
 https://governance.paloframework.org/mcp
 https://governance.paloframework.org/mcp-guide-health
 https://governance.paloframework.org/mcp-guide
+https://governance.paloframework.org/mcp-guide/mcp
+https://governance.paloframework.org/mcp-guide-curator-health
+https://governance.paloframework.org/mcp-guide-curator
+https://governance.paloframework.org/mcp-guide-curator/mcp
+https://governance.paloframework.org/identity-health
+https://governance.paloframework.org/identity/realms/palo/.well-known/openid-configuration
 https://governance.paloframework.org/gateway/v1/registry
 https://governance.paloframework.org/gateway/v1/actions/verify</code></pre></figure><p>After the separate Hub admission prerequisites, migration and opt-in profile are complete, the additional endpoints are:</p>
 <figure class="palo-doc-code"><figcaption>text code</figcaption><pre tabindex="0"><code class="language-text">https://governance.paloframework.org/hub/
@@ -236,9 +291,10 @@ https://governance.paloframework.org/control-plane/health</code></pre></figure><
   ../../../schemas/fixtures/palo-agentic-interface.valid.json</code></pre></figure><p>The supplied profile is development data. Before external testing, create a new versioned profile with the correct agent ID, case, tools, hosts, argument schemas, scopes and HMAC key ID.</p>
 <h2 id="verify-the-online-endpoint">Verify the online endpoint<a class="palo-doc-anchor" href="#verify-the-online-endpoint" aria-label="Link to Verify the online endpoint">#</a></h2><figure class="palo-doc-code"><figcaption>bash code</figcaption><pre tabindex="0"><code class="language-bash">sh smoke-online.sh</code></pre></figure><p>This checks:</p>
 <ul>
-<li>the operational and Guide MCP health endpoints over HTTPS;</li>
-<li>rejection of anonymous operational and Guide MCP requests;</li>
-<li>authenticated Guide MCP initialization;</li>
+<li>the operational, Reader and Curator MCP health endpoints over HTTPS;</li>
+<li>rejection of anonymous operational, Reader and Curator MCP requests;</li>
+<li>short-lived service tokens issued by the PALO identity realm with different client IDs, scopes and exact Reader/Curator audiences;</li>
+<li>authenticated Reader/Curator initialization and exact 6/10-tool catalogs without operational tools;</li>
 <li>authenticated access to the public Gateway registry.</li>
 </ul>
 <p>Inspect service-local health when troubleshooting:</p>
@@ -246,19 +302,20 @@ https://governance.paloframework.org/control-plane/health</code></pre></figure><
 curl --fail http://127.0.0.1:18877/health</code></pre></figure><h2 id="connect-n8n">Connect n8n<a class="palo-doc-anchor" href="#connect-n8n" aria-label="Link to Connect n8n">#</a></h2><p>For the current n8n alpha node, configure:</p>
 <figure class="palo-doc-code"><figcaption>text code</figcaption><pre tabindex="0"><code class="language-text">Gateway URL: https://governance.paloframework.org/gateway
 Bearer Token: contents of secrets/gateway-token</code></pre></figure><p>Use n8n encrypted credentials; never put the token in workflow JSON or node output.</p>
-<p>The online <code>/mcp</code> endpoint uses MCP Streamable HTTP. Current n8n documentation describes an SSE endpoint for its MCP Client Tool. Until an SSE adapter or confirmed Streamable HTTP support is tested on the target n8n version, n8n should use the HTTPS Gateway integration rather than being presented as directly compatible with this MCP transport.</p>
-<h2 id="connect-other-mcp-clients">Connect other MCP clients<a class="palo-doc-anchor" href="#connect-other-mcp-clients" aria-label="Link to Connect other MCP clients">#</a></h2><p>The v2.7 runtime can replace the shared MCP token with OIDC/JWKS validation by setting <code>PALO_AUTH_MODE=oidc</code>, the canonical <code>PALO_MCP_PUBLIC_URL</code>, issuer, audience and JWKS URI described in <code>packages/palo-mcp-server/README.md</code>. The reverse-proxy configurations expose the matching RFC 9728 <code>/.well-known/oauth-protected-resource/mcp</code> route. This changes only the MCP resource; the REST Gateway retains its separate preview token until an identity-aware BFF is implemented. An EMA-capable authorization server may issue the accepted access token, but PALO does not implement the EMA ID-JAG exchange.</p>
+<p>For knowledge Q&amp;A, the current n8n MCP Client Tool v1.4 supports Streamable HTTP and can connect directly to Reader or Curator. Use the supplied node examples, force <code>serverTransport</code> to <code>=httpStreamable</code>, keep credentials in n8n's encrypted credential store and qualify the exact n8n build before go-live. The HTTPS Gateway remains a separate path for the operational PALO control-plane preview; it is not required for Reader Q&amp;A and does not turn an AI Agent into an enforced execution boundary.</p>
+<h2 id="connect-other-mcp-clients">Connect other MCP clients<a class="palo-doc-anchor" href="#connect-other-mcp-clients" aria-label="Link to Connect other MCP clients">#</a></h2><p>Reader and Curator run only in OIDC/JWKS mode. Their RFC 9728 documents advertise <code>https://governance.paloframework.org/identity/realms/palo</code>, and each runtime validates issuer, exact audience, signed token type, approved client ID, PALO tenant and least-privilege scopes. The REST Gateway retains its separate preview token until an identity-aware BFF is implemented. PALO does not implement the EMA ID-JAG exchange.</p>
 <p>For clients that support Streamable HTTP:</p>
 <figure class="palo-doc-code"><figcaption>text code</figcaption><pre tabindex="0"><code class="language-text">Endpoint: https://governance.paloframework.org/mcp
 Authorization: Bearer &lt;contents of secrets/mcp-token&gt;</code></pre></figure><p>Expose only the PALO-governed tools to an agent. Do not make equivalent privileged target tools available through a parallel ungoverned MCP server.</p>
-<p>For products that only need PALO explanation, deterministic route inference and integration planning, use the separate guide-only endpoint and <code>secrets/guide-mcp-token</code>:</p>
+<p>For PALO explanation, deterministic route inference and knowledge Q&amp;A, use the Reader endpoint with a short-lived OIDC access token carrying <code>palo:guide</code> and <code>palo:knowledge:read</code>:</p>
 <figure class="palo-doc-code"><figcaption>text code</figcaption><pre tabindex="0"><code class="language-text">Endpoint: https://governance.paloframework.org/mcp-guide
-Authorization: Bearer &lt;contents of secrets/guide-mcp-token&gt;
-Tools: palo_explain_framework, palo_infer_governance_route, palo_plan_product_integration</code></pre></figure><p>Issue a distinct secret per deployment boundary when moving beyond the single-tenant developer preview. Never place this token in public browser JavaScript.</p>
+Authorization: Bearer &lt;OIDC access token for the exact /mcp-guide audience&gt;
+Tools: 3 guide tools + palo_list_knowledge_sources, palo_search_knowledge, palo_get_knowledge_record</code></pre></figure><p>Clients that infer the transport from the last path segment may use <code>/mcp-guide/mcp</code>; the audience remains the canonical <code>/mcp-guide</code> URL. Use <code>/mcp-guide-curator</code> (or its <code>/mcp</code> alias) only with a separately registered, explicitly allowlisted Curator OAuth client. It adds submit/list/get/review draft operations; it does not expose operational PALO-AI tools. Complete the <a href="palo-knowledge-reader-production.html">Reader production gates</a> and <a href="palo-mcp-host-qualification.html">host qualification</a> before marking any client live.</p>
+<p>Register a distinct OAuth client per deployment boundary and keep confidential-client secrets outside public browser JavaScript. Public clients must use authorization code with PKCE and an exact registered redirect URI.</p>
 <h2 id="public-route-boundary">Public-route boundary<a class="palo-doc-anchor" href="#public-route-boundary" aria-label="Link to Public-route boundary">#</a></h2><p>The public reverse proxy currently exposes:</p>
 <ul>
 <li>MCP <code>/mcp</code>, its health endpoint and the OIDC protected-resource metadata path; the configured remote tool allowlist remains decision/status oriented and excludes administrative and execution tools;</li>
-<li>Guide MCP <code>/mcp-guide</code> and its health endpoint, authenticated with a separate secret and limited to three read-only guide tools;</li>
+<li>Knowledge Reader <code>/mcp-guide</code> and Curator <code>/mcp-guide-curator</code>, plus their terminal-<code>/mcp</code> compatibility aliases, each separately authenticated and limited to its exact 6/10-tool catalog;</li>
 <li>Gateway health and authenticated registry read;</li>
 <li>authenticated Action Claim verification and full-cycle governed execution;</li>
 <li>authenticated execution detail, outcome read and explicit re-verification addressed by execution ID;</li>
@@ -285,7 +342,7 @@ docker compose logs --tail=200 &gt; pre-update.log</code></pre></figure><p>Use a
 docker compose up -d
 sh smoke-online.sh</code></pre></figure><p>Rollback means checking out the previous known-good commit and restoring the compatible data backup before rebuilding. Schema and policy migrations need an explicit compatibility plan; do not assume container rollback alone reverses stored state.</p>
 <h2 id="backup-warning">Backup warning<a class="palo-doc-anchor" href="#backup-warning" aria-label="Link to Backup warning">#</a></h2><p>The current SQLite volume is suitable only for the developer preview. Back it up while PALO services are stopped or through a SQLite-aware backup process. A production system requires a transactional database/outbox, tested restore, retention controls, key rotation and tamper-resistant evidence anchoring.</p>
-<h2 id="remaining-production-boundary">Remaining production boundary<a class="palo-doc-anchor" href="#remaining-production-boundary" aria-label="Link to Remaining production boundary">#</a></h2><p>Putting the endpoint online does not make it production-ready. The shared-token identity model, optional n8n gate, evidence provenance, policy-bundle attestation, approval identity, cached authorization and effective resource-to-scope binding issues remain. Use mock, reversible or non-consequential actions until those findings are closed.</p>
+<h2 id="remaining-production-boundary">Remaining production boundary<a class="palo-doc-anchor" href="#remaining-production-boundary" aria-label="Link to Remaining production boundary">#</a></h2><p>Putting the operational <code>/mcp</code> or Gateway endpoint online does not make PALO-AI production-ready. Its shared-token compatibility path, optional n8n gate, evidence provenance, policy-bundle attestation, approval identity, cached authorization and effective resource-to-scope binding issues remain. Use mock, reversible or non-consequential actions until those findings are closed. The separate canonical-only Reader follows its narrower <a href="palo-knowledge-reader-production.html">production profile and live gates</a>; that status does not transfer to the operational runtime or Curator.</p>
 <p>See the <a href="../PALO_AIProductionReadiness.html">public Production Readiness route</a>, <a href="../PALO_AgenticCapabilityMatrix.html">Capability Matrix</a>, and <a href="palo-ai-governance-integration-guide.html">integration guide</a>. Internal assessment workpapers are not published.</p>
 </article></div>
       <aside class="palo-doc-next"><div><small>Prerequisite</small><strong>Isolated VPS and non-production secrets</strong></div><div><small>Recommended next step</small><strong>Run deployment validation</strong></div></aside>

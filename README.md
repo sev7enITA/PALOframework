@@ -89,6 +89,11 @@ n8n orchestrates what automation does. PALO governs whether an identified agent 
 - [PALO-AI n8n governance control-plane architecture](docs/palo-ai-n8n-governance-control-plane.md)
 - [Why PALO-AI: interactive full-cycle comparison](PALO_AIWhy.html)
 - [PALO-AI quickstarts: code, n8n and Copilot Studio/MCP](PALO_AIQuickstarts.html)
+- [PALO Knowledge Copilot: Reader/Curator integration matrix for 11 MCP hosts](docs/palo-knowledge-copilot-integrations.md)
+- [PALO Knowledge Reader production profile and live acceptance gates](docs/palo-knowledge-reader-production.md)
+- [Microsoft startup and student funding routes for PALO](docs/palo-microsoft-startup-student-credits.md)
+- [PALO MCP host qualification procedure](docs/palo-mcp-host-qualification.md)
+- [Production release commit checklist](docs/production-release-commit-checklist.md)
 - [PALO-AI cloud reference architecture](docs/palo-ai-cloud-reference-architecture.md)
 - [PALO-AI security assurance and scale plan](docs/palo-ai-security-assurance-and-scale.md)
 - [PALO Data Assurance Control Plane and Actian Context Bridge](docs/palo-data-assurance-control-plane.md)
@@ -109,6 +114,7 @@ n8n orchestrates what automation does. PALO governs whether an identified agent 
 - [Public Production Readiness route](PALO_AIProductionReadiness.html)
 - [PALO 3.1 and PALO-AI 2.7 release verification record](PALO_VerificationNote.html)
 - [PALO v3.1 governance control-plane implementation](docs/palo-v3.1-governance-control-plane.md)
+- [Portable PALO Knowledge Copilot skill](skills/palo-knowledge-copilot/SKILL.md)
 
 ## Why PALO?
 
@@ -135,6 +141,8 @@ n8n orchestrates what automation does. PALO governs whether an identified agent 
 | [Human Agency Risk Map](PALO_HumanAgencyRiskMap.html) | Observatory on 18 activities humans increasingly delegate to AI | Live |
 | [Human Agency Risk Map IT](PALO_HumanAgencyRiskMap_IT.html) | Italian version of the Human Agency observatory | Live |
 | [2026 Tech Trends Observatory](PALO_TechTrends2026.html) | Analysis of major consulting-firm technology outlooks and governance blind spots | Live |
+| [Observatory Index](PALO_Observatories.html) | Evidence-state index for incident, regulatory, technology and human-agency research | Live |
+| [AI Incident Observatory](PALO_AIIncidentObservatory.html) | Source-bounded case analysis connecting incident evidence to PALO governance routes | Live |
 | [AuditBench Explorer](PALO_AuditBench.html) | Interactive exploration of 14 hidden AI behaviors from AuditBench with PALO mitigations | Live |
 | [The Poisoning Boomerang](PALO_PoisoningStudy.html) | Data poisoning governance module with detection strategies and lifecycle controls | Live |
 | [AI Dev Governance](PALO_VibeCoding.html) | Security and governance extension for AI-assisted software development environments | Live |
@@ -282,6 +290,8 @@ PALOframework/
 |-- PALO_HumanAgencyRiskMap.html       # Human Agency Observatory (EN)
 |-- PALO_HumanAgencyRiskMap_IT.html    # Human Agency Observatory (IT)
 |-- PALO_TechTrends2026.html           # 2026 Tech Trends Observatory
+|-- PALO_Observatories.html            # Observatory index and publication states
+|-- PALO_AIIncidentObservatory.html    # Source-bounded AI incident case analyses
 |-- PALO_AuditBench.html               # AuditBench Explorer
 |-- PALO_OWASPGenAI2026.html            # OWASP 2026 source-backed security crosswalk
 |-- PALO_PoisoningStudy.html           # Data Poisoning Governance module

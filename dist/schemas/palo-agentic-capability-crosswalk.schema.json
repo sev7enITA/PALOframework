@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paloframework.org/schemas/palo-agentic-capability-crosswalk.schema.json",
+  "title": "PALO Agentic Capability Governance Crosswalk",
+  "description": "PALO-owned governance responses and reviewed mappings from optional external capability taxonomies.",
+  "type": "object",
+  "required": ["format", "schemaVersion", "crosswalkVersion", "releasedAt", "status", "authorityBoundary", "capabilities", "providerMappings"],
+  "properties": {
+    "format": { "const": "palo-agentic-capability-crosswalk" },
+    "schemaVersion": { "const": "1.0.0" },
+    "crosswalkVersion": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "releasedAt": { "type": "string", "format": "date" },
+    "status": { "enum": ["draft", "in-review", "approved-for-release", "superseded"] },
+    "authorityBoundary": { "type": "string", "minLength": 80 },
+    "capabilities": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/capability" }
+    },
+    "providerMappings": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/providerMapping" }
+    }
+  },
+  "$defs": {
+    "capability": {
+      "type": "object",
+      "required": ["capabilityId", "title", "definition", "primaryConcern", "controlIds", "evidenceKinds", "indicatorIds", "gateIds", "assessmentQuestions", "whatEvidenceWouldChangeThis", "limitations"],
+      "properties": {
+        "capabilityId": { "type": "string", "pattern": "^palo-cap-[a-z0-9-]+$" },
+        "title": { "type": "string", "minLength": 1, "maxLength": 160 },
+        "definition": { "type": "string", "minLength": 40, "maxLength": 600 },
+        "primaryConcern": { "enum": ["purpose", "authority", "oversight", "identity", "delegation", "change", "observability", "resilience", "physical-effect"] },
+        "controlIds": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "pattern": "^ctrl-[a-z0-9-]+$" } },
+        "evidenceKinds": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+        "indicatorIds": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "pattern": "^(kpi|kri)-[a-z0-9-]+$" } },
+        "gateIds": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+        "assessmentQuestions": { "type": "array", "minItems": 2, "uniqueItems": true, "items": { "type": "string", "minLength": 20 } },
+        "whatEvidenceWouldChangeThis": { "type": "array", "minItems": 2, "uniqueItems": true, "items": { "type": "string", "minLength": 20 } },
+        "limitations": { "type": "string", "minLength": 40 }
+      },
+      "additionalProperties": false
+    },
+    "providerMapping": {
+      "type": "object",
+      "required": ["providerId", "providerCapabilityId", "providerLabel", "providerRubricVersion", "paloCapabilityIds", "coverage", "mappingVersion", "reviewState", "rationale", "notUseCaseRiskScore"],
+      "properties": {
+        "providerId": { "type": "string", "pattern": "^[a-z][a-z0-9-]{2,63}$" },
+        "providerCapabilityId": { "type": "string", "minLength": 1, "maxLength": 120 },
+        "providerLabel": { "type": "string", "minLength": 1, "maxLength": 160 },
+        "providerRubricVersion": { "type": "string", "minLength": 1, "maxLength": 100 },
+        "paloCapabilityIds": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "pattern": "^palo-cap-[a-z0-9-]+$" } },
+        "coverage": { "enum": ["partial", "supporting"] },
+        "mappingVersion": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+        "reviewState": { "enum": ["draft", "in-review", "approved", "rejected", "superseded"] },
+        "rationale": { "type": "string", "minLength": 40 },
+        "notUseCaseRiskScore": { "const": true }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

@@ -31,9 +31,9 @@ for (const name of names) {
 }
 
 const expectedTools = [
-  "palo_evaluate_data_fitness", "palo_execute_governed_action", "palo_explain_framework", "palo_get_ai_system", "palo_get_approval_status", "palo_get_assurance_task", "palo_get_data_fitness_decision", "palo_get_disclosure_contract", "palo_get_execution_status", "palo_get_incident", "palo_get_operational_snapshot", "palo_get_registry", "palo_import_context_evidence", "palo_infer_governance_route", "palo_ingest_assurance_signal", "palo_list_ai_systems", "palo_list_approvals", "palo_list_assurance_signals", "palo_list_assurance_tasks", "palo_list_context_evidence", "palo_list_incidents", "palo_plan_product_integration",
+  "palo_evaluate_data_fitness", "palo_execute_governed_action", "palo_explain_framework", "palo_get_ai_system", "palo_get_approval_status", "palo_get_assurance_task", "palo_get_data_fitness_decision", "palo_get_disclosure_contract", "palo_get_execution_status", "palo_get_incident", "palo_get_knowledge_draft", "palo_get_knowledge_record", "palo_get_operational_snapshot", "palo_get_registry", "palo_import_context_evidence", "palo_infer_governance_route", "palo_ingest_assurance_signal", "palo_list_ai_systems", "palo_list_approvals", "palo_list_assurance_signals", "palo_list_assurance_tasks", "palo_list_context_evidence", "palo_list_incidents", "palo_list_knowledge_drafts", "palo_list_knowledge_sources", "palo_plan_product_integration",
   "palo_process_due_tasks", "palo_register_agent", "palo_register_ai_system", "palo_register_data_fitness_policy", "palo_register_disclosure_contract", "palo_register_executor", "palo_register_policy", "palo_register_verifier", "palo_request_approval", "palo_resolve_approval", "palo_resolve_incident",
-  "palo_submit_evidence", "palo_verify_action_authority", "palo_verify_evidence", "palo_verify_ledger", "palo_verify_outcome"
+  "palo_review_knowledge_draft", "palo_search_knowledge", "palo_submit_evidence", "palo_submit_knowledge_draft", "palo_verify_action_authority", "palo_verify_evidence", "palo_verify_ledger", "palo_verify_outcome"
 ].sort();
 const spec = JSON.parse(await readFile("examples/agentic-interface/mcp-server-spec.json", "utf8"));
 const documentedTools = (spec.tools || []).map((tool) => tool.name).sort();

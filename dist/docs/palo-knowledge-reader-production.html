@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>PALO Knowledge Reader: production profile | PALO Documentation</title>
+  <meta name="description" content="Public PALO documentation: PALO Knowledge Reader: production profile.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://paloframework.org/docs/palo-knowledge-reader-production.html">
+  <link rel="icon" type="image/webp" href="../assets/logo.webp">
+  <link rel="stylesheet" href="../assets/palo-icons.css">
+  <link rel="stylesheet" href="../assets/palo-v21.css?v=3.1.0">
+  <link rel="stylesheet" href="../assets/palo-docs.css">
+  <script src="../assets/palo-icons.js" defer></script>
+  <script src="../assets/palo-v21.js?v=3.1.0" defer></script>
+  <script src="../assets/palo-docs.js" defer></script>
+</head>
+<body class="palo-v21 palo-doc-page" data-doc-source="docs/palo-knowledge-reader-production.md">
+  <a class="palo-skip-link" href="#main-content">Skip to main content</a>
+  <header class="palo-site-header"><div class="palo-shell palo-header-inner">
+    <a class="palo-brand" href="../index.html"><img src="../assets/logo.webp" alt="PALO">PALO FRAMEWORK</a>
+    <button class="palo-menu-toggle" type="button" data-palo-menu-toggle aria-expanded="false" aria-controls="palo-primary-nav" aria-label="Open navigation"><span data-palo-icon="menu" aria-hidden="true"></span></button>
+    <nav class="palo-nav" id="palo-primary-nav" aria-label="Primary navigation"><a href="../designs/theory-to-practice-infographic/">Start</a><a href="../PALO_AIGovernance.html">Agentic Governance</a><a href="../governance-hub/">Governance Hub</a><a href="../index.html#guided-journeys">Tools</a><a href="../PALO_DocumentationLibrary.html" aria-current="page">Documentation</a><a href="../PALO_AIProductionReadiness.html">Readiness</a></nav>
+  </div></header>
+  <main id="main-content" class="palo-doc-main">
+    <div class="palo-shell">
+      <nav class="palo-doc-breadcrumb" aria-label="Breadcrumb"><a href="../PALO_DocumentationLibrary.html">Documentation Library</a><span aria-hidden="true">/</span><span>Start and adoption</span></nav>
+      <header class="palo-doc-hero"><p class="palo-eyebrow">Start and adoption | Public documentation</p><h1>PALO Knowledge Reader: production profile</h1><div class="palo-doc-facts"><span><small>Level</small><strong>reference</strong></span><span><small>Audience</small><strong>governance | technical | builder</strong></span><span><small>Product</small><strong>PALO Core</strong></span><span><small>Status</small><strong>Current Guidance</strong></span><span><small>Lifecycle</small><strong>Current</strong></span><span><small>Read</small><strong>10 min</strong></span></div><p class="palo-doc-source">Published HTML view | Source: <code>docs/palo-knowledge-reader-production.md</code></p><div class="palo-actions"><button class="palo-btn" type="button" data-doc-copy-link>Copy link</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-share>Share page</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-print>Print</button></div><p class="palo-action-status" data-doc-action-status role="status" aria-live="polite"></p></header>
+      <details class="palo-doc-mobile-toc"><summary>On this page</summary><ol><li class="depth-2"><a href="#decision">Decision</a></li><li class="depth-2"><a href="#implemented-boundary">Implemented boundary</a></li><li class="depth-2"><a href="#exact-api-boundary">Exact API boundary</a></li><li class="depth-2"><a href="#production-configuration">Production configuration</a></li><li class="depth-3"><a href="#signed-release-deployed-on-28-august-2026">Signed release deployed on 28 August 2026</a></li><li class="depth-3"><a href="#microsoft-entra-id-profile-deployed-on-27-august-2026">Microsoft Entra ID profile deployed on 27 August 2026</a></li><li class="depth-3"><a href="#copilot-studio-client-staged-on-28-august-2026">Copilot Studio client staged on 28 August 2026</a></li><li class="depth-2"><a href="#repository-acceptance">Repository acceptance</a></li><li class="depth-2"><a href="#live-qualification-gates">Live qualification gates</a></li><li class="depth-2"><a href="#what-it-does-not-do">What it does not do</a></li></ol></details>
+      <div class="palo-doc-layout"><aside class="palo-doc-sidebar" aria-label="On this page"><strong>On this page</strong><ol><li class="depth-2"><a href="#decision">Decision</a></li><li class="depth-2"><a href="#implemented-boundary">Implemented boundary</a></li><li class="depth-2"><a href="#exact-api-boundary">Exact API boundary</a></li><li class="depth-2"><a href="#production-configuration">Production configuration</a></li><li class="depth-3"><a href="#signed-release-deployed-on-28-august-2026">Signed release deployed on 28 August 2026</a></li><li class="depth-3"><a href="#microsoft-entra-id-profile-deployed-on-27-august-2026">Microsoft Entra ID profile deployed on 27 August 2026</a></li><li class="depth-3"><a href="#copilot-studio-client-staged-on-28-august-2026">Copilot Studio client staged on 28 August 2026</a></li><li class="depth-2"><a href="#repository-acceptance">Repository acceptance</a></li><li class="depth-2"><a href="#live-qualification-gates">Live qualification gates</a></li><li class="depth-2"><a href="#what-it-does-not-do">What it does not do</a></li></ol></aside><article class="palo-doc-content"><h1 id="palo-knowledge-reader-production-profile">PALO Knowledge Reader: production profile<a class="palo-doc-anchor" href="#palo-knowledge-reader-production-profile" aria-label="Link to PALO Knowledge Reader: production profile">#</a></h1><p>Status: production-capable candidate for the narrow informational, canonical-only service as of 28 August 2026. Repository tests pass, a signed multi-architecture registry digest is deployed on Hostinger, and public edge checks pass. Production qualification remains deployment-specific and requires the remaining live acceptance gates below.</p>
+<p>Publication boundary: this public document records control design, verification status and non-sensitive endpoints. Tenant IDs, application and object IDs, account addresses, credential labels, rotation dates, billing records and private environment identifiers remain in the deployment-owned secret and asset inventory, not in the public repository.</p>
+<h2 id="decision">Decision<a class="palo-doc-anchor" href="#decision" aria-label="Link to Decision">#</a></h2><p>The read-only Reader can use a materially smaller production boundary than the operational PALO-AI runtime. It does not need PostgreSQL/RLS, a distributed queue, KMS signing or an executor because it stores no tenant state, performs no background work, signs no evidence and has no target-system authority.</p>
+<p>This conclusion is valid only while all of these remain true:</p>
+<ul>
+<li>the service exposes exactly the six Reader tools;</li>
+<li>content is the immutable canonical PALO release only;</li>
+<li>there is no local/private knowledge ingestion, conversation storage or query logging;</li>
+<li>every request is informational and has no side effect;</li>
+<li>the container has no operational PALO-AI code, database or target credential.</li>
+</ul>
+<p>Adding private knowledge, per-tenant corpora, usage history, feedback, curation, writes or protected actions reopens the architecture and security assessment.</p>
+<h2 id="implemented-boundary">Implemented boundary<a class="palo-doc-anchor" href="#implemented-boundary" aria-label="Link to Implemented boundary">#</a></h2><div class="palo-doc-table-wrap" tabindex="0" aria-label="Scrollable documentation table"><table>
+<thead>
+<tr>
+<th>Control</th>
+<th>Implementation</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Runtime isolation</td>
+<td><code>reader-http.js</code> and <code>reader-server.js</code> do not import <code>GovernanceRuntime</code>, SQLite, OPA, executor, approvals, incidents or evidence code</td>
+</tr>
+<tr>
+<td>Fixed catalog</td>
+<td>Six tools are registered directly; there is no configurable allowlist or write-tool registration path</td>
+</tr>
+<tr>
+<td>Immutable content</td>
+<td>Seven canonical JSON files are bound by <code>data/knowledge-reader-release.json</code>; SHA-256 verification fails startup on any mismatch</td>
+</tr>
+<tr>
+<td>Local content exclusion</td>
+<td><code>includeCuratedLocal:false</code>; no knowledge workspace or volume is mounted</td>
+</tr>
+<tr>
+<td>Stateless transport</td>
+<td>Streamable HTTP stateless mode; no MCP session store or application persistence; top-level JSON-RPC batches are rejected before MCP dispatch</td>
+</tr>
+<tr>
+<td>Read index</td>
+<td>Canonical JSON is parsed once at startup into an immutable in-memory index shared by stateless request handlers</td>
+</tr>
+<tr>
+<td>Identity</td>
+<td>Production mode requires OIDC/JWKS, HTTPS resource URL, one exact audience, access-token <code>typ</code>, approved OAuth clients, approved tenants, issuer, expiry, allowed algorithms and both Reader scopes</td>
+</tr>
+<tr>
+<td>Network input</td>
+<td>Explicit Host/Origin allowlist, 64 KiB application and proxy body limit, 5 second connect and 30 second response/read/write proxy timeouts; Reader egress is separated from operational PALO-AI and exists only for IdP/JWKS reachability</td>
+</tr>
+<tr>
+<td>Abuse control</td>
+<td>Pre-authentication nginx IP limit, per-principal application rate limit, global/per-OAuth-client concurrency limits and HTTP 429 with <code>Retry-After</code></td>
+</tr>
+<tr>
+<td>Container</td>
+<td>Dedicated Node 22 Distroless Debian 13 image pinned by digest, restricted build context, numeric nonroot user, no shell/package manager, read-only root filesystem, CPU/memory/PID limits, <code>cap_drop: [ALL]</code>, no secrets or writable volumes</td>
+</tr>
+<tr>
+<td>Disclosure</td>
+<td>Health reports service version, content digest, integrity state, catalog size, no persistence and no mutations; it exposes no credentials or query data</td>
+</tr>
+</tbody></table></div>
+<h2 id="exact-api-boundary">Exact API boundary<a class="palo-doc-anchor" href="#exact-api-boundary" aria-label="Link to Exact API boundary">#</a></h2><p>Canonical resource:</p>
+<figure class="palo-doc-code"><figcaption>text code</figcaption><pre tabindex="0"><code class="language-text">https://&lt;host&gt;/mcp-guide</code></pre></figure><p>OAuth protected-resource metadata:</p>
+<figure class="palo-doc-code"><figcaption>text code</figcaption><pre tabindex="0"><code class="language-text">https://&lt;host&gt;/.well-known/oauth-protected-resource/mcp-guide</code></pre></figure><p>Required scopes:</p>
+<figure class="palo-doc-code"><figcaption>text code</figcaption><pre tabindex="0"><code class="language-text">palo:guide
+palo:knowledge:read</code></pre></figure><p>The fixed role <code>palo-knowledge-reader</code> expands to those two scopes. A token lacking either scope is rejected before MCP dispatch. Shared-token mode exists only for local evaluation and production admission rejects it.</p>
+<p>Production also binds authorization to the configured <code>PALO_OIDC_CLIENT_ID_CLAIM</code> and <code>PALO_OIDC_TENANT_CLAIM</code>. In allowlist mode neither <code>sub</code> nor a different client claim is accepted as a fallback. The canonical OAuth resource remains <code>/mcp-guide</code>; the token audience is one exact value and may be a distinct IdP API identifier. <code>/mcp-guide/mcp</code> is a transport compatibility alias only.</p>
+<h2 id="production-configuration">Production configuration<a class="palo-doc-anchor" href="#production-configuration" aria-label="Link to Production configuration">#</a></h2><p>Required environment:</p>
+<figure class="palo-doc-code"><figcaption>sh code</figcaption><pre tabindex="0"><code class="language-sh">PALO_READER_RUNTIME_MODE=production
+PALO_AUTH_MODE=oidc
+PALO_MCP_HTTP_HOST=0.0.0.0
+PALO_MCP_HTTP_PORT=8789
+PALO_MCP_ALLOWED_HOSTS=reader.example.org,127.0.0.1,localhost
+PALO_MCP_PUBLIC_URL=https://reader.example.org/mcp-guide
+PALO_OIDC_ISSUER=https://reader.example.org/identity/realms/palo
+PALO_OIDC_AUDIENCE=&lt;one-exact-token-audience&gt;
+PALO_OIDC_JWKS_URI=https://reader.example.org/identity/realms/palo/protocol/openid-connect/certs
+PALO_OIDC_ALGORITHMS=RS256
+PALO_OIDC_ROLE_CLAIM=roles
+PALO_OIDC_SCOPE_CLAIM=scope
+PALO_OIDC_CLIENT_ID_CLAIM=azp
+PALO_OIDC_TENANT_CLAIM=tid
+PALO_OIDC_TOKEN_TYPE=JWT
+PALO_OIDC_ALLOWED_CLIENT_IDS=&lt;approved-client-id&gt;[,&lt;approved-client-id&gt;...]
+PALO_OIDC_ALLOWED_TENANTS=&lt;approved-tenant-id&gt;[,&lt;approved-tenant-id&gt;...]
+PALO_READER_MAX_BODY_BYTES=65536
+PALO_READER_RATE_LIMIT_PER_MINUTE=120
+PALO_READER_MAX_CONCURRENCY=32
+PALO_READER_MAX_CONCURRENCY_PER_CLIENT=4
+PALO_KNOWLEDGE_WRITE_ENABLED=false
+PALO_KNOWLEDGE_REVIEW_ENABLED=false
+PALO_KNOWLEDGE_INCLUDE_CURATED_LOCAL=false</code></pre></figure><p>Use <a href="https://github.com/sev7enITA/PALOframework/blob/main/deploy/vps/palo-guide-mcp-standalone/README.md" target="_blank" rel="noopener noreferrer">the dedicated deployment profile</a> or the <code>palo-guide-mcp</code> service in <code>deploy/vps/palo-ai</code>. The Curator and operational PALO-AI services remain separate and retain their own maturity status.</p>
+<h3 id="signed-release-deployed-on-28-august-2026">Signed release deployed on 28 August 2026<a class="palo-doc-anchor" href="#signed-release-deployed-on-28-august-2026" aria-label="Link to Signed release deployed on 28 August 2026">#</a></h3><p><code>reader-v1.0.0</code> was built from <code>main</code> commit <code>68153b957df919f0b4481930a3b1d068933d7539</code> as a public Linux amd64/arm64 OCI index at <code>ghcr.io/sev7enita/palo-knowledge-reader@sha256:950a3625148c47587741f4b10a126acbba19f1429e2ade6bdcd6b2aa70b15915</code>. The GitHub workflow validated the Reader, published the immutable tag, found zero High/Critical Trivy findings on that digest, generated an SPDX JSON SBOM, paused on the <code>knowledge-reader-production</code> environment and then keyless-signed and attested the admitted digest with Sigstore.</p>
+<p>The Hostinger standalone service now runs that exact digest as UID/GID <code>65532:65532</code>, with a read-only root filesystem, all capabilities dropped, <code>no-new-privileges</code> and PID limit 128. Post-deploy public checks passed health, OAuth metadata, anonymous 401 challenge, Host/Origin 403, 64 KiB edge rejection, pre-authentication 429, HSTS and TLS-chain verification. See <a href="https://github.com/sev7enITA/PALOframework/blob/main/audit/knowledge-reader-production-candidate-2026-08-27/reader-v1.0.0-release-evidence.json" target="_blank" rel="noopener noreferrer">release admission evidence</a>, <a href="https://github.com/sev7enITA/PALOframework/blob/main/audit/knowledge-reader-production-candidate-2026-08-27/reader-v1.0.0-live-deployment-2026-08-28.json" target="_blank" rel="noopener noreferrer">live deployment evidence</a>, <a href="https://github.com/sev7enITA/PALOframework/blob/main/audit/knowledge-reader-production-candidate-2026-08-27/reader-v1.0.0.spdx.json" target="_blank" rel="noopener noreferrer">exact-digest SBOM</a> and <a href="https://github.com/sev7enITA/PALOframework/blob/main/audit/knowledge-reader-production-candidate-2026-08-27/reader-v1.0.0-trivy-high-critical.json" target="_blank" rel="noopener noreferrer">exact-digest vulnerability report</a>.</p>
+<p>The environment approval was intentionally performed by the repository owner with self-review enabled to demonstrate the complete release loop. It is not independent security acceptance. The service therefore remains <code>production-candidate</code> until independent review and the other live gates are complete.</p>
+<h3 id="microsoft-entra-id-profile-deployed-on-27-august-2026">Microsoft Entra ID profile deployed on 27 August 2026<a class="palo-doc-anchor" href="#microsoft-entra-id-profile-deployed-on-27-august-2026" aria-label="Link to Microsoft Entra ID profile deployed on 27 August 2026">#</a></h3><p>The current Hostinger production candidate uses the following public-safe profile:</p>
+<figure class="palo-doc-code"><figcaption>text code</figcaption><pre tabindex="0"><code class="language-text">Public OAuth resource: https://guide-api.paloframework.org/mcp-guide
+Token audience: deployment-owned resource application identifier
+Tenant: deployment-owned single-tenant directory
+Resource application: PALO Knowledge Reader API
+Delegated scopes: palo:guide, palo:knowledge:read
+Application role: palo-knowledge-reader
+Issuer pattern: https://login.microsoftonline.com/&lt;tenant-id&gt;/v2.0
+JWKS pattern: https://login.microsoftonline.com/&lt;tenant-id&gt;/discovery/v2.0/keys
+Scope claim: scp
+Client claim: azp
+Tenant claim: tid
+JOSE typ: JWT
+Algorithm: RS256
+Advertised scopes: https://guide-api.paloframework.org/mcp-guide/palo:guide and https://guide-api.paloframework.org/mcp-guide/palo:knowledge:read</code></pre></figure><p><code>paloframework.org</code> is a verified custom domain in the deployment tenant. Both delegated scopes are enabled with admin-only consent. The application role is enabled for users/groups and applications. The resource application has no redirect URI or credential.</p>
+<p>The Reader uses a dedicated, single-tenant Copilot Studio client in <code>PALO_OIDC_ALLOWED_CLIENT_IDS</code>, with only the two Reader scopes and tenant-wide admin consent. Microsoft Graph <code>User.Read</code> was removed. Anonymous requests remain rejected with HTTP 401. The exact client, tenant and object identifiers are intentionally retained only in the private deployment inventory. Allowlisting is not equivalent to host qualification: Copilot Studio remains <code>PARTIAL</code> until its generated OAuth callback is registered and an authenticated end-to-end session earns <code>PASS-LIVE</code>.</p>
+<p>The profile uses Entra v2 access-token semantics: Microsoft emits the resource application's client ID as <code>aud</code> and <code>azp</code> as the calling client claim. The Reader keeps the public HTTPS MCP resource separate, validates the GUID audience exactly and advertises the fully qualified Entra scope identifiers clients must request. The resource app manifest now sets <code>api.requestedAccessTokenVersion</code> to <code>2</code>; a certificate-authenticated qualification token confirmed the expected issuer, audience, version, client, tenant and <code>palo-knowledge-reader</code> role on 28 August 2026.</p>
+<p>The temporary qualification client passed the complete smoke against both <code>/mcp-guide</code> and <code>/mcp-guide/mcp</code>. Live configuration-negative tests returned 401 for wrong audience, issuer, token type, client and tenant, and 403 for a missing permission. The temporary certificate was then revoked, its private key and token were removed, and the deployed client allowlist returned to deny-all. See <a href="https://github.com/sev7enITA/PALOframework/blob/main/audit/knowledge-reader-production-candidate-2026-08-27/entra-qualification-2026-08-28.json" target="_blank" rel="noopener noreferrer">the redacted Entra qualification evidence</a>.</p>
+<h3 id="copilot-studio-client-staged-on-28-august-2026">Copilot Studio client staged on 28 August 2026<a class="palo-doc-anchor" href="#copilot-studio-client-staged-on-28-august-2026" aria-label="Link to Copilot Studio client staged on 28 August 2026">#</a></h3><p>The dedicated confidential client is recorded in the private deployment inventory. Its credential value, label, rotation schedule, application ID and object ID are not published. The OAuth redirect URI is intentionally still empty because the current Copilot Studio MCP wizard generates the callback only after server creation.</p>
+<p>The attempted live qualification is <code>PARTIAL</code>. The available tenant environment does not provide the Dataverse and licensing capacity needed to create the agent and reach the MCP onboarding wizard. Private environment identifiers and tenant billing state are intentionally omitted.</p>
+<p>The proposed production environment uses a managed production boundary, an EU and EFTA data location, Dataverse, no Dynamics 365 sample applications and access restricted to a dedicated Entra security group. Group identifiers, membership and account addresses remain private deployment records.</p>
+<p>Environment creation remains blocked by insufficient Dataverse capacity and the absence of an approved Copilot Studio capacity route. No purchase status, address, payment information or private billing detail belongs in this repository. After an accountable owner approves capacity, recreate the environment, assign capacity, register the exact wizard callback, create the OAuth connection and execute the six-tool bilingual smoke.</p>
+<p>Commercial Copilot Studio qualification remains blocked until a valid capacity route is approved. Individual program applications, eligibility evidence and account histories are handled outside the public repository. Technical Reader qualification continues independently. See <a href="palo-microsoft-startup-student-credits.html">Microsoft funding routes for PALO</a>.</p>
+<h2 id="repository-acceptance">Repository acceptance<a class="palo-doc-anchor" href="#repository-acceptance" aria-label="Link to Repository acceptance">#</a></h2><p>Run:</p>
+<figure class="palo-doc-code"><figcaption>sh code</figcaption><pre tabindex="0"><code class="language-sh">npm run validate:knowledge-reader
+npm run validate:knowledge-gold
+npm run validate:knowledge-copilot
+npm run validate:agentic</code></pre></figure><p>The Reader-specific suite proves:</p>
+<ul>
+<li>the manifest matches every canonical byte and tampering fails closed;</li>
+<li>the in-process MCP catalog is exactly six read-only/non-destructive tools;</li>
+<li>a populated local publication directory is invisible;</li>
+<li>unknown searches can return no evidence instead of irrelevant canonical records;</li>
+<li>production configuration rejects shared tokens, HTTP resource URLs, host mismatch, non-exact audiences, missing token/client/tenant policy and write/curation flags;</li>
+<li>JSON-RPC batches are rejected while single-message legacy compatibility remains available;</li>
+<li>health, anonymous rejection, payload limiting, rate limiting and global/per-OAuth-client concurrency limiting work without opening a test port;</li>
+<li>a small deterministic Italian/English governance seed regression overlaps the equivalent English retrieval, complete-term matching avoids <code>access</code>/<code>accessibility</code> collisions and unknown evidence remains empty.</li>
+</ul>
+<p>The versioned gold-set candidate is <a href="../examples/agentic-interface/knowledge-copilot/reader-gold-set.v1.json"><code>reader-gold-set.v1.json</code></a>. It contains 32 Italian/English positive questions in 16 equivalent pairs and four deliberately unknown queries. Automated evaluation currently passes a 100% top-five expected-record hit rate, bilingual top-five overlap rate, unknown-query empty rate and provenance-completeness rate. Its <code>independentReviewer</code> and <code>reviewedAt</code> fields remain empty: an accountable person who did not prepare the set must review the labels, and a host-model grounded-answer evaluation is still required before claiming a supported-language SLA.</p>
+<p>The GitHub environment <code>knowledge-reader-production</code> is configured for the pipeline demonstration with repository owner <code>sev7enITA</code> as required reviewer, <code>prevent_self_review=false</code> and a custom deployment branch policy allowing only <code>main</code>. This is deliberately classified as a demo gate: it proves that the separate admission job can pause for approval, but it is not independent security review. Production qualification requires replacing that reviewer and enabling self-review prevention. The workflow itself is not active until its isolated changes are committed to the default branch.</p>
+<h2 id="live-qualification-gates">Live qualification gates<a class="palo-doc-anchor" href="#live-qualification-gates" aria-label="Link to Live qualification gates">#</a></h2><p>All gates are mandatory for a production-qualified deployment:</p>
+<ol>
+<li><code>docker compose config</code> and image build succeed from a clean checkout and pinned lockfile.</li>
+<li>Image inventory confirms no <code>better-sqlite3</code>, OPA policy, schema bundle, operational runtime or shell entrypoint in the final stage.</li>
+<li>Container runs as non-root with read-only filesystem, all capabilities dropped, no writable volume and no Reader secret file.</li>
+<li>TLS certificate, HSTS, DNS, Host/Origin rejection, 64 KiB limit, timeout and pre-authentication edge rate limit pass at the public URL.</li>
+<li>Valid OIDC tokens discover exactly six tools; anonymous, expired, wrong-issuer, wrong-audience, wrong/missing token type, unapproved client, wrong tenant and one-scope-only tokens fail.</li>
+<li>Representative <code>search</code> and <code>get</code> calls cite only manifest-bound <code>data/*</code> sources; an unknown term returns an empty match set.</li>
+<li>A versioned Q&amp;A gold set, including the supported languages, meets organization-approved retrieval precision/recall and grounded-answer thresholds; empty/insufficient evidence is handled without fabrication. The repository candidate passes its automated retrieval/provenance thresholds, but independent label review and host-model answer scoring remain pending.</li>
+<li>Logs, traces, APM and proxy records are inspected to confirm that bearer tokens and MCP request bodies are absent.</li>
+<li>Dependency/SBOM and container vulnerability scans meet the organization's severity policy.</li>
+<li>Monitoring covers availability, latency, 401/403/413/429/5xx rates and integrity/startup failure without recording prompts.</li>
+<li>Rollback to the preceding image and knowledge digest is rehearsed; availability design and regional failover match the business SLO.</li>
+<li>Each target host completes <code>PASS-LIVE</code> using <code>docs/palo-mcp-host-qualification.md</code>.</li>
+<li>The accountable service owner and security reviewer record production acceptance for the exact image digest, IdP client and public hostname.</li>
+</ol>
+<p>Until these deployment-specific checks pass, report the service as <code>production-candidate</code>, not <code>production-qualified</code> or live.</p>
+<h2 id="what-it-does-not-do">What it does not do<a class="palo-doc-anchor" href="#what-it-does-not-do" aria-label="Link to What it does not do">#</a></h2><ul>
+<li>It does not answer from SharePoint, Drive, private files or arbitrary websites.</li>
+<li>It does not learn from conversations or update PALO content.</li>
+<li>It uses bounded deterministic lexical retrieval, not embeddings, a vector database or an integrated LLM; synonyms and complex multilingual phrasing can reduce recall.</li>
+<li>It does not store user profiles, prompts, answers, feedback or tenant data.</li>
+<li>It does not provide an authorization server, login, consent or dynamic client registration.</li>
+<li>It does not approve cases, decide legal applicability, certify compliance or prove operating effectiveness.</li>
+<li>It does not execute target actions or make another agent's tools non-bypassable.</li>
+<li>It does not make the Curator or operational PALO-AI runtime production-ready.</li>
+</ul>
+</article></div>
+      <aside class="palo-doc-next"><div><small>Prerequisite</small><strong>No specialist prerequisite stated</strong></div><div><small>Recommended next step</small><strong>Return to the Documentation Library</strong></div></aside>
+      <section class="palo-doc-feedback" aria-labelledby="feedback-title"><p class="palo-eyebrow">Privacy-first feedback</p><h2 id="feedback-title">Help improve this guide</h2><p>Your feedback stays in your browser until you explicitly copy it, download it, or open an email draft. Do not include secrets, personal data, credentials or production identifiers.</p><form data-doc-feedback><div class="palo-form-grid"><div class="palo-field"><label for="feedback-role">Your role</label><select id="feedback-role" name="role"><option>Executive / governance owner</option><option>Platform or security engineer</option><option>No-code / low-code builder</option><option>External reviewer</option></select></div><div class="palo-field"><label for="feedback-category">Category</label><select id="feedback-category" name="category"><option>Clarity</option><option>Technical accuracy</option><option>Missing guidance</option><option>Accessibility</option></select></div><div class="palo-field palo-field-full"><label for="feedback-message">Feedback</label><textarea id="feedback-message" name="message" maxlength="3000" required placeholder="Describe the non-sensitive improvement you recommend."></textarea></div><div class="palo-form-actions"><button class="palo-btn" type="button" data-feedback-copy>Copy feedback</button><button class="palo-btn palo-btn-secondary" type="button" data-feedback-download>Download JSON</button><button class="palo-btn palo-btn-secondary" type="button" data-feedback-email>Email draft</button></div></div><p class="palo-action-status" data-feedback-status role="status" aria-live="polite"></p></form></section>
+    </div>
+  </main>
+  <footer class="palo-footer"><div class="palo-shell"><p>PALO public documentation. Developer preview boundaries apply.</p><div class="palo-footer-links"><a href="../PALO_AIGovernance.html">PALO-AI</a><a href="../governance-hub/">Governance Hub</a><a href="../PALO_AgenticCapabilityMatrix.html">Capability Matrix</a><a href="../PALO_AIProductionReadiness.html">Production Readiness</a><a href="../privacy-policy.html">Privacy</a></div></div></footer>
+</body></html>

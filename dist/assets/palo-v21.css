@@ -302,7 +302,8 @@ body.palo-v21 summary:focus-visible {
 
 .palo-footer { padding: 32px 0; color: #d9e2ec; background: var(--palo-ink); font-size: 0.9rem; }
 .palo-footer p { margin: 0; }
-.palo-footer a { color: #b6e3e7; }
+.palo-footer a { color: #b6e3e7 !important; }
+.palo-footer a:hover, .palo-footer a:focus-visible { color: #fff2c7 !important; }
 .palo-footer-links { display: flex; flex-wrap: wrap; gap: 0 22px; margin-top: 12px; }
 .palo-footer-links a { display: inline-flex; align-items: center; min-height: 44px; padding: 8px 0; }
 
@@ -334,6 +335,28 @@ body.palo-v21 summary:focus-visible {
     .palo-results .palo-actions { width: 100%; }
     .palo-results .palo-actions .palo-btn { max-width: 100%; white-space: normal; }
     .palo-profile-facts { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 340px) {
+    .palo-header-inner { gap: 8px; }
+    .palo-header-inner .palo-brand {
+        min-width: 0;
+        gap: 6px;
+        font-size: 0.75rem;
+        letter-spacing: 0.035em;
+    }
+    .palo-header-inner .palo-brand img {
+        width: 30px;
+        height: 30px;
+        flex: 0 0 30px;
+    }
+    .palo-header-inner > .palo-spotlight-launcher,
+    .palo-header-inner > .palo-menu-toggle {
+        width: 44px;
+        min-width: 44px;
+        min-height: 44px;
+        flex: 0 0 44px;
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {

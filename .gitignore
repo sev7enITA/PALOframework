@@ -40,6 +40,7 @@ logs/
 # Temporary files
 tmp/
 temp/
+.codex-temp/
 *.tmp
 *.temp
 
@@ -72,6 +73,15 @@ docs/_build/
 docs/ASSESSMENT-v3.0.md
 
 # Private or third-party research inputs: keep links and attribution in tracked content
+Digital Transformation/
+assets/hugging-face-incident-report-aug-2026.pdf
+Governing_AI_Below_the_Waterline2.pdf
+HumanAgency-PALO.jpg
+PALOFramework.png
+PaloXExtensionVibeCoding.docx
+epiframework.png
+insights/1780124547300.pdf
+media/palo-ai-n8n-demo-narration.aiff
 insights/WEBUILD.docx
 insights/2026TrendOutlookReports.pdf
 insights/Accenture-Strategy-Macro-Foresight-Brief-2026-Top-10-Trends.pdf

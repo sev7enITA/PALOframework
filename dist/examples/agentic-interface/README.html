@@ -34,7 +34,7 @@
 <h2 id="demonstrated-trust-model-and-missing-production-controls">Demonstrated trust model and missing production controls<a class="palo-doc-anchor" href="#demonstrated-trust-model-and-missing-production-controls" aria-label="Link to Demonstrated trust model and missing production controls">#</a></h2><ul>
 <li>The MCP Streamable HTTP resource can authenticate OIDC/JWKS principals and separate agent, reviewer, auditor, observer and administrator scopes. It does not issue tokens, implement EMA ID-JAG exchange, attest publishers/connectors/workloads, provide proof-of-possession or isolate production tenants. Action Claim 1.3 still requires a host-provided <code>authorityVerifier</code>; issuer labels alone fail closed.</li>
 <li>Internal contract signing secrets stay in <code>PALO_HMAC_KEYS_JSON</code> or the deployment secret manager. Evidence Envelope 2.0 can use an independently verifiable Ed25519 key, while production KMS/HSM custody remains outside this preview.</li>
-<li>Dify and n8n are thin clients of the authenticated PALO gateway. They do not decide locally or sign evidence.</li>
+<li>The operational Dify and n8n examples are thin clients of the authenticated PALO Gateway. Separately, their knowledge-Q&amp;A paths can use the Reader/Curator MCP endpoints; neither path decides locally or signs operational evidence.</li>
 <li>OPA outages, malformed claims, missing adapters and failed authoritative reads fail closed. Exactly-once external execution is claimed only where the connector provides reliable idempotency; multi-replica durability remains future work.</li>
 <li>Tool arguments are schema-validated and their canonical digest is verified. Evidence is redacted; secrets must never be admitted by a tool argument schema.</li>
 <li>The default gateway binds to <code>127.0.0.1</code>. The included bearer token is a developer control only and does not provide principal identity, role separation, workload identity, reviewer authentication, administrative authorization, rotation, transport-level rate limiting, or TLS termination.</li>
@@ -106,6 +106,7 @@ npm run opa:install
 <figure class="palo-doc-code"><figcaption>bash code</figcaption><pre tabindex="0"><code class="language-bash">export PALO_OPA_URL=http://127.0.0.1:8181
 export PALO_HMAC_KEYS_JSON='{"key-support-2026":"replace-with-at-least-32-secret-bytes"}'
 npm run palo:mcp</code></pre></figure><p>Use <code>PALO_MCP_HTTP_TOKEN=... npm run palo:mcp:http</code> only for isolated shared-token testing, or configure the OIDC variables documented in <a href="../../packages/palo-mcp-server/README.html"><code>packages/palo-mcp-server/README.md</code></a> for the scoped resource-server path. Use <code>npm run palo:gateway</code> with a strong <code>PALO_GATEWAY_TOKEN</code> only for local evaluation of Web, Android, Dify and n8n examples. Run <code>npm run validate:agentic</code> to validate all thirteen contracts, compile and test Rego, exercise modern and legacy MCP transports, test replay, approval, governed execution, mismatch and incident behavior, and verify the SQLite hash chain. Passing these tests does not establish production readiness.</p>
+<p>For a source-grounded PALO copilot, use the paired <a href="https://github.com/sev7enITA/PALOframework/tree/main/examples/agentic-interface/knowledge-copilot/" target="_blank" rel="noopener noreferrer">Knowledge Copilot host examples</a> and the <a href="../../docs/palo-knowledge-copilot-integrations.html">integration matrix</a>. The Reader and Curator catalogs are deliberately separate from operational governance tools. <code>npm run validate:knowledge-copilot</code> checks the 11 named host paths and qualification template; a live result still requires the <a href="../../docs/palo-mcp-host-qualification.html">host qualification procedure</a>.</p>
 <h2 id="optional-microsoft-agt-acs-provider">Optional Microsoft AGT ACS provider<a class="palo-doc-anchor" href="#optional-microsoft-agt-acs-provider" aria-label="Link to Optional Microsoft AGT ACS provider">#</a></h2><p>The <a href="https://github.com/sev7enITA/PALOframework/tree/main/examples/agentic-interface/integrations/microsoft-agt" target="_blank" rel="noopener noreferrer">Microsoft AGT integration proposal</a> maps an immutable PALO Action Claim and digest-bound approval to ACS <code>pre_tool_call</code>, while PALO retains capability issuance, governed execution and authoritative outcome verification. It is optional, version-pinned and maintained by PALO; Microsoft has not endorsed or accepted it at the time of publication.</p>
 <h2 id="mcp-tools">MCP tools<a class="palo-doc-anchor" href="#mcp-tools" aria-label="Link to MCP tools">#</a></h2><p>The executable catalog is synchronized with <code>mcp-server-spec.json</code>:</p>
 <ul>
@@ -113,10 +114,29 @@ npm run palo:mcp</code></pre></figure><p>Use <code>PALO_MCP_HTTP_TOKEN=... npm r
 <li><code>palo_explain_framework</code></li>
 <li><code>palo_infer_governance_route</code></li>
 <li><code>palo_plan_product_integration</code></li>
+<li><code>palo_list_knowledge_sources</code></li>
+<li><code>palo_search_knowledge</code></li>
+<li><code>palo_get_knowledge_record</code></li>
+<li><code>palo_submit_knowledge_draft</code></li>
+<li><code>palo_list_knowledge_drafts</code></li>
+<li><code>palo_get_knowledge_draft</code></li>
+<li><code>palo_review_knowledge_draft</code></li>
 <li><code>palo_register_policy</code></li>
 <li><code>palo_register_executor</code></li>
 <li><code>palo_register_verifier</code></li>
 <li><code>palo_get_registry</code></li>
+<li><code>palo_import_context_evidence</code></li>
+<li><code>palo_list_context_evidence</code></li>
+<li><code>palo_register_data_fitness_policy</code></li>
+<li><code>palo_evaluate_data_fitness</code></li>
+<li><code>palo_get_data_fitness_decision</code></li>
+<li><code>palo_register_disclosure_contract</code></li>
+<li><code>palo_get_disclosure_contract</code></li>
+<li><code>palo_register_ai_system</code></li>
+<li><code>palo_get_ai_system</code></li>
+<li><code>palo_list_ai_systems</code></li>
+<li><code>palo_ingest_assurance_signal</code></li>
+<li><code>palo_list_assurance_signals</code></li>
 <li><code>palo_verify_action_authority</code></li>
 <li><code>palo_execute_governed_action</code></li>
 <li><code>palo_get_execution_status</code></li>

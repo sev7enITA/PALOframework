@@ -1,0 +1,13 @@
+{
+  "format": "palo-data-fitness-policy",
+  "schemaVersion": "1.0.0",
+  "policyId": "fitness-policy-support-analytics",
+  "policyVersion": "1.0.0",
+  "tenantId": "tenant-a",
+  "targetTypes": ["dataset"],
+  "requiredEvidenceTypes": ["quality"],
+  "requirements": { "minQualityScore": 90, "maxEvidenceAgeSeconds": 86400, "requireVerifiedAuthority": true, "requireOwner": true, "requireApproved": true, "requireLineage": true, "requireAccessGranted": true, "denyOpenIncident": true, "prohibitedClassifications": ["special-category"], "allowedPurposes": ["support-analytics"] },
+  "onMissing": "deny",
+  "effectiveAt": "2026-08-25T08:00:00Z",
+  "status": "active"
+}

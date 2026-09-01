@@ -8,7 +8,7 @@ PALO-AI v2.7 publishes governance and data-assurance contracts plus a non-produc
 
 - The MCP Streamable HTTP resource can authenticate OIDC/JWKS principals and separate agent, reviewer, auditor, observer and administrator scopes. It does not issue tokens, implement EMA ID-JAG exchange, attest publishers/connectors/workloads, provide proof-of-possession or isolate production tenants. Action Claim 1.3 still requires a host-provided `authorityVerifier`; issuer labels alone fail closed.
 - Internal contract signing secrets stay in `PALO_HMAC_KEYS_JSON` or the deployment secret manager. Evidence Envelope 2.0 can use an independently verifiable Ed25519 key, while production KMS/HSM custody remains outside this preview.
-- Dify and n8n are thin clients of the authenticated PALO gateway. They do not decide locally or sign evidence.
+- The operational Dify and n8n examples are thin clients of the authenticated PALO Gateway. Separately, their knowledge-Q&A paths can use the Reader/Curator MCP endpoints; neither path decides locally or signs operational evidence.
 - OPA outages, malformed claims, missing adapters and failed authoritative reads fail closed. Exactly-once external execution is claimed only where the connector provides reliable idempotency; multi-replica durability remains future work.
 - Tool arguments are schema-validated and their canonical digest is verified. Evidence is redacted; secrets must never be admitted by a tool argument schema.
 - The default gateway binds to `127.0.0.1`. The included bearer token is a developer control only and does not provide principal identity, role separation, workload identity, reviewer authentication, administrative authorization, rotation, transport-level rate limiting, or TLS termination.
@@ -50,6 +50,8 @@ npm run palo:mcp
 
 Use `PALO_MCP_HTTP_TOKEN=... npm run palo:mcp:http` only for isolated shared-token testing, or configure the OIDC variables documented in [`packages/palo-mcp-server/README.md`](../../packages/palo-mcp-server/README.md) for the scoped resource-server path. Use `npm run palo:gateway` with a strong `PALO_GATEWAY_TOKEN` only for local evaluation of Web, Android, Dify and n8n examples. Run `npm run validate:agentic` to validate all thirteen contracts, compile and test Rego, exercise modern and legacy MCP transports, test replay, approval, governed execution, mismatch and incident behavior, and verify the SQLite hash chain. Passing these tests does not establish production readiness.
 
+For a source-grounded PALO copilot, use the paired [Knowledge Copilot host examples](knowledge-copilot/) and the [integration matrix](../../docs/palo-knowledge-copilot-integrations.md). The Reader and Curator catalogs are deliberately separate from operational governance tools. `npm run validate:knowledge-copilot` checks the 11 named host paths and qualification template; a live result still requires the [host qualification procedure](../../docs/palo-mcp-host-qualification.md).
+
 ## Optional Microsoft AGT ACS provider
 
 The [Microsoft AGT integration proposal](https://github.com/sev7enITA/PALOframework/tree/main/examples/agentic-interface/integrations/microsoft-agt) maps an immutable PALO Action Claim and digest-bound approval to ACS `pre_tool_call`, while PALO retains capability issuance, governed execution and authoritative outcome verification. It is optional, version-pinned and maintained by PALO; Microsoft has not endorsed or accepted it at the time of publication.
@@ -62,10 +64,29 @@ The executable catalog is synchronized with `mcp-server-spec.json`:
 - `palo_explain_framework`
 - `palo_infer_governance_route`
 - `palo_plan_product_integration`
+- `palo_list_knowledge_sources`
+- `palo_search_knowledge`
+- `palo_get_knowledge_record`
+- `palo_submit_knowledge_draft`
+- `palo_list_knowledge_drafts`
+- `palo_get_knowledge_draft`
+- `palo_review_knowledge_draft`
 - `palo_register_policy`
 - `palo_register_executor`
 - `palo_register_verifier`
 - `palo_get_registry`
+- `palo_import_context_evidence`
+- `palo_list_context_evidence`
+- `palo_register_data_fitness_policy`
+- `palo_evaluate_data_fitness`
+- `palo_get_data_fitness_decision`
+- `palo_register_disclosure_contract`
+- `palo_get_disclosure_contract`
+- `palo_register_ai_system`
+- `palo_get_ai_system`
+- `palo_list_ai_systems`
+- `palo_ingest_assurance_signal`
+- `palo_list_assurance_signals`
 - `palo_verify_action_authority`
 - `palo_execute_governed_action`
 - `palo_get_execution_status`

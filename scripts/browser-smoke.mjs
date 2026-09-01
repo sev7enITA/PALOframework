@@ -122,6 +122,43 @@ try {
     return content;
   }
 
+  await page.goto(`${baseUrl}/PALO_AIIncidentObservatory.html`, { waitUntil: "domcontentloaded" });
+  await page.waitForFunction(() => document.documentElement.getAttribute("data-incident-observatory") === "ready");
+  if (!await page.getByRole("heading", { name: "What if the July 2026 agentic incident had been governed through PALO?" }).isVisible()) failures.push("AI Incident Observatory: primary title did not render");
+  const observatoryText = await page.locator("main").innerText();
+  for (const label of ["AUTONOMY IS NOT AUTHORITY", "ALLOWED IS NOT VERIFIED", "REPORT FACT", "PALO COUNTERFACTUAL", "Conditional verdict"]) {
+    if (!observatoryText.toUpperCase().includes(label.toUpperCase())) failures.push(`AI Incident Observatory: core label is missing (${label})`);
+  }
+  if (await page.locator(".rail-stage").count() !== 8) failures.push("AI Incident Observatory: synchronized rail must contain eight stages");
+  const noJsRail = await page.evaluate(() => {
+    document.documentElement.classList.remove("js");
+    const visible = (selector) => Array.from(document.querySelectorAll(selector)).filter((node) => node.getBoundingClientRect().height > 0).length;
+    const result = { observed: visible(".rail-lane-observed"), palo: visible(".rail-lane-palo") };
+    document.documentElement.classList.add("js");
+    return result;
+  });
+  if (noJsRail.observed !== 8 || noJsRail.palo !== 8) failures.push(`AI Incident Observatory: no-JS rail is incomplete (${JSON.stringify(noJsRail)})`);
+  await page.getByRole("button", { name: "Observed", exact: true }).click();
+  await expectAttribute(page.locator("html"), "data-incident-rail-view", "observed", "AI Incident Observatory observed view");
+  await page.getByRole("button", { name: "With PALO", exact: true }).click();
+  await expectAttribute(page.locator("html"), "data-incident-rail-view", "palo", "AI Incident Observatory PALO view");
+  await page.getByRole("button", { name: "Overlay", exact: true }).click();
+  await expectAttribute(page.locator("html"), "data-incident-rail-view", "overlay", "AI Incident Observatory overlay view");
+  const observatoryDownloads = page.locator('#downloads a[download]');
+  if (await observatoryDownloads.count() !== 4) failures.push("AI Incident Observatory: PNG and SVG download links are incomplete");
+  for (const extension of ["landscape.png", "landscape.svg", "portrait.png", "portrait.svg"]) {
+    if (await page.locator(`#downloads a[download][href$="${extension}"]`).count() !== 1) failures.push(`AI Incident Observatory: missing ${extension} download link`);
+  }
+  if (await page.locator("#downloads .download-preview-link").count() !== 2) failures.push("AI Incident Observatory: full-resolution preview links are incomplete");
+  await page.locator("[data-preview-open]").first().click();
+  if (!await page.locator("[data-preview-dialog]").evaluate((dialog) => dialog.open)) failures.push("AI Incident Observatory: inspectable preview dialog did not open");
+  const previewScaleBefore = await page.locator("[data-preview-scale]").innerText();
+  await page.locator("[data-preview-zoom-in]").click();
+  const previewScaleAfter = await page.locator("[data-preview-scale]").innerText();
+  if (previewScaleBefore === previewScaleAfter) failures.push("AI Incident Observatory: preview zoom control did not change scale");
+  await page.locator("[data-preview-close]").click();
+  if (await page.locator("[data-preview-dialog]").evaluate((dialog) => dialog.open)) failures.push("AI Incident Observatory: preview dialog did not close");
+
   const guideNetworkWrites = [];
   const trackGuideWrites = (request) => {
     if (!["GET", "HEAD", "OPTIONS"].includes(request.method())) guideNetworkWrites.push({ method: request.method(), url: request.url() });
@@ -426,12 +463,31 @@ try {
 
   await page.goto(`${baseUrl}/index.html`, { waitUntil: "domcontentloaded" });
   if (await page.locator('a[href="PALO_PlatformMap.html"]').count() < 2) failures.push("homepage: Platform Map is not linked from primary and content navigation");
+  if (await page.locator('a[href="PALO_Observatories.html"]').count() < 2) failures.push("homepage: Observatory index is not linked from primary and footer navigation");
   if (await page.locator('a[href="PALO_VerificationNote.html"]').count() < 3) failures.push("homepage: release verification record is missing from content, release controls or footer");
   if (await page.locator('#changelog a[href="CHANGELOG.html"]').count() !== 1 || await page.locator('#changelog a[href="release-manifest.json"]').count() !== 1 || await page.locator('#release-palo-ai-v2-7-0').count() !== 1) failures.push("homepage: current PALO-AI changelog or authoritative release references are incomplete");
   await page.goto(`${baseUrl}/PALO_DocumentationHub.html`, { waitUntil: "domcontentloaded" });
   if (await page.locator('a[href="PALO_PlatformMap.html"]').count() < 2) failures.push("Documentation Hub: Platform Map entry is missing");
   if (await page.locator('a[href="CHANGELOG.html"]').count() < 2 || await page.locator('a[href="release-manifest.json"]').count() < 2) failures.push("Documentation Hub: release-history references are incomplete");
   if (await page.locator('a[href="PALO_VerificationNote.html"]').count() < 2) failures.push("Documentation Hub: release verification record is missing");
+
+  await page.goto(`${baseUrl}/PALO_Community.html`, { waitUntil: "domcontentloaded" });
+  if (!await page.getByRole("heading", { name: "Governance improves when the evidence is challenged." }).isVisible()) failures.push("Community: shared-shell hero did not render");
+  if (!/v3\.1\.0/.test(await page.locator("main").innerText())) failures.push("Community: release marker is stale or missing");
+  if (!await page.locator("body.palo-v21").count()) failures.push("Community: shared PALO body shell is missing");
+  if (await page.locator('script[src*="tailwind"], link[href*="fonts.googleapis"], link[href*="font-awesome"], link[href*="fontawesome"]').count()) failures.push("Community: external style or font dependency remains");
+  if (await page.locator('a[href="PALO_Observatories.html"]').count() < 2) failures.push("Community: Observatory navigation is incomplete");
+
+  const policyWatcherBeforeIndex = policyWatcherRequests.length;
+  await page.goto(`${baseUrl}/PALO_Observatories.html`, { waitUntil: "domcontentloaded" });
+  if (!await page.getByRole("heading", { name: "Observe the signal. Reopen the right governance route." }).isVisible()) failures.push("Observatory index: primary heading did not render");
+  if (await page.locator(".observatory-card").count() !== 4) failures.push("Observatory index: four-module register is incomplete");
+  for (const state of ["Gold Case", "Monitoring Brief", "Candidate Under Review"]) {
+    if (!await page.locator(".publication-states", { hasText: state }).count()) failures.push(`Observatory index: ${state} definition is missing`);
+  }
+  const observatoryBoundary = await page.locator(".policywatcher-panel").innerText();
+  if (!/signal import/i.test(observatoryBoundary) || !/disabled by default/i.test(observatoryBoundary) || !/human review required/i.test(observatoryBoundary) || !/does not establish causation/i.test(observatoryBoundary)) failures.push("Observatory index: PolicyWatcher correlation boundary is incomplete");
+  if (policyWatcherRequests.length !== policyWatcherBeforeIndex) failures.push("Observatory index: deterministic page initiated a live PolicyWatcher request");
 
   await page.goto(`${baseUrl}/PALO_VerificationNote.html`, { waitUntil: "domcontentloaded" });
   if (!await page.getByRole("heading", { name: "PALO 3.1 and PALO-AI 2.7 release verification record" }).isVisible()) failures.push("Release verification record: primary heading did not render");
@@ -443,15 +499,15 @@ try {
   for (const state of ["Implemented", "Foundation", "Research"]) {
     if (!await page.locator(".state-badge", { hasText: state }).first().isVisible()) failures.push(`Platform Map: ${state} state is missing`);
   }
-  if (await page.locator("[data-map-route]").count() !== 13 || await page.locator("[data-map-row]").count() !== 13) failures.push("Platform Map: topology and table must both contain 13 routes");
+  if (await page.locator("[data-map-route]").count() !== 14 || await page.locator("[data-map-row]").count() !== 14) failures.push("Platform Map: topology and table must both contain 14 routes");
   await page.locator("#map-stakeholder").selectOption("risk");
   await page.waitForFunction(() => document.documentElement.getAttribute("data-platform-map-results") === "3");
   if (await page.locator("[data-map-route]:visible").count() !== 3 || await page.locator("[data-map-row]:visible").count() !== 3) failures.push("Platform Map: visual and table filters are not synchronized");
   await page.locator("#map-reset").click();
-  await page.waitForFunction(() => document.documentElement.getAttribute("data-platform-map-results") === "13");
+  await page.waitForFunction(() => document.documentElement.getAttribute("data-platform-map-results") === "14");
   await page.locator("#map-evidence-class").selectOption("human-review-required");
-  await page.waitForFunction(() => document.documentElement.getAttribute("data-platform-map-results") === "1");
-  if (await page.locator('[data-map-route][data-evidence-class="human-review-required"]:visible').count() !== 1 || await page.locator('[data-map-row][data-evidence-class="human-review-required"]:visible').count() !== 1) failures.push("Platform Map: evidence/authority filter is not synchronized");
+  await page.waitForFunction(() => document.documentElement.getAttribute("data-platform-map-results") === "2");
+  if (await page.locator('[data-map-route][data-evidence-class="human-review-required"]:visible').count() !== 2 || await page.locator('[data-map-row][data-evidence-class="human-review-required"]:visible').count() !== 2) failures.push("Platform Map: evidence/authority filter is not synchronized");
   await page.locator("#map-reset").click();
   const mapPolicyLink = page.locator('[data-route-id="route-monitor"] a[href="https://www.policywatcher.online/"]').first();
   if (!await mapPolicyLink.isVisible()) failures.push("Platform Map: live PolicyWatcher destination is missing from Receive monitoring signals");
@@ -462,6 +518,10 @@ try {
   if (!/External companion:[\s\S]*PolicyWatcher/.test(mapMonitorText) || !/pending human review/.test(mapMonitorText) || !/Authority boundary/.test(mapMonitorText)) failures.push("Platform Map: PolicyWatcher route omits companion, review, or authority-boundary text");
   const mapPaloAiText = await page.locator('[data-map-route][data-route-id="route-palo-ai-data"]').innerText();
   if (!/PALO-AI v2\.7/.test(mapPaloAiText) || !/Data Fitness Decision/.test(mapPaloAiText) || !/not a production authorization service/.test(mapPaloAiText)) failures.push("Platform Map: current PALO-AI data-assurance route or production boundary is missing");
+  const mapIncidentText = await page.locator('[data-map-route][data-route-id="route-incident"]').innerText();
+  if (!/AI Incident Observatory/.test(mapIncidentText) || !/reopened governance gates/.test(mapIncidentText) || !/does not prove causation/.test(mapIncidentText)) failures.push("Platform Map: incident investigation route or authority boundary is incomplete");
+  const platformResources = await page.locator(".platform-resource-groups").innerText();
+  if (!/Knowledge Reader:[\s\S]*production-candidate/.test(platformResources) || !/Knowledge Curator:[\s\S]*does not inherit Reader qualification/.test(platformResources) || !/disabled by default/.test(platformResources)) failures.push("Platform Map: knowledge profile maturity or provider default state is incomplete");
   if (await page.locator('a[href="CHANGELOG.html"]').count() < 3 || await page.locator('a[href="feed.xml"]').count() < 3) failures.push("Platform Map: changelog or release-feed references are incomplete");
 
   await page.goto(`${baseUrl}/designs/theory-to-practice-infographic/index.html?mode=navigation&selfTest=1`, { waitUntil: "domcontentloaded" });
@@ -630,9 +690,38 @@ try {
     if (!/Prepared locally/.test(parsed.privacy || "") || parsed.document !== "docs/palo-ai-adoption-paths.md") failures.push("Generated documentation: feedback export omits privacy or source context");
   } catch { failures.push("Generated documentation: feedback export is not valid JSON"); }
 
+  for (const viewport of [{ width: 1440, height: 1000 }, { width: 834, height: 1112 }, { width: 390, height: 844 }, { width: 320, height: 800 }]) {
+    await page.setViewportSize(viewport);
+    await page.goto(`${baseUrl}/PALO_AIIncidentObservatory.html`, { waitUntil: "domcontentloaded" });
+    await page.waitForFunction(() => document.documentElement.getAttribute("data-incident-observatory") === "ready");
+    const observatoryResponsive = await page.evaluate(() => {
+      const rail = document.querySelector(".incident-rail");
+      const railRect = rail.getBoundingClientRect();
+      const stageRects = Array.from(document.querySelectorAll(".rail-stage")).map((node) => node.getBoundingClientRect());
+      const menu = document.querySelector(".palo-menu-toggle")?.getBoundingClientRect();
+      return {
+        overflow: document.documentElement.scrollWidth - window.innerWidth,
+        documentWidth: document.documentElement.scrollWidth,
+        menuInside: !menu || (menu.left >= -0.5 && menu.right <= window.innerWidth + .5),
+        undersized: Array.from(document.querySelectorAll(".rail-view-button, .rail-stage-index, #downloads a, #downloads button, .palo-menu-toggle")).filter((node) => node.offsetParent !== null && node.getBoundingClientRect().height < 43.5).map((node) => `${node.className}:${node.getBoundingClientRect().height}`),
+        visibleStages: stageRects.filter((rect) => rect.height > 0).length,
+        fullyVisibleStages: stageRects.filter((rect) => rect.left >= railRect.left - 1 && rect.right <= railRect.right + 1).length,
+        railHeight: document.getElementById("rail").getBoundingClientRect().height,
+        matrixCards: window.innerWidth <= 760 ? document.querySelectorAll(".matrix-wrap tbody tr").length : 0
+      };
+    });
+    if (observatoryResponsive.overflow > 1) failures.push(`AI Incident Observatory at ${viewport.width}x${viewport.height}: horizontal overflow of ${observatoryResponsive.overflow}px`);
+    if (viewport.width === 320 && (observatoryResponsive.documentWidth !== 320 || !observatoryResponsive.menuInside)) failures.push(`AI Incident Observatory at 320x800: header/menu escapes viewport (${JSON.stringify(observatoryResponsive)})`);
+    if (observatoryResponsive.undersized.length) failures.push(`AI Incident Observatory at ${viewport.width}x${viewport.height}: targets below 44px (${observatoryResponsive.undersized.join(", ")})`);
+    if (observatoryResponsive.visibleStages !== 8) failures.push(`AI Incident Observatory at ${viewport.width}x${viewport.height}: not all eight stages are available`);
+    if (viewport.width === 834 && observatoryResponsive.fullyVisibleStages < 2) failures.push(`AI Incident Observatory at 834x1112: tablet rail does not expose two complete stage pairs (${JSON.stringify(observatoryResponsive)})`);
+    if (viewport.width <= 390 && observatoryResponsive.railHeight > 4200) failures.push(`AI Incident Observatory at ${viewport.width}x${viewport.height}: mobile rail remains excessively tall (${observatoryResponsive.railHeight}px)`);
+    if (viewport.width <= 760 && observatoryResponsive.matrixCards !== 5) failures.push(`AI Incident Observatory at ${viewport.width}x${viewport.height}: cut-point matrix did not become five readable cards`);
+  }
+
   for (const viewport of [{ width: 1440, height: 900 }, { width: 1024, height: 768 }, { width: 390, height: 844 }, { width: 360, height: 800 }]) {
     await page.setViewportSize(viewport);
-    for (const file of ["index.html", "PALO_Guide.html", "PALO_AIGovernance.html", "PALO_AIWhy.html", "PALO_AIQuickstarts.html", "PALO_AssessmentPath.html", "PALO_AgenticGovernance.html", "PALO_AgenticCapabilityMatrix.html", "PALO_AIProductionReadiness.html", "PALO_VerificationNote.html", "PALO_OWASPGenAI2026.html", "PALO_DocumentationLibrary.html", "docs/palo-ai-adoption-paths.html", "PALO_PlatformMap.html", "designs/theory-to-practice-infographic/index.html?mode=navigation"]) {
+    for (const file of ["index.html", "PALO_Community.html", "PALO_Observatories.html", "PALO_Guide.html", "PALO_AIGovernance.html", "PALO_AIWhy.html", "PALO_AIQuickstarts.html", "PALO_AssessmentPath.html", "PALO_AgenticGovernance.html", "PALO_AgenticCapabilityMatrix.html", "PALO_AIProductionReadiness.html", "PALO_VerificationNote.html", "PALO_OWASPGenAI2026.html", "PALO_DocumentationLibrary.html", "docs/palo-ai-adoption-paths.html", "PALO_PlatformMap.html", "designs/theory-to-practice-infographic/index.html?mode=navigation"]) {
       await page.goto(`${baseUrl}/${file}`, { waitUntil: "domcontentloaded" });
       if (file.includes("mode=navigation")) {
         const onboardingSeparators = page.locator(".route-ribbon > .route-separator");
@@ -709,6 +798,29 @@ try {
       const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
       if (overflow > 1) failures.push(`${file} at ${viewport.width}x${viewport.height}: horizontal overflow of ${overflow}px`);
     }
+  }
+
+  await page.setViewportSize({ width: 320, height: 800 });
+  for (const file of ["PALO_Observatories.html", "PALO_Community.html", "PALO_PlatformMap.html"]) {
+    await page.goto(`${baseUrl}/${file}`, { waitUntil: "load" });
+    await page.waitForFunction(() => window.PALO_SPOTLIGHT?.__ready === true && Boolean(document.querySelector(".palo-spotlight-launcher")));
+    const sharedHeader = await page.evaluate(() => {
+      const menu = document.querySelector(".palo-menu-toggle");
+      const search = document.querySelector(".palo-spotlight-launcher");
+      const menuRect = menu.getBoundingClientRect();
+      const searchRect = search.getBoundingClientRect();
+      return {
+        viewportWidth: window.innerWidth,
+        documentWidth: document.documentElement.scrollWidth,
+        menuLeft: menuRect.left,
+        menuRight: menuRect.right,
+        menuWidth: menuRect.width,
+        searchLeft: searchRect.left,
+        searchRight: searchRect.right,
+        searchWidth: searchRect.width
+      };
+    });
+    if (sharedHeader.documentWidth !== 320 || sharedHeader.menuLeft < -1 || sharedHeader.menuRight > 321 || sharedHeader.menuWidth < 43.5 || sharedHeader.searchLeft < -1 || sharedHeader.searchRight > 321 || sharedHeader.searchWidth < 43.5) failures.push(`${file} at 320x800: shared search/menu controls escape viewport or lose 44px target (${JSON.stringify(sharedHeader)})`);
   }
 } finally {
   if (browser) await browser.close();

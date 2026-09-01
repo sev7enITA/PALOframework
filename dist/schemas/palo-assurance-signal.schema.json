@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paloframework.org/schemas/palo-assurance-signal.schema.json",
+  "title": "PALO Continuous Assurance Signal",
+  "description": "Immutable external change signal that invalidates prior data-fitness assumptions and may revoke unconsumed capabilities.",
+  "type": "object",
+  "required": ["format", "schemaVersion", "signalId", "tenantId", "subject", "sourceSystem", "signalType", "severity", "observedAt", "changeDigest", "reason"],
+  "properties": {
+    "format": { "const": "palo-assurance-signal" },
+    "schemaVersion": { "const": "1.0.0" },
+    "signalId": { "type": "string", "pattern": "^assurance-signal-[a-f0-9-]{36}$" },
+    "tenantId": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "subject": {
+      "type": "object",
+      "required": ["type", "id"],
+      "properties": {
+        "type": { "enum": ["dataset", "data-product", "model", "ai-system", "agent", "tool", "access-entitlement", "other"] },
+        "id": { "type": "string", "minLength": 1, "maxLength": 1000 }
+      },
+      "additionalProperties": false
+    },
+    "sourceSystem": { "type": "string", "minLength": 1, "maxLength": 100 },
+    "signalType": { "enum": ["quality-changed", "classification-changed", "lineage-changed", "access-changed", "contract-changed", "incident-opened", "incident-resolved", "system-release", "policy-release"] },
+    "severity": { "enum": ["info", "low", "medium", "high", "critical"] },
+    "observedAt": { "type": "string", "format": "date-time" },
+    "evidenceRefId": { "type": "string", "pattern": "^evidence-ref-[a-f0-9-]{36}$" },
+    "changeDigest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+    "reason": { "type": "string", "minLength": 1, "maxLength": 2000 }
+  },
+  "additionalProperties": false
+}

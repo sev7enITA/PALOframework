@@ -213,7 +213,7 @@ Choose among three integration paths. They do not provide the same assurance:
 |---|---|---|
 | Native HTTP/Switch/Wait | Built-in n8n nodes calling the PALO Gateway | Available for preview; still advisory without brokered execution |
 | PALO community package | Visual PALO decision node | Installable local alpha; unpublished and unverified |
-| MCP Client Tool | Agent calls a PALO MCP server | Transport gap: the documented n8n client expects SSE, while this preview exposes stdio and Streamable HTTP |
+| MCP Client Tool | Agent calls a PALO MCP server | Current v1.4 node supports Streamable HTTP; PALO Knowledge Reader/Curator configurations are statically validated, with live host qualification still required |
 
 ### Native-node workflow
 
@@ -291,9 +291,9 @@ The mobile or Web reviewer must resolve an approval through an authenticated PAL
 
 ### n8n AI Agent and MCP
 
-n8n's official [MCP Client Tool](https://docs.n8n.io/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.toolmcp/) can expose selected MCP tools to an AI Agent. Select an explicit allowlist and do not connect equivalent target tools directly to the same agent.
+n8n's official [MCP Client Tool](https://docs.n8n.io/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.toolmcp/) can expose selected MCP tools to an AI Agent. Current node source supports Streamable HTTP; use the v1.4+ Reader/Curator examples, force `=httpStreamable`, select an explicit allowlist and do not connect equivalent target tools directly to the same agent.
 
-Client compatibility depends on the MCP transport and product version. PALO-AI v2.7 provides stdio and authenticated Streamable HTTP; do not claim plug-and-play compatibility with clients that require SSE or another transport until that exact combination has been tested and documented.
+Client compatibility still depends on the exact product build, authentication mode and retry behavior. Static configuration validation is not a live tenant test. See [PALO Knowledge Copilot](palo-knowledge-copilot-integrations.md#n8n) and complete [PALO MCP Host Qualification](palo-mcp-host-qualification.md).
 
 ### Production path for n8n
 
@@ -310,12 +310,12 @@ n8n's official references are the [node verification guidelines](https://docs.n8
 
 ## Microsoft Copilot Studio
 
-Microsoft currently documents Streamable HTTP MCP connectivity through the Copilot Studio onboarding wizard. The PALO preview endpoint can therefore be evaluated as an external MCP server, subject to the preview limitations in this guide.
+Microsoft currently documents Streamable HTTP MCP connectivity plus None, API key and OAuth 2.0 authentication through the Copilot Studio onboarding wizard. For knowledge Q&A, connect the six-tool Reader or restricted ten-tool Curator instead of the operational `/mcp` catalog. The PALO preview endpoint can therefore be evaluated as an external MCP server, subject to the preview limitations in this guide.
 
 Use this minimum-safe configuration:
 
 1. register one development Authority Profile for one reversible use case;
-2. connect `https://governance.paloframework.org/mcp` through the MCP onboarding flow;
+2. connect `https://governance.paloframework.org/mcp-guide` through the MCP onboarding flow, or Curator only for restricted editorial roles;
 3. turn off **Allow all** and select only the required low-privilege PALO tools;
 4. do not expose equivalent direct connector actions to the same agent;
 5. apply Power Platform connector data policies where available;
@@ -332,14 +332,16 @@ Official references:
 
 ## Dify
 
-The repository example at `examples/agentic-interface/integrations/dify/palo_dify_tool.py` demonstrates authenticated claim submission and fail-closed response handling.
+Current Dify source includes a native MCP provider with remote URL, encrypted headers, OAuth, discovery and invocation. The Reader/Curator worksheet uses PALO's terminal-`/mcp` compatibility aliases because transport selection differs across Dify versions. Configuration is partial until the exact deployed Dify build passes the live qualification.
+
+The older repository example at `examples/agentic-interface/integrations/dify/palo_dify_tool.py` remains a separate demonstration of authenticated Gateway claim submission and fail-closed response handling.
 
 Two integration levels are possible:
 
 1. **Decision tool** - a workflow or agent calls PALO before a separate tool. This remains advisory if the agent can call that tool directly.
 2. **PALO-owned Agent Strategy or brokered tool** - PALO owns the tool-selection/execution loop or the only available action credential. This is the preferred enforcement model.
 
-Dify's official extension points include [plugin types](https://docs.dify.ai/en/develop-plugin/getting-started/choose-plugin-type), [tool plugins](https://docs.dify.ai/en/develop-plugin/dev-guides-and-walkthroughs/tool-plugin), and [Agent Strategy plugins](https://docs.dify.ai/en/develop-plugin/dev-guides-and-walkthroughs/agent-strategy-plugin). Package and test a PALO plugin only after the generic connector contract is stable.
+Dify's official extension points include [plugin types](https://docs.dify.ai/en/develop-plugin/getting-started/choose-plugin-type), [tool plugins](https://docs.dify.ai/en/develop-plugin/dev-guides-and-walkthroughs/tool-plugin), and [Agent Strategy plugins](https://docs.dify.ai/en/develop-plugin/dev-guides-and-walkthroughs/agent-strategy-plugin). For source-grounded Q&A start with the [native MCP worksheet](palo-knowledge-copilot-integrations.md#dify). Package a PALO plugin only when a native connector is insufficient or the brokered operational lifecycle is required.
 
 ## LangChain and LangGraph
 

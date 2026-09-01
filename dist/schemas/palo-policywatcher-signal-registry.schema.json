@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paloframework.org/schemas/palo-policywatcher-signal-registry.schema.json",
+  "title": "PALO PolicyWatcher Operational Signal Registry",
+  "type": "object",
+  "required": ["format", "schemaVersion", "updatedAt", "source", "transport", "statistics", "entries", "alerts", "authorityBoundary", "collectionDigest"],
+  "properties": {
+    "format": { "const": "palo-policywatcher-signal-registry" },
+    "schemaVersion": { "const": "1.0.0" },
+    "updatedAt": { "type": "string", "format": "date-time" },
+    "source": {
+      "type": "object",
+      "required": ["providerId", "origin", "endpoint", "mode", "networkOptional"],
+      "properties": {
+        "providerId": { "const": "policywatcher" },
+        "origin": { "const": "https://policywatcher.online" },
+        "endpoint": { "const": "/api/v1/integrations/palo/signals" },
+        "mode": { "const": "optional-pull" },
+        "networkOptional": { "const": true }
+      },
+      "additionalProperties": false
+    },
+    "transport": {
+      "type": "object",
+      "required": ["state", "lastAttemptAt", "lastSuccessfulSyncAt", "completeTraversal", "pageCount", "stale", "errorCode"],
+      "properties": {
+        "state": { "enum": ["not-synchronized", "healthy", "degraded", "unavailable"] },
+        "lastAttemptAt": { "oneOf": [{ "type": "string", "format": "date-time" }, { "type": "null" }] },
+        "lastSuccessfulSyncAt": { "oneOf": [{ "type": "string", "format": "date-time" }, { "type": "null" }] },
+        "completeTraversal": { "type": "boolean" },
+        "pageCount": { "type": "integer", "minimum": 0, "maximum": 20 },
+        "stale": { "type": "boolean" },
+        "errorCode": { "oneOf": [{ "enum": ["network-error", "http-error", "schema-error", "response-too-large", "pagination-error", "capacity-exceeded"] }, { "type": "null" }] }
+      },
+      "additionalProperties": false
+    },
+    "statistics": {
+      "type": "object",
+      "required": ["active", "revoked", "received", "accepted", "rejected", "changed"],
+      "properties": {
+        "active": { "type": "integer", "minimum": 0, "maximum": 500 },
+        "revoked": { "type": "integer", "minimum": 0, "maximum": 500 },
+        "received": { "type": "integer", "minimum": 0, "maximum": 500 },
+        "accepted": { "type": "integer", "minimum": 0, "maximum": 500 },
+        "rejected": { "type": "integer", "minimum": 0, "maximum": 500 },
+        "changed": { "type": "integer", "minimum": 0, "maximum": 500 }
+      },
+      "additionalProperties": false
+    },
+    "entries": {
+      "type": "array",
+      "maxItems": 500,
+      "items": { "$ref": "#/$defs/entry" }
+    },
+    "alerts": {
+      "type": "array",
+      "maxItems": 100,
+      "items": { "$ref": "#/$defs/alert" }
+    },
+    "authorityBoundary": { "type": "string", "minLength": 80, "maxLength": 1000 },
+    "collectionDigest": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+  },
+  "$defs": {
+    "entry": {
+      "type": "object",
+      "required": ["signalId", "changeId", "signalDigest", "transportStatus", "reviewState", "firstAcceptedAt", "lastValidatedAt", "revokedAt", "signal"],
+      "properties": {
+        "signalId": { "type": "string", "pattern": "^signal-policywatcher-[a-f0-9-]{36}$" },
+        "changeId": { "type": "string", "format": "uuid" },
+        "signalDigest": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "transportStatus": { "enum": ["active", "revoked"] },
+        "reviewState": { "enum": ["pending-human-review", "in-review", "routed-to-case-file", "reviewed-no-action", "rejected"] },
+        "firstAcceptedAt": { "type": "string", "format": "date-time" },
+        "lastValidatedAt": { "type": "string", "format": "date-time" },
+        "revokedAt": { "oneOf": [{ "type": "string", "format": "date-time" }, { "type": "null" }] },
+        "signal": {
+          "oneOf": [
+            { "$ref": "https://paloframework.org/schemas/policywatcher-signal.schema.json" },
+            { "type": "null" }
+          ]
+        }
+      },
+      "allOf": [
+        { "if": { "properties": { "transportStatus": { "const": "active" } } }, "then": { "properties": { "signal": { "$ref": "https://paloframework.org/schemas/policywatcher-signal.schema.json" }, "revokedAt": { "type": "null" } } } },
+        { "if": { "properties": { "transportStatus": { "const": "revoked" } } }, "then": { "properties": { "signal": { "type": "null" }, "revokedAt": { "type": "string", "format": "date-time" } } } }
+      ],
+      "additionalProperties": false
+    },
+    "alert": {
+      "type": "object",
+      "required": ["code", "severity", "signalId", "observedAt", "message"],
+      "properties": {
+        "code": { "enum": ["transport-unavailable", "contract-rejected", "pagination-incomplete", "capacity-exceeded", "signal-revoked", "signal-republished"] },
+        "severity": { "enum": ["info", "warning", "critical"] },
+        "signalId": { "oneOf": [{ "type": "string", "pattern": "^signal-policywatcher-[a-f0-9-]{36}$" }, { "type": "null" }] },
+        "observedAt": { "type": "string", "format": "date-time" },
+        "message": { "type": "string", "minLength": 1, "maxLength": 300 }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

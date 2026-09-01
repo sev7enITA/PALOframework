@@ -1,0 +1,9 @@
+{
+  "format": "palo-policywatcher-review-ledger",
+  "schemaVersion": "1.0.0",
+  "exportedAt": "2026-08-26T12:00:00.000Z",
+  "sourceRegistryDigest": "1103461b9552a0380df352b804f303ee46ce6762104a204daa8104d29daca996",
+  "reviews": [],
+  "localOnly": true,
+  "authorityBoundary": "This browser-local ledger records review workflow state against immutable signal digests. It is not identity-backed approval, legal advice, a compliance conclusion, independent assurance or proof that an organizational governance decision occurred."
+}

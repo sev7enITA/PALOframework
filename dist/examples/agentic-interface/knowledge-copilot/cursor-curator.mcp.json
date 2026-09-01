@@ -1,0 +1,7 @@
+{
+  "mcpServers": {
+    "palo-knowledge-curator": {
+      "url": "https://governance.paloframework.org/mcp-guide-curator"
+    }
+  }
+}

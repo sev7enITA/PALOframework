@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>PALO Release Verification Record | PALO Framework</title>
+  <meta name="description" content="Source revision, automated checks, published artifact checksums and current maturity limits for the PALO 3.1 and PALO-AI 2.7 baseline dated 25 August 2026.">
+  <link rel="canonical" href="https://paloframework.org/PALO_VerificationNote.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="PALO Release Verification Record | PALO Framework">
+  <meta property="og:description" content="Repository revision, automated validation results, artifact checksums and maturity limits for the PALO 3.1 and PALO-AI 2.7 public baseline.">
+  <meta property="og:url" content="https://paloframework.org/PALO_VerificationNote.html">
+  <link rel="icon" type="image/webp" href="assets/logo.webp">
+  <link rel="stylesheet" href="assets/palo-icons.css">
+  <link rel="stylesheet" href="assets/palo-v21.css?v=3.1.0">
+  <link rel="stylesheet" href="assets/palo-docs.css">
+  <style>
+    .palo-verification-page { background: #fff; }
+    .palo-verification-page .palo-compact-hero { background: linear-gradient(90deg, #f5f8fa 0, #f5f8fa 72%, #eef6f6 72%, #eef6f6 100%); }
+    .palo-verification-page .palo-compact-hero .palo-shell { position: relative; }
+    .palo-verification-page .palo-compact-hero .palo-shell::before { position: absolute; top: 0; right: 0; width: 5px; height: 100%; content: ""; background: var(--palo-gold); }
+    .palo-verification-page .palo-compact-hero > .palo-shell > p:not(.palo-eyebrow) { max-width: 880px; }
+    .palo-record-nav { margin-top: 0; padding: 0; background: var(--palo-white); border-top: 1px solid var(--palo-line); border-bottom: 1px solid var(--palo-line); }
+    .palo-record-nav ol { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); margin: 0; padding: 0; list-style: none; }
+    .palo-record-nav li { min-width: 0; border-right: 1px solid var(--palo-line); }
+    .palo-record-nav li:last-child { border-right: 0; }
+    .palo-record-nav a { display: block; min-height: 80px; padding: 14px 12px; color: var(--palo-ink-soft); font-size: .78rem; font-weight: 800; line-height: 1.35; text-decoration: none; }
+    .palo-record-nav a:hover, .palo-record-nav a:focus-visible { color: var(--palo-ink); background: var(--palo-surface); }
+    .palo-record-nav b { display: block; margin-bottom: 4px; color: var(--palo-gold-ink); font: 800 .72rem/1 ui-monospace, SFMono-Regular, Consolas, monospace; }
+    .palo-record-section { position: relative; }
+    .palo-record-section:nth-of-type(even) { background: #f8fafb; }
+    .palo-section-heading { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 22px; align-items: start; margin-bottom: 26px; }
+    .palo-section-index { display: grid; place-items: center; width: 54px; height: 54px; color: var(--palo-teal-dark); background: var(--palo-white); border: 1px solid var(--palo-line); border-top: 4px solid var(--palo-gold); font: 850 1.08rem/1 ui-monospace, SFMono-Regular, Consolas, monospace; }
+    .palo-section-heading h2 { margin: 0 0 8px; }
+    .palo-section-heading p { max-width: 850px; margin: 0; color: var(--palo-muted); }
+    .palo-baseline-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px; margin: 0; background: var(--palo-line); border: 1px solid var(--palo-line); }
+    .palo-baseline-grid > div { min-width: 0; padding: 22px; background: var(--palo-white); }
+    .palo-baseline-grid dt { color: var(--palo-teal); font-size: .72rem; font-weight: 850; letter-spacing: .08em; text-transform: uppercase; }
+    .palo-baseline-grid dd { margin: 8px 0 0; color: var(--palo-ink); font-weight: 800; line-height: 1.45; overflow-wrap: anywhere; }
+    .palo-baseline-grid dd small { display: block; margin-top: 7px; color: var(--palo-muted); font-weight: 600; }
+    .palo-ledger-wrap { border: 1px solid var(--palo-line); border-top: 5px solid var(--palo-teal); }
+    .palo-ledger-wrap .palo-table { min-width: 1120px; }
+    .palo-ledger-wrap .palo-table th { font-size: .8rem; letter-spacing: .02em; }
+    .palo-ledger-wrap .palo-table th:first-child { width: 16%; }
+    .palo-ledger-wrap .palo-table th:nth-child(2) { width: 16%; }
+    .palo-ledger-wrap .palo-table th:nth-child(3) { width: 20%; }
+    .palo-ledger-wrap .palo-table th:nth-child(4) { width: 22%; }
+    .palo-ledger-wrap .palo-table th:nth-child(5) { width: 26%; }
+    .palo-ledger-wrap .palo-table tbody th { color: var(--palo-ink); background: #eef3f5; }
+    .palo-ledger-wrap .palo-table tbody tr:nth-child(even) td { background: #fafcfc; }
+    .palo-ledger-wrap code, .palo-maturity-table code { font-size: .83em; overflow-wrap: anywhere; }
+    .palo-observation-date { margin: 14px 0 0; padding-left: 14px; color: var(--palo-muted); border-left: 3px solid var(--palo-gold); font-size: .88rem; }
+    .palo-negative-tests { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--palo-line); }
+    .palo-negative-tests li { display: grid; grid-template-columns: 58px minmax(0, 1fr) minmax(230px, .42fr); gap: 20px; align-items: start; padding: 20px 0; border-bottom: 1px solid var(--palo-line); }
+    .palo-negative-tests .palo-test-index { color: var(--palo-gold-ink); font: 850 1rem/1.4 ui-monospace, SFMono-Regular, Consolas, monospace; }
+    .palo-negative-tests p { margin: 0; color: var(--palo-ink-soft); }
+    .palo-source-links { display: flex; flex-direction: column; align-items: flex-start; gap: 5px; }
+    .palo-source-links a { min-height: 36px; display: inline-flex; align-items: center; font-size: .78rem; font-weight: 800; overflow-wrap: anywhere; }
+    .palo-digest-list { display: grid; grid-template-columns: minmax(190px, .35fr) minmax(0, 1fr); margin: 26px 0 0; border-top: 1px solid var(--palo-line); }
+    .palo-digest-list dt, .palo-digest-list dd { min-width: 0; margin: 0; padding: 14px 16px; border-bottom: 1px solid var(--palo-line); }
+    .palo-digest-list dt { color: var(--palo-ink); background: #eef3f5; font-size: .8rem; font-weight: 850; }
+    .palo-digest-list dd { background: var(--palo-white); overflow-wrap: anywhere; }
+    .palo-digest-list code { color: var(--palo-ink-soft); font-size: .82rem; word-break: break-all; }
+    .palo-boundary { margin-top: 26px; padding: 20px 22px; color: var(--palo-ink-soft); background: #fffaf0; border: 1px solid #ecd49e; border-left: 5px solid var(--palo-gold); }
+    .palo-boundary strong { color: var(--palo-ink); }
+    .palo-reproduction { display: grid; grid-template-columns: minmax(0, .88fr) minmax(360px, 1.12fr); gap: 30px; align-items: start; }
+    .palo-reproduction ol { margin: 18px 0 0; padding-left: 24px; }
+    .palo-reproduction li { margin-bottom: 10px; padding-left: 6px; color: var(--palo-ink-soft); }
+    .palo-code-block { width: 100%; max-width: 100%; margin: 0; padding: 22px; overflow: auto; color: #e9f2f3; background: var(--palo-teal-dark); border-top: 5px solid var(--palo-gold); font: .88rem/1.7 ui-monospace, SFMono-Regular, Consolas, monospace; white-space: pre; }
+    .palo-source-index { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px; margin-top: 24px; background: var(--palo-line); border: 1px solid var(--palo-line); }
+    .palo-source-index a { min-width: 0; min-height: 66px; padding: 13px; color: var(--palo-teal-dark); background: var(--palo-white); font-size: .78rem; font-weight: 850; overflow-wrap: anywhere; }
+    .palo-maturity-wrap .palo-table { min-width: 880px; }
+    .palo-maturity-table th:first-child { width: 19%; }
+    .palo-maturity-table th:nth-child(2) { width: 38%; }
+    .palo-maturity-table th:nth-child(3) { width: 43%; }
+    .palo-maturity-table tbody th { color: var(--palo-ink); background: #eef3f5; }
+    .palo-disclosure { max-width: 960px; padding: 26px 28px; color: var(--palo-ink-soft); background: var(--palo-white); border: 1px solid var(--palo-line); border-top: 5px solid var(--palo-teal); box-shadow: var(--palo-shadow); }
+    .palo-disclosure p { margin: 0; }
+    .palo-plain-links { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 24px; }
+    .palo-plain-links a { display: inline-flex; align-items: center; min-height: 44px; font-weight: 800; }
+    .palo-verification-page .palo-footer p { max-width: 800px; }
+    @media (max-width: 980px) {
+      .palo-record-nav ol { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+      .palo-record-nav li:nth-child(4) { border-right: 0; }
+      .palo-record-nav li:nth-child(-n+4) { border-bottom: 1px solid var(--palo-line); }
+      .palo-baseline-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .palo-reproduction { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 720px) {
+      .palo-verification-page .palo-compact-hero { background: var(--palo-surface); }
+      .palo-verification-page .palo-compact-hero .palo-shell::before { display: none; }
+      .palo-record-nav ol { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .palo-record-nav li, .palo-record-nav li:nth-child(4) { border-right: 1px solid var(--palo-line); border-bottom: 1px solid var(--palo-line); }
+      .palo-record-nav li:nth-child(even) { border-right: 0; }
+      .palo-record-nav li:last-child { grid-column: 1 / -1; border-right: 0; }
+      .palo-record-nav a { min-height: 68px; }
+      .palo-section-heading { grid-template-columns: 44px minmax(0, 1fr); gap: 14px; }
+      .palo-section-index { width: 42px; height: 42px; }
+      .palo-baseline-grid { grid-template-columns: 1fr; }
+      .palo-negative-tests li { grid-template-columns: 40px minmax(0, 1fr); gap: 12px; }
+      .palo-negative-tests .palo-source-links { grid-column: 2; }
+      .palo-digest-list { grid-template-columns: 1fr; }
+      .palo-digest-list dt { padding-bottom: 6px; border-bottom: 0; }
+      .palo-digest-list dd { padding-top: 6px; }
+      .palo-source-index { grid-template-columns: 1fr 1fr; }
+      .palo-actions, .palo-actions .palo-btn { width: 100%; }
+      .palo-actions .palo-btn { white-space: normal; }
+    }
+    @media (max-width: 420px) {
+      .palo-record-nav ol, .palo-source-index { grid-template-columns: 1fr; }
+      .palo-record-nav li, .palo-record-nav li:nth-child(even), .palo-record-nav li:last-child { grid-column: auto; border-right: 0; }
+      .palo-section-heading { display: block; }
+      .palo-section-index { margin-bottom: 12px; }
+      .palo-code-block { padding: 16px; font-size: .78rem; }
+      .palo-disclosure { padding: 20px; }
+    }
+    @media print {
+      .palo-record-nav { display: none; }
+      .palo-verification-page .palo-compact-hero { background: #fff; }
+      .palo-table-wrap { overflow: visible; }
+      .palo-ledger-wrap .palo-table, .palo-maturity-wrap .palo-table { min-width: 0; font-size: 8pt; }
+      .palo-record-section { break-inside: avoid; }
+    }
+  </style>
+  <script src="assets/palo-icons.js" defer></script>
+  <script src="assets/palo-v21.js?v=3.1.0" defer></script>
+  <script src="assets/palo-docs.js" defer></script>
+</head>
+<body class="palo-v21 palo-verification-page">
+  <a class="palo-skip-link" href="#main-content">Skip to main content</a>
+
+  <header class="palo-site-header">
+    <div class="palo-shell palo-header-inner">
+      <a class="palo-brand" href="index.html"><img src="assets/logo.webp" alt="PALO">PALO FRAMEWORK</a>
+      <button class="palo-menu-toggle" type="button" data-palo-menu-toggle aria-expanded="false" aria-controls="palo-primary-nav" aria-label="Open navigation"><span data-palo-icon="menu" aria-hidden="true"></span></button>
+      <nav class="palo-nav" id="palo-primary-nav" aria-label="Primary navigation">
+        <a href="designs/theory-to-practice-infographic/#onboarding">Start</a>
+        <a href="PALO_AIGovernance.html">Agentic Governance</a>
+        <a href="governance-hub/">Governance Hub</a>
+        <a href="index.html#guided-journeys">Tools</a>
+        <a href="PALO_DocumentationLibrary.html">Documentation</a>
+        <a href="PALO_AIProductionReadiness.html">Readiness</a>
+      </nav>
+    </div>
+  </header>
+
+  <aside class="palo-ai-status-rail" aria-label="PALO-AI assurance status">
+    <div class="palo-shell">
+      <span>v2.7 Developer Preview</span>
+      <a href="PALO_AgenticCapabilityMatrix.html">Capability Matrix</a>
+      <a href="PALO_AIProductionReadiness.html">Production Readiness</a>
+      <a href="security-policy.html">Security boundary</a>
+      <a href="PALO_VerificationNote.html" aria-current="page">Release record</a>
+    </div>
+  </aside>
+
+  <main id="main-content" class="palo-main">
+    <section class="palo-hero palo-compact-hero">
+      <div class="palo-shell">
+        <p class="palo-eyebrow">Release record | 25 August 2026</p>
+        <h1>PALO 3.1 and PALO-AI 2.7 release verification record</h1>
+        <p>This page records the source revision, automated validation results, published artifacts and current maturity limits for the PALO 3.1 and PALO-AI 2.7 public baseline dated 25 August 2026.</p>
+        <div class="palo-note"><strong>Scope:</strong> This record reports repository artifacts and automated checks. It is not an independent security assessment, certification, legal determination, compliance conclusion or production authorization.</div>
+        <div class="palo-actions">
+          <a class="palo-btn" href="https://github.com/sev7enITA/PALOframework/actions/runs/32828014857">GitHub Actions run 32828014857</a>
+          <a class="palo-btn palo-btn-secondary" href="https://github.com/sev7enITA/PALOframework/pull/29">Pull request #29</a>
+          <a class="palo-btn palo-btn-secondary" href="release-manifest.json">Release manifest</a>
+          <a class="palo-btn palo-btn-secondary" href="PALO_AIProductionReadiness.html">Production readiness</a>
+        </div>
+      </div>
+    </section>
+
+    <nav class="palo-record-nav" aria-label="Release record sections">
+      <ol class="palo-shell">
+        <li><a href="#baseline"><b>01</b>Baseline identity</a></li>
+        <li><a href="#automated-results"><b>02</b>Automated results</a></li>
+        <li><a href="#negative-tests"><b>03</b>Negative tests</a></li>
+        <li><a href="#artifacts"><b>04</b>Artifacts and digests</a></li>
+        <li><a href="#reproduction"><b>05</b>Reproduction</a></li>
+        <li><a href="#maturity"><b>06</b>Maturity limits</a></li>
+        <li><a href="#method"><b>07</b>Development method</a></li>
+      </ol>
+    </nav>
+
+    <section class="palo-section palo-record-section" id="baseline">
+      <div class="palo-shell">
+        <div class="palo-section-heading">
+          <span class="palo-section-index" aria-hidden="true">01</span>
+          <div><h2>Baseline identity</h2><p>Version, revision and merge references used for the observations on this page.</p></div>
+        </div>
+        <dl class="palo-baseline-grid">
+          <div>
+            <dt>PALO Web</dt>
+            <dd>3.1.0<small>Released 23 August 2026</small></dd>
+          </div>
+          <div>
+            <dt>PALO-AI</dt>
+            <dd>2.7.0<small>Developer preview | 25 August 2026</small></dd>
+          </div>
+          <div>
+            <dt>Baseline commit</dt>
+            <dd><a href="https://github.com/sev7enITA/PALOframework/commit/a8673d2a472108c7b1d8a056c3a6af9962687bee"><code>a8673d2a472108c7b1d8a056c3a6af9962687bee</code></a></dd>
+          </div>
+          <div>
+            <dt>Pull request</dt>
+            <dd><a href="https://github.com/sev7enITA/PALOframework/pull/29">#29</a><small>Merged 25 August 2026 | <a href="https://github.com/sev7enITA/PALOframework/actions/runs/32828014857">CI run</a></small></dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="palo-section palo-record-section" id="automated-results">
+      <div class="palo-shell">
+        <div class="palo-section-heading">
+          <span class="palo-section-index" aria-hidden="true">02</span>
+          <div><h2>Automated verification results</h2><p>Each row separates the method, observed baseline result, supported interpretation and excluded interpretation.</p></div>
+        </div>
+        <div class="palo-table-wrap palo-ledger-wrap" tabindex="0" aria-label="Automated verification results; scroll horizontally on small screens">
+          <table class="palo-table">
+            <caption class="palo-small">Observations from commit <code>a8673d2</code> and the named queries on 25 August 2026.</caption>
+            <thead>
+              <tr>
+                <th scope="col">Area</th>
+                <th scope="col">Method</th>
+                <th scope="col">Baseline result</th>
+                <th scope="col">What it establishes</th>
+                <th scope="col">What it does not establish</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Agentic contracts and policy</th>
+                <td><code>npm run validate:agentic</code></td>
+                <td>21 contracts; 38 MCP tools; OPA compile and policy tests passed</td>
+                <td>The pinned contract set was parsed and checked, the MCP tool inventory was counted, and the bundled OPA policy compiled and passed its automated tests.</td>
+                <td>Organization-specific production-policy ownership or connector non-bypassability.</td>
+              </tr>
+              <tr>
+                <th scope="row">Runtime tests</th>
+                <td><code>npm run validate:agentic</code></td>
+                <td>68 Node tests passed; 3 Dify tests passed</td>
+                <td>The tested reference-runtime and Dify integration paths returned their expected results on the named baseline.</td>
+                <td>Independent penetration testing, multi-replica behavior or production operating effectiveness.</td>
+              </tr>
+              <tr>
+                <th scope="row">Authoring source</th>
+                <td><code>npm run validate</code></td>
+                <td>37 source HTML files; 31 controls; 38 indicators; 6 gates; 11 sources; 6 cases; 5 templates</td>
+                <td>The configured authoring-source inventories and structural validations completed for the named baseline.</td>
+                <td>Certification, legal completeness or adopter implementation.</td>
+              </tr>
+              <tr>
+                <th scope="row">Publication build</th>
+                <td><code>npm run build</code><br><code>npm run validate:dist</code><br><code>npm run build:check</code></td>
+                <td>321 allowlisted source files; 95 built HTML files; exact dist inventory of 391 files</td>
+                <td>The build used the configured allowlist and the resulting distribution matched the expected inventory for this baseline.</td>
+                <td>Equivalence with a later uncommitted or independently rebuilt artifact.</td>
+              </tr>
+              <tr>
+                <th scope="row">Browser smoke</th>
+                <td><code>npm run smoke</code></td>
+                <td>94 public HTML pages plus named evidence, Platform Map, Library, Governance Hub and responsive flows</td>
+                <td>The named pages and flows loaded and met the scripted smoke assertions in the test environment.</td>
+                <td>Exhaustive browser, accessibility or usability coverage.</td>
+              </tr>
+              <tr>
+                <th scope="row">GitHub Actions</th>
+                <td><a href="https://github.com/sev7enITA/PALOframework/actions/runs/32828014857">Workflow run 32828014857</a></td>
+                <td>Run 32828014857 completed successfully; windows-build, build and deploy jobs passed</td>
+                <td>The pinned hosted workflow recorded successful completion for all three named jobs.</td>
+                <td>External audit or production deployment assurance.</td>
+              </tr>
+              <tr>
+                <th scope="row">GitHub dependency alerts</th>
+                <td>GitHub Dependabot and secret-scanning API queries</td>
+                <td>0 open Dependabot alerts and 0 open secret-scanning alerts when queried on 25 August 2026</td>
+                <td>The GitHub APIs returned no open alerts in those two categories at query time.</td>
+                <td>Absence of vulnerabilities. The repository has no CodeQL analysis result; the API returned <code>no analysis found</code>.</td>
+              </tr>
+              <tr>
+                <th scope="row">Package-lock audits</th>
+                <td><code>npm audit --package-lock-only</code> against the named locks</td>
+                <td>0 vulnerabilities reported by npm audit --package-lock-only for root, Governance Hub, n8n runtime package and isolated n8n tooling locks on 25 August 2026</td>
+                <td>The npm advisory service reported no matched vulnerability for dependencies resolved by those lockfiles at query time.</td>
+                <td>Source-code security, exploitability analysis or future dependency status.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="palo-observation-date">All numerical results are dated observations for the named revision or query. They are not continuous guarantees about later commits, deployments or advisory data.</p>
+      </div>
+    </section>
+
+    <section class="palo-section palo-record-section" id="negative-tests">
+      <div class="palo-shell">
+        <div class="palo-section-heading">
+          <span class="palo-section-index" aria-hidden="true">03</span>
+          <div><h2>Negative-test coverage</h2><p>Selected denial, invalidation, replay and tenant-isolation cases present in the pinned test sources.</p></div>
+        </div>
+        <ol class="palo-negative-tests">
+          <li>
+            <span class="palo-test-index" aria-hidden="true">T01</span>
+            <p>Authority Context 1.4 rejects untrusted issuers and delegation windows that do not cover the live claim.</p>
+            <span class="palo-source-links"><a href="https://github.com/sev7enITA/PALOframework/blob/a8673d2a472108c7b1d8a056c3a6af9962687bee/packages/palo-mcp-server/data-assurance.test.js#L226">data-assurance.test.js:226</a></span>
+          </li>
+          <li>
+            <span class="palo-test-index" aria-hidden="true">T02</span>
+            <p>Cached authority is revalidated instead of returning a prior allow.</p>
+            <span class="palo-source-links"><a href="https://github.com/sev7enITA/PALOframework/blob/a8673d2a472108c7b1d8a056c3a6af9962687bee/packages/palo-mcp-server/assurance.test.js#L102">assurance.test.js:102</a></span>
+          </li>
+          <li>
+            <span class="palo-test-index" aria-hidden="true">T03</span>
+            <p>Continuous-assurance signals invalidate Data Fitness and revoke matching unused capabilities.</p>
+            <span class="palo-source-links"><a href="https://github.com/sev7enITA/PALOframework/blob/a8673d2a472108c7b1d8a056c3a6af9962687bee/packages/palo-mcp-server/data-assurance.test.js#L298">data-assurance.test.js:298</a></span>
+          </li>
+          <li>
+            <span class="palo-test-index" aria-hidden="true">T04</span>
+            <p>OIDC tenant binding covers Action Claim 1.3 and 1.4 tenant locations.</p>
+            <span class="palo-source-links"><a href="https://github.com/sev7enITA/PALOframework/blob/a8673d2a472108c7b1d8a056c3a6af9962687bee/packages/palo-mcp-server/production-admission.test.js#L28">production-admission.test.js:28</a></span>
+          </li>
+          <li>
+            <span class="palo-test-index" aria-hidden="true">T05</span>
+            <p>Replayed disclosure observations and post-effect disclosure-receipt failures open held/inconclusive incidents without persistent row payloads.</p>
+            <span class="palo-source-links"><a href="https://github.com/sev7enITA/PALOframework/blob/a8673d2a472108c7b1d8a056c3a6af9962687bee/packages/palo-mcp-server/data-assurance.test.js#L263">data-assurance.test.js:263</a><a href="https://github.com/sev7enITA/PALOframework/blob/a8673d2a472108c7b1d8a056c3a6af9962687bee/packages/palo-mcp-server/data-assurance.test.js#L289">data-assurance.test.js:289</a></span>
+          </li>
+          <li>
+            <span class="palo-test-index" aria-hidden="true">T06</span>
+            <p>Tenant-aware incident lookup excludes unscoped legacy records from OIDC results.</p>
+            <span class="palo-source-links"><a href="https://github.com/sev7enITA/PALOframework/blob/a8673d2a472108c7b1d8a056c3a6af9962687bee/packages/palo-mcp-server/data-assurance.test.js#L329">data-assurance.test.js:329</a></span>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="palo-section palo-record-section" id="artifacts">
+      <div class="palo-shell">
+        <div class="palo-section-heading">
+          <span class="palo-section-index" aria-hidden="true">04</span>
+          <div><h2>Published artifacts and checksums</h2><p>The tagged web archive and later main-branch baseline have different identities. Their digests are recorded separately.</p></div>
+        </div>
+
+        <h3>Tagged PALO Web v3.1.0 Hostinger archive</h3>
+        <p class="palo-lead">The public tagged PALO Web v3.1.0 Hostinger archive belongs to commit <a href="https://github.com/sev7enITA/PALOframework/commit/b79fc1056d7e403698ffe2381a97dd689a8d8111"><code>b79fc1056d7e403698ffe2381a97dd689a8d8111</code></a>.</p>
+        <dl class="palo-digest-list">
+          <dt>Filename</dt><dd><code>PALO-Hostinger-3.1.0.zip</code></dd>
+          <dt>SHA-256</dt><dd><code>f33b272414a6df25eb0b7a6933eb32ab155ee6e546b1de66e8ed17b22ca6aa2b</code></dd>
+          <dt>Size</dt><dd>57,407,719 bytes</dd>
+        </dl>
+        <div class="palo-boundary"><strong>Artifact boundary:</strong> The later main-branch PALO-AI 2.7 and site changes are not the same artifact as the tagged v3.1.0 archive. A rebuilt current-site archive must be published under a distinct release identity and checksum. This page therefore does not present a local unpublished archive as the historical tagged artifact.</div>
+
+        <h3 style="margin-top:36px">Pinned main-branch baseline files</h3>
+        <p class="palo-lead">The following two digests were calculated from commit <code>a8673d2</code> before publication of this verification page. They do not hash a future deployment that contains this page.</p>
+        <dl class="palo-digest-list">
+          <dt><code>release-manifest.json</code></dt><dd><code>0b1824b8a12f2dc43b6ac9b5d723565f0f16cb66214b56aff3b0b5406de54716</code></dd>
+          <dt>Root <code>package-lock.json</code></dt><dd><code>1f4b02211bf9f7ee12514a896fa7341eb8b436ddb73aa1b7813da9f1c1da513b</code></dd>
+        </dl>
+      </div>
+    </section>
+
+    <section class="palo-section palo-record-section" id="reproduction">
+      <div class="palo-shell">
+        <div class="palo-section-heading">
+          <span class="palo-section-index" aria-hidden="true">05</span>
+          <div><h2>Independent reproduction</h2><p>Commands and environment prerequisites for running the repository P0 sequence at the pinned revision.</p></div>
+        </div>
+        <div class="palo-reproduction">
+          <div>
+            <h3>Prerequisites</h3>
+            <ol>
+              <li>Node 22 and npm</li>
+              <li>Python 3</li>
+              <li>Network access for pinned dependencies</li>
+              <li>A Chromium-capable environment</li>
+            </ol>
+            <p><code>npm run p0</code> installs the Governance Hub lockfile, checksum-verifies OPA, validates contracts, policies, runtime, connectors and authoring source, builds deterministic <code>dist</code>, checks its exact inventory and runs browser smoke.</p>
+          </div>
+          <pre class="palo-code-block" tabindex="0" aria-label="Shell commands for pinned baseline reproduction"><code>git clone https://github.com/sev7enITA/PALOframework.git
+cd PALOframework
+git checkout a8673d2a472108c7b1d8a056c3a6af9962687bee
+npm ci
+npm run p0</code></pre>
+        </div>
+        <div class="palo-source-index" aria-label="Pinned validation source files">
+          <a href="https://github.com/sev7enITA/PALOframework/blob/a8673d2a472108c7b1d8a056c3a6af9962687bee/.github/workflows/deploy.yml">.github/workflows/deploy.yml</a>
+          <a href="https://github.com/sev7enITA/PALOframework/blob/a8673d2a472108c7b1d8a056c3a6af9962687bee/scripts/validate-agentic.mjs">scripts/validate-agentic.mjs</a>
+          <a href="https://github.com/sev7enITA/PALOframework/blob/a8673d2a472108c7b1d8a056c3a6af9962687bee/scripts/build.mjs">scripts/build.mjs</a>
+          <a href="https://github.com/sev7enITA/PALOframework/blob/a8673d2a472108c7b1d8a056c3a6af9962687bee/scripts/browser-smoke.mjs">scripts/browser-smoke.mjs</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="palo-section palo-record-section" id="maturity">
+      <div class="palo-shell">
+        <div class="palo-section-heading">
+          <span class="palo-section-index" aria-hidden="true">06</span>
+          <div><h2>Current maturity limits</h2><p>Repository state and the additional production evidence identified for each area.</p></div>
+        </div>
+        <div class="palo-table-wrap palo-maturity-wrap" tabindex="0" aria-label="Current maturity limits; scroll horizontally on small screens">
+          <table class="palo-table palo-maturity-table">
+            <thead><tr><th scope="col">Area</th><th scope="col">Current repository state</th><th scope="col">Required production evidence</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Capabilities</th><td>40 tracked capabilities; 5 implemented, 28 prototype, 7 specified, 0 production-ready.</td><td>Deployment-specific implementation, operating-effectiveness results and accountable admission records for every applicable capability.</td></tr>
+              <tr><th scope="row">Reference persistence</th><td>SQLite, single instance, in-process recovery.</td><td>Production database, high availability, durable work, backup/restore and RPO/RTO evidence.</td></tr>
+              <tr><th scope="row">Keys</th><td>Process-held/HMAC reference mechanisms.</td><td>KMS/HSM, rotation, revocation and custody separation.</td></tr>
+              <tr><th scope="row">Tenancy</th><td>Token/claim checks exist; no storage-level multi-tenant isolation.</td><td>Tenant-separated storage, encryption and negative isolation assurance.</td></tr>
+              <tr><th scope="row">Connectors</th><td>Reference in-process connectors and assertions.</td><td>Isolated, allowlisted or remotely attested non-bypass connectors.</td></tr>
+              <tr><th scope="row">Exactly-once</th><td>Not universally claimed.</td><td>Distributed coordination, idempotency and failure/recovery evidence.</td></tr>
+              <tr><th scope="row">Evidence</th><td>Selected tamper detection within the same host/key boundary.</td><td>Independent anchoring or custody and external assessment.</td></tr>
+              <tr><th scope="row">Operations</th><td>Incident lifecycle prototype.</td><td>Enterprise incident operations, SIEM, retention/legal hold and tested recovery.</td></tr>
+              <tr><th scope="row">Assurance</th><td>No independent production security or cryptographic assessment is bundled.</td><td>Independent assessment with documented scope, findings, remediation, retest and accountable residual-risk decisions.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="palo-plain-links" aria-label="Maturity and security references">
+          <a href="PALO_AgenticCapabilityMatrix.html">Capability Matrix</a>
+          <a href="PALO_AIProductionReadiness.html">Production Readiness</a>
+          <a href="SECURITY.html">Security overview</a>
+          <a href="security-policy.html">Security policy</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="palo-section palo-record-section" id="method">
+      <div class="palo-shell">
+        <div class="palo-section-heading">
+          <span class="palo-section-index" aria-hidden="true">07</span>
+          <div><h2>Development-method disclosure</h2><p>Scope of the authorship information recorded by repository history and by this page.</p></div>
+        </div>
+        <div class="palo-disclosure">
+          <p>The repository has been developed with AI-assisted engineering and documentation tools under human direction and review, alongside conventional development, testing and version-control tooling. Commit history records repository authorship and change integration; it does not demonstrate that every task was performed without assistance. This verification record evaluates published artifacts and automated checks, not unaided authorship.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="palo-footer">
+    <div class="palo-shell">
+      <p>Release record for the PALO 3.1 and PALO-AI 2.7 public baseline dated 25 August 2026.</p>
+      <div class="palo-footer-links">
+        <a href="CHANGELOG.html">Changelog</a>
+        <a href="release-manifest.json">Release manifest</a>
+        <a href="PALO_PlatformMap.html">Platform Map</a>
+        <a href="PALO_AgenticCapabilityMatrix.html">Capability Matrix</a>
+        <a href="PALO_AIProductionReadiness.html">Production Readiness</a>
+        <a href="security-policy.html">Security</a>
+        <a href="accessibility.html">Accessibility</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

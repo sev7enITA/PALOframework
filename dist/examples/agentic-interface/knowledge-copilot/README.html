@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>PALO Knowledge Copilot client examples | PALO Documentation</title>
+  <meta name="description" content="Public PALO documentation: PALO Knowledge Copilot client examples.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://paloframework.org/examples/agentic-interface/knowledge-copilot/README.html">
+  <link rel="icon" type="image/webp" href="../../../assets/logo.webp">
+  <link rel="stylesheet" href="../../../assets/palo-icons.css">
+  <link rel="stylesheet" href="../../../assets/palo-v21.css?v=3.1.0">
+  <link rel="stylesheet" href="../../../assets/palo-docs.css">
+  <script src="../../../assets/palo-icons.js" defer></script>
+  <script src="../../../assets/palo-v21.js?v=3.1.0" defer></script>
+  <script src="../../../assets/palo-docs.js" defer></script>
+</head>
+<body class="palo-v21 palo-doc-page" data-doc-source="examples/agentic-interface/knowledge-copilot/README.md">
+  <a class="palo-skip-link" href="#main-content">Skip to main content</a>
+  <header class="palo-site-header"><div class="palo-shell palo-header-inner">
+    <a class="palo-brand" href="../../../index.html"><img src="../../../assets/logo.webp" alt="PALO">PALO FRAMEWORK</a>
+    <button class="palo-menu-toggle" type="button" data-palo-menu-toggle aria-expanded="false" aria-controls="palo-primary-nav" aria-label="Open navigation"><span data-palo-icon="menu" aria-hidden="true"></span></button>
+    <nav class="palo-nav" id="palo-primary-nav" aria-label="Primary navigation"><a href="../../../designs/theory-to-practice-infographic/">Start</a><a href="../../../PALO_AIGovernance.html">Agentic Governance</a><a href="../../../governance-hub/">Governance Hub</a><a href="../../../index.html#guided-journeys">Tools</a><a href="../../../PALO_DocumentationLibrary.html" aria-current="page">Documentation</a><a href="../../../PALO_AIProductionReadiness.html">Readiness</a></nav>
+  </div></header>
+  <main id="main-content" class="palo-doc-main">
+    <div class="palo-shell">
+      <nav class="palo-doc-breadcrumb" aria-label="Breadcrumb"><a href="../../../PALO_DocumentationLibrary.html">Documentation Library</a><span aria-hidden="true">/</span><span>Templates and examples</span></nav>
+      <header class="palo-doc-hero"><p class="palo-eyebrow">Templates and examples | Public documentation</p><h1>PALO Knowledge Copilot client examples</h1><div class="palo-doc-facts"><span><small>Level</small><strong>guide</strong></span><span><small>Audience</small><strong>governance | technical | builder</strong></span><span><small>Product</small><strong>PALO-AI</strong></span><span><small>Status</small><strong>Current Guidance</strong></span><span><small>Lifecycle</small><strong>Current</strong></span><span><small>Read</small><strong>2 min</strong></span></div><p class="palo-doc-source">Published HTML view | Source: <code>examples/agentic-interface/knowledge-copilot/README.md</code></p><div class="palo-actions"><button class="palo-btn" type="button" data-doc-copy-link>Copy link</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-share>Share page</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-print>Print</button></div><p class="palo-action-status" data-doc-action-status role="status" aria-live="polite"></p></header>
+      <details class="palo-doc-mobile-toc"><summary>On this page</summary><ol><li class="depth-2"><a href="#artifact-disponibili">Artifact disponibili</a></li><li class="depth-2"><a href="#verifica">Verifica</a></li></ol></details>
+      <div class="palo-doc-layout"><aside class="palo-doc-sidebar" aria-label="On this page"><strong>On this page</strong><ol><li class="depth-2"><a href="#artifact-disponibili">Artifact disponibili</a></li><li class="depth-2"><a href="#verifica">Verifica</a></li></ol></aside><article class="palo-doc-content"><h1 id="palo-knowledge-copilot-client-examples">PALO Knowledge Copilot client examples<a class="palo-doc-anchor" href="#palo-knowledge-copilot-client-examples" aria-label="Link to PALO Knowledge Copilot client examples">#</a></h1><p>Questa directory raccoglie configurazioni e worksheet per collegare host MCP ai due profili PALO dedicati alla knowledge base.</p>
+<div class="palo-doc-table-wrap" tabindex="0" aria-label="Scrollable documentation table"><table>
+<thead>
+<tr>
+<th>Profilo</th>
+<th>Endpoint canonico</th>
+<th>Alias compatibile</th>
+<th align="right">Catalogo</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Reader</td>
+<td><code>/mcp-guide</code></td>
+<td><code>/mcp-guide/mcp</code></td>
+<td align="right">6 strumenti read-only</td>
+</tr>
+<tr>
+<td>Curator</td>
+<td><code>/mcp-guide-curator</code></td>
+<td><code>/mcp-guide-curator/mcp</code></td>
+<td align="right">10 strumenti, inclusi draft e review controllati</td>
+</tr>
+</tbody></table></div>
+<p>Il Reader remoto è un servizio dedicato <code>production-candidate</code>: stateless, OIDC-only in production, senza volume e limitato al bundle canonico verificato. Diventa <code>production-qualified</code> solo dopo i <a href="../../../docs/palo-knowledge-reader-production.html">gate live</a>. Il Curator conserva un diverso boundary e non eredita automaticamente questo stato.</p>
+<h2 id="artifact-disponibili">Artifact disponibili<a class="palo-doc-anchor" href="#artifact-disponibili" aria-label="Link to Artifact disponibili">#</a></h2><div class="palo-doc-table-wrap" tabindex="0" aria-label="Scrollable documentation table"><table>
+<thead>
+<tr>
+<th>Host</th>
+<th>Reader</th>
+<th>Curator</th>
+<th>Nota</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Copilot Studio</td>
+<td><code>copilot-studio-reader.openapi.yaml</code></td>
+<td><code>copilot-studio-curator.openapi.yaml</code></td>
+<td>OpenAPI per il wizard Streamable HTTP</td>
+</tr>
+<tr>
+<td>Claude</td>
+<td>skill condivisa in <code>skills/palo-knowledge-copilot</code></td>
+<td>stessa skill</td>
+<td>Il remote connector si configura nell'interfaccia Claude</td>
+</tr>
+<tr>
+<td>ChatGPT/Codex</td>
+<td><code>codex-reader.config.toml</code>, <code>openai-reader.responses-tool.json</code></td>
+<td><code>codex-curator.config.toml</code>, <code>openai-curator.responses-tool.json</code></td>
+<td>Codex e Responses API sono percorsi distinti</td>
+</tr>
+<tr>
+<td>GitHub Copilot</td>
+<td><code>github-copilot-reader.mcp.json</code></td>
+<td><code>github-copilot-curator.mcp.json</code></td>
+<td>Sostituire il placeholder usando un secret store locale</td>
+</tr>
+<tr>
+<td>VS Code</td>
+<td><code>vscode-reader.mcp.json</code></td>
+<td><code>vscode-curator.mcp.json</code></td>
+<td>Token acquisito tramite input protetto</td>
+</tr>
+<tr>
+<td>Cursor</td>
+<td><code>cursor-reader.mcp.json</code></td>
+<td><code>cursor-curator.mcp.json</code></td>
+<td>Configurazione HTTP con OAuth</td>
+</tr>
+<tr>
+<td>Gemini CLI</td>
+<td><code>gemini-reader.settings.json</code></td>
+<td><code>gemini-curator.settings.json</code></td>
+<td>OAuth dynamic discovery e allowlist esatta</td>
+</tr>
+<tr>
+<td>JetBrains</td>
+<td><code>jetbrains-reader.mcp.json</code></td>
+<td><code>jetbrains-curator.mcp.json</code></td>
+<td>URL verificato; autenticazione da collaudare nella build target</td>
+</tr>
+<tr>
+<td>AWS AgentCore</td>
+<td><code>aws-agentcore-reader-target.worksheet.json</code></td>
+<td><code>aws-agentcore-curator-target.worksheet.json</code></td>
+<td>Worksheet, non import diretto</td>
+</tr>
+<tr>
+<td>n8n</td>
+<td><code>n8n-reader.node.json</code></td>
+<td><code>n8n-curator.node.json</code></td>
+<td>MCP Client Tool v1.4+, Streamable HTTP forzato</td>
+</tr>
+<tr>
+<td>Dify</td>
+<td><code>dify-reader.provider.worksheet.json</code></td>
+<td><code>dify-curator.provider.worksheet.json</code></td>
+<td>Worksheet, non import diretto; usare l'alias che termina in <code>/mcp</code></td>
+</tr>
+</tbody></table></div>
+<p><code>host-conformance.json</code> è la fonte machine-readable per stato, fonti ufficiali, trasporto, autenticazione e artifact. I worksheet dichiarati <code>importable: false</code> devono essere tradotti nel wizard o nell'API della versione effettivamente installata.</p>
+<p>Non inserire token nei file. Le stringhe <code>REPLACE_*</code> sono placeholder intenzionali; i valori reali devono arrivare da secret store, variabili d'ambiente protette o dal wizard OAuth dell'host.</p>
+<h2 id="verifica">Verifica<a class="palo-doc-anchor" href="#verifica" aria-label="Link to Verifica">#</a></h2><figure class="palo-doc-code"><figcaption>bash code</figcaption><pre tabindex="0"><code class="language-bash">npm run validate:knowledge-copilot
+npm run validate:knowledge-reader</code></pre></figure><p>La guida completa è <a href="../../../docs/palo-knowledge-copilot-integrations.html"><code>docs/palo-knowledge-copilot-integrations.md</code></a>; la prova live segue <a href="../../../docs/palo-mcp-host-qualification.html"><code>docs/palo-mcp-host-qualification.md</code></a>.</p>
+</article></div>
+      <aside class="palo-doc-next"><div><small>Prerequisite</small><strong>No specialist prerequisite stated</strong></div><div><small>Recommended next step</small><strong>Return to the Documentation Library</strong></div></aside>
+      <section class="palo-doc-feedback" aria-labelledby="feedback-title"><p class="palo-eyebrow">Privacy-first feedback</p><h2 id="feedback-title">Help improve this guide</h2><p>Your feedback stays in your browser until you explicitly copy it, download it, or open an email draft. Do not include secrets, personal data, credentials or production identifiers.</p><form data-doc-feedback><div class="palo-form-grid"><div class="palo-field"><label for="feedback-role">Your role</label><select id="feedback-role" name="role"><option>Executive / governance owner</option><option>Platform or security engineer</option><option>No-code / low-code builder</option><option>External reviewer</option></select></div><div class="palo-field"><label for="feedback-category">Category</label><select id="feedback-category" name="category"><option>Clarity</option><option>Technical accuracy</option><option>Missing guidance</option><option>Accessibility</option></select></div><div class="palo-field palo-field-full"><label for="feedback-message">Feedback</label><textarea id="feedback-message" name="message" maxlength="3000" required placeholder="Describe the non-sensitive improvement you recommend."></textarea></div><div class="palo-form-actions"><button class="palo-btn" type="button" data-feedback-copy>Copy feedback</button><button class="palo-btn palo-btn-secondary" type="button" data-feedback-download>Download JSON</button><button class="palo-btn palo-btn-secondary" type="button" data-feedback-email>Email draft</button></div></div><p class="palo-action-status" data-feedback-status role="status" aria-live="polite"></p></form></section>
+    </div>
+  </main>
+  <footer class="palo-footer"><div class="palo-shell"><p>PALO public documentation. Developer preview boundaries apply.</p><div class="palo-footer-links"><a href="../../../PALO_AIGovernance.html">PALO-AI</a><a href="../../../governance-hub/">Governance Hub</a><a href="../../../PALO_AgenticCapabilityMatrix.html">Capability Matrix</a><a href="../../../PALO_AIProductionReadiness.html">Production Readiness</a><a href="../../../privacy-policy.html">Privacy</a></div></div></footer>
+</body></html>

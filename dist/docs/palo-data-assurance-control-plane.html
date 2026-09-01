@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>PALO Data Assurance Control Plane | PALO Documentation</title>
+  <meta name="description" content="Public PALO documentation: PALO Data Assurance Control Plane.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://paloframework.org/docs/palo-data-assurance-control-plane.html">
+  <link rel="icon" type="image/webp" href="../assets/logo.webp">
+  <link rel="stylesheet" href="../assets/palo-icons.css">
+  <link rel="stylesheet" href="../assets/palo-v21.css?v=3.1.0">
+  <link rel="stylesheet" href="../assets/palo-docs.css">
+  <script src="../assets/palo-icons.js" defer></script>
+  <script src="../assets/palo-v21.js?v=3.1.0" defer></script>
+  <script src="../assets/palo-docs.js" defer></script>
+</head>
+<body class="palo-v21 palo-doc-page" data-doc-source="docs/palo-data-assurance-control-plane.md">
+  <a class="palo-skip-link" href="#main-content">Skip to main content</a>
+  <header class="palo-site-header"><div class="palo-shell palo-header-inner">
+    <a class="palo-brand" href="../index.html"><img src="../assets/logo.webp" alt="PALO">PALO FRAMEWORK</a>
+    <button class="palo-menu-toggle" type="button" data-palo-menu-toggle aria-expanded="false" aria-controls="palo-primary-nav" aria-label="Open navigation"><span data-palo-icon="menu" aria-hidden="true"></span></button>
+    <nav class="palo-nav" id="palo-primary-nav" aria-label="Primary navigation"><a href="../designs/theory-to-practice-infographic/">Start</a><a href="../PALO_AIGovernance.html">Agentic Governance</a><a href="../governance-hub/">Governance Hub</a><a href="../index.html#guided-journeys">Tools</a><a href="../PALO_DocumentationLibrary.html" aria-current="page">Documentation</a><a href="../PALO_AIProductionReadiness.html">Readiness</a></nav>
+  </div></header>
+  <main id="main-content" class="palo-doc-main">
+    <div class="palo-shell">
+      <nav class="palo-doc-breadcrumb" aria-label="Breadcrumb"><a href="../PALO_DocumentationLibrary.html">Documentation Library</a><span aria-hidden="true">/</span><span>Start and adoption</span></nav>
+      <header class="palo-doc-hero"><p class="palo-eyebrow">Start and adoption | Public documentation</p><h1>PALO Data Assurance Control Plane</h1><div class="palo-doc-facts"><span><small>Level</small><strong>reference</strong></span><span><small>Audience</small><strong>governance | executive | technical</strong></span><span><small>Product</small><strong>PALO Core</strong></span><span><small>Status</small><strong>Current Guidance</strong></span><span><small>Lifecycle</small><strong>Current</strong></span><span><small>Read</small><strong>6 min</strong></span></div><p class="palo-doc-source">Published HTML view | Source: <code>docs/palo-data-assurance-control-plane.md</code></p><div class="palo-actions"><button class="palo-btn" type="button" data-doc-copy-link>Copy link</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-share>Share page</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-print>Print</button></div><p class="palo-action-status" data-doc-action-status role="status" aria-live="polite"></p></header>
+      <details class="palo-doc-mobile-toc"><summary>On this page</summary><ol><li class="depth-2"><a href="#outcome">Outcome</a></li><li class="depth-2"><a href="#implemented-areas">Implemented areas</a></li><li class="depth-3"><a href="#1-context-bridge-and-external-evidence-references">1. Context Bridge and external evidence references</a></li><li class="depth-3"><a href="#2-deterministic-data-fitness-gate">2. Deterministic Data Fitness Gate</a></li><li class="depth-3"><a href="#3-data-disclosureegress-contract">3. Data Disclosure/Egress Contract</a></li><li class="depth-3"><a href="#4-action-claim-14-and-disclosure-verification">4. Action Claim 1.4 and disclosure verification</a></li><li class="depth-3"><a href="#5-ai-system-amp-agent-registry">5. AI System &amp;amp; Agent Registry</a></li><li class="depth-3"><a href="#6-continuous-assurance-loop">6. Continuous Assurance Loop</a></li><li class="depth-2"><a href="#mcp-surface">MCP surface</a></li><li class="depth-2"><a href="#compliance-logic">Compliance logic</a></li><li class="depth-2"><a href="#security-and-maturity-boundary">Security and maturity boundary</a></li><li class="depth-2"><a href="#verification">Verification</a></li></ol></details>
+      <div class="palo-doc-layout"><aside class="palo-doc-sidebar" aria-label="On this page"><strong>On this page</strong><ol><li class="depth-2"><a href="#outcome">Outcome</a></li><li class="depth-2"><a href="#implemented-areas">Implemented areas</a></li><li class="depth-3"><a href="#1-context-bridge-and-external-evidence-references">1. Context Bridge and external evidence references</a></li><li class="depth-3"><a href="#2-deterministic-data-fitness-gate">2. Deterministic Data Fitness Gate</a></li><li class="depth-3"><a href="#3-data-disclosureegress-contract">3. Data Disclosure/Egress Contract</a></li><li class="depth-3"><a href="#4-action-claim-14-and-disclosure-verification">4. Action Claim 1.4 and disclosure verification</a></li><li class="depth-3"><a href="#5-ai-system-amp-agent-registry">5. AI System &amp;amp; Agent Registry</a></li><li class="depth-3"><a href="#6-continuous-assurance-loop">6. Continuous Assurance Loop</a></li><li class="depth-2"><a href="#mcp-surface">MCP surface</a></li><li class="depth-2"><a href="#compliance-logic">Compliance logic</a></li><li class="depth-2"><a href="#security-and-maturity-boundary">Security and maturity boundary</a></li><li class="depth-2"><a href="#verification">Verification</a></li></ol></aside><article class="palo-doc-content"><h1 id="palo-data-assurance-control-plane">PALO Data Assurance Control Plane<a class="palo-doc-anchor" href="#palo-data-assurance-control-plane" aria-label="Link to PALO Data Assurance Control Plane">#</a></h1><p>Status: PALO-AI v2.7 developer preview. This is an executable reference implementation for isolated testing, not a production authorization boundary, legal determination or compliance certification.</p>
+<h2 id="outcome">Outcome<a class="palo-doc-anchor" href="#outcome" aria-label="Link to Outcome">#</a></h2><p>PALO-AI v2.7 implements the first end-to-end form of the product thesis:</p>
+<blockquote>
+<p>PALO decides what an identified agent may do with current, purpose-fit data and produces signed evidence of the information disclosure and authoritative effect that actually followed.</p>
+</blockquote>
+<p>The new cycle is:</p>
+<figure class="palo-doc-code"><figcaption>text code</figcaption><pre tabindex="0"><code class="language-text">external catalog / observability / source evidence
+                       |
+                       v
+           immutable Context Evidence
+                       |
+                       v
+       purpose-bound Data Fitness Decision
+                       |
+                       v
+       signed Data Disclosure Contract
+                       |
+                       v
+     Action Claim 1.4 + policy + approval
+                       |
+                       v
+ one-time capability + governed executor
+                       |
+                       v
+ Execution Receipt + Disclosure Receipt
+                       |
+                       v
+ authoritative outcome / held incident
+                       ^
+                       |
+       continuous assurance invalidation</code></pre></figure><h2 id="implemented-areas">Implemented areas<a class="palo-doc-anchor" href="#implemented-areas" aria-label="Link to Implemented areas">#</a></h2><h3 id="1-context-bridge-and-external-evidence-references">1. Context Bridge and external evidence references<a class="palo-doc-anchor" href="#1-context-bridge-and-external-evidence-references" aria-label="Link to 1. Context Bridge and external evidence references">#</a></h3><p><code>palo-external-evidence-ref</code> is an immutable, payload-minimized contract. It records:</p>
+<ul>
+<li>external system, object identifier, version and URI;</li>
+<li>subject and tenant;</li>
+<li>normalized quality, freshness, classification, ownership, approval, access, lineage, purpose, lifecycle and incident claims;</li>
+<li>source authority and read-only connector provenance;</li>
+<li>observation/expiry timestamps;</li>
+<li>digest of the source payload.</li>
+</ul>
+<p>The source payload is not persisted in the reference. <code>mapActianContextSnapshot</code> in <code>packages/palo-mcp-server/data-assurance.js</code> is the first normalization profile. It maps an Actian asset snapshot into the generic evidence contract and deliberately discards sample rows. It is not an authenticated Actian API client; credentials, pagination, connector assurance and source-specific API calls remain operator responsibilities.</p>
+<h3 id="2-deterministic-data-fitness-gate">2. Deterministic Data Fitness Gate<a class="palo-doc-anchor" href="#2-deterministic-data-fitness-gate" aria-label="Link to 2. Deterministic Data Fitness Gate">#</a></h3><p><code>palo-data-fitness-policy</code> defines minimum evidence types and requirements for one tenant and subject type. The evaluator supports:</p>
+<ul>
+<li>minimum quality score;</li>
+<li>maximum evidence age;</li>
+<li>verified source authority;</li>
+<li>accountable owner and approval;</li>
+<li>lineage completeness;</li>
+<li>source access state;</li>
+<li>open incident denial;</li>
+<li>prohibited classifications;</li>
+<li>policy and source-permitted purposes;</li>
+<li>explicit <code>deny</code> or <code>review</code> handling for missing evidence.</li>
+</ul>
+<p>The resulting <code>palo-data-fitness-decision</code> is immutable and binds the exact policy version, purpose, subject, evidence references, normalized-claim digest and expiry. Missing evidence never silently passes. Conflicting current assertions are evaluated conservatively: a lower quality score, denied access, missing approval or incompatible source-purpose constraint causes denial rather than being masked by a more favorable assertion. The maximum evidence-age rule applies to the oldest current reference, and decision expiry is capped at both source validity and each reference's <code>observedAt + maxEvidenceAgeSeconds</code> boundary.</p>
+<h3 id="3-data-disclosureegress-contract">3. Data Disclosure/Egress Contract<a class="palo-doc-anchor" href="#3-data-disclosureegress-contract" aria-label="Link to 3. Data Disclosure/Egress Contract">#</a></h3><p><code>palo-data-disclosure-contract</code> is signed and bound to the exact digest of an allowed Data Fitness Decision. It governs:</p>
+<ul>
+<li>source identifiers, fields and maximum rows read;</li>
+<li>zero-row, aggregated or row-level egress;</li>
+<li>egress fields and row limit;</li>
+<li>prohibited sensitive categories and required redactions;</li>
+<li>recipient, provider, model, region and endpoint host;</li>
+<li>tracing mode and maximum retention;</li>
+<li>export and output schema;</li>
+<li>purpose, lawful-basis classification, accountable approver and expiry.</li>
+</ul>
+<p>An active contract cannot use <code>pending-review</code> as lawful basis, must name an approver, must include its subject in <code>sourceRefs</code>, cannot predate or outlive the bound fitness decision and must be current when registered and used. A disclosure observation outside that signed time window, or dated before the governed execution started, is a mismatch.</p>
+<h3 id="4-action-claim-14-and-disclosure-verification">4. Action Claim 1.4 and disclosure verification<a class="palo-doc-anchor" href="#4-action-claim-14-and-disclosure-verification" aria-label="Link to 4. Action Claim 1.4 and disclosure verification">#</a></h3><p>Action Claim 1.4 requires:</p>
+<ul>
+<li>identity-bound Authority Context from 1.3;</li>
+<li>Effect Contract;</li>
+<li>exact Data Fitness Decision ID/digest;</li>
+<li>exact Data Disclosure Contract ID/digest;</li>
+<li>subject and purpose.</li>
+</ul>
+<p>The runtime validates these bindings before policy evaluation and again before issuing a capability. A continuous-assurance invalidation, expiry, signature failure, digest mismatch, cross-tenant substitution or changed purpose denies execution.</p>
+<p>The trusted executor supplies a <code>palo-data-disclosure-observation</code> containing metadata only: actual sources, fields and row counts, sensitive categories, redactions, destination, tracing, retention, export and payload/query digests. It must not include row values.</p>
+<p>PALO emits a signed <code>palo-data-disclosure-receipt</code> and binds its digest into Execution Receipt 1.1. Action Claim 1.4 executor result payloads are not persisted; the runtime stores only a digest, a <code>payloadStored: false</code> marker and the disclosure receipt identifier.</p>
+<p>If disclosure and contract differ, the authoritative attestation becomes <code>mismatch</code>, a high-severity incident opens and the governed resource is held. A missing or malformed trusted observation is <code>inconclusive</code>, never verified.</p>
+<h3 id="5-ai-system-amp-agent-registry">5. AI System &amp; Agent Registry<a class="palo-doc-anchor" href="#5-ai-system-amp-agent-registry" aria-label="Link to 5. AI System &amp;amp; Agent Registry">#</a></h3><p><code>palo-ai-system-record</code> versions the minimum AI inventory needed by the assurance layer:</p>
+<ul>
+<li>system, tenant, use case and deployed version;</li>
+<li>lifecycle status, risk class and jurisdictions;</li>
+<li>accountable owners;</li>
+<li>model, agent, tool, data-subject and provider relationships;</li>
+<li>policy-bundle digest and evidence references.</li>
+</ul>
+<p>It is intentionally not a general enterprise data catalog. External catalogs remain the metadata source; PALO records the AI/action graph needed for governance and assurance.</p>
+<h3 id="6-continuous-assurance-loop">6. Continuous Assurance Loop<a class="palo-doc-anchor" href="#6-continuous-assurance-loop" aria-label="Link to 6. Continuous Assurance Loop">#</a></h3><p><code>palo-assurance-signal</code> represents quality, classification, lineage, access, contract, incident, system-release or policy-release changes. Ingestion:</p>
+<ol>
+<li>stores the signal immutably;</li>
+<li>invalidates prior allowed Data Fitness Decisions for the tenant/subject;</li>
+<li>revokes matching one-time capabilities that have been issued but not consumed;</li>
+<li>emits bounded telemetry;</li>
+<li>causes later Action Claim 1.4 evaluation to fail closed until fitness and disclosure are refreshed.</li>
+</ol>
+<p>The prototype does not yet reopen a completed historical gate in an enterprise case-management service or deliver ServiceNow/Jira notifications.</p>
+<h2 id="mcp-surface">MCP surface<a class="palo-doc-anchor" href="#mcp-surface" aria-label="Link to MCP surface">#</a></h2><p>The v2.7 server adds:</p>
+<figure class="palo-doc-code"><figcaption>text code</figcaption><pre tabindex="0"><code class="language-text">palo_import_context_evidence
+palo_list_context_evidence
+palo_register_data_fitness_policy
+palo_evaluate_data_fitness
+palo_get_data_fitness_decision
+palo_register_disclosure_contract
+palo_get_disclosure_contract
+palo_register_ai_system
+palo_get_ai_system
+palo_list_ai_systems
+palo_ingest_assurance_signal
+palo_list_assurance_signals</code></pre></figure><p>Existing <code>palo_verify_action_authority</code>, <code>palo_execute_governed_action</code>, <code>palo_get_execution_status</code>, <code>palo_verify_outcome</code>, incident, ledger and operational-snapshot tools incorporate the new cycle. OIDC requests bind data-assurance tenant inputs, registries, execution reads and incident operations to the authenticated token tenant. Import, policy, contract, registry and signal mutations require <code>palo:admin</code>; fitness evaluation requires <code>palo:execute</code>; signal inspection requires <code>palo:audit</code>; the remaining reads require <code>palo:read</code>.</p>
+<h2 id="compliance-logic">Compliance logic<a class="palo-doc-anchor" href="#compliance-logic" aria-label="Link to Compliance logic">#</a></h2><p>These contracts operationalize evidence relevant to:</p>
+<ul>
+<li>purpose limitation and data minimization;</li>
+<li>lawful-basis classification and accountable review;</li>
+<li>sensitive-data and transfer/region restrictions;</li>
+<li>processor/provider/model and recipient constraints;</li>
+<li>trace and retention limits;</li>
+<li>access state and source authority;</li>
+<li>AI system inventory, ownership and risk class;</li>
+<li>continuous monitoring, incident and change response.</li>
+</ul>
+<p>They do not constitute a RoPA, DPIA, DSAR, transfer-impact assessment, DPA, conformity assessment or legal determination. Organization-owned workflows must supply those decisions and bind them as evidence.</p>
+<h2 id="security-and-maturity-boundary">Security and maturity boundary<a class="palo-doc-anchor" href="#security-and-maturity-boundary" aria-label="Link to Security and maturity boundary">#</a></h2><p>The reference runtime remains SQLite, single-instance and in-process. HMAC signing material enters the application process. The Actian mapper is not remotely attested and cannot prove that the source API returned complete or truthful metadata. A trusted executor observation proves only what that in-process executor reported and caused PALO to sign; non-bypassability requires a separately isolated, allowlisted or remotely attested connector boundary. Plain SHA-256 payload and query digests provide integrity binding, not anonymity; production designs should assess equality/linkability and use organization-controlled keyed commitments where low-entropy sensitive inputs make offline guessing credible.</p>
+<p>The production-admission contract therefore continues to deny the bundled runtime. Multi-tenant storage isolation, PostgreSQL/HA, distributed work, KMS/HSM custody, independently assessed remote connectors, SIEM/retention/legal hold and external ledger anchoring remain required production work.</p>
+<h2 id="verification">Verification<a class="palo-doc-anchor" href="#verification" aria-label="Link to Verification">#</a></h2><p>Run:</p>
+<figure class="palo-doc-code"><figcaption>bash code</figcaption><pre tabindex="0"><code class="language-bash">npm run validate:agentic</code></pre></figure><p>The data-assurance test suite covers:</p>
+<ul>
+<li>Actian payload minimization and allowed fitness evaluation;</li>
+<li>conservative denial for conflicting current source assertions;</li>
+<li>conservative evidence freshness and decision-expiry capping;</li>
+<li>Action Claim 1.4 binding and negative authority-context validation;</li>
+<li>signed zero-row disclosure receipt;</li>
+<li>signed disclosure-window enforcement;</li>
+<li>non-persistence of executor row payloads, including receipt-generation failure;</li>
+<li>row, field, provider and region mismatch incidents;</li>
+<li>replayed pre-execution disclosure-observation denial;</li>
+<li>assurance-signal invalidation;</li>
+<li>revocation of unconsumed capabilities;</li>
+<li>same-claim stale-cache denial;</li>
+<li>OIDC cross-tenant MCP denial;</li>
+<li>tenant-safe legacy incident listing.</li>
+</ul>
+</article></div>
+      <aside class="palo-doc-next"><div><small>Prerequisite</small><strong>No specialist prerequisite stated</strong></div><div><small>Recommended next step</small><strong>Return to the Documentation Library</strong></div></aside>
+      <section class="palo-doc-feedback" aria-labelledby="feedback-title"><p class="palo-eyebrow">Privacy-first feedback</p><h2 id="feedback-title">Help improve this guide</h2><p>Your feedback stays in your browser until you explicitly copy it, download it, or open an email draft. Do not include secrets, personal data, credentials or production identifiers.</p><form data-doc-feedback><div class="palo-form-grid"><div class="palo-field"><label for="feedback-role">Your role</label><select id="feedback-role" name="role"><option>Executive / governance owner</option><option>Platform or security engineer</option><option>No-code / low-code builder</option><option>External reviewer</option></select></div><div class="palo-field"><label for="feedback-category">Category</label><select id="feedback-category" name="category"><option>Clarity</option><option>Technical accuracy</option><option>Missing guidance</option><option>Accessibility</option></select></div><div class="palo-field palo-field-full"><label for="feedback-message">Feedback</label><textarea id="feedback-message" name="message" maxlength="3000" required placeholder="Describe the non-sensitive improvement you recommend."></textarea></div><div class="palo-form-actions"><button class="palo-btn" type="button" data-feedback-copy>Copy feedback</button><button class="palo-btn palo-btn-secondary" type="button" data-feedback-download>Download JSON</button><button class="palo-btn palo-btn-secondary" type="button" data-feedback-email>Email draft</button></div></div><p class="palo-action-status" data-feedback-status role="status" aria-live="polite"></p></form></section>
+    </div>
+  </main>
+  <footer class="palo-footer"><div class="palo-shell"><p>PALO public documentation. Developer preview boundaries apply.</p><div class="palo-footer-links"><a href="../PALO_AIGovernance.html">PALO-AI</a><a href="../governance-hub/">Governance Hub</a><a href="../PALO_AgenticCapabilityMatrix.html">Capability Matrix</a><a href="../PALO_AIProductionReadiness.html">Production Readiness</a><a href="../privacy-policy.html">Privacy</a></div></div></footer>
+</body></html>

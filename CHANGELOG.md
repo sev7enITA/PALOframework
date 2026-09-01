@@ -11,7 +11,19 @@ and this project follows Semantic Versioning where practical.
 
 ### Added
 
+- Added a permanent Observatory index connecting the AI Incident Observatory, Regulatory Watch, 2026 Tech Trends and Human Agency Risk Map through explicit Gold Case, Monitoring Brief and Candidate Under Review publication states.
+- Added an AI incident investigation route to Platform Map, plus exact Knowledge Reader and Knowledge Curator maturity boundaries and the disabled-by-default external incident provider state.
+- Added a dedicated stateless PALO Knowledge Reader production candidate: exact six-tool server, canonical-only content, fail-closed release digests, strict OIDC/HTTPS admission, request and rate limits, non-root minimal image, volume-free Compose profiles and deployment-specific live qualification gates.
+- Added separate six-tool Knowledge Reader and ten-tool Knowledge Curator MCP profiles, provenance-bearing search/get, immutable reviewed local contributions, OIDC roles, canonical and terminal-`/mcp` HTTPS routes, profile instructions, paired configurations for 11 MCP hosts, a machine-readable conformance matrix, host qualification procedure, automated configuration validation and a portable PALO Knowledge Copilot skill.
 - Added a public PALO 3.1 and PALO-AI 2.7 release verification record with the baseline source revision, CI run, validation totals, negative-test coverage, tagged artifact checksum and current maturity limits.
+- Added a production release commit checklist with isolated Git staging groups, deterministic site-output handling, private-input exclusions and mandatory validation gates.
+
+### Changed
+
+- Migrated Community to the shared PALO 3.1 visual system, removed third-party style and font dependencies, reconciled shared navigation around the Observatory index and corrected public changelog routes to the generated HTML view.
+- Remote OIDC MCP listeners now fail closed unless explicit client and tenant allowlists are configured, and every listener must use the exact host validated when its app was created. Loopback evaluation compatibility covers IPv4 127/8 plus canonical and expanded IPv6 loopback forms, while IdP audience identifiers distinct from the public resource URL remain supported.
+- Redacted deployment identifiers, account addresses, credential rotation details and billing state from public Knowledge Reader documentation while preserving control design and qualification status.
+- Corrected Knowledge Reader snippet offsets so punctuation normalization cannot move the displayed excerpt away from the matching source term.
 
 ## [PALO-AI 2.7.0] - 2026-08-25
 

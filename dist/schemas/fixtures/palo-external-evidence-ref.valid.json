@@ -1,0 +1,16 @@
+{
+  "format": "palo-external-evidence-ref",
+  "schemaVersion": "1.0.0",
+  "evidenceRefId": "evidence-ref-11111111-1111-4111-8111-111111111111",
+  "tenantId": "tenant-a",
+  "subject": { "type": "dataset", "id": "actian:asset/customer-orders" },
+  "source": { "system": "actian-data-intelligence", "objectId": "customer-orders", "objectVersion": "42", "uri": "https://catalog.example.org/assets/customer-orders" },
+  "evidenceType": "quality",
+  "normalizedClaims": { "qualityScore": 96, "freshnessAt": "2026-08-25T08:00:00Z", "owner": "data-owner@example.org", "approved": true, "accessState": "granted", "lineageComplete": true, "permittedPurposes": ["support-analytics"], "incidentOpen": false },
+  "observedAt": "2026-08-25T08:00:00Z",
+  "validUntil": "2026-08-26T08:00:00Z",
+  "payloadDigest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "authority": { "type": "catalog-api", "assertedBy": "actian-data-intelligence", "verified": true },
+  "connector": { "connectorId": "connector-actian-context-bridge", "version": "1.0.0", "mode": "read-only", "importedAt": "2026-08-25T08:01:00Z" },
+  "status": "active"
+}

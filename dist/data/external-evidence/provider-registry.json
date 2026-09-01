@@ -1,0 +1,58 @@
+{
+  "format": "palo-external-evidence-provider-registry",
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-08-26",
+  "authorityBoundary": "Providers contribute optional external context only. PALO remains fully operable without network access or provider data, owns every canonical capability and governance contract, and requires accountable local assessment before any gate or risk decision.",
+  "providers": [
+    {
+      "providerId": "palo-local-import",
+      "displayName": "PALO reviewed local import",
+      "sourceId": "src-palo-external-evidence-contract",
+      "adapter": {
+        "adapterId": "adapter-palo-local-import",
+        "adapterVersion": "1.0.0",
+        "contractVersion": "1.0.0"
+      },
+      "mode": "local-import",
+      "defaultState": "enabled",
+      "networkOptional": true,
+      "dataPolicy": {
+        "metadataOnly": true,
+        "prohibitedFields": ["fullText", "sourceBody", "details", "summary", "whyItMatters", "justificationText"]
+      },
+      "reviewBoundary": "The importing organization validates provenance and review state; successful schema validation is not evidence acceptance."
+    },
+    {
+      "providerId": "rogue-ai-tracker",
+      "displayName": "Rogue AI Tracker",
+      "sourceId": "src-rogue-ai-tracker",
+      "adapter": {
+        "adapterId": "adapter-rogue-ai-tracker",
+        "adapterVersion": "1.0.0",
+        "contractVersion": "1.0.0"
+      },
+      "mode": "http-pull",
+      "defaultState": "disabled",
+      "networkOptional": true,
+      "endpoint": "https://rogueaitracker.com/api/incidents",
+      "fetchPolicy": {
+        "timeoutMs": 5000,
+        "maxResponseBytes": 2097152,
+        "maxRecords": 500,
+        "redirects": "reject"
+      },
+      "cachePolicy": {
+        "content": "normalized-metadata-only",
+        "ttlSeconds": 86400,
+        "maxStaleSeconds": 604800,
+        "staleIfError": true,
+        "rawPayloadStored": false
+      },
+      "dataPolicy": {
+        "metadataOnly": true,
+        "prohibitedFields": ["fullText", "sourceBody", "details", "summary", "whyItMatters", "justificationText"]
+      },
+      "reviewBoundary": "Provider labels, scores and review states remain contextual external claims and never become a PALO use-case risk score."
+    }
+  ]
+}

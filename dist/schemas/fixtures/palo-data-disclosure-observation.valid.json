@@ -1,0 +1,17 @@
+{
+  "format": "palo-data-disclosure-observation",
+  "schemaVersion": "1.0.0",
+  "sourceRefs": ["actian:asset/customer-orders"],
+  "fieldsRead": ["order_status", "country"],
+  "rowsRead": 1000,
+  "egressFields": [],
+  "egressRows": 0,
+  "sensitiveCategories": [],
+  "redactionsApplied": [],
+  "destination": { "recipient": "support-agent", "provider": "local-rules", "model": "deterministic-summary-v1", "region": "eu-west-1", "endpointHost": "analytics.internal.example.org" },
+  "trace": { "mode": "metadata-only", "retentionSeconds": 3600 },
+  "exported": false,
+  "queryDigest": "sha256:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+  "payloadDigest": "sha256:ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+  "observedAt": "2026-08-25T08:04:00Z"
+}

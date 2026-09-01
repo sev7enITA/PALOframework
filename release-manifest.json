@@ -16,7 +16,8 @@
   "components": {
     "web": {
       "version": "3.1.0",
-      "date": "2026-08-23"
+      "date": "2026-08-23",
+      "productionCommitRunbook": "docs/production-release-commit-checklist.html"
     },
     "framework": {
       "version": "2.0.0",
@@ -85,7 +86,8 @@
       "transport": "authenticated-streamable-http",
       "date": "2026-08-23",
       "status": "prototype",
-      "productionUse": false
+      "productionUse": false,
+      "remoteOidcBinding": "explicit-allowlists-and-validated-listener-host-required"
     },
     "agenticCapabilityMatrix": {
       "version": "1.3.0",
@@ -143,6 +145,23 @@
       "telemetryRequired": false,
       "accountRequired": false
     },
+    "observatoryIndex": {
+      "version": "3.1.0",
+      "date": "2026-08-25",
+      "status": "public-index",
+      "webEntry": "PALO_Observatories.html",
+      "publicationStates": ["gold-case", "monitoring-brief", "candidate-under-review"],
+      "policyWatcherBoundary": "Observation and public evidence only; no automated legal or PALO decision. Candidate correlations require human review and temporal association does not establish causation.",
+      "externalIncidentProviderDefaultState": "disabled"
+    },
+    "aiIncidentObservatory": {
+      "version": "3.1.0",
+      "date": "2026-08-25",
+      "status": "source-bounded-case-analysis",
+      "webEntry": "PALO_AIIncidentObservatory.html",
+      "currentCase": "case-001",
+      "authorityBoundary": "Independent technical analysis; not certification, legal advice or proof of causation."
+    },
     "paloGuideAgent": {
       "version": "1.1.0",
       "date": "2026-08-23",
@@ -152,8 +171,39 @@
       "mcpTools": [
         "palo_explain_framework",
         "palo_infer_governance_route",
-        "palo_plan_product_integration"
+        "palo_plan_product_integration",
+        "palo_list_knowledge_sources",
+        "palo_search_knowledge",
+        "palo_get_knowledge_record"
       ],
+      "knowledgeProfiles": {
+        "reader": {
+          "endpoint": "/mcp-guide",
+          "compatibilityAlias": "/mcp-guide/mcp",
+          "toolCount": 6,
+          "stateChange": false,
+          "serviceVersion": "1.0.0",
+          "status": "production-candidate",
+          "contentPolicy": "canonical-immutable-only",
+          "persistence": "none",
+          "releaseManifest": "data/knowledge-reader-release.json",
+          "productionQualification": "deployment-specific-live-gates-required"
+        },
+        "curator": {
+          "endpoint": "/mcp-guide-curator",
+          "compatibilityAlias": "/mcp-guide-curator/mcp",
+          "toolCount": 10,
+          "stateChange": "Immutable local draft and review records only; canonical repository knowledge is unchanged."
+        }
+      },
+      "hostIntegrations": {
+        "namedHostCount": 11,
+        "matrix": "examples/agentic-interface/knowledge-copilot/host-conformance.json",
+        "guide": "docs/palo-knowledge-copilot-integrations.md",
+        "qualification": "docs/palo-mcp-host-qualification.md",
+        "validationLevels": ["protocol", "configuration", "live"],
+        "liveQualifiedHosts": 0
+      },
       "inferenceSources": [
         "data/semantic-spine.json",
         "data/decision-gates.json",

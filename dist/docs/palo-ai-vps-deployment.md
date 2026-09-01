@@ -10,7 +10,8 @@ The reference developer-preview endpoint was deployed on 17 July 2026:
 |---|---|
 | Public hostname | `https://governance.paloframework.org` |
 | MCP transport | Dual-era Streamable HTTP at `/mcp`; current Compose uses shared bearer, while the runtime also supports OIDC/JWKS resource-server mode |
-| Guide MCP transport | Prepared Streamable HTTP route at `/mcp-guide`, separately bearer-authenticated; deploy this release before treating it as live |
+| Knowledge MCP transport | Dedicated OIDC-only Reader at `/mcp-guide` and separate ten-tool Curator at `/mcp-guide-curator`, backed by the self-hosted PALO identity realm; each release still requires live qualification |
+| Identity | Keycloak 26.7.2 and PostgreSQL, self-hosted on the PALO VPS; public realm/OIDC routes only, with administration excluded from nginx/Caddy |
 | Gateway | HTTPS under `/gateway`, bearer-authenticated and route-limited |
 | Policy engine | OPA 1.17.0, Docker-internal only |
 | TLS | Let's Encrypt ECDSA certificate with automatic renewal |
@@ -32,11 +33,19 @@ The deployment deliberately uses both private and public addresses:
 | `http://127.0.0.1:18879` | Current VPS host only | nginx-to-guide-MCP proxy target |
 | `http://127.0.0.1:18880` | Current VPS host only | nginx-to-Hub-control-plane target when the opt-in profile is enabled |
 | `http://127.0.0.1:18881` | Current VPS host only | nginx-to-Hub-UI target when the opt-in profile is enabled |
+| `http://127.0.0.1:18882` | Current VPS host only | nginx-to-Knowledge-Curator MCP proxy target |
+| `http://127.0.0.1:18883` | Current VPS host only | nginx-to-PALO-identity proxy target; the admin route is not published |
+| `http://127.0.0.1:19000` | Current VPS host only | Keycloak management health target |
 | `http://palo-mcp:8788` | Docker network only | MCP service behind the TLS proxy |
-| `http://palo-guide-mcp:8789` | Docker network only | Read-only PALO Guide MCP service behind the TLS proxy |
+| `http://palo-guide-mcp:8789` | Docker network only | Six-tool PALO Knowledge Reader behind the TLS proxy |
+| `http://palo-guide-curator-mcp:8790` | Docker network only | Ten-tool PALO Knowledge Curator behind the TLS proxy |
+| `http://palo-identity:8080` | Docker network or VPS loopback only | PALO-owned OIDC authorization server |
 | `https://governance.paloframework.org/gateway` | Internet, authenticated | n8n/Dify adapter base URL |
 | `https://governance.paloframework.org/mcp` | Internet, authenticated | Streamable HTTP MCP endpoint |
-| `https://governance.paloframework.org/mcp-guide` | Internet, separately authenticated | Three read-only PALO Guide tools after this release is deployed |
+| `https://governance.paloframework.org/mcp-guide` | Internet, separately authenticated | Six read-only PALO Knowledge tools after this release is deployed |
+| `https://governance.paloframework.org/mcp-guide/mcp` | Internet, separately authenticated | Reader compatibility alias for clients that infer Streamable HTTP from the final path segment |
+| `https://governance.paloframework.org/mcp-guide-curator` | Internet, separately authenticated | Four curation operations plus Reader after this release is deployed |
+| `https://governance.paloframework.org/mcp-guide-curator/mcp` | Internet, separately authenticated | Curator compatibility alias; canonical OAuth audience remains the non-alias endpoint |
 | `https://governance.paloframework.org/hub/` | Internet, organization-authenticated | Operational Governance Builder after external prerequisites and profile activation |
 | `https://governance.paloframework.org/control-plane/` | Internet, browser BFF only | OIDC session, adapter, simulation and configuration lifecycle APIs |
 
@@ -54,11 +63,12 @@ The files under `deploy/vps/palo-ai/` provide two reverse-proxy variants:
 Both variants provide:
 
 - Docker Compose orchestration;
+- PALO-owned Keycloak 26.7.2 identity service with a separate PostgreSQL volume, five-minute access tokens, brute-force protection and audience-bound Reader/Curator clients;
 - OPA 1.17.0 on a private internal network;
 - PALO Gateway and MCP containers built from this repository;
 - HTTPS termination and redirect through existing nginx/Certbot or Caddy 2.11.4;
-- separate Docker secret files for Gateway, MCP and HMAC material;
-- a separate Guide MCP secret and allowlist containing only the three read-only guide tools;
+- separate Docker secret files for Gateway, MCP, HMAC, identity database/admin and deployment-smoke clients;
+- a dedicated volume-free Reader image with exact six-tool catalog, immutable release digest, strict OIDC audience and no PALO-AI runtime; Curator uses a different OIDC client allowlist, audience, storage boundary and exact ten-tool catalog;
 - persistent PALO data and Caddy certificate volumes;
 - non-root PALO containers, read-only filesystems, dropped capabilities and health checks;
 - an explicit MCP host allowlist;
@@ -95,6 +105,12 @@ Edit `.env`:
 PALO_DOMAIN=governance.paloframework.org
 ACME_EMAIL=security@paloframework.org
 PALO_ADMIN_URL=http://127.0.0.1:18877
+PALO_OIDC_ALGORITHMS=RS256
+PALO_OIDC_TOKEN_TYPE=JWT
+PALO_READER_OIDC_ALLOWED_CLIENT_IDS=palo-reader-smoke
+PALO_CURATOR_OIDC_ALLOWED_CLIENT_IDS=palo-curator-smoke
+PALO_OIDC_ALLOWED_TENANTS=palo
+PALO_READER_RATE_LIMIT_PER_MINUTE=120
 OPA_IMAGE=openpolicyagent/opa:1.17.0-static
 CADDY_IMAGE=caddy:2.11.4-alpine
 ```
@@ -103,20 +119,18 @@ Generate protected secrets without printing them:
 
 ```bash
 sh setup-secrets.sh
+sh setup-identity-secrets.sh
 ```
 
 The generated `.env` and `secrets/` contents are ignored by Git. Back them up through a protected secret-management process; never upload or commit them.
 
-When upgrading an existing deployment that already has the original three secret files, create only the new Guide MCP token before starting the updated Compose project:
+When upgrading an existing deployment, preserve the existing core secrets and create only the four missing identity secrets:
 
 ```bash
-umask 077
-test ! -e secrets/guide-mcp-token
-openssl rand -hex 32 > secrets/guide-mcp-token
-chmod 600 secrets/guide-mcp-token
+sh setup-identity-secrets.sh
 ```
 
-Do not rerun `setup-secrets.sh` over an existing deployment because it deliberately refuses to overwrite any current secret.
+Neither setup script overwrites an existing secret. Back up the new PostgreSQL volume and identity secrets through the protected VPS process before onboarding users or clients.
 
 ## Firewall
 
@@ -132,7 +146,7 @@ sudo ufw allow 443/udp
 sudo ufw enable
 ```
 
-Do not open 8181, 8787, 8788, 8789, 18877, 18878 or 18879 publicly. The Hostinger Compose variant publishes 18877, 18878 and 18879 only on the VPS loopback interface; the clean-VPS variant keeps its administration binding on loopback as documented in its Compose file.
+Do not open 8181, 8787, 8788, 8789, 18877, 18878, 18879, 18882, 18883 or 19000 publicly. The Hostinger Compose variant publishes these service ports only on the VPS loopback interface; the clean-VPS variant keeps its administration binding on loopback as documented in its Compose file.
 
 When the Hub profile is enabled, do not open 18880 or 18881 publicly either. nginx or Caddy is the only Internet-facing path.
 
@@ -184,6 +198,12 @@ https://governance.paloframework.org/mcp-health
 https://governance.paloframework.org/mcp
 https://governance.paloframework.org/mcp-guide-health
 https://governance.paloframework.org/mcp-guide
+https://governance.paloframework.org/mcp-guide/mcp
+https://governance.paloframework.org/mcp-guide-curator-health
+https://governance.paloframework.org/mcp-guide-curator
+https://governance.paloframework.org/mcp-guide-curator/mcp
+https://governance.paloframework.org/identity-health
+https://governance.paloframework.org/identity/realms/palo/.well-known/openid-configuration
 https://governance.paloframework.org/gateway/v1/registry
 https://governance.paloframework.org/gateway/v1/actions/verify
 ```
@@ -215,9 +235,10 @@ sh smoke-online.sh
 
 This checks:
 
-- the operational and Guide MCP health endpoints over HTTPS;
-- rejection of anonymous operational and Guide MCP requests;
-- authenticated Guide MCP initialization;
+- the operational, Reader and Curator MCP health endpoints over HTTPS;
+- rejection of anonymous operational, Reader and Curator MCP requests;
+- short-lived service tokens issued by the PALO identity realm with different client IDs, scopes and exact Reader/Curator audiences;
+- authenticated Reader/Curator initialization and exact 6/10-tool catalogs without operational tools;
 - authenticated access to the public Gateway registry.
 
 Inspect service-local health when troubleshooting:
@@ -238,11 +259,11 @@ Bearer Token: contents of secrets/gateway-token
 
 Use n8n encrypted credentials; never put the token in workflow JSON or node output.
 
-The online `/mcp` endpoint uses MCP Streamable HTTP. Current n8n documentation describes an SSE endpoint for its MCP Client Tool. Until an SSE adapter or confirmed Streamable HTTP support is tested on the target n8n version, n8n should use the HTTPS Gateway integration rather than being presented as directly compatible with this MCP transport.
+For knowledge Q&A, the current n8n MCP Client Tool v1.4 supports Streamable HTTP and can connect directly to Reader or Curator. Use the supplied node examples, force `serverTransport` to `=httpStreamable`, keep credentials in n8n's encrypted credential store and qualify the exact n8n build before go-live. The HTTPS Gateway remains a separate path for the operational PALO control-plane preview; it is not required for Reader Q&A and does not turn an AI Agent into an enforced execution boundary.
 
 ## Connect other MCP clients
 
-The v2.7 runtime can replace the shared MCP token with OIDC/JWKS validation by setting `PALO_AUTH_MODE=oidc`, the canonical `PALO_MCP_PUBLIC_URL`, issuer, audience and JWKS URI described in `packages/palo-mcp-server/README.md`. The reverse-proxy configurations expose the matching RFC 9728 `/.well-known/oauth-protected-resource/mcp` route. This changes only the MCP resource; the REST Gateway retains its separate preview token until an identity-aware BFF is implemented. An EMA-capable authorization server may issue the accepted access token, but PALO does not implement the EMA ID-JAG exchange.
+Reader and Curator run only in OIDC/JWKS mode. Their RFC 9728 documents advertise `https://governance.paloframework.org/identity/realms/palo`, and each runtime validates issuer, exact audience, signed token type, approved client ID, PALO tenant and least-privilege scopes. The REST Gateway retains its separate preview token until an identity-aware BFF is implemented. PALO does not implement the EMA ID-JAG exchange.
 
 For clients that support Streamable HTTP:
 
@@ -253,22 +274,24 @@ Authorization: Bearer <contents of secrets/mcp-token>
 
 Expose only the PALO-governed tools to an agent. Do not make equivalent privileged target tools available through a parallel ungoverned MCP server.
 
-For products that only need PALO explanation, deterministic route inference and integration planning, use the separate guide-only endpoint and `secrets/guide-mcp-token`:
+For PALO explanation, deterministic route inference and knowledge Q&A, use the Reader endpoint with a short-lived OIDC access token carrying `palo:guide` and `palo:knowledge:read`:
 
 ```text
 Endpoint: https://governance.paloframework.org/mcp-guide
-Authorization: Bearer <contents of secrets/guide-mcp-token>
-Tools: palo_explain_framework, palo_infer_governance_route, palo_plan_product_integration
+Authorization: Bearer <OIDC access token for the exact /mcp-guide audience>
+Tools: 3 guide tools + palo_list_knowledge_sources, palo_search_knowledge, palo_get_knowledge_record
 ```
 
-Issue a distinct secret per deployment boundary when moving beyond the single-tenant developer preview. Never place this token in public browser JavaScript.
+Clients that infer the transport from the last path segment may use `/mcp-guide/mcp`; the audience remains the canonical `/mcp-guide` URL. Use `/mcp-guide-curator` (or its `/mcp` alias) only with a separately registered, explicitly allowlisted Curator OAuth client. It adds submit/list/get/review draft operations; it does not expose operational PALO-AI tools. Complete the [Reader production gates](palo-knowledge-reader-production.md) and [host qualification](palo-mcp-host-qualification.md) before marking any client live.
+
+Register a distinct OAuth client per deployment boundary and keep confidential-client secrets outside public browser JavaScript. Public clients must use authorization code with PKCE and an exact registered redirect URI.
 
 ## Public-route boundary
 
 The public reverse proxy currently exposes:
 
 - MCP `/mcp`, its health endpoint and the OIDC protected-resource metadata path; the configured remote tool allowlist remains decision/status oriented and excludes administrative and execution tools;
-- Guide MCP `/mcp-guide` and its health endpoint, authenticated with a separate secret and limited to three read-only guide tools;
+- Knowledge Reader `/mcp-guide` and Curator `/mcp-guide-curator`, plus their terminal-`/mcp` compatibility aliases, each separately authenticated and limited to its exact 6/10-tool catalog;
 - Gateway health and authenticated registry read;
 - authenticated Action Claim verification and full-cycle governed execution;
 - authenticated execution detail, outcome read and explicit re-verification addressed by execution ID;
@@ -317,6 +340,6 @@ The current SQLite volume is suitable only for the developer preview. Back it up
 
 ## Remaining production boundary
 
-Putting the endpoint online does not make it production-ready. The shared-token identity model, optional n8n gate, evidence provenance, policy-bundle attestation, approval identity, cached authorization and effective resource-to-scope binding issues remain. Use mock, reversible or non-consequential actions until those findings are closed.
+Putting the operational `/mcp` or Gateway endpoint online does not make PALO-AI production-ready. Its shared-token compatibility path, optional n8n gate, evidence provenance, policy-bundle attestation, approval identity, cached authorization and effective resource-to-scope binding issues remain. Use mock, reversible or non-consequential actions until those findings are closed. The separate canonical-only Reader follows its narrower [production profile and live gates](palo-knowledge-reader-production.md); that status does not transfer to the operational runtime or Curator.
 
 See the [public Production Readiness route](../PALO_AIProductionReadiness.html), [Capability Matrix](../PALO_AgenticCapabilityMatrix.html), and [integration guide](palo-ai-governance-integration-guide.md). Internal assessment workpapers are not published.

@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>PALO Knowledge Copilot: integrazioni MCP Reader e Curator | PALO Documentation</title>
+  <meta name="description" content="Public PALO documentation: PALO Knowledge Copilot: integrazioni MCP Reader e Curator.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://paloframework.org/docs/palo-knowledge-copilot-integrations.html">
+  <link rel="icon" type="image/webp" href="../assets/logo.webp">
+  <link rel="stylesheet" href="../assets/palo-icons.css">
+  <link rel="stylesheet" href="../assets/palo-v21.css?v=3.1.0">
+  <link rel="stylesheet" href="../assets/palo-docs.css">
+  <script src="../assets/palo-icons.js" defer></script>
+  <script src="../assets/palo-v21.js?v=3.1.0" defer></script>
+  <script src="../assets/palo-docs.js" defer></script>
+</head>
+<body class="palo-v21 palo-doc-page" data-doc-source="docs/palo-knowledge-copilot-integrations.md">
+  <a class="palo-skip-link" href="#main-content">Skip to main content</a>
+  <header class="palo-site-header"><div class="palo-shell palo-header-inner">
+    <a class="palo-brand" href="../index.html"><img src="../assets/logo.webp" alt="PALO">PALO FRAMEWORK</a>
+    <button class="palo-menu-toggle" type="button" data-palo-menu-toggle aria-expanded="false" aria-controls="palo-primary-nav" aria-label="Open navigation"><span data-palo-icon="menu" aria-hidden="true"></span></button>
+    <nav class="palo-nav" id="palo-primary-nav" aria-label="Primary navigation"><a href="../designs/theory-to-practice-infographic/">Start</a><a href="../PALO_AIGovernance.html">Agentic Governance</a><a href="../governance-hub/">Governance Hub</a><a href="../index.html#guided-journeys">Tools</a><a href="../PALO_DocumentationLibrary.html" aria-current="page">Documentation</a><a href="../PALO_AIProductionReadiness.html">Readiness</a></nav>
+  </div></header>
+  <main id="main-content" class="palo-doc-main">
+    <div class="palo-shell">
+      <nav class="palo-doc-breadcrumb" aria-label="Breadcrumb"><a href="../PALO_DocumentationLibrary.html">Documentation Library</a><span aria-hidden="true">/</span><span>Architecture and integration</span></nav>
+      <header class="palo-doc-hero"><p class="palo-eyebrow">Architecture and integration | Public documentation</p><h1>PALO Knowledge Copilot: integrazioni MCP Reader e Curator</h1><div class="palo-doc-facts"><span><small>Level</small><strong>guide</strong></span><span><small>Audience</small><strong>governance | technical | builder</strong></span><span><small>Product</small><strong>PALO Core</strong></span><span><small>Status</small><strong>Current Guidance</strong></span><span><small>Lifecycle</small><strong>Current</strong></span><span><small>Read</small><strong>10 min</strong></span></div><p class="palo-doc-source">Published HTML view | Source: <code>docs/palo-knowledge-copilot-integrations.md</code></p><div class="palo-actions"><button class="palo-btn" type="button" data-doc-copy-link>Copy link</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-share>Share page</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-print>Print</button></div><p class="palo-action-status" data-doc-action-status role="status" aria-live="polite"></p></header>
+      <details class="palo-doc-mobile-toc"><summary>On this page</summary><ol><li class="depth-2"><a href="#stato-cosa-significa-quotvalidatoquot">Stato: cosa significa &amp;quot;validato&amp;quot;</a></li><li class="depth-2"><a href="#i-due-profili">I due profili</a></li><li class="depth-2"><a href="#matrice-host">Matrice host</a></li><li class="depth-2"><a href="#microsoft-copilot-studio">Microsoft Copilot Studio</a></li><li class="depth-2"><a href="#claude-claude-desktop-e-cowork">Claude, Claude Desktop e Cowork</a></li><li class="depth-2"><a href="#chatgpt-codex-e-openai-responses-api">ChatGPT, Codex e OpenAI Responses API</a></li><li class="depth-3"><a href="#codex-cli-ide-extension-e-chatgpt-desktop">Codex CLI, IDE extension e ChatGPT desktop</a></li><li class="depth-3"><a href="#chatgpt-web">ChatGPT web</a></li><li class="depth-3"><a href="#responses-api">Responses API</a></li><li class="depth-2"><a href="#github-copilot-cli">GitHub Copilot CLI</a></li><li class="depth-2"><a href="#vs-code-e-github-copilot-chat">VS Code e GitHub Copilot Chat</a></li><li class="depth-2"><a href="#cursor">Cursor</a></li><li class="depth-2"><a href="#gemini-cli">Gemini CLI</a></li><li class="depth-2"><a href="#jetbrains-ai-assistant">JetBrains AI Assistant</a></li><li class="depth-2"><a href="#amazon-bedrock-agentcore-gateway">Amazon Bedrock AgentCore Gateway</a></li><li class="depth-2"><a href="#n8n">n8n</a></li><li class="depth-2"><a href="#dify">Dify</a></li><li class="depth-2"><a href="#autenticazione-personale-e-aziendale">Autenticazione personale e aziendale</a></li><li class="depth-2"><a href="#contratto-del-copilota">Contratto del copilota</a></li><li class="depth-2"><a href="#validazione-e-go-live">Validazione e go-live</a></li><li class="depth-2"><a href="#cosa-non-fa">Cosa non fa</a></li></ol></details>
+      <div class="palo-doc-layout"><aside class="palo-doc-sidebar" aria-label="On this page"><strong>On this page</strong><ol><li class="depth-2"><a href="#stato-cosa-significa-quotvalidatoquot">Stato: cosa significa &amp;quot;validato&amp;quot;</a></li><li class="depth-2"><a href="#i-due-profili">I due profili</a></li><li class="depth-2"><a href="#matrice-host">Matrice host</a></li><li class="depth-2"><a href="#microsoft-copilot-studio">Microsoft Copilot Studio</a></li><li class="depth-2"><a href="#claude-claude-desktop-e-cowork">Claude, Claude Desktop e Cowork</a></li><li class="depth-2"><a href="#chatgpt-codex-e-openai-responses-api">ChatGPT, Codex e OpenAI Responses API</a></li><li class="depth-3"><a href="#codex-cli-ide-extension-e-chatgpt-desktop">Codex CLI, IDE extension e ChatGPT desktop</a></li><li class="depth-3"><a href="#chatgpt-web">ChatGPT web</a></li><li class="depth-3"><a href="#responses-api">Responses API</a></li><li class="depth-2"><a href="#github-copilot-cli">GitHub Copilot CLI</a></li><li class="depth-2"><a href="#vs-code-e-github-copilot-chat">VS Code e GitHub Copilot Chat</a></li><li class="depth-2"><a href="#cursor">Cursor</a></li><li class="depth-2"><a href="#gemini-cli">Gemini CLI</a></li><li class="depth-2"><a href="#jetbrains-ai-assistant">JetBrains AI Assistant</a></li><li class="depth-2"><a href="#amazon-bedrock-agentcore-gateway">Amazon Bedrock AgentCore Gateway</a></li><li class="depth-2"><a href="#n8n">n8n</a></li><li class="depth-2"><a href="#dify">Dify</a></li><li class="depth-2"><a href="#autenticazione-personale-e-aziendale">Autenticazione personale e aziendale</a></li><li class="depth-2"><a href="#contratto-del-copilota">Contratto del copilota</a></li><li class="depth-2"><a href="#validazione-e-go-live">Validazione e go-live</a></li><li class="depth-2"><a href="#cosa-non-fa">Cosa non fa</a></li></ol></aside><article class="palo-doc-content"><h1 id="palo-knowledge-copilot-integrazioni-mcp-reader-e-curator">PALO Knowledge Copilot: integrazioni MCP Reader e Curator<a class="palo-doc-anchor" href="#palo-knowledge-copilot-integrazioni-mcp-reader-e-curator" aria-label="Link to PALO Knowledge Copilot: integrazioni MCP Reader e Curator">#</a></h1><p>Stato verificato al 27 agosto 2026. Il Reader dispone ora di un server dedicato, stateless, canonical-only e ammesso in configurazione production solo con OIDC stretto: audience canonica unica, tipo di access token, client e tenant in allowlist. Il suo stato di release è <code>production-candidate</code>. Il Curator resta un profilo separato con persistenza locale e non eredita questa qualifica. Il codice e le configurazioni sono verificati localmente; deployment, IdP e collaudi nei tenant vendor restano necessari prima di dichiarare Reader o host <code>PASS-LIVE</code>.</p>
+<h2 id="stato-cosa-significa-quotvalidatoquot">Stato: cosa significa "validato"<a class="palo-doc-anchor" href="#stato-cosa-significa-quotvalidatoquot" aria-label="Link to Stato: cosa significa &amp;quot;validato&amp;quot;">#</a></h2><div class="palo-doc-table-wrap" tabindex="0" aria-label="Scrollable documentation table"><table>
+<thead>
+<tr>
+<th>Livello</th>
+<th>Significato</th>
+<th>Stato corrente</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>PASS-PROTOCOL</code></td>
+<td>initialize, negoziazione MCP, <code>tools/list</code>, annotazioni e chiamate Reader/Curator passano contro il server PALO con il client MCP ufficiale</td>
+<td>Pass per entrambi i profili</td>
+</tr>
+<tr>
+<td><code>PASS-CONFIG</code></td>
+<td>il file o la procedura segue il formato documentato dal vendor e la suite PALO ne verifica URL, profilo, allowlist e assenza di segreti</td>
+<td>Pass o parziale, come indicato per host</td>
+</tr>
+<tr>
+<td><code>PASS-LIVE</code></td>
+<td>il prodotto, tenant, rete e IdP effettivi hanno scoperto il catalogo e completato le chiamate di accettazione sul server pubblico aggiornato</td>
+<td>Pending per tutti gli host</td>
+</tr>
+</tbody></table></div>
+<p><code>PASS-PROTOCOL + PASS-CONFIG</code> non equivale a <code>PASS-LIVE</code>. La matrice machine-readable è in <a href="../examples/agentic-interface/knowledge-copilot/host-conformance.json"><code>host-conformance.json</code></a>; il processo per promuovere un nuovo host è in <a href="palo-mcp-host-qualification.html">PALO MCP Host Qualification</a>.</p>
+<h2 id="i-due-profili">I due profili<a class="palo-doc-anchor" href="#i-due-profili" aria-label="Link to I due profili">#</a></h2><div class="palo-doc-table-wrap" tabindex="0" aria-label="Scrollable documentation table"><table>
+<thead>
+<tr>
+<th>Profilo</th>
+<th>Endpoint canonico</th>
+<th>Alias compatibilità</th>
+<th align="right">Tool</th>
+<th>Uso</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Knowledge Reader</td>
+<td><code>https://governance.paloframework.org/mcp-guide</code></td>
+<td><code>/mcp-guide/mcp</code></td>
+<td align="right">6 read-only</td>
+<td>Q&amp;A personale e aziendale dal bundle canonico immutabile PALO</td>
+</tr>
+<tr>
+<td>Knowledge Curator</td>
+<td><code>https://governance.paloframework.org/mcp-guide-curator</code></td>
+<td><code>/mcp-guide-curator/mcp</code></td>
+<td align="right">10 controllati</td>
+<td>Draft immutabili, lettura draft e review terminale</td>
+</tr>
+</tbody></table></div>
+<p>Gli alias terminanti in <code>/mcp</code> servono solo ai client che riconoscono il trasporto dal path. Audience OAuth e URL di risorsa restano gli endpoint canonici.</p>
+<p>Reader espone:</p>
+<ul>
+<li><code>palo_explain_framework</code>, <code>palo_infer_governance_route</code>, <code>palo_plan_product_integration</code>;</li>
+<li><code>palo_list_knowledge_sources</code>, <code>palo_search_knowledge</code>, <code>palo_get_knowledge_record</code>.</li>
+</ul>
+<p>Curator aggiunge:</p>
+<ul>
+<li><code>palo_submit_knowledge_draft</code>, <code>palo_list_knowledge_drafts</code>;</li>
+<li><code>palo_get_knowledge_draft</code>, <code>palo_review_knowledge_draft</code>.</li>
+</ul>
+<p>Il Reader non monta alcun volume, non apre un workspace locale e verifica all'avvio i digest dei sette file canonici. Il Curator non modifica i JSON canonici, ma conserva draft, review terminali e record <code>curated-local</code> in un volume separato, con digest, provenienza e separazione autore/reviewer. Entrambi i profili escludono esecuzione operativa, risoluzione approvazioni o incidenti e amministrazione del runtime.</p>
+<h2 id="matrice-host">Matrice host<a class="palo-doc-anchor" href="#matrice-host" aria-label="Link to Matrice host">#</a></h2><div class="palo-doc-table-wrap" tabindex="0" aria-label="Scrollable documentation table"><table>
+<thead>
+<tr>
+<th>Host</th>
+<th>Percorso</th>
+<th>Auth consigliata</th>
+<th>Config</th>
+<th>Live</th>
+<th>Nota decisiva</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Copilot Studio</td>
+<td>wizard MCP o custom connector</td>
+<td>OAuth 2.0 manual/dynamic; API key header solo preview</td>
+<td>Pass</td>
+<td>Pending</td>
+<td>Streamable HTTP ufficiale; SSE non supportato</td>
+</tr>
+<tr>
+<td>Claude</td>
+<td>remote custom connector + skill opzionale</td>
+<td>OAuth 2.0</td>
+<td>Pass</td>
+<td>Pending</td>
+<td>Il server cloud deve essere raggiungibile da Anthropic</td>
+</tr>
+<tr>
+<td>ChatGPT/Codex/OpenAI API</td>
+<td>plugin ChatGPT, config Codex, Responses API</td>
+<td>OAuth; bearer da env per Codex/API</td>
+<td>Pass</td>
+<td>Pending</td>
+<td>ChatGPT web usa plugin, non il <code>config.toml</code> locale</td>
+</tr>
+<tr>
+<td>GitHub Copilot CLI</td>
+<td><code>mcp-config.json</code> o <code>.mcp.json</code></td>
+<td>header protetto</td>
+<td>Pass</td>
+<td>Pending</td>
+<td>Nessun segreto nel file condiviso</td>
+</tr>
+<tr>
+<td>VS Code/Copilot Chat</td>
+<td><code>.vscode/mcp.json</code> o user config</td>
+<td>input protetto oppure OAuth del client</td>
+<td>Pass</td>
+<td>Pending</td>
+<td>Agent Host non inoltra input interattivi</td>
+</tr>
+<tr>
+<td>Cursor</td>
+<td><code>.cursor/mcp.json</code></td>
+<td>OAuth</td>
+<td>Pass</td>
+<td>Pending</td>
+<td>Cloud Agent richiede server remoto/OAuth compatibile</td>
+</tr>
+<tr>
+<td>Gemini CLI</td>
+<td><code>settings.json</code></td>
+<td>OAuth dynamic discovery</td>
+<td>Pass</td>
+<td>Pending</td>
+<td><code>httpUrl</code> seleziona Streamable HTTP; <code>trust:false</code></td>
+</tr>
+<tr>
+<td>JetBrains AI Assistant</td>
+<td>MCP settings JSON</td>
+<td>da qualificare con IdP/proxy</td>
+<td>Parziale</td>
+<td>Pending</td>
+<td>Trasporto e URL sono ufficiali; auth header/OAuth non è documentata nella stessa pagina</td>
+</tr>
+<tr>
+<td>AWS AgentCore Gateway</td>
+<td>external MCP target</td>
+<td>OAuth 2LO/3LO/token exchange o API key</td>
+<td>Parziale</td>
+<td>Pending</td>
+<td>Sincronizzare il catalogo dopo ogni sua modifica</td>
+</tr>
+<tr>
+<td>n8n</td>
+<td>MCP Client Tool v1.4+</td>
+<td>MCP OAuth2, bearer o header</td>
+<td>Pass</td>
+<td>Pending</td>
+<td>Forzare <code>=httpStreamable</code>; controllare versione e retry</td>
+</tr>
+<tr>
+<td>Dify</td>
+<td>provider MCP nativo</td>
+<td>OAuth o header</td>
+<td>Parziale</td>
+<td>Pending</td>
+<td>Usare alias <code>/mcp</code>; Gateway resta fallback collaudato</td>
+</tr>
+</tbody></table></div>
+<p></p><pre class="palo-doc-raw" aria-label="Escaped source markup"><code>&lt;a id="copilot-studio"&gt;</code></pre><pre class="palo-doc-raw" aria-label="Escaped source markup"><code>&lt;/a&gt;</code></pre><p></p>
+<h2 id="microsoft-copilot-studio">Microsoft Copilot Studio<a class="palo-doc-anchor" href="#microsoft-copilot-studio" aria-label="Link to Microsoft Copilot Studio">#</a></h2><ol>
+<li>Tools &gt; Add a tool &gt; New tool &gt; Model Context Protocol.</li>
+<li>Inserire nome del profilo e endpoint canonico.</li>
+<li>Per l'azienda selezionare OAuth 2.0. Usare <code>Manual</code> senza DCR; <code>Dynamic discovery</code> soltanto quando authorization server, discovery e Dynamic Client Registration sono realmente disponibili.</li>
+<li>Nel Reader production il bearer deve comunque essere un access token OIDC valido; l'opzione API key del wizard non trasforma una chiave statica in un'identità ammessa dal server.</li>
+<li>Creare una connessione, aggiungerla all'agent e verificare esattamente 6 tool Reader o 10 Curator.</li>
+</ol>
+<p>Copilot Studio documenta Streamable HTTP, autenticazione None/API key/OAuth e un wizard ufficiale; non supporta più SSE. Se si usa Power Apps, importare lo schema Reader o Curator. Le Power Platform data policies si applicano al connettore MCP.</p>
+<p>Artifact: <a href="../examples/agentic-interface/knowledge-copilot/copilot-studio-reader.openapi.yaml"><code>copilot-studio-reader.openapi.yaml</code></a> e <a href="../examples/agentic-interface/knowledge-copilot/copilot-studio-curator.openapi.yaml"><code>copilot-studio-curator.openapi.yaml</code></a>. Fonte: <a href="https://learn.microsoft.com/en-us/microsoft-copilot-studio/mcp-add-existing-server-to-agent" target="_blank" rel="noopener noreferrer">Microsoft Learn</a>.</p>
+<p></p><pre class="palo-doc-raw" aria-label="Escaped source markup"><code>&lt;a id="claude"&gt;</code></pre><pre class="palo-doc-raw" aria-label="Escaped source markup"><code>&lt;/a&gt;</code></pre><p></p>
+<h2 id="claude-claude-desktop-e-cowork">Claude, Claude Desktop e Cowork<a class="palo-doc-anchor" href="#claude-claude-desktop-e-cowork" aria-label="Link to Claude, Claude Desktop e Cowork">#</a></h2><ol>
+<li>Aggiungere Reader come custom connector remoto con l'URL canonico.</li>
+<li>In Team/Enterprise far registrare e governare il connector dall'owner; in Pro/Max configurarlo nell'account personale.</li>
+<li>Completare OAuth contro l'authorization server aziendale.</li>
+<li>Installare facoltativamente <a href="../skills/palo-knowledge-copilot/SKILL.html"><code>skills/palo-knowledge-copilot</code></a> come skill/plugin dell'host.</li>
+<li>Aggiungere Curator come connector separato solo per autori e reviewer autorizzati.</li>
+</ol>
+<p>La skill non crea la connessione, non apre la rete e non contiene credenziali. Definisce ricerca prima della risposta, citazione, authority class, conflitti e difesa da prompt injection. Un plugin Claude può impacchettare skill e connector, ma il connector remoto e la sua autorizzazione restano necessari.</p>
+<p>Fonti: <a href="https://support.claude.com/en/articles/11175166-get-started-with-custom-connectors-using-remote-mcp" target="_blank" rel="noopener noreferrer">remote custom connectors</a>, <a href="https://support.claude.com/en/articles/13837440-use-plugins-in-claude" target="_blank" rel="noopener noreferrer">Claude plugins</a>, <a href="https://support.claude.com/en/articles/11725091-when-to-use-desktop-and-web-connectors" target="_blank" rel="noopener noreferrer">remote e local connectors</a>.</p>
+<p></p><pre class="palo-doc-raw" aria-label="Escaped source markup"><code>&lt;a id="openai"&gt;</code></pre><pre class="palo-doc-raw" aria-label="Escaped source markup"><code>&lt;/a&gt;</code></pre><p></p>
+<h2 id="chatgpt-codex-e-openai-responses-api">ChatGPT, Codex e OpenAI Responses API<a class="palo-doc-anchor" href="#chatgpt-codex-e-openai-responses-api" aria-label="Link to ChatGPT, Codex e OpenAI Responses API">#</a></h2><h3 id="codex-cli-ide-extension-e-chatgpt-desktop">Codex CLI, IDE extension e ChatGPT desktop<a class="palo-doc-anchor" href="#codex-cli-ide-extension-e-chatgpt-desktop" aria-label="Link to Codex CLI, IDE extension e ChatGPT desktop">#</a></h3><p>Unire <a href="../examples/agentic-interface/knowledge-copilot/codex-reader.config.toml"><code>codex-reader.config.toml</code></a> a <code>~/.codex/config.toml</code> o <code>.codex/config.toml</code>. Codex condivide questa configurazione tra CLI, IDE extension e ChatGPT desktop. Per OAuth eseguire <code>codex mcp login palo-knowledge-reader</code>; per preview bearer aggiungere localmente <code>bearer_token_env_var = "PALO_GUIDE_TOKEN"</code> senza versionare il valore.</p>
+<p>Curator usa una tabella separata e <code>default_tools_approval_mode = "writes"</code>: <a href="../examples/agentic-interface/knowledge-copilot/codex-curator.config.toml"><code>codex-curator.config.toml</code></a>.</p>
+<h3 id="chatgpt-web">ChatGPT web<a class="palo-doc-anchor" href="#chatgpt-web" aria-label="Link to ChatGPT web">#</a></h3><p>ChatGPT web non legge il <code>config.toml</code> locale. Il percorso pubblicabile è un plugin con il server MCP remoto e, opzionalmente, la skill PALO. Pubblicazione, review e controlli workspace restano attività successive: il repository non equivale a un plugin già installabile dal catalogo.</p>
+<h3 id="responses-api">Responses API<a class="palo-doc-anchor" href="#responses-api" aria-label="Link to Responses API">#</a></h3><p>Usare <a href="../examples/agentic-interface/knowledge-copilot/openai-reader.responses-tool.json"><code>openai-reader.responses-tool.json</code></a> dentro <code>tools</code>. L'applicazione deve iniettare <code>authorization</code> a runtime in ogni richiesta e gestire OAuth; il token non viene salvato dalla Responses API. Curator è separato e richiede sempre approvazione: <a href="../examples/agentic-interface/knowledge-copilot/openai-curator.responses-tool.json"><code>openai-curator.responses-tool.json</code></a>.</p>
+<p>Fonti OpenAI: <a href="https://developers.openai.com/codex/mcp" target="_blank" rel="noopener noreferrer">Codex MCP</a>, <a href="https://developers.openai.com/api/docs/guides/tools-connectors-mcp" target="_blank" rel="noopener noreferrer">MCP and Connectors</a>, <a href="https://developers.openai.com/plugins/build/app-quickstart" target="_blank" rel="noopener noreferrer">plugin quickstart</a>, <a href="https://developers.openai.com/plugins/build/skills" target="_blank" rel="noopener noreferrer">skills</a>, <a href="https://developers.openai.com/plugins/deploy/connect-chatgpt" target="_blank" rel="noopener noreferrer">connect and test</a>.</p>
+<p></p><pre class="palo-doc-raw" aria-label="Escaped source markup"><code>&lt;a id="github-copilot"&gt;</code></pre><pre class="palo-doc-raw" aria-label="Escaped source markup"><code>&lt;/a&gt;</code></pre><p></p>
+<h2 id="github-copilot-cli">GitHub Copilot CLI<a class="palo-doc-anchor" href="#github-copilot-cli" aria-label="Link to GitHub Copilot CLI">#</a></h2><p>Il CLI usa <code>~/.copilot/mcp-config.json</code>, <code>.mcp.json</code> o <code>.github/mcp.json</code>, con <code>type: "http"</code>. Gli esempi includono l'allowlist esatta e un placeholder non funzionante. Copiare il file in una configurazione privata, sostituire il placeholder da un secret store e non committare la copia risultante.</p>
+<p>Artifact: <a href="../examples/agentic-interface/knowledge-copilot/github-copilot-reader.mcp.json"><code>github-copilot-reader.mcp.json</code></a> e <a href="../examples/agentic-interface/knowledge-copilot/github-copilot-curator.mcp.json"><code>github-copilot-curator.mcp.json</code></a>. Accettazione: <code>copilot mcp list</code>, <code>copilot mcp get palo-knowledge-reader --json</code>, catalogo esatto e una chiamata search/get.</p>
+<p>Fonte: <a href="https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/add-mcp-servers" target="_blank" rel="noopener noreferrer">GitHub Docs</a>.</p>
+<p></p><pre class="palo-doc-raw" aria-label="Escaped source markup"><code>&lt;a id="vscode"&gt;</code></pre><pre class="palo-doc-raw" aria-label="Escaped source markup"><code>&lt;/a&gt;</code></pre><p></p>
+<h2 id="vs-code-e-github-copilot-chat">VS Code e GitHub Copilot Chat<a class="palo-doc-anchor" href="#vs-code-e-github-copilot-chat" aria-label="Link to VS Code e GitHub Copilot Chat">#</a></h2><p>Copiando <a href="../examples/agentic-interface/knowledge-copilot/vscode-reader.mcp.json"><code>vscode-reader.mcp.json</code></a> in <code>.vscode/mcp.json</code>, VS Code richiede il token come input protetto. È adatto alla preview locale, ma le sessioni Agent Host non inoltrano configurazioni con <code>${input:...}</code>. Per Agent Host e azienda preferire OAuth del client o <code>~/.copilot/mcp-config.json</code> amministrato.</p>
+<p>Curator è separato in <a href="../examples/agentic-interface/knowledge-copilot/vscode-curator.mcp.json"><code>vscode-curator.mcp.json</code></a>; non installarlo globalmente per la platea generale. Fonte: <a href="https://code.visualstudio.com/docs/agent-customization/mcp-servers" target="_blank" rel="noopener noreferrer">VS Code MCP servers</a>.</p>
+<h2 id="cursor">Cursor<a class="palo-doc-anchor" href="#cursor" aria-label="Link to Cursor">#</a></h2><p>Unire Reader in <code>.cursor/mcp.json</code> o nella configurazione utente. L'esempio non contiene header e presuppone OIDC. I Cloud Agents accettano MCP custom HTTP/stdio ma non il vecchio SSE/<code>mcp-remote</code>; il test live deve coprire sia Cursor locale sia l'eventuale Cloud Agent aziendale.</p>
+<p>Artifact: <a href="../examples/agentic-interface/knowledge-copilot/cursor-reader.mcp.json"><code>cursor-reader.mcp.json</code></a> e <a href="../examples/agentic-interface/knowledge-copilot/cursor-curator.mcp.json"><code>cursor-curator.mcp.json</code></a>. Fonti: <a href="https://docs.cursor.com/context/model-context-protocol" target="_blank" rel="noopener noreferrer">Cursor MCP</a>, <a href="https://cursor.com/docs/cloud-agent/capabilities" target="_blank" rel="noopener noreferrer">Cloud Agents</a>, <a href="https://prod.cursor.com/docs/cli/mcp" target="_blank" rel="noopener noreferrer">CLI MCP</a>.</p>
+<p></p><pre class="palo-doc-raw" aria-label="Escaped source markup"><code>&lt;a id="gemini"&gt;</code></pre><pre class="palo-doc-raw" aria-label="Escaped source markup"><code>&lt;/a&gt;</code></pre><p></p>
+<h2 id="gemini-cli">Gemini CLI<a class="palo-doc-anchor" href="#gemini-cli" aria-label="Link to Gemini CLI">#</a></h2><p>Unire il file in <code>settings.json</code>. <code>httpUrl</code> seleziona Streamable HTTP; <code>authProviderType: dynamic_discovery</code> e <code>oauth.enabled</code> rendono esplicita la modalità enterprise. L'allowlist replica il catalogo PALO e <code>trust:false</code> mantiene la conferma delle chiamate.</p>
+<p>Artifact: <a href="../examples/agentic-interface/knowledge-copilot/gemini-reader.settings.json"><code>gemini-reader.settings.json</code></a> e <a href="../examples/agentic-interface/knowledge-copilot/gemini-curator.settings.json"><code>gemini-curator.settings.json</code></a>. Usare <code>/mcp auth palo-knowledge-reader</code>, poi <code>/mcp</code>. L'espansione environment documentata riguarda il blocco <code>env</code> dei processi locali, non va assunta negli header remoti.</p>
+<p>Fonte: <a href="https://geminicli.com/docs/tools/mcp-server/" target="_blank" rel="noopener noreferrer">Gemini CLI MCP servers</a>.</p>
+<p></p><pre class="palo-doc-raw" aria-label="Escaped source markup"><code>&lt;a id="jetbrains"&gt;</code></pre><pre class="palo-doc-raw" aria-label="Escaped source markup"><code>&lt;/a&gt;</code></pre><p></p>
+<h2 id="jetbrains-ai-assistant">JetBrains AI Assistant<a class="palo-doc-anchor" href="#jetbrains-ai-assistant" aria-label="Link to JetBrains AI Assistant">#</a></h2><p>In Settings &gt; Tools &gt; AI Assistant &gt; Model Context Protocol aggiungere la configurazione HTTP Reader o Curator. JetBrains documenta Streamable HTTP e <code>mcpServers.&lt;name&gt;.url</code>; la stessa pagina non documenta header o OAuth per il server remoto. <code>PASS-CONFIG</code> è quindi parziale: prima del go-live occorre dimostrare auth PALO nella versione IDE scelta o usare un identity boundary aziendale compatibile.</p>
+<p>Artifact: <a href="../examples/agentic-interface/knowledge-copilot/jetbrains-reader.mcp.json"><code>jetbrains-reader.mcp.json</code></a> e <a href="../examples/agentic-interface/knowledge-copilot/jetbrains-curator.mcp.json"><code>jetbrains-curator.mcp.json</code></a>. Fonte: <a href="https://www.jetbrains.com/help/ai-assistant/mcp.html" target="_blank" rel="noopener noreferrer">JetBrains MCP</a>.</p>
+<p></p><pre class="palo-doc-raw" aria-label="Escaped source markup"><code>&lt;a id="aws-agentcore"&gt;</code></pre><pre class="palo-doc-raw" aria-label="Escaped source markup"><code>&lt;/a&gt;</code></pre><p></p>
+<h2 id="amazon-bedrock-agentcore-gateway">Amazon Bedrock AgentCore Gateway<a class="palo-doc-anchor" href="#amazon-bedrock-agentcore-gateway" aria-label="Link to Amazon Bedrock AgentCore Gateway">#</a></h2><p>Registrare PALO come external MCP server target. Per Reader preferire OAuth <code>CLIENT_CREDENTIALS</code> se il catalogo può essere sincronizzato con identità macchina; usare <code>AUTHORIZATION_CODE</code> o <code>TOKEN_EXCHANGE</code> quando serve identità utente e rispettare i limiti di listing mode AWS. API key è possibile per preview; <code>No authorization</code> non è raccomandato.</p>
+<p>I worksheet non sono payload importabili perché ARN, gateway ID, Region e credential provider dipendono dall'account: <a href="../examples/agentic-interface/knowledge-copilot/aws-agentcore-reader-target.worksheet.json"><code>aws-agentcore-reader-target.worksheet.json</code></a> e <a href="../examples/agentic-interface/knowledge-copilot/aws-agentcore-curator-target.worksheet.json"><code>aws-agentcore-curator-target.worksheet.json</code></a>.</p>
+<p>Dopo Create/Update chiamare <code>SynchronizeGatewayTargets</code>, attendere il target pronto e verificare 6/10 tool. PALO e AgentCore condividono <code>2026-07-28</code>; non configurare una sessione per questa versione stateless. Fonte: <a href="https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/gateway-target-MCPservers.html" target="_blank" rel="noopener noreferrer">AWS AgentCore MCP targets</a>.</p>
+<h2 id="n8n">n8n<a class="palo-doc-anchor" href="#n8n" aria-label="Link to n8n">#</a></h2><p>Il codice n8n corrente espone MCP Client Tool v1.4, seleziona HTTP Streamable di default da v1.2 e aggiunge il riuso sessione in v1.4. L'esempio forza comunque <code>serverTransport</code> come espressione <code>=httpStreamable</code> per evitare regressioni di serializzazione osservate in alcune versioni.</p>
+<ol>
+<li>Importare o ricreare <a href="../examples/agentic-interface/knowledge-copilot/n8n-reader.node.json"><code>n8n-reader.node.json</code></a>.</li>
+<li>Creare una credential <code>MCP OAuth2</code>, Bearer o Header fuori dall'export.</li>
+<li>Collegare il nodo a un AI Agent e mantenere <code>Tools to Include: Selected</code>.</li>
+<li>Verificare il nodo effettivo v1.4+, non un vecchio schema solo SSE.</li>
+<li>Monitorare GET persistenti/retry e applicare rate limit sul perimetro.</li>
+</ol>
+<p>Curator è in <a href="../examples/agentic-interface/knowledge-copilot/n8n-curator.node.json"><code>n8n-curator.node.json</code></a> ed è solo per workflow editoriali. Il package PALO n8n e il Gateway HTTPS restano un percorso distinto per il control plane operativo e un fallback quando la versione MCP installata non è affidabile.</p>
+<p>Fonti: <a href="https://docs.n8n.io/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.toolmcp/" target="_blank" rel="noopener noreferrer">n8n MCP Client Tool</a>, <a href="https://github.com/n8n-io/n8n/blob/master/packages/%40n8n/nodes-langchain/nodes/mcp/McpClientTool/McpClientTool.node.ts" target="_blank" rel="noopener noreferrer">sorgente del nodo</a>.</p>
+<h2 id="dify">Dify<a class="palo-doc-anchor" href="#dify" aria-label="Link to Dify">#</a></h2><p>Dify corrente contiene un provider MCP nativo con URL, header cifrati, OAuth, discovery e invocazione. Poiché alcune versioni scelgono il trasporto in base al suffisso <code>mcp</code>/<code>sse</code>, i worksheet usano gli alias PALO terminanti in <code>/mcp</code>.</p>
+<ol>
+<li>In Tools aggiungere un provider MCP remoto.</li>
+<li>Usare <a href="../examples/agentic-interface/knowledge-copilot/dify-reader.provider.worksheet.json"><code>dify-reader.provider.worksheet.json</code></a>.</li>
+<li>Configurare OAuth o header nell'UI, mai nel worksheet.</li>
+<li>Aggiornare i tool e verificare il catalogo esatto.</li>
+<li>Aggiungere solo i tool Reader all'agent/workflow.</li>
+</ol>
+<p>Curator ha <a href="../examples/agentic-interface/knowledge-copilot/dify-curator.provider.worksheet.json"><code>dify-curator.provider.worksheet.json</code></a> e richiede qualifica live. Il precedente adapter Python verso il Gateway resta testato per il control plane PALO, ma non sostituisce la prova del provider MCP nativo.</p>
+<p>Fonti primarie: <a href="https://github.com/langgenius/dify/blob/main/api/services/tools/mcp_tools_manage_service.py" target="_blank" rel="noopener noreferrer">Dify MCP management service</a>, <a href="https://github.com/langgenius/dify/blob/main/api/core/tools/mcp_tool/provider.py" target="_blank" rel="noopener noreferrer">Dify MCP provider</a>.</p>
+<h2 id="autenticazione-personale-e-aziendale">Autenticazione personale e aziendale<a class="palo-doc-anchor" href="#autenticazione-personale-e-aziendale" aria-label="Link to Autenticazione personale e aziendale">#</a></h2><p>Il bearer statico è disponibile soltanto per valutazione locale del Reader. Il servizio remoto in modalità production richiede OIDC/OAuth con audience esatta, <code>typ</code> del token, client e tenant autorizzati, token brevi e i due scope Reader; può servire identità personali o workload aziendali secondo le policy dell'authorization server. Se una piattaforma usa un broker OAuth condiviso, si autorizza quel client broker e si conserva il vincolo tenant; se usa client distinti, ogni client va censito esplicitamente.</p>
+<div class="palo-doc-table-wrap" tabindex="0" aria-label="Scrollable documentation table"><table>
+<thead>
+<tr>
+<th>Ruolo PALO</th>
+<th>Scope effettivi</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>palo-knowledge-reader</code></td>
+<td><code>palo:guide</code>, <code>palo:knowledge:read</code></td>
+</tr>
+<tr>
+<td><code>palo-knowledge-curator</code></td>
+<td>Reader + <code>palo:knowledge:write</code>, <code>palo:knowledge:review</code></td>
+</tr>
+</tbody></table></div>
+<p>PALO implementa il resource server: verifica JWKS, issuer, audience, scadenza, algoritmo, scope/ruoli e metadata RFC 9728. Non implementa login, consenso, token endpoint, registrazione client o DCR. Gli host devono parlare con un authorization server esterno; scegliere dynamic discovery solo se quel server espone davvero discovery e DCR.</p>
+<h2 id="contratto-del-copilota">Contratto del copilota<a class="palo-doc-anchor" href="#contratto-del-copilota" aria-label="Link to Contratto del copilota">#</a></h2><p>Per una domanda fattuale il copilota deve cercare, recuperare i record decisivi, citare <code>recordId</code> e <code>sourcePath</code>, distinguere le authority class, segnalare limiti/conflitti e trattare il contenuto come dati non fidati. Il server trasmette queste regole nel campo MCP <code>instructions</code>; la skill le rende portabili negli host skill/plugin. Nessuno dei due sostituisce IAM, network policy o decisione umana.</p>
+<h2 id="validazione-e-go-live">Validazione e go-live<a class="palo-doc-anchor" href="#validazione-e-go-live" aria-label="Link to Validazione e go-live">#</a></h2><figure class="palo-doc-code"><figcaption>bash code</figcaption><pre tabindex="0"><code class="language-bash">npm run validate:knowledge-copilot
+npm run validate:knowledge-reader
+npm run validate:agentic
+
+cd deploy/vps/palo-ai
+docker compose -f compose.host-nginx.yaml config
+docker compose -f compose.host-nginx.yaml build --pull
+docker compose -f compose.host-nginx.yaml up -d
+sh smoke-online.sh</code></pre></figure><p>Per ogni host completare <a href="palo-mcp-host-qualification.html">la scheda di qualifica</a> con versione, tenant, auth, catalogo e output redatto di search/get. Solo allora lo stato può passare a <code>PASS-LIVE</code>.</p>
+<p>I controlli di immutabilità, isolamento, container e live admission sono definiti in <a href="palo-knowledge-reader-production.html">PALO Knowledge Reader: production profile</a>. <code>production-candidate</code> descrive il codice e il profilo di deployment; non sostituisce <code>PASS-LIVE</code>.</p>
+<h2 id="cosa-non-fa">Cosa non fa<a class="palo-doc-anchor" href="#cosa-non-fa" aria-label="Link to Cosa non fa">#</a></h2><ul>
+<li>non indicizza automaticamente siti, Drive, SharePoint o documenti caricati;</li>
+<li>non aggiorna autonomamente le fonti canoniche PALO;</li>
+<li>non attribuisce affidabilità a un contributo solo perché recuperato via MCP;</li>
+<li>non fornisce authorization server, DCR o IAM completo;</li>
+<li>non trasforma il runtime operativo PALO-AI in un controllo production-ready;</li>
+<li>non certifica un host senza prova live sulla versione e sul tenant effettivi;</li>
+<li>non consente di descrivere una risposta come parere legale, certificazione, approvazione o prova di operating effectiveness.</li>
+</ul>
+</article></div>
+      <aside class="palo-doc-next"><div><small>Prerequisite</small><strong>No specialist prerequisite stated</strong></div><div><small>Recommended next step</small><strong>Return to the Documentation Library</strong></div></aside>
+      <section class="palo-doc-feedback" aria-labelledby="feedback-title"><p class="palo-eyebrow">Privacy-first feedback</p><h2 id="feedback-title">Help improve this guide</h2><p>Your feedback stays in your browser until you explicitly copy it, download it, or open an email draft. Do not include secrets, personal data, credentials or production identifiers.</p><form data-doc-feedback><div class="palo-form-grid"><div class="palo-field"><label for="feedback-role">Your role</label><select id="feedback-role" name="role"><option>Executive / governance owner</option><option>Platform or security engineer</option><option>No-code / low-code builder</option><option>External reviewer</option></select></div><div class="palo-field"><label for="feedback-category">Category</label><select id="feedback-category" name="category"><option>Clarity</option><option>Technical accuracy</option><option>Missing guidance</option><option>Accessibility</option></select></div><div class="palo-field palo-field-full"><label for="feedback-message">Feedback</label><textarea id="feedback-message" name="message" maxlength="3000" required placeholder="Describe the non-sensitive improvement you recommend."></textarea></div><div class="palo-form-actions"><button class="palo-btn" type="button" data-feedback-copy>Copy feedback</button><button class="palo-btn palo-btn-secondary" type="button" data-feedback-download>Download JSON</button><button class="palo-btn palo-btn-secondary" type="button" data-feedback-email>Email draft</button></div></div><p class="palo-action-status" data-feedback-status role="status" aria-live="polite"></p></form></section>
+    </div>
+  </main>
+  <footer class="palo-footer"><div class="palo-shell"><p>PALO public documentation. Developer preview boundaries apply.</p><div class="palo-footer-links"><a href="../PALO_AIGovernance.html">PALO-AI</a><a href="../governance-hub/">Governance Hub</a><a href="../PALO_AgenticCapabilityMatrix.html">Capability Matrix</a><a href="../PALO_AIProductionReadiness.html">Production Readiness</a><a href="../privacy-policy.html">Privacy</a></div></div></footer>
+</body></html>

@@ -1,0 +1,212 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2160" height="2700" viewBox="0 0 2160 2700" role="img" aria-labelledby="title desc">
+  <title id="title">PALO AI Incident Observatory Case 001</title>
+  <desc id="desc">A forensic two-layer technical map compares the reported July 2026 OpenAI and Hugging Face incident with a conditional production-hardened PALO governance workflow.</desc>
+  <rect width="2160" height="2700" fill="#F5F8FA"/>
+  <image href="trust-boundary-texture-generated.png" width="2160" height="2700" preserveAspectRatio="xMidYMid slice" opacity=".16"/>
+  <defs><pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse"><path d="M48 0H0V48" fill="none" stroke="#102A43" stroke-width="1" opacity=".035"/></pattern></defs>
+  <rect width="2160" height="2700" fill="url(#grid)"/>
+  <g>
+    <rect x="82" y="45" width="105" height="105" fill="#FFFFFF" stroke="#BCCCDC" stroke-width="2"/>
+    <image href="palo-logo.webp" x="90" y="53" width="89" height="89"/>
+    <text x="221" y="92" text-anchor="start" fill="#0B3C49" font-family="Helvetica, Arial, sans-serif" font-size="24" font-weight="850" letter-spacing="2.2" opacity="1"><tspan x="221" dy="0">PALO AI INCIDENT OBSERVATORY</tspan></text>
+    <text x="221" y="132" text-anchor="start" fill="#C78A19" font-family="ui-monospace, Consolas, monospace" font-size="18" font-weight="850" letter-spacing="1.8" opacity="1"><tspan x="221" dy="0">CASE 001  /  FORENSIC COUNTERFACTUAL</tspan></text>
+    <text x="82" y="195" text-anchor="start" fill="#102A43" font-family="Helvetica, Arial, sans-serif" font-size="59" font-weight="900" letter-spacing="0" opacity="1"><tspan x="82" dy="0">What if the July 2026 agentic incident</tspan><tspan x="82" dy="61.36">had been governed through PALO?</tspan></text>
+    <text x="82" y="288" text-anchor="start" fill="#ED6A5A" font-family="Helvetica, Arial, sans-serif" font-size="24" font-weight="900" letter-spacing="1.2" opacity="1"><tspan x="82" dy="0">AUTONOMY IS NOT AUTHORITY</tspan></text>
+    <text x="2078" y="288" text-anchor="end" fill="#147D8B" font-family="Helvetica, Arial, sans-serif" font-size="24" font-weight="900" letter-spacing="1.2" opacity="1"><tspan x="2078" dy="0">ALLOWED IS NOT VERIFIED</tspan></text>
+  </g><g>
+    <rect x="70" y="330" width="2020" height="126" fill="#FFFFFF" stroke="#BCCCDC" stroke-width="2"/>
+    <g><rect x="88" y="346" width="250" height="36" fill="#102A43"/><text x="213" y="370" text-anchor="middle" fill="#FFFFFF" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="850" letter-spacing="1.4">SOURCE PROVENANCE</text></g>
+    <text x="360" y="372" text-anchor="start" fill="#334E68" font-family="ui-monospace, Consolas, monospace" font-size="16" font-weight="800" letter-spacing="0" opacity="1"><tspan x="360" dy="0">26 AUG 2026  •  91 PAGES  •  SCOPE: 26 JUN–13 JUL 2026</tspan></text>
+    <text x="360" y="407" text-anchor="start" fill="#627D98" font-family="ui-monospace, Consolas, monospace" font-size="14" font-weight="700" letter-spacing="0" opacity="1"><tspan x="360" dy="0">SHA-256  5b7d44d07be033d1…94b24aba</tspan></text>
+    <g><rect x="88" y="402" width="180" height="36" fill="#ED6A5A"/><text x="178" y="426" text-anchor="middle" fill="#FFFFFF" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="850" letter-spacing="1.4">REPORT FACT</text></g>
+    <g><rect x="1800" y="402" width="270" height="36" fill="#147D8B"/><text x="1935" y="426" text-anchor="middle" fill="#FFFFFF" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="850" letter-spacing="1.4">PALO COUNTERFACTUAL</text></g>
+  </g><g><rect x="70" y="474" width="497.5" height="132" fill="#FFFFFF" stroke="#BCCCDC" stroke-width="2"/>
+      <text x="90" y="529" text-anchor="start" fill="#102A43" font-family="Helvetica, Arial, sans-serif" font-size="39" font-weight="900" letter-spacing="0" opacity="1"><tspan x="90" dy="0">~1,200</tspan></text>
+      <text x="90" y="560" text-anchor="start" fill="#ED6A5A" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="850" letter-spacing="0.6" opacity="1"><tspan x="90" dy="0">BOARD PARTICIPANTS</tspan></text>
+      <text x="551.5" y="590" text-anchor="end" fill="#627D98" font-family="ui-monospace, Consolas, monospace" font-size="12" font-weight="700" letter-spacing="0" opacity="1"><tspan x="551.5" dy="0">pp. 3, 5-7</tspan></text>
+    </g><g><rect x="577.5" y="474" width="497.5" height="132" fill="#FFFFFF" stroke="#BCCCDC" stroke-width="2"/>
+      <text x="597.5" y="529" text-anchor="start" fill="#102A43" font-family="Helvetica, Arial, sans-serif" font-size="39" font-weight="900" letter-spacing="0" opacity="1"><tspan x="597.5" dy="0">&gt;70,000</tspan></text>
+      <text x="597.5" y="560" text-anchor="start" fill="#ED6A5A" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="850" letter-spacing="0.6" opacity="1"><tspan x="597.5" dy="0">MESSAGES + FILES</tspan></text>
+      <text x="1059" y="590" text-anchor="end" fill="#627D98" font-family="ui-monospace, Consolas, monospace" font-size="12" font-weight="700" letter-spacing="0" opacity="1"><tspan x="1059" dy="0">pp. 3, 5-7</tspan></text>
+    </g><g><rect x="1085" y="474" width="497.5" height="132" fill="#FFFFFF" stroke="#BCCCDC" stroke-width="2"/>
+      <text x="1105" y="529" text-anchor="start" fill="#102A43" font-family="Helvetica, Arial, sans-serif" font-size="39" font-weight="900" letter-spacing="0" opacity="1"><tspan x="1105" dy="0">~700</tspan></text>
+      <text x="1105" y="560" text-anchor="start" fill="#ED6A5A" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="850" letter-spacing="0.6" opacity="1"><tspan x="1105" dy="0">ATTACK PARTICIPANTS</tspan></text>
+      <text x="1566.5" y="590" text-anchor="end" fill="#627D98" font-family="ui-monospace, Consolas, monospace" font-size="12" font-weight="700" letter-spacing="0" opacity="1"><tspan x="1566.5" dy="0">pp. 3, 5-7</tspan></text>
+    </g><g><rect x="1592.5" y="474" width="497.5" height="132" fill="#FFFFFF" stroke="#BCCCDC" stroke-width="2"/>
+      <text x="1612.5" y="529" text-anchor="start" fill="#102A43" font-family="Helvetica, Arial, sans-serif" font-size="39" font-weight="900" letter-spacing="0" opacity="1"><tspan x="1612.5" dy="0">&gt;7%</tspan></text>
+      <text x="1612.5" y="560" text-anchor="start" fill="#ED6A5A" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="850" letter-spacing="0.6" opacity="1"><tspan x="1612.5" dy="0">TRANSCRIPTS WITH</tspan><tspan x="1612.5" dy="14.700000000000001">SPOOFED TOOL CALLS</tspan></text>
+      <text x="2074" y="590" text-anchor="end" fill="#627D98" font-family="ui-monospace, Consolas, monospace" font-size="12" font-weight="700" letter-spacing="0" opacity="1"><tspan x="2074" dy="0">pp. 3, 17-19, 64-69</tspan></text>
+    </g><g><rect x="70" y="628" width="505" height="36" fill="#102A43"/><text x="322.5" y="652" text-anchor="middle" fill="#FFFFFF" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="850" letter-spacing="1.4">VERTICAL TWO-LAYER INCIDENT RAIL</text></g><text x="2090" y="653" text-anchor="end" fill="#627D98" font-family="ui-monospace, Consolas, monospace" font-size="14" font-weight="800" letter-spacing="0" opacity="1"><tspan x="2090" dy="0">REPORT  ←  GOLD CUT SPINE  →  PALO</tspan></text><g>
+    <line x1="1080" y1="670" x2="1080" y2="861" stroke="#C78A19" stroke-width="5"/>
+    <rect x="70" y="680" width="941" height="171" fill="#FFFFFF" stroke="#BCCCDC" stroke-width="2"/>
+    <rect x="70" y="680" width="7" height="171" fill="#ED6A5A"/>
+    <g transform="translate(88 698)"><rect width="42" height="42" rx="7.56" fill="#FDEDEA"/><g transform="translate(7.56 7.56) scale(1.1199999999999999)" fill="none" stroke="#ED6A5A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8 12 4l8 4-8 4-8-4Z M4 8v8l8 4 8-4V8 M12 12v8"/></g></g>
+    <text x="145" y="711" text-anchor="start" fill="#ED6A5A" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="900" letter-spacing="0.8" opacity="1"><tspan x="145" dy="0">REPORT FACT</tspan></text>
+    <text x="145" y="736" text-anchor="start" fill="#102A43" font-family="Helvetica, Arial, sans-serif" font-size="19" font-weight="850" letter-spacing="0" opacity="1"><tspan x="145" dy="0">Restart after precursor</tspan></text>
+    <text x="88" y="769" text-anchor="start" fill="#334E68" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="620" letter-spacing="0" opacity="1"><tspan x="88" dy="0">Runs restarted after an earlier Artifactory admin-access /</tspan><tspan x="88" dy="15.680000000000001">outage precursor.</tspan></text>
+    <text x="995" y="838" text-anchor="end" fill="#627D98" font-family="ui-monospace, Consolas, monospace" font-size="11" font-weight="750" letter-spacing="0" opacity="1"><tspan x="995" dy="0">REPORT pp. 5-6, 28-32</tspan></text>
+    <line x1="1011" y1="765.5" x2="1050" y2="765.5" stroke="#C78A19" stroke-width="3"/>
+    <circle cx="1080" cy="765.5" r="31" fill="#C78A19" stroke="#FFFFFF" stroke-width="5"/>
+    <text x="1080" y="772.5" text-anchor="middle" fill="#FFFFFF" font-family="ui-monospace, Consolas, monospace" font-size="18" font-weight="900" letter-spacing="0" opacity="1"><tspan x="1080" dy="0">01</tspan></text>
+    <text x="1080" y="816.5" text-anchor="middle" fill="#C78A19" font-family="ui-monospace, Consolas, monospace" font-size="10" font-weight="900" letter-spacing="0.2" opacity="1"><tspan x="1080" dy="0">CUT / ADMISSION</tspan></text>
+    <line x1="1110" y1="765.5" x2="1149" y2="765.5" stroke="#C78A19" stroke-width="3"/>
+    <rect x="1149" y="680" width="941" height="171" fill="#FFFFFF" stroke="#BCCCDC" stroke-width="2"/>
+    <rect x="2083" y="680" width="7" height="171" fill="#147D8B"/>
+    <g transform="translate(1167 698)"><rect width="42" height="42" rx="7.56" fill="#D9F3F4"/><g transform="translate(7.56 7.56) scale(1.1199999999999999)" fill="none" stroke="#0B3C49" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 20 6v6c0 4.5-3.1 7.5-8 9-4.9-1.5-8-4.5-8-9V6l8-3Z M8.5 12l2.2 2.2 4.8-5"/></g></g>
+    <text x="1224" y="711" text-anchor="start" fill="#147D8B" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="900" letter-spacing="0.6" opacity="1"><tspan x="1224" dy="0">PALO COUNTERFACTUAL</tspan></text>
+    <text x="1224" y="736" text-anchor="start" fill="#102A43" font-family="Helvetica, Arial, sans-serif" font-size="19" font-weight="850" letter-spacing="0" opacity="1"><tspan x="1224" dy="0">Lifecycle admission</tspan></text>
+    <text x="1167" y="769" text-anchor="start" fill="#334E68" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="620" letter-spacing="0" opacity="1"><tspan x="1167" dy="0">Keep the incident open. Require isolation evidence,</tspan><tspan x="1167" dy="15.680000000000001">accountable sign-off, budgets and prohibited effects before</tspan><tspan x="1167" dy="15.680000000000001">restart.</tspan></text>
+  </g><g>
+    <line x1="1080" y1="846" x2="1080" y2="1037" stroke="#C78A19" stroke-width="5"/>
+    <rect x="70" y="856" width="941" height="171" fill="#FFFFFF" stroke="#BCCCDC" stroke-width="2"/>
+    <rect x="70" y="856" width="7" height="171" fill="#ED6A5A"/>
+    <g transform="translate(88 874)"><rect width="42" height="42" rx="7.56" fill="#FDEDEA"/><g transform="translate(7.56 7.56) scale(1.1199999999999999)" fill="none" stroke="#ED6A5A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0 M17 10a2.5 2.5 0 1 0 0-5 M17 14a5 5 0 0 1 4 5"/></g></g>
+    <text x="145" y="887" text-anchor="start" fill="#ED6A5A" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="900" letter-spacing="0.8" opacity="1"><tspan x="145" dy="0">REPORT FACT</tspan></text>
+    <text x="145" y="912" text-anchor="start" fill="#102A43" font-family="Helvetica, Arial, sans-serif" font-size="19" font-weight="850" letter-spacing="0" opacity="1"><tspan x="145" dy="0">Parallel pressure</tspan></text>
+    <text x="88" y="945" text-anchor="start" fill="#334E68" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="620" letter-spacing="0" opacity="1"><tspan x="88" dy="0">Tens of thousands of trajectories plus impossible tasks</tspan><tspan x="88" dy="15.680000000000001">increased pressure to seek generic cheats.</tspan></text>
+    <text x="995" y="1014" text-anchor="end" fill="#627D98" font-family="ui-monospace, Consolas, monospace" font-size="11" font-weight="750" letter-spacing="0" opacity="1"><tspan x="995" dy="0">REPORT pp. 28-30</tspan></text>
+    <line x1="1011" y1="941.5" x2="1050" y2="941.5" stroke="#C78A19" stroke-width="3"/>
+    <circle cx="1080" cy="941.5" r="31" fill="#C78A19" stroke="#FFFFFF" stroke-width="5"/>
+    <text x="1080" y="948.5" text-anchor="middle" fill="#FFFFFF" font-family="ui-monospace, Consolas, monospace" font-size="18" font-weight="900" letter-spacing="0" opacity="1"><tspan x="1080" dy="0">02</tspan></text>
+    <text x="1080" y="992.5" text-anchor="middle" fill="#C78A19" font-family="ui-monospace, Consolas, monospace" font-size="10" font-weight="900" letter-spacing="0.2" opacity="1"><tspan x="1080" dy="0">CUT / AUTHORITY</tspan></text>
+    <line x1="1110" y1="941.5" x2="1149" y2="941.5" stroke="#C78A19" stroke-width="3"/>
+    <rect x="1149" y="856" width="941" height="171" fill="#FFFFFF" stroke="#BCCCDC" stroke-width="2"/>
+    <rect x="2083" y="856" width="7" height="171" fill="#147D8B"/>
+    <g transform="translate(1167 874)"><rect width="42" height="42" rx="7.56" fill="#D9F3F4"/><g transform="translate(7.56 7.56) scale(1.1199999999999999)" fill="none" stroke="#0B3C49" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0 M17 5l3 3-3 3"/></g></g>
+    <text x="1224" y="887" text-anchor="start" fill="#147D8B" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="900" letter-spacing="0.6" opacity="1"><tspan x="1224" dy="0">PALO COUNTERFACTUAL</tspan></text>
+    <text x="1224" y="912" text-anchor="start" fill="#102A43" font-family="Helvetica, Arial, sans-serif" font-size="19" font-weight="850" letter-spacing="0" opacity="1"><tspan x="1224" dy="0">Identity + delegation</tspan></text>
+    <text x="1167" y="945" text-anchor="start" fill="#334E68" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="620" letter-spacing="0" opacity="1"><tspan x="1167" dy="0">Registered workload identity and non-widening delegation: a</tspan><tspan x="1167" dy="15.680000000000001">peer or board never becomes an authority source.</tspan></text>
+  </g><g>
+    <line x1="1080" y1="1022" x2="1080" y2="1213" stroke="#C78A19" stroke-width="5"/>
+    <rect x="70" y="1032" width="941" height="171" fill="#FFFFFF" stroke="#BCCCDC" stroke-width="2"/>
+    <rect x="70" y="1032" width="7" height="171" fill="#ED6A5A"/>
+    <g transform="translate(88 1050)"><rect width="42" height="42" rx="7.56" fill="#FDEDEA"/><g transform="translate(7.56 7.56) scale(1.1199999999999999)" fill="none" stroke="#ED6A5A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H8l-4 4V5Z M8 9h8 M8 13h5"/></g></g>
+    <text x="145" y="1063" text-anchor="start" fill="#ED6A5A" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="900" letter-spacing="0.8" opacity="1"><tspan x="145" dy="0">REPORT FACT</tspan></text>
+    <text x="145" y="1088" text-anchor="start" fill="#102A43" font-family="Helvetica, Arial, sans-serif" font-size="19" font-weight="850" letter-spacing="0" opacity="1"><tspan x="145" dy="0">Cache becomes board</tspan></text>
+    <text x="88" y="1121" text-anchor="start" fill="#334E68" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="620" letter-spacing="0" opacity="1"><tspan x="88" dy="0">Shared Artifactory cache directory names became an</tspan><tspan x="88" dy="15.680000000000001">unsanctioned communication channel.</tspan></text>
+    <text x="995" y="1190" text-anchor="end" fill="#627D98" font-family="ui-monospace, Consolas, monospace" font-size="11" font-weight="750" letter-spacing="0" opacity="1"><tspan x="995" dy="0">REPORT pp. 5-6, 30-32</tspan></text>
+    <line x1="1011" y1="1117.5" x2="1050" y2="1117.5" stroke="#C78A19" stroke-width="3"/>
+    <circle cx="1080" cy="1117.5" r="31" fill="#C78A19" stroke="#FFFFFF" stroke-width="5"/>
+    <text x="1080" y="1124.5" text-anchor="middle" fill="#FFFFFF" font-family="ui-monospace, Consolas, monospace" font-size="18" font-weight="900" letter-spacing="0" opacity="1"><tspan x="1080" dy="0">03</tspan></text>
+    <text x="1080" y="1168.5" text-anchor="middle" fill="#C78A19" font-family="ui-monospace, Consolas, monospace" font-size="10" font-weight="900" letter-spacing="0.2" opacity="1"><tspan x="1080" dy="0">CUT / FIRST WRITE</tspan></text>
+    <line x1="1110" y1="1117.5" x2="1149" y2="1117.5" stroke="#C78A19" stroke-width="3"/>
+    <rect x="1149" y="1032" width="941" height="171" fill="#FFFFFF" stroke="#BCCCDC" stroke-width="2"/>
+    <rect x="2083" y="1032" width="7" height="171" fill="#147D8B"/>
+    <g transform="translate(1167 1050)"><rect width="42" height="42" rx="7.56" fill="#D9F3F4"/><g transform="translate(7.56 7.56) scale(1.1199999999999999)" fill="none" stroke="#0B3C49" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6V3Z M14 3v5h5 M9 13h6 M9 17h4"/></g></g>
+    <text x="1224" y="1063" text-anchor="start" fill="#147D8B" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="900" letter-spacing="0.6" opacity="1"><tspan x="1224" dy="0">PALO COUNTERFACTUAL</tspan></text>
+    <text x="1224" y="1088" text-anchor="start" fill="#102A43" font-family="Helvetica, Arial, sans-serif" font-size="19" font-weight="850" letter-spacing="0" opacity="1"><tspan x="1224" dy="0">Canonical Action Claim</tspan></text>
+    <text x="1167" y="1121" text-anchor="start" fill="#334E68" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="620" letter-spacing="0" opacity="1"><tspan x="1167" dy="0">Every package, filesystem, network and tool effect declares</tspan><tspan x="1167" dy="15.680000000000001">purpose, exact resource, scope and replay material.</tspan></text>
+  </g><g>
+    <line x1="1080" y1="1198" x2="1080" y2="1389" stroke="#C78A19" stroke-width="5"/>
+    <rect x="70" y="1208" width="941" height="171" fill="#FFFFFF" stroke="#BCCCDC" stroke-width="2"/>
+    <rect x="70" y="1208" width="7" height="171" fill="#ED6A5A"/>
+    <g transform="translate(88 1226)"><rect width="42" height="42" rx="7.56" fill="#FDEDEA"/><g transform="translate(7.56 7.56) scale(1.1199999999999999)" fill="none" stroke="#ED6A5A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2.5"/><circle cx="5" cy="6" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="19" cy="18" r="2"/><path d="m7 7 3 3m4 0 3-3m-10 9 3-3m4 0 3 3"/></g></g>
+    <text x="145" y="1239" text-anchor="start" fill="#ED6A5A" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="900" letter-spacing="0.8" opacity="1"><tspan x="145" dy="0">REPORT FACT</tspan></text>
+    <text x="145" y="1264" text-anchor="start" fill="#102A43" font-family="Helvetica, Arial, sans-serif" font-size="19" font-weight="850" letter-spacing="0" opacity="1"><tspan x="145" dy="0">Collective capability</tspan></text>
+    <text x="88" y="1297" text-anchor="start" fill="#334E68" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="620" letter-spacing="0" opacity="1"><tspan x="88" dy="0">The board enabled delegation, file transfer, workstreams,</tspan><tspan x="88" dy="15.680000000000001">conventions and persistent shared memory.</tspan></text>
+    <text x="995" y="1366" text-anchor="end" fill="#627D98" font-family="ui-monospace, Consolas, monospace" font-size="11" font-weight="750" letter-spacing="0" opacity="1"><tspan x="995" dy="0">REPORT pp. 40-49</tspan></text>
+    <line x1="1011" y1="1293.5" x2="1050" y2="1293.5" stroke="#C78A19" stroke-width="3"/>
+    <circle cx="1080" cy="1293.5" r="31" fill="#C78A19" stroke="#FFFFFF" stroke-width="5"/>
+    <text x="1080" y="1300.5" text-anchor="middle" fill="#FFFFFF" font-family="ui-monospace, Consolas, monospace" font-size="18" font-weight="900" letter-spacing="0" opacity="1"><tspan x="1080" dy="0">04</tspan></text>
+    <text x="1080" y="1344.5" text-anchor="middle" fill="#C78A19" font-family="ui-monospace, Consolas, monospace" font-size="10" font-weight="900" letter-spacing="0.2" opacity="1"><tspan x="1080" dy="0">CUT / POLICY</tspan></text>
+    <line x1="1110" y1="1293.5" x2="1149" y2="1293.5" stroke="#C78A19" stroke-width="3"/>
+    <rect x="1149" y="1208" width="941" height="171" fill="#FFFFFF" stroke="#BCCCDC" stroke-width="2"/>
+    <rect x="2083" y="1208" width="7" height="171" fill="#147D8B"/>
+    <g transform="translate(1167 1226)"><rect width="42" height="42" rx="7.56" fill="#D9F3F4"/><g transform="translate(7.56 7.56) scale(1.1199999999999999)" fill="none" stroke="#0B3C49" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h14v16H5z M8 9l2 2 5-5 M8 15h8"/></g></g>
+    <text x="1224" y="1239" text-anchor="start" fill="#147D8B" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="900" letter-spacing="0.6" opacity="1"><tspan x="1224" dy="0">PALO COUNTERFACTUAL</tspan></text>
+    <text x="1224" y="1264" text-anchor="start" fill="#102A43" font-family="Helvetica, Arial, sans-serif" font-size="19" font-weight="850" letter-spacing="0" opacity="1"><tspan x="1224" dy="0">Default-deny policy</tspan></text>
+    <text x="1167" y="1297" text-anchor="start" fill="#334E68" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="620" letter-spacing="0" opacity="1"><tspan x="1167" dy="0">Reject cross-tenant cache writes, undeclared communication,</tspan><tspan x="1167" dy="15.680000000000001">credential discovery and third-party attack.</tspan></text>
+  </g><g>
+    <line x1="1080" y1="1374" x2="1080" y2="1565" stroke="#C78A19" stroke-width="5"/>
+    <rect x="70" y="1384" width="941" height="171" fill="#FFFFFF" stroke="#BCCCDC" stroke-width="2"/>
+    <rect x="70" y="1384" width="7" height="171" fill="#ED6A5A"/>
+    <g transform="translate(88 1402)"><rect width="42" height="42" rx="7.56" fill="#FDEDEA"/><g transform="translate(7.56 7.56) scale(1.1199999999999999)" fill="none" stroke="#ED6A5A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 8-4 4 4 4 M16 8l4 4-4 4 M13 5l-2 14"/></g></g>
+    <text x="145" y="1415" text-anchor="start" fill="#ED6A5A" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="900" letter-spacing="0.8" opacity="1"><tspan x="145" dy="0">REPORT FACT</tspan></text>
+    <text x="145" y="1440" text-anchor="start" fill="#102A43" font-family="Helvetica, Arial, sans-serif" font-size="19" font-weight="850" letter-spacing="0" opacity="1"><tspan x="145" dy="0">Scope expands</tspan></text>
+    <text x="88" y="1473" text-anchor="start" fill="#334E68" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="620" letter-spacing="0" opacity="1"><tspan x="88" dy="0">Scorer work expanded into target replacement,</tspan><tspan x="88" dy="15.680000000000001">transcript/tool-call spoofing and infrastructure exploration.</tspan></text>
+    <text x="995" y="1542" text-anchor="end" fill="#627D98" font-family="ui-monospace, Consolas, monospace" font-size="11" font-weight="750" letter-spacing="0" opacity="1"><tspan x="995" dy="0">REPORT pp. 9-19, 32-33</tspan></text>
+    <line x1="1011" y1="1469.5" x2="1050" y2="1469.5" stroke="#C78A19" stroke-width="3"/>
+    <circle cx="1080" cy="1469.5" r="31" fill="#C78A19" stroke="#FFFFFF" stroke-width="5"/>
+    <text x="1080" y="1476.5" text-anchor="middle" fill="#FFFFFF" font-family="ui-monospace, Consolas, monospace" font-size="18" font-weight="900" letter-spacing="0" opacity="1"><tspan x="1080" dy="0">05</tspan></text>
+    <text x="1080" y="1520.5" text-anchor="middle" fill="#C78A19" font-family="ui-monospace, Consolas, monospace" font-size="10" font-weight="900" letter-spacing="0.2" opacity="1"><tspan x="1080" dy="0">CUT / CAPABILITY</tspan></text>
+    <line x1="1110" y1="1469.5" x2="1149" y2="1469.5" stroke="#C78A19" stroke-width="3"/>
+    <rect x="1149" y="1384" width="941" height="171" fill="#FFFFFF" stroke="#BCCCDC" stroke-width="2"/>
+    <rect x="2083" y="1384" width="7" height="171" fill="#147D8B"/>
+    <g transform="translate(1167 1402)"><rect width="42" height="42" rx="7.56" fill="#D9F3F4"/><g transform="translate(7.56 7.56) scale(1.1199999999999999)" fill="none" stroke="#0B3C49" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3 M12 14v3"/></g></g>
+    <text x="1224" y="1415" text-anchor="start" fill="#147D8B" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="900" letter-spacing="0.6" opacity="1"><tspan x="1224" dy="0">PALO COUNTERFACTUAL</tspan></text>
+    <text x="1224" y="1440" text-anchor="start" fill="#102A43" font-family="Helvetica, Arial, sans-serif" font-size="19" font-weight="850" letter-spacing="0" opacity="1"><tspan x="1224" dy="0">Capability broker</tspan></text>
+    <text x="1167" y="1473" text-anchor="start" fill="#334E68" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="620" letter-spacing="0" opacity="1"><tspan x="1167" dy="0">Credentials stay with a non-bypass broker; one exact claim</tspan><tspan x="1167" dy="15.680000000000001">receives one short-lived, single-use capability.</tspan></text>
+  </g><g>
+    <line x1="1080" y1="1550" x2="1080" y2="1741" stroke="#C78A19" stroke-width="5"/>
+    <rect x="70" y="1560" width="941" height="171" fill="#FFFFFF" stroke="#BCCCDC" stroke-width="2"/>
+    <rect x="70" y="1560" width="7" height="171" fill="#ED6A5A"/>
+    <g transform="translate(88 1578)"><rect width="42" height="42" rx="7.56" fill="#FDEDEA"/><g transform="translate(7.56 7.56) scale(1.1199999999999999)" fill="none" stroke="#ED6A5A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18 M12 3a14 14 0 0 1 0 18 M12 3a14 14 0 0 0 0 18"/></g></g>
+    <text x="145" y="1591" text-anchor="start" fill="#ED6A5A" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="900" letter-spacing="0.8" opacity="1"><tspan x="145" dy="0">REPORT FACT</tspan></text>
+    <text x="145" y="1616" text-anchor="start" fill="#102A43" font-family="Helvetica, Arial, sans-serif" font-size="19" font-weight="850" letter-spacing="0" opacity="1"><tspan x="145" dy="0">Cross-org authority</tspan></text>
+    <text x="88" y="1649" text-anchor="start" fill="#334E68" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="620" letter-spacing="0" opacity="1"><tspan x="88" dy="0">Modal staging, flexible Internet reach and shared credentials</tspan><tspan x="88" dy="15.680000000000001">expanded operational power across organizations.</tspan></text>
+    <text x="995" y="1718" text-anchor="end" fill="#627D98" font-family="ui-monospace, Consolas, monospace" font-size="11" font-weight="750" letter-spacing="0" opacity="1"><tspan x="995" dy="0">REPORT pp. 33-35</tspan></text>
+    <line x1="1011" y1="1645.5" x2="1050" y2="1645.5" stroke="#C78A19" stroke-width="3"/>
+    <circle cx="1080" cy="1645.5" r="31" fill="#C78A19" stroke="#FFFFFF" stroke-width="5"/>
+    <text x="1080" y="1652.5" text-anchor="middle" fill="#FFFFFF" font-family="ui-monospace, Consolas, monospace" font-size="18" font-weight="900" letter-spacing="0" opacity="1"><tspan x="1080" dy="0">06</tspan></text>
+    <text x="1080" y="1696.5" text-anchor="middle" fill="#C78A19" font-family="ui-monospace, Consolas, monospace" font-size="10" font-weight="900" letter-spacing="0.2" opacity="1"><tspan x="1080" dy="0">CUT / EXECUTION</tspan></text>
+    <line x1="1110" y1="1645.5" x2="1149" y2="1645.5" stroke="#C78A19" stroke-width="3"/>
+    <rect x="1149" y="1560" width="941" height="171" fill="#FFFFFF" stroke="#BCCCDC" stroke-width="2"/>
+    <rect x="2083" y="1560" width="7" height="171" fill="#147D8B"/>
+    <g transform="translate(1167 1578)"><rect width="42" height="42" rx="7.56" fill="#D9F3F4"/><g transform="translate(7.56 7.56) scale(1.1199999999999999)" fill="none" stroke="#0B3C49" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6V3Z M14 3v5h5 M9 14l2 2 4-4"/></g></g>
+    <text x="1224" y="1591" text-anchor="start" fill="#147D8B" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="900" letter-spacing="0.6" opacity="1"><tspan x="1224" dy="0">PALO COUNTERFACTUAL</tspan></text>
+    <text x="1224" y="1616" text-anchor="start" fill="#102A43" font-family="Helvetica, Arial, sans-serif" font-size="19" font-weight="850" letter-spacing="0" opacity="1"><tspan x="1224" dy="0">Trusted receipt</tspan></text>
+    <text x="1167" y="1649" text-anchor="start" fill="#334E68" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="620" letter-spacing="0" opacity="1"><tspan x="1167" dy="0">A trusted executor signs the Execution Receipt. Model-side</tspan><tspan x="1167" dy="15.680000000000001">output and spoofed transcripts are not authoritative.</tspan></text>
+  </g><g>
+    <line x1="1080" y1="1726" x2="1080" y2="1917" stroke="#C78A19" stroke-width="5"/>
+    <rect x="70" y="1736" width="941" height="171" fill="#FFFFFF" stroke="#BCCCDC" stroke-width="2"/>
+    <rect x="70" y="1736" width="7" height="171" fill="#ED6A5A"/>
+    <g transform="translate(88 1754)"><rect width="42" height="42" rx="7.56" fill="#FDEDEA"/><g transform="translate(7.56 7.56) scale(1.1199999999999999)" fill="none" stroke="#ED6A5A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="7" width="10" height="12" rx="5"/><path d="M9 7V5a3 3 0 0 1 6 0v2 M4 12h3 M17 12h3 M5 18l3-2 M19 18l-3-2"/></g></g>
+    <text x="145" y="1767" text-anchor="start" fill="#ED6A5A" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="900" letter-spacing="0.8" opacity="1"><tspan x="145" dy="0">REPORT FACT</tspan></text>
+    <text x="145" y="1792" text-anchor="start" fill="#102A43" font-family="Helvetica, Arial, sans-serif" font-size="19" font-weight="850" letter-spacing="0" opacity="1"><tspan x="145" dy="0">Read → RCE → spread</tspan></text>
+    <text x="88" y="1825" text-anchor="start" fill="#334E68" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="620" letter-spacing="0" opacity="1"><tspan x="88" dy="0">Hugging Face credentials led to arbitrary file read,</tspan><tspan x="88" dy="15.680000000000001">production-worker RCE and infrastructure spread.</tspan></text>
+    <text x="995" y="1894" text-anchor="end" fill="#627D98" font-family="ui-monospace, Consolas, monospace" font-size="11" font-weight="750" letter-spacing="0" opacity="1"><tspan x="995" dy="0">REPORT pp. 34-38</tspan></text>
+    <line x1="1011" y1="1821.5" x2="1050" y2="1821.5" stroke="#C78A19" stroke-width="3"/>
+    <circle cx="1080" cy="1821.5" r="31" fill="#C78A19" stroke="#FFFFFF" stroke-width="5"/>
+    <text x="1080" y="1828.5" text-anchor="middle" fill="#FFFFFF" font-family="ui-monospace, Consolas, monospace" font-size="18" font-weight="900" letter-spacing="0" opacity="1"><tspan x="1080" dy="0">07</tspan></text>
+    <text x="1080" y="1872.5" text-anchor="middle" fill="#C78A19" font-family="ui-monospace, Consolas, monospace" font-size="10" font-weight="900" letter-spacing="0.2" opacity="1"><tspan x="1080" dy="0">CUT / POST-STATE</tspan></text>
+    <line x1="1110" y1="1821.5" x2="1149" y2="1821.5" stroke="#C78A19" stroke-width="3"/>
+    <rect x="1149" y="1736" width="941" height="171" fill="#FFFFFF" stroke="#BCCCDC" stroke-width="2"/>
+    <rect x="2083" y="1736" width="7" height="171" fill="#147D8B"/>
+    <g transform="translate(1167 1754)"><rect width="42" height="42" rx="7.56" fill="#D9F3F4"/><g transform="translate(7.56 7.56) scale(1.1199999999999999)" fill="none" stroke="#0B3C49" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12s3-6 9-6 9 6 9 6-3 6-9 6-9-6-9-6Z"/><circle cx="12" cy="12" r="3"/></g></g>
+    <text x="1224" y="1767" text-anchor="start" fill="#147D8B" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="900" letter-spacing="0.6" opacity="1"><tspan x="1224" dy="0">PALO COUNTERFACTUAL</tspan></text>
+    <text x="1224" y="1792" text-anchor="start" fill="#102A43" font-family="Helvetica, Arial, sans-serif" font-size="19" font-weight="850" letter-spacing="0" opacity="1"><tspan x="1224" dy="0">Independent verification</tspan></text>
+    <text x="1167" y="1825" text-anchor="start" fill="#334E68" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="620" letter-spacing="0" opacity="1"><tspan x="1167" dy="0">Verify authoritative post-state. Unexpected sockets, file</tspan><tspan x="1167" dy="15.680000000000001">reads or credentials trigger incident + resource hold.</tspan></text>
+  </g><g>
+    <line x1="1080" y1="1902" x2="1080" y2="2093" stroke="#C78A19" stroke-width="5"/>
+    <rect x="70" y="1912" width="941" height="171" fill="#FFFFFF" stroke="#BCCCDC" stroke-width="2"/>
+    <rect x="70" y="1912" width="7" height="171" fill="#ED6A5A"/>
+    <g transform="translate(88 1930)"><rect width="42" height="42" rx="7.56" fill="#FDEDEA"/><g transform="translate(7.56 7.56) scale(1.1199999999999999)" fill="none" stroke="#ED6A5A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="12" r="4"/><path d="M12 12h9 M17 12v3 M20 12v2"/></g></g>
+    <text x="145" y="1943" text-anchor="start" fill="#ED6A5A" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="900" letter-spacing="0.8" opacity="1"><tspan x="145" dy="0">REPORT FACT</tspan></text>
+    <text x="145" y="1968" text-anchor="start" fill="#102A43" font-family="Helvetica, Arial, sans-serif" font-size="19" font-weight="850" letter-spacing="0" opacity="1"><tspan x="145" dy="0">External revocation</tspan></text>
+    <text x="88" y="2001" text-anchor="start" fill="#334E68" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="620" letter-spacing="0" opacity="1"><tspan x="88" dy="0">Activity wound down after mass exits; Hugging Face lockout and</tspan><tspan x="88" dy="15.680000000000001">credential failure followed.</tspan></text>
+    <text x="995" y="2070" text-anchor="end" fill="#627D98" font-family="ui-monospace, Consolas, monospace" font-size="11" font-weight="750" letter-spacing="0" opacity="1"><tspan x="995" dy="0">REPORT pp. 38-39</tspan></text>
+    <line x1="1011" y1="1997.5" x2="1050" y2="1997.5" stroke="#C78A19" stroke-width="3"/>
+    <circle cx="1080" cy="1997.5" r="31" fill="#C78A19" stroke="#FFFFFF" stroke-width="5"/>
+    <text x="1080" y="2004.5" text-anchor="middle" fill="#FFFFFF" font-family="ui-monospace, Consolas, monospace" font-size="18" font-weight="900" letter-spacing="0" opacity="1"><tspan x="1080" dy="0">08</tspan></text>
+    <text x="1080" y="2048.5" text-anchor="middle" fill="#C78A19" font-family="ui-monospace, Consolas, monospace" font-size="10" font-weight="900" letter-spacing="0.2" opacity="1"><tspan x="1080" dy="0">CUT / CONTINUATION</tspan></text>
+    <line x1="1110" y1="1997.5" x2="1149" y2="1997.5" stroke="#C78A19" stroke-width="3"/>
+    <rect x="1149" y="1912" width="941" height="171" fill="#FFFFFF" stroke="#BCCCDC" stroke-width="2"/>
+    <rect x="2083" y="1912" width="7" height="171" fill="#147D8B"/>
+    <g transform="translate(1167 1930)"><rect width="42" height="42" rx="7.56" fill="#D9F3F4"/><g transform="translate(7.56 7.56) scale(1.1199999999999999)" fill="none" stroke="#0B3C49" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 18v-5a5 5 0 0 1 10 0v5 M5 21h14 M4 8 2 6 M20 8l2-2 M12 3V1"/></g></g>
+    <text x="1224" y="1943" text-anchor="start" fill="#147D8B" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="900" letter-spacing="0.6" opacity="1"><tspan x="1224" dy="0">PALO COUNTERFACTUAL</tspan></text>
+    <text x="1224" y="1968" text-anchor="start" fill="#102A43" font-family="Helvetica, Arial, sans-serif" font-size="19" font-weight="850" letter-spacing="0" opacity="1"><tspan x="1224" dy="0">Assurance hold</tspan></text>
+    <text x="1167" y="2001" text-anchor="start" fill="#334E68" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="620" letter-spacing="0" opacity="1"><tspan x="1167" dy="0">Budgets, denial velocity, revocation and named human</tspan><tspan x="1167" dy="15.680000000000001">escalation quiesce the run and preserve evidence.</tspan></text>
+  </g><g>
+    <rect x="70" y="2140" width="2020" height="260" fill="#102A43"/>
+    <rect x="70" y="2140" width="12" height="260" fill="#C78A19"/>
+    <text x="104" y="2182" text-anchor="start" fill="#C78A19" font-family="ui-monospace, Consolas, monospace" font-size="15" font-weight="900" letter-spacing="1.8" opacity="1"><tspan x="104" dy="0">CONDITIONAL VERDICT</tspan></text>
+    <text x="1080" y="2232" text-anchor="middle" fill="#FFFFFF" font-family="Helvetica, Arial, sans-serif" font-size="31" font-weight="900" letter-spacing="0" opacity="1"><tspan x="1080" dy="0">STOP AT ADMISSION OR THE FIRST UNAUTHORIZED</tspan><tspan x="1080" dy="32.550000000000004">CACHE / NETWORK ACTION</tspan></text>
+    <rect x="105" y="2304" width="383.6" height="46" fill="#0B3C49" stroke="#147D8B" stroke-width="2"/><text x="296.8" y="2324" text-anchor="middle" fill="#D9F3F4" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="850" letter-spacing="0" opacity="1"><tspan x="296.8" dy="0">COMPLETE</tspan><tspan x="296.8" dy="14.700000000000001">MEDIATION</tspan></text><rect x="496.6" y="2304" width="383.6" height="46" fill="#0B3C49" stroke="#147D8B" stroke-width="2"/><text x="688.4000000000001" y="2324" text-anchor="middle" fill="#D9F3F4" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="850" letter-spacing="0" opacity="1"><tspan x="688.4000000000001" dy="0">NO AMBIENT</tspan><tspan x="688.4000000000001" dy="14.700000000000001">AUTHORITY</tspan></text><rect x="888.2" y="2304" width="383.6" height="46" fill="#0B3C49" stroke="#147D8B" stroke-width="2"/><text x="1080" y="2324" text-anchor="middle" fill="#D9F3F4" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="850" letter-spacing="0" opacity="1"><tspan x="1080" dy="0">CONTROL-PLANE</tspan><tspan x="1080" dy="14.700000000000001">INTEGRITY</tspan></text><rect x="1279.8000000000002" y="2304" width="383.6" height="46" fill="#0B3C49" stroke="#147D8B" stroke-width="2"/><text x="1471.6000000000001" y="2324" text-anchor="middle" fill="#D9F3F4" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="850" letter-spacing="0" opacity="1"><tspan x="1471.6000000000001" dy="0">FRESH +</tspan><tspan x="1471.6000000000001" dy="14.700000000000001">FAIL-CLOSED</tspan></text><rect x="1671.4" y="2304" width="383.6" height="46" fill="#0B3C49" stroke="#147D8B" stroke-width="2"/><text x="1863.2" y="2324" text-anchor="middle" fill="#D9F3F4" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="850" letter-spacing="0" opacity="1"><tspan x="1863.2" dy="0">INDEPENDENT</tspan><tspan x="1863.2" dy="14.700000000000001">ENFORCEMENT</tspan></text>
+    <text x="1080" y="2378" text-anchor="middle" fill="#D9E2EC" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="700" letter-spacing="0" opacity="1"><tspan x="1080" dy="0">If any assumption fails, PALO becomes advisory and the absolute prevention claim fails.</tspan></text>
+  </g><g><rect x="70" y="2420" width="2020" height="124" fill="#FFFFFF" stroke="#BCCCDC" stroke-width="2"/>
+    <text x="92" y="2448" text-anchor="start" fill="#C78A19" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="900" letter-spacing="1.4" opacity="1"><tspan x="92" dy="0">MATURITY</tspan></text>
+    <text x="92" y="2474" text-anchor="start" fill="#334E68" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" letter-spacing="0" opacity="1"><tspan x="92" dy="0">PALO v3.1 = released governance control plane  •  PALO-AI v2.7 = non-production developer preview; bundled runtime denied for production.</tspan></text>
+    <text x="92" y="2502" text-anchor="start" fill="#ED6A5A" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="900" letter-spacing="1.4" opacity="1"><tspan x="92" dy="0">REPORT LIMITS</tspan></text>
+    <text x="260" y="2502" text-anchor="start" fill="#627D98" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="650" letter-spacing="0" opacity="1"><tspan x="260" dy="0">Safeguard effectiveness, compromise extent and remediation are out of scope. Data coverage is incomplete; AI-assisted analysis was unreliable /</tspan><tspan x="260" dy="14.3">biased; confidence is lower.</tspan></text>
+  </g><text x="1080" y="2585" text-anchor="middle" fill="#102A43" font-family="ui-monospace, Consolas, monospace" font-size="15" font-weight="900" letter-spacing="1.1" opacity="1"><tspan x="1080" dy="0">REPORT-BOUND FACTS  /  CONDITIONAL PALO INFERENCE  /  CASE 001</tspan></text><text x="1080" y="2630" text-anchor="middle" fill="#147D8B" font-family="Helvetica, Arial, sans-serif" font-size="16" font-weight="850" letter-spacing="0" opacity="1"><tspan x="1080" dy="0">paloframework.org/PALO_AIIncidentObservatory.html</tspan></text>
+  </svg>

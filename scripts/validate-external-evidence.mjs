@@ -4,7 +4,7 @@ import process from "node:process";
 import { fileURLToPath } from "node:url";
 import Ajv2020 from "ajv/dist/2020.js";
 import addFormats from "ajv-formats";
-import { verifyCollectionDigests } from "../packages/palo-external-evidence/core.js";
+import { validateExternalEvidenceCollection } from "../packages/palo-external-evidence/validation.js";
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const loadJson = async (relativePath) => JSON.parse(await readFile(path.join(projectRoot, relativePath), "utf8"));
@@ -49,6 +49,7 @@ unique(loaded.providerRegistry.providers.map((item) => item.adapter), "adapterId
 for (const provider of loaded.providerRegistry.providers) {
   if (!sourceIds.has(provider.sourceId)) errors.push(`${files.providerRegistry}: ${provider.providerId} references missing source ${provider.sourceId}`);
   if (provider.networkOptional !== true || provider.dataPolicy?.metadataOnly !== true) errors.push(`${files.providerRegistry}: ${provider.providerId} must remain network-optional and metadata-only`);
+  if (provider.cachePolicy && provider.cachePolicy.maxStaleSeconds < provider.cachePolicy.ttlSeconds) errors.push(`${files.providerRegistry}: ${provider.providerId} maxStaleSeconds must be at least ttlSeconds`);
 }
 const capabilityIds = unique(loaded.crosswalk.capabilities, "capabilityId", files.crosswalk);
 for (const capability of loaded.crosswalk.capabilities) {
@@ -66,17 +67,7 @@ for (const mapping of loaded.crosswalk.providerMappings) {
   if (mapping.notUseCaseRiskScore !== true) errors.push(`${files.crosswalk}: ${key} must retain the use-case risk score boundary`);
 }
 
-const forbiddenKeys = new Set(["fullText", "sourceBody", "details", "summary", "whyItMatters", "justification", "justificationText"]);
-function scanForbidden(value, location = "$") {
-  if (Array.isArray(value)) return value.forEach((item, index) => scanForbidden(item, `${location}[${index}]`));
-  if (!value || typeof value !== "object") return;
-  for (const [key, child] of Object.entries(value)) {
-    if (forbiddenKeys.has(key)) errors.push(`${files.example}: prohibited mirrored field ${location}.${key}`);
-    scanForbidden(child, `${location}.${key}`);
-  }
-}
-scanForbidden(loaded.example);
-try { verifyCollectionDigests(loaded.example); }
+try { validateExternalEvidenceCollection(loaded.example); }
 catch (error) { errors.push(`${files.example}: ${error.message}`); }
 
 if (errors.length) {

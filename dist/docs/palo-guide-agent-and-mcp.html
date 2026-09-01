@@ -25,9 +25,9 @@
   <main id="main-content" class="palo-doc-main">
     <div class="palo-shell">
       <nav class="palo-doc-breadcrumb" aria-label="Breadcrumb"><a href="../PALO_DocumentationLibrary.html">Documentation Library</a><span aria-hidden="true">/</span><span>Start and adoption</span></nav>
-      <header class="palo-doc-hero"><p class="palo-eyebrow">Start and adoption | Public documentation</p><h1>PALO Guide Agent and MCP Integration</h1><div class="palo-doc-facts"><span><small>Level</small><strong>reference</strong></span><span><small>Audience</small><strong>technical | builder</strong></span><span><small>Product</small><strong>PALO Core</strong></span><span><small>Status</small><strong>Current Guidance</strong></span><span><small>Lifecycle</small><strong>Current</strong></span><span><small>Read</small><strong>6 min</strong></span></div><p class="palo-doc-source">Published HTML view | Source: <code>docs/palo-guide-agent-and-mcp.md</code></p><div class="palo-actions"><button class="palo-btn" type="button" data-doc-copy-link>Copy link</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-share>Share page</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-print>Print</button></div><p class="palo-action-status" data-doc-action-status role="status" aria-live="polite"></p></header>
+      <header class="palo-doc-hero"><p class="palo-eyebrow">Start and adoption | Public documentation</p><h1>PALO Guide Agent and MCP Integration</h1><div class="palo-doc-facts"><span><small>Level</small><strong>reference</strong></span><span><small>Audience</small><strong>technical | builder</strong></span><span><small>Product</small><strong>PALO Core</strong></span><span><small>Status</small><strong>Current Guidance</strong></span><span><small>Lifecycle</small><strong>Current</strong></span><span><small>Read</small><strong>7 min</strong></span></div><p class="palo-doc-source">Published HTML view | Source: <code>docs/palo-guide-agent-and-mcp.md</code></p><div class="palo-actions"><button class="palo-btn" type="button" data-doc-copy-link>Copy link</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-share>Share page</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-print>Print</button></div><p class="palo-action-status" data-doc-action-status role="status" aria-live="polite"></p></header>
       <details class="palo-doc-mobile-toc"><summary>On this page</summary><ol><li class="depth-2"><a href="#purpose">Purpose</a></li><li class="depth-2"><a href="#what-is-implemented">What is implemented</a></li><li class="depth-2"><a href="#inference-contract">Inference contract</a></li><li class="depth-3"><a href="#explain-palo">Explain PALO</a></li><li class="depth-3"><a href="#infer-a-starting-route">Infer a starting route</a></li><li class="depth-3"><a href="#plan-a-product-integration">Plan a product integration</a></li><li class="depth-2"><a href="#local-mcp-stdio">Local MCP stdio</a></li><li class="depth-2"><a href="#authenticated-streamable-http">Authenticated Streamable HTTP</a></li><li class="depth-2"><a href="#host-agent-behavior">Host-agent behavior</a></li><li class="depth-2"><a href="#web-desktop-and-mobile-product-ux">Web, desktop and mobile product UX</a></li><li class="depth-2"><a href="#verification">Verification</a></li></ol></details>
-      <div class="palo-doc-layout"><aside class="palo-doc-sidebar" aria-label="On this page"><strong>On this page</strong><ol><li class="depth-2"><a href="#purpose">Purpose</a></li><li class="depth-2"><a href="#what-is-implemented">What is implemented</a></li><li class="depth-2"><a href="#inference-contract">Inference contract</a></li><li class="depth-3"><a href="#explain-palo">Explain PALO</a></li><li class="depth-3"><a href="#infer-a-starting-route">Infer a starting route</a></li><li class="depth-3"><a href="#plan-a-product-integration">Plan a product integration</a></li><li class="depth-2"><a href="#local-mcp-stdio">Local MCP stdio</a></li><li class="depth-2"><a href="#authenticated-streamable-http">Authenticated Streamable HTTP</a></li><li class="depth-2"><a href="#host-agent-behavior">Host-agent behavior</a></li><li class="depth-2"><a href="#web-desktop-and-mobile-product-ux">Web, desktop and mobile product UX</a></li><li class="depth-2"><a href="#verification">Verification</a></li></ol></aside><article class="palo-doc-content"><h1 id="palo-guide-agent-and-mcp-integration">PALO Guide Agent and MCP Integration<a class="palo-doc-anchor" href="#palo-guide-agent-and-mcp-integration" aria-label="Link to PALO Guide Agent and MCP Integration">#</a></h1><p>Status: PALO platform v3.1.0 guide-agent contract. The guide tools are implemented as deterministic, read-only inference over released PALO registries and the twelve governance control packs. The protected-action and data-assurance runtime remains a separate PALO-AI v2.7 developer preview.</p>
+      <div class="palo-doc-layout"><aside class="palo-doc-sidebar" aria-label="On this page"><strong>On this page</strong><ol><li class="depth-2"><a href="#purpose">Purpose</a></li><li class="depth-2"><a href="#what-is-implemented">What is implemented</a></li><li class="depth-2"><a href="#inference-contract">Inference contract</a></li><li class="depth-3"><a href="#explain-palo">Explain PALO</a></li><li class="depth-3"><a href="#infer-a-starting-route">Infer a starting route</a></li><li class="depth-3"><a href="#plan-a-product-integration">Plan a product integration</a></li><li class="depth-2"><a href="#local-mcp-stdio">Local MCP stdio</a></li><li class="depth-2"><a href="#authenticated-streamable-http">Authenticated Streamable HTTP</a></li><li class="depth-2"><a href="#host-agent-behavior">Host-agent behavior</a></li><li class="depth-2"><a href="#web-desktop-and-mobile-product-ux">Web, desktop and mobile product UX</a></li><li class="depth-2"><a href="#verification">Verification</a></li></ol></aside><article class="palo-doc-content"><h1 id="palo-guide-agent-and-mcp-integration">PALO Guide Agent and MCP Integration<a class="palo-doc-anchor" href="#palo-guide-agent-and-mcp-integration" aria-label="Link to PALO Guide Agent and MCP Integration">#</a></h1><p>Status: PALO platform v3.1.0 guide-agent and knowledge contract. The dedicated Reader service v1.0.0 is a stateless, canonical-only production candidate with deployment-specific live qualification pending. The Curator adds reviewed local contributions and remains separately assessed. The protected-action and data-assurance runtime remains a separate PALO-AI v2.7 developer preview.</p>
 <h2 id="purpose">Purpose<a class="palo-doc-anchor" href="#purpose" aria-label="Link to Purpose">#</a></h2><p>The PALO Guide Agent lets a person or product ask three practical questions without first knowing PALO module names:</p>
 <ol>
 <li>How does PALO address this governance question?</li>
@@ -47,7 +47,7 @@ protected action, only when needed
   -&gt; one-time capability
   -&gt; PALO-owned executor
   -&gt; receipt and outcome verification</code></pre></figure><p>The first layer explains and recommends. It cannot approve a case, determine legal applicability, certify compliance or authorize deployment. The second layer demonstrates a protected-action lifecycle, but remains non-production in the current release.</p>
-<h2 id="what-is-implemented">What is implemented<a class="palo-doc-anchor" href="#what-is-implemented" aria-label="Link to What is implemented">#</a></h2><p>The reference MCP server exposes one prompt and three guide tools:</p>
+<h2 id="what-is-implemented">What is implemented<a class="palo-doc-anchor" href="#what-is-implemented" aria-label="Link to What is implemented">#</a></h2><p>The reference MCP server exposes one prompt, three guide tools and seven knowledge tools. Deployment restricts them to a six-tool Reader or ten-tool Curator catalog:</p>
 <div class="palo-doc-table-wrap" tabindex="0" aria-label="Scrollable documentation table"><table>
 <thead>
 <tr>
@@ -75,6 +75,41 @@ protected action, only when needed
 <td><code>palo_plan_product_integration</code></td>
 <td>Selects a transport and integration class, with trust boundaries and a least-privilege tool set</td>
 <td>None</td>
+</tr>
+<tr>
+<td><code>palo_list_knowledge_sources</code></td>
+<td>Reader lists only released canonical sources; Curator also labels its local publication class</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>palo_search_knowledge</code></td>
+<td>Reader searches canonical records only; Curator can also search reviewed-local records</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>palo_get_knowledge_record</code></td>
+<td>Retrieves one full record by stable identifier within the connected profile</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>palo_submit_knowledge_draft</code></td>
+<td>Creates an immutable contribution awaiting review</td>
+<td>New draft</td>
+</tr>
+<tr>
+<td><code>palo_list_knowledge_drafts</code></td>
+<td>Lists drafts and their terminal review state</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>palo_get_knowledge_draft</code></td>
+<td>Retrieves one draft and review</td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>palo_review_knowledge_draft</code></td>
+<td>Accepts/rejects a draft after mandatory checks</td>
+<td>Immutable review; accepted local record</td>
 </tr>
 </tbody></table></div>
 <p>The inference code is in <code>packages/palo-mcp-server/guide-agent.js</code>. It reads:</p>
@@ -148,7 +183,7 @@ protected action, only when needed
 </tbody></table></div>
 <h2 id="local-mcp-stdio">Local MCP stdio<a class="palo-doc-anchor" href="#local-mcp-stdio" aria-label="Link to Local MCP stdio">#</a></h2><p>Install and validate from the repository root:</p>
 <figure class="palo-doc-code"><figcaption>sh code</figcaption><pre tabindex="0"><code class="language-sh">npm ci
-npm run validate:agentic</code></pre></figure><p>Use a private runtime directory and expose only the three read-only guide tools when the product needs guidance:</p>
+npm run validate:agentic</code></pre></figure><p>Use a private runtime directory and expose only the six Reader tools when the product needs guidance and source-grounded Q&amp;A:</p>
 <figure class="palo-doc-code"><figcaption>json code</figcaption><pre tabindex="0"><code class="language-json">{
   "mcpServers": {
     "palo-guide": {
@@ -156,27 +191,32 @@ npm run validate:agentic</code></pre></figure><p>Use a private runtime directory
       "args": ["/absolute/path/to/PALO/packages/palo-mcp-server/index.js"],
       "env": {
         "PALO_DATA_DIR": "/private/path/palo-guide-runtime",
-        "PALO_MCP_EXPOSED_TOOLS": "palo_explain_framework,palo_infer_governance_route,palo_plan_product_integration"
+        "PALO_MCP_EXPOSED_TOOLS": "palo_explain_framework,palo_infer_governance_route,palo_plan_product_integration,palo_list_knowledge_sources,palo_search_knowledge,palo_get_knowledge_record"
       }
     }
   }
 }</code></pre></figure><p>Use absolute paths. Do not place target-system credentials, production records or sensitive case data in this configuration or in guide-tool arguments.</p>
-<h2 id="authenticated-streamable-http">Authenticated Streamable HTTP<a class="palo-doc-anchor" href="#authenticated-streamable-http" aria-label="Link to Authenticated Streamable HTTP">#</a></h2><p>For a remote MCP client, terminate TLS at a controlled reverse proxy and configure a strong bearer secret through the deployment secret manager:</p>
-<figure class="palo-doc-code"><figcaption>sh code</figcaption><pre tabindex="0"><code class="language-sh">export PALO_MCP_HTTP_HOST='127.0.0.1'
-export PALO_MCP_HTTP_PORT='8788'
+<h2 id="authenticated-streamable-http">Authenticated Streamable HTTP<a class="palo-doc-anchor" href="#authenticated-streamable-http" aria-label="Link to Authenticated Streamable HTTP">#</a></h2><p>For local evaluation, the dedicated Reader can use a shared bearer on loopback:</p>
+<figure class="palo-doc-code"><figcaption>sh code</figcaption><pre tabindex="0"><code class="language-sh">export PALO_READER_RUNTIME_MODE='evaluation'
+export PALO_AUTH_MODE='shared-token'
+export PALO_MCP_HTTP_HOST='127.0.0.1'
+export PALO_MCP_HTTP_PORT='8789'
 export PALO_MCP_HTTP_TOKEN='replace-with-at-least-24-random-bytes'
-export PALO_MCP_EXPOSED_TOOLS='palo_explain_framework,palo_infer_governance_route,palo_plan_product_integration'
-npm run palo:mcp:http</code></pre></figure><p>Client shape:</p>
+npm run palo:reader:http</code></pre></figure><p>Client shape:</p>
 <figure class="palo-doc-code"><figcaption>json code</figcaption><pre tabindex="0"><code class="language-json">{
-  "url": "https://governance.example.org/mcp",
+  "url": "http://127.0.0.1:8789/mcp",
   "headers": {
     "Authorization": "Bearer &lt;secret-from-your-secret-manager&gt;"
   }
-}</code></pre></figure><p>The shared preview token authenticates transport access only. It is not a principal identity, role, reviewer signature, case approval or authorization to operate a production system.</p>
-<p>The supplied VPS deployment provides a separately authenticated guide-only route:</p>
-<figure class="palo-doc-code"><figcaption>text code</figcaption><pre tabindex="0"><code class="language-text">https://governance.paloframework.org/mcp-guide</code></pre></figure><p>It uses <code>secrets/guide-mcp-token</code> and exposes only <code>palo_explain_framework</code>, <code>palo_infer_governance_route</code> and <code>palo_plan_product_integration</code>. Deploy the matching repository release before treating the route as live.</p>
+}</code></pre></figure><p>Shared-token mode is evaluation-only. The production Reader rejects it and requires OIDC, HTTPS resource identity, one exact audience, signed access-token type, explicit client and tenant allowlists, both Reader scopes, an explicit Host/Origin allowlist, canonical-only flags, body/rate limits and global/per-OAuth-client concurrency limits. JSON-RPC batches are rejected; single-message legacy compatibility remains available.</p>
+<p>The supplied VPS deployment provides separately authenticated Reader and Curator routes:</p>
+<figure class="palo-doc-code"><figcaption>text code</figcaption><pre tabindex="0"><code class="language-text">https://governance.paloframework.org/mcp-guide
+https://governance.paloframework.org/mcp-guide-curator</code></pre></figure><p>Compatibility aliases <code>/mcp-guide/mcp</code> and <code>/mcp-guide-curator/mcp</code> are also routed for hosts that infer Streamable HTTP from the final path segment; OAuth audience and resource identity remain bound to the canonical endpoint. Reader uses the dedicated OIDC-only production service, exposes the six read-only tools above, has no secret file or writable volume and serves only its digest-bound canonical release. Curator uses separate authentication and storage, adds four immutable draft/review tools, and requires reviewer separation. Both exclude protected-action tools.</p>
+<p>The complete boundary, configuration and acceptance checklist is in <a href="palo-knowledge-reader-production.html">PALO Knowledge Reader: production profile</a>.</p>
+<p>The <a href="palo-knowledge-copilot-integrations.html">cross-platform integration and identity guide</a> covers Copilot Studio, Claude, ChatGPT/Codex, GitHub Copilot, VS Code, Cursor, Gemini, JetBrains, AWS AgentCore, n8n and Dify. A configuration file proves neither network reachability nor tenant interoperability: deploy the matching repository release and complete <a href="palo-mcp-host-qualification.html">host qualification</a> before treating a catalog as live.</p>
 <h2 id="host-agent-behavior">Host-agent behavior<a class="palo-doc-anchor" href="#host-agent-behavior" aria-label="Link to Host-agent behavior">#</a></h2><p>MCP clients that support prompts can load <code>palo_guide_agent</code>. Otherwise use the same behavior as a host system instruction:</p>
 <ol>
+<li>Call <code>palo_search_knowledge</code>, then <code>palo_get_knowledge_record</code>, before making a factual PALO claim; cite <code>recordId</code> and <code>sourcePath</code>.</li>
 <li>Call <code>palo_explain_framework</code> before explaining a PALO concept.</li>
 <li>Call <code>palo_infer_governance_route</code> before recommending a route.</li>
 <li>Show the signals used, concise reasons, expected artifact and unresolved questions.</li>
@@ -194,8 +234,9 @@ npm run palo:mcp:http</code></pre></figure><p>Client shape:</p>
 <li><strong>Products that execute actions:</strong> do not let the guide tool call the privileged target. Introduce the protected-action path as a distinct architecture and preserve the user-visible authority boundary.</li>
 </ul>
 <h2 id="verification">Verification<a class="palo-doc-anchor" href="#verification" aria-label="Link to Verification">#</a></h2><p>Run the guide and MCP contract tests:</p>
-<figure class="palo-doc-code"><figcaption>sh code</figcaption><pre tabindex="0"><code class="language-sh">node --test packages/palo-mcp-server/guide-agent.test.js packages/palo-mcp-server/mcp.test.js</code></pre></figure><p>Run the complete agentic validation before publishing changes:</p>
-<figure class="palo-doc-code"><figcaption>sh code</figcaption><pre tabindex="0"><code class="language-sh">npm run validate:agentic</code></pre></figure><p>Passing tests confirms the documented reference behavior only. It does not establish production readiness, control effectiveness, legal applicability or independent assurance.</p>
+<figure class="palo-doc-code"><figcaption>sh code</figcaption><pre tabindex="0"><code class="language-sh">npm run validate:knowledge-reader</code></pre></figure><p>Run the complete agentic validation before publishing changes:</p>
+<figure class="palo-doc-code"><figcaption>sh code</figcaption><pre tabindex="0"><code class="language-sh">npm run validate:agentic</code></pre></figure><p>The host/configuration layer can also be checked independently:</p>
+<figure class="palo-doc-code"><figcaption>sh code</figcaption><pre tabindex="0"><code class="language-sh">npm run validate:knowledge-copilot</code></pre></figure><p>Passing repository tests admits the Reader code as a production candidate. Production qualification still requires the documented live IdP, proxy, container, logging, monitoring, rollback and host checks; it never establishes legal applicability, certification or operating effectiveness.</p>
 </article></div>
       <aside class="palo-doc-next"><div><small>Prerequisite</small><strong>No specialist prerequisite stated</strong></div><div><small>Recommended next step</small><strong>Return to the Documentation Library</strong></div></aside>
       <section class="palo-doc-feedback" aria-labelledby="feedback-title"><p class="palo-eyebrow">Privacy-first feedback</p><h2 id="feedback-title">Help improve this guide</h2><p>Your feedback stays in your browser until you explicitly copy it, download it, or open an email draft. Do not include secrets, personal data, credentials or production identifiers.</p><form data-doc-feedback><div class="palo-form-grid"><div class="palo-field"><label for="feedback-role">Your role</label><select id="feedback-role" name="role"><option>Executive / governance owner</option><option>Platform or security engineer</option><option>No-code / low-code builder</option><option>External reviewer</option></select></div><div class="palo-field"><label for="feedback-category">Category</label><select id="feedback-category" name="category"><option>Clarity</option><option>Technical accuracy</option><option>Missing guidance</option><option>Accessibility</option></select></div><div class="palo-field palo-field-full"><label for="feedback-message">Feedback</label><textarea id="feedback-message" name="message" maxlength="3000" required placeholder="Describe the non-sensitive improvement you recommend."></textarea></div><div class="palo-form-actions"><button class="palo-btn" type="button" data-feedback-copy>Copy feedback</button><button class="palo-btn palo-btn-secondary" type="button" data-feedback-download>Download JSON</button><button class="palo-btn palo-btn-secondary" type="button" data-feedback-email>Email draft</button></div></div><p class="palo-action-status" data-feedback-status role="status" aria-live="polite"></p></form></section>

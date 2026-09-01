@@ -59,6 +59,7 @@ const importantMetadata = {
   "docs/palo-ai-vps-deployment.md": { level: "guide", audience: "technical", task: "deploy", product: "PALO-AI", status: "Evaluation Deployment", prerequisite: "Isolated VPS and non-production secrets", next: "Run deployment validation" },
   "docs/palo-ai-security-assurance-and-scale.md": { level: "reference", audience: "technical governance", task: "assure deploy", product: "PALO-AI", status: "Assurance Plan", prerequisite: "Architecture and threat boundaries", next: "Track the nine readiness gates" },
   "docs/palo-ai-production-readiness-plan.md": { level: "reference", audience: "executive governance technical", task: "assure deploy", product: "PALO-AI", status: "Planning Baseline", prerequisite: "Capability Matrix", next: "Open Production Readiness" },
+  "docs/production-release-commit-checklist.md": { level: "guide", audience: "technical", task: "deploy assure", product: "PALO Platform", status: "Maintainer Runbook", prerequisite: "Synchronized release branch and reviewed change groups", next: "Run the mandatory validation gates" },
   "docs/owasp-genai-llm-top-10-2026-security-crosswalk.md": { level: "reference", audience: "executive governance technical builder", task: "understand assure design", product: "PALO / PALO-AM / PALO-AI", status: "Source-backed context", evidenceClass: "source-backed-context", workspace: "assurance-review", prerequisite: "One scoped LLM or agentic system", next: "Open the interactive OWASP 2026 crosswalk" }
 };
 

@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paloframework.org/schemas/palo-ai-system-record.schema.json",
+  "title": "PALO AI System and Agent Registry Record",
+  "description": "Versioned registry record linking an AI system to models, agents, tools, data, providers, owners, policy and evidence.",
+  "type": "object",
+  "required": ["format", "schemaVersion", "systemId", "recordVersion", "tenantId", "name", "useCase", "status", "riskClass", "jurisdictions", "owners", "relationships", "deployedVersion", "policyBundleDigest", "updatedAt"],
+  "properties": {
+    "format": { "const": "palo-ai-system-record" },
+    "schemaVersion": { "const": "1.0.0" },
+    "systemId": { "type": "string", "pattern": "^ai-system-[a-zA-Z0-9][a-zA-Z0-9._-]{2,100}$" },
+    "recordVersion": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "tenantId": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "name": { "type": "string", "minLength": 1, "maxLength": 300 },
+    "useCase": { "type": "string", "minLength": 1, "maxLength": 4000 },
+    "status": { "enum": ["design", "pilot", "production", "suspended", "decommissioned"] },
+    "riskClass": { "enum": ["minimal", "limited", "high", "prohibited", "gpai", "systemic-gpai", "pending"] },
+    "jurisdictions": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 1, "maxLength": 100 } },
+    "owners": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 1, "maxLength": 500 } },
+    "relationships": {
+      "type": "object",
+      "required": ["models", "agents", "tools", "dataSubjects", "providers"],
+      "properties": {
+        "models": { "$ref": "#/$defs/idList" },
+        "agents": { "$ref": "#/$defs/idList" },
+        "tools": { "$ref": "#/$defs/idList" },
+        "dataSubjects": { "$ref": "#/$defs/idList" },
+        "providers": { "$ref": "#/$defs/idList" }
+      },
+      "additionalProperties": false
+    },
+    "deployedVersion": { "type": "string", "minLength": 1, "maxLength": 200 },
+    "policyBundleDigest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+    "evidenceRefs": { "type": "array", "uniqueItems": true, "items": { "type": "string", "pattern": "^evidence-ref-[a-f0-9-]{36}$" } },
+    "updatedAt": { "type": "string", "format": "date-time" }
+  },
+  "$defs": {
+    "idList": { "type": "array", "uniqueItems": true, "maxItems": 1000, "items": { "type": "string", "minLength": 1, "maxLength": 1000 } }
+  },
+  "additionalProperties": false
+}

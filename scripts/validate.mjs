@@ -30,6 +30,7 @@ addFormats(ajv);
 let caseFileValidator;
 let p2Counts = null;
 const privatePublicationPaths = [
+  "assets/hugging-face-incident-report-aug-2026.pdf",
   "docs/ASSESSMENT-v3.0.md",
   "insights/WEBUILD.docx",
   "insights/2026TrendOutlookReports.pdf",
@@ -86,6 +87,33 @@ for (const relativePath of PUBLIC_FILES) {
 for (const relativePath of privatePublicationPaths) {
   if (PUBLIC_FILES.includes(relativePath)) errors.push(`${relativePath}: private or third-party research input must not be allowlisted`);
 }
+
+async function validatePublicPrivacyBoundary() {
+  const files = built
+    ? ["docs/palo-knowledge-reader-production.html", "docs/palo-microsoft-startup-student-credits.html"]
+    : [
+        "docs/palo-knowledge-reader-production.md",
+        "docs/palo-microsoft-startup-student-credits.md",
+        "audit/knowledge-reader-production-candidate-2026-08-27/README.md",
+        "audit/knowledge-reader-production-candidate-2026-08-27/copilot-studio-staging-2026-08-28.json",
+        "audit/knowledge-reader-production-candidate-2026-08-27/entra-qualification-2026-08-28.json",
+        "audit/knowledge-reader-production-candidate-2026-08-27/student-funding-route-2026-08-28.json"
+      ];
+  const forbidden = [
+    { label: "deployment GUID", pattern: /\b[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\b/i },
+    { label: "tenant account address", pattern: /\b[a-z0-9._%+-]+@[a-z0-9.-]*onmicrosoft\.com\b/i },
+    { label: "credential rotation label", pattern: /\brotate by \d{4}-\d{2}-\d{2}\b/i }
+  ];
+  for (const file of files) {
+    const content = await readFile(path.join(validationRoot, file), "utf8");
+    for (const rule of forbidden) {
+      if (rule.pattern.test(content)) errors.push(`${file}: public privacy boundary exposes ${rule.label}`);
+    }
+  }
+}
+
+try { await validatePublicPrivacyBoundary(); }
+catch (error) { errors.push(`public privacy-boundary validation failed: ${error.message}`); }
 
 async function validateP1Fixtures() {
   const caseSchema = JSON.parse(await readFile(path.join(validationRoot, "schemas/palo-case-file.schema.json"), "utf8"));
@@ -541,7 +569,7 @@ if (!built) {
 let sharedReferenceCount = 0;
 for (const [file, html] of htmlByFile) {
   if (file.endsWith(":static")) continue;
-  const sharedPattern = /(?:\.\.\/)*assets\/palo-v21\.(css|js)(?:\?([^"'\s<>]*))?/g;
+  const sharedPattern = /(?:href|src)=["'](?:\.\.\/)*assets\/palo-v21\.(css|js)(?:\?([^"'\s<>]*))?["']/g;
   for (const match of html.matchAll(sharedPattern)) {
     sharedReferenceCount += 1;
     const expected = `v=${releaseVersion}`;
@@ -686,7 +714,7 @@ if (built) {
   if ((onboardingRibbon.match(/class=["']route-separator["']/g) || []).length !== 4 || /<i\b/.test(onboardingRibbon)) errors.push("Stakeholder Onboarding: route separators must use dedicated semantic spans");
   if (!/Public semantic catalog/.test(onboardingHtml) || !/Search the semantic catalog/.test(onboardingHtml)) errors.push("Operationalization Explorer: public Semantic Inspector boundary is missing");
   const platformMapHtml = htmlByFile.get("PALO_PlatformMap.html") || "";
-  if (!/id=["']map-evidence-class["']/.test(platformMapHtml) || (platformMapHtml.match(/data-evidence-class=/g) || []).length !== 26 || !/Evidence \/ authority/.test(platformMapHtml)) errors.push("PALO_PlatformMap.html: evidence/authority filtering must align all 13 visual and table routes");
+  if (!/id=["']map-evidence-class["']/.test(platformMapHtml) || (platformMapHtml.match(/data-evidence-class=/g) || []).length !== 28 || !/Evidence \/ authority/.test(platformMapHtml)) errors.push("PALO_PlatformMap.html: evidence/authority filtering must align all 14 visual and table routes");
   if (!/route-monitor[^>]+data-evidence-class=["']human-review-required["']/.test(platformMapHtml)) errors.push("PALO_PlatformMap.html: monitoring route must require human review");
   if (!/route-palo-ai-data[^>]+data-evidence-class=["']canonical-definition["']/.test(platformMapHtml) || !/PALO-AI v2\.7[\s\S]*Data Fitness Decision[\s\S]*not a production authorization service/.test(platformMapHtml)) errors.push("PALO_PlatformMap.html: current PALO-AI data-assurance route and production boundary are missing");
   if ((platformMapHtml.match(/href=["']CHANGELOG\.html["']/g) || []).length < 3 || (platformMapHtml.match(/href=["']feed\.xml["']/g) || []).length < 3) errors.push("PALO_PlatformMap.html: changelog and release-feed references must be available in the atlas, evidence section and footer");

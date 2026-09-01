@@ -1,5 +1,5 @@
 import { execFileSync } from "node:child_process";
-import { readFileSync, readdirSync, statSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import path from "node:path";
 import process from "node:process";
 import { fileURLToPath } from "node:url";
@@ -48,6 +48,17 @@ const forbiddenCharacters = new Map([
   ["\ufeff", "byte-order mark"]
 ]);
 
+const incidentObservatoryForbiddenCharacters = new Map([
+  ["\u2014", "em dash is forbidden in Incident Observatory public content"]
+]);
+
+const incidentObservatoryDirectFiles = new Set([
+  "PALO_AIIncidentObservatory.html",
+  "assets/palo-ai-incident-observatory.css",
+  "assets/palo-ai-incident-observatory.js"
+]);
+const incidentObservatoryPackagePrefix = "media/social/hugging-face-incident-palo/";
+
 const historicalMetadataExceptions = new Set([
   // This commit predates the protected v3.0.0 tag. Rewriting it would invalidate that release.
   "0c3e35f53b91c7eb0f94cbe043ce1963cba104d7"
@@ -72,6 +83,18 @@ function walk(directory) {
   return files;
 }
 
+function isIncidentObservatoryFile(relativePath) {
+  const normalizedPath = relativePath.split(path.sep).join("/");
+  return incidentObservatoryDirectFiles.has(normalizedPath) || normalizedPath.startsWith(incidentObservatoryPackagePrefix);
+}
+
+function incidentObservatorySourceFiles() {
+  const files = [...incidentObservatoryDirectFiles].filter((relativePath) => existsSync(path.join(projectRoot, relativePath)));
+  const packageDirectory = path.join(projectRoot, incidentObservatoryPackagePrefix);
+  if (existsSync(packageDirectory)) files.push(...walk(packageDirectory));
+  return files.filter(isTextFile);
+}
+
 function trackedFiles() {
   return execFileSync("git", ["ls-files", "-z"], { cwd: projectRoot })
     .toString("utf8")
@@ -81,11 +104,11 @@ function trackedFiles() {
     .filter(isTextFile);
 }
 
-function findViolations(label, content) {
+function findViolations(label, content, characters = forbiddenCharacters) {
   const violations = [];
   const lines = content.split(/\r?\n/);
   for (let lineIndex = 0; lineIndex < lines.length; lineIndex += 1) {
-    for (const [character, description] of forbiddenCharacters) {
+    for (const [character, description] of characters) {
       let column = lines[lineIndex].indexOf(character);
       while (column >= 0) {
         violations.push(`${label}:${lineIndex + 1}:${column + 1}: ${description}`);
@@ -97,10 +120,15 @@ function findViolations(label, content) {
 }
 
 const violations = [];
-const files = scanTracked ? trackedFiles() : walk(scanRoot);
+const files = scanTracked
+  ? [...new Set([...trackedFiles(), ...incidentObservatorySourceFiles()])]
+  : walk(scanRoot);
 for (const relativePath of files) {
   const absolutePath = scanTracked ? path.join(projectRoot, relativePath) : path.join(scanRoot, relativePath);
-  violations.push(...findViolations(relativePath, readFileSync(absolutePath, "utf8")));
+  const characterSet = isIncidentObservatoryFile(relativePath)
+    ? incidentObservatoryForbiddenCharacters
+    : forbiddenCharacters;
+  violations.push(...findViolations(relativePath, readFileSync(absolutePath, "utf8"), characterSet));
 }
 
 if (scanTracked) {
