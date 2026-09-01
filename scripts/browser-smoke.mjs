@@ -145,11 +145,11 @@ try {
   await page.getByRole("button", { name: "Overlay", exact: true }).click();
   await expectAttribute(page.locator("html"), "data-incident-rail-view", "overlay", "AI Incident Observatory overlay view");
   const observatoryDownloads = page.locator('#downloads a[download]');
-  if (await observatoryDownloads.count() !== 4) failures.push("AI Incident Observatory: PNG and SVG download links are incomplete");
-  for (const extension of ["releases/v3.1.0-r2/landscape.png", "landscape.svg", "releases/v3.1.0-r2/portrait.png", "portrait.svg"]) {
+  if (await observatoryDownloads.count() !== 4) failures.push("AI Incident Observatory: source download links are incomplete");
+  for (const extension of ["releases/v3.1.0-r2/palo-case001-landscape-full.zip", "landscape.svg", "releases/v3.1.0-r2/palo-case001-portrait-full.zip", "portrait.svg"]) {
     if (await page.locator(`#downloads a[download][href$="${extension}"]`).count() !== 1) failures.push(`AI Incident Observatory: missing ${extension} download link`);
   }
-  if (await page.locator("#downloads .download-preview-link").count() !== 2) failures.push("AI Incident Observatory: full-resolution preview links are incomplete");
+  if (await page.locator("#downloads .download-preview-link").count() !== 2) failures.push("AI Incident Observatory: web preview links are incomplete");
   await page.locator("[data-preview-open]").first().click();
   if (!await page.locator("[data-preview-dialog]").evaluate((dialog) => dialog.open)) failures.push("AI Incident Observatory: inspectable preview dialog did not open");
   const previewScaleBefore = await page.locator("[data-preview-scale]").innerText();

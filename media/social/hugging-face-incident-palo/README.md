@@ -7,9 +7,11 @@ Technical, English-language infographic pair comparing the reported July 2026 Op
 - `hugging-face-incident-palo-landscape.svg`: 3840 × 2160 deterministic source.
 - `hugging-face-incident-palo-landscape.png`: 3840 × 2160 compatibility export.
 - `releases/v3.1.0-r2/landscape.png`: cache-safe public export used by Case 001.
+- `releases/v3.1.0-r2/palo-case001-landscape-full.zip`: non-transformed full-resolution PNG download.
 - `hugging-face-incident-palo-portrait.svg`: 2160 × 2700 deterministic source; purpose-built vertical cut spine.
 - `hugging-face-incident-palo-portrait.png`: 2160 × 2700 compatibility export.
 - `releases/v3.1.0-r2/portrait.png`: cache-safe public export used by Case 001.
+- `releases/v3.1.0-r2/palo-case001-portrait-full.zip`: non-transformed full-resolution PNG download.
 - `trust-boundary-texture-generated.png`: non-semantic atmospheric source layer generated with the built-in ImageGen tool.
 - `releases/v3.1.0-r2/trust-boundary-texture.png`: cache-safe public copy used by the versioned page stylesheet.
 - `palo-logo.webp`: package-local copy of the official PALO logo used by the SVG sources.
@@ -23,7 +25,7 @@ From the repository root:
 node media/social/hugging-face-incident-palo/build-infographic.mjs
 ```
 
-Requires Node.js and ImageMagick (`magick`). The builder exports the two SVG sources, composites a substantially muted generated texture beneath the deterministic vector content, writes the versioned public PNGs and refreshes the compatibility PNGs.
+Requires Node.js and ImageMagick (`magick`). The builder exports the two SVG sources, composites a substantially muted generated texture beneath the deterministic vector content, writes the versioned public PNGs and refreshes the compatibility PNGs. The two full-resolution ZIP files are release artifacts built from those compatibility PNGs after visual verification.
 
 ## Alt text
 

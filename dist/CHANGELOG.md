@@ -20,7 +20,7 @@ and this project follows Semantic Versioning where practical.
 
 ### Changed
 
-- Published cache-safe, versioned Case 001 stylesheet, texture and PNG paths while retaining the previous asset names as compatibility copies.
+- Published cache-safe, versioned Case 001 stylesheet, texture and PNG paths, plus non-transformed full-resolution PNG ZIP downloads, while retaining the previous asset names as compatibility copies.
 - Migrated Community to the shared PALO 3.1 visual system, removed third-party style and font dependencies, reconciled shared navigation around the Observatory index and corrected public changelog routes to the generated HTML view.
 - Remote OIDC MCP listeners now fail closed unless explicit client and tenant allowlists are configured, and every listener must use the exact host validated when its app was created. Loopback evaluation compatibility covers IPv4 127/8 plus canonical and expanded IPv6 loopback forms, while IdP audience identifiers distinct from the public resource URL remain supported.
 - Redacted deployment identifiers, account addresses, credential rotation details and billing state from public Knowledge Reader documentation while preserving control design and qualification status.
