@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { execFileSync } from "node:child_process";
-import { copyFileSync, unlinkSync, writeFileSync } from "node:fs";
+import { copyFileSync, mkdirSync, unlinkSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -355,15 +355,17 @@ const outputs = [
 ];
 
 const publicRevision = "v3.1.0-r2";
+const publicReleaseDir = join(HERE, "releases", publicRevision);
+mkdirSync(publicReleaseDir, { recursive: true });
 copyFileSync(
   join(HERE, "trust-boundary-texture-generated.png"),
-  join(HERE, `trust-boundary-texture-generated-${publicRevision}.png`),
+  join(publicReleaseDir, "trust-boundary-texture.png"),
 );
 
 for (const [name, width, height, source] of outputs) {
   const svgPath = join(HERE, `hugging-face-incident-palo-${name}.svg`);
   const compatibilityPngPath = join(HERE, `hugging-face-incident-palo-${name}.png`);
-  const pngPath = join(HERE, `hugging-face-incident-palo-${name}-${publicRevision}.png`);
+  const pngPath = join(publicReleaseDir, `${name}.png`);
   const renderPath = join(HERE, `.${name}-render.svg`);
   const backgroundPath = join(HERE, `.${name}-background.png`);
   const overlayPath = join(HERE, `.${name}-overlay.png`);

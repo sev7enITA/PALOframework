@@ -146,7 +146,7 @@ try {
   await expectAttribute(page.locator("html"), "data-incident-rail-view", "overlay", "AI Incident Observatory overlay view");
   const observatoryDownloads = page.locator('#downloads a[download]');
   if (await observatoryDownloads.count() !== 4) failures.push("AI Incident Observatory: PNG and SVG download links are incomplete");
-  for (const extension of ["landscape-v3.1.0-r2.png", "landscape.svg", "portrait-v3.1.0-r2.png", "portrait.svg"]) {
+  for (const extension of ["releases/v3.1.0-r2/landscape.png", "landscape.svg", "releases/v3.1.0-r2/portrait.png", "portrait.svg"]) {
     if (await page.locator(`#downloads a[download][href$="${extension}"]`).count() !== 1) failures.push(`AI Incident Observatory: missing ${extension} download link`);
   }
   if (await page.locator("#downloads .download-preview-link").count() !== 2) failures.push("AI Incident Observatory: full-resolution preview links are incomplete");

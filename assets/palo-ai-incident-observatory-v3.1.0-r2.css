@@ -66,7 +66,7 @@
     position: absolute;
     z-index: -1;
     inset: 0;
-    background: url("../media/social/hugging-face-incident-palo/trust-boundary-texture-generated-v3.1.0-r2.png") center / cover no-repeat;
+    background: url("../media/social/hugging-face-incident-palo/releases/v3.1.0-r2/trust-boundary-texture.png") center / cover no-repeat;
     opacity: .16;
     mix-blend-mode: multiply;
 }
