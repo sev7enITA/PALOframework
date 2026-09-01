@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { execFileSync } from "node:child_process";
-import { unlinkSync, writeFileSync } from "node:fs";
+import { copyFileSync, unlinkSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -354,9 +354,16 @@ const outputs = [
   ["portrait", 2160, 2700, portrait()],
 ];
 
+const publicRevision = "v3.1.0-r2";
+copyFileSync(
+  join(HERE, "trust-boundary-texture-generated.png"),
+  join(HERE, `trust-boundary-texture-generated-${publicRevision}.png`),
+);
+
 for (const [name, width, height, source] of outputs) {
   const svgPath = join(HERE, `hugging-face-incident-palo-${name}.svg`);
-  const pngPath = join(HERE, `hugging-face-incident-palo-${name}.png`);
+  const compatibilityPngPath = join(HERE, `hugging-face-incident-palo-${name}.png`);
+  const pngPath = join(HERE, `hugging-face-incident-palo-${name}-${publicRevision}.png`);
   const renderPath = join(HERE, `.${name}-render.svg`);
   const backgroundPath = join(HERE, `.${name}-background.png`);
   const overlayPath = join(HERE, `.${name}-overlay.png`);
@@ -369,9 +376,11 @@ for (const [name, width, height, source] of outputs) {
   execFileSync("magick", ["trust-boundary-texture-generated.png", "-resize", `${width}x${height}^`, "-gravity", "center", "-extent", `${width}x${height}`, "-fill", C.surface, "-colorize", "82%", backgroundPath], { stdio: "inherit", cwd: HERE });
   execFileSync("magick", ["-font", FONT, "-background", "none", "-density", "144", renderPath, "-resize", `${width}x${height}!`, overlayPath], { stdio: "inherit", cwd: HERE });
   execFileSync("magick", [backgroundPath, overlayPath, "-composite", "-strip", pngPath], { stdio: "inherit", cwd: HERE });
+  copyFileSync(pngPath, compatibilityPngPath);
   unlinkSync(renderPath);
   unlinkSync(backgroundPath);
   unlinkSync(overlayPath);
   console.log(`Generated ${svgPath}`);
   console.log(`Generated ${pngPath}`);
+  console.log(`Refreshed ${compatibilityPngPath}`);
 }

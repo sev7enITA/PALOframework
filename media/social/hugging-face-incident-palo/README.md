@@ -5,10 +5,13 @@ Technical, English-language infographic pair comparing the reported July 2026 Op
 ## Deliverables
 
 - `hugging-face-incident-palo-landscape.svg`: 3840 × 2160 deterministic source.
-- `hugging-face-incident-palo-landscape.png`: 3840 × 2160 export.
+- `hugging-face-incident-palo-landscape.png`: 3840 × 2160 compatibility export.
+- `hugging-face-incident-palo-landscape-v3.1.0-r2.png`: cache-safe public export used by Case 001.
 - `hugging-face-incident-palo-portrait.svg`: 2160 × 2700 deterministic source; purpose-built vertical cut spine.
-- `hugging-face-incident-palo-portrait.png`: 2160 × 2700 export.
-- `trust-boundary-texture-generated.png`: non-semantic atmospheric layer generated with the built-in ImageGen tool.
+- `hugging-face-incident-palo-portrait.png`: 2160 × 2700 compatibility export.
+- `hugging-face-incident-palo-portrait-v3.1.0-r2.png`: cache-safe public export used by Case 001.
+- `trust-boundary-texture-generated.png`: non-semantic atmospheric source layer generated with the built-in ImageGen tool.
+- `trust-boundary-texture-generated-v3.1.0-r2.png`: cache-safe public copy used by the versioned page stylesheet.
 - `palo-logo.webp`: package-local copy of the official PALO logo used by the SVG sources.
 - `build-infographic.mjs`: deterministic SVG builder and ImageMagick export pipeline.
 
@@ -20,7 +23,7 @@ From the repository root:
 node media/social/hugging-face-incident-palo/build-infographic.mjs
 ```
 
-Requires Node.js and ImageMagick (`magick`). The builder exports the two SVG sources and then composites a substantially muted generated texture beneath the deterministic vector content.
+Requires Node.js and ImageMagick (`magick`). The builder exports the two SVG sources, composites a substantially muted generated texture beneath the deterministic vector content, writes the versioned public PNGs and refreshes the compatibility PNGs.
 
 ## Alt text
 
