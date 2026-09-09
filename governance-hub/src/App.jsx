@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   Pulse,
   ArrowRight,
@@ -83,6 +83,11 @@ import {
   validateAuthorityConfiguration,
 } from "./governanceVerification.js";
 import { createControlPlaneClient } from "./controlPlaneClient.js";
+import {
+  blockedStepGuidance,
+  buildWizardAccess,
+  continueWizard,
+} from "./wizardProgression.js";
 
 const technicalNav = [
   ["setup", "Setup", RocketLaunch],
@@ -129,6 +134,55 @@ function downloadBlob(blob, filename) {
   anchor.click();
   anchor.remove();
   window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+  announceFeedback(`${filename} downloaded locally.`);
+}
+
+function announceFeedback(message) {
+  window.dispatchEvent(new CustomEvent("palo-feedback", { detail: message }));
+}
+
+const focusableSelector = "a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), summary, [tabindex]:not([tabindex='-1'])";
+
+function useModalFocus(open, containerRef, onClose, initialFocusRef) {
+  const returnFocusRef = useRef(null);
+  useEffect(() => {
+    if (!open) return undefined;
+    returnFocusRef.current = document.activeElement;
+    const container = containerRef.current;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const focusTarget = initialFocusRef?.current ?? container?.querySelector(focusableSelector) ?? container;
+    focusTarget?.focus();
+    const onKeyDown = (event) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        onClose();
+        return;
+      }
+      if (event.key !== "Tab" || !container) return;
+      const focusable = [...container.querySelectorAll(focusableSelector)].filter((element) => !element.hasAttribute("disabled"));
+      if (!focusable.length) {
+        event.preventDefault();
+        container.focus();
+        return;
+      }
+      const first = focusable[0];
+      const last = focusable.at(-1);
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      document.body.style.overflow = previousOverflow;
+      returnFocusRef.current?.focus?.();
+    };
+  }, [open, containerRef, initialFocusRef, onClose]);
 }
 
 function rowContainsQuery(row, query) {
@@ -169,12 +223,69 @@ function RoleSwitch({ role, onChange }) {
   );
 }
 
-function Shell({ role, onRoleChange, view, onViewChange, controlPlane, onLogin, onDevelopmentLogin, onLogout, children }) {
+function EvidenceLegend() {
+  return (
+    <div className="evidence-legend" aria-label="Evidence level legend">
+      <span className="evidence-draft">Draft input</span>
+      <span className="evidence-local">Locally valid</span>
+      <span className="evidence-checked">Checked with evidence</span>
+      <span className="evidence-accepted">Host/runtime accepted</span>
+    </div>
+  );
+}
+
+function OperatingContext({ controlPlane, role, view, context, onLogin, onOpenSetup }) {
+  const authenticated = controlPlane.authenticated;
+  const staticMode = controlPlane.state === "static";
+  const unavailable = controlPlane.state === "unavailable";
+  const fallback = {
+    location: `${role === "technical" ? "Technical" : "Executive"} / ${view}`,
+    locationLevel: "Draft input",
+    verified: authenticated ? "Authenticated operator session" : "Illustrative local preview / no runtime evidence",
+    verifiedLevel: authenticated ? "Checked with evidence" : "Draft input",
+    next: authenticated ? "Inspect evidence before taking a governance-sensitive action." : unavailable ? "Inspect the illustrative records below while the operator deployment is restored." : staticMode ? "Inspect the illustrative records below or open Guided Setup to validate a named draft." : "Sign in with the available organization control to use tenant-scoped operations.",
+    nextAction: staticMode ? { label: "Open Guided Setup", onClick: onOpenSetup } : !unavailable && !authenticated ? { label: "Sign in", onClick: onLogin } : null,
+    identity: authenticated ? `${controlPlane.principal.displayName} / tenant ${controlPlane.principal.tenantId}` : "No authenticated organizational identity",
+    boundary: authenticated ? "Server operations may be evidenced; independent deployment and host acceptance remain separate." : "All records and metrics below are illustrative local data. This browser view does not establish remote identity, runtime state, publication or production acceptance.",
+  };
+  const value = context ?? fallback;
+  return (
+    <section className="operating-context" aria-labelledby="operating-context-title">
+      <div className="context-heading"><ShieldCheck weight="duotone" /><div><p>Current operating context</p><h2 id="operating-context-title">Know the boundary before you act</h2></div></div>
+      <div className="context-summary">
+        <div><span>Where am I operating?</span><strong>{value.location}</strong><em className={`evidence-chip evidence-${value.locationLevel.toLowerCase().replaceAll("/", "-").replaceAll(" ", "-")}`}>{value.locationLevel}</em></div>
+        <div><span>What has been verified?</span><strong>{value.verified}</strong><em className={`evidence-chip evidence-${value.verifiedLevel.toLowerCase().replaceAll("/", "-").replaceAll(" ", "-")}`}>{value.verifiedLevel}</em></div>
+        <div className="context-next"><span>What must I do next?</span><strong>{value.next}</strong>{value.nextAction && <button className="context-action" onClick={value.nextAction.onClick}>{value.nextAction.label}<ArrowRight /></button>}</div>
+      </div>
+      <details className="context-details">
+        <summary>Identity, evidence and acceptance boundaries<CaretDown /></summary>
+        <div><p><strong>Identity</strong>{value.identity}</p><p><strong>Acceptance boundary</strong>{value.boundary}</p><EvidenceLegend /></div>
+      </details>
+    </section>
+  );
+}
+
+function Shell({ role, onRoleChange, view, onViewChange, controlPlane, operatingContext, onOpenSetup, onLogin, onDevelopmentLogin, onLogout, children }) {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [notice, setNotice] = useState("");
+  const sidebarRef = useRef(null);
+  const mobileCloseRef = useRef(null);
   const navItems = role === "technical" ? technicalNav : executiveNav;
+  const closeMobile = useCallback(() => setMobileOpen(false), []);
+  useModalFocus(mobileOpen, sidebarRef, closeMobile, mobileCloseRef);
+  useEffect(() => {
+    let timeout;
+    const onFeedback = (event) => {
+      window.clearTimeout(timeout);
+      setNotice(String(event.detail ?? "Action completed."));
+      timeout = window.setTimeout(() => setNotice(""), 5000);
+    };
+    window.addEventListener("palo-feedback", onFeedback);
+    return () => { window.clearTimeout(timeout); window.removeEventListener("palo-feedback", onFeedback); };
+  }, []);
   return (
     <div className="app-shell">
-      <aside className={`sidebar ${mobileOpen ? "sidebar-open" : ""}`}>
+      <aside ref={sidebarRef} id="primary-navigation" className={`sidebar ${mobileOpen ? "sidebar-open" : ""}`} role={mobileOpen ? "dialog" : undefined} aria-modal={mobileOpen ? "true" : undefined} aria-label={mobileOpen ? "Primary navigation" : undefined} tabIndex={mobileOpen ? -1 : undefined}>
         <AppMark />
         <nav aria-label={`${role} navigation`}>
           {navItems.map(([id, label, Icon]) => (
@@ -198,20 +309,22 @@ function Shell({ role, onRoleChange, view, onViewChange, controlPlane, onLogin, 
         </div>
         {controlPlane.state === "unauthenticated" && <button className="text-button session-action" onClick={controlPlane.capabilities?.mode === "development" ? onDevelopmentLogin : onLogin}><Key />{controlPlane.capabilities?.mode === "development" ? "Development login" : "Sign in with organization"}</button>}
         {controlPlane.authenticated && <button className="text-button session-action" onClick={onLogout}><SignOut />Sign out</button>}
-        <button className="mobile-close" onClick={() => setMobileOpen(false)} aria-label="Close navigation"><X /></button>
+        <button ref={mobileCloseRef} className="mobile-close" onClick={closeMobile} aria-label="Close navigation"><X /><span>Close</span></button>
       </aside>
-      {mobileOpen && <button className="sidebar-backdrop" onClick={() => setMobileOpen(false)} aria-label="Close navigation" />}
+      {mobileOpen && <button className="sidebar-backdrop" onClick={closeMobile} aria-label="Close navigation" />}
       <section className="workspace">
-        <header className="topbar">
-          <button className="mobile-menu" onClick={() => setMobileOpen(true)} aria-label="Open navigation"><List /></button>
-          <div className="breadcrumb"><span>{role === "technical" ? "Workspace" : "Portfolio"}</span><ArrowRight /><strong>{navItems.find(([id]) => id === view)?.[1]}</strong></div>
-          <div className="topbar-actions">
-            <StatusPill tone={controlPlane.authenticated ? "positive" : "attention"}>{controlPlane.authenticated ? "Operator session" : controlPlane.state === "unavailable" ? "Control plane unavailable" : "Static preview"}</StatusPill>
-            <div className="role-lens"><span>Workspace lens | not access control</span><RoleSwitch role={role} onChange={onRoleChange} /></div>
-          </div>
-        </header>
-        <div className={`preview-boundary ${controlPlane.authenticated ? "operational-boundary" : ""}`} role="note">{controlPlane.authenticated ? <ShieldCheck weight="fill" /> : <WarningCircle weight="fill" />}<span>{controlPlane.authenticated ? <><strong>Authenticated operator control plane</strong> | tenant {controlPlane.principal.tenantId}; server operations are evidenced, while independent deployment assurance remains separate.</> : controlPlane.state === "unavailable" ? <><strong>Control plane configured but unavailable</strong> | {controlPlane.error}; actions fail back to the explicit local verifier only.</> : <><strong>Static verification console | Illustrative local preview</strong> | local checks are evidenced; remote runtime, identity, authority and publication remain unavailable without an operator BFF.</>}</span></div>
+        <div className="sticky-workspace-header">
+          <header className="topbar">
+            <button className="mobile-menu" onClick={() => setMobileOpen(true)} aria-label="Open navigation" aria-expanded={mobileOpen} aria-controls="primary-navigation"><List /><span>Menu</span></button>
+            <div className="breadcrumb"><span>{role === "technical" ? "Workspace" : "Portfolio"}</span><ArrowRight /><strong>{navItems.find(([id]) => id === view)?.[1]}</strong></div>
+            <div className="topbar-actions">
+              <div className="role-lens"><span>Workspace lens | not access control</span><RoleSwitch role={role} onChange={onRoleChange} /></div>
+            </div>
+          </header>
+          <OperatingContext controlPlane={controlPlane} role={role} view={view} context={operatingContext} onLogin={onLogin} onOpenSetup={onOpenSetup} />
+        </div>
         <main className="main-content">{children}</main>
+        {notice && <div className="feedback-toast" role="status" aria-live="polite"><CheckCircle weight="fill" />{notice}</div>}
       </section>
     </div>
   );
@@ -230,8 +343,10 @@ function PageHeader({ eyebrow, title, description, actions }) {
   );
 }
 
-function TechnicalSetup({ controlPlane }) {
+function TechnicalSetup({ controlPlane, onOperatingContextChange }) {
   const [step, setStep] = useState(0);
+  const [confirmedThrough, setConfirmedThrough] = useState(-1);
+  const [stepGuidance, setStepGuidance] = useState(null);
   const [connection, setConnection] = useState({ platform: CONNECTION_PLATFORMS[0].label, environment: CONNECTION_ENVIRONMENTS[0] });
   const [authority, setAuthority] = useState(defaultAuthority);
   const [oversight, setOversight] = useState("approval");
@@ -268,10 +383,7 @@ function TechnicalSetup({ controlPlane }) {
     return () => { cancelled = true; };
   }, [operational, controlPlane.client]);
 
-  const move = (direction) => {
-    setStep((current) => Math.max(0, Math.min(wizardSteps.length - 1, current + direction)));
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+  const scrollToWorkspace = () => window.scrollTo({ top: 0, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
 
   const input = useMemo(() => ({ connection, authority, oversight, purpose, effect }), [connection, authority, oversight, purpose, effect]);
   const validation = useMemo(() => validateAuthorityConfiguration(input), [input]);
@@ -285,28 +397,86 @@ function TechnicalSetup({ controlPlane }) {
 
   const generated = useMemo(() => buildDraftContract(input), [input]);
 
+  const stepValidities = useMemo(() => [
+    Boolean(connectionReceipt && connectionReceipt.result.status !== "invalid"),
+    Boolean(authority.agent),
+    Boolean(purpose.objective.trim() && purpose.owner.trim()),
+    validation.valid,
+    Boolean(oversight),
+    Boolean(effect.precondition.trim() && effect.expected.trim() && effect.forbidden.trim()),
+    simulationReceipt?.result.status === "passed",
+    Boolean(bundleRecord?.status === "published" || localBundleReceipt?.result.status === "generated-locally"),
+  ], [authority.agent, bundleRecord?.status, connectionReceipt, effect, localBundleReceipt, oversight, purpose, simulationReceipt, validation.valid]);
+  const wizardAccess = buildWizardAccess({ current: step, confirmedThrough, validities: stepValidities, stepCount: wizardSteps.length });
+
+  const stepEvidence = [
+    connectionReceipt?.result.status === "checked" ? "Checked with evidence" : connectionReceipt ? "Locally valid" : "Draft input",
+    inventory ? "Checked with evidence" : "Draft input",
+    "Draft input",
+    validation.valid ? "Locally valid" : "Draft input",
+    "Draft input",
+    "Draft input",
+    simulationReceipt?.result.status === "passed" ? "Checked with evidence" : "Draft input",
+    bundleRecord?.status === "published" ? "Host/runtime accepted" : localBundleReceipt ? "Locally valid" : "Draft input",
+  ];
+
+  const currentRequirement = [
+    operational ? "Run the configured adapter check and inspect its receipt." : "Validate the selected reference profile locally.",
+    operational ? "Discover or select the tenant inventory record." : "Confirm the selected repository reference record.",
+    "Provide the business objective and accountable owner.",
+    "Resolve every blocking authority finding.",
+    "Select the required human oversight mode.",
+    "Define the precondition, expected effect and forbidden change.",
+    "Run the assurance suite for the current input digest.",
+    operational ? "Complete the authenticated review and publication lifecycle, or download a clearly local-only bundle." : "Generate the local-only sandbox bundle.",
+  ][step];
+
+  const operatingContext = useMemo(() => {
+    const accepted = bundleRecord?.status === "published";
+    const checked = simulationReceipt?.result.status === "passed" || connectionReceipt?.result.status === "checked" || Boolean(inventory);
+    const verifiedLevel = accepted ? "Host/runtime accepted" : checked ? "Checked with evidence" : validation.valid ? "Locally valid" : "Draft input";
+    const verified = accepted ? `Published bundle ${bundleRecord.bundleId}` : checked ? (simulationReceipt?.result.status === "passed" ? "Current-input assurance suite passed" : "At least one server-side check has evidence") : validation.valid ? "Current draft passes local compatibility rules" : "Draft input has unresolved findings";
+    return {
+      location: `${connection.platform} / ${connection.environment}`,
+      locationLevel: "Draft input",
+      verified,
+      verifiedLevel,
+      next: stepGuidance?.action ?? (stepValidities[step] && step < 7 ? `Continue to step ${step + 2}, ${wizardSteps[step + 1]}.` : currentRequirement),
+      identity: operational ? `${controlPlane.principal.displayName} / tenant ${controlPlane.principal.tenantId}` : "Static browser preview / no credentials",
+      boundary: accepted ? "The selected runtime accepted this published bundle. Independent deployment and vendor-host acceptance still require their own evidence." : "Local checks, server receipts and host/runtime acceptance are separate evidence levels; none is inferred from another.",
+    };
+  }, [bundleRecord, connection, connectionReceipt, controlPlane.principal, currentRequirement, inventory, operational, simulationReceipt, step, stepGuidance, stepValidities, validation.valid]);
+
+  useEffect(() => { onOperatingContextChange(operatingContext); }, [onOperatingContextChange, operatingContext]);
+
   const invalidateAssurance = () => {
     setSimulationReceipt(null);
     setLocalBundleReceipt(null);
     setBundleRecord(null);
     setActionError("");
   };
+  const invalidateProgressAfter = (index) => {
+    setConfirmedThrough((current) => Math.min(current, index - 1));
+    setStepGuidance(null);
+  };
   const updateConnection = (next) => {
     setConnection(next);
     setConnectionReceipt(null);
     setInventory(null);
+    invalidateProgressAfter(0);
     invalidateAssurance();
   };
-  const updateAuthority = (next) => { setAuthority(next); invalidateAssurance(); };
-  const updatePurpose = (next) => { setPurpose(next); invalidateAssurance(); };
-  const updateOversight = (next) => { setOversight(next); invalidateAssurance(); };
-  const updateEffect = (next) => { setEffect(next); invalidateAssurance(); };
+  const updateAuthority = (next, sourceStep = 3) => { setAuthority(next); invalidateProgressAfter(sourceStep); invalidateAssurance(); };
+  const updatePurpose = (next) => { setPurpose(next); invalidateProgressAfter(2); invalidateAssurance(); };
+  const updateOversight = (next) => { setOversight(next); invalidateProgressAfter(4); invalidateAssurance(); };
+  const updateEffect = (next) => { setEffect(next); invalidateProgressAfter(5); invalidateAssurance(); };
 
   const checkConnection = async () => {
     setConnectionRunning(true);
     setActionError("");
     try {
       setConnectionReceipt(operational ? await controlPlane.client.checkConnection(connection) : await runConnectionCheck(connection));
+      setStepGuidance(null);
     } catch (error) {
       setActionError(error instanceof Error ? error.message : "Connection profile validation failed.");
     } finally {
@@ -318,7 +488,7 @@ function TechnicalSetup({ controlPlane }) {
     if (!operational) return;
     setInventoryRunning(true);
     setActionError("");
-    try { setInventory(await controlPlane.client.inventory(connection)); }
+    try { setInventory(await controlPlane.client.inventory(connection)); setStepGuidance(null); }
     catch (error) { setActionError(error instanceof Error ? error.message : "Inventory discovery failed closed."); }
     finally { setInventoryRunning(false); }
   };
@@ -328,6 +498,7 @@ function TechnicalSetup({ controlPlane }) {
     setActionError("");
     try {
       setSimulationReceipt(operational ? await controlPlane.client.simulate(input) : await runBoundarySimulation(input));
+      setStepGuidance(null);
       setLocalBundleReceipt(null);
       setBundleRecord(null);
     } catch (error) {
@@ -379,33 +550,43 @@ function TechnicalSetup({ controlPlane }) {
     finally { setLifecycleRunning(false); }
   };
 
-  const stepStates = [
-    connectionReceipt?.result.status === "checked" ? "evidenced" : connectionReceipt ? "checked" : "pending",
-    operational ? inventory ? "evidenced" : "pending" : authority.agent ? "configured" : "pending",
-    purpose.objective.trim() && purpose.owner.trim() ? "configured" : "blocked",
-    validation.valid ? "configured" : "blocked",
-    oversight ? "configured" : "pending",
-    effect.precondition.trim() && effect.expected.trim() && effect.forbidden.trim() ? "configured" : "blocked",
-    simulationReceipt?.result.status === "passed" ? "evidenced" : "pending",
-    bundleRecord?.status === "published" || localBundleReceipt?.result.status === "generated-locally" ? "evidenced" : bundleRecord ? bundleRecord.status : "pending",
-  ];
+  const navigateToStep = (target) => {
+    const blocked = blockedStepGuidance({ target, confirmedThrough, labels: wizardSteps });
+    if (blocked) {
+      setStepGuidance(blocked);
+      announceFeedback(blocked.action);
+      return;
+    }
+    setStep(target);
+    setStepGuidance(null);
+    scrollToWorkspace();
+  };
+
+  const continueToNext = () => {
+    const result = continueWizard({ current: step, confirmedThrough, validities: stepValidities, labels: wizardSteps });
+    if (!result.allowed) {
+      const guidance = { reason: result.reason, action: currentRequirement };
+      setStepGuidance(guidance);
+      announceFeedback(currentRequirement);
+      return;
+    }
+    setConfirmedThrough(result.confirmedThrough);
+    setStep(result.current);
+    setStepGuidance(null);
+    scrollToWorkspace();
+  };
 
   return (
     <>
       <PageHeader eyebrow="Guided governance builder | evidence mode" title="Create a governed agent capability" description={operational ? "Use authenticated tenant operations to check an adapter, discover inventory, simulate server-side and move a digest-bound bundle through review and signed publication." : "Validate a reference configuration, simulate its boundaries, and export a local draft without implying a live connection or publication."} />
-      <section className="verification-strip" aria-label="Setup verification boundary">
-        <div><span>Console mode</span><strong>{operational ? `Operator | ${controlPlane.principal.tenantId}` : "Static | no credentials"}</strong></div>
-        <div><span>Remote adapter</span><strong className={connectionReceipt?.result.status === "checked" ? "positive-text" : "attention-text"}>{connectionReceipt?.result.status === "checked" ? "Checked with evidence" : operational ? "Not checked" : "Not configured"}</strong></div>
-        <div><span>Current contract</span><strong className={validation.valid ? "positive-text" : "negative-text"}>{validation.valid ? "Locally valid" : "Blocked"}</strong></div>
-        <div><span>Publication</span><strong>{bundleRecord?.status ?? (operational ? (controlPlane.capabilities?.lifecycle?.publication ? "Available after review" : "Signer unavailable") : "Local file only")}</strong></div>
-      </section>
       {actionError && <div className="action-error" role="alert"><WarningCircle weight="fill" /><span>{actionError}</span></div>}
-      <WizardProgress current={step} onSelect={setStep} states={stepStates} />
+      {stepGuidance && <div className="step-blocker" role="status"><LockKey weight="fill" /><div><strong>{stepGuidance.reason}</strong><span>{stepGuidance.action}</span></div><button className="text-button" onClick={() => navigateToStep(stepGuidance.required ?? step)}>Go to required step</button></div>}
+      <WizardProgress current={step} onSelect={navigateToStep} access={wizardAccess} evidence={stepEvidence} />
       <section className="builder-layout">
         <div className="builder-main">
           <div className="step-label">Step {step + 1} of {wizardSteps.length}</div>
           {step === 0 && <ConnectStep value={connection} onChange={updateConnection} receipt={connectionReceipt} running={connectionRunning} onCheck={checkConnection} operational={operational} />}
-          {step === 1 && <DiscoverStep selectedAgent={authority.agent} onSelectAgent={(agent) => updateAuthority(authorityDefaultsForAgent(agent, authority.environment))} operational={operational} inventory={inventory} running={inventoryRunning} onDiscover={discoverInventory} />}
+          {step === 1 && <DiscoverStep selectedAgent={authority.agent} onSelectAgent={(agent) => updateAuthority(authorityDefaultsForAgent(agent, authority.environment), 1)} operational={operational} inventory={inventory} running={inventoryRunning} onDiscover={discoverInventory} />}
           {step === 2 && <PurposeStep value={purpose} onChange={updatePurpose} />}
           {step === 3 && <AuthorityStep value={authority} onChange={updateAuthority} findings={validation.findings} />}
           {step === 4 && <OversightStep value={oversight} onChange={updateOversight} />}
@@ -413,10 +594,11 @@ function TechnicalSetup({ controlPlane }) {
           {step === 6 && <SimulationStep receipt={simulationReceipt} running={simulationRunning} onRun={runBoundaryTest} findings={validation.findings} operational={operational} />}
           {step === 7 && <PublishStep localReceipt={localBundleReceipt} bundle={bundleRecord} bundleQueue={bundleQueue} onLoadBundle={loadBundle} simulationReceipt={simulationReceipt} canGenerate={validation.valid && simulationReceipt?.result.status === "passed"} onGenerateLocal={generateLocalBundle} operational={operational} lifecycleRunning={lifecycleRunning} onLifecycle={lifecycleAction} scopes={scopes} principal={controlPlane.principal} rationale={reviewRationale} onRationale={setReviewRationale} publicationAvailable={controlPlane.capabilities?.lifecycle?.publication} stepUpRequired={controlPlane.capabilities?.controls?.stepUpForReviewAndPublish && !controlPlane.capabilities?.controls?.stepUpSatisfied} onStepUp={() => controlPlane.client.login(true)} />}
           <div className="wizard-actions">
-            <button className="button button-secondary" disabled={step === 0} onClick={() => move(-1)}>Back</button>
+            <button className="button button-secondary" disabled={step === 0} onClick={() => navigateToStep(step - 1)}>Back</button>
             {step === 3 && <button className="button button-secondary" disabled={simulationRunning || !validation.valid} onClick={runBoundaryTest}><Flask />{simulationRunning ? "Testing..." : "Test this boundary"}</button>}
-            {step < 7 ? <button className="button button-primary" onClick={() => move(1)}>{step === 3 ? "Continue to oversight" : "Continue"}<ArrowRight /></button> : null}
+            {step < 7 ? <button className="button button-primary" aria-describedby={!stepValidities[step] ? "current-step-requirement" : undefined} disabled={!stepValidities[step]} onClick={continueToNext}>{step === 3 ? "Continue to oversight" : "Continue"}<ArrowRight /></button> : null}
           </div>
+          {!stepValidities[step] && <p id="current-step-requirement" className="current-step-requirement"><LockKey />{currentRequirement}</p>}
         </div>
         <aside className="enforcement-panel">
           <div className="enforcement-title"><ShieldCheck weight="duotone" /><h2>What this draft would enforce</h2></div>
@@ -435,19 +617,26 @@ function TechnicalSetup({ controlPlane }) {
   );
 }
 
-function WizardProgress({ current, onSelect, states }) {
+function WizardProgress({ current, onSelect, access, evidence }) {
+  const currentStepRef = useRef(null);
+  useEffect(() => {
+    currentStepRef.current?.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "nearest", inline: "center" });
+  }, [current]);
   return (
-    <ol className="wizard-progress" aria-label="Governance setup progress">
-      {wizardSteps.map((label, index) => (
-        <li key={label} className={`${index === current ? "current" : ""} ${states[index] === "evidenced" ? "complete" : ""} ${states[index] === "blocked" ? "blocked" : ""}`.trim()} data-step-state={states[index]}>
-          <button onClick={() => onSelect(index)} aria-current={index === current ? "step" : undefined}>
-            <span>{states[index] === "evidenced" ? <Check weight="bold" /> : index + 1}</span>
-            <strong>{label}</strong>
-            <small>{states[index]}</small>
-          </button>
-        </li>
-      ))}
-    </ol>
+    <div className="wizard-progress-region">
+      <p className="wizard-scroll-cue"><span>Step {current + 1} of {wizardSteps.length}</span><strong>Scroll horizontally to see all steps</strong><ArrowRight /></p>
+      <ol className="wizard-progress" aria-label="Governance setup progress">
+        {wizardSteps.map((label, index) => (
+          <li ref={index === current ? currentStepRef : undefined} key={label} className={`${index === current ? "current" : ""} ${access[index].completed ? "complete" : ""} ${!access[index].unlocked ? "locked" : ""}`.trim()} data-step-state={access[index].completed ? "complete" : access[index].unlocked ? "available" : "locked"}>
+            <button onClick={() => onSelect(index)} aria-current={index === current ? "step" : undefined} aria-disabled={!access[index].unlocked}>
+              <span>{access[index].completed ? <Check weight="bold" /> : index + 1}</span>
+              <strong>{label}</strong>
+              <small>{!access[index].unlocked ? "Prerequisite required" : access[index].completed ? evidence[index] : index === current ? "Current step" : "Available"}</small>
+            </button>
+          </li>
+        ))}
+      </ol>
+    </div>
   );
 }
 
@@ -724,9 +913,13 @@ function DecisionList({ decisions, compact = false, onResolve }) {
 }
 
 function SemanticRecord({ record, onClose }) {
+  const dialogRef = useRef(null);
+  const closeRef = useRef(null);
+  const closeDialog = useCallback(() => onClose(), [onClose]);
+  useModalFocus(Boolean(record), dialogRef, closeDialog, closeRef);
   if (!record) return null;
   const recordId = record.id || record.label || record.name || "local-preview-record";
-  return <div className="semantic-record-backdrop" role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget) onClose(); }}><section className="semantic-record" role="dialog" aria-modal="true" aria-labelledby="semantic-record-title"><div className="panel-heading"><div><p className="eyebrow">Semantic record</p><h2 id="semantic-record-title">{record.name || record.label || record.title || record.action}</h2></div><button className="icon-button" onClick={onClose} aria-label="Close semantic record"><X /></button></div><dl><div><dt>Semantic ID</dt><dd>https://paloframework.org/semantic/local-preview/{recordId}</dd></div><div><dt>Definition version</dt><dd>{record.definitionVersion || "3.0.0"}</dd></div><div><dt>Evidence class</dt><dd>{record.dataClass || "illustrative-local-preview"}</dd></div><div><dt>Authority boundary</dt><dd>{record.authorityBoundary || "Local demonstration only; not a source of record or approval decision."}</dd></div><div><dt>Source references</dt><dd>{record.sourceRefs?.length ? record.sourceRefs.join(" | ") : "None | illustrative data"}</dd></div></dl></section></div>;
+  return <div className="semantic-record-backdrop" role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget) closeDialog(); }}><section ref={dialogRef} className="semantic-record" role="dialog" aria-modal="true" aria-labelledby="semantic-record-title" tabIndex={-1}><div className="panel-heading"><div><p className="eyebrow">Semantic record</p><h2 id="semantic-record-title">{record.name || record.label || record.title || record.action}</h2></div><button ref={closeRef} className="icon-button labelled-icon-button" onClick={closeDialog} aria-label="Close semantic record"><X /><span>Close</span></button></div><dl><div><dt>Semantic ID</dt><dd>https://paloframework.org/semantic/local-preview/{recordId}</dd></div><div><dt>Definition version</dt><dd>{record.definitionVersion || "3.0.0"}</dd></div><div><dt>Evidence class</dt><dd>{record.dataClass || "illustrative-local-preview"}</dd></div><div><dt>Authority boundary</dt><dd>{record.authorityBoundary || "Local demonstration only; not a source of record or approval decision."}</dd></div><div><dt>Source references</dt><dd>{record.sourceRefs?.length ? record.sourceRefs.join(" | ") : "None | illustrative data"}</dd></div></dl></section></div>;
 }
 
 function AssuranceView() {
@@ -770,8 +963,8 @@ function DataPage({ type, onExecutionSelect, approvals, onApproval, incidents, o
     <>
       <PageHeader eyebrow="Technical workbench" title={config.title} description={config.description} actions={<button className="button button-primary" onClick={downloadRows}><DownloadSimple />Export {type === "policies" ? "policies" : "evidence"}</button>} />
       <section className="content-panel data-panel">
-        <div className="data-toolbar"><label><MagnifyingGlass /><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder={`Search ${type}`} /></label><button className="button button-secondary" onClick={() => setQuery("")}><Funnel />Clear filter</button></div>
-        <div className="table-wrap"><table><thead><tr>{config.columns.map((column) => <th key={column}>{column}</th>)}<th><span className="sr-only">Actions</span></th></tr></thead><tbody>{rows.map((row) => <DataRow key={row.id} type={type} row={row} onInspect={setSelectedRecord} onExecutionSelect={onExecutionSelect} onApproval={onApproval} onIncident={onIncident} />)}</tbody></table></div>
+        <div className="data-toolbar"><label><MagnifyingGlass /><input aria-label={`Search ${type}`} value={query} onChange={(event) => setQuery(event.target.value)} placeholder={`Search ${type}`} /></label><output aria-live="polite">{rows.length} of {config.rows.length} results</output><button className="button button-secondary" onClick={() => setQuery("")} disabled={!query}><Funnel />Clear filter</button></div>
+        <div className="table-wrap"><table className="data-table" data-table-type={type}><thead><tr>{config.columns.map((column) => <th key={column}>{column}</th>)}<th><span className="sr-only">Actions</span></th></tr></thead><tbody>{rows.map((row) => <DataRow key={row.id} type={type} row={row} onInspect={setSelectedRecord} onExecutionSelect={onExecutionSelect} onApproval={onApproval} onIncident={onIncident} />)}{rows.length === 0 && <tr className="table-empty-row"><td colSpan={config.columns.length + 1}><MagnifyingGlass /><strong>No matching {type}</strong><span>Try a broader term or clear the filter to restore all {config.rows.length} records.</span><button className="text-button" onClick={() => setQuery("")}>Clear search</button></td></tr>}</tbody></table></div>
       </section>
       <SemanticRecord record={selectedRecord} onClose={() => setSelectedRecord(null)} />
     </>
@@ -779,15 +972,15 @@ function DataPage({ type, onExecutionSelect, approvals, onApproval, incidents, o
 }
 
 function DataRow({ type, row, onInspect, onExecutionSelect, onApproval, onIncident }) {
-  if (type === "registry") return <tr><td><strong>{row.name}</strong><small>{row.id}</small></td><td>{row.owner}</td><td>{row.environment}</td><td>{row.authority}</td><td><StatusPill>{row.status}</StatusPill></td><td>{row.version}</td><td><button className="text-button" onClick={() => onInspect(row)}>Inspect</button></td></tr>;
-  if (type === "policies") return <tr><td><strong>{row.name}</strong><small>{row.id}</small></td><td>{row.scope}</td><td>{row.tests}</td><td><StatusPill>{row.status}</StatusPill></td><td>{row.version}</td><td><button className="text-button" onClick={() => onInspect(row)}>Open</button></td></tr>;
-  if (type === "executions") return <tr><td><strong>{row.action}</strong><small>{row.id}</small></td><td>{row.agent}</td><td><StatusPill>{row.decision}</StatusPill></td><td><StatusPill>{row.assurance}</StatusPill></td><td>{row.resource}</td><td>{row.time}</td><td><button className="text-button" onClick={() => onExecutionSelect(row.id)} aria-label={`Trace ${row.action}`}>Trace</button></td></tr>;
-  if (type === "approvals") return <tr><td><strong>{row.action}</strong><small>{row.id}</small></td><td>{row.agent}</td><td>{row.owner}</td><td>{row.expires}</td><td><StatusPill>{row.status}</StatusPill></td><td><code>{row.digest}</code></td><td>{row.status === "Pending" ? <div className="table-actions"><button aria-label={`Approve ${row.action}`} className="approve" onClick={() => onApproval(row.id, "Approved")}><Check /></button><button aria-label={`Deny ${row.action}`} className="deny" onClick={() => onApproval(row.id, "Denied")}><X /></button></div> : " - "}</td></tr>;
-  return <tr><td><strong>{row.title}</strong><small>{row.id}</small></td><td>{row.resource}</td><td><StatusPill>{row.severity}</StatusPill></td><td><StatusPill>{row.state}</StatusPill></td><td>{row.owner}</td><td>{row.opened}</td><td>{row.state !== "Resolved" ? <button className="text-button" onClick={() => onIncident(row.id)} aria-label={`Resolve ${row.title}`}>Resolve</button> : " - "}</td></tr>;
+  if (type === "registry") return <tr className="responsive-action-row"><td data-label="Name"><strong>{row.name}</strong><small>{row.id}</small></td><td data-label="Owner">{row.owner}</td><td data-label="Environment">{row.environment}</td><td data-label="Authority">{row.authority}</td><td data-label="Status"><StatusPill>{row.status}</StatusPill></td><td data-label="Version">{row.version}</td><td data-label="Action"><button className="text-button" onClick={() => onInspect(row)}>Inspect record</button></td></tr>;
+  if (type === "policies") return <tr className="responsive-action-row"><td data-label="Name"><strong>{row.name}</strong><small>{row.id}</small></td><td data-label="Scope">{row.scope}</td><td data-label="Tests">{row.tests}</td><td data-label="Status"><StatusPill>{row.status}</StatusPill></td><td data-label="Version">{row.version}</td><td data-label="Action"><button className="text-button" onClick={() => onInspect(row)}>Open policy</button></td></tr>;
+  if (type === "executions") return <tr className="responsive-action-row"><td data-label="Action"><strong>{row.action}</strong><small>{row.id}</small></td><td data-label="Agent">{row.agent}</td><td data-label="Decision"><StatusPill>{row.decision}</StatusPill></td><td data-label="Assurance"><StatusPill>{row.assurance}</StatusPill></td><td data-label="Resource">{row.resource}</td><td data-label="Time">{row.time}</td><td data-label="Action"><button className="text-button" onClick={() => onExecutionSelect(row.id)} aria-label={`Trace ${row.action}`}>Trace execution</button></td></tr>;
+  if (type === "approvals") return <tr className="responsive-action-row"><td data-label="Action"><strong>{row.action}</strong><small>{row.id}</small></td><td data-label="Agent">{row.agent}</td><td data-label="Owner">{row.owner}</td><td data-label="Expires">{row.expires}</td><td data-label="Status"><StatusPill>{row.status}</StatusPill></td><td data-label="Claim digest"><code>{row.digest}</code></td><td data-label="Decision">{row.status === "Pending" ? <div className="table-actions"><button aria-label={`Approve ${row.action}`} className="approve" onClick={() => onApproval(row.id, "Approved")}><Check /><span className="action-label">Approve</span></button><button aria-label={`Deny ${row.action}`} className="deny" onClick={() => onApproval(row.id, "Denied")}><X /><span className="action-label">Deny</span></button></div> : "No action required"}</td></tr>;
+  return <tr className="responsive-action-row"><td data-label="Incident"><strong>{row.title}</strong><small>{row.id}</small></td><td data-label="Resource">{row.resource}</td><td data-label="Severity"><StatusPill>{row.severity}</StatusPill></td><td data-label="State"><StatusPill>{row.state}</StatusPill></td><td data-label="Owner">{row.owner}</td><td data-label="Opened">{row.opened}</td><td data-label="Action">{row.state !== "Resolved" ? <button className="text-button" onClick={() => onIncident(row.id)} aria-label={`Resolve ${row.title}`}>Resolve incident</button> : "No action required"}</td></tr>;
 }
 
 function ExecutionDetail({ onBack }) {
-  const [testState, setTestState] = useState("ready");
+  const [testState, setTestState] = useState("idle");
   const runTest = () => { setTestState("running"); window.setTimeout(() => setTestState("complete"), 900); };
   const downloadEvidence = () => {
     const evidence = { semanticId: "https://paloframework.org/semantic/local-preview/execution/EXE-2026-0719-0842", definitionVersion: "3.0.0", authoritative: false, dataClass: "illustrative-local-preview", authorityBoundary: "Simulated outcome; not a source of record or approval decision.", executionId: "EXE-2026-0719-0842", decision: "allowed", assurance: "mismatch", expected: 120, observed: 125, incidentId: "INC-307" };
@@ -808,7 +1001,7 @@ function ExecutionDetail({ onBack }) {
 
 function IntegrationsView() {
   const integrations = [...CONNECTION_PLATFORMS, { id: "copilot-studio", label: "Copilot Studio", maturity: "planned", integration: "Design-partner adapter required", liveProbe: false }];
-  return <><PageHeader eyebrow="Integrations | capability inventory" title="Reference paths, not claimed connections" description="Each row states what exists in the repository. A platform is connected only when an operator BFF supplies authenticated health and registry evidence." actions={<a className="button button-primary" href="?role=technical&view=setup"><PlugsConnected />Open verifiable setup</a>} /><section className="integration-list">{integrations.map((item) => <article key={item.id}><div className="integration-icon"><PlugsConnected weight="duotone" /></div><div><h2>{item.label}</h2><p>{item.integration}</p></div><StatusPill tone="attention">{item.maturity}</StatusPill><StatusPill tone="neutral">Not connected</StatusPill></article>)}</section><div className="security-boundary"><LockKey /><div><strong>Browser security boundary</strong><span>No shared Gateway bearer token is placed in browser storage. Live connection checks require a BFF, OIDC, server-enforced RBAC and an adapter-specific conformance receipt.</span></div></div></>;
+  return <><PageHeader eyebrow="Integrations | capability inventory" title="Reference paths, not claimed connections" description="Each row states what exists in the repository. A platform is connected only when an operator BFF supplies authenticated health and registry evidence." actions={<a className="button button-primary" href="?role=technical&view=setup"><PlugsConnected />Open verifiable setup</a>} /><section className="integration-list">{integrations.map((item) => <article key={item.id}><div className="integration-icon"><PlugsConnected weight="duotone" /></div><div><h2>{item.label}</h2><p>{item.integration}</p></div><div className="integration-statuses"><StatusPill tone="attention">{item.maturity}</StatusPill><StatusPill tone="neutral">Not connected</StatusPill></div></article>)}</section><div className="security-boundary"><LockKey /><div><strong>Browser security boundary</strong><span>No shared Gateway bearer token is placed in browser storage. Live connection checks require a BFF, OIDC, server-enforced RBAC and an adapter-specific conformance receipt.</span></div></div></>;
 }
 
 function SignalOperationsRegistry() {
@@ -880,9 +1073,10 @@ function ExternalEvidenceView() {
   const [query, setQuery] = useState("");
   const [selectedId, setSelectedId] = useState(capabilityCrosswalk.capabilities[0].capabilityId);
   const capabilities = capabilityCrosswalk.capabilities.filter((capability) => rowContainsQuery(capability, query));
-  const selected = capabilityCrosswalk.capabilities.find((capability) => capability.capabilityId === selectedId) ?? capabilities[0] ?? capabilityCrosswalk.capabilities[0];
-  const providerMappings = capabilityCrosswalk.providerMappings.filter((mapping) => mapping.paloCapabilityIds.includes(selected.capabilityId));
+  const selected = capabilities.find((capability) => capability.capabilityId === selectedId) ?? capabilities[0] ?? null;
+  const providerMappings = selected ? capabilityCrosswalk.providerMappings.filter((mapping) => mapping.paloCapabilityIds.includes(selected.capabilityId)) : [];
   const exportResponse = () => {
+    if (!selected) return;
     const payload = {
       format: capabilityCrosswalk.format,
       schemaVersion: capabilityCrosswalk.schemaVersion,
@@ -900,12 +1094,12 @@ function ExternalEvidenceView() {
         eyebrow="External agentic evidence"
         title="Turn observations into PALO-owned governance tests"
         description="Use optional provider signals to select questions and evidence requirements. PALO remains the authority for capability concepts, controls, gates and local risk assessment."
-        actions={<button className="button button-secondary" onClick={exportResponse}><DownloadSimple />Export response</button>}
+        actions={<button className="button button-secondary" onClick={exportResponse} disabled={!selected}><DownloadSimple />Export response</button>}
       />
       <section className="external-boundary" aria-label="External evidence authority boundary">
         <ShieldCheck weight="duotone" />
         <div><strong>PALO operates offline and independently</strong><span>No provider is required. External scores remain contextual observations and never become a PALO use-case risk score or gate decision.</span></div>
-        <StatusPill tone="positive">Offline ready</StatusPill>
+        <StatusPill tone="neutral">Local reference available</StatusPill>
       </section>
       <SignalOperationsRegistry />
       <section className="provider-strip" aria-label="Registered external evidence providers">
@@ -919,17 +1113,17 @@ function ExternalEvidenceView() {
       </section>
       <section className="evidence-workbench">
         <aside className="capability-browser">
-          <div className="capability-search"><MagnifyingGlass /><input aria-label="Search PALO capabilities" placeholder="Search 14 PALO capabilities" value={query} onChange={(event) => setQuery(event.target.value)} /></div>
+          <div className="capability-search"><MagnifyingGlass /><input aria-label="Search PALO capabilities" placeholder="Search 14 PALO capabilities" value={query} onChange={(event) => setQuery(event.target.value)} /><output aria-live="polite">{capabilities.length} of {capabilityCrosswalk.capabilities.length} capabilities</output></div>
           <div className="capability-list" role="listbox" aria-label="PALO capability concepts">
             {capabilities.map((capability) => (
               <button key={capability.capabilityId} role="option" aria-selected={selected.capabilityId === capability.capabilityId} className={selected.capabilityId === capability.capabilityId ? "selected" : ""} onClick={() => setSelectedId(capability.capabilityId)}>
                 <span>{capability.primaryConcern}</span><strong>{capability.title}</strong><small>{capability.controlIds.length} controls | {capability.evidenceKinds.length} evidence kinds</small>
               </button>
             ))}
-            {capabilities.length === 0 && <div className="capability-empty">No PALO capability matches this search.</div>}
+            {capabilities.length === 0 && <div className="capability-empty"><MagnifyingGlass /><strong>No PALO capability matches this search.</strong><span>Try a broader term or clear the current query.</span><button className="text-button" onClick={() => setQuery("")}>Clear search</button></div>}
           </div>
         </aside>
-        <article className="governance-response">
+        {selected ? <article className="governance-response">
           <div className="response-heading">
             <div><p className="eyebrow">PALO canonical capability | v{capabilityCrosswalk.crosswalkVersion}</p><h2>{selected.title}</h2><p>{selected.definition}</p></div>
             <StatusPill tone="positive">PALO-owned</StatusPill>
@@ -961,7 +1155,7 @@ function ExternalEvidenceView() {
             <pre>{JSON.stringify({ capabilityId: selected.capabilityId, crosswalkVersion: capabilityCrosswalk.crosswalkVersion, externalMappings: providerMappings, boundary: { externalCapabilityEvidence: true, notUseCaseRiskScore: true, requiresLocalAssessment: true, networkOptional: true } }, null, 2)}</pre>
             <p>{selected.limitations}</p>
           </details>
-        </article>
+        </article> : <article className="governance-response response-empty"><MagnifyingGlass weight="duotone" /><h2>No capability selected</h2><p>Clear or broaden the search to inspect PALO-owned questions, controls and evidence requirements.</p><button className="button button-secondary" onClick={() => setQuery("")}>Clear search</button></article>}
       </section>
     </>
   );
@@ -978,6 +1172,7 @@ export function App() {
   const [approvals, setApprovals] = useState(initialApprovalRows);
   const [incidents, setIncidents] = useState(initialIncidentRows);
   const [decisions, setDecisions] = useState(initialDecisionQueue);
+  const [setupOperatingContext, setSetupOperatingContext] = useState(null);
 
   const refreshControlPlane = async () => setControlPlane({ ...(await controlPlaneClient.boot()), client: controlPlaneClient });
   useEffect(() => { let cancelled = false; controlPlaneClient.boot().then((state) => { if (!cancelled) setControlPlane({ ...state, client: controlPlaneClient }); }); return () => { cancelled = true; }; }, [controlPlaneClient]);
@@ -996,14 +1191,23 @@ export function App() {
     setRole(nextRole);
     setSelectedExecution(null);
   };
-  const resolveApproval = (id, status) => setApprovals((rows) => rows.map((row) => row.id === id ? { ...row, status } : row));
-  const resolveIncident = (id) => setIncidents((rows) => rows.map((row) => row.id === id ? { ...row, state: "Resolved" } : row));
-  const resolveDecision = (id) => setDecisions((rows) => rows.map((row) => row.id === id ? { ...row, status: "Resolved" } : row));
+  const resolveApproval = (id, status) => {
+    setApprovals((rows) => rows.map((row) => row.id === id ? { ...row, status } : row));
+    announceFeedback(`Approval ${id} marked ${status.toLowerCase()} in this local session.`);
+  };
+  const resolveIncident = (id) => {
+    setIncidents((rows) => rows.map((row) => row.id === id ? { ...row, state: "Resolved" } : row));
+    announceFeedback(`Incident ${id} marked resolved in this local session.`);
+  };
+  const resolveDecision = (id) => {
+    setDecisions((rows) => rows.map((row) => row.id === id ? { ...row, status: "Resolved" } : row));
+    announceFeedback(`Decision ${id} marked reviewed in this local session.`);
+  };
 
   let content;
   if (role === "technical") {
     if (selectedExecution) content = <ExecutionDetail onBack={() => setSelectedExecution(null)} />;
-    else if (view === "setup") content = <TechnicalSetup controlPlane={controlPlane} />;
+    else if (view === "setup") content = <TechnicalSetup controlPlane={controlPlane} onOperatingContextChange={setSetupOperatingContext} />;
     else if (["registry", "policies", "executions", "approvals", "incidents"].includes(view)) content = <DataPage type={view} onExecutionSelect={setSelectedExecution} approvals={approvals} onApproval={resolveApproval} incidents={incidents} onIncident={resolveIncident} />;
     else if (view === "evidence") content = <ExternalEvidenceView />;
     else content = <IntegrationsView />;
@@ -1019,5 +1223,5 @@ export function App() {
   const developmentLogin = async () => { await controlPlaneClient.developmentLogin(); await refreshControlPlane(); };
   const logout = async () => { await controlPlaneClient.logout(); await refreshControlPlane(); };
 
-  return <Shell role={role} onRoleChange={changeRole} view={view} onViewChange={(nextView) => { setView(nextView); setSelectedExecution(null); }} controlPlane={controlPlane} onLogin={login} onDevelopmentLogin={developmentLogin} onLogout={logout}>{content}</Shell>;
+  return <Shell role={role} onRoleChange={changeRole} view={view} onViewChange={(nextView) => { setView(nextView); setSelectedExecution(null); }} controlPlane={controlPlane} operatingContext={role === "technical" && view === "setup" ? setupOperatingContext : null} onOpenSetup={() => { setRole("technical"); setTechnicalView("setup"); setSelectedExecution(null); }} onLogin={login} onDevelopmentLogin={developmentLogin} onLogout={logout}>{content}</Shell>;
 }
