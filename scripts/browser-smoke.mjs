@@ -76,11 +76,12 @@ try {
   page.on("pageerror", (error) => failures.push(`${page.url()}: page error: ${error.message}`));
   page.on("requestfailed", (request) => {
     const requestUrl = new URL(request.url());
-    const isNavigationAbort = request.failure()?.errorText === "net::ERR_ABORTED" && (
-      request.resourceType() === "stylesheet"
+    const isExpectedNavigationAbort = request.failure()?.errorText === "net::ERR_ABORTED" && (
+      request.resourceType() === "image"
+      || request.resourceType() === "stylesheet"
       || (request.resourceType() === "script" && requestUrl.pathname.endsWith("/assets/palo-spotlight.js"))
     );
-    if (requestUrl.origin === baseUrl && !isNavigationAbort) {
+    if (requestUrl.origin === baseUrl && !isExpectedNavigationAbort) {
       failures.push(`${page.url()}: local request failed: ${request.url()} (${request.failure()?.errorText || "unknown error"})`);
     }
   });
@@ -209,7 +210,7 @@ try {
   await page.goto(`${baseUrl}/governance-hub/?role=executive&view=assurance`, { waitUntil: "networkidle" });
   await expectAttribute(page.locator("html"), "data-hub-role", "executive", "Governance Hub executive deep link");
   await expectAttribute(page.locator("html"), "data-hub-view", "assurance", "Governance Hub assurance deep link");
-  if (!/Static verification console/.test(await page.locator(".preview-boundary").innerText())) failures.push("Governance Hub executive lens: persistent verification boundary is missing");
+  if (!/Illustrative local preview[\s\S]*no runtime evidence/i.test(await page.locator(".operating-context").innerText())) failures.push("Governance Hub executive lens: truthful operating context is missing");
   await page.goto(`${baseUrl}/governance-hub/?role=unknown&view=secrets`, { waitUntil: "networkidle" });
   await expectAttribute(page.locator("html"), "data-hub-role", "technical", "Governance Hub invalid role fallback");
   await expectAttribute(page.locator("html"), "data-hub-view", "setup", "Governance Hub invalid view fallback");
@@ -217,9 +218,10 @@ try {
   await page.getByRole("button", { name: "Registry" }).click();
   const governanceSearch = page.getByPlaceholder("Search registry");
   await governanceSearch.fill("status");
-  if (await page.locator("tbody tr").count() !== 0) failures.push("Governance Hub: search matched an object key instead of row values");
+  const registryRows = page.locator("tbody tr.responsive-action-row");
+  if (await registryRows.count() !== 0 || !await page.getByText("No matching registry").isVisible()) failures.push("Governance Hub: search matched an object key instead of row values");
   await governanceSearch.fill("Catalog");
-  if (await page.locator("tbody tr").count() !== 1) failures.push("Governance Hub: value search did not isolate the Catalog row");
+  if (await registryRows.count() !== 1) failures.push("Governance Hub: value search did not isolate the Catalog row");
   await page.getByRole("button", { name: "Inspect" }).click();
   const registryRecord = await page.getByRole("dialog", { name: "Catalog Assistant" }).innerText();
   if (!/Semantic ID[\s\S]*Definition version[\s\S]*Evidence class[\s\S]*illustrative-local-preview[\s\S]*Authority boundary/.test(registryRecord)) failures.push("Governance Hub: registry Semantic Record omits v3 identity or authority fields");
@@ -242,7 +244,7 @@ try {
   if (!executiveBrief.includes("Developer preview")) failures.push("Governance Hub: executive brief omits its release boundary");
 
   await page.getByRole("button", { name: "Technical" }).click();
-  if (!/Static verification console/.test(await page.locator(".preview-boundary").innerText())) failures.push("Governance Hub technical lens: persistent verification boundary is missing");
+  if (!/Current operating context[\s\S]*What has been verified[\s\S]*What must I do next/i.test(await page.locator(".operating-context").innerText())) failures.push("Governance Hub technical lens: operating context is missing");
   await page.getByRole("button", { name: "External evidence" }).click();
   await expectAttribute(page.locator(".signal-operations"), "data-policywatcher-transport-state", "not-synchronized", "PolicyWatcher offline-safe operational baseline");
   const signalOperationsText = await page.locator(".signal-operations").innerText();
@@ -254,7 +256,7 @@ try {
   } catch {
     failures.push("Governance Hub: PolicyWatcher review ledger is not valid JSON");
   }
-  await page.getByRole("button", { name: "Setup" }).click();
+  await page.getByRole("button", { name: "Setup", exact: true }).click();
   await page.getByRole("button", { name: "Check connection" }).click();
   const connectionReceipt = page.locator('.action-trace[data-action-receipt="check-connection"]');
   await connectionReceipt.waitFor();
@@ -262,14 +264,19 @@ try {
   if (!/not configured/i.test(connectionReceiptText) || /\bReady\b/.test(await page.locator("main").innerText())) failures.push("Governance Hub: connection check presents an unsupported ready state");
   await connectionReceipt.locator(":scope > summary").click();
   if (!/Network requests\s*0/i.test(await connectionReceipt.innerText()) || !/No DNS lookup or HTTP request/.test(await connectionReceipt.innerText())) failures.push("Governance Hub: connection receipt omits its zero-network boundary");
-  await page.getByRole("button", { name: /Bound authority/ }).click();
+  for (let stepIndex = 0; stepIndex < 3; stepIndex += 1) {
+    await page.getByRole("button", { name: "Continue", exact: true }).click();
+  }
   await page.getByLabel("Automatic change limit").selectOption("20%");
   await page.getByRole("button", { name: "Test this boundary" }).click();
-  await page.getByRole("button", { name: /Simulate/ }).click();
+  await page.getByRole("button", { name: "Continue to oversight", exact: true }).click();
+  for (let stepIndex = 0; stepIndex < 2; stepIndex += 1) {
+    await page.getByRole("button", { name: "Continue", exact: true }).click();
+  }
   const simulationReceipt = page.locator('.action-trace[data-action-receipt="run-boundary-simulation"]');
   await simulationReceipt.waitFor();
   if (!/Action above 20%/.test(await page.locator(".test-results").innerText()) || !/7 deterministic scenarios passed/.test(await simulationReceipt.innerText())) failures.push("Governance Hub: simulation is not derived from the current authority boundary");
-  await page.getByRole("button", { name: /Generate bundle/ }).click();
+  await page.getByRole("button", { name: "Continue", exact: true }).click();
   const localBundle = await captureDownload(page.getByRole("button", { name: "Generate and download local bundle" }), "Governance Hub local sandbox bundle");
   try {
     const parsed = JSON.parse(localBundle);
