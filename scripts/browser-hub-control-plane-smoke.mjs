@@ -116,24 +116,28 @@ try {
   await page.getByRole("button", { name: "Development login" }).click();
   await page.getByText("Browser Operator", { exact: true }).waitFor();
   await page.getByRole("button", { name: "Check connection" }).click();
-  await page.getByText("Checked with evidence").waitFor();
   const connectionTrace = page.locator('[data-action-receipt="check-connection"]');
+  await connectionTrace.waitFor();
   await connectionTrace.locator(":scope > summary").click();
   const connectionText = await connectionTrace.textContent();
   if (!connectionText.includes("Network requests1") || connectionText.includes(gatewayToken)) throw new Error("Connection receipt is incomplete or leaked its credential");
 
-  await page.locator(".wizard-progress").getByRole("button", { name: /Select inventory/ }).click();
+  await page.getByRole("button", { name: "Continue", exact: true }).click();
   await page.getByRole("button", { name: "Discover inventory" }).click();
   await page.getByText("Live unscoped registry projection").waitFor();
   await page.getByText("agent-catalog-demo", { exact: true }).waitFor();
-  await page.locator(".wizard-progress").getByRole("button", { name: /Simulate/ }).click();
+  await page.getByRole("button", { name: "Continue", exact: true }).click();
+  await page.getByRole("button", { name: "Continue", exact: true }).click();
+  await page.getByRole("button", { name: "Continue to oversight", exact: true }).click();
+  await page.getByRole("button", { name: "Continue", exact: true }).click();
+  await page.getByRole("button", { name: "Continue", exact: true }).click();
   await page.getByRole("button", { name: "Run assurance suite" }).click();
   await page.getByText("Exact declared boundary", { exact: true }).waitFor();
   const simulationTrace = page.locator('[data-action-receipt="run-boundary-simulation"]');
   await simulationTrace.locator(":scope > summary").click();
   if (!(await simulationTrace.textContent()).includes("No protected executor")) throw new Error("Simulation receipt omitted its executor boundary");
 
-  await page.locator(".wizard-progress").getByRole("button", { name: /Generate bundle/ }).click();
+  await page.getByRole("button", { name: "Continue", exact: true }).click();
   await page.getByRole("button", { name: "Save authenticated draft" }).click();
   await page.getByText(/Bundle draft/).waitFor();
   await page.getByRole("button", { name: "Submit for separate review" }).click();
