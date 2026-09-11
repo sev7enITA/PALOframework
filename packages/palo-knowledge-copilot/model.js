@@ -33,7 +33,7 @@ export class ExtractiveGrounder {
     const italian = languageCode(language) === "it";
     const lead = italian ? "Le fonti canoniche PALO più pertinenti indicano:" : "The most relevant canonical PALO sources indicate:";
     const bullets = records.map((record, index) => `- ${String(record.title || record.recordId)}: ${String(record.summary || record.content || "").replace(/\s+/g, " ").slice(0, 420)} [${index + 1}]`);
-    const closing = italian ? "Questa è un’indicazione informativa: applicabilità e decisioni richiedono una persona responsabile." : "This is informational guidance: applicability and decisions require an accountable person.";
+    const closing = italian ? "Questa è un'indicazione informativa: applicabilità e decisioni richiedono una persona responsabile." : "This is informational guidance: applicability and decisions require an accountable person.";
     return { answer: [lead, ...bullets, closing].join("\n"), citedIndexes: records.map((_, index) => index + 1), provider: this.provider };
   }
 }
