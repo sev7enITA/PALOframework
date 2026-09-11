@@ -1,0 +1,81 @@
+name: palo-knowledge-copilot
+
+services:
+  palo-knowledge-copilot:
+    image: ${PALO_COPILOT_IMAGE:-palo-knowledge-copilot:local}
+    build:
+      context: ../../..
+      dockerfile: deploy/vps/palo-knowledge-copilot/Dockerfile
+    restart: unless-stopped
+    read_only: true
+    mem_limit: 512m
+    cpus: 1.0
+    pids_limit: 128
+    cap_drop: [ALL]
+    security_opt:
+      - no-new-privileges:true
+    tmpfs:
+      - /tmp:size=16m,mode=1777,noexec,nosuid,nodev
+    environment:
+      PALO_COPILOT_MODE: production
+      PALO_COPILOT_HOST: 0.0.0.0
+      PALO_COPILOT_PORT: 8792
+      PALO_COPILOT_TRUST_PROXY: "true"
+      PALO_COPILOT_PUBLIC_URL: ${PALO_COPILOT_PUBLIC_URL:?Set PALO_COPILOT_PUBLIC_URL in .env}
+      PALO_COPILOT_ALLOWED_ORIGINS: ${PALO_COPILOT_ALLOWED_ORIGINS:?Set PALO_COPILOT_ALLOWED_ORIGINS in .env}
+      PALO_COPILOT_DATABASE_URL_FILE: /run/secrets/database_url
+      PALO_COPILOT_OIDC_ISSUER: ${PALO_COPILOT_OIDC_ISSUER:?Set PALO_COPILOT_OIDC_ISSUER in .env}
+      PALO_COPILOT_OIDC_AUTHORIZATION_ENDPOINT: ${PALO_COPILOT_OIDC_AUTHORIZATION_ENDPOINT:?Set PALO_COPILOT_OIDC_AUTHORIZATION_ENDPOINT in .env}
+      PALO_COPILOT_OIDC_TOKEN_ENDPOINT: ${PALO_COPILOT_OIDC_TOKEN_ENDPOINT:?Set PALO_COPILOT_OIDC_TOKEN_ENDPOINT in .env}
+      PALO_COPILOT_OIDC_JWKS_URI: ${PALO_COPILOT_OIDC_JWKS_URI:?Set PALO_COPILOT_OIDC_JWKS_URI in .env}
+      PALO_COPILOT_OIDC_CLIENT_ID: ${PALO_COPILOT_OIDC_CLIENT_ID:?Set PALO_COPILOT_OIDC_CLIENT_ID in .env}
+      PALO_COPILOT_OIDC_CLIENT_SECRET_FILE: /run/secrets/oidc_client_secret
+      PALO_COPILOT_OIDC_AUDIENCE: ${PALO_COPILOT_OIDC_AUDIENCE:?Set PALO_COPILOT_OIDC_AUDIENCE in .env}
+      PALO_COPILOT_OIDC_ID_TOKEN_TYPE: ${PALO_COPILOT_OIDC_ID_TOKEN_TYPE:?Set PALO_COPILOT_OIDC_ID_TOKEN_TYPE in .env}
+      PALO_COPILOT_OIDC_TENANT_CLAIM: ${PALO_COPILOT_OIDC_TENANT_CLAIM:-tid}
+      PALO_COPILOT_OIDC_GROUP_CLAIM: ${PALO_COPILOT_OIDC_GROUP_CLAIM:-groups}
+      PALO_COPILOT_OIDC_ALLOWED_TENANTS: ${PALO_COPILOT_OIDC_ALLOWED_TENANTS:?Set PALO_COPILOT_OIDC_ALLOWED_TENANTS in .env}
+      PALO_COPILOT_OIDC_ALLOWED_GROUPS: ${PALO_COPILOT_OIDC_ALLOWED_GROUPS:-}
+      PALO_COPILOT_READER_URL: ${PALO_COPILOT_READER_URL:?Set PALO_COPILOT_READER_URL in .env}
+      PALO_COPILOT_READER_AUTH: client-credentials
+      PALO_COPILOT_READER_TOKEN_ENDPOINT: ${PALO_COPILOT_READER_TOKEN_ENDPOINT:?Set PALO_COPILOT_READER_TOKEN_ENDPOINT in .env}
+      PALO_COPILOT_READER_CLIENT_ID: ${PALO_COPILOT_READER_CLIENT_ID:?Set PALO_COPILOT_READER_CLIENT_ID in .env}
+      PALO_COPILOT_READER_CLIENT_SECRET_FILE: /run/secrets/reader_client_secret
+      PALO_COPILOT_READER_SCOPE: ${PALO_COPILOT_READER_SCOPE:?Set PALO_COPILOT_READER_SCOPE in .env}
+      PALO_COPILOT_MODEL_PROVIDER: openai
+      PALO_COPILOT_OPENAI_API_KEY_FILE: /run/secrets/openai_api_key
+      PALO_COPILOT_OPENAI_MODEL: ${PALO_COPILOT_OPENAI_MODEL:?Set PALO_COPILOT_OPENAI_MODEL in .env}
+      PALO_COPILOT_OPENAI_BASE_URL: ${PALO_COPILOT_OPENAI_BASE_URL:-https://api.openai.com/v1}
+      PALO_COPILOT_OPENAI_MAX_OUTPUT_TOKENS: ${PALO_COPILOT_OPENAI_MAX_OUTPUT_TOKENS:-900}
+      PALO_COPILOT_SESSION_TTL_SECONDS: ${PALO_COPILOT_SESSION_TTL_SECONDS:-14400}
+      PALO_COPILOT_REQUEST_MAXIMUM_BYTES: ${PALO_COPILOT_REQUEST_MAXIMUM_BYTES:-16384}
+      PALO_COPILOT_QUESTION_MAXIMUM_CHARACTERS: ${PALO_COPILOT_QUESTION_MAXIMUM_CHARACTERS:-4000}
+      PALO_COPILOT_RATE_LIMIT_PER_MINUTE: ${PALO_COPILOT_RATE_LIMIT_PER_MINUTE:-30}
+      PALO_COPILOT_READER_TIMEOUT_MS: ${PALO_COPILOT_READER_TIMEOUT_MS:-15000}
+      PALO_COPILOT_READER_RESPONSE_MAXIMUM_BYTES: ${PALO_COPILOT_READER_RESPONSE_MAXIMUM_BYTES:-1048576}
+      PALO_COPILOT_MODEL_TIMEOUT_MS: ${PALO_COPILOT_MODEL_TIMEOUT_MS:-30000}
+      PALO_COPILOT_MAX_RETRIEVED_RECORDS: ${PALO_COPILOT_MAX_RETRIEVED_RECORDS:-4}
+      PALO_COPILOT_RUN_MIGRATIONS: ${PALO_COPILOT_RUN_MIGRATIONS:-false}
+    secrets:
+      - database_url
+      - oidc_client_secret
+      - reader_client_secret
+      - openai_api_key
+    ports:
+      - 127.0.0.1:${PALO_COPILOT_LOOPBACK_PORT:-18792}:8792
+    healthcheck:
+      test: ["CMD", "/nodejs/bin/node", "-e", "fetch('http://127.0.0.1:8792/health').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"]
+      interval: 20s
+      timeout: 8s
+      retries: 5
+      start_period: 20s
+
+secrets:
+  database_url:
+    file: ./secrets/database_url
+  oidc_client_secret:
+    file: ./secrets/oidc_client_secret
+  reader_client_secret:
+    file: ./secrets/reader_client_secret
+  openai_api_key:
+    file: ./secrets/openai_api_key

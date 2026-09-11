@@ -91,6 +91,7 @@ n8n orchestrates what automation does. PALO governs whether an identified agent 
 - [PALO-AI quickstarts: code, n8n and Copilot Studio/MCP](PALO_AIQuickstarts.html)
 - [PALO Knowledge Copilot: Reader/Curator integration matrix for 11 MCP hosts](docs/palo-knowledge-copilot-integrations.md)
 - [PALO Knowledge Reader production profile and live acceptance gates](docs/palo-knowledge-reader-production.md)
+- [Ask PALO production profile: authenticated browser BFF, grounded answers and live qualification](docs/palo-knowledge-copilot-production.md)
 - [Microsoft startup and student funding routes for PALO](docs/palo-microsoft-startup-student-credits.md)
 - [PALO MCP host qualification procedure](docs/palo-mcp-host-qualification.md)
 - [Production release commit checklist](docs/production-release-commit-checklist.md)
@@ -277,6 +278,18 @@ npm run palo:hub:control-plane:test
 
 Deployment is opt-in and fail-closed. Follow the [Governance Hub control-plane operations runbook](docs/palo-governance-hub-operations.md) to provision external OIDC, managed PostgreSQL, a tenant-enforcing adapter and KMS/HSM signer before enabling the Compose profile.
 
+### Operate Ask PALO
+
+`packages/palo-knowledge-copilot/` is a separate production-capable, read-only browser BFF for the Governance Hub's `Ask PALO` view. It authenticates users with OIDC Authorization Code + PKCE, keeps an opaque HttpOnly session and CSRF token, obtains a server-side Reader identity, verifies the exact six-tool MCP catalog and produces citation-bound answers from canonical records. It has no operational PALO runtime, executor, knowledge writer, approval workflow or evidence signer. Questions and answers are not persisted.
+
+Run the focused acceptance suite with:
+
+```bash
+npm run validate:knowledge-copilot-live
+```
+
+The implementation is not a live-production claim. Follow the [Ask PALO production profile](docs/palo-knowledge-copilot-production.md) and [standalone deployment runbook](deploy/vps/palo-knowledge-copilot/README.md) to supply external PostgreSQL, tenant-specific OIDC, Reader workload identity, approved model configuration, signed image admission and independent live review.
+
 ## Repository Structure
 
 ```text
@@ -426,6 +439,7 @@ Completed in H1 2026:
 | Operational platform and research map | Complete |
 | PALO-AI contracts and reference runtime | Developer preview |
 | PALO-AI full-cycle assurance and Governance Hub | Developer preview |
+| Ask PALO read-only Knowledge Copilot | Production-capable implementation; live qualification pending |
 
 Planned roadmap:
 

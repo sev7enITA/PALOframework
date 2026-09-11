@@ -8,6 +8,7 @@ import {
   ChartLineUp,
   Check,
   CheckCircle,
+  ChatCircleDots,
   ClipboardText,
   Cloud,
   Code,
@@ -88,8 +89,10 @@ import {
   buildWizardAccess,
   continueWizard,
 } from "./wizardProgression.js";
+import { AskPaloView } from "./AskPaloView.jsx";
 
 const technicalNav = [
+  ["ask", "Ask PALO", ChatCircleDots],
   ["setup", "Setup", RocketLaunch],
   ["registry", "Registry", Stack],
   ["policies", "Policies", ShieldCheck],
@@ -104,6 +107,7 @@ const publicSiteBase = (import.meta.env?.VITE_PALO_PUBLIC_SITE_URL?.trim().repla
 const publicSiteUrl = (path) => `${publicSiteBase}/${path}`;
 
 const executiveNav = [
+  ["ask", "Ask PALO", ChatCircleDots],
   ["today", "Today", House],
   ["portfolio", "Portfolio", Briefcase],
   ["decisions", "Decisions", Gavel],
@@ -265,7 +269,7 @@ function OperatingContext({ controlPlane, role, view, context, onLogin, onOpenSe
   );
 }
 
-function Shell({ role, onRoleChange, view, onViewChange, controlPlane, operatingContext, onOpenSetup, onLogin, onDevelopmentLogin, onLogout, children }) {
+function Shell({ role, onRoleChange, view, onViewChange, controlPlane, operatingContext, hideOperatingContext = false, onOpenSetup, onLogin, onDevelopmentLogin, onLogout, children }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [notice, setNotice] = useState("");
   const sidebarRef = useRef(null);
@@ -321,7 +325,7 @@ function Shell({ role, onRoleChange, view, onViewChange, controlPlane, operating
               <div className="role-lens"><span>Workspace lens | not access control</span><RoleSwitch role={role} onChange={onRoleChange} /></div>
             </div>
           </header>
-          <OperatingContext controlPlane={controlPlane} role={role} view={view} context={operatingContext} onLogin={onLogin} onOpenSetup={onOpenSetup} />
+          {!hideOperatingContext && <OperatingContext controlPlane={controlPlane} role={role} view={view} context={operatingContext} onLogin={onLogin} onOpenSetup={onOpenSetup} />}
         </div>
         <main className="main-content">{children}</main>
         {notice && <div className="feedback-toast" role="status" aria-live="polite"><CheckCircle weight="fill" />{notice}</div>}
@@ -1207,12 +1211,14 @@ export function App() {
   let content;
   if (role === "technical") {
     if (selectedExecution) content = <ExecutionDetail onBack={() => setSelectedExecution(null)} />;
+    else if (view === "ask") content = <AskPaloView />;
     else if (view === "setup") content = <TechnicalSetup controlPlane={controlPlane} onOperatingContextChange={setSetupOperatingContext} />;
     else if (["registry", "policies", "executions", "approvals", "incidents"].includes(view)) content = <DataPage type={view} onExecutionSelect={setSelectedExecution} approvals={approvals} onApproval={resolveApproval} incidents={incidents} onIncident={resolveIncident} />;
     else if (view === "evidence") content = <ExternalEvidenceView />;
     else content = <IntegrationsView />;
   } else {
-    if (view === "today") content = <ExecutiveToday decisions={decisions} onDecisionView={() => setExecutiveView("decisions")} onAssuranceView={() => setExecutiveView("assurance")} />;
+    if (view === "ask") content = <AskPaloView />;
+    else if (view === "today") content = <ExecutiveToday decisions={decisions} onDecisionView={() => setExecutiveView("decisions")} onAssuranceView={() => setExecutiveView("assurance")} />;
     else if (view === "portfolio") content = <><PageHeader eyebrow="Portfolio" title="Where are we exposed?" description="Compare governed coverage and outcome assurance without hiding differences between business areas." /><PortfolioTable /></>;
     else if (view === "decisions") content = <><PageHeader eyebrow="Decisions" title="What requires executive attention?" description="Strategic exceptions, risk acceptance and ownership - not routine operational approvals." /><DecisionList decisions={decisions} onResolve={resolveDecision} /></>;
     else if (view === "assurance") content = <AssuranceView />;
@@ -1223,5 +1229,5 @@ export function App() {
   const developmentLogin = async () => { await controlPlaneClient.developmentLogin(); await refreshControlPlane(); };
   const logout = async () => { await controlPlaneClient.logout(); await refreshControlPlane(); };
 
-  return <Shell role={role} onRoleChange={changeRole} view={view} onViewChange={(nextView) => { setView(nextView); setSelectedExecution(null); }} controlPlane={controlPlane} operatingContext={role === "technical" && view === "setup" ? setupOperatingContext : null} onOpenSetup={() => { setRole("technical"); setTechnicalView("setup"); setSelectedExecution(null); }} onLogin={login} onDevelopmentLogin={developmentLogin} onLogout={logout}>{content}</Shell>;
+  return <Shell role={role} onRoleChange={changeRole} view={view} onViewChange={(nextView) => { setView(nextView); setSelectedExecution(null); }} controlPlane={controlPlane} operatingContext={role === "technical" && view === "setup" ? setupOperatingContext : null} hideOperatingContext={view === "ask"} onOpenSetup={() => { setRole("technical"); setTechnicalView("setup"); setSelectedExecution(null); }} onLogin={login} onDevelopmentLogin={developmentLogin} onLogout={logout}>{content}</Shell>;
 }
