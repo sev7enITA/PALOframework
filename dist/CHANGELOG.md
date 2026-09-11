@@ -11,6 +11,8 @@ and this project follows Semantic Versioning where practical.
 
 ### Added
 
+- Added the first-class Ask PALO Governance Hub view and a separate production-capable Knowledge Copilot BFF with OIDC/PKCE sessions, in-memory CSRF handling, PostgreSQL session durability, Reader client credentials, exact six-tool MCP validation, stateless model synthesis, canonical citation validation and explicit insufficient-evidence results.
+- Added a hardened standalone Ask PALO deployment profile with a pinned non-root Distroless image, read-only filesystem, loopback-only Compose port, file-mounted secrets, TLS/nginx rate limits, query-free OIDC access logging, deployment smoke tests and an exact-digest live qualification checklist.
 - Added a permanent Observatory index connecting the AI Incident Observatory, Regulatory Watch, 2026 Tech Trends and Human Agency Risk Map through explicit Gold Case, Monitoring Brief and Candidate Under Review publication states.
 - Added an AI incident investigation route to Platform Map, plus exact Knowledge Reader and Knowledge Curator maturity boundaries and the disabled-by-default external incident provider state.
 - Added a dedicated stateless PALO Knowledge Reader production candidate: exact six-tool server, canonical-only content, fail-closed release digests, strict OIDC/HTTPS admission, request and rate limits, non-root minimal image, volume-free Compose profiles and deployment-specific live qualification gates.
@@ -20,6 +22,7 @@ and this project follows Semantic Versioning where practical.
 
 ### Changed
 
+- Updated root and Governance Hub dependency locks to patched compatible releases; both npm audit scopes report zero known vulnerabilities at implementation time.
 - Published cache-safe, versioned Case 001 stylesheet, texture and PNG paths, plus non-transformed full-resolution PNG ZIP downloads, while retaining the previous asset names as compatibility copies.
 - Migrated Community to the shared PALO 3.1 visual system, removed third-party style and font dependencies, reconciled shared navigation around the Observatory index and corrected public changelog routes to the generated HTML view.
 - Remote OIDC MCP listeners now fail closed unless explicit client and tenant allowlists are configured, and every listener must use the exact host validated when its app was created. Loopback evaluation compatibility covers IPv4 127/8 plus canonical and expanded IPv6 loopback forms, while IdP audience identifiers distinct from the public resource URL remain supported.

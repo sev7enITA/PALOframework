@@ -1,0 +1,46 @@
+server {
+    listen 443 ssl http2;
+    listen [::]:443 ssl http2;
+    server_name copilot-api.paloframework.org;
+
+    # Configure the approved certificate paths on the target host.
+    ssl_certificate /etc/letsencrypt/live/copilot-api.paloframework.org/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/copilot-api.paloframework.org/privkey.pem;
+
+    add_header Strict-Transport-Security "max-age=63072000; includeSubDomains" always;
+    add_header X-Content-Type-Options nosniff always;
+    add_header Referrer-Policy no-referrer always;
+
+    access_log /var/log/nginx/palo-copilot-access.log palo_copilot_safe;
+    error_log /var/log/nginx/palo-copilot-error.log warn;
+
+    client_max_body_size 16k;
+    client_body_timeout 10s;
+    keepalive_timeout 15s;
+    send_timeout 60s;
+
+    location / {
+        limit_req zone=palo_copilot_pre_auth burst=10 nodelay;
+        limit_req_status 429;
+
+        proxy_pass http://127.0.0.1:18792;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-Proto https;
+        # This is the only trusted proxy hop; overwrite attacker-supplied forwarding headers.
+        proxy_set_header X-Forwarded-For $remote_addr;
+        proxy_set_header X-Request-ID $request_id;
+        proxy_set_header Connection "";
+        proxy_connect_timeout 5s;
+        proxy_send_timeout 15s;
+        proxy_read_timeout 60s;
+        proxy_buffering off;
+    }
+}
+
+server {
+    listen 80;
+    listen [::]:80;
+    server_name copilot-api.paloframework.org;
+    return 308 https://$host$request_uri;
+}

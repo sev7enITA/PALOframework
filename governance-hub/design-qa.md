@@ -52,3 +52,27 @@ The iteration preserves the white enterprise control-room direction, persistent 
 - Browser-local decisions and downloads produce local feedback only and do not claim backend persistence.
 
 final result: passed
+
+## Ask PALO evaluation revision 1 - 11 September 2026
+
+- An Ask `401` now invalidates the visible session immediately, clears the in-memory CSRF token, exposes the BFF sign-in action and blocks both button and keyboard resubmission.
+- A missing/unavailable BFF disables sign-in and presents service retry as the recoverable action.
+- The composer now discloses that the configured external model provider may process the question and retains the separate credentials/personal-data warning.
+- Essential Ask PALO trust, privacy, control, citation, source-path, authority-boundary and trace text is at least 12px; body details use 13-16px where appropriate.
+- Rate-limit and server recovery copy no longer refers to a cooldown or request context absent from the UI.
+- Clipboard success and failure use an independent polite live region.
+- Starter questions now use natural bilingual concepts covered by the canonical gold vocabulary: meaningful human oversight, AI risk management, agentic governance/authority and deletion verification.
+- Browser smoke covered authenticated to Ask 401 to disabled resubmission, unavailable BFF to disabled login, 429 recovery, successful answer/copy announcement, at least 12px essential text, and 1440/768/390px overflow checks.
+
+## Ask PALO Live v1 - 11 September 2026
+
+- First-class `Ask PALO` destination is available in Technical and Executive lenses at `?role=technical&view=ask` and `?role=executive&view=ask`.
+- Session, Reader integrity/version, six-tool catalog and knowledge-release qualification are rendered as independent BFF-reported facts.
+- The composer fails closed for blank, oversized, unauthenticated, unavailable and in-flight states; it supports Ctrl/Command + Enter and never places the question in URL or browser storage.
+- Answers remain plain text and expose sufficiency consequence, canonical citations, authority boundaries, evidence trace and a closed-by-default raw receipt.
+- PASS-LIVE is shown only for a validated server-side qualification receipt; an ordinary answer explicitly says qualification was not established by that request.
+- Focused client coverage passed: safe BFF URL rules, safe return path, response validation, fixed status errors, timeout, malformed response and exactly-one request/no retry.
+- `npm run test:governance`: passed, 27 tests after the expired-session regression coverage.
+- `npm run build`: passed with Vite 6.4.3.
+- Fresh Playwright smoke passed at 1440 x 1000, 768 x 1024 and 390 x 844; measured no horizontal overflow, confirmed keyboard submission made one request, verified authenticated/unauthenticated states, and observed no browser console errors.
+- Desktop and mobile screenshots were visually inspected; answer-first hierarchy, evidence-spine ordering and mobile navigation remained legible.
