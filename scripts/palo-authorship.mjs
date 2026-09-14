@@ -31,10 +31,11 @@ export function addPaloAuthorship(html, file) {
             <div class="palo-creator-content">
                 <div><p class="palo-creator-eyebrow">Creator &amp; maintainer</p><h2 id="creator-title">${creator}</h2></div>
                 <div>
-                    <p>Fabrizio Degni conceived and created PALO Framework and continues to maintain the project, including its methodology, software and documentation. PALO welcomes community contributions and review.</p>
+                    <p>Fabrizio Degni conceived and created PALO Framework and continues to maintain the project, including its methodology, software and documentation. PALO was also the subject of his doctoral thesis in Computer Science at the European Institute of Management and Technology (EIMT). PALO welcomes community contributions and review.</p>
                     <nav class="palo-creator-links" aria-label="Creator links">
                         <a href="https://www.linkedin.com/in/fdegni/" target="_blank" rel="noopener noreferrer">LinkedIn profile</a>
                         <a href="https://github.com/sev7enITA/PALOframework" target="_blank" rel="noopener noreferrer">Project repository</a>
+                        <a href="PALO_Recognition.html#doctoral-thesis">Doctoral thesis</a>
                         <a href="PALO_Recognition.html">Publications &amp; public record</a>
                     </nav>
                 </div>
