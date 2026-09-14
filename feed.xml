@@ -5,8 +5,8 @@
         <link>https://paloframework.org</link>
         <description>Latest updates, tools, and insights from the PALO Framework - Principled AI Lifecycle Orchestration for responsible AI governance.</description>
         <language>en</language>
-        <lastBuildDate>Tue, 01 Sep 2026 18:00:00 +0200</lastBuildDate>
-        <pubDate>Tue, 01 Sep 2026 18:00:00 +0200</pubDate>
+        <lastBuildDate>Mon, 14 Sep 2026 00:00:00 +0200</lastBuildDate>
+        <pubDate>Mon, 14 Sep 2026 00:00:00 +0200</pubDate>
         <ttl>60</ttl>
         <atom:link href="https://paloframework.org/feed.xml" rel="self" type="application/rss+xml"/>
         <image>
@@ -20,6 +20,16 @@
         <category>AI Governance</category>
         <category>Responsible AI</category>
         <category>EU AI Act</category>
+        <item>
+            <title>September Observatory review and project attribution</title>
+            <link>https://paloframework.org/PALO_Observatories.html#latest-updates</link>
+            <description><![CDATA[Three source-linked monitoring briefs cover recent Anthropic investigations and OpenAI disclosures, with separate publication dates and PALO review prompts. The regulatory watchlist is reviewed on 14 September. Project attribution now identifies Fabrizio Degni as PALO's creator and maintainer across the published site.]]></description>
+            <pubDate>Mon, 14 Sep 2026 00:00:00 +0200</pubDate>
+            <guid isPermaLink="true">https://paloframework.org/PALO_Observatories.html#review-2026-09-14</guid>
+            <dc:creator>Fabrizio Degni</dc:creator>
+            <category>Observatory</category>
+            <category>Project Attribution</category>
+        </item>
         <item>
             <title>PALO Observatory System</title>
             <link>https://paloframework.org/PALO_Observatories.html</link>

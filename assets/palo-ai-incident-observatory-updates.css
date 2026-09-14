@@ -1,0 +1,3 @@
+.incident-update-note { padding-top: 24px; padding-bottom: 24px; }
+.incident-update-note p { margin: 0; padding: 18px 22px; color: #173b52; background: #edf8f7; border-left: 4px solid #087e86; }
+.incident-update-note a { color: #075e68; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }

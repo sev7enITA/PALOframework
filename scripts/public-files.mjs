@@ -73,6 +73,8 @@ export const PUBLIC_FILES = [
   "assets/palo-owasp-2026.js",
   "assets/palo-observatories.css",
   "assets/palo-v21.css",
+  "assets/palo-authorship.css",
+  "assets/palo-ai-incident-observatory-updates.css",
   "assets/palo-v21.js",
   "assets/palo-ai-demo.js",
   "assets/palo-docs.css",

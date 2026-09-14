@@ -14,6 +14,8 @@
   <script src="assets/palo-icons.js" defer></script>
   <script src="assets/palo-v21.js?v=3.1.0" defer></script>
   <script src="assets/palo-docs.js" defer></script>
+    <meta name="author" content="Fabrizio Degni">
+    <link rel="stylesheet" href="assets/palo-authorship.css" data-palo-authorship-style="true">
 </head>
 <body class="palo-v21 palo-doc-page" data-doc-source="CHANGELOG.md">
   <a class="palo-skip-link" href="#main-content">Skip to main content</a>
@@ -32,22 +34,44 @@
 and this project follows Semantic Versioning where practical.</p>
 <hr />
 <h2 id="unreleased">[Unreleased]<a class="palo-doc-anchor" href="#unreleased" aria-label="Link to [Unreleased]">#</a></h2><h3 id="added">Added<a class="palo-doc-anchor" href="#added" aria-label="Link to Added">#</a></h3><ul>
-<li>Added the first-class Ask PALO Governance Hub view and a separate production-capable Knowledge Copilot BFF with OIDC/PKCE sessions, in-memory CSRF handling, PostgreSQL session durability, Reader client credentials, exact six-tool MCP validation, stateless model synthesis, canonical citation validation and explicit insufficient-evidence results.</li>
-<li>Added a hardened standalone Ask PALO deployment profile with a pinned non-root Distroless image, read-only filesystem, loopback-only Compose port, file-mounted secrets, TLS/nginx rate limits, query-free OIDC access logging, deployment smoke tests and an exact-digest live qualification checklist.</li>
-<li>Added a permanent Observatory index connecting the AI Incident Observatory, Regulatory Watch, 2026 Tech Trends and Human Agency Risk Map through explicit Gold Case, Monitoring Brief and Candidate Under Review publication states.</li>
-<li>Added an AI incident investigation route to Platform Map, plus exact Knowledge Reader and Knowledge Curator maturity boundaries and the disabled-by-default external incident provider state.</li>
-<li>Added a dedicated stateless PALO Knowledge Reader production candidate: exact six-tool server, canonical-only content, fail-closed release digests, strict OIDC/HTTPS admission, request and rate limits, non-root minimal image, volume-free Compose profiles and deployment-specific live qualification gates.</li>
-<li>Added separate six-tool Knowledge Reader and ten-tool Knowledge Curator MCP profiles, provenance-bearing search/get, immutable reviewed local contributions, OIDC roles, canonical and terminal-<code>/mcp</code> HTTPS routes, profile instructions, paired configurations for 11 MCP hosts, a machine-readable conformance matrix, host qualification procedure, automated configuration validation and a portable PALO Knowledge Copilot skill.</li>
-<li>Added a public PALO 3.1 and PALO-AI 2.7 release verification record with the baseline source revision, CI run, validation totals, negative-test coverage, tagged artifact checksum and current maturity limits.</li>
-<li>Added a production release commit checklist with isolated Git staging groups, deterministic site-output handling, private-input exclusions and mandatory validation gates.</li>
+<li><p>Published the 14 September 2026 Observatory review with three dated, primary-source monitoring briefs, homepage and Case 001 follow-up links, and an RSS entry.</p>
+</li>
+<li><p>Added explicit project attribution to Fabrizio Degni across the homepage, Community profile, Recognition, toolkits and generated documentation.</p>
+</li>
+<li><p>Added the first-class Ask PALO Governance Hub view and a separate production-capable Knowledge Copilot BFF with OIDC/PKCE sessions, in-memory CSRF handling, PostgreSQL session durability, Reader client credentials, exact six-tool MCP validation, stateless model synthesis, canonical citation validation and explicit insufficient-evidence results.</p>
+</li>
+<li><p>Added a hardened standalone Ask PALO deployment profile with a pinned non-root Distroless image, read-only filesystem, loopback-only Compose port, file-mounted secrets, TLS/nginx rate limits, query-free OIDC access logging, deployment smoke tests and an exact-digest live qualification checklist.</p>
+</li>
+<li><p>Added a permanent Observatory index connecting the AI Incident Observatory, Regulatory Watch, 2026 Tech Trends and Human Agency Risk Map through explicit Gold Case, Monitoring Brief and Candidate Under Review publication states.</p>
+</li>
+<li><p>Added an AI incident investigation route to Platform Map, plus exact Knowledge Reader and Knowledge Curator maturity boundaries and the disabled-by-default external incident provider state.</p>
+</li>
+<li><p>Added a dedicated stateless PALO Knowledge Reader production candidate: exact six-tool server, canonical-only content, fail-closed release digests, strict OIDC/HTTPS admission, request and rate limits, non-root minimal image, volume-free Compose profiles and deployment-specific live qualification gates.</p>
+</li>
+<li><p>Added separate six-tool Knowledge Reader and ten-tool Knowledge Curator MCP profiles, provenance-bearing search/get, immutable reviewed local contributions, OIDC roles, canonical and terminal-<code>/mcp</code> HTTPS routes, profile instructions, paired configurations for 11 MCP hosts, a machine-readable conformance matrix, host qualification procedure, automated configuration validation and a portable PALO Knowledge Copilot skill.</p>
+</li>
+<li><p>Added a public PALO 3.1 and PALO-AI 2.7 release verification record with the baseline source revision, CI run, validation totals, negative-test coverage, tagged artifact checksum and current maturity limits.</p>
+</li>
+<li><p>Added a production release commit checklist with isolated Git staging groups, deterministic site-output handling, private-input exclusions and mandatory validation gates.</p>
+</li>
 </ul>
 <h3 id="changed">Changed<a class="palo-doc-anchor" href="#changed" aria-label="Link to Changed">#</a></h3><ul>
-<li>Updated root and Governance Hub dependency locks to patched compatible releases; both npm audit scopes report zero known vulnerabilities at implementation time.</li>
-<li>Published cache-safe, versioned Case 001 stylesheet, texture and PNG paths, plus non-transformed full-resolution PNG ZIP downloads, while retaining the previous asset names as compatibility copies.</li>
-<li>Migrated Community to the shared PALO 3.1 visual system, removed third-party style and font dependencies, reconciled shared navigation around the Observatory index and corrected public changelog routes to the generated HTML view.</li>
-<li>Remote OIDC MCP listeners now fail closed unless explicit client and tenant allowlists are configured, and every listener must use the exact host validated when its app was created. Loopback evaluation compatibility covers IPv4 127/8 plus canonical and expanded IPv6 loopback forms, while IdP audience identifiers distinct from the public resource URL remain supported.</li>
-<li>Redacted deployment identifiers, account addresses, credential rotation details and billing state from public Knowledge Reader documentation while preserving control design and qualification status.</li>
-<li>Corrected Knowledge Reader snippet offsets so punctuation normalization cannot move the displayed excerpt away from the matching source term.</li>
+<li><p>Aligned the homepage, Regulatory Watch and FRIA review dates; updated GPAI enforcement and the AI Omnibus timeline against the Commission's current overview.</p>
+</li>
+<li><p>Wrapped FRIA header actions on narrow screens so Template, Import and Export remain within the viewport.</p>
+</li>
+<li><p>Updated root and Governance Hub dependency locks to patched compatible releases; both npm audit scopes report zero known vulnerabilities at implementation time.</p>
+</li>
+<li><p>Published cache-safe, versioned Case 001 stylesheet, texture and PNG paths, plus non-transformed full-resolution PNG ZIP downloads, while retaining the previous asset names as compatibility copies.</p>
+</li>
+<li><p>Migrated Community to the shared PALO 3.1 visual system, removed third-party style and font dependencies, reconciled shared navigation around the Observatory index and corrected public changelog routes to the generated HTML view.</p>
+</li>
+<li><p>Remote OIDC MCP listeners now fail closed unless explicit client and tenant allowlists are configured, and every listener must use the exact host validated when its app was created. Loopback evaluation compatibility covers IPv4 127/8 plus canonical and expanded IPv6 loopback forms, while IdP audience identifiers distinct from the public resource URL remain supported.</p>
+</li>
+<li><p>Redacted deployment identifiers, account addresses, credential rotation details and billing state from public Knowledge Reader documentation while preserving control design and qualification status.</p>
+</li>
+<li><p>Corrected Knowledge Reader snippet offsets so punctuation normalization cannot move the displayed excerpt away from the matching source term.</p>
+</li>
 </ul>
 <h2 id="palo-ai-270---2026-08-25">[PALO-AI 2.7.0] - 2026-08-25<a class="palo-doc-anchor" href="#palo-ai-270---2026-08-25" aria-label="Link to [PALO-AI 2.7.0] - 2026-08-25">#</a></h2><p><strong>Release status: Data-assurance developer preview. The bundled runtime remains denied for production use.</strong></p>
 <h3 id="added-2">Added<a class="palo-doc-anchor" href="#added-2" aria-label="Link to Added">#</a></h3><ul>
@@ -591,5 +615,7 @@ and this project follows Semantic Versioning where practical.</p>
       <section class="palo-doc-feedback" aria-labelledby="feedback-title"><p class="palo-eyebrow">Privacy-first feedback</p><h2 id="feedback-title">Help improve this guide</h2><p>Your feedback stays in your browser until you explicitly copy it, download it, or open an email draft. Do not include secrets, personal data, credentials or production identifiers.</p><form data-doc-feedback><div class="palo-form-grid"><div class="palo-field"><label for="feedback-role">Your role</label><select id="feedback-role" name="role"><option>Executive / governance owner</option><option>Platform or security engineer</option><option>No-code / low-code builder</option><option>External reviewer</option></select></div><div class="palo-field"><label for="feedback-category">Category</label><select id="feedback-category" name="category"><option>Clarity</option><option>Technical accuracy</option><option>Missing guidance</option><option>Accessibility</option></select></div><div class="palo-field palo-field-full"><label for="feedback-message">Feedback</label><textarea id="feedback-message" name="message" maxlength="3000" required placeholder="Describe the non-sensitive improvement you recommend."></textarea></div><div class="palo-form-actions"><button class="palo-btn" type="button" data-feedback-copy>Copy feedback</button><button class="palo-btn palo-btn-secondary" type="button" data-feedback-download>Download JSON</button><button class="palo-btn palo-btn-secondary" type="button" data-feedback-email>Email draft</button></div></div><p class="palo-action-status" data-feedback-status role="status" aria-live="polite"></p></form></section>
     </div>
   </main>
-  <footer class="palo-footer"><div class="palo-shell"><p>PALO public documentation. Developer preview boundaries apply.</p><div class="palo-footer-links"><a href="PALO_AIGovernance.html">PALO-AI</a><a href="governance-hub/">Governance Hub</a><a href="PALO_AgenticCapabilityMatrix.html">Capability Matrix</a><a href="PALO_AIProductionReadiness.html">Production Readiness</a><a href="privacy-policy.html">Privacy</a></div></div></footer>
+  <footer class="palo-footer" data-palo-authorship-container="true">
+<p class="palo-authorship-footer" data-palo-authorship="footer">PALO Framework: conceived, created and maintained by <a href="PALO_Community.html#creator">Fabrizio Degni</a>.</p>
+<div class="palo-shell"><p>PALO public documentation. Developer preview boundaries apply.</p><div class="palo-footer-links"><a href="PALO_AIGovernance.html">PALO-AI</a><a href="governance-hub/">Governance Hub</a><a href="PALO_AgenticCapabilityMatrix.html">Capability Matrix</a><a href="PALO_AIProductionReadiness.html">Production Readiness</a><a href="privacy-policy.html">Privacy</a></div></div></footer>
 </body></html>

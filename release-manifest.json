@@ -17,7 +17,8 @@
     "web": {
       "version": "3.1.0",
       "date": "2026-08-23",
-      "productionCommitRunbook": "docs/production-release-commit-checklist.html"
+      "productionCommitRunbook": "docs/production-release-commit-checklist.html",
+      "updatedAt": "2026-09-14"
     },
     "framework": {
       "version": "2.0.0",
