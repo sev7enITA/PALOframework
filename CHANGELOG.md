@@ -11,6 +11,7 @@ and this project follows Semantic Versioning where practical.
 
 ### Added
 
+- Added Fabrizio Degni's doctoral thesis in Computer Science at EIMT to Recognition, with the full title, submission committee and a direct link from the Community creator profile.
 - Published the 14 September 2026 Observatory review with three dated, primary-source monitoring briefs, homepage and Case 001 follow-up links, and an RSS entry.
 - Added explicit project attribution to Fabrizio Degni across the homepage, Community profile, Recognition, toolkits and generated documentation.
 
