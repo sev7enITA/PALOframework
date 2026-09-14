@@ -8,6 +8,8 @@
 [![Website](https://img.shields.io/badge/Website-paloframework.org-21808D)](https://paloframework.org)
 [![GitHub](https://img.shields.io/badge/GitHub-sev7enITA%2FPALOframework-black)](https://github.com/sev7enITA/PALOframework)
 
+PALO Framework is an open-source project conceived, created and maintained by **[Fabrizio Degni](https://paloframework.org/PALO_Community.html#creator)**. Community contributions and review are welcome.
+
 ## Start here: PALO Evidence Pack
 
 **Allowed is not verified.** Give PALO one AI use case. Leave with a traceable, reviewable evidence dossier and a local validation receipt in less than ten minutes.

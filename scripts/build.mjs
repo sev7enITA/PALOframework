@@ -8,6 +8,7 @@ import { promisify } from "node:util";
 import { fileURLToPath } from "node:url";
 import { PUBLIC_FILES } from "./public-files.mjs";
 import { renderPublicDocs } from "./render-public-docs.mjs";
+import { addPaloAuthorship } from "./palo-authorship.mjs";
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const distRoot = path.join(projectRoot, "dist");
@@ -43,22 +44,23 @@ async function build(target) {
 
   await renderPublicDocs({ sourceRoot: projectRoot, targetRoot: target });
 
+  await cp(path.join(projectRoot, "governance-hub", "dist"), path.join(target, "governance-hub"), {
+    recursive: true
+  });
+
   async function rewriteBuiltMarkdownLinks(directory) {
     for (const entry of await readdir(directory, { withFileTypes: true })) {
       const absolute = path.join(directory, entry.name);
       if (entry.isDirectory()) await rewriteBuiltMarkdownLinks(absolute);
       if (entry.isFile() && entry.name.endsWith(".html")) {
         const html = await readFile(absolute, "utf8");
-        const rewritten = html.replace(/(href=["'](?!https?:|\/\/)[^"'#?]+)\.md(?=([?#][^"']*)?["'])/gi, "$1.html");
+        const linked = html.replace(/(href=["'](?!https?:|\/\/)[^"'#?]+)\.md(?=([?#][^"']*)?["'])/gi, "$1.html");
+        const rewritten = addPaloAuthorship(linked, path.relative(target, absolute).split(path.sep).join("/"));
         if (rewritten !== html) await writeFile(absolute, rewritten);
       }
     }
   }
   await rewriteBuiltMarkdownLinks(target);
-
-  await cp(path.join(projectRoot, "governance-hub", "dist"), path.join(target, "governance-hub"), {
-    recursive: true
-  });
 }
 
 async function inventory(root) {

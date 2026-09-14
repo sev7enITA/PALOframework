@@ -22,6 +22,8 @@
     @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}.signal{display:none}.stage{opacity:1!important;transform:none!important}}
     @media print{@page{size:A4 landscape;margin:6mm}html,body{width:100%;height:auto;background:#fff}.shell{width:100%;min-height:0;margin:0;border:0;box-shadow:none;page-break-inside:avoid;break-inside:avoid}.brandbar{min-height:42px}.logo{width:44px;height:38px}.intro{padding:7px 14px}.intro h1{font-size:24px}.intro-copy,.weight-note p{font-size:9px}.map{padding:7px 10px}.map-top{margin-bottom:4px}.graph{min-height:284px;padding-top:38px}.stage,.stage:nth-child(n+5),.stage.is-active,.stage.related,.stage.dim{min-height:266px;padding:5px;opacity:1!important;transform:none!important;box-shadow:none!important;border-color:var(--line)!important;border-top-color:var(--ink)!important;break-inside:avoid}.stage-head{min-height:31px}.artifact{min-height:51px;margin:4px 0 6px;padding:5px;font-size:7.5px}.module{min-height:25px;margin-top:7px;padding:3px 4px;font-size:7px}.module::before{top:-8px;height:7px}.module::after{top:-10px}.module-relation{font-size:5.5px}.feedback-row,.feedback-row.edge-active{min-height:23px;margin-top:5px;background:#fff8e7!important;box-shadow:none!important}.edge-target,.edge-target:hover,.edge-target:focus-visible,.edge-target.edge-active{color:var(--ink2)!important;background:transparent!important;box-shadow:none!important;outline:0!important}.edge-line,.edge-line.dim,.edge-line.edge-active{filter:none!important;opacity:1!important}.inspector,.tools,.signal,footer{display:none!important}}
   </style>
+    <meta name="author" content="Fabrizio Degni">
+    <link rel="stylesheet" href="../../assets/palo-authorship.css" data-palo-authorship-style="true">
 </head>
 <body>
   <main class="shell">
@@ -85,7 +87,9 @@
     </section>
 
     <aside class="inspector" aria-live="polite" aria-label="Relationship inspector"><div><div class="inspector-kicker">Relationship inspector</div></div><div class="inspector-route" id="route">Use Case <span>classifies</span> Risk Route</div><div class="inspector-weight"><strong id="weight">W5 | Core</strong><span id="meaning">Mandatory default-path dependency</span></div><div class="inspector-artifact"><b>Artifact transferred</b><span id="transfer">Purpose and operating context</span></div></aside>
-    <footer><span>PALO Framework | Weighted operational model</span><span>Dependency strength is encoded by label and line thickness.</span></footer>
+    <footer data-palo-authorship-container="true">
+<p class="palo-authorship-footer" data-palo-authorship="footer">PALO Framework: conceived, created and maintained by <a href="../../PALO_Community.html#creator">Fabrizio Degni</a>.</p>
+<span>PALO Framework | Weighted operational model</span><span>Dependency strength is encoded by label and line thickness.</span></footer>
   </main>
   <script>
     (function(){

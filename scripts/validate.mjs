@@ -533,6 +533,8 @@ if (!/^\d{4}-\d{2}-\d{2}$/.test(releaseDate || "")) errors.push("release-manifes
 if (manifest.release?.versioningModel !== "platform-release-with-independent-components") errors.push("release-manifest.json: release.versioningModel must distinguish the platform release from independently versioned components");
 if (manifest.sharedAssets?.version !== releaseVersion) errors.push("release-manifest.json: sharedAssets.version must equal release.version");
 if (manifest.components?.web?.version !== releaseVersion || manifest.components?.web?.date !== releaseDate) errors.push("release-manifest.json: web component must match the release version and date");
+const webUpdatedAt = manifest.components?.web?.updatedAt;
+if (webUpdatedAt !== undefined && (!/^\d{4}-\d{2}-\d{2}$/.test(webUpdatedAt) || webUpdatedAt < releaseDate)) errors.push("release-manifest.json: web.updatedAt must be an ISO date on or after the platform release date");
 for (const [name, component] of Object.entries(manifest.components || {})) {
   if (!/^\d+\.\d+\.\d+$/.test(component.version || "") || !/^\d{4}-\d{2}-\d{2}$/.test(component.date || "")) errors.push(`release-manifest.json: component ${name} requires SemVer version and ISO date`);
 }
@@ -611,7 +613,7 @@ const sitemapEntries = asArray(sitemap.urlset?.url);
 const sitemapUrls = sitemapEntries.map((entry) => entry.loc).filter(Boolean);
 const sitemapSet = new Set(sitemapUrls);
 if (sitemapSet.size !== sitemapUrls.length) errors.push("sitemap.xml: duplicate URL entries");
-const publicationDate = [releaseDate, ...Object.values(manifest.components || {}).map((component) => component.date), ...Object.values(manifest.modules || {}).map((module) => module.date)].filter(Boolean).sort().at(-1);
+const publicationDate = [releaseDate, webUpdatedAt, ...Object.values(manifest.components || {}).map((component) => component.date), ...Object.values(manifest.modules || {}).map((module) => module.date)].filter(Boolean).sort().at(-1);
 for (const entry of sitemapEntries) if (entry.lastmod !== publicationDate) errors.push(`sitemap.xml: ${entry.loc || "entry"} lastmod must match current publication date ${publicationDate}`);
 for (const value of sitemapUrls) {
   try {

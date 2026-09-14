@@ -11,6 +11,9 @@ and this project follows Semantic Versioning where practical.
 
 ### Added
 
+- Published the 14 September 2026 Observatory review with three dated, primary-source monitoring briefs, homepage and Case 001 follow-up links, and an RSS entry.
+- Added explicit project attribution to Fabrizio Degni across the homepage, Community profile, Recognition, toolkits and generated documentation.
+
 - Added the first-class Ask PALO Governance Hub view and a separate production-capable Knowledge Copilot BFF with OIDC/PKCE sessions, in-memory CSRF handling, PostgreSQL session durability, Reader client credentials, exact six-tool MCP validation, stateless model synthesis, canonical citation validation and explicit insufficient-evidence results.
 - Added a hardened standalone Ask PALO deployment profile with a pinned non-root Distroless image, read-only filesystem, loopback-only Compose port, file-mounted secrets, TLS/nginx rate limits, query-free OIDC access logging, deployment smoke tests and an exact-digest live qualification checklist.
 - Added a permanent Observatory index connecting the AI Incident Observatory, Regulatory Watch, 2026 Tech Trends and Human Agency Risk Map through explicit Gold Case, Monitoring Brief and Candidate Under Review publication states.
@@ -21,6 +24,9 @@ and this project follows Semantic Versioning where practical.
 - Added a production release commit checklist with isolated Git staging groups, deterministic site-output handling, private-input exclusions and mandatory validation gates.
 
 ### Changed
+
+- Aligned the homepage, Regulatory Watch and FRIA review dates; updated GPAI enforcement and the AI Omnibus timeline against the Commission's current overview.
+- Wrapped FRIA header actions on narrow screens so Template, Import and Export remain within the viewport.
 
 - Updated root and Governance Hub dependency locks to patched compatible releases; both npm audit scopes report zero known vulnerabilities at implementation time.
 - Published cache-safe, versioned Case 001 stylesheet, texture and PNG paths, plus non-transformed full-resolution PNG ZIP downloads, while retaining the previous asset names as compatibility copies.
