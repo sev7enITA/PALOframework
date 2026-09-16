@@ -79,7 +79,10 @@ function scopeCovers(granted, requested) {
 }
 
 export function validateAuthorityContext(claim, policy = {}) {
-  if (!["1.3.0", "1.4.0"].includes(claim.schemaVersion)) return { valid: true, mode: "legacy", violations: [] };
+  if (!["1.3.0", "1.4.0"].includes(claim.schemaVersion)) {
+    const violations = policy.requireIdentityBoundClaims === true ? ["This runtime requires identity-bound Action Claims 1.3.0 or 1.4.0"] : [];
+    return { valid: violations.length === 0, mode: "legacy", violations };
+  }
   const context = claim.authorityContext;
   const violations = [];
   const requestedAt = Date.parse(claim.requestedAt);

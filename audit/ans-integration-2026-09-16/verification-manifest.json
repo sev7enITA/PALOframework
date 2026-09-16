@@ -1,0 +1,55 @@
+{
+  "format": "palo-ans-local-verification-manifest",
+  "generatedAt": "2026-09-16T07:05:17.684217+00:00",
+  "workspace": "repository",
+  "branch": "feat/ans-governance-bridge",
+  "baseCommit": "a9b258d01b3c169c142f44b4c6fc175cecb681f6",
+  "upstreamSdkCommit": "1b9f6ec5588b3b38918ba7b99b9f30fe65535695",
+  "boundary": "Local synthetic interoperability using official SDK; no hosted-service qualification, registration, deploy or production admission",
+  "tests": {
+    "javascript": {
+      "passed": 118,
+      "failed": 0,
+      "skipped": 0,
+      "ansIncluded": 21
+    },
+    "python": {
+      "passed": 3
+    },
+    "demoCases": {
+      "passed": 8
+    },
+    "patchAppliesToBase": true
+  },
+  "changedSources": {
+    ".github/workflows/ans-bridge-ci.yml": "dafc4968f605193d92254709326e4a6040f3e0d8b281371a9829e947189e2288",
+    "README.md": "162811a65fe0ce76db70ca61565ba943df5519ddf066cbd0c97b1dc21783b81a",
+    "examples/agentic-interface/integrations/ans/README.md": "07f44798d3a235a3537192ada75fc14f7f100c6c42f160e9cc89561ca3b48e9c",
+    "examples/agentic-interface/integrations/ans/demo-fixture.mjs": "bbd617ba8e5d2f302f9d14f09b6d08eca519aa3f1aed5d441c331ff754d4f591",
+    "examples/agentic-interface/integrations/ans/run-demo.mjs": "4d26813c2edef7f406cb1b35ecf9111d5db8dc0c163af88c6ec0dc10a08ca089",
+    "package.json": "85d4b901734ff054d53e118d2c487e0fe00b73e308624bba529756e1a27daa94",
+    "packages/palo-ans-verifier/README.md": "85f2f734797abc914b5ed58be344ae55e87b16098ac58eabff80f57c8711e015",
+    "packages/palo-ans-verifier/cmd/palo-ans-fixture/main.go": "97f81d57c5db903ee63ccf4547fa5f6a9c2752244ac2ae274aca97dcda79703e",
+    "packages/palo-ans-verifier/cmd/palo-ans-verify/main.go": "f7268190c7c404a706e02e56583d5c3e7ca49998b68eb7efbbff441ab0991822",
+    "packages/palo-ans-verifier/go.mod": "d160197ab8bd36ec056f5b7d95990ccad934cc913577285d77005c19e58e2d51",
+    "packages/palo-ans-verifier/go.sum": "c2b3c367e264df01f80e941e6154b4ef256783176124462e3a41caec84f7061c",
+    "packages/palo-mcp-server/ans-bridge.js": "e10454598b51d9ee4f17b93351e1fb20311341867d072ec99ab7aaaf60ec98cf",
+    "packages/palo-mcp-server/ans-bridge.test.js": "6d01b319cd3a90af7442326127a1920793005d9a6af0c7dddb61529cfa227004",
+    "packages/palo-mcp-server/assurance-foundation.js": "ff78d8240cc680f72d325428f921b80cdea9d214eb6e1606e351c9d30398082a",
+    "packages/palo-mcp-server/core.js": "7816b5bb68a1d4515557219d26a306356e57b0a9be6dfe0ab271822a8574625d",
+    "packages/palo-mcp-server/evolutions.test.js": "bace1048c4b208972b5e282b37c50ec76217d4b31af8894b619645d53b9af036",
+    "scripts/build-ans-verifier.mjs": "3d7e598a8f4dbe10141308ceea85ba28e42e687973f0dd3fb5a9f16927f9f3cd",
+    "scripts/test-ans.mjs": "781b35867bfdb61be59cbd297f66e5fc9cd62f1112056715ee10b71efc1139d3"
+  },
+  "artifacts": {
+    "analisi-palo-ans.md": "a2c286359d97b9423f59a73a9f65a969aa87ffc39d257d92a7b80d63e8574db6",
+    "demo-result.json": "eff942afbc14fd44b27510b0930b39d9cb726f3933306e0cd64f6d90322280c1",
+    "palo-ans-integration.patch": "5fe9cd759f252810652e11e35d576e19f91f506dd7172a254bfe3da044a71b33",
+    "stato-integrazione.md": "c8ff298ebf97c9fbf68a010ce80bea68b8e8cb8bacdda5d50d5773f41bee91d1",
+    "validation-agentic.log": "5eae042a46cffc0d3bb8f9ee5677a67c5cf9fa59bb26b5801bac579b0c81940a"
+  },
+  "_repositoryExport": {
+    "sourceSnapshot": "verification-manifest.json",
+    "scope": "Portable archive; original artifact hashes identify original local files. HTTP body snapshots and screenshots remain in the local audit archive."
+  }
+}

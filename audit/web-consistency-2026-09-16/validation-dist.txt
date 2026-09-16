@@ -1,0 +1,1 @@
+Validation passed: 108 HTML files, P1 schemas and fixtures, P2 31 controls/38 indicators/6 gates/13 sources/6 cases/5 templates, v3 semantic contracts and digests, 175 versioned shared assets, 37 sitemap URLs, 29 RSS items.

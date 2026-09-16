@@ -1,0 +1,83 @@
+{
+  "format": "palo-ans-demo-report",
+  "generatedAt": "2026-09-16T07:02:00.819Z",
+  "boundary": "Synthetic offline ANS SDK interoperability; no GoDaddy registration, live feed, checkpoint verification or production qualification",
+  "cases": [
+    {
+      "name": "Valid ANS identity, enterprise grant and correct effect",
+      "expected": "verified",
+      "actual": "verified",
+      "executions": 1,
+      "outcome": "verified",
+      "resourceHold": false,
+      "passed": true
+    },
+    {
+      "name": "Valid identity, action above enterprise limit",
+      "expected": "denied",
+      "actual": "denied",
+      "executions": 0,
+      "outcome": null,
+      "resourceHold": false,
+      "passed": true
+    },
+    {
+      "name": "Copied identity, different proof key",
+      "expected": "denied",
+      "actual": "denied",
+      "executions": 0,
+      "outcome": null,
+      "resourceHold": false,
+      "passed": true
+    },
+    {
+      "name": "Revoked status token",
+      "expected": "denied",
+      "actual": "denied",
+      "executions": 0,
+      "outcome": null,
+      "resourceHold": false,
+      "passed": true
+    },
+    {
+      "name": "Expired status token",
+      "expected": "denied",
+      "actual": "denied",
+      "executions": 0,
+      "outcome": null,
+      "resourceHold": false,
+      "passed": true
+    },
+    {
+      "name": "Local revocation during pre-state read",
+      "expected": "denied",
+      "actual": "denied",
+      "executions": 0,
+      "outcome": null,
+      "resourceHold": false,
+      "passed": true
+    },
+    {
+      "name": "Authorized action, wrong effect",
+      "expected": "review_required",
+      "actual": "review_required",
+      "executions": 1,
+      "outcome": "mismatch",
+      "resourceHold": true,
+      "passed": true
+    },
+    {
+      "name": "Outcome not observable",
+      "expected": "review_required",
+      "actual": "review_required",
+      "executions": 1,
+      "outcome": "inconclusive",
+      "resourceHold": true,
+      "passed": true
+    }
+  ],
+  "_repositoryExport": {
+    "sourceSnapshot": "demo-result.json",
+    "scope": "Portable archive; original artifact hashes identify original local files. HTTP body snapshots and screenshots remain in the local audit archive."
+  }
+}

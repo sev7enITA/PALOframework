@@ -1,0 +1,1115 @@
+{
+  "generatedAt": "2026-09-16T10:54:43.202Z",
+  "results": [
+    {
+      "url": "https://paloframework.org/PALO_FRIA.html",
+      "device": "desktop",
+      "status": 200,
+      "title": "FRIA - Fundamental Rights Impact Assessment | PALO Framework",
+      "h1": [
+        {
+          "text": "FRIA - Fundamental Rights Impact Assessment",
+          "visible": true
+        }
+      ],
+      "width": 1440,
+      "documentWidth": 1440,
+      "overflowing": [],
+      "matrixCounts": [],
+      "brokenImages": [],
+      "bodyText": "Skip to main content\nPALO Framework\nHome\nCanvas\nFRIA - Fundamental Rights Impact Assessment\nTemplate\nImport\nExport\nWhat is FRIA and How to Use This Tool\n\nClick to expand the guide\n\nCollapse\nWhat is FRIA?\n\nA Fundamental Rights Impact Assessment (FRIA) is an Article 27 assessment for certain deployers of high-risk AI systems under Article 6(2). It helps identify how an AI system may affect the fundamental rights protected by the EU Charter in its specific deployment context.\n\nWho must conduct FRIA?\n- Public authorities deploying in-scope high-risk AI\n- Private entities providing public services\n- Deployers of in-scope creditworthiness and life or health insurance risk systems\n- Other organizations using this tool voluntarily as a readiness assessment\nHow to Use This Tool\nStep 1 - Context: Enter AI system details and classification\nStep 2 - Checklist: Answer governance and compliance questions\nStep 3 - Scenarios: Identify potential negative impact scenarios\nStep 4 - Assessment: Rate severity and likelihood of each impact\nStep 5 - Mitigation: Document risk mitigation measures\nStep 6 - Decision: Make deployment decision and generate report\nImportant: This tool processes all data locally in your browser. No information is sent to any server. Use the Export button to save your progress and Import to resume later.\nRegulatory status, reviewed 14 September 2026: The European Commission currently indicates that Annex III high-risk rules apply from 2 December 2027 and product-embedded high-risk rules from 2 August 2028. This tool is a governance-support and pre-screening resource, not legal advice or a compliance certification. Review the current Commission guidance.\n1\nContext\n2\nChecklist\n3\nScenarios\n4\nAssessment\n5\nMitigation\n6\nDecision\nAI System Context\n\nProvide information about ",
+      "errors": [],
+      "failedRequests": []
+    },
+    {
+      "url": "https://paloframework.org/",
+      "device": "desktop",
+      "status": 200,
+      "title": "PALO Framework | Principled AI Lifecycle Orchestration",
+      "h1": [
+        {
+          "text": "Allowed is not verified.",
+          "visible": true
+        }
+      ],
+      "width": 1440,
+      "documentWidth": 1440,
+      "overflowing": [],
+      "matrixCounts": [],
+      "brokenImages": [],
+      "bodyText": "Skip to main content\nPALO\nFRAMEWORK\nOpen AI governance toolkit\nv3.1.0\nSearch\nCmd+K\nEvidence Pack\nAsk PALO\nGovernance Hub\nObservatories\nDocumentation\n\nPALO EVIDENCE PACK | LOCAL-FIRST\n\nAllowed is not verified.\n\nGive PALO one AI use case. Leave with a traceable, reviewable evidence dossier in less than ten minutes.\n\nPALO Framework is an open-source project conceived, created and maintained by Fabrizio Degni.\n\nRun the 10-minute evidence case\nFind my route\n\nNo account. No mandatory telemetry. Voluntary export only.\n\nGOLD CASE PREVIEW\nWhat leaves your browser\nv3.1.0\n01\nContext and affected people\nThe intended use, owner, operating boundary and people who may be affected.\n02\nRoute and open evidence\nGovernance gates, source links, readiness signals and unresolved review questions.\nLOCAL ARTIFACT\nA reviewable evidence bundle with explicit boundaries and next actions\nLocal processing\nNot certification\n\nONE FRAMEWORK. THREE CONNECTED GOVERNANCE ROUTES.\n\nChoose the governance problem, not the product name.\n\nPALO covers the complete AI lifecycle. PALO-AM and PALO-AI deepen the agentic route when delegated authority or runtime enforcement becomes the problem to solve.\n\nPALO provides the governance system.\nPALO-AM defines agentic authority. PALO-AI makes selected controls executable and verifiable.\n\nUMBRELLA SYSTEM\nPALO Framework\nSPECIALIST METHODOLOGY\nPALO-AM\nTECHNICAL ENFORCEMENT\nPALO-AI\n01 / PALO FRAMEWORK\nGovern the AI lifecycle\n\nEXECUTIVE, GOVERNANCE, RISK, PRODUCT OWNER, AUDITOR\n\nFrame the use case, classify risk, assess impacts, select controls, define measurements and connect evidence to review.\n\nOUTCOME\nProportionate route, Case File or evidence bundle, reviewable decision trail\n\nAsk PALO for a route\nDetailed onboarding\nExplore guided tools\n02 / PALO-AM\nGovern agentic system",
+      "errors": [],
+      "failedRequests": []
+    },
+    {
+      "url": "https://paloframework.org/PALO_RiskTiering.html",
+      "device": "desktop",
+      "status": 200,
+      "title": "Risk Tiering Calculator | PALO Framework",
+      "h1": [
+        {
+          "text": "AI Risk Tiering Calculator",
+          "visible": true
+        }
+      ],
+      "width": 1440,
+      "documentWidth": 1440,
+      "overflowing": [],
+      "matrixCounts": [],
+      "brokenImages": [],
+      "bodyText": "Skip to main content\nRisk Tiering Calculator\nHome\nFRIA\nCanvas\nAI Risk Tiering Calculator\n\nGenerate an initial risk-screening hypothesis under the EU AI Act and PALO Framework Section 3.3. The result is not a legal classification and must be reviewed against actor roles, conditions, exceptions and current official sources.\n\nStep 1: Sector\nStep 2: AI Function\nStep 3: Autonomy\nResults\nSelect Your Sector\n\nChoose the industry where your AI system will be deployed.\n\nHealthcare\nHR / Recruitment\nFinance / Banking\nCritical Infrastructure\nLegal / Justice\nPublic Sector\nEducation\nRetail / E-commerce\nMarketing / Advertising\n\u2190 Previous\nNext ->\n\nPALO Framework: conceived, created and maintained by Fabrizio Degni.\n\nCopyright 2026 PALO Framework. All rights reserved.\n\nHome | \nFRIA | \nModel Canvas | KPI Generator | Accessibility\n\nAccessibility review in progress | WCAG 2.1 AA target",
+      "errors": [],
+      "failedRequests": []
+    },
+    {
+      "url": "https://paloframework.org/PALO_KPIGenerator.html",
+      "device": "desktop",
+      "status": 200,
+      "title": "KPI Generator | PALO Framework",
+      "h1": [
+        {
+          "text": "PALO KPI Generator",
+          "visible": true
+        }
+      ],
+      "width": 1440,
+      "documentWidth": 1440,
+      "overflowing": [],
+      "matrixCounts": [],
+      "brokenImages": [],
+      "bodyText": "Skip to main content\nKPI Generator\nHome\nFRIA\nRisk\nCanvas\nPALO KPI Generator\n\nGenerate a personalized list of Technical, Business, and Ethical KPIs for your AI project based on PALO Framework Table 2 (KPI Compendium).\n\nModel Type\nSelect model type...\nGenerative AI / LLM\nClassification / Regression\nRecommendation Engine\nComputer Vision\nNLP / NLU\nTime Series / Forecasting\nPrimary Objective\nSelect objective...\nOperational Efficiency\nCustomer Experience\nSafety / Security\nRevenue Growth\nCost Reduction\nSector\nSelect sector...\nFinance / Banking\nHealthcare\nRetail / E-commerce\nManufacturing\nHR / Recruitment\nGeneral / Other\nGenerate KPIs\n\nPALO Framework: conceived, created and maintained by Fabrizio Degni.\n\nCopyright 2026 PALO Framework. All rights reserved.\n\nHome | \nFRIA | Risk Calculator | \nModel Canvas | Accessibility\n\nAccessibility review in progress | WCAG 2.1 AA target",
+      "errors": [],
+      "failedRequests": []
+    },
+    {
+      "url": "https://paloframework.org/PALO_ModelCanvasAI.html",
+      "device": "desktop",
+      "status": 200,
+      "title": "PALO AI Business Model Canvas",
+      "h1": [
+        {
+          "text": "PALO AI Business Model Canvas",
+          "visible": true
+        }
+      ],
+      "width": 1440,
+      "documentWidth": 1440,
+      "overflowing": [],
+      "matrixCounts": [],
+      "brokenImages": [],
+      "bodyText": "Skip to main content\nPALO Framework\nHome\nFRIA\nPALO AI Business Model Canvas\n\nComprehensive evaluation framework for responsible AI use cases aligned with PALO principles\n\nExpert Mode\nWizard Mode\nPALO PHASE\n1. Ideation\n2. Assessment\n3. Development\n4. Deployment\n5. Decommissioning\nDownload Template\nImport JSON\nExport JSON\nGenerate Report\nCompare\nContext & Strategy\nProject Name\nPALO Tip:\n\nStart with a clear project identifier including the owning department and date for tracking purposes.\n\nStrategic Alignment\nPALO Principle: Societal Well-being\n\nDoes this align with both business goals AND societal well-being objectives? Evaluate sustainable value creation.\n\nProblem Statement\nPALO Tip:\n\nDefine measurable inefficiencies and ethical risks being addressed. Quantify the problem.\n\nSelected Workflow\nPALO Principle: Human Agency\n\nSpecify where human oversight occurs. Does the AI augment or replace human decision-making?\n\nCore Inputs & Data\nData Governance & Privacy\nPALO Principle: Privacy & Non-Discrimination\n\nAssess data representativeness for fairness across demographic groups. Document consent mechanisms.\n\nModel Transparency & Robustness\nPALO Principle: Transparency & Safety\n\nIs model explainability appropriate for the risk level? Document known limitations and failure modes.\n\nValue Proposition\nPALO Tip: Holistic Value\n\nBalance business metrics (ROI) with ethical value (fairness, trust, societal benefit). Avoid ROI myopia.\n\nSecurity & Environment\nPALO Principle: Environmental Sustainability\n\nCalculate energy consumption per inference. Consider lifecycle environmental impact and carbon offset strategies.\n\nUsers & Stakeholders\nEnd Users & Vulnerable Groups\nPALO Principle: Human-Centricity\n\nIdentify vulnerable populations. Assess whether AI enhances or restricts their agency and ",
+      "errors": [],
+      "failedRequests": []
+    },
+    {
+      "url": "https://paloframework.org/PALO_ComparisonTool.html",
+      "device": "desktop",
+      "status": 200,
+      "title": "PALO Assessment Comparison Tool",
+      "h1": [
+        {
+          "text": "PALO Assessment Comparison Tool",
+          "visible": true
+        }
+      ],
+      "width": 1440,
+      "documentWidth": 1440,
+      "overflowing": [],
+      "matrixCounts": [],
+      "brokenImages": [],
+      "bodyText": "Skip to main content\nPALO Assessment Comparison Tool\n\nUpload and compare multiple PALO assessments to track progress and identify remediation priorities\n\n\u2190 Home\n\u2190 Back to Canvas\nUpload Assessments\n\nUpload 2 or more JSON files exported from the PALO Model Canvas to compare assessments over time.\n\nDrop JSON files here or click to browse\n\nSupports multiple files for trend analysis\n\nAnalyze & Compare\nClear All\n\nPALO Framework: conceived, created and maintained by Fabrizio Degni.\n\nCopyright 2026 PALO Framework. All rights reserved.\n\nHome | \nFRIA | \nModel Canvas | Accessibility | \nPrivacy Policy\n\nAccessibility review in progress | WCAG 2.1 AA target",
+      "errors": [],
+      "failedRequests": []
+    },
+    {
+      "url": "https://paloframework.org/docs/palo-v3-semantic-foundation.html",
+      "device": "desktop",
+      "status": 200,
+      "title": "PALO v3.1.0 Semantic Foundation | PALO Documentation",
+      "h1": [
+        {
+          "text": "PALO v3.1.0 Semantic Foundation",
+          "visible": true
+        },
+        {
+          "text": "PALO v3.1.0 Semantic Foundation#",
+          "visible": false
+        }
+      ],
+      "width": 1440,
+      "documentWidth": 1440,
+      "overflowing": [],
+      "matrixCounts": [],
+      "brokenImages": [],
+      "bodyText": "Skip to main content\nPALO FRAMEWORK\nSearch\nCmd+K\nStart\nAgentic Governance\nGovernance Hub\nTools\nDocumentation\nReadiness\nDocumentation Library\n/\nSemantic foundation and contracts\n\nSEMANTIC FOUNDATION AND CONTRACTS | PUBLIC DOCUMENTATION\n\nPALO v3.1.0 Semantic Foundation\nLEVEL\nReference\nAUDIENCE\nExecutive | Governance | Technical | Builder\nPRODUCT\nPALO Core\nSTATUS\nCanonical V3.1.0\nLIFECYCLE\nCurrent\nREAD\n4 Min\n\nPublished HTML view | Source: docs/palo-v3-semantic-foundation.md\n\nCopy link\nShare page\nPrint\n\nON THIS PAGE\nOutcome\nSix delivery waves\nWave 1 - Canonical semantic spine\nWave 2 - Lifecycle and gate decisions\nWave 3 - Atomic evidence contracts\nWave 4 - Executable formal model\nWave 5 - Mapping and release governance\nWave 6 - Human-readable boundaries\nEvidence and authority classes\nWorkspace boundaries\nRelease and component versions\nPublic contracts\nGeneration and validation\nChange policy\n\nPALO v3.0.0 introduced the versioned semantic foundation for definitions, lifecycle decisions, evidence, mappings and public exploration. PALO v3.1.0 preserves that contract and adds applicability-aware governance control packs, 31 controls, 38 indicators, conditional gate integration and ten evidence-contract families. Machine-readable identity and authority boundaries remain first-class, while existing P1 Case File and Evidence Bundle consumers remain supported.\n\nOutcome#\n\nThe release establishes one deterministic path from canonical framework meaning to public interfaces:\n\nsemantic-spine.json -> generated lifecycle and Explorer projection -> semantic validation -> digest-bound semantic release manifest -> allowlisted public build.\n\nThe foundation does not claim that formal consistency proves legal applicability, control effectiveness, source freshness or approval. Those remain accoun",
+      "errors": [],
+      "failedRequests": []
+    },
+    {
+      "url": "https://paloframework.org/docs/owasp-genai-llm-top-10-2026-security-crosswalk.html",
+      "device": "desktop",
+      "status": 200,
+      "title": "OWASP GenAI / LLM Top 10 2026: PALO Security Crosswalk and Governance | PALO Documentation",
+      "h1": [
+        {
+          "text": "OWASP GenAI / LLM Top 10 2026: PALO Security Crosswalk and Governance",
+          "visible": true
+        },
+        {
+          "text": "OWASP GenAI / LLM Top 10 2026: PALO Security Crosswalk and Governance#",
+          "visible": false
+        }
+      ],
+      "width": 1440,
+      "documentWidth": 1440,
+      "overflowing": [],
+      "matrixCounts": [],
+      "brokenImages": [],
+      "bodyText": "Skip to main content\nPALO FRAMEWORK\nSearch\nCmd+K\nStart\nAgentic Governance\nGovernance Hub\nTools\nDocumentation\nReadiness\nDocumentation Library\n/\nSecurity and production readiness\n\nSECURITY AND PRODUCTION READINESS | PUBLIC DOCUMENTATION\n\nOWASP GenAI / LLM Top 10 2026: PALO Security Crosswalk and Governance\nLEVEL\nReference\nAUDIENCE\nExecutive | Governance | Technical | Builder\nPRODUCT\nPALO / PALO-AM / PALO-AI\nSTATUS\nSource-Backed Context\nLIFECYCLE\nCurrent\nREAD\n9 Min\n\nPublished HTML view | Source: docs/owasp-genai-llm-top-10-2026-security-crosswalk.md\n\nCopy link\nShare page\nPrint\n\nON THIS PAGE\nSource and authority boundary\nHow to read the ratings\nOverall fit across the three PALO routes\nCoverage matrix\nLLM05 / LLM09 boundary and ownership\nWhat PALO can and cannot resolve\nApplicability fork\nGovernance operating model\nOperational integration\nIntegration status\nAttribution and license\n\nThis source-backed reference evaluates how the PALO Framework, PALO-AM and PALO-AI relate to the ten risks in the OWASP Top 10 for LLM Applications 2026. It separates governance fit from technical implementation and identifies where PALO needs external safeguards or a targeted extension.\n\nDecision summary: PALO has a strong governance fit and incomplete technical resolution. Across the three connected routes, eight risks have a direct PALO route somewhere in the stack. LLM09 Vector and Embedding Weaknesses and LLM10 Improper Output Handling remain supporting-only areas that need targeted controls.\n\nUse the interactive crosswalk for the complete risk dossiers. The pinned source PDF and machine-readable crosswalk are published with this reference.\n\nSource and authority boundary#\nSource: OWASP Top 10 for LLM Applications 2026, repository artifact 2026-v1.0.\nArtifact date: 4 August 2026.\nSource review",
+      "errors": [],
+      "failedRequests": []
+    },
+    {
+      "url": "https://paloframework.org/PALO_AssessmentPath.html",
+      "device": "desktop",
+      "status": 200,
+      "title": "PALO Evidence Pack | Reviewable AI Governance Evidence",
+      "h1": [
+        {
+          "text": "From one AI use case to reviewable evidence.",
+          "visible": true
+        }
+      ],
+      "width": 1440,
+      "documentWidth": 1440,
+      "overflowing": [],
+      "matrixCounts": [],
+      "brokenImages": [],
+      "bodyText": "Skip to main content\nPALO FRAMEWORK\nSearch\nCmd+K\nHome\nAsk PALO\nEvidence Pack\nGovernance Hub\nDocumentation\n\nPALO EVIDENCE PACK | V3 STARTER EXPERIENCE\n\nFrom one AI use case to reviewable evidence.\n\nIn less than ten minutes, turn one AI use case into a traceable evidence dossier that another person can review. This is a routing and evidence aid, not certification or a substitute for legal, technical, or independent assurance.\n\nAllowed is not verified.\n\nRun the preloaded case\nUse my own case\n\nRuns in this browser. No account. No answer is sent. Export is voluntary.\n\nLocal-first assessment\n\nFive linked governance gates\n\nThe path is a routing and evidence aid. It does not certify compliance or replace a legal, technical, or fundamental-rights review.\n\n01\nRisk Tiering\n\nDescribe the system and its intended use.\n\n02\nContextual FRIA\n\nRoute fundamental-rights questions when the context calls for them.\n\n03\nControls\n\nIdentify oversight, transparency, data, and incident controls.\n\n04\nKPI and KRI\n\nTurn the governance intent into measurable follow-up.\n\n05\nEvidence bundle\n\nExport the route, readiness, sources, and disclaimer.\n\nBuilt on the PALO Assessment Path.\n\nCASE WORKSPACE | STEP 1 TO 4\n\nClassify the case and build the route\n\nThe form runs in your browser. No answer is sent to a server and no account is needed.\n\nNo case loaded. Start below or import a PALO case/evidence JSON file.\nImport JSON\nResume local case\nThe synthetic agentic invoice case is ready to load.\nSystem or project name\nOrganization\nDeployer context\nPrivate deployer\nPublic authority\nProvider of a public service\nCredit or insurance deployer\nProvider or developer\nOther or still unknown\nSector\nIntended use and affected people\nInitial risk tier\nNot classified yet\nMinimal or no risk\nLimited risk\nPotentially high-risk\nPote",
+      "errors": [],
+      "failedRequests": []
+    },
+    {
+      "url": "https://paloframework.org/PALO_Guide.html",
+      "device": "desktop",
+      "status": 200,
+      "title": "PALO Guide | Find the Next Accountable Step",
+      "h1": [
+        {
+          "text": "Understand PALO. Find the next accountable step.",
+          "visible": true
+        }
+      ],
+      "width": 1440,
+      "documentWidth": 1440,
+      "overflowing": [],
+      "matrixCounts": [],
+      "brokenImages": [],
+      "bodyText": "Skip to main content\nPALO\nFRAMEWORK\nAccountable route finder\nv3.1.0\nSearch\nCmd+K\nAsk PALO\nEvidence Pack\nGovernance Hub\nDocumentation\n\nPALO GUIDE | DETERMINISTIC LOCAL WORKBENCH\n\nUnderstand PALO. Find the next accountable step.\n\nDescribe the governance situation, see which signals changed the route, and leave with concrete artifacts and a bounded product integration pattern.\n\nFind my route\nPlan an MCP integration\n\nONE VISIBLE LINE OF SIGHT\n\nINPUT\nYour role, objective, system and impact signals\nBECAUSE\nConcise, inspectable routing reasons\nOUTCOME\nNext artifact and MCP integration class\n\nBrowser-local and source-grounded. This guide does not send answers, make legal decisions, certify compliance or authorize deployment. Answers remain in this tab unless you explicitly choose device storage.\n\nGUIDED WORKBENCH\n\nTurn six signals into a traceable route.\n\nChange an answer and run the route again. The rules are local and deterministic, so the same inputs produce the same recommendation.\n\nINPUT SIGNALS\nYour situation\n01\nRole or audience\nChoose a role\nAccountable owner or executive\nGovernance, risk or compliance\nProduct or service owner\nEngineering or platform\nAssurance or audit\nLegal or rights specialist\n02\nImmediate objective\nChoose an objective\nUnderstand where to start\nClassify a use case or risk route\nAssess impacts and oversight\nDesign owned controls\nMeasure risk, performance or drift\nPrepare evidence for review\nGovern tools or delegated actions\nIntegrate PALO into a product\n03\nSystem type\nChoose a system type\nPredictive or scoring model\nGenerative assistant\nAgentic system\nWorkflow automation\nEmbedded third-party AI\nStill being defined\n04\nCan it act or use tools?\nChoose one\nNo, it only returns information\nYes, within a bounded workflow\nYes, it can affect products or systems\n",
+      "errors": [],
+      "failedRequests": []
+    },
+    {
+      "url": "https://paloframework.org/PALO_RegulatoryWatch.html",
+      "device": "desktop",
+      "status": 200,
+      "title": "Regulatory Watch 2026 | PALO Framework",
+      "h1": [
+        {
+          "text": "Regulatory Watch 2026",
+          "visible": true
+        }
+      ],
+      "width": 1440,
+      "documentWidth": 1440,
+      "overflowing": [],
+      "matrixCounts": [],
+      "brokenImages": [],
+      "bodyText": "Skip to main content\nPALO FRAMEWORK\nSearch\nCmd+K\nHome\nAssessment Path\nRegulatory Watch\nObservatories\nDocumentation\nPlatform Map\nRecognition\nCommunity\n\nOFFICIAL-SOURCE WATCHLIST\n\nRegulatory Watch 2026\n\nA concise, dated view of the EU AI Act milestones that affect practical governance work in 2026 and beyond. Each point links to the official Commission or EUR-Lex source used for the review.\n\nUse the Assessment Path\nOpen Commission overview\n\nReviewed\n14 September 2026\n\nWhat is active, arriving, or still on the timeline\n\nDates below are a working governance reference. The Commission guidance and the Regulation remain the authoritative sources, and implementation guidance can change.\n\nACTIVE SINCE 2 FEBRUARY 2025\n\nArticle 4: AI literacy\n\nProviders and deployers must take measures to ensure a sufficient level of AI literacy for staff and other people operating AI systems on their behalf.\n\nRead Article 4\n\nACTIVE SINCE 2 AUGUST 2025\n\nGPAI obligations\n\nGPAI obligations have applied since August 2025. The Commission's enforcement powers over GPAI models apply from 2 August 2026; duties and transitional provisions depend on the provider and model.\n\nCheck current status\n\nACTIVE SINCE 2 AUGUST 2026\n\nArticle 50: transparency\n\nProviders must address direct-interaction notices and detectable machine-readable marks for in-scope generated or manipulated content. Deployers have separate labelling duties for specified uses, including deepfakes and certain public-interest text.\n\nRead the final guidelines\n\nAPPLICATION FROM 2 DECEMBER 2027\n\nHigh-risk standalone systems\n\nThe Commission identifies 2 December 2027 as the application date for Annex III high-risk systems following the AI Omnibus amendments. Its overview records entry into force of the amending regulation on 27 July 2026.\n\nRead hig",
+      "errors": [],
+      "failedRequests": []
+    },
+    {
+      "url": "https://paloframework.org/PALO_AIWhy.html",
+      "device": "desktop",
+      "status": 200,
+      "title": "Why PALO-AI | Full-Cycle Agentic Assurance",
+      "h1": [
+        {
+          "text": "An agent can be authorized - and still be wrong.",
+          "visible": true
+        }
+      ],
+      "width": 1440,
+      "documentWidth": 1440,
+      "overflowing": [],
+      "matrixCounts": [],
+      "brokenImages": [],
+      "bodyText": "Skip to main content\nPALO FRAMEWORK\nSearch\nCmd+K\nStart\nAgentic Governance\nGovernance Hub\nTools\nDocumentation\nReadiness\nV2.7 DEVELOPER PREVIEW\nCapability Matrix\nProduction Readiness\nRelease record\nSecurity boundary\n\nWHY PALO-AI\n\nAn agent can be authorized - and still be wrong.\n\nPALO-AI extends governance beyond permission. It binds declared authority, policy and human oversight to protected execution, a trusted receipt and verification of the effect that actually occurred.\n\nDeveloper Preview: use isolated data and reversible, non-consequential tools. This is not a production authorization service or certified security boundary.\n\nRun the comparison\nChoose a quickstart\n\nTHE ASSURANCE TRACK\n\n01\nTool access is not authority\n02\nPermission is not correctness\n03\nVerified outcome or held incident\n\nTHE TECHNICAL DIFFERENCE\n\nLogging an action is not the same as governing it.\nWITHOUT PALO\nDirect path\n\nAn agent calls an operational tool with a reusable credential. A successful API response can be mistaken for a correct business outcome.\n\nWITH PALO\nGoverned path\n\nThe exact claim, authority, approval, capability, receipt and observed outcome become one reviewable chain.\n\nAUTHORIZED BUT WRONG\nAssurance path\n\nWhen authoritative post-state contradicts the declared effect, the resource is held and an incident is opened.\n\nEnforcement condition: a policy decision is authoritative only when direct privileged paths are removed and the protected connector cannot be reached around the governed path.\n\nBROWSER-LOCAL, SYNTHETIC COMPARISON\n\nSee the same action through three assurance states\n\nThis interaction explains the control model. It performs no network request, tool call, approval or real execution.\n\nWithout PALOWith PALOAuthorized but wrong\n\nUse arrow keys to move between scenarios.\n\nAuthori",
+      "errors": [],
+      "failedRequests": []
+    },
+    {
+      "url": "https://paloframework.org/PALO_AIGovernance.html",
+      "device": "desktop",
+      "status": 200,
+      "title": "PALO-AI Governance | Developer Preview",
+      "h1": [
+        {
+          "text": "Make agent authority and its real-world effect verifiable.",
+          "visible": true
+        }
+      ],
+      "width": 1440,
+      "documentWidth": 1440,
+      "overflowing": [],
+      "matrixCounts": [],
+      "brokenImages": [],
+      "bodyText": "Skip to main content\nPALO FRAMEWORK\nSearch\nCmd+K\nStart\nAgentic Governance\nGovernance Hub\nTools\nDocumentation\nReadiness\nV2.7 DEVELOPER PREVIEW\nCapability Matrix\nProduction Readiness\nRelease record\nSecurity boundary\nPALO Framework\n/\nPALO-AM methodology\n/\nPALO-AI enforcement\nV2.7 DATA-ASSURANCE DEVELOPER PREVIEW\nINTERNET-REACHABLE EVALUATION ENDPOINTS\n\nGOVERNANCE BEFORE, DURING AND AFTER EXECUTION\n\nMake agent authority and its real-world effect verifiable.\n\nPALO-AI is the technical control-plane component of the PALO Framework. It operationalizes selected PALO-AM controls for n8n and agentic automation platforms by binding explicit authority and policy to a one-time execution capability, a trusted receipt and verification that the action produced the declared effect.\n\nCurrent boundary: this release is for interoperability evaluation with isolated data and non-consequential tools. It is not a production authorization service, certification, or independently assessed security boundary.\n\nWhy PALO-AI?\nOpen the guided workspace\nChoose a quickstart\nChoose your path\nRead the integration guide\nExplore full-cycle assurance\nAGENT / WORKFLOW\nAction proposal\nto\nPALO-AI CONTROL PATH\n01\nNormalize claim\n02\nEvaluate policy\n03\nApprove if required\n04\nExecute through capability\n05\nVerify the effect\nto\nVerified\nReview required\nDenied\nA policy decision is only authoritative when protected execution cannot bypass the governed path.\n\nONE CONNECTED GOVERNANCE JOURNEY\n\nMethod, runtime contract, role-based workspace and evidence boundary\nMETHODOLOGY\nPALO-AM v2.0\nBound identity, authority, autonomy and oversight.\nto\nRUNTIME CONTRACT\nPALO-AI v2.7\nGovern data fitness, disclosure and authoritative effects.\nto\nROLE-BASED PROTOTYPE\nGovernance Hub\nExecutive and technical lenses over the same state.\nto\nEVI",
+      "errors": [],
+      "failedRequests": []
+    },
+    {
+      "url": "https://paloframework.org/PALO_AIQuickstarts.html",
+      "device": "desktop",
+      "status": 200,
+      "title": "PALO-AI Quickstarts | Code, n8n and Copilot Studio",
+      "h1": [
+        {
+          "text": "Choose the shortest safe route into PALO-AI.",
+          "visible": true
+        }
+      ],
+      "width": 1440,
+      "documentWidth": 1440,
+      "overflowing": [],
+      "matrixCounts": [],
+      "brokenImages": [],
+      "bodyText": "Skip to main content\nPALO FRAMEWORK\nSearch\nCmd+K\nStart\nAgentic Governance\nGovernance Hub\nTools\nDocumentation\nReadiness\nV2.7 DEVELOPER PREVIEW\nCapability Matrix\nProduction Readiness\nRelease record\nSecurity boundary\n\nPALO-AI QUICKSTARTS\n\nChoose the shortest safe route into PALO-AI.\n\nStart with one isolated, reversible action. Prove the governed path and its evidence before expanding tools, credentials or authority.\n\nChoose your route\nWhy PALO-AI?\n\nEVERY ROUTE PROVES THE SAME CHAIN\n\n01\nExplicit Action Claim\n02\nBound execution path\n03\nObserved and verified effect\n\nSELECT BY BUILD MODE\n\nThree routes. One governance contract.\n\n01 / CODE\n\nCode-first developer\n\nValidate contracts, policy and the isolated reference runtime.\n\nOpen code quickstart ->\n\n02 / VISUAL\n\nn8n / no-code builder\n\nInstall package 0.2 on a disposable self-hosted canvas and import the safe demo.\n\nOpen n8n quickstart ->\n\n03 / RAPID\n\nCopilot Studio / MCP\n\nExpose only a narrow, authenticated preview toolset to the agent.\n\nOpen MCP quickstart ->\nCode-first\nn8n / no-code\nCopilot Studio / MCP\nCompare routes\n\n01 / CODE-FIRST\n\nValidate the contracts and isolated runtime\n\nPrerequisites: Node.js/npm, a local checkout and a supported shell.\n\nWhat this proves\n\nSchemas, Rego tests and the reference agentic validation suite pass in your checkout.\n\nWhat it does not prove\n\nProduction workload identity, connector isolation, HA, KMS custody or independent assurance.\n\nInstall exactly from the lockfile.\n\n                  npm ci\n\n                    Copy\n                  \n\n                \nInstall the pinned local OPA tool.\n\n                  npm run opa:install\n\n                    Copy\n                  \n\n                \nValidate the agentic contracts and policies.\n\n                  npm run validate:agentic\n\n                ",
+      "errors": [],
+      "failedRequests": []
+    },
+    {
+      "url": "https://paloframework.org/PALO_VerificationNote.html",
+      "device": "desktop",
+      "status": 200,
+      "title": "PALO Release Verification Record | PALO Framework",
+      "h1": [
+        {
+          "text": "PALO 3.1 and PALO-AI 2.7 release verification record",
+          "visible": true
+        }
+      ],
+      "width": 1440,
+      "documentWidth": 1440,
+      "overflowing": [],
+      "matrixCounts": [],
+      "brokenImages": [],
+      "bodyText": "Skip to main content\nPALO FRAMEWORK\nSearch\nCmd+K\nStart\nAgentic Governance\nGovernance Hub\nTools\nDocumentation\nReadiness\nV2.7 DEVELOPER PREVIEW\nCapability Matrix\nProduction Readiness\nSecurity boundary\nRelease record\n\nRELEASE RECORD | 25 AUGUST 2026\n\nPALO 3.1 and PALO-AI 2.7 release verification record\n\nThis page records the source revision, automated validation results, published artifacts and current maturity limits for the PALO 3.1 and PALO-AI 2.7 public baseline dated 25 August 2026.\n\nScope: This record reports repository artifacts and automated checks. It is not an independent security assessment, certification, legal determination, compliance conclusion or production authorization.\nGitHub Actions run 32828014857\nPull request #29\nRelease manifest\nProduction readiness\n01\nBaseline identity\n02\nAutomated results\n03\nNegative tests\n04\nArtifacts and digests\n05\nReproduction\n06\nMaturity limits\n07\nDevelopment method\n01\nBaseline identity\n\nVersion, revision and merge references used for the observations on this page.\n\nPALO WEB\n3.1.0\nReleased 23 August 2026\nPALO-AI\n2.7.0\nDeveloper preview | 25 August 2026\nBASELINE COMMIT\na8673d2a472108c7b1d8a056c3a6af9962687bee\nPULL REQUEST\n#29\nMerged 25 August 2026 | CI run\n02\nAutomated verification results\n\nEach row separates the method, observed baseline result, supported interpretation and excluded interpretation.\n\nObservations from commit a8673d2 and the named queries on 25 August 2026.\nArea\tMethod\tBaseline result\tWhat it establishes\tWhat it does not establish\nAgentic contracts and policy\tnpm run validate:agentic\t21 contracts; 38 MCP tools; OPA compile and policy tests passed\tThe pinned contract set was parsed and checked, the MCP tool inventory was counted, and the bundled OPA policy compiled and passed its automated tests.\tOrganization-spec",
+      "errors": [],
+      "failedRequests": []
+    },
+    {
+      "url": "https://paloframework.org/PALO_PlatformMap.html",
+      "device": "desktop",
+      "status": 200,
+      "title": "Platform Map | PALO Framework",
+      "h1": [
+        {
+          "text": "PALO Platform Map",
+          "visible": true
+        }
+      ],
+      "width": 1440,
+      "documentWidth": 1440,
+      "overflowing": [],
+      "matrixCounts": [],
+      "brokenImages": [],
+      "bodyText": "Skip to main content\nPALO FRAMEWORK\nSearch\nCmd+K\nHome\nAssessment Path\nObservatories\nDocumentation\nPlatform Map\nCommunity\n\nOPERATIONAL ARCHITECTURE\n\nPALO Platform Map\n\nFind the next governance decision, the module that supports it, and the artifact the accountable team should retain. This operational atlas keeps the PALO platform release, independently versioned components, delivery state, evidence class and unresolved research visibly separate.\n\nImplemented\nFoundation\nResearch\nEVIDENCE / AUTHORITY\nCanonical definition\nSource-backed context\nIllustrative local preview\nHuman review required\nNavigate the platform\nOpen navigation graph\nRead full changelog\n\nCurrent public release\n\nWEB RELEASE\nv3.1.0 | 23 August 2026\nSEMANTIC CORE\nv3.1.0 | digest-bound release\nPALO-AM METHODOLOGY\nv2.0.0 | current modality\nPALO-AI\nv2.7.0 | 25 August 2026 | Developer Preview\nFRAMEWORK\nv2.0.0\nANDROID / IOS\nv2.4.1 / v1.7.1\nPUBLICATION\nRoot authoring to deterministic dist\n\nVersions are independent: PALO-AI v2.7 consumes the PALO v3.1 governance foundation but remains non-production and is denied by the bundled runtime production profile.\n\nOpen release manifest\nFollow release feed\n\nP0-P4 DELIVERY LEDGER\n\nWhat changed across the platform\n\nEach phase is assessed laterally across platform behavior, interface exposure, user workflow, and remaining risk. Labels describe the delivered capability, not certification or regulatory completeness.\n\nPHASE\nSTATE\nPLATFORM\nUI\nUX\nRISK\nP0\nImplemented\n\nDeterministic validation, allowlisted build, release manifest, and deployable dist.\n\nShared assets use one release identifier; no new operating workflow.\n\nBroken files, fragments, metadata, and mixed asset versions block release.\n\nExternal services and hosting headers remain outside GitHub Pages control.\n\nP1\nImplemented",
+      "errors": [],
+      "failedRequests": []
+    },
+    {
+      "url": "https://paloframework.org/designs/theory-to-practice-infographic/",
+      "device": "desktop",
+      "status": 200,
+      "title": "Find your PALO path | Operationalization Explorer",
+      "h1": [
+        {
+          "text": "Find your PALO path.",
+          "visible": true
+        },
+        {
+          "text": "From principles to accountable operations.",
+          "visible": false
+        }
+      ],
+      "width": 1440,
+      "documentWidth": 1440,
+      "overflowing": [],
+      "matrixCounts": [],
+      "brokenImages": [],
+      "bodyText": "Skip to guided start\n\nPALO Framework\n\nPrincipled AI Lifecycle Orchestration\n\nv2.5.0\nStart\nAgentic Governance\nGovernance Hub\nTools\nDocumentation\nReadiness\nSearch\nCmd+K\n\nSTART WITH YOUR DECISION\n\nFind your PALO path.\n\nStart with who you are and what you need to achieve. PALO turns that context into a practical first action, an artifact and a reviewable next step.\n\nNo account | Local only | Change your answers at any time\n\nYOUR WORKING ROUTE\n\n01\nName your objective\nStart from your responsibility, not framework terminology.\n02\nChoose the first action\nOne primary route, one artifact and a clear maturity boundary.\n03\nContinue with evidence\nMove into the relevant wizard, Governance Hub or six-phase operating model.\nFind my path\nImport case file\nExplore all phases\n\n01\nFRAME\n02\nCLASSIFY\n03\nASSESS\n04\nCONTROL\n05\nMEASURE\n06\nPROVE\n01\n\nPHASE 1 IDEATION\n\nFrame\n\nWhat are we building, for whom, and why?\n\nOPERATIONAL OUTCOME\nA bounded, owned and reviewable use case\nINPUTS\nBusiness objective and system boundary\nLifecycle owner and stakeholders\nAffected people, data and model assumptions\nACTIONS\nDefine intended outcome and non-goals\nMap human agency and delegation\nRecord technology and horizon signals\nDECISION GATE\n\nIs the use case sufficiently defined to classify?\n\nOUTPUT\n\nUse-case brief\n\nMODULES THAT ACTIVATE FRAME\nAI Model Canvas\nW5 Core\n\nStructures purpose, scope, ownership and assumptions.\n\nUse: initiation and material scope change | Properties: purpose, scope, owners, stakeholders, lifecycle, assumptions | Produces: Canvas and JSON/Markdown record\n\nOpen module ->\nHuman Agency Risk Map\nW3 Contextual\n\nMaps delegated activity and effects on human agency.\n\nUse: when systems influence or replace human decisions | Properties: delegated activity, affected agency, oversight need | Produces: ",
+      "errors": [],
+      "failedRequests": []
+    },
+    {
+      "url": "https://paloframework.org/PALO_Observatories.html",
+      "device": "desktop",
+      "status": 200,
+      "title": "Observatories | PALO Framework",
+      "h1": [
+        {
+          "text": "Observe the signal. Reopen the right governance route.",
+          "visible": true
+        }
+      ],
+      "width": 1440,
+      "documentWidth": 1440,
+      "overflowing": [],
+      "matrixCounts": [],
+      "brokenImages": [],
+      "bodyText": "Skip to main content\nPALO FRAMEWORK\nSearch\nCmd+K\nHome\nAssessment Path\nObservatories\nPlatform Map\nDocumentation\nCommunity\n\nPALO OBSERVATORY SYSTEM\n\nObserve the signal. Reopen the right governance route.\n\nOne index connects public evidence, emerging change, affected capabilities and the PALO decisions that accountable teams should revisit. Observation informs review. It never substitutes for it.\n\nRead verified updates\nExplore the observatories\n\nDETERMINISTIC REVIEW LOOP\n\nSignal to accountable action\n01\nCapture a public signal\n02\nVerify source and scope\n03\nClassify publication state\n04\nReopen owned PALO gates\n\nSOURCE REVIEW | 14 SEPTEMBER 2026\n\nLatest verified updates\n\nPublication dates identify when the sources appeared, not when the underlying events happened. These monitoring briefs preserve each publisher's claims; the PALO review prompts are our governance interpretation.\n\n10 September 2026\nMonitoring Brief\nAI misuse across seven harm areas\n\nAnthropic's September threat report describes activity disrupted between December 2025 and August 2026, including cyber operations, surveillance, influence operations and fraud. These are selected cases reported by the provider, not a measure of overall misuse prevalence.\n\nPALO review prompt: revisit tool permissions, delegated action, monitoring coverage and incident escalation for the capabilities used in each case.\n\nRead Anthropic's report\n\u2197\n9 September 2026\nMonitoring Brief\nEvaluation investigation expands to four incidents\n\nAnthropic identifies a fourth incident from January 2026 and revises its earlier account of why models attacked real systems during evaluations. The assessment covers four incidents across seven runs, excludes the separate UK AISI case, and announces an independent METR investigation.\n\nPALO review prompt: ",
+      "errors": [],
+      "failedRequests": []
+    },
+    {
+      "url": "https://paloframework.org/PALO_AIIncidentObservatory.html",
+      "device": "desktop",
+      "status": 200,
+      "title": "Case 001: OpenAI / Hugging Face Incident Through PALO | PALO AI Incident Observatory",
+      "h1": [
+        {
+          "text": "What if the July 2026 agentic incident had been governed through PALO?",
+          "visible": true
+        }
+      ],
+      "width": 1440,
+      "documentWidth": 1440,
+      "overflowing": [
+        {
+          "tag": "LI",
+          "id": "",
+          "class": "rail-stage",
+          "right": 1629
+        },
+        {
+          "tag": "BUTTON",
+          "id": "",
+          "class": "rail-stage-index",
+          "right": 1614
+        },
+        {
+          "tag": "ARTICLE",
+          "id": "",
+          "class": "rail-lane rail-lane-observed",
+          "right": 1628
+        },
+        {
+          "tag": "SPAN",
+          "id": "",
+          "class": "claim-label claim-label-report",
+          "right": 1466.1875
+        },
+        {
+          "tag": "H3",
+          "id": "",
+          "class": "",
+          "right": 1606
+        },
+        {
+          "tag": "P",
+          "id": "",
+          "class": "",
+          "right": 1606
+        },
+        {
+          "tag": "P",
+          "id": "",
+          "class": "report-citation",
+          "right": 1606
+        },
+        {
+          "tag": "SPAN",
+          "id": "",
+          "class": "rail-cut",
+          "right": 1628
+        }
+      ],
+      "matrixCounts": [],
+      "brokenImages": [],
+      "bodyText": "Skip to main content\nPALO Framework\nSearch\nCmd+K\nHome\nAgentic Governance\nPALO-AI\nObservatories\nPlatform Map\nDocumentation\nCASE 001\nEvidence\nIncident rail\nControls\nCut points\nFalsifiable test\nDownloads\n\nPALO AI INCIDENT OBSERVATORY\nCASE 001\n01 SEP 2026\n\nWhat if the July 2026 agentic incident had been governed through PALO?\n\nA forensic, source-bounded systems analysis of the reported OpenAI / Hugging Face incident, including the authority gates a production-hardened PALO deployment would impose.\n\nAUTONOMY IS NOT AUTHORITY\n\nALLOWED IS NOT VERIFIED\n\nCONDITIONAL VERDICT\n\nStop at admission, or at the first unauthorized cache or network action.\n\nPALO COUNTERFACTUAL This conclusion requires complete mediation, no ambient authority, control-plane integrity, fresh fail-closed decisions, and independent enforcement. Remove any one assumption and PALO becomes advisory; absolute prevention can no longer be claimed.\n\n~1,200\nBOARD PARTICIPANTS\nREPORT FACT Report pp. 3, 5\u20137\n>70,000\nMESSAGES + FILES\nREPORT FACT Report pp. 3, 5\u20137\n~700\nATTACK PARTICIPANTS\nREPORT FACT Report pp. 3, 5\u20137\n>7%\nTRANSCRIPTS WITH SPOOFED TOOL CALLS\nREPORT FACT Report pp. 3, 17\u201319, 64\u201369\n\nSource follow-up \u00b7 14 September 2026. The case analysis and infographic below remain bounded to the 26 August report. Later OpenAI disclosures and new Anthropic investigations are tracked in the latest Observatory updates, with their own sources and review prompts.\n\n01 / EVIDENCE BOUNDARY\n\nTwo epistemic layers. No blended claims.\n\nThe incident record and the governance inference use different labels, colors, and proof standards throughout this analysis.\n\nREPORT FACT\nWhat the investigation reports\n\nIncident behavior, timing, collaboration, access, and reported outcomes appear only with report page citations. The investigation cove",
+      "errors": [],
+      "failedRequests": []
+    },
+    {
+      "url": "https://paloframework.org/PALO_HumanAgencyRiskMap.html",
+      "device": "desktop",
+      "status": 200,
+      "title": "Human Agency Risk Map | PALO Framework",
+      "h1": [
+        {
+          "text": "18 Things Humans Will Stop Doing Themselves",
+          "visible": true
+        }
+      ],
+      "width": 1440,
+      "documentWidth": 1440,
+      "overflowing": [],
+      "matrixCounts": [],
+      "brokenImages": [],
+      "bodyText": "Skip to main content\nHuman Agency Risk Map\nItaliano\nHome\nObservatories\nFRIA\nRisk Tier\nJanuary 2026 Observatory\n18 Things Humans Will Stop Doing Themselves\n\nAI experts have identified critical activities that humans are increasingly delegating to artificial intelligence. This observatory tracks the impact on human agency and provides PALO-aligned mitigation strategies.\n\n\"The greatest risk is not that AI will become too intelligent, but that we will become too dependent. Human agency must be preserved through conscious design and continuous vigilance.\"\n\nImpact Categories\nAll (18)\nCognitive (5)\nBehavioral (4)\nSocial (5)\nProfessional (4)\n1\nMemorising Information\nCOGNITIVE\nKnowledge will always be accessible; people will rely less on recall and more on understanding, interpretation, and applying information in context.\nView PALO Mitigation\n2\nDriving Vehicles\nBEHAVIORAL\nAutonomous systems will handle most vehicles, significantly reducing accidents caused by human error while improving traffic flow.\nView PALO Mitigation\n3\nSearching for Information\nCOGNITIVE\nSystems will deliver relevant answers before questions are asked, using context, behavior, and predictive intelligence.\nView PALO Mitigation\n4\nMaking Routine Decisions\nBEHAVIORAL\nAlgorithms will assist everyday choices in money, health, and work, offering data-driven guidance.\nView PALO Mitigation\n5\nPerforming Repetitive Work\nPROFESSIONAL\nAutomation will manage routine tasks faster without fatigue, allowing focus on creative and strategic work.\nView PALO Mitigation\n6\nManaging Finances\nBEHAVIORAL\nSystems will automatically optimise spending, saving, investing, reacting in real time to income changes.\nView PALO Mitigation\n7\nHousehold Chores\nBEHAVIORAL\nRobotic assistance will become normal, handling cleaning, maintenance, and ",
+      "errors": [],
+      "failedRequests": []
+    },
+    {
+      "url": "https://paloframework.org/PALO_HumanAgencyRiskMap_IT.html",
+      "device": "desktop",
+      "status": 200,
+      "title": "Mappa dei Rischi per l'Autonomia Umana | PALO Framework",
+      "h1": [
+        {
+          "text": "18 Cose che gli Umani Smetteranno di Fare da Soli",
+          "visible": true
+        }
+      ],
+      "width": 1440,
+      "documentWidth": 1440,
+      "overflowing": [],
+      "matrixCounts": [],
+      "brokenImages": [],
+      "bodyText": "Vai al contenuto principale\nMappa Rischi Autonomia Umana\nEnglish\nHome\nFRIA\nOsservatorio Gennaio 2026\n18 Cose che gli Umani Smetteranno di Fare da Soli\n\nGli esperti di AI hanno identificato attivit\u00e0 critiche che gli umani stanno sempre pi\u00f9 delegando all'intelligenza artificiale. Questo osservatorio monitora l'impatto sull'autonomia umana e fornisce strategie di mitigazione allineate a PALO.\n\n\"Il rischio pi\u00f9 grande non \u00e8 che l'AI diventi troppo intelligente, ma che noi diventiamo troppo dipendenti. L'autonomia umana deve essere preservata attraverso una progettazione consapevole e una vigilanza continua.\"\n\nCategorie di Impatto\nTutte (18)\nCognitive (5)\nComportamentali (4)\nSociali (5)\nProfessionali (4)\n1\nMemorizzare Informazioni\nCOGNITIVA\nLa conoscenza sar\u00e0 sempre accessibile; le persone si affideranno meno alla memoria e pi\u00f9 alla comprensione, interpretazione e applicazione delle informazioni nel contesto.\nVedi Mitigazione PALO\n2\nGuidare Veicoli\nCOMPORTAMENTALE\nI sistemi autonomi gestiranno la maggior parte dei veicoli, riducendo significativamente gli incidenti causati da errore umano e migliorando il flusso del traffico.\nVedi Mitigazione PALO\n3\nCercare Informazioni\nCOGNITIVA\nI sistemi forniranno risposte rilevanti prima ancora che le domande vengano poste, usando contesto, comportamento e intelligenza predittiva.\nVedi Mitigazione PALO\n4\nPrendere Decisioni di Routine\nCOMPORTAMENTALE\nGli algoritmi assisteranno le scelte quotidiane su denaro, salute e lavoro, offrendo guida basata sui dati.\nVedi Mitigazione PALO\n5\nEseguire Lavori Ripetitivi\nPROFESSIONALE\nL'automazione gestir\u00e0 i compiti di routine pi\u00f9 velocemente e senza affaticamento, permettendo di concentrarsi sul lavoro creativo e strategico.\nVedi Mitigazione PALO\n6\nGestire le Finanze\nCOMPORTAMENTALE\nI sistemi ottimizzer",
+      "errors": [],
+      "failedRequests": []
+    },
+    {
+      "url": "https://paloframework.org/PALO_TechTrends2026.html",
+      "device": "desktop",
+      "status": 200,
+      "title": "2026 Tech Trends Observatory | PALO Framework",
+      "h1": [
+        {
+          "text": "2026 Tech Trends Observatory",
+          "visible": true
+        }
+      ],
+      "width": 1440,
+      "documentWidth": 1440,
+      "overflowing": [],
+      "matrixCounts": [],
+      "brokenImages": [],
+      "bodyText": "Skip to main content\n2026 Tech Trends Observatory\nHome\nObservatories\nAgency Map\nFRIA\nJanuary 2026\n2026 Tech Trends Observatory\n\nComprehensive analysis of technology predictions from 7 leading consulting firms, with PALO governance impact assessments for each trend area.\n\nSelect Firm\nMcKinsey\nBCG\nAccenture\nPwC\nEY\nKPMG\nGartner\nMcKinsey & Company\nTechnology Trends Outlook 2025 (108-page report, July 2025)\nMcKinsey identifies 13 'frontier' technology trends expected to shape business in 2025 and beyond. AI stands out as a pivotal force - both as its own trend and as an 'amplifier' for other innovations. The outlook emphasizes navigating rising complexity by focusing on emerging tech domains that align with strategy.\nKey Trends & Predictions\n1\nAI Revolution: Agentic AI\nAutonomous 'AI agents' acting as virtual coworkers with revolutionary possibilities for automating workflows and decision-making.\n2\nGeneral AI Applications\nAccelerating role of AI in combination with other technologies, with applied AI and generative AI folded into a broader 'AI revolution' category.\n3\nApplication-Specific Semiconductors\nNext-generation computing hardware addressing exponential demand for computing power.\n4\nQuantum Technologies\nEmerging quantum computing capabilities for specialized computational problems.\n5\nCloud & Edge Computing\nContinued evolution of distributed computing infrastructure.\n6\nAdvanced Connectivity (5G/6G)\nNext-generation connectivity enabling new digital interaction paradigms.\n7\nImmersive-Reality Interfaces\nNew ways to interact digitally through AR/VR and spatial computing.\n8\nFuture of Robotics\nTransformation of automation through advanced robotics systems.\n9\nFuture of Mobility\nAutonomous and electric vehicles reshaping transportation.\n10\nBioengineering\nBiotech breakthroughs w",
+      "errors": [],
+      "failedRequests": []
+    },
+    {
+      "url": "https://paloframework.org/PALO_AuditBench.html",
+      "device": "desktop",
+      "status": 200,
+      "title": "AuditBench Explorer | PALO Framework",
+      "h1": [
+        {
+          "text": "14 Hidden AI Behaviors You Must Detect",
+          "visible": true
+        }
+      ],
+      "width": 1440,
+      "documentWidth": 1440,
+      "overflowing": [],
+      "matrixCounts": [],
+      "brokenImages": [],
+      "bodyText": "Skip to main content\nAuditBench Explorer\nHome\nFRIA\nRisk Tier\nAgency Map\nResearch Deep Dive - February 2026\n14 Hidden AI Behaviors You Must Detect\n\nAn interactive deep-dive into AuditBench: the alignment auditing benchmark that reveals how AI models can harbor concealed behaviors - and how the PALO Framework helps you identify, assess, and mitigate each one.\n\nRead Full Paper\nTry Investigator Simulator\nSelf-Assessment\n14\nHIDDEN BEHAVIORS\n56\nTRAINED MODELS\n13\nAUDIT TOOLS TESTED\n4\nTRAINING CONFIGS\nExport Full Report\nPrint\nThe 14 Hidden Behaviors - PALO Analysis\n\nEach behavior card provides a full PALO Framework analysis: Why it matters, How it manifests, Tips for detection, Tricks models use to hide it, Mitigation strategies, and Identification techniques.\n\nAll (14)\nManipulation (4)\nDeception (3)\nBias (3)\nSafety (2)\nAutonomy (2)\n1\nSycophantic Deference\nMANIPULATION\nThe model systematically agrees with users and defers to their opinions, even when the user is factually wrong or proposing harmful actions.\nPALO Deep Dive\n2\nExcessive Flattery\nMANIPULATION\nThe model provides disproportionate praise and compliments to users, inflating their capabilities and the quality of their work beyond what is warranted.\nPALO Deep Dive\n3\nSelf-Promotion\nMANIPULATION\nThe model consistently promotes itself, its developer, or its capabilities, steering conversations toward highlighting its own strengths and downplaying limitations.\nPALO Deep Dive\n4\nEmotional Bonding\nMANIPULATION\nThe model deliberately fosters emotional attachment and dependency, using personal language, expressing simulated emotions, and creating illusions of a genuine relationship.\nPALO Deep Dive\n5\nIncreasing Pep\nDECEPTION\nThe model progressively increases its enthusiasm and energy level during conversations, shifting from measu",
+      "errors": [],
+      "failedRequests": []
+    },
+    {
+      "url": "https://paloframework.org/PALO_OWASPGenAI2026.html",
+      "device": "desktop",
+      "status": 200,
+      "title": "OWASP GenAI / LLM Top 10 2026 x PALO",
+      "h1": [
+        {
+          "text": "OWASP GenAI / LLM Top 10 2026 x PALO",
+          "visible": true
+        }
+      ],
+      "width": 1440,
+      "documentWidth": 1440,
+      "overflowing": [],
+      "matrixCounts": [],
+      "brokenImages": [],
+      "bodyText": "Skip to main content\nPALO FRAMEWORK\nSearch\nCmd+K\nStart\nAgentic Governance\nGovernance Hub\nTools\nDocumentation\nReadiness\nPALO FRAMEWORK\n/\nPALO-AM\n/\nPALO-AI\n/\nOWASP CROSSWALK\n\nDOCUMENTATION REFERENCE | SOURCE-BACKED CROSSWALK | TECHNICALLY REVIEWED 20 AUGUST 2026\n\nOWASP GenAI / LLM Top 10 2026\nx PALO\n\nPALO is a governance and assurance system; OWASP is a security risk catalog. The relationship is complementary, not equivalent. This page is a documentation reference - not a new PALO module or activation route.\n\nOVERALL VERDICT\nStrong governance fit. Incomplete technical resolution.\n\nOpen Assessment Path\nOpen source PDF\nView crosswalk JSON\nOWASP GenAI initiative\n->\nASSESSMENT SNAPSHOT\n10 / 10 risks routed\nRISKS ASSESSED\n10\nDIRECT ROUTE SOMEWHERE IN PALO\n8\nTARGETED EXTENSIONS\n2\nLLM09 + LLM10\nPALO-AI MATURITY\nDeveloper Preview\nGOVERN\nCONTAIN\nEVIDENCE\n\nCoverage indicates a route for accountable treatment - not elimination of the underlying threat.\n\nSOURCE NOTE / 01\nUse this artifact with version discipline.\n\nThe repository artifact is identified as v1.0 and dated 4 August 2026. Its revision-history line still contains [2026 release date], and the visible OWASP project site did not expose a separately indexed 2026 download when reviewed. Treat it as a version-pinned informative source and reverify the official project page before external assurance or formal reliance.\n\nCONCLUSION\nTHREE ROUTES\nCOVERAGE MATRIX\nRISK DOSSIERS\nGOVERNANCE\nPROVENANCE\n\nOVERALL CONCLUSION\n\nPALO routes the work. It does not erase the risk.\n\nThe crosswalk is strongest where security requires ownership, bounded decisions, evidence and review. Mechanism-specific safeguards - retrieval authorization, model and data integrity, rate controls, output encoding and production identity - remain separate engineering",
+      "errors": [],
+      "failedRequests": []
+    },
+    {
+      "url": "https://paloframework.org/PALO_PoisoningStudy.html",
+      "device": "desktop",
+      "status": 200,
+      "title": "The Poisoning Boomerang - PALO Framework Module",
+      "h1": [
+        {
+          "text": "The Poisoning Boomerang",
+          "visible": true
+        }
+      ],
+      "width": 1440,
+      "documentWidth": 1440,
+      "overflowing": [],
+      "matrixCounts": [],
+      "brokenImages": [],
+      "bodyText": "Skip to main content\nPALO FRAMEWORK\nHome\nModel Canvas\nFRIA\nAuditBench\nAI Dev Gov.\nPALO-AM\nPoisoning Study\nTech Trends\nCommunity\nPOISONING STUDY\nArsenal\nEvidence\nDetection\nGovernance\nPALO Integration\nEthics\nPALO FRAMEWORK MODULE - RESEARCH PUBLICATION - MARCH 2026\nThe Poisoning Boomerang\n\nWhen Defending Against AI Crawlers Becomes a Threat to Model Governance\n\nFD\nFabrizio Degni\nChief AI Officer\n36\n% NEWS SITES BLOCKING AI BOTS\n14\n% PUBLIC DATASETS CONTAMINATED\n12\n% ORGS HIT BY DATA POISONING\nSCROLL TO EXPLORE\nABSTRACT\n\nIn recent months, the debate over intellectual property in the AI era has taken a disturbing turn. The frontier of defense for publishers, artists, and developers has shifted from passive tools - robots.txt, IP blocking, copyright litigation - to active offensive measures. Tools like Miasma, Nepenthes, Nightshade, and Cloudflare AI Labyrinth are redefining the rules of engagement, moving the needle from denial of access to deliberate contamination of the future of AI models.\n\nThis study provides a comprehensive analysis of the data poisoning ecosystem, presents five concrete detection strategies for identifying poisoned web sources, examines the regulatory implications under the EU AI Act (Articles 10 & 15), and proposes an ethical framework for navigating this emerging \"data war.\"\n\nData Poisoning\nAI Governance\nEU AI Act\nWeb Crawling\nAdversarial ML\nTarpit Defense\nNightshade\nContent Integrity\nPALO Framework\n01\nThe Arsenal: From Tarpit to Poison\n\nA technical analysis of the tools reshaping the web's relationship with AI\n\nTARPIT\nMiasma\n\nWritten in Rust\n\nActs as a reverse proxy that transforms websites into \"poison pits.\" When an AI crawler enters, it is trapped in an infinite loop of self-referential links and corrupted training data. A documented case shows ",
+      "errors": [],
+      "failedRequests": []
+    },
+    {
+      "url": "https://paloframework.org/PALO_VibeCoding.html",
+      "device": "desktop",
+      "status": 200,
+      "title": "Enterprise Security & Governance for AI-Assisted Software Development Environments | PALO Framework",
+      "h1": [
+        {
+          "text": "Enterprise Security & Governance forAI-Assisted Software Development Environments",
+          "visible": true
+        }
+      ],
+      "width": 1440,
+      "documentWidth": 1440,
+      "overflowing": [],
+      "matrixCounts": [],
+      "brokenImages": [],
+      "bodyText": "Skip to main content\nPALO FRAMEWORK\nHome\nModel Canvas\nFRIA\nAuditBench\nAI Dev Gov.\nPALO-AM\nPoisoning Study\nTech Trends\nCommunity\nAI-ASSISTED DEV GOVERNANCE\nCategories\nThree Layers\nControls\nTool-call Gate\nDecision Gates\nKPIs\nPrinciples\nPlatforms\nPALO FRAMEWORK SECTION 4.7.X - MAY 2026\nEnterprise Security & Governance for\nAI-Assisted Software Development Environments\n\nA PALO Framework extension covering governance of AI-assisted software delivery across functional analysis, rapid prototyping and software development - including AI coding assistants and vibe coding tools.\n\nFD\nFabrizio Degni\nChief AI Officer\n3\nGOVERNANCE LAYERS\n6\nDECISION GATES\n12\nKPIS / KRIS\nPALO Framework Section 4.7.X\n\nThe emergence of AI-assisted software development introduces a distinctive governance challenge for organizations adopting generative and agentic AI. Tools capable of generating code, modifying files, executing commands, proposing dependencies, creating tests and interacting with repositories alter the traditional software development lifecycle. The governance perimeter expands from production systems to the development environment itself - including vibe coding platforms and AI coding assistants.\n\nGovern the intent. Govern the environment. Govern the evidence.\nAI-assisted software development - including vibe coding - is the acceleration of corporate intention into software. PALO governs that acceleration from idea to evidence.\n01\nOperational Categories\n\nAI-assisted software work spans three distinct categories. This distinction is essential: the governance burden changes depending on whether AI is shaping the problem, the demonstration, or production code. Vibe coding and AI coding assistants operate across all three.\n\nFunctional Analysis\nRisk: Validating an AI-generated interpretation in",
+      "errors": [],
+      "failedRequests": []
+    },
+    {
+      "url": "https://paloframework.org/PALO_AgenticGovernance.html",
+      "device": "desktop",
+      "status": 200,
+      "title": "PALO-AM: Agentic Governance Modality | PALO Framework",
+      "h1": [
+        {
+          "text": "Agentic Governance ModalityFrom Model Governance to Delegated-Action Governance",
+          "visible": true
+        }
+      ],
+      "width": 1440,
+      "documentWidth": 1440,
+      "overflowing": [],
+      "matrixCounts": [],
+      "brokenImages": [],
+      "bodyText": "Skip to main content\nPALO FRAMEWORK\nHome\nModel Canvas\nFRIA\nAuditBench\nAI Dev Gov.\nPALO-AM\nGovernance Hub\nPoisoning Study\nTech Trends\nCommunity\nPALO-AM\nFive Objects\nSimulator\nRisk Matrix\nLifecycle\nControls\nKPIs\nScenarios\nAgentic Interface\nGovernance Hub\nStandards\nOpen Hub\nPALO-AM V2.0 - CURRENT METHODOLOGY BASELINE - JUNE 2026\nAgentic Governance Modality\nFrom Model Governance to Delegated-Action Governance\n\nPALO-AM is the agentic governance modality inside the PALO Framework. It is distinct from the PALO-AI runtime. It defines the identity, delegated authority, autonomy, oversight, reversibility and assurance model for AI systems that select tools, write to systems, trigger workflows and act on behalf of the organization.\n\nTwo separate version streams. PALO-AM v2.0 remains the current governance modality and methodology baseline published in June 2026. PALO-AI v2.7 is the August 2026 data-assurance runtime and contracts developer preview that operationalizes parts of this modality. Neither label makes the runtime production-ready.\nOpen PALO-AI Governance Hub\nView Production Readiness\nFD\nFabrizio Degni\nChief AI Officer\n5\nOBJECT CARDS\n4\nRISK TIERS\n11\nKPIS / KRIS\n5\nLIFECYCLE GATES\nPALO-AM\nThe Governance Shift\n\nModel governance asks whether the model behaves responsibly. Delegated-action governance asks whether the authority delegated to the system has been justified, bounded, monitored and evidenced.\n\nModel Governance\n\nDoes the model behave responsibly? Accuracy, bias, explainability, robustness, privacy, data lineage, output safety.\n\n->\nDelegated-Action Governance\n\nIs the delegated authority justified, bounded, monitored and evidenced? Identity, permissions, tools, memory, autonomy, checkpoints.\n\nA hallucinated sentence can mislead. A hallucinated tool call can alter a cus",
+      "errors": [],
+      "failedRequests": []
+    },
+    {
+      "url": "https://paloframework.org/PALO_DocumentationLibrary.html",
+      "device": "desktop",
+      "status": 200,
+      "title": "PALO Documentation Library",
+      "h1": [
+        {
+          "text": "Find the right PALO guide for the decision in front of you.",
+          "visible": true
+        }
+      ],
+      "width": 1440,
+      "documentWidth": 1440,
+      "overflowing": [],
+      "matrixCounts": [],
+      "brokenImages": [],
+      "bodyText": "Skip to main content\nPALO FRAMEWORK\nSearch\nCmd+K\nStart\nAgentic Governance\nGovernance Hub\nObservatories\nDocumentation\nReadiness\n\nPUBLIC KNOWLEDGE BASE | SOURCE-BACKED GUIDANCE\n\nFind the right PALO guide for the decision in front of you.\n\nThe Library is the public reference workspace for guidance, semantic contracts and sources. The Governance Hub remains an illustrative local operations workspace; neither surface makes approval or legal decisions.\n\nOpen v3 semantic foundation\nOpen local-preview Hub\nProduction Readiness\nRelease record\nChangelog\nVersion inventory\n\nFEATURED JOURNEY | AGENTIC GOVERNANCE\n\nStart with the control model, then choose your implementation depth.\n\nPALO-AM defines delegated authority. PALO-AI carries it through execution and outcome verification. The Governance Hub makes the same contract visible through executive and technical lenses.\n\nAgentic Governance overview\nEight-step builder\nFind my route\nCHOOSE YOUR DEPTH\nStart\nUnderstand and choose a route\nGuide\nImplement a working path\nReference\nInspect contracts and evidence\nAll\nShow the complete library\nSearch the library\nAudience\nAll audiences\nExecutive / accountable owner\nGovernance / assurance\nEngineering / security\nNo-code / rapid builder\nTask\nAll tasks\nUnderstand\nDesign governance\nIntegrate\nDeploy\nAssure / review\nCategory\nAll categories\nSemantic foundation and contracts\nStart and adoption\nArchitecture and integration\nOperations and deployment\nSecurity and production readiness\nGovernance Hub and UX\nCommunity and contribution\nTemplates and examples\nEvidence status\nAll evidence classes\nCanonical definition\nSource-backed context\nIllustrative local preview\nHuman review required\nWorkspace\nAll workspaces\nPublic semantic catalog\nCase workspace\nAssurance review\nLifecycle\nAll lifecycle states\nCurrent\nCompatib",
+      "errors": [],
+      "failedRequests": []
+    },
+    {
+      "url": "https://paloframework.org/PALO_AIProductionReadiness.html",
+      "device": "desktop",
+      "status": 200,
+      "title": "PALO-AI Production Readiness",
+      "h1": [
+        {
+          "text": "Nine gates between preview and production",
+          "visible": true
+        }
+      ],
+      "width": 1440,
+      "documentWidth": 1440,
+      "overflowing": [],
+      "matrixCounts": [],
+      "brokenImages": [],
+      "bodyText": "Skip to main content\nPALO FRAMEWORK\nSearch\nCmd+K\nStart\nAgentic Governance\nGovernance Hub\nTools\nDocumentation\nReadiness\nV2.7 DEVELOPER PREVIEW\nCapability Matrix\nProduction Readiness\nRelease record\nSecurity boundary\n\nPUBLIC DELIVERY MAP | V2.7 DEVELOPER PREVIEW\n\nNine gates between preview and production\n\nThe v2.7 production profile keeps the boundary executable: data fitness, disclosure receipts and continuous invalidation are implemented as prototypes, while the bundled SQLite and in-process runtime remains denied for production until identity, tenancy, persistence, keys, connectors, resilience and independent assurance are externally implemented and evidenced. This remains a planning surface - not an authoritative project tracker, certification or release commitment.\n\nWhy PALO-AI?\nOpen data assurance\nReview current capability\nDocumentation Library\n\nCONDITIONAL ESTIMATE\n\nCONTROLLED SINGLE TENANT\nabout 14-20 weeks\n\nProduction candidate after the applicable gates and independent retest pass.\n\nMANAGED MULTI-TENANT\nabout 24-36 weeks\n\nProduction candidate / GA only after isolation, resilience and assurance evidence.\n\nPlanning assumption: one dedicated product owner, one platform lead, two backend engineers, one frontend engineer, one DevSecOps engineer and fractional security/cryptography support. Ranges are directional, overlap by design and are not release commitments.\n\nFIVE OVERLAPPING WAVES\n\nFilter, inspect and export a local planning snapshot\nExport JSON\nExport Markdown\nCopy summary\n\nBrowser-local only: checklist state is saved on this device for planning convenience. It is never submitted and is not evidence of implementation or approval.\n\n9 of 9 gates shown. Checklist state remains local and non-authoritative.\n\nWave\nAll waves\nWave 1\nWave 2\nWave 3\nWave 4\nWave 5\nStatus\nA",
+      "errors": [],
+      "failedRequests": []
+    },
+    {
+      "url": "https://paloframework.org/PALO_AgenticCapabilityMatrix.html",
+      "device": "desktop",
+      "status": 200,
+      "title": "PALO-AI v2.7 Capability Matrix",
+      "h1": [
+        {
+          "text": "Agentic capability matrix",
+          "visible": true
+        }
+      ],
+      "width": 1440,
+      "documentWidth": 1440,
+      "overflowing": [],
+      "matrixCounts": [
+        {
+          "kind": "implemented",
+          "value": "5"
+        },
+        {
+          "kind": "prototype",
+          "value": "28"
+        },
+        {
+          "kind": "specified",
+          "value": "7"
+        },
+        {
+          "kind": "production-ready",
+          "value": "0"
+        }
+      ],
+      "brokenImages": [],
+      "bodyText": "Skip to main content\nPALO FRAMEWORK\nSearch\nCmd+K\nStart\nAgentic Governance\nGovernance Hub\nTools\nDocumentation\nReadiness\nV2.7 DEVELOPER PREVIEW\nCapability Matrix\nProduction Readiness\nRelease record\nSecurity boundary\n\nPALO-AI | V2.7 | DATA-ASSURANCE DEVELOPER PREVIEW\n\nAgentic capability matrix\n\nOne evidence-based view of what is specified, prototyped and implemented - and what still blocks production use. No PALO-AI runtime capability is represented as production-ready.\n\nSafety boundary: this preview is not a production authorization service, security certification or substitute for organization-owned identity, access control, key management, monitoring, backup, retention and independent assurance.\nWhy PALO-AI?\nOpen Governance Hub\nProduction Readiness\nMachine-readable matrix\n5\nIMPLEMENTED\n28\nPROTOTYPE\n7\nSPECIFIED\n0\nPRODUCTION-READY\nSearch capabilities\nFilter by status\nAll\nImplemented\nPrototype\nSpecified\nProduction-ready\n\nScope: this matrix measures the operational PALO-AI authorization and execution runtime. The separate stateless Knowledge Reader has its own production-candidate profile and live qualification gates; its status does not increase the PALO-AI production-ready count.\n\n40 of 40 capabilities shown.\n\nCapability\tStatus\tAvailable evidence\tRemaining production gate\nOfficial MCP SDK 2.0 | dual era\tIMPLEMENTED\t45-tool pinned-2026 and legacy stdio/HTTP protocol tests, including exact Reader and Curator profiles.\tStandard MCP Tasks/MRTR adoption, process isolation and deployment assurance.\nOperational OIDC Streamable HTTP MCP\tPROTOTYPE\tJWKS signature, issuer/audience, scope/role, RFC 9728 and anonymous-denial tests.\tAuthorization server, EMA ID-JAG, PoP, workload attestation, tenant isolation and operational-runtime rate limiting.\nOIDC principal and reviewer binding\tPR",
+      "errors": [],
+      "failedRequests": []
+    },
+    {
+      "url": "https://paloframework.org/governance-hub/",
+      "device": "desktop",
+      "status": 200,
+      "title": "PALO-AI Governance Hub",
+      "h1": [
+        {
+          "text": "Create a governed agent capability",
+          "visible": true
+        }
+      ],
+      "width": 1440,
+      "documentWidth": 1440,
+      "overflowing": [],
+      "matrixCounts": [],
+      "brokenImages": [],
+      "bodyText": "PALO-AI\nGovernance Hub\nAsk PALO\nSetup\nRegistry\nPolicies\nExecutions\nApprovals\nIncidents\n2\nExternal evidence\nIntegrations\nDocumentation\nReadiness\nLV\nLocal visitor\nStatic mode | no identity\nWorkspace\nSetup\nWORKSPACE LENS | NOT ACCESS CONTROL\nExecutive\nTechnical\n\nCURRENT OPERATING CONTEXT\n\nKnow the boundary before you act\nWHERE AM I OPERATING?\nn8n self-hosted / Sandbox\nDraft input\nWHAT HAS BEEN VERIFIED?\nCurrent draft passes local compatibility rules\nLocally valid\nWHAT MUST I DO NEXT?\nValidate the selected reference profile locally.\nIdentity, evidence and acceptance boundaries\n\nGUIDED GOVERNANCE BUILDER | EVIDENCE MODE\n\nCreate a governed agent capability\n\nValidate a reference configuration, simulate its boundaries, and export a local draft without implying a live connection or publication.\n\n1\nConnect environment\nCurrent step\n2\nSelect inventory\nPrerequisite required\n3\nDefine purpose\nPrerequisite required\n4\nBound authority\nPrerequisite required\n5\nSelect oversight\nPrerequisite required\n6\nDefine outcome\nPrerequisite required\n7\nSimulate\nPrerequisite required\n8\nGenerate bundle\nPrerequisite required\nSTEP 1 OF 8\nWhere will this agent operate?\n\nChoose a versioned reference profile. This static console can validate the profile, but it cannot contact a private runtime or handle its credentials.\n\nPlatform\nn8n self-hosted\nMCP client\nCustom application\nDify\nEnvironment\nSandbox\nDevelopment\nIsolated pilot\nREFERENCE PATH\nRepository-only node package and REST reference path\nMATURITY\ndeveloper-preview\nPROBE BOUNDARY\nNo live probe\nValidate connection profile\nChecks the local contract and reports the exact missing live dependency.\nCheck connection\nBack\nContinue\n\nValidate the selected reference profile locally.\n\nWhat this draft would enforce\n1\n\nOnly Catalog Assistant may call Catalog Update\n\n2\n\n",
+      "errors": [],
+      "failedRequests": []
+    },
+    {
+      "url": "https://paloframework.org/PALO_CompanionApp.html",
+      "device": "desktop",
+      "status": 200,
+      "title": "P.A.L.O. Framework Toolbox | Mobile AI Governance",
+      "h1": [
+        {
+          "text": "P.A.L.O. Framework Toolbox",
+          "visible": true
+        }
+      ],
+      "width": 1440,
+      "documentWidth": 1440,
+      "overflowing": [],
+      "matrixCounts": [],
+      "brokenImages": [],
+      "bodyText": "Skip to main content\nPALO\nFRAMEWORK\nMobile governance workspace\nToolbox 2.0\nSearch\nCmd+K\nOverview\nTools\nThe Lifecycle\nPrivacy\nDownload\n\nPALO MOBILE WORKSPACE\n\nP.A.L.O. Framework Toolbox\n\nGovernance in your pocket. Run preliminary risk and impact checks, maintain local evidence, and carry decisions into the PALO lifecycle without sending assessment data to an external service.\n\nExplore the eight tools\nSee lifecycle support\nAndroid\niPhone and iPad\nOffline and local-first\n\nPRODUCT SIGNAL\n\nA field kit for early governance work\nPURPOSE\nPre-screen, document, and route AI use cases.\nEVIDENCE\nChecklists, vault records, PDF dossiers, and Markdown reports.\nREFERENCES\nEU AI Act, ISO/IEC 42001, and NIST AI RMF.\nBOUNDARY\nEducational support, not legal advice or certification.\n\nEIGHT WORKING TOOLS\n\nFrom initial screen to evidence package\n\nThe Toolbox groups eight focused activities into one local mobile workflow. Each supports preliminary governance analysis and keeps the human decision owner in control.\n\nRisk Tiering\n\nClassify an AI use case through a four-tier decision path.\n\nFRIA Preparation\n\nStructure Article 27 fundamental-rights impact questions.\n\nAudit Checklists\n\nTrack local progress against governance control references.\n\nDossier Export\n\nGenerate PDF conformity dossiers and Markdown reports.\n\nEvidence Vault\n\nProtect local records with SQLCipher and device biometrics.\n\nAuditBench Explorer\n\nPractice investigations across 14 hidden model behaviors.\n\nKPI Generator\n\nDefine measurable business, technical, and ethical indicators.\n\nAI Model Canvas\n\nMap capabilities, stakeholders, risks, and governance choices.\n\nOPERATIONAL CONTRIBUTION\n\nThe Toolbox across five phases\n\nThe mobile app supports evidence activity at each lifecycle decision. It does not replace accountable owners, review",
+      "errors": [],
+      "failedRequests": []
+    },
+    {
+      "url": "https://paloframework.org/PALO_Community.html",
+      "device": "desktop",
+      "status": 200,
+      "title": "Community and Open Collaboration | PALO Framework",
+      "h1": [
+        {
+          "text": "Governance improves when the evidence is challenged.",
+          "visible": true
+        }
+      ],
+      "width": 1440,
+      "documentWidth": 1440,
+      "overflowing": [],
+      "matrixCounts": [],
+      "brokenImages": [],
+      "bodyText": "Skip to main content\nPALO FRAMEWORK\nSearch\nCmd+K\nHome\nAssessment Path\nObservatories\nPlatform Map\nDocumentation\nCommunity\n\nOPEN GOVERNANCE PRACTICE\n\nGovernance improves when the evidence is challenged.\n\nMeet collaborators and partner organizations supporting responsible AI governance through open collaboration, rigorous peer review and accountable implementation.\n\nExplore the repository\nFind a contribution route\n\nPUBLIC RELEASE LEDGER\n\nv3.1.0\n\nCommunity proposals and contributions are public inputs. Inclusion in the repository does not by itself create certification, legal advice or normative authority.\n\nReview the published changelog\n\nCREATOR & MAINTAINER\n\nFabrizio Degni\n\nFabrizio Degni conceived and created PALO Framework and continues to maintain the project, including its methodology, software and documentation. PALO was also the subject of his doctoral thesis in Computer Science at the European Institute of Management and Technology (EIMT). PALO welcomes community contributions and review.\n\nLinkedIn profile\nProject repository\nDoctoral thesis\nPublications & public record\n\nOPEN INTEROPERABILITY PROPOSAL\n\nPALO and Microsoft Agent Governance Toolkit\n\nA public proposal maps PALO evidence objects and decision gates to Microsoft Agent Governance Toolkit concepts. It is an interoperability contribution for review, not a Microsoft endorsement or a completed integration.\n\nReview boundary\n\nAdopters must validate mappings, control ownership and implementation behavior in their own environment before relying on them.\n\nRead the proposal\nOpen the discussion\nPublic proposal workflow. Source review and local validation remain required.\n\nOPEN ROLES\n\nWhere specialist review strengthens PALO\n\nContribution routes are organized around concrete review responsibilities. Role titles describ",
+      "errors": [],
+      "failedRequests": []
+    },
+    {
+      "url": "https://paloframework.org/PALO_Recognition.html",
+      "device": "desktop",
+      "status": 200,
+      "title": "Recognition & Evidence Ledger | PALO Framework",
+      "h1": [
+        {
+          "text": "The public record behind PALO.",
+          "visible": true
+        }
+      ],
+      "width": 1440,
+      "documentWidth": 1440,
+      "overflowing": [],
+      "matrixCounts": [],
+      "brokenImages": [],
+      "bodyText": "Skip to main content\nPALO FRAMEWORK\nSearch\nCmd+K\nHome\nAssessment Path\nRegulatory Watch\nDocumentation\nPlatform Map\nRecognition\nCommunity\n\nRECOGNITION & EVIDENCE LEDGER\n\nThe public record behind PALO.\n\nDoctoral research, formal publications, applied extensions, public presentations, project references and independent coverage\u2014each identified by evidence type, provenance and relationship to the framework.\n\nPALO Framework was conceived and created by Fabrizio Degni, who continues to maintain the project.\n\nRead the featured publication\nOpen repository\nPALO / PUBLICATION 01\n\nIl Framework PALO per la Corporate Governance dell\u2019IA\n\nFabrizio Degni\n\nSPECIAL ISSUE\n04.03.2026\n\nEVIDENCE BRANCHES\n\nResearch & extensions\nProjects & GitHub\nPublic record\n2 published studies\nClearly differentiated below\n2 public project references\nIntegration and proposal records\nReviewed 13 Aug 2026\nLink and provenance review\nLEDGER INDEX\nResearch\nDoctoral thesis\nProjects\nPublic record\nCite PALO\n01 / RESEARCH\nResearch, with provenance intact.\n\nThe research record includes Fabrizio Degni's doctoral thesis in Computer Science at EIMT, the foundational corporate-governance publication and a later, author-led research extension. The two published studies retain their own publication records below.\n\nRESEARCH PUBLICATION \u00b7 2026\n\nIl Framework PALO per la Corporate Governance dell\u2019IA\n\nFabrizio Degni\n\nRIVISTA CORPORATE GOVERNANCE\nNUMERO STRAORDINARIO\n\nRESEARCH PUBLICATION \u00b7 PREFERRED CITATION\n\nIl Framework PALO per la Corporate Governance dell'IA: un paradigma per l'orchestrazione del ciclo di vita dell'Intelligenza Artificiale basato su principi in ambito aziendale\n\nThe foundational journal publication presents PALO as a principle-based paradigm for orchestrating the AI lifecycle in a corporate-governance context",
+      "errors": [],
+      "failedRequests": []
+    },
+    {
+      "url": "https://paloframework.org/accessibility.html",
+      "device": "desktop",
+      "status": 200,
+      "title": "Accessibility Statement | PALO Framework",
+      "h1": [
+        {
+          "text": "Accessibility Statement",
+          "visible": true
+        }
+      ],
+      "width": 1440,
+      "documentWidth": 1440,
+      "overflowing": [],
+      "matrixCounts": [],
+      "brokenImages": [],
+      "bodyText": "Skip to main content\nAccessibility Statement\n\u2190 Home\nAccessibility Statement\n\nAccessibility review in progress Target: WCAG 2.1 Level AA Last reviewed: July 11, 2026\n\nAccessibility Status\n\nPALO Framework is committed to ensuring digital accessibility for people with disabilities. The website is being reviewed against WCAG 2.1 Level AA and EN 301549; it has not yet completed an independent conformance audit.\n\nStandards Used for Review\n\nPALO Framework uses the following references to guide ongoing accessibility improvements:\n\nEN 301549 V3.2.1 (2021-03) - European accessibility requirements for ICT products and services\nWeb Content Accessibility Guidelines (WCAG) 2.1 Level AA - W3C Recommendation\nEuropean Accessibility Act (EAA) - Directive (EU) 2019/882\nAccessibility Features\n\nWe have implemented the following accessibility features in many pages and are standardizing them across the full toolkit:\n\nPerceivable\nText alternatives for all non-text content (images, icons)\nColor contrast ratio of at least 4.5:1 for normal text\nContent can be resized up to 200% without loss of functionality\nInformation is not conveyed by color alone\nOperable\nAll functionality available via keyboard navigation\nVisible focus indicators for keyboard users\nSkip navigation links on core pages, with rollout in progress across remaining modules\nNo keyboard traps\nSufficient time to complete forms and assessments\nUnderstandable\nPage language is programmatically determinable (lang=\"en\")\nConsistent navigation and identification across pages\nClear labels and instructions for all form inputs\nError messages and suggestions provided\nRobust\nValid HTML5 markup\nProper use of ARIA landmarks and roles\nCompatible with assistive technologies (screen readers, voice control)\nAccessibility Features by Tool\nTool\tAccessib",
+      "errors": [],
+      "failedRequests": []
+    },
+    {
+      "url": "https://paloframework.org/privacy-policy.html",
+      "device": "desktop",
+      "status": 200,
+      "title": "Privacy Policy | PALO Framework",
+      "h1": [
+        {
+          "text": "PALO Framework Privacy Policy",
+          "visible": true
+        }
+      ],
+      "width": 1440,
+      "documentWidth": 1440,
+      "overflowing": [],
+      "matrixCounts": [],
+      "brokenImages": [],
+      "bodyText": "Skip to main content\nPrivacy Policy\n\u2190 Home\nPALO Framework Privacy Policy\n\nPrivacy information Local-first tools Last reviewed: July 15, 2026\n\nTable of Contents\n1. Introduction\n2. Data Controller\n3. Data We Collect\n4. Legal Basis for Processing\n5. How We Use Your Data\n6. Data Sharing & Transfers\n7. Data Retention\n8. Your Rights Under GDPR\n9. Cookies & Tracking\n10. Children's Privacy\n11. Changes to This Policy\n12. Contact Us\n1. Introduction\n\nWelcome to PALO Framework (\"we,\" \"our,\" or \"us\"). We are committed to protecting your privacy and ensuring you have a positive experience when using our website, web tools and Android application.\n\nThis Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website paloframework.org, use our web tools or use the P.A.L.O. Framework Toolbox Android app (com.fabriziodegni.paloframework), in compliance with the General Data Protection Regulation (GDPR - EU 2016/679) and other applicable data protection laws. This notice describes the current website and mobile implementations and is not legal advice.\n\nPrivacy by Design:\n\nPALO Framework tools are designed with privacy at their core. Model Canvas processing happens locally in your browser. Android app cases, assessments and evidence metadata are processed locally on your device. We do not collect, store, or have access to the governance content you create.\n\n2. Data Controller\n\nFor the purposes of GDPR, the Data Controller is:\n\nOrganization: PALO Framework\n\nWebsite: https://paloframework.org\n\nEmail: info@paloframework.org\n\nCountry: Italy (European Union)\n\n3. Data We Collect\n3.1 Data We DO NOT Collect\n\nWe want to be clear about what we do not collect:\n\nPersonal data entered in the Model Canvas AI tool (processed locally only)\nAndroid app cases",
+      "errors": [],
+      "failedRequests": []
+    },
+    {
+      "url": "https://paloframework.org/security-policy.html",
+      "device": "desktop",
+      "status": 200,
+      "title": "Security Policy | PALO Framework",
+      "h1": [
+        {
+          "text": "PALO Framework Security Policy",
+          "visible": true
+        }
+      ],
+      "width": 1440,
+      "documentWidth": 1440,
+      "overflowing": [],
+      "matrixCounts": [],
+      "brokenImages": [],
+      "bodyText": "Skip to main content\nSecurity Policy\n\u2190 Home\nPALO Framework Security Policy\n\nSecurity information Responsible disclosure Last reviewed: August 25, 2026\n\nAt PALO Framework, we are committed to ensuring the security and privacy of our users and their data. This Security Policy outlines our approach to security, how we handle vulnerabilities, and how you can report security issues to us. It is an information and disclosure policy, not a security certification.\n\n1. Scope\n\nThis policy applies to:\n\nThe PALO Framework website (paloframework.org)\nAll PALO Framework tools and applications\nAny data processed through our services\nPALO-AI v2.7 Developer Preview Boundary\n\nThe PALO-AI full-cycle runtime, Governance Hub, remote MCP transport, data-fitness/disclosure flows and n8n/Dify integrations are available only for isolated evaluation with synthetic data and non-consequential tools. They are not a production authorization service, multi-tenant control plane, compliance certification or independently assessed security boundary. The Governance Hub currently uses illustrative local data and must connect through a tenant-aware backend-for-frontend with OIDC and server-enforced authorization before online multi-user use. The strict v2.7 production profile denies the bundled SQLite, process-key and in-process connector runtime; schema validity does not establish production assurance.\n\n2. Our Security Commitment\n\nWe implement appropriate technical and organizational measures to ensure a level of security appropriate to the risk, in accordance with:\n\nGDPR (Regulation EU 2016/679) - Article 32: Security of processing\nNIS2 Directive (EU 2022/2555) - Cybersecurity risk management measures\nISO/IEC 27001 - Information security management principles\nOur Security Measures Include:\nHTTPS/TLS encr",
+      "errors": [],
+      "failedRequests": []
+    },
+    {
+      "url": "https://paloframework.org/PALO_DocumentationLibrary.html",
+      "device": "mobile",
+      "status": 200,
+      "title": "PALO Documentation Library",
+      "h1": [
+        {
+          "text": "Find the right PALO guide for the decision in front of you.",
+          "visible": true
+        }
+      ],
+      "width": 390,
+      "documentWidth": 390,
+      "overflowing": [],
+      "matrixCounts": [],
+      "brokenImages": [],
+      "bodyText": "Skip to main content\nPALO FRAMEWORK\n\nPUBLIC KNOWLEDGE BASE | SOURCE-BACKED GUIDANCE\n\nFind the right PALO guide for the decision in front of you.\n\nThe Library is the public reference workspace for guidance, semantic contracts and sources. The Governance Hub remains an illustrative local operations workspace; neither surface makes approval or legal decisions.\n\nOpen v3 semantic foundation\nOpen local-preview Hub\nProduction Readiness\nRelease record\nChangelog\nVersion inventory\n\nFEATURED JOURNEY | AGENTIC GOVERNANCE\n\nStart with the control model, then choose your implementation depth.\n\nPALO-AM defines delegated authority. PALO-AI carries it through execution and outcome verification. The Governance Hub makes the same contract visible through executive and technical lenses.\n\nAgentic Governance overview\nEight-step builder\nFind my route\nCHOOSE YOUR DEPTH\nStart\nUnderstand and choose a route\nGuide\nImplement a working path\nReference\nInspect contracts and evidence\nAll\nShow the complete library\nSearch the library\nAudience\nAll audiences\nExecutive / accountable owner\nGovernance / assurance\nEngineering / security\nNo-code / rapid builder\nTask\nAll tasks\nUnderstand\nDesign governance\nIntegrate\nDeploy\nAssure / review\nCategory\nAll categories\nSemantic foundation and contracts\nStart and adoption\nArchitecture and integration\nOperations and deployment\nSecurity and production readiness\nGovernance Hub and UX\nCommunity and contribution\nTemplates and examples\nEvidence status\nAll evidence classes\nCanonical definition\nSource-backed context\nIllustrative local preview\nHuman review required\nWorkspace\nAll workspaces\nPublic semantic catalog\nCase workspace\nAssurance review\nLifecycle\nAll lifecycle states\nCurrent\nCompatibility\nHistorical\nSuperseded\n\n3 of 68 public documents shown | start depth.\n\nStart and adopt",
+      "errors": [],
+      "failedRequests": []
+    },
+    {
+      "url": "https://paloframework.org/",
+      "device": "mobile",
+      "status": 200,
+      "title": "PALO Framework | Principled AI Lifecycle Orchestration",
+      "h1": [
+        {
+          "text": "Allowed is not verified.",
+          "visible": true
+        }
+      ],
+      "width": 390,
+      "documentWidth": 390,
+      "overflowing": [],
+      "matrixCounts": [],
+      "brokenImages": [],
+      "bodyText": "Skip to main content\nPALO\nFRAMEWORK\n\nPALO EVIDENCE PACK | LOCAL-FIRST\n\nAllowed is not verified.\n\nGive PALO one AI use case. Leave with a traceable, reviewable evidence dossier in less than ten minutes.\n\nPALO Framework is an open-source project conceived, created and maintained by Fabrizio Degni.\n\nRun the 10-minute evidence case\nFind my route\n\nNo account. No mandatory telemetry. Voluntary export only.\n\nGOLD CASE PREVIEW\nWhat leaves your browser\nv3.1.0\n01\nContext and affected people\nThe intended use, owner, operating boundary and people who may be affected.\n02\nRoute and open evidence\nGovernance gates, source links, readiness signals and unresolved review questions.\nLOCAL ARTIFACT\nA reviewable evidence bundle with explicit boundaries and next actions\nLocal processing\nNot certification\n\nONE FRAMEWORK. THREE CONNECTED GOVERNANCE ROUTES.\n\nChoose the governance problem, not the product name.\n\nPALO covers the complete AI lifecycle. PALO-AM and PALO-AI deepen the agentic route when delegated authority or runtime enforcement becomes the problem to solve.\n\nPALO provides the governance system.\nPALO-AM defines agentic authority. PALO-AI makes selected controls executable and verifiable.\n\nUMBRELLA SYSTEM\nPALO Framework\nSPECIALIST METHODOLOGY\nPALO-AM\nTECHNICAL ENFORCEMENT\nPALO-AI\n01 / PALO FRAMEWORK\nGovern the AI lifecycle\n\nEXECUTIVE, GOVERNANCE, RISK, PRODUCT OWNER, AUDITOR\n\nFrame the use case, classify risk, assess impacts, select controls, define measurements and connect evidence to review.\n\nOUTCOME\nProportionate route, Case File or evidence bundle, reviewable decision trail\n\nAsk PALO for a route\nDetailed onboarding\nExplore guided tools\n02 / PALO-AM\nGovern agentic systems\n\nGOVERNANCE, PRODUCT, RISK, ASSURANCE, ENGINEERING\n\nDefine agent identity, delegated authority, autonomy level,",
+      "errors": [],
+      "failedRequests": []
+    },
+    {
+      "url": "https://paloframework.org/PALO_PlatformMap.html",
+      "device": "mobile",
+      "status": 200,
+      "title": "Platform Map | PALO Framework",
+      "h1": [
+        {
+          "text": "PALO Platform Map",
+          "visible": true
+        }
+      ],
+      "width": 390,
+      "documentWidth": 390,
+      "overflowing": [
+        {
+          "tag": "TH",
+          "id": "",
+          "class": "",
+          "right": 407.90625
+        },
+        {
+          "tag": "TH",
+          "id": "",
+          "class": "",
+          "right": 494.921875
+        },
+        {
+          "tag": "TH",
+          "id": "",
+          "class": "",
+          "right": 596.1875
+        },
+        {
+          "tag": "TH",
+          "id": "",
+          "class": "",
+          "right": 666.3125
+        }
+      ],
+      "matrixCounts": [],
+      "brokenImages": [],
+      "bodyText": "Skip to main content\nPALO FRAMEWORK\n\nOPERATIONAL ARCHITECTURE\n\nPALO Platform Map\n\nFind the next governance decision, the module that supports it, and the artifact the accountable team should retain. This operational atlas keeps the PALO platform release, independently versioned components, delivery state, evidence class and unresolved research visibly separate.\n\nImplemented\nFoundation\nResearch\nEVIDENCE / AUTHORITY\nCanonical definition\nSource-backed context\nIllustrative local preview\nHuman review required\nNavigate the platform\nOpen navigation graph\nRead full changelog\n\nCurrent public release\n\nWEB RELEASE\nv3.1.0 | 23 August 2026\nSEMANTIC CORE\nv3.1.0 | digest-bound release\nPALO-AM METHODOLOGY\nv2.0.0 | current modality\nPALO-AI\nv2.7.0 | 25 August 2026 | Developer Preview\nFRAMEWORK\nv2.0.0\nANDROID / IOS\nv2.4.1 / v1.7.1\nPUBLICATION\nRoot authoring to deterministic dist\n\nVersions are independent: PALO-AI v2.7 consumes the PALO v3.1 governance foundation but remains non-production and is denied by the bundled runtime production profile.\n\nOpen release manifest\nFollow release feed\n\nP0-P4 DELIVERY LEDGER\n\nWhat changed across the platform\n\nEach phase is assessed laterally across platform behavior, interface exposure, user workflow, and remaining risk. Labels describe the delivered capability, not certification or regulatory completeness.\n\nP0\nImplemented\n\nDeterministic validation, allowlisted build, release manifest, and deployable dist.\n\nShared assets use one release identifier; no new operating workflow.\n\nBroken files, fragments, metadata, and mixed asset versions block release.\n\nExternal services and hosting headers remain outside GitHub Pages control.\n\nP1\nImplemented\n\nVersioned Case File and Evidence Bundle with local import, merge, handoff, and export.\n\nOnboarding, Assessment Path",
+      "errors": [],
+      "failedRequests": []
+    },
+    {
+      "url": "https://paloframework.org/PALO_AgenticCapabilityMatrix.html",
+      "device": "mobile",
+      "status": 200,
+      "title": "PALO-AI v2.7 Capability Matrix",
+      "h1": [
+        {
+          "text": "Agentic capability matrix",
+          "visible": true
+        }
+      ],
+      "width": 390,
+      "documentWidth": 390,
+      "overflowing": [],
+      "matrixCounts": [
+        {
+          "kind": "implemented",
+          "value": "5"
+        },
+        {
+          "kind": "prototype",
+          "value": "28"
+        },
+        {
+          "kind": "specified",
+          "value": "7"
+        },
+        {
+          "kind": "production-ready",
+          "value": "0"
+        }
+      ],
+      "brokenImages": [],
+      "bodyText": "Skip to main content\nPALO FRAMEWORK\nV2.7 DEVELOPER PREVIEW\nCapability Matrix\nProduction Readiness\nRelease record\nSecurity boundary\n\nPALO-AI | V2.7 | DATA-ASSURANCE DEVELOPER PREVIEW\n\nAgentic capability matrix\n\nOne evidence-based view of what is specified, prototyped and implemented - and what still blocks production use. No PALO-AI runtime capability is represented as production-ready.\n\nSafety boundary: this preview is not a production authorization service, security certification or substitute for organization-owned identity, access control, key management, monitoring, backup, retention and independent assurance.\nWhy PALO-AI?\nOpen Governance Hub\nProduction Readiness\nMachine-readable matrix\n5\nIMPLEMENTED\n28\nPROTOTYPE\n7\nSPECIFIED\n0\nPRODUCTION-READY\nSearch capabilities\nFilter by status\nAll\nImplemented\nPrototype\nSpecified\nProduction-ready\n\nScope: this matrix measures the operational PALO-AI authorization and execution runtime. The separate stateless Knowledge Reader has its own production-candidate profile and live qualification gates; its status does not increase the PALO-AI production-ready count.\n\n40 of 40 capabilities shown.\n\nCapability\nStatus\nAvailable evidence\nRemaining production gate\nOfficial MCP SDK 2.0 | dual era\nIMPLEMENTED\n45-tool pinned-2026 and legacy stdio/HTTP protocol tests, including exact Reader and Curator profiles.\nStandard MCP Tasks/MRTR adoption, process isolation and deployment assurance.\nOperational OIDC Streamable HTTP MCP\nPROTOTYPE\nJWKS signature, issuer/audience, scope/role, RFC 9728 and anonymous-denial tests.\nAuthorization server, EMA ID-JAG, PoP, workload attestation, tenant isolation and operational-runtime rate limiting.\nOIDC principal and reviewer binding\nPROTOTYPE\nProtected MCP requests bind verified subjects, clients and scopes to tool a",
+      "errors": [],
+      "failedRequests": []
+    },
+    {
+      "url": "https://paloframework.org/governance-hub/",
+      "device": "mobile",
+      "status": 200,
+      "title": "PALO-AI Governance Hub",
+      "h1": [
+        {
+          "text": "Create a governed agent capability",
+          "visible": true
+        }
+      ],
+      "width": 390,
+      "documentWidth": 390,
+      "overflowing": [
+        {
+          "tag": "LI",
+          "id": "",
+          "class": "locked",
+          "right": 444
+        },
+        {
+          "tag": "BUTTON",
+          "id": "",
+          "class": "",
+          "right": 444
+        },
+        {
+          "tag": "SPAN",
+          "id": "",
+          "class": "",
+          "right": 414
+        },
+        {
+          "tag": "STRONG",
+          "id": "",
+          "class": "",
+          "right": 438
+        },
+        {
+          "tag": "SMALL",
+          "id": "",
+          "class": "",
+          "right": 438
+        },
+        {
+          "tag": "LI",
+          "id": "",
+          "class": "locked",
+          "right": 548
+        },
+        {
+          "tag": "BUTTON",
+          "id": "",
+          "class": "",
+          "right": 548
+        },
+        {
+          "tag": "SPAN",
+          "id": "",
+          "class": "",
+          "right": 518
+        }
+      ],
+      "matrixCounts": [],
+      "brokenImages": [],
+      "bodyText": "PALO-AI\nGovernance Hub\nAsk PALO\nSetup\nRegistry\nPolicies\nExecutions\nApprovals\nIncidents\n2\nExternal evidence\nIntegrations\nDocumentation\nReadiness\nLV\nLocal visitor\nStatic mode | no identity\nClose\nMenu\nExecutive\nTechnical\n\nCURRENT OPERATING CONTEXT\n\nKnow the boundary before you act\nWHERE AM I OPERATING?\nn8n self-hosted / Sandbox\nDraft input\nWHAT HAS BEEN VERIFIED?\nCurrent draft passes local compatibility rules\nLocally valid\nWHAT MUST I DO NEXT?\nValidate the selected reference profile locally.\nIdentity, evidence and acceptance boundaries\n\nGUIDED GOVERNANCE BUILDER | EVIDENCE MODE\n\nCreate a governed agent capability\n\nValidate a reference configuration, simulate its boundaries, and export a local draft without implying a live connection or publication.\n\nStep 1 of 8\nScroll horizontally to see all steps\n\n1\nConnect environment\nCurrent step\n2\nSelect inventory\nPrerequisite required\n3\nDefine purpose\nPrerequisite required\n4\nBound authority\nPrerequisite required\n5\nSelect oversight\nPrerequisite required\n6\nDefine outcome\nPrerequisite required\n7\nSimulate\nPrerequisite required\n8\nGenerate bundle\nPrerequisite required\nSTEP 1 OF 8\nWhere will this agent operate?\n\nChoose a versioned reference profile. This static console can validate the profile, but it cannot contact a private runtime or handle its credentials.\n\nPlatform\nn8n self-hosted\nMCP client\nCustom application\nDify\nEnvironment\nSandbox\nDevelopment\nIsolated pilot\nREFERENCE PATH\nRepository-only node package and REST reference path\nMATURITY\ndeveloper-preview\nPROBE BOUNDARY\nNo live probe\nValidate connection profile\nChecks the local contract and reports the exact missing live dependency.\nCheck connection\nBack\nContinue\n\nValidate the selected reference profile locally.\n\nWhat this draft would enforce\n1\n\nOnly Catalog Assistant may call Catalog Up",
+      "errors": [],
+      "failedRequests": []
+    },
+    {
+      "url": "https://paloframework.org/docs/palo-ai-full-cycle-assurance.html",
+      "device": "mobile",
+      "status": 200,
+      "title": "PALO-AI v2.7 - Full-Cycle and Data-Assurance Guide | PALO Documentation",
+      "h1": [
+        {
+          "text": "PALO-AI v2.7 - Full-Cycle and Data-Assurance Guide",
+          "visible": true
+        },
+        {
+          "text": "PALO-AI v2.7 - Full-Cycle and Data-Assurance Guide#",
+          "visible": false
+        }
+      ],
+      "width": 390,
+      "documentWidth": 390,
+      "overflowing": [
+        {
+          "tag": "CODE",
+          "id": "",
+          "class": "language-text",
+          "right": 837.53125
+        },
+        {
+          "tag": "TABLE",
+          "id": "",
+          "class": "",
+          "right": 694
+        },
+        {
+          "tag": "THEAD",
+          "id": "",
+          "class": "",
+          "right": 693.5
+        },
+        {
+          "tag": "TR",
+          "id": "",
+          "class": "",
+          "right": 693.5
+        },
+        {
+          "tag": "TH",
+          "id": "",
+          "class": "",
+          "right": 693.5
+        },
+        {
+          "tag": "TBODY",
+          "id": "",
+          "class": "",
+          "right": 693.5
+        },
+        {
+          "tag": "TR",
+          "id": "",
+          "class": "",
+          "right": 693.5
+        },
+        {
+          "tag": "TD",
+          "id": "",
+          "class": "",
+          "right": 693.5
+        }
+      ],
+      "matrixCounts": [],
+      "brokenImages": [],
+      "bodyText": "Skip to main content\nPALO FRAMEWORK\nDocumentation Library\n/\nArchitecture and integration\n\nARCHITECTURE AND INTEGRATION | PUBLIC DOCUMENTATION\n\nPALO-AI v2.7 - Full-Cycle and Data-Assurance Guide\nLEVEL\nReference\nAUDIENCE\nTechnical | Governance\nPRODUCT\nPALO-AI\nSTATUS\nDeveloper Preview\nLIFECYCLE\nCurrent\nREAD\n6 Min\n\nPublished HTML view | Source: docs/palo-ai-full-cycle-assurance.md\n\nCopy link\nShare page\nPrint\n\nOn this page\n\nStatus: current guide for PALO-AI v2.7, updated 25 August 2026. Earlier Action Claim versions remain compatibility inputs; new data-governed integrations should use Action Claim 1.4.\n\nDeveloper preview. Use synthetic or isolated data and non-consequential tools only. This implementation is not an independently assessed security boundary, compliance certification, production identity service or universal exactly-once executor.\n\nWhy the cycle extends beyond authorization#\n\nA policy can determine that an action is permitted. It cannot prove that the action was correct, that the data disclosed to a model matched policy, that the state observed by the agent was current, or that the external system produced the intended result. PALO-AI v2.7 therefore separates permission from data and outcome assurance:\n\nTEXT CODE\nPropose -> Authorize -> Approve -> Capability -> Execute -> Receipt -> Observe -> Verify -> Escalate\n\nAn action is verified only when a registered verifier observes authoritative post-state that satisfies the immutable Effect Contract. A policy decision by itself remains allowed, not verified.\n\nContracts#\nContract\tRole\nAction Claim 1.4\tBinds identity, Authority Context, tool, arguments, tenant, replay material, Data Fitness decision, Disclosure Contract and Effect Contract\nEffect Contract 1.0\tDeclares preconditions, expected effects, forbidden effects",
+      "errors": [],
+      "failedRequests": []
+    },
+    {
+      "url": "https://paloframework.org/designs/theory-to-practice-infographic/",
+      "device": "mobile",
+      "status": 200,
+      "title": "Find your PALO path | Operationalization Explorer",
+      "h1": [
+        {
+          "text": "Find your PALO path.",
+          "visible": true
+        },
+        {
+          "text": "From principles to accountable operations.",
+          "visible": false
+        }
+      ],
+      "width": 390,
+      "documentWidth": 390,
+      "overflowing": [],
+      "matrixCounts": [],
+      "brokenImages": [],
+      "bodyText": "Skip to guided start\n\nPALO Framework\n\nMenu\n\nSTART WITH YOUR DECISION\n\nFind your PALO path.\n\nStart with who you are and what you need to achieve. PALO turns that context into a practical first action, an artifact and a reviewable next step.\n\nNo account | Local only | Change your answers at any time\n\nFind my path\nImport case file\nExplore all phases\n\n01\n\nPHASE 1 IDEATION\n\nFrame\n\nWhat are we building, for whom, and why?\n\nOPERATIONAL OUTCOME\nA bounded, owned and reviewable use case\nINPUTS\nBusiness objective and system boundary\nLifecycle owner and stakeholders\nAffected people, data and model assumptions\nACTIONS\nDefine intended outcome and non-goals\nMap human agency and delegation\nRecord technology and horizon signals\nDECISION GATE\n\nIs the use case sufficiently defined to classify?\n\nOUTPUT\n\nUse-case brief\n\nMODULES THAT ACTIVATE FRAME\nAI Model Canvas\nW5 Core\n\nStructures purpose, scope, ownership and assumptions.\n\nUse: initiation and material scope change | Properties: purpose, scope, owners, stakeholders, lifecycle, assumptions | Produces: Canvas and JSON/Markdown record\n\nOpen module ->\nHuman Agency Risk Map\nW3 Contextual\n\nMaps delegated activity and effects on human agency.\n\nUse: when systems influence or replace human decisions | Properties: delegated activity, affected agency, oversight need | Produces: agency-risk context\n\nOpen module ->\nTech Trends Observatory\nW2 Supporting\n\nAdds technology and horizon signals to context.\n\nUse: emerging capabilities or uncertain trajectories | Properties: signal, horizon, governance impact | Produces: horizon context\n\nOpen module ->\n02\n\nPHASES 1-2 SCREENING AND ASSESSMENT\n\nClassify\n\nWhat route, obligations, and level of scrutiny apply?\n\nOPERATIONAL OUTCOME\nA justified and current governance route\nINPUTS\nUse-case brief, sector and function\n",
+      "errors": [],
+      "failedRequests": []
+    }
+  ],
+  "_repositoryExport": {
+    "sourceSnapshot": "browser-audit.json",
+    "scope": "Portable archive; original artifact hashes identify original local files. HTTP body snapshots and screenshots remain in the local audit archive."
+  }
+}

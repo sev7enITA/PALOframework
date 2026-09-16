@@ -1,0 +1,1164 @@
+{
+  "checkedAt": "2026-09-16T10:54:49.769622+00:00",
+  "scope": "HEAD with bounded GET fallback, no downloaded external bodies. 403/429/timeouts are inconclusive, not proof of broken links.",
+  "counts": {
+    "200": 182,
+    "404": 1,
+    "202": 3,
+    "403": 3,
+    "999": 1,
+    "None": 1
+  },
+  "results": [
+    {
+      "url": "https://apps.apple.com/it/app/p-a-l-o-framework-toolbox/id6761771299",
+      "status": 200,
+      "finalUrl": "https://apps.apple.com/it/app/p-a-l-o-framework-toolbox/id6761771299",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://azure.microsoft.com/en-us/free/students/",
+      "status": 200,
+      "finalUrl": "https://azure.microsoft.com/en-us/free/students/",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://azure.microsoft.com/en-us/resources/students",
+      "status": 200,
+      "finalUrl": "https://azure.microsoft.com/en-us/resources/students",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://blog.modelcontextprotocol.io/posts/2026-07-28/",
+      "status": 200,
+      "finalUrl": "https://blog.modelcontextprotocol.io/posts/2026-07-28/",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://cdn.tailwindcss.com",
+      "status": 200,
+      "finalUrl": "https://cdn.tailwindcss.com/3.4.17",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css",
+      "status": 200,
+      "finalUrl": "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://code.visualstudio.com/docs/agent-customization/mcp-servers",
+      "status": 200,
+      "finalUrl": "https://code.visualstudio.com/docs/agent-customization/mcp-servers",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "status": 200,
+      "finalUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://creators.n8n.io/",
+      "status": 200,
+      "finalUrl": "https://creators.n8n.io/login",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://cursor.com/docs/cloud-agent/capabilities",
+      "status": 200,
+      "finalUrl": "https://cursor.com/docs/cloud-agent/capabilities",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://datatracker.ietf.org/doc/draft-klrc-aiagent-auth/02/",
+      "status": 200,
+      "finalUrl": "https://datatracker.ietf.org/doc/draft-klrc-aiagent-auth/02/",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://datatracker.ietf.org/group/wimse/",
+      "status": 200,
+      "finalUrl": "https://datatracker.ietf.org/group/wimse/documents/",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://developers.make.com/custom-apps-documentation",
+      "status": 200,
+      "finalUrl": "https://developers.make.com/custom-apps-documentation",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://developers.openai.com/api/docs/guides/tools-connectors-mcp",
+      "status": 200,
+      "finalUrl": "https://developers.openai.com/api/docs/guides/tools-connectors-mcp",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://developers.openai.com/codex/mcp",
+      "status": 200,
+      "finalUrl": "https://learn.chatgpt.com/docs/extend/mcp?surface=cli",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://developers.openai.com/plugins/build/app-quickstart",
+      "status": 200,
+      "finalUrl": "https://developers.openai.com/plugins/build/app-quickstart",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://developers.openai.com/plugins/build/skills",
+      "status": 200,
+      "finalUrl": "https://developers.openai.com/plugins/build/skills",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://developers.openai.com/plugins/deploy/connect-chatgpt",
+      "status": 200,
+      "finalUrl": "https://developers.openai.com/plugins/deploy/connect-chatgpt",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://digital-strategy.ec.europa.eu/en/policies/ai-act-standardisation",
+      "status": 200,
+      "finalUrl": "https://digital-strategy.ec.europa.eu/en/policies/ai-act-standardisation",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://digital-strategy.ec.europa.eu/en/policies/code-practice-ai-generated-content",
+      "status": 200,
+      "finalUrl": "https://digital-strategy.ec.europa.eu/en/policies/code-practice-ai-generated-content",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://digital-strategy.ec.europa.eu/en/policies/contents-code-gpai",
+      "status": 200,
+      "finalUrl": "https://digital-strategy.ec.europa.eu/en/policies/contents-code-gpai",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://digital-strategy.ec.europa.eu/en/policies/guidelines-ai-high-risk-systems",
+      "status": 200,
+      "finalUrl": "https://digital-strategy.ec.europa.eu/en/policies/guidelines-ai-high-risk-systems",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://digital-strategy.ec.europa.eu/en/policies/guidelines-ai-transparency-obligations",
+      "status": 200,
+      "finalUrl": "https://digital-strategy.ec.europa.eu/en/policies/guidelines-ai-transparency-obligations",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://digital-strategy.ec.europa.eu/en/policies/guidelines-gpai-providers",
+      "status": 200,
+      "finalUrl": "https://digital-strategy.ec.europa.eu/en/policies/guidelines-gpai-providers",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai",
+      "status": 200,
+      "finalUrl": "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/gateway-target-MCPservers.html",
+      "status": 200,
+      "finalUrl": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/gateway-target-MCPservers.html",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://docs.cursor.com/context/model-context-protocol",
+      "status": 200,
+      "finalUrl": "https://cursor.com/docs",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://docs.dify.ai/en/develop-plugin/dev-guides-and-walkthroughs/agent-strategy-plugin",
+      "status": 200,
+      "finalUrl": "https://docs.dify.ai/en/develop-plugin/dev-guides-and-walkthroughs/agent-strategy-plugin",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://docs.dify.ai/en/develop-plugin/dev-guides-and-walkthroughs/tool-plugin",
+      "status": 200,
+      "finalUrl": "https://docs.dify.ai/en/develop-plugin/dev-guides-and-walkthroughs/tool-plugin",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://docs.dify.ai/en/develop-plugin/getting-started/choose-plugin-type",
+      "status": 200,
+      "finalUrl": "https://docs.dify.ai/en/develop-plugin/getting-started/choose-plugin-type",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/add-mcp-servers",
+      "status": 200,
+      "finalUrl": "https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/add-mcp-servers",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://docs.langchain.com/oss/python/langchain/human-in-the-loop",
+      "status": 200,
+      "finalUrl": "https://docs.langchain.com/oss/python/langchain/human-in-the-loop",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://docs.langchain.com/oss/python/langchain/middleware/custom",
+      "status": 200,
+      "finalUrl": "https://docs.langchain.com/oss/python/langchain/middleware/custom",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://docs.langchain.com/oss/python/langgraph/interrupts",
+      "status": 200,
+      "finalUrl": "https://docs.langchain.com/oss/python/langgraph/interrupts",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://docs.n8n.io/advanced-ai/human-in-the-loop-tools/",
+      "status": 200,
+      "finalUrl": "https://docs.n8n.io/build/integrate-ai/ai-examples/human-in-the-loop-for-tools",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://docs.n8n.io/advanced-ai/mcp/accessing-n8n-mcp-server/",
+      "status": 200,
+      "finalUrl": "https://docs.n8n.io/connect/connect-to-n8n-mcp-server",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://docs.n8n.io/hosting/configuration/external-hooks/",
+      "status": 200,
+      "finalUrl": "https://docs.n8n.io/deploy/host-n8n/configure-n8n/external-hooks",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://docs.n8n.io/hosting/securing/security-audit/",
+      "status": 200,
+      "finalUrl": "https://docs.n8n.io/deploy/host-n8n/configure-n8n/security/run-security-audits",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://docs.n8n.io/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.toolmcp/",
+      "status": 200,
+      "finalUrl": "https://docs.n8n.io/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.toolmcp",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.wait/",
+      "status": 200,
+      "finalUrl": "https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.wait",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://docs.n8n.io/integrations/community-nodes/installation/gui-install/",
+      "status": 200,
+      "finalUrl": "https://docs.n8n.io/integrations/community-nodes/installation-and-management/gui-installation",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://docs.n8n.io/integrations/community-nodes/risks/",
+      "status": 200,
+      "finalUrl": "https://docs.n8n.io/integrations/community-nodes/risks",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://docs.n8n.io/integrations/creating-nodes/build/reference/verification-guidelines/",
+      "status": 200,
+      "finalUrl": "https://docs.n8n.io/connect/create-nodes/build-your-node/reference/verification-guidelines",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://docs.n8n.io/integrations/creating-nodes/deploy/submit-community-nodes/",
+      "status": 200,
+      "finalUrl": "https://docs.n8n.io/connect/create-nodes/deploy-your-node/submit-community-nodes",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://docs.n8n.io/integrations/creating-nodes/overview/",
+      "status": 200,
+      "finalUrl": "https://docs.n8n.io/connect/create-nodes/overview",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://docs.n8n.io/sustainable-use-license/",
+      "status": 404,
+      "finalUrl": "https://docs.n8n.io/sustainable-use-license",
+      "method": "GET"
+    },
+    {
+      "url": "https://docs.zapier.com/platform/home",
+      "status": 200,
+      "finalUrl": "https://docs.zapier.com/integrations",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://education.github.com/pack",
+      "status": 200,
+      "finalUrl": "https://education.github.com/pack",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://education.github.com/pack/join",
+      "status": 200,
+      "finalUrl": "https://education.github.com/pack/join",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://eur-lex.europa.eu/eli/reg/2024/1689/oj",
+      "status": 202,
+      "finalUrl": "https://eur-lex.europa.eu/eli/reg/2024/1689/oj",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://eur-lex.europa.eu/eli/reg/2024/1689/oj/eng",
+      "status": 202,
+      "finalUrl": "https://eur-lex.europa.eu/eli/reg/2024/1689/oj/eng",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://eur-lex.europa.eu/eli/reg/2026/1744/oj/eng",
+      "status": 202,
+      "finalUrl": "https://eur-lex.europa.eu/eli/reg/2026/1744/oj/eng",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap",
+      "status": 200,
+      "finalUrl": "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap",
+      "status": 200,
+      "finalUrl": "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap",
+      "status": 200,
+      "finalUrl": "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap",
+      "status": 200,
+      "finalUrl": "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap",
+      "status": 200,
+      "finalUrl": "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap",
+      "status": 200,
+      "finalUrl": "https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://geminicli.com/docs/tools/mcp-server/",
+      "status": 200,
+      "finalUrl": "https://geminicli.com/docs/tools/mcp-server/",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://genai.owasp.org/initiative/owasp-top-10-for-llm-and-genai/",
+      "status": 200,
+      "finalUrl": "https://genai.owasp.org/initiative/owasp-top-10-for-llm-and-genai/",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://genai.owasp.org/initiatives/agentic-security-initiative/",
+      "status": 200,
+      "finalUrl": "https://genai.owasp.org/initiatives/agentic-security-initiative/",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/FlagOpen/FlagEmbedding/blob/master/docs/source/bge/bge_m3.rst",
+      "status": 200,
+      "finalUrl": "https://github.com/FlagOpen/FlagEmbedding/blob/master/docs/source/bge/bge_m3.rst",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/QwenLM/Qwen3-Embedding",
+      "status": 200,
+      "finalUrl": "https://github.com/QwenLM/Qwen3-Embedding",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/QwenLM/Qwen3Guard",
+      "status": 200,
+      "finalUrl": "https://github.com/QwenLM/Qwen3Guard",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/alibaba/OpenSandbox",
+      "status": 200,
+      "finalUrl": "https://github.com/opensandbox-group/OpenSandbox",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/alibaba/open-agent-auth",
+      "status": 200,
+      "finalUrl": "https://github.com/alibaba/open-agent-auth",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/in-toto/attestation",
+      "status": 200,
+      "finalUrl": "https://github.com/in-toto/attestation",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/langgenius/dify/blob/main/api/core/tools/mcp_tool/provider.py",
+      "status": 200,
+      "finalUrl": "https://github.com/langgenius/dify/blob/main/api/core/tools/mcp_tool/provider.py",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/langgenius/dify/blob/main/api/services/tools/mcp_tools_manage_service.py",
+      "status": 200,
+      "finalUrl": "https://github.com/langgenius/dify/blob/main/api/services/tools/mcp_tools_manage_service.py",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/microsoft/agent-governance-toolkit/blob/main/policy-engine/README.md",
+      "status": 200,
+      "finalUrl": "https://github.com/microsoft/agent-governance-toolkit/blob/main/policy-engine/README.md",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/microsoft/agent-governance-toolkit/discussions/3647",
+      "status": 200,
+      "finalUrl": "https://github.com/microsoft/agent-governance-toolkit/discussions/3647",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/microsoft/agent-governance-toolkit/discussions/368",
+      "status": 200,
+      "finalUrl": "https://github.com/microsoft/agent-governance-toolkit/pull/368",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/modelcontextprotocol/typescript-sdk",
+      "status": 200,
+      "finalUrl": "https://github.com/modelcontextprotocol/typescript-sdk",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/n8n-io/n8n/blob/master/packages/%40n8n/nodes-langchain/nodes/mcp/McpClientTool/McpClientTool.node.ts",
+      "status": 200,
+      "finalUrl": "https://github.com/n8n-io/n8n/blob/master/packages/%40n8n/nodes-langchain/nodes/mcp/McpClientTool/McpClientTool.node.ts",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/open-telemetry/semantic-conventions-genai/blob/main/docs/gen-ai/gen-ai-agent-spans.md",
+      "status": 200,
+      "finalUrl": "https://github.com/open-telemetry/semantic-conventions-genai/blob/main/docs/gen-ai/gen-ai-agent-spans.md",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/sev7enITA/PALOframework",
+      "status": 200,
+      "finalUrl": "https://github.com/sev7enITA/PALOframework",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/sev7enITA/PALOframework/actions/runs/32828014857",
+      "status": 200,
+      "finalUrl": "https://github.com/sev7enITA/PALOframework/actions/runs/32828014857",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/sev7enITA/PALOframework/blob/6f806bf8557c3fadbdb9676f93a894853ea102d3/assets/palo-ai-integrations/microsoft-agt/palo-microsoft-agt-interoperability-workflow.png",
+      "status": 200,
+      "finalUrl": "https://github.com/sev7enITA/PALOframework/blob/6f806bf8557c3fadbdb9676f93a894853ea102d3/assets/palo-ai-integrations/microsoft-agt/palo-microsoft-agt-interoperability-workflow.png",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/sev7enITA/PALOframework/blob/a8673d2a472108c7b1d8a056c3a6af9962687bee/.github/workflows/deploy.yml",
+      "status": 200,
+      "finalUrl": "https://github.com/sev7enITA/PALOframework/blob/a8673d2a472108c7b1d8a056c3a6af9962687bee/.github/workflows/deploy.yml",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/sev7enITA/PALOframework/blob/a8673d2a472108c7b1d8a056c3a6af9962687bee/packages/palo-mcp-server/assurance.test.js",
+      "status": 200,
+      "finalUrl": "https://github.com/sev7enITA/PALOframework/blob/a8673d2a472108c7b1d8a056c3a6af9962687bee/packages/palo-mcp-server/assurance.test.js",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/sev7enITA/PALOframework/blob/a8673d2a472108c7b1d8a056c3a6af9962687bee/packages/palo-mcp-server/data-assurance.test.js",
+      "status": 200,
+      "finalUrl": "https://github.com/sev7enITA/PALOframework/blob/a8673d2a472108c7b1d8a056c3a6af9962687bee/packages/palo-mcp-server/data-assurance.test.js",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/sev7enITA/PALOframework/blob/a8673d2a472108c7b1d8a056c3a6af9962687bee/packages/palo-mcp-server/production-admission.test.js",
+      "status": 200,
+      "finalUrl": "https://github.com/sev7enITA/PALOframework/blob/a8673d2a472108c7b1d8a056c3a6af9962687bee/packages/palo-mcp-server/production-admission.test.js",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/sev7enITA/PALOframework/blob/a8673d2a472108c7b1d8a056c3a6af9962687bee/scripts/browser-smoke.mjs",
+      "status": 200,
+      "finalUrl": "https://github.com/sev7enITA/PALOframework/blob/a8673d2a472108c7b1d8a056c3a6af9962687bee/scripts/browser-smoke.mjs",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/sev7enITA/PALOframework/blob/a8673d2a472108c7b1d8a056c3a6af9962687bee/scripts/build.mjs",
+      "status": 200,
+      "finalUrl": "https://github.com/sev7enITA/PALOframework/blob/a8673d2a472108c7b1d8a056c3a6af9962687bee/scripts/build.mjs",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/sev7enITA/PALOframework/blob/a8673d2a472108c7b1d8a056c3a6af9962687bee/scripts/validate-agentic.mjs",
+      "status": 200,
+      "finalUrl": "https://github.com/sev7enITA/PALOframework/blob/a8673d2a472108c7b1d8a056c3a6af9962687bee/scripts/validate-agentic.mjs",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/sev7enITA/PALOframework/blob/c373825/docs/integrations/palo-microsoft-agt-proposal.md",
+      "status": 200,
+      "finalUrl": "https://github.com/sev7enITA/PALOframework/blob/c373825/docs/integrations/palo-microsoft-agt-proposal.md",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/sev7enITA/PALOframework/blob/main/CITATION.cff",
+      "status": 200,
+      "finalUrl": "https://github.com/sev7enITA/PALOframework/blob/main/CITATION.cff",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/sev7enITA/PALOframework/blob/main/CODE_OF_CONDUCT.md",
+      "status": 200,
+      "finalUrl": "https://github.com/sev7enITA/PALOframework/blob/main/CODE_OF_CONDUCT.md",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/sev7enITA/PALOframework/blob/main/README.md",
+      "status": 200,
+      "finalUrl": "https://github.com/sev7enITA/PALOframework/blob/main/README.md",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/sev7enITA/PALOframework/blob/main/agentic/capability-matrix.json",
+      "status": 200,
+      "finalUrl": "https://github.com/sev7enITA/PALOframework/blob/main/agentic/capability-matrix.json",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/sev7enITA/PALOframework/blob/main/audit/knowledge-reader-production-candidate-2026-08-27/entra-qualification-2026-08-28.json",
+      "status": 200,
+      "finalUrl": "https://github.com/sev7enITA/PALOframework/blob/main/audit/knowledge-reader-production-candidate-2026-08-27/entra-qualification-2026-08-28.json",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/sev7enITA/PALOframework/blob/main/audit/knowledge-reader-production-candidate-2026-08-27/reader-v1.0.0-live-deployment-2026-08-28.json",
+      "status": 200,
+      "finalUrl": "https://github.com/sev7enITA/PALOframework/blob/main/audit/knowledge-reader-production-candidate-2026-08-27/reader-v1.0.0-live-deployment-2026-08-28.json",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/sev7enITA/PALOframework/blob/main/audit/knowledge-reader-production-candidate-2026-08-27/reader-v1.0.0-release-evidence.json",
+      "status": 200,
+      "finalUrl": "https://github.com/sev7enITA/PALOframework/blob/main/audit/knowledge-reader-production-candidate-2026-08-27/reader-v1.0.0-release-evidence.json",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/sev7enITA/PALOframework/blob/main/audit/knowledge-reader-production-candidate-2026-08-27/reader-v1.0.0-trivy-high-critical.json",
+      "status": 200,
+      "finalUrl": "https://github.com/sev7enITA/PALOframework/blob/main/audit/knowledge-reader-production-candidate-2026-08-27/reader-v1.0.0-trivy-high-critical.json",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/sev7enITA/PALOframework/blob/main/audit/knowledge-reader-production-candidate-2026-08-27/reader-v1.0.0.spdx.json",
+      "status": 200,
+      "finalUrl": "https://github.com/sev7enITA/PALOframework/blob/main/audit/knowledge-reader-production-candidate-2026-08-27/reader-v1.0.0.spdx.json",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/sev7enITA/PALOframework/blob/main/deploy/n8n-macos-pilot/README.md",
+      "status": 200,
+      "finalUrl": "https://github.com/sev7enITA/PALOframework/blob/main/deploy/n8n-macos-pilot/README.md",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/sev7enITA/PALOframework/blob/main/deploy/vps/palo-guide-mcp-standalone/README.md",
+      "status": 200,
+      "finalUrl": "https://github.com/sev7enITA/PALOframework/blob/main/deploy/vps/palo-guide-mcp-standalone/README.md",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/sev7enITA/PALOframework/blob/main/docs/palo-ai-full-cycle-assurance.md",
+      "status": 200,
+      "finalUrl": "https://github.com/sev7enITA/PALOframework/blob/main/docs/palo-ai-full-cycle-assurance.md",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/sev7enITA/PALOframework/blob/main/docs/palo-ai-governance-integration-guide.md",
+      "status": 200,
+      "finalUrl": "https://github.com/sev7enITA/PALOframework/blob/main/docs/palo-ai-governance-integration-guide.md",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/sev7enITA/PALOframework/blob/main/docs/palo-ai-n8n-governance-control-plane.md",
+      "status": 200,
+      "finalUrl": "https://github.com/sev7enITA/PALOframework/blob/main/docs/palo-ai-n8n-governance-control-plane.md",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/sev7enITA/PALOframework/blob/main/docs/palo-ai-n8n-launch-playbook.md",
+      "status": 200,
+      "finalUrl": "https://github.com/sev7enITA/PALOframework/blob/main/docs/palo-ai-n8n-launch-playbook.md",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/sev7enITA/PALOframework/blob/main/docs/palo-ai-vps-deployment.md",
+      "status": 200,
+      "finalUrl": "https://github.com/sev7enITA/PALOframework/blob/main/docs/palo-ai-vps-deployment.md",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/sev7enITA/PALOframework/blob/main/docs/palo-governance-hub-operations.md",
+      "status": 200,
+      "finalUrl": "https://github.com/sev7enITA/PALOframework/blob/main/docs/palo-governance-hub-operations.md",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/sev7enITA/PALOframework/blob/main/examples/n8n-demo/README.md",
+      "status": 200,
+      "finalUrl": "https://github.com/sev7enITA/PALOframework/blob/main/examples/n8n-demo/README.md",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/sev7enITA/PALOframework/blob/main/packages/palo-mcp-server/core.js",
+      "status": 200,
+      "finalUrl": "https://github.com/sev7enITA/PALOframework/blob/main/packages/palo-mcp-server/core.js",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/sev7enITA/PALOframework/blob/main/packages/palo-mcp-server/guide-agent.js",
+      "status": 200,
+      "finalUrl": "https://github.com/sev7enITA/PALOframework/blob/main/packages/palo-mcp-server/guide-agent.js",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/sev7enITA/PALOframework/commit/a8673d2a472108c7b1d8a056c3a6af9962687bee",
+      "status": 200,
+      "finalUrl": "https://github.com/sev7enITA/PALOframework/commit/a8673d2a472108c7b1d8a056c3a6af9962687bee",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/sev7enITA/PALOframework/commit/b79fc1056d7e403698ffe2381a97dd689a8d8111",
+      "status": 200,
+      "finalUrl": "https://github.com/sev7enITA/PALOframework/commit/b79fc1056d7e403698ffe2381a97dd689a8d8111",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/sev7enITA/PALOframework/commit/c373825",
+      "status": 200,
+      "finalUrl": "https://github.com/sev7enITA/PALOframework/commit/c373825",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/sev7enITA/PALOframework/discussions",
+      "status": 200,
+      "finalUrl": "https://github.com/sev7enITA/PALOframework/discussions",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/sev7enITA/PALOframework/issues/new?template=palo-ai-design-partner.yml",
+      "status": 200,
+      "finalUrl": "https://github.com/login?return_to=https%3A%2F%2Fgithub.com%2Fsev7enITA%2FPALOframework%2Fissues%2Fnew%3Ftemplate%3Dpalo-ai-design-partner.yml",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/sev7enITA/PALOframework/issues/new?template=palo-ai-feedback.yml",
+      "status": 200,
+      "finalUrl": "https://github.com/login?return_to=https%3A%2F%2Fgithub.com%2Fsev7enITA%2FPALOframework%2Fissues%2Fnew%3Ftemplate%3Dpalo-ai-feedback.yml",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/sev7enITA/PALOframework/pull/29",
+      "status": 200,
+      "finalUrl": "https://github.com/sev7enITA/PALOframework/pull/29",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/sev7enITA/PALOframework/pull/6",
+      "status": 200,
+      "finalUrl": "https://github.com/sev7enITA/PALOframework/pull/6",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/sev7enITA/PALOframework/tree/c373825/examples/agentic-interface/integrations/microsoft-agt",
+      "status": 200,
+      "finalUrl": "https://github.com/sev7enITA/PALOframework/tree/c373825/examples/agentic-interface/integrations/microsoft-agt",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/sev7enITA/PALOframework/tree/main",
+      "status": 200,
+      "finalUrl": "https://github.com/sev7enITA/PALOframework/tree/main",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/sev7enITA/PALOframework/tree/main/assets/palo-ai-n8n-scenarios/",
+      "status": 200,
+      "finalUrl": "https://github.com/sev7enITA/PALOframework/tree/main/assets/palo-ai-n8n-scenarios/",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/sev7enITA/PALOframework/tree/main/examples/agentic-interface/integrations/microsoft-agt",
+      "status": 200,
+      "finalUrl": "https://github.com/sev7enITA/PALOframework/tree/main/examples/agentic-interface/integrations/microsoft-agt",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/sev7enITA/PALOframework/tree/main/examples/agentic-interface/knowledge-copilot/",
+      "status": 200,
+      "finalUrl": "https://github.com/sev7enITA/PALOframework/tree/main/examples/agentic-interface/knowledge-copilot/",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/sev7enITA/PALOframework/tree/main/examples/hands-on-demo/",
+      "status": 200,
+      "finalUrl": "https://github.com/sev7enITA/PALOframework/tree/main/examples/hands-on-demo/",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/sev7enITA/PALOframework/tree/main/media/",
+      "status": 200,
+      "finalUrl": "https://github.com/sev7enITA/PALOframework/tree/main/media/",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/sev7enITA/PALOframework/tree/main/packages/n8n-nodes-palo-ai/",
+      "status": 200,
+      "finalUrl": "https://github.com/sev7enITA/PALOframework/tree/main/packages/n8n-nodes-palo-ai/",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/sev7enITA/PALOframework/tree/main/packages/palo-mcp-server/",
+      "status": 200,
+      "finalUrl": "https://github.com/sev7enITA/PALOframework/tree/main/packages/palo-mcp-server/",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/sev7enITA/PALOframework/tree/main/schemas/",
+      "status": 200,
+      "finalUrl": "https://github.com/sev7enITA/PALOframework/tree/main/schemas/",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/sev7enITA/policywatcher",
+      "status": 200,
+      "finalUrl": "https://github.com/sev7enITA/policywatcher",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://github.com/tencent/AI-Infra-Guard",
+      "status": 200,
+      "finalUrl": "https://github.com/tencent/AI-Infra-Guard",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://images.rivistacorporategovernance.it/f/indici/NumeroStraordinario_2026_tUAZh_RCG.pdf",
+      "status": 200,
+      "finalUrl": "https://images.rivistacorporategovernance.it/f/indici/NumeroStraordinario_2026_tUAZh_RCG.pdf",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://imaginecup.microsoft.com/en-US",
+      "status": 200,
+      "finalUrl": "https://imaginecup.microsoft.com/en-US",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://imaginecup.microsoft.com/en-us/category/33/",
+      "status": 200,
+      "finalUrl": "https://imaginecup.microsoft.com/en-us/category/33/",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://keepachangelog.com/en/1.0.0/",
+      "status": 200,
+      "finalUrl": "https://keepachangelog.com/en/1.0.0/",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://kpmg.com/xx/en/our-insights/value-creation/global-ceo-outlook-survey.html",
+      "status": 200,
+      "finalUrl": "https://kpmg.com/xx/en/our-insights/value-creation/global-ceo-outlook-survey.html",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/microsoft-copilot-studio/agents-experience/tools-available",
+      "status": 200,
+      "finalUrl": "https://learn.microsoft.com/en-us/microsoft-copilot-studio/agents-experience/tools-available",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/microsoft-copilot-studio/mcp-add-components-to-agent",
+      "status": 200,
+      "finalUrl": "https://learn.microsoft.com/en-us/microsoft-copilot-studio/mcp-add-components-to-agent",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/microsoft-copilot-studio/mcp-add-existing-server-to-agent",
+      "status": 200,
+      "finalUrl": "https://learn.microsoft.com/en-us/microsoft-copilot-studio/mcp-add-existing-server-to-agent",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/microsoft-copilot-studio/requirements-licensing-subscriptions",
+      "status": 200,
+      "finalUrl": "https://learn.microsoft.com/en-us/microsoft-copilot-studio/requirements-licensing-subscriptions",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/power-platform/admin/powerapps-flow-licensing-faq",
+      "status": 200,
+      "finalUrl": "https://learn.microsoft.com/en-us/power-platform/admin/powerapps-flow-licensing-faq",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/startups/benefits/technical-benefits/power-platform",
+      "status": 200,
+      "finalUrl": "https://learn.microsoft.com/en-us/startups/benefits/technical-benefits/power-platform",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/startups/microsoft-for-startups/application",
+      "status": 200,
+      "finalUrl": "https://learn.microsoft.com/en-us/startups/microsoft-for-startups/application",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/startups/microsoft-for-startups/getting-started-mfs",
+      "status": 200,
+      "finalUrl": "https://learn.microsoft.com/en-us/startups/microsoft-for-startups/getting-started-mfs",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/startups/microsoft-for-startups/overview",
+      "status": 200,
+      "finalUrl": "https://learn.microsoft.com/en-us/startups/microsoft-for-startups/overview",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/startups/microsoft-for-startups/unlock-more-benefits",
+      "status": 200,
+      "finalUrl": "https://learn.microsoft.com/en-us/startups/microsoft-for-startups/unlock-more-benefits",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/training/student-hub/become-a-student-ambassador",
+      "status": 200,
+      "finalUrl": "https://learn.microsoft.com/en-us/training/student-hub/become-a-student-ambassador",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://modelcontextprotocol.io/extensions/auth/enterprise-managed-authorization",
+      "status": 200,
+      "finalUrl": "https://modelcontextprotocol.io/extensions/auth/enterprise-managed-authorization",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://news.ycombinator.com/item?id=47042470",
+      "status": 200,
+      "finalUrl": "https://news.ycombinator.com/item?id=47042470",
+      "method": "GET"
+    },
+    {
+      "url": "https://nodered.org/docs/api/hooks/messaging/",
+      "status": 200,
+      "finalUrl": "https://nodered.org/docs/api/hooks/messaging/",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://nodered.org/docs/creating-nodes/",
+      "status": 200,
+      "finalUrl": "https://nodered.org/docs/creating-nodes/",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://openai.com/hugging-face-incident-and-misalignment/",
+      "status": 200,
+      "finalUrl": "https://openai.com/hugging-face-incident-and-misalignment/",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://opentelemetry.io/blog/2026/genai-observability/",
+      "status": 200,
+      "finalUrl": "https://opentelemetry.io/blog/2026/genai-observability/",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://play.google.com/store/apps/details?id=com.fabriziodegni.paloframework",
+      "status": 200,
+      "finalUrl": "https://play.google.com/store/apps/details?id=com.fabriziodegni.paloframework",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://polihub.it/",
+      "status": 200,
+      "finalUrl": "https://polihub.it/",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://prod.cursor.com/docs/cli/mcp",
+      "status": 200,
+      "finalUrl": "https://prod.cursor.com/docs/cli/mcp",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://pulse.microsoft.com/it-it/transform-it-it/na/fa2-microsoft-for-startups-italia/",
+      "status": 200,
+      "finalUrl": "https://pulse.microsoft.com/it-it/transform-it-it/na/fa2-microsoft-for-startups-italia/",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://support.claude.com/en/articles/11175166-get-started-with-custom-connectors-using-remote-mcp",
+      "status": 200,
+      "finalUrl": "https://support.claude.com/en/articles/11175166-get-started-with-custom-connectors-using-remote-mcp",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://support.claude.com/en/articles/11725091-when-to-use-desktop-and-web-connectors",
+      "status": 200,
+      "finalUrl": "https://support.claude.com/en/articles/11725091-when-to-use-desktop-and-web-connectors",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://support.claude.com/en/articles/13837440-use-plugins-in-claude",
+      "status": 200,
+      "finalUrl": "https://support.claude.com/en/articles/13837440-use-plugins-in-claude",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://www.accenture.com/content/dam/accenture/final/accenture-com/document-4/Accenture-Strategy-Macro-Foresight-Brief-2026-Top-10-Trends.pdf",
+      "status": 200,
+      "finalUrl": "https://www.accenture.com/content/dam/accenture/final/accenture-com/document-4/Accenture-Strategy-Macro-Foresight-Brief-2026-Top-10-Trends.pdf",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://www.anthropic.com/research/alignment-assessment-cybersecurity-incidents",
+      "status": 200,
+      "finalUrl": "https://www.anthropic.com/research/alignment-assessment-cybersecurity-incidents",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://www.anthropic.com/threat-intelligence-report-september-2026",
+      "status": 200,
+      "finalUrl": "https://www.anthropic.com/threat-intelligence-report-september-2026",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://www.bcg.com/publications/2025/geopolitical-forces-shaping-business-in-2026",
+      "status": 403,
+      "finalUrl": "https://www.bcg.com/publications/2025/geopolitical-forces-shaping-business-in-2026",
+      "method": "GET"
+    },
+    {
+      "url": "https://www.crest-approved.org/",
+      "status": 200,
+      "finalUrl": "https://www.crest-approved.org/",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://www.ey.com/en_gl/megatrends",
+      "status": 200,
+      "finalUrl": "https://www.ey.com/en_gl/megatrends",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://www.garanteprivacy.it",
+      "status": 200,
+      "finalUrl": "https://www.garanteprivacy.it",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://www.gartner.com/en/articles/top-technology-trends-2026",
+      "status": 200,
+      "finalUrl": "https://www.gartner.com/en/articles/top-technology-trends-2026",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://www.humaneconomicforum.org/documents/programma_9-dic-2025.pdf",
+      "status": 200,
+      "finalUrl": "https://humaneconomicforum.org/documents/programma_9-dic-2025.pdf",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://www.indiehackers.com/post/fabrizio-degni-introduces-palo-framework-to-advance-responsible-ai-governance-z1YV72vN9fQo83V234Ws",
+      "status": 200,
+      "finalUrl": "https://www.indiehackers.com/post/fabrizio-degni-introduces-palo-framework-to-advance-responsible-ai-governance-z1YV72vN9fQo83V234Ws",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://www.iso.org/standard/42001",
+      "status": 403,
+      "finalUrl": "https://www.iso.org/standard/42001",
+      "method": "GET"
+    },
+    {
+      "url": "https://www.iso.org/standard/42005",
+      "status": 403,
+      "finalUrl": "https://www.iso.org/standard/42005",
+      "method": "GET"
+    },
+    {
+      "url": "https://www.jetbrains.com/help/ai-assistant/mcp.html",
+      "status": 200,
+      "finalUrl": "https://www.jetbrains.com/help/ai-assistant/mcp.html",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://www.linkedin.com/in/fdegni/",
+      "status": 999,
+      "finalUrl": "https://www.linkedin.com/in/fdegni",
+      "method": "GET"
+    },
+    {
+      "url": "https://www.linkedin.com/posts/world-ai-council_at-the-world-ai-council-we-are-incredibly-activity-7438233663349133312-9akN",
+      "status": 200,
+      "finalUrl": "https://www.linkedin.com/posts/world-ai-council_at-the-world-ai-council-we-are-incredibly-activity-7438233663349133312-9akN",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://www.mckinsey.com/capabilities/tech-and-ai/our-insights/the-top-trends-in-tech",
+      "status": null,
+      "error": "The read operation timed out",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://www.opastpublishers.com/open-access-articles/orbital-intelligence-and-the-knightian-void-a-graduated-governance-model-for-autonomous-ai-in-cosmic-exploration-grounded-in-the-p-10761.html",
+      "status": 200,
+      "finalUrl": "https://www.opastpublishers.com/open-access-articles/orbital-intelligence-and-the-knightian-void-a-graduated-governance-model-for-autonomous-ai-in-cosmic-exploration-grounded-in-the-p-10761.html",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://www.policywatcher.online/",
+      "status": 200,
+      "finalUrl": "https://policywatcher.online/",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://www.policywatcher.online/methodology/confidence",
+      "status": 200,
+      "finalUrl": "https://policywatcher.online/methodology/confidence",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://www.policywatcher.online/observatory",
+      "status": 200,
+      "finalUrl": "https://policywatcher.online/observatory",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://www.policywatcher.online/timeline",
+      "status": 200,
+      "finalUrl": "https://policywatcher.online/timeline",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://www.policywatcher.online/trust",
+      "status": 200,
+      "finalUrl": "https://policywatcher.online/trust",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://www.pwc.com/us/en/tech-effect/ai-analytics/ai-predictions.html",
+      "status": 200,
+      "finalUrl": "https://www.pwc.com/us/en/tech-effect/ai-analytics/ai-predictions.html",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://www.reddit.com/r/AI_Agents/comments/1uks0vs/people_running_agents_in_production_how_do_you/",
+      "status": 200,
+      "finalUrl": "https://www.reddit.com/r/AI_Agents/comments/1uks0vs/people_running_agents_in_production_how_do_you/",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://www.reddit.com/r/AI_Agents/comments/1ve23m9/agents_in_production/",
+      "status": 200,
+      "finalUrl": "https://www.reddit.com/r/AI_Agents/comments/1ve23m9/agents_in_production/",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://www.reddit.com/r/LocalLLaMA/comments/1r72ul0/qwen35_397b_a17b_tool_calling_issues_in_llamacpp/",
+      "status": 200,
+      "finalUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1r72ul0/qwen35_397b_a17b_tool_calling_issues_in_llamacpp/",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://www.reddit.com/r/LocalLLaMA/comments/1sdhvc5/qwen_35_tool_calling_fixes_for_agentic_use_whats/",
+      "status": 200,
+      "finalUrl": "https://www.reddit.com/r/LocalLLaMA/comments/1sdhvc5/qwen_35_tool_calling_fixes_for_agentic_use_whats/",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://www.reddit.com/r/OpenTelemetry/comments/1rvu4x2/agent_telemetry_semantic_conventions_atsc_draft/",
+      "status": 200,
+      "finalUrl": "https://www.reddit.com/r/OpenTelemetry/comments/1rvu4x2/agent_telemetry_semantic_conventions_atsc_draft/",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://www.rfc-editor.org/info/rfc8785/",
+      "status": 200,
+      "finalUrl": "https://www.rfc-editor.org/info/rfc8785/",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://www.rfc-editor.org/info/rfc9943/",
+      "status": 200,
+      "finalUrl": "https://www.rfc-editor.org/info/rfc9943/",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://www.rfc-editor.org/rfc/rfc9421.html",
+      "status": 200,
+      "finalUrl": "https://www.rfc-editor.org/rfc/rfc9421.html",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://www.rivista.ai/2026/03/25/p-a-l-o-framework-toolbox-2-0-governance-in-your-pocket-o-lillusione-portatile-del-controllo-algoritmico/",
+      "status": 200,
+      "finalUrl": "https://www.rivista.ai/2026/03/25/p-a-l-o-framework-toolbox-2-0-governance-in-your-pocket-o-lillusione-portatile-del-controllo-algoritmico/",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://www.rivistacorporategovernance.it/Tool/NewsletterArchive/Detail/view_html?anno=2026&id_newsletter=27",
+      "status": 200,
+      "finalUrl": "https://www.rivistacorporategovernance.it/Tool/NewsletterArchive/Detail/view_html?anno=2026&id_newsletter=27",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://www.software.polimi.it/microsoft-365-apps/",
+      "status": 200,
+      "finalUrl": "https://www.software.polimi.it/microsoft-365-apps/",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://www.w3.org/TR/WCAG22/",
+      "status": 200,
+      "finalUrl": "https://www.w3.org/TR/WCAG22/",
+      "method": "HEAD"
+    },
+    {
+      "url": "https://www.youtube.com/embed/7Zvq78Pc8zU?rel=0",
+      "status": 200,
+      "finalUrl": "https://www.youtube.com/embed/7Zvq78Pc8zU?rel=0",
+      "method": "HEAD"
+    }
+  ],
+  "_repositoryExport": {
+    "sourceSnapshot": "external-links-audit.json",
+    "scope": "Portable archive; original artifact hashes identify original local files. HTTP body snapshots and screenshots remain in the local audit archive."
+  }
+}

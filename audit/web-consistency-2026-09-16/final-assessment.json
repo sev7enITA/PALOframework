@@ -1,0 +1,53 @@
+{
+  "checkedAt": "2026-09-16T11:01:25.690989+00:00",
+  "verdict": "Publication alignment required; audit completed; no source changes, commit, push or deploy performed",
+  "head": "a9b258d01b3c169c142f44b4c6fc175cecb681f6",
+  "counts": {
+    "sitemapEntries": 37,
+    "htmlPages": 108,
+    "requests": 462,
+    "internalReferences": 5779,
+    "externalUrlsInventoried": 197
+  },
+  "browserNavigations": 44,
+  "externalHttpDestinations": 191,
+  "findings": [
+    {
+      "id": "PALO-WEB-01",
+      "priority": "P1",
+      "finding": "Canonical Hostinger registry and Hub bundle differ from synchronized GitHub Pages; 0 versus 53 signals at observation time"
+    },
+    {
+      "id": "PALO-WEB-02",
+      "priority": "P1 completion",
+      "finding": "ANS changes and revised report remain local and unpublished"
+    },
+    {
+      "id": "PALO-WEB-03",
+      "priority": "P2",
+      "finding": "62 indexable self-canonical pages absent from 37-entry sitemap"
+    },
+    {
+      "id": "PALO-WEB-04",
+      "priority": "P2",
+      "finding": "Current validation checks sitemap entries but not missing indexable pages"
+    },
+    {
+      "id": "PALO-WEB-05",
+      "priority": "P2",
+      "finding": "One n8n license link returns 404; replacement identified in official index"
+    },
+    {
+      "id": "PALO-WEB-06",
+      "priority": "P2",
+      "finding": "Four Italian guides declare English language without article language override"
+    }
+  ],
+  "staticH1AlertsDisposition": "Not a confirmed visible duplication: CSS hides document H1 and alternate onboarding view; Hub title is rendered by JavaScript. All 44 browser states show one visible H1.",
+  "reportSha256": "033f52acb1f624aa2c700a81339c8757c9b554aa3489bbd7e22eccad11d015ad",
+  "missingLocalReportLinks": [],
+  "_repositoryExport": {
+    "sourceSnapshot": "final-assessment.json",
+    "scope": "Portable archive; original artifact hashes identify original local files. HTTP body snapshots and screenshots remain in the local audit archive."
+  }
+}
