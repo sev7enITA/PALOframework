@@ -11,6 +11,7 @@ const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "
 const distRoot = path.join(projectRoot, "dist");
 const capabilityMatrix = JSON.parse(await readFile(path.join(distRoot, "agentic", "capability-matrix.json"), "utf8"));
 const expectedCapabilityRows = capabilityMatrix.capabilities.length;
+const signalRegistry = JSON.parse(await readFile(path.join(distRoot, "data/integrations/policywatcher-signal-registry.json"), "utf8"));
 const mimeTypes = { ".css": "text/css", ".html": "text/html", ".js": "text/javascript", ".json": "application/json", ".png": "image/png", ".svg": "image/svg+xml", ".webp": "image/webp", ".xml": "application/xml" };
 
 const server = createServer(async (request, response) => {
@@ -246,13 +247,20 @@ try {
   await page.getByRole("button", { name: "Technical" }).click();
   if (!/Current operating context[\s\S]*What has been verified[\s\S]*What must I do next/i.test(await page.locator(".operating-context").innerText())) failures.push("Governance Hub technical lens: operating context is missing");
   await page.getByRole("button", { name: "External evidence" }).click();
-  await expectAttribute(page.locator(".signal-operations"), "data-policywatcher-transport-state", "not-synchronized", "PolicyWatcher offline-safe operational baseline");
+  await expectAttribute(page.locator(".signal-operations"), "data-policywatcher-transport-state", signalRegistry.transport.state, "PolicyWatcher built registry state");
   const signalOperationsText = await page.locator(".signal-operations").innerText();
-  if (!/PolicyWatcher signal queue[\s\S]*No synchronized signals[\s\S]*PALO remains fully available[\s\S]*Authority boundary/i.test(signalOperationsText)) failures.push("Governance Hub: PolicyWatcher registry omits its empty-state or authority boundary");
+  if (!/PolicyWatcher signal queue[\s\S]*Authority boundary/i.test(signalOperationsText)) failures.push("Governance Hub: PolicyWatcher registry omits its authority boundary");
+  if (signalRegistry.entries.length === 0) {
+    if (!/No synchronized signals[\s\S]*PALO remains fully available/i.test(signalOperationsText)) failures.push("Governance Hub: empty PolicyWatcher registry omits its offline-safe state");
+  } else if (await page.locator(".signal-table tbody tr").count() !== signalRegistry.entries.length) {
+    failures.push("Governance Hub: rendered PolicyWatcher entries differ from the published registry");
+  }
   const reviewLedgerExport = await captureDownload(page.getByRole("button", { name: "Export review ledger" }), "PolicyWatcher local review ledger");
   try {
     const parsed = JSON.parse(reviewLedgerExport);
-    if (parsed.format !== "palo-policywatcher-review-ledger" || parsed.localOnly !== true || parsed.sourceRegistryDigest?.length !== 64 || parsed.reviews?.length !== 0) failures.push("Governance Hub: empty PolicyWatcher review ledger has an invalid contract or boundary");
+    const expectedReviews = signalRegistry.entries.map(({ signalId, signalDigest, transportStatus, reviewState }) => ({ signalId, signalDigest, transportStatus, reviewState }));
+    const actualReviews = parsed.reviews?.map(({ signalId, signalDigest, transportStatus, reviewState }) => ({ signalId, signalDigest, transportStatus, reviewState }));
+    if (parsed.format !== "palo-policywatcher-review-ledger" || parsed.localOnly !== true || parsed.sourceRegistryDigest !== signalRegistry.collectionDigest || JSON.stringify(actualReviews) !== JSON.stringify(expectedReviews) || !/not identity-backed approval/.test(parsed.authorityBoundary || "")) failures.push("Governance Hub: PolicyWatcher review ledger differs from the built registry or omits its authority boundary");
   } catch {
     failures.push("Governance Hub: PolicyWatcher review ledger is not valid JSON");
   }

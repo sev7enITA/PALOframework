@@ -132,6 +132,7 @@ export const PUBLIC_FILES = [
   "docs/production-release-commit-checklist.md",
   "docs/palo-ai-n8n-alpha-test-report.md",
   "docs/palo-ai-adoption-paths.md",
+  "docs/palo-ai-ans-integration.md",
   "docs/palo-ai-cloud-reference-architecture.md",
   "docs/palo-ai-community-and-market-entry.md",
   "docs/palo-ai-governance-integration-guide.md",

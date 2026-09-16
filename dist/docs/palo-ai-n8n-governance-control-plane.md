@@ -238,4 +238,4 @@ Do not yet use:
 - [Human-in-the-loop for AI tool calls](https://docs.n8n.io/advanced-ai/human-in-the-loop-tools/)
 - [Instance-level MCP server](https://docs.n8n.io/advanced-ai/mcp/accessing-n8n-mcp-server/)
 - [Community-node verification guidelines](https://docs.n8n.io/integrations/creating-nodes/build/reference/verification-guidelines/)
-- [Sustainable Use License](https://docs.n8n.io/sustainable-use-license/)
+- [Sustainable Use License](https://docs.n8n.io/n8n-community-license/sustainable-use-license.md)

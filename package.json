@@ -29,7 +29,7 @@
     "governance-hub:operational-smoke": "node scripts/browser-hub-control-plane-smoke.mjs",
     "case:contribute": "node scripts/case-contribute.mjs",
     "activation:publish-issues": "node scripts/publish-activation-issues.mjs",
-    "validate": "npm run validate:text-style && npm run external-evidence:check && npm run policywatcher-signals:test && npm run governance-hub:verification:test && npm run semantic:check && npm run semantic:validate && npm run semantic:release:check && node scripts/validate.mjs --root .",
+    "validate": "npm run validate:text-style && npm run external-evidence:check && npm run policywatcher-signals:test && npm run governance-hub:verification:test && npm run semantic:check && npm run semantic:validate && npm run semantic:release:check && node --test scripts/public-index.test.mjs && node scripts/validate.mjs --root .",
     "validate:knowledge-copilot": "node scripts/validate-knowledge-copilot-integrations.mjs",
     "validate:agentic": "npm run validate:knowledge-copilot && node scripts/validate-agentic.mjs && node --test packages/palo-mcp-server/*.test.js && python3 -m unittest examples/agentic-interface/integrations/dify/test_palo_dify_tool.py",
     "opa:install": "node scripts/install-opa.mjs",
@@ -61,7 +61,8 @@
     "package:hostinger": "node scripts/package-hostinger.mjs",
     "smoke": "node scripts/browser-smoke.mjs",
     "p0:bootstrap": "npm ci --prefix governance-hub --ignore-scripts && npm run opa:install",
-    "p0": "npm run p0:bootstrap && npm run palo:hub:control-plane:test && npm run validate:agentic && npm run validate && npm run build && npm run validate:dist && npm run build:check && npm run smoke && npm run governance-hub:operational-smoke"
+    "p0": "npm run p0:bootstrap && npm run palo:hub:control-plane:test && npm run validate:agentic && npm run validate && npm run build && npm run validate:dist && npm run build:check && npm run smoke && npm run governance-hub:operational-smoke",
+    "sitemap:generate": "node scripts/generate-sitemap.mjs"
   },
   "devDependencies": {
     "fast-xml-parser": "5.10.1",

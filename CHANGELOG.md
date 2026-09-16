@@ -11,6 +11,8 @@ and this project follows Semantic Versioning where practical.
 
 ### Added
 
+- Published the experimental ANS SDK integration guide with an eight-scenario offline demo, separate enterprise delegation and explicit hosted-service and production qualification gaps.
+
 - Added Fabrizio Degni's doctoral thesis in Computer Science at EIMT to Recognition, with the full title, submission committee and a direct link from the Community creator profile.
 - Published the 14 September 2026 Observatory review with three dated, primary-source monitoring briefs, homepage and Case 001 follow-up links, and an RSS entry.
 - Added explicit project attribution to Fabrizio Degni across the homepage, Community profile, Recognition, toolkits and generated documentation.
@@ -25,6 +27,9 @@ and this project follows Semantic Versioning where practical.
 - Added a production release commit checklist with isolated Git staging groups, deterministic site-output handling, private-input exclusions and mandatory validation gates.
 
 ### Changed
+
+- Completed the public sitemap from the indexable page inventory, added bidirectional coverage validation, corrected four Italian document language declarations and repaired the n8n license reference.
+- Refreshed the validated PolicyWatcher registry and rebuilt the Governance Hub from the same snapshot for the website publication.
 
 - Aligned the homepage, Regulatory Watch and FRIA review dates; updated GPAI enforcement and the AI Omnibus timeline against the Commission's current overview.
 - Wrapped FRIA header actions on narrow screens so Template, Import and Export remain within the viewport.
