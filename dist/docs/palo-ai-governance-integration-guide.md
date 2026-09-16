@@ -1,6 +1,6 @@
 # PALO-AI Governance Integration Guide
 
-Status: current data-assurance developer-preview integration guide for PALO-AI v2.7, updated 25 August 2026.
+Status: current data-assurance developer-preview integration guide for PALO-AI v2.7, updated 16 September 2026.
 
 > **Do not use this release as a production authorization boundary.** The current implementation is intended for isolated evaluation with mock or non-consequential tools. It does not yet provide production workload identity, reviewer authentication, unavoidable execution, distributed exactly-once semantics, KMS/HSM-backed keys, high availability, or connector certification.
 
@@ -204,6 +204,10 @@ curl --fail --silent \
 ```
 
 For meaningful evaluation, create your own profile version, authority scopes and argument schemas. A profile update with different content must use a strictly newer semantic version.
+
+## ANS identity integration
+
+The [ANS integration guide](palo-ai-ans-integration.md) describes the experimental SDK bridge, eight verified offline scenarios and the remaining hosted-service and production gaps. ANS identity verification is followed by independent enterprise delegation and PALO action governance; it does not grant organizational authority on its own.
 
 ## n8n
 

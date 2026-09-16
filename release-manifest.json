@@ -18,7 +18,7 @@
       "version": "3.1.0",
       "date": "2026-08-23",
       "productionCommitRunbook": "docs/production-release-commit-checklist.html",
-      "updatedAt": "2026-09-14"
+      "updatedAt": "2026-09-16"
     },
     "framework": {
       "version": "2.0.0",
@@ -46,7 +46,15 @@
       "version": "2.7.0",
       "date": "2026-08-25",
       "status": "developer-preview",
-      "methodologyRef": "agenticMethodology"
+      "methodologyRef": "agenticMethodology",
+      "ansIntegration": {
+        "status": "experimental-offline-verified",
+        "updatedAt": "2026-09-16",
+        "guide": "docs/palo-ai-ans-integration.html",
+        "sourceCommit": "f4bb97816c67ca2f64496eccca9a119aeb650fea",
+        "hostedServiceQualified": false,
+        "productionQualified": false
+      }
     },
     "semanticFoundation": {
       "version": "3.1.0",

@@ -42,7 +42,15 @@ function documentCategory(file) {
   return "Start and adoption";
 }
 
+const documentLanguages = new Map([
+  ["docs/palo-ai-state-of-the-art-radar-2026-08.md", "it"],
+  ["docs/palo-knowledge-copilot-integrations.md", "it"],
+  ["docs/palo-mcp-host-qualification.md", "it"],
+  ["examples/agentic-interface/knowledge-copilot/README.md", "it"]
+]);
+
 const importantMetadata = {
+  "docs/palo-ai-ans-integration.md": { level: "guide", audience: "technical governance", task: "integrate assure", product: "PALO-AI", status: "Experimental SDK bridge", evidenceClass: "illustrative-local-preview", workspace: "assurance-review", prerequisite: "Node.js 22 or 24 and Go 1.27.1", next: "Run the offline ANS demo and review qualification gaps" },
   "docs/palo-repository-reading-guide.md": { level: "start", audience: "executive governance technical builder", task: "understand integrate assure", product: "PALO Platform", status: "Current Guidance", evidenceClass: "canonical-definition", workspace: "public-catalog", prerequisite: "No specialist prerequisite", next: "Choose the role-based repository path" },
   "docs/palo-v3-semantic-foundation.md": { level: "reference", audience: "executive governance technical builder", task: "understand design assure", product: "PALO Core", status: "Canonical v3.1.0", evidenceClass: "canonical-definition", workspace: "public-catalog", prerequisite: "No specialist prerequisite", next: "Open the Semantic Inspector" },
   "docs/palo-v3.1-governance-control-plane.md": { level: "reference", audience: "executive governance technical builder", task: "understand design assure deploy", product: "PALO / PALO-AI", status: "Canonical v3.1.0", evidenceClass: "canonical-definition", workspace: "assurance-review", prerequisite: "One scoped AI system or AIMS", next: "Apply the relevant control packs to a Case File" },
@@ -124,7 +132,7 @@ function rewriteMarkdownLink(href, file) {
   return `https://github.com/sev7enITA/PALOframework/${mode}/main/${githubTarget}${query ? `?${query}` : ""}${hash ? `#${hash}` : ""}`;
 }
 
-function renderDocument(markdown, file) {
+export function renderDocument(markdown, file) {
   const title = titleFromMarkdown(markdown, file);
   const htmlFile = file.replace(/\.md$/i, ".html");
   const usedSlugs = new Map();
@@ -174,7 +182,7 @@ function renderDocument(markdown, file) {
     : '<p class="palo-small">This short document has no section index.</p>';
 
   return `<!doctype html>
-<html lang="en">
+<html lang="${documentLanguages.get(file) || "en"}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">

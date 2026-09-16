@@ -6,6 +6,7 @@ import { fileURLToPath } from "node:url";
 import { XMLParser } from "fast-xml-parser";
 import { HtmlValidate } from "html-validate";
 import Ajv2020 from "ajv/dist/2020.js";
+import { publicIndex, sitemapCoverage } from "./public-index.mjs";
 import addFormats from "ajv-formats";
 import { PUBLIC_FILES, PUBLIC_GENERATED_HTML, PUBLIC_HTML, PUBLIC_SOURCE_HTML } from "./public-files.mjs";
 import { assertRegistry as assertPolicyWatcherRegistry, createValidators as createPolicyWatcherValidators } from "../packages/palo-policywatcher-operations/index.js";
@@ -614,7 +615,10 @@ const sitemapUrls = sitemapEntries.map((entry) => entry.loc).filter(Boolean);
 const sitemapSet = new Set(sitemapUrls);
 if (sitemapSet.size !== sitemapUrls.length) errors.push("sitemap.xml: duplicate URL entries");
 const publicationDate = [releaseDate, webUpdatedAt, ...Object.values(manifest.components || {}).map((component) => component.date), ...Object.values(manifest.modules || {}).map((module) => module.date)].filter(Boolean).sort().at(-1);
-for (const entry of sitemapEntries) if (entry.lastmod !== publicationDate) errors.push(`sitemap.xml: ${entry.loc || "entry"} lastmod must match current publication date ${publicationDate}`);
+for (const entry of sitemapEntries) if (!/^\d{4}-\d{2}-\d{2}$/.test(entry.lastmod || "") || entry.lastmod > publicationDate || Number.isNaN(Date.parse(entry.lastmod))) errors.push(`sitemap.xml: ${entry.loc || "entry"} lastmod must be a valid date no later than ${publicationDate}`);
+const coverage = sitemapCoverage(await publicIndex(validationRoot, { built }), sitemapUrls);
+for (const url of coverage.missing) errors.push(`sitemap.xml: indexable public page is missing: ${url}`);
+for (const url of coverage.unexpected) errors.push(`sitemap.xml: entry is not an indexable self-canonical page: ${url}`);
 for (const value of sitemapUrls) {
   try {
     const url = new URL(value);

@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>PALO-AI and ANS: verified identity, governed actions | PALO Documentation</title>
+  <meta name="description" content="Public PALO documentation: PALO-AI and ANS: verified identity, governed actions.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://paloframework.org/docs/palo-ai-ans-integration.html">
+  <link rel="icon" type="image/webp" href="../assets/logo.webp">
+  <link rel="stylesheet" href="../assets/palo-icons.css">
+  <link rel="stylesheet" href="../assets/palo-v21.css?v=3.1.0">
+  <link rel="stylesheet" href="../assets/palo-docs.css">
+  <script src="../assets/palo-icons.js" defer></script>
+  <script src="../assets/palo-v21.js?v=3.1.0" defer></script>
+  <script src="../assets/palo-docs.js" defer></script>
+    <meta name="author" content="Fabrizio Degni">
+    <link rel="stylesheet" href="../assets/palo-authorship.css" data-palo-authorship-style="true">
+</head>
+<body class="palo-v21 palo-doc-page" data-doc-source="docs/palo-ai-ans-integration.md">
+  <a class="palo-skip-link" href="#main-content">Skip to main content</a>
+  <header class="palo-site-header"><div class="palo-shell palo-header-inner">
+    <a class="palo-brand" href="../index.html"><img src="../assets/logo.webp" alt="PALO">PALO FRAMEWORK</a>
+    <button class="palo-menu-toggle" type="button" data-palo-menu-toggle aria-expanded="false" aria-controls="palo-primary-nav" aria-label="Open navigation"><span data-palo-icon="menu" aria-hidden="true"></span></button>
+    <nav class="palo-nav" id="palo-primary-nav" aria-label="Primary navigation"><a href="../designs/theory-to-practice-infographic/">Start</a><a href="../PALO_AIGovernance.html">Agentic Governance</a><a href="../governance-hub/">Governance Hub</a><a href="../index.html#guided-journeys">Tools</a><a href="../PALO_DocumentationLibrary.html" aria-current="page">Documentation</a><a href="../PALO_AIProductionReadiness.html">Readiness</a></nav>
+  </div></header>
+  <main id="main-content" class="palo-doc-main">
+    <div class="palo-shell">
+      <nav class="palo-doc-breadcrumb" aria-label="Breadcrumb"><a href="../PALO_DocumentationLibrary.html">Documentation Library</a><span aria-hidden="true">/</span><span>Architecture and integration</span></nav>
+      <header class="palo-doc-hero"><p class="palo-eyebrow">Architecture and integration | Public documentation</p><h1>PALO-AI and ANS: verified identity, governed actions</h1><div class="palo-doc-facts"><span><small>Level</small><strong>guide</strong></span><span><small>Audience</small><strong>technical | governance</strong></span><span><small>Product</small><strong>PALO-AI</strong></span><span><small>Status</small><strong>Experimental SDK bridge</strong></span><span><small>Lifecycle</small><strong>Current</strong></span><span><small>Read</small><strong>4 min</strong></span></div><p class="palo-doc-source">Published HTML view | Source: <code>docs/palo-ai-ans-integration.md</code></p><div class="palo-actions"><button class="palo-btn" type="button" data-doc-copy-link>Copy link</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-share>Share page</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-print>Print</button></div><p class="palo-action-status" data-doc-action-status role="status" aria-live="polite"></p></header>
+      <details class="palo-doc-mobile-toc"><summary>On this page</summary><ol><li class="depth-2"><a href="#what-ans-and-palo-contribute">What ANS and PALO contribute</a></li><li class="depth-2"><a href="#run-the-verified-offline-demo">Run the verified offline demo</a></li><li class="depth-2"><a href="#evidence-and-its-limits">Evidence and its limits</a></li><li class="depth-2"><a href="#integration-boundaries">Integration boundaries</a></li><li class="depth-2"><a href="#qualification-gaps-and-next-steps">Qualification gaps and next steps</a></li><li class="depth-2"><a href="#primary-references">Primary references</a></li></ol></details>
+      <div class="palo-doc-layout"><aside class="palo-doc-sidebar" aria-label="On this page"><strong>On this page</strong><ol><li class="depth-2"><a href="#what-ans-and-palo-contribute">What ANS and PALO contribute</a></li><li class="depth-2"><a href="#run-the-verified-offline-demo">Run the verified offline demo</a></li><li class="depth-2"><a href="#evidence-and-its-limits">Evidence and its limits</a></li><li class="depth-2"><a href="#integration-boundaries">Integration boundaries</a></li><li class="depth-2"><a href="#qualification-gaps-and-next-steps">Qualification gaps and next steps</a></li><li class="depth-2"><a href="#primary-references">Primary references</a></li></ol></aside><article class="palo-doc-content"><h1 id="palo-ai-and-ans-verified-identity-governed-actions">PALO-AI and ANS: verified identity, governed actions<a class="palo-doc-anchor" href="#palo-ai-and-ans-verified-identity-governed-actions" aria-label="Link to PALO-AI and ANS: verified identity, governed actions">#</a></h1><p>PALO-AI now includes an experimental bridge to the Agent Name Service (ANS) SDK. The offline demo checks agent identity and then applies PALO's separate enterprise authority, action policy and outcome verification. It is intended for platform engineers and governance teams evaluating an ANS integration.</p>
+<p><strong>Status, 16 September 2026:</strong> SDK integration and eight synthetic offline scenarios verified. Hosted GoDaddy interoperability, a public ANS registration and production qualification remain open. PALO-AI retains its Developer Preview status.</p>
+<h2 id="what-ans-and-palo-contribute">What ANS and PALO contribute<a class="palo-doc-anchor" href="#what-ans-and-palo-contribute" aria-label="Link to What ANS and PALO contribute">#</a></h2><p>ANS provides an agent naming and identity-verification layer. PALO contributes the organizational decision about what an identified agent may do, for which tenant, under whose delegation and with what evidence of the resulting effect. A verified external identity does not automatically confer enterprise permissions.</p>
+<div class="palo-doc-table-wrap" tabindex="0" aria-label="Scrollable documentation table"><table>
+<thead>
+<tr>
+<th>Step</th>
+<th>ANS bridge</th>
+<th>PALO governance</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Identify</td>
+<td>Check the signed receipt, ACTIVE status, certificate and proof of possession</td>
+<td>Bind the identity to an approved tenant, agent and instance</td>
+</tr>
+<tr>
+<td>Authorize</td>
+<td>Bind the proof to the method, exact audience URL and complete action claim</td>
+<td>Independently verify enterprise delegation, scope and current policy</td>
+</tr>
+<tr>
+<td>Execute</td>
+<td>Bound validity by status, proof and certificate expiry</td>
+<td>Issue a one-time capability and recheck authority immediately before execution</td>
+</tr>
+<tr>
+<td>Verify</td>
+<td>Preserve proof digests</td>
+<td>Compare authoritative pre/post state; open an incident and resource hold on mismatch or inconclusive outcome</td>
+</tr>
+</tbody></table></div>
+<p>The runtime does not contact ANS during each local verification. The operator supplies trusted roots, identity presentations and approved enterprise bindings. A production transport and credential-handling design still requires qualification.</p>
+<h2 id="run-the-verified-offline-demo">Run the verified offline demo<a class="palo-doc-anchor" href="#run-the-verified-offline-demo" aria-label="Link to Run the verified offline demo">#</a></h2><p>Use Node.js 22 or 24, Go 1.27.1 and the repository lockfile. Run these commands from the repository root:</p>
+<figure class="palo-doc-code"><figcaption>sh code</figcaption><pre tabindex="0"><code class="language-sh">npm ci
+npm run opa:install
+npm run ans:build
+npm run validate:ans
+npm run demo:ans</code></pre></figure><p>If Go is not on your PATH, set <code>PALO_GO_BIN</code> to its absolute executable path before the build. The helpers are written to the ignored <code>.tools/ans/</code> directory. The fixture creates ephemeral local keys; no GoDaddy account, public registration or production credentials are required.</p>
+<p>The SDK is pinned to commit <code>1b9f6ec5588b3b38918ba7b99b9f30fe65535695</code>, module <code>v0.1.18-0.20260915151333-1b9f6ec5588b</code>. The <a href="https://github.com/sev7enITA/PALOframework/blob/main/examples/agentic-interface/integrations/ans/README.md" target="_blank" rel="noopener noreferrer">implementation instructions</a> describe the adapter callbacks, claim binding and exact proof profile.</p>
+<h2 id="evidence-and-its-limits">Evidence and its limits<a class="palo-doc-anchor" href="#evidence-and-its-limits" aria-label="Link to Evidence and its limits">#</a></h2><p>The recorded local validation passed 118 JavaScript tests, including 21 ANS tests, three Python tests and all eight demo scenarios. These are implementation checks on synthetic local evidence. They do not establish hosted-service compatibility, independent assurance or production performance. The 21 ANS tests are included in the 118 total.</p>
+<div class="palo-doc-table-wrap" tabindex="0" aria-label="Scrollable documentation table"><table>
+<thead>
+<tr>
+<th>Demo scenario</th>
+<th>Expected result</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Valid identity, delegation and action</td>
+<td>Execute and verify the outcome</td>
+</tr>
+<tr>
+<td>Valid identity, action above enterprise limit</td>
+<td>Reject</td>
+</tr>
+<tr>
+<td>Copied identity, different proof key</td>
+<td>Reject</td>
+</tr>
+<tr>
+<td>Expired status evidence</td>
+<td>Reject</td>
+</tr>
+<tr>
+<td>Revoked status token</td>
+<td>Reject</td>
+</tr>
+<tr>
+<td>Local binding revoked during the pre-state read</td>
+<td>Reject</td>
+</tr>
+<tr>
+<td>Unexpected resulting effect</td>
+<td>Record mismatch and hold the resource</td>
+</tr>
+<tr>
+<td>Unobservable resulting effect</td>
+<td>Record inconclusive outcome and hold the resource</td>
+</tr>
+</tbody></table></div>
+<p>See the <a href="https://github.com/sev7enITA/PALOframework/blob/main/audit/ans-integration-2026-09-16/demo-result.json" target="_blank" rel="noopener noreferrer">recorded demo results</a> and <a href="https://github.com/sev7enITA/PALOframework/tree/main/audit/ans-integration-2026-09-16" target="_blank" rel="noopener noreferrer">assessment archive</a> for the dated evidence, strategic scenarios and acceptance criteria.</p>
+<h2 id="integration-boundaries">Integration boundaries<a class="palo-doc-anchor" href="#integration-boundaries" aria-label="Link to Integration boundaries">#</a></h2><p>Configure the runtime with <code>identityPolicy.requireIdentityBoundClaims: true</code>. This rejects legacy claims without the authority context on an ANS-protected path. The enterprise delegation verifier must validate issuer, audience, tenant, subject, scope and expiry independently from ANS identity verification.</p>
+<p>Status evidence has a default maximum age of 300 seconds, further bounded by proof and certificate expiry. This is a local freshness policy, not a live revocation feed. Replay protection and bindings in the example are local to the process. Existing HTTP Gateway and MCP transports are not automatically connected to this adapter.</p>
+<p>The verifier checks a signed leaf receipt. It reports <code>checkpointVerified:false</code>: it does not verify log inclusion against an independently authenticated tree checkpoint. This profile must not be described as ANS Gold verification or a witnessed transparency-log audit.</p>
+<h2 id="qualification-gaps-and-next-steps">Qualification gaps and next steps<a class="palo-doc-anchor" href="#qualification-gaps-and-next-steps" aria-label="Link to Qualification gaps and next steps">#</a></h2><div class="palo-doc-table-wrap" tabindex="0" aria-label="Scrollable documentation table"><table>
+<thead>
+<tr>
+<th>Gap</th>
+<th>Required evidence before promotion</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Hosted ANS interoperability</td>
+<td>Authorized test registration, real service artifacts and end-to-end positive and negative cases</td>
+</tr>
+<tr>
+<td>Authenticated log checkpoint</td>
+<td>Independently authenticated checkpoint and inclusion verification, with failure tests</td>
+</tr>
+<tr>
+<td>Remote revocation and root rotation</td>
+<td>Defined freshness bounds, validated status updates, rotation and outage behavior</td>
+</tr>
+<tr>
+<td>Enterprise authority</td>
+<td>Persistent tenant-scoped bindings, independently verified delegation and revocation ownership</td>
+</tr>
+<tr>
+<td>Multiple runtime replicas</td>
+<td>Shared atomic replay protection, durable state and concurrency tests</td>
+</tr>
+<tr>
+<td>Public HTTP/MCP transport</td>
+<td>Authenticated presentation capture, exact audience binding, OAuth/DPoP profile and credential isolation</td>
+</tr>
+<tr>
+<td>Production operation</td>
+<td>Admission evidence, monitoring, recovery, performance limits and independent review</td>
+</tr>
+</tbody></table></div>
+<p>Follow the <a href="palo-ai-governance-integration-guide.html">governance integration guide</a> to select an enforcement boundary, then use the <a href="palo-ai-production-readiness-plan.html">production readiness plan</a> to track the remaining gates. Publishing this guide does not promote the runtime to production-ready status.</p>
+<h2 id="primary-references">Primary references<a class="palo-doc-anchor" href="#primary-references" aria-label="Link to Primary references">#</a></h2><ul>
+<li><a href="https://www.godaddy.com/it/ans" target="_blank" rel="noopener noreferrer">GoDaddy ANS initiative</a></li>
+<li><a href="https://github.com/agentnameservice/ans-sdk-go" target="_blank" rel="noopener noreferrer">ANS Go SDK</a></li>
+<li><a href="https://github.com/agentnameservice/ans-sdk-go/tree/1b9f6ec5588b3b38918ba7b99b9f30fe65535695" target="_blank" rel="noopener noreferrer">Pinned SDK revision</a></li>
+</ul>
+</article></div>
+      <aside class="palo-doc-next"><div><small>Prerequisite</small><strong>Node.js 22 or 24 and Go 1.27.1</strong></div><div><small>Recommended next step</small><strong>Run the offline ANS demo and review qualification gaps</strong></div></aside>
+      <section class="palo-doc-feedback" aria-labelledby="feedback-title"><p class="palo-eyebrow">Privacy-first feedback</p><h2 id="feedback-title">Help improve this guide</h2><p>Your feedback stays in your browser until you explicitly copy it, download it, or open an email draft. Do not include secrets, personal data, credentials or production identifiers.</p><form data-doc-feedback><div class="palo-form-grid"><div class="palo-field"><label for="feedback-role">Your role</label><select id="feedback-role" name="role"><option>Executive / governance owner</option><option>Platform or security engineer</option><option>No-code / low-code builder</option><option>External reviewer</option></select></div><div class="palo-field"><label for="feedback-category">Category</label><select id="feedback-category" name="category"><option>Clarity</option><option>Technical accuracy</option><option>Missing guidance</option><option>Accessibility</option></select></div><div class="palo-field palo-field-full"><label for="feedback-message">Feedback</label><textarea id="feedback-message" name="message" maxlength="3000" required placeholder="Describe the non-sensitive improvement you recommend."></textarea></div><div class="palo-form-actions"><button class="palo-btn" type="button" data-feedback-copy>Copy feedback</button><button class="palo-btn palo-btn-secondary" type="button" data-feedback-download>Download JSON</button><button class="palo-btn palo-btn-secondary" type="button" data-feedback-email>Email draft</button></div></div><p class="palo-action-status" data-feedback-status role="status" aria-live="polite"></p></form></section>
+    </div>
+  </main>
+  <footer class="palo-footer" data-palo-authorship-container="true">
+<p class="palo-authorship-footer" data-palo-authorship="footer">PALO Framework: conceived, created and maintained by <a href="../PALO_Community.html#creator">Fabrizio Degni</a>.</p>
+<div class="palo-shell"><p>PALO public documentation. Developer preview boundaries apply.</p><div class="palo-footer-links"><a href="../PALO_AIGovernance.html">PALO-AI</a><a href="../governance-hub/">Governance Hub</a><a href="../PALO_AgenticCapabilityMatrix.html">Capability Matrix</a><a href="../PALO_AIProductionReadiness.html">Production Readiness</a><a href="../privacy-policy.html">Privacy</a></div></div></footer>
+</body></html>
