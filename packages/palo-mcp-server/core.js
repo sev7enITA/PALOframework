@@ -707,15 +707,23 @@ export class GovernanceRuntime {
   }
 
   async verifyCryptographicAuthority(claim) {
-    if (!["1.3.0", "1.4.0"].includes(claim.schemaVersion)) return { valid: true, verifierId: "legacy-contract", verifiedAt: nowIso() };
+    if (!["1.3.0", "1.4.0"].includes(claim.schemaVersion)) {
+      const context = validateAuthorityContext(claim, this.identityPolicy);
+      return { valid: context.valid, reasons: context.violations, verifierId: "legacy-contract", verifiedAt: nowIso() };
+    }
+    this.authorityVerifications.delete(claim.claimId);
     if (!this.authorityVerifier) return { valid: false, reasons: [`Action Claim ${claim.schemaVersion} requires a configured cryptographic authority verifier`] };
     try {
       const result = await this.authorityVerifier(clone(claim.authorityContext), clone(claim));
       if (!result || result.valid !== true) return { valid: false, reasons: result?.reasons?.length ? result.reasons.map(String) : ["Authority credentials or proof could not be verified"] };
+      const expiresAt = result.expiresAt ?? claim.expiresAt;
+      if (!Number.isFinite(Date.parse(expiresAt)) || Date.parse(expiresAt) <= Date.now()) return { valid: false, reasons: ["Verified authority is expired or has an invalid validity window"] };
       const verification = {
         valid: true,
         verifierId: String(result.verifierId || "configured-authority-verifier"),
         verifiedAt: nowIso(),
+        claimDigest: sha256(claim),
+        expiresAt: new Date(Math.min(Date.parse(expiresAt), Date.parse(claim.expiresAt))).toISOString(),
         humanCredentialDigest: claim.authorityContext.humanPrincipal.credentialDigest,
         workloadCredentialDigest: claim.authorityContext.workloadIdentity.credentialDigest,
         ...(result.evidenceDigest ? { evidenceDigest: String(result.evidenceDigest) } : {})
@@ -1035,9 +1043,21 @@ export class GovernanceRuntime {
     return `${tenant}:${claim.action.resource}:${claim.action.path}`;
   }
 
+  assertCurrentVerifiedAuthority(claim) {
+    if (Date.parse(claim.expiresAt) <= Date.now()) throw new Error("Action Claim expired before execution");
+    if (!["1.3.0", "1.4.0"].includes(claim.schemaVersion)) {
+      const context = validateAuthorityContext(claim, this.identityPolicy);
+      if (!context.valid) throw new Error(context.violations.join("; "));
+      return;
+    }
+    const verification = this.authorityVerifications.get(claim.claimId);
+    if (!verification || verification.claimDigest !== sha256(claim) || Date.parse(verification.expiresAt) <= Date.now()) throw new Error("Current cryptographic authority is required before execution");
+  }
+
   issueExecutionCapability(claim, decision, executorId, verifierId, ttlSeconds = 60) {
     if (!["1.2.0", "1.3.0", "1.4.0"].includes(claim.schemaVersion) || !claim.effectContract) throw new Error("Governed execution requires Action Claim schemaVersion 1.2.0, 1.3.0 or 1.4.0 with an Effect Contract");
     if (decision.status !== "allowed" || decision.claimId !== claim.claimId || decision.claimDigest !== sha256(claim)) throw new Error("Execution capability requires the current allowed decision for the exact Action Claim");
+    this.assertCurrentVerifiedAuthority(claim);
     const dataGovernance = this.validateDataGovernanceBinding(claim);
     if (!dataGovernance.allowed) throw new Error(`Execution capability denied by current data governance: ${dataGovernance.reasons.join("; ")}`);
     const executor = this.getAdapterManifest("executor", executorId); const verifier = this.getAdapterManifest("verifier", verifierId);
@@ -1058,7 +1078,7 @@ export class GovernanceRuntime {
       claimDigest: sha256(claim), decisionId: decision.decisionId, caseId: claim.caseId, agentId: claim.agentId, executorId, verifierId,
       resource: claim.action.resource, path: claim.action.path, ...(claim.effectContract.resourceSelector.tenantId ? { tenantId: claim.effectContract.resourceSelector.tenantId } : {}),
       ...(claim.dataGovernance ? { fitnessDecisionId: claim.dataGovernance.fitnessDecisionId, fitnessDecisionDigest: claim.dataGovernance.fitnessDecisionDigest, disclosureContractId: claim.dataGovernance.disclosureContractId, disclosureContractDigest: claim.dataGovernance.disclosureContractDigest } : {}),
-      issuedAt, expiresAt: new Date(Date.now() + Math.max(5, Math.min(ttlSeconds, 300)) * 1000).toISOString(), singleUse: true, status: "issued", keyId, algorithm: "HMAC-SHA256"
+      issuedAt, expiresAt: new Date(Math.min(Date.now() + Math.max(5, Math.min(ttlSeconds, 300)) * 1000, Date.parse(claim.expiresAt), Date.parse(this.authorityVerifications.get(claim.claimId)?.expiresAt || claim.expiresAt))).toISOString(), singleUse: true, status: "issued", keyId, algorithm: "HMAC-SHA256"
     }, secret);
     this.db.prepare("INSERT INTO execution_capabilities VALUES (?, ?, ?, ?, NULL, ?)").run(capability.capabilityId, capability.claimId, capability.status, JSON.stringify(capability), issuedAt);
     return capability;
@@ -1082,6 +1102,7 @@ export class GovernanceRuntime {
     const result = this.db.transaction(() => {
       const existing = this.db.prepare("SELECT execution_json FROM executions WHERE claim_id = ?").get(claim.claimId);
       if (existing) return { execution: parse(existing.execution_json) };
+      this.assertCurrentVerifiedAuthority(claim);
       const dataGovernance = this.validateDataGovernanceBinding(claim);
       if (!dataGovernance.allowed) throw new Error(`Execution capability denied by current data governance: ${dataGovernance.reasons.join("; ")}`);
       const row = this.db.prepare("SELECT capability_json, status FROM execution_capabilities WHERE capability_id = ?").get(capability.capabilityId);
@@ -1130,6 +1151,13 @@ export class GovernanceRuntime {
     if (preconditionChecks.some((check) => check.status !== "pass")) {
       this.revokeExecutionCapability(capability.capabilityId);
       return { status: "denied", executed: false, decision, reason: "Effect Contract preconditions are not satisfied", preconditionChecks };
+    }
+    // Pre-state reads can be slow. Recheck external identity and delegation
+    // after that await so a revoked/expired principal cannot use an old allow.
+    const finalAuthority = await this.verifyCryptographicAuthority(claim);
+    if (!finalAuthority.valid) {
+      this.revokeExecutionCapability(capability.capabilityId);
+      return { status: "denied", executed: false, decision, reason: finalAuthority.reasons.join("; ") };
     }
     const execution = this.consumeCapabilityAndCreateExecution(capability, claim, decision, observed.state, observed.resourceVersion);
     this.emit("palo.execution.started", claim, { executionId: execution.executionId, executorId, verifierId });

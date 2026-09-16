@@ -1,0 +1,43 @@
+name: Validate PALO ANS SDK bridge
+
+on:
+  pull_request:
+    paths:
+      - 'packages/palo-mcp-server/**'
+      - 'packages/palo-ans-verifier/**'
+      - 'examples/agentic-interface/integrations/ans/**'
+      - 'scripts/*ans*.mjs'
+      - 'package*.json'
+      - '.github/workflows/ans-bridge-ci.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'packages/palo-mcp-server/**'
+      - 'packages/palo-ans-verifier/**'
+      - 'examples/agentic-interface/integrations/ans/**'
+      - 'scripts/*ans*.mjs'
+      - 'package*.json'
+      - '.github/workflows/ans-bridge-ci.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  interoperability:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22.22.0
+          cache: npm
+      - uses: actions/setup-go@v5
+        with:
+          go-version: 1.27.1
+          cache-dependency-path: packages/palo-ans-verifier/go.sum
+      - run: npm ci
+      - run: npm run ans:build
+      - run: npm run validate:ans
+      - run: npm run demo:ans
+      - run: node --test packages/palo-mcp-server/assurance.test.js packages/palo-mcp-server/evolutions.test.js packages/palo-mcp-server/data-assurance.test.js packages/palo-mcp-server/production-admission.test.js

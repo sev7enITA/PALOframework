@@ -142,6 +142,32 @@ test("Action Claim 1.3 binds trusted human, workload, agent, tenant and delegati
   assert.match(unverified.reasons.join(" "), /cryptographic authority verifier/i);
 });
 
+test("authority revoked after policy approval cannot execute or retain a consumable capability", async (t) => {
+  let calls = 0;
+  const { runtime, state } = await fixture(t, { authorityVerifier: async () => ++calls === 1 ? { valid: true } : { valid: false, reasons: ["workload revoked"] } });
+  const result = await runtime.executeGovernedAction(makeClaim(1), { executorId: executorManifest.executorId, verifierId: verifierManifest.verifierId });
+  assert.equal(result.status, "denied"); assert.match(result.reason, /workload revoked/); assert.equal(state.price, 100);
+  assert.equal(runtime.db.prepare("SELECT status FROM execution_capabilities").get().status, "revoked");
+});
+
+test("capability lifetime is bounded by the independently verified authority", async (t) => {
+  const expiry = new Date(Date.now() + 30000).toISOString();
+  const { runtime } = await fixture(t, { authorityVerifier: async () => ({ valid: true, expiresAt: expiry }) });
+  const claim = makeClaim(1); const decision = await runtime.verifyAction(claim);
+  const capability = runtime.issueExecutionCapability(claim, decision, executorManifest.executorId, verifierManifest.verifierId, 300);
+  assert.equal(capability.expiresAt, expiry);
+  runtime.authorityVerifications.get(claim.claimId).expiresAt = new Date(Date.now() - 1).toISOString();
+  assert.throws(() => runtime.consumeCapabilityAndCreateExecution(capability, claim, decision, {}, "3"), /Current cryptographic authority/);
+  assert.equal(runtime.db.prepare("SELECT status FROM execution_capabilities").get().status, "issued");
+});
+
+test("invalid or expired verifier validity cannot authorize an Action Claim", async (t) => {
+  for (const expiresAt of ["invalid", new Date(Date.now() - 1).toISOString()]) {
+    const { runtime } = await fixture(t, { authorityVerifier: async () => ({ valid: true, expiresAt }) });
+    assert.equal((await runtime.verifyAction(makeClaim(1))).status, "denied");
+  }
+});
+
 test("approval work is represented by a durable task with a terminal resolution", async (t) => {
   const { runtime } = await fixture(t, { policyEvaluator: async (input) => input.approval?.status === "approved" ? { status: "allowed", reasons: ["approved"], obligations: [] } : { status: "pending_approval", reasons: ["review"], obligations: [] } });
   const claim = makeClaim(1);

@@ -1,0 +1,220 @@
+
+> palo-platform@3.1.0 validate
+> npm run validate:text-style && npm run external-evidence:check && npm run policywatcher-signals:test && npm run governance-hub:verification:test && npm run semantic:check && npm run semantic:validate && npm run semantic:release:check && node scripts/validate.mjs --root .
+
+
+> palo-platform@3.1.0 validate:text-style
+> node scripts/validate-text-style.mjs --tracked
+
+Text style validation passed for 641 tracked source text files and current Git metadata.
+
+> palo-platform@3.1.0 external-evidence:check
+> npm run external-evidence:validate && npm run external-evidence:test
+
+
+> palo-platform@3.1.0 external-evidence:validate
+> node scripts/validate-external-evidence.mjs
+
+External agentic evidence validation passed (2 providers, 14 PALO capabilities, 14 reviewed mappings, 1 metadata-only example signal).
+
+> palo-platform@3.1.0 external-evidence:test
+> node --test packages/palo-external-evidence/*.test.js
+
+TAP version 13
+# Subtest: normalizes only metadata and preserves the explicit score boundary
+ok 1 - normalizes only metadata and preserves the explicit score boundary
+  ---
+  duration_ms: 2.825917
+  type: 'test'
+  ...
+# Subtest: deduplicates stable provider and external IDs deterministically
+ok 2 - deduplicates stable provider and external IDs deterministically
+  ---
+  duration_ms: 7.455
+  type: 'test'
+  ...
+# Subtest: fails closed when the provider introduces an unmapped capability
+ok 3 - fails closed when the provider introduces an unmapped capability
+  ---
+  duration_ms: 0.354625
+  type: 'test'
+  ...
+# Subtest: rejects invalid provider scores and unsafe source URLs
+ok 4 - rejects invalid provider scores and unsafe source URLs
+  ---
+  duration_ms: 0.173167
+  type: 'test'
+  ...
+# Subtest: bounded response reader rejects oversized and non-JSON responses
+ok 5 - bounded response reader rejects oversized and non-JSON responses
+  ---
+  duration_ms: 18.790416
+  type: 'test'
+  ...
+# Subtest: fetch adapter rejects redirects and normalizes a bounded response
+ok 6 - fetch adapter rejects redirects and normalizes a bounded response
+  ---
+  duration_ms: 1.312125
+  type: 'test'
+  ...
+# Subtest: offline cache reports age while network fallback enforces finite maximum stale age
+ok 7 - offline cache reports age while network fallback enforces finite maximum stale age
+  ---
+  duration_ms: 16.582125
+  type: 'test'
+  ...
+# Subtest: provider-neutral local import validates a PALO collection without network access
+ok 8 - provider-neutral local import validates a PALO collection without network access
+  ---
+  duration_ms: 0.857292
+  type: 'test'
+  ...
+# Subtest: cache and local import reject prohibited narrative and schema-invalid collections even with valid digests
+ok 9 - cache and local import reject prohibited narrative and schema-invalid collections even with valid digests
+  ---
+  duration_ms: 3.969291
+  type: 'test'
+  ...
+1..9
+# tests 9
+# suites 0
+# pass 9
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 179.237125
+
+> palo-platform@3.1.0 policywatcher-signals:test
+> node --test packages/palo-policywatcher-operations/index.test.js governance-hub/src/policyWatcherReviewLedger.test.js
+
+TAP version 13
+# Subtest: review state is bound to the exact active signal digest
+ok 1 - review state is bound to the exact active signal digest
+  ---
+  duration_ms: 2.212125
+  type: 'test'
+  ...
+# Subtest: revoked signals cannot receive a new local review transition
+ok 2 - revoked signals cannot receive a new local review transition
+  ---
+  duration_ms: 0.16525
+  type: 'test'
+  ...
+# Subtest: exported ledger keeps transport and review state separate
+ok 3 - exported ledger keeps transport and review state separate
+  ---
+  duration_ms: 0.117
+  type: 'test'
+  ...
+# Subtest: healthy synchronization traverses every page and validates the operational registry
+ok 4 - healthy synchronization traverses every page and validates the operational registry
+  ---
+  duration_ms: 29.732125
+  type: 'test'
+  ...
+# Subtest: a complete later traversal revokes missing signals and removes their payload
+ok 5 - a complete later traversal revokes missing signals and removes their payload
+  ---
+  duration_ms: 5.076834
+  type: 'test'
+  ...
+# Subtest: transport failure preserves the last validated active registry and alerts fail-closed
+ok 6 - transport failure preserves the last validated active registry and alerts fail-closed
+  ---
+  duration_ms: 1.086084
+  type: 'test'
+  ...
+# Subtest: invalid payload and non-advancing pagination never create false revocations
+ok 7 - invalid payload and non-advancing pagination never create false revocations
+  ---
+  duration_ms: 2.188542
+  type: 'test'
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 7
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 188.362458
+
+> palo-platform@3.1.0 governance-hub:verification:test
+> node --test governance-hub/src/governanceVerification.test.js
+
+TAP version 13
+# Subtest: every connection choice reports its real static boundary and never claims readiness
+ok 1 - every connection choice reports its real static boundary and never claims readiness
+  ---
+  duration_ms: 8.063958
+  type: 'test'
+  ...
+# Subtest: all 3,528 selectable guided configurations are compatible by construction
+ok 2 - all 3,528 selectable guided configurations are compatible by construction
+  ---
+  duration_ms: 57.127125
+  type: 'test'
+  ...
+# Subtest: corrupted or contradictory combinations fail with a specific finding
+ok 3 - corrupted or contradictory combinations fail with a specific finding
+  ---
+  duration_ms: 0.266916
+  type: 'test'
+  ...
+# Subtest: assurance scenarios are derived from current selections and emit a verbose receipt
+ok 4 - assurance scenarios are derived from current selections and emit a verbose receipt
+  ---
+  duration_ms: 1.037083
+  type: 'test'
+  ...
+# Subtest: digest-bound evidence is invalidated by any authority change
+ok 5 - digest-bound evidence is invalidated by any authority change
+  ---
+  duration_ms: 0.869791
+  type: 'test'
+  ...
+# Subtest: local bundle generation is explicit about everything it did not publish
+ok 6 - local bundle generation is explicit about everything it did not publish
+  ---
+  duration_ms: 1.127167
+  type: 'test'
+  ...
+# Subtest: canonical serialization and digest do not depend on object key order
+ok 7 - canonical serialization and digest do not depend on object key order
+  ---
+  duration_ms: 0.369875
+  type: 'test'
+  ...
+# Subtest: setup source contains no timer-based readiness or fake publication copy
+ok 8 - setup source contains no timer-based readiness or fake publication copy
+  ---
+  duration_ms: 1.352875
+  type: 'test'
+  ...
+1..8
+# tests 8
+# suites 0
+# pass 8
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 123.306417
+
+> palo-platform@3.1.0 semantic:check
+> node scripts/generate-semantic-assets.mjs --check
+
+Semantic projection exactness passed (46 nodes, 48 relationships, 6 lifecycle phases).
+
+> palo-platform@3.1.0 semantic:validate
+> node scripts/validate-semantic.mjs
+
+Semantic validation passed: 163 ontology triples, 231 SHACL triples, 13 required classes, 14 invariants; invalid fixture produced 10 expected violations.
+
+> palo-platform@3.1.0 semantic:release:check
+> node scripts/generate-semantic-release.mjs --check
+
+Semantic release exactness passed (409 atomic mappings, 40 digest-bound items).
+Validation passed: 40 HTML files, P1 schemas and fixtures, P2 31 controls/38 indicators/6 gates/13 sources/6 cases/5 templates, v3 semantic contracts and digests, 39 versioned shared assets, 37 sitemap URLs, 29 RSS items.

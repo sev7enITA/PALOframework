@@ -1,0 +1,735 @@
+
+> palo-platform@3.1.0 validate:agentic
+> npm run validate:knowledge-copilot && node scripts/validate-agentic.mjs && node --test packages/palo-mcp-server/*.test.js && python3 -m unittest examples/agentic-interface/integrations/dify/test_palo_dify_tool.py
+
+
+> palo-platform@3.1.0 validate:knowledge-copilot
+> node scripts/validate-knowledge-copilot-integrations.mjs
+
+Knowledge Copilot integration validation passed: 11 named hosts + qualification template, 2 profiles, 6/10 exact tools, config and source checks.
+Agentic validation passed: 21 contracts, 45 MCP tools, OPA compile and policy tests.
+TAP version 13
+# Subtest: ANS: SDK receipt, status, DPoP and enterprise grant lead to a verified effect
+ok 1 - ANS: SDK receipt, status, DPoP and enterprise grant lead to a verified effect
+  ---
+  duration_ms: 120.497875
+  type: 'test'
+  ...
+# Subtest: ANS: valid identity cannot override enterprise refund policy
+ok 2 - ANS: valid identity cannot override enterprise refund policy
+  ---
+  duration_ms: 58.626041
+  type: 'test'
+  ...
+# Subtest: ANS: legacy claim downgrade cannot bypass the required identity
+ok 3 - ANS: legacy claim downgrade cannot bypass the required identity
+  ---
+  duration_ms: 87.882709
+  type: 'test'
+  ...
+# Subtest: ANS: copied-identity denies execution
+ok 4 - ANS: copied-identity denies execution
+  ---
+  duration_ms: 86.607
+  type: 'test'
+  ...
+# Subtest: ANS: tampered-receipt denies execution
+ok 5 - ANS: tampered-receipt denies execution
+  ---
+  duration_ms: 50.221
+  type: 'test'
+  ...
+# Subtest: ANS: missing-receipt denies execution
+ok 6 - ANS: missing-receipt denies execution
+  ---
+  duration_ms: 51.785
+  type: 'test'
+  ...
+# Subtest: ANS: expired denies execution
+ok 7 - ANS: expired denies execution
+  ---
+  duration_ms: 54.716042
+  type: 'test'
+  ...
+# Subtest: ANS: stale denies execution
+ok 8 - ANS: stale denies execution
+  ---
+  duration_ms: 41.4735
+  type: 'test'
+  ...
+# Subtest: ANS: future denies execution
+ok 9 - ANS: future denies execution
+  ---
+  duration_ms: 59.225875
+  type: 'test'
+  ...
+# Subtest: ANS: revoked denies execution
+ok 10 - ANS: revoked denies execution
+  ---
+  duration_ms: 39.975208
+  type: 'test'
+  ...
+# Subtest: ANS: warning denies execution
+ok 11 - ANS: warning denies execution
+  ---
+  duration_ms: 35.027416
+  type: 'test'
+  ...
+# Subtest: ANS: proof binds the exact Action Claim content
+ok 12 - ANS: proof binds the exact Action Claim content
+  ---
+  duration_ms: 43.694542
+  type: 'test'
+  ...
+# Subtest: ANS: enterprise grant must verify independently of identity
+ok 13 - ANS: enterprise grant must verify independently of identity
+  ---
+  duration_ms: 35.786667
+  type: 'test'
+  ...
+# Subtest: ANS: another tenant cannot inherit the enterprise binding
+ok 14 - ANS: another tenant cannot inherit the enterprise binding
+  ---
+  duration_ms: 27.684333
+  type: 'test'
+  ...
+# Subtest: ANS: local revocation invalidates a cached allow
+ok 15 - ANS: local revocation invalidates a cached allow
+  ---
+  duration_ms: 41.411041
+  type: 'test'
+  ...
+# Subtest: ANS: revocation during pre-state read revokes the issued capability
+ok 16 - ANS: revocation during pre-state read revokes the issued capability
+  ---
+  duration_ms: 36.883208
+  type: 'test'
+  ...
+# Subtest: ANS: wrong outcome opens a held incident despite valid identity
+ok 17 - ANS: wrong outcome opens a held incident despite valid identity
+  ---
+  duration_ms: 40.892708
+  type: 'test'
+  ...
+# Subtest: ANS: unavailable post-state remains inconclusive
+ok 18 - ANS: unavailable post-state remains inconclusive
+  ---
+  duration_ms: 45.107583
+  type: 'test'
+  ...
+# Subtest: ANS: SDK rejects replayed DPoP requests
+ok 19 - ANS: SDK rejects replayed DPoP requests
+  ---
+  duration_ms: 28.166209
+  type: 'test'
+  ...
+# Subtest: ANS: another version of an agent does not match the name pin
+ok 20 - ANS: another version of an agent does not match the name pin
+  ---
+  duration_ms: 33.2465
+  type: 'test'
+  ...
+# Subtest: ANS: verifier failure fails closed
+ok 21 - ANS: verifier failure fails closed
+  ---
+  duration_ms: 36.182541
+  type: 'test'
+  ...
+# Subtest: full-cycle assurance signs the trusted receipt and verifies the intended effect
+ok 22 - full-cycle assurance signs the trusted receipt and verifies the intended effect
+  ---
+  duration_ms: 96.0265
+  type: 'test'
+  ...
+# Subtest: stale authoritative state fails the Effect Contract before tool execution
+ok 23 - stale authoritative state fails the Effect Contract before tool execution
+  ---
+  duration_ms: 46.809833
+  type: 'test'
+  ...
+# Subtest: authorized but wrong execution becomes a held assurance incident
+ok 24 - authorized but wrong execution becomes a held assurance incident
+  ---
+  duration_ms: 45.533917
+  type: 'test'
+  ...
+# Subtest: unavailable authoritative post-state is inconclusive and never verified
+ok 25 - unavailable authoritative post-state is inconclusive and never verified
+  ---
+  duration_ms: 74.352542
+  type: 'test'
+  ...
+# Subtest: governed execution revalidates the current authority profile instead of reusing a cached allow
+ok 26 - governed execution revalidates the current authority profile instead of reusing a cached allow
+  ---
+  duration_ms: 57.966125
+  type: 'test'
+  ...
+# Subtest: an expired one-time capability is persisted as expired even when consumption fails
+ok 27 - an expired one-time capability is persisted as expired even when consumption fails
+  ---
+  duration_ms: 62.400084
+  type: 'test'
+  ...
+# Subtest: startup recovery turns an unfinished outbox entry into an unknown receipt and held review
+ok 28 - startup recovery turns an unfinished outbox entry into an unknown receipt and held review
+  ---
+  duration_ms: 42.407833
+  type: 'test'
+  ...
+# Subtest: startup recovery completes post-state verification when a receipt was recorded before interruption
+ok 29 - startup recovery completes post-state verification when a receipt was recorded before interruption
+  ---
+  duration_ms: 45.880125
+  type: 'test'
+  ...
+# Subtest: HTTP responses are recognized across Fetch implementation realms
+ok 30 - HTTP responses are recognized across Fetch implementation realms
+  ---
+  duration_ms: 0.969
+  type: 'test'
+  ...
+# Subtest: data-assurance tools are covered by explicit least-privilege scopes
+ok 31 - data-assurance tools are covered by explicit least-privilege scopes
+  ---
+  duration_ms: 0.175959
+  type: 'test'
+  ...
+# Subtest: knowledge scopes filter Reader and Curator least-privilege catalogs
+ok 32 - knowledge scopes filter Reader and Curator least-privilege catalogs
+  ---
+  duration_ms: 0.725541
+  type: 'test'
+  ...
+# Subtest: OIDC access tokens are issuer/audience bound and roles expand to least-privilege scopes
+ok 33 - OIDC access tokens are issuer/audience bound and roles expand to least-privilege scopes
+  ---
+  duration_ms: 89.145125
+  type: 'test'
+  ...
+# Subtest: OIDC tenant binding supports an explicitly configured claim name
+ok 34 - OIDC tenant binding supports an explicitly configured claim name
+  ---
+  duration_ms: 40.708208
+  type: 'test'
+  ...
+# Subtest: strict OIDC policy binds access-token type, configured client and tenant
+ok 35 - strict OIDC policy binds access-token type, configured client and tenant
+  ---
+  duration_ms: 48.208834
+  type: 'test'
+  ...
+# Subtest: OIDC rejects a token minted for another MCP audience and advertises resource metadata
+ok 36 - OIDC rejects a token minted for another MCP audience and advertises resource metadata
+  ---
+  duration_ms: 133.484542
+  type: 'test'
+  ...
+# Subtest: OIDC configuration rejects insecure remote metadata and supports an exact audience distinct from the resource URL
+ok 37 - OIDC configuration rejects insecure remote metadata and supports an exact audience distinct from the resource URL
+  ---
+  duration_ms: 0.63
+  type: 'test'
+  ...
+# Subtest: OIDC scopes filter the MCP catalog and produce a step-up challenge for protected tools
+ok 38 - OIDC scopes filter the MCP catalog and produce a step-up challenge for protected tools
+  ---
+  duration_ms: 180.779542
+  type: 'test'
+  ...
+# Subtest: normalization and trusted argument schema are enforced
+ok 39 - normalization and trusted argument schema are enforced
+  ---
+  duration_ms: 85.533833
+  type: 'test'
+  ...
+# Subtest: missing profile and malformed claim fail closed
+ok 40 - missing profile and malformed claim fail closed
+  ---
+  duration_ms: 21.130208
+  type: 'test'
+  ...
+# Subtest: nonce, idempotency and monotonic sequence prevent replay
+ok 41 - nonce, idempotency and monotonic sequence prevent replay
+  ---
+  duration_ms: 86.281583
+  type: 'test'
+  ...
+# Subtest: a cached allow is never returned after the Action Claim expires
+ok 42 - a cached allow is never returned after the Action Claim expires
+  ---
+  duration_ms: 68.878583
+  type: 'test'
+  ...
+# Subtest: approval is immutable and bound to the exact Action Claim
+ok 43 - approval is immutable and bound to the exact Action Claim
+  ---
+  duration_ms: 71.223625
+  type: 'test'
+  ...
+# Subtest: approval validation precedes default requester resolution
+ok 44 - approval validation precedes default requester resolution
+  ---
+  duration_ms: 62.144958
+  type: 'test'
+  ...
+# Subtest: legacy missing redaction fields do not interrupt evidence recording
+ok 45 - legacy missing redaction fields do not interrupt evidence recording
+  ---
+  duration_ms: 41.472458
+  type: 'test'
+  ...
+# Subtest: E2E register -> deny -> approval -> execute -> sign -> persist -> verify
+ok 46 - E2E register -> deny -> approval -> execute -> sign -> persist -> verify
+  ---
+  duration_ms: 42.938208
+  type: 'test'
+  ...
+# Subtest: missing OPA configuration fails closed
+ok 47 - missing OPA configuration fails closed
+  ---
+  duration_ms: 0.420459
+  type: 'test'
+  ...
+# Subtest: Actian Context Bridge minimizes payloads and produces an allowed purpose-bound Data Fitness Decision
+ok 48 - Actian Context Bridge minimizes payloads and produces an allowed purpose-bound Data Fitness Decision
+  ---
+  duration_ms: 76.208167
+  type: 'test'
+  ...
+# Subtest: conflicting current source assertions fail the Data Fitness gate closed
+ok 49 - conflicting current source assertions fail the Data Fitness gate closed
+  ---
+  duration_ms: 57.901375
+  type: 'test'
+  ...
+# Subtest: fitness freshness is conservative and caps decision lifetime at the evidence-age boundary
+ok 50 - fitness freshness is conservative and caps decision lifetime at the evidence-age boundary
+  ---
+  duration_ms: 0.785375
+  type: 'test'
+  ...
+# Subtest: future-dated external evidence is rejected before registration
+ok 51 - future-dated external evidence is rejected before registration
+  ---
+  duration_ms: 31.691666
+  type: 'test'
+  ...
+# Subtest: disclosure observations outside the signed contract window are mismatches
+ok 52 - disclosure observations outside the signed contract window are mismatches
+  ---
+  duration_ms: 32.543667
+  type: 'test'
+  ...
+# Subtest: Action Claim 1.4 rejects untrusted identity issuers and delegation windows
+    # Subtest: untrusted human issuer
+    ok 1 - untrusted human issuer
+      ---
+      duration_ms: 88.885083
+      type: 'test'
+      ...
+    # Subtest: delegation does not cover the claim window
+    ok 2 - delegation does not cover the claim window
+      ---
+      duration_ms: 83.420666
+      type: 'test'
+      ...
+    1..2
+ok 53 - Action Claim 1.4 rejects untrusted identity issuers and delegation windows
+  ---
+  duration_ms: 172.734
+  type: 'test'
+  ...
+# Subtest: Action Claim 1.4 emits signed zero-row disclosure evidence and never persists executor row payloads
+ok 54 - Action Claim 1.4 emits signed zero-row disclosure evidence and never persists executor row payloads
+  ---
+  duration_ms: 64.467916
+  type: 'test'
+  ...
+# Subtest: post-effect disclosure receipt failure is held as inconclusive without persisting row payloads
+ok 55 - post-effect disclosure receipt failure is held as inconclusive without persisting row payloads
+  ---
+  duration_ms: 47.3885
+  type: 'test'
+  ...
+# Subtest: row, field, provider and region egress mismatches open a high-severity held incident
+ok 56 - row, field, provider and region egress mismatches open a high-severity held incident
+  ---
+  duration_ms: 55.338541
+  type: 'test'
+  ...
+# Subtest: a disclosure observation replayed from before execution opens a held mismatch
+ok 57 - a disclosure observation replayed from before execution opens a held mismatch
+  ---
+  duration_ms: 40.417417
+  type: 'test'
+  ...
+# Subtest: continuous assurance invalidates fitness, revokes an unconsumed capability and denies stale claims
+ok 58 - continuous assurance invalidates fitness, revokes an unconsumed capability and denies stale claims
+  ---
+  duration_ms: 72.864875
+  type: 'test'
+  ...
+# Subtest: tenant-aware incident lookup tolerates legacy and unscoped execution records
+ok 59 - tenant-aware incident lookup tolerates legacy and unscoped execution records
+  ---
+  duration_ms: 25.176625
+  type: 'test'
+  ...
+# Subtest: hands-on n8n workflow compares a direct tool call with the governed path
+ok 60 - hands-on n8n workflow compares a direct tool call with the governed path
+  ---
+  duration_ms: 6.268334
+  type: 'test'
+  ...
+# Subtest: public Caddy routes do not expose approval enumeration
+ok 61 - public Caddy routes do not expose approval enumeration
+  ---
+  duration_ms: 9.736042
+  type: 'test'
+  ...
+# Subtest: knowledge Reader and Curator MCP profiles have separate authenticated least-privilege routes
+ok 62 - knowledge Reader and Curator MCP profiles have separate authenticated least-privilege routes
+  ---
+  duration_ms: 11.041833
+  type: 'test'
+  ...
+# Subtest: palo-mcp retains only the capabilities required to drop privileges
+ok 63 - palo-mcp retains only the capabilities required to drop privileges
+  ---
+  duration_ms: 3.3795
+  type: 'test'
+  ...
+# Subtest: vendor-neutral provider contract fails closed on invalid decisions and exceptions
+ok 64 - vendor-neutral provider contract fails closed on invalid decisions and exceptions
+  ---
+  duration_ms: 1.201958
+  type: 'test'
+  ...
+# Subtest: Microsoft AGT snapshot preserves PALO identity, scope, approval and claim correlation
+ok 65 - Microsoft AGT snapshot preserves PALO identity, scope, approval and claim correlation
+  ---
+  duration_ms: 2.960167
+  type: 'test'
+  ...
+# Subtest: Microsoft AGT provider maps escalation to a digest-bound PALO approval and then allows
+ok 66 - Microsoft AGT provider maps escalation to a digest-bound PALO approval and then allows
+  ---
+  duration_ms: 90.616125
+  type: 'test'
+  ...
+# Subtest: AGT transforms are never applied behind an immutable PALO Action Claim
+ok 67 - AGT transforms are never applied behind an immutable PALO Action Claim
+  ---
+  duration_ms: 0.737209
+  type: 'test'
+  ...
+# Subtest: AGT runtime errors fail closed without escaping the provider boundary
+ok 68 - AGT runtime errors fail closed without escaping the provider boundary
+  ---
+  duration_ms: 0.484084
+  type: 'test'
+  ...
+# Subtest: Action Claim 1.3 binds trusted human, workload, agent, tenant and delegation scope
+ok 69 - Action Claim 1.3 binds trusted human, workload, agent, tenant and delegation scope
+  ---
+  duration_ms: 141.943375
+  type: 'test'
+  ...
+# Subtest: authority revoked after policy approval cannot execute or retain a consumable capability
+ok 70 - authority revoked after policy approval cannot execute or retain a consumable capability
+  ---
+  duration_ms: 50.728458
+  type: 'test'
+  ...
+# Subtest: capability lifetime is bounded by the independently verified authority
+ok 71 - capability lifetime is bounded by the independently verified authority
+  ---
+  duration_ms: 75.32725
+  type: 'test'
+  ...
+# Subtest: invalid or expired verifier validity cannot authorize an Action Claim
+ok 72 - invalid or expired verifier validity cannot authorize an Action Claim
+  ---
+  duration_ms: 110.73125
+  type: 'test'
+  ...
+# Subtest: approval work is represented by a durable task with a terminal resolution
+ok 73 - approval work is represented by a durable task with a terminal resolution
+  ---
+  duration_ms: 35.747542
+  type: 'test'
+  ...
+# Subtest: Effect Contract 1.1 schedules and completes delayed authoritative verification
+ok 74 - Effect Contract 1.1 schedules and completes delayed authoritative verification
+  ---
+  duration_ms: 47.68475
+  type: 'test'
+  ...
+# Subtest: inconclusive verification retries durably and releases the hold after authoritative success
+ok 75 - inconclusive verification retries durably and releases the hold after authoritative success
+  ---
+  duration_ms: 59.880292
+  type: 'test'
+  ...
+# Subtest: Evidence Envelope 2.0 is Ed25519 signed and independently verifiable
+ok 76 - Evidence Envelope 2.0 is Ed25519 signed and independently verifiable
+  ---
+  duration_ms: 44.355125
+  type: 'test'
+  ...
+# Subtest: telemetry, rate guardrails and the operational snapshot remain non-authoritative and observable
+ok 77 - telemetry, rate guardrails and the operational snapshot remain non-authoritative and observable
+  ---
+  duration_ms: 52.711042
+  type: 'test'
+  ...
+# Subtest: PALO guide explanations are grounded in released semantic records
+ok 78 - PALO guide explanations are grounded in released semantic records
+  ---
+  duration_ms: 4.774833
+  type: 'test'
+  ...
+# Subtest: agentic use cases receive an explainable bounded route
+ok 79 - agentic use cases receive an explainable bounded route
+  ---
+  duration_ms: 1.954417
+  type: 'test'
+  ...
+# Subtest: LLM architecture signals prioritize OWASP retrieval and output extensions
+ok 80 - LLM architecture signals prioritize OWASP retrieval and output extensions
+  ---
+  duration_ms: 3.738958
+  type: 'test'
+  ...
+# Subtest: generic non-LLM AI routes explicitly exclude the OWASP LLM profile
+ok 81 - generic non-LLM AI routes explicitly exclude the OWASP LLM profile
+  ---
+  duration_ms: 0.315292
+  type: 'test'
+  ...
+# Subtest: established OWASP security testing closes the testing question without closing human review
+ok 82 - established OWASP security testing closes the testing question without closing human review
+  ---
+  duration_ms: 0.178959
+  type: 'test'
+  ...
+# Subtest: product integration planning separates guidance from protected execution
+ok 83 - product integration planning separates guidance from protected execution
+  ---
+  duration_ms: 0.25575
+  type: 'test'
+  ...
+# Subtest: guide inputs fail closed when the required context is missing
+ok 84 - guide inputs fail closed when the required context is missing
+  ---
+  duration_ms: 0.963208
+  type: 'test'
+  ...
+# Subtest: knowledge reader searches released PALO records with provenance and authority boundaries
+ok 85 - knowledge reader searches released PALO records with provenance and authority boundaries
+  ---
+  duration_ms: 33.22075
+  type: 'test'
+  ...
+# Subtest: knowledge curator preserves immutable draft, review and curated-local provenance
+ok 86 - knowledge curator preserves immutable draft, review and curated-local provenance
+  ---
+  duration_ms: 23.403458
+  type: 'test'
+  ...
+# Subtest: knowledge profile tool sets remain least privilege and non-operational
+ok 87 - knowledge profile tool sets remain least privilege and non-operational
+  ---
+  duration_ms: 1.193459
+  type: 'test'
+  ...
+# Subtest: remote MCP binding requires an explicit host allowlist
+ok 88 - remote MCP binding requires an explicit host allowlist
+  ---
+  duration_ms: 6.103708
+  type: 'test'
+  ...
+# Subtest: remote OIDC binding requires explicit client and tenant allowlists
+ok 89 - remote OIDC binding requires explicit client and tenant allowlists
+  ---
+  duration_ms: 1.855708
+  type: 'test'
+  ...
+# Subtest: remote MCP uses an origin allowlist separate from Host validation
+ok 90 - remote MCP uses an origin allowlist separate from Host validation
+  ---
+  duration_ms: 3.561916
+  type: 'test'
+  ...
+# Subtest: an exposed tool subset narrows protected-resource scopes
+ok 91 - an exposed tool subset narrows protected-resource scopes
+  ---
+  duration_ms: 2.545292
+  type: 'test'
+  ...
+# Client.listPrompts() called but server does not advertise prompts capability - returning empty list
+# Subtest: remote MCP can expose a least-privilege tool subset
+ok 92 - remote MCP can expose a least-privilege tool subset
+  ---
+  duration_ms: 156.117541
+  type: 'test'
+  ...
+# Subtest: stdio MCP server advertises the complete governance toolkit
+ok 93 - stdio MCP server advertises the complete governance toolkit
+  ---
+  duration_ms: 689.289625
+  type: 'test'
+  ...
+# Subtest: stdio MCP supports a guidance-only least-privilege allowlist
+ok 94 - stdio MCP supports a guidance-only least-privilege allowlist
+  ---
+  duration_ms: 328.1505
+  type: 'test'
+  ...
+# Subtest: stdio MCP exposes exact knowledge Reader and Curator profiles
+ok 95 - stdio MCP exposes exact knowledge Reader and Curator profiles
+  ---
+  duration_ms: 625.764042
+  type: 'test'
+  ...
+# Subtest: authenticated Streamable HTTP rejects anonymous clients and exposes the same MCP tools
+ok 96 - authenticated Streamable HTTP rejects anonymous clients and exposes the same MCP tools
+  ---
+  duration_ms: 66.380584
+  type: 'test'
+  ...
+# Subtest: a schema-valid production profile is denied by the reference SQLite and in-process runtime
+ok 97 - a schema-valid production profile is denied by the reference SQLite and in-process runtime
+  ---
+  duration_ms: 8.235167
+  type: 'test'
+  ...
+# Subtest: production admission rejects placeholders and expired decisions
+ok 98 - production admission rejects placeholders and expired decisions
+  ---
+  duration_ms: 3.643333
+  type: 'test'
+  ...
+# Subtest: OIDC tenant is bound to every Action Claim 1.3 and 1.4 tenant location
+ok 99 - OIDC tenant is bound to every Action Claim 1.3 and 1.4 tenant location
+  ---
+  duration_ms: 0.345792
+  type: 'test'
+  ...
+# Subtest: Knowledge Reader preserves loopback OIDC and rejects listener host changes
+ok 100 - Knowledge Reader preserves loopback OIDC and rejects listener host changes
+  ---
+  duration_ms: 30.415958
+  type: 'test'
+  ...
+# Subtest: production Knowledge Reader admission requires OIDC, HTTPS and explicit host protection
+ok 101 - production Knowledge Reader admission requires OIDC, HTTPS and explicit host protection
+  ---
+  duration_ms: 23.871458
+  type: 'test'
+  ...
+# Subtest: Knowledge Reader health, authentication and body limit work without a network listener
+ok 102 - Knowledge Reader health, authentication and body limit work without a network listener
+  ---
+  duration_ms: 14.395292
+  type: 'test'
+  ...
+# Subtest: production Knowledge Reader publishes only its two OAuth scopes
+ok 103 - production Knowledge Reader publishes only its two OAuth scopes
+  ---
+  duration_ms: 4.051875
+  type: 'test'
+  ...
+# Subtest: Knowledge Reader rate limiter is deterministic per authenticated client
+ok 104 - Knowledge Reader rate limiter is deterministic per authenticated client
+  ---
+  duration_ms: 0.423583
+  type: 'test'
+  ...
+# Subtest: Knowledge Reader concurrency limiter bounds global and per-client work
+ok 105 - Knowledge Reader concurrency limiter bounds global and per-client work
+  ---
+  duration_ms: 0.228041
+  type: 'test'
+  ...
+# Subtest: Knowledge Reader rejects JSON-RPC batches while preserving single-message legacy compatibility
+ok 106 - Knowledge Reader rejects JSON-RPC batches while preserving single-message legacy compatibility
+  ---
+  duration_ms: 40.624125
+  type: 'test'
+  ...
+# Subtest: Knowledge Reader holds concurrency until the MCP response body closes
+ok 107 - Knowledge Reader holds concurrency until the MCP response body closes
+  ---
+  duration_ms: 12.047416
+  type: 'test'
+  ...
+# Subtest: Knowledge Reader release verifies the exact immutable canonical bundle
+ok 108 - Knowledge Reader release verifies the exact immutable canonical bundle
+  ---
+  duration_ms: 1.850541
+  type: 'test'
+  ...
+# Subtest: Knowledge Reader fails closed when one released byte changes
+ok 109 - Knowledge Reader fails closed when one released byte changes
+  ---
+  duration_ms: 38.817625
+  type: 'test'
+  ...
+# Subtest: Knowledge Reader rejects a release manifest for another runtime version
+ok 110 - Knowledge Reader rejects a release manifest for another runtime version
+  ---
+  duration_ms: 30.265
+  type: 'test'
+  ...
+# Subtest: Reader seed regression maps common Italian governance queries to the English canonical corpus
+ok 111 - Reader seed regression maps common Italian governance queries to the English canonical corpus
+  ---
+  duration_ms: 237.732791
+  type: 'test'
+  ...
+# Subtest: Reader lexical matching uses complete terms and fails closed for unknown evidence
+ok 112 - Reader lexical matching uses complete terms and fails closed for unknown evidence
+  ---
+  duration_ms: 17.591875
+  type: 'test'
+  ...
+# Subtest: Reader snippets retain original offsets after punctuation normalization
+ok 113 - Reader snippets retain original offsets after punctuation normalization
+  ---
+  duration_ms: 3.397125
+  type: 'test'
+  ...
+# Subtest: dedicated Knowledge Reader exposes exactly six read-only tools in process
+ok 114 - dedicated Knowledge Reader exposes exactly six read-only tools in process
+  ---
+  duration_ms: 96.678167
+  type: 'test'
+  ...
+# Subtest: canonical-only Knowledge Reader ignores a populated local publication workspace
+ok 115 - canonical-only Knowledge Reader ignores a populated local publication workspace
+  ---
+  duration_ms: 30.240583
+  type: 'test'
+  ...
+# Subtest: OpenTelemetry bridge emits a bounded span and excludes secrets and arbitrary payloads
+ok 116 - OpenTelemetry bridge emits a bounded span and excludes secrets and arbitrary payloads
+  ---
+  duration_ms: 0.865833
+  type: 'test'
+  ...
+1..116
+# tests 118
+# suites 0
+# pass 118
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2482.41875
+...
+----------------------------------------------------------------------
+Ran 3 tests in 0.001s
+
+OK

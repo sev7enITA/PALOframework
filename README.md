@@ -108,6 +108,7 @@ n8n orchestrates what automation does. PALO governs whether an identified agent 
 - [Presentation and launch playbook](docs/palo-ai-n8n-launch-playbook.md)
 - [Current n8n developer-preview example](examples/agentic-interface/integrations/n8n/)
 - [PALO + Microsoft AGT ACS interoperability proposal](examples/agentic-interface/integrations/microsoft-agt/)
+- [PALO + ANS SDK interoperability demo](examples/agentic-interface/integrations/ans/) - synthetic signed identity/status, request proof, separate enterprise delegation and verified effects; experimental, not a live GoDaddy registration or production qualification.
 - [Installable n8n alpha package](packages/n8n-nodes-palo-ai/)
 - [n8n alpha test report](docs/palo-ai-n8n-alpha-test-report.md)
 - [Architecture preview publication status and staged release gates](docs/palo-ai-n8n-publication-status.md)

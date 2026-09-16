@@ -1,0 +1,16 @@
+{
+  "checkedAt": "2026-09-16T10:57:48.155504+00:00",
+  "workspace": "repository",
+  "branch": "feat/ans-governance-bridge",
+  "head": "a9b258d01b3c169c142f44b4c6fc175cecb681f6",
+  "originMain": "a9b258d01b3c169c142f44b4c6fc175cecb681f6",
+  "aheadBehind": "0\t0",
+  "remoteFeatureBranch": "",
+  "diffSummary": "18 files changed, 884 insertions(+), 3 deletions(-)",
+  "workingTreeStatus": " A .github/workflows/ans-bridge-ci.yml\n M README.md\n A examples/agentic-interface/integrations/ans/README.md\n A examples/agentic-interface/integrations/ans/demo-fixture.mjs\n A examples/agentic-interface/integrations/ans/run-demo.mjs\n M package.json\n A packages/palo-ans-verifier/README.md\n A packages/palo-ans-verifier/cmd/palo-ans-fixture/main.go\n A packages/palo-ans-verifier/cmd/palo-ans-verify/main.go\n A packages/palo-ans-verifier/go.mod\n A packages/palo-ans-verifier/go.sum\n A packages/palo-mcp-server/ans-bridge.js\n A packages/palo-mcp-server/ans-bridge.test.js\n M packages/palo-mcp-server/assurance-foundation.js\n M packages/palo-mcp-server/core.js\n M packages/palo-mcp-server/evolutions.test.js\n A scripts/build-ans-verifier.mjs\n A scripts/test-ans.mjs\n",
+  "mutationsInAudit": "Created local audit files only; no source edits, commit, push or deploy",
+  "_repositoryExport": {
+    "sourceSnapshot": "git-status.json",
+    "scope": "Portable archive; original artifact hashes identify original local files. HTTP body snapshots and screenshots remain in the local audit archive."
+  }
+}

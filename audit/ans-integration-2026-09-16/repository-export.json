@@ -1,0 +1,149 @@
+{
+  "purpose": "Portable copies of local ANS and website audit artifacts; historical evidence, not deployment approval",
+  "files": [
+    {
+      "repositoryPath": "audit/ans-integration-2026-09-16/analisi-palo-ans.md",
+      "sourceName": "ans-analysis-2026-09-16/analisi-palo-ans.md",
+      "sourceSha256": "a2c286359d97b9423f59a73a9f65a969aa87ffc39d257d92a7b80d63e8574db6",
+      "exportSha256": "20a85e98d1cbe209891d4c2683a75f0c13cf2e4b798a79a54687728e3dbd761b"
+    },
+    {
+      "repositoryPath": "audit/ans-integration-2026-09-16/assessment-revisionato.md",
+      "sourceName": "ans-analysis-2026-09-16/assessment-revisionato.md",
+      "sourceSha256": "dc240212890b304dd43af28604eb7879d7f152d7ef6972af21ef708fb614e8de",
+      "exportSha256": "1e21aef5e307bc4cf1b818b347b426ea1bdbc5fab208601501b2311206877feb"
+    },
+    {
+      "repositoryPath": "audit/ans-integration-2026-09-16/stato-integrazione.md",
+      "sourceName": "ans-analysis-2026-09-16/stato-integrazione.md",
+      "sourceSha256": "c8ff298ebf97c9fbf68a010ce80bea68b8e8cb8bacdda5d50d5773f41bee91d1",
+      "exportSha256": "9ab9e4e9b3536076c3c1e1926219d79265d66c3991f7b0ca8a4c00b8f9c450c1"
+    },
+    {
+      "repositoryPath": "audit/ans-integration-2026-09-16/demo-result.json",
+      "sourceName": "ans-analysis-2026-09-16/demo-result.json",
+      "sourceSha256": "eff942afbc14fd44b27510b0930b39d9cb726f3933306e0cd64f6d90322280c1",
+      "exportSha256": "59f7cf82739a50461e33ef00ec86fe8b69b28b766c4a99fe5c1fd93ecab7eae2"
+    },
+    {
+      "repositoryPath": "audit/ans-integration-2026-09-16/verification-manifest.json",
+      "sourceName": "ans-analysis-2026-09-16/verification-manifest.json",
+      "sourceSha256": "433bed465d1ed6fff63115cf00b1adcca8cdeff79d2164bc5c9a4bf97c6653e5",
+      "exportSha256": "ca2b7c231dc58a9431daaf8b65306b72f3fbd173d69094cf0dd199af241cb197"
+    },
+    {
+      "repositoryPath": "audit/ans-integration-2026-09-16/assessment-review-checks.json",
+      "sourceName": "ans-analysis-2026-09-16/assessment-review-checks.json",
+      "sourceSha256": "269d3e0bd155373b0ea35d5d5c8b6b781c0081def121011b9432ab1529ac7895",
+      "exportSha256": "1298d081a48b3c42c6d3166d129c3b31d8bf0bdf359fde0cb2793e30717d75e0"
+    },
+    {
+      "repositoryPath": "audit/ans-integration-2026-09-16/validation-agentic.txt",
+      "sourceName": "ans-analysis-2026-09-16/validation-agentic.log",
+      "sourceSha256": "5eae042a46cffc0d3bb8f9ee5677a67c5cf9fa59bb26b5801bac579b0c81940a",
+      "exportSha256": "5eae042a46cffc0d3bb8f9ee5677a67c5cf9fa59bb26b5801bac579b0c81940a"
+    },
+    {
+      "repositoryPath": "audit/web-consistency-2026-09-16/report-sitemap-coerenza.md",
+      "sourceName": "sitemap-audit-2026-09-16/report-sitemap-coerenza.md",
+      "sourceSha256": "033f52acb1f624aa2c700a81339c8757c9b554aa3489bbd7e22eccad11d015ad",
+      "exportSha256": "f197202aa943351da29797dc79a1c7102096b26da8b2e1800945e65597cdad49"
+    },
+    {
+      "repositoryPath": "audit/web-consistency-2026-09-16/page-inventory.csv",
+      "sourceName": "sitemap-audit-2026-09-16/page-inventory.csv",
+      "sourceSha256": "72880e3965531a3fe729e9c0a636a00f345b2f9e7a4a8e9df41f7d28e55ff3b1",
+      "exportSha256": "5d00f520db05a3161c6bdc344e194d9373bf4aee114951c6a201a87354174741"
+    },
+    {
+      "repositoryPath": "audit/web-consistency-2026-09-16/missing-sitemap-urls.txt",
+      "sourceName": "sitemap-audit-2026-09-16/missing-sitemap-urls.txt",
+      "sourceSha256": "3026761e1227e4e0e53a61e3f2ffd6185e82c6028c879e6dda93e351cbb2c31c",
+      "exportSha256": "3026761e1227e4e0e53a61e3f2ffd6185e82c6028c879e6dda93e351cbb2c31c"
+    },
+    {
+      "repositoryPath": "audit/web-consistency-2026-09-16/origin-comparison.json",
+      "sourceName": "sitemap-audit-2026-09-16/origin-comparison.json",
+      "sourceSha256": "c462ff37356b944e8779579a99745fb0e3b6c7213fe9821b12b1b4d7bbd0d3b3",
+      "exportSha256": "c462ff37356b944e8779579a99745fb0e3b6c7213fe9821b12b1b4d7bbd0d3b3"
+    },
+    {
+      "repositoryPath": "audit/web-consistency-2026-09-16/external-links-audit.json",
+      "sourceName": "sitemap-audit-2026-09-16/external-links-audit.json",
+      "sourceSha256": "ef7f36ffa7e0e0b2d3ad446620264b662c722bb7b76b88cd1d044254ebf40a3c",
+      "exportSha256": "827b741dcef121f7e5a429b06e97f627408a4f24c03b4c59407efbf1ab88230a"
+    },
+    {
+      "repositoryPath": "audit/web-consistency-2026-09-16/final-assessment.json",
+      "sourceName": "sitemap-audit-2026-09-16/final-assessment.json",
+      "sourceSha256": "c734d5ad529d2369c29d3969c588876ba83e2a3f0da20b7f496c652f7072f898",
+      "exportSha256": "252d3f2f8d08ff6b3eb0b5414ea706ef33efb9da3661999ea5b119cd264552b6"
+    },
+    {
+      "repositoryPath": "audit/web-consistency-2026-09-16/github-workflow-status.json",
+      "sourceName": "sitemap-audit-2026-09-16/github-workflow-status.json",
+      "sourceSha256": "d44a04953c1cc5ab025db8492adc5bb137eba966e2fa0ccb5d68470bada5782c",
+      "exportSha256": "6b314309516e58b23d8fff0defddcf0496787339ae3cd1841b5b7dadfd055905"
+    },
+    {
+      "repositoryPath": "audit/web-consistency-2026-09-16/git-status.json",
+      "sourceName": "sitemap-audit-2026-09-16/git-status.json",
+      "sourceSha256": "c3f64029fd0baae501024eee45863fdaebe02b3ddc1896c70dea70015a95c8ad",
+      "exportSha256": "d2c1cf2ea3a51913c03a92f1bfed8f87a8c8f02eee559610cac1801d1410d922"
+    },
+    {
+      "repositoryPath": "audit/web-consistency-2026-09-16/browser-audit.json",
+      "sourceName": "sitemap-audit-2026-09-16/browser-audit.json",
+      "sourceSha256": "5c3c0b3d99bd3ec2745f822391f3bd85e044b620f1d27765a4d12d77c5876550",
+      "exportSha256": "e440e71c25bff4d23ec5267fd325e50ff80a5b0f4f8eaf4aeb425dbbe67f135e"
+    },
+    {
+      "repositoryPath": "audit/web-consistency-2026-09-16/sitemap-audit.json",
+      "sourceName": "sitemap-audit-2026-09-16/sitemap-audit.json",
+      "sourceSha256": "72b1dae1df2e205e71927a77d1bd21fe279a644ac48666078e94c9a8cb3655be",
+      "exportSha256": "43c39c321979caa1eec8745533043e7c9c0380ad7296c7a95fcd390aaf62d1e0"
+    },
+    {
+      "repositoryPath": "audit/web-consistency-2026-09-16/internal-references.json",
+      "sourceName": "sitemap-audit-2026-09-16/internal-references.json",
+      "sourceSha256": "c4de44d0d30db544ad07db2260c3dfc17b34caec4009731cd12a36ad47bfa245",
+      "exportSha256": "c4de44d0d30db544ad07db2260c3dfc17b34caec4009731cd12a36ad47bfa245"
+    },
+    {
+      "repositoryPath": "audit/web-consistency-2026-09-16/public-inventory.json",
+      "sourceName": "sitemap-audit-2026-09-16/public-inventory.json",
+      "sourceSha256": "683551cb349fe2d384c986a6796901acaa35b6e22cd9e0e6f32d0572c3b325a6",
+      "exportSha256": "2812dbee36879f04c84658bb0a14e338fd73ea66e3da2bed75c4b720e8d95acf"
+    },
+    {
+      "repositoryPath": "audit/web-consistency-2026-09-16/validation-source.txt",
+      "sourceName": "sitemap-audit-2026-09-16/validation-source.log",
+      "sourceSha256": "dce430dc5a765666fce76f4c6e0d6b660ce2c0db0a92119451369de0bd838f01",
+      "exportSha256": "dce430dc5a765666fce76f4c6e0d6b660ce2c0db0a92119451369de0bd838f01"
+    },
+    {
+      "repositoryPath": "audit/web-consistency-2026-09-16/validation-dist.txt",
+      "sourceName": "sitemap-audit-2026-09-16/validation-dist.log",
+      "sourceSha256": "9864f837719c21525133c5acc4bebe33c21ed0abbdd11a16b31b75ea8143749a",
+      "exportSha256": "9864f837719c21525133c5acc4bebe33c21ed0abbdd11a16b31b75ea8143749a"
+    },
+    {
+      "repositoryPath": "audit/web-consistency-2026-09-16/audit_site.py",
+      "sourceName": "sitemap-audit-2026-09-16/audit_site.py",
+      "sourceSha256": "13eb39020dc59ee4d05405f8700c22babeddafe596abec71838d16947b8a3872",
+      "exportSha256": "eed5e230f4d150c1150bbd7c6678e61395b9104349806718357b02b49830cf2f"
+    },
+    {
+      "repositoryPath": "audit/web-consistency-2026-09-16/audit_external.py",
+      "sourceName": "sitemap-audit-2026-09-16/audit_external.py",
+      "sourceSha256": "a3bf1a51351e1db08bc823a19979282be1064212c2948f1536bedfbbdba40458",
+      "exportSha256": "a3bf1a51351e1db08bc823a19979282be1064212c2948f1536bedfbbdba40458"
+    },
+    {
+      "repositoryPath": "audit/web-consistency-2026-09-16/browser-audit-script.js",
+      "sourceName": "sitemap-audit-2026-09-16/browser-audit-script.js",
+      "sourceSha256": "3971bf7b3b4dd2db5dd16218313ba7f002e4e15b8771d98389ae868ec0224073",
+      "exportSha256": "b2295e686b4fe789f7cc8bf4dbc4dcd3f4c3a73813911c37d1f6ec17d752c873"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+[
+  {
+    "conclusion": "success",
+    "head_sha": "a9b258d01b3c169c142f44b4c6fc175cecb681f6",
+    "html_url": "https://github.com/sev7enITA/PALOframework/actions/runs/35082815127",
+    "name": "Monitor PALO Knowledge Reader",
+    "status": "completed",
+    "updated_at": "2026-09-16T10:03:03Z"
+  },
+  {
+    "conclusion": "success",
+    "head_sha": "a9b258d01b3c169c142f44b4c6fc175cecb681f6",
+    "html_url": "https://github.com/sev7enITA/PALOframework/actions/runs/35062222174",
+    "name": "Sync PolicyWatcher signals and deploy PALO",
+    "status": "completed",
+    "updated_at": "2026-09-16T06:06:58Z"
+  },
+  {
+    "conclusion": "success",
+    "head_sha": "a9b258d01b3c169c142f44b4c6fc175cecb681f6",
+    "html_url": "https://github.com/sev7enITA/PALOframework/actions/runs/35058436209",
+    "name": "Monitor PALO Knowledge Reader",
+    "status": "completed",
+    "updated_at": "2026-09-16T05:10:26Z"
+  },
+  {
+    "conclusion": "success",
+    "head_sha": "a9b258d01b3c169c142f44b4c6fc175cecb681f6",
+    "html_url": "https://github.com/sev7enITA/PALOframework/actions/runs/35040186747",
+    "name": "Monitor PALO Knowledge Reader",
+    "status": "completed",
+    "updated_at": "2026-09-16T00:29:17Z"
+  },
+  {
+    "conclusion": "success",
+    "head_sha": "a9b258d01b3c169c142f44b4c6fc175cecb681f6",
+    "html_url": "https://github.com/sev7enITA/PALOframework/actions/runs/35039981968",
+    "name": "Sync PolicyWatcher signals and deploy PALO",
+    "status": "completed",
+    "updated_at": "2026-09-16T00:27:08Z"
+  }
+]

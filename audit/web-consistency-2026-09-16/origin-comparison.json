@@ -1,0 +1,152 @@
+[
+  {
+    "path": "/",
+    "sameBytes": true,
+    "origins": [
+      {
+        "url": "https://paloframework.org/",
+        "status": 200,
+        "sha256": "ce4f7d06449ead9cdc404cac374c7dbac6a5cf912f35843bb63ed606f7b71ad2",
+        "server": "hcdn",
+        "lastModified": "Mon, 14 Sep 2026 03:25:36 GMT"
+      },
+      {
+        "url": "https://sev7enita.github.io/PALOframework/",
+        "status": 200,
+        "sha256": "ce4f7d06449ead9cdc404cac374c7dbac6a5cf912f35843bb63ed606f7b71ad2",
+        "server": "GitHub.com",
+        "lastModified": "Wed, 16 Sep 2026 06:06:53 GMT"
+      }
+    ]
+  },
+  {
+    "path": "/sitemap.xml",
+    "sameBytes": true,
+    "origins": [
+      {
+        "url": "https://paloframework.org/sitemap.xml",
+        "status": 200,
+        "sha256": "34045c6007273e267d6622855a161f456b1047f8b0d2a4056a456bbaa22040cc",
+        "server": "hcdn",
+        "lastModified": "Mon, 14 Sep 2026 03:25:36 GMT"
+      },
+      {
+        "url": "https://sev7enita.github.io/PALOframework/sitemap.xml",
+        "status": 200,
+        "sha256": "34045c6007273e267d6622855a161f456b1047f8b0d2a4056a456bbaa22040cc",
+        "server": "GitHub.com",
+        "lastModified": "Wed, 16 Sep 2026 06:06:53 GMT"
+      }
+    ]
+  },
+  {
+    "path": "/release-manifest.json",
+    "sameBytes": true,
+    "origins": [
+      {
+        "url": "https://paloframework.org/release-manifest.json",
+        "status": 200,
+        "sha256": "cfcc71dbab525d57e040fece485ea34f744cb072a32b3a0b001ae347c5fe2850",
+        "server": "hcdn",
+        "lastModified": "Mon, 14 Sep 2026 03:25:36 GMT"
+      },
+      {
+        "url": "https://sev7enita.github.io/PALOframework/release-manifest.json",
+        "status": 200,
+        "sha256": "cfcc71dbab525d57e040fece485ea34f744cb072a32b3a0b001ae347c5fe2850",
+        "server": "GitHub.com",
+        "lastModified": "Wed, 16 Sep 2026 06:06:54 GMT"
+      }
+    ]
+  },
+  {
+    "path": "/data/integrations/policywatcher-signal-registry.json",
+    "sameBytes": false,
+    "origins": [
+      {
+        "url": "https://paloframework.org/data/integrations/policywatcher-signal-registry.json",
+        "status": 200,
+        "sha256": "471699415169c9f5ad1f172f0883cb728c937786c06c88143f1dd5500259a9d3",
+        "server": "hcdn",
+        "lastModified": "Fri, 11 Sep 2026 02:35:48 GMT",
+        "registry": {
+          "updatedAt": "2026-08-26T00:00:00.000Z",
+          "transport": {
+            "state": "not-synchronized",
+            "lastAttemptAt": null,
+            "lastSuccessfulSyncAt": null,
+            "completeTraversal": false,
+            "pageCount": 0,
+            "stale": false,
+            "errorCode": null
+          },
+          "statistics": {
+            "active": 0,
+            "revoked": 0,
+            "received": 0,
+            "accepted": 0,
+            "rejected": 0,
+            "changed": 0
+          }
+        }
+      },
+      {
+        "url": "https://sev7enita.github.io/PALOframework/data/integrations/policywatcher-signal-registry.json",
+        "status": 200,
+        "sha256": "a12dd135520770332cb61a9954ee0ef34d424b7c9f99de0324d76449af7bf0a3",
+        "server": "GitHub.com",
+        "lastModified": "Wed, 16 Sep 2026 06:06:53 GMT",
+        "registry": {
+          "updatedAt": "2026-09-16T06:06:22.165Z",
+          "transport": {
+            "state": "healthy",
+            "lastAttemptAt": "2026-09-16T06:06:22.165Z",
+            "lastSuccessfulSyncAt": "2026-09-16T06:06:22.165Z",
+            "completeTraversal": true,
+            "pageCount": 3,
+            "stale": false,
+            "errorCode": null
+          },
+          "statistics": {
+            "active": 53,
+            "revoked": 0,
+            "received": 53,
+            "accepted": 53,
+            "rejected": 0,
+            "changed": 0
+          }
+        }
+      }
+    ]
+  },
+  {
+    "path": "/governance-hub/",
+    "sameBytes": false,
+    "origins": [
+      {
+        "url": "https://paloframework.org/governance-hub/",
+        "status": 200,
+        "sha256": "03ca7a4dc6c21cbc6f1b8987d9d31d8cd2ec91935592edb90f0fc7ef9585a687",
+        "scripts": [
+          "./assets/index-CIK1n5iz.js"
+        ],
+        "stylesheets": [
+          "./assets/index-CVEiMWpK.css",
+          "../assets/palo-authorship.css"
+        ]
+      },
+      {
+        "url": "https://sev7enita.github.io/PALOframework/governance-hub/",
+        "status": 200,
+        "sha256": "27bbfaa4aba07390293859df835210c7664da1af927dc7ddf8b6588d97749d14",
+        "scripts": [
+          "./assets/index-CUam7Stf.js"
+        ],
+        "stylesheets": [
+          "./assets/index-CVEiMWpK.css",
+          "../assets/palo-authorship.css"
+        ]
+      }
+    ]
+  }
+]
