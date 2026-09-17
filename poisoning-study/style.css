@@ -306,7 +306,7 @@ footer { padding: 3rem 0; border-top: 1px solid rgba(255,255,255,.05); }
 .footer-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem; }
 footer strong { color: #a78bfa; }
 footer p { font-size: .8rem; color: #555; }
-.footer-links { display: flex; gap: 1.5rem; }
+.footer-links { display: flex; flex-wrap: wrap; gap: 1rem 1.5rem; min-width: 0; max-width: 100%; }
 .footer-links a { color: #555; font-size: .8rem; text-decoration: none; }
 .footer-links a:hover { color: #a78bfa; }
 
@@ -323,3 +323,5 @@ footer p { font-size: .8rem; color: #555; }
   .nav-links { display: none; }
   .section { padding: 4rem 0; }
 }
+
+.research-date-note { max-width: 760px; margin: 0 auto 1.5rem; color: #b0b0c0; font-size: .9rem; line-height: 1.6; }

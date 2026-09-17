@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paloframework.org/schemas/palo-swarm-membership-change.schema.json",
+  "title": "PALO Swarm Membership Change",
+  "type": "object", "additionalProperties": false,
+  "required": ["format", "schemaVersion", "changeId", "swarmId", "tenantId", "expectedMembershipDigest", "members", "reason"],
+  "properties": {
+    "format": { "const": "palo-swarm-membership-change" },
+    "schemaVersion": { "const": "1.0.0" },
+    "changeId": { "type": "string", "pattern": "^membership-[a-zA-Z0-9-]{6,100}$" },
+    "swarmId": { "type": "string", "pattern": "^swarm-[a-zA-Z0-9-]{6,100}$" },
+    "tenantId": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "expectedMembershipDigest": { "$ref": "#/$defs/digest" },
+    "reason": { "type": "string", "minLength": 1, "maxLength": 2000 },
+    "members": {
+      "type": "array", "minItems": 1, "maxItems": 100,
+      "items": {
+        "type": "object", "additionalProperties": false, "required": ["agentId", "parentAgentId", "profileDigest"],
+        "properties": {
+          "agentId": { "$ref": "#/$defs/agentId" },
+          "parentAgentId": { "$ref": "#/$defs/agentId" },
+          "profileDigest": { "$ref": "#/$defs/digest" }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "agentId": { "type": "string", "pattern": "^agent-[a-zA-Z0-9][a-zA-Z0-9-]{5,63}$" },
+    "digest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" }
+  }
+}

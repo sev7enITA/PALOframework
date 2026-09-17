@@ -1,5 +1,7 @@
 # OWASP GenAI / LLM Top 10 2026: PALO Security Crosswalk and Governance
 
+Source check, 17 September 2026: the [official OWASP risk index](https://genai.owasp.org/llm-top-10/) still identifies its 2025 edition. This document maps the locally supplied 2026-labelled artifact as an informative, version-pinned input; it does not establish a final official 2026 release.
+
 This source-backed reference evaluates how the PALO Framework, PALO-AM and PALO-AI relate to the ten risks in the OWASP Top 10 for LLM Applications 2026. It separates governance fit from technical implementation and identifies where PALO needs external safeguards or a targeted extension.
 
 > **Decision summary:** PALO has a strong governance fit and incomplete technical resolution. Across the three connected routes, eight risks have a direct PALO route somewhere in the stack. LLM09 Vector and Embedding Weaknesses and LLM10 Improper Output Handling remain supporting-only areas that need targeted controls.

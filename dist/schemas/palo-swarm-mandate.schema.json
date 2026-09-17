@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paloframework.org/schemas/palo-swarm-mandate.schema.json",
+  "title": "PALO Swarm Mandate",
+  "description": "Unreleased local prototype: immutable initial membership, accountable mandate and conservative shared exposure budget. Not distributed swarm assurance.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["format", "schemaVersion", "mandateVersion", "swarmId", "caseId", "tenantId", "owner", "objective", "coordinatorAgentId", "members", "validFrom", "expiresAt", "budget", "maxConcurrentExecutions", "keyId"],
+  "properties": {
+    "format": { "const": "palo-swarm-mandate" },
+    "schemaVersion": { "const": "1.0.0" },
+    "mandateVersion": { "type": "string", "pattern": "^[1-9][0-9]*\\.[0-9]+\\.[0-9]+$" },
+    "swarmId": { "type": "string", "pattern": "^swarm-[a-zA-Z0-9-]{6,100}$" },
+    "caseId": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "tenantId": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "objective": { "type": "string", "minLength": 10, "maxLength": 2000 },
+    "owner": {
+      "type": "object", "additionalProperties": false, "required": ["subject", "issuer"],
+      "properties": { "subject": { "type": "string", "minLength": 1, "maxLength": 512 }, "issuer": { "type": "string", "format": "uri", "maxLength": 1000 } }
+    },
+    "coordinatorAgentId": { "$ref": "#/$defs/agentId" },
+    "members": {
+      "type": "array", "minItems": 1, "maxItems": 1000,
+      "items": {
+        "type": "object", "additionalProperties": false, "required": ["agentId", "parentAgentId", "profileDigest"],
+        "properties": {
+          "agentId": { "$ref": "#/$defs/agentId" },
+          "parentAgentId": { "anyOf": [{ "$ref": "#/$defs/agentId" }, { "type": "null" }] },
+          "profileDigest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" }
+        }
+      }
+    },
+    "validFrom": { "type": "string", "format": "date-time" },
+    "expiresAt": { "type": "string", "format": "date-time" },
+    "maxConcurrentExecutions": { "type": "integer", "minimum": 1, "maximum": 1000 },
+    "keyId": { "type": "string", "pattern": "^key-[a-zA-Z0-9._-]{3,100}$" },
+    "budget": {
+      "type": "object", "additionalProperties": false, "required": ["unit", "limitUnits", "rules"],
+      "properties": {
+        "unit": { "type": "string", "minLength": 1, "maxLength": 80 },
+        "limitUnits": { "type": "integer", "minimum": 0, "maximum": 1000000000000 },
+        "rules": {
+          "type": "array", "minItems": 1, "maxItems": 100,
+          "items": {
+            "type": "object", "additionalProperties": false,
+            "required": ["tool", "operation", "resource", "pathPrefix", "maxUnitsPerAction"],
+            "properties": {
+              "tool": { "type": "string", "minLength": 1, "maxLength": 200 },
+              "operation": { "enum": ["read", "create", "update", "delete", "execute", "delegate"] },
+              "resource": { "type": "string", "minLength": 1, "maxLength": 1000 },
+              "pathPrefix": { "type": "string", "pattern": "^/", "maxLength": 1000 },
+              "maxUnitsPerAction": { "type": "integer", "minimum": 0, "maximum": 1000000000000 },
+              "amountPointer": { "type": "string", "pattern": "^/", "maxLength": 500 },
+              "fixedUnits": { "type": "integer", "minimum": 0, "maximum": 1000000000000 }
+            },
+            "oneOf": [{ "required": ["amountPointer"], "properties": { "amountPointer": {} } }, { "required": ["fixedUnits"], "properties": { "fixedUnits": {} } }]
+          }
+        }
+      }
+    }
+  },
+  "$defs": { "agentId": { "type": "string", "pattern": "^agent-[a-zA-Z0-9][a-zA-Z0-9-]{5,63}$" } }
+}

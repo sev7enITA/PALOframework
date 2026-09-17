@@ -18,7 +18,7 @@
       "version": "3.1.0",
       "date": "2026-08-23",
       "productionCommitRunbook": "docs/production-release-commit-checklist.html",
-      "updatedAt": "2026-09-16"
+      "updatedAt": "2026-09-17"
     },
     "framework": {
       "version": "2.0.0",
@@ -54,7 +54,8 @@
         "sourceCommit": "f4bb97816c67ca2f64496eccca9a119aeb650fea",
         "hostedServiceQualified": false,
         "productionQualified": false
-      }
+      },
+      "swarmEvaluation": {"status": "unreleased-reference-snapshot", "assessedAt": "2026-09-17", "guide": "docs/palo-status-2026-09-17.html", "evidence": "data/swarm-verification-2026-09-17.json", "includedInPublishedRuntime": false, "combinedAnsSwarmQualified": false, "productionQualified": false}
     },
     "semanticFoundation": {
       "version": "3.1.0",

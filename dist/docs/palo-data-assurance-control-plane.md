@@ -1,5 +1,7 @@
 # PALO Data Assurance Control Plane
 
+Assessment addendum, 17 September 2026: this document describes the published runtime or its production target. A separate unreleased swarm snapshot adds central coordination of remote workers, shared exposure, membership revisions and supported cancellation. It does not provide controller HA or qualify the published runtime. See the [dated evidence and version boundaries](palo-status-2026-09-17.md).
+
 Status: PALO-AI v2.7 developer preview. This is an executable reference implementation for isolated testing, not a production authorization boundary, legal determination or compliance certification.
 
 ## Outcome

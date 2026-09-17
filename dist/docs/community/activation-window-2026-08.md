@@ -1,5 +1,7 @@
 # Allowed is not verified: five-day activation window
 
+Status: historical campaign plan. The scheduled 13-17 August 2026 window has elapsed; this document is not a record of completed outreach.
+
 Canonical channel: [PALO GitHub Discussions](https://github.com/sev7enITA/PALOframework/discussions)
 
 Window: 2026-08-13 through 2026-08-17

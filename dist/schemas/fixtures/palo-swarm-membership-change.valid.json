@@ -1,0 +1,16 @@
+{
+  "format": "palo-swarm-membership-change",
+  "schemaVersion": "1.0.0",
+  "changeId": "membership-example-add",
+  "swarmId": "swarm-refund-example",
+  "tenantId": "tenant-example",
+  "expectedMembershipDigest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "members": [
+    {
+      "agentId": "agent-new-member",
+      "parentAgentId": "agent-coordinator",
+      "profileDigest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    }
+  ],
+  "reason": "Owner-approved additional processing capacity"
+}

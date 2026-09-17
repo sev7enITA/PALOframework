@@ -1,6 +1,6 @@
 # PALO activation freeze
 
-Status: active
+Status: historical planning window; elapsed on 10 September 2026. This archive does not establish that planned activities were completed.
 
 Window: 2026-08-12 through 2026-09-10, inclusive (30 calendar days)
 

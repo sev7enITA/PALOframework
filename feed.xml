@@ -5,7 +5,7 @@
         <link>https://paloframework.org</link>
         <description>Latest updates, tools, and insights from the PALO Framework - Principled AI Lifecycle Orchestration for responsible AI governance.</description>
         <language>en</language>
-        <lastBuildDate>Wed, 16 Sep 2026 00:00:00 +0200</lastBuildDate>
+        <lastBuildDate>Thu, 17 Sep 2026 09:13:58 +0200</lastBuildDate>
         <pubDate>Wed, 16 Sep 2026 00:00:00 +0200</pubDate>
         <ttl>60</ttl>
         <atom:link href="https://paloframework.org/feed.xml" rel="self" type="application/rss+xml"/>
@@ -20,6 +20,13 @@
         <category>AI Governance</category>
         <category>Responsible AI</category>
         <category>EU AI Act</category>
+        <item>
+            <title>PALO agent swarms: evidence and maturity at 17 September 2026</title>
+            <link>https://paloframework.org/docs/palo-status-2026-09-17.html</link>
+            <guid isPermaLink="true">https://paloframework.org/docs/palo-status-2026-09-17.html</guid>
+            <pubDate>Thu, 17 Sep 2026 09:13:58 +0200</pubDate>
+            <description>Separate evidence for the published ANS SDK bridge and an unreleased swarm snapshot with shared budgets, dynamic membership and supported cancellation. Production qualification remains open.</description>
+        </item>
         <item>
             <title>ANS SDK bridge and verified offline demo</title>
             <link>https://paloframework.org/docs/palo-ai-ans-integration.html</link>

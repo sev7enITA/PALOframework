@@ -1,5 +1,7 @@
 # PALO-AI Governance Hub - Delivery Status
 
+Assessment addendum, 17 September 2026: this document describes the published runtime or its production target. A separate unreleased swarm snapshot adds central coordination of remote workers, shared exposure, membership revisions and supported cancellation. It does not provide controller HA or qualify the published runtime. See the [dated evidence and version boundaries](palo-status-2026-09-17.md).
+
 **Assessment date:** 2026-08-27
 
 **Product status:** v3-aligned static verification console plus an opt-in production-candidate Hub control plane and a separate developer-preview execution runtime

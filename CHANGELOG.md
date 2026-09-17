@@ -9,6 +9,12 @@ and this project follows Semantic Versioning where practical.
 
 ## [Unreleased]
 
+- Archived elapsed August/September activation windows, clarified historical radar counts, and recorded that the official OWASP risk index still names the 2025 edition; the supplied 2026-labelled artifact remains informative.
+
+- Corrected mobile wrapping in the comparison-tool header and poisoning-study footer; made privacy tables keyboard-scrollable within the viewport.
+
+- Reviewed public maturity statements on 17 September 2026. Published a dated comparison of the ANS SDK bridge and the separate swarm source snapshot, six scoped matrix entries, source-bound swarm verification metadata and implementation guides. The published runtime still has 21 contracts and 45 tools; swarm snapshot counts are explicitly separate. Updated Regulatory Watch with the Article 50(2) transition and consolidated legal source.
+
 ### Added
 
 - Published the experimental ANS SDK integration guide with an eight-scenario offline demo, separate enterprise delegation and explicit hosted-service and production qualification gaps.

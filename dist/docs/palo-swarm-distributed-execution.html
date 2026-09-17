@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>PALO swarm execution across processes | PALO Documentation</title>
+  <meta name="description" content="Public PALO documentation: PALO swarm execution across processes.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://paloframework.org/docs/palo-swarm-distributed-execution.html">
+  <link rel="icon" type="image/webp" href="../assets/logo.webp">
+  <link rel="stylesheet" href="../assets/palo-icons.css">
+  <link rel="stylesheet" href="../assets/palo-v21.css?v=3.1.0">
+  <link rel="stylesheet" href="../assets/palo-docs.css">
+  <script src="../assets/palo-icons.js" defer></script>
+  <script src="../assets/palo-v21.js?v=3.1.0" defer></script>
+  <script src="../assets/palo-docs.js" defer></script>
+    <meta name="author" content="Fabrizio Degni">
+    <link rel="stylesheet" href="../assets/palo-authorship.css" data-palo-authorship-style="true">
+</head>
+<body class="palo-v21 palo-doc-page" data-doc-source="docs/palo-swarm-distributed-execution.md">
+  <a class="palo-skip-link" href="#main-content">Skip to main content</a>
+  <header class="palo-site-header"><div class="palo-shell palo-header-inner">
+    <a class="palo-brand" href="../index.html"><img src="../assets/logo.webp" alt="PALO">PALO FRAMEWORK</a>
+    <button class="palo-menu-toggle" type="button" data-palo-menu-toggle aria-expanded="false" aria-controls="palo-primary-nav" aria-label="Open navigation"><span data-palo-icon="menu" aria-hidden="true"></span></button>
+    <nav class="palo-nav" id="palo-primary-nav" aria-label="Primary navigation"><a href="../designs/theory-to-practice-infographic/">Start</a><a href="../PALO_AIGovernance.html">Agentic Governance</a><a href="../governance-hub/">Governance Hub</a><a href="../index.html#guided-journeys">Tools</a><a href="../PALO_DocumentationLibrary.html" aria-current="page">Documentation</a><a href="../PALO_AIProductionReadiness.html">Readiness</a></nav>
+  </div></header>
+  <main id="main-content" class="palo-doc-main">
+    <div class="palo-shell">
+      <nav class="palo-doc-breadcrumb" aria-label="Breadcrumb"><a href="../PALO_DocumentationLibrary.html">Documentation Library</a><span aria-hidden="true">/</span><span>Start and adoption</span></nav>
+      <header class="palo-doc-hero"><p class="palo-eyebrow">Start and adoption | Public documentation</p><h1>PALO swarm execution across processes</h1><div class="palo-doc-facts"><span><small>Level</small><strong>reference</strong></span><span><small>Audience</small><strong>technical | governance | executive</strong></span><span><small>Product</small><strong>PALO-AI</strong></span><span><small>Status</small><strong>Unreleased swarm snapshot</strong></span><span><small>Lifecycle</small><strong>Current</strong></span><span><small>Read</small><strong>6 min</strong></span></div><p class="palo-doc-source">Published HTML view | Source: <code>docs/palo-swarm-distributed-execution.md</code></p><div class="palo-actions"><button class="palo-btn" type="button" data-doc-copy-link>Copy link</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-share>Share page</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-print>Print</button></div><p class="palo-action-status" data-doc-action-status role="status" aria-live="polite"></p></header>
+      <details class="palo-doc-mobile-toc"><summary>On this page</summary><ol><li class="depth-2"><a href="#authoritative-coordination">Authoritative coordination</a></li><li class="depth-2"><a href="#dynamic-membership">Dynamic membership</a></li><li class="depth-2"><a href="#cancellation-and-external-effects">Cancellation and external effects</a></li><li class="depth-2"><a href="#host-integration">Host integration</a></li><li class="depth-2"><a href="#production-work-still-required">Production work still required</a></li></ol></details>
+      <div class="palo-doc-layout"><aside class="palo-doc-sidebar" aria-label="On this page"><strong>On this page</strong><ol><li class="depth-2"><a href="#authoritative-coordination">Authoritative coordination</a></li><li class="depth-2"><a href="#dynamic-membership">Dynamic membership</a></li><li class="depth-2"><a href="#cancellation-and-external-effects">Cancellation and external effects</a></li><li class="depth-2"><a href="#host-integration">Host integration</a></li><li class="depth-2"><a href="#production-work-still-required">Production work still required</a></li></ol></aside><article class="palo-doc-content"><h1 id="palo-swarm-execution-across-processes">PALO swarm execution across processes<a class="palo-doc-anchor" href="#palo-swarm-execution-across-processes" aria-label="Link to PALO swarm execution across processes">#</a></h1><p>Publication note, 17 September 2026: this guide describes a separately evaluated, unreleased swarm source snapshot. The published PALO-AI server and ANS branch do not yet include this extension. Reproduction requires the matching maintainer snapshot; the commands below are not available in the published baseline. See the <a href="palo-status-2026-09-17.html">dated status and evidence</a>.</p>
+<p>Status: unreleased reference implementation. Worker execution now runs across process and network boundaries, with versioned membership and verifiable cancellation. One central GovernanceRuntime owns the SQLite ledger and all budget decisions. This is not an HA controller, replicated database or production deployment qualification.</p>
+<figure class="palo-doc-code"><figcaption>sh code</figcaption><pre tabindex="0"><code class="language-sh">npm run test:swarm
+npm run demo:swarm:distributed
+npm run demo:swarm:distributed -- --output output/swarm-governance/distributed-verification.json</code></pre></figure><p>The demonstration launches real child processes, serves the authenticated worker API over loopback HTTP, and uses a synthetic external-effects database. It proves shared-budget enforcement, member admission/removal, a supported connector stopping before its effect, and a network partition that remains unknown until authoritative reconciliation. Tests also cover workers that ignore cancellation, worker crashes, stale leases and cross-tenant requests.</p>
+<figure class="palo-doc-code"><figcaption>Mermaid diagram source</figcaption><pre tabindex="0"><code class="language-mermaid">flowchart LR
+  A[Agents / MCP clients] --&gt; C[Central GovernanceRuntime]
+  C --&gt; L[(Mandates, revisions, budget and dispatch ledger)]
+  W1[Remote worker 1] &lt;--&gt;|Authenticated lease protocol| C
+  W2[Remote worker 2] &lt;--&gt;|Authenticated lease protocol| C
+  W1 --&gt; X[External connector / system]
+  W2 --&gt; X
+  V[Authoritative outcome and cancellation verifier] --&gt; X
+  C --&gt; V</code></pre></figure><h2 id="authoritative-coordination">Authoritative coordination<a class="palo-doc-anchor" href="#authoritative-coordination" aria-label="Link to Authoritative coordination">#</a></h2><p><code>SwarmDispatch</code> provides a durable queue linked to the existing execution intent and reserved exposure. Worker identities are provisioned by the operator with unique credentials, a tenant and an executor allowlist. Workers cannot choose their authenticated identity, change their tenant, increase the budget or grant authority locally. The worker API accepts HTTPS, with HTTP restricted to loopback.</p>
+<p>Workers claim a job, receive an expiring lease bound to the execution, worker and fence, and consume a single-use start permit before calling their connector. A second start is denied. Heartbeats check live authority and cancellation; checkpoints require a fresh successful response immediately before a connector's effect. The coordinator rechecks membership when dispatching and starting queued work. Already-started members may finish across an admission revision if their own ancestry remains valid.</p>
+<p>A worker crash, expired lease, missed heartbeat or unavailable coordinator does not create another execution attempt. The charge remains committed and uncertain work is held for review. Fences bind a particular execution attempt; they do not claim cross-resource fencing in an arbitrary external database. A replica with an independent ledger must never be treated as another member of the same authority.</p>
+<h2 id="dynamic-membership">Dynamic membership<a class="palo-doc-anchor" href="#dynamic-membership" aria-label="Link to Dynamic membership">#</a></h2><p>The initial mandate stays immutable. <code>palo_admit_swarm_members</code> accepts a <a href="../schemas/palo-swarm-membership-change.schema.json"><code>palo-swarm-membership-change</code></a> with an idempotent change ID, expected current membership digest, registered profiles, parents and reason. The MCP handler requires the authenticated tenant and <code>palo:admin</code>; the verified actor is recorded in the revision and signed event chain.</p>
+<p>Admission compares and swaps the membership digest inside a transaction. It checks ancestor profiles, delegation depth, allowed roles, direct-member ceilings and authority narrowing. New profiles must retain identical argument schemas for inherited tools: arbitrary JSON Schema implication is not assumed. The total historical membership ceiling is 1,000. Budget and original objective are never reset. Reusing an existing or revoked identity, moving it to another swarm, changing its parent or rewriting an old revision is rejected.</p>
+<p>After the first admission, every fresh Action Claim must bind both digests:</p>
+<figure class="palo-doc-code"><figcaption>json code</figcaption><pre tabindex="0"><code class="language-json">{
+  "metadata": {
+    "swarm": {
+      "swarmId": "swarm-example",
+      "mandateDigest": "sha256:&lt;immutable mandate digest&gt;",
+      "membershipDigest": "sha256:&lt;current membership digest&gt;"
+    }
+  }
+}</code></pre></figure><p>Admission revokes issued capabilities and invalidates stale pending claims. Removal uses <code>palo_revoke_swarm_authority</code>, which includes dynamically admitted descendants and retains immutable revocation records. A replacement process needs a new registered identity and an explicit admission. Administrative admission does not spawn or attest that process.</p>
+<h2 id="cancellation-and-external-effects">Cancellation and external effects<a class="palo-doc-anchor" href="#cancellation-and-external-effects" aria-label="Link to Cancellation and external effects">#</a></h2><p><code>palo_cancel_swarm_execution</code> requests cancellation of one execution; subtree or coordinator revocation automatically requests cancellation of affected running work. All mutations require <code>palo:admin</code> on OIDC MCP. Status and evidence are visible through <code>palo_get_swarm_status</code>.</p>
+<div class="palo-doc-table-wrap" tabindex="0" aria-label="Scrollable documentation table"><table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>requested</code></td>
+<td>Durable request; no stop guarantee yet</td>
+</tr>
+<tr>
+<td><code>confirmed</code></td>
+<td>The coordinator prevented dispatch, or a separately provisioned verifier confirmed the external operation stopped with no effects</td>
+</tr>
+<tr>
+<td><code>too_late</code></td>
+<td>The connector completed, or an observation found existing effects</td>
+</tr>
+<tr>
+<td><code>unknown</code></td>
+<td>No reliable confirmation, including a partition or expired lease</td>
+</tr>
+<tr>
+<td><code>unsupported</code></td>
+<td>No authoritative cancellation verifier is configured for worker acknowledgements</td>
+</tr>
+</tbody></table></div>
+<p>A worker receives an <code>AbortSignal</code> and an async <code>checkpoint</code> function. A conforming connector must cancel its external job or abort before committing, then return from its handler. Merely receiving a signal or returning an acknowledgement does not establish containment. The operator supplies <code>verifyCancellation</code> to inspect the authoritative external job and effect state; confirmation requires a matching execution ID, stopped state, absence of effects and an observation digest. Verification is time bounded and observations are signed into the swarm event chain.</p>
+<p>If a connector completes after a cancellation request, completion takes precedence and the result is <code>too_late</code>. If connectivity disappears after a worker stops, the initial result stays <code>unknown</code>; <code>dispatch.reconcileCancellation(executionId, tenantId)</code> can later obtain authoritative confirmation. Reconciliation can downgrade an earlier confirmation if later evidence contradicts it.</p>
+<p>Cancelled work keeps its budget charge and normal execution/outcome evidence. A confirmed stop with no effects does not itself hold unrelated members. The cancelled action retains a review outcome because its originally requested effect was not verified. Unknown or failed outcomes still hold the swarm. No automatic rollback, budget refund or resubmission is performed.</p>
+<h2 id="host-integration">Host integration<a class="palo-doc-anchor" href="#host-integration" aria-label="Link to Host integration">#</a></h2><p>The worker service is opt-in. It is not automatically enabled by the standard MCP server or Knowledge Reader. The host registers executor and verifier manifests as usual, then provisions a dispatcher and worker credentials:</p>
+<figure class="palo-doc-code"><figcaption>js code</figcaption><pre tabindex="0"><code class="language-js">import { SwarmDispatch } from "../packages/palo-mcp-server/swarm-dispatch.js";
+import { listenSwarmWorkerApi } from "../packages/palo-mcp-server/swarm-worker-transport.js";
+
+const dispatch = new SwarmDispatch(runtime, {
+  leaseMs: 3000,
+  executionTimeoutMs: 60000,
+  verifyCancellation: inspectAuthoritativeExternalJob
+});
+runtime.executorHandlers.set(executorId, dispatch.executor(executorId));
+const api = await listenSwarmWorkerApi({
+  dispatch,
+  credentials: [{ workerId, tenantId, executorIds: [executorId], token }],
+  host: "127.0.0.1",
+  port: 8081
+});</code></pre></figure><p>Worker processes use <code>createSwarmWorkerClient</code> and <code>runSwarmWorkerOnce</code> with operator-provisioned handlers. For non-loopback binding, supply <code>tls: { key, cert }</code> and an HTTPS URL. The demo worker and its synthetic identity verifier are test fixtures, not deployment authentication or a payment integration. Existing cryptographic Action Claim verification remains required separately from worker transport authentication.</p>
+<h2 id="production-work-still-required">Production work still required<a class="palo-doc-anchor" href="#production-work-still-required" aria-label="Link to Production work still required">#</a></h2><p>This implementation establishes central coordination of distributed workers. It does not establish controller failover, multi-primary consensus, database replication, network-partition availability, automatic worker reassignment, managed key custody, credential rotation, cloud workload attestation or tenant-isolated storage. SQLite files must stay local to their authority; do not share them through a network filesystem.</p>
+<p>Hard cancellation is possible only where the actual external API and connector support it and the verifier can establish a terminal state. An irreversible effect already committed requires a separately governed compensating action. A lost coordinator connection cannot prove that an uncooperative external system stopped. Production admission remains denied until the deployment supplies the independently verified capabilities it requires.</p>
+</article></div>
+      <aside class="palo-doc-next"><div><small>Prerequisite</small><strong>Read the baseline and source-snapshot boundary</strong></div><div><small>Recommended next step</small><strong>Inspect evidence and remaining production gates</strong></div></aside>
+      <section class="palo-doc-feedback" aria-labelledby="feedback-title"><p class="palo-eyebrow">Privacy-first feedback</p><h2 id="feedback-title">Help improve this guide</h2><p>Your feedback stays in your browser until you explicitly copy it, download it, or open an email draft. Do not include secrets, personal data, credentials or production identifiers.</p><form data-doc-feedback><div class="palo-form-grid"><div class="palo-field"><label for="feedback-role">Your role</label><select id="feedback-role" name="role"><option>Executive / governance owner</option><option>Platform or security engineer</option><option>No-code / low-code builder</option><option>External reviewer</option></select></div><div class="palo-field"><label for="feedback-category">Category</label><select id="feedback-category" name="category"><option>Clarity</option><option>Technical accuracy</option><option>Missing guidance</option><option>Accessibility</option></select></div><div class="palo-field palo-field-full"><label for="feedback-message">Feedback</label><textarea id="feedback-message" name="message" maxlength="3000" required placeholder="Describe the non-sensitive improvement you recommend."></textarea></div><div class="palo-form-actions"><button class="palo-btn" type="button" data-feedback-copy>Copy feedback</button><button class="palo-btn palo-btn-secondary" type="button" data-feedback-download>Download JSON</button><button class="palo-btn palo-btn-secondary" type="button" data-feedback-email>Email draft</button></div></div><p class="palo-action-status" data-feedback-status role="status" aria-live="polite"></p></form></section>
+    </div>
+  </main>
+  <footer class="palo-footer" data-palo-authorship-container="true">
+<p class="palo-authorship-footer" data-palo-authorship="footer">PALO Framework: conceived, created and maintained by <a href="../PALO_Community.html#creator">Fabrizio Degni</a>.</p>
+<div class="palo-shell"><p>PALO public documentation. Developer preview boundaries apply.</p><div class="palo-footer-links"><a href="../PALO_AIGovernance.html">PALO-AI</a><a href="../governance-hub/">Governance Hub</a><a href="../PALO_AgenticCapabilityMatrix.html">Capability Matrix</a><a href="../PALO_AIProductionReadiness.html">Production Readiness</a><a href="../privacy-policy.html">Privacy</a></div></div></footer>
+</body></html>
