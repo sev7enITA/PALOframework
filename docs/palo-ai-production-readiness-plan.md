@@ -1,5 +1,7 @@
 # PALO-AI production-readiness plan
 
+Assessment addendum, 17 September 2026: this document describes the published runtime or its production target. A separate unreleased swarm snapshot adds central coordination of remote workers, shared exposure, membership revisions and supported cancellation. It does not provide controller HA or qualify the published runtime. See the [dated evidence and version boundaries](palo-status-2026-09-17.md).
+
 Status: current production-readiness plan for the PALO-AI v2.7 data-assurance developer preview, updated 25 August 2026. The presence of a target control or acceptance criterion below does not mean that it is implemented or production-ready. Refer to `agentic/capability-matrix.json`, `PALO_AgenticCapabilityMatrix.html` and `PALO_AIProductionReadiness.html` for the public evidence-based status. Internal assessment workpapers are not published.
 
 The preview must not be used to authorize consequential tools or access sensitive production data. Production readiness requires closure of the documented correctness, identity, authorization, evidence, approval, connector, operations, security-testing, and collaborative-agent-team gaps.

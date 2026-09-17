@@ -1,5 +1,7 @@
 # PALO-AI State-of-the-Art Radar - agosto 2026
 
+Nota di lettura, 17 settembre 2026: questo radar conserva le osservazioni e i conteggi delle rispettive verifiche di agosto. La baseline pubblicata espone ora 21 contratti e 45 tool MCP; il separato snapshot sperimentale sugli sciami ne verifica 23 e 50. I test ANS e swarm appartengono a valutazioni distinte. Si veda lo [stato datato con evidenze e limiti](palo-status-2026-09-17.md).
+
 | Campo | Valore |
 | --- | --- |
 | Data dello snapshot | 14 agosto 2026; addendum corrente 25 agosto 2026, Europe/Rome |
@@ -28,7 +30,7 @@ Il percorso shared-token resta soltanto come modalità di sviluppo. La compatibi
 
 Validazione registrata per il secondo incremento v2.6: **49/49 test Node**, 3/3 test Dify, 13 contratti, 26 tool MCP e test OPA passavano; l'audit completo delle dipendenze root riportava **0 vulnerabilità note**. Questi numeri restano evidenza datata, non il conteggio della baseline corrente.
 
-La baseline corrente PALO-AI v2.7 aggiunge il vertical slice di Data Assurance: Action Claim 1.4 con Authority Context, External Evidence Ref immutabili, Data Fitness deterministico, Disclosure Contract/Observation/Receipt firmati, AI System & Agent Registry, invalidazione continua e persistenza digest-only dei risultati di esecuzione. L'inventario validato sale a **21 contratti e 38 tool MCP**. La capability matrix continua a dichiarare zero capability production-ready e il profilo di production admission resta fail-closed per il runtime bundled.
+La baseline PALO-AI v2.7 osservata il 25 agosto aggiunge il vertical slice di Data Assurance: Action Claim 1.4 con Authority Context, External Evidence Ref immutabili, Data Fitness deterministico, Disclosure Contract/Observation/Receipt firmati, AI System & Agent Registry, invalidazione continua e persistenza digest-only dei risultati di esecuzione. L'inventario allora validato comprendeva **21 contratti e 38 tool MCP**. La capability matrix continua a dichiarare zero capability production-ready e il profilo di production admission resta fail-closed per il runtime bundled.
 
 ## Verdetto esecutivo
 

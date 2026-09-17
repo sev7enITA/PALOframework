@@ -1,0 +1,24 @@
+{
+  "format": "palo-swarm-mandate",
+  "schemaVersion": "1.0.0",
+  "mandateVersion": "1.0.0",
+  "swarmId": "swarm-refund-example",
+  "caseId": "case-swarm-example",
+  "tenantId": "tenant-example",
+  "owner": { "subject": "user:accountable-owner", "issuer": "https://identity.example.org" },
+  "objective": "Issue refunds within a shared exposure budget and verify each effect.",
+  "coordinatorAgentId": "agent-coordinator",
+  "members": [
+    { "agentId": "agent-coordinator", "parentAgentId": null, "profileDigest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" },
+    { "agentId": "agent-refund-worker", "parentAgentId": "agent-coordinator", "profileDigest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb" }
+  ],
+  "validFrom": "2026-09-17T00:00:00Z",
+  "expiresAt": "2026-09-18T00:00:00Z",
+  "maxConcurrentExecutions": 2,
+  "keyId": "key-swarm-example",
+  "budget": {
+    "unit": "EUR-cent",
+    "limitUnits": 10000,
+    "rules": [{ "tool": "refund_issue", "operation": "create", "resource": "refund", "pathPrefix": "/refunds", "amountPointer": "/amountUnits", "maxUnitsPerAction": 4000 }]
+  }
+}

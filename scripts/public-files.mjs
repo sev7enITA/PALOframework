@@ -1,4 +1,13 @@
 export const PUBLIC_FILES = [
+  "docs/palo-status-2026-09-17.md",
+  "docs/palo-swarm-governance-local-prototype.md",
+  "docs/palo-swarm-distributed-execution.md",
+  "data/swarm-verification-2026-09-17.json",
+  "schemas/palo-swarm-mandate.schema.json",
+  "schemas/palo-swarm-membership-change.schema.json",
+  "schemas/fixtures/palo-swarm-mandate.valid.json",
+  "schemas/fixtures/palo-swarm-membership-change.valid.json",
+
   ".well-known/security.txt",
   "_headers",
   "accessibility.html",

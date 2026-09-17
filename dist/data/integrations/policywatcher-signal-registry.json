@@ -1,7 +1,7 @@
 {
   "format": "palo-policywatcher-signal-registry",
   "schemaVersion": "1.0.0",
-  "updatedAt": "2026-09-16T12:39:37.228Z",
+  "updatedAt": "2026-09-17T07:13:57.261Z",
   "source": {
     "providerId": "policywatcher",
     "origin": "https://policywatcher.online",
@@ -11,8 +11,8 @@
   },
   "transport": {
     "state": "healthy",
-    "lastAttemptAt": "2026-09-16T12:39:37.228Z",
-    "lastSuccessfulSyncAt": "2026-09-16T12:39:37.228Z",
+    "lastAttemptAt": "2026-09-17T07:13:57.261Z",
+    "lastSuccessfulSyncAt": "2026-09-17T07:13:57.261Z",
     "completeTraversal": true,
     "pageCount": 3,
     "stale": false,
@@ -24,7 +24,7 @@
     "received": 53,
     "accepted": 53,
     "rejected": 0,
-    "changed": 53
+    "changed": 0
   },
   "entries": [
     {
@@ -34,7 +34,7 @@
       "transportStatus": "active",
       "reviewState": "pending-human-review",
       "firstAcceptedAt": "2026-09-16T12:39:37.228Z",
-      "lastValidatedAt": "2026-09-16T12:39:37.228Z",
+      "lastValidatedAt": "2026-09-17T07:13:57.261Z",
       "revokedAt": null,
       "signal": {
         "format": "palo-policywatcher-signal",
@@ -115,7 +115,7 @@
       "transportStatus": "active",
       "reviewState": "pending-human-review",
       "firstAcceptedAt": "2026-09-16T12:39:37.228Z",
-      "lastValidatedAt": "2026-09-16T12:39:37.228Z",
+      "lastValidatedAt": "2026-09-17T07:13:57.261Z",
       "revokedAt": null,
       "signal": {
         "format": "palo-policywatcher-signal",
@@ -196,7 +196,7 @@
       "transportStatus": "active",
       "reviewState": "pending-human-review",
       "firstAcceptedAt": "2026-09-16T12:39:37.228Z",
-      "lastValidatedAt": "2026-09-16T12:39:37.228Z",
+      "lastValidatedAt": "2026-09-17T07:13:57.261Z",
       "revokedAt": null,
       "signal": {
         "format": "palo-policywatcher-signal",
@@ -277,7 +277,7 @@
       "transportStatus": "active",
       "reviewState": "pending-human-review",
       "firstAcceptedAt": "2026-09-16T12:39:37.228Z",
-      "lastValidatedAt": "2026-09-16T12:39:37.228Z",
+      "lastValidatedAt": "2026-09-17T07:13:57.261Z",
       "revokedAt": null,
       "signal": {
         "format": "palo-policywatcher-signal",
@@ -358,7 +358,7 @@
       "transportStatus": "active",
       "reviewState": "pending-human-review",
       "firstAcceptedAt": "2026-09-16T12:39:37.228Z",
-      "lastValidatedAt": "2026-09-16T12:39:37.228Z",
+      "lastValidatedAt": "2026-09-17T07:13:57.261Z",
       "revokedAt": null,
       "signal": {
         "format": "palo-policywatcher-signal",
@@ -439,7 +439,7 @@
       "transportStatus": "active",
       "reviewState": "pending-human-review",
       "firstAcceptedAt": "2026-09-16T12:39:37.228Z",
-      "lastValidatedAt": "2026-09-16T12:39:37.228Z",
+      "lastValidatedAt": "2026-09-17T07:13:57.261Z",
       "revokedAt": null,
       "signal": {
         "format": "palo-policywatcher-signal",
@@ -520,7 +520,7 @@
       "transportStatus": "active",
       "reviewState": "pending-human-review",
       "firstAcceptedAt": "2026-09-16T12:39:37.228Z",
-      "lastValidatedAt": "2026-09-16T12:39:37.228Z",
+      "lastValidatedAt": "2026-09-17T07:13:57.261Z",
       "revokedAt": null,
       "signal": {
         "format": "palo-policywatcher-signal",
@@ -601,7 +601,7 @@
       "transportStatus": "active",
       "reviewState": "pending-human-review",
       "firstAcceptedAt": "2026-09-16T12:39:37.228Z",
-      "lastValidatedAt": "2026-09-16T12:39:37.228Z",
+      "lastValidatedAt": "2026-09-17T07:13:57.261Z",
       "revokedAt": null,
       "signal": {
         "format": "palo-policywatcher-signal",
@@ -682,7 +682,7 @@
       "transportStatus": "active",
       "reviewState": "pending-human-review",
       "firstAcceptedAt": "2026-09-16T12:39:37.228Z",
-      "lastValidatedAt": "2026-09-16T12:39:37.228Z",
+      "lastValidatedAt": "2026-09-17T07:13:57.261Z",
       "revokedAt": null,
       "signal": {
         "format": "palo-policywatcher-signal",
@@ -763,7 +763,7 @@
       "transportStatus": "active",
       "reviewState": "pending-human-review",
       "firstAcceptedAt": "2026-09-16T12:39:37.228Z",
-      "lastValidatedAt": "2026-09-16T12:39:37.228Z",
+      "lastValidatedAt": "2026-09-17T07:13:57.261Z",
       "revokedAt": null,
       "signal": {
         "format": "palo-policywatcher-signal",
@@ -844,7 +844,7 @@
       "transportStatus": "active",
       "reviewState": "pending-human-review",
       "firstAcceptedAt": "2026-09-16T12:39:37.228Z",
-      "lastValidatedAt": "2026-09-16T12:39:37.228Z",
+      "lastValidatedAt": "2026-09-17T07:13:57.261Z",
       "revokedAt": null,
       "signal": {
         "format": "palo-policywatcher-signal",
@@ -925,7 +925,7 @@
       "transportStatus": "active",
       "reviewState": "pending-human-review",
       "firstAcceptedAt": "2026-09-16T12:39:37.228Z",
-      "lastValidatedAt": "2026-09-16T12:39:37.228Z",
+      "lastValidatedAt": "2026-09-17T07:13:57.261Z",
       "revokedAt": null,
       "signal": {
         "format": "palo-policywatcher-signal",
@@ -1006,7 +1006,7 @@
       "transportStatus": "active",
       "reviewState": "pending-human-review",
       "firstAcceptedAt": "2026-09-16T12:39:37.228Z",
-      "lastValidatedAt": "2026-09-16T12:39:37.228Z",
+      "lastValidatedAt": "2026-09-17T07:13:57.261Z",
       "revokedAt": null,
       "signal": {
         "format": "palo-policywatcher-signal",
@@ -1087,7 +1087,7 @@
       "transportStatus": "active",
       "reviewState": "pending-human-review",
       "firstAcceptedAt": "2026-09-16T12:39:37.228Z",
-      "lastValidatedAt": "2026-09-16T12:39:37.228Z",
+      "lastValidatedAt": "2026-09-17T07:13:57.261Z",
       "revokedAt": null,
       "signal": {
         "format": "palo-policywatcher-signal",
@@ -1168,7 +1168,7 @@
       "transportStatus": "active",
       "reviewState": "pending-human-review",
       "firstAcceptedAt": "2026-09-16T12:39:37.228Z",
-      "lastValidatedAt": "2026-09-16T12:39:37.228Z",
+      "lastValidatedAt": "2026-09-17T07:13:57.261Z",
       "revokedAt": null,
       "signal": {
         "format": "palo-policywatcher-signal",
@@ -1249,7 +1249,7 @@
       "transportStatus": "active",
       "reviewState": "pending-human-review",
       "firstAcceptedAt": "2026-09-16T12:39:37.228Z",
-      "lastValidatedAt": "2026-09-16T12:39:37.228Z",
+      "lastValidatedAt": "2026-09-17T07:13:57.261Z",
       "revokedAt": null,
       "signal": {
         "format": "palo-policywatcher-signal",
@@ -1330,7 +1330,7 @@
       "transportStatus": "active",
       "reviewState": "pending-human-review",
       "firstAcceptedAt": "2026-09-16T12:39:37.228Z",
-      "lastValidatedAt": "2026-09-16T12:39:37.228Z",
+      "lastValidatedAt": "2026-09-17T07:13:57.261Z",
       "revokedAt": null,
       "signal": {
         "format": "palo-policywatcher-signal",
@@ -1411,7 +1411,7 @@
       "transportStatus": "active",
       "reviewState": "pending-human-review",
       "firstAcceptedAt": "2026-09-16T12:39:37.228Z",
-      "lastValidatedAt": "2026-09-16T12:39:37.228Z",
+      "lastValidatedAt": "2026-09-17T07:13:57.261Z",
       "revokedAt": null,
       "signal": {
         "format": "palo-policywatcher-signal",
@@ -1492,7 +1492,7 @@
       "transportStatus": "active",
       "reviewState": "pending-human-review",
       "firstAcceptedAt": "2026-09-16T12:39:37.228Z",
-      "lastValidatedAt": "2026-09-16T12:39:37.228Z",
+      "lastValidatedAt": "2026-09-17T07:13:57.261Z",
       "revokedAt": null,
       "signal": {
         "format": "palo-policywatcher-signal",
@@ -1573,7 +1573,7 @@
       "transportStatus": "active",
       "reviewState": "pending-human-review",
       "firstAcceptedAt": "2026-09-16T12:39:37.228Z",
-      "lastValidatedAt": "2026-09-16T12:39:37.228Z",
+      "lastValidatedAt": "2026-09-17T07:13:57.261Z",
       "revokedAt": null,
       "signal": {
         "format": "palo-policywatcher-signal",
@@ -1654,7 +1654,7 @@
       "transportStatus": "active",
       "reviewState": "pending-human-review",
       "firstAcceptedAt": "2026-09-16T12:39:37.228Z",
-      "lastValidatedAt": "2026-09-16T12:39:37.228Z",
+      "lastValidatedAt": "2026-09-17T07:13:57.261Z",
       "revokedAt": null,
       "signal": {
         "format": "palo-policywatcher-signal",
@@ -1735,7 +1735,7 @@
       "transportStatus": "active",
       "reviewState": "pending-human-review",
       "firstAcceptedAt": "2026-09-16T12:39:37.228Z",
-      "lastValidatedAt": "2026-09-16T12:39:37.228Z",
+      "lastValidatedAt": "2026-09-17T07:13:57.261Z",
       "revokedAt": null,
       "signal": {
         "format": "palo-policywatcher-signal",
@@ -1816,7 +1816,7 @@
       "transportStatus": "active",
       "reviewState": "pending-human-review",
       "firstAcceptedAt": "2026-09-16T12:39:37.228Z",
-      "lastValidatedAt": "2026-09-16T12:39:37.228Z",
+      "lastValidatedAt": "2026-09-17T07:13:57.261Z",
       "revokedAt": null,
       "signal": {
         "format": "palo-policywatcher-signal",
@@ -1897,7 +1897,7 @@
       "transportStatus": "active",
       "reviewState": "pending-human-review",
       "firstAcceptedAt": "2026-09-16T12:39:37.228Z",
-      "lastValidatedAt": "2026-09-16T12:39:37.228Z",
+      "lastValidatedAt": "2026-09-17T07:13:57.261Z",
       "revokedAt": null,
       "signal": {
         "format": "palo-policywatcher-signal",
@@ -1978,7 +1978,7 @@
       "transportStatus": "active",
       "reviewState": "pending-human-review",
       "firstAcceptedAt": "2026-09-16T12:39:37.228Z",
-      "lastValidatedAt": "2026-09-16T12:39:37.228Z",
+      "lastValidatedAt": "2026-09-17T07:13:57.261Z",
       "revokedAt": null,
       "signal": {
         "format": "palo-policywatcher-signal",
@@ -2059,7 +2059,7 @@
       "transportStatus": "active",
       "reviewState": "pending-human-review",
       "firstAcceptedAt": "2026-09-16T12:39:37.228Z",
-      "lastValidatedAt": "2026-09-16T12:39:37.228Z",
+      "lastValidatedAt": "2026-09-17T07:13:57.261Z",
       "revokedAt": null,
       "signal": {
         "format": "palo-policywatcher-signal",
@@ -2140,7 +2140,7 @@
       "transportStatus": "active",
       "reviewState": "pending-human-review",
       "firstAcceptedAt": "2026-09-16T12:39:37.228Z",
-      "lastValidatedAt": "2026-09-16T12:39:37.228Z",
+      "lastValidatedAt": "2026-09-17T07:13:57.261Z",
       "revokedAt": null,
       "signal": {
         "format": "palo-policywatcher-signal",
@@ -2221,7 +2221,7 @@
       "transportStatus": "active",
       "reviewState": "pending-human-review",
       "firstAcceptedAt": "2026-09-16T12:39:37.228Z",
-      "lastValidatedAt": "2026-09-16T12:39:37.228Z",
+      "lastValidatedAt": "2026-09-17T07:13:57.261Z",
       "revokedAt": null,
       "signal": {
         "format": "palo-policywatcher-signal",
@@ -2302,7 +2302,7 @@
       "transportStatus": "active",
       "reviewState": "pending-human-review",
       "firstAcceptedAt": "2026-09-16T12:39:37.228Z",
-      "lastValidatedAt": "2026-09-16T12:39:37.228Z",
+      "lastValidatedAt": "2026-09-17T07:13:57.261Z",
       "revokedAt": null,
       "signal": {
         "format": "palo-policywatcher-signal",
@@ -2383,7 +2383,7 @@
       "transportStatus": "active",
       "reviewState": "pending-human-review",
       "firstAcceptedAt": "2026-09-16T12:39:37.228Z",
-      "lastValidatedAt": "2026-09-16T12:39:37.228Z",
+      "lastValidatedAt": "2026-09-17T07:13:57.261Z",
       "revokedAt": null,
       "signal": {
         "format": "palo-policywatcher-signal",
@@ -2464,7 +2464,7 @@
       "transportStatus": "active",
       "reviewState": "pending-human-review",
       "firstAcceptedAt": "2026-09-16T12:39:37.228Z",
-      "lastValidatedAt": "2026-09-16T12:39:37.228Z",
+      "lastValidatedAt": "2026-09-17T07:13:57.261Z",
       "revokedAt": null,
       "signal": {
         "format": "palo-policywatcher-signal",
@@ -2545,7 +2545,7 @@
       "transportStatus": "active",
       "reviewState": "pending-human-review",
       "firstAcceptedAt": "2026-09-16T12:39:37.228Z",
-      "lastValidatedAt": "2026-09-16T12:39:37.228Z",
+      "lastValidatedAt": "2026-09-17T07:13:57.261Z",
       "revokedAt": null,
       "signal": {
         "format": "palo-policywatcher-signal",
@@ -2626,7 +2626,7 @@
       "transportStatus": "active",
       "reviewState": "pending-human-review",
       "firstAcceptedAt": "2026-09-16T12:39:37.228Z",
-      "lastValidatedAt": "2026-09-16T12:39:37.228Z",
+      "lastValidatedAt": "2026-09-17T07:13:57.261Z",
       "revokedAt": null,
       "signal": {
         "format": "palo-policywatcher-signal",
@@ -2707,7 +2707,7 @@
       "transportStatus": "active",
       "reviewState": "pending-human-review",
       "firstAcceptedAt": "2026-09-16T12:39:37.228Z",
-      "lastValidatedAt": "2026-09-16T12:39:37.228Z",
+      "lastValidatedAt": "2026-09-17T07:13:57.261Z",
       "revokedAt": null,
       "signal": {
         "format": "palo-policywatcher-signal",
@@ -2788,7 +2788,7 @@
       "transportStatus": "active",
       "reviewState": "pending-human-review",
       "firstAcceptedAt": "2026-09-16T12:39:37.228Z",
-      "lastValidatedAt": "2026-09-16T12:39:37.228Z",
+      "lastValidatedAt": "2026-09-17T07:13:57.261Z",
       "revokedAt": null,
       "signal": {
         "format": "palo-policywatcher-signal",
@@ -2869,7 +2869,7 @@
       "transportStatus": "active",
       "reviewState": "pending-human-review",
       "firstAcceptedAt": "2026-09-16T12:39:37.228Z",
-      "lastValidatedAt": "2026-09-16T12:39:37.228Z",
+      "lastValidatedAt": "2026-09-17T07:13:57.261Z",
       "revokedAt": null,
       "signal": {
         "format": "palo-policywatcher-signal",
@@ -2950,7 +2950,7 @@
       "transportStatus": "active",
       "reviewState": "pending-human-review",
       "firstAcceptedAt": "2026-09-16T12:39:37.228Z",
-      "lastValidatedAt": "2026-09-16T12:39:37.228Z",
+      "lastValidatedAt": "2026-09-17T07:13:57.261Z",
       "revokedAt": null,
       "signal": {
         "format": "palo-policywatcher-signal",
@@ -3031,7 +3031,7 @@
       "transportStatus": "active",
       "reviewState": "pending-human-review",
       "firstAcceptedAt": "2026-09-16T12:39:37.228Z",
-      "lastValidatedAt": "2026-09-16T12:39:37.228Z",
+      "lastValidatedAt": "2026-09-17T07:13:57.261Z",
       "revokedAt": null,
       "signal": {
         "format": "palo-policywatcher-signal",
@@ -3112,7 +3112,7 @@
       "transportStatus": "active",
       "reviewState": "pending-human-review",
       "firstAcceptedAt": "2026-09-16T12:39:37.228Z",
-      "lastValidatedAt": "2026-09-16T12:39:37.228Z",
+      "lastValidatedAt": "2026-09-17T07:13:57.261Z",
       "revokedAt": null,
       "signal": {
         "format": "palo-policywatcher-signal",
@@ -3193,7 +3193,7 @@
       "transportStatus": "active",
       "reviewState": "pending-human-review",
       "firstAcceptedAt": "2026-09-16T12:39:37.228Z",
-      "lastValidatedAt": "2026-09-16T12:39:37.228Z",
+      "lastValidatedAt": "2026-09-17T07:13:57.261Z",
       "revokedAt": null,
       "signal": {
         "format": "palo-policywatcher-signal",
@@ -3274,7 +3274,7 @@
       "transportStatus": "active",
       "reviewState": "pending-human-review",
       "firstAcceptedAt": "2026-09-16T12:39:37.228Z",
-      "lastValidatedAt": "2026-09-16T12:39:37.228Z",
+      "lastValidatedAt": "2026-09-17T07:13:57.261Z",
       "revokedAt": null,
       "signal": {
         "format": "palo-policywatcher-signal",
@@ -3355,7 +3355,7 @@
       "transportStatus": "active",
       "reviewState": "pending-human-review",
       "firstAcceptedAt": "2026-09-16T12:39:37.228Z",
-      "lastValidatedAt": "2026-09-16T12:39:37.228Z",
+      "lastValidatedAt": "2026-09-17T07:13:57.261Z",
       "revokedAt": null,
       "signal": {
         "format": "palo-policywatcher-signal",
@@ -3436,7 +3436,7 @@
       "transportStatus": "active",
       "reviewState": "pending-human-review",
       "firstAcceptedAt": "2026-09-16T12:39:37.228Z",
-      "lastValidatedAt": "2026-09-16T12:39:37.228Z",
+      "lastValidatedAt": "2026-09-17T07:13:57.261Z",
       "revokedAt": null,
       "signal": {
         "format": "palo-policywatcher-signal",
@@ -3517,7 +3517,7 @@
       "transportStatus": "active",
       "reviewState": "pending-human-review",
       "firstAcceptedAt": "2026-09-16T12:39:37.228Z",
-      "lastValidatedAt": "2026-09-16T12:39:37.228Z",
+      "lastValidatedAt": "2026-09-17T07:13:57.261Z",
       "revokedAt": null,
       "signal": {
         "format": "palo-policywatcher-signal",
@@ -3598,7 +3598,7 @@
       "transportStatus": "active",
       "reviewState": "pending-human-review",
       "firstAcceptedAt": "2026-09-16T12:39:37.228Z",
-      "lastValidatedAt": "2026-09-16T12:39:37.228Z",
+      "lastValidatedAt": "2026-09-17T07:13:57.261Z",
       "revokedAt": null,
       "signal": {
         "format": "palo-policywatcher-signal",
@@ -3679,7 +3679,7 @@
       "transportStatus": "active",
       "reviewState": "pending-human-review",
       "firstAcceptedAt": "2026-09-16T12:39:37.228Z",
-      "lastValidatedAt": "2026-09-16T12:39:37.228Z",
+      "lastValidatedAt": "2026-09-17T07:13:57.261Z",
       "revokedAt": null,
       "signal": {
         "format": "palo-policywatcher-signal",
@@ -3760,7 +3760,7 @@
       "transportStatus": "active",
       "reviewState": "pending-human-review",
       "firstAcceptedAt": "2026-09-16T12:39:37.228Z",
-      "lastValidatedAt": "2026-09-16T12:39:37.228Z",
+      "lastValidatedAt": "2026-09-17T07:13:57.261Z",
       "revokedAt": null,
       "signal": {
         "format": "palo-policywatcher-signal",
@@ -3841,7 +3841,7 @@
       "transportStatus": "active",
       "reviewState": "pending-human-review",
       "firstAcceptedAt": "2026-09-16T12:39:37.228Z",
-      "lastValidatedAt": "2026-09-16T12:39:37.228Z",
+      "lastValidatedAt": "2026-09-17T07:13:57.261Z",
       "revokedAt": null,
       "signal": {
         "format": "palo-policywatcher-signal",
@@ -3922,7 +3922,7 @@
       "transportStatus": "active",
       "reviewState": "pending-human-review",
       "firstAcceptedAt": "2026-09-16T12:39:37.228Z",
-      "lastValidatedAt": "2026-09-16T12:39:37.228Z",
+      "lastValidatedAt": "2026-09-17T07:13:57.261Z",
       "revokedAt": null,
       "signal": {
         "format": "palo-policywatcher-signal",
@@ -4003,7 +4003,7 @@
       "transportStatus": "active",
       "reviewState": "pending-human-review",
       "firstAcceptedAt": "2026-09-16T12:39:37.228Z",
-      "lastValidatedAt": "2026-09-16T12:39:37.228Z",
+      "lastValidatedAt": "2026-09-17T07:13:57.261Z",
       "revokedAt": null,
       "signal": {
         "format": "palo-policywatcher-signal",
@@ -4084,7 +4084,7 @@
       "transportStatus": "active",
       "reviewState": "pending-human-review",
       "firstAcceptedAt": "2026-09-16T12:39:37.228Z",
-      "lastValidatedAt": "2026-09-16T12:39:37.228Z",
+      "lastValidatedAt": "2026-09-17T07:13:57.261Z",
       "revokedAt": null,
       "signal": {
         "format": "palo-policywatcher-signal",
@@ -4165,7 +4165,7 @@
       "transportStatus": "active",
       "reviewState": "pending-human-review",
       "firstAcceptedAt": "2026-09-16T12:39:37.228Z",
-      "lastValidatedAt": "2026-09-16T12:39:37.228Z",
+      "lastValidatedAt": "2026-09-17T07:13:57.261Z",
       "revokedAt": null,
       "signal": {
         "format": "palo-policywatcher-signal",
@@ -4246,7 +4246,7 @@
       "transportStatus": "active",
       "reviewState": "pending-human-review",
       "firstAcceptedAt": "2026-09-16T12:39:37.228Z",
-      "lastValidatedAt": "2026-09-16T12:39:37.228Z",
+      "lastValidatedAt": "2026-09-17T07:13:57.261Z",
       "revokedAt": null,
       "signal": {
         "format": "palo-policywatcher-signal",
@@ -4323,5 +4323,5 @@
   ],
   "alerts": [],
   "authorityBoundary": "Automated transport moves validated public monitoring signals only. PALO remains fully operable without PolicyWatcher, does not infer applicability, risk, control effectiveness or gate decisions, and requires accountable local review before use.",
-  "collectionDigest": "973ad63ce0874d0c77e7fd079402b1e03fdb329c39b9b90b6b3fb2f28aa71338"
+  "collectionDigest": "0f65b704d6e7497dcd1ed9feb5283dc14126c93f80adde35f23773ab99d8fe2d"
 }

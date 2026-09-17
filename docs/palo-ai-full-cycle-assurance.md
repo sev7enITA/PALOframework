@@ -1,5 +1,7 @@
 # PALO-AI v2.7 - Full-Cycle and Data-Assurance Guide
 
+Assessment addendum, 17 September 2026: this document describes the published runtime or its production target. A separate unreleased swarm snapshot adds central coordination of remote workers, shared exposure, membership revisions and supported cancellation. It does not provide controller HA or qualify the published runtime. See the [dated evidence and version boundaries](palo-status-2026-09-17.md).
+
 Status: current guide for PALO-AI v2.7, updated 25 August 2026. Earlier Action Claim versions remain compatibility inputs; new data-governed integrations should use Action Claim 1.4.
 
 > **Developer preview.** Use synthetic or isolated data and non-consequential tools only. This implementation is not an independently assessed security boundary, compliance certification, production identity service or universal exactly-once executor.

@@ -1,5 +1,7 @@
 # PALO-AI Security Assurance and Scale Plan
 
+Assessment addendum, 17 September 2026: this document describes the published runtime or its production target. A separate unreleased swarm snapshot adds central coordination of remote workers, shared exposure, membership revisions and supported cancellation. It does not provide controller HA or qualify the published runtime. See the [dated evidence and version boundaries](palo-status-2026-09-17.md).
+
 Status: current external-assurance plan for the PALO-AI v2.7 data-assurance developer preview, updated 25 August 2026.
 
 ## Recommendation

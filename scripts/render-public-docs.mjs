@@ -50,6 +50,10 @@ const documentLanguages = new Map([
 ]);
 
 const importantMetadata = {
+  "docs/palo-status-2026-09-17.md": {"level": "reference", "audience": "technical governance executive", "task": "understand integrate assure", "product": "PALO-AI", "status": "Dated assessment", "evidenceClass": "illustrative-local-preview", "workspace": "assurance-review", "prerequisite": "Read the baseline and source-snapshot boundary", "next": "Inspect evidence and remaining production gates"},
+  "docs/palo-swarm-governance-local-prototype.md": {"level": "reference", "audience": "technical governance executive", "task": "understand integrate assure", "product": "PALO-AI", "status": "Unreleased swarm snapshot", "evidenceClass": "illustrative-local-preview", "workspace": "assurance-review", "prerequisite": "Read the baseline and source-snapshot boundary", "next": "Inspect evidence and remaining production gates"},
+  "docs/palo-swarm-distributed-execution.md": {"level": "reference", "audience": "technical governance executive", "task": "understand integrate assure", "product": "PALO-AI", "status": "Unreleased swarm snapshot", "evidenceClass": "illustrative-local-preview", "workspace": "assurance-review", "prerequisite": "Read the baseline and source-snapshot boundary", "next": "Inspect evidence and remaining production gates"},
+
   "docs/palo-ai-ans-integration.md": { level: "guide", audience: "technical governance", task: "integrate assure", product: "PALO-AI", status: "Experimental SDK bridge", evidenceClass: "illustrative-local-preview", workspace: "assurance-review", prerequisite: "Node.js 22 or 24 and Go 1.27.1", next: "Run the offline ANS demo and review qualification gaps" },
   "docs/palo-repository-reading-guide.md": { level: "start", audience: "executive governance technical builder", task: "understand integrate assure", product: "PALO Platform", status: "Current Guidance", evidenceClass: "canonical-definition", workspace: "public-catalog", prerequisite: "No specialist prerequisite", next: "Choose the role-based repository path" },
   "docs/palo-v3-semantic-foundation.md": { level: "reference", audience: "executive governance technical builder", task: "understand design assure", product: "PALO Core", status: "Canonical v3.1.0", evidenceClass: "canonical-definition", workspace: "public-catalog", prerequisite: "No specialist prerequisite", next: "Open the Semantic Inspector" },
@@ -72,6 +76,8 @@ const importantMetadata = {
 };
 
 const documentLifecycle = {
+  "docs/activation-freeze-2026-08.md": "Historical",
+  "docs/community/activation-window-2026-08.md": "Historical",
   "docs/palo-ai-community-and-market-entry.md": "Historical",
   "docs/community/n8n-architecture-preview-post.md": "Historical",
   "docs/palo-ai-n8n-alpha-test-report.md": "Historical",

@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>PALO swarm governance: local prototype | PALO Documentation</title>
+  <meta name="description" content="Public PALO documentation: PALO swarm governance: local prototype.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://paloframework.org/docs/palo-swarm-governance-local-prototype.html">
+  <link rel="icon" type="image/webp" href="../assets/logo.webp">
+  <link rel="stylesheet" href="../assets/palo-icons.css">
+  <link rel="stylesheet" href="../assets/palo-v21.css?v=3.1.0">
+  <link rel="stylesheet" href="../assets/palo-docs.css">
+  <script src="../assets/palo-icons.js" defer></script>
+  <script src="../assets/palo-v21.js?v=3.1.0" defer></script>
+  <script src="../assets/palo-docs.js" defer></script>
+    <meta name="author" content="Fabrizio Degni">
+    <link rel="stylesheet" href="../assets/palo-authorship.css" data-palo-authorship-style="true">
+</head>
+<body class="palo-v21 palo-doc-page" data-doc-source="docs/palo-swarm-governance-local-prototype.md">
+  <a class="palo-skip-link" href="#main-content">Skip to main content</a>
+  <header class="palo-site-header"><div class="palo-shell palo-header-inner">
+    <a class="palo-brand" href="../index.html"><img src="../assets/logo.webp" alt="PALO">PALO FRAMEWORK</a>
+    <button class="palo-menu-toggle" type="button" data-palo-menu-toggle aria-expanded="false" aria-controls="palo-primary-nav" aria-label="Open navigation"><span data-palo-icon="menu" aria-hidden="true"></span></button>
+    <nav class="palo-nav" id="palo-primary-nav" aria-label="Primary navigation"><a href="../designs/theory-to-practice-infographic/">Start</a><a href="../PALO_AIGovernance.html">Agentic Governance</a><a href="../governance-hub/">Governance Hub</a><a href="../index.html#guided-journeys">Tools</a><a href="../PALO_DocumentationLibrary.html" aria-current="page">Documentation</a><a href="../PALO_AIProductionReadiness.html">Readiness</a></nav>
+  </div></header>
+  <main id="main-content" class="palo-doc-main">
+    <div class="palo-shell">
+      <nav class="palo-doc-breadcrumb" aria-label="Breadcrumb"><a href="../PALO_DocumentationLibrary.html">Documentation Library</a><span aria-hidden="true">/</span><span>Start and adoption</span></nav>
+      <header class="palo-doc-hero"><p class="palo-eyebrow">Start and adoption | Public documentation</p><h1>PALO swarm governance: local prototype</h1><div class="palo-doc-facts"><span><small>Level</small><strong>reference</strong></span><span><small>Audience</small><strong>technical | governance | executive</strong></span><span><small>Product</small><strong>PALO-AI</strong></span><span><small>Status</small><strong>Unreleased swarm snapshot</strong></span><span><small>Lifecycle</small><strong>Current</strong></span><span><small>Read</small><strong>6 min</strong></span></div><p class="palo-doc-source">Published HTML view | Source: <code>docs/palo-swarm-governance-local-prototype.md</code></p><div class="palo-actions"><button class="palo-btn" type="button" data-doc-copy-link>Copy link</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-share>Share page</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-print>Print</button></div><p class="palo-action-status" data-doc-action-status role="status" aria-live="polite"></p></header>
+      <details class="palo-doc-mobile-toc"><summary>On this page</summary><ol><li class="depth-2"><a href="#four-observable-outcomes">Four observable outcomes</a></li><li class="depth-2"><a href="#contract-and-integration">Contract and integration</a></li><li class="depth-2"><a href="#budget-and-concurrency-semantics">Budget and concurrency semantics</a></li><li class="depth-2"><a href="#revocation-and-evidence">Revocation and evidence</a></li><li class="depth-2"><a href="#remaining-gates">Remaining gates</a></li></ol></details>
+      <div class="palo-doc-layout"><aside class="palo-doc-sidebar" aria-label="On this page"><strong>On this page</strong><ol><li class="depth-2"><a href="#four-observable-outcomes">Four observable outcomes</a></li><li class="depth-2"><a href="#contract-and-integration">Contract and integration</a></li><li class="depth-2"><a href="#budget-and-concurrency-semantics">Budget and concurrency semantics</a></li><li class="depth-2"><a href="#revocation-and-evidence">Revocation and evidence</a></li><li class="depth-2"><a href="#remaining-gates">Remaining gates</a></li></ol></aside><article class="palo-doc-content"><h1 id="palo-swarm-governance-local-prototype">PALO swarm governance: local prototype<a class="palo-doc-anchor" href="#palo-swarm-governance-local-prototype" aria-label="Link to PALO swarm governance: local prototype">#</a></h1><p>Publication note, 17 September 2026: this guide describes a separately evaluated, unreleased swarm source snapshot. The published PALO-AI server and ANS branch do not yet include this extension. Reproduction requires the matching maintainer snapshot; the commands below are not available in the published baseline. See the <a href="palo-status-2026-09-17.html">dated status and evidence</a>.</p>
+<p>Status: unreleased implementation on top of the PALO-AI v2.7 reference runtime. The original transaction boundary is extended by <a href="palo-swarm-distributed-execution.html">distributed workers, dynamic membership and verified cancellation</a>. SQLite still belongs to one central authority; production readiness is not established.</p>
+<h2 id="four-observable-outcomes">Four observable outcomes<a class="palo-doc-anchor" href="#four-observable-outcomes" aria-label="Link to Four observable outcomes">#</a></h2><ol>
+<li>Register an immutable mandate with an accountable owner, objective, tenant, case, coordinator, parent-child membership, exact profile digests, validity period, shared budget and concurrency limit.</li>
+<li>Reserve exposure against the whole swarm in the same transaction that consumes the execution capability and records execution intent. Parallel agents cannot each spend the same remaining allowance.</li>
+<li>Revoke a coordinator or subtree. New starts for affected identities are denied, issued capabilities are revoked, and already-started work remains visible until its outcome is observed.</li>
+<li>Reproduce a case where three individually permitted actions would exceed a collective limit. Only two reach the synthetic executor.</li>
+</ol>
+<figure class="palo-doc-code"><figcaption>sh code</figcaption><pre tabindex="0"><code class="language-sh">npm run test:swarm
+npm run demo:swarm
+npm run demo:swarm -- --output output/swarm-governance/verification.json</code></pre></figure><p>The demo uses synthetic identity assertions and a deterministic refund connector. It proposes three actions of 4,000 units against a shared 10,000-unit mandate. All three obtain an individual policy permit before the execution race. Two execute, committing 8,000 units; one is denied before its connector runs. The second scenario revokes the coordinator while one action is in flight, rejects a fresh descendant action and reports the original action's eventual completion without claiming it was forcibly stopped.</p>
+<h2 id="contract-and-integration">Contract and integration<a class="palo-doc-anchor" href="#contract-and-integration" aria-label="Link to Contract and integration">#</a></h2><p>The contract is <a href="../schemas/palo-swarm-mandate.schema.json"><code>palo-swarm-mandate.schema.json</code></a>. Register every member profile first, then register the mandate before any member submits an action. In this prototype an agent identity belongs to one immutable mandate globally; it cannot switch cases, tenants or swarms to reset its budget. New members use audited membership revisions. Mandate amendments and identity reassignment still require a future governed migration workflow. Re-registering identical content is idempotent and does not restore revoked authority.</p>
+<p><code>mandateVersion</code> identifies the immutable approved content. The owner names the human subject and issuer from which all member delegation chains must originate. Each chain must follow the registered ancestry and still pass the existing scope, time-window and cryptographic-authority checks. Profile changes invalidate the member and its descendants until a future explicit migration is implemented. The objective is an accountable statement, not a machine-verified guarantee of goal alignment.</p>
+<p>Use identity-bound Action Claim 1.3 or 1.4 and attach:</p>
+<figure class="palo-doc-code"><figcaption>json code</figcaption><pre tabindex="0"><code class="language-json">{
+  "metadata": {
+    "swarm": {
+      "swarmId": "swarm-refund-demo",
+      "mandateDigest": "sha256:&lt;digest returned at registration&gt;"
+    }
+  }
+}</code></pre></figure><p>This binding is covered by the existing claim digest, approval and execution capability. Membership comes from the server registry: omitting the binding, changing the case or using a legacy claim fails closed. A caller cannot supply an alternative cost in the binding.</p>
+<p>Three foundation MCP tools expose this workflow; the distributed extension adds member admission and cancellation:</p>
+<div class="palo-doc-table-wrap" tabindex="0" aria-label="Scrollable documentation table"><table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>OIDC scope</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>palo_register_swarm_mandate</code></td>
+<td><code>palo:admin</code></td>
+<td>Register the mandate, binding the actor to the authenticated subject</td>
+</tr>
+<tr>
+<td><code>palo_get_swarm_status</code></td>
+<td><code>palo:read</code></td>
+<td>Read tenant-bound budget, members, outstanding work and local evidence</td>
+</tr>
+<tr>
+<td><code>palo_revoke_swarm_authority</code></td>
+<td><code>palo:admin</code></td>
+<td>Revoke one member and its descendants with a recorded rationale</td>
+</tr>
+</tbody></table></div>
+<p>These tools are excluded from the dedicated Knowledge Reader. Stdio and shared-token development mode assume a trusted local operator; supplied actor labels are not authentication. The existing governed execution tool automatically applies swarm checks. The REST Gateway's execution path uses the same core, but it does not add swarm administration routes.</p>
+<h2 id="budget-and-concurrency-semantics">Budget and concurrency semantics<a class="palo-doc-anchor" href="#budget-and-concurrency-semantics" aria-label="Link to Budget and concurrency semantics">#</a></h2><p>Every governed action by an enrolled identity must match exactly one rule by tool, operation, resource and canonical path prefix. A rule either extracts a non-negative integer from the exact action arguments through a JSON Pointer or applies a fixed charge. Each rule also sets a per-action maximum. Ambiguous rules, missing values, fractions, negative values and actions without a rule are rejected. Zero-cost reads require an explicit zero-cost rule.</p>
+<p>The budget measures <strong>committed exposure</strong>, not settled spend. The operator must verify that the charge rule correctly bounds the connector's possible effect. There is no exchange-rate conversion, automatic refund, periodic reset or claim that a malicious connector cannot overspend. The Effect Contract remains responsible for observing the actual effect.</p>
+<p>Once execution intent is committed, the charge stays committed even if the connector fails, its result is unknown or the process crashes. Uncertainty cannot manufacture new budget. Idempotent retries do not charge or execute again. Capability consumption, the charge and signed swarm evidence commit or roll back together. The concurrency limit counts started work awaiting an outcome across all members; a queued approval does not reserve capacity.</p>
+<p>An unverified outcome or failed execution places the swarm on hold, except a confirmed cancellation with no effects. Later successful verification does not automatically resume the swarm or release exposure. This conservative prototype deliberately has no automatic recovery or budget-release command.</p>
+<h2 id="revocation-and-evidence">Revocation and evidence<a class="palo-doc-anchor" href="#revocation-and-evidence" aria-label="Link to Revocation and evidence">#</a></h2><p>The capability-consumption transaction is the local start boundary. Revocation before this boundary prevents the start, including when it occurs during policy evaluation or pre-state observation. After that boundary, an external effect may already be in progress. Revocation blocks subsequent starts and reports in-flight execution identifiers; it does not itself establish cancellation, rollback or absence of harm. The optional dispatcher propagates cancellation and records separate authoritative confirmation.</p>
+<p>Revocation is durable and applies to registered descendants. A sibling remains eligible when only another subtree is revoked. Revoking the coordinator blocks the complete registered swarm. The original mandate and events remain available for review.</p>
+<p>Mandate registration, committed charges, revocations and observed outcomes produce a dedicated append-only, HMAC-signed event chain. Snapshots verify signatures, sequence, digest links and the committed-charge total. Execution receipts and outcome attestations continue through the existing PALO evidence ledger. Keys remain in the reference process; there is no external anchoring, managed key custody or protection against a privileged host altering the database and signing material.</p>
+<h2 id="remaining-gates">Remaining gates<a class="palo-doc-anchor" href="#remaining-gates" aria-label="Link to Remaining gates">#</a></h2><ul>
+<li>Authenticate and attest agent processes, spawning, connectors and all paths to protected credentials.</li>
+<li>Extend the new membership revisions and worker leases to cross-organization delegation, task assignment and conflict resolution.</li>
+<li>Design shared invariants over data disclosure, derived memory and multiple resources; the current budget covers one explicitly defined unit.</li>
+<li>Prove behavior across independent database replicas, network partitions, remote effects and controller failure. The local tests do not establish those properties.</li>
+<li>Establish forceful remote cancellation where supported and authoritative confirmation of containment.</li>
+<li>Complete independent evaluation, production identity, key custody, storage isolation and operational recovery requirements. Existing production admission remains denied.</li>
+</ul>
+<p>PALO-AM's MACR and CECR remain methodological indicators. This implementation does not provide a general detector for collusion, emergent intentions or objective drift.</p>
+</article></div>
+      <aside class="palo-doc-next"><div><small>Prerequisite</small><strong>Read the baseline and source-snapshot boundary</strong></div><div><small>Recommended next step</small><strong>Inspect evidence and remaining production gates</strong></div></aside>
+      <section class="palo-doc-feedback" aria-labelledby="feedback-title"><p class="palo-eyebrow">Privacy-first feedback</p><h2 id="feedback-title">Help improve this guide</h2><p>Your feedback stays in your browser until you explicitly copy it, download it, or open an email draft. Do not include secrets, personal data, credentials or production identifiers.</p><form data-doc-feedback><div class="palo-form-grid"><div class="palo-field"><label for="feedback-role">Your role</label><select id="feedback-role" name="role"><option>Executive / governance owner</option><option>Platform or security engineer</option><option>No-code / low-code builder</option><option>External reviewer</option></select></div><div class="palo-field"><label for="feedback-category">Category</label><select id="feedback-category" name="category"><option>Clarity</option><option>Technical accuracy</option><option>Missing guidance</option><option>Accessibility</option></select></div><div class="palo-field palo-field-full"><label for="feedback-message">Feedback</label><textarea id="feedback-message" name="message" maxlength="3000" required placeholder="Describe the non-sensitive improvement you recommend."></textarea></div><div class="palo-form-actions"><button class="palo-btn" type="button" data-feedback-copy>Copy feedback</button><button class="palo-btn palo-btn-secondary" type="button" data-feedback-download>Download JSON</button><button class="palo-btn palo-btn-secondary" type="button" data-feedback-email>Email draft</button></div></div><p class="palo-action-status" data-feedback-status role="status" aria-live="polite"></p></form></section>
+    </div>
+  </main>
+  <footer class="palo-footer" data-palo-authorship-container="true">
+<p class="palo-authorship-footer" data-palo-authorship="footer">PALO Framework: conceived, created and maintained by <a href="../PALO_Community.html#creator">Fabrizio Degni</a>.</p>
+<div class="palo-shell"><p>PALO public documentation. Developer preview boundaries apply.</p><div class="palo-footer-links"><a href="../PALO_AIGovernance.html">PALO-AI</a><a href="../governance-hub/">Governance Hub</a><a href="../PALO_AgenticCapabilityMatrix.html">Capability Matrix</a><a href="../PALO_AIProductionReadiness.html">Production Readiness</a><a href="../privacy-policy.html">Privacy</a></div></div></footer>
+</body></html>

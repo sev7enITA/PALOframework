@@ -1,0 +1,172 @@
+{
+  "format": "palo-swarm-verification-record",
+  "schemaVersion": "1.0.0",
+  "assessedAt": "2026-09-17",
+  "status": "unreleased-reference-snapshot",
+  "assessor": "PALO maintainer local validation",
+  "environment": "macOS ARM64, Node.js 22.22.3; real child processes on one host, loopback HTTP, synthetic effects database",
+  "counts": {
+    "agenticContracts": 23,
+    "mcpTools": 50,
+    "javascriptTests": 102,
+    "swarmTestsIncluded": 35,
+    "demoScenarios": 4
+  },
+  "commands": [
+    "node --test packages/palo-mcp-server/*.test.js",
+    "node scripts/validate-agentic.mjs",
+    "node examples/swarm-demo/run-distributed.mjs"
+  ],
+  "scenarios": [
+    {
+      "name": "shared budget across two workers",
+      "outcome": "passed; aggregate accepted exposure 8000 of 10000 units; proposed 12000 denied"
+    },
+    {
+      "name": "dynamic member admission",
+      "outcome": "passed; membership revision advances, original budget retained"
+    },
+    {
+      "name": "supported cancellation",
+      "outcome": "passed; authoritative observation confirms no effects"
+    },
+    {
+      "name": "partition and reconciliation",
+      "outcome": "passed; unknown until authoritative reconciliation"
+    }
+  ],
+  "limitations": [
+    "Separate from the published ANS snapshot; test counts must not be combined",
+    "No controller HA, replicated authority or geographically distributed deployment qualification",
+    "No universal rollback, exactly-once external transaction or guaranteed cancellation of arbitrary connectors",
+    "No independent security or production assessment"
+  ],
+  "artifacts": [
+    {
+      "name": "distributed-tests.tap",
+      "sha256": "e5fa78200c49d35d43d6044ab87a697c6bf1d79ffacb6f2c514b0bcb83db900e"
+    },
+    {
+      "name": "distributed-contracts.txt",
+      "sha256": "f82b2272f5457bb4d713a28827e3acf37e2a1d71dca19b8604f442c1ca151558"
+    },
+    {
+      "name": "distributed-verification.json",
+      "sha256": "778a570249c878f9f00021889df8cc48f89eb026628cffe5c0cf41a00117dbef"
+    }
+  ],
+  "sourceDigests": [
+    {
+      "path": "packages/palo-mcp-server/swarm-dispatch.js",
+      "sha256": "5a7325d6dc79ed3ddfc4b858f7936d51c89a6f2f3ae49cd2be60c37458ca4690"
+    },
+    {
+      "path": "packages/palo-mcp-server/swarm-distributed.test.js",
+      "sha256": "71c6e8ce8ae005c535c50d70d3c94d71fad58c0a5c6d0c9fac484b6cbbe10d12"
+    },
+    {
+      "path": "packages/palo-mcp-server/swarm-governance.js",
+      "sha256": "ce4de60fd21505f0a9dd3567863d4b083f8e0c663fb4c70813a45082143911c8"
+    },
+    {
+      "path": "packages/palo-mcp-server/swarm-mcp.test.js",
+      "sha256": "aa12db02908a2d3670c3de229c66d02740b8db371a1368cf64919c19a9d018ee"
+    },
+    {
+      "path": "packages/palo-mcp-server/swarm-membership.js",
+      "sha256": "d82859d9581f5fa703b249231b3f496e49b677589703e666fdc1958cbe01b1f2"
+    },
+    {
+      "path": "packages/palo-mcp-server/swarm-membership.test.js",
+      "sha256": "0d8c9092a22661a46e513c8f39587e7764e8010a6fc4210b2303da2dbd09b90c"
+    },
+    {
+      "path": "packages/palo-mcp-server/swarm-worker-transport.js",
+      "sha256": "c25a56ecd7374cd2d556522f6cacb3db963e5fd02ba012edf8ed80c1f11e4fa3"
+    },
+    {
+      "path": "packages/palo-mcp-server/swarm.test.js",
+      "sha256": "5079e875284642f77b2a13db4342d2700ee933124a388e2918ca275af1ccb3a4"
+    },
+    {
+      "path": "examples/swarm-demo/distributed-fixture.mjs",
+      "sha256": "22436cefab4a73b5996a6de56482d4f82ca24c2d37471c6d185f3bacdffc1857"
+    },
+    {
+      "path": "examples/swarm-demo/fixture.mjs",
+      "sha256": "d537903d8b58c327e89c2e105654f72564c9fdc6693d473e410f60e9186c0c2d"
+    },
+    {
+      "path": "examples/swarm-demo/remote-worker.mjs",
+      "sha256": "511c2534437285d3cee864bb5d8155f95ff1e5e4b63657e87ec9d694f657afa1"
+    },
+    {
+      "path": "examples/swarm-demo/run-distributed.mjs",
+      "sha256": "0b88bc1e8a4564ff9f1acb55eb9793f640477e505c040eebb2798d9937cbec3d"
+    },
+    {
+      "path": "examples/swarm-demo/run.mjs",
+      "sha256": "767236aa0ec00eb565a162e10d484bc3d47893a845565d2f4f3e52fb21148bc3"
+    },
+    {
+      "path": "packages/palo-mcp-server/core.js",
+      "sha256": "3b929866a79ba41b356d8232285df80346eda7c14fa6ce7dbac1bd20c3f84f54"
+    },
+    {
+      "path": "packages/palo-mcp-server/server.js",
+      "sha256": "b18340f4463f09987eddda37ba7cf06bebacd318f243bacc5f009ebe0e2b34a6"
+    },
+    {
+      "path": "packages/palo-mcp-server/auth.js",
+      "sha256": "e0adeeff943afb8a244eb3e1443c73f17edbbdb100f1e169571f07fd5e88871d"
+    },
+    {
+      "path": "packages/palo-mcp-server/mcp.test.js",
+      "sha256": "fb94ad310f867de8efc8d4dbf80d29531374ff68737e0f7c418cd2a9a51f6040"
+    },
+    {
+      "path": "packages/palo-mcp-server/auth.test.js",
+      "sha256": "ac3c302eee91f19a8b6a087d43b0c31fe5dda170e02d84024001aedca4757353"
+    },
+    {
+      "path": "schemas/palo-swarm-mandate.schema.json",
+      "sha256": "f7eb9e05cff0bebcc005c9485d8aa3a1d07475703c360ca380ca221fd7ea96a3"
+    },
+    {
+      "path": "schemas/palo-swarm-membership-change.schema.json",
+      "sha256": "e26bd2f3dea0979a5dac619203a2ed23cfbc8e88ce44606ae674d4b67ca4ebe3"
+    },
+    {
+      "path": "schemas/fixtures/palo-swarm-membership-change.valid.json",
+      "sha256": "192789e92b7471a45406c7f8944e8cf146cfe8add4cfb349f81fcb5afb9d373b"
+    },
+    {
+      "path": "examples/agentic-interface/mcp-server-spec.json",
+      "sha256": "6498170a701ed789dbc99d0d5ea1a64a50e9f0cf78ea38c1bbac9e2c5e4fae83"
+    },
+    {
+      "path": "agentic/capability-matrix.json",
+      "sha256": "5917ee58632bdb8b51516c52b7d3b6067ff6014cd5a99c4c4a49b82d9c803767"
+    },
+    {
+      "path": "PALO_AgenticGovernance.html",
+      "sha256": "7c3b3140083391fd6e874c83c1e96545ed2fa1be2558ed3ece3b38fdff68fc61"
+    },
+    {
+      "path": "scripts/validate-agentic.mjs",
+      "sha256": "df40bcb49ae40ae7108a5ebcd7c7a6ad2e36b25108822c533bc55a137a6c7a11"
+    },
+    {
+      "path": "docs/palo-swarm-distributed-execution.md",
+      "sha256": "0756a6232185c3ca0924d4713ba715ba6701cccd084897160ac1733dd145b3c9"
+    },
+    {
+      "path": "docs/palo-swarm-governance-local-prototype.md",
+      "sha256": "d54a43a8cac2470ee17c872481396bb044665596e623438f25d0c12f39f5e475"
+    },
+    {
+      "path": "package.json",
+      "sha256": "33186ec7a6568a242aa46acc42390d31f589c5bf906e4b2e92f6dfacb6290b07"
+    }
+  ]
+}
