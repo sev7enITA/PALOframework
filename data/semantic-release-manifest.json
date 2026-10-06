@@ -59,7 +59,7 @@
       "schemaPath": "schemas/palo-source-registry.schema.json",
       "semanticVersion": "3.1.0",
       "status": "approved-for-release",
-      "sha256": "01eb0cb408f243b030ee1753f7e060220e3801a2b968d17dcaa35cb0836a143b"
+      "sha256": "477af09a92c329381a839f8ee7a0f17edd32b719544fad14459edb3bd79e6e27"
     },
     {
       "itemId": "https://paloframework.org/semantic/release-item/external-evidence-provider-registry",
@@ -340,5 +340,5 @@
     }
   ],
   "authorityBoundary": "This manifest freezes the exact semantic and governance-control artifacts used by PALO v3.1. It proves file identity, not legal applicability, compliance, certification, operating effectiveness, or production authorization.",
-  "manifestDigest": "sha256:a1a2ba275d0c920abc6d1b433f2e86a369535de738dff7b8bfe6b110a4a7676b"
+  "manifestDigest": "sha256:ed2f2b4d3370f929d518c28f876688023c8eed5ca6ec4c02d8e0ca327f9190b9"
 }

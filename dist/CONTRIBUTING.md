@@ -6,6 +6,12 @@ PALO v3 semantic sources are versioned public contracts. Change the semantic sou
 
 First off, thank you for considering contributing to PALO!
 
+## Source review deadlines
+
+Before validating or building an older checkout, run `npm run sources:age`. The publication workflows run this command automatically. It changes expired `current` entries to `review-due`, preserves `checkedAt`, `nextReviewAt` and all source content, and updates the registry metadata date. It does not fetch sources or renew their verification.
+
+The command verifies the existing semantic release before changing anything, then regenerates its digests for the metadata transition. Unrelated source or contract drift still fails validation. Due reviews remain visible in workflow warnings and the run summary; they do not block publication of an honestly labelled registry. An accountable review is still required before a source can be marked `current` again. Run `npm run sources:test` for the deadline, integrity and regression checks.
+
 ## Fast path: contribute a case
 
 During the 30-day activation freeze, the most valuable contribution is one synthetic or safely publishable Evidence Pack case. Generate the Case File and pull request body with:
