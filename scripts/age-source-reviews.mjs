@@ -1,10 +1,12 @@
 import { execFile } from "node:child_process";
+import { createHash } from "node:crypto";
 import { appendFile, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { promisify } from "node:util";
 import Ajv2020 from "ajv/dist/2020.js";
 import addFormats from "ajv-formats";
+import { verifyKnowledgeReaderRelease } from "../packages/palo-mcp-server/reader-integrity.js";
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const execFileAsync = promisify(execFile);
@@ -34,13 +36,21 @@ export async function prepareSourceReviews({ root = projectRoot, now = new Date(
   const original = await readFile(registryFile, "utf8");
   const result = ageSourceReviews(JSON.parse(original), now);
   const generator = path.join(root, "scripts/generate-semantic-release.mjs");
+  const readerManifestFile = path.join(root, "data/knowledge-reader-release.json");
 
   // Never conceal unrelated drift: the entire pinned release must match first.
   await execFileAsync(process.execPath, [generator, "--check"], { cwd: root });
+  verifyKnowledgeReaderRelease({ repositoryRoot: root });
   if (result.changed.length) {
-    await writeFile(registryFile, `${JSON.stringify(result.registry, null, 2)}\n`);
+    const content = `${JSON.stringify(result.registry, null, 2)}\n`;
+    const readerRelease = JSON.parse(await readFile(readerManifestFile, "utf8"));
+    readerRelease.files.find((entry) => entry.path === "data/source-registry.json").sha256 = createHash("sha256").update(content).digest("hex");
+    readerRelease.bundleSha256 = createHash("sha256").update(JSON.stringify(readerRelease.files.map(({ path, sha256 }) => ({ path, sha256 })))).digest("hex");
+    await writeFile(registryFile, content);
+    await writeFile(readerManifestFile, `${JSON.stringify(readerRelease, null, 2)}\n`);
     await execFileAsync(process.execPath, [generator], { cwd: root });
     await execFileAsync(process.execPath, [generator, "--check"], { cwd: root });
+    verifyKnowledgeReaderRelease({ repositoryRoot: root });
   }
   return result;
 }

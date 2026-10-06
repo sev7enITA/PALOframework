@@ -10,7 +10,7 @@ First off, thank you for considering contributing to PALO!
 
 Before validating or building an older checkout, run `npm run sources:age`. The publication workflows run this command automatically. It changes expired `current` entries to `review-due`, preserves `checkedAt`, `nextReviewAt` and all source content, and updates the registry metadata date. It does not fetch sources or renew their verification.
 
-The command verifies the existing semantic release before changing anything, then regenerates its digests for the metadata transition. Unrelated source or contract drift still fails validation. Due reviews remain visible in workflow warnings and the run summary; they do not block publication of an honestly labelled registry. An accountable review is still required before a source can be marked `current` again. Run `npm run sources:test` for the deadline, integrity and regression checks.
+The command verifies the existing semantic and Knowledge Reader releases before changing anything, then updates their source-registry and bundle digests for the metadata transition. Unrelated source or contract drift still fails validation. This does not publish or replace a signed Reader image. Due reviews remain visible in workflow warnings and the run summary; they do not block publication of an honestly labelled registry. An accountable review is still required before a source can be marked `current` again. Run `npm run sources:test` for the deadline, integrity and regression checks.
 
 ## Fast path: contribute a case
 

@@ -25,7 +25,7 @@
     },
     {
       "path": "data/source-registry.json",
-      "sha256": "01eb0cb408f243b030ee1753f7e060220e3801a2b968d17dcaa35cb0836a143b"
+      "sha256": "477af09a92c329381a839f8ee7a0f17edd32b719544fad14459edb3bd79e6e27"
     },
     {
       "path": "data/governance-control-packs.json",
@@ -36,5 +36,5 @@
       "sha256": "3df4a5bfce2d375cafe5746806a90e62a436eb9cd63cee8afc55f249a4703c39"
     }
   ],
-  "bundleSha256": "5b6543618a51029e22ab6ee0aaa38c3ffe157215ae91b0ba6582992fad435cbb"
+  "bundleSha256": "5e58d2c3bf6d05bc77ea2ba43e7a29f36f347e73abae29fa4c7ada8707fce8f3"
 }

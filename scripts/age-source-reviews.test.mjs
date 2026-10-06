@@ -5,6 +5,8 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import test from "node:test";
 import { ageSourceReviews, prepareSourceReviews } from "./age-source-reviews.mjs";
+import { PALO_KNOWLEDGE_CANONICAL_FILES } from "../packages/palo-mcp-server/knowledge-catalog.js";
+import { verifyKnowledgeReaderRelease } from "../packages/palo-mcp-server/reader-integrity.js";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const registry = JSON.parse(await readFile(path.join(root, "data/source-registry.json"), "utf8"));
@@ -61,7 +63,7 @@ async function releaseFixture(t) {
   const directory = await mkdtemp(path.join(tmpdir(), "palo-source-reviews-"));
   t.after(() => rm(directory, { recursive: true, force: true }));
   const manifest = JSON.parse(await readFile(path.join(root, "data/semantic-release-manifest.json"), "utf8"));
-  for (const file of new Set([...manifest.items.map((item) => item.path), "data/semantic-release-manifest.json", "scripts/generate-semantic-release.mjs"])) {
+  for (const file of new Set([...manifest.items.map((item) => item.path), ...PALO_KNOWLEDGE_CANONICAL_FILES.map((item) => item.path), "data/knowledge-reader-release.json", "data/semantic-release-manifest.json", "scripts/generate-semantic-release.mjs"])) {
     await mkdir(path.dirname(path.join(directory, file)), { recursive: true });
     await cp(path.join(root, file), path.join(directory, file));
   }
@@ -72,14 +74,29 @@ test("a future release ages all remaining current sources and retains exact mani
   const directory = await releaseFixture(t);
   const before = JSON.parse(await readFile(path.join(directory, "data/source-registry.json"), "utf8"));
   const manifestBefore = JSON.parse(await readFile(path.join(directory, "data/semantic-release-manifest.json"), "utf8"));
+  const readerBefore = verifyKnowledgeReaderRelease({ repositoryRoot: directory });
   const result = await prepareSourceReviews({ root: directory, now: new Date("2030-01-01T00:00:00Z") });
   assert.deepEqual(result.changed, before.sources.filter((source) => source.freshness.status === "current").map((source) => source.sourceId));
   assert.ok(result.changed.length > 0);
   const manifestAfter = JSON.parse(await readFile(path.join(directory, "data/semantic-release-manifest.json"), "utf8"));
   assert.deepEqual(manifestAfter.items.filter((item) => item.path !== "data/source-registry.json"), manifestBefore.items.filter((item) => item.path !== "data/source-registry.json"));
+  const readerAfter = verifyKnowledgeReaderRelease({ repositoryRoot: directory });
+  assert.notEqual(readerAfter.bundleSha256, readerBefore.bundleSha256);
+  assert.deepEqual(readerAfter.files.filter((item) => item.path !== "data/source-registry.json"), readerBefore.files.filter((item) => item.path !== "data/source-registry.json"));
   const repeated = await prepareSourceReviews({ root: directory, now: new Date("2030-01-02T00:00:00Z") });
   assert.deepEqual(repeated.changed, []);
   assert.deepEqual(repeated.registry, result.registry);
+});
+
+test("ageing also rejects drift in a Reader-only canonical file before any write", async (t) => {
+  const directory = await releaseFixture(t);
+  const target = path.join(directory, "data/owasp-genai-2026-crosswalk.json");
+  await writeFile(target, `${await readFile(target, "utf8")}\n`);
+  const registryBefore = await readFile(path.join(directory, "data/source-registry.json"), "utf8");
+  const readerBefore = await readFile(path.join(directory, "data/knowledge-reader-release.json"), "utf8");
+  await assert.rejects(prepareSourceReviews({ root: directory, now: new Date("2030-01-01T00:00:00Z") }), /Knowledge Reader integrity check failed/);
+  assert.equal(await readFile(path.join(directory, "data/source-registry.json"), "utf8"), registryBefore);
+  assert.equal(await readFile(path.join(directory, "data/knowledge-reader-release.json"), "utf8"), readerBefore);
 });
 
 test("ageing cannot conceal a modified source registry or another pinned artifact", async (t) => {
