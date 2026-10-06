@@ -129,7 +129,9 @@ git add -f -- dist</code></pre></figure><p>Suggested subject: <code>docs(release
 <h2 id="mandatory-validation-gates">Mandatory validation gates<a class="palo-doc-anchor" href="#mandatory-validation-gates" aria-label="Link to Mandatory validation gates">#</a></h2><p>Run from the repository root:</p>
 <figure class="palo-doc-code"><figcaption>sh code</figcaption><pre tabindex="0"><code class="language-sh">npm ci
 npm ci --prefix governance-hub --ignore-scripts
+npx playwright install chromium
 npm run opa:install
+npm run sources:age
 npm run validate:agentic
 npm run validate:knowledge-reader
 npm run validate:knowledge-gold

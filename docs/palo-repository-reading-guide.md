@@ -57,6 +57,10 @@ Install and validate with the pinned Node.js toolchain:
 git clone https://github.com/sev7enITA/PALOframework.git
 cd PALOframework
 npm ci
+npm ci --prefix governance-hub --ignore-scripts
+npx playwright install chromium
+npm run opa:install
+npm run sources:age
 npm run validate:agentic
 npm run validate
 npm run build
