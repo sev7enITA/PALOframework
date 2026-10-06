@@ -36,7 +36,9 @@ jobs:
         run: npm ci --prefix governance-hub
 
       - name: Verify cross-platform publication build
-        run: npm run build
+        run: |
+          npm run sources:age
+          npm run build
 
   build:
     runs-on: ubuntu-latest
@@ -87,7 +89,9 @@ jobs:
         run: npm run validate:agentic
 
       - name: Validate authoring source
-        run: npm run validate
+        run: |
+          npm run sources:age
+          npm run validate
 
       - name: Build allowlisted publication artifact
         run: npm run build

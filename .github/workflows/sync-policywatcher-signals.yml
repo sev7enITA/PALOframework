@@ -40,6 +40,8 @@ jobs:
           npm ci --prefix governance-hub
       - name: Pull and validate the complete active PolicyWatcher snapshot
         run: npm run policywatcher-signals:sync
+      - name: Mark expired source reviews without renewing verification dates
+        run: npm run sources:age
       - name: Validate source and transport contracts
         run: |
           npm run policywatcher-signals:check

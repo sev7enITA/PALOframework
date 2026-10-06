@@ -2,7 +2,7 @@
   "format": "palo-source-registry",
   "schemaVersion": "1.0.0",
   "status": "educational-non-production",
-  "updatedAt": "2026-08-26",
+  "updatedAt": "2026-10-06",
   "disclaimer": "This registry is an educational starting point. Source presence and freshness metadata do not establish legal applicability, compliance, certification, or completeness.",
   "sources": [
     {
@@ -45,7 +45,7 @@
       "sourceType": "official",
       "publisher": "Official Journal of the European Union",
       "checkedAt": "2026-08-23T08:00:00Z",
-      "freshness": { "status": "current", "reviewIntervalDays": 30, "nextReviewAt": "2026-09-22T08:00:00Z" },
+      "freshness": { "status": "review-due", "reviewIntervalDays": 30, "nextReviewAt": "2026-09-22T08:00:00Z" },
       "authorityStatus": "authoritative-primary",
       "usageNote": "Use the official text and current implementation timeline with qualified counsel; no gate or control here is a legal conclusion."
     },
@@ -78,7 +78,7 @@
       "sourceType": "official",
       "publisher": "European Commission",
       "checkedAt": "2026-08-23T08:00:00Z",
-      "freshness": { "status": "current", "reviewIntervalDays": 30, "nextReviewAt": "2026-09-22T08:00:00Z" },
+      "freshness": { "status": "review-due", "reviewIntervalDays": 30, "nextReviewAt": "2026-09-22T08:00:00Z" },
       "authorityStatus": "authoritative-primary",
       "usageNote": "Use with the consolidated AI Act and the current transparency Code of Practice. Applicability, exceptions and equivalent marking or labelling measures require accountable legal review."
     },
@@ -89,7 +89,7 @@
       "sourceType": "official",
       "publisher": "European Commission",
       "checkedAt": "2026-08-23T08:00:00Z",
-      "freshness": { "status": "current", "reviewIntervalDays": 30, "nextReviewAt": "2026-09-22T08:00:00Z" },
+      "freshness": { "status": "review-due", "reviewIntervalDays": 30, "nextReviewAt": "2026-09-22T08:00:00Z" },
       "authorityStatus": "authoritative-primary",
       "usageNote": "Use as a voluntary compliance route for in-scope GPAI providers. Signing, applicability and actual conformity must be evidenced separately."
     },
@@ -144,7 +144,7 @@
       "sourceType": "monitoring-signal",
       "publisher": "Rogue AI Tracker",
       "checkedAt": "2026-08-26T08:00:00Z",
-      "freshness": { "status": "current", "reviewIntervalDays": 30, "nextReviewAt": "2026-09-25T08:00:00Z" },
+      "freshness": { "status": "review-due", "reviewIntervalDays": 30, "nextReviewAt": "2026-09-25T08:00:00Z" },
       "authorityStatus": "non-authoritative-monitoring-signal",
       "usageNote": "Use metadata and links as external capability context only. Do not mirror narrative content or treat provider scores as PALO use-case risk scores, findings or deployment decisions."
     }
