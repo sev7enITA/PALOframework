@@ -3,12 +3,14 @@
 **Principled AI Lifecycle Orchestration**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![EU AI Act](https://img.shields.io/badge/EU%20AI%20Act-aligned-success)](https://eur-lex.europa.eu/eli/reg/2024/1689/oj)
+[![EU AI Act reference](https://img.shields.io/badge/EU%20AI%20Act-reference-blue)](https://eur-lex.europa.eu/eli/reg/2024/1689/oj)
 [![WCAG 2.2 AA target](https://img.shields.io/badge/WCAG%202.2-AA%20target-yellow)](https://www.w3.org/TR/WCAG22/)
 [![Website](https://img.shields.io/badge/Website-paloframework.org-21808D)](https://paloframework.org)
 [![GitHub](https://img.shields.io/badge/GitHub-sev7enITA%2FPALOframework-black)](https://github.com/sev7enITA/PALOframework)
 
 PALO Framework is an open-source project conceived, created and maintained by **[Fabrizio Degni](https://paloframework.org/PALO_Community.html#creator)**. Community contributions and review are welcome.
+
+[Documentation Library](https://paloframework.org/PALO_DocumentationLibrary.html) | [GitHub wiki](https://github.com/sev7enITA/PALOframework/wiki) | [Repository reading guide](docs/palo-repository-reading-guide.md) | [Build and deployment status](https://github.com/sev7enITA/PALOframework/actions/workflows/deploy.yml) | [PolicyWatcher sync status](https://github.com/sev7enITA/PALOframework/actions/workflows/sync-policywatcher-signals.yml)
 
 ## Start here: PALO Evidence Pack
 
@@ -23,6 +25,7 @@ No account. No mandatory telemetry. Your answers stay in the browser and export 
 From a clone:
 
 ```sh
+npm ci
 npm run evidence:validate
 ```
 
@@ -35,7 +38,8 @@ PALO is an open-source framework and toolkit for operational AI governance. It h
 - Website: [paloframework.org](https://paloframework.org)
 - Android: [P.A.L.O. Framework Toolbox on Google Play](https://play.google.com/store/apps/details?id=com.fabriziodegni.paloframework)
 - iOS/iPadOS: [P.A.L.O. Framework Toolbox on the App Store](https://apps.apple.com/it/app/p-a-l-o-framework-toolbox/id6761771299)
-- Documentation: [PALOFrameworkV2.pdf](PALOFrameworkV2.pdf), [PALO v1 paper](ThePALOFramework_%20A_Paradigm_for_Principled_AI_Lifecycle_OrchestrationInBusiness%20v1%20Feb%202026.pdf), and the interactive modules in this repository
+- Current documentation: [PALO 3.1 governance control plane](docs/palo-v3.1-governance-control-plane.md), [semantic foundation](docs/palo-v3-semantic-foundation.md) and [wiki](https://github.com/sev7enITA/PALOframework/wiki)
+- Earlier framework publications: [PALOFrameworkV2.pdf](PALOFrameworkV2.pdf) and [PALO v1 paper](ThePALOFramework_%20A_Paradigm_for_Principled_AI_Lifecycle_OrchestrationInBusiness%20v1%20Feb%202026.pdf)
 
 ---
 
@@ -48,7 +52,7 @@ PALO is both an open-source governance framework and a published research artifa
 > Degni, F. (2026). *Il Framework PALO per la Corporate Governance dell'IA: un paradigma per l'orchestrazione del ciclo di vita dell'Intelligenza Artificiale basato su principi in ambito aziendale*. Rivista Corporate Governance, Numero Straordinario 2026. G. Giappichelli Editore. ISSN 2724-1068 / EISSN 2784-8647.
 
 - [Cite this repository](CITATION.cff)
-- [Published paper and recognition sources](PALO_Recognition.html)
+- [Published paper and recognition sources](https://paloframework.org/PALO_Recognition.html)
 - [PALO v1 research paper in the repository](ThePALOFramework_%20A_Paradigm_for_Principled_AI_Lifecycle_OrchestrationInBusiness%20v1%20Feb%202026.pdf)
 
 ---
@@ -80,17 +84,17 @@ PALO is the umbrella governance system across the AI lifecycle. Its public entry
 2. **Govern agentic systems** with PALO-AM, the agentic governance modality inside PALO.
 3. **Enforce agent actions** with PALO-AI, the technical control-plane Developer Preview that operationalizes selected PALO-AM controls.
 
-Use the [homepage governance map](index.html#palo-governance-routes) to choose among these connected routes.
+Use the [homepage governance map](https://paloframework.org/#palo-governance-routes) to choose among these connected routes.
 
 > **PALO-AI is an emerging governance control plane for n8n and agentic automation platforms, designed to make authority, policy enforcement, human oversight and cryptographic evidence visible and enforceable.**
 
-Start with [Why PALO-AI](PALO_AIWhy.html) for the high-level full-cycle assurance case, then choose a [code-first, n8n/no-code, or Copilot Studio/MCP quickstart](PALO_AIQuickstarts.html). The [cognitive Stakeholder Onboarding](designs/theory-to-practice-infographic/) chooses an organizational role and objective. The "Govern agent actions" option adds a conditional build-mode question without replacing accountability. Continue in the [guided PALO-AI Governance Hub](governance-hub/) or use the [public Agentic Governance overview](PALO_AIGovernance.html) to connect PALO-AM methodology, PALO-AI runtime contracts, the role-based prototype and capability/readiness evidence.
+Start with [Why PALO-AI](https://paloframework.org/PALO_AIWhy.html) for the high-level full-cycle assurance case, then choose a [code-first, n8n/no-code, or Copilot Studio/MCP quickstart](https://paloframework.org/PALO_AIQuickstarts.html). The [cognitive Stakeholder Onboarding](https://paloframework.org/designs/theory-to-practice-infographic/) chooses an organizational role and objective. The "Govern agent actions" option adds a conditional build-mode question without replacing accountability. Continue in the [guided PALO-AI Governance Hub](https://paloframework.org/governance-hub/) or use the [public Agentic Governance overview](https://paloframework.org/PALO_AIGovernance.html) to connect PALO-AM methodology, PALO-AI runtime contracts, the role-based prototype and capability/readiness evidence.
 
 n8n orchestrates what automation does. PALO governs whether an identified agent or automation is authorized to do it and whether the declared result is later verified. The integration combines four complementary patterns: a visible decision gate, a governed executor, digest-bound human approval, and workflow admission controls. Package 0.2 implements decision-gate and governed-execution prototypes; secure approval resume and instance-level admission remain specified capabilities. The package is unpublished and not n8n-verified.
 
 - [PALO-AI n8n governance control-plane architecture](docs/palo-ai-n8n-governance-control-plane.md)
-- [Why PALO-AI: interactive full-cycle comparison](PALO_AIWhy.html)
-- [PALO-AI quickstarts: code, n8n and Copilot Studio/MCP](PALO_AIQuickstarts.html)
+- [Why PALO-AI: interactive full-cycle comparison](https://paloframework.org/PALO_AIWhy.html)
+- [PALO-AI quickstarts: code, n8n and Copilot Studio/MCP](https://paloframework.org/PALO_AIQuickstarts.html)
 - [PALO Knowledge Copilot: Reader/Curator integration matrix for 11 MCP hosts](docs/palo-knowledge-copilot-integrations.md)
 - [PALO Knowledge Reader production profile and live acceptance gates](docs/palo-knowledge-reader-production.md)
 - [Ask PALO production profile: authenticated browser BFF, grounded answers and live qualification](docs/palo-knowledge-copilot-production.md)
@@ -115,8 +119,8 @@ n8n orchestrates what automation does. PALO governs whether an identified agent 
 - [Four-pattern hero infographic](assets/palo-ai-n8n-scenarios/palo-ai-n8n-governance-hero.png)
 - [Three-minute architecture-preview demo](media/palo-ai-n8n-architecture-preview-3min.mp4)
 - [Evidence-based capability matrix](agentic/capability-matrix.json)
-- [Public Production Readiness route](PALO_AIProductionReadiness.html)
-- [PALO 3.1 and PALO-AI 2.7 release verification record](PALO_VerificationNote.html)
+- [Public Production Readiness route](https://paloframework.org/PALO_AIProductionReadiness.html)
+- [PALO 3.1 and PALO-AI 2.7 release verification record](https://paloframework.org/PALO_VerificationNote.html)
 - [PALO v3.1 governance control-plane implementation](docs/palo-v3.1-governance-control-plane.md)
 - [Portable PALO Knowledge Copilot skill](skills/palo-knowledge-copilot/SKILL.md)
 
@@ -137,28 +141,28 @@ n8n orchestrates what automation does. PALO governs whether an identified agent 
 
 | Module | Description | Status |
 | --- | --- | --- |
-| [FRIA Assessment](PALO_FRIA.html) | Fundamental Rights Impact Assessment wizard for EU AI Act Article 27 preparation | Live |
-| [Risk Tiering Calculator](PALO_RiskTiering.html) | EU AI Act risk classification workflow | Live |
-| [KPI Generator](PALO_KPIGenerator.html) | AI governance metrics aligned with PALO dimensions | Live |
-| [AI Model Canvas](PALO_ModelCanvasAI.html) | Visual planning canvas for responsible AI use cases | Live |
-| [Framework Comparison](PALO_ComparisonTool.html) | Compare governance frameworks and standards | Live |
-| [Human Agency Risk Map](PALO_HumanAgencyRiskMap.html) | Observatory on 18 activities humans increasingly delegate to AI | Live |
-| [Human Agency Risk Map IT](PALO_HumanAgencyRiskMap_IT.html) | Italian version of the Human Agency observatory | Live |
-| [2026 Tech Trends Observatory](PALO_TechTrends2026.html) | Analysis of major consulting-firm technology outlooks and governance blind spots | Live |
-| [Observatory Index](PALO_Observatories.html) | Evidence-state index for incident, regulatory, technology and human-agency research | Live |
-| [AI Incident Observatory](PALO_AIIncidentObservatory.html) | Source-bounded case analysis connecting incident evidence to PALO governance routes | Live |
-| [AuditBench Explorer](PALO_AuditBench.html) | Interactive exploration of 14 hidden AI behaviors from AuditBench with PALO mitigations | Live |
-| [The Poisoning Boomerang](PALO_PoisoningStudy.html) | Data poisoning governance module with detection strategies and lifecycle controls | Live |
-| [AI Dev Governance](PALO_VibeCoding.html) | Security and governance extension for AI-assisted software development environments | Live |
-| [PALO-AM Agentic Governance](PALO_AgenticGovernance.html) | PALO extension for AI agents, delegated authority, action-space control, and agentic evidence | Live |
-| [Mobile Toolbox](PALO_CompanionApp.html) | Mobile workspace overview for Android and iOS/iPadOS apps | Live |
-| [Recognition and Sources](PALO_Recognition.html) | Public references, primary sources, and verification notes | Live |
-| [PALO Evidence Pack](PALO_AssessmentPath.html?sample=agentic-invoice#assessment-form) | Less-than-ten-minute local route from one AI use case to a reviewable dossier and voluntary validation receipt; built on Assessment Path | Live |
-| [Regulatory Watch 2026](PALO_RegulatoryWatch.html) | Dated AI Act watchlist with Article 4, Article 50, high-risk milestones, and official sources | Live |
-| [Documentation Library](PALO_DocumentationLibrary.html) | Searchable HTML documentation with Start, Guide and Reference depth plus audience, task, product and maturity metadata | Live |
-| [Platform Map](PALO_PlatformMap.html) | Operational status, stakeholder-intent routes, modules, artifacts, research boundaries, and accessible table navigation | Live |
-| [Release Verification Record](PALO_VerificationNote.html) | Source revision, CI run, automated validation totals, tagged artifact checksum and maturity limits for the PALO 3.1 / PALO-AI 2.7 baseline | Live |
-| [Operationalization Explorer / Stakeholder Onboarding](designs/theory-to-practice-infographic/) | Three-step local stakeholder routing into the six-phase weighted workflow and interactive 3D knowledge graph | Live |
+| [FRIA Assessment](https://paloframework.org/PALO_FRIA.html) | Fundamental Rights Impact Assessment wizard for EU AI Act Article 27 preparation | Live |
+| [Risk Tiering Calculator](https://paloframework.org/PALO_RiskTiering.html) | EU AI Act risk classification workflow | Live |
+| [KPI Generator](https://paloframework.org/PALO_KPIGenerator.html) | AI governance metrics aligned with PALO dimensions | Live |
+| [AI Model Canvas](https://paloframework.org/PALO_ModelCanvasAI.html) | Visual planning canvas for responsible AI use cases | Live |
+| [Framework Comparison](https://paloframework.org/PALO_ComparisonTool.html) | Compare governance frameworks and standards | Live |
+| [Human Agency Risk Map](https://paloframework.org/PALO_HumanAgencyRiskMap.html) | Observatory on 18 activities humans increasingly delegate to AI | Live |
+| [Human Agency Risk Map IT](https://paloframework.org/PALO_HumanAgencyRiskMap_IT.html) | Italian version of the Human Agency observatory | Live |
+| [2026 Tech Trends Observatory](https://paloframework.org/PALO_TechTrends2026.html) | Analysis of major consulting-firm technology outlooks and governance blind spots | Live |
+| [Observatory Index](https://paloframework.org/PALO_Observatories.html) | Evidence-state index for incident, regulatory, technology and human-agency research | Live |
+| [AI Incident Observatory](https://paloframework.org/PALO_AIIncidentObservatory.html) | Source-bounded case analysis connecting incident evidence to PALO governance routes | Live |
+| [AuditBench Explorer](https://paloframework.org/PALO_AuditBench.html) | Interactive exploration of 14 hidden AI behaviors from AuditBench with PALO mitigations | Live |
+| [The Poisoning Boomerang](https://paloframework.org/PALO_PoisoningStudy.html) | Data poisoning governance module with detection strategies and lifecycle controls | Live |
+| [AI Dev Governance](https://paloframework.org/PALO_VibeCoding.html) | Security and governance extension for AI-assisted software development environments | Live |
+| [PALO-AM Agentic Governance](https://paloframework.org/PALO_AgenticGovernance.html) | PALO extension for AI agents, delegated authority, action-space control, and agentic evidence | Live |
+| [Mobile Toolbox](https://paloframework.org/PALO_CompanionApp.html) | Mobile workspace overview for Android and iOS/iPadOS apps | Live |
+| [Recognition and Sources](https://paloframework.org/PALO_Recognition.html) | Public references, primary sources, and verification notes | Live |
+| [PALO Evidence Pack](https://paloframework.org/PALO_AssessmentPath.html?sample=agentic-invoice#assessment-form) | Less-than-ten-minute local route from one AI use case to a reviewable dossier and voluntary validation receipt; built on Assessment Path | Live |
+| [Regulatory Watch 2026](https://paloframework.org/PALO_RegulatoryWatch.html) | Dated AI Act watchlist with Article 4, Article 50, high-risk milestones, and official sources | Live |
+| [Documentation Library](https://paloframework.org/PALO_DocumentationLibrary.html) | Searchable HTML documentation with Start, Guide and Reference depth plus audience, task, product and maturity metadata | Live |
+| [Platform Map](https://paloframework.org/PALO_PlatformMap.html) | Operational status, stakeholder-intent routes, modules, artifacts, research boundaries, and accessible table navigation | Live |
+| [Release Verification Record](https://paloframework.org/PALO_VerificationNote.html) | Source revision, CI run, automated validation totals, tagged artifact checksum and maturity limits for the PALO 3.1 / PALO-AI 2.7 baseline | Live |
+| [Operationalization Explorer / Stakeholder Onboarding](https://paloframework.org/designs/theory-to-practice-infographic/) | Three-step local stakeholder routing into the six-phase weighted workflow and interactive 3D knowledge graph | Live |
 | [PALO v3 Semantic Foundation](docs/palo-v3-semantic-foundation.md) | Versioned semantic spine, lifecycle and gate history, atomic evidence contracts, mappings, RDF/SHACL and digest-bound release inventory | Live |
 | [PALO v3.1 Governance Control Plane](docs/palo-v3.1-governance-control-plane.md) | Twelve applicability-aware control packs with completion levels, canonical controls, indicators, gates, evidence schemas, stop conditions and residual boundaries | Live |
 
@@ -200,7 +204,7 @@ See [CHANGELOG.md](CHANGELOG.md) for the full release history.
 
 ## Research, Publication And Public Recognition
 
-PALO's public record is separated below by evidence type so that a journal publication, a public presentation, and independent media or institutional references are not presented as equivalent forms of recognition. The [Recognition & Sources](PALO_Recognition.html) page provides the underlying links and verification notes.
+PALO's public record is separated below by evidence type so that a journal publication, a public presentation, and independent media or institutional references are not presented as equivalent forms of recognition. The [Recognition & Sources](https://paloframework.org/PALO_Recognition.html) page provides the underlying links and verification notes.
 
 ### Research publication
 
@@ -226,14 +230,20 @@ Open the [PALO Evidence Pack](https://paloframework.org/PALO_AssessmentPath.html
 
 ### Run locally
 
-The website remains static. The optional, non-production PALO-AI reference runtime uses Node.js 22+ and OPA.
+The website remains static. Use Node.js 22 or 24 (CI pins 22.22.0), npm and Python 3 for the publication preview. The optional, non-production PALO-AI reference runtime also uses OPA.
 
-To validate or regenerate the v3 semantic foundation, use `npm run semantic:validate`, `npm run semantic:generate`, and `npm run semantic:release`. The full release gate remains `npm run p0`; it bootstraps the locked Governance Hub dependencies and the verified OPA binary so the gate is reproducible from a clean clone after the root `npm ci`.
+To validate or regenerate the v3 semantic foundation, use `npm run semantic:validate`, `npm run semantic:generate`, and `npm run semantic:release`. Run `npm run sources:age` before validation of an older checkout: overdue sources become `review-due`, while verification dates and integrity checks are preserved.
 
 ```bash
 git clone https://github.com/sev7enITA/PALOframework.git
 cd PALOframework
-python3 -m http.server 8000
+npm ci
+npm ci --prefix governance-hub --ignore-scripts
+npm run sources:age
+npm run validate
+npm run build
+npm run validate:dist
+python3 -m http.server 8000 --directory dist
 ```
 
 Then open:
@@ -242,7 +252,7 @@ Then open:
 http://localhost:8000
 ```
 
-You can also open `index.html` directly in a browser, although serving locally is recommended for consistent asset behavior.
+Serve the generated `dist` directory over HTTP so JSON loading and the built Governance Hub work consistently. For the full P0 gate, install Chromium with `npx playwright install chromium`, then run `npm run sources:age` and `npm run p0`. P0 also bootstraps Governance Hub dependencies and the checksum-verified OPA binary. The PostgreSQL RLS tests require a dedicated test database; the GitHub Linux job supplies it. See the [release checklist](docs/production-release-commit-checklist.md).
 
 ### Evaluate the PALO-AI reference runtime
 
@@ -328,7 +338,7 @@ PALOframework/
 |-- PALOFrameworkV2.pdf                # Framework v2 documentation
 |-- ThePALOFramework_*.pdf             # PALO v1 paper
 |-- assets/                            # Static assets and templates
-|-- framework/                         # Framework documentation archive
+|-- PALO_Framework_v1.0/              # Earlier framework documentation archive
 |-- insights/                          # Research sources and supporting material
 |-- json/                              # Canvas/data exports
 |-- sitemap.xml                        # Search sitemap
@@ -346,39 +356,45 @@ PALOframework/
 
 ## Documentation
 
-The [Documentation Library](PALO_DocumentationLibrary.html) is the canonical web-native reference for the lifecycle, modules, source set, semantic contracts, and contribution links. The former [Documentation Hub](PALO_DocumentationHub.html) remains as a backward-compatible transition page; the PDF remains the stable primary download record.
+The [Documentation Library](https://paloframework.org/PALO_DocumentationLibrary.html) is the canonical web reference for the lifecycle, modules, source set, semantic contracts, and contribution links. The [wiki](https://github.com/sev7enITA/PALOframework/wiki) provides guided entry points and operational instructions; versioned files under `docs/`, `data/` and `schemas/` remain the implementation references. The former [Documentation Hub](https://paloframework.org/PALO_DocumentationHub.html) remains a transition page. The v1 and v2 publications are historical framework references, not the current component release record.
 
 Primary framework documents and artifacts:
 
 - [How to read and use the PALO repository](docs/palo-repository-reading-guide.md)
+- [Getting started in the wiki](https://github.com/sev7enITA/PALOframework/wiki/Getting-Started)
+- [Automation and deployment runbook](https://github.com/sev7enITA/PALOframework/wiki/Automation-and-Deployment)
+- [PALO and PolicyWatcher signal operations](docs/palo-policywatcher-signal-operations.md)
+- [Evidence and maturity at 17 September 2026](docs/palo-status-2026-09-17.md), including the experimental ANS bridge and the separate unreleased swarm snapshot
 - [PALOFrameworkV2.pdf](PALOFrameworkV2.pdf)
 - [The PALO Framework v1 paper, Feb 2026](ThePALOFramework_%20A_Paradigm_for_Principled_AI_Lifecycle_OrchestrationInBusiness%20v1%20Feb%202026.pdf)
-- [PALO-AM Agentic Governance page](PALO_AgenticGovernance.html)
+- [PALO-AM Agentic Governance page](https://paloframework.org/PALO_AgenticGovernance.html)
 - [PALO-AI Governance Integration Guide](docs/palo-ai-governance-integration-guide.md)
-- [Why PALO-AI](PALO_AIWhy.html)
-- [PALO-AI Quickstarts](PALO_AIQuickstarts.html)
-- [PALO-AI Capability Matrix](PALO_AgenticCapabilityMatrix.html)
-- [PALO-AI Production Readiness](PALO_AIProductionReadiness.html)
-- [PALO 3.1 and PALO-AI 2.7 release verification record](PALO_VerificationNote.html)
-- [OWASP GenAI / LLM Top 10 2026 PALO crosswalk](PALO_OWASPGenAI2026.html)
+- [Why PALO-AI](https://paloframework.org/PALO_AIWhy.html)
+- [PALO-AI Quickstarts](https://paloframework.org/PALO_AIQuickstarts.html)
+- [PALO-AI Capability Matrix](https://paloframework.org/PALO_AgenticCapabilityMatrix.html)
+- [PALO-AI Production Readiness](https://paloframework.org/PALO_AIProductionReadiness.html)
+- [PALO 3.1 and PALO-AI 2.7 release verification record](https://paloframework.org/PALO_VerificationNote.html)
+- [OWASP GenAI / LLM Top 10 2026 PALO crosswalk](https://paloframework.org/PALO_OWASPGenAI2026.html)
 - [OWASP GenAI / LLM Top 10 2026 governance reference](docs/owasp-genai-llm-top-10-2026-security-crosswalk.md)
 - [Pinned OWASP 2026 v1.0 source artifact](assets/OWASP-GenAI-LLM-Top-10-2026-v1.0.pdf)
 - [Machine-readable OWASP 2026 crosswalk](data/owasp-genai-2026-crosswalk.json)
 
 Generative and agentic routes now carry this source-backed lens through PALO Guide and the existing Evidence Pack. Assessment Path records all ten risks, architecture priorities, the pinned source and open security-testing evidence in the Case File; the OWASP artifact remains draft until accountable human review.
-- [PALO Documentation Library](PALO_DocumentationLibrary.html)
+- [PALO Documentation Library](https://paloframework.org/PALO_DocumentationLibrary.html)
 - [PALO-AI Online VPS Deployment](docs/palo-ai-vps-deployment.md)
 - [PALO-AM standalone document](insights/PALO-AM_Agentic_Governance_Modality_v2_Standalone_Document.docx)
 - [FRIA worksheet](assets/FRIA09-12_new.xlsx)
 - [PALO Canvas JSON template](json/palo-canvas-2025-12-17.json)
-- [PALO Assessment Path](PALO_AssessmentPath.html) for a guided local evidence bundle
-- [Regulatory Watch 2026](PALO_RegulatoryWatch.html) for dated official-source checks
+- [PALO Assessment Path](https://paloframework.org/PALO_AssessmentPath.html) for a guided local evidence bundle
+- [Regulatory Watch 2026](https://paloframework.org/PALO_RegulatoryWatch.html) for dated official-source checks
 
 ## Related Ecosystem
 
 [PolicyWatcher](https://www.policywatcher.online/) is a separate civic-tech portal by Fabrizio Degni for monitoring public privacy policies and terms of service, mapping policy changes, and exposing methodology and source-quality context. It complements the PALO lifecycle at Deployment and Monitoring, but it is not a PALO module, legal certification, or replacement for official sources.
 
 Assessment Path can import a versioned `palo-policywatcher-signal` JSON file locally. The complete observation is preserved as a non-authoritative monitoring source pending human review; no assessment or Case File data is submitted to PolicyWatcher.
+
+The scheduled [signal workflow](https://github.com/sev7enITA/PALOframework/actions/workflows/sync-policywatcher-signals.yml) also pulls the complete active snapshot, validates it and publishes the resulting registry to [GitHub Pages](https://sev7enita.github.io/PALOframework/). Transport health and source-review status are separate: a healthy pull does not renew an overdue source review. See the [operations guide](docs/palo-policywatcher-signal-operations.md) for alerts, manual runs and the publication boundary.
 
 - [PolicyWatcher Observatory](https://www.policywatcher.online/observatory)
 - [PolicyWatcher Timeline](https://www.policywatcher.online/timeline)
@@ -417,9 +433,9 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md), [CODE_OF_CONDUCT.md](CODE_OF_CON
 
 Current baseline: v3.1.0 Governance Control Plane, released 2026-08-23. It adds twelve applicability-aware governance domains, 31 controls, 38 indicators, ten evidence-contract families and a fail-closed PALO-AI production-admission boundary on top of the v3 semantic foundation and Evidence Pack activation path.
 
-Activation focus: new non-essential modules are frozen from 2026-08-12 through 2026-09-10. Work is concentrated on Evidence Pack completion, external review, accessibility, negative tests and Community Casebook contributions. See the [activation freeze](docs/activation-freeze-2026-08.md).
+The recorded activation freeze ran from 2026-08-12 through 2026-09-10. Its [dated plan](docs/activation-freeze-2026-08.md) preserves the Evidence Pack, external-review, accessibility and Community Casebook priorities; it does not establish a continuing freeze. Consult [current issues](https://github.com/sev7enITA/PALOframework/issues) and the changelog for subsequent work.
 
-Completed in H1 2026:
+Published modules and current maturity:
 
 | Area | Status |
 | --- | --- |
@@ -448,7 +464,7 @@ Planned roadmap:
 
 | Target | Focus | Planned scope |
 | --- | --- | --- |
-| v3.1 | Identity, durability and validated connectors | Identity-aware BFF, workload identity, scoped RBAC, managed key custody, durable state/queues and fresh n8n connector validation |
+| Further PALO-AI evaluation | Identity, durability and validated connectors | Identity-aware BFF, workload identity, scoped RBAC, managed key custody, durable state/queues and fresh n8n connector validation |
 | v3.2 | Evidence and governance board packs | Board templates, decision logs, KPI/KRI registers, review packets and audit-ready summaries built on verified outcomes |
 | v4.0 | Production integration layer | Independently assessed deployment patterns and integrations for enterprise workflows, issue trackers, GRC platforms and documentation systems |
 

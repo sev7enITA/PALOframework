@@ -151,7 +151,9 @@ Run from the repository root:
 ```sh
 npm ci
 npm ci --prefix governance-hub --ignore-scripts
+npx playwright install chromium
 npm run opa:install
+npm run sources:age
 npm run validate:agentic
 npm run validate:knowledge-reader
 npm run validate:knowledge-gold
