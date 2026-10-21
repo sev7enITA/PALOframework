@@ -167,7 +167,7 @@ function renderQuestions() {
       reviewer.classList.add('wide');
       const rationale = createField('Rationale and limitations', responseControl(question, 'rationale', 'textarea', { placeholder: 'What supports this level? What remains uncertain?' }));
       rationale.classList.add('wide');
-      fields.append(ref, reviewer, createField('Observed on', responseControl(question, 'observedAt', 'date')), createField('Review due', responseControl(question, 'reviewDue', 'date')), rationale);
+      fields.append(ref, reviewer, createField('Observed on (UTC)', responseControl(question, 'observedAt', 'date')), createField('Review due (UTC)', responseControl(question, 'reviewDue', 'date')), rationale);
       details.append(fields);
       fieldset.append(details);
       const output = node('p', 'maturity-question-result');
@@ -282,11 +282,11 @@ function renderComparison() {
   if (!baseline) { $('baseline-result').textContent = 'No previous assessment loaded.'; return; }
   const comparison = core.compareAssessments(assessment, baseline, catalog);
   if (!comparison.comparable) {
-    $('baseline-result').textContent = `Not comparable. ${comparison.reasons.map(message).join(' ')}`;
+    $('baseline-result').textContent = `${baseline.synthetic ? 'Synthetic baseline. ' : ''}Not comparable. ${comparison.reasons.map(message).join(' ')}`;
     return;
   }
   const delta = (value) => value === null ? 'unknown' : `${value > 0 ? '+' : ''}${value} level${Math.abs(value) === 1 ? '' : 's'}`;
-  $('baseline-result').textContent = `Compared with ${baseline.scope.name}: deployment ${delta(comparison.deploymentDelta)}; governance ${delta(comparison.governanceDelta)}. Ordinal change is not a measurement of impact.`;
+  $('baseline-result').textContent = `${baseline.synthetic ? 'Synthetic comparison. ' : ''}Compared with ${baseline.scope.name}: deployment ${delta(comparison.deploymentDelta)}; governance ${delta(comparison.governanceDelta)}. Ordinal change is not a measurement of impact.`;
 }
 
 function validationError(record) {
@@ -356,6 +356,11 @@ function updateCaseContext() {
 }
 
 function attachCase() {
+  if (!window.PALOCaseFile) {
+    $('case-file-status').textContent = 'Case File support is unavailable. Export JSON to keep this assessment.';
+    updateCaseContext();
+    return;
+  }
   try {
     stampEditedAssessment();
     validationError(assessment);
@@ -382,6 +387,9 @@ function attachCase() {
 }
 
 function bindEvents() {
+  window.addEventListener('beforeunload', (event) => {
+    if (dirty) { event.preventDefault(); event.returnValue = ''; }
+  });
   $('assessment-form').addEventListener('submit', (event) => event.preventDefault());
   for (const key of ['name', 'unit', 'boundary', 'owner', 'periodStart', 'periodEnd']) {
     $(`scope-${key}`).addEventListener(key === 'unit' || key.startsWith('period') ? 'change' : 'input', (event) => {
@@ -473,6 +481,7 @@ function setupReviewGuidance() {
 
 async function init() {
   try {
+    if (location.protocol === 'file:') throw new Error('Open the hosted assessment or serve this folder over HTTP. Direct file opening is not supported.');
     const [api, response] = await Promise.all([import('./palo-maturity-core.js'), fetch('data/ai-maturity-assessment.json', { credentials: 'same-origin' })]);
     if (!response.ok) throw new Error(`Catalog request failed (${response.status}).`);
     catalog = await response.json();

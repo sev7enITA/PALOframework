@@ -117,6 +117,7 @@ export function compareAssessments(current, previous, catalog, now = new Date().
     if (!v.valid) reasons.push(`${name}: ${v.errors.join(' ')}`);
   }
   if (!reasons.length) {
+    if (Boolean(current.synthetic) !== Boolean(previous.synthetic)) reasons.push('Synthetic and operational profiles cannot be compared.');
     for (const key of ['name', 'unit', 'boundary']) if (current.scope[key].trim() !== previous.scope[key].trim()) reasons.push(`Scope ${key} differs.`);
     if (Date.parse(current.assessedAt) <= Date.parse(previous.assessedAt)) reasons.push('Current assessment must be later than the previous assessment.');
     if (current.scope.periodStart < previous.scope.periodStart || current.scope.periodEnd <= previous.scope.periodEnd) reasons.push('Current observation window must move forward.');
@@ -133,7 +134,7 @@ export function compareAssessments(current, previous, catalog, now = new Date().
 const md = value => String(value ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/[\\`*_{}\[\]()#+.!|~-]/g, '\\$&').replace(/[\r\n]+/g, ' ');
 export function toMarkdown(record, result, catalog) {
   const lines = ['# PALO Two-Lens AI Maturity Assessment', '', `Catalog: ${md(catalog.version)} | Assessed: ${md(record.assessedAt)} | Evaluated: ${md(result.evaluatedAt)}`,
-    '', `Scope: ${md(record.scope.name)} (${md(record.scope.unit)})`, `Boundary: ${md(record.scope.boundary)}`, `Owner: ${md(record.scope.owner)}`,
+    '', `Assessment ID: ${md(record.assessmentId)}`, `Scope: ${md(record.scope.name)} (${md(record.scope.unit)})`, `Boundary: ${md(record.scope.boundary)}`, `Owner: ${md(record.scope.owner)}`,
     `Period: ${md(record.scope.periodStart)} to ${md(record.scope.periodEnd)}`, '', ...(record.synthetic ? ['**Synthetic example. This is fictional data, not operational evidence.**', ''] : []), DISCLAIMER, '', `**${md(result.position)}**`, '',
     ...result.scopeIssues.map(i => `- ${md(i)}`), '', '| Lens / domain | Supported level (0-4) | Evidence coverage |', '| --- | --- | --- |',
     ...[{ title: 'Deployment', ...result.deployment }, { title: 'Governance', ...result.governance }, ...result.domains.filter(d => d.lens === 'governance')]
@@ -146,7 +147,7 @@ export function toMarkdown(record, result, catalog) {
       `Reference: ${md(a.evidenceRef)}`, `Reviewer: ${md(a.reviewer)} | Observed: ${md(a.observedAt)} | Review due: ${md(a.reviewDue)}`,
       `Rationale and limits: ${md(a.rationale)}`, ...item.issues.map(i => `- ${md(i)}`), '');
   }
-  lines.push('## Methodology provenance', '', ...catalog.sources.map(s => `- ${s.title}: ${s.url}${s.sha256 ? ` | Source PDF SHA-256: ${s.sha256}` : ''}`));
+  lines.push('## Methodology provenance', '', ...catalog.sources.map(s => `- ${md(s.title)}: ${md(s.url)}${s.sha256 ? ` | Source PDF SHA-256: ${md(s.sha256)}` : ''}`));
   return lines.join('\n') + '\n';
 }
 

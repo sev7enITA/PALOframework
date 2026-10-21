@@ -191,7 +191,7 @@
             <div class="maturity-toolbar-secondary"><label class="maturity-file-button">Import JSON<input type="file" id="import-assessment" accept=".json,application/json" aria-label="Import assessment JSON, maximum 1 MB"></label><button type="button" class="maturity-button quiet" id="reset-assessment">Reset</button></div>
           </div>
           <p class="maturity-save-status" id="draft-status" role="status">New assessment. Not saved locally.</p>
-          <div class="maturity-alert is-demo" id="demo-notice" hidden><strong>Synthetic example.</strong> These invented responses illustrate a capability gap. Replace them with your own evidence before using this assessment.</div>
+          <div class="maturity-alert is-demo" id="demo-notice" hidden><strong>Synthetic example.</strong> These invented responses illustrate a capability gap. This record remains synthetic after edits. Choose Reset to start a blank assessment for your own evidence.</div>
           <div class="maturity-workspace">
             <div class="maturity-editor">
               <form id="assessment-form">
@@ -202,8 +202,8 @@
                     <label class="maturity-field">Unit of assessment<select name="unit" id="scope-unit"><option value="organization">Organization</option><option value="institution">Institution</option><option value="system">AI system</option></select></label>
                     <label class="maturity-field">Accountable owner<input type="text" name="owner" id="scope-owner" maxlength="200" placeholder="Name or responsible function" autocomplete="off"></label>
                     <label class="maturity-field wide">Boundary and exclusions<textarea name="boundary" id="scope-boundary" rows="2" maxlength="4000" placeholder="What is included, where it operates, and what is excluded"></textarea></label>
-                    <label class="maturity-field">Review period starts<input type="date" name="periodStart" id="scope-periodStart"></label>
-                    <label class="maturity-field">Review period ends<input type="date" name="periodEnd" id="scope-periodEnd"></label>
+                    <label class="maturity-field">Review period starts (UTC)<input type="date" name="periodStart" id="scope-periodStart"></label>
+                    <label class="maturity-field">Review period ends (UTC)<input type="date" name="periodEnd" id="scope-periodEnd"></label>
                   </div>
                 </section>
                 <section class="maturity-questions" aria-labelledby="questions-title">

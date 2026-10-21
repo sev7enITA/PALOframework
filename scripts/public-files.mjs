@@ -1,4 +1,5 @@
 export const PUBLIC_FILES = [
+  "schemas/palo-maturity-catalog.schema.json",
   "PALO_AIMaturity.html",
   "assets/palo-maturity.css",
   "assets/palo-maturity.js",

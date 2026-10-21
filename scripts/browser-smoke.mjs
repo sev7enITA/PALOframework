@@ -554,6 +554,18 @@ try {
   await page.reload({ waitUntil: "load" });
   await page.locator("#load-draft").click();
   if (await page.locator("#scope-name").inputValue() !== "Renamed synthetic assessment" || !await page.locator("#demo-notice").isVisible()) failures.push("AI Maturity: explicit local restore failed");
+  await page.locator(".maturity-baseline summary").click();
+  await page.locator("#import-baseline").setInputFiles({ name: "synthetic-baseline.json", mimeType: "application/json", buffer: Buffer.from(JSON.stringify(maturityDraft)) });
+  await page.waitForFunction(() => document.querySelector("#baseline-result").textContent.includes("Not comparable"));
+  if (!/Synthetic baseline/.test(await page.locator("#baseline-result").innerText())) failures.push("AI Maturity: imported synthetic baseline must be disclosed even when comparison is rejected");
+  await page.locator("#scope-owner").fill("Changed owner, unsaved");
+  let unloadWarning = false;
+  const handleMaturityUnload = async dialog => { if (dialog.type() === "beforeunload") unloadWarning = true; await dialog.dismiss(); };
+  page.on("dialog", handleMaturityUnload);
+  await page.reload({ waitUntil: "domcontentloaded", timeout: 3000 }).catch(error => { if (!/ERR_ABORTED|Timeout/.test(error.message)) throw error; });
+  page.off("dialog", handleMaturityUnload);
+  if (!unloadWarning || await page.locator("#scope-owner").inputValue() !== "Changed owner, unsaved") failures.push("AI Maturity: navigation warning must preserve unsaved work when dismissed");
+  await page.locator("#save-draft").click();
   for (const viewport of [{ width: 1440, height: 900 }, { width: 390, height: 844 }]) {
     await page.setViewportSize(viewport);
     if (await page.evaluate(() => document.documentElement.scrollWidth > innerWidth + 2)) failures.push(`AI Maturity: horizontal overflow at ${viewport.width}px`);

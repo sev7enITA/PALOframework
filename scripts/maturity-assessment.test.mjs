@@ -114,3 +114,29 @@ test('Case File merge preserves unrelated work and adds only draft maturity evid
   const merged=api.merge(original,{caseId:original.caseId,assessments:[{assessmentId:'new',module:'ai-maturity',recordedAt:now,data:{assessment:a,result:evaluateAssessment(a,catalog,now)}}],evidence:[{evidenceId:'maturity-new',title:'Maturity',kind:'ai-maturity',status:'draft',recordedAt:now}]});
   assert.equal(merged.context.purpose,'Keep me'); assert.equal(merged.assessments.length,2); assert.equal(merged.evidence[0].status,'draft'); assert.ok(api.validate(merged).valid);
 });
+
+test('catalog schema rejects invalid evidence caps and domain assignments', () => {
+  const ajv = new Ajv2020({ allErrors: true }); addFormats(ajv);
+  const validate = ajv.compile(read('schemas/palo-maturity-catalog.schema.json'));
+  assert.ok(validate(catalog), JSON.stringify(validate.errors));
+  const badCap = structuredClone(catalog); badCap.evidenceTypes.find(e => e.id === 'documented').cap = 4;
+  assert.equal(validate(badCap), false);
+  const badDomain = structuredClone(catalog); badDomain.questions[0].domain = 'not-a-domain';
+  assert.equal(validate(badDomain), false);
+});
+test('Markdown escapes catalog provenance and includes the assessment identity', () => {
+  const c = structuredClone(catalog); c.sources[0].title = '<img src=x onerror=alert(1)>';
+  c.sources[0].url = 'https://example.org/[click](javascript:alert(1))';
+  const a = createDemo(c, now);
+  const report = toMarkdown(a, evaluateAssessment(a,c,now), c);
+  assert.doesNotMatch(report, /<img|\[click\]\(javascript:/);
+  assert.ok(report.includes(a.assessmentId.replace(/-/g, '\\-')));
+});
+test('cumulative windows are descriptive and synthetic profiles cannot become operational baselines', () => {
+  const previous = complete(2, '2026-10-20T12:00:00Z');
+  const current = complete(3); current.scope.periodStart = previous.scope.periodStart;
+  assert.equal(compareAssessments(current,previous,catalog,now).comparable,true);
+  current.synthetic = false;
+  assert.equal(compareAssessments(current,previous,catalog,now).comparable,false);
+  assert.match(compareAssessments(current,previous,catalog,now).reasons.join(' '), /Synthetic and operational/);
+});

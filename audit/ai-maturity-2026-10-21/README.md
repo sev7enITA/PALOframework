@@ -4,9 +4,9 @@ The new browser-local module uses an experimental PALO rubric with 22 questions.
 
 ## Local evidence
 
-- 22 focused assessment tests pass, including scope, evidence ceilings, expiry, comparison, synthetic provenance and Case File preservation.
+- 25 focused assessment tests pass, including scope, evidence ceilings, expiry, comparison, synthetic provenance and Case File preservation.
 - Source validation, built HTML/schema/link validation and authorship validation pass.
-- The deterministic distribution check passes with 495 files.
+- The deterministic distribution check passes with 496 files.
 - Browser smoke passes across 113 public HTML pages, including the new module's local save/restore and synthetic-provenance behavior, mobile overflow checks and 15 synchronized Atlas routes.
 - Governance Hub operational smoke passes across seven scenarios.
 - Agentic validation reports 97 passed and 21 skipped Node tests, plus three passing Dify tests. Skips are not successful live qualification.
