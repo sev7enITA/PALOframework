@@ -514,15 +514,15 @@ try {
   for (const state of ["Implemented", "Foundation", "Research"]) {
     if (!await page.locator(".state-badge", { hasText: state }).first().isVisible()) failures.push(`Platform Map: ${state} state is missing`);
   }
-  if (await page.locator("[data-map-route]").count() !== 14 || await page.locator("[data-map-row]").count() !== 14) failures.push("Platform Map: topology and table must both contain 14 routes");
+  if (await page.locator("[data-map-route]").count() !== 15 || await page.locator("[data-map-row]").count() !== 15) failures.push("Platform Map: topology and table must both contain 15 routes");
   await page.locator("#map-stakeholder").selectOption("risk");
   await page.waitForFunction(() => document.documentElement.getAttribute("data-platform-map-results") === "3");
   if (await page.locator("[data-map-route]:visible").count() !== 3 || await page.locator("[data-map-row]:visible").count() !== 3) failures.push("Platform Map: visual and table filters are not synchronized");
   await page.locator("#map-reset").click();
-  await page.waitForFunction(() => document.documentElement.getAttribute("data-platform-map-results") === "14");
+  await page.waitForFunction(() => document.documentElement.getAttribute("data-platform-map-results") === "15");
   await page.locator("#map-evidence-class").selectOption("human-review-required");
-  await page.waitForFunction(() => document.documentElement.getAttribute("data-platform-map-results") === "2");
-  if (await page.locator('[data-map-route][data-evidence-class="human-review-required"]:visible').count() !== 2 || await page.locator('[data-map-row][data-evidence-class="human-review-required"]:visible').count() !== 2) failures.push("Platform Map: evidence/authority filter is not synchronized");
+  await page.waitForFunction(() => document.documentElement.getAttribute("data-platform-map-results") === "3");
+  if (await page.locator('[data-map-route][data-evidence-class="human-review-required"]:visible').count() !== 3 || await page.locator('[data-map-row][data-evidence-class="human-review-required"]:visible').count() !== 3) failures.push("Platform Map: evidence/authority filter is not synchronized");
   await page.locator("#map-reset").click();
   const mapPolicyLink = page.locator('[data-route-id="route-monitor"] a[href="https://www.policywatcher.online/"]').first();
   if (!await mapPolicyLink.isVisible()) failures.push("Platform Map: live PolicyWatcher destination is missing from Receive monitoring signals");
@@ -538,6 +538,39 @@ try {
   const platformResources = await page.locator(".platform-resource-groups").innerText();
   if (!/Knowledge Reader:[\s\S]*production-candidate/.test(platformResources) || !/Knowledge Curator:[\s\S]*does not inherit Reader qualification/.test(platformResources) || !/disabled by default/.test(platformResources)) failures.push("Platform Map: knowledge profile maturity or provider default state is incomplete");
   if (await page.locator('a[href="CHANGELOG.html"]').count() < 3 || await page.locator('a[href="feed.xml"]').count() < 3) failures.push("Platform Map: changelog or release-feed references are incomplete");
+
+  // Exercise the independent maturity route and preserve its evidence boundary.
+  await page.goto(`${baseUrl}/PALO_AIMaturity.html`, { waitUntil: "load" });
+  await page.locator("#maturity-app").waitFor({ state: "visible" });
+  if (await page.getByRole("tab").count() !== 5) failures.push("AI Maturity: five assessment domains must be available");
+  if (!/unknown/i.test(await page.locator("#result-scales").innerText())) failures.push("AI Maturity: a new assessment must remain unknown");
+  await page.locator("#load-demo").click();
+  if (!await page.locator("#demo-notice").isVisible()) failures.push("AI Maturity: example must be labelled synthetic");
+  await page.locator("#scope-name").fill("Renamed synthetic assessment");
+  if (!await page.locator("#demo-notice").isVisible()) failures.push("AI Maturity: renaming must not erase synthetic provenance");
+  await page.locator("#save-draft").click();
+  const maturityDraft = await page.evaluate(() => JSON.parse(localStorage.getItem("palo.maturity.v1")));
+  if (!maturityDraft?.synthetic || Object.keys(maturityDraft.responses || {}).length !== 22) failures.push("AI Maturity: local draft must retain provenance and all 22 responses");
+  await page.reload({ waitUntil: "load" });
+  await page.locator("#load-draft").click();
+  if (await page.locator("#scope-name").inputValue() !== "Renamed synthetic assessment" || !await page.locator("#demo-notice").isVisible()) failures.push("AI Maturity: explicit local restore failed");
+  await page.locator(".maturity-baseline summary").click();
+  await page.locator("#import-baseline").setInputFiles({ name: "synthetic-baseline.json", mimeType: "application/json", buffer: Buffer.from(JSON.stringify(maturityDraft)) });
+  await page.waitForFunction(() => document.querySelector("#baseline-result").textContent.includes("Not comparable"));
+  if (!/Synthetic baseline/.test(await page.locator("#baseline-result").innerText())) failures.push("AI Maturity: imported synthetic baseline must be disclosed even when comparison is rejected");
+  await page.locator("#scope-owner").fill("Changed owner, unsaved");
+  let unloadWarning = false;
+  const handleMaturityUnload = async dialog => { if (dialog.type() === "beforeunload") unloadWarning = true; await dialog.dismiss(); };
+  page.on("dialog", handleMaturityUnload);
+  await page.reload({ waitUntil: "domcontentloaded", timeout: 3000 }).catch(error => { if (!/ERR_ABORTED|Timeout/.test(error.message)) throw error; });
+  page.off("dialog", handleMaturityUnload);
+  if (!unloadWarning || await page.locator("#scope-owner").inputValue() !== "Changed owner, unsaved") failures.push("AI Maturity: navigation warning must preserve unsaved work when dismissed");
+  await page.locator("#save-draft").click();
+  for (const viewport of [{ width: 1440, height: 900 }, { width: 390, height: 844 }]) {
+    await page.setViewportSize(viewport);
+    if (await page.evaluate(() => document.documentElement.scrollWidth > innerWidth + 2)) failures.push(`AI Maturity: horizontal overflow at ${viewport.width}px`);
+  }
+  await page.setViewportSize({ width: 1280, height: 800 });
 
   await page.goto(`${baseUrl}/designs/theory-to-practice-infographic/index.html?mode=navigation&selfTest=1`, { waitUntil: "domcontentloaded" });
   await page.waitForFunction(() => window.__graphReady === true && window.__PALO_SELF_TEST?.passed === true, null, { timeout: 30_000 });

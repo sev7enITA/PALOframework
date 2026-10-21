@@ -139,6 +139,8 @@ n8n orchestrates what automation does. PALO governs whether an identified agent 
 
 ## Current Modules
 
+The [Two-Lens AI Maturity Assessment](https://paloframework.org/PALO_AIMaturity.html) adds 22 browser-local questions across deployment capability and four governance pillars, with evidence ceilings, unresolved gaps and explicit historical comparison. Read the [methodology](docs/palo-ai-maturity-assessment.md). This experimental rubric supports accountable review and draft Case File snapshots; it does not reproduce BCG national scores or confer deployment approval. Run `npm run maturity:check`.
+
 | Module | Description | Status |
 | --- | --- | --- |
 | [FRIA Assessment](https://paloframework.org/PALO_FRIA.html) | Fundamental Rights Impact Assessment wizard for EU AI Act Article 27 preparation | Live |

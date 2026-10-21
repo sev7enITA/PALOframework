@@ -1,0 +1,272 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paloframework.org/schemas/palo-maturity-assessment.schema.json",
+  "title": "PALO Two-Lens Maturity Assessment 1.0.0",
+  "description": "Input record, not an assurance certificate. Use the evaluator for temporal validity and evidence ceilings.",
+  "type": "object",
+  "required": [
+    "format",
+    "schemaVersion",
+    "catalogVersion",
+    "assessmentId",
+    "assessedAt",
+    "scope",
+    "responses",
+    "sources"
+  ],
+  "properties": {
+    "format": {
+      "const": "palo-maturity-assessment"
+    },
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "catalogVersion": {
+      "const": "1.0.0"
+    },
+    "assessmentId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "assessedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "scope": {
+      "type": "object",
+      "required": [
+        "name",
+        "unit",
+        "boundary",
+        "owner",
+        "periodStart",
+        "periodEnd"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "maxLength": 4000
+        },
+        "unit": {
+          "enum": [
+            "organization",
+            "institution",
+            "system"
+          ]
+        },
+        "boundary": {
+          "type": "string",
+          "maxLength": 4000
+        },
+        "owner": {
+          "type": "string",
+          "maxLength": 4000
+        },
+        "periodStart": {
+          "anyOf": [
+            {
+              "const": ""
+            },
+            {
+              "type": "string",
+              "format": "date"
+            }
+          ]
+        },
+        "periodEnd": {
+          "anyOf": [
+            {
+              "const": ""
+            },
+            {
+              "type": "string",
+              "format": "date"
+            }
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "responses": {
+      "type": "object",
+      "required": [
+        "D1",
+        "D2",
+        "D3",
+        "D4",
+        "D5",
+        "D6",
+        "I1",
+        "I2",
+        "I3",
+        "I4",
+        "A1",
+        "A2",
+        "A3",
+        "A4",
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "E1",
+        "E2",
+        "E3",
+        "E4"
+      ],
+      "properties": {
+        "D1": {
+          "$ref": "#/$defs/response"
+        },
+        "D2": {
+          "$ref": "#/$defs/response"
+        },
+        "D3": {
+          "$ref": "#/$defs/response"
+        },
+        "D4": {
+          "$ref": "#/$defs/response"
+        },
+        "D5": {
+          "$ref": "#/$defs/response"
+        },
+        "D6": {
+          "$ref": "#/$defs/response"
+        },
+        "I1": {
+          "$ref": "#/$defs/response"
+        },
+        "I2": {
+          "$ref": "#/$defs/response"
+        },
+        "I3": {
+          "$ref": "#/$defs/response"
+        },
+        "I4": {
+          "$ref": "#/$defs/response"
+        },
+        "A1": {
+          "$ref": "#/$defs/response"
+        },
+        "A2": {
+          "$ref": "#/$defs/response"
+        },
+        "A3": {
+          "$ref": "#/$defs/response"
+        },
+        "A4": {
+          "$ref": "#/$defs/response"
+        },
+        "B1": {
+          "$ref": "#/$defs/response"
+        },
+        "B2": {
+          "$ref": "#/$defs/response"
+        },
+        "B3": {
+          "$ref": "#/$defs/response"
+        },
+        "B4": {
+          "$ref": "#/$defs/response"
+        },
+        "E1": {
+          "$ref": "#/$defs/response"
+        },
+        "E2": {
+          "$ref": "#/$defs/response"
+        },
+        "E3": {
+          "$ref": "#/$defs/response"
+        },
+        "E4": {
+          "$ref": "#/$defs/response"
+        }
+      },
+      "additionalProperties": false
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      },
+      "minItems": 1
+    },
+    "synthetic": {
+      "type": "boolean"
+    }
+  },
+  "$defs": {
+    "response": {
+      "type": "object",
+      "required": [
+        "level",
+        "evidenceType",
+        "evidenceRef",
+        "reviewer",
+        "observedAt",
+        "reviewDue",
+        "rationale"
+      ],
+      "properties": {
+        "level": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 4
+            }
+          ]
+        },
+        "evidenceType": {
+          "enum": [
+            "none",
+            "declared",
+            "documented",
+            "tested",
+            "monitored",
+            "independent"
+          ]
+        },
+        "evidenceRef": {
+          "type": "string",
+          "maxLength": 8000
+        },
+        "reviewer": {
+          "type": "string",
+          "maxLength": 8000
+        },
+        "observedAt": {
+          "anyOf": [
+            {
+              "const": ""
+            },
+            {
+              "type": "string",
+              "format": "date"
+            }
+          ]
+        },
+        "reviewDue": {
+          "anyOf": [
+            {
+              "const": ""
+            },
+            {
+              "type": "string",
+              "format": "date"
+            }
+          ]
+        },
+        "rationale": {
+          "type": "string",
+          "maxLength": 8000
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": true
+}

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://paloframework.org/</loc><lastmod>2026-09-17</lastmod></url>
+  <url><loc>https://paloframework.org/</loc><lastmod>2026-10-21</lastmod></url>
   <url><loc>https://paloframework.org/accessibility.html</loc><lastmod>2026-09-14</lastmod></url>
-  <url><loc>https://paloframework.org/CHANGELOG.html</loc><lastmod>2026-09-17</lastmod></url>
+  <url><loc>https://paloframework.org/CHANGELOG.html</loc><lastmod>2026-10-21</lastmod></url>
   <url><loc>https://paloframework.org/CONTRIBUTING.html</loc><lastmod>2026-09-16</lastmod></url>
   <url><loc>https://paloframework.org/designs/theory-to-practice-infographic/</loc><lastmod>2026-09-14</lastmod></url>
   <url><loc>https://paloframework.org/designs/theory-to-practice-infographic/narrative.html</loc><lastmod>2026-09-16</lastmod></url>
@@ -28,6 +28,7 @@
   <url><loc>https://paloframework.org/docs/palo-ai-governance-hub-user-guide.html</loc><lastmod>2026-09-16</lastmod></url>
   <url><loc>https://paloframework.org/docs/palo-ai-governance-hub-workflows.html</loc><lastmod>2026-09-16</lastmod></url>
   <url><loc>https://paloframework.org/docs/palo-ai-governance-integration-guide.html</loc><lastmod>2026-09-16</lastmod></url>
+  <url><loc>https://paloframework.org/docs/palo-ai-maturity-assessment.html</loc><lastmod>2026-10-21</lastmod></url>
   <url><loc>https://paloframework.org/docs/palo-ai-n8n-governance-control-plane.html</loc><lastmod>2026-09-16</lastmod></url>
   <url><loc>https://paloframework.org/docs/palo-ai-n8n-launch-playbook.html</loc><lastmod>2026-09-16</lastmod></url>
   <url><loc>https://paloframework.org/docs/palo-ai-n8n-publication-status.html</loc><lastmod>2026-09-16</lastmod></url>
@@ -66,15 +67,16 @@
   <url><loc>https://paloframework.org/PALO_AgenticGovernance.html</loc><lastmod>2026-09-17</lastmod></url>
   <url><loc>https://paloframework.org/PALO_AIGovernance.html</loc><lastmod>2026-09-17</lastmod></url>
   <url><loc>https://paloframework.org/PALO_AIIncidentObservatory.html</loc><lastmod>2026-09-14</lastmod></url>
+  <url><loc>https://paloframework.org/PALO_AIMaturity.html</loc><lastmod>2026-10-21</lastmod></url>
   <url><loc>https://paloframework.org/PALO_AIProductionReadiness.html</loc><lastmod>2026-09-17</lastmod></url>
   <url><loc>https://paloframework.org/PALO_AIQuickstarts.html</loc><lastmod>2026-09-17</lastmod></url>
   <url><loc>https://paloframework.org/PALO_AIWhy.html</loc><lastmod>2026-09-14</lastmod></url>
-  <url><loc>https://paloframework.org/PALO_AssessmentPath.html</loc><lastmod>2026-09-14</lastmod></url>
+  <url><loc>https://paloframework.org/PALO_AssessmentPath.html</loc><lastmod>2026-10-21</lastmod></url>
   <url><loc>https://paloframework.org/PALO_AuditBench.html</loc><lastmod>2026-09-14</lastmod></url>
   <url><loc>https://paloframework.org/PALO_Community.html</loc><lastmod>2026-09-14</lastmod></url>
   <url><loc>https://paloframework.org/PALO_CompanionApp.html</loc><lastmod>2026-09-14</lastmod></url>
   <url><loc>https://paloframework.org/PALO_ComparisonTool.html</loc><lastmod>2026-09-17</lastmod></url>
-  <url><loc>https://paloframework.org/PALO_DocumentationLibrary.html</loc><lastmod>2026-09-17</lastmod></url>
+  <url><loc>https://paloframework.org/PALO_DocumentationLibrary.html</loc><lastmod>2026-10-21</lastmod></url>
   <url><loc>https://paloframework.org/PALO_FRIA.html</loc><lastmod>2026-09-17</lastmod></url>
   <url><loc>https://paloframework.org/PALO_Guide.html</loc><lastmod>2026-09-14</lastmod></url>
   <url><loc>https://paloframework.org/PALO_HumanAgencyRiskMap_IT.html</loc><lastmod>2026-09-14</lastmod></url>
@@ -83,7 +85,7 @@
   <url><loc>https://paloframework.org/PALO_ModelCanvasAI.html</loc><lastmod>2026-09-14</lastmod></url>
   <url><loc>https://paloframework.org/PALO_Observatories.html</loc><lastmod>2026-09-14</lastmod></url>
   <url><loc>https://paloframework.org/PALO_OWASPGenAI2026.html</loc><lastmod>2026-09-17</lastmod></url>
-  <url><loc>https://paloframework.org/PALO_PlatformMap.html</loc><lastmod>2026-09-14</lastmod></url>
+  <url><loc>https://paloframework.org/PALO_PlatformMap.html</loc><lastmod>2026-10-21</lastmod></url>
   <url><loc>https://paloframework.org/PALO_PoisoningStudy.html</loc><lastmod>2026-09-17</lastmod></url>
   <url><loc>https://paloframework.org/PALO_Recognition.html</loc><lastmod>2026-09-17</lastmod></url>
   <url><loc>https://paloframework.org/PALO_RegulatoryWatch.html</loc><lastmod>2026-09-17</lastmod></url>

@@ -7,6 +7,12 @@ and this project follows Semantic Versioning where practical.
 
 ---
 
+## Two-Lens AI Maturity Assessment 1.0.0 - 2026-10-21
+
+- Added 6 deployment and 16 governance questions across institutional capability, delegated authority, observable behaviour and verifiable evidence, informed by the October 2026 BCG report and Fabrizio Degni's complementary governance perspective.
+- Added scoped evidence ceilings, freshness checks, conservative profiles, critical-gap priorities, historical comparison, local JSON/Markdown exchange and draft Case File snapshots. Missing evidence remains unresolved; no national ranking, certification or runtime authorization is produced.
+- Connected the module to the homepage, Assessment Path, Platform Map, Documentation Library, release feed and sitemap. The independent PALO rubric remains experimental and requires empirical pilot validation.
+
 ## [Unreleased]
 
 - Archived elapsed August/September activation windows, clarified historical radar counts, and recorded that the official OWASP risk index still names the 2025 edition; the supplied 2026-labelled artifact remains informative.
