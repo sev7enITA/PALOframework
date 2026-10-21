@@ -5,7 +5,7 @@
         <link>https://paloframework.org</link>
         <description>Latest updates, tools, and insights from the PALO Framework - Principled AI Lifecycle Orchestration for responsible AI governance.</description>
         <language>en</language>
-        <lastBuildDate>Thu, 17 Sep 2026 09:13:58 +0200</lastBuildDate>
+        <lastBuildDate>Wed, 21 Oct 2026 00:00:00 +0000</lastBuildDate>
         <pubDate>Wed, 16 Sep 2026 00:00:00 +0200</pubDate>
         <ttl>60</ttl>
         <atom:link href="https://paloframework.org/feed.xml" rel="self" type="application/rss+xml"/>
@@ -20,6 +20,13 @@
         <category>AI Governance</category>
         <category>Responsible AI</category>
         <category>EU AI Act</category>
+        <item>
+            <title>Two-Lens AI Maturity Assessment 1.0.0</title>
+            <link>https://paloframework.org/PALO_AIMaturity.html</link>
+            <guid isPermaLink="true">https://paloframework.org/PALO_AIMaturity.html</guid>
+            <pubDate>Wed, 21 Oct 2026 00:00:00 +0000</pubDate>
+            <description>22 questions separate deployment capability from four governance pillars. Review scoped evidence, unresolved gaps, historical profiles and draft Case File snapshots. Experimental PALO rubric, not a BCG score or certification.</description>
+        </item>
         <item>
             <title>PALO agent swarms: evidence and maturity at 17 September 2026</title>
             <link>https://paloframework.org/docs/palo-status-2026-09-17.html</link>

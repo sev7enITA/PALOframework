@@ -2,7 +2,7 @@
   "format": "palo-source-registry",
   "schemaVersion": "1.0.0",
   "status": "educational-non-production",
-  "updatedAt": "2026-10-06",
+  "updatedAt": "2026-10-21",
   "disclaimer": "This registry is an educational starting point. Source presence and freshness metadata do not establish legal applicability, compliance, certification, or completeness.",
   "sources": [
     {
@@ -12,7 +12,11 @@
       "sourceType": "official",
       "publisher": "US National Institute of Standards and Technology",
       "checkedAt": "2026-07-12T08:00:00Z",
-      "freshness": { "status": "current", "reviewIntervalDays": 90, "nextReviewAt": "2026-10-10T08:00:00Z" },
+      "freshness": {
+        "status": "review-due",
+        "reviewIntervalDays": 90,
+        "nextReviewAt": "2026-10-10T08:00:00Z"
+      },
       "authorityStatus": "authoritative-primary",
       "usageNote": "Use as a risk-management reference; confirm the current publication and organizational applicability before use."
     },
@@ -23,7 +27,11 @@
       "sourceType": "official",
       "publisher": "US National Institute of Standards and Technology",
       "checkedAt": "2026-07-12T08:00:00Z",
-      "freshness": { "status": "current", "reviewIntervalDays": 90, "nextReviewAt": "2026-10-10T08:00:00Z" },
+      "freshness": {
+        "status": "review-due",
+        "reviewIntervalDays": 90,
+        "nextReviewAt": "2026-10-10T08:00:00Z"
+      },
       "authorityStatus": "authoritative-primary",
       "usageNote": "Use for generative-AI risk prompts; it is not a substitute for context-specific testing or accountable review."
     },
@@ -34,7 +42,11 @@
       "sourceType": "standard",
       "publisher": "International Organization for Standardization",
       "checkedAt": "2026-07-12T08:00:00Z",
-      "freshness": { "status": "current", "reviewIntervalDays": 180, "nextReviewAt": "2027-01-08T08:00:00Z" },
+      "freshness": {
+        "status": "current",
+        "reviewIntervalDays": 180,
+        "nextReviewAt": "2027-01-08T08:00:00Z"
+      },
       "authorityStatus": "authoritative-standard",
       "usageNote": "Catalog metadata is linked for status checking; this starter library does not reproduce or certify conformance to the standard."
     },
@@ -45,7 +57,11 @@
       "sourceType": "official",
       "publisher": "Official Journal of the European Union",
       "checkedAt": "2026-08-23T08:00:00Z",
-      "freshness": { "status": "review-due", "reviewIntervalDays": 30, "nextReviewAt": "2026-09-22T08:00:00Z" },
+      "freshness": {
+        "status": "review-due",
+        "reviewIntervalDays": 30,
+        "nextReviewAt": "2026-09-22T08:00:00Z"
+      },
       "authorityStatus": "authoritative-primary",
       "usageNote": "Use the official text and current implementation timeline with qualified counsel; no gate or control here is a legal conclusion."
     },
@@ -56,7 +72,11 @@
       "sourceType": "official",
       "publisher": "Organisation for Economic Co-operation and Development",
       "checkedAt": "2026-07-12T08:00:00Z",
-      "freshness": { "status": "current", "reviewIntervalDays": 180, "nextReviewAt": "2027-01-08T08:00:00Z" },
+      "freshness": {
+        "status": "current",
+        "reviewIntervalDays": 180,
+        "nextReviewAt": "2027-01-08T08:00:00Z"
+      },
       "authorityStatus": "authoritative-primary",
       "usageNote": "Use as a principles reference and verify any jurisdiction-specific obligations separately."
     },
@@ -67,7 +87,11 @@
       "sourceType": "organizational",
       "publisher": "OWASP Foundation",
       "checkedAt": "2026-08-13T08:00:00Z",
-      "freshness": { "status": "unknown", "reviewIntervalDays": 30, "nextReviewAt": "2026-09-12T08:00:00Z" },
+      "freshness": {
+        "status": "unknown",
+        "reviewIntervalDays": 30,
+        "nextReviewAt": "2026-09-12T08:00:00Z"
+      },
       "authorityStatus": "informative",
       "usageNote": "The repository pins the 2026 v1.0 PDF dated 4 August 2026. Its revision history retains a publication-date placeholder, so reverify the official project page before external assurance. Use it as an informative test catalog, not as compliance or certification."
     },
@@ -78,7 +102,11 @@
       "sourceType": "official",
       "publisher": "European Commission",
       "checkedAt": "2026-08-23T08:00:00Z",
-      "freshness": { "status": "review-due", "reviewIntervalDays": 30, "nextReviewAt": "2026-09-22T08:00:00Z" },
+      "freshness": {
+        "status": "review-due",
+        "reviewIntervalDays": 30,
+        "nextReviewAt": "2026-09-22T08:00:00Z"
+      },
       "authorityStatus": "authoritative-primary",
       "usageNote": "Use with the consolidated AI Act and the current transparency Code of Practice. Applicability, exceptions and equivalent marking or labelling measures require accountable legal review."
     },
@@ -89,7 +117,11 @@
       "sourceType": "official",
       "publisher": "European Commission",
       "checkedAt": "2026-08-23T08:00:00Z",
-      "freshness": { "status": "review-due", "reviewIntervalDays": 30, "nextReviewAt": "2026-09-22T08:00:00Z" },
+      "freshness": {
+        "status": "review-due",
+        "reviewIntervalDays": 30,
+        "nextReviewAt": "2026-09-22T08:00:00Z"
+      },
       "authorityStatus": "authoritative-primary",
       "usageNote": "Use as a voluntary compliance route for in-scope GPAI providers. Signing, applicability and actual conformity must be evidenced separately."
     },
@@ -100,7 +132,11 @@
       "sourceType": "standard",
       "publisher": "International Organization for Standardization",
       "checkedAt": "2026-08-23T08:00:00Z",
-      "freshness": { "status": "current", "reviewIntervalDays": 180, "nextReviewAt": "2027-02-19T08:00:00Z" },
+      "freshness": {
+        "status": "current",
+        "reviewIntervalDays": 180,
+        "nextReviewAt": "2027-02-19T08:00:00Z"
+      },
       "authorityStatus": "authoritative-standard",
       "usageNote": "Catalog metadata supports source-status checks. PALO does not reproduce the licensed standard or certify an impact assessment against it."
     },
@@ -111,7 +147,11 @@
       "sourceType": "standard",
       "publisher": "World Wide Web Consortium",
       "checkedAt": "2026-08-23T08:00:00Z",
-      "freshness": { "status": "current", "reviewIntervalDays": 180, "nextReviewAt": "2027-02-19T08:00:00Z" },
+      "freshness": {
+        "status": "current",
+        "reviewIntervalDays": 180,
+        "nextReviewAt": "2027-02-19T08:00:00Z"
+      },
       "authorityStatus": "authoritative-standard",
       "usageNote": "Use WCAG 2.2 for interface and perceivable-output testing. Product, sector and jurisdiction-specific accessibility obligations remain separately applicable."
     },
@@ -122,7 +162,11 @@
       "sourceType": "official",
       "publisher": "Official Journal of the European Union",
       "checkedAt": "2026-08-23T08:00:00Z",
-      "freshness": { "status": "current", "reviewIntervalDays": 90, "nextReviewAt": "2026-11-21T08:00:00Z" },
+      "freshness": {
+        "status": "current",
+        "reviewIntervalDays": 90,
+        "nextReviewAt": "2026-11-21T08:00:00Z"
+      },
       "authorityStatus": "authoritative-primary",
       "usageNote": "Use the current official text with qualified privacy review. PALO does not determine lawful basis, controller or processor status, or data-subject-rights compliance."
     },
@@ -133,7 +177,11 @@
       "sourceType": "organizational",
       "publisher": "PALO Framework",
       "checkedAt": "2026-08-26T08:00:00Z",
-      "freshness": { "status": "current", "reviewIntervalDays": 90, "nextReviewAt": "2026-11-24T08:00:00Z" },
+      "freshness": {
+        "status": "current",
+        "reviewIntervalDays": 90,
+        "nextReviewAt": "2026-11-24T08:00:00Z"
+      },
       "authorityStatus": "informative",
       "usageNote": "Use as the canonical PALO normalization and governance boundary for optional external agentic evidence; it does not accept or validate any imported claim."
     },
@@ -144,7 +192,11 @@
       "sourceType": "monitoring-signal",
       "publisher": "Rogue AI Tracker",
       "checkedAt": "2026-08-26T08:00:00Z",
-      "freshness": { "status": "review-due", "reviewIntervalDays": 30, "nextReviewAt": "2026-09-25T08:00:00Z" },
+      "freshness": {
+        "status": "review-due",
+        "reviewIntervalDays": 30,
+        "nextReviewAt": "2026-09-25T08:00:00Z"
+      },
       "authorityStatus": "non-authoritative-monitoring-signal",
       "usageNote": "Use metadata and links as external capability context only. Do not mirror narrative content or treat provider scores as PALO use-case risk scores, findings or deployment decisions."
     }

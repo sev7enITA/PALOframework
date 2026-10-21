@@ -34,6 +34,18 @@
     }
   },
   "modules": {
+    "aiMaturityAssessment": {
+          "name": "Two-Lens AI Maturity Assessment",
+          "version": "1.0.0",
+          "date": "2026-10-21",
+          "status": "experimental-browser-local",
+          "page": "PALO_AIMaturity.html",
+          "guide": "docs/palo-ai-maturity-assessment.html",
+          "catalog": "data/ai-maturity-assessment.json",
+          "schema": "schemas/palo-maturity-assessment.schema.json",
+          "empiricallyValidated": false,
+          "runtimeAuthorization": false
+    },
     "agenticMethodology": {
       "name": "PALO-AM",
       "version": "2.0.0",

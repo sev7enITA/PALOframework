@@ -1,0 +1,471 @@
+{
+  "format": "palo-maturity-catalog",
+  "version": "1.0.0",
+  "title": "PALO Two-Lens AI Maturity Assessment",
+  "status": "experimental-local-assessment",
+  "publishedAt": "2026-10-21",
+  "methodology": "Evidence-bounded ordinal profile; no national ranking, certification or authorization. PALO-designed rubric, not BCG ASPIRE scoring.",
+  "levels": [
+    {
+      "value": 0,
+      "label": "Absent",
+      "description": "Evidence records that the capability is absent in scope."
+    },
+    {
+      "value": 1,
+      "label": "Documented",
+      "description": "Named ownership, boundaries and procedures are documented."
+    },
+    {
+      "value": 2,
+      "label": "Tested",
+      "description": "A repeatable test demonstrates the capability in the stated scope."
+    },
+    {
+      "value": 3,
+      "label": "Monitored",
+      "description": "Repeated operational observations and change responses are recorded."
+    },
+    {
+      "value": 4,
+      "label": "Challenged and improved",
+      "description": "Independent challenge, contrary evidence and verified improvement are recorded."
+    }
+  ],
+  "evidenceTypes": [
+    {
+      "id": "none",
+      "label": "No evidence",
+      "cap": null
+    },
+    {
+      "id": "declared",
+      "label": "Self-declared only",
+      "cap": null
+    },
+    {
+      "id": "documented",
+      "label": "Documented record",
+      "cap": 1
+    },
+    {
+      "id": "tested",
+      "label": "Test record",
+      "cap": 2
+    },
+    {
+      "id": "monitored",
+      "label": "Repeated observation",
+      "cap": 3
+    },
+    {
+      "id": "independent",
+      "label": "Independent review and improvement",
+      "cap": 4
+    }
+  ],
+  "domains": [
+    {
+      "id": "deployment",
+      "title": "Deployment capability",
+      "lens": "deployment",
+      "description": "Can this scoped organization or system turn AI plans into working capability?"
+    },
+    {
+      "id": "institutional",
+      "title": "Institutional capability",
+      "lens": "governance",
+      "description": "Can accountable people supervise, challenge and correct the system?"
+    },
+    {
+      "id": "authority",
+      "title": "Delegated authority",
+      "lens": "governance",
+      "description": "Who may decide or act, under which limits and revocation conditions?"
+    },
+    {
+      "id": "behaviour",
+      "title": "Observable behaviour",
+      "lens": "governance",
+      "description": "Can actual behaviour, effects and harms be observed and corrected?"
+    },
+    {
+      "id": "evidence",
+      "title": "Verifiable evidence",
+      "lens": "governance",
+      "description": "Can claims be traced, challenged and refreshed over time?"
+    }
+  ],
+  "questions": [
+    {
+      "id": "D1",
+      "domain": "deployment",
+      "title": "Purpose and delivery ownership",
+      "prompt": "Are intended value, prohibited uses, accountable owners and delivery decisions explicit?",
+      "evidence": "Approved purpose and delivery record, delivery review and outcome sample.",
+      "action": "Assign a delivery owner and verify intended value against a scoped pilot.",
+      "gate": "frame",
+      "controlIds": [
+        "ctrl-purpose-boundary"
+      ],
+      "critical": false
+    },
+    {
+      "id": "D2",
+      "domain": "deployment",
+      "title": "Practical skills",
+      "prompt": "Can operators, engineers and reviewers demonstrate the skills needed for their roles?",
+      "evidence": "Role competence matrix, observed tasks and refresher results.",
+      "action": "Test role competence with realistic tasks, then close the observed gaps.",
+      "gate": "control",
+      "controlIds": [
+        "ctrl-ai-literacy-effectiveness"
+      ],
+      "critical": false
+    },
+    {
+      "id": "D3",
+      "domain": "deployment",
+      "title": "Data and infrastructure",
+      "prompt": "Are data, compute, access and recovery available at the required quality and scale?",
+      "evidence": "Data fitness results, capacity measurements and restore tests.",
+      "action": "Validate data fitness, capacity and recovery against the intended operating envelope.",
+      "gate": "assess",
+      "controlIds": [
+        "ctrl-data-provenance"
+      ],
+      "critical": false
+    },
+    {
+      "id": "D4",
+      "domain": "deployment",
+      "title": "Sustainable delivery resources",
+      "prompt": "Can the team fund and operate the capability over its intended lifecycle?",
+      "evidence": "Operating budget, support ownership and measured service capacity.",
+      "action": "Document lifecycle cost and staffed operational capacity.",
+      "gate": "frame",
+      "controlIds": [
+        "ctrl-aims-leadership-objectives"
+      ],
+      "critical": false
+    },
+    {
+      "id": "D5",
+      "domain": "deployment",
+      "title": "Evaluation and improvement",
+      "prompt": "Can the team validate performance and introduce improvements reproducibly?",
+      "evidence": "Versioned evaluation set, release comparison and failed-test records.",
+      "action": "Define representative evaluations and a repeatable release review.",
+      "gate": "measure",
+      "controlIds": [
+        "ctrl-adversarial-testing",
+        "ctrl-change-gate"
+      ],
+      "critical": false
+    },
+    {
+      "id": "D6",
+      "domain": "deployment",
+      "title": "Dependency resilience",
+      "prompt": "Can the organization continue or exit when a model, supplier or infrastructure dependency changes?",
+      "evidence": "Dependency map, portability exercise and exit or continuity test.",
+      "action": "Exercise an exit or continuity scenario for a material dependency.",
+      "gate": "control",
+      "controlIds": [
+        "ctrl-third-party-due-diligence"
+      ],
+      "critical": false
+    },
+    {
+      "id": "I1",
+      "domain": "institutional",
+      "title": "Accountable oversight",
+      "prompt": "Do named reviewers have the authority, time and competence to intervene?",
+      "evidence": "Mandate, reviewer competence test and intervention record.",
+      "action": "Name the accountable reviewer and test an intervention under realistic conditions.",
+      "gate": "control",
+      "controlIds": [
+        "ctrl-human-review"
+      ],
+      "critical": true
+    },
+    {
+      "id": "I2",
+      "domain": "institutional",
+      "title": "Independent challenge",
+      "prompt": "Can reviewers challenge a deployment decision and track corrective action without conflicts of interest?",
+      "evidence": "Challenge minutes, conflict declaration and closed corrective-action sample.",
+      "action": "Run a challenge session and assign independently reviewed corrective actions.",
+      "gate": "prove",
+      "controlIds": [
+        "ctrl-aims-internal-audit",
+        "ctrl-aims-management-review-capa"
+      ],
+      "critical": false
+    },
+    {
+      "id": "I3",
+      "domain": "institutional",
+      "title": "Affected people and remedy",
+      "prompt": "Can affected people understand an outcome, contest it and obtain a reasoned remedy?",
+      "evidence": "Accessible notice, appeal journey, independent review and verified closure sample.",
+      "action": "Test the notice, appeal and remedy journey with representative affected people.",
+      "gate": "prove",
+      "controlIds": [
+        "ctrl-appeal-remedy",
+        "ctrl-ai-output-accessibility"
+      ],
+      "critical": true
+    },
+    {
+      "id": "I4",
+      "domain": "institutional",
+      "title": "Dependency and policy accountability",
+      "prompt": "Are supplier commitments and policy changes reviewed for relevance with an owner and deadline?",
+      "evidence": "Versioned supplier terms, PolicyWatcher or other source observation, human applicability decision and exit owner.",
+      "action": "Review one material supplier or policy change and record its scoped control impact.",
+      "gate": "classify",
+      "controlIds": [
+        "ctrl-third-party-due-diligence",
+        "ctrl-change-gate"
+      ],
+      "critical": false
+    },
+    {
+      "id": "A1",
+      "domain": "authority",
+      "title": "Explicit decision boundaries",
+      "prompt": "Are permitted and prohibited decisions, resources, data uses and delegation limits explicit?",
+      "evidence": "Authority mandate, Action Claim or equivalent scoped decision record and negative tests.",
+      "action": "Document and test authority boundaries, including advisory-only limits.",
+      "gate": "frame",
+      "controlIds": [
+        "ctrl-purpose-boundary",
+        "ctrl-agentic-authority"
+      ],
+      "critical": true
+    },
+    {
+      "id": "A2",
+      "domain": "authority",
+      "title": "Approval and separation of duties",
+      "prompt": "Are consequential decisions tied to a specific current request and authorized independent review?",
+      "evidence": "Approval-to-request binding, role separation and stale-approval rejection test.",
+      "action": "Bind approvals to exact requests and test unauthorized or stale reuse.",
+      "gate": "control",
+      "controlIds": [
+        "ctrl-human-review",
+        "ctrl-agentic-authority"
+      ],
+      "critical": true
+    },
+    {
+      "id": "A3",
+      "domain": "authority",
+      "title": "Revocation and containment",
+      "prompt": "Can humans stop or restrict the system and demonstrate that revoked authority no longer works?",
+      "evidence": "Revocation drill, denial records and authoritative stop observation.",
+      "action": "Test revocation, containment and any remaining direct execution paths.",
+      "gate": "control",
+      "controlIds": [
+        "ctrl-agentic-authority",
+        "ctrl-runtime-production-boundary"
+      ],
+      "critical": true
+    },
+    {
+      "id": "A4",
+      "domain": "authority",
+      "title": "Change and delegation continuity",
+      "prompt": "Do model, prompt, memory, tool and subagent changes trigger review of inherited authority?",
+      "evidence": "Version-bound change review, delegation chain and regression evidence.",
+      "action": "Reassess authority after a representative model, memory, tool or delegation change.",
+      "gate": "classify",
+      "controlIds": [
+        "ctrl-change-gate",
+        "ctrl-agentic-authority"
+      ],
+      "critical": false
+    },
+    {
+      "id": "B1",
+      "domain": "behaviour",
+      "title": "Observed effects",
+      "prompt": "Can actual effects be checked separately from permission and execution success?",
+      "evidence": "Decision, execution receipt and authoritative post-state sample; mismatches and missing observations.",
+      "action": "Test a mismatch and a missing observation as well as a successful effect.",
+      "gate": "measure",
+      "controlIds": [
+        "ctrl-decision-trace"
+      ],
+      "critical": true
+    },
+    {
+      "id": "B2",
+      "domain": "behaviour",
+      "title": "Harm and disparity monitoring",
+      "prompt": "Are failure, unfair outcomes and accessibility barriers measured for affected groups?",
+      "evidence": "Representative subgroup evaluation, denominator, uncertainty and remediation decision.",
+      "action": "Evaluate affected groups and document sample limits and residual harms.",
+      "gate": "measure",
+      "controlIds": [
+        "ctrl-fairness-quality-of-service",
+        "ctrl-fair-allocation",
+        "ctrl-ai-output-accessibility"
+      ],
+      "critical": false
+    },
+    {
+      "id": "B3",
+      "domain": "behaviour",
+      "title": "Incident response and recovery",
+      "prompt": "Can the team detect, contain, investigate and learn from incidents and near misses?",
+      "evidence": "Incident exercise, triage timestamps, recovery results and accountable follow-up.",
+      "action": "Exercise an incident with containment, escalation and verified recovery.",
+      "gate": "prove",
+      "controlIds": [
+        "ctrl-incident-response"
+      ],
+      "critical": true
+    },
+    {
+      "id": "B4",
+      "domain": "behaviour",
+      "title": "Long-term and physical consequences",
+      "prompt": "Are cumulative exposure, physical effects and resource consumption bounded and reviewed where relevant?",
+      "evidence": "Scope-specific cumulative limits, physical safety or safe-stop tests, environmental measurement and rationale.",
+      "action": "Review cumulative effects and resource budgets; explain which physical hazards apply to the scope.",
+      "gate": "measure",
+      "controlIds": [
+        "ctrl-systemic-risk",
+        "ctrl-environmental-performance"
+      ],
+      "critical": false
+    },
+    {
+      "id": "E1",
+      "domain": "evidence",
+      "title": "Traceable decision chain",
+      "prompt": "Can a reviewer trace each sampled claim to authority, action, effect and accountable decision?",
+      "evidence": "Retrievable version-bound decision chain with identity, timestamps and evidence integrity checks.",
+      "action": "Reconstruct a complete decision chain and record missing links.",
+      "gate": "prove",
+      "controlIds": [
+        "ctrl-decision-trace"
+      ],
+      "critical": true
+    },
+    {
+      "id": "E2",
+      "domain": "evidence",
+      "title": "Data lineage and permitted use",
+      "prompt": "Can material data sources, transformations, permissions and disposal be substantiated?",
+      "evidence": "Lineage, data fitness, permitted-use decisions and disposal observation.",
+      "action": "Trace a material data path and verify its permitted use and lifecycle treatment.",
+      "gate": "assess",
+      "controlIds": [
+        "ctrl-data-governance-lifecycle",
+        "ctrl-data-provenance"
+      ],
+      "critical": false
+    },
+    {
+      "id": "E3",
+      "domain": "evidence",
+      "title": "Currency and change triggers",
+      "prompt": "Are evidence, models and policy versions time-bounded, with stale or changed inputs reopening review?",
+      "evidence": "Evidence register, review dates, version digests and a tested change-trigger review.",
+      "action": "Set review deadlines and test reopening after a stale record or external change signal.",
+      "gate": "measure",
+      "controlIds": [
+        "ctrl-change-gate"
+      ],
+      "critical": true
+    },
+    {
+      "id": "E4",
+      "domain": "evidence",
+      "title": "Reproducible challenge",
+      "prompt": "Can another reviewer reproduce the result, inspect contrary evidence and verify corrective-action closure?",
+      "evidence": "Reproduction instructions, independent review, failed cases and closure retest.",
+      "action": "Ask a separate reviewer to reproduce a sample and retain unresolved findings.",
+      "gate": "prove",
+      "controlIds": [
+        "ctrl-aims-internal-audit",
+        "ctrl-decision-trace"
+      ],
+      "critical": false
+    }
+  ],
+  "sources": [
+    {
+      "sourceId": "bcg-ai-maturity-2026",
+      "title": "BCG, The AI Maturity Matrix 2026",
+      "url": "https://www.bcg.com/publications/2026/countries-most-ready-for-ai",
+      "publisher": "Boston Consulting Group",
+      "sourceType": "research",
+      "checkedAt": "2026-10-21T02:20:00Z",
+      "pages": [
+        5,
+        12,
+        21,
+        22,
+        23,
+        24,
+        25
+      ],
+      "sha256": "9d5164f926ef10b822fc3baf0b9b71d43d365c74dbf0816be1c004b9c4ecb343",
+      "role": "Macroeconomic context. User-supplied 28-page PDF; original not republished."
+    },
+    {
+      "sourceId": "degni-two-lenses-2026",
+      "title": "Fabrizio Degni, AI Maturity 2026: capacity to deploy and govern consequences",
+      "url": "https://www.linkedin.com/posts/fdegni_aigovernance-responsibleai-agenticai-share-7518491645940682752-nEQI/",
+      "publisher": "Fabrizio Degni",
+      "sourceType": "organizational",
+      "checkedAt": "2026-10-21T02:20:00Z",
+      "role": "Conceptual four-pillar proposal, retrieved from public post. PALO scoring is a new operationalization."
+    },
+    {
+      "sourceId": "palo-v31-controls",
+      "title": "PALO v3.1 Governance Control Plane",
+      "url": "https://paloframework.org/docs/palo-v3.1-governance-control-plane.html",
+      "publisher": "PALO Framework",
+      "sourceType": "organizational",
+      "checkedAt": "2026-10-21T02:20:00Z",
+      "role": "Existing controls and evidence contracts, verified against local source."
+    }
+  ],
+  "comparison": [
+    {
+      "topic": "Unit of analysis",
+      "established": "BCG compares national economies through exposure and ASPIRE readiness.",
+      "newPerspective": "PALO assesses a named organization, public institution or system with a defined boundary and observation window."
+    },
+    {
+      "topic": "Existing PALO assessment",
+      "established": "Assessment Path routes risk, impact, controls and an evidence bundle; it already includes governance.",
+      "newPerspective": "A separate profile records evidence strength, currency, four governance pillars and improvement priorities."
+    },
+    {
+      "topic": "Strategy and policy",
+      "established": "BCG includes policy quality, institutional effectiveness, data governance and national AI legislation.",
+      "newPerspective": "Check whether named people can challenge, revoke, observe effects and deliver remedy in practice."
+    },
+    {
+      "topic": "Dependencies",
+      "established": "BCG discusses strategic choices across the AI stack.",
+      "newPerspective": "Exercise supplier exit, changed commitments, data permissions and accountability for inherited dependencies."
+    },
+    {
+      "topic": "Agentic and physical AI",
+      "established": "BCG recognises wider exposure as systems act in the physical economy.",
+      "newPerspective": "Test bounded authority, revocation, cumulative impact and authoritative post-state observation."
+    },
+    {
+      "topic": "Evidence over time",
+      "established": "A readiness snapshot and existing evidence routing identify a starting point.",
+      "newPerspective": "Expired or incomplete evidence remains unresolved; comparable scoped reassessments show ordinal progress."
+    }
+  ]
+}

@@ -1,4 +1,15 @@
 export const PUBLIC_FILES = [
+  "PALO_AIMaturity.html",
+  "assets/palo-maturity.css",
+  "assets/palo-maturity.js",
+  "assets/palo-maturity-core.js",
+  "data/ai-maturity-assessment.json",
+  "docs/palo-ai-maturity-assessment.md",
+  "schemas/palo-maturity-assessment.schema.json",
+  "schemas/fixtures/palo-maturity-assessment.valid.json",
+  "schemas/fixtures/palo-maturity-assessment.invalid.json",
+  "assets/seo/palo-governance.png",
+
   "docs/palo-status-2026-09-17.md",
   "docs/palo-swarm-governance-local-prototype.md",
   "docs/palo-swarm-distributed-execution.md",

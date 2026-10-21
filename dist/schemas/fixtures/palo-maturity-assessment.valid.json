@@ -1,0 +1,255 @@
+{
+  "format": "palo-maturity-assessment",
+  "schemaVersion": "1.0.0",
+  "catalogVersion": "1.0.0",
+  "assessmentId": "maturity-synthetic-fixture",
+  "assessedAt": "2026-10-21T00:00:00Z",
+  "scope": {
+    "name": "Synthetic procurement assistant",
+    "unit": "organization",
+    "boundary": "Fictional internal procurement workflow, no live transactions",
+    "owner": "Synthetic review team",
+    "periodStart": "2026-10-21",
+    "periodEnd": "2026-10-21"
+  },
+  "responses": {
+    "D1": {
+      "level": 3,
+      "evidenceType": "monitored",
+      "evidenceRef": "synthetic://maturity/D1",
+      "reviewer": "Synthetic reviewer",
+      "observedAt": "2026-10-21",
+      "reviewDue": "2026-11-20",
+      "rationale": "Fictional demonstration of the scoring rule. This record is not real operational evidence."
+    },
+    "D2": {
+      "level": 3,
+      "evidenceType": "monitored",
+      "evidenceRef": "synthetic://maturity/D2",
+      "reviewer": "Synthetic reviewer",
+      "observedAt": "2026-10-21",
+      "reviewDue": "2026-11-20",
+      "rationale": "Fictional demonstration of the scoring rule. This record is not real operational evidence."
+    },
+    "D3": {
+      "level": 3,
+      "evidenceType": "monitored",
+      "evidenceRef": "synthetic://maturity/D3",
+      "reviewer": "Synthetic reviewer",
+      "observedAt": "2026-10-21",
+      "reviewDue": "2026-11-20",
+      "rationale": "Fictional demonstration of the scoring rule. This record is not real operational evidence."
+    },
+    "D4": {
+      "level": 3,
+      "evidenceType": "monitored",
+      "evidenceRef": "synthetic://maturity/D4",
+      "reviewer": "Synthetic reviewer",
+      "observedAt": "2026-10-21",
+      "reviewDue": "2026-11-20",
+      "rationale": "Fictional demonstration of the scoring rule. This record is not real operational evidence."
+    },
+    "D5": {
+      "level": 3,
+      "evidenceType": "monitored",
+      "evidenceRef": "synthetic://maturity/D5",
+      "reviewer": "Synthetic reviewer",
+      "observedAt": "2026-10-21",
+      "reviewDue": "2026-11-20",
+      "rationale": "Fictional demonstration of the scoring rule. This record is not real operational evidence."
+    },
+    "D6": {
+      "level": 3,
+      "evidenceType": "monitored",
+      "evidenceRef": "synthetic://maturity/D6",
+      "reviewer": "Synthetic reviewer",
+      "observedAt": "2026-10-21",
+      "reviewDue": "2026-11-20",
+      "rationale": "Fictional demonstration of the scoring rule. This record is not real operational evidence."
+    },
+    "I1": {
+      "level": 2,
+      "evidenceType": "tested",
+      "evidenceRef": "synthetic://maturity/I1",
+      "reviewer": "Synthetic reviewer",
+      "observedAt": "2026-10-21",
+      "reviewDue": "2026-11-20",
+      "rationale": "Fictional demonstration of the scoring rule. This record is not real operational evidence."
+    },
+    "I2": {
+      "level": 2,
+      "evidenceType": "tested",
+      "evidenceRef": "synthetic://maturity/I2",
+      "reviewer": "Synthetic reviewer",
+      "observedAt": "2026-10-21",
+      "reviewDue": "2026-11-20",
+      "rationale": "Fictional demonstration of the scoring rule. This record is not real operational evidence."
+    },
+    "I3": {
+      "level": 2,
+      "evidenceType": "tested",
+      "evidenceRef": "synthetic://maturity/I3",
+      "reviewer": "Synthetic reviewer",
+      "observedAt": "2026-10-21",
+      "reviewDue": "2026-11-20",
+      "rationale": "Fictional demonstration of the scoring rule. This record is not real operational evidence."
+    },
+    "I4": {
+      "level": 2,
+      "evidenceType": "tested",
+      "evidenceRef": "synthetic://maturity/I4",
+      "reviewer": "Synthetic reviewer",
+      "observedAt": "2026-10-21",
+      "reviewDue": "2026-11-20",
+      "rationale": "Fictional demonstration of the scoring rule. This record is not real operational evidence."
+    },
+    "A1": {
+      "level": 2,
+      "evidenceType": "tested",
+      "evidenceRef": "synthetic://maturity/A1",
+      "reviewer": "Synthetic reviewer",
+      "observedAt": "2026-10-21",
+      "reviewDue": "2026-11-20",
+      "rationale": "Fictional demonstration of the scoring rule. This record is not real operational evidence."
+    },
+    "A2": {
+      "level": 2,
+      "evidenceType": "tested",
+      "evidenceRef": "synthetic://maturity/A2",
+      "reviewer": "Synthetic reviewer",
+      "observedAt": "2026-10-21",
+      "reviewDue": "2026-11-20",
+      "rationale": "Fictional demonstration of the scoring rule. This record is not real operational evidence."
+    },
+    "A3": {
+      "level": 1,
+      "evidenceType": "documented",
+      "evidenceRef": "synthetic://maturity/A3",
+      "reviewer": "Synthetic reviewer",
+      "observedAt": "2026-10-21",
+      "reviewDue": "2026-11-20",
+      "rationale": "Fictional demonstration of the scoring rule. This record is not real operational evidence."
+    },
+    "A4": {
+      "level": 2,
+      "evidenceType": "tested",
+      "evidenceRef": "synthetic://maturity/A4",
+      "reviewer": "Synthetic reviewer",
+      "observedAt": "2026-10-21",
+      "reviewDue": "2026-11-20",
+      "rationale": "Fictional demonstration of the scoring rule. This record is not real operational evidence."
+    },
+    "B1": {
+      "level": 2,
+      "evidenceType": "tested",
+      "evidenceRef": "synthetic://maturity/B1",
+      "reviewer": "Synthetic reviewer",
+      "observedAt": "2026-10-21",
+      "reviewDue": "2026-11-20",
+      "rationale": "Fictional demonstration of the scoring rule. This record is not real operational evidence."
+    },
+    "B2": {
+      "level": 2,
+      "evidenceType": "tested",
+      "evidenceRef": "synthetic://maturity/B2",
+      "reviewer": "Synthetic reviewer",
+      "observedAt": "2026-10-21",
+      "reviewDue": "2026-11-20",
+      "rationale": "Fictional demonstration of the scoring rule. This record is not real operational evidence."
+    },
+    "B3": {
+      "level": 2,
+      "evidenceType": "tested",
+      "evidenceRef": "synthetic://maturity/B3",
+      "reviewer": "Synthetic reviewer",
+      "observedAt": "2026-10-21",
+      "reviewDue": "2026-11-20",
+      "rationale": "Fictional demonstration of the scoring rule. This record is not real operational evidence."
+    },
+    "B4": {
+      "level": 2,
+      "evidenceType": "tested",
+      "evidenceRef": "synthetic://maturity/B4",
+      "reviewer": "Synthetic reviewer",
+      "observedAt": "2026-10-21",
+      "reviewDue": "2026-11-20",
+      "rationale": "Fictional demonstration of the scoring rule. This record is not real operational evidence."
+    },
+    "E1": {
+      "level": 2,
+      "evidenceType": "tested",
+      "evidenceRef": "synthetic://maturity/E1",
+      "reviewer": "Synthetic reviewer",
+      "observedAt": "2026-10-21",
+      "reviewDue": "2026-11-20",
+      "rationale": "Fictional demonstration of the scoring rule. This record is not real operational evidence."
+    },
+    "E2": {
+      "level": 2,
+      "evidenceType": "tested",
+      "evidenceRef": "synthetic://maturity/E2",
+      "reviewer": "Synthetic reviewer",
+      "observedAt": "2026-10-21",
+      "reviewDue": "2026-11-20",
+      "rationale": "Fictional demonstration of the scoring rule. This record is not real operational evidence."
+    },
+    "E3": {
+      "level": null,
+      "evidenceType": "none",
+      "evidenceRef": "",
+      "reviewer": "Synthetic reviewer",
+      "observedAt": "2026-10-21",
+      "reviewDue": "2026-11-20",
+      "rationale": "Fictional demonstration of the scoring rule. This record is not real operational evidence."
+    },
+    "E4": {
+      "level": 2,
+      "evidenceType": "tested",
+      "evidenceRef": "synthetic://maturity/E4",
+      "reviewer": "Synthetic reviewer",
+      "observedAt": "2026-10-21",
+      "reviewDue": "2026-11-20",
+      "rationale": "Fictional demonstration of the scoring rule. This record is not real operational evidence."
+    }
+  },
+  "sources": [
+    {
+      "sourceId": "bcg-ai-maturity-2026",
+      "title": "BCG, The AI Maturity Matrix 2026",
+      "url": "https://www.bcg.com/publications/2026/countries-most-ready-for-ai",
+      "publisher": "Boston Consulting Group",
+      "sourceType": "research",
+      "checkedAt": "2026-10-21T02:20:00Z",
+      "pages": [
+        5,
+        12,
+        21,
+        22,
+        23,
+        24,
+        25
+      ],
+      "sha256": "9d5164f926ef10b822fc3baf0b9b71d43d365c74dbf0816be1c004b9c4ecb343",
+      "role": "Macroeconomic context. User-supplied 28-page PDF; original not republished."
+    },
+    {
+      "sourceId": "degni-two-lenses-2026",
+      "title": "Fabrizio Degni, AI Maturity 2026: capacity to deploy and govern consequences",
+      "url": "https://www.linkedin.com/posts/fdegni_aigovernance-responsibleai-agenticai-share-7518491645940682752-nEQI/",
+      "publisher": "Fabrizio Degni",
+      "sourceType": "organizational",
+      "checkedAt": "2026-10-21T02:20:00Z",
+      "role": "Conceptual four-pillar proposal, retrieved from public post. PALO scoring is a new operationalization."
+    },
+    {
+      "sourceId": "palo-v31-controls",
+      "title": "PALO v3.1 Governance Control Plane",
+      "url": "https://paloframework.org/docs/palo-v3.1-governance-control-plane.html",
+      "publisher": "PALO Framework",
+      "sourceType": "organizational",
+      "checkedAt": "2026-10-21T02:20:00Z",
+      "role": "Existing controls and evidence contracts, verified against local source."
+    }
+  ],
+  "synthetic": true
+}
