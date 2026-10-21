@@ -1,0 +1,586 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://paloframework.org/schemas/palo-finops-workspace.schema.json",
+  "title": "PALO FinOps workspace 1.0.0",
+  "description": "Declared local accounting. Validate reference integrity, rate intervals, arithmetic and event ordering with palo-finops-core in addition to this structural schema.",
+  "type": "object",
+  "required": [
+    "format",
+    "schemaVersion",
+    "workspaceId",
+    "label",
+    "currency",
+    "budgetMicros",
+    "createdAt",
+    "source",
+    "workloads",
+    "tasks",
+    "routes",
+    "rateCards",
+    "policy",
+    "events"
+  ],
+  "properties": {
+    "format": {
+      "const": "palo-finops-workspace"
+    },
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "workspaceId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4096
+    },
+    "label": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4096
+    },
+    "currency": {
+      "type": "string",
+      "pattern": "^[A-Z]{3}$"
+    },
+    "budgetMicros": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z$"
+    },
+    "source": {
+      "enum": [
+        "manual",
+        "synthetic",
+        "imported"
+      ]
+    },
+    "workloads": {
+      "type": "array",
+      "maxItems": 10000,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "owner",
+          "costCenter",
+          "budgetMicros"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4096
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4096
+          },
+          "owner": {
+            "type": "string"
+          },
+          "costCenter": {
+            "type": "string"
+          },
+          "budgetMicros": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "tasks": {
+      "type": "array",
+      "maxItems": 10000,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "workloadId",
+          "label",
+          "outcome"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4096
+          },
+          "workloadId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4096
+          },
+          "label": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4096
+          },
+          "outcome": {
+            "enum": [
+              "pending",
+              "accepted",
+              "failed",
+              "refused"
+            ]
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "routes": {
+      "type": "array",
+      "maxItems": 10000,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "provider",
+          "model",
+          "region",
+          "endpointHost",
+          "toolSchemaDigest"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4096
+          },
+          "provider": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4096
+          },
+          "model": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4096
+          },
+          "region": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4096
+          },
+          "endpointHost": {
+            "type": "string",
+            "pattern": "^[a-z0-9](?:[a-z0-9.-]*[a-z0-9])?(?::[0-9]{1,5})?$"
+          },
+          "toolSchemaDigest": {
+            "type": "string",
+            "pattern": "^sha256:[a-f0-9]{64}$"
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "rateCards": {
+      "type": "array",
+      "maxItems": 10000,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "routeId",
+          "currency",
+          "validFrom",
+          "validUntil",
+          "source",
+          "rates"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4096
+          },
+          "routeId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4096
+          },
+          "currency": {
+            "type": "string",
+            "pattern": "^[A-Z]{3}$"
+          },
+          "validFrom": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z$"
+          },
+          "validUntil": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z$"
+          },
+          "source": {
+            "type": "object",
+            "required": [
+              "kind",
+              "reference",
+              "observedAt"
+            ],
+            "properties": {
+              "kind": {
+                "enum": [
+                  "manual",
+                  "synthetic",
+                  "provider"
+                ]
+              },
+              "reference": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 4096
+              },
+              "observedAt": {
+                "type": "string",
+                "format": "date-time",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z$"
+              }
+            },
+            "additionalProperties": true
+          },
+          "rates": {
+            "type": "object",
+            "required": [
+              "input",
+              "cacheWrite5m",
+              "cacheWrite1h",
+              "cacheRead",
+              "output"
+            ],
+            "properties": {
+              "input": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              },
+              "cacheWrite5m": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              },
+              "cacheWrite1h": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              },
+              "cacheRead": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              },
+              "output": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              }
+            },
+            "additionalProperties": true
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "policy": {
+      "type": "object",
+      "required": [
+        "id",
+        "revision",
+        "validUntil",
+        "allowedRouteIds",
+        "disclosureContractRef",
+        "maxTransitionMicros"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4096
+        },
+        "revision": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4096
+        },
+        "validUntil": {
+          "type": "string",
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z$"
+        },
+        "allowedRouteIds": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4096
+          }
+        },
+        "disclosureContractRef": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4096
+        },
+        "maxTransitionMicros": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        }
+      },
+      "additionalProperties": true
+    },
+    "events": {
+      "type": "array",
+      "maxItems": 10000,
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "required": [
+              "id",
+              "type",
+              "at",
+              "attemptId",
+              "taskId",
+              "workloadId",
+              "routeId",
+              "rateCardId",
+              "reservedMicros",
+              "estimatedMicros",
+              "source"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 4096
+              },
+              "type": {
+                "const": "reserve"
+              },
+              "at": {
+                "type": "string",
+                "format": "date-time",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z$"
+              },
+              "attemptId": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 4096
+              },
+              "taskId": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 4096
+              },
+              "workloadId": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 4096
+              },
+              "routeId": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 4096
+              },
+              "rateCardId": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 4096
+              },
+              "reservedMicros": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              },
+              "estimatedMicros": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              },
+              "source": {
+                "enum": [
+                  "manual",
+                  "synthetic",
+                  "provider"
+                ]
+              }
+            },
+            "additionalProperties": true
+          },
+          {
+            "type": "object",
+            "required": [
+              "id",
+              "type",
+              "at",
+              "attemptId",
+              "costMicros",
+              "evidenceRef",
+              "source"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 4096
+              },
+              "type": {
+                "enum": [
+                  "settle",
+                  "reconcile"
+                ]
+              },
+              "at": {
+                "type": "string",
+                "format": "date-time",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z$"
+              },
+              "attemptId": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 4096
+              },
+              "costMicros": {
+                "anyOf": [
+                  {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "evidenceRef": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 4096
+              },
+              "source": {
+                "enum": [
+                  "manual",
+                  "synthetic",
+                  "provider"
+                ]
+              },
+              "usage": {
+                "type": "object",
+                "required": [
+                  "inputTokens",
+                  "cacheWrite5mTokens",
+                  "cacheWrite1hTokens",
+                  "cacheReadTokens",
+                  "outputTokens"
+                ],
+                "properties": {
+                  "inputTokens": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "cacheWrite5mTokens": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "cacheWrite1hTokens": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "cacheReadTokens": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "outputTokens": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  }
+                },
+                "additionalProperties": false
+              },
+              "charges": {
+                "type": "array",
+                "maxItems": 100,
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "category",
+                    "amountMicros"
+                  ],
+                  "properties": {
+                    "category": {
+                      "enum": [
+                        "tools",
+                        "verification",
+                        "governance",
+                        "infrastructure",
+                        "human-review"
+                      ]
+                    },
+                    "amountMicros": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 9007199254740991
+                    }
+                  },
+                  "additionalProperties": true
+                }
+              }
+            },
+            "additionalProperties": true,
+            "allOf": [
+              {
+                "if": {
+                  "properties": {
+                    "type": {
+                      "const": "reconcile"
+                    }
+                  }
+                },
+                "then": {
+                  "properties": {
+                    "costMicros": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 9007199254740991
+                    }
+                  }
+                }
+              },
+              {
+                "if": {
+                  "properties": {
+                    "costMicros": {
+                      "type": "null"
+                    }
+                  }
+                },
+                "then": {
+                  "properties": {
+                    "usage": false,
+                    "charges": false
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "additionalProperties": true
+}

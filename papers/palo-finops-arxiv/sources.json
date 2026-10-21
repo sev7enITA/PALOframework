@@ -1,0 +1,118 @@
+{
+  "accessDate": "2026-10-21",
+  "method": "Primary web pages and arXiv metadata, with selected full text; not a systematic literature review",
+  "references": [
+    {
+      "key": "frugalgpt",
+      "title": "FrugalGPT: How to Use Large Language Models While Reducing Cost and Improving Performance",
+      "url": "https://arxiv.org/abs/2305.05176",
+      "type": "Research preprint",
+      "permittedUse": "Model cascades and cost-quality motivation; no PALO savings inferred"
+    },
+    {
+      "key": "routellm",
+      "title": "RouteLLM: Learning to Route LLMs with Preference Data",
+      "url": "https://arxiv.org/abs/2406.18665v4",
+      "type": "Research preprint",
+      "permittedUse": "Preference-trained model routing; version/year distinguished"
+    },
+    {
+      "key": "agentsmatter",
+      "title": "AI Agents That Matter",
+      "url": "https://arxiv.org/abs/2407.01502",
+      "type": "Research preprint",
+      "permittedUse": "Cost-aware evaluation, holdout design and reproducibility"
+    },
+    {
+      "key": "copilot",
+      "title": "Agentic Coding in the Wild: Characterizing GitHub Copilot Traces at Production Scale",
+      "url": "https://arxiv.org/abs/2608.00101",
+      "type": "Research preprint",
+      "permittedUse": "Cache behavior depends on turns/model changes; no cross-provider numerical transfer"
+    },
+    {
+      "key": "uniteconomics",
+      "title": "Unit Economics",
+      "url": "https://www.finops.org/framework/capabilities/unit-economics/",
+      "type": "Primary framework documentation",
+      "permittedUse": "Cost/business outcome relationship and explicit metric sources"
+    },
+    {
+      "key": "focus",
+      "title": "FOCUS Specification 1.4",
+      "url": "https://focus.finops.org/docs/specification/v1-4/",
+      "type": "Primary specification",
+      "permittedUse": "Published version and cost-data vocabulary only; no conformance claim"
+    },
+    {
+      "key": "lcoai",
+      "title": "Introducing LCOAI: A Standardized Economic Metric for Evaluating AI Deployment Costs",
+      "url": "https://arxiv.org/abs/2509.02596",
+      "type": "Research preprint",
+      "permittedUse": "Prior lifecycle cost per productive output; no novelty claim for the general ratio"
+    },
+    {
+      "key": "multilab",
+      "title": "The Multi-Lab Enterprise: Governance, FinOps, and Telemetry Challenges of Multi-Model AI Adoption",
+      "url": "https://arxiv.org/abs/2609.31622",
+      "type": "Research preprint",
+      "permittedUse": "Related cross-provider governance and outcome metrics; market statistics not imported"
+    },
+    {
+      "key": "cloudability",
+      "title": "IBM Cloudability",
+      "url": "https://www.apptio.com/products/cloudability/",
+      "type": "Vendor product documentation",
+      "permittedUse": "Public capability descriptions only; no authenticated competitive benchmark"
+    },
+    {
+      "key": "sqlite",
+      "title": "Atomic Commit in SQLite",
+      "url": "https://sqlite.org/atomiccommit.html",
+      "type": "Primary technical documentation",
+      "permittedUse": "Atomic commit assumptions and limits"
+    },
+    {
+      "key": "retries",
+      "title": "Making retries safe with idempotent APIs",
+      "url": "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/",
+      "type": "Primary technical article",
+      "permittedUse": "Request identity and retry ambiguity; no exactly-once claim"
+    },
+    {
+      "key": "openaicosts",
+      "title": "Costs API Reference",
+      "url": "https://developers.openai.com/api/reference/resources/admin/subresources/organization/subresources/usage/methods/costs",
+      "type": "Primary API documentation",
+      "permittedUse": "Daily costs, explicit scope and bounded pagination"
+    },
+    {
+      "key": "openairesponses",
+      "title": "Create a Response API Reference",
+      "url": "https://developers.openai.com/api/reference/resources/responses/methods/create",
+      "type": "Primary API documentation",
+      "permittedUse": "Fixed Responses endpoint, usage and store option; current official Markdown retrieved by HTTPS GET",
+      "httpEvidence": {
+        "url": "https://developers.openai.com/api/reference/resources/responses/methods/create.md",
+        "status": 200,
+        "bytes": 507870,
+        "sha256": "9c4d505259ac72b879a3697f4f606d4131989ae686d204078b7b22e5638794d0"
+      }
+    },
+    {
+      "key": "palo",
+      "title": "PALO Framework",
+      "url": "https://paloframework.org/",
+      "type": "Primary project documentation",
+      "permittedUse": "Project context; does not establish publication of the exact FinOps implementation"
+    }
+  ],
+  "formatGuidance": [
+    "https://info.arxiv.org/help/submit_tex.html",
+    "https://info.arxiv.org/help/submit/index.html"
+  ],
+  "originatingUserArticle": {
+    "url": "https://towardsdatascience.com/the-hidden-cost-of-llm-routing-why-switching-models-costs-more/",
+    "status": "Web retrieval unavailable in manuscript turn; not used as empirical evidence or counted among the 14 references"
+  }
+}

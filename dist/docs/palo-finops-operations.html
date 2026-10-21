@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>PALO FinOps operations 1.2 | PALO Documentation</title>
+  <meta name="description" content="Public PALO documentation: PALO FinOps operations 1.2.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://paloframework.org/docs/palo-finops-operations.html">
+  <link rel="icon" type="image/webp" href="../assets/logo.webp">
+  <link rel="stylesheet" href="../assets/palo-icons.css">
+  <link rel="stylesheet" href="../assets/palo-v21.css?v=3.1.0">
+  <link rel="stylesheet" href="../assets/palo-docs.css">
+  <script src="../assets/palo-icons.js" defer></script>
+  <script src="../assets/palo-v21.js?v=3.1.0" defer></script>
+  <script src="../assets/palo-docs.js" defer></script>
+    <meta name="author" content="Fabrizio Degni">
+    <link rel="stylesheet" href="../assets/palo-authorship.css" data-palo-authorship-style="true">
+</head>
+<body class="palo-v21 palo-doc-page" data-doc-source="docs/palo-finops-operations.md">
+  <a class="palo-skip-link" href="#main-content">Skip to main content</a>
+  <header class="palo-site-header"><div class="palo-shell palo-header-inner">
+    <a class="palo-brand" href="../index.html"><img src="../assets/logo.webp" alt="PALO">PALO FRAMEWORK</a>
+    <button class="palo-menu-toggle" type="button" data-palo-menu-toggle aria-expanded="false" aria-controls="palo-primary-nav" aria-label="Open navigation"><span data-palo-icon="menu" aria-hidden="true"></span></button>
+    <nav class="palo-nav" id="palo-primary-nav" aria-label="Primary navigation"><a href="../designs/theory-to-practice-infographic/">Start</a><a href="../PALO_AIGovernance.html">Agentic Governance</a><a href="../governance-hub/">Governance Hub</a><a href="../index.html#guided-journeys">Tools</a><a href="../PALO_DocumentationLibrary.html" aria-current="page">Documentation</a><a href="../PALO_AIProductionReadiness.html">Readiness</a></nav>
+  </div></header>
+  <main id="main-content" class="palo-doc-main">
+    <div class="palo-shell">
+      <nav class="palo-doc-breadcrumb" aria-label="Breadcrumb"><a href="../PALO_DocumentationLibrary.html">Documentation Library</a><span aria-hidden="true">/</span><span>Start and adoption</span></nav>
+      <header class="palo-doc-hero"><p class="palo-eyebrow">Start and adoption | Public documentation</p><h1>PALO FinOps operations 1.2</h1><div class="palo-doc-facts"><span><small>Level</small><strong>guide</strong></span><span><small>Audience</small><strong>technical | governance | executive</strong></span><span><small>Product</small><strong>PALO</strong></span><span><small>Status</small><strong>Experimental Local FinOps</strong></span><span><small>Lifecycle</small><strong>Current</strong></span><span><small>Read</small><strong>12 min</strong></span></div><p class="palo-doc-source">Published HTML view | Source: <code>docs/palo-finops-operations.md</code></p><div class="palo-actions"><button class="palo-btn" type="button" data-doc-copy-link>Copy link</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-share>Share page</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-print>Print</button></div><p class="palo-action-status" data-doc-action-status role="status" aria-live="polite"></p></header>
+      <details class="palo-doc-mobile-toc"><summary>On this page</summary><ol><li class="depth-2"><a href="#using-the-workspace">Using the workspace</a></li><li class="depth-3"><a href="#exceptions">Exceptions</a></li><li class="depth-3"><a href="#cost-evidence">Cost evidence</a></li><li class="depth-3"><a href="#business-metrics">Business metrics</a></li><li class="depth-3"><a href="#opportunities-and-measurements">Opportunities and measurements</a></li><li class="depth-3"><a href="#cfo-package-and-selected-exports">CFO package and selected exports</a></li><li class="depth-3"><a href="#rule-comparison">Rule comparison</a></li><li class="depth-3"><a href="#forecast">Forecast</a></li><li class="depth-2"><a href="#nodejs-runtime">Node.js runtime</a></li><li class="depth-2"><a href="#read-only-billing-connector">Read-only billing connector</a></li><li class="depth-2"><a href="#controlled-gateway-pilot">Controlled gateway pilot</a></li><li class="depth-2"><a href="#read-only-mcp-setup">Read-only MCP setup</a></li><li class="depth-2"><a href="#routing-benchmark-protocol">Routing benchmark protocol</a></li><li class="depth-2"><a href="#verification-and-current-boundaries">Verification and current boundaries</a></li></ol></details>
+      <div class="palo-doc-layout"><aside class="palo-doc-sidebar" aria-label="On this page"><strong>On this page</strong><ol><li class="depth-2"><a href="#using-the-workspace">Using the workspace</a></li><li class="depth-3"><a href="#exceptions">Exceptions</a></li><li class="depth-3"><a href="#cost-evidence">Cost evidence</a></li><li class="depth-3"><a href="#business-metrics">Business metrics</a></li><li class="depth-3"><a href="#opportunities-and-measurements">Opportunities and measurements</a></li><li class="depth-3"><a href="#cfo-package-and-selected-exports">CFO package and selected exports</a></li><li class="depth-3"><a href="#rule-comparison">Rule comparison</a></li><li class="depth-3"><a href="#forecast">Forecast</a></li><li class="depth-2"><a href="#nodejs-runtime">Node.js runtime</a></li><li class="depth-2"><a href="#read-only-billing-connector">Read-only billing connector</a></li><li class="depth-2"><a href="#controlled-gateway-pilot">Controlled gateway pilot</a></li><li class="depth-2"><a href="#read-only-mcp-setup">Read-only MCP setup</a></li><li class="depth-2"><a href="#routing-benchmark-protocol">Routing benchmark protocol</a></li><li class="depth-2"><a href="#verification-and-current-boundaries">Verification and current boundaries</a></li></ol></aside><article class="palo-doc-content"><h1 id="palo-finops-operations-12">PALO FinOps operations 1.2<a class="palo-doc-anchor" href="#palo-finops-operations-12" aria-label="Link to PALO FinOps operations 1.2">#</a></h1><p>This release adds operational workflows to the local FinOps module and a separate Node.js pilot runtime. The browser does not hold provider credentials or send model requests. Role selection changes the starting view; it is not authentication or access control.</p>
+<h2 id="using-the-workspace">Using the workspace<a class="palo-doc-anchor" href="#using-the-workspace" aria-label="Link to Using the workspace">#</a></h2><p>Open <code>PALO_FinOps.html</code>, then choose <strong>Operations</strong>. The existing Overview, Attempts ledger, Record &amp; reconcile, Billing &amp; showback, Route assessment and Setup remain available.</p>
+<div class="palo-doc-table-wrap" tabindex="0" aria-label="Scrollable documentation table"><table>
+<thead>
+<tr>
+<th>User</th>
+<th>Starting point</th>
+<th>Typical action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CFO / finance</td>
+<td>Period reporting</td>
+<td>Inspect known costs, open reservations, selected-period billing and completeness before exporting</td>
+</tr>
+<tr>
+<td>IT lead</td>
+<td>Exceptions and opportunities</td>
+<td>Assign a review and evaluate cost changes with quality constraints</td>
+</tr>
+<tr>
+<td>FinOps administrator</td>
+<td>Cost evidence and rules</td>
+<td>Trace a source revision, inspect residuals and compare allocation versions</td>
+</tr>
+<tr>
+<td>AI service owner</td>
+<td>Business metrics</td>
+<td>Declare an acceptance rule and supply a denominator for the exact cost cohort</td>
+</tr>
+</tbody></table></div>
+<p>Use the existing <strong>Load synthetic example</strong> and <strong>Billing &amp; showback &gt; Load synthetic billing</strong> to explore. Synthetic amounts are not current prices. Some metrics deliberately remain unavailable until missing costs and outcomes are resolved.</p>
+<h3 id="exceptions">Exceptions<a class="palo-doc-anchor" href="#exceptions" aria-label="Link to Exceptions">#</a></h3><p>The queue derives cases from missing billing, quarantined imports, unlinked source amounts, missing allocation drivers, estimated source rows, billing/ledger differences and pending outcomes. Repeated findings retain their identity. Changes in their source evidence reopen the case while preserving previous reviews.</p>
+<p>Set an owner, a future review date if needed, a status and a reason. A case can be marked closed while its condition is still detected; the interface keeps that distinction visible. Closing a review or reaching its due date does not settle a cost or release a reservation. A cleared condition remains in the history.</p>
+<h3 id="cost-evidence">Cost evidence<a class="palo-doc-anchor" href="#cost-evidence" aria-label="Link to Cost evidence">#</a></h3><p>Select an active billing revision to follow source amount, evidence reference, usage interval, allocation rule/version and driver, shares, linked attempts and declared outcomes. Shared allocation and direct attempt links are separate representations of the same cost; do not add them. Residuals remain visible. Conservation of currency micros proves arithmetic consistency, not that a driver is economically correct.</p>
+<h3 id="business-metrics">Business metrics<a class="palo-doc-anchor" href="#business-metrics" aria-label="Link to Business metrics">#</a></h3><p>Business metrics use the most recently frozen in-session snapshot from a Billing period export or a CFO pack. The active snapshot ID, origin and scope are shown; existing metric versions remain bound to their registered cohort. Register a metric with immutable ID/version, label, unit, owner, source, acceptance rule, currency, period, cost basis and workload IDs. The interface binds the contract to a digest of the snapshot cohort.</p>
+<p>Import one <strong>observed</strong> batch for that metric version, with unique observation IDs and nonnegative integer quantities. The batch must explicitly declare completeness and the same cohort/window. Forecast observations do not enter an observed denominator. Combining disjoint batches is an explicit upstream operation; the module does not guess whether two observations overlap. A new correction requires a new metric version or an explicitly reconstructed batch rather than silently replacing history.</p>
+<p>The current general metric evaluator deliberately retains all completeness checks of the accepted-task snapshot. It does not bypass missing billing, pending outcomes or boundary-spanning cost rows to produce a ratio. Therefore it is conservative for metrics that might otherwise be computable independently of accepted outcomes. Zero or mismatched denominators produce an unavailable result. Unit values carry the exact numerator and denominator, plus a nearest-micro display value (half ties away from zero). Savings normalization uses BigInt rational arithmetic and rounds the difference once, preserving the exact normalization terms. These ratios are not additional ledger charges.</p>
+<h3 id="opportunities-and-measurements">Opportunities and measurements<a class="palo-doc-anchor" href="#opportunities-and-measurements" aria-label="Link to Opportunities and measurements">#</a></h3><p>An initiative moves through proposed, approved, applied and measured. Every transition requires evidence. Measurement compares two verified frozen snapshots, a declared comparability review, quality constraints and intervention costs. It normalizes the baseline unit cost to the follow-up accepted volume.</p>
+<p>The result is an <strong>observed comparison of declared periods</strong>, not a causal savings certification. Allocation changes, a smaller workload or invoice credits can change the apparent result. The artifact retains <code>savingsDemonstrated: false</code> and <code>causalClaim: false</code>; a positive difference alone is not an experimentally established saving. Failed quality constraints or incomplete accounting block measurement.</p>
+<h3 id="cfo-package-and-selected-exports">CFO package and selected exports<a class="palo-doc-anchor" href="#cfo-package-and-selected-exports" aria-label="Link to CFO package and selected exports">#</a></h3><p>The CFO report contains two explicitly separate scopes:</p>
+<ul>
+<li>Whole-workspace current budget, known operational cost, open reservations and remaining allowance.</li>
+<li>Selected period/workloads billing numerator, source totals, frozen outcomes and completeness reasons.</li>
+</ul>
+<p>These totals are never added. A complete-declared report is still based on local declarations, not independently authenticated invoices or reviewer identity. UTC is used; there is no implicit currency conversion. Invoice-period completeness is not inferred from usage coverage.</p>
+<p><strong>Filtered billing export</strong> contains only current revisions matching the query/kind and labels itself as a selected export, not a restorable archive. <strong>Finance workspace export</strong> preserves the whole book, rules, operational workspace and optional operations state. Operations JSON can also be saved/restored explicitly for the same workspace ID. Imports are validated before replacement. Old finance exports without operations remain accepted.</p>
+<h3 id="rule-comparison">Rule comparison<a class="palo-doc-anchor" href="#rule-comparison" aria-label="Link to Rule comparison">#</a></h3><p>Supply an alternative version of allocation rules to preview destination deltas at one frozen instant. Original costs and existing snapshots stay unchanged. Both projections conserve signed micros, including credits. The difference is allocation sensitivity, not measured savings.</p>
+<h3 id="forecast">Forecast<a class="palo-doc-anchor" href="#forecast" aria-label="Link to Forecast">#</a></h3><p>Supply consecutive complete daily observations ending on the last closed UTC day. Each point needs date, nonnegative integer currency micros and source reference. Negative-net credit days must be modeled upstream with an explicit series definition; this pilot does not silently clip them.</p>
+<p>The evaluator compares last-value and trailing-seven-observation mean baselines using rolling one-step origins. It reports absolute errors and the selected model. The same holdout selects the model, so its score is not an independent final test. Multi-day predictions hold the selected final estimate constant. No calibrated interval, seasonal model, business-growth assumption or LLM forecast is claimed. Insufficient history, gaps or open-day data block the result. Forecasts never change an authorized budget. This version requires nonnegative daily costs and rejects net-negative days containing credits; use an explicitly reviewed nonnegative series with separate credit treatment rather than dropping those days.</p>
+<h2 id="nodejs-runtime">Node.js runtime<a class="palo-doc-anchor" href="#nodejs-runtime" aria-label="Link to Node.js runtime">#</a></h2><p>Run from the repository with the supported Node version and installed repository dependencies:</p>
+<figure class="palo-doc-code"><figcaption>sh code</figcaption><pre tabindex="0"><code class="language-sh">npm run finops:check
+npm run finops:operations -- --help</code></pre></figure><p>New output files use exclusive creation and private permissions. Gateway and benchmark commands reserve an output artifact before making a provider call. A running/failed marker after interruption requires inspection of the durable ledger; creating another request ID is not a safe automatic retry.</p>
+<p>All configuration and accounting outputs for real activity should stay outside the public site's file allowlist. Secrets are supplied through process environment, never through browser storage, JSON examples, CLI arguments or exported receipts. No credentials are bundled in the repository.</p>
+<p></p><pre class="palo-doc-raw" aria-label="Escaped source markup"><code>&lt;a id="billing-connector"&gt;</code></pre><pre class="palo-doc-raw" aria-label="Escaped source markup"><code>&lt;/a&gt;</code></pre><p></p>
+<h2 id="read-only-billing-connector">Read-only billing connector<a class="palo-doc-anchor" href="#read-only-billing-connector" aria-label="Link to Read-only billing connector">#</a></h2><p>The initial adapter targets the OpenAI organization Costs endpoint. This is an implementation choice for the prepared pilot; it does not assert the user's organization has selected or connected OpenAI. The implementation performs only bounded GET requests to a fixed HTTPS endpoint with redirects disabled, explicit organization/project scope, cursor validation and complete daily coverage checks.</p>
+<p>Configure a local file:</p>
+<figure class="palo-doc-code"><figcaption>json code</figcaption><pre tabindex="0"><code class="language-json">{
+  "provider": "openai",
+  "organizationId": "org-REPLACE",
+  "projectIds": ["proj-REPLACE"],
+  "currency": "USD",
+  "partition": "project-pilot",
+  "window": {
+    "start": "2026-10-01T00:00:00.000Z",
+    "end": "2026-10-02T00:00:00.000Z"
+  }
+}</code></pre></figure><p>Provide an authorized organization admin credential as <code>PALO_FINOPS_OPENAI_ADMIN_KEY</code> through your local secret mechanism. The code uses it only for the Costs GET endpoint; that does not imply the credential itself has only read permissions. Run:</p>
+<figure class="palo-doc-code"><figcaption>sh code</figcaption><pre tabindex="0"><code class="language-sh">node scripts/finops-operations.mjs connector /private/config.json /private/new-capture.json</code></pre></figure><p>The output contains <code>batch</code>, <code>receipt</code> and <code>capture</code>. Import <strong>the <code>batch</code> object</strong> through the existing billing importer, or extract it to a separate JSON file. A later capture can pass a previous billing book as the fourth command argument to construct explicit revisions. Missing pages, currencies or project mismatches fail before producing an accepted batch.</p>
+<p>The API reports aggregated daily/project/line-item costs. It does not provide an invoice for every attempt. Rows enter as shared, estimated costs; they do not automatically settle attempts. Decimal amounts are rounded to the nearest micro with original decimal text and rounding policy retained. The invoice interval field mirrors usage only as a schema placeholder; invoice-period completeness is not established. There is no FOCUS conformance claim.</p>
+<p>Every requested day must have an explicit bucket, including an empty <code>results</code> array for a zero day. A missing bucket fails coverage instead of being invented as zero. Whether a configured provider account omits empty days must be verified during its live pilot.</p>
+<p>Finality requires external evidence. Once a reviewer has authoritative final costs and attribution, import a canonical revision with a higher revision number, <code>supersedes</code>, <code>finality: "final"</code> and its evidence reference. Use reviewed classification/links for attempt costs and keep genuinely shared costs under allocation. Then apply the existing reviewed settlement and freeze a new period snapshot. Aggregate API figures alone do not justify this promotion. The suite exercises estimated rows, explicit final revisions, measured links and a complete declared benchmark; it does not supply real invoices.</p>
+<p>The adapter preserves a stable economic identity and supports corrections of active revisions. A removed row that later reappears is blocked for explicit lineage review. Exact-scope snapshots should be repeated for corrections; overlapping different coverage windows remain subject to existing billing quarantine rules.</p>
+<p>Source contract checked on 21 October 2026: <a href="https://developers.openai.com/api/reference/resources/admin/subresources/organization/subresources/usage/methods/costs" target="_blank" rel="noopener noreferrer">OpenAI Costs reference</a>, <a href="https://developers.openai.com/cookbook/examples/completions_usage_api" target="_blank" rel="noopener noreferrer">official usage/cost example</a>.</p>
+<p></p><pre class="palo-doc-raw" aria-label="Escaped source markup"><code>&lt;a id="controlled-gateway"&gt;</code></pre><pre class="palo-doc-raw" aria-label="Escaped source markup"><code>&lt;/a&gt;</code></pre><p></p>
+<h2 id="controlled-gateway-pilot">Controlled gateway pilot<a class="palo-doc-anchor" href="#controlled-gateway-pilot" aria-label="Link to Controlled gateway pilot">#</a></h2><p>This is a separate implementation from the existing loopback-only probe. It accepts bounded text input, a configured route and explicit local reservation. No tools, arbitrary endpoints, provider-supplied executable instructions or dynamic model-selected scopes are accepted.</p>
+<p>Prepare a workspace with real reviewed routes, current rate cards, workload budgets, task IDs and policy. Initialize an exclusive SQLite ledger using the existing <code>ledger-init</code> command. The gateway configuration contains:</p>
+<figure class="palo-doc-code"><figcaption>json code</figcaption><pre tabindex="0"><code class="language-json">{
+  "provider": "openai",
+  "organizationId": "org-REPLACE",
+  "projectId": "proj-REPLACE",
+  "principalId": "pilot-owner",
+  "tokenSha256": "REPLACE_WITH_SHA256_OF_LOCAL_SECRET",
+  "policyDigest": "REPLACE_WITH_CANONICAL_POLICY_SHA256",
+  "workloadIds": ["engineering"],
+  "routeIds": ["reviewed-route"],
+  "maxRequestMicros": 100000,
+  "maxInputBytes": 1000,
+  "maxOutputTokens": 100,
+  "framingTokenAllowance": 2048,
+  "validUntil": "2026-10-22T00:00:00.000Z",
+  "timeoutMs": 30000
+}</code></pre></figure><p>The Responses output allowance must be at least 16 tokens, matching the provider API minimum checked on 21 October 2026. These limits are illustrative configuration, not a recommendation about current provider prices. Generate the local secret outside the repository; provide it as <code>PALO_FINOPS_PRINCIPAL_TOKEN</code>. Compute hashes with the exported <code>sha</code> helper from <code>packages/palo-finops/provider.js</code>; the policy digest is over the canonical policy object. Configure <code>PALO_FINOPS_OPENAI_API_KEY</code> separately. Credentials and config should be accessible only to the operator. This pilot authenticates possession of a local secret; it is not enterprise OIDC, delegated end-user identity or production RBAC.</p>
+<p>Request shape:</p>
+<figure class="palo-doc-code"><figcaption>json code</figcaption><pre tabindex="0"><code class="language-json">{
+  "requestId": "unique-reviewed-request",
+  "taskId": "configured-task",
+  "routeId": "reviewed-route",
+  "rateCardId": "reviewed-rate-version",
+  "input": "Approved task text",
+  "maxOutputTokens": 100,
+  "reservedMicros": 100000
+}</code></pre></figure><figure class="palo-doc-code"><figcaption>sh code</figcaption><pre tabindex="0"><code class="language-sh">node scripts/finops-operations.mjs gateway /private/ledger.sqlite /private/gateway.json /private/request.json /private/new-result.json</code></pre></figure><p>This command can incur provider charges once configured. The local principal, workload, route, policy digest, expiration, request bounds and funds are checked before dispatch. A conservative estimate uses input UTF-8 bytes plus a configured framing allowance and the versioned rates. This is an estimate with declared assumptions, not a proof of the tokenizer's upper bound or a provider-enforced dollar ceiling. Provider-side limits should be configured independently.</p>
+<p>The request claim and reservation commit together in one SQLite transaction before sending. A crash before commit leaves neither; after commit the visible ledger attempt retains its reservation and the claim prevents resend. A duplicate ID does not resend; changed request or configuration (including expiration renewal) with the same ID fails and requires review. Responses are bounded, <code>store</code> is false, and raw prompt text is excluded from receipts. The local result file can contain model output and must be protected as task data.</p>
+<p>Even a successful response reports token usage, not final billing. The reservation remains committed until explicit billing reconciliation. Receipts preserve response ID, provider request ID, route, rate version, policy digest, measured elapsed time and usage. This local guard has not been qualified as a distributed production enforcement service.</p>
+<p>Source contract: <a href="https://developers.openai.com/api/reference/resources/responses/methods/create" target="_blank" rel="noopener noreferrer">OpenAI Responses API</a>. No model price is hardcoded.</p>
+<p></p><pre class="palo-doc-raw" aria-label="Escaped source markup"><code>&lt;a id="read-only-mcp"&gt;</code></pre><pre class="palo-doc-raw" aria-label="Escaped source markup"><code>&lt;/a&gt;</code></pre><p></p>
+<h2 id="read-only-mcp-setup">Read-only MCP setup<a class="palo-doc-anchor" href="#read-only-mcp-setup" aria-label="Link to Read-only MCP setup">#</a></h2><p>The isolated stdio server exposes four tools: <code>finops_summary</code>, <code>finops_exceptions</code>, <code>finops_explain_cost</code>, <code>finops_period</code>. It does not extend every existing PALO server profile with financial data.</p>
+<p>Provide a finance bundle and a local grant:</p>
+<figure class="palo-doc-code"><figcaption>json code</figcaption><pre tabindex="0"><code class="language-json">{
+  "principalId": "finance-reader",
+  "tokenSha256": "REPLACE_WITH_SHA256_OF_LOCAL_SECRET",
+  "scopes": ["finops:read"],
+  "workspaceIds": ["EXACT_WORKSPACE_ID"],
+  "validUntil": "2026-10-22T00:00:00.000Z"
+}</code></pre></figure><figure class="palo-doc-code"><figcaption>sh code</figcaption><pre tabindex="0"><code class="language-sh">node scripts/finops-mcp.mjs /private/finance-bundle.json /private/reader-grant.json</code></pre></figure><p>The host supplies <code>PALO_FINOPS_PRINCIPAL_TOKEN</code>; authentication occurs before the server exposes data, and grant expiration is checked on queries. The host binds the bundle path and workspace scope at startup. The model cannot choose a file, tenant, credential or wider scope. The frozen bundle's costs and source content are untrusted data, not instructions. Results cite workspace, digest, as-of time and policy revision; period queries also cite snapshot scope/time/digest.</p>
+<p>A finance bundle may contain an optional verified <code>snapshot</code>. Without it, the period tool returns a clear error. Updating a bundle requires a new server instance. There is no settlement, approval, reserve-release or execution tool. Stdio depends on the operator's local process boundary; a network deployment requires a separate transport authentication review.</p>
+<p></p><pre class="palo-doc-raw" aria-label="Escaped source markup"><code>&lt;a id="routing-benchmark"&gt;</code></pre><pre class="palo-doc-raw" aria-label="Escaped source markup"><code>&lt;/a&gt;</code></pre><p></p>
+<h2 id="routing-benchmark-protocol">Routing benchmark protocol<a class="palo-doc-anchor" href="#routing-benchmark-protocol" aria-label="Link to Routing benchmark protocol">#</a></h2><p>The runner implements a deliberately narrow two-stage experiment. The stay strategy uses one model for both stages; the switch strategy uses the same first-stage model and a different second-stage model. Each task supplies a first prompt, a follow-up template containing <code>{{previous}}</code>, and an exact expected final string. The dataset, acceptance rule, cache conditions, routes, rate versions and per-attempt reservation are frozen in a digest-bound plan before execution. Task order alternates strategy order to reduce a simple order bias; it does not establish cache isolation or causal inference.</p>
+<p>Plan specification:</p>
+<figure class="palo-doc-code"><figcaption>json code</figcaption><pre tabindex="0"><code class="language-json">{
+  "id": "routing-pilot-1",
+  "owner": "experiment-owner",
+  "datasetRef": "urn:reviewed:frozen-dataset",
+  "qualityRuleRef": "urn:reviewed:exact-answer",
+  "cacheControlRef": "urn:reviewed:cache-and-load-conditions",
+  "maxOutputTokens": 100,
+  "tasks": [{"taskId":"fresh-task-id","prompt":"Approved prompt","followup":"Review {{previous}} and return the final answer","expectedText":"Frozen answer"}],
+  "strategies": [
+    {"id":"stay","routeIds":["model-a","model-a"],"rateCardIds":["rate-a","rate-a"],"reservedMicros":100000},
+    {"id":"switch","routeIds":["model-a","model-b"],"rateCardIds":["rate-a","rate-b"],"reservedMicros":100000}
+  ]
+}</code></pre></figure><figure class="palo-doc-code"><figcaption>sh code</figcaption><pre tabindex="0"><code class="language-sh">node scripts/finops-operations.mjs plan /private/spec.json /private/new-plan.json
+node scripts/finops-operations.mjs benchmark-run /private/new-plan.json /private/ledger.sqlite /private/gateway.json /private/new-run.json
+node scripts/finops-operations.mjs benchmark-analyze /private/new-run.json /private/reconciled-finance.json /private/ancillary.json /private/new-analysis.json</code></pre></figure><p>Use fresh task IDs. The run retains every attempted stage, failure, usage receipt and latency; there are no automatic retries. Failed or interrupted runs do not become zero-cost successes. Exact-match acceptance is unsuitable for open-ended tasks without redesigning the quality protocol.</p>
+<p>The analyzer requires final reconciled billing and a single ancillary-cost declaration for each task/strategy: <code>{taskId,strategyId,amountMicros,complete:true,includedInLedger:false,evidenceRef}</code>. Explicit zero is allowed only as an accountable declaration. It rejects unassigned attempts and relevant source residuals. Additional costs must cover context work, verification, infrastructure and human effort not already in the ledger. Latency is reported separately; monetization requires an explicit business rule upstream.</p>
+<p>An incomplete run reports known costs and reasons but withholds final cost per accepted task. Even a complete declared comparison does not prove general savings, causal improvement or performance on other tasks/providers. Real pilot results are not bundled with this release.</p>
+<h2 id="verification-and-current-boundaries">Verification and current boundaries<a class="palo-doc-anchor" href="#verification-and-current-boundaries" aria-label="Link to Verification and current boundaries">#</a></h2><p>The test suite covers original accounting plus operations, provider mapping, authentication/scope rejection, reservation before dispatch, concurrency/idempotency, process crash and no-resend, frozen benchmark execution, incomplete-cost withholding, CLI exclusive files and MCP read-only behavior. Provider transport tests use injected synthetic responses; they are not a live account test. The previous loopback probe remains separate.</p>
+<p>The browser workflows and Node modules implement the twelve-item backlog. Actual provider connection, a real paid benchmark, final invoice attribution, enterprise identity and production deployment require configured access and separate evidence. The code does not claim that generating configuration completes those steps. GLM review, when available, is tracked separately from code/test evidence.</p>
+</article></div>
+      <aside class="palo-doc-next"><div><small>Prerequisite</small><strong>Scoped finance workspace and reviewed evidence; credentials only for separate runtime pilots</strong></div><div><small>Recommended next step</small><strong>Open FinOps Operations and choose a role</strong></div></aside>
+      <section class="palo-doc-feedback" aria-labelledby="feedback-title"><p class="palo-eyebrow">Privacy-first feedback</p><h2 id="feedback-title">Help improve this guide</h2><p>Your feedback stays in your browser until you explicitly copy it, download it, or open an email draft. Do not include secrets, personal data, credentials or production identifiers.</p><form data-doc-feedback><div class="palo-form-grid"><div class="palo-field"><label for="feedback-role">Your role</label><select id="feedback-role" name="role"><option>Executive / governance owner</option><option>Platform or security engineer</option><option>No-code / low-code builder</option><option>External reviewer</option></select></div><div class="palo-field"><label for="feedback-category">Category</label><select id="feedback-category" name="category"><option>Clarity</option><option>Technical accuracy</option><option>Missing guidance</option><option>Accessibility</option></select></div><div class="palo-field palo-field-full"><label for="feedback-message">Feedback</label><textarea id="feedback-message" name="message" maxlength="3000" required placeholder="Describe the non-sensitive improvement you recommend."></textarea></div><div class="palo-form-actions"><button class="palo-btn" type="button" data-feedback-copy>Copy feedback</button><button class="palo-btn palo-btn-secondary" type="button" data-feedback-download>Download JSON</button><button class="palo-btn palo-btn-secondary" type="button" data-feedback-email>Email draft</button></div></div><p class="palo-action-status" data-feedback-status role="status" aria-live="polite"></p></form></section>
+    </div>
+  </main>
+  <footer class="palo-footer" data-palo-authorship-container="true">
+<p class="palo-authorship-footer" data-palo-authorship="footer">PALO Framework: conceived, created and maintained by <a href="../PALO_Community.html#creator">Fabrizio Degni</a>.</p>
+<div class="palo-shell"><p>PALO public documentation. Developer preview boundaries apply.</p><div class="palo-footer-links"><a href="../PALO_AIGovernance.html">PALO-AI</a><a href="../governance-hub/">Governance Hub</a><a href="../PALO_AgenticCapabilityMatrix.html">Capability Matrix</a><a href="../PALO_AIProductionReadiness.html">Production Readiness</a><a href="../privacy-policy.html">Privacy</a></div></div></footer>
+</body></html>

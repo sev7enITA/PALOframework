@@ -12,6 +12,8 @@ PALO Framework is an open-source project conceived, created and maintained by **
 
 [Documentation Library](https://paloframework.org/PALO_DocumentationLibrary.html) | [GitHub wiki](https://github.com/sev7enITA/PALOframework/wiki) | [Repository reading guide](docs/palo-repository-reading-guide.md) | [Build and deployment status](https://github.com/sev7enITA/PALOframework/actions/workflows/deploy.yml) | [PolicyWatcher sync status](https://github.com/sev7enITA/PALOframework/actions/workflows/sync-policywatcher-signals.yml)
 
+The experimental [PALO AI FinOps module](https://paloframework.org/PALO_FinOps.html) provides local billing reconciliation, budget reservations, shared-cost allocation, role-based reporting and frozen outcome metrics. Version 1.2 includes an isolated read-only MCP server, a billing connector, a controlled gateway and a routing benchmark runner for bounded local pilots. Role selection is navigation, not access control. Real provider reconciliation and production qualification remain pending. Read the [FinOps guide](docs/palo-finops.md), [operations guide](docs/palo-finops-operations.md) and [technical preprint](https://paloframework.org/assets/PALO_FinOps_Paper_v1.0.pdf); run `npm run finops:check`.
+
 ## Start here: PALO Evidence Pack
 
 **Allowed is not verified.** Give PALO one AI use case. Leave with a traceable, reviewable evidence dossier and a local validation receipt in less than ten minutes.

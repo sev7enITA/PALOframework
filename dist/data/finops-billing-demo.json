@@ -1,0 +1,134 @@
+{
+  "format": "palo-billing-export",
+  "schemaVersion": "1.0.0",
+  "source": "synthetic-billing-demo",
+  "account": "example-only",
+  "contractVersion": "1",
+  "partition": "all",
+  "identity": "stable-id",
+  "mode": "delta",
+  "completeness": "complete",
+  "currency": "USD",
+  "costBasis": "billed",
+  "coverage": {
+    "start": "2026-10-21T00:00:00.000Z",
+    "end": "2026-10-22T00:00:00.000Z"
+  },
+  "records": [
+    {
+      "sourceRecordId": "synthetic-code",
+      "revision": 1,
+      "amountMicros": 220000,
+      "chargeKind": "usage",
+      "finality": "final",
+      "usage": {
+        "start": "2026-10-21T00:00:00.000Z",
+        "end": "2026-10-22T00:00:00.000Z"
+      },
+      "invoice": {
+        "start": "2026-10-21T00:00:00.000Z",
+        "end": "2026-10-22T00:00:00.000Z"
+      },
+      "evidenceRef": "urn:palo:synthetic:billing:code",
+      "dimensions": {
+        "attemptId": "attempt-code"
+      }
+    },
+    {
+      "sourceRecordId": "synthetic-check",
+      "revision": 1,
+      "amountMicros": 50000,
+      "chargeKind": "usage",
+      "finality": "final",
+      "usage": {
+        "start": "2026-10-21T00:00:00.000Z",
+        "end": "2026-10-22T00:00:00.000Z"
+      },
+      "invoice": {
+        "start": "2026-10-21T00:00:00.000Z",
+        "end": "2026-10-22T00:00:00.000Z"
+      },
+      "evidenceRef": "urn:palo:synthetic:billing:check",
+      "dimensions": {
+        "attemptId": "attempt-check"
+      }
+    },
+    {
+      "sourceRecordId": "synthetic-research",
+      "revision": 1,
+      "amountMicros": 70000,
+      "chargeKind": "usage",
+      "finality": "final",
+      "usage": {
+        "start": "2026-10-21T00:00:00.000Z",
+        "end": "2026-10-22T00:00:00.000Z"
+      },
+      "invoice": {
+        "start": "2026-10-21T00:00:00.000Z",
+        "end": "2026-10-22T00:00:00.000Z"
+      },
+      "evidenceRef": "urn:palo:synthetic:billing:research",
+      "dimensions": {
+        "attemptId": "attempt-research"
+      }
+    },
+    {
+      "sourceRecordId": "synthetic-open",
+      "revision": 1,
+      "amountMicros": 100000,
+      "chargeKind": "usage",
+      "finality": "final",
+      "usage": {
+        "start": "2026-10-21T00:00:00.000Z",
+        "end": "2026-10-22T00:00:00.000Z"
+      },
+      "invoice": {
+        "start": "2026-10-21T00:00:00.000Z",
+        "end": "2026-10-22T00:00:00.000Z"
+      },
+      "evidenceRef": "urn:palo:synthetic:billing:open",
+      "dimensions": {
+        "attemptId": "attempt-open"
+      }
+    },
+    {
+      "sourceRecordId": "synthetic-shared-pool",
+      "revision": 1,
+      "amountMicros": 30000,
+      "chargeKind": "shared",
+      "finality": "final",
+      "usage": {
+        "start": "2026-10-21T00:00:00.000Z",
+        "end": "2026-10-22T00:00:00.000Z"
+      },
+      "invoice": {
+        "start": "2026-10-21T00:00:00.000Z",
+        "end": "2026-10-22T00:00:00.000Z"
+      },
+      "evidenceRef": "urn:palo:synthetic:billing:shared-pool",
+      "dimensions": {
+        "pool": "shared"
+      }
+    },
+    {
+      "sourceRecordId": "synthetic-shared-credit",
+      "revision": 1,
+      "amountMicros": -3000,
+      "chargeKind": "credit",
+      "finality": "final",
+      "usage": {
+        "start": "2026-10-21T00:00:00.000Z",
+        "end": "2026-10-22T00:00:00.000Z"
+      },
+      "invoice": {
+        "start": "2026-10-21T00:00:00.000Z",
+        "end": "2026-10-22T00:00:00.000Z"
+      },
+      "evidenceRef": "urn:palo:synthetic:billing:shared-credit",
+      "dimensions": {
+        "pool": "shared"
+      },
+      "allocationScope": "shared"
+    }
+  ]
+}

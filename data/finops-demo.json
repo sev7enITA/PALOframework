@@ -1,0 +1,254 @@
+{
+  "format": "palo-finops-workspace",
+  "schemaVersion": "1.0.0",
+  "workspaceId": "finops-synthetic-example-v1",
+  "label": "Agent delivery lab | synthetic",
+  "currency": "USD",
+  "budgetMicros": 1500000,
+  "createdAt": "2026-10-21T09:00:00.000Z",
+  "source": "synthetic",
+  "workloads": [
+    {
+      "id": "engineering",
+      "name": "Engineering agents",
+      "owner": "Example engineering lead",
+      "costCenter": "DEMO-ENG",
+      "budgetMicros": 900000
+    },
+    {
+      "id": "research",
+      "name": "Research agents",
+      "owner": "Example research lead",
+      "costCenter": "DEMO-RES",
+      "budgetMicros": 600000
+    }
+  ],
+  "tasks": [
+    {
+      "id": "task-code",
+      "workloadId": "engineering",
+      "label": "Implement a fictional parser",
+      "outcome": "accepted"
+    },
+    {
+      "id": "task-check",
+      "workloadId": "engineering",
+      "label": "Review a synthetic patch",
+      "outcome": "failed"
+    },
+    {
+      "id": "task-research",
+      "workloadId": "research",
+      "label": "Compare fictional sources",
+      "outcome": "accepted"
+    },
+    {
+      "id": "task-open",
+      "workloadId": "research",
+      "label": "Waiting for usage reconciliation",
+      "outcome": "pending"
+    }
+  ],
+  "routes": [
+    {
+      "id": "frontier",
+      "provider": "Synthetic Provider",
+      "model": "Synthetic Frontier",
+      "region": "eu-example",
+      "endpointHost": "frontier.example.invalid",
+      "toolSchemaDigest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    {
+      "id": "efficient",
+      "provider": "Synthetic Provider",
+      "model": "Synthetic Efficient",
+      "region": "eu-example",
+      "endpointHost": "efficient.example.invalid",
+      "toolSchemaDigest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    }
+  ],
+  "rateCards": [
+    {
+      "id": "frontier-v1",
+      "routeId": "frontier",
+      "currency": "USD",
+      "validFrom": "2026-01-01T00:00:00.000Z",
+      "validUntil": "2027-01-01T00:00:00.000Z",
+      "source": {
+        "kind": "synthetic",
+        "reference": "urn:palo:finops:synthetic-example:v1",
+        "observedAt": "2026-10-21T09:00:00.000Z"
+      },
+      "rates": {
+        "input": 5000000,
+        "cacheWrite5m": 6250000,
+        "cacheWrite1h": 10000000,
+        "cacheRead": 500000,
+        "output": 25000000
+      }
+    },
+    {
+      "id": "efficient-v1",
+      "routeId": "efficient",
+      "currency": "USD",
+      "validFrom": "2026-01-01T00:00:00.000Z",
+      "validUntil": "2027-01-01T00:00:00.000Z",
+      "source": {
+        "kind": "synthetic",
+        "reference": "urn:palo:finops:synthetic-example:v1",
+        "observedAt": "2026-10-21T09:00:00.000Z"
+      },
+      "rates": {
+        "input": 1000000,
+        "cacheWrite5m": 1250000,
+        "cacheWrite1h": 2000000,
+        "cacheRead": 100000,
+        "output": 5000000
+      }
+    }
+  ],
+  "policy": {
+    "id": "synthetic-transition-policy",
+    "revision": "1",
+    "validUntil": "2027-01-01T00:00:00.000Z",
+    "allowedRouteIds": [
+      "frontier",
+      "efficient"
+    ],
+    "disclosureContractRef": "urn:palo:synthetic:disclosure:v1",
+    "maxTransitionMicros": 300000
+  },
+  "events": [
+    {
+      "id": "attempt-code-reserve",
+      "type": "reserve",
+      "at": "2026-10-21T09:00:00.000Z",
+      "attemptId": "attempt-code",
+      "taskId": "task-code",
+      "workloadId": "engineering",
+      "routeId": "frontier",
+      "rateCardId": "frontier-v1",
+      "reservedMicros": 300000,
+      "estimatedMicros": 220000,
+      "source": "synthetic"
+    },
+    {
+      "id": "attempt-code-settle",
+      "type": "settle",
+      "at": "2026-10-21T09:00:00.000Z",
+      "attemptId": "attempt-code",
+      "costMicros": 220000,
+      "evidenceRef": "urn:palo:finops:synthetic:attempt-code",
+      "source": "synthetic",
+      "usage": {
+        "inputTokens": 10000,
+        "cacheWrite5mTokens": 0,
+        "cacheWrite1hTokens": 0,
+        "cacheReadTokens": 100000,
+        "outputTokens": 800
+      },
+      "charges": [
+        {
+          "category": "tools",
+          "amountMicros": 100000
+        }
+      ]
+    },
+    {
+      "id": "attempt-check-reserve",
+      "type": "reserve",
+      "at": "2026-10-21T09:00:00.000Z",
+      "attemptId": "attempt-check",
+      "taskId": "task-check",
+      "workloadId": "engineering",
+      "routeId": "efficient",
+      "rateCardId": "efficient-v1",
+      "reservedMicros": 100000,
+      "estimatedMicros": 50000,
+      "source": "synthetic"
+    },
+    {
+      "id": "attempt-check-settle",
+      "type": "settle",
+      "at": "2026-10-21T09:00:00.000Z",
+      "attemptId": "attempt-check",
+      "costMicros": 50000,
+      "evidenceRef": "urn:palo:finops:synthetic:attempt-check",
+      "source": "synthetic",
+      "usage": {
+        "inputTokens": 30000,
+        "cacheWrite5mTokens": 0,
+        "cacheWrite1hTokens": 0,
+        "cacheReadTokens": 50000,
+        "outputTokens": 2000
+      },
+      "charges": [
+        {
+          "category": "governance",
+          "amountMicros": 5000
+        }
+      ]
+    },
+    {
+      "id": "attempt-research-reserve",
+      "type": "reserve",
+      "at": "2026-10-21T09:00:00.000Z",
+      "attemptId": "attempt-research",
+      "taskId": "task-research",
+      "workloadId": "research",
+      "routeId": "efficient",
+      "rateCardId": "efficient-v1",
+      "reservedMicros": 100000,
+      "estimatedMicros": 70000,
+      "source": "synthetic"
+    },
+    {
+      "id": "attempt-research-settle",
+      "type": "settle",
+      "at": "2026-10-21T09:00:00.000Z",
+      "attemptId": "attempt-research",
+      "costMicros": 70000,
+      "evidenceRef": "urn:palo:finops:synthetic:attempt-research",
+      "source": "synthetic",
+      "usage": {
+        "inputTokens": 20000,
+        "cacheWrite5mTokens": 0,
+        "cacheWrite1hTokens": 0,
+        "cacheReadTokens": 0,
+        "outputTokens": 4000
+      },
+      "charges": [
+        {
+          "category": "verification",
+          "amountMicros": 10000
+        },
+        {
+          "category": "human-review",
+          "amountMicros": 20000
+        }
+      ]
+    },
+    {
+      "id": "attempt-open-reserve",
+      "type": "reserve",
+      "at": "2026-10-21T09:00:00.000Z",
+      "attemptId": "attempt-open",
+      "taskId": "task-open",
+      "workloadId": "research",
+      "routeId": "efficient",
+      "rateCardId": "efficient-v1",
+      "reservedMicros": 180000,
+      "estimatedMicros": 120000,
+      "source": "synthetic"
+    },
+    {
+      "id": "attempt-open-settle",
+      "type": "settle",
+      "at": "2026-10-21T09:00:00.000Z",
+      "attemptId": "attempt-open",
+      "costMicros": null,
+      "evidenceRef": "urn:palo:finops:synthetic:attempt-open",
+      "source": "synthetic"
+    }
+  ]
+}

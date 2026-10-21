@@ -1,0 +1,30 @@
+{
+  "title": "PALO FinOps: Evidence-Gated Cost Accounting and Budget Admission for Multi-Model AI Workflows",
+  "authors": [
+    {
+      "name": "Fabrizio Degni",
+      "affiliation": "PALO Framework - AI Ethics and Governance",
+      "email": "fabrizio.degni@gsom.polimi.it",
+      "metadataOrigin": "Existing PALO academic manuscript"
+    }
+  ],
+  "abstract": "The price of a model invocation is an incomplete basis for governing the cost of an AI workflow. Retries, unsuccessful attempts, context reconstruction, verification, shared infrastructure and human review can alter the cost per accepted outcome. At the same time, delayed billing and uncertain execution outcomes make a low observed total compatible with substantial unresolved liability. We present PALO FinOps, a reference model that separates four concerns: spending authority, operational commitments, versioned billing evidence and outcome-conditioned measurement. Its central rule is that incomplete evidence produces an unavailable final metric rather than an inferred zero cost. The model combines durable reservation before dispatch, explicit retention of unresolved commitments, revision-aware attribution, signed cost conservation and frozen metric contracts. A local implementation provides twelve operational capabilities, including role-oriented reporting, exception review, a read-only billing adapter, an isolated read-only Model Context Protocol server and a bounded routing benchmark runner. Evaluation comprises 63 local regression and integration tests, 20 focused interface checks and an exhaustive bounded enumeration of 12,864 signed-allocation configurations. Synthetic reconciliation examples demonstrate preservation of reservations, invalidation after billing revisions and replay of historical snapshots. These results establish executable behavior within the tested local scope; they do not establish provider billing accuracy, distributed enforcement, causal savings or production readiness. We conclude with a preregisterable live-evaluation protocol. The contribution is an explicit, testable contract connecting cost evidence to authority and outcomes, intended to complement routing algorithms and established FinOps practices.",
+  "language": "en",
+  "version": "1.0",
+  "date": "2026-10-21",
+  "suggestedPrimaryCategory": "cs.AI",
+  "suggestedCrossList": [
+    "cs.SE"
+  ],
+  "categoryStatus": "Author selection pending; suggestions are not arXiv classification",
+  "comments": "10 pages, 2 figures, 2 tables. Technical preprint; local synthetic validation and proposed live evaluation protocol.",
+  "arxivId": null,
+  "doi": null,
+  "submissionStatus": "not_submitted",
+  "license": "author_selection_required",
+  "correspondingImplementation": "PALO FinOps 1.2.0",
+  "liveProviderValidated": false,
+  "glmManuscriptReview": "not_performed; native Mac locked",
+  "aiAssistanceDisclosureIncluded": true,
+  "pageCount": 10
+}

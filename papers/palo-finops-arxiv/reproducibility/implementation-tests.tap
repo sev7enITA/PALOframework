@@ -1,0 +1,398 @@
+TAP version 13
+# Subtest: billing CLI preserves inputs, rejects invalid imports and reports quarantine distinctly
+ok 1 - billing CLI preserves inputs, rejects invalid imports and reports quarantine distinctly
+  ---
+  duration_ms: 351.392959
+  type: 'test'
+  ...
+# Subtest: billing page selectors, publication surfaces and independent schema versions stay consistent
+ok 2 - billing page selectors, publication surfaces and independent schema versions stay consistent
+  ---
+  duration_ms: 1.564417
+  type: 'test'
+  ...
+# Subtest: atomic import, repeat and reordering preserve one economic cost
+ok 3 - atomic import, repeat and reordering preserve one economic cost
+  ---
+  duration_ms: 20.930916
+  type: 'test'
+  ...
+# Subtest: partial, foreign currency and changed account are quarantined without erasing prior data
+ok 4 - partial, foreign currency and changed account are quarantined without erasing prior data
+  ---
+  duration_ms: 12.46925
+  type: 'test'
+  ...
+# Subtest: overlap with new IDs is held; explicit distinct-event review preserves legitimate duplicates
+ok 5 - overlap with new IDs is held; explicit distinct-event review preserves legitimate duplicates
+  ---
+  duration_ms: 5.650708
+  type: 'test'
+  ...
+# Subtest: revision replaces, extra credit subtracts, links become inactive and history survives
+ok 6 - revision replaces, extra credit subtracts, links become inactive and history survives
+  ---
+  duration_ms: 10.352375
+  type: 'test'
+  ...
+# Subtest: exact-scope snapshots remove missing rows without deleting historical evidence
+ok 7 - exact-scope snapshots remove missing rows without deleting historical evidence
+  ---
+  duration_ms: 2.166917
+  type: 'test'
+  ...
+# Subtest: all links share a single source ceiling; residual and reserve closure are distinct
+ok 8 - all links share a single source ceiling; residual and reserve closure are distinct
+  ---
+  duration_ms: 3.643333
+  type: 'test'
+  ...
+# Subtest: shared pool cannot be invented as a request; signed deterministic allocation conserves every micro
+ok 9 - shared pool cannot be invented as a request; signed deterministic allocation conserves every micro
+  ---
+  duration_ms: 1.582917
+  type: 'test'
+  ...
+# Subtest: settlement requires evidence review, measured final links and complete import state
+ok 10 - settlement requires evidence review, measured final links and complete import state
+  ---
+  duration_ms: 4.701875
+  type: 'test'
+  ...
+# Subtest: allocation comparison freezes input revisions, drivers and one evaluation instant
+ok 11 - allocation comparison freezes input revisions, drivers and one evaluation instant
+  ---
+  duration_ms: 1.324292
+  type: 'test'
+  ...
+# Subtest: liability aging escalates without releasing capacity
+ok 12 - liability aging escalates without releasing capacity
+  ---
+  duration_ms: 1.54275
+  type: 'test'
+  ...
+# Subtest: frozen metric snapshots preserve accepted set, whole costs and old results after edits
+ok 13 - frozen metric snapshots preserve accepted set, whole costs and old results after edits
+  ---
+  duration_ms: 14.939041
+  type: 'test'
+  ...
+# Subtest: digest edits and amount overflow fail closed
+ok 14 - digest edits and amount overflow fail closed
+  ---
+  duration_ms: 1.663167
+  type: 'test'
+  ...
+# (node:75737) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: money parsing is exact, bounded and rejects ambiguous values
+ok 15 - money parsing is exact, bounded and rejects ambiguous values
+  ---
+  duration_ms: 2.189792
+  type: 'test'
+  ...
+# Subtest: money display preserves the last micro at the supported limit and negative subunit values
+ok 16 - money display preserves the last micro at the supported limit and negative subunit values
+  ---
+  duration_ms: 15.830583
+  type: 'test'
+  ...
+# Subtest: token prices round each disjoint category up once with BigInt intermediates
+ok 17 - token prices round each disjoint category up once with BigInt intermediates
+  ---
+  duration_ms: 0.547708
+  type: 'test'
+  ...
+# Subtest: empty workspace has no fake completion rate or cost per accepted task
+ok 18 - empty workspace has no fake completion rate or cost per accepted task
+  ---
+  duration_ms: 6.045291
+  type: 'test'
+  ...
+# Subtest: synthetic example accounts for failed attempts, ancillary cost and unknown final cost
+ok 19 - synthetic example accounts for failed attempts, ancillary cost and unknown final cost
+  ---
+  duration_ms: 1.881958
+  type: 'test'
+  ...
+# Subtest: unknown settlement retains reservation, reconciliation releases only the difference
+ok 20 - unknown settlement retains reservation, reconciliation releases only the difference
+  ---
+  duration_ms: 4.0285
+  type: 'test'
+  ...
+# Subtest: immutable append rejects duplicate events, orphan settlements and overbooking
+ok 21 - immutable append rejects duplicate events, orphan settlements and overbooking
+  ---
+  duration_ms: 0.779042
+  type: 'test'
+  ...
+# Subtest: actual overruns are retained and valid imported breaches remain reportable
+ok 22 - actual overruns are retained and valid imported breaches remain reportable
+  ---
+  duration_ms: 1.398958
+  type: 'test'
+  ...
+# Subtest: budgets are independently constrained at workload and workspace levels
+ok 23 - budgets are independently constrained at workload and workspace levels
+  ---
+  duration_ms: 0.6795
+  type: 'test'
+  ...
+# Subtest: validation rejects wrong references, stale rates, mixed currency and overlapping cards
+ok 24 - validation rejects wrong references, stale rates, mixed currency and overlapping cards
+  ---
+  duration_ms: 2.865625
+  type: 'test'
+  ...
+# Subtest: usage settlement total must match rates and ancillary costs
+ok 25 - usage settlement total must match rates and ancillary costs
+  ---
+  duration_ms: 1.365084
+  type: 'test'
+  ...
+# Subtest: invalid imports never mutate original and preserve unknown extension fields
+ok 26 - invalid imports never mutate original and preserve unknown extension fields
+  ---
+  duration_ms: 0.270291
+  type: 'test'
+  ...
+# Subtest: cost per accepted task counts all attempts and excludes unattempted accepted declarations
+ok 27 - cost per accepted task counts all attempts and excludes unattempted accepted declarations
+  ---
+  duration_ms: 0.582792
+  type: 'test'
+  ...
+# Subtest: transition passes declared conditions but cannot authorize execution or reserve money
+ok 28 - transition passes declared conditions but cannot authorize execution or reserve money
+  ---
+  duration_ms: 0.480625
+  type: 'test'
+  ...
+# Subtest: transition evidence snapshots include exact inputs and can be replayed at the recorded instant
+ok 29 - transition evidence snapshots include exact inputs and can be replayed at the recorded instant
+  ---
+  duration_ms: 0.635834
+  type: 'test'
+  ...
+# Subtest: transition fails closed for stale identity, tuple, contract, rate, timestamp and budget
+ok 30 - transition fails closed for stale identity, tuple, contract, rate, timestamp and budget
+  ---
+  duration_ms: 2.914625
+  type: 'test'
+  ...
+# Subtest: unknown cache is distinct from unresolved effects and uncertain economic advantage
+ok 31 - unknown cache is distinct from unresolved effects and uncertain economic advantage
+  ---
+  duration_ms: 0.935583
+  type: 'test'
+  ...
+# Subtest: reports and Case File snapshots preserve provenance and do not link injected Markdown
+ok 32 - reports and Case File snapshots preserve provenance and do not link injected Markdown
+  ---
+  duration_ms: 3.601
+  type: 'test'
+  ...
+# Subtest: SQLite ledger persists, is append-only through SQL and refuses overwrite or missing path
+ok 33 - SQLite ledger persists, is append-only through SQL and refuses overwrite or missing path
+  ---
+  duration_ms: 8.551875
+  type: 'test'
+  ...
+# Subtest: SQLite transition reservation binds assessed route and budget inside the transaction
+ok 34 - SQLite transition reservation binds assessed route and budget inside the transaction
+  ---
+  duration_ms: 8.795375
+  type: 'test'
+  ...
+# (node:75737) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# (node:75737) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: concurrent SQLite writers cannot both reserve the same available budget
+ok 35 - concurrent SQLite writers cannot both reserve the same available budget
+  ---
+  duration_ms: 42.074916
+  type: 'test'
+  ...
+# (node:75738) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: loopback probe reserves before dispatch, settles full costs and never repeats a request
+ok 36 - loopback probe reserves before dispatch, settles full costs and never repeats a request
+  ---
+  duration_ms: 51.666
+  type: 'test'
+  ...
+# Subtest: denial prevents network and budget mutation
+ok 37 - denial prevents network and budget mutation
+  ---
+  duration_ms: 11.713833
+  type: 'test'
+  ...
+# Subtest: timeout retains full reserve; reopened probe cannot resend even when outcome is unknown
+ok 38 - timeout retains full reserve; reopened probe cannot resend even when outcome is unknown
+  ---
+  duration_ms: 166.791291
+  type: 'test'
+  ...
+# Subtest: process crash during dispatch preserves capacity and prevents a second send
+ok 39 - process crash during dispatch preserves capacity and prevents a second send
+  ---
+  duration_ms: 74.519208
+  type: 'test'
+  ...
+# Subtest: redirects cannot move execution outside the pinned endpoint
+ok 40 - redirects cannot move execution outside the pinned endpoint
+  ---
+  duration_ms: 9.622666
+  type: 'test'
+  ...
+# Subtest: FinOps assets and generated guide are registered for publication and discovery
+ok 41 - FinOps assets and generated guide are registered for publication and discovery
+  ---
+  duration_ms: 7.394916
+  type: 'test'
+  ...
+# Subtest: page local assets and destinations exist; dynamic JS selectors resolve to unique IDs
+ok 42 - page local assets and destinations exist; dynamic JS selectors resolve to unique IDs
+  ---
+  duration_ms: 1.561375
+  type: 'test'
+  ...
+# Subtest: CLI supports validation, snapshots, historical transition replay and safe exclusive export
+ok 43 - CLI supports validation, snapshots, historical transition replay and safe exclusive export
+  ---
+  duration_ms: 341.776916
+  type: 'test'
+  ...
+# Subtest: MCP stdio initializes, lists only four read tools, cites frozen evidence and rejects writes
+ok 44 - MCP stdio initializes, lists only four read tools, cites frozen evidence and rejects writes
+  ---
+  duration_ms: 287.840708
+  type: 'test'
+  ...
+# Subtest: case deduplication and source revisions preserve review history without touching accounting
+ok 45 - case deduplication and source revisions preserve review history without touching accounting
+  ---
+  duration_ms: 33.403083
+  type: 'test'
+  ...
+# Subtest: cost explanation connects source, attempt, outcome and signed shared credit
+ok 46 - cost explanation connects source, attempt, outcome and signed shared credit
+  ---
+  duration_ms: 8.555791
+  type: 'test'
+  ...
+# Subtest: metric versions freeze, cohort mismatches block, forecast denominators never mix with observations
+ok 47 - metric versions freeze, cohort mismatches block, forecast denominators never mix with observations
+  ---
+  duration_ms: 29.955542
+  type: 'test'
+  ...
+# Subtest: CFO report declares budget scope separately and does not add billing to operational costs
+ok 48 - CFO report declares budget scope separately and does not add billing to operational costs
+  ---
+  duration_ms: 10.231583
+  type: 'test'
+  ...
+# Subtest: rule difference conserves every signed micro, freezes inputs and does not imply savings
+ok 49 - rule difference conserves every signed micro, freezes inputs and does not imply savings
+  ---
+  duration_ms: 6.562458
+  type: 'test'
+  ...
+# Subtest: savings observations normalize accepted volume, subtract intervention, enforce quality and do not claim causality
+ok 50 - savings observations normalize accepted volume, subtract intervention, enforce quality and do not claim causality
+  ---
+  duration_ms: 24.614417
+  type: 'test'
+  ...
+# Subtest: forecast uses chronological origins, rejects gaps/open days and never changes budget
+ok 51 - forecast uses chronological origins, rejects gaps/open days and never changes budget
+  ---
+  duration_ms: 1.103584
+  type: 'test'
+  ...
+# Subtest: foreign operations and corrupted histories cannot replace a workspace
+ok 52 - foreign operations and corrupted histories cannot replace a workspace
+  ---
+  duration_ms: 0.733417
+  type: 'test'
+  ...
+# Subtest: expired or unmatched rules keep shared records visible as unallocated exceptions
+ok 53 - expired or unmatched rules keep shared records visible as unallocated exceptions
+  ---
+  duration_ms: 6.574667
+  type: 'test'
+  ...
+# (node:75742) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: provider decimal conversion preserves rounding provenance including negative credits
+ok 54 - provider decimal conversion preserves rounding provenance including negative credits
+  ---
+  duration_ms: 0.856458
+  type: 'test'
+  ...
+# Subtest: read-only connector pins endpoint/scope, maps stable identities and records estimates
+ok 55 - read-only connector pins endpoint/scope, maps stable identities and records estimates
+  ---
+  duration_ms: 34.045125
+  type: 'test'
+  ...
+# Subtest: connector rejects incomplete pagination, missing buckets, foreign projects and currencies
+ok 56 - connector rejects incomplete pagination, missing buckets, foreign projects and currencies
+  ---
+  duration_ms: 2.393334
+  type: 'test'
+  ...
+# Subtest: dispatch claim and reservation roll back together if the claim insert fails
+ok 57 - dispatch claim and reservation roll back together if the claim insert fails
+  ---
+  duration_ms: 12.713417
+  type: 'test'
+  ...
+# Subtest: gateway authenticates and checks limits before any send, reserves before network and retains unknown invoice liability
+ok 58 - gateway authenticates and checks limits before any send, reserves before network and retains unknown invoice liability
+  ---
+  duration_ms: 15.475375
+  type: 'test'
+  ...
+# Subtest: gateway repeated concurrent request cannot dispatch twice; transport failure preserves reservation
+ok 59 - gateway repeated concurrent request cannot dispatch twice; transport failure preserves reservation
+  ---
+  duration_ms: 11.75925
+  type: 'test'
+  ...
+# Subtest: crashed dispatch remains reserved and is not resent after restart
+ok 60 - crashed dispatch remains reserved and is not resent after restart
+  ---
+  duration_ms: 69.703583
+  type: 'test'
+  ...
+# Subtest: reader authenticates and pins scope; no model-supplied paths or write tools
+ok 61 - reader authenticates and pins scope; no model-supplied paths or write tools
+  ---
+  duration_ms: 1.966333
+  type: 'test'
+  ...
+# Subtest: routing plan freezes tasks and counterbalances order; all attempts are retained pending billing
+ok 62 - routing plan freezes tasks and counterbalances order; all attempts are retained pending billing
+  ---
+  duration_ms: 47.037458
+  type: 'test'
+  ...
+# Subtest: CLI refuses to overwrite output before initializing any provider runtime
+ok 63 - CLI refuses to overwrite output before initializing any provider runtime
+  ---
+  duration_ms: 44.91575
+  type: 'test'
+  ...
+1..63
+# tests 63
+# suites 0
+# pass 63
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 456.450583

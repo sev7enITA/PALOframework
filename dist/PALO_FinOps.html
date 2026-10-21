@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI FinOps: costs, budgets and model transitions | PALO</title>
+  <link rel="icon" type="image/webp" href="assets/logo.webp">
+  <link rel="stylesheet" href="assets/palo-v21.css?v=3.1.0">
+  <link rel="stylesheet" href="assets/palo-finops.css?v=1.2.0">
+  <script src="assets/palo-icons.js" defer></script>
+  <script src="assets/palo-v21.js?v=3.1.0" defer></script>
+  <script src="assets/palo-case-file.js" defer></script>
+  <script type="module" src="assets/palo-finops.js?v=1.2.0"></script>
+    <meta name="description" content="Reconcile AI billing with attempts, allocate shared costs, preserve outcome snapshots and assess model transitions in a local PALO FinOps workspace.">
+    <meta name="author" content="Fabrizio Degni">
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <link rel="canonical" href="https://paloframework.org/PALO_FinOps.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="AI FinOps: costs, budgets and model transitions | PALO">
+    <meta property="og:description" content="Reconcile AI billing with attempts, allocate shared costs, preserve outcome snapshots and assess model transitions in a local PALO FinOps workspace.">
+    <meta property="og:url" content="https://paloframework.org/PALO_FinOps.html">
+    <meta property="og:site_name" content="PALO Framework">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:image" content="https://paloframework.org/assets/seo/palo-governance.png">
+    <meta property="og:image:alt" content="AI FinOps: costs, budgets and model transitions | PALO - PALO Framework">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:type" content="image/png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="AI FinOps: costs, budgets and model transitions | PALO">
+    <meta name="twitter:description" content="Reconcile AI billing with attempts, allocate shared costs, preserve outcome snapshots and assess model transitions in a local PALO FinOps workspace.">
+    <meta name="twitter:image" content="https://paloframework.org/assets/seo/palo-governance.png">
+    <meta name="twitter:image:alt" content="AI FinOps: costs, budgets and model transitions | PALO - PALO Framework">
+    <script type="application/ld+json" id="palo-seo-graph">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://paloframework.org/PALO_Community.html#creator",
+      "name": "Fabrizio Degni",
+      "url": "https://paloframework.org/PALO_Community.html#creator",
+      "description": "Creator and maintainer of PALO Framework, its AI governance methodology, software and documentation.",
+      "sameAs": [
+        "https://www.linkedin.com/in/fdegni/"
+      ]
+    },
+    {
+      "@type": "CreativeWork",
+      "@id": "https://paloframework.org/#framework",
+      "name": "PALO Framework",
+      "alternateName": "Principled AI Lifecycle Orchestration",
+      "url": "https://paloframework.org/",
+      "creator": {
+        "@id": "https://paloframework.org/PALO_Community.html#creator"
+      },
+      "description": "An open-source AI governance framework connecting lifecycle decisions, risk and impact assessment, controls, indicators and reviewable evidence.",
+      "sameAs": [
+        "https://github.com/sev7enITA/PALOframework"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://paloframework.org/#website",
+      "url": "https://paloframework.org/",
+      "name": "PALO Framework",
+      "alternateName": "PALO",
+      "publisher": {
+        "@id": "https://paloframework.org/PALO_Community.html#creator"
+      },
+      "about": {
+        "@id": "https://paloframework.org/#framework"
+      },
+      "inLanguage": [
+        "en",
+        "it"
+      ]
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://paloframework.org/PALO_FinOps.html#webpage",
+      "url": "https://paloframework.org/PALO_FinOps.html",
+      "name": "AI FinOps: costs, budgets and model transitions | PALO",
+      "description": "Reconcile AI billing with attempts, allocate shared costs, preserve outcome snapshots and assess model transitions in a local PALO FinOps workspace.",
+      "inLanguage": "en",
+      "isPartOf": {
+        "@id": "https://paloframework.org/#website"
+      },
+      "about": {
+        "@id": "https://paloframework.org/#framework"
+      },
+      "author": {
+        "@id": "https://paloframework.org/PALO_Community.html#creator"
+      },
+      "dateModified": "2026-10-21",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://paloframework.org/assets/seo/palo-governance.png"
+      },
+      "mainEntity": {
+        "@id": "https://paloframework.org/PALO_FinOps.html#application"
+      }
+    },
+    {
+      "@type": "WebApplication",
+      "@id": "https://paloframework.org/PALO_FinOps.html#application",
+      "name": "PALO AI FinOps",
+      "url": "https://paloframework.org/PALO_FinOps.html",
+      "description": "Reconcile AI billing with attempts, allocate shared costs, preserve outcome snapshots and assess model transitions in a local PALO FinOps workspace.",
+      "applicationCategory": "BusinessApplication",
+      "inLanguage": "en",
+      "operatingSystem": "Any operating system with a modern web browser",
+      "browserRequirements": "Requires JavaScript and a modern web browser.",
+      "isAccessibleForFree": true,
+      "offers": {
+        "@type": "Offer",
+        "price": "0"
+      },
+      "featureList": [
+        "Workload budgets and attempt reservations",
+        "Local billing import, revisions and signed credits",
+        "Reviewed reconciliation and liability aging",
+        "Versioned shared-cost allocation and frozen outcome snapshots",
+        "Declared route assessments; no production execution authority",
+        "Role entry views and deduplicated exception reviews",
+        "Versioned business metrics, finance packs and chronological forecast baselines",
+        "Separate local runtime pilots with scoped read-only access"
+      ],
+      "creator": {
+        "@id": "https://paloframework.org/PALO_Community.html#creator"
+      },
+      "isPartOf": {
+        "@id": "https://paloframework.org/#framework"
+      },
+      "mainEntityOfPage": {
+        "@id": "https://paloframework.org/PALO_FinOps.html#webpage"
+      },
+      "image": "https://paloframework.org/assets/seo/palo-governance.png"
+    }
+  ]
+}
+    </script>
+    <link rel="stylesheet" href="assets/palo-authorship.css" data-palo-authorship-style="true">
+</head>
+<body class="palo-v21 palo-finops-page">
+  <a class="palo-skip-link" href="#main-content">Skip to main content</a>
+  <header class="palo-site-header">
+    <div class="palo-shell palo-header-inner">
+      <a class="palo-brand" href="index.html"><img src="assets/logo.webp" alt="PALO">PALO FRAMEWORK</a>
+      <button class="palo-menu-toggle" type="button" data-palo-menu-toggle aria-expanded="false" aria-controls="palo-primary-nav" aria-label="Open navigation"><span data-palo-icon="menu" aria-hidden="true"></span></button>
+      <nav class="palo-nav" id="palo-primary-nav" aria-label="Primary navigation"><a href="PALO_AssessmentPath.html">Assessment Path</a><a href="governance-hub/">Governance Hub</a><a href="index.html#guided-journeys">Tools</a><a href="PALO_DocumentationLibrary.html">Documentation</a></nav>
+    </div>
+  </header>
+  <main id="main-content">
+    <div class="fo-intro palo-shell">
+      <nav class="fo-breadcrumb" aria-label="Breadcrumb"><a href="index.html">PALO Framework</a><span aria-hidden="true">/</span><span aria-current="page">AI FinOps</span></nav>
+      <div class="fo-title-row"><div><p class="fo-eyebrow">Cost accountability / version 1.2</p><h1>AI FinOps<span>.</span></h1><p class="fo-lead">Connect billing to every AI attempt. Reconcile costs, allocate shared expenses and preserve the evidence behind each metric.</p></div><div class="fo-local"><span class="fo-local-dot" aria-hidden="true"></span><strong>Local workspace</strong><span>Your browser. Your records.<br>No provider connection.</span></div></div>
+    </div>
+    <div class="fo-workspace palo-shell">
+      <div class="fo-workspace-heading"><div><h2 id="workspace-title">Untitled FinOps</h2><span id="source-badge" class="fo-badge">Empty workspace</span></div><span id="draft-state" class="fo-draft-state">Not saved locally</span></div>
+      <div class="fo-toolbar" aria-label="Workspace actions">
+        <div><button type="button" class="fo-button primary" id="load-example">Load synthetic example</button><label class="fo-button fo-file">Import JSON<input type="file" id="import-file" accept="application/json,.json" aria-label="Import workspace JSON"></label><button type="button" class="fo-button" id="new-workspace">New workspace</button></div>
+        <div><button type="button" class="fo-button" id="save-draft">Save local draft</button><button type="button" class="fo-button" id="restore-draft">Restore</button><button type="button" class="fo-button" id="export-json">Export JSON</button><button type="button" class="fo-button" id="export-report">Export report</button><button type="button" class="fo-button" id="attach-case">Attach to Case File</button></div>
+      </div>
+      <p class="fo-status" id="workspace-status" role="status" aria-live="polite">Start with your own workspace, import a snapshot or explore explicitly synthetic records.</p>
+      <section id="workspace-replacement-review" class="fo-notice" hidden aria-labelledby="workspace-replacement-heading"><h3 id="workspace-replacement-heading">Review workspace replacement</h3><p id="workspace-replacement-detail"></p><div class="fo-toolbar"><button type="button" class="fo-button primary" id="workspace-replacement-confirm">Replace with the selected copy</button><button type="button" class="fo-button" id="workspace-replacement-cancel">Keep current workspace</button></div><p class="fo-help">Current records remain unchanged until you confirm. Save or export them first if you need to retain both copies.</p></section>
+      <p class="fo-notice" id="source-notice" hidden></p>
+      <noscript><p class="fo-notice error">JavaScript is required to calculate and manage this local workspace.</p></noscript>
+      <nav class="fo-tabs" aria-label="FinOps workspace sections" role="tablist">
+        <button type="button" id="tab-overview" role="tab" aria-controls="panel-overview" aria-selected="true" data-panel="overview">Overview</button>
+        <button type="button" id="tab-ledger" role="tab" aria-controls="panel-ledger" aria-selected="false" tabindex="-1" data-panel="ledger">Attempts ledger <span id="ledger-count">0</span></button>
+        <button type="button" id="tab-record" role="tab" aria-controls="panel-record" aria-selected="false" tabindex="-1" data-panel="record">Record &amp; reconcile</button>
+        <button type="button" id="tab-billing" role="tab" aria-controls="panel-billing" aria-selected="false" tabindex="-1" data-panel="billing">Billing &amp; showback</button>
+        <button type="button" id="tab-operations" role="tab" aria-controls="panel-operations" aria-selected="false" tabindex="-1" data-panel="operations">Operations</button>
+        <button type="button" id="tab-transition" role="tab" aria-controls="panel-transition" aria-selected="false" tabindex="-1" data-panel="transition">Route assessment</button>
+        <button type="button" id="tab-setup" role="tab" aria-controls="panel-setup" aria-selected="false" tabindex="-1" data-panel="setup">Setup &amp; rate cards</button>
+      </nav>
+
+      <section class="fo-panel" id="panel-overview" role="tabpanel" aria-labelledby="tab-overview" tabindex="0">
+        <div class="fo-empty" id="empty-state"><span class="fo-step">01 / Get started</span><div><h3>Build a clear account of AI spend.</h3><p>Set a budget, create a workload and register a route with its rate card. Then reserve an attempt before recording its cost.</p><button class="fo-button" type="button" data-open-panel="setup">Set up workspace <span aria-hidden="true">↗</span></button></div><p class="fo-empty-note">Want to see the workflow first?<br>The synthetic example includes settled costs and an expense awaiting reconciliation.</p></div>
+        <div class="fo-budget" aria-labelledby="budget-heading">
+          <div class="fo-budget-top"><div><p class="fo-eyebrow">Budget position</p><h3 id="budget-heading"><span id="budget-remaining">$0.00</span><small>remaining allowance</small></h3></div><div class="fo-budget-total"><span>Workspace budget</span><strong id="budget-total">$0.00</strong><span id="budget-caption">No budget configured</span></div></div>
+          <div class="fo-budget-bar" role="img" id="budget-bar" aria-label="Budget not configured"><span class="known" id="budget-bar-known"></span><span class="reserved" id="budget-bar-reserved"></span><span class="available" id="budget-bar-available"></span></div>
+          <div class="fo-budget-legend"><span><i class="known" aria-hidden="true"></i>Known cost <strong id="legend-known">$0.00</strong></span><span><i class="reserved" aria-hidden="true"></i>Open reservations <strong id="legend-reserved">$0.00</strong></span><span><i class="available" aria-hidden="true"></i>Available <strong id="legend-available">$0.00</strong></span></div>
+        </div>
+        <div class="fo-metrics">
+          <article><span class="fo-small-label">Committed cost</span><strong id="metric-committed">$0.00</strong><p>Known cost + open reservations</p></article>
+          <article><span class="fo-small-label">Unresolved attempts</span><strong id="metric-unresolved">0</strong><p id="metric-coverage">No attempts recorded</p></article>
+          <article><span class="fo-small-label">Cost / accepted task</span><strong id="metric-unit-cost">Not available</strong><p id="metric-unit-note">No accepted tasks yet</p></article>
+          <article><span class="fo-small-label">Accepted / attempted</span><strong id="metric-completion">0 / 0</strong><p id="metric-completion-note">Task-level outcome coverage</p></article>
+        </div>
+        <div id="findings" class="fo-findings" aria-live="polite"></div>
+        <div class="fo-split"><section><div class="fo-section-heading"><h3>Workload allocation</h3><span id="allocation-count">0 workloads</span></div><div class="fo-table-wrap" tabindex="0" role="region" aria-label="Workload budget allocation"><table><thead><tr><th scope="col">Workload</th><th scope="col">Known</th><th scope="col">Reserved</th><th scope="col">Remaining</th></tr></thead><tbody id="workload-body"></tbody></table></div></section><section><div class="fo-section-heading"><h3>Known cost breakdown</h3><span>Recorded amounts</span></div><div id="category-list" class="fo-category-list"></div><p class="fo-help">Includes recorded non-token charges. Missing or unreported costs cannot be inferred.</p></section></div>
+        <p class="fo-boundary">This view accounts for declared records. Estimated comparisons do not establish realised savings. A reference to provider evidence does not independently verify that evidence.</p>
+      </section>
+
+      <section class="fo-panel" id="panel-ledger" role="tabpanel" aria-labelledby="tab-ledger" tabindex="0" hidden>
+        <div class="fo-section-heading"><div><p class="fo-eyebrow">One task, every attempt</p><h3>Attempts ledger</h3></div><button class="fo-button" type="button" data-open-panel="record">Record an attempt ↗</button></div><p class="fo-help">Reservations remain committed until a known settlement or reconciliation. Failed attempts still contribute to cost.</p>
+        <div class="fo-table-wrap" tabindex="0" role="region" aria-label="Attempt accounting ledger"><table class="fo-ledger"><thead><tr><th scope="col">Attempt / task</th><th scope="col">Route</th><th scope="col">Reservation</th><th scope="col">Known cost</th><th scope="col">Status</th><th scope="col">Provenance</th></tr></thead><tbody id="attempts-body"></tbody></table></div>
+        <details class="fo-details"><summary>Inspect event journal</summary><p class="fo-help">Events are appended in sequence. This browser snapshot is editable input, not a signed audit trail.</p><pre id="event-journal" class="fo-code"></pre></details>
+      </section>
+
+      <section class="fo-panel" id="panel-record" role="tabpanel" aria-labelledby="tab-record" tabindex="0" hidden>
+        <div class="fo-form-columns">
+          <form id="reserve-form" class="fo-form"><p class="fo-eyebrow">01 / Before an attempt</p><h3>Reserve a budget</h3><p class="fo-help">A local reservation checks available workspace and workload budget. It does not invoke or control a provider.</p><div class="fo-field-grid">
+            <label class="fo-field wide">Task<select id="reserve-task" required></select></label>
+            <label class="fo-field wide">Route and rate card<select id="reserve-rate" required></select></label>
+            <label class="fo-field">Expected cost<input id="reserve-estimate" inputmode="decimal" placeholder="0.000000" required></label>
+            <label class="fo-field">Maximum reservation<input id="reserve-amount" inputmode="decimal" placeholder="0.000000" required></label>
+          </div><p class="fo-help" id="reserve-context">Create a workload, a task and a rate card in Setup.</p><button class="fo-button primary" type="submit" id="reserve-submit">Record reservation</button><p class="fo-form-status" id="reserve-status" role="status"></p></form>
+          <form id="settle-form" class="fo-form"><p class="fo-eyebrow">02 / After an attempt</p><h3>Settle or reconcile</h3><p class="fo-help">Record a declared total, or keep the full reservation while the actual cost remains unknown.</p><div class="fo-field-grid">
+            <label class="fo-field wide">Open attempt<select id="settle-attempt" required></select></label>
+            <label class="fo-field wide">Cost state<select id="settle-kind"><option value="known">Known total</option><option value="unknown">Cost not yet known</option></select></label>
+            <label class="fo-field wide" id="settle-amount-field">Known total<input id="settle-amount" inputmode="decimal" placeholder="0.000000" required></label>
+            <label class="fo-field wide">Evidence reference<input id="settle-evidence" placeholder="Invoice line, usage export or internal record ID" maxlength="1000" required><small>Use an identifier. Do not include prompts, credentials or customer content.</small></label>
+          </div><button class="fo-button primary" type="submit" id="settle-submit">Record settlement</button><p class="fo-form-status" id="settle-status" role="status"></p></form>
+        </div>
+        <form id="outcome-form" class="fo-inline-form"><div><h3>Update a task outcome</h3><p class="fo-help">Acceptance is a declared outcome. Cost per accepted task includes costs from all recorded attempts.</p></div><label class="fo-field">Task<select id="outcome-task" required></select></label><label class="fo-field">Outcome<select id="outcome-value"><option value="pending">Pending</option><option value="accepted">Accepted</option><option value="failed">Failed</option><option value="refused">Refused</option></select></label><button class="fo-button" type="submit">Update outcome</button><p id="outcome-status" class="fo-form-status" role="status"></p></form>
+      </section>
+
+      <section class="fo-panel" id="panel-billing" role="tabpanel" aria-labelledby="tab-billing" tabindex="0" hidden>
+        <div class="fo-section-heading"><div><p class="fo-eyebrow">From source cost to accepted result</p><h3>Billing &amp; showback</h3></div><a class="fo-button" href="docs/palo-finops.html#billing-and-showback">Billing guide ↗</a></div>
+        <p id="billing-source" class="fo-help"></p>
+        <div class="fo-toolbar"><div><label class="fo-button fo-file">Import billing export<input type="file" id="billing-import" accept=".json,application/json" aria-label="Import billing export"></label><button class="fo-button" type="button" id="billing-example">Load synthetic billing</button><a class="fo-button" href="data/finops-billing-demo.json" download>Export template</a></div><div><button class="fo-button" type="button" id="billing-export">Export finance workspace</button><label class="fo-button fo-file">Import finance workspace<input type="file" id="billing-bundle-import" accept=".json,application/json" aria-label="Import finance workspace"></label><button class="fo-button" type="button" id="billing-save">Save finance draft</button><button class="fo-button" type="button" id="billing-restore">Restore finance draft</button></div></div>
+        <p class="fo-help">Finance exports include attempts, billing, allocation rules and operations records. The main toolbar exports the attempts workspace only. Operations can also be saved and exported separately. Files remain local. Imported source labels are declarations, not authenticated invoices.</p>
+        <p id="billing-status" role="status" aria-live="polite" class="fo-status">Import the documented JSON format to start. Partial or ambiguous imports preserve the previous valid costs.</p>
+        <label class="fo-field">Quarantined run IDs resolved by the next import (optional)<input id="billing-resolves" placeholder="Comma-separated run IDs"><small>The accepted replacement must cover the same partition and period.</small></label>
+        <div class="fo-metrics"><article><span class="fo-small-label">Imported net cost</span><strong id="billing-total">Not imported</strong><p>One currency and cost basis</p></article><article><span class="fo-small-label">Linked to attempts</span><strong id="billing-linked">Not imported</strong><p>Correlation, not additional spend</p></article><article><span class="fo-small-label">Quarantined imports</span><strong id="billing-quarantine">0</strong><p>Resolve before finalising metrics</p></article></div>
+        <p id="billing-ledger-note" class="fo-boundary"></p>
+        <div class="fo-field-grid"><label class="fo-field">Filter billing records<input id="billing-filter" type="search" placeholder="Source ID or evidence reference"></label><label class="fo-field">Cost kind<select id="billing-kind"><option value="all">All cost kinds</option><option value="usage">Usage</option><option value="shared">Shared costs</option><option value="credit">Credits</option></select></label></div><p id="billing-filter-total" class="fo-help"></p>
+        <div class="fo-table-wrap" tabindex="0" role="region" aria-label="Imported billing records"><table><thead><tr><th>Source / revision</th><th>Kind</th><th>Net cost</th><th>Unlinked residual</th><th>Finality</th><th>Evidence</th></tr></thead><tbody id="billing-rows"></tbody></table></div>
+        <details class="fo-details"><summary>Import history and quarantine</summary><div class="fo-table-wrap"><table><thead><tr><th>Run</th><th>Status</th><th>UTC coverage, end exclusive</th><th>Reason / resolution</th></tr></thead><tbody id="billing-runs"></tbody></table></div></details>
+        <details class="fo-details"><summary>Inspect source revisions and provenance</summary><p class="fo-help">All accepted historical revisions, including replaced records. This history is not added to current totals.</p><pre id="billing-source-json" class="fo-code"></pre></details>
+        <div class="fo-form-columns">
+          <form id="billing-link-form" class="fo-form"><p class="fo-eyebrow">01 / Correlate evidence</p><h3>Link a cost to an attempt</h3><p class="fo-help">Links share the source ceiling. Shared pools go to workload allocation, not fictional attempts.</p><div class="fo-field-grid">
+            <label class="fo-field wide">Source record<select id="billing-record" required></select></label><label class="fo-field wide">Attempt<select id="billing-attempt" required></select></label>
+            <label class="fo-field">Component<input id="billing-component" value="total" required></label><label class="fo-field">Linked amount<input id="billing-link-amount" inputmode="decimal" placeholder="0.000000" required></label>
+            <label class="fo-field">Measurement<select id="billing-measurement"><option value="measured">Measured, as declared</option><option value="estimated">Estimated</option></select></label><label class="fo-field">Binding evidence<input id="billing-link-evidence" required></label>
+          </div><button class="fo-button primary" type="submit">Record billing link</button></form>
+          <form id="billing-close-form" class="fo-form"><p class="fo-eyebrow">02 / Review before release</p><h3>Settle from reviewed billing</h3><p class="fo-help">Reviews all active links for this attempt. Estimates, unknown components or quarantined imports keep the reserve open.</p><div class="fo-field-grid">
+            <label class="fo-field wide">Unresolved attempt<select id="billing-close-attempt" required></select></label><label class="fo-field">Reviewer<input id="billing-close-owner" required></label><label class="fo-field">Policy version<input id="billing-close-policy" value="1" required></label><label class="fo-field wide">Review evidence<input id="billing-close-evidence" required></label>
+          </div><label class="fo-check"><input type="checkbox" id="billing-source-reviewed" required> I reviewed the source and finality</label><label class="fo-check"><input type="checkbox" id="billing-binding-reviewed" required> I verified the attempt binding</label><label class="fo-check"><input type="checkbox" id="billing-components-reviewed" required> All cost components for this attempt are covered</label><button class="fo-button primary" type="submit">Apply reviewed settlement</button></form>
+        </div>
+        <details class="fo-details"><summary>Inspect or correct reconciliation links</summary><div class="fo-table-wrap"><table><thead><tr><th>Link ID</th><th>Source revision</th><th>Attempt</th><th>Amount</th><th>Measurement</th></tr></thead><tbody id="billing-links"></tbody></table></div><form id="billing-unlink-form" class="fo-inline-form"><label class="fo-field">Link<select id="billing-unlink-id" required></select></label><label class="fo-field">Reason<input id="billing-unlink-reason" required></label><button class="fo-button" type="submit">Remove current link</button></form></details>
+        <details class="fo-details"><summary>Open liabilities and review dates</summary><p class="fo-help">An overdue review triggers escalation, never automatic release of a reserve.</p><div class="fo-table-wrap"><table><thead><tr><th>Attempt</th><th>Reserved</th><th>Review state</th><th>Owner</th><th>Next review</th></tr></thead><tbody id="billing-liabilities"></tbody></table></div><form id="billing-review-form" class="fo-inline-form"><label class="fo-field">Attempt<select id="billing-review-attempt" required></select></label><label class="fo-field">Owner<input id="billing-review-owner" required></label><label class="fo-field">Reason<input id="billing-review-reason" required></label><label class="fo-field">Next review, local time<input id="billing-review-date" type="datetime-local" required></label><button class="fo-button" type="submit">Schedule review</button></form></details>
+        <section class="fo-form"><p class="fo-eyebrow">03 / Explain shared costs</p><h3>Allocation rules</h3><p class="fo-help">Rules match dimensions in priority order. Weights, versions and effective dates are explicit. Missing weights leave costs unallocated. Preview does not change source amounts.</p><button class="fo-button" type="button" id="billing-equal">Draft equal workload weights</button><label class="fo-field">Versioned rules JSON<textarea id="billing-rules" rows="8" spellcheck="false">[]</textarea></label><div class="fo-toolbar"><button class="fo-button" type="button" id="billing-allocate">Preview allocations</button><button class="fo-button" type="button" id="billing-sensitivity">Export equal-weight comparison</button></div><div class="fo-table-wrap"><table><thead><tr><th>Source revision</th><th>Destination</th><th>Amount</th><th>Rule</th></tr></thead><tbody id="billing-allocation"></tbody></table></div></section>
+        <form id="billing-snapshot-form" class="fo-form"><p class="fo-eyebrow">04 / Freeze a reproducible metric</p><h3>Period snapshot</h3><p class="fo-help">Includes every selected workload and all its attempted tasks in the UTC window. Cost and outcome copies remain in the exported snapshot. Incomplete, estimated or mismatched data produces an unavailable unit cost.</p><div class="fo-field-grid">
+          <label class="fo-field">Period start, UTC<input id="billing-period-start" type="date" value="2026-10-21" required></label><label class="fo-field">Period end, exclusive UTC<input id="billing-period-end" type="date" value="2026-10-22" required></label><label class="fo-field">Time basis<select id="billing-period-basis"><option value="usage">Usage period</option><option value="invoice">Invoice period, incomplete coverage warning</option></select></label><label class="fo-field">Import partition<input id="billing-partition" value="all" required></label><label class="fo-field wide">Metric owner<input id="billing-metric-owner" required></label>
+        </div><label class="fo-check"><input id="billing-outcome-confirmed" type="checkbox" required> I confirm that these declared task outcomes belong to this cost cohort and time window</label><button id="billing-snapshot" type="submit" class="fo-button primary">Export frozen period snapshot</button><p id="billing-snapshot-result" class="fo-help" role="status"></p></form>
+      </section>
+
+      <section class="fo-panel" id="panel-operations" role="tabpanel" aria-labelledby="tab-operations" tabindex="0" hidden>
+        <div id="finops-operations"><p class="fo-help">Preparing operations workspace...</p></div>
+      </section>
+
+      <section class="fo-panel" id="panel-transition" role="tabpanel" aria-labelledby="tab-transition" tabindex="0" hidden>
+        <div class="fo-section-heading"><div><p class="fo-eyebrow">Before a model change</p><h3>Assess a route transition</h3></div><span class="fo-badge">Local assessment only</span></div><p class="fo-help fo-measure">Compare the remaining cost of staying with the current route against switching. Include context replay, cache effects, verification, tools and governance overhead in both estimates.</p>
+        <div class="fo-transition-layout"><form id="transition-form" class="fo-form"><div class="fo-field-grid">
+          <label class="fo-field wide">Task<select id="transition-task" required></select></label>
+          <label class="fo-field">Current route<select id="transition-from" required></select></label><label class="fo-field">Destination route<select id="transition-to" required></select></label>
+          <p class="fo-route-tuple wide" id="transition-tuple">Register exact route destinations in Setup.</p>
+          <label class="fo-field">Reason<select id="transition-reason"><option value="cost">Cost reduction</option><option value="quality">Quality requirement</option><option value="availability">Availability</option></select></label><label class="fo-field">Destination cache state<select id="transition-cache"><option value="unknown">Unknown</option><option value="cold">Cold</option><option value="warm">Warm</option></select></label>
+          <label class="fo-field">Remaining cost: stay<input id="transition-stay" inputmode="decimal" required placeholder="0.000000"></label><label class="fo-field">Remaining cost: switch<input id="transition-switch" inputmode="decimal" required placeholder="0.000000"></label>
+          <label class="fo-field">Worst-case reservation<input id="transition-worst" inputmode="decimal" required placeholder="0.000000"></label><label class="fo-field">Uncertainty margin<input id="transition-margin" inputmode="decimal" required value="0"></label>
+          <label class="fo-field wide">Quality evidence reference<input id="transition-quality" placeholder="Evaluation record that supports this route" maxlength="1000"></label>
+          <label class="fo-field">Policy revision<input id="transition-policy" required></label><label class="fo-field">Disclosure contract reference<input id="transition-disclosure" required></label>
+          <label class="fo-check wide"><input type="checkbox" id="transition-unresolved">The task has unresolved external effects.</label>
+        </div><button class="fo-button primary" type="submit">Assess transition</button><p class="fo-form-status" id="transition-status" role="status"></p></form>
+        <aside class="fo-transition-result" id="transition-result" aria-live="polite"><p class="fo-eyebrow">Assessment result</p><h4 id="transition-verdict">Ready to compare</h4><p id="transition-summary">Choose a destination and enter comparable cost estimates to review budget, route eligibility and economic preference.</p><ul id="transition-reasons"></ul><button class="fo-button" type="button" id="export-assessment" disabled>Export assessment JSON</button><p class="fo-help">Export includes the declared request and workspace snapshot.</p><div class="fo-result-boundary"><strong>No execution authority</strong><p>This assessment does not reserve funds, send data, enforce policy or authorise an API call. Policy and evidence references are declared inputs.</p><p>An unknown cache can be covered by a conservative reservation. An unknown final cost stays unresolved in the ledger.</p></div></aside></div>
+      </section>
+
+      <section class="fo-panel" id="panel-setup" role="tabpanel" aria-labelledby="tab-setup" tabindex="0" hidden>
+        <div class="fo-section-heading"><div><p class="fo-eyebrow">Make the scope explicit</p><h3>Workspace setup</h3></div><span class="fo-badge" id="workspace-currency">USD</span></div>
+        <form id="workspace-form" class="fo-inline-form"><label class="fo-field grow">Workspace name<input id="config-label" required maxlength="200"></label><label class="fo-field">Currency<input id="config-currency" required pattern="[A-Z]{3}" maxlength="3" aria-describedby="currency-help"></label><label class="fo-field">Workspace budget<input id="config-budget" inputmode="decimal" required></label><button class="fo-button primary" type="submit">Update workspace</button><p class="fo-help wide" id="currency-help">One currency per workspace. Currency becomes fixed once rate cards or events exist. No implicit exchange rates.</p><p class="fo-form-status" id="config-status" role="status"></p></form>
+        <div class="fo-form-columns">
+          <form id="workload-form" class="fo-form"><h3>Add a workload</h3><div class="fo-field-grid"><label class="fo-field wide">Workload name<input id="workload-name" required maxlength="200"></label><label class="fo-field">Owner<input id="workload-owner" required maxlength="200"></label><label class="fo-field">Cost centre<input id="workload-center" required maxlength="200"></label><label class="fo-field wide">Workload budget<input id="workload-budget" inputmode="decimal" required placeholder="0.000000"></label></div><button class="fo-button" type="submit">Add workload</button><p class="fo-form-status" id="workload-status" role="status"></p></form>
+          <form id="task-form" class="fo-form"><h3>Add a task</h3><div class="fo-field-grid"><label class="fo-field wide">Workload<select id="task-workload" required></select></label><label class="fo-field wide">Task label<input id="task-label" required maxlength="200" placeholder="A meaningful unit of work"></label></div><p class="fo-help">A task may have multiple attempts and routes. Its outcome can be updated in Record &amp; reconcile.</p><button class="fo-button" type="submit" id="task-submit">Add task</button><p class="fo-form-status" id="task-status" role="status"></p></form>
+        </div>
+        <details class="fo-details"><summary>Register a route and versioned rate card</summary><form id="route-form" class="fo-form"><p class="fo-help">Enter your own rates in currency units per million tokens. These are declared inputs. Use distinct, non-overlapping token categories in imported usage.</p><div class="fo-field-grid three">
+          <label class="fo-field">Provider<input id="route-provider" required maxlength="200"></label><label class="fo-field">Model identifier<input id="route-model" required maxlength="200"></label><label class="fo-field">Region<input id="route-region" required maxlength="200"></label><label class="fo-field">Endpoint hostname<input id="route-host" required placeholder="api.provider.example" maxlength="253"></label><label class="fo-field span-two">Tool schema digest<input id="route-digest" required pattern="sha256:[a-f0-9]{64}" placeholder="sha256: followed by 64 hexadecimal characters"></label>
+          <label class="fo-field">Valid from<input id="rate-from" type="date" required></label><label class="fo-field">Valid until<input id="rate-until" type="date" required></label><label class="fo-field">Price source reference<input id="rate-reference" required placeholder="Rate sheet URL or document ID" maxlength="1000"></label>
+          <label class="fo-field">Uncached input / million<input id="rate-input" inputmode="decimal" required value="0"></label><label class="fo-field">Cache write 5m / million<input id="rate-write5m" inputmode="decimal" required value="0"></label><label class="fo-field">Cache write 1h / million<input id="rate-write1h" inputmode="decimal" required value="0"></label><label class="fo-field">Cache read / million<input id="rate-read" inputmode="decimal" required value="0"></label><label class="fo-field">Output / million<input id="rate-output" inputmode="decimal" required value="0"></label><label class="fo-check"><input id="route-allow" type="checkbox">Include in locally allowed routes</label>
+        </div><button class="fo-button" type="submit">Register route &amp; rate card</button><p class="fo-form-status" id="route-status" role="status"></p></form></details>
+        <details class="fo-details"><summary>Review local transition policy</summary><form id="policy-form" class="fo-form"><p class="fo-help">A declared policy supports local assessment. This browser does not authenticate the policy owner or enforce provider permissions.</p><div class="fo-field-grid"><label class="fo-field">Policy revision<input id="policy-revision" required></label><label class="fo-field">Valid until<input id="policy-until" type="datetime-local" required></label><label class="fo-field">Disclosure contract reference<input id="policy-disclosure" required></label><label class="fo-field">Maximum transition reservation<input id="policy-max" inputmode="decimal" required></label></div><fieldset class="fo-route-permissions"><legend>Allowed exact routes</legend><div id="policy-routes"></div></fieldset><button class="fo-button" type="submit">Update local policy</button><p class="fo-form-status" id="policy-status" role="status"></p></form></details>
+        <div class="fo-section-heading fo-rates-heading"><h3>Rate cards &amp; provenance</h3><a href="schemas/palo-finops-workspace.schema.json">JSON schema ↗</a></div><p class="fo-help">Rate cards remain bound to their version IDs in the event journal. To add a new version for an existing route, export JSON, add a rate card with a new ID and import the validated snapshot.</p><div id="rate-cards"></div>
+      </section>
+      <div class="fo-case-context"><span class="fo-small-label">Case File connection</span><p id="case-file-context">Checking the local Case File...</p><p id="case-file-status" role="status"></p><a href="governance-hub/">Open Governance Hub ↗</a></div>
+    </div>
+  </main>
+  <footer class="palo-footer" data-palo-authorship-container="true">
+<p class="palo-authorship-footer" data-palo-authorship="footer">PALO Framework: conceived, created and maintained by <a href="PALO_Community.html#creator">Fabrizio Degni</a>.</p>
+<div class="palo-shell"><p><strong>PALO Framework</strong> | AI FinOps</p><p>Created and maintained by <a href="PALO_Community.html">Fabrizio Degni</a>.</p><div class="palo-footer-links"><a href="docs/palo-finops.html">Module documentation</a>
+                <a href="assets/PALO_FinOps_Paper_v1.0.pdf">Technical preprint (PDF)</a>
+                <a href="assets/PALO_FinOps_arXiv_source_v1.0.zip">LaTeX sources</a>
+                <a href="assets/PALO_FinOps_reproducibility_v1.0.zip">Reproduce the paper</a><a href="schemas/palo-finops-workspace.schema.json">Workspace schema</a><a href="PALO_PlatformMap.html">Platform map</a></div></div></footer>
+</body>
+</html>

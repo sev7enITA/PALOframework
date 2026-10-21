@@ -1,0 +1,97 @@
+{
+  "format": "palo-finops-ui-harness-receipt",
+  "schemaVersion": "1.0.0",
+  "checkedAt": "2026-10-21T17:24:06.832Z",
+  "scope": "Synthetic Node harness with minimal DOM and extracted UI helpers; no browser evidence.",
+  "browserExecuted": false,
+  "userDraftsRead": false,
+  "userDraftsWritten": false,
+  "providerCalls": false,
+  "command": "node deliverables/finops-implementation-12-2026-10-21/ui-harness.mjs",
+  "checks": {
+    "pristineIsClean": true,
+    "reviewIsDirty": true,
+    "emptyResetIsClean": true,
+    "substantiveChangeIsDirty": true,
+    "singularAttempt": true,
+    "billingSnapshotSelected": true,
+    "cfoOnlySnapshotSelected": true,
+    "newestCfoSnapshotSelected": true,
+    "newestBillingSnapshotSelected": true,
+    "roleFocus": true,
+    "subnavFocusPreserved": true,
+    "narrowNavScrolled": true,
+    "replacementReviewDisplayed": true,
+    "cancelPreserves": true,
+    "interveningChangeRejected": true,
+    "unchangedReplacementAccepted": true,
+    "uniqueIds": true,
+    "noMissingIdReferences": true,
+    "attributionWording": true,
+    "sharedLinkWording": true
+  },
+  "passed": 20,
+  "total": 20,
+  "syntax": [
+    {
+      "file": "assets/palo-finops-operations-ui.js",
+      "passed": true,
+      "status": 0,
+      "output": ""
+    },
+    {
+      "file": "assets/palo-finops.js",
+      "passed": true,
+      "status": 0,
+      "output": ""
+    },
+    {
+      "file": "assets/palo-finops-billing-ui.js",
+      "passed": true,
+      "status": 0,
+      "output": ""
+    }
+  ],
+  "idAudit": {
+    "count": 325,
+    "duplicates": [],
+    "missingReferences": []
+  },
+  "sourceHashes": [
+    {
+      "file": "assets/palo-finops-operations-ui.js",
+      "sha256": "32d2568db4d08dc8072856492a41f670348338a9555cad0e11567edd07a9faa9"
+    },
+    {
+      "file": "assets/palo-finops.js",
+      "sha256": "82964daef268d7392a775dbefccb53fd5f5f34d736112c539aa366e5f1375bc2"
+    },
+    {
+      "file": "assets/palo-finops-billing-ui.js",
+      "sha256": "17416725dfd7b17c4eadfe113e8e42f45cd2095e2b70138a2b565e7a0621093a"
+    },
+    {
+      "file": "PALO_FinOps.html",
+      "sha256": "8c2809ccb40a319e1ce81f94dabf4a5229076ae8a4510ad5bc6fa46686d13901"
+    },
+    {
+      "file": "assets/palo-finops-operations.js",
+      "sha256": "c030a037305733ccea413eb78473ca7f5300cb9a2dab657f6dbbdd7aaf4a7ce7"
+    },
+    {
+      "file": "assets/palo-finops-core.js",
+      "sha256": "3b9e85f680ec72869897343bbe2c551f5462b3e021ac45821c3bdc1695647f4a"
+    },
+    {
+      "file": "assets/palo-finops-billing.js",
+      "sha256": "827d43d35fc2279e794d9a440805de77b67d9c1e163c04676fbdf4aa2c3d4432"
+    }
+  ],
+  "limitations": [
+    "Minimal DOM tests track API calls and state only; they do not validate pixels, real focus, geometry, keyboard behavior or accessibility.",
+    "Snapshot-origin selection uses synthetic timestamp fixtures; it does not verify snapshot integrity or source authenticity.",
+    "ID audit checks literal dollar-helper references and rendered template IDs; it is not exhaustive static analysis.",
+    "No browser storage, file import/export roundtrip, download contents, real billing connection, gateway or MCP execution was tested here.",
+    "Browser evaluation evidence is separate and must not be inferred from this receipt."
+  ]
+}

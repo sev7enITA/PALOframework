@@ -1,0 +1,609 @@
+{
+  "format": "palo-finops-paper-synthetic-results",
+  "schemaVersion": "1.0.0",
+  "evaluationDate": "2026-10-21",
+  "synthetic": true,
+  "providerCalls": 0,
+  "nodeVersion": "v22.22.3",
+  "initial": {
+    "knownMicros": 340000,
+    "reservedMicros": 180000,
+    "committedMicros": 520000,
+    "remainingMicros": 980000,
+    "metric": "unavailable",
+    "reasons": [
+      "Pending task outcomes in this cohort.",
+      "Incomplete attempt attempt-open."
+    ]
+  },
+  "caseClosure": {
+    "status": "closed",
+    "reservedMicros": 180000
+  },
+  "reconciled": {
+    "operationalKnownMicros": 440000,
+    "reservedMicros": 0,
+    "billingMicros": 467000,
+    "acceptedTasks": 2,
+    "costPerAcceptedMicros": 233500,
+    "providerVerified": false,
+    "status": "complete_declared"
+  },
+  "repeatedImport": {
+    "sourceTotalMicros": 467000
+  },
+  "revised": {
+    "sourceTotalMicros": 487000,
+    "status": "unavailable",
+    "reasons": [
+      "Unlinked residual on synthetic-code.",
+      "Incomplete attempt attempt-code."
+    ],
+    "priorSnapshotStillVerifies": true
+  },
+  "allocation": {
+    "configurations": 12864,
+    "assertions": 38592,
+    "failures": 0,
+    "amountRange": [
+      -100,
+      100
+    ],
+    "weightRange": [
+      0,
+      3
+    ],
+    "destinations": 3,
+    "creditExample": {
+      "shares": [
+        {
+          "destination": "a",
+          "amountMicros": -3
+        },
+        {
+          "destination": "b",
+          "amountMicros": -2
+        },
+        {
+          "destination": "c",
+          "amountMicros": -2
+        }
+      ],
+      "unallocatedMicros": 0
+    }
+  },
+  "metric": {
+    "numeratorMicros": 467000,
+    "denominator": 3,
+    "valueMicros": 155667,
+    "rounding": "nearest-micro-half-away-from-zero",
+    "mismatchStatus": "unavailable"
+  },
+  "expiredRules": {
+    "status": "unavailable",
+    "reasons": [
+      "Unallocated shared row synthetic-shared-pool.",
+      "Unallocated shared row synthetic-shared-credit."
+    ]
+  },
+  "illustrativeRouting": {
+    "tasksPerStrategy": 100,
+    "acceptedPerStrategy": 80,
+    "stayInferenceMicros": 1000000,
+    "switchInferenceMicros": 700000,
+    "stayOtherMicros": 200000,
+    "switchOverheadGridMicros": [
+      0,
+      12500,
+      25000,
+      37500,
+      50000,
+      62500,
+      75000,
+      87500,
+      100000,
+      112500,
+      125000,
+      137500,
+      150000,
+      162500,
+      175000,
+      187500,
+      200000,
+      212500,
+      225000,
+      237500,
+      250000,
+      262500,
+      275000,
+      287500,
+      300000,
+      312500,
+      325000,
+      337500,
+      350000,
+      362500,
+      375000,
+      387500,
+      400000,
+      412500,
+      425000,
+      437500,
+      450000,
+      462500,
+      475000,
+      487500,
+      500000,
+      512500,
+      525000,
+      537500,
+      550000,
+      562500,
+      575000,
+      587500,
+      600000,
+      612500,
+      625000,
+      637500,
+      650000,
+      662500,
+      675000,
+      687500,
+      700000,
+      712500,
+      725000,
+      737500,
+      750000,
+      762500,
+      775000,
+      787500,
+      800000,
+      812500,
+      825000,
+      837500,
+      850000,
+      862500,
+      875000,
+      887500,
+      900000,
+      912500,
+      925000,
+      937500,
+      950000,
+      962500,
+      975000,
+      987500,
+      1000000
+    ],
+    "breakEvenOtherMicros": 500000,
+    "sensitivity": [
+      {
+        "switchOtherMicros": 0,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 8750
+      },
+      {
+        "switchOtherMicros": 12500,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 8906.25
+      },
+      {
+        "switchOtherMicros": 25000,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 9062.5
+      },
+      {
+        "switchOtherMicros": 37500,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 9218.75
+      },
+      {
+        "switchOtherMicros": 50000,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 9375
+      },
+      {
+        "switchOtherMicros": 62500,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 9531.25
+      },
+      {
+        "switchOtherMicros": 75000,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 9687.5
+      },
+      {
+        "switchOtherMicros": 87500,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 9843.75
+      },
+      {
+        "switchOtherMicros": 100000,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 10000
+      },
+      {
+        "switchOtherMicros": 112500,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 10156.25
+      },
+      {
+        "switchOtherMicros": 125000,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 10312.5
+      },
+      {
+        "switchOtherMicros": 137500,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 10468.75
+      },
+      {
+        "switchOtherMicros": 150000,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 10625
+      },
+      {
+        "switchOtherMicros": 162500,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 10781.25
+      },
+      {
+        "switchOtherMicros": 175000,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 10937.5
+      },
+      {
+        "switchOtherMicros": 187500,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 11093.75
+      },
+      {
+        "switchOtherMicros": 200000,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 11250
+      },
+      {
+        "switchOtherMicros": 212500,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 11406.25
+      },
+      {
+        "switchOtherMicros": 225000,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 11562.5
+      },
+      {
+        "switchOtherMicros": 237500,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 11718.75
+      },
+      {
+        "switchOtherMicros": 250000,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 11875
+      },
+      {
+        "switchOtherMicros": 262500,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 12031.25
+      },
+      {
+        "switchOtherMicros": 275000,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 12187.5
+      },
+      {
+        "switchOtherMicros": 287500,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 12343.75
+      },
+      {
+        "switchOtherMicros": 300000,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 12500
+      },
+      {
+        "switchOtherMicros": 312500,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 12656.25
+      },
+      {
+        "switchOtherMicros": 325000,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 12812.5
+      },
+      {
+        "switchOtherMicros": 337500,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 12968.75
+      },
+      {
+        "switchOtherMicros": 350000,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 13125
+      },
+      {
+        "switchOtherMicros": 362500,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 13281.25
+      },
+      {
+        "switchOtherMicros": 375000,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 13437.5
+      },
+      {
+        "switchOtherMicros": 387500,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 13593.75
+      },
+      {
+        "switchOtherMicros": 400000,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 13750
+      },
+      {
+        "switchOtherMicros": 412500,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 13906.25
+      },
+      {
+        "switchOtherMicros": 425000,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 14062.5
+      },
+      {
+        "switchOtherMicros": 437500,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 14218.75
+      },
+      {
+        "switchOtherMicros": 450000,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 14375
+      },
+      {
+        "switchOtherMicros": 462500,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 14531.25
+      },
+      {
+        "switchOtherMicros": 475000,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 14687.5
+      },
+      {
+        "switchOtherMicros": 487500,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 14843.75
+      },
+      {
+        "switchOtherMicros": 500000,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 15000
+      },
+      {
+        "switchOtherMicros": 512500,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 15156.25
+      },
+      {
+        "switchOtherMicros": 525000,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 15312.5
+      },
+      {
+        "switchOtherMicros": 537500,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 15468.75
+      },
+      {
+        "switchOtherMicros": 550000,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 15625
+      },
+      {
+        "switchOtherMicros": 562500,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 15781.25
+      },
+      {
+        "switchOtherMicros": 575000,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 15937.5
+      },
+      {
+        "switchOtherMicros": 587500,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 16093.75
+      },
+      {
+        "switchOtherMicros": 600000,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 16250
+      },
+      {
+        "switchOtherMicros": 612500,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 16406.25
+      },
+      {
+        "switchOtherMicros": 625000,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 16562.5
+      },
+      {
+        "switchOtherMicros": 637500,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 16718.75
+      },
+      {
+        "switchOtherMicros": 650000,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 16875
+      },
+      {
+        "switchOtherMicros": 662500,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 17031.25
+      },
+      {
+        "switchOtherMicros": 675000,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 17187.5
+      },
+      {
+        "switchOtherMicros": 687500,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 17343.75
+      },
+      {
+        "switchOtherMicros": 700000,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 17500
+      },
+      {
+        "switchOtherMicros": 712500,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 17656.25
+      },
+      {
+        "switchOtherMicros": 725000,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 17812.5
+      },
+      {
+        "switchOtherMicros": 737500,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 17968.75
+      },
+      {
+        "switchOtherMicros": 750000,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 18125
+      },
+      {
+        "switchOtherMicros": 762500,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 18281.25
+      },
+      {
+        "switchOtherMicros": 775000,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 18437.5
+      },
+      {
+        "switchOtherMicros": 787500,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 18593.75
+      },
+      {
+        "switchOtherMicros": 800000,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 18750
+      },
+      {
+        "switchOtherMicros": 812500,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 18906.25
+      },
+      {
+        "switchOtherMicros": 825000,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 19062.5
+      },
+      {
+        "switchOtherMicros": 837500,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 19218.75
+      },
+      {
+        "switchOtherMicros": 850000,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 19375
+      },
+      {
+        "switchOtherMicros": 862500,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 19531.25
+      },
+      {
+        "switchOtherMicros": 875000,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 19687.5
+      },
+      {
+        "switchOtherMicros": 887500,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 19843.75
+      },
+      {
+        "switchOtherMicros": 900000,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 20000
+      },
+      {
+        "switchOtherMicros": 912500,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 20156.25
+      },
+      {
+        "switchOtherMicros": 925000,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 20312.5
+      },
+      {
+        "switchOtherMicros": 937500,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 20468.75
+      },
+      {
+        "switchOtherMicros": 950000,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 20625
+      },
+      {
+        "switchOtherMicros": 962500,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 20781.25
+      },
+      {
+        "switchOtherMicros": 975000,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 20937.5
+      },
+      {
+        "switchOtherMicros": 987500,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 21093.75
+      },
+      {
+        "switchOtherMicros": 1000000,
+        "stayPerAcceptedMicros": 15000,
+        "switchPerAcceptedMicros": 21250
+      }
+    ]
+  },
+  "sourceHashes": [
+    {
+      "path": "assets/palo-finops-core.js",
+      "sha256": "3b9e85f680ec72869897343bbe2c551f5462b3e021ac45821c3bdc1695647f4a"
+    },
+    {
+      "path": "assets/palo-finops-billing.js",
+      "sha256": "827d43d35fc2279e794d9a440805de77b67d9c1e163c04676fbdf4aa2c3d4432"
+    },
+    {
+      "path": "assets/palo-finops-operations.js",
+      "sha256": "c030a037305733ccea413eb78473ca7f5300cb9a2dab657f6dbbdd7aaf4a7ce7"
+    },
+    {
+      "path": "data/finops-demo.json",
+      "sha256": "441a3d0534ce58eb80aaf152a95fd61ca36c01cb7fb14fdb568aeb2a57023c0e"
+    },
+    {
+      "path": "data/finops-billing-demo.json",
+      "sha256": "39b361c0d4f0c2c501a50b1ebe65fd1b988d52124552de3b12ecf67d1a65a6a3"
+    }
+  ]
+}

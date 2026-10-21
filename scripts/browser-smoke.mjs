@@ -514,12 +514,12 @@ try {
   for (const state of ["Implemented", "Foundation", "Research"]) {
     if (!await page.locator(".state-badge", { hasText: state }).first().isVisible()) failures.push(`Platform Map: ${state} state is missing`);
   }
-  if (await page.locator("[data-map-route]").count() !== 15 || await page.locator("[data-map-row]").count() !== 15) failures.push("Platform Map: topology and table must both contain 15 routes");
+  if (await page.locator("[data-map-route]").count() !== 16 || await page.locator("[data-map-row]").count() !== 16) failures.push("Platform Map: topology and table must both contain 16 routes");
   await page.locator("#map-stakeholder").selectOption("risk");
   await page.waitForFunction(() => document.documentElement.getAttribute("data-platform-map-results") === "3");
   if (await page.locator("[data-map-route]:visible").count() !== 3 || await page.locator("[data-map-row]:visible").count() !== 3) failures.push("Platform Map: visual and table filters are not synchronized");
   await page.locator("#map-reset").click();
-  await page.waitForFunction(() => document.documentElement.getAttribute("data-platform-map-results") === "15");
+  await page.waitForFunction(() => document.documentElement.getAttribute("data-platform-map-results") === "16");
   await page.locator("#map-evidence-class").selectOption("human-review-required");
   await page.waitForFunction(() => document.documentElement.getAttribute("data-platform-map-results") === "3");
   if (await page.locator('[data-map-route][data-evidence-class="human-review-required"]:visible').count() !== 3 || await page.locator('[data-map-row][data-evidence-class="human-review-required"]:visible').count() !== 3) failures.push("Platform Map: evidence/authority filter is not synchronized");
