@@ -180,7 +180,7 @@ function renderQuestions() {
     });
     if (domainIndex < catalog.domains.length - 1) {
       const nextRow = node('div', 'maturity-domain-next');
-      const next = node('button', 'maturity-button', `Next: ${catalog.domains[domainIndex + 1].title} to`);
+      const next = node('button', 'maturity-button', `Next: ${catalog.domains[domainIndex + 1].title}`);
       next.type = 'button';
       next.addEventListener('click', () => {
         activateDomain(catalog.domains[domainIndex + 1].id, true);
@@ -282,7 +282,7 @@ function renderComparison() {
   if (!baseline) { $('baseline-result').textContent = 'No previous assessment loaded.'; return; }
   const comparison = core.compareAssessments(assessment, baseline, catalog);
   if (!comparison.comparable) {
-    $('baseline-result').textContent = `${baseline.synthetic ? 'Synthetic baseline. ' : ''}Not comparable. ${comparison.reasons.map(message).join(' ')}`;
+    $('baseline-result').textContent = `${baseline.synthetic ? 'Synthetic baseline. ' : assessment.synthetic ? 'Synthetic current profile. ' : ''}Not comparable. ${comparison.reasons.map(message).join(' ')}`;
     return;
   }
   const delta = (value) => value === null ? 'unknown' : `${value > 0 ? '+' : ''}${value} level${Math.abs(value) === 1 ? '' : 's'}`;

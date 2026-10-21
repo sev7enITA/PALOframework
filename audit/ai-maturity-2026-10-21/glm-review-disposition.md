@@ -25,3 +25,9 @@ Reviewer: GLM-5.2 in the authenticated Z.ai chat. Review is static; GLM did not 
 - M12: added browser coverage for importing a synthetic baseline and rejecting an invalid comparison with visible provenance. Pure-function comparison tests remain in place.
 
 Source limits: the report hash identifies the supplied bytes; it does not authenticate authorship, certify accuracy or prove control effectiveness. BCG and author-post statements were checked against the supplied report and public post. GLM's inability to inspect material absent from its first attachment is recorded as a review-scope limitation, not evidence that those source statements are false.
+
+## Final GLM response
+
+GLM-5.2 completed a second static review of the updated files and supplied BCG PDF. It explicitly withdrew B1 and M11 as false positives, accepted the documented synthetic-provenance and immutable-source decisions, confirmed the Markdown fix and source statements, and reported no remaining blockers. It attributed the 25 executed tests to the implementation environment, not to GLM.
+
+Three minor follow-ups were accepted: remove the leftover word "to" from Next labels, identify when the current rather than baseline record is synthetic, and document deliberate JSON manipulation as an unauthenticated-input limitation. These are applied in the release. GLM did not independently compute the PDF digest or establish empirical validity, certification or operational assurance.
