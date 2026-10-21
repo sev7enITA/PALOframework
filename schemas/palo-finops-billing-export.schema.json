@@ -1,0 +1,199 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paloframework.org/schemas/palo-finops-billing-export.schema.json",
+  "title": "PALO canonical local billing export 1.0.0",
+  "type": "object",
+  "required": [
+    "format",
+    "schemaVersion",
+    "source",
+    "account",
+    "contractVersion",
+    "partition",
+    "identity",
+    "mode",
+    "completeness",
+    "currency",
+    "costBasis",
+    "coverage",
+    "records"
+  ],
+  "properties": {
+    "source": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4096
+    },
+    "account": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4096
+    },
+    "contractVersion": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4096
+    },
+    "partition": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4096
+    },
+    "format": {
+      "const": "palo-billing-export"
+    },
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "identity": {
+      "const": "stable-id"
+    },
+    "mode": {
+      "enum": [
+        "delta",
+        "snapshot"
+      ]
+    },
+    "completeness": {
+      "enum": [
+        "complete",
+        "partial"
+      ]
+    },
+    "costBasis": {
+      "enum": [
+        "billed",
+        "effective"
+      ]
+    },
+    "currency": {
+      "type": "string",
+      "pattern": "^[A-Z]{3}$"
+    },
+    "coverage": {
+      "$ref": "#/$defs/interval"
+    },
+    "records": {
+      "type": "array",
+      "maxItems": 10000,
+      "items": {
+        "type": "object",
+        "required": [
+          "sourceRecordId",
+          "revision",
+          "amountMicros",
+          "chargeKind",
+          "finality",
+          "usage",
+          "invoice",
+          "evidenceRef"
+        ],
+        "properties": {
+          "sourceRecordId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4096
+          },
+          "revision": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 9007199254740991
+          },
+          "supersedes": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4096
+          },
+          "amountMicros": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
+          },
+          "chargeKind": {
+            "enum": [
+              "usage",
+              "shared",
+              "credit"
+            ]
+          },
+          "finality": {
+            "enum": [
+              "final",
+              "estimated"
+            ]
+          },
+          "usage": {
+            "$ref": "#/$defs/interval"
+          },
+          "invoice": {
+            "$ref": "#/$defs/interval"
+          },
+          "evidenceRef": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4096
+          },
+          "allocationScope": {
+            "enum": [
+              "attempt",
+              "shared"
+            ]
+          },
+          "dimensions": {
+            "type": "object",
+            "maxProperties": 20,
+            "additionalProperties": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096
+            }
+          }
+        }
+      }
+    },
+    "overlapResolution": {
+      "type": "object",
+      "required": [
+        "decision",
+        "reviewer",
+        "evidenceRef"
+      ],
+      "properties": {
+        "decision": {
+          "const": "distinct-events"
+        },
+        "reviewer": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4096
+        },
+        "evidenceRef": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4096
+        }
+      }
+    }
+  },
+  "$defs": {
+    "interval": {
+      "type": "object",
+      "required": [
+        "start",
+        "end"
+      ],
+      "properties": {
+        "start": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "end": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "description": "Structural interchange only. Run the billing module for intervals, revision, overlap, signs, references, conservation and digest checks. This is not a FOCUS conformance schema."
+}

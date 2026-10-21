@@ -1,0 +1,164 @@
+{
+  "version": "1.2.0",
+  "at": "2026-10-21T17:25:43.615186+00:00",
+  "sources": [
+    {
+      "path": "PALO_FinOps.html",
+      "bytes": 40098,
+      "sha256": "8c2809ccb40a319e1ce81f94dabf4a5229076ae8a4510ad5bc6fa46686d13901"
+    },
+    {
+      "path": "assets/palo-finops.css",
+      "bytes": 28283,
+      "sha256": "59dc21be515ac50d5a2b965ab66edfd299d98f5aad3e6f798d886bd650b8f19e"
+    },
+    {
+      "path": "assets/palo-finops.js",
+      "bytes": 35992,
+      "sha256": "82964daef268d7392a775dbefccb53fd5f5f34d736112c539aa366e5f1375bc2"
+    },
+    {
+      "path": "assets/palo-finops-billing-ui.js",
+      "bytes": 15423,
+      "sha256": "17416725dfd7b17c4eadfe113e8e42f45cd2095e2b70138a2b565e7a0621093a"
+    },
+    {
+      "path": "assets/palo-finops-operations-ui.js",
+      "bytes": 48937,
+      "sha256": "32d2568db4d08dc8072856492a41f670348338a9555cad0e11567edd07a9faa9"
+    },
+    {
+      "path": "assets/palo-finops-operations.js",
+      "bytes": 23282,
+      "sha256": "c030a037305733ccea413eb78473ca7f5300cb9a2dab657f6dbbdd7aaf4a7ce7"
+    },
+    {
+      "path": "assets/palo-finops-core.js",
+      "bytes": 24401,
+      "sha256": "3b9e85f680ec72869897343bbe2c551f5462b3e021ac45821c3bdc1695647f4a"
+    },
+    {
+      "path": "assets/palo-finops-billing.js",
+      "bytes": 26138,
+      "sha256": "827d43d35fc2279e794d9a440805de77b67d9c1e163c04676fbdf4aa2c3d4432"
+    },
+    {
+      "path": "packages/palo-finops/operations.js",
+      "bytes": 56,
+      "sha256": "d319e6637725e2be53ab5e2e03684aa5bff2091448d3fb4e7e74baa13b2ff277"
+    },
+    {
+      "path": "packages/palo-finops/provider.js",
+      "bytes": 9185,
+      "sha256": "e6f3b8a3f6d5449675bc262b3ecb5aec04ca48ea185c17c826ee0becd2145271"
+    },
+    {
+      "path": "packages/palo-finops/gateway.js",
+      "bytes": 8992,
+      "sha256": "482bc5e15dd845fd83a378afc64a3654050f41e0af88ef1677bfd0526d99ad14"
+    },
+    {
+      "path": "packages/palo-finops/ledger.js",
+      "bytes": 4772,
+      "sha256": "426c5113c45828f8cdcfa83431232ac9d571d5330edbf1b5a32174d484a2be58"
+    },
+    {
+      "path": "packages/palo-finops/reader.js",
+      "bytes": 3550,
+      "sha256": "074e61f65ac1fabf85c52f0b23d3a2b359d93d88348d267d1717f20066b36d9f"
+    },
+    {
+      "path": "packages/palo-finops/mcp.js",
+      "bytes": 1603,
+      "sha256": "2e38657d7dd86ec957e22e83da278fe309b57e39649f3ad6ae7cde9e65d0d0f9"
+    },
+    {
+      "path": "packages/palo-finops/benchmark.js",
+      "bytes": 11917,
+      "sha256": "9fa415c74ead18fedf154f1b5b339b990f592bd5223fd4bb2e45b49053e265d9"
+    },
+    {
+      "path": "packages/palo-finops/operations.test.js",
+      "bytes": 11235,
+      "sha256": "532a62257ea0eab02bfa044edcc5b6a1178aa6f0dd0fa90419ee34e80b1dca68"
+    },
+    {
+      "path": "packages/palo-finops/runtime.test.js",
+      "bytes": 16448,
+      "sha256": "18a1faa3674127cb0802bdc7097b5ab6f91947e9180f6c8f8cee39ac38ac5c19"
+    },
+    {
+      "path": "packages/palo-finops/mcp.test.js",
+      "bytes": 3533,
+      "sha256": "24de56ff557665e40b203992d6d04f4891577bb831b4cff5164a4929f9c22a16"
+    },
+    {
+      "path": "scripts/finops-operations.mjs",
+      "bytes": 4791,
+      "sha256": "f5ee31d37a4cbaf86673531ff1657e9c302d9329b7503191c40cc7c3eba45488"
+    },
+    {
+      "path": "scripts/finops-mcp.mjs",
+      "bytes": 731,
+      "sha256": "b803affc4a9e5b2a7ced910fdce90c3dc0ba936e79968223df856fc3be520b2c"
+    },
+    {
+      "path": "docs/palo-finops-operations.md",
+      "bytes": 20144,
+      "sha256": "b70b15305f33689f37be52f1b3a5f254564c5b59894c6a835d6a805ea3d35117"
+    },
+    {
+      "path": "docs/palo-finops.md",
+      "bytes": 24112,
+      "sha256": "0b7d9a42c1b3c08d90ca80e6fcc8b3d14b26797ff2863a49b88f000a84e1469e"
+    },
+    {
+      "path": "scripts/public-files.mjs",
+      "bytes": 31209,
+      "sha256": "5478f56b30c94417c60d7701db64e7d1448148e13d2ec5dd04cd1e4c4dcf5b4c"
+    },
+    {
+      "path": "scripts/render-public-docs.mjs",
+      "bytes": 29059,
+      "sha256": "47c2484fde2a3a6b9450ceaba95be0007796313b1b258ad38069ffae8850e873"
+    },
+    {
+      "path": "data/seo-pages.json",
+      "bytes": 59801,
+      "sha256": "7704affe5a009a4e1bf49ff5051cec13388fa52b12f087a3f6eb0bf48f78374b"
+    },
+    {
+      "path": "sitemap.xml",
+      "bytes": 15904,
+      "sha256": "5c6fd04a76ee53a3153b6a155e9080aef15b9fd7c5252448b9756c9bde674bfc"
+    },
+    {
+      "path": "release-manifest.json",
+      "bytes": 17370,
+      "sha256": "d3b806eaac536b954ba417733a03c7f748d8f00db373aa3b20260ea02b16a5b5"
+    },
+    {
+      "path": "package.json",
+      "bytes": 6934,
+      "sha256": "4af9764c47d2b72d547f8e0e661e2a8d70c6be29ad8fabbf5703ea3ea2c569b8"
+    },
+    {
+      "path": "package-lock.json",
+      "bytes": 83820,
+      "sha256": "a07fa7c37893e61f4aeb17bf579138f0736d3e767278976efffe4a7f031cd4ee"
+    }
+  ],
+  "verification": {
+    "moduleTestsPassed": 63,
+    "moduleTestsFailed": 0,
+    "uiHarnessPassed": 20,
+    "mcpProtocolExecutedLocally": true,
+    "providerTransport": "injected synthetic responses only",
+    "browserEvidence": "browser-checks.json",
+    "glmActualResponseReceived": true,
+    "glmPostFixApprovalReceived": false,
+    "liveProviderValidated": false,
+    "deployed": false,
+    "fullSiteBuild": false
+  }
+}

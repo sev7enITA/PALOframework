@@ -1,0 +1,56 @@
+{
+  "date": "2026-10-21",
+  "artifact": "PALO FinOps manuscript v1.0",
+  "reviewType": "Local authoring-agent checks, not independent peer review",
+  "pdf": {
+    "path": "output/pdf/palo-finops-arxiv/PALO_FinOps_Paper_v1.0.pdf",
+    "pageCount": 10,
+    "format": "A4, two columns",
+    "allPagesVisuallyInspected": true,
+    "visualEvidence": "reproducibility/visual-checks/",
+    "clippingOrOverlapObserved": false,
+    "unresolvedReferenceTokens": false,
+    "overfullBoxWarnings": false,
+    "embeddedFonts": 22,
+    "allFontsEmbedded": true,
+    "externalLinkAnnotations": 23,
+    "accessibilityConformanceAssessed": false
+  },
+  "source": {
+    "bibliographicReferences": 14,
+    "allBibliographicItemsCited": true,
+    "noMissingCitationKeys": true,
+    "generatedFigureFromExecutedResults": true,
+    "emDashPresent": false
+  },
+  "reproduction": {
+    "isolatedArchiveExecutionPassed": true,
+    "numericResultsIdentical": true,
+    "figureSourceIdentical": true,
+    "allocationConfigurations": 12864,
+    "allocationAssertions": 38592,
+    "failures": 0,
+    "providerCalls": 0,
+    "originalImplementationTests": 63,
+    "originalUiChecks": 20,
+    "implementationSourceHashesReverified": 29,
+    "testReceiptsAreDatedImplementationEvidence": true
+  },
+  "compilation": {
+    "compiler": "Tectonic 0.17.0",
+    "workingTreePassed": true,
+    "cleanSourceArchivePassed": true,
+    "cleanPdfTextIdentical": true,
+    "texLiveTested": false,
+    "arxivServersTested": false
+  },
+  "limitations": {
+    "liveProviderEvidence": false,
+    "measuredRealWorldSavings": false,
+    "glmManuscriptReview": "Not performed: native Mac locked; earlier GLM code critique disclosed separately",
+    "peerReviewed": false,
+    "submittedToArxiv": false,
+    "published": false,
+    "authorSubmissionMetadataAndLicenseSelectionPending": true
+  }
+}

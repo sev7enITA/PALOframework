@@ -7,6 +7,13 @@ and this project follows Semantic Versioning where practical.
 
 ---
 
+## 2026-10-21 - PALO AI FinOps 1.2
+
+- Added the experimental FinOps workspace with twelve operational capabilities, billing revision handling, signed shared-cost allocation and evidence-gated outcome metrics.
+- Added role entry views, period exports, exception review, forecasts, local MCP access and bounded provider/gateway/benchmark pilot tools.
+- Integrated the module into the homepage, Platform Map, documentation library and sitemap.
+- Added the technical preprint and reproducible synthetic examples. Real-provider validation, production identity and measured savings remain pending.
+
 ## Two-Lens AI Maturity Assessment 1.0.0 - 2026-10-21
 
 - Added 6 deployment and 16 governance questions across institutional capability, delegated authority, observable behaviour and verifiable evidence, informed by the October 2026 BCG report and Fabrizio Degni's complementary governance perspective.
