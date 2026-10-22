@@ -1,5 +1,11 @@
 export const PUBLIC_FILES = [
   "PALO_FinOps.html",
+  "assets/palo-finops-learning.js",
+  "assets/palo-finops-learning-demo.js",
+  "assets/palo-finops-learning-ui.js",
+  "assets/palo-finops-learning.css",
+  "docs/palo-finops-learning.md",
+  "schemas/palo-finops-learning-experiment.schema.json",
   "assets/palo-finops.css",
   "assets/palo-finops-billing-ui.js",
   "assets/palo-finops-core.js",

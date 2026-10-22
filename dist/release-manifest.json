@@ -36,8 +36,8 @@
   "modules": {
     "finOps": {
       "name": "PALO AI FinOps",
-      "version": "1.2.0",
-      "date": "2026-10-21",
+      "version": "1.3.0",
+      "date": "2026-10-22",
       "status": "experimental-local",
       "page": "PALO_FinOps.html",
       "guide": "docs/palo-finops.html",
@@ -62,7 +62,18 @@
       "liveProviderValidated": false,
       "runtimeScope": "experimental-local-authenticated-pilot",
       "identityMode": "local-shared-secret",
-      "paper": "assets/PALO_FinOps_Paper_v1.0.pdf"
+      "paper": "assets/PALO_FinOps_Paper_v1.0.pdf",
+      "localLearningEconomics": {
+        "version": "1.0.0",
+        "status": "experimental-offline-evaluator",
+        "core": "assets/palo-finops-learning.js",
+        "guide": "docs/palo-finops-learning.html",
+        "schema": "schemas/palo-finops-learning-experiment.schema.json",
+        "cli": "scripts/finops-learning.mjs",
+        "providerCalls": false,
+        "modelTraining": false,
+        "realWorkloadValidated": false
+      }
     },
     "aiMaturityAssessment": {
           "name": "Two-Lens AI Maturity Assessment",

@@ -28,7 +28,7 @@ test('billing page selectors, publication surfaces and independent schema versio
  const ui=readFileSync(join(root,'assets/palo-finops-billing-ui.js'),'utf8');
  for(const m of ui.matchAll(/\$\('([^']+)'\)/g))assert.ok(ids.includes(m[1]),m[1]);
  for(const path of ['assets/palo-finops-billing.js','assets/palo-finops-billing-ui.js','assets/palo-finops-operations.js','assets/palo-finops-operations-ui.js','docs/palo-finops-operations.md','data/finops-billing-demo.json','schemas/palo-finops-billing-export.schema.json'])assert.ok(PUBLIC_FILES.includes(path),path);
- const release=JSON.parse(readFileSync(join(root,'release-manifest.json')));assert.equal(release.modules.finOps.version,'1.2.0');assert.equal(release.modules.finOps.runtimeAuthorization,false);assert.equal(release.modules.finOps.gatewayProbeScope,'synthetic-loopback-only');assert.equal(release.modules.finOps.liveProviderValidated,false);
+ const release=JSON.parse(readFileSync(join(root,'release-manifest.json')));assert.equal(release.modules.finOps.version,'1.3.0');assert.equal(release.modules.finOps.runtimeAuthorization,false);assert.equal(release.modules.finOps.gatewayProbeScope,'synthetic-loopback-only');assert.equal(release.modules.finOps.liveProviderValidated,false);
  assert.equal(JSON.parse(readFileSync(join(root,'data/finops-demo.json'))).schemaVersion,'1.0.0');
- assert.match(html,/version 1\.2/);assert.match(readFileSync(join(root,'docs/palo-finops.md'),'utf8'),/Module version 1\.2\.0/);
+ assert.match(html,/version 1\.3/);assert.match(readFileSync(join(root,'docs/palo-finops.md'),'utf8'),/Module version 1\.3\.0/);
 });

@@ -1,8 +1,10 @@
 # PALO AI FinOps
 
-Module version 1.2.0, 21 October 2026. Created and maintained by Fabrizio Degni. The operational workspace format remains 1.0.0; billing uses a separate 1.0.0 interchange contract.
+Module version 1.3.0, 22 October 2026. Created and maintained by Fabrizio Degni. The operational workspace format remains 1.0.0; billing uses a separate 1.0.0 interchange contract.
 
 [Open AI FinOps](../PALO_FinOps.html) to allocate AI spending, reserve budget for model attempts, reconcile unknown costs and assess route transitions. This is an experimental local module within PALO. The browser works without a provider account and does not send model requests, verify invoices or grant execution authority. Version 1.2 adds an Operations area and separate opt-in Node.js pilot tools. See the [Operations and runtime guide](palo-finops-operations.md) for roles, exceptions, business metrics, CFO packs, rule comparison, forecast, read-only billing capture, isolated MCP, routing benchmarks and the controlled gateway.
+
+Version 1.3 adds the separate [Local learning research workspace](palo-finops-learning.md), comparing external-only, static hybrid and distilled hybrid configurations. It evaluates declared experiments and conditional economics with seven synthetic scenarios. It does not run training or establish measured savings.
 
 ## Start with a workspace
 

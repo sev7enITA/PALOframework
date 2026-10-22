@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>PALO FinOps: economics of local learning | PALO Documentation</title>
+  <meta name="description" content="Public PALO documentation: PALO FinOps: economics of local learning.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://paloframework.org/docs/palo-finops-learning.html">
+  <link rel="icon" type="image/webp" href="../assets/logo.webp">
+  <link rel="stylesheet" href="../assets/palo-icons.css">
+  <link rel="stylesheet" href="../assets/palo-v21.css?v=3.1.0">
+  <link rel="stylesheet" href="../assets/palo-docs.css">
+  <script src="../assets/palo-icons.js" defer></script>
+  <script src="../assets/palo-v21.js?v=3.1.0" defer></script>
+  <script src="../assets/palo-docs.js" defer></script>
+    <meta name="author" content="Fabrizio Degni">
+    <link rel="stylesheet" href="../assets/palo-authorship.css" data-palo-authorship-style="true">
+</head>
+<body class="palo-v21 palo-doc-page" data-doc-source="docs/palo-finops-learning.md">
+  <a class="palo-skip-link" href="#main-content">Skip to main content</a>
+  <header class="palo-site-header"><div class="palo-shell palo-header-inner">
+    <a class="palo-brand" href="../index.html"><img src="../assets/logo.webp" alt="PALO">PALO FRAMEWORK</a>
+    <button class="palo-menu-toggle" type="button" data-palo-menu-toggle aria-expanded="false" aria-controls="palo-primary-nav" aria-label="Open navigation"><span data-palo-icon="menu" aria-hidden="true"></span></button>
+    <nav class="palo-nav" id="palo-primary-nav" aria-label="Primary navigation"><a href="../designs/theory-to-practice-infographic/">Start</a><a href="../PALO_AIGovernance.html">Agentic Governance</a><a href="../governance-hub/">Governance Hub</a><a href="../index.html#guided-journeys">Tools</a><a href="../PALO_DocumentationLibrary.html" aria-current="page">Documentation</a><a href="../PALO_AIProductionReadiness.html">Readiness</a></nav>
+  </div></header>
+  <main id="main-content" class="palo-doc-main">
+    <div class="palo-shell">
+      <nav class="palo-doc-breadcrumb" aria-label="Breadcrumb"><a href="../PALO_DocumentationLibrary.html">Documentation Library</a><span aria-hidden="true">/</span><span>Start and adoption</span></nav>
+      <header class="palo-doc-hero"><p class="palo-eyebrow">Start and adoption | Public documentation</p><h1>PALO FinOps: economics of local learning</h1><div class="palo-doc-facts"><span><small>Level</small><strong>reference</strong></span><span><small>Audience</small><strong>governance | technical | builder</strong></span><span><small>Product</small><strong>PALO Core</strong></span><span><small>Status</small><strong>Current Guidance</strong></span><span><small>Lifecycle</small><strong>Current</strong></span><span><small>Read</small><strong>10 min</strong></span></div><p class="palo-doc-source">Published HTML view | Source: <code>docs/palo-finops-learning.md</code></p><div class="palo-actions"><button class="palo-btn" type="button" data-doc-copy-link>Copy link</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-share>Share page</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-print>Print</button></div><p class="palo-action-status" data-doc-action-status role="status" aria-live="polite"></p></header>
+      <details class="palo-doc-mobile-toc"><summary>On this page</summary><ol><li class="depth-2"><a href="#use-the-workspace">Use the workspace</a></li><li class="depth-2"><a href="#research-design">Research design</a></li><li class="depth-2"><a href="#accounting-contract">Accounting contract</a></li><li class="depth-2"><a href="#statistical-checks">Statistical checks</a></li><li class="depth-2"><a href="#future-scenario-and-crossover">Future scenario and crossover</a></li><li class="depth-2"><a href="#reproduction-and-import">Reproduction and import</a></li><li class="depth-2"><a href="#future-sidecar">Future sidecar</a></li><li class="depth-2"><a href="#sources-and-contribution-boundary">Sources and contribution boundary</a></li><li class="depth-2"><a href="#independent-model-critique-and-adjudication">Independent model critique and adjudication</a></li></ol></details>
+      <div class="palo-doc-layout"><aside class="palo-doc-sidebar" aria-label="On this page"><strong>On this page</strong><ol><li class="depth-2"><a href="#use-the-workspace">Use the workspace</a></li><li class="depth-2"><a href="#research-design">Research design</a></li><li class="depth-2"><a href="#accounting-contract">Accounting contract</a></li><li class="depth-2"><a href="#statistical-checks">Statistical checks</a></li><li class="depth-2"><a href="#future-scenario-and-crossover">Future scenario and crossover</a></li><li class="depth-2"><a href="#reproduction-and-import">Reproduction and import</a></li><li class="depth-2"><a href="#future-sidecar">Future sidecar</a></li><li class="depth-2"><a href="#sources-and-contribution-boundary">Sources and contribution boundary</a></li><li class="depth-2"><a href="#independent-model-critique-and-adjudication">Independent model critique and adjudication</a></li></ol></aside><article class="palo-doc-content"><h1 id="palo-finops-economics-of-local-learning">PALO FinOps: economics of local learning<a class="palo-doc-anchor" href="#palo-finops-economics-of-local-learning" aria-label="Link to PALO FinOps: economics of local learning">#</a></h1><p>Experimental extension 1.0.0. Created and maintained by Fabrizio Degni. Research implementation dated 22 October 2026.</p>
+<p>This workspace asks when investment in a local model can be justified by its full cost and accepted outcomes. It compares external inference, a hybrid workflow without new training, and a hybrid workflow using a distilled checkpoint. It does not train models, send provider requests, change a routing policy or authorise spending.</p>
+<h2 id="use-the-workspace">Use the workspace<a class="palo-doc-anchor" href="#use-the-workspace" aria-label="Link to Use the workspace">#</a></h2><p>Open <a href="../PALO_FinOps.html">PALO FinOps</a> and choose <strong>Local learning</strong>. Load a synthetic scenario, inspect the observed experiment, then examine its conditional future economics. Export the experiment and analysis to preserve a reproducible copy. The research draft has separate local storage and is never added to the attempt ledger or billing totals.</p>
+<p>Seven invented scenarios demonstrate a conditional advantage, an investment that does not pay back, quality regression, an insufficient sample, an unresolved cost, a useful life shorter than the horizon, and an initial cost advantage that disappears as volume grows. None is a measured model benchmark or evidence of savings.</p>
+<p>Finance can inspect complete spending and crossover assumptions. IT can examine quality, latency, capacity and checkpoint identity. The experiment owner freezes the task population, rubric, split manifests and sampling plan before collecting results. Imported evidence and responsibilities remain declarations, not authenticated identity or access control.</p>
+<h2 id="research-design">Research design<a class="palo-doc-anchor" href="#research-design" aria-label="Link to Research design">#</a></h2><p>The primary comparison is distilled versus static hybrid. External-only versus each hybrid provides context; being cheaper than external inference does not establish that training adds value over an untrained hybrid. All three comparisons are prespecified and retained, including unfavourable results.</p>
+<p>Each experiment fixes a currency, workload, owner, registration reference and timestamp, training/validation/evaluation manifests, checkpoint and routing-policy digests, binary acceptance rubric, latency limits and sample size. The evaluator rejects exact content reuse, repeated IDs and repeated independence units across splits. It checks that the run follows registration and each outcome matches the frozen checkpoint and router.</p>
+<p>Hashes do not detect paraphrases or hidden pretraining contamination. They do not authenticate evidence or prove registration time. Preserve the plan digest in an independent timestamped registry before evaluation. Inspect semantic leakage separately. Hyperparameter search and checkpoint selection belong to training/validation; include all their costs. Evaluation tasks cannot select the checkpoint, tune the router or trigger early stopping.</p>
+<p>The initial contract accepts independent task units. Repeated conversations, customer clusters and correlated sampling require a separately designed cluster analysis. Different labels do not prove independence. Missing outcome rows invalidate the paired comparison; difficult cases are never silently deleted. Timeouts and failures retain costs and should appear as unaccepted outcomes. Missing latency remains unknown.</p>
+<h2 id="accounting-contract">Accounting contract<a class="palo-doc-anchor" href="#accounting-contract" aria-label="Link to Accounting contract">#</a></h2><p>The <a href="../schemas/palo-finops-learning-experiment.schema.json">JSON schema</a> checks structure. The shared browser/Node evaluator additionally enforces semantic rules.</p>
+<p>Each cost row identifies one economic source, active revision, evidence reference, phase, covered categories and allocations to arms. Allocations must sum exactly to the source amount. Supply one consolidated row per arm/phase/category, or one all-in row covering several categories. An all-in hosting charge covering hardware and energy cannot also have component rows in the same phase. Repeated economic sources and overlapping category coverage are rejected.</p>
+<p>A row allocated to multiple arms denotes a common source required by each listed alternative. Observed totals use the conserved allocation. Prospective alternatives each bear that common source in full, including repeat investment, so changing the accounting split cannot manufacture a future advantage. Reports expose both <code>knownMicros</code> (allocated) and <code>scenarioBasisMicros</code> (standalone basis). Alternatives are mutually exclusive and their scenario totals must not be added together. For genuinely different causal usage, consolidate distinct, evidenced cost scopes upstream instead of labelling a discretionary allocation as a saving. Economic source identity and attribution still require independent review.</p>
+<div class="palo-doc-table-wrap" tabindex="0" aria-label="Scrollable documentation table"><table>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Amount meaning</th>
+<th>Status</th>
+<th>Treatment</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>sunk</code></td>
+<td>Historical expenditure already incurred at the decision boundary</td>
+<td>final, estimated, unknown</td>
+<td>Observed total only</td>
+</tr>
+<tr>
+<td><code>investment</code></td>
+<td>New intervention investment attributable to the evaluated configuration</td>
+<td>final, estimated, unknown</td>
+<td>Experiment total and hypothetical repeat-investment decision</td>
+</tr>
+<tr>
+<td><code>evaluation</code></td>
+<td>Full cost of the held-out evaluation cohort</td>
+<td>final, estimated, unknown</td>
+<td>Observed total; not silently projected</td>
+</tr>
+<tr>
+<td><code>future_fixed</code></td>
+<td>Fixed charges over the entire declared future horizon</td>
+<td>assumed, unknown</td>
+<td>Charged in full at every volume</td>
+</tr>
+<tr>
+<td><code>future_per_attempt</code></td>
+<td>Conditional marginal cost per attempted task</td>
+<td>assumed, unknown</td>
+<td>Multiplied by future attempt volume</td>
+</tr>
+</tbody></table></div>
+<p>The decision boundary matters. An investment already paid is sunk for a later operate-versus-switch decision. Reclassify it in a documented experiment version rather than charging it again. The application cannot infer this boundary from an invoice.</p>
+<p>Required categories are teacher data, training, evaluation, hardware, energy, human review, operations, local inference and external inference. Explicit zero needs an evidence reference. Unknown is null. Every category needs coverage in every phase, even if inapplicable. Aggregate detailed source lines upstream with traceable references. Version 1 accepts nonnegative expenses; reconcile signed credits in the existing billing module before producing a supported cost basis. Mixed currencies are unsupported.</p>
+<p>Include tuning failures, teacher calls, data preparation, human verification and infrastructure opportunity costs where relevant. Document valuations. Open reservations block final unit-cost metrics and candidate eligibility. Estimated amounts are displayed separately from known costs. A complete declared record is not a verified invoice.</p>
+<p>Observed cost per accepted task includes all historical, investment and evaluation costs divided by accepted evaluation tasks. A separate evaluation-only ratio is exported. The first ratio describes this experiment, not a stationary inference price or an amortised production cost. Zero accepted outcomes leaves the ratio unavailable.</p>
+<h2 id="statistical-checks">Statistical checks<a class="palo-doc-anchor" href="#statistical-checks" aria-label="Link to Statistical checks">#</a></h2><p>Compute acceptance and latency pass rates for each arm, plus paired acceptance differences for the three prespecified pairs: nine intervals in total. For independent bounded observations with range width R, use the two-sided Hoeffding radius:</p>
+<figure class="palo-doc-code"><figcaption>text code</figcaption><pre tabindex="0"><code class="language-text">epsilon = R * sqrt(log(18 / alpha) / (2 * n))</code></pre></figure><p>R is 1 for binary rates and 2 for paired differences in [-1, 1]. Each interval has failure probability at most alpha/9; the union bound gives simultaneous coverage of at least 1-alpha under the sampling assumptions. Independence across arms or intervals is unnecessary; independence across task units is required. The bounds are conservative, not a power analysis.</p>
+<p>Quality passes only if both arms' lower acceptance and latency bounds meet their floors, and the lower paired difference meets the negative noninferiority margin. It fails when an upper bound is below a requirement; otherwise it is inconclusive. Prespecify application-specific margins. The synthetic margin 0.12 is illustrative, not a recommended tolerance. Missing design declarations prevent candidate status.</p>
+<p>Noninferiority permits a declared quality loss; it is not equivalence or superiority. A passing model may still have worse unit economics. Candidate eligibility therefore also requires conservative cost-per-accepted economics: candidate future total divided by its lower acceptance bound must not exceed baseline total divided by its upper acceptance bound, at the same attempted volume. This comparison is conditional on fixed future costs and stable population acceptance probabilities. It does not guarantee future delivered counts or equal accepted volume. Exactly equal accepted production requires a separately specified retry/volume model.</p>
+<p>Synthetic records exercise arithmetic and state transitions; their intervals have no empirical interpretation. Reports retain provenance and always deny demonstrated causal savings and execution authority.</p>
+<h2 id="future-scenario-and-crossover">Future scenario and crossover<a class="palo-doc-anchor" href="#future-scenario-and-crossover" aria-label="Link to Future scenario and crossover">#</a></h2><p>For the same fixed horizon and attempted-task volume N:</p>
+<figure class="palo-doc-code"><figcaption>text code</figcaption><pre tabindex="0"><code class="language-text">C_arm(N) = new_investment + fixed_horizon_cost + variable_cost_per_attempt * N
+deltaF = candidate_fixed - baseline_fixed
+s = baseline_variable - candidate_variable
+candidate is no more expensive if deltaF - s*N &lt;= 0</code></pre></figure><p>Integer arithmetic gives the first or last satisfying volume. If s and deltaF are positive, the first is ceil(deltaF/s). Equal slopes, no crossover, immediate advantage and an advantage expiring at higher volumes are handled separately. Equality means no higher cost, not a positive saving.</p>
+<p>This is an attempt-volume threshold within a prepaid horizon, not a calendar payback time. Fixed fees stay charged at zero volume. Capacity, useful life, a single investment, stable rates and stable quality must cover the full horizon. If the horizon exceeds useful life, projection is unavailable. Replacement models, GPU capacity steps, retraining cycles, demand shocks, queueing, discounting and uncertain prices require separate scenario versions or a future dynamic model.</p>
+<p>The report exports conditional point ratios using observed acceptance rates, while candidate status requires the stronger bound comparison. It does not fit an exponential capability-decay rate or assume flat local costs.</p>
+<h2 id="reproduction-and-import">Reproduction and import<a class="palo-doc-anchor" href="#reproduction-and-import" aria-label="Link to Reproduction and import">#</a></h2><p>Use Node.js 22 to 24. The evaluator needs no additional runtime package.</p>
+<figure class="palo-doc-code"><figcaption>sh code</figcaption><pre tabindex="0"><code class="language-sh">npm run finops:learning:demo
+node scripts/finops-learning.mjs demo favourable /tmp/new-learning-experiment.json
+node scripts/finops-learning.mjs verify /tmp/new-learning-experiment.json /tmp/new-learning-experiment.report.json
+node scripts/finops-learning.mjs freeze /path/plan-spec.json /path/new-frozen-plan.json
+node scripts/finops-learning.mjs analyze /path/experiment.json /path/new-report.json
+npm run finops:check</code></pre></figure><p>Output paths must be new. The demo generates invented outcomes directly; it never trains or runs inference. For a real experiment, collect observations externally under the frozen plan, include source evidence and reconciled costs, then import the bundle. All arms must cover the same evaluation cohort. References are identifiers; avoid credentials, private prompts and personal data.</p>
+<p>Plan, experiment and report SHA-256 digests bind content. Exact replay verifies internal reproducibility. Retain the original bundle and independently timestamped plan digest. Anyone controlling the input can create a self-consistent replacement, so this is not a signed audit trail.</p>
+<h2 id="future-sidecar">Future sidecar<a class="palo-doc-anchor" href="#future-sidecar" aria-label="Link to Future sidecar">#</a></h2><p>MCP can expose results; enforcement belongs to the service controlling actual dispatch. Current FinOps MCP tools remain read-only. This extension evaluates evidence offline. A future sidecar needs independent qualification of provider identity, data rights, budget concurrency, reconciliation, quality, rollback and expiration. Learning proposals cannot grant themselves training or spending authority.</p>
+<h2 id="sources-and-contribution-boundary">Sources and contribution boundary<a class="palo-doc-anchor" href="#sources-and-contribution-boundary" aria-label="Link to Sources and contribution boundary">#</a></h2><p>Sources checked on 22 October 2026:</p>
+<ul>
+<li><a href="https://arxiv.org/abs/2305.02301" target="_blank" rel="noopener noreferrer">Hsieh et al., Distilling Step-by-Step, Findings of ACL 2023</a>: task-specific capability transfer motivates comparison; it does not establish PALO's economics.</li>
+<li><a href="https://arxiv.org/abs/2502.12143" target="_blank" rel="noopener noreferrer">Li et al., Small Models Struggle to Learn from Strong Reasoners</a>: transfer can depend on student capacity and signal complexity, motivating quality gates.</li>
+<li><a href="https://doi.org/10.1080/01621459.1963.10500830" target="_blank" rel="noopener noreferrer">Hoeffding, Probability Inequalities for Sums of Bounded Random Variables, 1963</a>: established concentration inequalities support the bounds; this is not a new statistical method.</li>
+<li><a href="https://modelcontextprotocol.io/docs/2026-07-28/learn/architecture" target="_blank" rel="noopener noreferrer">MCP architecture</a>: interoperability does not supply spending enforcement or training.</li>
+</ul>
+<p>The proposed contribution is a reproducible contract connecting learning investment, evidence gaps, accepted outcomes and conditional economics. Real workload benefits, robustness under drift and production sidecar operation are not established by the synthetic fixture.</p>
+<h2 id="independent-model-critique-and-adjudication">Independent model critique and adjudication<a class="palo-doc-anchor" href="#independent-model-critique-and-adjudication" aria-label="Link to Independent model critique and adjudication">#</a></h2><p>GLM-5.3, with Max selected in ZCode, reviewed the supplied design dossier on 22 October 2026. Its completed response was recovered from the local session record, with no tool calls. It did not inspect this implementation or reproduce its tests. Model criticism is an input to review, not independent validation of software or empirical results.</p>
+<div class="palo-doc-table-wrap" tabindex="0" aria-label="Scrollable documentation table"><table>
+<thead>
+<tr>
+<th>Criticism</th>
+<th>Treatment in this implementation</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Point-estimate savings can create false precision in a crossover.</td>
+<td>Accepted. Future rates are explicitly fixed scenario assumptions, not fitted savings. Quality uncertainty gates candidate status. No confidence interval for future prices or calendar payback is claimed. Empirical cost uncertainty needs a subsequent design.</td>
+</tr>
+<tr>
+<td>Attempted and accepted denominators must stay distinct.</td>
+<td>Accepted. The crossover uses attempted tasks. Observed and conditional accepted-outcome ratios are separate, and candidate status also requires a conservative accepted-outcome comparison.</td>
+</tr>
+<tr>
+<td>Useful life, recurring training and capacity can invalidate a linear model.</td>
+<td>Accepted. Useful life and capacity cap eligibility. A declaration of a single investment is required; recurring training and capacity steps remain outside this version.</td>
+</tr>
+<tr>
+<td>All-in costs and components can double count infrastructure.</td>
+<td>Accepted. Overlapping arm/phase/category coverage is rejected. Semantic mislabelling of sources still needs external review.</td>
+</tr>
+<tr>
+<td>Shared-cost allocations can manufacture a difference.</td>
+<td>Accepted and implemented. Observed allocations conserve the source total; mutually exclusive scenarios each bear an applicable common source in full. A regression test changes the accounting allocation without changing the comparison.</td>
+</tr>
+<tr>
+<td>A small-sample normal interval and uncorrected multiple comparisons are unsafe.</td>
+<td>Accepted concern. The implementation uses finite-sample Hoeffding bounds and a single alpha budget over nine prespecified intervals, with an explicit inconclusive state. The suggested McNemar test was not adopted: a usual equality test alone does not establish a prespecified noninferiority margin.</td>
+</tr>
+<tr>
+<td>Fractions, sunk costs, preregistration and leakage need explicit treatment.</td>
+<td>Integer micros, exact integer crossover arithmetic and numerator/denominator reporting are retained. Sunk costs do not affect the future crossover. Exact split collisions are rejected. Registration timestamps and semantic independence remain unverified declarations.</td>
+</tr>
+</tbody></table></div>
+<p>The proposal to estimate capability decay or demonstrate recurring economic benefits remains future research. This release supplies synthetic falsification cases and a frozen evidence contract, not a completed prospective field study. A second review with Gemini 4 Argon at high effort was requested but no completed response had been captured when this method note was prepared; no Gemini endorsement or review is claimed.</p>
+</article></div>
+      <aside class="palo-doc-next"><div><small>Prerequisite</small><strong>No specialist prerequisite stated</strong></div><div><small>Recommended next step</small><strong>Return to the Documentation Library</strong></div></aside>
+      <section class="palo-doc-feedback" aria-labelledby="feedback-title"><p class="palo-eyebrow">Privacy-first feedback</p><h2 id="feedback-title">Help improve this guide</h2><p>Your feedback stays in your browser until you explicitly copy it, download it, or open an email draft. Do not include secrets, personal data, credentials or production identifiers.</p><form data-doc-feedback><div class="palo-form-grid"><div class="palo-field"><label for="feedback-role">Your role</label><select id="feedback-role" name="role"><option>Executive / governance owner</option><option>Platform or security engineer</option><option>No-code / low-code builder</option><option>External reviewer</option></select></div><div class="palo-field"><label for="feedback-category">Category</label><select id="feedback-category" name="category"><option>Clarity</option><option>Technical accuracy</option><option>Missing guidance</option><option>Accessibility</option></select></div><div class="palo-field palo-field-full"><label for="feedback-message">Feedback</label><textarea id="feedback-message" name="message" maxlength="3000" required placeholder="Describe the non-sensitive improvement you recommend."></textarea></div><div class="palo-form-actions"><button class="palo-btn" type="button" data-feedback-copy>Copy feedback</button><button class="palo-btn palo-btn-secondary" type="button" data-feedback-download>Download JSON</button><button class="palo-btn palo-btn-secondary" type="button" data-feedback-email>Email draft</button></div></div><p class="palo-action-status" data-feedback-status role="status" aria-live="polite"></p></form></section>
+    </div>
+  </main>
+  <footer class="palo-footer" data-palo-authorship-container="true">
+<p class="palo-authorship-footer" data-palo-authorship="footer">PALO Framework: conceived, created and maintained by <a href="../PALO_Community.html#creator">Fabrizio Degni</a>.</p>
+<div class="palo-shell"><p>PALO public documentation. Developer preview boundaries apply.</p><div class="palo-footer-links"><a href="../PALO_AIGovernance.html">PALO-AI</a><a href="../governance-hub/">Governance Hub</a><a href="../PALO_AgenticCapabilityMatrix.html">Capability Matrix</a><a href="../PALO_AIProductionReadiness.html">Production Readiness</a><a href="../privacy-policy.html">Privacy</a></div></div></footer>
+</body></html>

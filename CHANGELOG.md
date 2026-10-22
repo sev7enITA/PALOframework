@@ -7,6 +7,13 @@ and this project follows Semantic Versioning where practical.
 
 ---
 
+## 2026-10-22 - PALO AI FinOps 1.3
+
+- Added a separate local-learning economics workspace comparing external-only, static hybrid and distilled hybrid configurations.
+- Added frozen experiment contracts, complete cost coverage, shared-cost conservation, paired quality checks and conditional integer crossover analysis, with seven synthetic falsification scenarios.
+- Added replayable JSON reports, CLI commands and a methodology guide. No model training, provider calls, route promotion or measured economic benefits are claimed by this extension.
+- Fixed a routing test that reused the dated public billing fixture instead of the test run's usage interval.
+
 ## 2026-10-21 - PALO AI FinOps 1.2
 
 - Added the experimental FinOps workspace with twelve operational capabilities, billing revision handling, signed shared-cost allocation and evidence-gated outcome metrics.

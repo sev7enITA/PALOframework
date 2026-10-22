@@ -7,6 +7,8 @@
   <link rel="icon" type="image/webp" href="assets/logo.webp">
   <link rel="stylesheet" href="assets/palo-v21.css?v=3.1.0">
   <link rel="stylesheet" href="assets/palo-finops.css?v=1.2.0">
+  <link rel="stylesheet" href="assets/palo-finops-learning.css?v=1.0.0">
+  <script type="module" src="assets/palo-finops-learning-ui.js?v=1.0.0"></script>
   <script src="assets/palo-icons.js" defer></script>
   <script src="assets/palo-v21.js?v=3.1.0" defer></script>
   <script src="assets/palo-case-file.js" defer></script>
@@ -154,7 +156,7 @@
   <main id="main-content">
     <div class="fo-intro palo-shell">
       <nav class="fo-breadcrumb" aria-label="Breadcrumb"><a href="index.html">PALO Framework</a><span aria-hidden="true">/</span><span aria-current="page">AI FinOps</span></nav>
-      <div class="fo-title-row"><div><p class="fo-eyebrow">Cost accountability / version 1.2</p><h1>AI FinOps<span>.</span></h1><p class="fo-lead">Connect billing to every AI attempt. Reconcile costs, allocate shared expenses and preserve the evidence behind each metric.</p></div><div class="fo-local"><span class="fo-local-dot" aria-hidden="true"></span><strong>Local workspace</strong><span>Your browser. Your records.<br>No provider connection.</span></div></div>
+      <div class="fo-title-row"><div><p class="fo-eyebrow">Cost accountability / version 1.3</p><h1>AI FinOps<span>.</span></h1><p class="fo-lead">Connect billing to every AI attempt. Reconcile costs, allocate shared expenses and preserve the evidence behind each metric.</p></div><div class="fo-local"><span class="fo-local-dot" aria-hidden="true"></span><strong>Local workspace</strong><span>Your browser. Your records.<br>No provider connection.</span></div></div>
     </div>
     <div class="fo-workspace palo-shell">
       <div class="fo-workspace-heading"><div><h2 id="workspace-title">Untitled FinOps</h2><span id="source-badge" class="fo-badge">Empty workspace</span></div><span id="draft-state" class="fo-draft-state">Not saved locally</span></div>
@@ -173,6 +175,7 @@
         <button type="button" id="tab-billing" role="tab" aria-controls="panel-billing" aria-selected="false" tabindex="-1" data-panel="billing">Billing &amp; showback</button>
         <button type="button" id="tab-operations" role="tab" aria-controls="panel-operations" aria-selected="false" tabindex="-1" data-panel="operations">Operations</button>
         <button type="button" id="tab-transition" role="tab" aria-controls="panel-transition" aria-selected="false" tabindex="-1" data-panel="transition">Route assessment</button>
+        <button type="button" id="tab-learning" role="tab" aria-controls="panel-learning" aria-selected="false" tabindex="-1" data-panel="learning">Local learning</button>
         <button type="button" id="tab-setup" role="tab" aria-controls="panel-setup" aria-selected="false" tabindex="-1" data-panel="setup">Setup &amp; rate cards</button>
       </nav>
 
@@ -267,6 +270,11 @@
           <label class="fo-check wide"><input type="checkbox" id="transition-unresolved">The task has unresolved external effects.</label>
         </div><button class="fo-button primary" type="submit">Assess transition</button><p class="fo-form-status" id="transition-status" role="status"></p></form>
         <aside class="fo-transition-result" id="transition-result" aria-live="polite"><p class="fo-eyebrow">Assessment result</p><h4 id="transition-verdict">Ready to compare</h4><p id="transition-summary">Choose a destination and enter comparable cost estimates to review budget, route eligibility and economic preference.</p><ul id="transition-reasons"></ul><button class="fo-button" type="button" id="export-assessment" disabled>Export assessment JSON</button><p class="fo-help">Export includes the declared request and workspace snapshot.</p><div class="fo-result-boundary"><strong>No execution authority</strong><p>This assessment does not reserve funds, send data, enforce policy or authorise an API call. Policy and evidence references are declared inputs.</p><p>An unknown cache can be covered by a conservative reservation. An unknown final cost stays unresolved in the ledger.</p></div></aside></div>
+      </section>
+
+      <section class="fo-panel" id="panel-learning" role="tabpanel" aria-labelledby="tab-learning" tabindex="0" hidden>
+        <p class="fo-help"><a href="docs/palo-finops-learning.html">Research method and input contract</a></p>
+        <div id="finops-learning"><p class="fo-help">Preparing the local-learning research workspace...</p></div>
       </section>
 
       <section class="fo-panel" id="panel-setup" role="tabpanel" aria-labelledby="tab-setup" tabindex="0" hidden>

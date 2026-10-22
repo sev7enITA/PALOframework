@@ -1,0 +1,671 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paloframework.org/schemas/palo-finops-learning-experiment.schema.json",
+  "title": "PALO FinOps local-learning experiment",
+  "description": "Structural schema. The evaluator additionally checks digests, split disjointness, identity, chronology, finality, coverage, allocation conservation and bound arithmetic.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "format",
+    "schemaVersion",
+    "plan",
+    "run"
+  ],
+  "properties": {
+    "format": {
+      "const": "palo-finops-learning-experiment"
+    },
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "plan": {
+      "$ref": "#/$defs/plan"
+    },
+    "run": {
+      "$ref": "#/$defs/run"
+    }
+  },
+  "$defs": {
+    "task": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "contentDigest",
+        "independenceId"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        },
+        "contentDigest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "independenceId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        }
+      }
+    },
+    "arm": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "label",
+        "modelRef",
+        "teacherRef",
+        "checkpointDigest",
+        "routingPolicyDigest",
+        "selectedAt",
+        "usefulLifeDays",
+        "capacityTasksPerDay",
+        "lineageRef"
+      ],
+      "properties": {
+        "id": {
+          "enum": [
+            "external_only",
+            "hybrid_static",
+            "hybrid_distilled"
+          ]
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        },
+        "modelRef": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        },
+        "teacherRef": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        },
+        "checkpointDigest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "routingPolicyDigest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "selectedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "usefulLifeDays": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 3650
+        },
+        "capacityTasksPerDay": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "lineageRef": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        }
+      }
+    },
+    "sampling": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "unit",
+        "ref",
+        "independentUnitsDeclared",
+        "blindedScoringDeclared",
+        "holdoutUntouchedDeclared",
+        "fixedSampleDeclared",
+        "selectionCostsCompleteDeclared"
+      ],
+      "properties": {
+        "unit": {
+          "const": "task"
+        },
+        "ref": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        },
+        "independentUnitsDeclared": {
+          "type": "boolean"
+        },
+        "blindedScoringDeclared": {
+          "type": "boolean"
+        },
+        "holdoutUntouchedDeclared": {
+          "type": "boolean"
+        },
+        "fixedSampleDeclared": {
+          "type": "boolean"
+        },
+        "selectionCostsCompleteDeclared": {
+          "type": "boolean"
+        }
+      }
+    },
+    "quality": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "minimumAcceptance",
+        "nonInferiorityMargin",
+        "maximumLatencyMs",
+        "minimumLatencyPassRate",
+        "alpha"
+      ],
+      "properties": {
+        "minimumAcceptance": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "exclusiveMinimum": 0
+        },
+        "nonInferiorityMargin": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "exclusiveMaximum": 1
+        },
+        "maximumLatencyMs": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "minimumLatencyPassRate": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "exclusiveMinimum": 0
+        },
+        "alpha": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 0.2
+        }
+      }
+    },
+    "scenario": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "horizonDays",
+        "attemptedTasks",
+        "assumptionsRef",
+        "stableRatesDeclared",
+        "stableQualityDeclared",
+        "singleInvestmentDeclared"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        },
+        "horizonDays": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 3650
+        },
+        "attemptedTasks": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "assumptionsRef": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        },
+        "stableRatesDeclared": {
+          "type": "boolean"
+        },
+        "stableQualityDeclared": {
+          "type": "boolean"
+        },
+        "singleInvestmentDeclared": {
+          "type": "boolean"
+        }
+      }
+    },
+    "spec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "version",
+        "owner",
+        "registeredAt",
+        "registrationRef",
+        "workloadRef",
+        "currency",
+        "evidenceKind",
+        "sampling",
+        "acceptanceRuleRef",
+        "splits",
+        "arms",
+        "quality",
+        "scenario"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        },
+        "owner": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        },
+        "registeredAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "registrationRef": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        },
+        "workloadRef": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        },
+        "currency": {
+          "type": "string",
+          "pattern": "^[A-Z]{3}$"
+        },
+        "evidenceKind": {
+          "enum": [
+            "synthetic",
+            "declared_observations"
+          ]
+        },
+        "sampling": {
+          "$ref": "#/$defs/sampling"
+        },
+        "acceptanceRuleRef": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        },
+        "splits": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "train",
+            "validation",
+            "evaluation"
+          ],
+          "properties": {
+            "train": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/task"
+              },
+              "minItems": 0,
+              "maxItems": 10000
+            },
+            "validation": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/task"
+              },
+              "minItems": 0,
+              "maxItems": 10000
+            },
+            "evaluation": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/task"
+              },
+              "minItems": 1,
+              "maxItems": 10000
+            }
+          }
+        },
+        "arms": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/arm"
+          },
+          "minItems": 3,
+          "maxItems": 3
+        },
+        "quality": {
+          "$ref": "#/$defs/quality"
+        },
+        "scenario": {
+          "$ref": "#/$defs/scenario"
+        }
+      }
+    },
+    "plan": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "format",
+        "schemaVersion",
+        "spec",
+        "digest"
+      ],
+      "properties": {
+        "format": {
+          "const": "palo-finops-learning-plan"
+        },
+        "schemaVersion": {
+          "const": "1.0.0"
+        },
+        "spec": {
+          "$ref": "#/$defs/spec"
+        },
+        "digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "outcome": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "armId",
+        "taskId",
+        "accepted",
+        "latencyMs",
+        "externalCalls",
+        "attempts",
+        "evidenceRef",
+        "checkpointDigest",
+        "routingPolicyDigest"
+      ],
+      "properties": {
+        "armId": {
+          "enum": [
+            "external_only",
+            "hybrid_static",
+            "hybrid_distilled"
+          ]
+        },
+        "taskId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        },
+        "accepted": {
+          "type": "boolean"
+        },
+        "latencyMs": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "externalCalls": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "attempts": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "evidenceRef": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        },
+        "checkpointDigest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "routingPolicyDigest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "allocation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "armId",
+        "amountMicros"
+      ],
+      "properties": {
+        "armId": {
+          "enum": [
+            "external_only",
+            "hybrid_static",
+            "hybrid_distilled"
+          ]
+        },
+        "amountMicros": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "cost": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sourceKey",
+        "revision",
+        "phase",
+        "categories",
+        "amountMicros",
+        "status",
+        "evidenceRef",
+        "allocations"
+      ],
+      "properties": {
+        "sourceKey": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "phase": {
+          "enum": [
+            "sunk",
+            "investment",
+            "evaluation",
+            "future_fixed",
+            "future_per_attempt"
+          ]
+        },
+        "categories": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "teacher_data",
+              "training",
+              "evaluation",
+              "hardware",
+              "energy",
+              "human_review",
+              "operations",
+              "local_inference",
+              "external_inference"
+            ]
+          },
+          "minItems": 1,
+          "maxItems": 9,
+          "uniqueItems": true
+        },
+        "amountMicros": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "status": {
+          "enum": [
+            "final",
+            "estimated",
+            "unknown",
+            "assumed"
+          ]
+        },
+        "evidenceRef": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        },
+        "allocations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/allocation"
+          },
+          "minItems": 1,
+          "maxItems": 3
+        }
+      }
+    },
+    "reservation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "armId",
+        "amountMicros",
+        "evidenceRef"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        },
+        "armId": {
+          "enum": [
+            "external_only",
+            "hybrid_static",
+            "hybrid_distilled"
+          ]
+        },
+        "amountMicros": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "evidenceRef": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        }
+      }
+    },
+    "run": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "planDigest",
+        "startedAt",
+        "endedAt",
+        "allAttemptsIncludedDeclared",
+        "costCoverageRef",
+        "outcomes",
+        "costs",
+        "openReservations"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        },
+        "planDigest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "startedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "endedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "allAttemptsIncludedDeclared": {
+          "type": "boolean"
+        },
+        "costCoverageRef": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        },
+        "outcomes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/outcome"
+          },
+          "minItems": 0,
+          "maxItems": 30000
+        },
+        "costs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/cost"
+          },
+          "minItems": 0,
+          "maxItems": 500
+        },
+        "openReservations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/reservation"
+          },
+          "minItems": 0,
+          "maxItems": 1000
+        }
+      }
+    }
+  }
+}

@@ -69,7 +69,9 @@
     "finops:check": "node --test packages/palo-finops/*.test.js",
     "finops:demo": "node scripts/finops.mjs summary data/finops-demo.json",
     "finops:operations": "node scripts/finops-operations.mjs",
-    "finops:mcp": "node scripts/finops-mcp.mjs"
+    "finops:mcp": "node scripts/finops-mcp.mjs",
+    "finops:learning": "node scripts/finops-learning.mjs",
+    "finops:learning:demo": "node scripts/finops-learning.mjs demo favourable"
   },
   "devDependencies": {
     "fast-xml-parser": "5.10.1",
