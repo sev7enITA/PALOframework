@@ -1,12 +1,12 @@
 # PALO FinOps: economics of local learning
 
-Experimental extension 1.0.0. Created and maintained by Fabrizio Degni. Research implementation dated 22 October 2026.
+Experimental extension: input and plan contracts 1.0.0; reports 1.0.1. Created and maintained by Fabrizio Degni. Research implementation dated 22 October 2026.
 
 This workspace asks when investment in a local model can be justified by its full cost and accepted outcomes. It compares external inference, a hybrid workflow without new training, and a hybrid workflow using a distilled checkpoint. It does not train models, send provider requests, change a routing policy or authorise spending.
 
 ## Use the workspace
 
-Open [PALO FinOps](../PALO_FinOps.html) and choose **Local learning**. Load a synthetic scenario, inspect the observed experiment, then examine its conditional future economics. Export the experiment and analysis to preserve a reproducible copy. The research draft has separate local storage and is never added to the attempt ledger or billing totals.
+Open [PALO FinOps: Local learning](../PALO_FinOps.html#local-learning). Load a synthetic scenario, inspect the observed experiment, then examine its conditional future economics. Export the experiment and analysis to preserve a reproducible copy. The research draft has separate local storage and is never added to the attempt ledger or billing totals.
 
 Seven invented scenarios demonstrate a conditional advantage, an investment that does not pay back, quality regression, an insufficient sample, an unresolved cost, a useful life shorter than the horizon, and an initial cost advantage that disappears as volume grows. None is a measured model benchmark or evidence of savings.
 
@@ -159,3 +159,7 @@ The follow-up cross-check used both actual design responses, source inspection a
 | Argon: a demo report collision leaves an orphan experiment; missing paths yield low-level errors. | Confirmed. Exclusive writes now clean up their own newly created files on ordinary failure, preserving existing outputs. Missing arguments produce usage guidance. Crash-atomic paired writes remain outside this CLI. |
 
 GLM-5.3 Max completed a static review of the actual corrective diff and found the accepted numeric, unit and schema findings resolved within their stated scope. It requested an explicit report-version/regeneration signal, implemented as report `1.0.1` with a targeted compatibility test. That final small version change was locally verified after its review. The source review by Argon Alta is complete; its subsequent patch-review attempts returned service errors, including in a fresh session, so no completed Argon review of the corrective diff is claimed. Review responses are criticism of supplied source, while executable regression and browser results are produced separately by the local verification process. No empirical model performance, savings, operational enforcement or production readiness follows from these reviews.
+
+## Research overview and download
+
+See the [research overview](palo-finops-local-learning-research.md) for roles, validation status and the distinction from the original FinOps v1.0 preprint. Download the [Local learning reproduction package 1.0.1](../assets/PALO_FinOps_Local_Learning_v1.0.1.zip) and its [SHA-256 checksum](../assets/PALO_FinOps_Local_Learning_v1.0.1.zip.sha256).

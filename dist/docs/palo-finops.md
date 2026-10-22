@@ -148,3 +148,16 @@ Useful contributions are provider counter adapters, reproducible paired routing 
 ## Research paper
 
 The [PALO FinOps technical preprint](../assets/PALO_FinOps_Paper_v1.0.pdf) formalizes the accounting and evidence model. [LaTeX sources](../assets/PALO_FinOps_arXiv_source_v1.0.zip) and a [self-contained synthetic reproduction package](../assets/PALO_FinOps_reproducibility_v1.0.zip) accompany it. The manuscript has not been submitted to arXiv or peer reviewed; local tests do not establish provider billing accuracy or measured production savings.
+
+## Who uses the module
+
+| Role | Route | What to inspect |
+| --- | --- | --- |
+| End user / workload owner | Overview, Attempts ledger and Operations | Scope, accepted outcomes, retry evidence and exceptions. |
+| IT leader / platform engineer | Route assessment and [Local learning](../PALO_FinOps.html#local-learning) | Frozen configurations, quality, latency, capacity and useful life. |
+| Administrator | Setup, JSON import/export and Operations | Versioned inputs, local drafts, evidence references and repeatable handoff. |
+| CFO / controller / FinOps lead | Billing & showback, Operations and Local learning | Cost completeness, allocation, period snapshots, investment and conditional crossover. |
+
+Role entry views guide navigation; they are not authentication or role-based access control. Browser drafts remain on the current device unless exported. Local-learning experiments use separate storage and are not added to the billing ledger. Review synthetic examples before importing organizational records.
+
+[Read the Local learning research overview](palo-finops-local-learning-research.md) for the difference between the original FinOps preprint, the new experimental method and the validation still needed. [Download the standalone Local learning reproduction package](../assets/PALO_FinOps_Local_Learning_v1.0.1.zip) to replay its seven synthetic examples.

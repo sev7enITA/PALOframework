@@ -14,6 +14,8 @@ PALO Framework is an open-source project conceived, created and maintained by **
 
 The experimental [PALO AI FinOps module](https://paloframework.org/PALO_FinOps.html) provides local billing reconciliation, budget reservations, shared-cost allocation, role-based reporting and frozen outcome metrics. Version 1.2 introduced an isolated read-only MCP server, a billing connector, a controlled gateway and a routing benchmark runner for bounded local pilots. Version 1.3 adds an offline [local-learning economics workspace](docs/palo-finops-learning.md) with three-arm comparisons, synthetic scenarios and reproducible reports; run `npm run finops:learning:demo`. Role selection is navigation, not access control. Real provider reconciliation and production qualification remain pending. Read the [FinOps guide](docs/palo-finops.md), [operations guide](docs/palo-finops-operations.md) and [technical preprint](https://paloframework.org/assets/PALO_FinOps_Paper_v1.0.pdf); run `npm run finops:check`.
 
+**FinOps research update:** [Local learning overview](docs/palo-finops-local-learning-research.md) explains the role-based workflow, evidence limits and [standalone reproduction package](assets/PALO_FinOps_Local_Learning_v1.0.1.zip). Reports use 1.0.1; the experiment and plan contracts remain 1.0.0. The original FinOps v1.0 paper is unchanged.
+
 ## Start here: PALO Evidence Pack
 
 **Allowed is not verified.** Give PALO one AI use case. Leave with a traceable, reviewable evidence dossier and a local validation receipt in less than ten minutes.

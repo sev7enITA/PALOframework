@@ -9,6 +9,9 @@ and this project follows Semantic Versioning where practical.
 
 ## 2026-10-22 - PALO AI FinOps 1.3
 
+- Published role-based website entry points, Local learning deep links, a research overview and a standalone reproduction package. The FinOps v1.0 preprint remains a separate artifact.
+- Reports now use version 1.0.1 after source-level review and corrective tests; input and plan contracts remain 1.0.0. Regenerate older reports.
+
 - Added a separate local-learning economics workspace comparing external-only, static hybrid and distilled hybrid configurations.
 - Added frozen experiment contracts, complete cost coverage, shared-cost conservation, paired quality checks and conditional integer crossover analysis, with seven synthetic falsification scenarios.
 - Added replayable JSON reports, CLI commands and a methodology guide. No model training, provider calls, route promotion or measured economic benefits are claimed by this extension.

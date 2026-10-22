@@ -14,7 +14,12 @@
   var weightLabel = { W5: "W5 Core", W4: "W4 Strong", W3: "W3 Contextual", W2: "W2 Supporting" };
   var phaseLabels = { frame: "Frame", classify: "Classify", assess: "Assess", control: "Control", measure: "Measure", prove: "Prove & Review" };
   var phaseOrder = ["frame", "classify", "assess", "control", "measure", "prove"];
-  var starterIntents = ["What should I do first?", "Classify risk", "Assess fundamental rights", "Govern agent autonomy", "Define KPI and KRI", "Prepare board evidence", "Monitor a policy change"];
+  var starterIntents = ["What should I do first?", "Classify risk", "Assess fundamental rights", "Govern agent autonomy", "Define KPI and KRI", "Prepare board evidence", "FinOps local learning", "Monitor a policy change"];
+  var resourceNodes = [
+    { id: "resource-finops", label: "AI FinOps 1.3", type: "module", phaseId: "measure", status: "Experimental local workspace", href: "../../PALO_FinOps.html", role: "Reconcile AI costs and review local-learning investment against accepted outcomes.", action: "Review budgets, billing, quality, latency and conditional future costs", outputs: ["Finance review", "Replayable experiment comparison"], intents: ["FinOps", "CFO", "finance", "AI costs", "billing", "local learning", "distillation", "investment", "cost per accepted task"], stakeholders: ["IT", "administrators", "finance", "end users"] },
+    { id: "resource-finops-learning", label: "Local learning economics", type: "module", phaseId: "measure", status: "Synthetic offline evaluation", href: "../../PALO_FinOps.html#local-learning", role: "Compare external-only, static hybrid and distilled hybrid workflows on frozen tasks.", action: "Inspect seven synthetic scenarios, quality gates and conditional crossover", outputs: ["Experiment JSON", "Report 1.0.1"], intents: ["local learning", "distillation", "FinOps research", "break even", "crossover", "model training cost"] },
+    { id: "resource-finops-research", label: "FinOps research and reproducibility", type: "artifact", phaseId: "prove", status: "Experimental method; no measured savings", href: "../../docs/palo-finops-local-learning-research.html", role: "Read the method, limits, literature and reproducible examples separately from the v1.0 preprint.", action: "Inspect input contract 1.0.0 and reports 1.0.1", outputs: ["Methodology", "Offline reproduction package"], intents: ["FinOps research", "paper", "local learning", "reproducibility", "GLM", "Argon"] }
+  ];
   var graphIndex = { data: null, nodes: new Map(), relations: new Map(), documents: new Map(), weights: new Map() };
   var searchTimer = null;
 
@@ -70,7 +75,7 @@
     var data = window.PALO_GRAPH_DATA || { nodes: [], links: [] };
     if (graphIndex.data === data) return;
     graphIndex = { data: data, nodes: new Map(), relations: new Map(), documents: new Map(), weights: new Map() };
-    data.nodes.forEach(function (node) { graphIndex.nodes.set(node.id, node); graphIndex.relations.set(node.id, []); });
+    data.nodes.concat(resourceNodes).forEach(function (node) { graphIndex.nodes.set(node.id, node); graphIndex.relations.set(node.id, []); });
     data.links.forEach(function (link) {
       if (graphIndex.relations.has(link.source)) graphIndex.relations.get(link.source).push(link);
       if (graphIndex.relations.has(link.target)) graphIndex.relations.get(link.target).push(link);
@@ -165,7 +170,7 @@
       announce("Choose an operational intent");
       return;
     }
-    state.results = data.nodes.filter(filterMatches).map(function (node, index) {
+    state.results = data.nodes.concat(resourceNodes).filter(filterMatches).map(function (node, index) {
       return { node: node, score: scoreNode(node, state.query), order: index };
     }).filter(function (item) { return !state.query || item.score > 0; }).sort(function (a, b) {
       return b.score - a.score || (weightRank[strongestWeight(b.node)] - weightRank[strongestWeight(a.node)]) || a.order - b.order;
@@ -220,7 +225,7 @@
       nameWrap.appendChild(el("span", "palo-spotlight-meta", resultMeta(node)));
       nameWrap.appendChild(el("strong", "", node.label));
       top.appendChild(nameWrap);
-      top.appendChild(el("span", "palo-spotlight-weight", weightLabel[strongestWeight(node)]));
+      top.appendChild(el("span", "palo-spotlight-weight", node.id.startsWith("resource-") ? "Public resource" : weightLabel[strongestWeight(node)]));
       button.appendChild(top);
       button.appendChild(el("p", "", node.role || node.action || "Operational graph entity."));
       var output = (node.outputs && node.outputs[0]) || node.artifact;

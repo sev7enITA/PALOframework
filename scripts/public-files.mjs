@@ -1,4 +1,10 @@
 export const PUBLIC_FILES = [
+  "PALO_DataCatalog.html",
+  "docs/palo-finops-local-learning-research.md",
+  "assets/PALO_FinOps_Local_Learning_v1.0.1.zip",
+  "assets/PALO_FinOps_Local_Learning_v1.0.1.zip.sha256",
+  "llms.txt",
+  "data/seo-pages.json",
   "PALO_FinOps.html",
   "assets/palo-finops-learning.js",
   "assets/palo-finops-learning-demo.js",

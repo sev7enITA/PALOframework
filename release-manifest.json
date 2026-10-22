@@ -64,6 +64,10 @@
       "identityMode": "local-shared-secret",
       "paper": "assets/PALO_FinOps_Paper_v1.0.pdf",
       "localLearningEconomics": {
+        "reportVersion": "1.0.1",
+        "schemaVersion": "1.0.0",
+        "researchOverview": "docs/palo-finops-local-learning-research.html",
+        "reproducibility": "assets/PALO_FinOps_Local_Learning_v1.0.1.zip",
         "version": "1.0.0",
         "status": "experimental-offline-evaluator",
         "core": "assets/palo-finops-learning.js",
