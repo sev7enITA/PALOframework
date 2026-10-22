@@ -1,5 +1,7 @@
 # PALO FinOps operations 1.2
 
+The experimental [local-learning economics workspace](palo-finops-learning.md) adds a separate three-arm comparison, full-cost accounting and conditional crossover analysis. Open **Local learning** in the module. It does not change provider execution or accounting totals.
+
 This release adds operational workflows to the local FinOps module and a separate Node.js pilot runtime. The browser does not hold provider credentials or send model requests. Role selection changes the starting view; it is not authentication or access control.
 
 ## Using the workspace

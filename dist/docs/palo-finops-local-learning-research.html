@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>PALO FinOps: local learning research and reproducibility | PALO Documentation</title>
+  <meta name="description" content="Public PALO documentation: PALO FinOps: local learning research and reproducibility.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://paloframework.org/docs/palo-finops-local-learning-research.html">
+  <link rel="icon" type="image/webp" href="../assets/logo.webp">
+  <link rel="stylesheet" href="../assets/palo-icons.css">
+  <link rel="stylesheet" href="../assets/palo-v21.css?v=3.1.0">
+  <link rel="stylesheet" href="../assets/palo-docs.css">
+  <script src="../assets/palo-icons.js" defer></script>
+  <script src="../assets/palo-v21.js?v=3.1.0-46dec1ba310fa4e3" defer></script>
+  <script src="../assets/palo-docs.js" defer></script>
+    <meta name="author" content="Fabrizio Degni">
+    <link rel="stylesheet" href="../assets/palo-authorship.css" data-palo-authorship-style="true">
+</head>
+<body class="palo-v21 palo-doc-page" data-doc-source="docs/palo-finops-local-learning-research.md">
+  <a class="palo-skip-link" href="#main-content">Skip to main content</a>
+  <header class="palo-site-header"><div class="palo-shell palo-header-inner">
+    <a class="palo-brand" href="../index.html"><img src="../assets/logo.webp" alt="PALO">PALO FRAMEWORK</a>
+    <button class="palo-menu-toggle" type="button" data-palo-menu-toggle aria-expanded="false" aria-controls="palo-primary-nav" aria-label="Open navigation"><span data-palo-icon="menu" aria-hidden="true"></span></button>
+    <nav class="palo-nav" id="palo-primary-nav" aria-label="Primary navigation"><a href="../designs/theory-to-practice-infographic/">Start</a><a href="../PALO_AIGovernance.html">Agentic Governance</a><a href="../governance-hub/">Governance Hub</a><a href="../index.html#guided-journeys">Tools</a><a href="../PALO_DocumentationLibrary.html" aria-current="page">Documentation</a><a href="../PALO_AIProductionReadiness.html">Readiness</a></nav>
+  </div></header>
+  <main id="main-content" class="palo-doc-main">
+    <div class="palo-shell">
+      <nav class="palo-doc-breadcrumb" aria-label="Breadcrumb"><a href="../PALO_DocumentationLibrary.html">Documentation Library</a><span aria-hidden="true">/</span><span>AI FinOps and local learning</span></nav>
+      <header class="palo-doc-hero"><p class="palo-eyebrow">AI FinOps and local learning | Public documentation</p><h1>PALO FinOps: local learning research and reproducibility</h1><div class="palo-doc-facts"><span><small>Level</small><strong>start</strong></span><span><small>Audience</small><strong>executive | governance | technical</strong></span><span><small>Product</small><strong>PALO FinOps</strong></span><span><small>Status</small><strong>Experimental research extension</strong></span><span><small>Lifecycle</small><strong>Current</strong></span><span><small>Read</small><strong>5 min</strong></span></div><p class="palo-doc-source">Published HTML view | Source: <code>docs/palo-finops-local-learning-research.md</code></p><div class="palo-actions"><button class="palo-btn" type="button" data-doc-copy-link>Copy link</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-share>Share page</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-print>Print</button></div><p class="palo-action-status" data-doc-action-status role="status" aria-live="polite"></p></header>
+      <details class="palo-doc-mobile-toc"><summary>On this page</summary><ol><li class="depth-2"><a href="#what-the-module-adds">What the module adds</a></li><li class="depth-2"><a href="#who-uses-it-and-how">Who uses it and how</a></li><li class="depth-2"><a href="#research-method">Research method</a></li><li class="depth-2"><a href="#paper-extension-and-validation-are-separate">Paper, extension and validation are separate</a></li><li class="depth-2"><a href="#how-to-reproduce">How to reproduce</a></li><li class="depth-2"><a href="#what-remains-to-validate">What remains to validate</a></li><li class="depth-2"><a href="#literature-and-interpretation">Literature and interpretation</a></li></ol></details>
+      <div class="palo-doc-layout"><aside class="palo-doc-sidebar" aria-label="On this page"><strong>On this page</strong><ol><li class="depth-2"><a href="#what-the-module-adds">What the module adds</a></li><li class="depth-2"><a href="#who-uses-it-and-how">Who uses it and how</a></li><li class="depth-2"><a href="#research-method">Research method</a></li><li class="depth-2"><a href="#paper-extension-and-validation-are-separate">Paper, extension and validation are separate</a></li><li class="depth-2"><a href="#how-to-reproduce">How to reproduce</a></li><li class="depth-2"><a href="#what-remains-to-validate">What remains to validate</a></li><li class="depth-2"><a href="#literature-and-interpretation">Literature and interpretation</a></li></ol></aside><article class="palo-doc-content"><h1 id="palo-finops-local-learning-research-and-reproducibility">PALO FinOps: local learning research and reproducibility<a class="palo-doc-anchor" href="#palo-finops-local-learning-research-and-reproducibility" aria-label="Link to PALO FinOps: local learning research and reproducibility">#</a></h1><p>PALO FinOps 1.3 connects AI cost accountability with an experimental question: when could investment in a local model justify its full cost while retaining acceptable quality and latency? This guide explains what is available, who can use it and what the evidence supports. Updated 22 October 2026. Created and maintained by Fabrizio Degni.</p>
+<p><a href="../PALO_FinOps.html#local-learning">Open Local learning</a> | <a href="palo-finops.html#who-uses-the-module">Module and role guide</a> | <a href="palo-finops-learning.html">Detailed method</a> | <a href="../assets/PALO_FinOps_Local_Learning_v1.0.1.zip">Download the reproduction package</a></p>
+<h2 id="what-the-module-adds">What the module adds<a class="palo-doc-anchor" href="#what-the-module-adds" aria-label="Link to What the module adds">#</a></h2><p>The existing FinOps workspace records attempts, reconciles billing, allocates shared costs, preserves period snapshots and supports operational review. Local learning adds a separate offline comparison of three configurations on the same frozen task cohort:</p>
+<div class="palo-doc-table-wrap" tabindex="0" aria-label="Scrollable documentation table"><table>
+<thead>
+<tr>
+<th>Configuration</th>
+<th>Question</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>External-only</td>
+<td>What does the external baseline cost at its observed acceptance and latency?</td>
+</tr>
+<tr>
+<td>Static hybrid</td>
+<td>What can a local and external workflow achieve without new training?</td>
+</tr>
+<tr>
+<td>Distilled hybrid</td>
+<td>Does a trained checkpoint add enough value to justify the intervention and its ongoing costs?</td>
+</tr>
+</tbody></table></div>
+<p>The main research comparison is distilled versus static hybrid. An advantage over external-only does not by itself establish that training is worthwhile. The evaluator keeps unsuccessful and inconclusive comparisons visible.</p>
+<h2 id="who-uses-it-and-how">Who uses it and how<a class="palo-doc-anchor" href="#who-uses-it-and-how" aria-label="Link to Who uses it and how">#</a></h2><div class="palo-doc-table-wrap" tabindex="0" aria-label="Scrollable documentation table"><table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Starting point</th>
+<th>Reviewable output</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>End user or workload owner</td>
+<td>Explain the task and define what an accepted result means. Review examples before importing an experiment.</td>
+<td>Named workload, acceptance rubric and evidence gaps.</td>
+</tr>
+<tr>
+<td>IT leader or platform engineer</td>
+<td>Freeze model and router identities, inspect paired outcomes, latency, capacity and useful life.</td>
+<td>Quality and feasibility checks tied to one configuration and cohort.</td>
+</tr>
+<tr>
+<td>Administrator</td>
+<td>Maintain input versions and evidence references; import, export and replay reports.</td>
+<td>Reproducible files and an auditable handoff. Browser role views do not create access permissions.</td>
+</tr>
+<tr>
+<td>CFO, controller or FinOps lead</td>
+<td>Check complete spending, explicit unknowns, task-level future costs and investment timing.</td>
+<td>Cost per accepted task, accounting reasons and conditional crossover ranges.</td>
+</tr>
+<tr>
+<td>Researcher or assurance reviewer</td>
+<td>Inspect registration, split independence, uncertainty and sensitivity to future assumptions.</td>
+<td>A bounded research claim and a plan for prospective validation.</td>
+</tr>
+</tbody></table></div>
+<p>Start with one of the seven synthetic scenarios. Read the observed experiment before its prospective projection. Inspect accounting gaps, quality and latency gates, then vary the declared future volume and useful life. Export both the experiment and report. A scenario is an invented teaching example, not an observed model benchmark.</p>
+<h2 id="research-method">Research method<a class="palo-doc-anchor" href="#research-method" aria-label="Link to Research method">#</a></h2><p>The experiment fixes task splits, model checkpoints, router identity, acceptance rubric, latency limits and evaluation size before examining results. Accounting covers teacher data, training, evaluation, hardware, energy, human review, operations and local and external inference. Sunk spending, new investment, evaluation expense and future assumptions are separate.</p>
+<p>The evaluator uses simultaneous concentration bounds for its prespecified comparisons, paired acceptance checks, and quality and latency floors. Their interpretation requires the sampling assumptions in the <a href="palo-finops-learning.html">method</a>. A numerical pass does not prove that imported tasks are independent or representative. Future economics remain conditional on supplied rates, acceptance, volume, capacity and useful life.</p>
+<p>Costs are expressed per complete attempted task, including its model calls, retries and fallbacks. Common sources apply in full to each declared standalone alternative, while observed allocations conserve the original amount. Unknown and nonfinal costs remain visible and can block eligibility. A conditional candidate is an outcome for review, not a deployment or spending authorization.</p>
+<h2 id="paper-extension-and-validation-are-separate">Paper, extension and validation are separate<a class="palo-doc-anchor" href="#paper-extension-and-validation-are-separate" aria-label="Link to Paper, extension and validation are separate">#</a></h2><div class="palo-doc-table-wrap" tabindex="0" aria-label="Scrollable documentation table"><table>
+<thead>
+<tr>
+<th>Artifact</th>
+<th>Current scope</th>
+<th>Evidence boundary</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="../assets/PALO_FinOps_Paper_v1.0.pdf">FinOps technical preprint v1.0</a></td>
+<td>Original FinOps model and its original synthetic cases. <a href="../assets/PALO_FinOps_arXiv_source_v1.0.zip">LaTeX source</a> and <a href="../assets/PALO_FinOps_reproducibility_v1.0.zip">original reproduction package</a>.</td>
+<td>This unchanged paper is separate from the Local learning extension. A source package prepared for arXiv is not evidence of an arXiv submission or acceptance.</td>
+</tr>
+<tr>
+<td><a href="palo-finops-learning.html">Local learning method</a></td>
+<td>Experimental three-arm comparison, full-cost accounting and conditional future economics.</td>
+<td>Inputs and frozen plans use contract 1.0.0. Reports use 1.0.1; regenerate older reports.</td>
+</tr>
+<tr>
+<td><a href="../assets/PALO_FinOps_Local_Learning_v1.0.1.zip">Local learning reproduction package 1.0.1</a></td>
+<td>Evaluator, CLI, tests and seven synthetic experiment/report pairs. <a href="../assets/PALO_FinOps_Local_Learning_v1.0.1.zip.sha256">SHA-256</a>.</td>
+<td>Replay checks software consistency. It does not measure deployed model performance or economic benefit.</td>
+</tr>
+<tr>
+<td>Model-assisted source critique</td>
+<td>GLM-5.3 Max and Gemini 4 Argon Alta reviewed the source dossier. GLM also reviewed the corrective patch.</td>
+<td>Argon's corrective-patch follow-up failed with service errors. These reviews are not peer review, and neither model ran the tests.</td>
+</tr>
+</tbody></table></div>
+<p>Source review led to corrections for numerical boundary cases, strict JSON inputs, explicit accounting reasons and reporting contracts. Automated checks exercise implementation behavior and adversarial cases. They do not validate evidence provenance, workload representativeness, real-provider billing or realized savings.</p>
+<h2 id="how-to-reproduce">How to reproduce<a class="palo-doc-anchor" href="#how-to-reproduce" aria-label="Link to How to reproduce">#</a></h2><p>Download and extract the Local learning package. With Node.js 22 or 24 installed, run from the extracted directory:</p>
+<figure class="palo-doc-code"><figcaption>sh code</figcaption><pre tabindex="0"><code class="language-sh">node verify-all.mjs
+node scripts/finops-learning.mjs demo favourable</code></pre></figure><p>To run the test suite as well, install its pinned schema-validation dependencies with <code>npm ci --ignore-scripts</code>, then run <code>npm test</code>. Dependency installation requires access to the npm registry; report replay does not.</p>
+<p>The package has no provider credentials and needs no model endpoint. Its manifest records SHA-256 hashes for included files. The seven replay cases cover a conditional advantage, no payback, quality regression, insufficient evidence, unknown costs, a short useful life and an advantage that disappears as volume increases.</p>
+<h2 id="what-remains-to-validate">What remains to validate<a class="palo-doc-anchor" href="#what-remains-to-validate" aria-label="Link to What remains to validate">#</a></h2><p>A real pilot must register its protocol, establish evidence provenance and data rights, collect representative held-out outcomes, reconcile actual costs and test the assumptions behind projected economics. Training pipelines, adaptive MCP sidecars, checkpoint promotion and production enforcement are future integration work. This release evaluates supplied evidence offline; it does not implement continual distillation or automatically reduce reliance on external models.</p>
+<h2 id="literature-and-interpretation">Literature and interpretation<a class="palo-doc-anchor" href="#literature-and-interpretation" aria-label="Link to Literature and interpretation">#</a></h2><p><a href="https://arxiv.org/abs/2305.02301" target="_blank" rel="noopener noreferrer">Distilling Step-by-Step!</a> reports task-specific improvements from rationale-based distillation. It supports investigating local learning, not assuming its economics generalize to a new workload. <a href="https://arxiv.org/abs/2502.12143" target="_blank" rel="noopener noreferrer">Small Models Struggle to Learn from Strong Reasoners</a> shows that transfer can depend on student capacity and reasoning complexity. Together these motivate measuring both capability and full cost. Neither study validates PALO's implementation or demonstrates savings for its users.</p>
+</article></div>
+      <aside class="palo-doc-next"><div><small>Prerequisite</small><strong>Understand synthetic evidence versus a measured deployment</strong></div><div><small>Recommended next step</small><strong>Choose a role, inspect the method and replay the examples</strong></div></aside>
+      <section class="palo-doc-feedback" aria-labelledby="feedback-title"><p class="palo-eyebrow">Privacy-first feedback</p><h2 id="feedback-title">Help improve this guide</h2><p>Your feedback stays in your browser until you explicitly copy it, download it, or open an email draft. Do not include secrets, personal data, credentials or production identifiers.</p><form data-doc-feedback><div class="palo-form-grid"><div class="palo-field"><label for="feedback-role">Your role</label><select id="feedback-role" name="role"><option>Executive / governance owner</option><option>Platform or security engineer</option><option>No-code / low-code builder</option><option>External reviewer</option></select></div><div class="palo-field"><label for="feedback-category">Category</label><select id="feedback-category" name="category"><option>Clarity</option><option>Technical accuracy</option><option>Missing guidance</option><option>Accessibility</option></select></div><div class="palo-field palo-field-full"><label for="feedback-message">Feedback</label><textarea id="feedback-message" name="message" maxlength="3000" required placeholder="Describe the non-sensitive improvement you recommend."></textarea></div><div class="palo-form-actions"><button class="palo-btn" type="button" data-feedback-copy>Copy feedback</button><button class="palo-btn palo-btn-secondary" type="button" data-feedback-download>Download JSON</button><button class="palo-btn palo-btn-secondary" type="button" data-feedback-email>Email draft</button></div></div><p class="palo-action-status" data-feedback-status role="status" aria-live="polite"></p></form></section>
+    </div>
+  </main>
+  <footer class="palo-footer" data-palo-authorship-container="true">
+<p class="palo-authorship-footer" data-palo-authorship="footer">PALO Framework: conceived, created and maintained by <a href="../PALO_Community.html#creator">Fabrizio Degni</a>.</p>
+<div class="palo-shell"><p>PALO public documentation. Developer preview boundaries apply.</p><div class="palo-footer-links"><a href="../PALO_AIGovernance.html">PALO-AI</a><a href="../governance-hub/">Governance Hub</a><a href="../PALO_AgenticCapabilityMatrix.html">Capability Matrix</a><a href="../PALO_AIProductionReadiness.html">Production Readiness</a><a href="../privacy-policy.html">Privacy</a></div></div></footer>
+</body></html>

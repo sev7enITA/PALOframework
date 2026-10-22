@@ -1,8 +1,10 @@
 # PALO AI FinOps
 
-Module version 1.2.0, 21 October 2026. Created and maintained by Fabrizio Degni. The operational workspace format remains 1.0.0; billing uses a separate 1.0.0 interchange contract.
+Module version 1.3.0, 22 October 2026. Created and maintained by Fabrizio Degni. The operational workspace format remains 1.0.0; billing uses a separate 1.0.0 interchange contract.
 
 [Open AI FinOps](../PALO_FinOps.html) to allocate AI spending, reserve budget for model attempts, reconcile unknown costs and assess route transitions. This is an experimental local module within PALO. The browser works without a provider account and does not send model requests, verify invoices or grant execution authority. Version 1.2 adds an Operations area and separate opt-in Node.js pilot tools. See the [Operations and runtime guide](palo-finops-operations.md) for roles, exceptions, business metrics, CFO packs, rule comparison, forecast, read-only billing capture, isolated MCP, routing benchmarks and the controlled gateway.
+
+Version 1.3 adds the separate [Local learning research workspace](palo-finops-learning.md), comparing external-only, static hybrid and distilled hybrid configurations. It evaluates declared experiments and conditional economics with seven synthetic scenarios. It does not run training or establish measured savings.
 
 ## Start with a workspace
 
@@ -146,3 +148,16 @@ Useful contributions are provider counter adapters, reproducible paired routing 
 ## Research paper
 
 The [PALO FinOps technical preprint](../assets/PALO_FinOps_Paper_v1.0.pdf) formalizes the accounting and evidence model. [LaTeX sources](../assets/PALO_FinOps_arXiv_source_v1.0.zip) and a [self-contained synthetic reproduction package](../assets/PALO_FinOps_reproducibility_v1.0.zip) accompany it. The manuscript has not been submitted to arXiv or peer reviewed; local tests do not establish provider billing accuracy or measured production savings.
+
+## Who uses the module
+
+| Role | Route | What to inspect |
+| --- | --- | --- |
+| End user / workload owner | Overview, Attempts ledger and Operations | Scope, accepted outcomes, retry evidence and exceptions. |
+| IT leader / platform engineer | Route assessment and [Local learning](../PALO_FinOps.html#local-learning) | Frozen configurations, quality, latency, capacity and useful life. |
+| Administrator | Setup, JSON import/export and Operations | Versioned inputs, local drafts, evidence references and repeatable handoff. |
+| CFO / controller / FinOps lead | Billing & showback, Operations and Local learning | Cost completeness, allocation, period snapshots, investment and conditional crossover. |
+
+Role entry views guide navigation; they are not authentication or role-based access control. Browser drafts remain on the current device unless exported. Local-learning experiments use separate storage and are not added to the billing ledger. Review synthetic examples before importing organizational records.
+
+[Read the Local learning research overview](palo-finops-local-learning-research.md) for the difference between the original FinOps preprint, the new experimental method and the validation still needed. [Download the standalone Local learning reproduction package](../assets/PALO_FinOps_Local_Learning_v1.0.1.zip) to replay its seven synthetic examples.

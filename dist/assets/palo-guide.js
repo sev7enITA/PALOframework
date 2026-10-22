@@ -248,6 +248,7 @@
         var links = [];
         var llmApplicable = input.systemType === "generative" || input.systemType === "agentic";
         if (llmApplicable) {
+            links.push({ href: "PALO_FinOps.html", label: "Review AI costs and local-learning economics" });
             links.push({ href: "PALO_AssessmentPath.html", label: "Build the Evidence Pack" });
             links.push({ href: "PALO_OWASPGenAI2026.html", label: "Scope OWASP GenAI 2026" });
         }

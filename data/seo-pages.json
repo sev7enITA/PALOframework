@@ -1,0 +1,1088 @@
+{
+  "origin": "https://paloframework.org",
+  "pages": {
+    "CHANGELOG.html": {
+      "title": "Changelog | PALO Documentation",
+      "description": "Track PALO releases, governance tools, evidence contracts and documented changes, with a clear distinction between released features and preview work.",
+      "lang": "en",
+      "dateModified": "2026-10-12",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "CONTRIBUTING.html": {
+      "title": "Contributing to PALO Framework | PALO Documentation",
+      "description": "Contribute to PALO methodology, code and documentation. Follow the review, semantic-versioning and validation workflow for traceable changes.",
+      "lang": "en",
+      "dateModified": "2026-10-12",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "PALO_AIGovernance.html": {
+      "title": "AI Agent Governance for n8n and MCP | PALO-AI",
+      "description": "Explore policy gates, human approval, governed execution and outcome evidence for AI agents with the PALO-AI developer preview.",
+      "lang": "en",
+      "dateModified": "2026-09-25",
+      "image": "assets/seo/palo-agentic-governance.png",
+      "breadcrumbLabel": "PALO-AI governance"
+    },
+    "PALO_AIIncidentObservatory.html": {
+      "title": "Case 001: OpenAI / Hugging Face Incident Through PALO | PALO AI Incident Observatory",
+      "description": "A source-bounded technical counterfactual: how a production-hardened PALO architecture would mediate the July 2026 OpenAI / Hugging Face agentic incident.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "image": "media/social/hugging-face-incident-palo/releases/v3.1.0-r2/landscape.png"
+    },
+    "PALO_AIProductionReadiness.html": {
+      "title": "PALO-AI Production Readiness",
+      "description": "Nine independently testable gates and cautious planning ranges from the PALO-AI developer preview to production candidates.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "PALO_AIQuickstarts.html": {
+      "title": "PALO-AI Quickstarts | Code, n8n and Copilot Studio",
+      "description": "Evidence-disciplined PALO-AI v2.7 quickstarts for code-first developers, data-assurance integrations, n8n builders and MCP prototypers.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "PALO_AIWhy.html": {
+      "title": "Why PALO-AI | Full-Cycle Agentic Assurance",
+      "description": "Why agentic systems need explicit authority, governed data disclosure and post-execution outcome verification - and what PALO-AI v2.7 currently proves.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "PALO_AgenticCapabilityMatrix.html": {
+      "title": "PALO-AI v2.7 Capability Matrix",
+      "description": "Evidence-based implementation status and remaining production gates for PALO-AI v2.7.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "PALO_AgenticGovernance.html": {
+      "title": "Agentic AI Governance and Delegated Authority | PALO-AM",
+      "description": "Govern AI agent identity, delegated authority, autonomy, oversight and reversibility with PALO-AM, the agentic governance modality of PALO Framework.",
+      "lang": "en",
+      "dateModified": "2026-10-12",
+      "image": "assets/seo/palo-agentic-governance.png",
+      "breadcrumbLabel": "Agentic governance"
+    },
+    "PALO_AssessmentPath.html": {
+      "title": "AI Governance Assessment and Evidence Pack | PALO",
+      "description": "Follow a guided PALO assessment from risk screening and fundamental-rights impacts to controls, indicators and a locally exported evidence bundle.",
+      "lang": "en",
+      "dateModified": "2026-09-25",
+      "image": "assets/seo/palo-governance.png",
+      "breadcrumbLabel": "AI governance assessment",
+      "application": {
+        "name": "PALO AI Governance Assessment Path",
+        "features": [
+          "Guided AI use-case assessment",
+          "Risk, impact, control and indicator routing",
+          "Local evidence dossier export"
+        ]
+      }
+    },
+    "PALO_AuditBench.html": {
+      "title": "AuditBench Explorer | PALO Framework",
+      "description": "Interactive deep-dive into AuditBench: 14 hidden AI behaviors, auditing techniques, and PALO-aligned mitigation strategies for responsible AI governance.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "PALO_Community.html": {
+      "title": "Fabrizio Degni and the PALO Framework Community",
+      "description": "Meet Fabrizio Degni, creator and maintainer of PALO Framework, and explore open contribution, research and evidence-based AI governance collaboration.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "PALO_CompanionApp.html": {
+      "title": "P.A.L.O. Framework Toolbox | Mobile AI Governance",
+      "description": "P.A.L.O. Framework Toolbox for Android, iPhone, and iPad: offline, privacy-first AI governance pre-screening for EU AI Act, ISO 42001, and NIST AI RMF workflows.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "PALO_ComparisonTool.html": {
+      "title": "Compare AI Governance Assessments | PALO Framework",
+      "description": "Compare exported PALO assessments, inspect governance gaps and prioritize follow-up actions using browser-local analysis.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "PALO_DocumentationHub.html": {
+      "title": "Documentation has moved | PALO Framework",
+      "description": "Continue to the guided PALO start, the searchable Documentation Library, or the Agentic Governance journey.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "canonical": "https://paloframework.org/PALO_DocumentationLibrary.html",
+      "noindex": true,
+      "image": "assets/seo/palo-governance.png"
+    },
+    "PALO_DocumentationLibrary.html": {
+      "title": "AI Governance Guides and Templates | PALO Documentation",
+      "description": "Find PALO guides, worked cases, governance templates, semantic contracts and integration examples by role, task and evidence status.",
+      "lang": "en",
+      "dateModified": "2026-10-12",
+      "image": "assets/seo/palo-governance.png",
+      "breadcrumbLabel": "Documentation Library"
+    },
+    "PALO_EUAgenticGovernance.html": {
+      "title": "\n   European Agentic Governance Proposal | PALO Framework\n  ",
+      "description": "PALO's open proposal for delegated-action governance: AI Act and Digital Omnibus crosswalk, technical controls, institutional pathway and operational review tools.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "image": "assets/seo/palo-agentic-governance.png"
+    },
+    "PALO_FRIA.html": {
+      "title": "Fundamental Rights Impact Assessment Tool | PALO FRIA",
+      "description": "Prepare a fundamental-rights impact assessment with guided questions, scenarios and a reviewable record. PALO supports Article 27 readiness and voluntary review.",
+      "lang": "en",
+      "dateModified": "2026-09-25",
+      "image": "assets/seo/palo-fria.png",
+      "breadcrumbLabel": "Fundamental rights impact assessment",
+      "application": {
+        "name": "PALO Fundamental Rights Impact Assessment",
+        "features": [
+          "Guided fundamental-rights impact assessment",
+          "Impact scenarios, mitigations and review decisions",
+          "JSON import and export; Markdown report"
+        ]
+      }
+    },
+    "PALO_Guide.html": {
+      "title": "AI Governance Lifecycle Guide | PALO Framework",
+      "description": "Find a practical AI governance route for your role and use case, from risk classification and impact assessment to controls, indicators and evidence.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "PALO_HumanAgencyRiskMap.html": {
+      "title": "Human Agency Risk Map | PALO Framework",
+      "description": "Observatory tracking 18 activities humans are delegating to AI in 2026, with PALO mitigation strategies and psychological impact analysis.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "alternates": {
+        "en": "https://paloframework.org/PALO_HumanAgencyRiskMap.html",
+        "it": "https://paloframework.org/PALO_HumanAgencyRiskMap_IT.html"
+      },
+      "image": "assets/seo/palo-governance.png"
+    },
+    "PALO_HumanAgencyRiskMap_IT.html": {
+      "title": "Mappa dei Rischi per l'Autonomia Umana | PALO Framework",
+      "description": "Osservatorio sulle 18 attivit\u00e0 che gli umani stanno delegando all'AI nel 2026, con strategie di mitigazione PALO e analisi dell'impatto psicologico.",
+      "lang": "it",
+      "dateModified": "2026-09-23",
+      "alternates": {
+        "en": "https://paloframework.org/PALO_HumanAgencyRiskMap.html",
+        "it": "https://paloframework.org/PALO_HumanAgencyRiskMap_IT.html"
+      },
+      "image": "assets/seo/palo-governance.png"
+    },
+    "PALO_KPIGenerator.html": {
+      "title": "AI Governance KPI and KRI Generator | PALO Framework",
+      "description": "Choose practical AI governance indicators for fairness, performance and oversight. Build a KPI/KRI register with metrics to review in your own context.",
+      "lang": "en",
+      "dateModified": "2026-09-25",
+      "image": "assets/seo/palo-governance-indicators.png",
+      "breadcrumbLabel": "AI governance indicators",
+      "application": {
+        "name": "PALO AI Governance KPI and KRI Generator",
+        "features": [
+          "Indicator selection by model type, objective and sector",
+          "Technical, business and ethical indicators",
+          "CSV and Markdown export"
+        ]
+      }
+    },
+    "PALO_ModelCanvasAI.html": {
+      "title": "PALO AI Business Model Canvas",
+      "description": "Plan AI use cases with the PALO Business Model Canvas, governance prompts, evidence fields, and exportable outputs.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "PALO_OWASPGenAI2026.html": {
+      "title": "OWASP GenAI / LLM Top 10 2026 x PALO",
+      "description": "Map OWASP LLM and GenAI risks to PALO controls, evidence and test prompts, with pinned source references and explicit limits on assurance claims.",
+      "lang": "en",
+      "dateModified": "2026-09-25",
+      "image": "assets/seo/palo-governance.png",
+      "breadcrumbLabel": "OWASP GenAI crosswalk"
+    },
+    "PALO_Observatories.html": {
+      "title": "Observatories | PALO Framework",
+      "description": "PALO Observatory index for evidence-grade AI incident cases, regulatory monitoring, technology trends and human agency research.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "PALO_PlatformMap.html": {
+      "title": "Platform Map | PALO Framework",
+      "description": "Operational atlas of PALO v3.1 and the independently versioned PALO-AI v2.7 developer preview, with lifecycle routes, public artifacts, release evidence and authority boundaries.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "PALO_PoisoningStudy.html": {
+      "title": "The Poisoning Boomerang - PALO Framework Module",
+      "description": "A comprehensive PALO Framework study on web data poisoning tools, detection strategies, and their implications for AI governance. By Fabrizio Degni, Chief AI Officer.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "PALO_Recognition.html": {
+      "title": "PALO Research, Publications and Citations | Fabrizio Degni",
+      "description": "Explore PALO research by Fabrizio Degni, its doctoral-thesis context, publications and public references, with traceable sources and a preferred citation.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "PALO_RegulatoryWatch.html": {
+      "title": "Regulatory Watch 2026 | PALO Framework",
+      "description": "PALO Regulatory Watch 2026: a dated view of AI Act literacy, transparency, GPAI, and high-risk implementation milestones with official sources.",
+      "lang": "en",
+      "dateModified": "2026-10-12",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "PALO_RiskTiering.html": {
+      "title": "EU AI Act Risk Screening Tool | PALO Framework",
+      "description": "Explore an initial EU AI Act risk route for your AI use case. Record assumptions, open questions and the evidence needed for accountable review.",
+      "lang": "en",
+      "dateModified": "2026-09-25",
+      "image": "assets/seo/palo-risk-screening.png",
+      "breadcrumbLabel": "AI risk screening",
+      "application": {
+        "name": "PALO AI Risk Tiering Calculator",
+        "features": [
+          "Preliminary AI risk screening",
+          "Guided sector, function and autonomy questions",
+          "Screening report export with limitations"
+        ]
+      }
+    },
+    "PALO_TechTrends2026.html": {
+      "title": "2026 Tech Trends Observatory | PALO Framework",
+      "description": "Analysis of 2026 technology trend predictions from McKinsey, BCG, Accenture, PwC, EY, KPMG, and Gartner with PALO governance impact assessments.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "PALO_VerificationNote.html": {
+      "title": "PALO Release Verification Record | PALO Framework",
+      "description": "Source revision, automated checks, published artifact checksums and current maturity limits for the PALO 3.1 and PALO-AI 2.7 baseline dated 25 August 2026.",
+      "lang": "en",
+      "dateModified": "2026-10-12",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "PALO_VibeCoding.html": {
+      "title": "AI-Assisted Development Governance | PALO Vibe Coding Playbook",
+      "description": "Assess AI-assisted development with the PALO Vibe Coding Playbook: define authority, protect data, review generated code and retain evidence for accountable releases.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "SECURITY.html": {
+      "title": "Security Policy | PALO Documentation",
+      "description": "Read PALO's supported versions, vulnerability-reporting process and security boundaries for the website, assessment tools and developer-preview runtime.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "accessibility.html": {
+      "title": "Accessibility Statement | PALO Framework",
+      "description": "PALO Framework accessibility statement, current limitations, and ongoing review against WCAG 2.1 Level AA and EN 301549.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "designs/theory-to-practice-infographic/index.html": {
+      "title": "Find your PALO path | Operationalization Explorer",
+      "description": "Find a practical PALO governance path by role and objective, including a dedicated route for governing agent actions.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "designs/theory-to-practice-infographic/narrative.html": {
+      "title": "From Theory to Operationalization | PALO Framework",
+      "description": "PALO Framework operating model: from responsible AI principles to evidence and continuous review.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "designs/theory-to-practice-infographic/workflow.html": {
+      "title": "PALO Operationalization Map | Weighted Workflow",
+      "description": "PALO Framework weighted workflow: entities, relationships, modules, and evidence flow.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "docs/activation-freeze-2026-08.html": {
+      "title": "PALO activation freeze | PALO Documentation",
+      "description": "Archived PALO Evidence Pack activation plan for August and September 2026. Scheduled activities are historical plans, not evidence of completion.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "noindex": true,
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "docs/community/activation-window-2026-08.html": {
+      "title": "Allowed is not verified: five-day activation window | PALO Documentation",
+      "description": "Archived five-day PALO outreach plan with reviewer tasks and publication channels. This historical schedule does not record completed outreach.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "noindex": true,
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "docs/community/changed-because-of-feedback.html": {
+      "title": "Changed because of feedback | PALO Documentation",
+      "description": "Follow the public PALO feedback log: findings, evidence, accepted or deferred decisions, contributor credit and resulting changes.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "docs/community/channel-policy.html": {
+      "title": "PALO community channel policy | PALO Documentation",
+      "description": "Choose the right PALO community channel for questions, reproducible issues, reviewer feedback and security reports.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "docs/community/founding-review-program.html": {
+      "title": "PALO founding review program | PALO Documentation",
+      "description": "Review the PALO Evidence Pack through five specialist communities, with explicit acceptance, scoped tasks and evidence-based feedback.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "docs/community/n8n-architecture-preview-post.html": {
+      "title": "n8n Community Discussion Draft | PALO Documentation",
+      "description": "Historical PALO-AI v2.5 discussion draft for n8n. Follow the linked current playbook for developer-preview scope and publication status.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "noindex": true,
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "docs/community/palo-ai-feedback-design-partner-form.html": {
+      "title": "PALO-AI developer-preview feedback and design-partner intake | PALO Documentation",
+      "description": "Share structured feedback on the PALO-AI developer preview using a safe intake for evaluation scenarios, observed issues and design-partner learning.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "docs/community/palo-microsoft-agt-interoperability-proposal.html": {
+      "title": "Microsoft Agent Governance Toolkit: Integration Proposal | PALO",
+      "description": "Inspect PALO's vendor-neutral outcome-assurance proposal for Microsoft Agent Governance Toolkit, including mappings and evaluation boundaries.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "docs/eu-agentic-governance-proposal.html": {
+      "title": "Governing delegated AI action in Europe | PALO Documentation",
+      "description": "Read PALO's European delegated-action governance proposal: accountable mandates, bounded agent actions, verifiable effects and an institutional pathway.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "docs/eu-agentic-pilot-protocol.html": {
+      "title": "Delegated-action governance pilot protocol | PALO Documentation",
+      "description": "Plan an evaluation of delegated-action governance with PALO: comparison conditions, evidence, operator workload and explicit pilot acceptance criteria.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "docs/eu-agentic-technical-profile.html": {
+      "title": "European delegated-action governance profile | PALO Documentation",
+      "description": "Inspect twelve proposed controls for delegated AI action, including authority, oversight, reversibility and evidence. A discussion profile, not an EU standard.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "docs/owasp-genai-llm-top-10-2026-security-crosswalk.html": {
+      "title": "OWASP GenAI / LLM Top 10 2026: PALO Security Crosswalk and Governance | PALO Documentation",
+      "description": "Map a version-pinned OWASP-labelled risk artifact to PALO controls and evidence, preserving source provenance and the distinction from official OWASP releases.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "docs/p1-case-file-and-migration.html": {
+      "title": "PALO case file and evidence bundle v1 | PALO Documentation",
+      "description": "Understand PALO Case File and Evidence Bundle contracts, browser-local persistence, exports and compatibility with the additive v3 semantic foundation.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "docs/p2-adoption-integration-index.html": {
+      "title": "P2 adoption and integration index | PALO Documentation",
+      "description": "Find PALO adoption artifacts, governance templates, connector patterns and module contracts, with links to their schemas and educational boundaries.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "canonical": "https://paloframework.org/docs/p2-adoption-integration-index.html",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "docs/p2-connector-patterns.html": {
+      "title": "Vendor-neutral connector patterns | PALO Documentation",
+      "description": "Explore vendor-neutral patterns for deliberately exporting PALO evidence across organizational boundaries without silently transmitting assessment data.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "docs/p2-dependency-inventory.html": {
+      "title": "Dependency and license inventory | PALO Documentation",
+      "description": "Inspect the dated inventory of PALO web and validation dependencies, their versions, purposes and declared licenses.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "docs/p2-module-contracts.html": {
+      "title": "P2 module contracts | PALO Documentation",
+      "description": "Use PALO's browser-local module events and artifact envelopes to connect governance tools while preserving provenance and interoperability boundaries.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "docs/p2-publication-hygiene.html": {
+      "title": "P2 publication hygiene | PALO Documentation",
+      "description": "Understand how PALO builds its public website from an explicit file allowlist and keeps private assessment data and credentials outside publication.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "docs/palo-ai-adoption-paths.html": {
+      "title": "PALO-AI Adoption Paths | PALO Documentation",
+      "description": "Choose a PALO-AI evaluation path for governance teams, engineers or no-code builders, with prerequisites, expected artifacts and developer-preview limits.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "docs/palo-ai-ans-integration.html": {
+      "title": "PALO-AI and ANS: verified identity, governed actions | PALO Documentation",
+      "description": "Explore the experimental PALO-AI bridge to Agent Name Service: verified identity, separate enterprise delegation and outcome checks in an offline demo.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "docs/palo-ai-cloud-reference-architecture.html": {
+      "title": "PALO-AI Cloud Reference Architecture | PALO Documentation",
+      "description": "Plan an isolated PALO-AI evaluation deployment with documented network, identity and service boundaries, without treating the preview as production-ready.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "docs/palo-ai-community-and-market-entry.html": {
+      "title": "PALO-AI Community and Market-Entry Plan | PALO Documentation",
+      "description": "Archived PALO-AI v2.5 communication plan. Use the linked current adoption and publication guidance for the v2.7 developer preview.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "noindex": true,
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "docs/palo-ai-full-cycle-assurance.html": {
+      "title": "PALO-AI v2.7 - Full-Cycle and Data-Assurance Guide | PALO Documentation",
+      "description": "Follow PALO-AI's action and data-assurance lifecycle from authorization to verified outcomes, signed evidence and incident review, within preview boundaries.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "docs/palo-ai-governance-hub-github-copy.html": {
+      "title": "PALO-AI Governance Hub - GitHub copy draft | PALO Documentation",
+      "description": "Superseded PALO-AI repository copy retained for traceability, with links to current Governance Hub status, adoption guidance and release boundaries.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "noindex": true,
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "docs/palo-ai-governance-hub-launch-plan.html": {
+      "title": "PALO-AI Governance Hub - status, gaps and staged launch plan | PALO Documentation",
+      "description": "Archived Governance Hub launch planning, preserved with links to current product status and the remaining production-readiness requirements.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "noindex": true,
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "docs/palo-ai-governance-hub-product-spec.html": {
+      "title": "PALO-AI Governance Hub - Product Specification | PALO Documentation",
+      "description": "Inspect the PALO-AI Governance Hub product specification: role-based workflows, evidence objects, control boundaries and delivery requirements.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "docs/palo-ai-governance-hub-status.html": {
+      "title": "PALO-AI Governance Hub - Delivery Status | PALO Documentation",
+      "description": "Review dated Governance Hub delivery evidence, implementation limits and remaining qualification work for the PALO-AI developer preview.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "docs/palo-ai-governance-hub-user-guide.html": {
+      "title": "PALO-AI Governance Hub - User and Interaction Guide | PALO Documentation",
+      "description": "Learn the PALO-AI Governance Hub's executive and technical workflows, local evidence views, configuration steps and preview limitations.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "docs/palo-ai-governance-hub-workflows.html": {
+      "title": "PALO-AI Governance Hub - Workflow and Diagram Specification | PALO Documentation",
+      "description": "Explore Governance Hub workflow specifications for setup, approvals, outcome verification, incident handling and role-specific evidence review.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "docs/palo-ai-governance-integration-guide.html": {
+      "title": "PALO-AI Governance Integration Guide | PALO Documentation",
+      "description": "Connect PALO-AI governance contracts to agent workflows through REST, MCP and n8n, with isolated evaluation examples and explicit trust boundaries.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "docs/palo-ai-n8n-alpha-test-report.html": {
+      "title": "PALO-AI n8n Alpha Test Report | PALO Documentation",
+      "description": "Read the historical July 2026 alpha evaluation of n8n-nodes-palo-ai, including its package version, test scope and limitations.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "noindex": true,
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "docs/palo-ai-n8n-governance-control-plane.html": {
+      "title": "n8n AI Agent Governance: Control Plane Guide | PALO",
+      "description": "Explore four PALO-AI integration patterns for n8n: policy gates, governed execution, human approval and workflow admission in a developer preview.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "docs/palo-ai-n8n-launch-playbook.html": {
+      "title": "PALO-AI for n8n - Presentation and Launch Playbook | PALO Documentation",
+      "description": "Prepare an accurate PALO-AI for n8n demonstration using audience-specific explanations, evaluation routes and developer-preview publication boundaries.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "docs/palo-ai-n8n-publication-status.html": {
+      "title": "PALO-AI n8n architecture preview - publication status | PALO Documentation",
+      "description": "Check the dated PALO-AI n8n architecture-preview publication record and distinguish repository assets from npm or n8n marketplace availability.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "docs/palo-ai-production-readiness-plan.html": {
+      "title": "PALO-AI production-readiness plan | PALO Documentation",
+      "description": "Review PALO-AI's production-readiness gates, required external controls, evidence expectations and remaining qualification work.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "docs/palo-ai-security-assurance-and-scale.html": {
+      "title": "PALO-AI Security Assurance and Scale Plan | PALO Documentation",
+      "description": "Assess PALO-AI's security and scaling plan across identity, tenancy, persistence, keys, connectors, resilience and independent assurance.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "docs/palo-ai-state-of-the-art-radar-2026-08.html": {
+      "title": "PALO-AI State-of-the-Art Radar - agosto 2026 | PALO Documentation",
+      "description": "Esamina il radar PALO-AI di agosto 2026: confronti tecnici, fonti, evidenze e limiti, distinguendo la baseline pubblicata dagli esperimenti successivi.",
+      "lang": "it",
+      "dateModified": "2026-09-23",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "docs/palo-ai-vps-deployment.html": {
+      "title": "PALO-AI Online VPS Deployment | PALO Documentation",
+      "description": "Review PALO-AI's VPS evaluation topology, service boundaries, deployment checks and the distinction between HTTPS exposure and production qualification.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "docs/palo-data-assurance-control-plane.html": {
+      "title": "PALO Data Assurance Control Plane | PALO Documentation",
+      "description": "Understand PALO data assurance: purpose-bound fitness decisions, disclosure contracts, signed receipts and invalidation when context changes.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "docs/palo-external-agentic-evidence.html": {
+      "title": "PALO external agentic evidence | PALO Documentation",
+      "description": "Turn external agentic observations into reviewable PALO prompts while preserving provenance, provider boundaries and accountable human decisions.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "docs/palo-guide-agent-and-mcp.html": {
+      "title": "PALO Guide Agent and MCP Integration | PALO Documentation",
+      "description": "Explore PALO's Guide Agent and MCP knowledge contract for source-linked answers, governance routes and product-integration planning.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "docs/palo-knowledge-copilot-integrations.html": {
+      "title": "PALO Knowledge Copilot: integrazioni MCP Reader e Curator | PALO Documentation",
+      "description": "Collega PALO Knowledge Copilot agli host MCP con profili Reader e Curator distinti, trasporti, autenticazione e limiti di qualifica verificabili.",
+      "lang": "it",
+      "dateModified": "2026-09-23",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "docs/palo-knowledge-reader-production.html": {
+      "title": "PALO Knowledge Reader: production profile | PALO Documentation",
+      "description": "Review the narrow PALO Knowledge Reader production-candidate profile, including canonical-only answers, OIDC admission and deployment qualification.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "docs/palo-mcp-host-qualification.html": {
+      "title": "PALO MCP Host Qualification | PALO Documentation",
+      "description": "Qualifica un host MCP per PALO distinguendo conformit\u00e0 del protocollo, configurazione, prove nel tenant e accettazione effettiva della connessione.",
+      "lang": "it",
+      "dateModified": "2026-09-23",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "docs/palo-microsoft-startup-student-credits.html": {
+      "title": "Microsoft funding routes for PALO | PALO Documentation",
+      "description": "Review dated Microsoft funding and student-entitlement routes relevant to PALO, distinguishing program eligibility from approved benefits.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "docs/palo-policy-impact-runtime.html": {
+      "title": "PALO policy impact runtime | PALO Documentation",
+      "description": "Explore PALO's local policy-impact runtime for tracing provider changes through system dependencies, review decisions and governance evidence.",
+      "lang": "en-us",
+      "dateModified": "2026-09-23",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "docs/palo-policywatcher-signal-operations.html": {
+      "title": "PALO and PolicyWatcher signal operations | PALO Documentation",
+      "description": "Inspect the optional PolicyWatcher signal workflow: public evidence intake, snapshot validation, provenance and accountable PALO review.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "docs/palo-repository-reading-guide.html": {
+      "title": "How to Read and Use the PALO Repository | PALO Documentation",
+      "description": "Navigate the PALO repository by role and task: methodology, tools, semantic contracts, worked cases, integration examples and validation evidence.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "docs/palo-stack-policywatcher-graph.html": {
+      "title": "PALO stack and PolicyWatcher impact graph | PALO Documentation",
+      "description": "Trace a PolicyWatcher signal through PALO's typed dependency graph to affected systems, controls and decisions in an illustrative local example.",
+      "lang": "en-us",
+      "dateModified": "2026-09-23",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "docs/palo-status-2026-09-17.html": {
+      "title": "PALO: evidence and maturity at 17 September 2026 | PALO Documentation",
+      "description": "Read the 17 September 2026 PALO assessment separating the published baseline, experimental ANS bridge and unreleased swarm evidence.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "docs/palo-swarm-distributed-execution.html": {
+      "title": "PALO swarm execution across processes | PALO Documentation",
+      "description": "Inspect an unreleased PALO swarm snapshot with remote workers, shared exposure, leases and cancellation evidence under one central authority.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "docs/palo-swarm-governance-local-prototype.html": {
+      "title": "PALO swarm governance: local prototype | PALO Documentation",
+      "description": "Explore the unreleased local PALO swarm prototype: mandates, authority boundaries, membership, budgets and explicit production limitations.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "docs/palo-v3-semantic-foundation.html": {
+      "title": "PALO v3.1.0 Semantic Foundation | PALO Documentation",
+      "description": "Understand PALO's versioned governance vocabulary, six-phase lifecycle, decision gates, evidence objects and additive v3.1 control packs.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "docs/palo-v3.1-governance-control-plane.html": {
+      "title": "PALO v3.1 Governance Control Plane | PALO Documentation",
+      "description": "Explore PALO v3.1 governance control packs, applicability, controls, indicators and evidence contracts for accountable AI lifecycle decisions.",
+      "lang": "en",
+      "dateModified": "2026-10-12",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "docs/platform-evolution-analysis.html": {
+      "title": "PALO platform evolution analysis | PALO Documentation",
+      "description": "Read the dated PALO platform evolution analysis covering deterministic publication, validation tooling and adoption foundations.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "docs/production-release-commit-checklist.html": {
+      "title": "Production release commit checklist | PALO Documentation",
+      "description": "Follow the PALO maintainer checklist for reviewing source changes, validating publication artifacts and preserving release and privacy boundaries.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "docs/site/palo-ai-governance-hub-page-copy.html": {
+      "title": "PALO-AI Governance Hub - website copy draft | PALO Documentation",
+      "description": "Superseded Governance Hub website copy retained as an archive, with links to the current user guide and product-status boundaries.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "noindex": true,
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "evidence-pack/README.html": {
+      "title": "PALO Evidence Pack | PALO Documentation",
+      "description": "Start a local-first PALO worked case and export a reviewable AI governance dossier with context, risk routing, evidence gaps and next actions.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "examples/agentic-interface/README.html": {
+      "title": "PALO Agentic Interface (PALO-AI) - Full-Cycle Developer Preview | PALO Documentation",
+      "description": "Explore PALO-AI's developer-preview contracts and reference runtime for agent authority, data fitness, disclosures and verifiable outcomes.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "examples/agentic-interface/integrations/actian/README.html": {
+      "title": "Actian Context Bridge profile | PALO Documentation",
+      "description": "Inspect the Actian Context Bridge normalization profile for PALO-AI data assurance, including input mapping and developer-preview boundaries.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "examples/agentic-interface/knowledge-copilot/README.html": {
+      "title": "PALO Knowledge Copilot client examples | PALO Documentation",
+      "description": "Configura PALO Knowledge Copilot con esempi Reader e Curator, endpoint MCP, cataloghi degli strumenti e worksheet di verifica per gli host.",
+      "lang": "it",
+      "dateModified": "2026-09-23",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "examples/hands-on-demo/README.html": {
+      "title": "PALO-AI v2.7 compatibility demo - permission is not correctness | PALO Documentation",
+      "description": "Run the PALO-AI compatibility demonstration to compare direct agent actions with governed execution and outcome evidence using isolated examples.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "examples/policy-as-code/README.html": {
+      "title": "PALO policy as code - Developer Preview | PALO Documentation",
+      "description": "Inspect PALO-AI's Rego reference policy for identity, tools, scopes, delegation and action claims, with explicit developer-preview limitations.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "governance-hub/index.html": {
+      "title": "AI Agent Governance Builder | PALO-AI Governance Hub",
+      "description": "Configure agent authority, review policy decisions and inspect outcome evidence in PALO-AI Governance Hub, an illustrative local workspace.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "index.html": {
+      "title": "PALO Framework | Open-Source AI Governance Toolkit",
+      "description": "Assess AI risks, document fundamental-rights impacts and build reviewable evidence with PALO's open-source governance toolkit by Fabrizio Degni.",
+      "lang": "en",
+      "dateModified": "2026-09-25",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "media/README.html": {
+      "title": "PALO-AI n8n architecture-preview media | PALO Documentation",
+      "description": "Find the PALO-AI n8n architecture-preview video, narration, captions and supporting script with a clear evaluation boundary.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "media/palo-ai-n8n-demo-script.html": {
+      "title": "PALO-AI for n8n - Three-Minute Architecture Preview Demo | PALO Documentation",
+      "description": "Follow the three-minute PALO-AI for n8n demonstration script, including scene objectives, narration and developer-preview status language.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "packages/n8n-nodes-palo-ai/README.html": {
+      "title": "n8n-nodes-palo-ai | PALO Documentation",
+      "description": "Evaluate PALO-AI decision gates and full-cycle outcome assurance in n8n, with operator-provisioned executors and explicit non-production boundaries.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "packages/palo-mcp-server/README.html": {
+      "title": "PALO MCP services | PALO Documentation",
+      "description": "Distinguish PALO's canonical-only Knowledge Reader from its operational developer-preview MCP server, including setup and trust boundaries.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "palo_companion_app_page.html": {
+      "title": "P.A.L.O. Framework Toolbox App - Governance in Your Pocket",
+      "description": "Legacy page for the P.A.L.O. Framework Toolbox. Visit the current Android and iOS companion app overview.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "canonical": "https://paloframework.org/PALO_CompanionApp.html",
+      "noindex": true,
+      "image": "assets/seo/palo-governance.png"
+    },
+    "poisoning-study/index.html": {
+      "title": "AI Model Poisoning: Research and Evidence | PALO",
+      "description": "A comprehensive study on web data poisoning tools, detection strategies, and their implications for AI governance. By Fabrizio Degni, Chief AI Officer.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "canonical": "https://paloframework.org/PALO_PoisoningStudy.html",
+      "noindex": true,
+      "image": "assets/seo/palo-governance.png"
+    },
+    "privacy-policy.html": {
+      "title": "Privacy Policy | PALO Framework",
+      "description": "PALO Framework privacy information for local-first tools, website resources, and contact requests.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "security-policy.html": {
+      "title": "Security Policy | PALO Framework",
+      "description": "PALO Framework Security Policy - Responsible disclosure and security practices.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "skills/palo-knowledge-copilot/SKILL.html": {
+      "title": "PALO Knowledge Copilot | PALO Documentation",
+      "description": "Use PALO Knowledge Copilot to answer framework questions and plan governance routes with source provenance and the appropriate MCP profile.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "skills/palo-knowledge-copilot/references/tool-profiles.html": {
+      "title": "Tool profiles | PALO Documentation",
+      "description": "Compare PALO Knowledge Copilot Reader and Curator tool profiles and choose a catalog matching the intended knowledge or contribution workflow.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "templates/board-review.html": {
+      "title": "Board and accountable-committee review pack | PALO Documentation",
+      "description": "Prepare an accountable AI board review with a scoped decision, owners, evidence, unresolved risks and explicit follow-up actions.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "templates/contribution-starter.html": {
+      "title": "PALO starter-library contribution | PALO Documentation",
+      "description": "Propose a PALO starter-library contribution with purpose, scope, source evidence, limitations and review information.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "templates/eu-agentic-decision-record.html": {
+      "title": "Delegated-action evaluation decision record | PALO Documentation",
+      "description": "Document a delegated-action governance evaluation with system boundaries, accountable owners, test evidence, conflicts and decision rationale.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "templates/incident-response.html": {
+      "title": "AI incident response record | PALO Documentation",
+      "description": "Structure an AI incident record with observed effects, containment, accountable owners, evidence, communications and follow-up review.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "templates/procurement.html": {
+      "title": "Procurement governance record | PALO Documentation",
+      "description": "Prepare an AI procurement governance record covering supplier evidence, intended use, responsibilities, controls and unresolved review questions.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "templates/red-team-evidence.html": {
+      "title": "Red-team evidence record | PALO Documentation",
+      "description": "Record AI red-team findings with test context, observations, limitations and linked governance actions for accountable review.",
+      "lang": "en",
+      "dateModified": "2026-09-23",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "docs/ai-governance-evidence-worked-example.html": {
+      "title": "AI Governance Evidence: A Worked Example | PALO",
+      "description": "Follow a fictional invoice-agent case from authority boundaries to expected effects, review conditions and a locally exported PALO evidence bundle.",
+      "lang": "en",
+      "dateModified": "2026-09-25",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "docs/ai-governance-kpi-kri-examples.html": {
+      "title": "AI Governance KPI and KRI Examples | PALO",
+      "description": "Define useful AI governance indicators with worked formulas, denominators, evidence owners and review actions, without treating sample targets as assurance.",
+      "lang": "en",
+      "dateModified": "2026-09-25",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "PALO_DataCatalog.html": {
+      "title": "AI Governance Datasets and Registers | PALO Framework",
+      "description": "Download PALO AI governance indicator definitions and the OWASP GenAI crosswalk, with versions, licenses, source provenance and practical limits.",
+      "lang": "en",
+      "type": "WebPage",
+      "image": "assets/seo/palo-governance-indicators.png",
+      "dateModified": "2026-09-25",
+      "breadcrumbLabel": "Governance datasets and registers"
+    },
+    "briefing/index.html": {
+      "title": "PALO | Preparazione incontro AI Office | 12 ottobre 2026",
+      "description": "Dossier, scaletta, intervento in inglese e domande per Fabrizio Degni, Maria Cristina Paoletti e Alessandro Simonetta. Incontro del 12 ottobre 2026 alle 14:00.",
+      "lang": "it",
+      "dateModified": "2026-10-08",
+      "canonical": "https://paloframework.org/briefing/",
+      "noindex": true,
+      "image": "assets/seo/palo-governance.png"
+    },
+    "briefing/presentation/index.html": {
+      "title": "Governing delegated AI action in Europe",
+      "description": "PALO Framework technical discussion materials for the European AI Office, with technical and executive routes and source references.",
+      "lang": "en",
+      "dateModified": "2026-10-08",
+      "canonical": "https://paloframework.org/briefing/presentation/",
+      "noindex": true,
+      "image": "assets/seo/palo-governance.png"
+    },
+    "briefing/presentation/speaker-script.html": {
+      "title": "PALO \u00b7 Complete speaker script",
+      "description": "English speaker script and source references for all 38 slides of the PALO European AI Office technical presentation.",
+      "lang": "en",
+      "dateModified": "2026-10-08",
+      "canonical": "https://paloframework.org/briefing/presentation/speaker-script.html",
+      "noindex": true,
+      "image": "assets/seo/palo-governance.png"
+    },
+    "briefing/presentation/copilot/sources/code-excerpts.html": {
+      "title": "Reviewed code excerpts | PALO briefing",
+      "description": "Reviewed public PALO source excerpts supporting the technical briefing copilot, with explicit implementation and production boundaries.",
+      "lang": "en",
+      "dateModified": "2026-10-12",
+      "type": "TechArticle",
+      "noindex": true,
+      "image": "assets/seo/palo-governance.png"
+    },
+    "docs/palo-agentic-taxonomy-and-dictionaries.html": {
+      "title": "Agentic governance taxonomy and dictionaries | PALO",
+      "description": "Detailed PALO classifications for lifecycle, authority, delegation, actions, evidence, controls and external policy signals, with exact schema dictionaries.",
+      "lang": "en",
+      "dateModified": "2026-10-12",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "docs/palo-agentic-ontologies.html": {
+      "title": "Agentic governance ontologies and verification | PALO",
+      "description": "PALO RDF and OWL classes, SHACL constraints, draft stack relationships and their connection to reference execution contracts and verification.",
+      "lang": "en",
+      "dateModified": "2026-10-12",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "semantic-catalogues/index.html": {
+      "title": "Agentic governance semantic catalogues | PALO",
+      "description": "Search the PALO JSON Schema dictionary, controlled values, RDF inventory and versioned governance registries.",
+      "lang": "en",
+      "dateModified": "2026-10-12",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "docs/source-review-2026-10-12.html": {
+      "title": "Six-source review, 12 October 2026 | PALO",
+      "description": "Evidence and findings from the PALO review of NIST, EU AI Act, Article 50, GPAI Code and Rogue AI Tracker references.",
+      "lang": "en",
+      "dateModified": "2026-10-12",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "PALO_FinOps.html": {
+      "title": "AI FinOps: cost accountability and local learning | PALO",
+      "description": "Reconcile AI spending and compare local-learning investment, quality, latency and conditional future costs in PALO FinOps. Explore reproducible synthetic scenarios.",
+      "dateModified": "2026-10-22",
+      "lang": "en",
+      "type": "WebApplication",
+      "image": "assets/seo/palo-governance.png"
+    },
+    "docs/palo-finops-local-learning-research.html": {
+      "title": "PALO FinOps: local learning research and reproducibility",
+      "description": "Explore the experimental three-arm method, role-based workflow, evidence limits and seven reproducible synthetic scenarios.",
+      "dateModified": "2026-10-22",
+      "lang": "en",
+      "type": "TechArticle",
+      "image": "assets/seo/palo-governance.png"
+    }
+  }
+}

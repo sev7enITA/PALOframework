@@ -1,0 +1,165 @@
+# PALO FinOps: economics of local learning
+
+Experimental extension: input and plan contracts 1.0.0; reports 1.0.1. Created and maintained by Fabrizio Degni. Research implementation dated 22 October 2026.
+
+This workspace asks when investment in a local model can be justified by its full cost and accepted outcomes. It compares external inference, a hybrid workflow without new training, and a hybrid workflow using a distilled checkpoint. It does not train models, send provider requests, change a routing policy or authorise spending.
+
+## Use the workspace
+
+Open [PALO FinOps: Local learning](../PALO_FinOps.html#local-learning). Load a synthetic scenario, inspect the observed experiment, then examine its conditional future economics. Export the experiment and analysis to preserve a reproducible copy. The research draft has separate local storage and is never added to the attempt ledger or billing totals.
+
+Seven invented scenarios demonstrate a conditional advantage, an investment that does not pay back, quality regression, an insufficient sample, an unresolved cost, a useful life shorter than the horizon, and an initial cost advantage that disappears as volume grows. None is a measured model benchmark or evidence of savings.
+
+Finance can inspect complete spending and crossover assumptions. IT can examine quality, latency, capacity and checkpoint identity. The experiment owner freezes the task population, rubric, split manifests and sampling plan before collecting results. Imported evidence and responsibilities remain declarations, not authenticated identity or access control.
+
+## Research design
+
+The primary comparison is distilled versus static hybrid. External-only versus each hybrid provides context; being cheaper than external inference does not establish that training adds value over an untrained hybrid. All three comparisons are prespecified and retained, including unfavourable results.
+
+Each experiment fixes a currency, workload, owner, registration reference and timestamp, training/validation/evaluation manifests, checkpoint and routing-policy digests, binary acceptance rubric, latency limits and sample size. The evaluator rejects exact content reuse, repeated IDs and repeated independence units across splits. It checks that the run follows registration and each outcome matches the frozen checkpoint and router.
+
+Hashes do not detect paraphrases or hidden pretraining contamination. They do not authenticate evidence or prove registration time. Preserve the plan digest in an independent timestamped registry before evaluation. Inspect semantic leakage separately. Hyperparameter search and checkpoint selection belong to training/validation; include all their costs. Evaluation tasks cannot select the checkpoint, tune the router or trigger early stopping.
+
+The initial contract accepts independent task units. Repeated conversations, customer clusters and correlated sampling require a separately designed cluster analysis. Different labels do not prove independence. Missing outcome rows invalidate the paired comparison; difficult cases are never silently deleted. Timeouts and failures retain costs and should appear as unaccepted outcomes. Missing latency remains unknown.
+
+## Accounting contract
+
+The [JSON schema](../schemas/palo-finops-learning-experiment.schema.json) checks structure, non-whitespace identifiers and canonical UTC timestamps with milliseconds. The shared browser/Node evaluator additionally enforces semantic rules. Direct JavaScript callers must supply plain JSON values: nonfinite numbers, undefined values, functions, symbols, accessors, cycles and sparse or extended arrays are rejected before cloning or hashing. Input is limited to 8 MiB of UTF-8 and 64 nesting levels.
+
+Each cost row identifies one economic source, active revision, evidence reference, phase, covered categories and allocations to arms. Allocations must sum exactly to the source amount. Supply one consolidated row per arm/phase/category, or one all-in row covering several categories. An all-in hosting charge covering hardware and energy cannot also have component rows in the same phase. Repeated economic sources and overlapping category coverage are rejected.
+
+A row allocated to multiple arms denotes a common source required in full by each listed alternative. Listing an arm asserts applicability even when its observed allocation is zero. Distinct arm-specific investments or rates must not be merged into a common source: doing so changes the economic declaration, not just the presentation. Observed totals use the conserved allocation. Prospective alternatives each bear that common source in full, including repeat investment, so changing the accounting split cannot manufacture a future advantage. Reports expose both `knownMicros` (allocated) and `scenarioBasisMicros` (standalone basis). Alternatives are mutually exclusive and their scenario totals must not be added together. For genuinely different causal usage, consolidate distinct, evidenced cost scopes upstream instead of labelling a discretionary allocation as a saving. Economic source identity and attribution still require independent review.
+
+| Phase | Amount meaning | Status | Treatment |
+| --- | --- | --- | --- |
+| `sunk` | Historical expenditure already incurred at the decision boundary | final, estimated, unknown | Observed total only |
+| `investment` | New intervention investment attributable to the evaluated configuration | final, estimated, unknown | Experiment total and hypothetical repeat-investment decision |
+| `evaluation` | Full cost of the held-out evaluation cohort | final, estimated, unknown | Observed total; not silently projected |
+| `future_fixed` | Fixed charges over the entire declared future horizon | assumed, unknown | Charged in full at every volume |
+| `future_per_attempt` | Conditional marginal cost per complete attempted task, including all model calls and retries | assumed, unknown | Multiplied by future attempted-task volume |
+
+The legacy field name `future_per_attempt` means per attempted **task**, not per individual model call. `scenario.attemptedTasks`, crossover volumes and `capacityTasksPerDay` use complete tasks. `outcome.attempts` counts model attempts within a task and is reported as telemetry; it does not multiply already inclusive future rates. `latencyMs` covers the entire task, including retries and fallbacks. Future rates are separately declared assumptions, not estimates inferred from the evaluation retry count. The declarant must substantiate consistency between the observed workload and these assumptions.
+
+The decision boundary matters. An investment already paid is sunk for a later operate-versus-switch decision. Reclassify it in a documented experiment version rather than charging it again. The application cannot infer this boundary from an invoice.
+
+Required categories are teacher data, training, evaluation, hardware, energy, human review, operations, local inference and external inference. Explicit zero needs an evidence reference. Unknown is null. Every category needs coverage in every phase, even if inapplicable. Aggregate detailed source lines upstream with traceable references. Version 1 accepts nonnegative expenses; reconcile signed credits in the existing billing module before producing a supported cost basis. Mixed currencies are unsupported.
+
+Include tuning failures, teacher calls, data preparation, human verification and infrastructure opportunity costs where relevant. Document valuations. Open reservations block final unit-cost metrics and candidate eligibility. Estimated amounts are displayed separately from known costs. Comparison reports expose separate `accountingReasons`, including missing or nonfinal sunk/evaluation charges and unresolved reservations. Those gaps block candidate status without relabelling passing quality as a quality failure. A complete declared record is not a verified invoice.
+
+Observed cost per accepted task includes all historical, investment and evaluation costs divided by accepted evaluation tasks. A separate evaluation-only ratio is exported. The first ratio describes this experiment, not a stationary inference price or an amortised production cost. Zero accepted outcomes leaves the ratio unavailable.
+
+## Statistical checks
+
+Compute acceptance and latency pass rates for each arm, plus paired acceptance differences for the three prespecified pairs: nine intervals in total. For independent bounded observations with range width R, use the two-sided Hoeffding radius:
+
+```text
+epsilon = R * sqrt(log(18 / alpha) / (2 * n))
+```
+
+R is 1 for binary rates and 2 for paired differences in [-1, 1]. Each interval has failure probability at most alpha/9; the union bound gives simultaneous coverage of at least 1-alpha under the sampling assumptions. Independence across arms or intervals is unnecessary; independence across task units is required. The bounds are conservative, not a power analysis. They do not adapt to observed pair agreement: even identical outcomes can leave noninferiority inconclusive. Deriving paired bounds from six marginal intervals or preregistering a variance-sensitive method could improve precision, but neither change is part of this version.
+
+Quality passes only if both arms' lower acceptance and latency bounds meet their floors, and the lower paired difference meets the negative noninferiority margin. It fails when an upper bound is below a requirement; otherwise it is inconclusive. Prespecify application-specific margins. The synthetic margin 0.12 is illustrative, not a recommended tolerance. Missing design declarations prevent candidate status. Acceptance and latency are separate marginal requirements. Passing both does not establish a joint accepted-and-on-time floor, and latency noninferiority is not tested. If timeliness defines an acceptable business outcome, preregister that composite rubric and record late outcomes as unaccepted before collecting results; do not redefine success after evaluation.
+
+Noninferiority permits a declared quality loss; it is not equivalence or superiority. A passing model may still have worse unit economics. Candidate eligibility therefore also requires conservative cost-per-accepted economics: candidate future total divided by its lower acceptance bound must not exceed baseline total divided by its upper acceptance bound, at the same attempted volume. This comparison is conditional on fixed future costs and stable population acceptance probabilities. It does not guarantee future delivered counts or equal accepted volume. Exactly equal accepted production requires a separately specified retry/volume model. The cost comparison cross-multiplies integer micros and exact binary fractions of the computed bounds, preventing a rounded multiplication tie from granting eligibility. The logarithm, square root and interval endpoints themselves remain binary64 approximations; this is not exact arithmetic over the mathematical Hoeffding radius. Displayed intervals are rounded outward and each gate retains its computed status.
+
+Synthetic records exercise arithmetic and state transitions; their intervals have no empirical interpretation. Reports retain provenance and always deny demonstrated causal savings and execution authority.
+
+## Future scenario and crossover
+
+For the same fixed horizon and attempted-task volume N:
+
+```text
+C_arm(N) = new_investment + fixed_horizon_cost + variable_cost_per_attempted_task * N
+deltaF = candidate_fixed - baseline_fixed
+s = baseline_variable - candidate_variable
+candidate is no more expensive if deltaF - s*N <= 0
+```
+
+Integer arithmetic gives the first or last satisfying volume. If s and deltaF are positive, the first is ceil(deltaF/s). Equal slopes, no crossover, immediate advantage and an advantage expiring at higher volumes are handled separately. Equality means no higher cost, not a positive saving.
+
+This is an attempt-volume threshold within a prepaid horizon, not a calendar payback time. Fixed fees stay charged at zero volume. Capacity, useful life, a single investment, stable rates and stable quality must cover the full horizon. If the horizon exceeds useful life, projection is unavailable. Replacement models, GPU capacity steps, retraining cycles, demand shocks, queueing, discounting and uncertain prices require separate scenario versions or a future dynamic model.
+
+The report exports conditional point ratios using observed acceptance rates, while candidate status requires the stronger bound comparison. Observed ratios mean `numeratorMicros / denominator`; conditional ratios mean `numeratorMicros * multiplier / denominator`. Conditional numerator and denominator are integer strings to preserve products beyond the safe Number range. Do not omit `multiplier` when consuming the export. The browser currently displays only the observed ratios. It does not fit an exponential capability-decay rate or assume flat local costs.
+
+## Reproduction and import
+
+Use Node.js 22 to 24. The evaluator needs no additional runtime package.
+
+```sh
+npm run finops:learning:demo
+node scripts/finops-learning.mjs demo favourable /tmp/new-learning-experiment.json
+node scripts/finops-learning.mjs verify /tmp/new-learning-experiment.json /tmp/new-learning-experiment.report.json
+node scripts/finops-learning.mjs freeze /path/plan-spec.json /path/new-frozen-plan.json
+node scripts/finops-learning.mjs analyze /path/experiment.json /path/new-report.json
+npm run finops:check
+```
+
+Corrected reports use schema version `1.0.1`; plan and experiment inputs remain `1.0.0`. Regenerate pre-correction reports from their original experiments with `analyze` into a new path. Verification gives explicit regeneration guidance for an older report version. The original reports remain historical artifacts, not outputs of the corrected evaluator.
+
+Output paths must be new. Ordinary CLI write failures clean up files created by that invocation while preserving pre-existing files; the two demo outputs are not a crash-atomic transaction. Always verify retained output pairs by replay. The demo generates invented outcomes directly; it never trains or runs inference. For a real experiment, collect observations externally under the frozen plan, include source evidence and reconciled costs, then import the bundle. All arms must cover the same evaluation cohort. References are identifiers; avoid credentials, private prompts and personal data.
+
+Plan, experiment and report SHA-256 digests bind content. Exact replay verifies internal reproducibility. Retain the original bundle and independently timestamped plan digest. Anyone controlling the input can create a self-consistent replacement, so this is not a signed audit trail.
+
+## Future sidecar
+
+MCP can expose results; enforcement belongs to the service controlling actual dispatch. Current FinOps MCP tools remain read-only. This extension evaluates evidence offline. A future sidecar needs independent qualification of provider identity, data rights, budget concurrency, reconciliation, quality, rollback and expiration. Learning proposals cannot grant themselves training or spending authority.
+
+## Sources and contribution boundary
+
+Sources checked on 22 October 2026:
+
+- [Hsieh et al., Distilling Step-by-Step, Findings of ACL 2023](https://arxiv.org/abs/2305.02301): task-specific capability transfer motivates comparison; it does not establish PALO's economics.
+- [Li et al., Small Models Struggle to Learn from Strong Reasoners](https://arxiv.org/abs/2502.12143): transfer can depend on student capacity and signal complexity, motivating quality gates.
+- [Hoeffding, Probability Inequalities for Sums of Bounded Random Variables, 1963](https://doi.org/10.1080/01621459.1963.10500830): established concentration inequalities support the bounds; this is not a new statistical method.
+- [Maurer and Pontil, Empirical Bernstein Bounds and Sample Variance Penalization, COLT 2009](https://arxiv.org/abs/0907.3740): Theorem 1 restates Hoeffding and the paper develops variance-sensitive alternatives. Such alternatives would require a separately specified method version.
+- [MCP architecture](https://modelcontextprotocol.io/docs/2026-07-28/learn/architecture): interoperability does not supply spending enforcement or training.
+
+The proposed contribution is a reproducible contract connecting learning investment, evidence gaps, accepted outcomes and conditional economics. Real workload benefits, robustness under drift and production sidecar operation are not established by the synthetic fixture.
+
+## Independent model critique and adjudication
+
+GLM-5.3, with Max selected in ZCode, reviewed the supplied design dossier on 22 October 2026. Its completed response was recovered from the local session record, with no tool calls. That initial design response did not inspect this implementation or reproduce its tests. Model criticism is an input to review, not independent validation of software or empirical results.
+
+| Criticism | Treatment in this implementation |
+| --- | --- |
+| Point-estimate savings can create false precision in a crossover. | Accepted. Future rates are explicitly fixed scenario assumptions, not fitted savings. Quality uncertainty gates candidate status. No confidence interval for future prices or calendar payback is claimed. Empirical cost uncertainty needs a subsequent design. |
+| Attempted and accepted denominators must stay distinct. | Accepted. The crossover uses attempted tasks. Observed and conditional accepted-outcome ratios are separate, and candidate status also requires a conservative accepted-outcome comparison. |
+| Useful life, recurring training and capacity can invalidate a linear model. | Accepted. Useful life and capacity cap eligibility. A declaration of a single investment is required; recurring training and capacity steps remain outside this version. |
+| All-in costs and components can double count infrastructure. | Accepted. Overlapping arm/phase/category coverage is rejected. Semantic mislabelling of sources still needs external review. |
+| Shared-cost allocations can manufacture a difference. | Accepted and implemented. Observed allocations conserve the source total; mutually exclusive scenarios each bear an applicable common source in full. A regression test changes the accounting allocation without changing the comparison. |
+| A small-sample normal interval and uncorrected multiple comparisons are unsafe. | Accepted concern. The implementation uses finite-sample Hoeffding bounds and a single alpha budget over nine prespecified intervals, with an explicit inconclusive state. The suggested McNemar test was not adopted: a usual equality test alone does not establish a prespecified noninferiority margin. |
+| Fractions, sunk costs, preregistration and leakage need explicit treatment. | Integer micros, exact integer crossover arithmetic and numerator/denominator reporting are retained. Sunk costs do not affect the future crossover. Exact split collisions are rejected. Registration timestamps and semantic independence remain unverified declarations. |
+
+The proposal to estimate capability decay or demonstrate recurring economic benefits remains future research. This release supplies synthetic falsification cases and a frozen evidence contract, not a completed prospective field study. Gemini 4 Argon, with Alta selected in the browser, also returned a completed critique of the design dossier. Its delayed response was recovered on 22 October 2026. It did not inspect the implementation or run tests. Both models subsequently received an exact-source dossier for commit `1f71e8a62049918954992bcc4a76f96d742f79b0` and returned source critiques on 22 October 2026. The dossier manifest binds eight complete files and a billing-helper excerpt. GLM used one read of the remaining supplied dossier after attachment truncation; no test execution was observed. Argon reviewed the supplied excerpts in the browser. Neither review establishes runtime correctness or empirical savings.
+
+The follow-up cross-check used both actual design responses, source inspection and seven additional executable counterexamples. Model suggestions were adjudicated rather than treated as release approval:
+
+| Argon objection | Adjudication and resulting check |
+| --- | --- |
+| Nine range-based intervals are redundant and ignore pair agreement. | Precision limitation accepted; invalid coverage rejected. A union bound remains valid with dependent or redundant intervals. Identical arms at n=500 can be inconclusive. The implementation and guide now explicitly state that the method is not variance-adaptive. |
+| Adding common overhead changes the accepted-outcome ratio and therefore creates false eligibility. | The premise confuses allocation invariance with adding a real cost. Full-cost ratios can legitimately change when real overhead changes. Reallocating the same source leaves comparisons unchanged. A new counterexample confirms that even when the ratio passes, a higher-total-cost candidate remains blocked by the separate total-cost gate. |
+| A fixed future unit cost leaves token/fallback cost uncertainty unmodelled. | Accepted as a declared scenario limitation. The statistical coverage concerns acceptance and latency, conditional on future cost assumptions. It is not a confidence statement about prices or realized spending. Argon's formula included evaluation cost in the future; the implementation excludes it, and a new test verifies that sunk and evaluation spending cannot subsidize future eligibility. |
+| Marginal acceptance and latency do not imply a joint SLA. | Accepted and clarified in the UI, exported limits and guide. A 2,400-task counterexample passes both marginal floors at 85% while only 70% are jointly accepted and on time. No joint SLA is claimed. |
+| Automatic cluster deduplication removes production-frequency weights. | Not the implemented behavior. The complete input is rejected on exact duplicate task/content/unit identity; no deduplication, semantic clustering or weighted resampling occurs. Population representativeness and cluster-aware inference remain external design responsibilities. |
+| Nonpositive acceptance bounds, sunk costs or integer overflow can cause false positives. | Not reproduced in the implementation. Bounds are clamped, a positive candidate lower bound is required, sunk/evaluation costs are excluded from future totals, and unsupported projected amounts are rejected. New regression cases cover these guards. |
+| A raw crossover can differ from the quality-adjusted eligibility threshold. | Correct distinction, already implemented. The raw crossover is explicitly a total-cost relation, and candidate status separately requires accepted-outcome economics. It is not presented as an adoption threshold. |
+
+### Exact-source findings and corrective work
+
+| Source-review finding | Adjudication and correction |
+| --- | --- |
+| GLM and Argon: floating multiplication can turn a more expensive accepted outcome into a tie. | Confirmed independently with baseline 9007199254740986 and candidate 8114643714045151 micros. Exact binary-fraction cross multiplication now rejects the rounded tie; reducing the candidate by one micro passes. Argon's initial numerical example used an incorrect interval endpoint, so the executable regression uses the independently reproduced values. |
+| Argon: stringify/parse can erase undefined fields and coerce NaN or Infinity into null. | Confirmed for direct JavaScript inputs. Strict plain-JSON validation now precedes serialization and digest verification, including cycles, sparse arrays and accessors. |
+| Argon: incomplete sunk/evaluation costs can block eligibility without explaining the reason. | Confirmed. Separate accounting reasons are exported and displayed. Accounting failures do not change a valid statistical quality result. |
+| Both: schema timestamps and whitespace rules differ from runtime checks. | Structural schema aligned with canonical millisecond UTC timestamps and non-whitespace strings. Semantic chronology and digest checks remain in the evaluator. |
+| GLM: retries require multiplying future rates or changing the acceptance denominator. | Retracted by GLM after contract adjudication. Rates already include all attempts within one task. Reusing a task-Bernoulli bound for accepted tasks divided by a random model-attempt sum would need a new derivation. Units, latency scope and model-attempt telemetry are now explicit. |
+| Argon: zero observed allocations on common sources create false eligibility. | Not accepted as an arithmetic defect under the stated contract. Listing an arm declares the full source applicable; combining distinct investments into one common row changes that declaration. Forbidding zero shares would not resolve false attribution and would break allocation invariance. Schema, guide and UI now make applicability explicit. Independent attribution review remains necessary. |
+| Argon: the UI hides latency evidence and can round an inconclusive lower bound up to the floor. | Latency intervals and gates, model-attempt counts and outward interval formatting are now visible. |
+| Argon: conditional ratio multiplier is omitted by the UI formatter. | Not reproduced in an actual call path: the formatter only receives observed ratios. Both exported ratio structures and the required multiplier are documented for consumers. |
+| Argon: a demo report collision leaves an orphan experiment; missing paths yield low-level errors. | Confirmed. Exclusive writes now clean up their own newly created files on ordinary failure, preserving existing outputs. Missing arguments produce usage guidance. Crash-atomic paired writes remain outside this CLI. |
+
+GLM-5.3 Max completed a static review of the actual corrective diff and found the accepted numeric, unit and schema findings resolved within their stated scope. It requested an explicit report-version/regeneration signal, implemented as report `1.0.1` with a targeted compatibility test. That final small version change was locally verified after its review. The source review by Argon Alta is complete; its subsequent patch-review attempts returned service errors, including in a fresh session, so no completed Argon review of the corrective diff is claimed. Review responses are criticism of supplied source, while executable regression and browser results are produced separately by the local verification process. No empirical model performance, savings, operational enforcement or production readiness follows from these reviews.
+
+## Research overview and download
+
+See the [research overview](palo-finops-local-learning-research.md) for roles, validation status and the distinction from the original FinOps v1.0 preprint. Download the [Local learning reproduction package 1.0.1](../assets/PALO_FinOps_Local_Learning_v1.0.1.zip) and its [SHA-256 checksum](../assets/PALO_FinOps_Local_Learning_v1.0.1.zip.sha256).

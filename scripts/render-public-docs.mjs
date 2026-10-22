@@ -32,6 +32,7 @@ function summaryFromMarkdown(markdown) {
 }
 
 function documentCategory(file) {
+  if (/palo-finops/.test(file)) return "AI FinOps and local learning";
   if (/semantic-foundation|semantic|ontology|lifecycle-definition/i.test(file)) return "Semantic foundation and contracts";
   if (file.startsWith("templates/") || file.startsWith("examples/")) return "Templates and examples";
   if (file.startsWith("docs/community/") || file === "CONTRIBUTING.md") return "Community and contribution";
@@ -50,6 +51,8 @@ const documentLanguages = new Map([
 ]);
 
 const importantMetadata = {
+  "docs/palo-finops-local-learning-research.md": { level: "start", audience: "executive governance technical", task: "understand assure", product: "PALO FinOps", status: "Experimental research extension", evidenceClass: "illustrative-local-preview", workspace: "assurance-review", prerequisite: "Understand synthetic evidence versus a measured deployment", next: "Choose a role, inspect the method and replay the examples" },
+  "docs/palo-finops-learning.md": { level: "reference", audience: "technical governance executive", task: "design integrate assure", product: "PALO FinOps", status: "Offline evaluator; reports 1.0.1", evidenceClass: "illustrative-local-preview", workspace: "assurance-review", prerequisite: "Frozen cohort, complete costs and explicit future assumptions", next: "Replay seven synthetic scenarios and register a real-workload evaluation" },
   "docs/palo-finops-operations.md": { level: "guide", audience: "technical governance executive", task: "understand integrate assure", product: "PALO", status: "Experimental Local FinOps", evidenceClass: "illustrative-local-preview", workspace: "assurance-review", prerequisite: "Scoped finance workspace and reviewed evidence; credentials only for separate runtime pilots", next: "Open FinOps Operations and choose a role" },
   "docs/palo-finops.md": { level: "guide", audience: "technical governance executive", task: "understand integrate assure", product: "PALO", status: "Experimental Local FinOps", evidenceClass: "illustrative-local-preview", workspace: "assurance-review", prerequisite: "Scoped workloads, declared rates and cost records", next: "Review reservations and attach a draft FinOps Case File snapshot" },
   "docs/palo-ai-maturity-assessment.md": { level: "guide", audience: "executive governance technical", task: "understand assess assure", product: "PALO", status: "Experimental Local Assessment", evidenceClass: "human-review-required", workspace: "assurance-review", prerequisite: "Named scope and observation period", next: "Review the two lenses and attach a draft Case File snapshot" },
@@ -204,7 +207,7 @@ export function renderDocument(markdown, file) {
   <link rel="stylesheet" href="${asset("assets/palo-v21.css")}?v=3.1.0">
   <link rel="stylesheet" href="${asset("assets/palo-docs.css")}">
   <script src="${asset("assets/palo-icons.js")}" defer></script>
-  <script src="${asset("assets/palo-v21.js")}?v=3.1.0" defer></script>
+  <script src="${asset("assets/palo-v21.js")}?v=3.1.0-46dec1ba310fa4e3" defer></script>
   <script src="${asset("assets/palo-docs.js")}" defer></script>
 </head>
 <body class="palo-v21 palo-doc-page" data-doc-source="${escapeHtml(file)}">
@@ -240,7 +243,7 @@ export async function renderPublicDocs({ sourceRoot, targetRoot }) {
     outputs.push(output);
     documents.push({ file, output, title: titleFromMarkdown(markdown, file), category: documentCategory(file), summary: summaryFromMarkdown(markdown), metadata: documentMetadata(file, markdown) });
   }
-  const categories = ["Semantic foundation and contracts", "Start and adoption", "Architecture and integration", "Operations and deployment", "Security and production readiness", "Governance Hub and UX", "Community and contribution", "Templates and examples"];
+  const categories = ["AI FinOps and local learning", "Semantic foundation and contracts", "Start and adoption", "Architecture and integration", "Operations and deployment", "Security and production readiness", "Governance Hub and UX", "Community and contribution", "Templates and examples"];
   const groups = categories.map((category, index) => {
     const cards = documents.filter((document) => document.category === category).map((document) => `<article class="palo-library-card" data-library-card data-category="${escapeHtml(category)}" data-level="${escapeHtml(document.metadata.level)}" data-audience="${escapeHtml(document.metadata.audience)}" data-task="${escapeHtml(document.metadata.task)}" data-product="${escapeHtml(document.metadata.product)}" data-evidence-class="${escapeHtml(document.metadata.evidenceClass)}" data-workspace="${escapeHtml(document.metadata.workspace)}" data-lifecycle="${escapeHtml(document.metadata.lifecycle.toLowerCase())}" data-search="${escapeHtml(`${document.title} ${document.summary} ${document.file} ${document.metadata.audience} ${document.metadata.task} ${document.metadata.product} ${document.metadata.evidenceClass} ${document.metadata.workspace} ${document.metadata.lifecycle}`.toLowerCase())}"><div><p class="palo-card-kicker">${escapeHtml(document.metadata.product)}</p><span class="palo-library-status">${escapeHtml(document.metadata.status)} | ${escapeHtml(document.metadata.lifecycle)}</span></div><h3>${escapeHtml(document.title)}</h3><p>${escapeHtml(document.summary)}</p><details class="palo-library-meta" open data-library-meta-details><summary>Document details</summary><div class="palo-library-tags"><span>${escapeHtml(document.metadata.level)}</span><span>${escapeHtml(document.metadata.readingTime)}</span><span>${escapeHtml(document.metadata.lifecycle)}</span><span>${escapeHtml(document.metadata.evidenceClass)}</span><span>${escapeHtml(document.metadata.workspace)}</span></div><small><strong>Prerequisite:</strong> ${escapeHtml(document.metadata.prerequisite)}</small><small><strong>Next:</strong> ${escapeHtml(document.metadata.next)}</small><code>${escapeHtml(document.file)}</code><a href="${escapeHtml(document.output)}">Open HTML guide<span aria-hidden="true"> -></span></a></details></article>`).join("");
     const count = documents.filter((document) => document.category === category).length;

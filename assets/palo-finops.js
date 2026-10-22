@@ -255,6 +255,7 @@ function render(reset = false) {
   renderBudget(); renderLedger(); renderForms(reset); renderRates(); updateCaseContext(); billingView?.render();
 }
 function openPanel(name, focus = false) {
+  if (!document.getElementById(`tab-${name}`)) return;
   for (const tab of document.querySelectorAll('.fo-tabs [role=tab]')) {
     const active = tab.dataset.panel === name;
     tab.setAttribute('aria-selected', String(active)); tab.tabIndex = active ? 0 : -1;
@@ -295,6 +296,15 @@ function attachCase() {
     updateCaseContext(); status('case-file-status', 'Draft FinOps snapshot attached. Previous snapshots and case context are preserved.');
   } catch (error) { status('case-file-status', error.message, true); }
 }
+
+function openLinkedPanel() {
+  const hash = location.hash.slice(1);
+  const panel = hash === 'local-learning' ? 'learning' : hash.startsWith('panel-') ? hash.slice(6) : hash;
+  if (document.getElementById(`tab-${panel}`)) openPanel(panel);
+}
+window.addEventListener('hashchange', openLinkedPanel);
+document.querySelectorAll('a[href="#local-learning"]').forEach(link => link.addEventListener('click', () => openPanel('learning')));
+openLinkedPanel();
 
 document.querySelectorAll('.fo-tabs [role=tab]').forEach(tab => {
   tab.addEventListener('click', () => openPanel(tab.dataset.panel));

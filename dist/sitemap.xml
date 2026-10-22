@@ -38,8 +38,10 @@
   <url><loc>https://paloframework.org/docs/palo-ai-vps-deployment.html</loc><lastmod>2026-09-16</lastmod></url>
   <url><loc>https://paloframework.org/docs/palo-data-assurance-control-plane.html</loc><lastmod>2026-09-17</lastmod></url>
   <url><loc>https://paloframework.org/docs/palo-external-agentic-evidence.html</loc><lastmod>2026-09-16</lastmod></url>
-  <url><loc>https://paloframework.org/docs/palo-finops-operations.html</loc><lastmod>2026-09-17</lastmod></url>
-  <url><loc>https://paloframework.org/docs/palo-finops.html</loc><lastmod>2026-09-17</lastmod></url>
+  <url><loc>https://paloframework.org/docs/palo-finops-learning.html</loc><lastmod>2026-10-22</lastmod></url>
+  <url><loc>https://paloframework.org/docs/palo-finops-local-learning-research.html</loc><lastmod>2026-09-17</lastmod></url>
+  <url><loc>https://paloframework.org/docs/palo-finops-operations.html</loc><lastmod>2026-10-22</lastmod></url>
+  <url><loc>https://paloframework.org/docs/palo-finops.html</loc><lastmod>2026-10-22</lastmod></url>
   <url><loc>https://paloframework.org/docs/palo-guide-agent-and-mcp.html</loc><lastmod>2026-09-16</lastmod></url>
   <url><loc>https://paloframework.org/docs/palo-knowledge-copilot-integrations.html</loc><lastmod>2026-09-16</lastmod></url>
   <url><loc>https://paloframework.org/docs/palo-knowledge-reader-production.html</loc><lastmod>2026-09-16</lastmod></url>
@@ -78,8 +80,9 @@
   <url><loc>https://paloframework.org/PALO_Community.html</loc><lastmod>2026-09-14</lastmod></url>
   <url><loc>https://paloframework.org/PALO_CompanionApp.html</loc><lastmod>2026-09-14</lastmod></url>
   <url><loc>https://paloframework.org/PALO_ComparisonTool.html</loc><lastmod>2026-09-17</lastmod></url>
+  <url><loc>https://paloframework.org/PALO_DataCatalog.html</loc><lastmod>2026-09-17</lastmod></url>
   <url><loc>https://paloframework.org/PALO_DocumentationLibrary.html</loc><lastmod>2026-09-17</lastmod></url>
-  <url><loc>https://paloframework.org/PALO_FinOps.html</loc><lastmod>2026-09-17</lastmod></url>
+  <url><loc>https://paloframework.org/PALO_FinOps.html</loc><lastmod>2026-10-22</lastmod></url>
   <url><loc>https://paloframework.org/PALO_FRIA.html</loc><lastmod>2026-09-17</lastmod></url>
   <url><loc>https://paloframework.org/PALO_Guide.html</loc><lastmod>2026-09-14</lastmod></url>
   <url><loc>https://paloframework.org/PALO_HumanAgencyRiskMap_IT.html</loc><lastmod>2026-09-14</lastmod></url>

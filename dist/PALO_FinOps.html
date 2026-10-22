@@ -3,34 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AI FinOps: costs, budgets and model transitions | PALO</title>
+  <title>AI FinOps: cost accountability and local learning | PALO</title>
   <link rel="icon" type="image/webp" href="assets/logo.webp">
   <link rel="stylesheet" href="assets/palo-v21.css?v=3.1.0">
   <link rel="stylesheet" href="assets/palo-finops.css?v=1.2.0">
+  <link rel="stylesheet" href="assets/palo-finops-learning.css?v=1.0.1">
+  <script type="module" src="assets/palo-finops-learning-ui.js?v=1.0.1"></script>
   <script src="assets/palo-icons.js" defer></script>
-  <script src="assets/palo-v21.js?v=3.1.0" defer></script>
+  <script src="assets/palo-v21.js?v=3.1.0-46dec1ba310fa4e3" defer></script>
   <script src="assets/palo-case-file.js" defer></script>
-  <script type="module" src="assets/palo-finops.js?v=1.2.0"></script>
-    <meta name="description" content="Reconcile AI billing with attempts, allocate shared costs, preserve outcome snapshots and assess model transitions in a local PALO FinOps workspace.">
+  <script type="module" src="assets/palo-finops.js?v=1.3.0"></script>
+    <meta name="description" content="Reconcile AI spending and compare local-learning investment, quality, latency and conditional future costs in PALO FinOps. Explore reproducible synthetic scenarios.">
     <meta name="author" content="Fabrizio Degni">
     <meta name="robots" content="index,follow,max-image-preview:large">
     <link rel="canonical" href="https://paloframework.org/PALO_FinOps.html">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="AI FinOps: costs, budgets and model transitions | PALO">
-    <meta property="og:description" content="Reconcile AI billing with attempts, allocate shared costs, preserve outcome snapshots and assess model transitions in a local PALO FinOps workspace.">
+    <meta property="og:title" content="AI FinOps: cost accountability and local learning | PALO">
+    <meta property="og:description" content="Reconcile AI spending and compare local-learning investment, quality, latency and conditional future costs in PALO FinOps. Explore reproducible synthetic scenarios.">
     <meta property="og:url" content="https://paloframework.org/PALO_FinOps.html">
     <meta property="og:site_name" content="PALO Framework">
     <meta property="og:locale" content="en_US">
     <meta property="og:image" content="https://paloframework.org/assets/seo/palo-governance.png">
-    <meta property="og:image:alt" content="AI FinOps: costs, budgets and model transitions | PALO - PALO Framework">
+    <meta property="og:image:alt" content="AI FinOps: cost accountability and local learning | PALO - PALO Framework">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:image:type" content="image/png">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="AI FinOps: costs, budgets and model transitions | PALO">
-    <meta name="twitter:description" content="Reconcile AI billing with attempts, allocate shared costs, preserve outcome snapshots and assess model transitions in a local PALO FinOps workspace.">
+    <meta name="twitter:title" content="AI FinOps: cost accountability and local learning | PALO">
+    <meta name="twitter:description" content="Reconcile AI spending and compare local-learning investment, quality, latency and conditional future costs in PALO FinOps. Explore reproducible synthetic scenarios.">
     <meta name="twitter:image" content="https://paloframework.org/assets/seo/palo-governance.png">
-    <meta name="twitter:image:alt" content="AI FinOps: costs, budgets and model transitions | PALO - PALO Framework">
+    <meta name="twitter:image:alt" content="AI FinOps: cost accountability and local learning | PALO - PALO Framework">
     <script type="application/ld+json" id="palo-seo-graph">
 {
   "@context": "https://schema.org",
@@ -80,8 +82,8 @@
       "@type": "WebPage",
       "@id": "https://paloframework.org/PALO_FinOps.html#webpage",
       "url": "https://paloframework.org/PALO_FinOps.html",
-      "name": "AI FinOps: costs, budgets and model transitions | PALO",
-      "description": "Reconcile AI billing with attempts, allocate shared costs, preserve outcome snapshots and assess model transitions in a local PALO FinOps workspace.",
+      "name": "AI FinOps: cost accountability and local learning | PALO",
+      "description": "Reconcile AI spending and compare local-learning investment, quality, latency and conditional future costs in PALO FinOps. Explore reproducible synthetic scenarios.",
       "inLanguage": "en",
       "isPartOf": {
         "@id": "https://paloframework.org/#website"
@@ -92,7 +94,7 @@
       "author": {
         "@id": "https://paloframework.org/PALO_Community.html#creator"
       },
-      "dateModified": "2026-10-21",
+      "dateModified": "2026-10-22",
       "primaryImageOfPage": {
         "@type": "ImageObject",
         "url": "https://paloframework.org/assets/seo/palo-governance.png"
@@ -106,8 +108,9 @@
       "@id": "https://paloframework.org/PALO_FinOps.html#application",
       "name": "PALO AI FinOps",
       "url": "https://paloframework.org/PALO_FinOps.html",
-      "description": "Reconcile AI billing with attempts, allocate shared costs, preserve outcome snapshots and assess model transitions in a local PALO FinOps workspace.",
+      "description": "Reconcile AI spending and compare local-learning investment, quality, latency and conditional future costs in PALO FinOps. Explore reproducible synthetic scenarios.",
       "applicationCategory": "BusinessApplication",
+      "softwareVersion": "1.3.0",
       "inLanguage": "en",
       "operatingSystem": "Any operating system with a modern web browser",
       "browserRequirements": "Requires JavaScript and a modern web browser.",
@@ -124,7 +127,9 @@
         "Declared route assessments; no production execution authority",
         "Role entry views and deduplicated exception reviews",
         "Versioned business metrics, finance packs and chronological forecast baselines",
-        "Separate local runtime pilots with scoped read-only access"
+        "Separate local runtime pilots with scoped read-only access",
+        "Offline three-arm local-learning economics with quality and latency gates",
+        "Seven synthetic scenarios and replayable reports; no model training or demonstrated savings"
       ],
       "creator": {
         "@id": "https://paloframework.org/PALO_Community.html#creator"
@@ -154,8 +159,9 @@
   <main id="main-content">
     <div class="fo-intro palo-shell">
       <nav class="fo-breadcrumb" aria-label="Breadcrumb"><a href="index.html">PALO Framework</a><span aria-hidden="true">/</span><span aria-current="page">AI FinOps</span></nav>
-      <div class="fo-title-row"><div><p class="fo-eyebrow">Cost accountability / version 1.2</p><h1>AI FinOps<span>.</span></h1><p class="fo-lead">Connect billing to every AI attempt. Reconcile costs, allocate shared expenses and preserve the evidence behind each metric.</p></div><div class="fo-local"><span class="fo-local-dot" aria-hidden="true"></span><strong>Local workspace</strong><span>Your browser. Your records.<br>No provider connection.</span></div></div>
+      <div class="fo-title-row"><div><p class="fo-eyebrow">Cost accountability / version 1.3</p><h1>AI FinOps<span>.</span></h1><p class="fo-lead">Account for every AI attempt. Reconcile spending, compare model transitions and evaluate when local-learning investment could pay back at acceptable quality and latency.</p></div><div class="fo-local"><span class="fo-local-dot" aria-hidden="true"></span><strong>Local workspace</strong><span>Your browser. Your records.<br>No provider connection.</span></div></div>
     </div>
+    <div class="palo-shell"><p class="fo-help"><strong>New in 1.3:</strong> <a href="#local-learning">Local learning</a> compares three frozen configurations offline. <a href="docs/palo-finops-local-learning-research.html">Research, evidence limits and reproducibility</a> | <a href="docs/palo-finops.html#who-uses-the-module">End users, IT, administrators and finance</a>.</p></div>
     <div class="fo-workspace palo-shell">
       <div class="fo-workspace-heading"><div><h2 id="workspace-title">Untitled FinOps</h2><span id="source-badge" class="fo-badge">Empty workspace</span></div><span id="draft-state" class="fo-draft-state">Not saved locally</span></div>
       <div class="fo-toolbar" aria-label="Workspace actions">
@@ -173,6 +179,7 @@
         <button type="button" id="tab-billing" role="tab" aria-controls="panel-billing" aria-selected="false" tabindex="-1" data-panel="billing">Billing &amp; showback</button>
         <button type="button" id="tab-operations" role="tab" aria-controls="panel-operations" aria-selected="false" tabindex="-1" data-panel="operations">Operations</button>
         <button type="button" id="tab-transition" role="tab" aria-controls="panel-transition" aria-selected="false" tabindex="-1" data-panel="transition">Route assessment</button>
+        <button type="button" id="tab-learning" role="tab" aria-controls="panel-learning" aria-selected="false" tabindex="-1" data-panel="learning">Local learning</button>
         <button type="button" id="tab-setup" role="tab" aria-controls="panel-setup" aria-selected="false" tabindex="-1" data-panel="setup">Setup &amp; rate cards</button>
       </nav>
 
@@ -269,6 +276,11 @@
         <aside class="fo-transition-result" id="transition-result" aria-live="polite"><p class="fo-eyebrow">Assessment result</p><h4 id="transition-verdict">Ready to compare</h4><p id="transition-summary">Choose a destination and enter comparable cost estimates to review budget, route eligibility and economic preference.</p><ul id="transition-reasons"></ul><button class="fo-button" type="button" id="export-assessment" disabled>Export assessment JSON</button><p class="fo-help">Export includes the declared request and workspace snapshot.</p><div class="fo-result-boundary"><strong>No execution authority</strong><p>This assessment does not reserve funds, send data, enforce policy or authorise an API call. Policy and evidence references are declared inputs.</p><p>An unknown cache can be covered by a conservative reservation. An unknown final cost stays unresolved in the ledger.</p></div></aside></div>
       </section>
 
+      <section class="fo-panel" id="panel-learning" role="tabpanel" aria-labelledby="tab-learning" tabindex="0" hidden>
+        <p class="fo-help"><a href="docs/palo-finops-learning.html">Research method and input contract</a></p>
+        <span id="local-learning"></span><div id="finops-learning"><p class="fo-help">Preparing the local-learning research workspace...</p></div>
+      </section>
+
       <section class="fo-panel" id="panel-setup" role="tabpanel" aria-labelledby="tab-setup" tabindex="0" hidden>
         <div class="fo-section-heading"><div><p class="fo-eyebrow">Make the scope explicit</p><h3>Workspace setup</h3></div><span class="fo-badge" id="workspace-currency">USD</span></div>
         <form id="workspace-form" class="fo-inline-form"><label class="fo-field grow">Workspace name<input id="config-label" required maxlength="200"></label><label class="fo-field">Currency<input id="config-currency" required pattern="[A-Z]{3}" maxlength="3" aria-describedby="currency-help"></label><label class="fo-field">Workspace budget<input id="config-budget" inputmode="decimal" required></label><button class="fo-button primary" type="submit">Update workspace</button><p class="fo-help wide" id="currency-help">One currency per workspace. Currency becomes fixed once rate cards or events exist. No implicit exchange rates.</p><p class="fo-form-status" id="config-status" role="status"></p></form>
@@ -289,7 +301,7 @@
   </main>
   <footer class="palo-footer" data-palo-authorship-container="true">
 <p class="palo-authorship-footer" data-palo-authorship="footer">PALO Framework: conceived, created and maintained by <a href="PALO_Community.html#creator">Fabrizio Degni</a>.</p>
-<div class="palo-shell"><p><strong>PALO Framework</strong> | AI FinOps</p><p>Created and maintained by <a href="PALO_Community.html">Fabrizio Degni</a>.</p><div class="palo-footer-links"><a href="docs/palo-finops.html">Module documentation</a>
+<div class="palo-shell"><p><strong>PALO Framework</strong> | AI FinOps</p><p>Created and maintained by <a href="PALO_Community.html">Fabrizio Degni</a>.</p><div class="palo-footer-links"><a href="docs/palo-finops.html">Module documentation</a><a href="docs/palo-finops-local-learning-research.html">Local learning research</a><a href="assets/PALO_FinOps_Local_Learning_v1.0.1.zip">Reproduce Local learning 1.0.1</a>
                 <a href="assets/PALO_FinOps_Paper_v1.0.pdf">Technical preprint (PDF)</a>
                 <a href="assets/PALO_FinOps_arXiv_source_v1.0.zip">LaTeX sources</a>
                 <a href="assets/PALO_FinOps_reproducibility_v1.0.zip">Reproduce the paper</a><a href="schemas/palo-finops-workspace.schema.json">Workspace schema</a><a href="PALO_PlatformMap.html">Platform map</a></div></div></footer>

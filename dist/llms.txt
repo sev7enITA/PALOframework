@@ -1,0 +1,58 @@
+# PALO Framework
+
+> PALO means Principled AI Lifecycle Orchestration. Created and maintained by Fabrizio Degni, it connects AI governance decisions with risk and impact assessment, controls, indicators and reviewable evidence.
+
+PALO supports governance and educational assessment; it does not certify compliance. PALO-AI is a developer preview, with production limits documented in its capability and readiness pages. Worked examples use synthetic data unless explicitly stated otherwise.
+
+This is a curated index of public resources. Canonical pages remain authoritative. This file grants no permissions and does not change crawler access.
+
+## Start
+
+- [PALO Framework](https://paloframework.org/): Framework definition, authorship and practical entry points.
+
+## Tools and worked examples
+
+- [Two-Lens AI Maturity Assessment](https://paloframework.org/PALO_AIMaturity.html): 22 scoped capability questions, four governance pillars, evidence gaps and explicit historical comparison. Experimental rubric; not a national score, certification or deployment approval.
+- [AI maturity methodology](https://paloframework.org/docs/palo-ai-maturity-assessment.html): Sources, evidence ceilings, scope, date checks and pilot-validation limits.
+
+- [AI governance assessment path](https://paloframework.org/PALO_AssessmentPath.html): Connect context, risk, impact, controls, indicators and a local evidence bundle.
+- [Fundamental rights impact assessment](https://paloframework.org/PALO_FRIA.html): FRIA tool, scope explanation and a downloadable fictional example.
+- [AI governance KPI and KRI generator](https://paloframework.org/PALO_KPIGenerator.html): Select indicators and export a starting register; calibrate thresholds before use.
+- [AI risk screening](https://paloframework.org/PALO_RiskTiering.html): Preliminary use-case screening with explicit limitations.
+- [KPI and KRI worked examples](https://paloframework.org/docs/ai-governance-kpi-kri-examples.md): Formulas, denominators, accountable owners and a worked downloadable CSV. Canonical web page: https://paloframework.org/docs/ai-governance-kpi-kri-examples.html.
+- [AI governance evidence example](https://paloframework.org/docs/ai-governance-evidence-worked-example.md): A fictional invoice-agent case linking authority, expected effects and review conditions. Canonical web page: https://paloframework.org/docs/ai-governance-evidence-worked-example.html.
+
+## Data and methodology
+
+- [Governance datasets and registers](https://paloframework.org/PALO_DataCatalog.html): JSON downloads, versions, licenses, provenance and limits of the indicator register and security crosswalk.
+- [OWASP GenAI crosswalk](https://paloframework.org/PALO_OWASPGenAI2026.html): Independent PALO design-fit mapping; not OWASP endorsement or compliance certification.
+
+## Agentic governance
+
+- [PALO-AM methodology](https://paloframework.org/PALO_AgenticGovernance.html): Delegated authority, oversight and evidence for agent actions.
+- [PALO-AI developer preview](https://paloframework.org/PALO_AIGovernance.html): Runtime contracts and integration routes; preserve the developer-preview boundary.
+- [n8n governance guide](https://paloframework.org/docs/palo-ai-n8n-governance-control-plane.md): Visual integration patterns and the governed action path. Canonical web page: https://paloframework.org/docs/palo-ai-n8n-governance-control-plane.html.
+- [PALO MCP services](https://paloframework.org/packages/palo-mcp-server/README.md): Reference service contracts, local validation and production limitations. Canonical web page: https://paloframework.org/packages/palo-mcp-server/README.html.
+
+## Authority and limits
+
+- [Production readiness](https://paloframework.org/PALO_AIProductionReadiness.html): Evidence required before production use and unresolved limitations.
+- [Publications and evidence ledger](https://paloframework.org/PALO_Recognition.html): Preferred citation and the distinction between author-led work, public proposals and independent references.
+
+## Semantic deep dive
+
+- [Agentic taxonomy and dictionaries](https://paloframework.org/docs/palo-agentic-taxonomy-and-dictionaries.md): Detailed lifecycle, authority, action, evidence and external-signal vocabularies. Canonical web page: https://paloframework.org/docs/palo-agentic-taxonomy-and-dictionaries.html.
+- [Agentic ontologies and verification](https://paloframework.org/docs/palo-agentic-ontologies.md): OWL, SHACL, draft stack relations, JSON contracts and verified limits. Canonical web page: https://paloframework.org/docs/palo-agentic-ontologies.html.
+- [Semantic technical catalogues](https://paloframework.org/semantic-catalogues/): Search all 65 inspected JSON Schemas, controlled values and RDF declarations.
+
+## AI FinOps and local learning
+
+- [AI FinOps 1.3](https://paloframework.org/PALO_FinOps.html): Local cost accountability, billing reconciliation, operational review and experimental local-learning economics.
+- [Local learning workspace](https://paloframework.org/PALO_FinOps.html#local-learning): Frozen external-only, static hybrid and distilled hybrid comparisons with complete costs, quality and latency gates. Seven synthetic scenarios; no training or demonstrated savings.
+- [Research and reproducibility](https://paloframework.org/docs/palo-finops-local-learning-research.html): Roles, evidence limits, preprint v1.0 versus the experimental extension, and an offline report 1.0.1 reproduction package.
+- [Local learning method](https://paloframework.org/docs/palo-finops-learning.html): Input contract 1.0.0, report contract 1.0.1, sampling assumptions, full task cost and conditional crossover.
+
+## Optional
+
+- [Selected resource text](https://paloframework.org/llms-full.txt): Text snapshot of the resources above.
+- [Documentation Library](https://paloframework.org/PALO_DocumentationLibrary.html): Browse the wider documentation.

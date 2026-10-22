@@ -3,7 +3,7 @@
 
     function loadSpotlight() {
         if (window.PALO_SPOTLIGHT || document.querySelector('script[data-palo-spotlight-loader]')) return;
-        var source = paloShellScript && paloShellScript.src ? new URL('palo-spotlight.js', paloShellScript.src).href : 'assets/palo-spotlight.js';
+        var source = paloShellScript && paloShellScript.src ? new URL('palo-spotlight.js?v=finops-1.3.0', paloShellScript.src).href : 'assets/palo-spotlight.js?v=finops-1.3.0';
         var script = document.createElement('script');
         script.src = source;
         script.setAttribute('data-palo-spotlight-loader', 'true');
