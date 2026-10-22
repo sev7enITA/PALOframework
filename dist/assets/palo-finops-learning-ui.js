@@ -6,7 +6,7 @@ const $=id=>document.getElementById(id);
 const node=(tag,text,className)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=String(text);if(className)n.className=className;return n;};
 const key='palo.finops.learning.v1';
 let experiment=null,report=null,busy=false;
-const labels={passes:'Passes under declared assumptions',fails:'Fails requirement',inconclusive:'Insufficient evidence',invalid_design:'Design or coverage incomplete',synthetic_candidate:'Conditional advantage in synthetic example',conditional_candidate:'Conditional candidate for review',not_demonstrated:'Advantage not demonstrated'};
+const labels={passes:'Passes under declared assumptions',fails:'Fails requirement',inconclusive:'Insufficient evidence',invalid_design:'Design or coverage incomplete',synthetic_candidate:'Meets candidate criteria in synthetic example',conditional_candidate:'Conditional candidate for review',not_demonstrated:'Advantage not demonstrated'};
 const display=x=>labels[x]??x.replaceAll('_',' ');
 const fmt=n=>n===null?'Unavailable':new Intl.NumberFormat('en',{style:'currency',currency:report.currency,minimumFractionDigits:2,maximumFractionDigits:6}).format(n/1000000);
 const pct=n=>`${(n*100).toFixed(1)}%`;
