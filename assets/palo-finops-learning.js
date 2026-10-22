@@ -2,6 +2,7 @@
 import {canonical, digest} from './palo-finops-billing.js';
 
 export const LEARNING_VERSION = '1.0.0';
+export const LEARNING_REPORT_VERSION = '1.0.1';
 export const ARM_IDS = ['external_only', 'hybrid_static', 'hybrid_distilled'];
 export const COST_CATEGORIES = ['teacher_data', 'training', 'evaluation', 'hardware', 'energy', 'human_review', 'operations', 'local_inference', 'external_inference'];
 export const COST_PHASES = ['sunk', 'investment', 'evaluation', 'future_fixed', 'future_per_attempt'];
@@ -20,6 +21,36 @@ const sum = xs => safe(xs.reduce((a,x) => a + BigInt(x), 0n));
 const ratio = (n,d) => d > 0 ? {numeratorMicros:n, denominator:d} : null;
 const unique = xs => new Set(xs).size === xs.length;
 const exactKeys = (x, keys, name) => check(object(x) && Object.keys(x).every(k => keys.includes(k)), `Unknown ${name} field.`);
+
+// Public JS callers must supply the same data domain as JSON file imports.
+// Reject values that JSON.stringify would silently erase/coerce before hashing.
+function jsonSnapshot(value) {
+  const active=new WeakSet();
+  function visit(v,depth=0) {
+    check(depth<=64, 'JSON nesting exceeds 64 levels.');
+    if(v===null || typeof v==='string' || typeof v==='boolean') return;
+    if(typeof v==='number') {check(Number.isFinite(v), 'Non-JSON number.');return;}
+    check(typeof v==='object', 'Non-JSON value.');
+    check(!active.has(v), 'Cyclic JSON input.');
+    const array=Array.isArray(v),prototype=Object.getPrototypeOf(v);
+    check(array ? prototype===Array.prototype : prototype===Object.prototype || prototype===null, 'Expected a plain JSON object.');
+    active.add(v);
+    const keys=Reflect.ownKeys(v);
+    if(array) check(v.length<=100000 && keys.length===v.length+1, 'Sparse or extended JSON array.');
+    for(const k of keys) {
+      if(array && k==='length') continue;
+      const d=Object.getOwnPropertyDescriptor(v,k);
+      check(typeof k==='string' && d.enumerable && Object.hasOwn(d,'value'), 'Non-JSON property.');
+      if(array) check(/^(0|[1-9][0-9]*)$/.test(k) && Number(k)<v.length, 'Extended JSON array.');
+      visit(d.value,depth+1);
+    }
+    active.delete(v);
+  }
+  visit(value);
+  const serialized=JSON.stringify(value);
+  check(new TextEncoder().encode(serialized).length<=8*1024*1024, 'Input exceeds 8 MiB.');
+  return JSON.parse(serialized);
+}
 
 export function validateLearningPlan(p) {
   exactKeys(p, ['id','version','owner','registeredAt','registrationRef','workloadRef','currency','evidenceKind','sampling','acceptanceRuleRef','splits','arms','quality','scenario'], 'plan');
@@ -58,6 +89,7 @@ export function validateLearningPlan(p) {
 }
 
 export async function freezeLearningPlan(spec) {
+  spec=jsonSnapshot(spec);
   validateLearningPlan(spec);
   const payload = {format:'palo-finops-learning-plan', schemaVersion:LEARNING_VERSION, spec:structuredClone(spec)};
   return {...payload, digest:await digest(payload)};
@@ -97,7 +129,7 @@ function validateExperiment(x) {
     const future = c.phase.startsWith('future_');
     check((future ? ['assumed','unknown'] : ['final','estimated','unknown']).includes(c.status) && text(c.evidenceRef), 'Invalid cost finality or missing evidence.');
     check(c.status === 'unknown' ? c.amountMicros === null : money(c.amountMicros), 'Unknown cost needs null; other amounts require nonnegative safe integer micros.');
-    check(Array.isArray(c.allocations) && c.allocations.length > 0 && c.allocations.length <= 3 && unique(c.allocations.map(a => a.armId)), 'Declare unique cost allocations.');
+    check(Array.isArray(c.allocations) && c.allocations.length > 0 && c.allocations.length <= 3 && unique(c.allocations.map(a => a.armId)), 'List each applicable standalone alternative once; allocations conserve observed spending, including zero shares.');
     for (const a of c.allocations) {
       exactKeys(a, ['armId','amountMicros'], 'allocation');
       check(ARM_IDS.includes(a.armId) && (c.status === 'unknown' ? a.amountMicros === null : money(a.amountMicros)), 'Invalid allocation amount.');
@@ -125,7 +157,24 @@ function gate(bound, minimum) {
   return bound.lower >= minimum ? 'passes' : bound.upper < minimum ? 'fails' : 'inconclusive';
 }
 
-/** Exact integer attempt-volume regions for candidate cost <= baseline cost. */
+// Preserve the exact represented binary64 bound when comparing money products.
+// Multiplying safe integer micros by Number probabilities can round unequal
+// products to a tie. This does not make the statistical bounds arbitrary precision.
+function binaryRatio(value) {
+  const view = new DataView(new ArrayBuffer(8));
+  view.setFloat64(0,value);
+  const bits=view.getBigUint64(0), exponent=Number((bits>>52n)&2047n);
+  const significand=(bits&((1n<<52n)-1n))+(exponent===0?0n:1n<<52n);
+  const shift=exponent===0?-1074:exponent-1075;
+  return shift>=0?[significand<<BigInt(shift),1n]:[significand,1n<<BigInt(-shift)];
+}
+function acceptedCostAtMost(candidateCost,baselineCost,candidateLower,baselineUpper) {
+  if(candidateLower<=0)return false;
+  const [cn,cd]=binaryRatio(candidateLower),[bn,bd]=binaryRatio(baselineUpper);
+  return BigInt(candidateCost)*bn*cd<=BigInt(baselineCost)*cn*bd;
+}
+
+/** Exact integer attempted-task-volume regions for candidate cost <= baseline cost. */
 export function crossover({baselineFixed, candidateFixed, baselineVariable, candidateVariable, maxTasks}) {
   check([baselineFixed,candidateFixed,baselineVariable,candidateVariable,maxTasks].every(money), 'Invalid crossover amounts.');
   const fixed = BigInt(candidateFixed)-BigInt(baselineFixed), saving = BigInt(baselineVariable)-BigInt(candidateVariable);
@@ -142,9 +191,7 @@ export function crossover({baselineFixed, candidateFixed, baselineVariable, cand
 }
 
 export async function analyzeLearningExperiment(input) {
-  // Bound nested/non-JSON input before canonical hashing and replay.
-  const serialized = JSON.stringify(input); check(serialized && serialized.length <= 8*1024*1024, 'Experiment exceeds 8 MiB.');
-  const x = JSON.parse(serialized);
+  const x = jsonSnapshot(input);
   await verifyLearningPlan(x.plan);
   const {tasks,cells} = validateExperiment(x), p=x.plan.spec, r=x.run, q=p.quality, n=tasks.size;
   const designReasons=[];
@@ -166,8 +213,12 @@ export async function analyzeLearningExperiment(input) {
       return [phase,{knownMicros:sum(known.map(c=>c.allocations.find(v=>v.armId===id).amountMicros)),scenarioBasisMicros:sum(known.map(c=>c.amountMicros)),estimatedMicros:sum(selected.filter(c=>c.status==='estimated').map(c=>c.allocations.find(v=>v.armId===id).amountMicros)),complete:phaseReasons.length===0,reasons:phaseReasons}];
     }));
     const reservation=sum(r.openReservations.filter(v=>v.armId===id).map(v=>v.amountMicros));
-    if (reservation) reasons.push('Open cost reservations remain unresolved.');
-    const accountingComplete=['sunk','investment','evaluation'].every(k=>phases[k].complete)&&!reservation&&rows.length===n&&r.allAttemptsIncludedDeclared&&p.sampling.selectionCostsCompleteDeclared;
+    const accountingReasons=['sunk','investment','evaluation'].flatMap(k=>phases[k].reasons.map(reason=>`${k}: ${reason}`));
+    if(reservation) accountingReasons.push('Open cost reservations remain unresolved.');
+    if(rows.length!==n) accountingReasons.push('Observed task coverage is incomplete.');
+    if(!r.allAttemptsIncludedDeclared) accountingReasons.push('All attempts and failed runs are not included.');
+    if(!p.sampling.selectionCostsCompleteDeclared) accountingReasons.push('Selection costs are not declared complete.');
+    const accountingComplete=accountingReasons.length===0;
     const knownTotal=sum(['sunk','investment','evaluation'].map(k=>phases[k].knownMicros));
     const acceptanceBound=interval(accepted/n,n,1,q.alpha,0,1), latencyBound=interval(latencyPassed/n,n,1,q.alpha,0,1);
     const projectionReasons=[];
@@ -181,7 +232,7 @@ export async function analyzeLearningExperiment(input) {
       knownObservedTotalMicros:knownTotal,openReservationsMicros:reservation,accountingStatus:accountingComplete?'complete_declared':'incomplete',
       observedCostPerAccepted:accountingComplete?ratio(knownTotal,accepted):null,
       evaluationCostPerAccepted:accountingComplete?ratio(phases.evaluation.knownMicros,accepted):null,
-      phases,reasons,projectionReasons};
+      phases,reasons,accountingReasons,projectionReasons};
   });
   const comparisons=PAIRS.map(([baselineId,candidateId])=>{
     const b=arms.find(a=>a.id===baselineId),c=arms.find(a=>a.id===candidateId),reasons=[...designReasons,...b.reasons,...c.reasons];
@@ -193,6 +244,7 @@ export async function analyzeLearningExperiment(input) {
     const nonInferiorityGate=bound?gate(bound,-q.nonInferiorityMargin):'unavailable';
     const gates=[b.acceptanceGate,b.latencyGate,c.acceptanceGate,c.latencyGate,nonInferiorityGate];
     const qualityStatus=reasons.length?'invalid_design':gates.includes('fails')?'fails':gates.every(g=>g==='passes')?'passes':'inconclusive';
+    const accountingReasons=[b,c].flatMap(a=>a.accountingReasons.map(reason=>`${a.label}: ${reason}`));
     const projectionReasons=[...new Set([...b.projectionReasons,...c.projectionReasons])];
     let scenario=null;
     if(!projectionReasons.length){
@@ -207,26 +259,28 @@ export async function analyzeLearningExperiment(input) {
         candidateCostPerAcceptedAtObservedRate:c.acceptedTasks?{numeratorMicros:(BigInt(cf)+BigInt(cv)*BigInt(N)).toString(),multiplier:n,denominator:(BigInt(N)*BigInt(c.acceptedTasks)).toString()}:null};
     }
     const evidenceComplete=b.accountingStatus==='complete_declared'&&c.accountingStatus==='complete_declared';
-    // Even an allowed quality difference may erase per-attempt savings. Require
+    // Even an allowed quality difference may erase per-task savings. Require
     // conservative accepted-outcome economics too; these bounds remain conditional
     // on fixed future costs and stable population acceptance probabilities.
-    const acceptedCostBoundPass=Boolean(scenario && c.acceptanceBound.lower>0 &&
-      scenario.candidateTotalMicros*b.acceptanceBound.upper <= scenario.baselineTotalMicros*c.acceptanceBound.lower);
+    const acceptedCostBoundPass=Boolean(scenario && acceptedCostAtMost(
+      scenario.candidateTotalMicros,scenario.baselineTotalMicros,c.acceptanceBound.lower,b.acceptanceBound.upper));
     const eligible=qualityStatus==='passes'&&evidenceComplete&&scenario?.noMoreExpensiveAtDeclaredVolume===true&&acceptedCostBoundPass;
     return {baselineId,candidateId,pairedAcceptanceDifference:difference,pairedBound:bound,nonInferiorityGate,qualityStatus,
-      reasons:[...new Set(reasons)],projectionReasons,scenario,acceptedCostBoundPass,
+      reasons:[...new Set(reasons)],accountingReasons,projectionReasons,scenario,acceptedCostBoundPass,
       assessment:eligible?(p.evidenceKind==='synthetic'?'synthetic_candidate':'conditional_candidate'):'not_demonstrated',
       executionAuthorized:false};
   });
-  const report={format:'palo-finops-learning-report',schemaVersion:LEARNING_VERSION,experimentDigest:await digest(x),planDigest:x.plan.digest,
+  const report={format:'palo-finops-learning-report',schemaVersion:LEARNING_REPORT_VERSION,experimentDigest:await digest(x),planDigest:x.plan.digest,
     runId:r.id,asOf:r.endedAt,currency:p.currency,evidenceKind:p.evidenceKind,arms,comparisons,
+    units:{sampling:'task',futureVolume:'attempted task',futureVariableCost:'micros per attempted task, including all retries and model calls',attempts:'model attempts within observed tasks',latency:'end-to-end task milliseconds, including retries',capacity:'complete attempted tasks per day'},
     inference:{method:'two-sided Hoeffding, Bonferroni over 9 fixed intervals',familywiseAlpha:q.alpha,sampleSize:n,independentUnitsAssumed:true,independenceVerified:false},
-    limits:['Input evidence and sampling declarations are not independently authenticated.', 'Digest binding detects changes relative to a retained digest; it does not prove preregistration time.', 'Content hashes reject exact duplicates, not semantic overlap or undisclosed pretraining contamination.', 'Observed sunk, investment and evaluation costs are separate from hypothetical future spending.', 'Future fixed costs cover the whole declared horizon at every volume; the crossover is an attempt-volume threshold, not a calendar payback date.', 'Forecast unit costs use observed acceptance rates as assumptions; they do not establish equal quality or equal accepted volume.', 'A lower cost per attempt can coexist with a higher cost per accepted outcome.', 'Acceptance and latency floors are separate marginal requirements; no joint success floor or latency noninferiority is tested.', 'Range-based intervals do not adapt to observed pair agreement; their coverage excludes uncertainty in future costs.', 'No model training, provider dispatch, route promotion or causal economic validation is performed.'],
+    limits:['Input evidence and sampling declarations are not independently authenticated.', 'Digest binding detects changes relative to a retained digest; it does not prove preregistration time.', 'Content hashes reject exact duplicates, not semantic overlap or undisclosed pretraining contamination.', 'Observed sunk, investment and evaluation costs are separate from hypothetical future spending.', 'Future fixed costs cover the whole declared horizon at every volume; the crossover is an attempt-volume threshold, not a calendar payback date.', 'Forecast unit costs use observed acceptance rates as assumptions; they do not establish equal quality or equal accepted volume.', 'Consistency between observed retries and declared retry-inclusive future costs remains the declarant responsibility.', 'A lower cost per attempted task can coexist with a higher cost per accepted outcome.', 'Acceptance and latency floors are separate marginal requirements; no joint success floor or latency noninferiority is tested.', 'Range-based intervals do not adapt to observed pair agreement; their coverage excludes uncertainty in future costs.', 'No model training, provider dispatch, route promotion or causal economic validation is performed.'],
     savingsDemonstrated:false,productionValidated:false,executionAuthorized:false};
   return {...report,digest:await digest(report)};
 }
 
 export async function verifyLearningReport(report, experiment) {
+  check(report?.format==='palo-finops-learning-report' && report.schemaVersion===LEARNING_REPORT_VERSION, 'Unsupported learning report version; regenerate from the original experiment with analyze.');
   check(canonical(report)===canonical(await analyzeLearningExperiment(experiment)), 'Learning report replay mismatch.');
   return true;
 }

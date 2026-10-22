@@ -1,6 +1,12 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {analyzeLearningExperiment as analyze,freezeLearningPlan} from './learning.js';
+import {spawnSync} from 'node:child_process';
+import {mkdtemp,readFile,writeFile,access} from 'node:fs/promises';
+import {tmpdir} from 'node:os';
+import {join} from 'node:path';
+import Ajv from 'ajv/dist/2020.js';
+import addFormats from 'ajv-formats';
+import {analyzeLearningExperiment as analyze,freezeLearningPlan,verifyLearningReport} from './learning.js';
 import {createLearningDemo} from '../../assets/palo-finops-learning-demo.js';
 
 const pair=r=>r.comparisons.find(c=>c.baselineId==='external_only'&&c.candidateId==='hybrid_distilled');
@@ -95,4 +101,96 @@ test('review: unsupported projected totals fail closed instead of overflowing',a
   const row=x.run.costs.find(c=>c.allocations[0].armId==='external_only'&&c.phase==='future_per_attempt'&&c.categories[0]==='external_inference');
   row.amountMicros=200000;row.allocations[0].amountMicros=200000;
   await assert.rejects(analyze(await refreeze(x)),/overflow/);
+});
+
+test('source review: rounded probability products cannot turn a higher accepted-outcome cost into a tie',async()=>{
+  const x=await createLearningDemo();
+  futureTotal(x,'external_only',9007199254740986);
+  futureTotal(x,'hybrid_distilled',8114643714045151);
+  const r=await analyze(x),c=pair(r);
+  // These unequal exact products round to the same Number in the old gate.
+  assert.equal(c.scenario.candidateTotalMicros*r.arms[0].acceptanceBound.upper,
+    c.scenario.baselineTotalMicros*r.arms[2].acceptanceBound.lower);
+  assert.equal(c.acceptedCostBoundPass,false);
+  assert.equal(c.assessment,'not_demonstrated');
+  futureTotal(x,'hybrid_distilled',8114643714045150);
+  assert.equal(pair(await analyze(x)).assessment,'synthetic_candidate');
+});
+
+
+test('source review: non-JSON JS inputs cannot be silently coerced or dropped before hashing',async()=>{
+  const mutations=[
+    x=>x.run.outcomes[0].latencyMs=NaN,
+    x=>x.run.outcomes[0].latencyMs=Infinity,
+    x=>x.plan.spec.hiddenField=undefined,
+    x=>x.plan.spec.hiddenField=()=>0,
+    x=>x.plan.spec.hiddenField=Symbol('hidden'),
+    x=>x.plan.spec.hiddenField=1n,
+    x=>x.run.outcomes[0].latencyMs=new Date(),
+    x=>delete x.run.outcomes[0],
+    x=>x.run.outcomes.extra='ignored',
+    x=>x.run.cycle=x,
+    x=>Object.defineProperty(x.run,'hidden',{value:1,enumerable:false}),
+    x=>Object.defineProperty(x.run,'id',{get:()=>{throw new Error('Accessor executed');},enumerable:true})
+  ];
+  for(const mutate of mutations){const x=await createLearningDemo({sampleSize:24});mutate(x);await assert.rejects(analyze(x),/JSON/);}
+  const x=await createLearningDemo({sampleSize:24});x.plan.spec.hidden=undefined;
+  await assert.rejects(freezeLearningPlan(x.plan.spec),/Non-JSON/);
+});
+
+test('source review: incomplete accounting explains exclusion separately from passing quality',async()=>{
+  for(const phase of ['sunk','evaluation'])for(const mode of ['unknown','estimated','missing']){
+    const x=await createLearningDemo();
+    const row=x.run.costs.find(c=>c.phase===phase&&c.categories[0]==='operations'&&c.allocations[0].armId==='hybrid_distilled');
+    if(mode==='missing')x.run.costs=x.run.costs.filter(c=>c!==row);
+    else {row.status=mode;if(mode==='unknown'){row.amountMicros=null;row.allocations[0].amountMicros=null;}}
+    const r=await analyze(x),c=pair(r);
+    assert.equal(c.qualityStatus,'passes');assert.equal(c.acceptedCostBoundPass,true);
+    assert.equal(c.assessment,'not_demonstrated');assert.ok(c.accountingReasons.some(s=>s.includes(phase)));
+    assert.equal(r.arms[2].observedCostPerAccepted,null);
+  }
+  const x=await createLearningDemo({scenario:'unknown_cost'}),c=pair(await analyze(x));
+  assert.equal(c.qualityStatus,'passes');assert.ok(c.accountingReasons.some(s=>s.includes('reservations')));
+});
+
+test('source review: schema and runtime reject whitespace and noncanonical timestamps',async()=>{
+  const ajv=new Ajv({allErrors:true,strict:true});addFormats(ajv);
+  const validate=ajv.compile(JSON.parse(await readFile(new URL('../../schemas/palo-finops-learning-experiment.schema.json',import.meta.url))));
+  for(const mutate of [x=>x.plan.spec.owner='   ',x=>x.plan.spec.registeredAt='2026-10-22T08:00:00Z',x=>x.run.endedAt='2026-10-22T11:00:00+00:00']){
+    const x=await createLearningDemo({sampleSize:24});mutate(x);
+    assert.equal(validate(x),false);await assert.rejects(analyze(x));
+  }
+});
+
+test('source review: model retries do not multiply already inclusive per-task scenario assumptions',async()=>{
+  const x=await createLearningDemo(),before=await analyze(x);
+  for(const o of x.run.outcomes.filter(o=>o.armId==='hybrid_distilled')){o.attempts=3;o.externalCalls=2;}
+  const after=await analyze(x);
+  assert.deepEqual(after.comparisons,before.comparisons);
+  assert.equal(after.arms[2].attempts,3600);assert.equal(after.arms[2].externalCalls,2400);
+  assert.match(after.units.futureVariableCost,/per attempted task, including all retries/);
+  assert.match(after.units.latency,/end-to-end task/);
+});
+
+test('source review: CLI collision cleans its new file and preserves the pre-existing report',async()=>{
+  const dir=await mkdtemp(join(tmpdir(),'palo-source-review-')),input=join(dir,'experiment.json'),output=join(dir,'experiment.report.json');
+  const cli=new URL('../../scripts/finops-learning.mjs',import.meta.url).pathname;
+  await writeFile(output,'preserve existing report');
+  const result=spawnSync(process.execPath,[cli,'demo','favourable',input],{encoding:'utf8'});
+  assert.equal(result.status,1);assert.match(result.stderr,/EEXIST/);
+  assert.equal(await readFile(output,'utf8'),'preserve existing report');
+  await assert.rejects(access(input),{code:'ENOENT'});
+  for(const args of [['verify',input],['freeze'],['analyze',input]]){
+    const result=spawnSync(process.execPath,[cli,...args],{encoding:'utf8'});
+    assert.equal(result.status,1);assert.match(result.stderr,/Usage:/);assert.doesNotMatch(result.stderr,/ERR_INVALID_ARG_TYPE/);
+  }
+});
+
+
+test('source review: report version identifies changed semantics and directs old exports to regeneration',async()=>{
+  const x=await createLearningDemo({sampleSize:24}),r=await analyze(x);
+  assert.equal(x.schemaVersion,'1.0.0');assert.equal(r.schemaVersion,'1.0.1');
+  assert.equal(await verifyLearningReport(r,x),true);
+  r.schemaVersion='1.0.0';
+  await assert.rejects(verifyLearningReport(r,x),/regenerate from the original experiment with analyze/);
 });
