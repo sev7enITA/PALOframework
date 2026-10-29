@@ -14,6 +14,6 @@ export const TRI_GRAPH_PUBLIC_FILES = [
   'semantic-catalogues/tri-graph/dictionary.json',
   'examples/tri-graph/bundle.json', 'examples/tri-graph/observations.json',
   'examples/tri-graph/records.valid.ttl', 'examples/tri-graph/records.invalid.ttl',
-  'packages/palo-tri-graph/README.md', 'packages/palo-tri-graph/contracts.mjs',
+  'packages/palo-tri-graph/.htaccess', 'packages/palo-tri-graph/README.md', 'packages/palo-tri-graph/contracts.mjs',
   'packages/palo-tri-graph/evaluator.mjs', 'packages/palo-tri-graph/vocabulary.mjs'
 ];

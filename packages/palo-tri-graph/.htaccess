@@ -1,0 +1,2 @@
+# ES modules must be served with a JavaScript MIME type for strict module loading.
+AddType application/javascript .mjs

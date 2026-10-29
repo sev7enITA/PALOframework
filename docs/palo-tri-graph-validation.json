@@ -1,7 +1,7 @@
 {
   "format": "palo-tri-graph-internal-validation",
   "version": "0.1.0",
-  "validatedAt": "2026-10-29T04:34:10.310241+00:00",
+  "validatedAt": "2026-10-29T04:41:38.023139+00:00",
   "scope": "Additive local reference only; no production execution, effect observation or business outcome demonstrated",
   "automatedTests": {
     "total": 52,
@@ -203,6 +203,10 @@
       "sha256": "a5d443ee48bb08d928b6455973e982ade457aa73c6af1e5367c8199a4a9cc095"
     },
     {
+      "path": "packages/palo-tri-graph/.htaccess",
+      "sha256": "1911220ee2e3d3bf4d848a21ba298f4c45473c5d8f662044c5655b11b2d04151"
+    },
+    {
       "path": "packages/palo-tri-graph/README.md",
       "sha256": "6d66ae9707ede610be041749cfd5a86c52b591eb73fd5a8b2f125da1ac7ab465"
     },
@@ -232,7 +236,7 @@
     },
     {
       "path": "scripts/tri-graph-public-files.mjs",
-      "sha256": "f1308d15cfbe743e70a8bbc8f291aad6e015af1a32d8448276882576d6b249e5"
+      "sha256": "b236114d8828d00eb0201921b09149400afa05b8ce5cf3837e66acb70dc7590c"
     },
     {
       "path": "packages/palo-tri-graph/package.json",
