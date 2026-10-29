@@ -14,6 +14,6 @@ English presentation, official PALO logo and palette. No em dash or rhetorical q
 | 8 | Admission, execution and uncertain effects | Technical: execution boundary | Local candidate to qualified adapter and reconciliation | [Rehearsal](https://paloframework.org/PALO_TriGraphGovernance.html#rehearsal) |
 | 9 | Replay, correction and accountability | Technical: evidence and change | Receipt, challenge, impact query, review and versioned change | [Accountability](https://paloframework.org/PALO_TriGraphGovernance.html#accountability) |
 
-EMBA frameworks were checked against Antonio Ghezzi's Innovation Strategy / Lean Startup course material, slides 19, 22–28 and 31–34. The source material was used privately and is not republished. STAR is the requested presentation structure; it is not attributed to that course deck.
+EMBA frameworks were checked against Antonio Ghezzi's Innovation Strategy / Lean Startup course material, slides 19, 22-28 and 31-34. The source material was used privately and is not republished. STAR is the requested presentation structure; it is not attributed to that course deck.
 
 The results chart is a classification of fixed synthetic examples, not a measured incident distribution. The 52 automated checks validate the extension locally. No production benefit or independent assurance is claimed.

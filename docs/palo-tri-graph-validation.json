@@ -1,7 +1,7 @@
 {
   "format": "palo-tri-graph-internal-validation",
   "version": "0.1.0",
-  "validatedAt": "2026-10-29T04:27:59.392070+00:00",
+  "validatedAt": "2026-10-29T04:34:10.310241+00:00",
   "scope": "Additive local reference only; no production execution, effect observation or business outcome demonstrated",
   "automatedTests": {
     "total": 52,
@@ -128,23 +128,23 @@
   "sources": [
     {
       "path": "PALO_TriGraphGovernance.html",
-      "sha256": "165cc13f85ebdd615f700d90f5dcb0d3841ec0df102431aac928d0872ccc8b67"
+      "sha256": "e0e9d324dcb65b27e250346318230e8e2b8e00dab5e16afd82d9f40dacc08da4"
     },
     {
       "path": "assets/palo-tri-graph.css",
-      "sha256": "bad0a17627845e33c42f2f9afc7ffabc4c23ba2073b947992b0f94c0af4ae88e"
+      "sha256": "75fac8bd0f8f18d166e6b81e58f981d01d6c4e4278cc704da76bdb522017252b"
     },
     {
       "path": "assets/palo-tri-graph.js",
-      "sha256": "b78e1f87062ea3bcd093d7a7835642ad17d264d3bc64b0e56753284cd67870f8"
+      "sha256": "c911d8401317143917a94fbf56aa4f2b1d729ef71468e5e21e8c53f351e7f1f8"
     },
     {
       "path": "data/tri-graph-governance.json",
-      "sha256": "a52fb412b142e95730c953c28532800aad8bef0424b3bf95f4c7821a306ed95a"
+      "sha256": "5a1b13bef33faf51693df61b59a349b340fbe515d837c66a94eb784b081a122f"
     },
     {
       "path": "data/tri-graph-release-manifest.json",
-      "sha256": "e14ff80f74643dfe2886e7a6021e533129c32d564646b2deddcee922e2cb0ef8"
+      "sha256": "022857d74db2f91adcd343b98a075d3c4f8c8222d66147cf3f5e2699dbe5c297"
     },
     {
       "path": "data/palo-tri-graph-context.jsonld",
@@ -152,7 +152,7 @@
     },
     {
       "path": "docs/palo-tri-graph-governance.md",
-      "sha256": "05d76a558fb806d945ba19f023374e3e077feef34c524e9c7419d0016c6f4cd5"
+      "sha256": "5361f30425f34fc3bf4819816a75d23b71bad244adab64ac3257b9edae14b579"
     },
     {
       "path": "docs/palo-tri-graph-review.md",
@@ -160,7 +160,7 @@
     },
     {
       "path": "formal/palo-tri-graph.ttl",
-      "sha256": "c7ef5813528dd9368aeb9d7f4303b888db97f737c9577ffa397c32751ffe585e"
+      "sha256": "916b7eb8c5cc5d3fc550b640723f53417f842535a6cfe7d13a799ae4db6f0174"
     },
     {
       "path": "formal/palo-tri-graph.shacl.ttl",
@@ -168,7 +168,7 @@
     },
     {
       "path": "formal/palo-tri-graph-taxonomy.ttl",
-      "sha256": "6900587f792a730cc82a22707db4ecb0f971b857b3c425a971e9478cdbe44439"
+      "sha256": "99369448f561f7a4243ef27b328bcf72f6942888aa9d2df9e93be136cb4b2298"
     },
     {
       "path": "schemas/palo-tri-graph-bundle.schema.json",
@@ -180,19 +180,19 @@
     },
     {
       "path": "semantic-catalogues/tri-graph/concepts.jsonld",
-      "sha256": "afd7f589d4c24b39750b88d649cb7de3cc389a10e233088350f6ac9ff542e761"
+      "sha256": "ca154e40cd028a744b1c7823abed307f8b597edc90a75ec1aa43e82ca23651b2"
     },
     {
       "path": "semantic-catalogues/tri-graph/dictionary.json",
-      "sha256": "109b777a6890a1f2f55b321b819f5626b7875833d68d3a3f6ca9e30658bfe1c4"
+      "sha256": "b97d2638dcdbf11cbaf72b36c7a0f01add85355ccae2436fce890e0d5786b80c"
     },
     {
       "path": "examples/tri-graph/bundle.json",
-      "sha256": "87a30929d8780c4c341ef3807f95b2db378c4363b48bf8228ff27e76845ea1af"
+      "sha256": "f95b1455fb8e5f7c841615b2d067d1bdd326aac646cc1f579cf509754ed08a22"
     },
     {
       "path": "examples/tri-graph/observations.json",
-      "sha256": "b4719672e56aaa6b6eb31ffc4236ec6b395724d1b63dca989f5db3d87beac28e"
+      "sha256": "e5885507892ba5bebc64cef34657fe9557c26a5e7fe6076866b5ecf6ea628a61"
     },
     {
       "path": "examples/tri-graph/records.valid.ttl",
@@ -216,7 +216,7 @@
     },
     {
       "path": "packages/palo-tri-graph/vocabulary.mjs",
-      "sha256": "ff062253908a0c8d3e53dec59337bc2328036fb048c1f6f57d093047e5288880"
+      "sha256": "545c0fd5471cbcc8157b2e278950e15767b82e740698f98a2708653ec8193de0"
     },
     {
       "path": "scripts/generate-tri-graph.mjs",

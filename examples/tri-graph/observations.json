@@ -7,7 +7,7 @@
   "bindings": {
     "knowledge": "sha256:c06cc1ff92fa590d075e9c7bb307d3634ee27d252bc70099c63e85713f624300",
     "procedure": "sha256:52b1c60a3d711a25b6ceb4c71d5507786b1a601cf3ca276c605d863d8f35a4a2",
-    "vocabulary": "sha256:57742c9f43a98d46a358e35d406847f1f61c2b246ce265b1e15991c6e9dd84cc"
+    "vocabulary": "sha256:4950eb80a334eb12567671070fd13dd7dc5e687f7800fb0307ca35a756c3d62d"
   },
   "policyEpoch": 2,
   "resourceVersion": "v7",
@@ -38,7 +38,7 @@
   },
   "approval": {
     "status": "approved",
-    "decisionDigest": "sha256:69f2410364a5d144c6128b84737cb0271d6ebffb4ec88d789fdbae41e6bd4518",
+    "decisionDigest": "sha256:52a6d0e2a0a45d6a145d3413b99b4de7f706824d667f71fa9996b0c7e713a618",
     "reviewer": "reviewer-demo",
     "expiresAt": "2026-10-29T10:00:00Z"
   }

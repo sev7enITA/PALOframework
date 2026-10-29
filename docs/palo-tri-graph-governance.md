@@ -1,14 +1,14 @@
 # PALO Tri-Graph Governance 0.1
 
-Fabrizio Degni · 29 October 2026 · Additive reference preview over PALO 3.1
+Fabrizio Degni  |  29 October 2026  |  Additive reference preview over PALO 3.1
 
-[Interactive explorer and rehearsal](../PALO_TriGraphGovernance.html) · [Registry](../data/tri-graph-governance.json) · [Validation](palo-tri-graph-validation.json)
+[Interactive explorer and rehearsal](../PALO_TriGraphGovernance.html)  |  [Registry](../data/tri-graph-governance.json)  |  [Validation](palo-tri-graph-validation.json)
 
 ## Purpose and evidence status
 
 The proposed improvement is a connected decision model: attributed knowledge, a complete decision context within a declared scope, and a permitted procedure all use stable identifiers and pinned versions. PALO's existing distinction between authorization, execution, observed effect and business outcome remains fundamental.
 
-This release implements a versioned semantic extension, generated linked catalogues, a deterministic local evaluator and a reverse dependency query. It does not implement a production execution adapter, a durable bitemporal database, automatic truth assessment, legal conformity assessment or an autonomous learning service. The local evaluator always returns `canExecute: false`. “Candidate” means that the supplied rehearsal inputs satisfy the reference checks, not that the action is authorized.
+This release implements a versioned semantic extension, generated linked catalogues, a deterministic local evaluator and a reverse dependency query. It does not implement a production execution adapter, a durable bitemporal database, automatic truth assessment, legal conformity assessment or an autonomous learning service. The local evaluator always returns `canExecute: false`. "Candidate" means that the supplied rehearsal inputs satisfy the reference checks, not that the action is authorized.
 
 ## Current PALO and the three pillars
 
@@ -49,7 +49,7 @@ Global knowledge digests can cause unnecessary invalidation at scale. A future s
 
 The OWL extension uses a separate namespace and imports the existing core. It reuses PALO semantic classes and aligns selected concepts with PROV-O. OWL inference is not input validation. SHACL validates a deliberately limited RDF profile: identifiers, version strings and the context time interval. The complete JSON contract and runtime checks are separate. A valid RDF record does not establish authority, truth or storage immutability.
 
-The SKOS export contains language-tagged labels and pillar membership. The dictionary joins semantic concepts and relationships with fields extracted from the runtime schemas. Every field carries a semantic concept ID, URI and validation constraints; the explorer navigates from a field to its concept and relationships. The website reads these files at load time and resolves concept relationships interactively. “Dynamic” means generated from versioned sources, linked and queryable. It does not mean self-modifying production policy.
+The SKOS export contains language-tagged labels and pillar membership. The dictionary joins semantic concepts and relationships with fields extracted from the runtime schemas. Every field carries a semantic concept ID, URI and validation constraints; the explorer navigates from a field to its concept and relationships. The website reads these files at load time and resolves concept relationships interactively. "Dynamic" means generated from versioned sources, linked and queryable. It does not mean self-modifying production policy.
 
 | Contract | Meaning | Important binding |
 | --- | --- | --- |
@@ -66,7 +66,7 @@ The key-sorted JSON serializer is specified by this implementation and tested fo
 
 The proposed production workflow is:
 
-`Action Claim → trusted context acquisition → tri-graph evaluation → existing PALO admission → capability binding → target adapter → authoritative observation → effect verification → accountable closure`
+`Action Claim => trusted context acquisition => tri-graph evaluation => existing PALO admission => capability binding => target adapter => authoritative observation => effect verification => accountable closure`
 
 A production integration must bind the original Action Claim, Effect Contract, resource selector, payload digest, semantic release and context digest. It must recheck policy/authority epochs, expiry, budget reservations and idempotency at the execution boundary. A local transaction does not make an external API atomic. Where supported, the target must enforce a conditional write or compare-and-swap and an idempotency key. Where unsupported, document the remaining race, narrow the action and require reconciliation when the outcome is uncertain.
 
@@ -82,7 +82,7 @@ An affected person or reviewer can open a challenge linked to the original recei
 
 ## Controlled learning and semantic change
 
-The feedback path is `trace → candidate correction → impact analysis → independent review → tests → versioned release → explicit migration`. An agent-generated proposal cannot promote itself to policy or alter an active procedure.
+The feedback path is `trace => candidate correction => impact analysis => independent review => tests => versioned release => explicit migration`. An agent-generated proposal cannot promote itself to policy or alter an active procedure.
 
 The reverse dependency query propagates a changed assertion through its dependants and identifies snapshots that selected or explicitly excluded affected nodes. An exclusion rationale can become invalid after a correction. It does not mutate historical receipts. A production system must persist the resulting reassessment queue, establish notification deadlines and monitor completion. Retroactive corrections trigger a new assessment; they do not retroactively prove that the original decision used information unavailable at its recorded time.
 
@@ -116,4 +116,4 @@ Primary sources inspected for this work:
 - Open Policy Agent, [Decision Logs](https://www.openpolicyagent.org/docs/management-decision-logs).
 - LangChain, [LangGraph Persistence](https://docs.langchain.com/oss/python/langgraph/persistence).
 
-EMBA source used privately: Antonio Ghezzi, *Innovation Strategy / Lean Startup*, iFlex course deck: slide 19 (objectives, constraints and SWOT); slides 22–28 (value proposition and business model); slides 31–34 (Build-Measure-Learn and falsifiable hypotheses). The course slides are not republished. STAR structures the five executive slides; the technical supplement contains four slides. The new presentation contains no rhetorical questions.
+EMBA source used privately: Antonio Ghezzi, *Innovation Strategy / Lean Startup*, iFlex course deck: slide 19 (objectives, constraints and SWOT); slides 22-28 (value proposition and business model); slides 31-34 (Build-Measure-Learn and falsifiable hypotheses). The course slides are not republished. STAR structures the five executive slides; the technical supplement contains four slides. The new presentation contains no rhetorical questions.

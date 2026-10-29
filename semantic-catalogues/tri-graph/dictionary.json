@@ -144,7 +144,7 @@
         "it": "Stato procedurale",
         "en": "Procedure state"
       },
-      "definition": "Posizione esplicita nel ciclo di una decisione, distinta dallo stato dell’effetto reale.",
+      "definition": "Posizione esplicita nel ciclo di una decisione, distinta dallo stato dell'effetto reale.",
       "broader": "palo:CanonicalDefinition",
       "existingArtifact": "packages/palo-mcp-server/core.js",
       "definitionEn": "An explicit position in the decision lifecycle, separate from the real-world effect state."
@@ -168,7 +168,7 @@
         "it": "Proposta di azione",
         "en": "Action proposal"
       },
-      "definition": "Richiesta con scopo e risorsa che deve ancora ottenere l’ammissione dell’esecutore.",
+      "definition": "Richiesta con scopo e risorsa che deve ancora ottenere l'ammissione dell'esecutore.",
       "broader": "palo:RuntimeRecord",
       "existingArtifact": "schemas/palo-agentic-action-claim.schema.json",
       "definitionEn": "A scoped request for a resource operation that still requires admission by the executor."
@@ -189,10 +189,10 @@
       "id": "EffectObservation",
       "pillar": "assurance",
       "label": {
-        "it": "Osservazione dell’effetto",
+        "it": "Osservazione dell'effetto",
         "en": "Effect observation"
       },
-      "definition": "Evidenza proveniente dalla risorsa autorevole dopo il tentativo; il timeout può lasciare l’effetto incerto.",
+      "definition": "Evidenza proveniente dalla risorsa autorevole dopo il tentativo; il timeout può lasciare l'effetto incerto.",
       "broader": "palo:EvidenceEvaluation",
       "existingArtifact": "schemas/palo-agentic-outcome-attestation.schema.json",
       "definitionEn": "Evidence from the authoritative target after an attempt. A timeout can leave the effect unknown."
@@ -228,7 +228,7 @@
         "it": "Contestazione",
         "en": "Challenge record"
       },
-      "definition": "Obiezione motivata con evidenze, owner e stato; conserva la decisione originaria e l’eventuale rettifica.",
+      "definition": "Obiezione motivata con evidenze, owner e stato; conserva la decisione originaria e l'eventuale rettifica.",
       "broader": "palo:RuntimeRecord",
       "existingArtifact": "schemas/palo-affected-person-case.schema.json",
       "definitionEn": "A reasoned challenge with evidence, owner and status, linked to the original decision and any correction."
@@ -359,7 +359,7 @@
       "id": "checkedAt",
       "domain": "ActionProposal",
       "range": "ExecutionFence",
-      "label": "verificata prima dell’effetto"
+      "label": "verificata prima dell'effetto"
     },
     {
       "id": "observesEffect",

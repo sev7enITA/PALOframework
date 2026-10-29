@@ -239,7 +239,7 @@
         }
       ],
       "definition": {
-        "@value": "Posizione esplicita nel ciclo di una decisione, distinta dallo stato dell’effetto reale.",
+        "@value": "Posizione esplicita nel ciclo di una decisione, distinta dallo stato dell'effetto reale.",
         "@language": "it"
       },
       "pillar": "https://paloframework.org/semantic/tri-graph/procedure"
@@ -277,7 +277,7 @@
         }
       ],
       "definition": {
-        "@value": "Richiesta con scopo e risorsa che deve ancora ottenere l’ammissione dell’esecutore.",
+        "@value": "Richiesta con scopo e risorsa che deve ancora ottenere l'ammissione dell'esecutore.",
         "@language": "it"
       },
       "pillar": "https://paloframework.org/semantic/tri-graph/procedure"
@@ -310,12 +310,12 @@
           "@language": "en"
         },
         {
-          "@value": "Osservazione dell’effetto",
+          "@value": "Osservazione dell'effetto",
           "@language": "it"
         }
       ],
       "definition": {
-        "@value": "Evidenza proveniente dalla risorsa autorevole dopo il tentativo; il timeout può lasciare l’effetto incerto.",
+        "@value": "Evidenza proveniente dalla risorsa autorevole dopo il tentativo; il timeout può lasciare l'effetto incerto.",
         "@language": "it"
       },
       "pillar": "https://paloframework.org/semantic/tri-graph/assurance"
@@ -372,7 +372,7 @@
         }
       ],
       "definition": {
-        "@value": "Obiezione motivata con evidenze, owner e stato; conserva la decisione originaria e l’eventuale rettifica.",
+        "@value": "Obiezione motivata con evidenze, owner e stato; conserva la decisione originaria e l'eventuale rettifica.",
         "@language": "it"
       },
       "pillar": "https://paloframework.org/semantic/tri-graph/assurance"

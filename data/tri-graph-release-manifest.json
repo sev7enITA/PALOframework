@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "status": "reference-preview",
   "foundationVersion": "3.1.0",
-  "sourceDigest": "sha256:57742c9f43a98d46a358e35d406847f1f61c2b246ce265b1e15991c6e9dd84cc",
+  "sourceDigest": "sha256:4950eb80a334eb12567671070fd13dd7dc5e687f7800fb0307ca35a756c3d62d",
   "items": [
     {
       "path": "formal/palo-tri-graph.ttl",
-      "sha256": "c7ef5813528dd9368aeb9d7f4303b888db97f737c9577ffa397c32751ffe585e"
+      "sha256": "916b7eb8c5cc5d3fc550b640723f53417f842535a6cfe7d13a799ae4db6f0174"
     },
     {
       "path": "formal/palo-tri-graph.shacl.ttl",
@@ -15,7 +15,7 @@
     },
     {
       "path": "formal/palo-tri-graph-taxonomy.ttl",
-      "sha256": "6900587f792a730cc82a22707db4ecb0f971b857b3c425a971e9478cdbe44439"
+      "sha256": "99369448f561f7a4243ef27b328bcf72f6942888aa9d2df9e93be136cb4b2298"
     },
     {
       "path": "schemas/palo-tri-graph-bundle.schema.json",
@@ -27,7 +27,7 @@
     },
     {
       "path": "semantic-catalogues/tri-graph/dictionary.json",
-      "sha256": "109b777a6890a1f2f55b321b819f5626b7875833d68d3a3f6ca9e30658bfe1c4"
+      "sha256": "b97d2638dcdbf11cbaf72b36c7a0f01add85355ccae2436fce890e0d5786b80c"
     },
     {
       "path": "data/palo-tri-graph-context.jsonld",
@@ -35,19 +35,19 @@
     },
     {
       "path": "semantic-catalogues/tri-graph/concepts.jsonld",
-      "sha256": "afd7f589d4c24b39750b88d649cb7de3cc389a10e233088350f6ac9ff542e761"
+      "sha256": "ca154e40cd028a744b1c7823abed307f8b597edc90a75ec1aa43e82ca23651b2"
     },
     {
       "path": "packages/palo-tri-graph/vocabulary.mjs",
-      "sha256": "ff062253908a0c8d3e53dec59337bc2328036fb048c1f6f57d093047e5288880"
+      "sha256": "545c0fd5471cbcc8157b2e278950e15767b82e740698f98a2708653ec8193de0"
     },
     {
       "path": "examples/tri-graph/bundle.json",
-      "sha256": "87a30929d8780c4c341ef3807f95b2db378c4363b48bf8228ff27e76845ea1af"
+      "sha256": "f95b1455fb8e5f7c841615b2d067d1bdd326aac646cc1f579cf509754ed08a22"
     },
     {
       "path": "examples/tri-graph/observations.json",
-      "sha256": "b4719672e56aaa6b6eb31ffc4236ec6b395724d1b63dca989f5db3d87beac28e"
+      "sha256": "e5885507892ba5bebc64cef34657fe9557c26a5e7fe6076866b5ecf6ea628a61"
     },
     {
       "path": "examples/tri-graph/records.valid.ttl",
