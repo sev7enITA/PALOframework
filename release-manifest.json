@@ -80,16 +80,16 @@
       }
     },
     "aiMaturityAssessment": {
-          "name": "Two-Lens AI Maturity Assessment",
-          "version": "1.0.0",
-          "date": "2026-10-21",
-          "status": "experimental-browser-local",
-          "page": "PALO_AIMaturity.html",
-          "guide": "docs/palo-ai-maturity-assessment.html",
-          "catalog": "data/ai-maturity-assessment.json",
-          "schema": "schemas/palo-maturity-assessment.schema.json",
-          "empiricallyValidated": false,
-          "runtimeAuthorization": false
+      "name": "Two-Lens AI Maturity Assessment",
+      "version": "1.0.0",
+      "date": "2026-10-21",
+      "status": "experimental-browser-local",
+      "page": "PALO_AIMaturity.html",
+      "guide": "docs/palo-ai-maturity-assessment.html",
+      "catalog": "data/ai-maturity-assessment.json",
+      "schema": "schemas/palo-maturity-assessment.schema.json",
+      "empiricallyValidated": false,
+      "runtimeAuthorization": false
     },
     "agenticMethodology": {
       "name": "PALO-AM",
@@ -112,7 +112,15 @@
         "hostedServiceQualified": false,
         "productionQualified": false
       },
-      "swarmEvaluation": {"status": "unreleased-reference-snapshot", "assessedAt": "2026-09-17", "guide": "docs/palo-status-2026-09-17.html", "evidence": "data/swarm-verification-2026-09-17.json", "includedInPublishedRuntime": false, "combinedAnsSwarmQualified": false, "productionQualified": false}
+      "swarmEvaluation": {
+        "status": "unreleased-reference-snapshot",
+        "assessedAt": "2026-09-17",
+        "guide": "docs/palo-status-2026-09-17.html",
+        "evidence": "data/swarm-verification-2026-09-17.json",
+        "includedInPublishedRuntime": false,
+        "combinedAnsSwarmQualified": false,
+        "productionQualified": false
+      }
     },
     "semanticFoundation": {
       "version": "3.1.0",
@@ -120,8 +128,17 @@
       "status": "implemented",
       "semanticSpine": "data/semantic-spine.json",
       "semanticRelease": "data/semantic-release-manifest.json",
-      "evidenceBoundaryModel": ["canonical-definition", "source-backed-context", "illustrative-local-preview", "human-review-required"],
-      "workspaces": ["public-catalog", "case-workspace", "assurance-review"]
+      "evidenceBoundaryModel": [
+        "canonical-definition",
+        "source-backed-context",
+        "illustrative-local-preview",
+        "human-review-required"
+      ],
+      "workspaces": [
+        "public-catalog",
+        "case-workspace",
+        "assurance-review"
+      ]
     },
     "agenticRuntime": {
       "version": "1.4.0",
@@ -145,7 +162,9 @@
         "schemas/palo-ai-system-record.schema.json",
         "schemas/palo-assurance-signal.schema.json"
       ],
-      "contextProfiles": ["actian-data-intelligence"],
+      "contextProfiles": [
+        "actian-data-intelligence"
+      ],
       "documentation": "docs/palo-data-assurance-control-plane.md"
     },
     "agenticRemoteMcp": {
@@ -175,7 +194,10 @@
       "status": "interactive-product-prototype",
       "productionUse": false,
       "webEntry": "governance-hub/",
-      "workspaceLenses": ["executive", "technical"],
+      "workspaceLenses": [
+        "executive",
+        "technical"
+      ],
       "evidenceBoundaryModel": "illustrative-local-preview",
       "authorityBoundary": "No live authority, source-of-record status or approval decision.",
       "runtime": "illustrative-local-data"
@@ -194,8 +216,19 @@
     "stakeholderOnboarding": {
       "version": "2.6.0",
       "date": "2026-08-23",
-      "objectiveAxis": ["approve", "build", "govern", "govern-agent-actions", "deploy", "verify"],
-      "agenticBuildModes": ["code-first", "no-code-low-code", "rapid-prototyping"],
+      "objectiveAxis": [
+        "approve",
+        "build",
+        "govern",
+        "govern-agent-actions",
+        "deploy",
+        "verify"
+      ],
+      "agenticBuildModes": [
+        "code-first",
+        "no-code-low-code",
+        "rapid-prototyping"
+      ],
       "routeRibbon": true
     },
     "assessmentPath": {
@@ -217,7 +250,11 @@
       "date": "2026-08-25",
       "status": "public-index",
       "webEntry": "PALO_Observatories.html",
-      "publicationStates": ["gold-case", "monitoring-brief", "candidate-under-review"],
+      "publicationStates": [
+        "gold-case",
+        "monitoring-brief",
+        "candidate-under-review"
+      ],
       "policyWatcherBoundary": "Observation and public evidence only; no automated legal or PALO decision. Candidate correlations require human review and temporal association does not establish causation.",
       "externalIncidentProviderDefaultState": "disabled"
     },
@@ -268,7 +305,11 @@
         "matrix": "examples/agentic-interface/knowledge-copilot/host-conformance.json",
         "guide": "docs/palo-knowledge-copilot-integrations.md",
         "qualification": "docs/palo-mcp-host-qualification.md",
-        "validationLevels": ["protocol", "configuration", "live"],
+        "validationLevels": [
+          "protocol",
+          "configuration",
+          "live"
+        ],
         "liveQualifiedHosts": 0
       },
       "inferenceSources": [
@@ -322,6 +363,21 @@
     "vibeCoding": {
       "version": "1.8.0",
       "date": "2026-05-15"
+    },
+    "triGraphGovernance": {
+      "name": "PALO Tri-Graph Governance",
+      "version": "0.1.0",
+      "date": "2026-10-29",
+      "status": "additive-local-reference-preview",
+      "foundationVersion": "3.1.0",
+      "page": "PALO_TriGraphGovernance.html",
+      "guide": "docs/palo-tri-graph-governance.html",
+      "registry": "data/tri-graph-governance.json",
+      "validation": "docs/palo-tri-graph-validation.json",
+      "core": "packages/palo-tri-graph/evaluator.mjs",
+      "productionUse": false,
+      "runtimeAuthorization": false,
+      "empiricallyValidated": false
     }
   },
   "publication": {
@@ -357,7 +413,10 @@
       "webEntry": "PALO_Guide.html",
       "documentation": "docs/palo-guide-agent-and-mcp.html",
       "server": "packages/palo-mcp-server/index.js",
-      "transport": ["stdio", "authenticated-streamable-http"],
+      "transport": [
+        "stdio",
+        "authenticated-streamable-http"
+      ],
       "productionUse": false
     },
     "architecturePreview": {
@@ -415,7 +474,14 @@
     "cognitiveFrontDoor": {
       "status": "evidence-pack-primary",
       "entry": "PALO_AssessmentPath.html?sample=agentic-invoice#assessment-form",
-      "primaryNavigation": ["Evidence Pack", "Agentic Governance", "Governance Hub", "Tools", "Documentation", "Readiness"],
+      "primaryNavigation": [
+        "Evidence Pack",
+        "Agentic Governance",
+        "Governance Hub",
+        "Tools",
+        "Documentation",
+        "Readiness"
+      ],
       "documentationLibrary": "PALO_DocumentationLibrary.html",
       "legacyDocumentationHub": "transition-page",
       "privacy": "local-first-no-silent-submission"
@@ -424,9 +490,21 @@
       "status": "source-ready",
       "why": "PALO_AIWhy.html",
       "quickstarts": "PALO_AIQuickstarts.html",
-      "buildModes": ["code-first", "n8n-no-code", "copilot-studio-mcp"],
-      "comparison": ["without-palo", "with-palo", "authorized-but-wrong"],
-      "assuranceRail": ["capability-matrix", "production-readiness", "security-boundary"]
+      "buildModes": [
+        "code-first",
+        "n8n-no-code",
+        "copilot-studio-mcp"
+      ],
+      "comparison": [
+        "without-palo",
+        "with-palo",
+        "authorized-but-wrong"
+      ],
+      "assuranceRail": [
+        "capability-matrix",
+        "production-readiness",
+        "security-boundary"
+      ]
     }
   }
 }
