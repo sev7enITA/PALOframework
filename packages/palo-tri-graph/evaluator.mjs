@@ -1,5 +1,5 @@
-import {bundleSchema,observationSchema,validateShape} from './contracts.mjs';
-import {VOCABULARY_DIGEST} from './vocabulary.mjs';
+import {bundleSchema,observationSchema,validateShape} from './contracts.mjs?v=0.1.0';
+import {VOCABULARY_DIGEST} from './vocabulary.mjs?v=0.1.0';
 export const VERSION='0.1.0';
 // Stable key-sorted JSON for this JSON-only profile, not a general RFC8785 implementation.
 export function canonical(value) {

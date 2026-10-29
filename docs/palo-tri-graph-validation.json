@@ -1,7 +1,7 @@
 {
   "format": "palo-tri-graph-internal-validation",
   "version": "0.1.0",
-  "validatedAt": "2026-10-29T04:41:38.023139+00:00",
+  "validatedAt": "2026-10-29T04:45:53.103927+00:00",
   "scope": "Additive local reference only; no production execution, effect observation or business outcome demonstrated",
   "automatedTests": {
     "total": 52,
@@ -128,7 +128,7 @@
   "sources": [
     {
       "path": "PALO_TriGraphGovernance.html",
-      "sha256": "e0e9d324dcb65b27e250346318230e8e2b8e00dab5e16afd82d9f40dacc08da4"
+      "sha256": "3a18274678d1c3fbf6d01f3421e9d91ccbd6022918d78514a1d1a14170c61bc3"
     },
     {
       "path": "assets/palo-tri-graph.css",
@@ -136,7 +136,7 @@
     },
     {
       "path": "assets/palo-tri-graph.js",
-      "sha256": "c911d8401317143917a94fbf56aa4f2b1d729ef71468e5e21e8c53f351e7f1f8"
+      "sha256": "edd6d7da8d757c227daf9be2d78403ad3301d93e006796981df30b4406e68b8c"
     },
     {
       "path": "data/tri-graph-governance.json",
@@ -216,7 +216,7 @@
     },
     {
       "path": "packages/palo-tri-graph/evaluator.mjs",
-      "sha256": "403bbf1e189364b7acaf8469d02657cf8935af9ca22d0c67cf8d7008cb7a0e73"
+      "sha256": "4db2cd3146ca6f7e4c3a828495319ab730808bf019c10e04ea144cd2c7513f1a"
     },
     {
       "path": "packages/palo-tri-graph/vocabulary.mjs",

@@ -1,4 +1,4 @@
-import {evaluate,digest,decisionDigest,reassessmentQueue} from '../packages/palo-tri-graph/evaluator.mjs';
+import {evaluate,digest,decisionDigest,reassessmentQueue} from '../packages/palo-tri-graph/evaluator.mjs?v=0.1.0';
 const $=s=>document.querySelector(s), el=(name,text)=>{const n=document.createElement(name);if(text!==undefined)n.textContent=text;return n;};
 let model,fields,base,observations,lastReceipt,evaluationSequence=0,selected='ContextSnapshot';
 const load=async path=>{const r=await fetch(path);if(!r.ok)throw new Error(`${path}: HTTP ${r.status}`);return r.json();};

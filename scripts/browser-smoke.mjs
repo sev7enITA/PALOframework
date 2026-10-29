@@ -12,7 +12,7 @@ const distRoot = path.join(projectRoot, "dist");
 const capabilityMatrix = JSON.parse(await readFile(path.join(distRoot, "agentic", "capability-matrix.json"), "utf8"));
 const expectedCapabilityRows = capabilityMatrix.capabilities.length;
 const signalRegistry = JSON.parse(await readFile(path.join(distRoot, "data/integrations/policywatcher-signal-registry.json"), "utf8"));
-const mimeTypes = { ".css": "text/css", ".html": "text/html", ".js": "text/javascript", ".json": "application/json", ".png": "image/png", ".svg": "image/svg+xml", ".webp": "image/webp", ".xml": "application/xml" };
+const mimeTypes = { ".css": "text/css", ".html": "text/html", ".js": "text/javascript", ".mjs": "text/javascript", ".json": "application/json", ".png": "image/png", ".svg": "image/svg+xml", ".webp": "image/webp", ".xml": "application/xml" };
 
 const server = createServer(async (request, response) => {
   try {
