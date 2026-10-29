@@ -1,0 +1,238 @@
+{
+  "format": "palo-tri-graph-internal-validation",
+  "version": "0.1.0",
+  "validatedAt": "2026-10-29T04:23:07.339971+00:00",
+  "scope": "Additive local reference only; no production execution, effect observation or business outcome demonstrated",
+  "automatedTests": {
+    "total": 52,
+    "passed": 52,
+    "failed": 0,
+    "includes": "Independent AJV, RDF parsing, exact nine-case outcome matrix, rejection retry, scope/time/authority/version/replay guards, impact query",
+    "method": "npm test --prefix packages/palo-tri-graph using pinned package-local ajv, ajv-formats and n3 test dependencies"
+  },
+  "shacl": {
+    "engine": "pyshacl",
+    "fixtures": [
+      {
+        "fixture": "valid",
+        "conforms": true,
+        "expected": true
+      },
+      {
+        "fixture": "invalid",
+        "conforms": false,
+        "expected": false
+      }
+    ],
+    "scope": "Structural exported RDF profile only; not authorization, full runtime semantics or storage immutability"
+  },
+  "generation": {
+    "outputs": 14,
+    "concepts": 20,
+    "relationships": 24,
+    "dictionaryFields": 114,
+    "driftCheck": "passed"
+  },
+  "browser": {
+    "localChromeScenarios": [
+      {
+        "scenario": "baseline",
+        "status": "candidate"
+      },
+      {
+        "scenario": "stale",
+        "status": "hold"
+      },
+      {
+        "scenario": "omission",
+        "status": "hold"
+      },
+      {
+        "scenario": "revoked",
+        "status": "deny"
+      },
+      {
+        "scenario": "uncertain",
+        "status": "hold"
+      },
+      {
+        "scenario": "resource",
+        "status": "hold"
+      },
+      {
+        "scenario": "budget",
+        "status": "deny"
+      },
+      {
+        "scenario": "untrusted",
+        "status": "deny"
+      },
+      {
+        "scenario": "reconcile",
+        "status": "candidate"
+      }
+    ],
+    "conceptFilter": "one ContextSnapshot match observed",
+    "relationshipNavigation": "ContextSnapshot to KnowledgeGraph observed",
+    "correctionImpact": "policy-current, mandate-reviewed, data-fit queued without historical mutation",
+    "responsiveDOM": {
+      "viewportWidth": 390,
+      "documentWidth": 390,
+      "headingWidth": 350,
+      "headingFont": "38px"
+    },
+    "download": "Receipt visible on page; file-download interception unavailable in automation"
+  },
+  "presentation": {
+    "slideCount": 9,
+    "executiveSlides": 5,
+    "technicalSlides": 4,
+    "language": "en",
+    "emDashCount": 0,
+    "logo": "assets/logo.webp",
+    "qrSourceImagesDecoded": 7,
+    "renderedSlideQrCodesDecoded": 9,
+    "renderedSlidesVisuallyReviewed": 9,
+    "frameworks": [
+      "STAR",
+      "Value Proposition",
+      "SWOT",
+      "Build-Measure-Learn"
+    ]
+  },
+  "reviews": {
+    "design": [
+      "Gemini 4 High (Argon Alta displayed)",
+      "GLM 5.3 Max"
+    ],
+    "code": "GLM 5.3 Max initial and final static review; later Gemini response model uncertain after quota notice",
+    "adjudication": "palo-tri-graph-review.md",
+    "independentAssurance": false
+  },
+  "notEstablished": [
+    "Production enforcement or authentication",
+    "Global completeness of knowledge",
+    "Operational incident reduction",
+    "Cost savings or business outcome",
+    "Complete repository regression",
+    "Independent assurance"
+  ],
+  "sources": [
+    {
+      "path": "PALO_TriGraphGovernance.html",
+      "sha256": "af4e650fa6b087ad79b569456536f7230605cc328a474862725545e4804d5556"
+    },
+    {
+      "path": "assets/palo-tri-graph.css",
+      "sha256": "bad0a17627845e33c42f2f9afc7ffabc4c23ba2073b947992b0f94c0af4ae88e"
+    },
+    {
+      "path": "assets/palo-tri-graph.js",
+      "sha256": "b78e1f87062ea3bcd093d7a7835642ad17d264d3bc64b0e56753284cd67870f8"
+    },
+    {
+      "path": "data/tri-graph-governance.json",
+      "sha256": "a52fb412b142e95730c953c28532800aad8bef0424b3bf95f4c7821a306ed95a"
+    },
+    {
+      "path": "data/tri-graph-release-manifest.json",
+      "sha256": "e14ff80f74643dfe2886e7a6021e533129c32d564646b2deddcee922e2cb0ef8"
+    },
+    {
+      "path": "data/palo-tri-graph-context.jsonld",
+      "sha256": "9a3f7f3bf0ef900935cf4c4d2ebc20c4c31b7187974fcc1f65bee59f5f7ae3c7"
+    },
+    {
+      "path": "docs/palo-tri-graph-governance.md",
+      "sha256": "05d76a558fb806d945ba19f023374e3e077feef34c524e9c7419d0016c6f4cd5"
+    },
+    {
+      "path": "docs/palo-tri-graph-review.md",
+      "sha256": "dba4174eae2bc31a5a8f2cca4d22671d4b8b126d77c9500219ef355745911f37"
+    },
+    {
+      "path": "formal/palo-tri-graph.ttl",
+      "sha256": "c7ef5813528dd9368aeb9d7f4303b888db97f737c9577ffa397c32751ffe585e"
+    },
+    {
+      "path": "formal/palo-tri-graph.shacl.ttl",
+      "sha256": "580feb43f88fe8b2d968ad6ea7fb67886c36d3069955326d1d74a5cc3e00a35b"
+    },
+    {
+      "path": "formal/palo-tri-graph-taxonomy.ttl",
+      "sha256": "6900587f792a730cc82a22707db4ecb0f971b857b3c425a971e9478cdbe44439"
+    },
+    {
+      "path": "schemas/palo-tri-graph-bundle.schema.json",
+      "sha256": "76e732ae0c695259a81d60c08868266e7e5d533c01c1df64eb6be60b67d79a6d"
+    },
+    {
+      "path": "schemas/palo-tri-graph-observations.schema.json",
+      "sha256": "fbfc0cd1c74d35f5864f90eb1b670cfb499ca68b11266337279915c041b7c5a6"
+    },
+    {
+      "path": "semantic-catalogues/tri-graph/concepts.jsonld",
+      "sha256": "afd7f589d4c24b39750b88d649cb7de3cc389a10e233088350f6ac9ff542e761"
+    },
+    {
+      "path": "semantic-catalogues/tri-graph/dictionary.json",
+      "sha256": "109b777a6890a1f2f55b321b819f5626b7875833d68d3a3f6ca9e30658bfe1c4"
+    },
+    {
+      "path": "examples/tri-graph/bundle.json",
+      "sha256": "87a30929d8780c4c341ef3807f95b2db378c4363b48bf8228ff27e76845ea1af"
+    },
+    {
+      "path": "examples/tri-graph/observations.json",
+      "sha256": "b4719672e56aaa6b6eb31ffc4236ec6b395724d1b63dca989f5db3d87beac28e"
+    },
+    {
+      "path": "examples/tri-graph/records.valid.ttl",
+      "sha256": "275fccb419ec20633c7b15d70e64902f247d18999e0c2330e014106c7845cf3f"
+    },
+    {
+      "path": "examples/tri-graph/records.invalid.ttl",
+      "sha256": "a5d443ee48bb08d928b6455973e982ade457aa73c6af1e5367c8199a4a9cc095"
+    },
+    {
+      "path": "packages/palo-tri-graph/README.md",
+      "sha256": "6d66ae9707ede610be041749cfd5a86c52b591eb73fd5a8b2f125da1ac7ab465"
+    },
+    {
+      "path": "packages/palo-tri-graph/contracts.mjs",
+      "sha256": "0d3600dc60366746010ecb22984ddde94bf717a9451e30d666cd8a6c3d52c8ab"
+    },
+    {
+      "path": "packages/palo-tri-graph/evaluator.mjs",
+      "sha256": "403bbf1e189364b7acaf8469d02657cf8935af9ca22d0c67cf8d7008cb7a0e73"
+    },
+    {
+      "path": "packages/palo-tri-graph/vocabulary.mjs",
+      "sha256": "ff062253908a0c8d3e53dec59337bc2328036fb048c1f6f57d093047e5288880"
+    },
+    {
+      "path": "scripts/generate-tri-graph.mjs",
+      "sha256": "0afef53b02dbca0611f808626e5e95ab1fa55d4ada5f921d423e01cddf6c426a"
+    },
+    {
+      "path": "scripts/validate-tri-graph-shacl.py",
+      "sha256": "80a5780057825a70caafb8e57f89c9b7c461d06be27311f6278bc700efdecb98"
+    },
+    {
+      "path": "packages/palo-tri-graph/evaluator.test.mjs",
+      "sha256": "b539ca6bb229c45d5f1c35188a70982f90649979bdcdfac4565c6864f48a933d"
+    },
+    {
+      "path": "scripts/tri-graph-public-files.mjs",
+      "sha256": "f1308d15cfbe743e70a8bbc8f291aad6e015af1a32d8448276882576d6b249e5"
+    },
+    {
+      "path": "packages/palo-tri-graph/package.json",
+      "sha256": "f75ba6b1617be8342c03752caa65b85cc01e2e85c06a70ab99bf6ae504e8bf3d"
+    },
+    {
+      "path": "packages/palo-tri-graph/package-lock.json",
+      "sha256": "26b12fd6f1ebff7b095bc68064ee3e0e31c5dfb7b803fcdb3e5b6357a27ba9a4"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "tg": "https://paloframework.org/semantic/tri-graph/",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "prov": "http://www.w3.org/ns/prov#",
+    "label": "skos:prefLabel",
+    "definition": "skos:definition",
+    "broader": {
+      "@id": "skos:broader",
+      "@type": "@id"
+    },
+    "pillar": {
+      "@id": "skos:broader",
+      "@type": "@id"
+    }
+  }
+}

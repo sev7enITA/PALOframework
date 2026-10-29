@@ -1,0 +1,22 @@
+@prefix tg: <https://paloframework.org/semantic/tri-graph/> .
+@prefix palo: <https://paloframework.org/semantic/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+tg:KnowledgeAssertionShape a sh:NodeShape ; sh:targetClass tg:KnowledgeAssertion ;
+ sh:property [ sh:path tg:recordId ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ; sh:minLength 1 ] ;
+ sh:property [ sh:path tg:version ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ; sh:pattern "^[0-9]+[.][0-9]+[.][0-9]+$" ] .
+tg:ContextSnapshotShape a sh:NodeShape ; sh:targetClass tg:ContextSnapshot ;
+ sh:property [ sh:path tg:recordId ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ; sh:minLength 1 ] ;
+ sh:property [ sh:path tg:version ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ; sh:pattern "^[0-9]+[.][0-9]+[.][0-9]+$" ] .
+tg:ProcedureGraphShape a sh:NodeShape ; sh:targetClass tg:ProcedureGraph ;
+ sh:property [ sh:path tg:recordId ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ; sh:minLength 1 ] ;
+ sh:property [ sh:path tg:version ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ; sh:pattern "^[0-9]+[.][0-9]+[.][0-9]+$" ] .
+tg:DecisionReceiptShape a sh:NodeShape ; sh:targetClass tg:DecisionReceipt ;
+ sh:property [ sh:path tg:recordId ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ; sh:minLength 1 ] ;
+ sh:property [ sh:path tg:version ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ; sh:pattern "^[0-9]+[.][0-9]+[.][0-9]+$" ] .
+tg:ContextTimeShape a sh:NodeShape ; sh:targetClass tg:ContextSnapshot ; sh:property [ sh:path tg:recordedAt ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:dateTime ; sh:lessThan tg:validUntil ] ; sh:property [ sh:path tg:validUntil ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:dateTime ] .

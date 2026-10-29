@@ -1,0 +1,10 @@
+{
+  "name": "@palo/tri-graph-reference",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Side-effect-free PALO knowledge, context and procedural graph reference evaluator",
+  "engines": { "node": ">=22 <25" },
+  "scripts": { "test": "cd ../.. && node --test packages/palo-tri-graph/evaluator.test.mjs" },
+  "devDependencies": { "ajv": "8.20.0", "ajv-formats": "3.0.1", "n3": "2.13.12" }
+}

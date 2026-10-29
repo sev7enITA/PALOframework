@@ -1,0 +1,177 @@
+{
+  "format": "palo-tri-graph-bundle",
+  "version": "0.1.0",
+  "knowledge": {
+    "id": "kg-demo",
+    "version": "0.1.0",
+    "assertions": [
+      {
+        "id": "policy-current",
+        "tenantId": "tenant-demo",
+        "subject": "agent-demo",
+        "purpose": "support-case",
+        "source": "synthetic-fixture",
+        "predicate": "has-status",
+        "object": "reviewed",
+        "authorityClass": "curated",
+        "confidence": 0.8,
+        "status": "supported",
+        "validFrom": "2026-10-29T09:00:00Z",
+        "validUntil": "2026-10-29T10:00:00Z",
+        "recordedAt": "2026-10-29T09:00:00Z"
+      },
+      {
+        "id": "mandate-reviewed",
+        "tenantId": "tenant-demo",
+        "subject": "agent-demo",
+        "purpose": "support-case",
+        "source": "synthetic-fixture",
+        "predicate": "has-status",
+        "object": "reviewed",
+        "authorityClass": "curated",
+        "confidence": 0.8,
+        "status": "supported",
+        "validFrom": "2026-10-29T09:00:00Z",
+        "validUntil": "2026-10-29T10:00:00Z",
+        "recordedAt": "2026-10-29T09:00:00Z"
+      },
+      {
+        "id": "data-fit",
+        "tenantId": "tenant-demo",
+        "subject": "agent-demo",
+        "purpose": "support-case",
+        "source": "synthetic-fixture",
+        "predicate": "has-status",
+        "object": "reviewed",
+        "authorityClass": "curated",
+        "confidence": 0.8,
+        "status": "supported",
+        "validFrom": "2026-10-29T09:00:00Z",
+        "validUntil": "2026-10-29T10:00:00Z",
+        "recordedAt": "2026-10-29T09:00:00Z"
+      },
+      {
+        "id": "background",
+        "tenantId": "tenant-demo",
+        "subject": "agent-demo",
+        "purpose": "support-case",
+        "source": "synthetic-fixture",
+        "predicate": "has-status",
+        "object": "reviewed",
+        "authorityClass": "curated",
+        "confidence": 0.8,
+        "status": "supported",
+        "validFrom": "2026-10-29T09:00:00Z",
+        "validUntil": "2026-10-29T10:00:00Z",
+        "recordedAt": "2026-10-29T09:00:00Z"
+      }
+    ],
+    "dependencies": [
+      {
+        "from": "policy-current",
+        "to": "mandate-reviewed"
+      },
+      {
+        "from": "mandate-reviewed",
+        "to": "data-fit"
+      }
+    ]
+  },
+  "procedure": {
+    "id": "pg-demo",
+    "version": "0.1.0",
+    "states": [
+      "assessed",
+      "ready",
+      "reconciled"
+    ],
+    "transitions": [
+      {
+        "id": "prepare-update",
+        "from": "assessed",
+        "to": "ready",
+        "operation": "update",
+        "requiredAssertions": [
+          "policy-current"
+        ],
+        "guards": [
+          "authority",
+          "freshness",
+          "closure",
+          "resource",
+          "budget",
+          "approval",
+          "replay",
+          "effect"
+        ],
+        "requiresApproval": true,
+        "accountableRole": "case-owner"
+      },
+      {
+        "id": "reconcile",
+        "from": "assessed",
+        "to": "reconciled",
+        "operation": "reconcile",
+        "requiredAssertions": [
+          "policy-current"
+        ],
+        "guards": [
+          "authority",
+          "freshness",
+          "closure",
+          "resource",
+          "budget",
+          "replay",
+          "effect"
+        ],
+        "requiresApproval": false,
+        "accountableRole": "incident-owner"
+      }
+    ]
+  },
+  "context": {
+    "id": "ctx-demo-1",
+    "tenantId": "tenant-demo",
+    "caseId": "case-demo",
+    "subject": "agent-demo",
+    "purpose": "support-case",
+    "createdAt": "2026-10-29T09:00:00Z",
+    "validUntil": "2026-10-29T10:00:00Z",
+    "bindings": {
+      "knowledge": "sha256:c06cc1ff92fa590d075e9c7bb307d3634ee27d252bc70099c63e85713f624300",
+      "procedure": "sha256:52b1c60a3d711a25b6ceb4c71d5507786b1a601cf3ca276c605d863d8f35a4a2",
+      "vocabulary": "sha256:57742c9f43a98d46a358e35d406847f1f61c2b246ce265b1e15991c6e9dd84cc"
+    },
+    "selected": [
+      "policy-current",
+      "mandate-reviewed",
+      "data-fit"
+    ],
+    "excluded": [
+      {
+        "id": "background",
+        "reason": "Not required by curated procedure closure",
+        "actor": "curator-demo",
+        "policyVersion": "0.1.0"
+      }
+    ],
+    "resourceVersion": "v7",
+    "authorityEpoch": 3,
+    "policyEpoch": 2,
+    "pendingEffect": "none"
+  },
+  "request": {
+    "id": "action-demo-1",
+    "tenantId": "tenant-demo",
+    "caseId": "case-demo",
+    "subject": "agent-demo",
+    "purpose": "support-case",
+    "from": "assessed",
+    "to": "ready",
+    "operation": "update",
+    "resource": "case-record",
+    "cost": 1,
+    "nonce": "nonce-demo-unique",
+    "sequence": 12
+  }
+}

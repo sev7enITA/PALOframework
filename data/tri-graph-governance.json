@@ -1,0 +1,586 @@
+{
+  "format": "palo-tri-graph-governance",
+  "version": "0.1.0",
+  "status": "reference-preview",
+  "foundationVersion": "3.1.0",
+  "updatedAt": "2026-10-29",
+  "namespace": "https://paloframework.org/semantic/tri-graph/",
+  "authorityBoundary": "Versioned design and local reference rehearsal; no production execution authority or operating-effectiveness claim.",
+  "pillars": [
+    {
+      "id": "knowledge",
+      "label": "Knowledge Graph",
+      "purpose": "Conoscenza attribuita e versionata"
+    },
+    {
+      "id": "context",
+      "label": "Context Graph",
+      "purpose": "Contesto completo e valido per la decisione"
+    },
+    {
+      "id": "procedure",
+      "label": "Procedural Graph",
+      "purpose": "Transizioni consentite e verificabili"
+    },
+    {
+      "id": "assurance",
+      "label": "Assurance trasversale",
+      "purpose": "Prove, responsabilità e cambiamento controllato; non un quarto pillar"
+    }
+  ],
+  "concepts": [
+    {
+      "id": "KnowledgeGraph",
+      "pillar": "knowledge",
+      "label": {
+        "it": "Grafo di conoscenza",
+        "en": "Knowledge graph"
+      },
+      "definition": "Asserzioni curate, fonti e dipendenze con identità e versione; la presenza di un fatto non concede autorità.",
+      "broader": "palo:CanonicalDefinition",
+      "existingArtifact": "data/semantic-spine.json",
+      "definitionEn": "Curated, versioned assertions, sources and dependencies. A recorded fact does not grant authority."
+    },
+    {
+      "id": "KnowledgeAssertion",
+      "pillar": "knowledge",
+      "label": {
+        "it": "Asserzione verificabile",
+        "en": "Knowledge assertion"
+      },
+      "definition": "Enunciato con fonte, stato epistemico, validità e momento di registrazione. Può essere contestato o revocato.",
+      "broader": "palo:EvidenceClaim",
+      "existingArtifact": "schemas/palo-evidence-claim.schema.json",
+      "definitionEn": "A statement with source, epistemic status, validity interval and recorded time. It can be disputed or revoked."
+    },
+    {
+      "id": "SourceRecord",
+      "pillar": "knowledge",
+      "label": {
+        "it": "Fonte",
+        "en": "Source record"
+      },
+      "definition": "Riferimento alla provenienza e alla versione acquisita; attendibilità e autorità restano distinte.",
+      "broader": "palo:EvidenceArtifact",
+      "existingArtifact": "data/source-registry.json",
+      "definitionEn": "A provenance reference and acquired source version. Reliability and authority remain separate."
+    },
+    {
+      "id": "PolicyBinding",
+      "pillar": "knowledge",
+      "label": {
+        "it": "Vincolo di policy",
+        "en": "Policy binding"
+      },
+      "definition": "Collega una regola alla versione applicabile e alla decisione umana che ne ha stabilito lo scopo.",
+      "broader": "palo:CanonicalDefinition",
+      "existingArtifact": "schemas/palo-agentic-policy-decision.schema.json",
+      "definitionEn": "A rule bound to its applicable version and the accountable decision establishing its scope."
+    },
+    {
+      "id": "VocabularyRelease",
+      "pillar": "knowledge",
+      "label": {
+        "it": "Versione del vocabolario",
+        "en": "Vocabulary release"
+      },
+      "definition": "Versione di ontologia, tassonomia e dizionario usata per interpretare una decisione.",
+      "broader": "palo:SemanticReleaseManifest",
+      "existingArtifact": "data/semantic-release-manifest.json",
+      "definitionEn": "The ontology, taxonomy and dictionary release used to interpret a decision."
+    },
+    {
+      "id": "ContextSnapshot",
+      "pillar": "context",
+      "label": {
+        "it": "Snapshot decisionale",
+        "en": "Decision context snapshot"
+      },
+      "definition": "Vista delimitata per tenant, caso, scopo e istante, legata ai digest di conoscenza, procedura e vocabolario.",
+      "broader": "palo:ImmutableRecord",
+      "existingArtifact": "schemas/palo-agentic-policy-input.schema.json",
+      "definitionEn": "A tenant, case, purpose and time scoped view bound to knowledge, procedure and vocabulary digests."
+    },
+    {
+      "id": "ContextRequirement",
+      "pillar": "context",
+      "label": {
+        "it": "Requisito di contesto",
+        "en": "Context requirement"
+      },
+      "definition": "Dipendenza obbligatoria determinata dalla procedura curata; non selezionabile dal solo modello.",
+      "broader": "palo:CanonicalDefinition",
+      "existingArtifact": "data/decision-gates.json",
+      "definitionEn": "A mandatory dependency determined by the curated procedure, not selected by the model alone."
+    },
+    {
+      "id": "ExclusionRecord",
+      "pillar": "context",
+      "label": {
+        "it": "Esclusione motivata",
+        "en": "Exclusion record"
+      },
+      "definition": "Registra un elemento escluso e il motivo; non permette di eliminare un controllo obbligatorio.",
+      "broader": "palo:ImmutableRecord",
+      "existingArtifact": "schemas/palo-data-disclosure-contract.schema.json",
+      "definitionEn": "An excluded item and its rationale, actor and policy version. Required controls cannot be excluded."
+    },
+    {
+      "id": "AuthorityObservation",
+      "pillar": "context",
+      "label": {
+        "it": "Osservazione di autorità",
+        "en": "Authority observation"
+      },
+      "definition": "Stato osservato di mandato, scopo, scadenza e revoche; in produzione deve provenire dal verificatore fidato.",
+      "broader": "palo:RuntimeRecord",
+      "existingArtifact": "schemas/palo-agentic-action-claim.schema.json",
+      "definitionEn": "An observed mandate, scope, expiry and revocation state, supplied by a trusted verifier in production."
+    },
+    {
+      "id": "ResourceObservation",
+      "pillar": "context",
+      "label": {
+        "it": "Versione della risorsa",
+        "en": "Resource observation"
+      },
+      "definition": "Versione corrente della risorsa da confrontare prima di produrre effetti.",
+      "broader": "palo:RuntimeRecord",
+      "existingArtifact": "schemas/palo-agentic-effect-contract.schema.json",
+      "definitionEn": "The current target resource version to compare before producing an effect."
+    },
+    {
+      "id": "ProcedureGraph",
+      "pillar": "procedure",
+      "label": {
+        "it": "Grafo procedurale",
+        "en": "Procedural graph"
+      },
+      "definition": "Stati e transizioni versionati con guardie, requisiti e responsabilità; nessuna deviazione può ampliare il mandato.",
+      "broader": "palo:CanonicalDefinition",
+      "existingArtifact": "packages/palo-mcp-server/core.js",
+      "definitionEn": "Versioned states and guarded transitions with requirements and responsibility. Deviations cannot expand authority."
+    },
+    {
+      "id": "ProcedureState",
+      "pillar": "procedure",
+      "label": {
+        "it": "Stato procedurale",
+        "en": "Procedure state"
+      },
+      "definition": "Posizione esplicita nel ciclo di una decisione, distinta dallo stato dell’effetto reale.",
+      "broader": "palo:CanonicalDefinition",
+      "existingArtifact": "packages/palo-mcp-server/core.js",
+      "definitionEn": "An explicit position in the decision lifecycle, separate from the real-world effect state."
+    },
+    {
+      "id": "GuardedTransition",
+      "pillar": "procedure",
+      "label": {
+        "it": "Transizione condizionata",
+        "en": "Guarded transition"
+      },
+      "definition": "Arco da uno stato al successivo con guardie deterministiche e prove obbligatorie.",
+      "broader": "palo:CanonicalDefinition",
+      "existingArtifact": "schemas/palo-agentic-policy-decision.schema.json",
+      "definitionEn": "A directed state transition with deterministic guards and required evidence."
+    },
+    {
+      "id": "ActionProposal",
+      "pillar": "procedure",
+      "label": {
+        "it": "Proposta di azione",
+        "en": "Action proposal"
+      },
+      "definition": "Richiesta con scopo e risorsa che deve ancora ottenere l’ammissione dell’esecutore.",
+      "broader": "palo:RuntimeRecord",
+      "existingArtifact": "schemas/palo-agentic-action-claim.schema.json",
+      "definitionEn": "A scoped request for a resource operation that still requires admission by the executor."
+    },
+    {
+      "id": "DecisionReceipt",
+      "pillar": "assurance",
+      "label": {
+        "it": "Ricevuta decisionale",
+        "en": "Decision receipt"
+      },
+      "definition": "Esito riproducibile con regole, input e motivazioni; non è un token di esecuzione.",
+      "broader": "palo:DecisionRecord",
+      "existingArtifact": "schemas/palo-gate-decision-record.schema.json",
+      "definitionEn": "A replayable result with rules, inputs and witnesses. It is not an execution token."
+    },
+    {
+      "id": "EffectObservation",
+      "pillar": "assurance",
+      "label": {
+        "it": "Osservazione dell’effetto",
+        "en": "Effect observation"
+      },
+      "definition": "Evidenza proveniente dalla risorsa autorevole dopo il tentativo; il timeout può lasciare l’effetto incerto.",
+      "broader": "palo:EvidenceEvaluation",
+      "existingArtifact": "schemas/palo-agentic-outcome-attestation.schema.json",
+      "definitionEn": "Evidence from the authoritative target after an attempt. A timeout can leave the effect unknown."
+    },
+    {
+      "id": "ChangeProposal",
+      "pillar": "assurance",
+      "label": {
+        "it": "Proposta di cambiamento",
+        "en": "Change proposal"
+      },
+      "definition": "Ipotesi di revisione prodotta dalle tracce, sottoposta a revisione, test e nuova versione.",
+      "broader": "palo:RuntimeRecord",
+      "existingArtifact": "docs/palo-v3-semantic-foundation.md",
+      "definitionEn": "A proposed revision informed by traces, subject to review, tests and a new release."
+    },
+    {
+      "id": "AccountableRole",
+      "pillar": "assurance",
+      "label": {
+        "it": "Ruolo responsabile",
+        "en": "Accountable role"
+      },
+      "definition": "Responsabilità assegnata e verificabile per curatela, decisione, esecuzione e contestazione.",
+      "broader": "palo:SemanticEntity",
+      "existingArtifact": "schemas/palo-agentic-approval.schema.json",
+      "definitionEn": "An attributable responsibility for curation, decisions, execution or challenge handling."
+    },
+    {
+      "id": "ChallengeRecord",
+      "pillar": "assurance",
+      "label": {
+        "it": "Contestazione",
+        "en": "Challenge record"
+      },
+      "definition": "Obiezione motivata con evidenze, owner e stato; conserva la decisione originaria e l’eventuale rettifica.",
+      "broader": "palo:RuntimeRecord",
+      "existingArtifact": "schemas/palo-affected-person-case.schema.json",
+      "definitionEn": "A reasoned challenge with evidence, owner and status, linked to the original decision and any correction."
+    },
+    {
+      "id": "ExecutionFence",
+      "pillar": "procedure",
+      "label": {
+        "it": "Vincolo di esecuzione",
+        "en": "Execution fence"
+      },
+      "definition": "Punto di controllo atomico lato adapter su versione risorsa, revoche, budget e idempotenza. Requisito progettuale.",
+      "broader": "palo:CanonicalDefinition",
+      "existingArtifact": "packages/palo-mcp-server/core.js",
+      "definitionEn": "An execution-side check of resource version, revocation, budget and idempotency. A production design requirement."
+    }
+  ],
+  "relations": [
+    {
+      "id": "containsAssertion",
+      "domain": "KnowledgeGraph",
+      "range": "KnowledgeAssertion",
+      "label": "contiene"
+    },
+    {
+      "id": "supportedBy",
+      "domain": "KnowledgeAssertion",
+      "range": "SourceRecord",
+      "label": "supportata da"
+    },
+    {
+      "id": "dependsOn",
+      "domain": "KnowledgeAssertion",
+      "range": "KnowledgeAssertion",
+      "label": "dipende da"
+    },
+    {
+      "id": "interpretedUnder",
+      "domain": "KnowledgeGraph",
+      "range": "VocabularyRelease",
+      "label": "interpretato secondo"
+    },
+    {
+      "id": "scopesKnowledge",
+      "domain": "ContextSnapshot",
+      "range": "KnowledgeGraph",
+      "label": "delimita"
+    },
+    {
+      "id": "selectsAssertion",
+      "domain": "ContextSnapshot",
+      "range": "KnowledgeAssertion",
+      "label": "seleziona"
+    },
+    {
+      "id": "recordsExclusion",
+      "domain": "ContextSnapshot",
+      "range": "ExclusionRecord",
+      "label": "motiva esclusione"
+    },
+    {
+      "id": "observesAuthority",
+      "domain": "ContextSnapshot",
+      "range": "AuthorityObservation",
+      "label": "osserva autorità"
+    },
+    {
+      "id": "observesResource",
+      "domain": "ContextSnapshot",
+      "range": "ResourceObservation",
+      "label": "osserva risorsa"
+    },
+    {
+      "id": "pinsProcedure",
+      "domain": "ContextSnapshot",
+      "range": "ProcedureGraph",
+      "label": "fissa procedura"
+    },
+    {
+      "id": "hasState",
+      "domain": "ProcedureGraph",
+      "range": "ProcedureState",
+      "label": "include stato"
+    },
+    {
+      "id": "hasTransition",
+      "domain": "ProcedureGraph",
+      "range": "GuardedTransition",
+      "label": "include transizione"
+    },
+    {
+      "id": "requiresContext",
+      "domain": "GuardedTransition",
+      "range": "ContextRequirement",
+      "label": "richiede contesto"
+    },
+    {
+      "id": "requiresAssertion",
+      "domain": "ContextRequirement",
+      "range": "KnowledgeAssertion",
+      "label": "richiede asserzione"
+    },
+    {
+      "id": "governedBy",
+      "domain": "GuardedTransition",
+      "range": "PolicyBinding",
+      "label": "governata da"
+    },
+    {
+      "id": "proposesTransition",
+      "domain": "ActionProposal",
+      "range": "GuardedTransition",
+      "label": "propone"
+    },
+    {
+      "id": "evaluatedIn",
+      "domain": "ActionProposal",
+      "range": "ContextSnapshot",
+      "label": "valutata nel contesto"
+    },
+    {
+      "id": "explainsProposal",
+      "domain": "DecisionReceipt",
+      "range": "ActionProposal",
+      "label": "spiega"
+    },
+    {
+      "id": "checkedAt",
+      "domain": "ActionProposal",
+      "range": "ExecutionFence",
+      "label": "verificata prima dell’effetto"
+    },
+    {
+      "id": "observesEffect",
+      "domain": "EffectObservation",
+      "range": "ActionProposal",
+      "label": "osserva effetto"
+    },
+    {
+      "id": "informsChange",
+      "domain": "EffectObservation",
+      "range": "ChangeProposal",
+      "label": "informa revisione"
+    },
+    {
+      "id": "assignedTo",
+      "domain": "ChangeProposal",
+      "range": "AccountableRole",
+      "label": "assegnata a"
+    },
+    {
+      "id": "challenges",
+      "domain": "ChallengeRecord",
+      "range": "DecisionReceipt",
+      "label": "contesta"
+    },
+    {
+      "id": "supersedesDecision",
+      "domain": "DecisionReceipt",
+      "range": "DecisionReceipt",
+      "label": "rettifica"
+    }
+  ],
+  "rules": [
+    {
+      "id": "TG-01",
+      "label": "Input valido",
+      "requirement": "Contratti chiusi e valori finiti; dato mancante o tipo inatteso non produce candidate.",
+      "implementation": "reference-evaluator"
+    },
+    {
+      "id": "TG-02",
+      "label": "Versioni fissate",
+      "requirement": "KG, PG e vocabolario coincidono con i digest approvati esterni allo snapshot.",
+      "implementation": "reference-evaluator"
+    },
+    {
+      "id": "TG-03",
+      "label": "Isolamento",
+      "requirement": "Tenant, caso, soggetto e scopo coincidono tra richiesta, contesto e mandato.",
+      "implementation": "reference-evaluator"
+    },
+    {
+      "id": "TG-04",
+      "label": "Validità temporale",
+      "requirement": "Contesto, asserzioni e mandato sono validi all’istante di valutazione; nessun dato futuro.",
+      "implementation": "reference-evaluator"
+    },
+    {
+      "id": "TG-05",
+      "label": "Completezza delle dipendenze",
+      "requirement": "La chiusura delle asserzioni obbligatorie include anche dipendenze indirette e non può essere esclusa.",
+      "implementation": "reference-evaluator"
+    },
+    {
+      "id": "TG-06",
+      "label": "Conflitto e revoca",
+      "requirement": "Asserzioni richieste contestate, revocate o incerte sospendono la decisione.",
+      "implementation": "reference-evaluator"
+    },
+    {
+      "id": "TG-07",
+      "label": "Autorità delimitata",
+      "requirement": "Il mandato osservato è attivo e include esattamente operazione e risorsa.",
+      "implementation": "reference-evaluator"
+    },
+    {
+      "id": "TG-08",
+      "label": "Transizione valida",
+      "requirement": "Solo archi della procedura fissata sono valutabili; regole sconosciute sono rifiutate.",
+      "implementation": "reference-evaluator"
+    },
+    {
+      "id": "TG-09",
+      "label": "Effetto incerto",
+      "requirement": "Un effetto pendente richiede riconciliazione e non consente una nuova proposta di scrittura.",
+      "implementation": "reference-evaluator"
+    },
+    {
+      "id": "TG-10",
+      "label": "Precondizione risorsa",
+      "requirement": "La versione risorsa coincide con quella osservata; nessuna garanzia atomica è implicita.",
+      "implementation": "reference-evaluator"
+    },
+    {
+      "id": "TG-11",
+      "label": "Budget e ripetizioni",
+      "requirement": "Costo finito e non negativo entro budget; nonce e sequenza già usati non passano.",
+      "implementation": "reference-evaluator"
+    },
+    {
+      "id": "TG-12",
+      "label": "Approvazione vincolata",
+      "requirement": "Se richiesta, l’approvazione è indipendente dal richiedente e vincolata al digest completo della decisione.",
+      "implementation": "reference-evaluator"
+    },
+    {
+      "id": "TG-13",
+      "label": "Spiegazione verificabile",
+      "requirement": "Ricevuta con ID regole, testimoni e digest; nessuna inferenza sull’effetto reale.",
+      "implementation": "reference-evaluator"
+    },
+    {
+      "id": "TG-14",
+      "label": "Apprendimento controllato",
+      "requirement": "Le tracce generano proposte; la promozione richiede owner, test, versione e piano di ripristino.",
+      "implementation": "design-contract"
+    },
+    {
+      "id": "TG-15",
+      "label": "Contestabilità",
+      "requirement": "Rettifiche e contestazioni si collegano alla ricevuta senza riscrivere il passato.",
+      "implementation": "design-contract"
+    }
+  ],
+  "lifecycleMap": [
+    {
+      "phase": "Frame",
+      "knowledge": "Finalità e soggetti",
+      "context": "Tenant, caso e scopo",
+      "procedure": "Definizione mandato"
+    },
+    {
+      "phase": "Classify",
+      "knowledge": "Regimi e policy",
+      "context": "Applicabilità motivata",
+      "procedure": "Routing del rischio"
+    },
+    {
+      "phase": "Assess",
+      "knowledge": "Rischi ed evidenze",
+      "context": "Conflitti e lacune",
+      "procedure": "Hold ed escalation"
+    },
+    {
+      "phase": "Control",
+      "knowledge": "Controlli e autorità",
+      "context": "Versioni e revoche",
+      "procedure": "Guardie e approvazioni"
+    },
+    {
+      "phase": "Measure",
+      "knowledge": "Definizioni KPI/KRI",
+      "context": "Osservazioni dell’effetto",
+      "procedure": "Verifica e riconciliazione"
+    },
+    {
+      "phase": "Prove",
+      "knowledge": "Provenienza e release",
+      "context": "Snapshot decisionale",
+      "procedure": "Ricevuta e contestazione"
+    }
+  ],
+  "sources": [
+    {
+      "id": "gohel",
+      "url": "https://www.linkedin.com/posts/rakeshgohel01_aiagent-agenticai-aigovernance-activity-7511039118546604032-Burs",
+      "role": "Conceptual inspiration; not a standard"
+    },
+    {
+      "id": "prov",
+      "url": "https://www.w3.org/TR/prov-o/",
+      "role": "Provenance vocabulary"
+    },
+    {
+      "id": "skos",
+      "url": "https://www.w3.org/TR/skos-reference/",
+      "role": "Taxonomy and labels"
+    },
+    {
+      "id": "shacl",
+      "url": "https://www.w3.org/TR/shacl/",
+      "role": "RDF constraints"
+    },
+    {
+      "id": "jsonld",
+      "url": "https://www.w3.org/TR/json-ld11/",
+      "role": "Linked-data export"
+    },
+    {
+      "id": "opa",
+      "url": "https://www.openpolicyagent.org/docs/management-decision-logs",
+      "role": "Policy decision traces"
+    },
+    {
+      "id": "langgraph",
+      "url": "https://docs.langchain.com/oss/python/langgraph/persistence",
+      "role": "Persistence baseline"
+    }
+  ]
+}

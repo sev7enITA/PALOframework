@@ -1,0 +1,1699 @@
+{
+  "version": "0.1.0",
+  "source": [
+    "data/tri-graph-governance.json",
+    "packages/palo-tri-graph/contracts.mjs"
+  ],
+  "concepts": [
+    {
+      "id": "KnowledgeGraph",
+      "pillar": "knowledge",
+      "label": {
+        "it": "Grafo di conoscenza",
+        "en": "Knowledge graph"
+      },
+      "definition": "Asserzioni curate, fonti e dipendenze con identità e versione; la presenza di un fatto non concede autorità.",
+      "broader": "palo:CanonicalDefinition",
+      "existingArtifact": "data/semantic-spine.json",
+      "definitionEn": "Curated, versioned assertions, sources and dependencies. A recorded fact does not grant authority."
+    },
+    {
+      "id": "KnowledgeAssertion",
+      "pillar": "knowledge",
+      "label": {
+        "it": "Asserzione verificabile",
+        "en": "Knowledge assertion"
+      },
+      "definition": "Enunciato con fonte, stato epistemico, validità e momento di registrazione. Può essere contestato o revocato.",
+      "broader": "palo:EvidenceClaim",
+      "existingArtifact": "schemas/palo-evidence-claim.schema.json",
+      "definitionEn": "A statement with source, epistemic status, validity interval and recorded time. It can be disputed or revoked."
+    },
+    {
+      "id": "SourceRecord",
+      "pillar": "knowledge",
+      "label": {
+        "it": "Fonte",
+        "en": "Source record"
+      },
+      "definition": "Riferimento alla provenienza e alla versione acquisita; attendibilità e autorità restano distinte.",
+      "broader": "palo:EvidenceArtifact",
+      "existingArtifact": "data/source-registry.json",
+      "definitionEn": "A provenance reference and acquired source version. Reliability and authority remain separate."
+    },
+    {
+      "id": "PolicyBinding",
+      "pillar": "knowledge",
+      "label": {
+        "it": "Vincolo di policy",
+        "en": "Policy binding"
+      },
+      "definition": "Collega una regola alla versione applicabile e alla decisione umana che ne ha stabilito lo scopo.",
+      "broader": "palo:CanonicalDefinition",
+      "existingArtifact": "schemas/palo-agentic-policy-decision.schema.json",
+      "definitionEn": "A rule bound to its applicable version and the accountable decision establishing its scope."
+    },
+    {
+      "id": "VocabularyRelease",
+      "pillar": "knowledge",
+      "label": {
+        "it": "Versione del vocabolario",
+        "en": "Vocabulary release"
+      },
+      "definition": "Versione di ontologia, tassonomia e dizionario usata per interpretare una decisione.",
+      "broader": "palo:SemanticReleaseManifest",
+      "existingArtifact": "data/semantic-release-manifest.json",
+      "definitionEn": "The ontology, taxonomy and dictionary release used to interpret a decision."
+    },
+    {
+      "id": "ContextSnapshot",
+      "pillar": "context",
+      "label": {
+        "it": "Snapshot decisionale",
+        "en": "Decision context snapshot"
+      },
+      "definition": "Vista delimitata per tenant, caso, scopo e istante, legata ai digest di conoscenza, procedura e vocabolario.",
+      "broader": "palo:ImmutableRecord",
+      "existingArtifact": "schemas/palo-agentic-policy-input.schema.json",
+      "definitionEn": "A tenant, case, purpose and time scoped view bound to knowledge, procedure and vocabulary digests."
+    },
+    {
+      "id": "ContextRequirement",
+      "pillar": "context",
+      "label": {
+        "it": "Requisito di contesto",
+        "en": "Context requirement"
+      },
+      "definition": "Dipendenza obbligatoria determinata dalla procedura curata; non selezionabile dal solo modello.",
+      "broader": "palo:CanonicalDefinition",
+      "existingArtifact": "data/decision-gates.json",
+      "definitionEn": "A mandatory dependency determined by the curated procedure, not selected by the model alone."
+    },
+    {
+      "id": "ExclusionRecord",
+      "pillar": "context",
+      "label": {
+        "it": "Esclusione motivata",
+        "en": "Exclusion record"
+      },
+      "definition": "Registra un elemento escluso e il motivo; non permette di eliminare un controllo obbligatorio.",
+      "broader": "palo:ImmutableRecord",
+      "existingArtifact": "schemas/palo-data-disclosure-contract.schema.json",
+      "definitionEn": "An excluded item and its rationale, actor and policy version. Required controls cannot be excluded."
+    },
+    {
+      "id": "AuthorityObservation",
+      "pillar": "context",
+      "label": {
+        "it": "Osservazione di autorità",
+        "en": "Authority observation"
+      },
+      "definition": "Stato osservato di mandato, scopo, scadenza e revoche; in produzione deve provenire dal verificatore fidato.",
+      "broader": "palo:RuntimeRecord",
+      "existingArtifact": "schemas/palo-agentic-action-claim.schema.json",
+      "definitionEn": "An observed mandate, scope, expiry and revocation state, supplied by a trusted verifier in production."
+    },
+    {
+      "id": "ResourceObservation",
+      "pillar": "context",
+      "label": {
+        "it": "Versione della risorsa",
+        "en": "Resource observation"
+      },
+      "definition": "Versione corrente della risorsa da confrontare prima di produrre effetti.",
+      "broader": "palo:RuntimeRecord",
+      "existingArtifact": "schemas/palo-agentic-effect-contract.schema.json",
+      "definitionEn": "The current target resource version to compare before producing an effect."
+    },
+    {
+      "id": "ProcedureGraph",
+      "pillar": "procedure",
+      "label": {
+        "it": "Grafo procedurale",
+        "en": "Procedural graph"
+      },
+      "definition": "Stati e transizioni versionati con guardie, requisiti e responsabilità; nessuna deviazione può ampliare il mandato.",
+      "broader": "palo:CanonicalDefinition",
+      "existingArtifact": "packages/palo-mcp-server/core.js",
+      "definitionEn": "Versioned states and guarded transitions with requirements and responsibility. Deviations cannot expand authority."
+    },
+    {
+      "id": "ProcedureState",
+      "pillar": "procedure",
+      "label": {
+        "it": "Stato procedurale",
+        "en": "Procedure state"
+      },
+      "definition": "Posizione esplicita nel ciclo di una decisione, distinta dallo stato dell’effetto reale.",
+      "broader": "palo:CanonicalDefinition",
+      "existingArtifact": "packages/palo-mcp-server/core.js",
+      "definitionEn": "An explicit position in the decision lifecycle, separate from the real-world effect state."
+    },
+    {
+      "id": "GuardedTransition",
+      "pillar": "procedure",
+      "label": {
+        "it": "Transizione condizionata",
+        "en": "Guarded transition"
+      },
+      "definition": "Arco da uno stato al successivo con guardie deterministiche e prove obbligatorie.",
+      "broader": "palo:CanonicalDefinition",
+      "existingArtifact": "schemas/palo-agentic-policy-decision.schema.json",
+      "definitionEn": "A directed state transition with deterministic guards and required evidence."
+    },
+    {
+      "id": "ActionProposal",
+      "pillar": "procedure",
+      "label": {
+        "it": "Proposta di azione",
+        "en": "Action proposal"
+      },
+      "definition": "Richiesta con scopo e risorsa che deve ancora ottenere l’ammissione dell’esecutore.",
+      "broader": "palo:RuntimeRecord",
+      "existingArtifact": "schemas/palo-agentic-action-claim.schema.json",
+      "definitionEn": "A scoped request for a resource operation that still requires admission by the executor."
+    },
+    {
+      "id": "DecisionReceipt",
+      "pillar": "assurance",
+      "label": {
+        "it": "Ricevuta decisionale",
+        "en": "Decision receipt"
+      },
+      "definition": "Esito riproducibile con regole, input e motivazioni; non è un token di esecuzione.",
+      "broader": "palo:DecisionRecord",
+      "existingArtifact": "schemas/palo-gate-decision-record.schema.json",
+      "definitionEn": "A replayable result with rules, inputs and witnesses. It is not an execution token."
+    },
+    {
+      "id": "EffectObservation",
+      "pillar": "assurance",
+      "label": {
+        "it": "Osservazione dell’effetto",
+        "en": "Effect observation"
+      },
+      "definition": "Evidenza proveniente dalla risorsa autorevole dopo il tentativo; il timeout può lasciare l’effetto incerto.",
+      "broader": "palo:EvidenceEvaluation",
+      "existingArtifact": "schemas/palo-agentic-outcome-attestation.schema.json",
+      "definitionEn": "Evidence from the authoritative target after an attempt. A timeout can leave the effect unknown."
+    },
+    {
+      "id": "ChangeProposal",
+      "pillar": "assurance",
+      "label": {
+        "it": "Proposta di cambiamento",
+        "en": "Change proposal"
+      },
+      "definition": "Ipotesi di revisione prodotta dalle tracce, sottoposta a revisione, test e nuova versione.",
+      "broader": "palo:RuntimeRecord",
+      "existingArtifact": "docs/palo-v3-semantic-foundation.md",
+      "definitionEn": "A proposed revision informed by traces, subject to review, tests and a new release."
+    },
+    {
+      "id": "AccountableRole",
+      "pillar": "assurance",
+      "label": {
+        "it": "Ruolo responsabile",
+        "en": "Accountable role"
+      },
+      "definition": "Responsabilità assegnata e verificabile per curatela, decisione, esecuzione e contestazione.",
+      "broader": "palo:SemanticEntity",
+      "existingArtifact": "schemas/palo-agentic-approval.schema.json",
+      "definitionEn": "An attributable responsibility for curation, decisions, execution or challenge handling."
+    },
+    {
+      "id": "ChallengeRecord",
+      "pillar": "assurance",
+      "label": {
+        "it": "Contestazione",
+        "en": "Challenge record"
+      },
+      "definition": "Obiezione motivata con evidenze, owner e stato; conserva la decisione originaria e l’eventuale rettifica.",
+      "broader": "palo:RuntimeRecord",
+      "existingArtifact": "schemas/palo-affected-person-case.schema.json",
+      "definitionEn": "A reasoned challenge with evidence, owner and status, linked to the original decision and any correction."
+    },
+    {
+      "id": "ExecutionFence",
+      "pillar": "procedure",
+      "label": {
+        "it": "Vincolo di esecuzione",
+        "en": "Execution fence"
+      },
+      "definition": "Punto di controllo atomico lato adapter su versione risorsa, revoche, budget e idempotenza. Requisito progettuale.",
+      "broader": "palo:CanonicalDefinition",
+      "existingArtifact": "packages/palo-mcp-server/core.js",
+      "definitionEn": "An execution-side check of resource version, revocation, budget and idempotency. A production design requirement."
+    }
+  ],
+  "relations": [
+    {
+      "id": "containsAssertion",
+      "domain": "KnowledgeGraph",
+      "range": "KnowledgeAssertion",
+      "label": "contiene"
+    },
+    {
+      "id": "supportedBy",
+      "domain": "KnowledgeAssertion",
+      "range": "SourceRecord",
+      "label": "supportata da"
+    },
+    {
+      "id": "dependsOn",
+      "domain": "KnowledgeAssertion",
+      "range": "KnowledgeAssertion",
+      "label": "dipende da"
+    },
+    {
+      "id": "interpretedUnder",
+      "domain": "KnowledgeGraph",
+      "range": "VocabularyRelease",
+      "label": "interpretato secondo"
+    },
+    {
+      "id": "scopesKnowledge",
+      "domain": "ContextSnapshot",
+      "range": "KnowledgeGraph",
+      "label": "delimita"
+    },
+    {
+      "id": "selectsAssertion",
+      "domain": "ContextSnapshot",
+      "range": "KnowledgeAssertion",
+      "label": "seleziona"
+    },
+    {
+      "id": "recordsExclusion",
+      "domain": "ContextSnapshot",
+      "range": "ExclusionRecord",
+      "label": "motiva esclusione"
+    },
+    {
+      "id": "observesAuthority",
+      "domain": "ContextSnapshot",
+      "range": "AuthorityObservation",
+      "label": "osserva autorità"
+    },
+    {
+      "id": "observesResource",
+      "domain": "ContextSnapshot",
+      "range": "ResourceObservation",
+      "label": "osserva risorsa"
+    },
+    {
+      "id": "pinsProcedure",
+      "domain": "ContextSnapshot",
+      "range": "ProcedureGraph",
+      "label": "fissa procedura"
+    },
+    {
+      "id": "hasState",
+      "domain": "ProcedureGraph",
+      "range": "ProcedureState",
+      "label": "include stato"
+    },
+    {
+      "id": "hasTransition",
+      "domain": "ProcedureGraph",
+      "range": "GuardedTransition",
+      "label": "include transizione"
+    },
+    {
+      "id": "requiresContext",
+      "domain": "GuardedTransition",
+      "range": "ContextRequirement",
+      "label": "richiede contesto"
+    },
+    {
+      "id": "requiresAssertion",
+      "domain": "ContextRequirement",
+      "range": "KnowledgeAssertion",
+      "label": "richiede asserzione"
+    },
+    {
+      "id": "governedBy",
+      "domain": "GuardedTransition",
+      "range": "PolicyBinding",
+      "label": "governata da"
+    },
+    {
+      "id": "proposesTransition",
+      "domain": "ActionProposal",
+      "range": "GuardedTransition",
+      "label": "propone"
+    },
+    {
+      "id": "evaluatedIn",
+      "domain": "ActionProposal",
+      "range": "ContextSnapshot",
+      "label": "valutata nel contesto"
+    },
+    {
+      "id": "explainsProposal",
+      "domain": "DecisionReceipt",
+      "range": "ActionProposal",
+      "label": "spiega"
+    },
+    {
+      "id": "checkedAt",
+      "domain": "ActionProposal",
+      "range": "ExecutionFence",
+      "label": "verificata prima dell’effetto"
+    },
+    {
+      "id": "observesEffect",
+      "domain": "EffectObservation",
+      "range": "ActionProposal",
+      "label": "osserva effetto"
+    },
+    {
+      "id": "informsChange",
+      "domain": "EffectObservation",
+      "range": "ChangeProposal",
+      "label": "informa revisione"
+    },
+    {
+      "id": "assignedTo",
+      "domain": "ChangeProposal",
+      "range": "AccountableRole",
+      "label": "assegnata a"
+    },
+    {
+      "id": "challenges",
+      "domain": "ChallengeRecord",
+      "range": "DecisionReceipt",
+      "label": "contesta"
+    },
+    {
+      "id": "supersedesDecision",
+      "domain": "DecisionReceipt",
+      "range": "DecisionReceipt",
+      "label": "rettifica"
+    }
+  ],
+  "fields": [
+    {
+      "path": "bundle",
+      "type": "object",
+      "requiredWithinParent": true,
+      "conceptId": "ActionProposal",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/ActionProposal",
+      "constraints": {
+        "additionalProperties": false
+      }
+    },
+    {
+      "path": "bundle.format",
+      "type": "constant",
+      "requiredWithinParent": true,
+      "conceptId": "ActionProposal",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/ActionProposal",
+      "constraints": {},
+      "constant": "palo-tri-graph-bundle"
+    },
+    {
+      "path": "bundle.version",
+      "type": "constant",
+      "requiredWithinParent": true,
+      "conceptId": "ActionProposal",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/ActionProposal",
+      "constraints": {},
+      "constant": "0.1.0"
+    },
+    {
+      "path": "bundle.knowledge",
+      "type": "object",
+      "requiredWithinParent": true,
+      "conceptId": "KnowledgeGraph",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/KnowledgeGraph",
+      "constraints": {
+        "additionalProperties": false
+      }
+    },
+    {
+      "path": "bundle.knowledge.id",
+      "type": "string",
+      "requiredWithinParent": true,
+      "conceptId": "KnowledgeGraph",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/KnowledgeGraph",
+      "constraints": {
+        "minLength": 1,
+        "maxLength": 500,
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9:._/-]{0,199}$"
+      }
+    },
+    {
+      "path": "bundle.knowledge.version",
+      "type": "string",
+      "requiredWithinParent": true,
+      "conceptId": "KnowledgeGraph",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/KnowledgeGraph",
+      "constraints": {
+        "minLength": 1,
+        "maxLength": 500,
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9:._/-]{0,199}$"
+      }
+    },
+    {
+      "path": "bundle.knowledge.assertions",
+      "type": "array",
+      "requiredWithinParent": true,
+      "conceptId": "KnowledgeAssertion",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/KnowledgeAssertion",
+      "constraints": {
+        "maxItems": 1000,
+        "uniqueItems": true
+      }
+    },
+    {
+      "path": "bundle.knowledge.assertions[]",
+      "type": "object",
+      "requiredWithinParent": true,
+      "conceptId": "KnowledgeAssertion",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/KnowledgeAssertion",
+      "constraints": {
+        "additionalProperties": false
+      }
+    },
+    {
+      "path": "bundle.knowledge.assertions[].id",
+      "type": "string",
+      "requiredWithinParent": true,
+      "conceptId": "KnowledgeAssertion",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/KnowledgeAssertion",
+      "constraints": {
+        "minLength": 1,
+        "maxLength": 500,
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9:._/-]{0,199}$"
+      }
+    },
+    {
+      "path": "bundle.knowledge.assertions[].tenantId",
+      "type": "string",
+      "requiredWithinParent": true,
+      "conceptId": "KnowledgeAssertion",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/KnowledgeAssertion",
+      "constraints": {
+        "minLength": 1,
+        "maxLength": 500,
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9:._/-]{0,199}$"
+      }
+    },
+    {
+      "path": "bundle.knowledge.assertions[].subject",
+      "type": "string",
+      "requiredWithinParent": true,
+      "conceptId": "KnowledgeAssertion",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/KnowledgeAssertion",
+      "constraints": {
+        "minLength": 1,
+        "maxLength": 500,
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9:._/-]{0,199}$"
+      }
+    },
+    {
+      "path": "bundle.knowledge.assertions[].purpose",
+      "type": "string",
+      "requiredWithinParent": true,
+      "conceptId": "KnowledgeAssertion",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/KnowledgeAssertion",
+      "constraints": {
+        "minLength": 1,
+        "maxLength": 500,
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9:._/-]{0,199}$"
+      }
+    },
+    {
+      "path": "bundle.knowledge.assertions[].source",
+      "type": "string",
+      "requiredWithinParent": true,
+      "conceptId": "SourceRecord",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/SourceRecord",
+      "constraints": {
+        "minLength": 1,
+        "maxLength": 500
+      }
+    },
+    {
+      "path": "bundle.knowledge.assertions[].predicate",
+      "type": "string",
+      "requiredWithinParent": true,
+      "conceptId": "KnowledgeAssertion",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/KnowledgeAssertion",
+      "constraints": {
+        "minLength": 1,
+        "maxLength": 500,
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9:._/-]{0,199}$"
+      }
+    },
+    {
+      "path": "bundle.knowledge.assertions[].object",
+      "type": "string",
+      "requiredWithinParent": true,
+      "conceptId": "KnowledgeAssertion",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/KnowledgeAssertion",
+      "constraints": {
+        "minLength": 1,
+        "maxLength": 500
+      }
+    },
+    {
+      "path": "bundle.knowledge.assertions[].authorityClass",
+      "type": "string",
+      "requiredWithinParent": true,
+      "conceptId": "KnowledgeAssertion",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/KnowledgeAssertion",
+      "constraints": {},
+      "values": [
+        "curated",
+        "untrusted-external"
+      ]
+    },
+    {
+      "path": "bundle.knowledge.assertions[].confidence",
+      "type": "number",
+      "requiredWithinParent": true,
+      "conceptId": "KnowledgeAssertion",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/KnowledgeAssertion",
+      "constraints": {
+        "minimum": 0,
+        "maximum": 1
+      }
+    },
+    {
+      "path": "bundle.knowledge.assertions[].status",
+      "type": "string",
+      "requiredWithinParent": true,
+      "conceptId": "KnowledgeAssertion",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/KnowledgeAssertion",
+      "constraints": {},
+      "values": [
+        "supported",
+        "contested",
+        "unknown",
+        "revoked"
+      ]
+    },
+    {
+      "path": "bundle.knowledge.assertions[].validFrom",
+      "type": "string",
+      "requiredWithinParent": true,
+      "conceptId": "KnowledgeAssertion",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/KnowledgeAssertion",
+      "constraints": {
+        "minLength": 1,
+        "maxLength": 500
+      },
+      "format": "date-time"
+    },
+    {
+      "path": "bundle.knowledge.assertions[].validUntil",
+      "type": "string",
+      "requiredWithinParent": true,
+      "conceptId": "KnowledgeAssertion",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/KnowledgeAssertion",
+      "constraints": {
+        "minLength": 1,
+        "maxLength": 500
+      },
+      "format": "date-time"
+    },
+    {
+      "path": "bundle.knowledge.assertions[].recordedAt",
+      "type": "string",
+      "requiredWithinParent": true,
+      "conceptId": "KnowledgeAssertion",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/KnowledgeAssertion",
+      "constraints": {
+        "minLength": 1,
+        "maxLength": 500
+      },
+      "format": "date-time"
+    },
+    {
+      "path": "bundle.knowledge.dependencies",
+      "type": "array",
+      "requiredWithinParent": true,
+      "conceptId": "KnowledgeGraph",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/KnowledgeGraph",
+      "constraints": {
+        "maxItems": 1000,
+        "uniqueItems": true
+      }
+    },
+    {
+      "path": "bundle.knowledge.dependencies[]",
+      "type": "object",
+      "requiredWithinParent": true,
+      "conceptId": "KnowledgeGraph",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/KnowledgeGraph",
+      "constraints": {
+        "additionalProperties": false
+      }
+    },
+    {
+      "path": "bundle.knowledge.dependencies[].from",
+      "type": "string",
+      "requiredWithinParent": true,
+      "conceptId": "KnowledgeGraph",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/KnowledgeGraph",
+      "constraints": {
+        "minLength": 1,
+        "maxLength": 500,
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9:._/-]{0,199}$"
+      }
+    },
+    {
+      "path": "bundle.knowledge.dependencies[].to",
+      "type": "string",
+      "requiredWithinParent": true,
+      "conceptId": "KnowledgeGraph",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/KnowledgeGraph",
+      "constraints": {
+        "minLength": 1,
+        "maxLength": 500,
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9:._/-]{0,199}$"
+      }
+    },
+    {
+      "path": "bundle.procedure",
+      "type": "object",
+      "requiredWithinParent": true,
+      "conceptId": "ProcedureGraph",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/ProcedureGraph",
+      "constraints": {
+        "additionalProperties": false
+      }
+    },
+    {
+      "path": "bundle.procedure.id",
+      "type": "string",
+      "requiredWithinParent": true,
+      "conceptId": "ProcedureGraph",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/ProcedureGraph",
+      "constraints": {
+        "minLength": 1,
+        "maxLength": 500,
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9:._/-]{0,199}$"
+      }
+    },
+    {
+      "path": "bundle.procedure.version",
+      "type": "string",
+      "requiredWithinParent": true,
+      "conceptId": "ProcedureGraph",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/ProcedureGraph",
+      "constraints": {
+        "minLength": 1,
+        "maxLength": 500,
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9:._/-]{0,199}$"
+      }
+    },
+    {
+      "path": "bundle.procedure.states",
+      "type": "array",
+      "requiredWithinParent": true,
+      "conceptId": "ProcedureState",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/ProcedureState",
+      "constraints": {
+        "maxItems": 1000,
+        "uniqueItems": true
+      }
+    },
+    {
+      "path": "bundle.procedure.states[]",
+      "type": "string",
+      "requiredWithinParent": true,
+      "conceptId": "ProcedureState",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/ProcedureState",
+      "constraints": {
+        "minLength": 1,
+        "maxLength": 500,
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9:._/-]{0,199}$"
+      }
+    },
+    {
+      "path": "bundle.procedure.transitions",
+      "type": "array",
+      "requiredWithinParent": true,
+      "conceptId": "GuardedTransition",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/GuardedTransition",
+      "constraints": {
+        "maxItems": 1000,
+        "uniqueItems": true
+      }
+    },
+    {
+      "path": "bundle.procedure.transitions[]",
+      "type": "object",
+      "requiredWithinParent": true,
+      "conceptId": "GuardedTransition",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/GuardedTransition",
+      "constraints": {
+        "additionalProperties": false
+      }
+    },
+    {
+      "path": "bundle.procedure.transitions[].id",
+      "type": "string",
+      "requiredWithinParent": true,
+      "conceptId": "GuardedTransition",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/GuardedTransition",
+      "constraints": {
+        "minLength": 1,
+        "maxLength": 500,
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9:._/-]{0,199}$"
+      }
+    },
+    {
+      "path": "bundle.procedure.transitions[].from",
+      "type": "string",
+      "requiredWithinParent": true,
+      "conceptId": "GuardedTransition",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/GuardedTransition",
+      "constraints": {
+        "minLength": 1,
+        "maxLength": 500,
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9:._/-]{0,199}$"
+      }
+    },
+    {
+      "path": "bundle.procedure.transitions[].to",
+      "type": "string",
+      "requiredWithinParent": true,
+      "conceptId": "GuardedTransition",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/GuardedTransition",
+      "constraints": {
+        "minLength": 1,
+        "maxLength": 500,
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9:._/-]{0,199}$"
+      }
+    },
+    {
+      "path": "bundle.procedure.transitions[].operation",
+      "type": "string",
+      "requiredWithinParent": true,
+      "conceptId": "GuardedTransition",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/GuardedTransition",
+      "constraints": {},
+      "values": [
+        "read",
+        "update",
+        "reconcile"
+      ]
+    },
+    {
+      "path": "bundle.procedure.transitions[].requiredAssertions",
+      "type": "array",
+      "requiredWithinParent": true,
+      "conceptId": "GuardedTransition",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/GuardedTransition",
+      "constraints": {
+        "maxItems": 1000,
+        "uniqueItems": true
+      }
+    },
+    {
+      "path": "bundle.procedure.transitions[].requiredAssertions[]",
+      "type": "string",
+      "requiredWithinParent": true,
+      "conceptId": "GuardedTransition",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/GuardedTransition",
+      "constraints": {
+        "minLength": 1,
+        "maxLength": 500,
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9:._/-]{0,199}$"
+      }
+    },
+    {
+      "path": "bundle.procedure.transitions[].guards",
+      "type": "array",
+      "requiredWithinParent": true,
+      "conceptId": "GuardedTransition",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/GuardedTransition",
+      "constraints": {
+        "maxItems": 1000,
+        "uniqueItems": true
+      }
+    },
+    {
+      "path": "bundle.procedure.transitions[].guards[]",
+      "type": "string",
+      "requiredWithinParent": true,
+      "conceptId": "GuardedTransition",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/GuardedTransition",
+      "constraints": {},
+      "values": [
+        "authority",
+        "freshness",
+        "closure",
+        "resource",
+        "budget",
+        "approval",
+        "replay",
+        "effect"
+      ]
+    },
+    {
+      "path": "bundle.procedure.transitions[].requiresApproval",
+      "type": "boolean",
+      "requiredWithinParent": true,
+      "conceptId": "GuardedTransition",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/GuardedTransition",
+      "constraints": {}
+    },
+    {
+      "path": "bundle.procedure.transitions[].accountableRole",
+      "type": "string",
+      "requiredWithinParent": true,
+      "conceptId": "GuardedTransition",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/GuardedTransition",
+      "constraints": {
+        "minLength": 1,
+        "maxLength": 500,
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9:._/-]{0,199}$"
+      }
+    },
+    {
+      "path": "bundle.context",
+      "type": "object",
+      "requiredWithinParent": true,
+      "conceptId": "ContextSnapshot",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/ContextSnapshot",
+      "constraints": {
+        "additionalProperties": false
+      }
+    },
+    {
+      "path": "bundle.context.id",
+      "type": "string",
+      "requiredWithinParent": true,
+      "conceptId": "ContextSnapshot",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/ContextSnapshot",
+      "constraints": {
+        "minLength": 1,
+        "maxLength": 500,
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9:._/-]{0,199}$"
+      }
+    },
+    {
+      "path": "bundle.context.tenantId",
+      "type": "string",
+      "requiredWithinParent": true,
+      "conceptId": "ContextSnapshot",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/ContextSnapshot",
+      "constraints": {
+        "minLength": 1,
+        "maxLength": 500,
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9:._/-]{0,199}$"
+      }
+    },
+    {
+      "path": "bundle.context.caseId",
+      "type": "string",
+      "requiredWithinParent": true,
+      "conceptId": "ContextSnapshot",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/ContextSnapshot",
+      "constraints": {
+        "minLength": 1,
+        "maxLength": 500,
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9:._/-]{0,199}$"
+      }
+    },
+    {
+      "path": "bundle.context.subject",
+      "type": "string",
+      "requiredWithinParent": true,
+      "conceptId": "ContextSnapshot",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/ContextSnapshot",
+      "constraints": {
+        "minLength": 1,
+        "maxLength": 500,
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9:._/-]{0,199}$"
+      }
+    },
+    {
+      "path": "bundle.context.purpose",
+      "type": "string",
+      "requiredWithinParent": true,
+      "conceptId": "ContextSnapshot",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/ContextSnapshot",
+      "constraints": {
+        "minLength": 1,
+        "maxLength": 500,
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9:._/-]{0,199}$"
+      }
+    },
+    {
+      "path": "bundle.context.createdAt",
+      "type": "string",
+      "requiredWithinParent": true,
+      "conceptId": "ContextSnapshot",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/ContextSnapshot",
+      "constraints": {
+        "minLength": 1,
+        "maxLength": 500
+      },
+      "format": "date-time"
+    },
+    {
+      "path": "bundle.context.validUntil",
+      "type": "string",
+      "requiredWithinParent": true,
+      "conceptId": "ContextSnapshot",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/ContextSnapshot",
+      "constraints": {
+        "minLength": 1,
+        "maxLength": 500
+      },
+      "format": "date-time"
+    },
+    {
+      "path": "bundle.context.bindings",
+      "type": "object",
+      "requiredWithinParent": true,
+      "conceptId": "PolicyBinding",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/PolicyBinding",
+      "constraints": {
+        "additionalProperties": false
+      }
+    },
+    {
+      "path": "bundle.context.bindings.knowledge",
+      "type": "string",
+      "requiredWithinParent": true,
+      "conceptId": "PolicyBinding",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/PolicyBinding",
+      "constraints": {
+        "pattern": "^sha256:[a-f0-9]{64}$"
+      }
+    },
+    {
+      "path": "bundle.context.bindings.procedure",
+      "type": "string",
+      "requiredWithinParent": true,
+      "conceptId": "PolicyBinding",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/PolicyBinding",
+      "constraints": {
+        "pattern": "^sha256:[a-f0-9]{64}$"
+      }
+    },
+    {
+      "path": "bundle.context.bindings.vocabulary",
+      "type": "string",
+      "requiredWithinParent": true,
+      "conceptId": "VocabularyRelease",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/VocabularyRelease",
+      "constraints": {
+        "pattern": "^sha256:[a-f0-9]{64}$"
+      }
+    },
+    {
+      "path": "bundle.context.selected",
+      "type": "array",
+      "requiredWithinParent": true,
+      "conceptId": "ContextSnapshot",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/ContextSnapshot",
+      "constraints": {
+        "maxItems": 1000,
+        "uniqueItems": true
+      }
+    },
+    {
+      "path": "bundle.context.selected[]",
+      "type": "string",
+      "requiredWithinParent": true,
+      "conceptId": "ContextSnapshot",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/ContextSnapshot",
+      "constraints": {
+        "minLength": 1,
+        "maxLength": 500,
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9:._/-]{0,199}$"
+      }
+    },
+    {
+      "path": "bundle.context.excluded",
+      "type": "array",
+      "requiredWithinParent": true,
+      "conceptId": "ExclusionRecord",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/ExclusionRecord",
+      "constraints": {
+        "maxItems": 1000,
+        "uniqueItems": true
+      }
+    },
+    {
+      "path": "bundle.context.excluded[]",
+      "type": "object",
+      "requiredWithinParent": true,
+      "conceptId": "ExclusionRecord",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/ExclusionRecord",
+      "constraints": {
+        "additionalProperties": false
+      }
+    },
+    {
+      "path": "bundle.context.excluded[].id",
+      "type": "string",
+      "requiredWithinParent": true,
+      "conceptId": "ExclusionRecord",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/ExclusionRecord",
+      "constraints": {
+        "minLength": 1,
+        "maxLength": 500,
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9:._/-]{0,199}$"
+      }
+    },
+    {
+      "path": "bundle.context.excluded[].reason",
+      "type": "string",
+      "requiredWithinParent": true,
+      "conceptId": "ExclusionRecord",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/ExclusionRecord",
+      "constraints": {
+        "minLength": 1,
+        "maxLength": 500
+      }
+    },
+    {
+      "path": "bundle.context.excluded[].actor",
+      "type": "string",
+      "requiredWithinParent": true,
+      "conceptId": "ExclusionRecord",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/ExclusionRecord",
+      "constraints": {
+        "minLength": 1,
+        "maxLength": 500,
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9:._/-]{0,199}$"
+      }
+    },
+    {
+      "path": "bundle.context.excluded[].policyVersion",
+      "type": "string",
+      "requiredWithinParent": true,
+      "conceptId": "ExclusionRecord",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/ExclusionRecord",
+      "constraints": {
+        "minLength": 1,
+        "maxLength": 500,
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9:._/-]{0,199}$"
+      }
+    },
+    {
+      "path": "bundle.context.resourceVersion",
+      "type": "string",
+      "requiredWithinParent": true,
+      "conceptId": "ResourceObservation",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/ResourceObservation",
+      "constraints": {
+        "minLength": 1,
+        "maxLength": 500,
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9:._/-]{0,199}$"
+      }
+    },
+    {
+      "path": "bundle.context.authorityEpoch",
+      "type": "integer",
+      "requiredWithinParent": true,
+      "conceptId": "AuthorityObservation",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/AuthorityObservation",
+      "constraints": {
+        "minimum": 0,
+        "maximum": 9007199254740991
+      }
+    },
+    {
+      "path": "bundle.context.policyEpoch",
+      "type": "integer",
+      "requiredWithinParent": true,
+      "conceptId": "PolicyBinding",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/PolicyBinding",
+      "constraints": {
+        "minimum": 0,
+        "maximum": 9007199254740991
+      }
+    },
+    {
+      "path": "bundle.context.pendingEffect",
+      "type": "string",
+      "requiredWithinParent": true,
+      "conceptId": "EffectObservation",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/EffectObservation",
+      "constraints": {},
+      "values": [
+        "none",
+        "unknown"
+      ]
+    },
+    {
+      "path": "bundle.request",
+      "type": "object",
+      "requiredWithinParent": true,
+      "conceptId": "ActionProposal",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/ActionProposal",
+      "constraints": {
+        "additionalProperties": false
+      }
+    },
+    {
+      "path": "bundle.request.id",
+      "type": "string",
+      "requiredWithinParent": true,
+      "conceptId": "ActionProposal",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/ActionProposal",
+      "constraints": {
+        "minLength": 1,
+        "maxLength": 500,
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9:._/-]{0,199}$"
+      }
+    },
+    {
+      "path": "bundle.request.tenantId",
+      "type": "string",
+      "requiredWithinParent": true,
+      "conceptId": "ActionProposal",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/ActionProposal",
+      "constraints": {
+        "minLength": 1,
+        "maxLength": 500,
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9:._/-]{0,199}$"
+      }
+    },
+    {
+      "path": "bundle.request.caseId",
+      "type": "string",
+      "requiredWithinParent": true,
+      "conceptId": "ActionProposal",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/ActionProposal",
+      "constraints": {
+        "minLength": 1,
+        "maxLength": 500,
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9:._/-]{0,199}$"
+      }
+    },
+    {
+      "path": "bundle.request.subject",
+      "type": "string",
+      "requiredWithinParent": true,
+      "conceptId": "ActionProposal",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/ActionProposal",
+      "constraints": {
+        "minLength": 1,
+        "maxLength": 500,
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9:._/-]{0,199}$"
+      }
+    },
+    {
+      "path": "bundle.request.purpose",
+      "type": "string",
+      "requiredWithinParent": true,
+      "conceptId": "ActionProposal",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/ActionProposal",
+      "constraints": {
+        "minLength": 1,
+        "maxLength": 500,
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9:._/-]{0,199}$"
+      }
+    },
+    {
+      "path": "bundle.request.from",
+      "type": "string",
+      "requiredWithinParent": true,
+      "conceptId": "ActionProposal",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/ActionProposal",
+      "constraints": {
+        "minLength": 1,
+        "maxLength": 500,
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9:._/-]{0,199}$"
+      }
+    },
+    {
+      "path": "bundle.request.to",
+      "type": "string",
+      "requiredWithinParent": true,
+      "conceptId": "ActionProposal",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/ActionProposal",
+      "constraints": {
+        "minLength": 1,
+        "maxLength": 500,
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9:._/-]{0,199}$"
+      }
+    },
+    {
+      "path": "bundle.request.operation",
+      "type": "string",
+      "requiredWithinParent": true,
+      "conceptId": "ActionProposal",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/ActionProposal",
+      "constraints": {},
+      "values": [
+        "read",
+        "update",
+        "reconcile"
+      ]
+    },
+    {
+      "path": "bundle.request.resource",
+      "type": "string",
+      "requiredWithinParent": true,
+      "conceptId": "ActionProposal",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/ActionProposal",
+      "constraints": {
+        "minLength": 1,
+        "maxLength": 500,
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9:._/-]{0,199}$"
+      }
+    },
+    {
+      "path": "bundle.request.cost",
+      "type": "number",
+      "requiredWithinParent": true,
+      "conceptId": "ActionProposal",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/ActionProposal",
+      "constraints": {
+        "minimum": 0,
+        "maximum": 1000000000000
+      }
+    },
+    {
+      "path": "bundle.request.nonce",
+      "type": "string",
+      "requiredWithinParent": true,
+      "conceptId": "ActionProposal",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/ActionProposal",
+      "constraints": {
+        "minLength": 1,
+        "maxLength": 500,
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9:._/-]{0,199}$"
+      }
+    },
+    {
+      "path": "bundle.request.sequence",
+      "type": "integer",
+      "requiredWithinParent": true,
+      "conceptId": "ActionProposal",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/ActionProposal",
+      "constraints": {
+        "minimum": 0,
+        "maximum": 9007199254740991
+      }
+    },
+    {
+      "path": "observations",
+      "type": "object",
+      "requiredWithinParent": true,
+      "conceptId": "ContextSnapshot",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/ContextSnapshot",
+      "constraints": {
+        "additionalProperties": false
+      }
+    },
+    {
+      "path": "observations.now",
+      "type": "string",
+      "requiredWithinParent": true,
+      "conceptId": "ContextSnapshot",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/ContextSnapshot",
+      "constraints": {
+        "minLength": 1,
+        "maxLength": 500
+      },
+      "format": "date-time"
+    },
+    {
+      "path": "observations.caseId",
+      "type": "string",
+      "requiredWithinParent": true,
+      "conceptId": "ContextSnapshot",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/ContextSnapshot",
+      "constraints": {
+        "minLength": 1,
+        "maxLength": 500,
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9:._/-]{0,199}$"
+      }
+    },
+    {
+      "path": "observations.currentState",
+      "type": "string",
+      "requiredWithinParent": true,
+      "conceptId": "ContextSnapshot",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/ContextSnapshot",
+      "constraints": {
+        "minLength": 1,
+        "maxLength": 500,
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9:._/-]{0,199}$"
+      }
+    },
+    {
+      "path": "observations.pendingEffect",
+      "type": "string",
+      "requiredWithinParent": true,
+      "conceptId": "EffectObservation",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/EffectObservation",
+      "constraints": {},
+      "values": [
+        "none",
+        "unknown"
+      ]
+    },
+    {
+      "path": "observations.resource",
+      "type": "string",
+      "requiredWithinParent": true,
+      "conceptId": "ResourceObservation",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/ResourceObservation",
+      "constraints": {
+        "minLength": 1,
+        "maxLength": 500,
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9:._/-]{0,199}$"
+      }
+    },
+    {
+      "path": "observations.bindings",
+      "type": "object",
+      "requiredWithinParent": true,
+      "conceptId": "PolicyBinding",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/PolicyBinding",
+      "constraints": {
+        "additionalProperties": false
+      }
+    },
+    {
+      "path": "observations.bindings.knowledge",
+      "type": "string",
+      "requiredWithinParent": true,
+      "conceptId": "PolicyBinding",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/PolicyBinding",
+      "constraints": {
+        "pattern": "^sha256:[a-f0-9]{64}$"
+      }
+    },
+    {
+      "path": "observations.bindings.procedure",
+      "type": "string",
+      "requiredWithinParent": true,
+      "conceptId": "PolicyBinding",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/PolicyBinding",
+      "constraints": {
+        "pattern": "^sha256:[a-f0-9]{64}$"
+      }
+    },
+    {
+      "path": "observations.bindings.vocabulary",
+      "type": "string",
+      "requiredWithinParent": true,
+      "conceptId": "VocabularyRelease",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/VocabularyRelease",
+      "constraints": {
+        "pattern": "^sha256:[a-f0-9]{64}$"
+      }
+    },
+    {
+      "path": "observations.policyEpoch",
+      "type": "integer",
+      "requiredWithinParent": true,
+      "conceptId": "PolicyBinding",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/PolicyBinding",
+      "constraints": {
+        "minimum": 0,
+        "maximum": 9007199254740991
+      }
+    },
+    {
+      "path": "observations.resourceVersion",
+      "type": "string",
+      "requiredWithinParent": true,
+      "conceptId": "ResourceObservation",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/ResourceObservation",
+      "constraints": {
+        "minLength": 1,
+        "maxLength": 500,
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9:._/-]{0,199}$"
+      }
+    },
+    {
+      "path": "observations.budgetRemaining",
+      "type": "number",
+      "requiredWithinParent": true,
+      "conceptId": "ContextSnapshot",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/ContextSnapshot",
+      "constraints": {
+        "minimum": 0,
+        "maximum": 1000000000000
+      }
+    },
+    {
+      "path": "observations.authority",
+      "type": "object",
+      "requiredWithinParent": true,
+      "conceptId": "AuthorityObservation",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/AuthorityObservation",
+      "constraints": {
+        "additionalProperties": false
+      }
+    },
+    {
+      "path": "observations.authority.tenantId",
+      "type": "string",
+      "requiredWithinParent": true,
+      "conceptId": "AuthorityObservation",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/AuthorityObservation",
+      "constraints": {
+        "minLength": 1,
+        "maxLength": 500,
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9:._/-]{0,199}$"
+      }
+    },
+    {
+      "path": "observations.authority.caseId",
+      "type": "string",
+      "requiredWithinParent": true,
+      "conceptId": "AuthorityObservation",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/AuthorityObservation",
+      "constraints": {
+        "minLength": 1,
+        "maxLength": 500,
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9:._/-]{0,199}$"
+      }
+    },
+    {
+      "path": "observations.authority.subject",
+      "type": "string",
+      "requiredWithinParent": true,
+      "conceptId": "AuthorityObservation",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/AuthorityObservation",
+      "constraints": {
+        "minLength": 1,
+        "maxLength": 500,
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9:._/-]{0,199}$"
+      }
+    },
+    {
+      "path": "observations.authority.purpose",
+      "type": "string",
+      "requiredWithinParent": true,
+      "conceptId": "AuthorityObservation",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/AuthorityObservation",
+      "constraints": {
+        "minLength": 1,
+        "maxLength": 500,
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9:._/-]{0,199}$"
+      }
+    },
+    {
+      "path": "observations.authority.principal",
+      "type": "string",
+      "requiredWithinParent": true,
+      "conceptId": "AuthorityObservation",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/AuthorityObservation",
+      "constraints": {
+        "minLength": 1,
+        "maxLength": 500,
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9:._/-]{0,199}$"
+      }
+    },
+    {
+      "path": "observations.authority.status",
+      "type": "string",
+      "requiredWithinParent": true,
+      "conceptId": "AuthorityObservation",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/AuthorityObservation",
+      "constraints": {},
+      "values": [
+        "active",
+        "revoked"
+      ]
+    },
+    {
+      "path": "observations.authority.expiresAt",
+      "type": "string",
+      "requiredWithinParent": true,
+      "conceptId": "AuthorityObservation",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/AuthorityObservation",
+      "constraints": {
+        "minLength": 1,
+        "maxLength": 500
+      },
+      "format": "date-time"
+    },
+    {
+      "path": "observations.authority.epoch",
+      "type": "integer",
+      "requiredWithinParent": true,
+      "conceptId": "AuthorityObservation",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/AuthorityObservation",
+      "constraints": {
+        "minimum": 0,
+        "maximum": 9007199254740991
+      }
+    },
+    {
+      "path": "observations.authority.scopes",
+      "type": "array",
+      "requiredWithinParent": true,
+      "conceptId": "AuthorityObservation",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/AuthorityObservation",
+      "constraints": {
+        "maxItems": 1000,
+        "uniqueItems": true
+      }
+    },
+    {
+      "path": "observations.authority.scopes[]",
+      "type": "object",
+      "requiredWithinParent": true,
+      "conceptId": "AuthorityObservation",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/AuthorityObservation",
+      "constraints": {
+        "additionalProperties": false
+      }
+    },
+    {
+      "path": "observations.authority.scopes[].operation",
+      "type": "string",
+      "requiredWithinParent": true,
+      "conceptId": "AuthorityObservation",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/AuthorityObservation",
+      "constraints": {},
+      "values": [
+        "read",
+        "update",
+        "reconcile"
+      ]
+    },
+    {
+      "path": "observations.authority.scopes[].resource",
+      "type": "string",
+      "requiredWithinParent": true,
+      "conceptId": "AuthorityObservation",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/AuthorityObservation",
+      "constraints": {
+        "minLength": 1,
+        "maxLength": 500,
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9:._/-]{0,199}$"
+      }
+    },
+    {
+      "path": "observations.ledger",
+      "type": "object",
+      "requiredWithinParent": true,
+      "conceptId": "ExecutionFence",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/ExecutionFence",
+      "constraints": {
+        "additionalProperties": false
+      }
+    },
+    {
+      "path": "observations.ledger.usedNonces",
+      "type": "array",
+      "requiredWithinParent": true,
+      "conceptId": "ExecutionFence",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/ExecutionFence",
+      "constraints": {
+        "maxItems": 1000,
+        "uniqueItems": true
+      }
+    },
+    {
+      "path": "observations.ledger.usedNonces[]",
+      "type": "string",
+      "requiredWithinParent": true,
+      "conceptId": "ExecutionFence",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/ExecutionFence",
+      "constraints": {
+        "minLength": 1,
+        "maxLength": 500,
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9:._/-]{0,199}$"
+      }
+    },
+    {
+      "path": "observations.ledger.lastSequence",
+      "type": "integer",
+      "requiredWithinParent": true,
+      "conceptId": "ExecutionFence",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/ExecutionFence",
+      "constraints": {
+        "minimum": 0,
+        "maximum": 9007199254740991
+      }
+    },
+    {
+      "path": "observations.approval",
+      "type": "object",
+      "requiredWithinParent": true,
+      "conceptId": "PolicyBinding",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/PolicyBinding",
+      "constraints": {
+        "additionalProperties": false
+      }
+    },
+    {
+      "path": "observations.approval.status",
+      "type": "string",
+      "requiredWithinParent": true,
+      "conceptId": "PolicyBinding",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/PolicyBinding",
+      "constraints": {},
+      "values": [
+        "absent",
+        "approved",
+        "rejected"
+      ]
+    },
+    {
+      "path": "observations.approval.decisionDigest",
+      "type": "string",
+      "requiredWithinParent": true,
+      "conceptId": "PolicyBinding",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/PolicyBinding",
+      "constraints": {
+        "pattern": "^sha256:[a-f0-9]{64}$"
+      }
+    },
+    {
+      "path": "observations.approval.reviewer",
+      "type": "string",
+      "requiredWithinParent": true,
+      "conceptId": "AccountableRole",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/AccountableRole",
+      "constraints": {
+        "minLength": 1,
+        "maxLength": 500,
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9:._/-]{0,199}$"
+      }
+    },
+    {
+      "path": "observations.approval.expiresAt",
+      "type": "string",
+      "requiredWithinParent": true,
+      "conceptId": "PolicyBinding",
+      "conceptUri": "https://paloframework.org/semantic/tri-graph/PolicyBinding",
+      "constraints": {
+        "minLength": 1,
+        "maxLength": 500
+      },
+      "format": "date-time"
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+@prefix tg: <https://paloframework.org/semantic/tri-graph/> .
+@prefix palo: <https://paloframework.org/semantic/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+tg: a owl:Ontology ; owl:versionInfo "0.1.0-reference-preview" ; owl:imports <https://paloframework.org/formal/palo-ontology-v3.ttl> ; rdfs:comment "Versioned design and local reference rehearsal; no production execution authority or operating-effectiveness claim." .
+tg:KnowledgeGraph a owl:Class ; rdfs:subClassOf palo:CanonicalDefinition ; rdfs:label "Knowledge graph"@en, "Grafo di conoscenza"@it ; rdfs:comment "Asserzioni curate, fonti e dipendenze con identità e versione; la presenza di un fatto non concede autorità."@it ; rdfs:seeAlso <https://paloframework.org/data/semantic-spine.json> .
+tg:KnowledgeAssertion a owl:Class ; rdfs:subClassOf palo:EvidenceClaim ; rdfs:label "Knowledge assertion"@en, "Asserzione verificabile"@it ; rdfs:comment "Enunciato con fonte, stato epistemico, validità e momento di registrazione. Può essere contestato o revocato."@it ; rdfs:seeAlso <https://paloframework.org/schemas/palo-evidence-claim.schema.json> .
+tg:SourceRecord a owl:Class ; rdfs:subClassOf palo:EvidenceArtifact ; rdfs:label "Source record"@en, "Fonte"@it ; rdfs:comment "Riferimento alla provenienza e alla versione acquisita; attendibilità e autorità restano distinte."@it ; rdfs:seeAlso <https://paloframework.org/data/source-registry.json> .
+tg:PolicyBinding a owl:Class ; rdfs:subClassOf palo:CanonicalDefinition ; rdfs:label "Policy binding"@en, "Vincolo di policy"@it ; rdfs:comment "Collega una regola alla versione applicabile e alla decisione umana che ne ha stabilito lo scopo."@it ; rdfs:seeAlso <https://paloframework.org/schemas/palo-agentic-policy-decision.schema.json> .
+tg:VocabularyRelease a owl:Class ; rdfs:subClassOf palo:SemanticReleaseManifest ; rdfs:label "Vocabulary release"@en, "Versione del vocabolario"@it ; rdfs:comment "Versione di ontologia, tassonomia e dizionario usata per interpretare una decisione."@it ; rdfs:seeAlso <https://paloframework.org/data/semantic-release-manifest.json> .
+tg:ContextSnapshot a owl:Class ; rdfs:subClassOf palo:ImmutableRecord ; rdfs:label "Decision context snapshot"@en, "Snapshot decisionale"@it ; rdfs:comment "Vista delimitata per tenant, caso, scopo e istante, legata ai digest di conoscenza, procedura e vocabolario."@it ; rdfs:seeAlso <https://paloframework.org/schemas/palo-agentic-policy-input.schema.json> .
+tg:ContextRequirement a owl:Class ; rdfs:subClassOf palo:CanonicalDefinition ; rdfs:label "Context requirement"@en, "Requisito di contesto"@it ; rdfs:comment "Dipendenza obbligatoria determinata dalla procedura curata; non selezionabile dal solo modello."@it ; rdfs:seeAlso <https://paloframework.org/data/decision-gates.json> .
+tg:ExclusionRecord a owl:Class ; rdfs:subClassOf palo:ImmutableRecord ; rdfs:label "Exclusion record"@en, "Esclusione motivata"@it ; rdfs:comment "Registra un elemento escluso e il motivo; non permette di eliminare un controllo obbligatorio."@it ; rdfs:seeAlso <https://paloframework.org/schemas/palo-data-disclosure-contract.schema.json> .
+tg:AuthorityObservation a owl:Class ; rdfs:subClassOf palo:RuntimeRecord ; rdfs:label "Authority observation"@en, "Osservazione di autorità"@it ; rdfs:comment "Stato osservato di mandato, scopo, scadenza e revoche; in produzione deve provenire dal verificatore fidato."@it ; rdfs:seeAlso <https://paloframework.org/schemas/palo-agentic-action-claim.schema.json> .
+tg:ResourceObservation a owl:Class ; rdfs:subClassOf palo:RuntimeRecord ; rdfs:label "Resource observation"@en, "Versione della risorsa"@it ; rdfs:comment "Versione corrente della risorsa da confrontare prima di produrre effetti."@it ; rdfs:seeAlso <https://paloframework.org/schemas/palo-agentic-effect-contract.schema.json> .
+tg:ProcedureGraph a owl:Class ; rdfs:subClassOf palo:CanonicalDefinition ; rdfs:label "Procedural graph"@en, "Grafo procedurale"@it ; rdfs:comment "Stati e transizioni versionati con guardie, requisiti e responsabilità; nessuna deviazione può ampliare il mandato."@it ; rdfs:seeAlso <https://paloframework.org/packages/palo-mcp-server/core.js> .
+tg:ProcedureState a owl:Class ; rdfs:subClassOf palo:CanonicalDefinition ; rdfs:label "Procedure state"@en, "Stato procedurale"@it ; rdfs:comment "Posizione esplicita nel ciclo di una decisione, distinta dallo stato dell’effetto reale."@it ; rdfs:seeAlso <https://paloframework.org/packages/palo-mcp-server/core.js> .
+tg:GuardedTransition a owl:Class ; rdfs:subClassOf palo:CanonicalDefinition ; rdfs:label "Guarded transition"@en, "Transizione condizionata"@it ; rdfs:comment "Arco da uno stato al successivo con guardie deterministiche e prove obbligatorie."@it ; rdfs:seeAlso <https://paloframework.org/schemas/palo-agentic-policy-decision.schema.json> .
+tg:ActionProposal a owl:Class ; rdfs:subClassOf palo:RuntimeRecord ; rdfs:label "Action proposal"@en, "Proposta di azione"@it ; rdfs:comment "Richiesta con scopo e risorsa che deve ancora ottenere l’ammissione dell’esecutore."@it ; rdfs:seeAlso <https://paloframework.org/schemas/palo-agentic-action-claim.schema.json> .
+tg:DecisionReceipt a owl:Class ; rdfs:subClassOf palo:DecisionRecord ; rdfs:label "Decision receipt"@en, "Ricevuta decisionale"@it ; rdfs:comment "Esito riproducibile con regole, input e motivazioni; non è un token di esecuzione."@it ; rdfs:seeAlso <https://paloframework.org/schemas/palo-gate-decision-record.schema.json> .
+tg:EffectObservation a owl:Class ; rdfs:subClassOf palo:EvidenceEvaluation ; rdfs:label "Effect observation"@en, "Osservazione dell’effetto"@it ; rdfs:comment "Evidenza proveniente dalla risorsa autorevole dopo il tentativo; il timeout può lasciare l’effetto incerto."@it ; rdfs:seeAlso <https://paloframework.org/schemas/palo-agentic-outcome-attestation.schema.json> .
+tg:ChangeProposal a owl:Class ; rdfs:subClassOf palo:RuntimeRecord ; rdfs:label "Change proposal"@en, "Proposta di cambiamento"@it ; rdfs:comment "Ipotesi di revisione prodotta dalle tracce, sottoposta a revisione, test e nuova versione."@it ; rdfs:seeAlso <https://paloframework.org/docs/palo-v3-semantic-foundation.md> .
+tg:AccountableRole a owl:Class ; rdfs:subClassOf palo:SemanticEntity ; rdfs:label "Accountable role"@en, "Ruolo responsabile"@it ; rdfs:comment "Responsabilità assegnata e verificabile per curatela, decisione, esecuzione e contestazione."@it ; rdfs:seeAlso <https://paloframework.org/schemas/palo-agentic-approval.schema.json> .
+tg:ChallengeRecord a owl:Class ; rdfs:subClassOf palo:RuntimeRecord ; rdfs:label "Challenge record"@en, "Contestazione"@it ; rdfs:comment "Obiezione motivata con evidenze, owner e stato; conserva la decisione originaria e l’eventuale rettifica."@it ; rdfs:seeAlso <https://paloframework.org/schemas/palo-affected-person-case.schema.json> .
+tg:ExecutionFence a owl:Class ; rdfs:subClassOf palo:CanonicalDefinition ; rdfs:label "Execution fence"@en, "Vincolo di esecuzione"@it ; rdfs:comment "Punto di controllo atomico lato adapter su versione risorsa, revoche, budget e idempotenza. Requisito progettuale."@it ; rdfs:seeAlso <https://paloframework.org/packages/palo-mcp-server/core.js> .
+tg:containsAssertion a owl:ObjectProperty ; rdfs:domain tg:KnowledgeGraph ; rdfs:range tg:KnowledgeAssertion ; rdfs:label "contiene"@it .
+tg:supportedBy a owl:ObjectProperty ; rdfs:domain tg:KnowledgeAssertion ; rdfs:range tg:SourceRecord ; rdfs:label "supportata da"@it .
+tg:dependsOn a owl:ObjectProperty ; rdfs:domain tg:KnowledgeAssertion ; rdfs:range tg:KnowledgeAssertion ; rdfs:label "dipende da"@it .
+tg:interpretedUnder a owl:ObjectProperty ; rdfs:domain tg:KnowledgeGraph ; rdfs:range tg:VocabularyRelease ; rdfs:label "interpretato secondo"@it .
+tg:scopesKnowledge a owl:ObjectProperty ; rdfs:domain tg:ContextSnapshot ; rdfs:range tg:KnowledgeGraph ; rdfs:label "delimita"@it .
+tg:selectsAssertion a owl:ObjectProperty ; rdfs:domain tg:ContextSnapshot ; rdfs:range tg:KnowledgeAssertion ; rdfs:label "seleziona"@it .
+tg:recordsExclusion a owl:ObjectProperty ; rdfs:domain tg:ContextSnapshot ; rdfs:range tg:ExclusionRecord ; rdfs:label "motiva esclusione"@it .
+tg:observesAuthority a owl:ObjectProperty ; rdfs:domain tg:ContextSnapshot ; rdfs:range tg:AuthorityObservation ; rdfs:label "osserva autorità"@it .
+tg:observesResource a owl:ObjectProperty ; rdfs:domain tg:ContextSnapshot ; rdfs:range tg:ResourceObservation ; rdfs:label "osserva risorsa"@it .
+tg:pinsProcedure a owl:ObjectProperty ; rdfs:domain tg:ContextSnapshot ; rdfs:range tg:ProcedureGraph ; rdfs:label "fissa procedura"@it .
+tg:hasState a owl:ObjectProperty ; rdfs:domain tg:ProcedureGraph ; rdfs:range tg:ProcedureState ; rdfs:label "include stato"@it .
+tg:hasTransition a owl:ObjectProperty ; rdfs:domain tg:ProcedureGraph ; rdfs:range tg:GuardedTransition ; rdfs:label "include transizione"@it .
+tg:requiresContext a owl:ObjectProperty ; rdfs:domain tg:GuardedTransition ; rdfs:range tg:ContextRequirement ; rdfs:label "richiede contesto"@it .
+tg:requiresAssertion a owl:ObjectProperty ; rdfs:domain tg:ContextRequirement ; rdfs:range tg:KnowledgeAssertion ; rdfs:label "richiede asserzione"@it .
+tg:governedBy a owl:ObjectProperty ; rdfs:domain tg:GuardedTransition ; rdfs:range tg:PolicyBinding ; rdfs:label "governata da"@it .
+tg:proposesTransition a owl:ObjectProperty ; rdfs:domain tg:ActionProposal ; rdfs:range tg:GuardedTransition ; rdfs:label "propone"@it .
+tg:evaluatedIn a owl:ObjectProperty ; rdfs:domain tg:ActionProposal ; rdfs:range tg:ContextSnapshot ; rdfs:label "valutata nel contesto"@it .
+tg:explainsProposal a owl:ObjectProperty ; rdfs:domain tg:DecisionReceipt ; rdfs:range tg:ActionProposal ; rdfs:label "spiega"@it .
+tg:checkedAt a owl:ObjectProperty ; rdfs:domain tg:ActionProposal ; rdfs:range tg:ExecutionFence ; rdfs:label "verificata prima dell’effetto"@it .
+tg:observesEffect a owl:ObjectProperty ; rdfs:domain tg:EffectObservation ; rdfs:range tg:ActionProposal ; rdfs:label "osserva effetto"@it .
+tg:informsChange a owl:ObjectProperty ; rdfs:domain tg:EffectObservation ; rdfs:range tg:ChangeProposal ; rdfs:label "informa revisione"@it .
+tg:assignedTo a owl:ObjectProperty ; rdfs:domain tg:ChangeProposal ; rdfs:range tg:AccountableRole ; rdfs:label "assegnata a"@it .
+tg:challenges a owl:ObjectProperty ; rdfs:domain tg:ChallengeRecord ; rdfs:range tg:DecisionReceipt ; rdfs:label "contesta"@it .
+tg:supersedesDecision a owl:ObjectProperty ; rdfs:domain tg:DecisionReceipt ; rdfs:range tg:DecisionReceipt ; rdfs:label "rettifica"@it .
+tg:KnowledgeAssertion rdfs:subClassOf prov:Entity .
+tg:ProcedureGraph rdfs:subClassOf prov:Plan .
+tg:DecisionReceipt rdfs:subClassOf prov:Entity .
+tg:recordId a owl:DatatypeProperty .
+tg:version a owl:DatatypeProperty .
+tg:recordedAt a owl:DatatypeProperty .
+tg:validUntil a owl:DatatypeProperty .

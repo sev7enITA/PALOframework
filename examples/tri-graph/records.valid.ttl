@@ -1,0 +1,10 @@
+@prefix tg: <https://paloframework.org/semantic/tri-graph/> .
+@prefix palo: <https://paloframework.org/semantic/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+tg:example a tg:ContextSnapshot ; tg:recordId "ctx-example" ; tg:version "0.1.0" ; tg:recordedAt "2026-10-29T09:00:00Z"^^xsd:dateTime ; tg:validUntil "2026-10-29T10:00:00Z"^^xsd:dateTime .

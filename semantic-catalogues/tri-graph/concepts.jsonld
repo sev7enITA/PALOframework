@@ -1,0 +1,400 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "tg": "https://paloframework.org/semantic/tri-graph/",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "prov": "http://www.w3.org/ns/prov#",
+    "label": "skos:prefLabel",
+    "definition": "skos:definition",
+    "broader": {
+      "@id": "skos:broader",
+      "@type": "@id"
+    },
+    "pillar": {
+      "@id": "skos:broader",
+      "@type": "@id"
+    }
+  },
+  "@graph": [
+    {
+      "@id": "https://paloframework.org/semantic/tri-graph/term-KnowledgeGraph",
+      "@type": "skos:Concept",
+      "label": [
+        {
+          "@value": "Knowledge graph",
+          "@language": "en"
+        },
+        {
+          "@value": "Grafo di conoscenza",
+          "@language": "it"
+        }
+      ],
+      "definition": {
+        "@value": "Asserzioni curate, fonti e dipendenze con identità e versione; la presenza di un fatto non concede autorità.",
+        "@language": "it"
+      },
+      "pillar": "https://paloframework.org/semantic/tri-graph/knowledge"
+    },
+    {
+      "@id": "https://paloframework.org/semantic/tri-graph/term-KnowledgeAssertion",
+      "@type": "skos:Concept",
+      "label": [
+        {
+          "@value": "Knowledge assertion",
+          "@language": "en"
+        },
+        {
+          "@value": "Asserzione verificabile",
+          "@language": "it"
+        }
+      ],
+      "definition": {
+        "@value": "Enunciato con fonte, stato epistemico, validità e momento di registrazione. Può essere contestato o revocato.",
+        "@language": "it"
+      },
+      "pillar": "https://paloframework.org/semantic/tri-graph/knowledge"
+    },
+    {
+      "@id": "https://paloframework.org/semantic/tri-graph/term-SourceRecord",
+      "@type": "skos:Concept",
+      "label": [
+        {
+          "@value": "Source record",
+          "@language": "en"
+        },
+        {
+          "@value": "Fonte",
+          "@language": "it"
+        }
+      ],
+      "definition": {
+        "@value": "Riferimento alla provenienza e alla versione acquisita; attendibilità e autorità restano distinte.",
+        "@language": "it"
+      },
+      "pillar": "https://paloframework.org/semantic/tri-graph/knowledge"
+    },
+    {
+      "@id": "https://paloframework.org/semantic/tri-graph/term-PolicyBinding",
+      "@type": "skos:Concept",
+      "label": [
+        {
+          "@value": "Policy binding",
+          "@language": "en"
+        },
+        {
+          "@value": "Vincolo di policy",
+          "@language": "it"
+        }
+      ],
+      "definition": {
+        "@value": "Collega una regola alla versione applicabile e alla decisione umana che ne ha stabilito lo scopo.",
+        "@language": "it"
+      },
+      "pillar": "https://paloframework.org/semantic/tri-graph/knowledge"
+    },
+    {
+      "@id": "https://paloframework.org/semantic/tri-graph/term-VocabularyRelease",
+      "@type": "skos:Concept",
+      "label": [
+        {
+          "@value": "Vocabulary release",
+          "@language": "en"
+        },
+        {
+          "@value": "Versione del vocabolario",
+          "@language": "it"
+        }
+      ],
+      "definition": {
+        "@value": "Versione di ontologia, tassonomia e dizionario usata per interpretare una decisione.",
+        "@language": "it"
+      },
+      "pillar": "https://paloframework.org/semantic/tri-graph/knowledge"
+    },
+    {
+      "@id": "https://paloframework.org/semantic/tri-graph/term-ContextSnapshot",
+      "@type": "skos:Concept",
+      "label": [
+        {
+          "@value": "Decision context snapshot",
+          "@language": "en"
+        },
+        {
+          "@value": "Snapshot decisionale",
+          "@language": "it"
+        }
+      ],
+      "definition": {
+        "@value": "Vista delimitata per tenant, caso, scopo e istante, legata ai digest di conoscenza, procedura e vocabolario.",
+        "@language": "it"
+      },
+      "pillar": "https://paloframework.org/semantic/tri-graph/context"
+    },
+    {
+      "@id": "https://paloframework.org/semantic/tri-graph/term-ContextRequirement",
+      "@type": "skos:Concept",
+      "label": [
+        {
+          "@value": "Context requirement",
+          "@language": "en"
+        },
+        {
+          "@value": "Requisito di contesto",
+          "@language": "it"
+        }
+      ],
+      "definition": {
+        "@value": "Dipendenza obbligatoria determinata dalla procedura curata; non selezionabile dal solo modello.",
+        "@language": "it"
+      },
+      "pillar": "https://paloframework.org/semantic/tri-graph/context"
+    },
+    {
+      "@id": "https://paloframework.org/semantic/tri-graph/term-ExclusionRecord",
+      "@type": "skos:Concept",
+      "label": [
+        {
+          "@value": "Exclusion record",
+          "@language": "en"
+        },
+        {
+          "@value": "Esclusione motivata",
+          "@language": "it"
+        }
+      ],
+      "definition": {
+        "@value": "Registra un elemento escluso e il motivo; non permette di eliminare un controllo obbligatorio.",
+        "@language": "it"
+      },
+      "pillar": "https://paloframework.org/semantic/tri-graph/context"
+    },
+    {
+      "@id": "https://paloframework.org/semantic/tri-graph/term-AuthorityObservation",
+      "@type": "skos:Concept",
+      "label": [
+        {
+          "@value": "Authority observation",
+          "@language": "en"
+        },
+        {
+          "@value": "Osservazione di autorità",
+          "@language": "it"
+        }
+      ],
+      "definition": {
+        "@value": "Stato osservato di mandato, scopo, scadenza e revoche; in produzione deve provenire dal verificatore fidato.",
+        "@language": "it"
+      },
+      "pillar": "https://paloframework.org/semantic/tri-graph/context"
+    },
+    {
+      "@id": "https://paloframework.org/semantic/tri-graph/term-ResourceObservation",
+      "@type": "skos:Concept",
+      "label": [
+        {
+          "@value": "Resource observation",
+          "@language": "en"
+        },
+        {
+          "@value": "Versione della risorsa",
+          "@language": "it"
+        }
+      ],
+      "definition": {
+        "@value": "Versione corrente della risorsa da confrontare prima di produrre effetti.",
+        "@language": "it"
+      },
+      "pillar": "https://paloframework.org/semantic/tri-graph/context"
+    },
+    {
+      "@id": "https://paloframework.org/semantic/tri-graph/term-ProcedureGraph",
+      "@type": "skos:Concept",
+      "label": [
+        {
+          "@value": "Procedural graph",
+          "@language": "en"
+        },
+        {
+          "@value": "Grafo procedurale",
+          "@language": "it"
+        }
+      ],
+      "definition": {
+        "@value": "Stati e transizioni versionati con guardie, requisiti e responsabilità; nessuna deviazione può ampliare il mandato.",
+        "@language": "it"
+      },
+      "pillar": "https://paloframework.org/semantic/tri-graph/procedure"
+    },
+    {
+      "@id": "https://paloframework.org/semantic/tri-graph/term-ProcedureState",
+      "@type": "skos:Concept",
+      "label": [
+        {
+          "@value": "Procedure state",
+          "@language": "en"
+        },
+        {
+          "@value": "Stato procedurale",
+          "@language": "it"
+        }
+      ],
+      "definition": {
+        "@value": "Posizione esplicita nel ciclo di una decisione, distinta dallo stato dell’effetto reale.",
+        "@language": "it"
+      },
+      "pillar": "https://paloframework.org/semantic/tri-graph/procedure"
+    },
+    {
+      "@id": "https://paloframework.org/semantic/tri-graph/term-GuardedTransition",
+      "@type": "skos:Concept",
+      "label": [
+        {
+          "@value": "Guarded transition",
+          "@language": "en"
+        },
+        {
+          "@value": "Transizione condizionata",
+          "@language": "it"
+        }
+      ],
+      "definition": {
+        "@value": "Arco da uno stato al successivo con guardie deterministiche e prove obbligatorie.",
+        "@language": "it"
+      },
+      "pillar": "https://paloframework.org/semantic/tri-graph/procedure"
+    },
+    {
+      "@id": "https://paloframework.org/semantic/tri-graph/term-ActionProposal",
+      "@type": "skos:Concept",
+      "label": [
+        {
+          "@value": "Action proposal",
+          "@language": "en"
+        },
+        {
+          "@value": "Proposta di azione",
+          "@language": "it"
+        }
+      ],
+      "definition": {
+        "@value": "Richiesta con scopo e risorsa che deve ancora ottenere l’ammissione dell’esecutore.",
+        "@language": "it"
+      },
+      "pillar": "https://paloframework.org/semantic/tri-graph/procedure"
+    },
+    {
+      "@id": "https://paloframework.org/semantic/tri-graph/term-DecisionReceipt",
+      "@type": "skos:Concept",
+      "label": [
+        {
+          "@value": "Decision receipt",
+          "@language": "en"
+        },
+        {
+          "@value": "Ricevuta decisionale",
+          "@language": "it"
+        }
+      ],
+      "definition": {
+        "@value": "Esito riproducibile con regole, input e motivazioni; non è un token di esecuzione.",
+        "@language": "it"
+      },
+      "pillar": "https://paloframework.org/semantic/tri-graph/assurance"
+    },
+    {
+      "@id": "https://paloframework.org/semantic/tri-graph/term-EffectObservation",
+      "@type": "skos:Concept",
+      "label": [
+        {
+          "@value": "Effect observation",
+          "@language": "en"
+        },
+        {
+          "@value": "Osservazione dell’effetto",
+          "@language": "it"
+        }
+      ],
+      "definition": {
+        "@value": "Evidenza proveniente dalla risorsa autorevole dopo il tentativo; il timeout può lasciare l’effetto incerto.",
+        "@language": "it"
+      },
+      "pillar": "https://paloframework.org/semantic/tri-graph/assurance"
+    },
+    {
+      "@id": "https://paloframework.org/semantic/tri-graph/term-ChangeProposal",
+      "@type": "skos:Concept",
+      "label": [
+        {
+          "@value": "Change proposal",
+          "@language": "en"
+        },
+        {
+          "@value": "Proposta di cambiamento",
+          "@language": "it"
+        }
+      ],
+      "definition": {
+        "@value": "Ipotesi di revisione prodotta dalle tracce, sottoposta a revisione, test e nuova versione.",
+        "@language": "it"
+      },
+      "pillar": "https://paloframework.org/semantic/tri-graph/assurance"
+    },
+    {
+      "@id": "https://paloframework.org/semantic/tri-graph/term-AccountableRole",
+      "@type": "skos:Concept",
+      "label": [
+        {
+          "@value": "Accountable role",
+          "@language": "en"
+        },
+        {
+          "@value": "Ruolo responsabile",
+          "@language": "it"
+        }
+      ],
+      "definition": {
+        "@value": "Responsabilità assegnata e verificabile per curatela, decisione, esecuzione e contestazione.",
+        "@language": "it"
+      },
+      "pillar": "https://paloframework.org/semantic/tri-graph/assurance"
+    },
+    {
+      "@id": "https://paloframework.org/semantic/tri-graph/term-ChallengeRecord",
+      "@type": "skos:Concept",
+      "label": [
+        {
+          "@value": "Challenge record",
+          "@language": "en"
+        },
+        {
+          "@value": "Contestazione",
+          "@language": "it"
+        }
+      ],
+      "definition": {
+        "@value": "Obiezione motivata con evidenze, owner e stato; conserva la decisione originaria e l’eventuale rettifica.",
+        "@language": "it"
+      },
+      "pillar": "https://paloframework.org/semantic/tri-graph/assurance"
+    },
+    {
+      "@id": "https://paloframework.org/semantic/tri-graph/term-ExecutionFence",
+      "@type": "skos:Concept",
+      "label": [
+        {
+          "@value": "Execution fence",
+          "@language": "en"
+        },
+        {
+          "@value": "Vincolo di esecuzione",
+          "@language": "it"
+        }
+      ],
+      "definition": {
+        "@value": "Punto di controllo atomico lato adapter su versione risorsa, revoche, budget e idempotenza. Requisito progettuale.",
+        "@language": "it"
+      },
+      "pillar": "https://paloframework.org/semantic/tri-graph/procedure"
+    }
+  ]
+}

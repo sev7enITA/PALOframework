@@ -1,0 +1,248 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Caller-owned observations for reference evaluation",
+  "type": "object",
+  "properties": {
+    "now": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500,
+      "format": "date-time"
+    },
+    "caseId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9:._/-]{0,199}$"
+    },
+    "currentState": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9:._/-]{0,199}$"
+    },
+    "pendingEffect": {
+      "type": "string",
+      "enum": [
+        "none",
+        "unknown"
+      ]
+    },
+    "resource": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9:._/-]{0,199}$"
+    },
+    "bindings": {
+      "type": "object",
+      "properties": {
+        "knowledge": {
+          "type": "string",
+          "pattern": "^sha256:[a-f0-9]{64}$"
+        },
+        "procedure": {
+          "type": "string",
+          "pattern": "^sha256:[a-f0-9]{64}$"
+        },
+        "vocabulary": {
+          "type": "string",
+          "pattern": "^sha256:[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "knowledge",
+        "procedure",
+        "vocabulary"
+      ],
+      "additionalProperties": false
+    },
+    "policyEpoch": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991
+    },
+    "resourceVersion": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9:._/-]{0,199}$"
+    },
+    "budgetRemaining": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1000000000000
+    },
+    "authority": {
+      "type": "object",
+      "properties": {
+        "tenantId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:._/-]{0,199}$"
+        },
+        "caseId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:._/-]{0,199}$"
+        },
+        "subject": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:._/-]{0,199}$"
+        },
+        "purpose": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:._/-]{0,199}$"
+        },
+        "principal": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:._/-]{0,199}$"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "active",
+            "revoked"
+          ]
+        },
+        "expiresAt": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500,
+          "format": "date-time"
+        },
+        "epoch": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "scopes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "operation": {
+                "type": "string",
+                "enum": [
+                  "read",
+                  "update",
+                  "reconcile"
+                ]
+              },
+              "resource": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500,
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9:._/-]{0,199}$"
+              }
+            },
+            "required": [
+              "operation",
+              "resource"
+            ],
+            "additionalProperties": false
+          },
+          "maxItems": 1000,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "tenantId",
+        "caseId",
+        "subject",
+        "purpose",
+        "principal",
+        "status",
+        "expiresAt",
+        "epoch",
+        "scopes"
+      ],
+      "additionalProperties": false
+    },
+    "ledger": {
+      "type": "object",
+      "properties": {
+        "usedNonces": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9:._/-]{0,199}$"
+          },
+          "maxItems": 1000,
+          "uniqueItems": true
+        },
+        "lastSequence": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        }
+      },
+      "required": [
+        "usedNonces",
+        "lastSequence"
+      ],
+      "additionalProperties": false
+    },
+    "approval": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "absent",
+            "approved",
+            "rejected"
+          ]
+        },
+        "decisionDigest": {
+          "type": "string",
+          "pattern": "^sha256:[a-f0-9]{64}$"
+        },
+        "reviewer": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:._/-]{0,199}$"
+        },
+        "expiresAt": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500,
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "status",
+        "decisionDigest",
+        "reviewer",
+        "expiresAt"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "now",
+    "caseId",
+    "currentState",
+    "pendingEffect",
+    "resource",
+    "bindings",
+    "policyEpoch",
+    "resourceVersion",
+    "budgetRemaining",
+    "authority",
+    "ledger",
+    "approval"
+  ],
+  "additionalProperties": false
+}

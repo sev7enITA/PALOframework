@@ -1,0 +1,61 @@
+{
+  "format": "palo-tri-graph-release",
+  "version": "0.1.0",
+  "status": "reference-preview",
+  "foundationVersion": "3.1.0",
+  "sourceDigest": "sha256:57742c9f43a98d46a358e35d406847f1f61c2b246ce265b1e15991c6e9dd84cc",
+  "items": [
+    {
+      "path": "formal/palo-tri-graph.ttl",
+      "sha256": "c7ef5813528dd9368aeb9d7f4303b888db97f737c9577ffa397c32751ffe585e"
+    },
+    {
+      "path": "formal/palo-tri-graph.shacl.ttl",
+      "sha256": "580feb43f88fe8b2d968ad6ea7fb67886c36d3069955326d1d74a5cc3e00a35b"
+    },
+    {
+      "path": "formal/palo-tri-graph-taxonomy.ttl",
+      "sha256": "6900587f792a730cc82a22707db4ecb0f971b857b3c425a971e9478cdbe44439"
+    },
+    {
+      "path": "schemas/palo-tri-graph-bundle.schema.json",
+      "sha256": "76e732ae0c695259a81d60c08868266e7e5d533c01c1df64eb6be60b67d79a6d"
+    },
+    {
+      "path": "schemas/palo-tri-graph-observations.schema.json",
+      "sha256": "fbfc0cd1c74d35f5864f90eb1b670cfb499ca68b11266337279915c041b7c5a6"
+    },
+    {
+      "path": "semantic-catalogues/tri-graph/dictionary.json",
+      "sha256": "109b777a6890a1f2f55b321b819f5626b7875833d68d3a3f6ca9e30658bfe1c4"
+    },
+    {
+      "path": "data/palo-tri-graph-context.jsonld",
+      "sha256": "9a3f7f3bf0ef900935cf4c4d2ebc20c4c31b7187974fcc1f65bee59f5f7ae3c7"
+    },
+    {
+      "path": "semantic-catalogues/tri-graph/concepts.jsonld",
+      "sha256": "afd7f589d4c24b39750b88d649cb7de3cc389a10e233088350f6ac9ff542e761"
+    },
+    {
+      "path": "packages/palo-tri-graph/vocabulary.mjs",
+      "sha256": "ff062253908a0c8d3e53dec59337bc2328036fb048c1f6f57d093047e5288880"
+    },
+    {
+      "path": "examples/tri-graph/bundle.json",
+      "sha256": "87a30929d8780c4c341ef3807f95b2db378c4363b48bf8228ff27e76845ea1af"
+    },
+    {
+      "path": "examples/tri-graph/observations.json",
+      "sha256": "b4719672e56aaa6b6eb31ffc4236ec6b395724d1b63dca989f5db3d87beac28e"
+    },
+    {
+      "path": "examples/tri-graph/records.valid.ttl",
+      "sha256": "275fccb419ec20633c7b15d70e64902f247d18999e0c2330e014106c7845cf3f"
+    },
+    {
+      "path": "examples/tri-graph/records.invalid.ttl",
+      "sha256": "a5d443ee48bb08d928b6455973e982ade457aa73c6af1e5367c8199a4a9cc095"
+    }
+  ]
+}

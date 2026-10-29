@@ -1,4 +1,6 @@
+import { TRI_GRAPH_PUBLIC_FILES } from './tri-graph-public-files.mjs';
 export const PUBLIC_FILES = [
+  ...TRI_GRAPH_PUBLIC_FILES,
   "PALO_DataCatalog.html",
   "docs/palo-finops-local-learning-research.md",
   "assets/PALO_FinOps_Local_Learning_v1.0.1.zip",
