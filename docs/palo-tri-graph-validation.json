@@ -1,7 +1,7 @@
 {
   "format": "palo-tri-graph-internal-validation",
   "version": "0.1.0",
-  "validatedAt": "2026-10-29T04:23:07.339971+00:00",
+  "validatedAt": "2026-10-29T04:27:59.392070+00:00",
   "scope": "Additive local reference only; no production execution, effect observation or business outcome demonstrated",
   "automatedTests": {
     "total": 52,
@@ -32,6 +32,14 @@
     "relationships": 24,
     "dictionaryFields": 114,
     "driftCheck": "passed"
+  },
+  "htmlValidation": {
+    "pages": 4,
+    "passed": 4,
+    "rules": [
+      "missing-doctype",
+      "no-dup-attr"
+    ]
   },
   "browser": {
     "localChromeScenarios": [
@@ -120,7 +128,7 @@
   "sources": [
     {
       "path": "PALO_TriGraphGovernance.html",
-      "sha256": "af4e650fa6b087ad79b569456536f7230605cc328a474862725545e4804d5556"
+      "sha256": "165cc13f85ebdd615f700d90f5dcb0d3841ec0df102431aac928d0872ccc8b67"
     },
     {
       "path": "assets/palo-tri-graph.css",
