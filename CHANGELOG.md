@@ -12,21 +12,21 @@ Interactive timestamp scatter chart with model, provider, case and metric contro
 
 Published GLM, Gemini and local Qwen countertests: 96/108 assigned judgments on 36 selected items, three observed disagreements, 12 GLM capacity-blocked judgments, disclosed Qwen format projection. Primary scores unchanged; internal testing, not independent validation. [Inspect evidence](https://paloframework.org/PALO_BlueprintBench_Leaderboard.html#adversarial-review).
 
-## BlueprintBench interactive results dashboard · 2026-11-11
+## BlueprintBench interactive results dashboard | 2026-11-11
 
 Added verification-only Pareto views, case-specific label agreement, repetition variability, latest test timestamps and an interactive evidence workflow. Results retain fixed denominators, draft-label status and missing-cost boundaries. Result challenges open a prefilled GitHub issue for the visitor to review. Public presentation access is withdrawn; Markdown references open rendered GitHub documents.
 
 [Open the leaderboard](PALO_BlueprintBench_Leaderboard.html)
 
 
-## BlueprintBench identity and internal cohort · 2026-11-11
+## BlueprintBench identity and internal cohort | 2026-11-11
 
 The overview and leaderboard share 18 model IDs and 28 cohort/configuration records. Internal procurement tests retain 324 assigned slots, 306 dispatched requests, 299 complete responses, 7 failed or incomplete responses and 18 pre-call blocks. Added the BlueprintBench identity, an evidence-linked Internal testing badge and revised result exploration. Independent qualification and PBI remain open.
 
-[Leaderboard](PALO_BlueprintBench_Leaderboard.html) · [Badge usage](https://github.com/sev7enITA/PALO-BlueprintBench/blob/3effa4c/docs/brand-usage.md)
+[Leaderboard](PALO_BlueprintBench_Leaderboard.html) | [Badge usage](https://github.com/sev7enITA/PALO-BlueprintBench/blob/3effa4c/docs/brand-usage.md)
 
 
-## PALO BlueprintBench research release v0.3.0-pilot.1 · 2026-11-11
+## PALO BlueprintBench research release v0.3.0-pilot.1 | 2026-11-11
 
 - Published research release v0.3.0-pilot.1, explorer 0.3.0 and evaluator/evidence contract 0.2.0 for specification fidelity; the first planned study focuses on procurement.
 - Corrected critical-error equivalence counting, calculated acceptance, raw-output traceability, annotation consistency, termination states and cost accounting. A single executable JSON Schema defines the scoped evidence contract.
@@ -34,7 +34,7 @@ The overview and leaderboard share 18 model IDs and 28 cohort/configuration reco
 - Updated the homepage, explorer configuration disclosures, downloadable CSV fields and taxonomy mappings. Qualified held-out results remain zero; no PBI score, independent registration or new Workbench app qualification is claimed.
 
 
-## PALO BlueprintBench and PALO Blueprint Index · 2026-11-11
+## PALO BlueprintBench and PALO Blueprint Index | 2026-11-11
 
 - Published the model comparison explorer with ten historical configurations, charts, property filters, four-model comparisons and CSV export.
 - Introduced PALO Blueprint Index (PBI) as the proposed aggregate index within BlueprintBench; formula, weights and qualification gates remain under development, with no assigned score.
