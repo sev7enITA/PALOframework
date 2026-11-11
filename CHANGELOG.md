@@ -1,5 +1,9 @@
 # Changelog
 
+## 11 November 2026: six-scenario engineering feasibility
+
+Separate publication revision 2026-11-11.4 records an internal cycle on six fictional procurement scenarios, 48 draft propositions, six workflow tasks and controlled source variations. Advisory reviews of P002/P013/P036 remain separate from human adjudication. The original cohort and evaluator release are unchanged. Source-linked drafts, failures, provisional-label disagreements and exports are available in the [six-scenario view](PALO_BlueprintBench_NextCycle.html). No numerical ranks or independent validation are assigned.
+
 ## 11 November 2026: descriptive results and evaluator 0.3.0
 
 Revision 2026-11-11.3 suspends numerical quality, completion, charge and time ranks. Filters, descriptive charts, comparisons and CSV/JSON exports remain. Reviewer collection diagnostics move to their own page. Internal release v0.3.0-internal.1 packages the corrected evaluator; historical evaluator 0.2 has a known EV-01 flaw and must not be used for qualification. Next-cycle development cases and blinded human annotation templates are published without claiming independent adjudication or statistical sufficiency. Testing badges are withdrawn.
