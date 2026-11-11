@@ -1,5 +1,13 @@
 # Changelog
 
+## PALO BlueprintBench research release v0.3.0-pilot.1 · 2026-11-11
+
+- Published research release v0.3.0-pilot.1, explorer 0.3.0 and evaluator/evidence contract 0.2.0 for specification fidelity; the first planned study focuses on procurement.
+- Corrected critical-error equivalence counting, calculated acceptance, raw-output traceability, annotation consistency, termination states and cost accounting. A single executable JSON Schema defines the scoped evidence contract.
+- Passed 42 evaluator tests and reproduced all 26 retained historical structural-check counts offline. Published the harness, raw responses and requests, deterministic packages and source hashes.
+- Updated the homepage, explorer configuration disclosures, downloadable CSV fields and taxonomy mappings. Qualified held-out results remain zero; no PBI score, independent registration or new Workbench app qualification is claimed.
+
+
 ## PALO BlueprintBench and PALO Blueprint Index · 2026-11-11
 
 - Published the model comparison explorer with ten historical configurations, charts, property filters, four-model comparisons and CSV export.

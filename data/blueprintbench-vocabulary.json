@@ -1,6 +1,6 @@
 {
   "format": "palo-blueprintbench-vocabulary",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "updatedAt": "2026-11-11",
   "status": "research-pilot-extension",
   "namespace": "https://paloframework.org/semantic/blueprintbench/",
@@ -204,17 +204,20 @@
       {
         "id": "self-reported",
         "label": "Self-reported",
-        "definition": "Evidence supplied by the participant; independent reproduction is not implied."
+        "definition": "Evidence supplied by the participant; independent reproduction is not implied.",
+        "evaluatorCode": "self_reported"
       },
       {
         "id": "maintainer-reproduced",
         "label": "Maintainer-reproduced",
-        "definition": "Execution reproduced or directly checked by a benchmark maintainer."
+        "definition": "Execution reproduced or directly checked by a benchmark maintainer.",
+        "evaluatorCode": "maintainer_reproduced"
       },
       {
         "id": "independently-reproduced",
         "label": "Independently reproduced",
-        "definition": "Execution reproduced by an independent party with a traceable record."
+        "definition": "Execution reproduced by an independent party with a traceable record.",
+        "evaluatorCode": "independently_reproduced"
       }
     ],
     "qualification-state": [

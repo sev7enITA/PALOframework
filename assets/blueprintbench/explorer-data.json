@@ -1,5 +1,5 @@
 {
-  "version": "0.2.0",
+  "version": "0.3.0",
   "as_of": "2026-11-11",
   "measurement_date": "2026-11-10",
   "scope": "Historical single-passage diagnostics; configurations differ. Not full-repository or held-out ranking.",
@@ -264,7 +264,8 @@
       "max_output_tokens": 8000,
       "cohort": "challenger-expanded / development",
       "rank": null,
-      "configuration_note": "Corrected 11 Nov: expanded-run metrics used provider default. Earlier catalogue metadata incorrectly labelled this row none; the separate none request was rejected. Source: retained expanded artifacts and REPORT.md."
+      "configuration_note": "Corrected 11 Nov: expanded-run metrics used provider default. Earlier catalogue metadata incorrectly labelled this row none; the separate none request was rejected. Source: retained expanded artifacts and REPORT.md.",
+      "setting_correction_label": "Setting corrected: default"
     },
     {
       "model": "upstage/solar-mini4",

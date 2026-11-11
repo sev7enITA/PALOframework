@@ -1,53 +1,21 @@
-# PALO BlueprintBench participation invitation
+# Launch announcement
 
-Drafts for Fabrizio to publish. These files are not evidence that a social post has been sent.
+𝗪𝗵𝗲𝗻 𝗔𝗜 𝘁𝘂𝗿𝗻𝘀 𝗱𝗼𝗰𝘂𝗺𝗲𝗻𝘁𝘀 𝗶𝗻𝘁𝗼 𝘀𝗼𝗳𝘁𝘄𝗮𝗿𝗲 𝘀𝗽𝗲𝗰𝗶𝗳𝗶𝗰𝗮𝘁𝗶𝗼𝗻𝘀, 𝗱𝗼𝗲𝘀 𝘁𝗵𝗲 𝗺𝗲𝗮𝗻𝗶𝗻𝗴 𝘀𝘂𝗿𝘃𝗶𝘃𝗲?
 
-## LinkedIn / long-form post
+A permission can become an obligation. An exception can disappear. A responsibility can move to the wrong person. The output may still be valid JSON, with a genuine source citation.
 
-𝗪𝗵𝗲𝗻 𝗔𝗜 𝘁𝘂𝗿𝗻𝘀 𝗱𝗼𝗰𝘂𝗺𝗲𝗻𝘁𝘀 𝗶𝗻𝘁𝗼 𝘀𝗼𝗳𝘁𝘄𝗮𝗿𝗲, 𝘄𝗵𝗼 𝗰𝗵𝗲𝗰𝗸𝘀 𝘁𝗵𝗲 𝗯𝘂𝘀𝗶𝗻𝗲𝘀𝘀 𝗺𝗲𝗮𝗻𝗶𝗻𝗴?
+Today I am launching 𝗣𝗔𝗟𝗢 𝗕𝗹𝘂𝗲𝗽𝗿𝗶𝗻𝘁𝗕𝗲𝗻𝗰𝗵, an open benchmark initiative focused on 𝘀𝗽𝗲𝗰𝗶𝗳𝗶𝗰𝗮𝘁𝗶𝗼𝗻 𝗳𝗶𝗱𝗲𝗹𝗶𝘁𝘆: preserving business meaning when AI translates documents into development blueprints.
 
-A model can quote the right document and still assign a field to the wrong entity, turn a permission into an obligation, or omit an exception.
+The research release includes the evaluation protocol, an executable evidence validator and scorer, a filterable explorer, and historical outputs from ten model configurations with prompts, schemas and an offline structural-check replay. The first planned study focuses on procurement, measuring critical rule inversions, coverage and the human effort needed to correct a blueprint.
 
-Our work on PALO Document Workbench made this a practical question. The three large document repositories we use to find and fix problems are development cases. They cannot also be our evidence of generalisation.
+𝗜𝗻𝗱𝗲𝗽𝗲𝗻𝗱𝗲𝗻𝘁 𝘃𝗮𝗹𝗶𝗱𝗮𝘁𝗶𝗼𝗻 𝗶𝘀 𝗼𝗽𝗲𝗻. The published model observations are development diagnostics. Qualified held-out results are currently zero; the future PALO Blueprint Index has no assigned score. I maintain both PALO and this initiative, and that conflict is disclosed.
 
-We are opening 𝗣𝗔𝗟𝗢 𝗕𝗹𝘂𝗲𝗽𝗿𝗶𝗻𝘁𝗕𝗲𝗻𝗰𝗵: an open research pilot to measure the path from business documents to a faithful, traceable, reviewed development blueprint.
-
-We want to measure meaning, coverage, data and process models, governance controls, reliability, human correction effort and total cost. Every result needs its configuration, sources and limitations. Failed attempts must remain visible.
-
-The protocol, initial evaluator toolkit and development evidence are available now. There is no qualified held-out model ranking yet. Building one requires new cases and independent people.
-
-𝗜 𝗮𝗺 𝗶𝗻𝘃𝗶𝘁𝗶𝗻𝗴:
-• Business process experts who can help annotate reference cases without seeing model answers first.
-• Business users who can help us measure what reviewing and correcting a blueprint actually takes.
-• Engineers and researchers who can reproduce and challenge the evaluation.
-• Contributors who can identify coherent public or explicitly rights-cleared document collections.
-
-PALO maintains both the product and this proposed benchmark. That conflict is explicit, and independent scrutiny is essential. Model reviews are useful criticism; they do not replace human validation.
-
-Start here, choose a role and contact the project:
-https://paloframework.org/PALO_BlueprintBench.html#participate
-
-Please do not send company documents, personal datasets or secrets. We will agree scope and attribution separately.
+I am inviting procurement and process experts, independent annotators, technical reproducers and organisations willing to discuss external reference custody. Competing implementations are welcome. PALO remains free.
 
 𝗝𝗼𝗶𝗻 𝘁𝗵𝗲 𝗛𝘂𝗺𝗮𝗻 𝗔𝗴𝗲𝗻𝗰𝘆.
 Build with AI. Keep humans in command.
 
-#AIGovernance #VibeCoding #HumanAgency #ShadowAI #AIEvaluation #OpenResearch
-
-## Short post / X
-
-Can AI preserve business meaning when documents become software?
-
-PALO BlueprintBench is recruiting domain reviewers, business users and technical reproducers. Protocol and initial tools are open; no qualified ranking yet.
-
+Explore the benchmark and contribute:
 https://paloframework.org/PALO_BlueprintBench.html
 
-## Community / forum introduction
-
-I am developing PALO BlueprintBench, a proposed evaluation of document-to-business-blueprint systems. The initial tooling checks evidence integrity and scores bounded, already-adjudicated propositions. It does not automatically judge semantic truth or certify models.
-
-We are looking for independent domain annotators and people willing to reproduce or challenge the methodology. Particular questions include preserving ownership, modality and exceptions; measuring omitted information and correction effort; and keeping model, parser and harness failures separate.
-
-Current development cases are excluded from held-out ranking. New source families and independent annotation are still being prepared. Methods, limitations and participation details: https://paloframework.org/PALO_BlueprintBench.html
-
-Use this introduction only in communities where the topic fits and participation rules permit it. No third-party forum submission is implied by this draft.
+#AIGovernance #VibeCoding #HumanAgency #ShadowAI #SoftwareEngineering #Procurement #AIEvaluation
