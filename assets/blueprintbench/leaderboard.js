@@ -8,21 +8,23 @@
   const money = value => Number.isFinite(value) ? value.toFixed(6) : 'Unknown';
   const shortName = model => String(model.name || model.catalogue_name || model.id || model.model).replace(/^[^:]+:\s*/, '');
   const idOf = model => model.id || model.model;
-  const defaults = () => ({cohort:'internal',sort:'name',direction:'asc',minimum:0,missingOnly:false,knownOnly:false,selectedOnly:false,view:'verification',case:'all',dimension:'all',lens:'primary',provider:'all',q:'',selected:[],failures:false,copy:'all'});
+  const defaults = () => ({cohort:'internal',sort:'rank',direction:'asc',rankMetric:'matches',country:'all',columns:'summary',minimum:0,missingOnly:false,knownOnly:false,selectedOnly:false,view:'verification',case:'all',dimension:'all',lens:'primary',provider:'all',q:'',selected:[],failures:false,copy:'all'});
   let state = defaults(), data, previousFocus, toastTimer, searchTimer;
   const internal = () => state.cohort === 'internal';
   const catalogue = () => [...data.internal.models.map(m=>({...m,evidenceCohort:'internal'})),...data.historical.models.map(m=>({...m,evidenceCohort:'historical'}))];
   const models = () => (state.cohort==='all'?catalogue():internal()?data.internal.models:data.historical.models).slice();
   const providerOf = model => model.pinned_provider || model.provider;
   const selectedModels = () => models().filter(m=>state.selected.includes(idOf(m)));
-  const visibleModels = () => sortModels(models().filter(m => (state.provider==='all'||providerOf(m)===state.provider) && (`${shortName(m)} ${idOf(m)} ${providerOf(m)}`).toLowerCase().includes(state.q.toLowerCase()) && (!internal() || ((!state.selectedOnly || state.selected.includes(idOf(m))) && (!state.knownOnly || chargeCoverageComplete(m)) && (!state.missingOnly || metrics(idOf(m)).missing>0 || m.completed_calls<m.assigned_calls) && (!state.minimum || metrics(idOf(m)).matched/metrics(idOf(m)).assigned*100>=state.minimum)))));
+  const visibleModels = () => sortModels(models().filter(m => countryMatches(m) && (state.provider==='all'||providerOf(m)===state.provider) && (`${shortName(m)} ${idOf(m)} ${providerOf(m)}`).toLowerCase().includes(state.q.toLowerCase()) && (!internal() || ((!state.selectedOnly || state.selected.includes(idOf(m))) && (!state.knownOnly || chargeCoverageComplete(m)) && (!state.missingOnly || metrics(idOf(m)).missing>0 || m.completed_calls<m.assigned_calls) && (!state.minimum || metrics(idOf(m)).matched/metrics(idOf(m)).assigned*100>=state.minimum)))));
   function sortValue(m,key) {
     if(key==='name')return shortName(m).toLowerCase();
     if(key==='provider')return String(providerOf(m)||'').toLowerCase();
+    if(key==='country')return countriesOf(m).length?countryLabel(m).toLowerCase():null;
+    if(key==='rank')return internal()?rankings().get(idOf(m))?.rank:null;
     if(key==='evidence')return m.evidenceCohort||state.cohort;
     if(!internal())return null;
     const c=metrics(idOf(m));
-    return {matches:c.assigned?c.matched/c.assigned:null,disagreements:c.disagreed,missing:c.missing,calls:m.assigned_calls?m.completed_calls/m.assigned_calls:null,cost:comparableCharge(m),time:attemptedRecords(m.id).length?m.latency_median_seconds:null}[key];
+    return {matches:c.assigned?c.matched/c.assigned:null,disagreements:c.disagreed,missing:c.missing,calls:m.assigned_calls?m.completed_calls/m.assigned_calls:null,cost:comparableCharge(m),coverage:c.assigned?c.classified/c.assigned:null,input:operationalKPIs(m).input,output:operationalKPIs(m).output,costpercall:operationalKPIs(m).costpercall,time:attemptedRecords(m.id).length?m.latency_median_seconds:null}[key];
   }
   function sortModels(items) {
     return items.sort((a,b)=>{const av=sortValue(a,state.sort),bv=sortValue(b,state.sort),an=av==null||Number.isNaN(av),bn=bv==null||Number.isNaN(bv);if(an!==bn)return an?1:-1;if(an&&bn)return shortName(a).localeCompare(shortName(b));const result=typeof av==='string'?av.localeCompare(bv):av-bv;return result*(state.direction==='desc'?-1:1)||shortName(a).localeCompare(shortName(b));});
@@ -66,6 +68,108 @@
     }
     return {assigned,matched,disagreed:judgments.length-matched,missing:assigned-judgments.length,unexecuted,unclassified:assigned-judgments.length-unexecuted,classified:judgments.length};
   }
+  const rankingMetrics = {
+    matches: {label:'Label agreement', direction:'desc', scope:'Selected case, dimension and label lens'},
+    coverage: {label:'Classification coverage', direction:'desc', scope:'Selected case, dimension and label lens'},
+    calls: {label:'Call completion', direction:'desc', scope:'Both tasks and all cases'},
+    missing: {label:'Missing classifications', direction:'asc', scope:'Selected case, dimension and label lens'},
+    disagreements: {label:'Draft-label disagreements', direction:'asc', scope:'Selected semantic scope; complete classifications only'},
+    cost: {label:'Reported charge', direction:'asc', scope:'Both tasks and all cases; fully complete, reconciled runs only'},
+    time: {label:'Median call time', direction:'asc', scope:'Both tasks and all cases; fully complete runs only'},
+    costpercall: {label:'Cost per complete call', direction:'asc', scope:'Both tasks and all cases; fully complete, reconciled runs only'}
+  };
+  let originData = {makers:[]}, originAvailable = false;
+  function originOf(model) {
+    const id = idOf(model).split('/')[0];
+    return originData.makers.find(m => m.id === id) || {id,name:id,countries:[],status:'not_verified',sources:[]};
+  }
+  function countriesOf(model) {
+    const maker = originOf(model);
+    return maker.status === 'verified' ? (maker.countries || []).slice().sort((a,b)=>a.name.localeCompare(b.name)) : [];
+  }
+  const countryLabel = model => countriesOf(model).map(c=>c.name).join(' / ') || (originAvailable?'Unknown':'Unavailable');
+  function countryMatches(model) {
+    return state.country === 'all' || (state.country === 'unknown' ? countriesOf(model).length === 0 : countriesOf(model).some(c=>c.code===state.country));
+  }
+  function countryCell(model) {
+    const maker = originOf(model);
+    return `<span class="country-name">${escape(countryLabel(model))}</span><span class="number-note">${escape(maker.name)}</span>`;
+  }
+  function originSection(model) {
+    const maker = originOf(model), sources = (maker.sources || []).filter(s=>/^https:\/\//.test(s.url));
+    return `<section class="dialog-section"><h3>Developer organisation</h3><dl class="config-grid"><div><dt>Organisation</dt><dd>${escape(maker.name)}</dd></div><div><dt>Documented country / countries</dt><dd>${escape(countryLabel(model))}</dd></div><div><dt>Attribution status</dt><dd>${escape(originAvailable?maker.status:'metadata_unavailable')}</dd></div><div><dt>Basis</dt><dd>${escape(maker.basis||'No verified country attribution available.')}</dd></div></dl><p class="dialog-note">Organisation location is not the model’s nationality, training location or serving-provider data residency.</p><div class="dialog-links">${sources.map(s=>`<a href="${escape(s.url)}" target="_blank" rel="noopener">${escape(s.title || 'Country source')} ↗</a>`).join('')}</div></section>`;
+  }
+  function operationalKPIs(model) {
+    const records = attemptedRecords(model.id), allComplete = model.completed_calls === model.assigned_calls && records.length === model.assigned_calls;
+    const tokenTotal = field => records.length && records.every(r=>Number.isFinite(r.usage?.[field])) ? records.reduce((sum,r)=>sum+r.usage[field],0) : null;
+    return {
+      input: tokenTotal('prompt_tokens'), output: tokenTotal('completion_tokens'),
+      costpercall: allComplete && chargeCoverageComplete(model) && Number.isFinite(model.provider_reported_cost_usd) ? model.provider_reported_cost_usd/model.completed_calls : null,
+      allComplete
+    };
+  }
+  function rankingValue(model, metric = state.rankMetric) {
+    const c = metrics(model.id), ops = operationalKPIs(model);
+    const relevant = ownRecords(model.id).filter(r=>r.track==='verification' && r.state!=='not_run' && (state.case==='all'||r.case===state.case));
+    const semantic = ['matches','coverage','missing','disagreements'].includes(metric);
+    if (!(semantic ? relevant.length : attemptedRecords(model.id).length)) return {value:null,reason:'No dispatched request in the ranking scope'};
+    if (semantic && !c.assigned) return {value:null,reason:'No assigned statements in the selected scope'};
+    if (metric === 'disagreements' && c.classified !== c.assigned) return {value:null,reason:'Incomplete classifications; not eligible for disagreement ranking'};
+    if (['cost','time','costpercall'].includes(metric) && !ops.allComplete) return {value:null,reason:'All assigned calls must complete for this operational ranking'};
+    if (['cost','costpercall'].includes(metric) && !chargeCoverageComplete(model)) return {value:null,reason:'Incomplete cost accounting'};
+    const values = {
+      matches:c.matched/c.assigned, coverage:c.classified/c.assigned,
+      missing:c.missing/c.assigned, disagreements:c.disagreed/c.assigned,
+      calls:model.completed_calls/model.assigned_calls, cost:comparableCharge(model),
+      time:model.latency_median_seconds, costpercall:ops.costpercall
+    };
+    return Number.isFinite(values[metric]) ? {value:values[metric],reason:null} : {value:null,reason:'Metric value is not recorded'};
+  }
+  function rankings() {
+    if (!internal()) return new Map();
+    const rows = data.internal.models.map(model=>({id:model.id,...rankingValue(model)}));
+    const direction = rankingMetrics[state.rankMetric].direction === 'desc' ? -1 : 1;
+    const eligible = rows.filter(r=>r.value !== null).sort((a,b)=>(a.value-b.value)*direction);
+    let previousValue, rank;
+    eligible.forEach((row,index)=>{if(index===0 || row.value!==previousValue)rank=index+1;previousValue=row.value;row.rank=rank;});
+    return new Map(rows.map(row=>[row.id,{...row,rank:row.rank??null,tied:row.rank!=null&&eligible.filter(r=>r.rank===row.rank).length>1}]));
+  }
+  function rankCell(model, ranks) {
+    const row = ranks.get(model.id);
+    return row?.rank != null ? `<span class="rank-number">${row.rank}</span>${row.tied?'<span class="number-note">Tie</span>':''}` : `<span class="rank-na" title="${escape(row?.reason || 'No rank in this cohort')}">N/A</span><span class="rank-reason">${escape(row?.reason || 'No rank in this cohort')}</span>`;
+  }
+  function rankingSummary(ranks) {
+    const eligible = [...ranks.values()].filter(r=>r.rank!=null).length, definition = rankingMetrics[state.rankMetric];
+    return `<div class="ranking-summary"><div><span class="eyebrow">Metric ranking · internal tests</span><strong>${escape(definition.label)}</strong><span>${eligible} eligible of ${data.internal.models.length} configurations · ${definition.direction==='desc'?'Higher':'Lower'} is better</span></div><details><summary>Rank and KPI definitions</summary><p>Positions use all eligible internal configurations under the chosen metric scope. Country, provider, search and selection filters do not renumber them. Ties use competition ranks (1, 1, 3) from unrounded values. Rank is an exploratory metric position, not an independently validated PALO Blueprint Index.</p><p>Ranking scope: ${escape(definition.scope)}. Semantic case, dimension and label-lens controls apply to label agreement, coverage, missing classifications and disagreements. Completion, charges, time and tokens cover both tasks and all cases.</p><p>Country means a documented business or operating base of the developer organisation, not an exhaustive list of its offices. It does not identify the serving provider’s country or data residency. Unknown values remain unranked where required and sort last. A blocked configuration is never awarded a rank.</p></details></div>`;
+  }
+  function exportModel(model, ranks) {
+    const id = idOf(model), maker = originOf(model), semantic = internal(), c = semantic ? metrics(id) : null, op = semantic ? operationalKPIs(model) : null, ranked = semantic ? ranks.get(id) : null;
+    return {
+      model:id, name:shortName(model), provider:providerOf(model), evidence_cohort:model.evidenceCohort||state.cohort,
+      developer_organisation:maker.name, developer_countries:countriesOf(model), country_status:originAvailable?maker.status:'metadata_unavailable', country_basis:maker.basis||null, country_sources:maker.sources||[],
+      rank:ranked?.rank??null, rank_eligible:ranked?.rank!=null, rank_ineligibility_reason:ranked?.reason||(semantic?null:'Cohort is not ranked'), rank_tied:ranked?.tied||false,
+      ranking_metric:semantic?state.rankMetric:null, ranking_direction:semantic?rankingMetrics[state.rankMetric].direction:null, ranking_value:ranked?.value??null,
+      label_matches:c?.matched??null, disagreements:c?.disagreed??null, missing:c?.missing??null, assigned:c?.assigned??null,
+      classification_coverage:c?.assigned?c.classified/c.assigned:null,
+      complete_calls:model.completed_calls??model.completed, assigned_calls:model.assigned_calls??model.assigned,
+      known_charge_usd:semantic&&attemptedRecords(id).length?model.provider_reported_cost_usd:null,
+      accounting_complete:semantic?chargeCoverageComplete(model):false,
+      unknown_cost_calls:semantic?model.unknown_cost_calls:null,
+      median_request_seconds:semantic&&attemptedRecords(id).length?model.latency_median_seconds:null,
+      input_tokens:op?.input??null, completion_tokens_including_reasoning:op?.output??null, cost_per_complete_call_usd:op?.costpercall??null,
+      operations_scope:'Both tasks and all cases', qualified:false
+    };
+  }
+  function downloadJSON() {
+    const visible=visibleModels(), ranks=rankings();
+    let records=[];
+    if(internal()&&state.view==='operations')records=data.internal.records.filter(r=>visible.some(m=>m.id===r.model)&&(state.case==='all'||r.case===state.case)&&(!state.failures||r.state!=='completed')).sort((a,b)=>a.started_at.localeCompare(b.started_at));
+    if(internal()&&state.view==='translation')records=(data.internal.translation_examples||[]).filter(e=>visible.some(m=>m.id===e.model)&&(state.case==='all'||e.case===state.case)&&copyMatches(e));
+    const payload={dataset_version:data.version,origin_metadata_version:originData.version||null,qualified:false,status:'internal_tests_or_historical_diagnostics',view_url:location.href,filters:{...state},rank_population:'All eligible internal configurations under the ranking scope; display filters do not renumber',tie_policy:'competition: 1, 1, 3; unrounded values',ranking_scope:internal()?rankingMetrics[state.rankMetric].scope:null,models:visible.map(m=>exportModel(m,ranks)),records};
+    const link=document.createElement('a'),url=URL.createObjectURL(new Blob([JSON.stringify(payload,null,2)+'\n'],{type:'application/json'}));
+    link.href=url;link.download=`blueprintbench-${state.cohort}-${state.view}.json`;link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);toast('Current view exported as JSON with ranks, country sources and metric scope.');
+  }
+
   function toast(text,copyValue) {
     clearTimeout(toastTimer);$('toast').replaceChildren(document.createTextNode(text));$('toast').hidden=false;
     if(copyValue){const input=document.createElement('input');input.value=copyValue;input.setAttribute('aria-label','Link to this view');$('toast').append(input);input.select();}
@@ -80,9 +184,13 @@
     if(p.get('lens')==='sensitivity')next.lens='sensitivity';
     next.q=(p.get('q')||'').slice(0,160);
     const pool=next.cohort==='all'?catalogue():next.cohort==='historical'?data.historical.models:data.internal.models;
-    const sorts=next.cohort==='internal'?['name','provider','matches','disagreements','missing','calls','cost','time']:['name','provider','evidence'];
+    const sorts=next.cohort==='internal'?['rank','name','country','provider','matches','coverage','disagreements','missing','calls','cost','time','input','output','costpercall']:['name','country','provider','evidence'];
     if(sorts.includes(p.get('sort')))next.sort=p.get('sort');
     if(p.get('direction')==='desc')next.direction='desc';
+    if(!sorts.includes(next.sort))next.sort='name';
+    if(Object.hasOwn(rankingMetrics,p.get('rankMetric')))next.rankMetric=p.get('rankMetric');
+    if(['summary','operations','all'].includes(p.get('columns')))next.columns=p.get('columns');
+    if(p.get('country')==='unknown'||originData.makers.some(m=>(m.countries||[]).some(c=>c.code===p.get('country'))))next.country=p.get('country');
     next.minimum=[0,50,90,95,100].includes(Number(p.get('minimum')))?Number(p.get('minimum')):0;
     for(const key of ['missingOnly','knownOnly','selectedOnly'])next[key]=p.get(key)==='1';
     if(pool.some(m=>providerOf(m)===p.get('provider')))next.provider=p.get('provider');
@@ -94,28 +202,32 @@
   function updateURL(replace=false) {
     const p=new URLSearchParams();
     for(const [key,value] of new URLSearchParams(location.search))if(key.startsWith('time_'))p.set(key,value);
-    for(const key of ['cohort','view','case','dimension','lens','provider','q','copy','sort','direction','minimum'])if(state[key]!==defaults()[key])p.set(key,state[key]);
+    for(const key of ['cohort','view','case','dimension','lens','provider','country','rankMetric','columns','q','copy','sort','direction','minimum'])if(state[key]!==defaults()[key])p.set(key,state[key]);
     if(state.selected.length)p.set('compare',state.selected.join(','));
     if(state.failures)p.set('failures','1');
     for(const key of ['missingOnly','knownOnly','selectedOnly'])if(state[key])p.set(key,'1');
     const url=location.pathname+(p.size?'?'+p.toString():'')+location.hash;
     if(url!==location.pathname+location.search+location.hash)history[replace?'replaceState':'pushState']({},'',url);
   }
-  function setState(change,replace=false) {Object.assign(state,change);updateURL(replace);render();}
+  function setState(change,replace=false) {Object.assign(state,change);if(!internal()&&!['name','country','provider','evidence'].includes(state.sort))state.sort='name';updateURL(replace);render();}
   function fillControls() {
     $('model-search').value=state.q;
     $('minimum-matches').value=String(state.minimum);$('sort-select').value=state.sort;
-    [...$('sort-select').options].forEach(o=>o.hidden=!internal()&&!['name','provider','evidence'].includes(o.value));
+    [...$('sort-select').options].forEach(o=>o.hidden=!internal()&&!['name','country','provider','evidence'].includes(o.value));
     $('missing-only').checked=state.missingOnly;$('known-only').checked=state.knownOnly;$('selected-only').checked=state.selectedOnly;
     const providers=[...new Set(models().map(providerOf))].sort();
     $('provider-filter').innerHTML='<option value="all">All providers</option>'+providers.map(p=>`<option value="${escape(p)}">${escape(p)}</option>`).join('');
     $('provider-filter').value=state.provider;
+    const countries=[...new Map(originData.makers.filter(m=>m.status==='verified').flatMap(m=>m.countries||[]).map(c=>[c.code,c])).values()].sort((a,b)=>a.name.localeCompare(b.name));
+    $('country-filter').innerHTML='<option value="all">All developer countries</option>'+countries.map(c=>`<option value="${escape(c.code)}">${escape(c.name)}</option>`).join('')+'<option value="unknown">Unknown / unavailable</option>';
+    $('country-filter').value=state.country;$('rank-metric').value=state.rankMetric;$('kpi-columns').value=state.columns;
     $('case-filter').innerHTML='<option value="all">All cases</option>'+data.internal.case_metadata.map(c=>`<option value="${escape(c.id)}">${escape(c.name)}</option>`).join('');
     $('case-filter').value=state.case;
     const dimensions=[...new Set(data.internal.case_metadata.flatMap(c=>Object.keys(c.dimensions)))].sort();
     $('dimension-filter').innerHTML='<option value="all">All dimensions</option>'+dimensions.map(d=>`<option value="${escape(d)}">${escape(title(d))}</option>`).join('');
     $('dimension-filter').value=state.dimension;$('label-lens').value=state.lens;
     document.querySelectorAll('.internal-control').forEach(el=>el.hidden=!internal());
+    $('rank-controls').hidden=!internal()||state.view!=='verification';
     $('dimension-filter').disabled=!internal()||state.view!=='verification';
     $('label-lens').disabled=!internal()||state.view!=='verification';
     $('track-toolbar').hidden=!internal();
@@ -136,10 +248,23 @@
     return `${money(m.provider_reported_cost_usd)}${m.unknown_cost_calls?`<br><span class="unknown-tag">+ ${m.unknown_cost_calls} unknown charge(s)</span>`:''}${!chargeCoverageComplete(m)?'<span class="number-note">Partial accounting</span>':''}`;
   }
   function verificationTable(visible) {
-    return `<div class="table-wrap"><table class="evidence-table" id="model-table"><caption>INTERNAL TESTS · ${state.lens==='primary'?'FROZEN DRAFT LABELS':'POST-HOC EXCLUSION OF P002'} · EXPLORATORY SORT</caption><thead><tr><th scope="col">Compare</th>${sortHeader('name','Model / serving provider')}${sortHeader('matches','Label matches / assigned')}${sortHeader('disagreements','Disagreements')}${sortHeader('missing','Missing')}${sortHeader('calls','Complete calls¹')}${sortHeader('cost','Known USD¹')}${sortHeader('time','Median time¹')}<th scope="col"><span class="sr-only">Inspect</span></th></tr></thead><tbody>${visible.map(m=>{const c=metrics(m.id);return `<tr data-model="${escape(m.id)}"><td>${checkCell(m)}</td><td>${modelCell(m)}</td><td><span class="count-strong">${c.matched}</span><span class="count-denom"> / ${c.assigned}</span></td><td class="${c.disagreed?'disputed':''}">${c.disagreed}</td><td class="${c.missing?'missing':''}">${c.missing}${c.unexecuted?'<span class="number-note">'+c.unexecuted+' not run</span>':''}${c.unclassified?'<span class="number-note missing">'+c.unclassified+' unclassified</span>':''}</td><td>${m.completed_calls} / ${m.assigned_calls}${configOf(m.id)?.precall_blocked?'<span class="number-note missing">Pre-call blocked</span>':m.not_run?'<span class="number-note">'+m.not_run+' not run</span>':''}</td><td>${costCell(m)}</td><td>${!attemptedRecords(m.id).length?'N/A':Number.isFinite(m.latency_median_seconds)?m.latency_median_seconds.toFixed(1)+' s':'Unknown'}</td><td><button class="inspect-button" data-inspect="${escape(m.id)}" type="button" aria-label="Inspect ${escape(shortName(m))}">Inspect ↗</button></td></tr>`;}).join('')}</tbody></table></div><div class="table-footnote"><p>¹ Calls, charges and times cover both tasks and all cases, independent of semantic filters. Sort any labelled column in either direction. Incomplete totals and configurations without provider calls sort last. Sorting explores observations and does not assign a qualified rank.</p><span>Select up to 3 configurations to compare.</span></div>`;
+    const ranks=rankings(), operations=state.columns!=='summary', semantic=state.columns!=='operations';
+    const heads=[['rank','Rank'],['name','Model / serving provider'],['country','Developer country']];
+    if(semantic)heads.push(['matches','Label matches / assigned'],['coverage','Coverage'],['disagreements','Disagreements'],['missing','Missing']);
+    heads.push(['calls','Complete calls¹'],['cost','Known USD¹'],['time','Median time¹']);
+    if(operations)heads.push(['input','Input tokens¹'],['output','Completion tokens¹'],['costpercall','USD / complete call¹']);
+    const rows=visible.map(m=>{
+      const c=metrics(m.id), op=operationalKPIs(m);
+      let cells=`<td>${checkCell(m)}</td><td class="rank-cell">${rankCell(m,ranks)}</td><td>${modelCell(m)}</td><td>${countryCell(m)}</td>`;
+      if(semantic)cells+=`<td><span class="count-strong">${c.matched}</span><span class="count-denom"> / ${c.assigned}</span></td><td>${c.assigned?(100*c.classified/c.assigned).toFixed(1)+'%':'N/A'}</td><td class="${c.disagreed?'disputed':''}">${c.disagreed}</td><td class="${c.missing?'missing':''}">${c.missing}${c.unexecuted?'<span class="number-note">'+c.unexecuted+' not run</span>':''}${c.unclassified?'<span class="number-note">'+c.unclassified+' unclassified</span>':''}</td>`;
+      cells+=`<td>${m.completed_calls} / ${m.assigned_calls}<span class="number-note">${(100*m.completed_calls/m.assigned_calls).toFixed(1)}% complete</span>${configOf(m.id)?.precall_blocked?'<span class="number-note missing">Pre-call blocked</span>':''}</td><td>${costCell(m)}</td><td>${!attemptedRecords(m.id).length?'N/A':Number.isFinite(m.latency_median_seconds)?m.latency_median_seconds.toFixed(1)+' s':'Unknown'}</td>`;
+      if(operations)cells+=`<td>${op.input==null?'Unknown':number(op.input)}</td><td>${op.output==null?'Unknown':number(op.output)}<span class="number-note">Includes reasoning</span></td><td>${op.costpercall==null?'N/A':money(op.costpercall)}</td>`;
+      return `<tr data-model="${escape(m.id)}" data-rank="${ranks.get(m.id)?.rank??''}">${cells}<td><button class="inspect-button" data-inspect="${escape(m.id)}" type="button" aria-label="Inspect ${escape(shortName(m))}">Inspect ↗</button></td></tr>`;
+    }).join('');
+    return rankingSummary(ranks)+`<div class="table-wrap ranked-table-wrap"><table class="evidence-table ranked-table" id="model-table"><caption>INTERNAL TESTS · ${state.lens==='primary'?'FROZEN DRAFT LABELS':'POST-HOC EXCLUSION OF P002'} · METRIC-SPECIFIC RANK</caption><thead><tr><th scope="col">Compare</th>${heads.map(([key,label])=>sortHeader(key,label)).join('')}<th scope="col"><span class="sr-only">Inspect</span></th></tr></thead><tbody>${rows}</tbody></table></div><div class="table-footnote"><p>¹ Calls, charges, time and tokens cover both tasks and all cases, independent of semantic filters. Token totals require complete reporting across dispatched calls. Cost per complete call requires every assigned call to complete and fully reported charges. Unknown values sort last.</p><span>Select up to 3 configurations to compare.</span></div>`;
   }
   function catalogueView(visible) {
-    return `<div class="table-wrap"><table class="evidence-table catalogue-table" id="catalogue-table"><caption>MODEL CONFIGURATIONS · COHORTS RETAIN THEIR OWN TASKS AND METRICS</caption><thead><tr>${sortHeader('name','Model')}${sortHeader('provider','Serving provider')}${sortHeader('evidence','Evidence cohort')}<th scope="col">Task / recorded coverage</th><th scope="col">Explore</th></tr></thead><tbody>${visible.map(m=>{const semantic=m.evidenceCohort==='internal';return `<tr data-model="${escape(idOf(m))}"><td><button class="model-button" type="button" data-inspect="${escape(idOf(m))}" data-inspect-cohort="${m.evidenceCohort}">${escape(shortName(m))}</button><span class="catalogue-note">${escape(idOf(m))}</span></td><td>${escape(providerOf(m))}</td><td><span class="catalogue-badge ${semantic?'':'historical'}">${semantic?'Internal procurement':'Historical diagnostics'}</span></td><td>${semantic?'Translation + verification':'Adapter contract checks'}<span class="catalogue-note">${semantic?`${m.completed_calls} / ${m.assigned_calls} complete calls${configOf(m.id)?.precall_blocked?' · blocked before inference':m.not_run?' · '+m.not_run+' not run':' · 3 repeats'}`:`${m.completed} / ${m.assigned} complete calls · ${m.not_run} not run`}</span></td><td><button type="button" class="catalogue-action" data-open-cohort="${m.evidenceCohort}" data-open-model="${escape(idOf(m))}">Open evidence ↗</button></td></tr>`;}).join('')}</tbody></table></div><p class="table-footnote">Registered configurations can be blocked before inference; zero completed calls is not a measured quality result. The same model may have more than one configuration or evidence cohort. Procurement label agreement and historical structural checks have different denominators and are never combined into one score.</p>`;
+    return `<div class="table-wrap"><table class="evidence-table catalogue-table" id="catalogue-table"><caption>MODEL CONFIGURATIONS · COHORTS RETAIN THEIR OWN TASKS AND METRICS</caption><thead><tr>${sortHeader('name','Model')}${sortHeader('provider','Serving provider')}${sortHeader('country','Developer country')}${sortHeader('evidence','Evidence cohort')}<th scope="col">Task / recorded coverage</th><th scope="col">Explore</th></tr></thead><tbody>${visible.map(m=>{const semantic=m.evidenceCohort==='internal';return `<tr data-model="${escape(idOf(m))}"><td><button class="model-button" type="button" data-inspect="${escape(idOf(m))}" data-inspect-cohort="${m.evidenceCohort}">${escape(shortName(m))}</button><span class="catalogue-note">${escape(idOf(m))}</span></td><td>${escape(providerOf(m))}</td><td>${countryCell(m)}</td><td><span class="catalogue-badge ${semantic?'':'historical'}">${semantic?'Internal procurement':'Historical diagnostics'}</span></td><td>${semantic?'Translation + verification':'Adapter contract checks'}<span class="catalogue-note">${semantic?`${m.completed_calls} / ${m.assigned_calls} complete calls${configOf(m.id)?.precall_blocked?' · blocked before inference':m.not_run?' · '+m.not_run+' not run':' · 3 repeats'}`:`${m.completed} / ${m.assigned} complete calls · ${m.not_run} not run`}</span></td><td><button type="button" class="catalogue-action" data-open-cohort="${m.evidenceCohort}" data-open-model="${escape(idOf(m))}">Open evidence ↗</button></td></tr>`;}).join('')}</tbody></table></div><p class="table-footnote">Registered configurations can be blocked before inference; zero completed calls is not a measured quality result. The same model may have more than one configuration or evidence cohort. Procurement label agreement and historical structural checks have different denominators and are never combined into one score.</p>`;
   }
   function bars(c) {
     const width=n=>c.assigned?Math.max(0,Math.min(100,100*n/c.assigned)):0;
@@ -167,7 +292,7 @@
   }
   function historicalView(visible) {
     const audit=data.historical.historical_audit;
-    return `<div class="historical-banner"><strong>Structural checks only.</strong> Three short passages, 4,994 UTF-8 bytes. Configurations differ; there is one call per passage and no semantic gold. The proposed-count denominator is model-selected. These observations cannot be pooled with the internal procurement study.</div><div class="table-wrap"><table class="evidence-table"><caption>HISTORICAL ADAPTER DIAGNOSTICS · UNQUALIFIED · ALPHABETICAL ORDER</caption><thead><tr><th scope="col"><span class="sr-only">Compare</span></th><th scope="col">Configuration / provider</th><th scope="col">Complete / assigned</th><th scope="col">Proposed candidates</th><th scope="col">Passed contract checks</th><th scope="col">Not run</th><th scope="col">Cost</th><th scope="col">Evidence</th></tr></thead><tbody>${visible.map(m=>`<tr><td>${checkCell(m)}</td><td>${modelCell(m)}</td><td>${m.completed} / ${m.assigned}</td><td>${m.raw_claims}</td><td>${m.mechanically_valid}</td><td>${m.not_run}</td><td>${costCell(m)}</td><td><button type="button" class="inspect-button" data-inspect="${escape(m.model)}">Inspect ↗</button></td></tr>`).join('')}</tbody></table></div><p class="table-footnote">The fixed assignment is three passages per configuration. Candidate counts are a different, model-selected denominator. Structural acceptance is not semantic accuracy, and no model rank is assigned.</p><div class="analysis-row"><section class="panel"><div class="panel-heading"><div><p class="eyebrow">Contract diagnostics / full historical cohort</p><h3>Candidate types</h3></div></div><ul class="kind-list">${Object.entries(audit.by_kind||{}).map(([kind,c])=>`<li>${escape(title(kind))}<span>${c.passed} / ${c.proposed} passed</span></li>`).join('')}</ul><p class="panel-note">These pooled diagnostic counts describe the entire historical cohort and do not change with model filters. All 43 proposed relations failed. This is a contract diagnostic, not evidence of general model inability.</p></section><section class="panel"><p class="eyebrow">Interpretation boundary</p><h3 style="margin-top:12px">Historical task scope</h3><p class="panel-note">The historical runner checks whether a candidate meets PALO’s structural contract. The new internal track checks agreement with draft semantic labels. The prompts, task scope, configuration and denominators differ.</p><p class="panel-note">Historical costs are unreconciled. Provider, quantisation and reasoning settings are retained where recorded; unverified origin and licence information are not used as filters.</p><div class="dialog-links"><a href="PALO_BlueprintBench.html#explorer">Original diagnostics ↗</a><a href="downloads/blueprintbench/development-evidence.zip">Historical archive ↓</a></div></section></div>`;
+    return `<div class="historical-banner"><strong>Structural checks only.</strong> Three short passages, 4,994 UTF-8 bytes. Configurations differ; there is one call per passage and no semantic gold. The proposed-count denominator is model-selected. These observations cannot be pooled with the internal procurement study.</div><div class="table-wrap"><table class="evidence-table"><caption>HISTORICAL ADAPTER DIAGNOSTICS · SEPARATE COHORT · NO METRIC RANK</caption><thead><tr><th scope="col"><span class="sr-only">Compare</span></th><th scope="col">Configuration / provider</th>${sortHeader('country','Developer country')}<th scope="col">Complete / assigned</th><th scope="col">Proposed candidates</th><th scope="col">Passed contract checks</th><th scope="col">Not run</th><th scope="col">Cost</th><th scope="col">Evidence</th></tr></thead><tbody>${visible.map(m=>`<tr><td>${checkCell(m)}</td><td>${modelCell(m)}</td><td>${countryCell(m)}</td><td>${m.completed} / ${m.assigned}</td><td>${m.raw_claims}</td><td>${m.mechanically_valid}</td><td>${m.not_run}</td><td>${costCell(m)}</td><td><button type="button" class="inspect-button" data-inspect="${escape(m.model)}">Inspect ↗</button></td></tr>`).join('')}</tbody></table></div><p class="table-footnote">The fixed assignment is three passages per configuration. Candidate counts are a different, model-selected denominator. Structural acceptance is not semantic accuracy, and no model rank is assigned.</p><div class="analysis-row"><section class="panel"><div class="panel-heading"><div><p class="eyebrow">Contract diagnostics / full historical cohort</p><h3>Candidate types</h3></div></div><ul class="kind-list">${Object.entries(audit.by_kind||{}).map(([kind,c])=>`<li>${escape(title(kind))}<span>${c.passed} / ${c.proposed} passed</span></li>`).join('')}</ul><p class="panel-note">These pooled diagnostic counts describe the entire historical cohort and do not change with model filters. All 43 proposed relations failed. This is a contract diagnostic, not evidence of general model inability.</p></section><section class="panel"><p class="eyebrow">Interpretation boundary</p><h3 style="margin-top:12px">Historical task scope</h3><p class="panel-note">The historical runner checks whether a candidate meets PALO’s structural contract. The new internal track checks agreement with draft semantic labels. The prompts, task scope, configuration and denominators differ.</p><p class="panel-note">Historical costs are unreconciled. Provider, quantisation and reasoning settings are retained where recorded; unverified origin and licence information are not used as filters.</p><div class="dialog-links"><a href="PALO_BlueprintBench.html#explorer">Original diagnostics ↗</a><a href="downloads/blueprintbench/development-evidence.zip">Historical archive ↓</a></div></section></div>`;
   }
   function qualifiedView() {
     return `<div class="qualified-empty"><div><p class="eyebrow">Independent qualification</p><h3>Qualification requirements</h3><p>No configuration currently meets the independent publication gates. Internal observations remain accessible in their own cohort. No ranks or PALO Blueprint Index values are assigned.</p><p><a href="PALO_BlueprintBench.html#participate">Contribute to the independent study ↗</a></p></div><div><p class="eyebrow">Outstanding gates</p><ul class="gates">${data.qualification_gates.map(g=>`<li><span class="gate-box" aria-hidden="true"></span><div>${escape(g.name)}<small>${escape(g.state)}</small></div></li>`).join('')}</ul><p class="panel-note">An internal test or an AI design review does not satisfy these independent requirements. The full protocol also governs repeated measurements, uncertainty and publication.</p></div></div>`;
@@ -193,7 +318,7 @@
     requestAnimationFrame(updateScrollCues);
     document.querySelectorAll('[data-cohort]').forEach(el=>{el.setAttribute('aria-selected',String(el.dataset.cohort===state.cohort));el.tabIndex=el.dataset.cohort===state.cohort?0:-1;});
     $('cohort-content').setAttribute('aria-labelledby','tab-'+state.cohort);
-    $('controls').hidden=state.cohort==='qualified';$('track-toolbar').hidden=!internal();$('metric-filters').hidden=!internal()||state.view!=='verification';$('download-csv').disabled=state.cohort==='qualified';
+    $('controls').hidden=state.cohort==='qualified';$('track-toolbar').hidden=!internal();$('metric-filters').hidden=!internal()||state.view!=='verification';$('download-csv').disabled=state.cohort==='qualified';$('download-json').disabled=state.cohort==='qualified';
     $('cohort-notice').innerHTML=state.cohort==='all'?'<span class="notice-status">All evidence cohorts</span>Completed, incomplete and pre-call-blocked configurations. Open a cohort to inspect its observations. <a href="#limitations">Limits &amp; further development ↗</a>':internal()?'<span class="notice-status">Internal tests</span>Fixed assigned denominators, frozen assistant-draft labels and a separate sensitivity lens. <a href="#limitations">Limits &amp; further development ↗</a>':state.cohort==='historical'?'<span class="notice-status">Historical diagnostics</span>Adapter-contract tests with different settings and task scope. <a href="#limitations">Limits &amp; further development ↗</a>':'<span class="notice-status">Independent qualification pending</span>Results appear here only after the independent publication gates are met.';
     if(state.cohort==='qualified'){$('view-status').textContent='Independent publication requirements remain open.';$('view-content').innerHTML=qualifiedView();$('lens-notice').hidden=true;comparison();return;}
     fillControls();$('challenge-dataset').href=challengeURL();const visible=visibleModels();
@@ -300,6 +425,7 @@
   function inspect(id,trigger) {
     const m=models().find(m=>idOf(m)===id&&(!trigger?.dataset.inspectCohort||!m.evidenceCohort||m.evidenceCohort===trigger.dataset.inspectCohort));if(!m)return;previousFocus=trigger;
     let html=`<h2 class="dialog-title" id="dialog-title">${escape(shortName(m))}</h2><p class="dialog-subtitle">${escape(id)} · ${escape(providerOf(m))}</p>`;
+    html+=originSection(m);
     if(internal()||m.evidenceCohort==='internal'){
       const config=configOf(id),records=ownRecords(id),input=records.map(r=>r.usage?.prompt_tokens).filter(Number.isFinite),c=metrics(id);
       const fields=[['Advertised endpoint revision',config.endpoint_name],['Revision status',config.revision_status],['Requested reasoning',reasoningOf(id)],['Configured output ceiling',number(outputLimit(id))+' tokens'],['Pre-call status',config.precall_blocked||'No configuration-level block'],['Assignment coverage',m.recorded_calls+' records / '+m.assigned_calls+' assigned; '+m.not_run+' not run'],['Catalogue context',number(config.catalogue_context)+' tokens (advertised)'],['Observed prompt tokens per reported call',input.length?number(Math.min(...input))+' to '+number(Math.max(...input)):'Not reported'],['Total reported input tokens',attemptedRecords(id).length?number(m.input_tokens)+(!chargeCoverageComplete(m)?' (coverage incomplete)':''):'N/A; no provider call'],['Total reported completion tokens',attemptedRecords(id).length?number(m.completion_tokens_including_reasoning)+' including reasoning'+(!chargeCoverageComplete(m)?' (coverage incomplete)':''):'N/A; no provider call'],['Reported reasoning tokens',number(m.reasoning_tokens_reported)+(m.reasoning_token_detail_complete?'':' (incomplete detail)')],['Known provider charges',money(m.provider_reported_cost_usd)+' USD'+(!attemptedRecords(id).length?'; no provider call':!chargeCoverageComplete(m)?'; incomplete accounting coverage':'')],['Unresolved charges',m.unknown_cost_calls?m.unknown_cost_calls+' call; '+money(records.filter(r=>r.cost_status==='unknown').reduce((a,r)=>a+r.reserved_usd,0))+' USD reserved':'None recorded; '+(chargeCoverageComplete(m)?'all assignments accounted for':'accounting coverage incomplete')],['Temperature and seed',(config.configuration?.temperature||'Not recorded')+' / '+(config.configuration?.seed||'Not recorded')],['Campaign / prompt freeze',m.campaign_id||'internal-frontier-2026-11-11; no provider fallback'],['Qualification','Internal tests; qualified=false']];
@@ -326,7 +452,7 @@
       rows=visible.map(m=>[...base,idOf(m),providerOf(m),m.evidenceCohort,m.completed_calls??m.completed,m.assigned_calls??m.assigned]);
     }else if(internal()&&state.view==='operations'){
       headers=[...context,'model','case','track','repetition','state','http_status','started_at_utc','input_tokens','completion_tokens','elapsed_seconds','cost_status','known_cost_usd','unknown_reserved_usd','request_sha256'];
-      rows=data.internal.records.filter(r=>visible.some(m=>m.id===r.model)&&(state.case==='all'||r.case===state.case)&&(!state.failures||r.state!=='completed')).map(r=>[...base,r.model,r.case,r.track,r.repetition,r.state,r.http_status??'',r.started_at,r.usage?.prompt_tokens??'',r.usage?.completion_tokens??'',elapsedValue(r)??'',r.cost_status,r.cost_usd??'',r.cost_status==='unknown'?r.reserved_usd:'',r.request_sha256]);
+      rows=data.internal.records.filter(r=>visible.some(m=>m.id===r.model)&&(state.case==='all'||r.case===state.case)&&(!state.failures||r.state!=='completed')).sort((a,b)=>a.started_at.localeCompare(b.started_at)).map(r=>[...base,r.model,r.case,r.track,r.repetition,r.state,r.http_status??'',r.started_at,r.usage?.prompt_tokens??'',r.usage?.completion_tokens??'',elapsedValue(r)??'',r.cost_status,r.cost_usd??'',r.cost_status==='unknown'?r.reserved_usd:'',r.request_sha256]);
     }else if(internal()&&state.view==='translation'){
       headers=[...context,'model','case','repetition','source_id','source_text','proposed_specification','verbatim_source_copy','source_mapping_status','review_type','business_approved','evidence_url'];
       rows=(data.internal.translation_examples||[]).filter(e=>visible.some(m=>m.id===e.model)&&(state.case==='all'||e.case===state.case)&&copyMatches(e)).map(e=>[...base,e.model,e.case,e.repetition,e.source_id,e.source_text,e.proposed_specification,e.verbatim,sourceMapped(e)?'source_id_matched':'unmapped_output_line',!sourceMapped(e)?'unreviewed_unmapped':e.review_status||'assistant_draft','false',evidenceURL(e.evidence_path,e.model,e.evidence_base)]);
@@ -337,6 +463,12 @@
       headers=[...context,'model','provider','complete_calls','assigned_passages','proposed_candidates','contract_accepted_candidates','not_run','reasoning','cost_status','output_limit'];
       rows=visible.map(m=>[...base,m.model,m.provider,m.completed,m.assigned,m.raw_claims,m.mechanically_valid,m.not_run,m.reasoning,'unreconciled',m.max_output_tokens]);
     }
+    const exportedRank=rankings(), modelColumn=headers.indexOf('model');
+    headers.push('metric_rank','rank_metric','rank_direction','rank_eligible','rank_ineligibility_reason','rank_tied','tie_policy','developer_organisation','developer_country_codes','developer_countries','country_status','country_sources','classification_coverage','input_tokens_whole_cohort','completion_tokens_including_reasoning_whole_cohort','cost_per_complete_call_usd','country_filter','kpi_columns','rank_population','country_basis','origin_metadata_version','rank_scope','rank_case','rank_dimension','rank_lens');
+    rows=rows.map(row=>{
+      const model=visible.find(m=>idOf(m)===row[modelColumn]), e=exportModel(model,exportedRank);
+      return [...row,e.rank,e.ranking_metric,e.ranking_direction,e.rank_eligible,e.rank_ineligibility_reason,e.rank_tied,'competition: 1, 1, 3; unrounded values',e.developer_organisation,e.developer_countries.map(c=>c.code).join('|'),e.developer_countries.map(c=>c.name).join('|'),e.country_status,JSON.stringify(e.country_sources),e.classification_coverage,e.input_tokens,e.completion_tokens_including_reasoning,e.cost_per_complete_call_usd,state.country,state.columns,'All eligible internal configurations; display filters do not renumber',e.country_basis,originData.version||'',internal()?rankingMetrics[state.rankMetric].scope:'',internal()?state.case:'',internal()?state.dimension:'',internal()?state.lens:''];
+    });
     headers.push('sort_by','sort_direction','minimum_match_percentage','missing_only','known_charge_only','selected_only','view_url');
     rows=rows.map(row=>[...row,state.sort,state.direction,state.minimum,state.missingOnly,state.knownOnly,state.selectedOnly,location.href]);
     const cell=value=>{let s=String(value??'');if(/^[\s]*[=+\-@]/.test(s))s="'"+s;return '"'+s.replaceAll('"','""')+'"';};
@@ -348,7 +480,9 @@
     try{
       const response=await fetch('downloads/blueprintbench/leaderboard-data.json',{cache:'no-cache'});if(!response.ok)throw new Error('Unable to load data');
       const value=await response.json();if(value.qualified_count!==0||value.internal.qualified!==false||value.internal.status!=='internal_tests'||!Array.isArray(value.internal.records))throw new Error('Unexpected evidence contract');
-      data=value;window.dispatchEvent(new CustomEvent('blueprintbench:data',{detail:data}));readURL();$('revision-label').textContent='Revision '+data.version;$('stat-models').textContent=new Set(catalogue().map(idOf)).size;$('stat-configurations').textContent=catalogue().length;
+      data=value;
+      try {const origins=await fetch('downloads/blueprintbench/model-origins.json',{cache:'no-cache'});if(!origins.ok)throw new Error('Country metadata unavailable');const parsed=await origins.json();if(!Array.isArray(parsed.makers))throw new Error('Invalid country metadata');originData=parsed;originAvailable=true;}catch(_){originData={makers:[]};originAvailable=false;}
+      window.dispatchEvent(new CustomEvent('blueprintbench:data',{detail:data}));readURL();$('revision-label').textContent='Revision '+data.version;$('stat-models').textContent=new Set(catalogue().map(idOf)).size;$('stat-configurations').textContent=catalogue().length;
       for(const cohort of ['all','internal','historical'])document.querySelector('#tab-'+cohort+' span').textContent=String(cohort==='all'?new Set(catalogue().map(idOf)).size:cohort==='internal'?data.internal.models.length:data.historical.models.length);$('challenge-dataset').href=challengeURL();$('stat-calls').textContent=data.internal.assigned_calls;$('stat-complete').textContent=data.internal.completed_calls;$('stat-dispatched').textContent=data.internal.attempted_calls;renderExploration();$('stat-failures').textContent=data.internal.records.filter(r=>!['completed','not_run'].includes(r.state)).length;
       const unexecuted=data.internal.assigned_calls-data.internal.records.filter(r=>r.state!=='not_run').length;
       const blocked=data.internal.models.filter(m=>configOf(m.id)?.precall_blocked).reduce((sum,m)=>sum+m.assigned_calls-attemptedRecords(m.id).length,0);
@@ -369,17 +503,20 @@
     if(event.target.id==='copy-filter')setState({copy:event.target.value});
     if(event.target.id==='failed-only')setState({failures:event.target.checked});
     if(event.target.id==='sort-select')setState({sort:event.target.value,direction:'asc'});
+    if(event.target.id==='rank-metric')setState({rankMetric:event.target.value,sort:'rank',direction:'asc'});
+    if(event.target.id==='kpi-columns')setState({columns:event.target.value});
     if(event.target.id==='minimum-matches')setState({minimum:Number(event.target.value)});
     const checks={'missing-only':'missingOnly','known-only':'knownOnly','selected-only':'selectedOnly'};if(checks[event.target.id])setState({[checks[event.target.id]]:event.target.checked});
   });
   $('model-search').addEventListener('input',event=>{clearTimeout(searchTimer);const value=event.target.value;searchTimer=setTimeout(()=>setState({q:value.slice(0,160)},true),180);});
-  [['provider-filter','provider'],['case-filter','case'],['dimension-filter','dimension'],['label-lens','lens']].forEach(([id,key])=>$(id).addEventListener('change',event=>setState({[key]:event.target.value})));
-  $('reset-filters').addEventListener('click',()=>setState({provider:'all',q:'',case:'all',dimension:'all',lens:'primary',failures:false,copy:'all',minimum:0,missingOnly:false,knownOnly:false,selectedOnly:false,sort:'name',direction:'asc'}));
+  [['country-filter','country'],['provider-filter','provider'],['case-filter','case'],['dimension-filter','dimension'],['label-lens','lens']].forEach(([id,key])=>$(id).addEventListener('change',event=>setState({[key]:event.target.value})));
+  $('reset-filters').addEventListener('click',()=>setState({provider:'all',q:'',case:'all',dimension:'all',lens:'primary',failures:false,copy:'all',minimum:0,missingOnly:false,knownOnly:false,selectedOnly:false,country:'all',rankMetric:'matches',columns:'summary',sort:'rank',direction:'asc'}));
   $('clear-comparison').addEventListener('click',()=>setState({selected:[],selectedOnly:false}));
   $('show-qualified').addEventListener('click',()=>{if(data)setState({cohort:'qualified',selected:[]});});
   $('show-calls').addEventListener('click',()=>{if(data){setState({...defaults(),cohort:'internal',view:'operations'});$('workspace').scrollIntoView();}});
   $('share-view').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(location.href);toast('Link copied with this cohort, filters and label lens.');}catch(error){toast('Copy the link to this view:',location.href);}});
   $('download-csv').addEventListener('click',()=>data&&state.cohort!=='qualified'&&downloadCSV());
+  $('download-json').addEventListener('click',()=>data&&state.cohort!=='qualified'&&downloadJSON());
   $('close-dialog').addEventListener('click',()=>$('evidence-dialog').close());
   $('evidence-dialog').addEventListener('close',()=>previousFocus?.focus());
   $('evidence-dialog').addEventListener('click',event=>{if(event.target===$('evidence-dialog')){const r=event.target.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)event.target.close();}});

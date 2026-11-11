@@ -1,5 +1,9 @@
 # Changelog
 
+## 11 November 2026: metric ranks and developer-country filters
+
+Metric-specific internal ranks with ties, sourced developer-country filtering and sorting, selectable KPI columns and CSV/JSON exports of the current ordered view. Visibility filters preserve the full eligible cohort ranking. Country does not establish serving location or data residency. Frozen measurements and qualification are unchanged. [Open results](https://paloframework.org/PALO_BlueprintBench_Leaderboard.html#workspace).
+
 ## 11 November 2026: temporal model results
 
 Interactive timestamp scatter chart with model, provider, case and metric controls, source-bound timestamps and CSV/SVG exports. Collection order does not measure model improvement. Internal-test scores unchanged. [Open chart](https://paloframework.org/PALO_BlueprintBench_Leaderboard.html#temporal-model-results).
