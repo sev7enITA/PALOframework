@@ -32,6 +32,11 @@ export const PUBLIC_FILES = [
   "downloads/blueprintbench/diagnostic-model-comparison.json",
   "downloads/blueprintbench/local-review-public.json",
   "downloads/blueprintbench/protocol.md",
+  "assets/blueprintbench/calibration.css",
+  "assets/blueprintbench/calibration.js",
+  "downloads/blueprintbench/calibration.json",
+  "downloads/blueprintbench/model-roster.csv",
+  "downloads/blueprintbench/model-roster.json",
   "downloads/blueprintbench/reference-visibility-signals.json",
 
   "downloads/blueprintbench/model-origins.json",
