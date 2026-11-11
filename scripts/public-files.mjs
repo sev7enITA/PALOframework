@@ -1,6 +1,10 @@
 import { TRI_GRAPH_PUBLIC_FILES } from './tri-graph-public-files.mjs';
 export const PUBLIC_FILES = [
   "PALO_BlueprintBench.html",
+  "PALO_BlueprintBench_Diagnostics.html",
+  "assets/blueprintbench/reviewer-diagnostics.js",
+  "assets/blueprintbench/brand/.htaccess",
+  "downloads/blueprintbench/release.json",
   "assets/blueprintbench/blueprintbench.css",
   "assets/blueprintbench/blueprintbench.js",
   "assets/blueprintbench/explorer-data.json",
@@ -38,10 +42,7 @@ export const PUBLIC_FILES = [
 
   "assets/blueprintbench/brand/blueprintbench-logo.jpg",
   "assets/blueprintbench/brand/blueprintbench-logo.png",
-  "assets/blueprintbench/brand/internal-testing-badge.jpg",
-  "assets/blueprintbench/brand/internal-testing-badge.png",
   "assets/blueprintbench/brand/palo-framework-logo.png",
-  "downloads/blueprintbench/brand-kit.zip",
   "downloads/blueprintbench/internal-expansion-evidence.zip",
   "PALO_BlueprintBench_Leaderboard.html",
   "assets/blueprintbench/leaderboard.css",

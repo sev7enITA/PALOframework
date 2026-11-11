@@ -58,16 +58,11 @@
 
 .temporal-scroll-hint{display:none;color:var(--teal);font-size:11px;margin-top:10px}@media(max-width:1000px){.temporal-chart-region svg{min-width:900px}.temporal-scroll-hint{display:block}}
 
-/* Metric ranks and independently sourced developer locations. */
-.rank-controls{display:grid;grid-template-columns:minmax(230px,1.2fr) minmax(180px,.7fr) minmax(200px,1fr);align-items:end;gap:18px;padding:16px 18px;margin:2px 0 18px;background:#0d1a2b;border:1px solid var(--line)}
-.rank-controls label{font-size:11px;color:var(--muted);display:grid;gap:7px;min-width:0}.rank-controls select{width:100%;min-width:0;background:#0b1422;border:1px solid var(--line);color:var(--ink);font:12px var(--sans);padding:10px}.rank-controls p{font-size:11px;line-height:1.6;color:var(--muted);margin:0}
-.ranking-summary{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;padding:10px 0 18px}.ranking-summary>div{display:flex;align-items:center;flex-wrap:wrap;gap:9px 18px}.ranking-summary .eyebrow{font-size:9px}.ranking-summary strong{font:600 16px var(--sans);color:var(--ink)}.ranking-summary span:not(.eyebrow){font-size:11px;color:var(--muted)}.ranking-summary details{font-size:11px;color:var(--muted);max-width:540px;flex:0 1 440px}.ranking-summary summary{color:var(--teal);cursor:pointer;text-align:right}.ranking-summary details p{line-height:1.65;margin:10px 0}
-.ranked-table{min-width:1410px}.ranked-table th:nth-child(2),.ranked-table td:nth-child(2){min-width:70px;width:70px;text-align:center}.ranked-table th:nth-child(3),.ranked-table td:nth-child(3){min-width:245px;text-align:left}.ranked-table th:nth-child(4),.ranked-table td:nth-child(4){min-width:175px;text-align:left}.rank-number{font:600 20px var(--mono);color:var(--teal)}.rank-na{font:12px var(--mono);color:var(--amber)}.rank-reason{display:block;font:9px/1.4 var(--sans);color:var(--muted);white-space:normal;max-width:110px;margin-top:4px}.country-name{font:11px var(--sans);white-space:normal;display:block;max-width:190px}.ranked-table .number-note{white-space:normal}.control-panel{grid-template-columns:1.2fr 1fr 1fr 1fr 1fr 1fr auto}
-@media(max-width:1200px){.control-panel{grid-template-columns:repeat(3,minmax(0,1fr))}.rank-controls{grid-template-columns:1fr 1fr}.rank-controls p{grid-column:1/-1}.ranking-summary{display:block}.ranking-summary details{margin-top:10px;max-width:none}.ranking-summary summary{text-align:left}}
-@media(max-width:760px){.control-panel{grid-template-columns:1fr 1fr}.rank-controls{grid-template-columns:1fr;padding:14px;gap:12px}.rank-controls p{grid-column:auto}.ranking-summary>div{gap:8px 12px}.ranking-summary .eyebrow{width:100%}.workspace-actions .button{min-height:39px}.rank-controls select{font-size:12px}}
-/* Ranking adds columns to the original nine-column table. Let content size them. */
-#model-table.ranked-table{table-layout:auto;min-width:1500px}
-#model-table.ranked-table th:nth-child(n){width:auto}
-#model-table.ranked-table td:nth-child(2){min-width:70px;max-width:110px;text-align:center}
-#model-table.ranked-table td:nth-child(3){min-width:245px;white-space:normal;text-align:left}
-#model-table.ranked-table td:nth-child(4){min-width:175px;text-align:left}
+/* Descriptive results and sourced developer metadata. */
+.kpi-controls{display:grid;grid-template-columns:minmax(180px,.6fr) minmax(200px,1.4fr);align-items:end;gap:18px;padding:16px 18px;margin:2px 0 18px;background:#0d1a2b;border:1px solid var(--line)}
+.kpi-controls label{font-size:11px;color:var(--muted);display:grid;gap:7px;min-width:0}.kpi-controls select{width:100%;min-width:0;background:#0b1422;border:1px solid var(--line);color:var(--ink);font:12px var(--sans);padding:10px}.kpi-controls p,.measurement-summary{font-size:12px;line-height:1.65;color:var(--muted);margin:0}.measurement-summary{margin:0 0 18px;max-width:90ch}
+.descriptive-table{min-width:1350px;table-layout:auto}.descriptive-table th:nth-child(2),.descriptive-table td:nth-child(2){min-width:245px;text-align:left}.descriptive-table th,.descriptive-table td{width:auto}.descriptive-table .number-note{white-space:normal}.country-name{font:11px var(--sans);white-space:normal;display:block;max-width:190px}.control-panel{grid-template-columns:1.2fr 1fr 1fr 1fr 1fr 1fr auto}
+.review-diagnostics-link{padding-top:24px;padding-bottom:24px;border-top:1px solid var(--line);color:var(--muted)}.review-diagnostics-link h2{font-size:22px;color:var(--ink)}
+@media(max-width:1200px){.control-panel{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:760px){.control-panel{grid-template-columns:1fr 1fr}.kpi-controls{grid-template-columns:1fr;padding:14px;gap:12px}.workspace-actions .button{min-height:39px}.kpi-controls select{font-size:12px}}
+#model-table.descriptive-table{table-layout:auto;min-width:1350px}#model-table.descriptive-table th:nth-child(n){width:auto}#model-table.descriptive-table td:nth-child(2){min-width:245px;white-space:normal;text-align:left}

@@ -1,5 +1,12 @@
 # Changelog
 
+## 11 November 2026: descriptive results and evaluator 0.3.0
+
+Revision 2026-11-11.3 suspends numerical quality, completion, charge and time ranks. Filters, descriptive charts, comparisons and CSV/JSON exports remain. Reviewer collection diagnostics move to their own page. Internal release v0.3.0-internal.1 packages the corrected evaluator; historical evaluator 0.2 has a known EV-01 flaw and must not be used for qualification. Next-cycle development cases and blinded human annotation templates are published without claiming independent adjudication or statistical sufficiency. Testing badges are withdrawn.
+
+[Internal test results](PALO_BlueprintBench_Leaderboard.html) | [Reviewer diagnostics](PALO_BlueprintBench_Diagnostics.html)
+
+
 ## 11 November 2026: metric ranks and developer-country filters
 
 Metric-specific internal ranks with ties, sourced developer-country filtering and sorting, selectable KPI columns and CSV/JSON exports of the current ordered view. Visibility filters preserve the full eligible cohort ranking. Country does not establish serving location or data residency. Frozen measurements and qualification are unchanged. [Open results](https://paloframework.org/PALO_BlueprintBench_Leaderboard.html#workspace).

@@ -46,7 +46,7 @@ Every distinct emitted line is read beside its numbered source rule by the codin
 | google/gemini-4-argon | 108/108 | 108 | 54 |
 | openai/gpt-6.1-sol | 108/108 | 108 | 79 |
 
-The `contract-replay/` directory carries original outputs through draft evaluator **0.3.0-dev.1** and exports 27 source-linked draft blueprints requiring business approval. This is a **post-hoc scoring replay**: its formal campaign lock was created after inference and before replay. It is not retroactive preregistration. Run timing is local replay bookkeeping; original inference timing remains in the linked original records. Replay accounting carries original charges without making new calls. All results remain unqualified. The draft evaluator is still under review; the released evaluator is not silently replaced.
+The `contract-replay/` directory carries original outputs through draft evaluator **0.3.0-dev.1** and exports 27 source-linked draft blueprints requiring business approval. This is a **post-hoc scoring replay**: its formal campaign lock was created after inference and before replay. It is not retroactive preregistration. Run timing is local replay bookkeeping; original inference timing remains in the linked original records. Replay accounting carries original charges without making new calls. All results remain unqualified. These historical replay receipts retain version 0.3.0-dev.1. The later evaluator 0.3.0 internal release does not retroactively upgrade their evidence or qualification.
 
 ## Cost and failure accounting
 
