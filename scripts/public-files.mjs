@@ -2,6 +2,12 @@ import { TRI_GRAPH_PUBLIC_FILES } from './tri-graph-public-files.mjs';
 export const PUBLIC_FILES = [
   "PALO_BlueprintBench.html",
   "PALO_BlueprintBench_Diagnostics.html",
+  "PALO_BlueprintBench_NextCycle.html",
+  "assets/blueprintbench/next-cycle.js",
+  "assets/blueprintbench/next-cycle.css",
+  "downloads/blueprintbench/next-cycle-results.json",
+  "downloads/blueprintbench/next-cycle-manifest.json",
+  "downloads/blueprintbench/next-cycle-evidence.zip",
   "assets/blueprintbench/reviewer-diagnostics.js",
   "assets/blueprintbench/brand/.htaccess",
   "downloads/blueprintbench/release.json",

@@ -4,6 +4,7 @@
 const researchPages = new Set([
   'PALO_BlueprintBench.html',
   'PALO_BlueprintBench_Diagnostics.html',
+  'PALO_BlueprintBench_NextCycle.html',
   'PALO_BlueprintBench_Leaderboard.html',
   'docs/palo-agentic-taxonomy-and-dictionaries.md',
   'docs/palo-agentic-taxonomy-and-dictionaries.html',
