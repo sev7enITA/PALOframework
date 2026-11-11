@@ -720,7 +720,23 @@ if (built) {
   if ((onboardingRibbon.match(/class=["']route-separator["']/g) || []).length !== 4 || /<i\b/.test(onboardingRibbon)) errors.push("Stakeholder Onboarding: route separators must use dedicated semantic spans");
   if (!/Public semantic catalog/.test(onboardingHtml) || !/Search the semantic catalog/.test(onboardingHtml)) errors.push("Operationalization Explorer: public Semantic Inspector boundary is missing");
   const platformMapHtml = htmlByFile.get("PALO_PlatformMap.html") || "";
-  if (!/id=["']map-evidence-class["']/.test(platformMapHtml) || (platformMapHtml.match(/data-evidence-class=/g) || []).length !== 32 || !/Evidence \/ authority/.test(platformMapHtml)) errors.push("PALO_PlatformMap.html: evidence/authority filtering must align all 16 visual and table routes");
+  const mapRouteEntries = (marker) => [...platformMapHtml.matchAll(/<[^>]+>/g)]
+    .map(([tag]) => tag)
+    .filter((tag) => new RegExp(`\\b${marker}(?=[\\s=>])`).test(tag))
+    .map((tag) => ({
+      id: tag.match(/data-route-id=["']([^"']+)["']/)?.[1],
+      evidence: tag.match(/data-evidence-class=["']([^"']+)["']/)?.[1],
+    }));
+  const visualRoutes = mapRouteEntries("data-map-route");
+  const tableRoutes = mapRouteEntries("data-map-row");
+  const routeMap = new Map(visualRoutes.map(({ id, evidence }) => [id, evidence]));
+  const routesAligned = visualRoutes.length >= 16
+    && routeMap.size === visualRoutes.length
+    && tableRoutes.length === visualRoutes.length
+    && new Set(tableRoutes.map(({ id }) => id)).size === tableRoutes.length
+    && [...visualRoutes, ...tableRoutes].every(({ id, evidence }) => id && evidence)
+    && tableRoutes.every(({ id, evidence }) => routeMap.get(id) === evidence);
+  if (!/id=["']map-evidence-class["']/.test(platformMapHtml) || !routesAligned || !/Evidence \/ authority/.test(platformMapHtml)) errors.push("PALO_PlatformMap.html: evidence/authority filtering must pair every visual route with a unique table route and matching evidence class");
   if (!/route-monitor[^>]+data-evidence-class=["']human-review-required["']/.test(platformMapHtml)) errors.push("PALO_PlatformMap.html: monitoring route must require human review");
   if (!/route-palo-ai-data[^>]+data-evidence-class=["']canonical-definition["']/.test(platformMapHtml) || !/PALO-AI v2\.7[\s\S]*Data Fitness Decision[\s\S]*not a production authorization service/.test(platformMapHtml)) errors.push("PALO_PlatformMap.html: current PALO-AI data-assurance route and production boundary are missing");
   if ((platformMapHtml.match(/href=["']CHANGELOG\.html["']/g) || []).length < 3 || (platformMapHtml.match(/href=["']feed\.xml["']/g) || []).length < 3) errors.push("PALO_PlatformMap.html: changelog and release-feed references must be available in the atlas, evidence section and footer");
