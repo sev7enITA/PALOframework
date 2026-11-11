@@ -21,5 +21,6 @@
   "app_qualified_by_this_release": false,
   "ci_receipt": "Published separately by release workflow; local test result does not establish CI or deployment",
   "tag_signature_status": "Must be checked on the published tag; not asserted by this local receipt",
-  "package_test_scope": "Standalone toolkit excludes the seven historical-adapter tests that depend on the separate evidence archive; repository test count is 76."
+  "package_test_scope": "Standalone toolkit passed 73 tests after extraction. Three historical-adapter tests require the separate evidence archive and remain in the 76-test repository suite.",
+  "standalone_package_tests_passed": 73
 }
