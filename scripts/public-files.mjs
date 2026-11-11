@@ -6,6 +6,7 @@ export const PUBLIC_FILES = [
   "assets/blueprintbench/next-cycle.js",
   "assets/blueprintbench/next-cycle.css",
   "downloads/blueprintbench/next-cycle-results.json",
+  "downloads/blueprintbench/qualification-roadmap.json",
   "downloads/blueprintbench/next-cycle-manifest.json",
   "downloads/blueprintbench/next-cycle-evidence.zip",
   "assets/blueprintbench/reviewer-diagnostics.js",
