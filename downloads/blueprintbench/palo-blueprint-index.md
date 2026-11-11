@@ -33,4 +33,8 @@ Publish an RFC and retain dissent before adopting a scoring rule. Changes to cor
 
 ## Domain proposal
 
-`blueprintbench.org` is the preferred proposed domain because it names the evaluation programme without tying the identity to a single composite. `paloblueprint.org` is an alternative. Neither is purchased or claimed to be available. The 11 November RDAP checks returned HTTP 403 and did not establish availability or price. Until a domain is selected and registered, the canonical URL remains the live PALO page.
+`paloblueprint.org` is the preferred candidate for a dedicated public home; `paloblueprintindex.org` is a longer alternative. Availability and price remain unverified: the 11 November 2026 RDAP checks returned HTTP 403. No domain has been purchased. The canonical URL remains the live PALO page until a registered domain and migration are explicitly established.
+
+The earlier preference for `blueprintbench.org` is withdrawn. Andon Labs already publishes [Blueprint-Bench / Blueprint-Bench 2](https://andonlabs.com/evals/blueprint-bench-2), a spatial floor-plan benchmark ([paper](https://arxiv.org/abs/2509.25229)). This is a discoverability and attribution concern, not a legal finding. PALO's business-document evaluation is unrelated to that work. Use the full PALO name in public references; existing repository paths and semantic identifiers remain stable pending a separately reviewed naming decision.
+
+A separate domain improves discoverability and gives the evaluation programme its own home. Independence requires actual external custody, review and decision authority, not a domain name. PALO Blueprint Index continues to mean the proposed summary metric; it is not evidence of accreditation or an available score.
