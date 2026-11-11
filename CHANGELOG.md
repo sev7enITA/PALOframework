@@ -1,5 +1,10 @@
 # Changelog
 
+## 11 November 2026: structured data and qualification protocol
+
+Presentation revision 2026-11-11.5 aligns the overview, dashboard and six-scenario metadata with the immutable internal evidence release. It records 6 fictional scenarios, 48 draft propositions, 60 completed requests and 17 of 18 workflow drafts passing structural checks. The [qualification protocol](PALO_BlueprintBench_NextCycle.html#qualification-plan) sets acceptance gates for real document families, generation, blind human gold, external custody, seeded-defect measurement and replicated comparisons. The gates remain open. Frozen observations, evaluator packages and model results are unchanged; no independent validation or numerical ranks are assigned.
+
+
 ## 11 November 2026: six-scenario engineering feasibility
 
 Separate publication revision 2026-11-11.4 records an internal cycle on six fictional procurement scenarios, 48 draft propositions, six workflow tasks and controlled source variations. Advisory reviews of P002/P013/P036 remain separate from human adjudication. The original cohort and evaluator release are unchanged. Source-linked drafts, failures, provisional-label disagreements and exports are available in the [six-scenario view](PALO_BlueprintBench_NextCycle.html). No numerical ranks or independent validation are assigned.
