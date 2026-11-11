@@ -1,5 +1,7 @@
 # Benchmark and leaderboard research
 
+Update, 11 November 2026: the [expanded reference comparison](benchmark-references.md) accounts for every entry in [terryyz/llm-benchmark](https://github.com/terryyz/llm-benchmark), checks primary sources and distinguishes frameworks, datasets, benchmarks and platforms. Its PALO differences are explicitly separated from capabilities already validated. The review below retains its original 10 November scope.
+
 Primary sources checked on 10 November 2026. This is a scoped methodological comparison, not a popularity ranking or an exhaustive literature review. Established evaluation platforms and newer task-specific research are distinguished. Current leaderboard scores are intentionally not copied: task versions, scaffolds and settings can make apparent comparisons misleading.
 
 | Reference | Relevant practice | What PALO should adopt | Boundary for our use |
