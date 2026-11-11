@@ -1,0 +1,311 @@
+{
+  "version": "2026-11-11.origins.1",
+  "as_of": "2026-11-11",
+  "definition": "Country of a documented business or operating base of the developer organization. The basis and source are stated for each entry. This is not model nationality, training location, serving provider location, data residency, legal domicile or a comprehensive list of global offices. Metadata was researched after the test campaign and does not alter its frozen records.",
+  "makers": [
+    {
+      "id": "openai",
+      "name": "OpenAI",
+      "countries": [
+        {
+          "code": "US",
+          "name": "United States"
+        }
+      ],
+      "status": "verified",
+      "basis": "OpenAI OpCo LLC registered office in San Francisco. Regional subsidiaries are not classified separately.",
+      "sources": [
+        {
+          "url": "https://openai.com/policies/privacy-policy/",
+          "title": "OpenAI privacy policy",
+          "checked_at": "2026-11-11"
+        }
+      ]
+    },
+    {
+      "id": "anthropic",
+      "name": "Anthropic",
+      "countries": [
+        {
+          "code": "US",
+          "name": "United States"
+        }
+      ],
+      "status": "verified",
+      "basis": "Anthropic PBC registered address in San Francisco.",
+      "sources": [
+        {
+          "url": "https://www.anthropic.com/legal/privacy",
+          "title": "Anthropic privacy policy",
+          "checked_at": "2026-11-11"
+        }
+      ]
+    },
+    {
+      "id": "google",
+      "name": "Google",
+      "countries": [
+        {
+          "code": "US",
+          "name": "United States"
+        }
+      ],
+      "status": "verified",
+      "basis": "Google organization at its documented Googleplex office in Mountain View. This is not the country of every Google DeepMind laboratory.",
+      "sources": [
+        {
+          "url": "https://about.google/company-info/locations/",
+          "title": "Google office locations",
+          "checked_at": "2026-11-11"
+        }
+      ]
+    },
+    {
+      "id": "nex-agi",
+      "name": "Nex AGI",
+      "countries": [],
+      "status": "not_verified",
+      "basis": "Official project information describes a collaboration; a single developer organization country has not been established in this review.",
+      "sources": [
+        {
+          "url": "https://nex-agi.com/n1/en/",
+          "title": "Nex project information",
+          "checked_at": "2026-11-11"
+        }
+      ]
+    },
+    {
+      "id": "reflection",
+      "name": "Reflection",
+      "countries": [
+        {
+          "code": "US",
+          "name": "United States"
+        }
+      ],
+      "status": "verified",
+      "basis": "Reflection AI Inc business address in Brooklyn, New York.",
+      "sources": [
+        {
+          "url": "https://reflection.ai/legal/terms-of-service/",
+          "title": "Reflection terms of service",
+          "checked_at": "2026-11-11"
+        }
+      ]
+    },
+    {
+      "id": "tencent",
+      "name": "Tencent",
+      "countries": [
+        {
+          "code": "CN",
+          "name": "China"
+        }
+      ],
+      "status": "verified",
+      "basis": "Tencent identifies its headquarters in Shenzhen, China.",
+      "sources": [
+        {
+          "url": "https://www.tencent.com/who-we-are/our-story/",
+          "title": "Tencent company story",
+          "checked_at": "2026-11-11"
+        }
+      ]
+    },
+    {
+      "id": "mistralai",
+      "name": "Mistral AI",
+      "countries": [
+        {
+          "code": "FR",
+          "name": "France"
+        }
+      ],
+      "status": "verified",
+      "basis": "Mistral AI registered office in Paris, France.",
+      "sources": [
+        {
+          "url": "https://mistral.ai/fr/legal/",
+          "title": "Mistral legal notice",
+          "checked_at": "2026-11-11"
+        }
+      ]
+    },
+    {
+      "id": "baidu",
+      "name": "Baidu",
+      "countries": [
+        {
+          "code": "CN",
+          "name": "China"
+        }
+      ],
+      "status": "verified",
+      "basis": "Baidu identifies its headquarters in Beijing, China.",
+      "sources": [
+        {
+          "url": "https://ir.baidu.com/shareholder-services/investor-faqs",
+          "title": "Baidu investor FAQs",
+          "checked_at": "2026-11-11"
+        }
+      ]
+    },
+    {
+      "id": "upstage",
+      "name": "Upstage",
+      "countries": [
+        {
+          "code": "KR",
+          "name": "South Korea"
+        }
+      ],
+      "status": "verified",
+      "basis": "Upstage Co Ltd official business address in Seoul.",
+      "sources": [
+        {
+          "url": "https://www.upstage.ai/contact-us",
+          "title": "Upstage contact and business information",
+          "checked_at": "2026-11-11"
+        }
+      ]
+    },
+    {
+      "id": "cohere",
+      "name": "Cohere",
+      "countries": [
+        {
+          "code": "CA",
+          "name": "Canada"
+        }
+      ],
+      "status": "verified",
+      "basis": "Cohere privacy contact business address in Toronto. This does not assert exclusive headquarters or classify all offices.",
+      "sources": [
+        {
+          "url": "https://cohere.com/privacy",
+          "title": "Cohere privacy policy",
+          "checked_at": "2026-11-11"
+        }
+      ]
+    },
+    {
+      "id": "prism-ml",
+      "name": "PrismML",
+      "countries": [
+        {
+          "code": "US",
+          "name": "United States"
+        }
+      ],
+      "status": "verified",
+      "basis": "Official engineering vacancies list Pasadena or San Francisco as their work locations. This is a documented operating base, not a legal domicile finding.",
+      "sources": [
+        {
+          "url": "https://prismml.com/careers",
+          "title": "PrismML careers",
+          "checked_at": "2026-11-11"
+        }
+      ]
+    },
+    {
+      "id": "inference-net",
+      "name": "Inference.net",
+      "countries": [
+        {
+          "code": "US",
+          "name": "United States"
+        }
+      ],
+      "status": "verified",
+      "basis": "Inference R&D Inc legal contact address in San Francisco.",
+      "sources": [
+        {
+          "url": "https://inference.net/terms-of-service/",
+          "title": "Inference.net terms of service",
+          "checked_at": "2026-11-11"
+        }
+      ]
+    },
+    {
+      "id": "qwen",
+      "name": "Qwen / Alibaba",
+      "countries": [
+        {
+          "code": "CN",
+          "name": "China"
+        }
+      ],
+      "status": "verified",
+      "basis": "Alibaba states its main operating executive offices are in Hangzhou. This describes the operating organization, not its holding company jurisdiction.",
+      "sources": [
+        {
+          "url": "https://home.alibabagroup.com/en-US/faqs-corporate-information",
+          "title": "Alibaba corporate information",
+          "checked_at": "2026-11-11"
+        },
+        {
+          "url": "https://www.alibabagroup.com/en-US/ai-governance/qwen",
+          "title": "Alibaba Qwen model family",
+          "checked_at": "2026-11-11"
+        }
+      ]
+    },
+    {
+      "id": "z-ai",
+      "name": "Z.ai / Zhipu",
+      "countries": [
+        {
+          "code": "CN",
+          "name": "China"
+        }
+      ],
+      "status": "verified",
+      "basis": "Zhipu official company contact address in Beijing. This is not the jurisdiction of every serving entity.",
+      "sources": [
+        {
+          "url": "https://www.zhipuai.cn/en/contact",
+          "title": "Zhipu contact information",
+          "checked_at": "2026-11-11"
+        }
+      ]
+    },
+    {
+      "id": "deepseek",
+      "name": "DeepSeek",
+      "countries": [
+        {
+          "code": "CN",
+          "name": "China"
+        }
+      ],
+      "status": "verified",
+      "basis": "Hangzhou DeepSeek Artificial Intelligence Co Ltd registered address in China.",
+      "sources": [
+        {
+          "url": "https://cdn.deepseek.com/policies/en-US/deepseek-privacy-policy.html",
+          "title": "DeepSeek privacy policy",
+          "checked_at": "2026-11-11"
+        }
+      ]
+    },
+    {
+      "id": "sakana",
+      "name": "Sakana AI",
+      "countries": [
+        {
+          "code": "JP",
+          "name": "Japan"
+        }
+      ],
+      "status": "verified",
+      "basis": "Sakana AI identifies itself as a Tokyo-based research and development company.",
+      "sources": [
+        {
+          "url": "https://sakana.ai/company-info/",
+          "title": "Sakana AI company information",
+          "checked_at": "2026-11-11"
+        }
+      ]
+    }
+  ]
+}

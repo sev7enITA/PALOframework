@@ -1,11 +1,63 @@
 # Changelog
 
+## 11 November 2026: metric ranks and developer-country filters
+
+Metric-specific internal ranks with ties, sourced developer-country filtering and sorting, selectable KPI columns and CSV/JSON exports of the current ordered view. Visibility filters preserve the full eligible cohort ranking. Country does not establish serving location or data residency. Frozen measurements and qualification are unchanged. [Open results](https://paloframework.org/PALO_BlueprintBench_Leaderboard.html#workspace).
+
+## 11 November 2026: temporal model results
+
+Interactive timestamp scatter chart with model, provider, case and metric controls, source-bound timestamps and CSV/SVG exports. Collection order does not measure model improvement. Internal-test scores unchanged. [Open chart](https://paloframework.org/PALO_BlueprintBench_Leaderboard.html#temporal-model-results).
+
+## 11 November 2026: internal cross-model review
+
+Published GLM, Gemini and local Qwen countertests: 96/108 assigned judgments on 36 selected items, three observed disagreements, 12 GLM capacity-blocked judgments, disclosed Qwen format projection. Primary scores unchanged; internal testing, not independent validation. [Inspect evidence](https://paloframework.org/PALO_BlueprintBench_Leaderboard.html#adversarial-review).
+
+## BlueprintBench interactive results dashboard | 2026-11-11
+
+Added verification-only Pareto views, case-specific label agreement, repetition variability, latest test timestamps and an interactive evidence workflow. Results retain fixed denominators, draft-label status and missing-cost boundaries. Result challenges open a prefilled GitHub issue for the visitor to review. Public presentation access is withdrawn; Markdown references open rendered GitHub documents.
+
+[Open the leaderboard](PALO_BlueprintBench_Leaderboard.html)
+
+
+## BlueprintBench identity and internal cohort | 2026-11-11
+
+The overview and leaderboard share 18 model IDs and 28 cohort/configuration records. Internal procurement tests retain 324 assigned slots, 306 dispatched requests, 299 complete responses, 7 failed or incomplete responses and 18 pre-call blocks. Added the BlueprintBench identity, an evidence-linked Internal testing badge and revised result exploration. Independent qualification and PBI remain open.
+
+[Leaderboard](PALO_BlueprintBench_Leaderboard.html) | [Badge usage](https://github.com/sev7enITA/PALO-BlueprintBench/blob/3effa4c/docs/brand-usage.md)
+
+
+## PALO BlueprintBench research release v0.3.0-pilot.1 | 2026-11-11
+
+- Published research release v0.3.0-pilot.1, explorer 0.3.0 and evaluator/evidence contract 0.2.0 for specification fidelity; the first planned study focuses on procurement.
+- Corrected critical-error equivalence counting, calculated acceptance, raw-output traceability, annotation consistency, termination states and cost accounting. A single executable JSON Schema defines the scoped evidence contract.
+- Passed 42 evaluator tests and reproduced all 26 retained historical structural-check counts offline. Published the harness, raw responses and requests, deterministic packages and source hashes.
+- Updated the homepage, explorer configuration disclosures, downloadable CSV fields and taxonomy mappings. Qualified held-out results remain zero; no PBI score, independent registration or new Workbench app qualification is claimed.
+
+
+## PALO BlueprintBench and PALO Blueprint Index | 2026-11-11
+
+- Published the model comparison explorer with ten historical configurations, charts, property filters, four-model comparisons and CSV export.
+- Introduced PALO Blueprint Index (PBI) as the proposed aggregate index within BlueprintBench; formula, weights and qualification gates remain under development, with no assigned score.
+- Published the dedicated [research repository](https://github.com/sev7enITA/PALO-BlueprintBench) and `v0.2.0-pilot.1`, including the evaluator, protocol, contribution policy and source for fifteen slides with actual application captures.
+- Linked BlueprintBench, PBI and Document Workbench in the homepage and Platform Map; added the version 0.1.0 vocabulary, SKOS taxonomy and OWL extension.
+- Technical checks for the pilot include 17 evaluator tests, CI on Python 3.10/3.13 and structured-data checks. These do not establish independent benchmark qualification or a new qualified Workbench release.
+
+
 All notable changes to the PALO Framework are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project follows Semantic Versioning where practical.
 
 ---
+
+## Copilot Studio and Azure private pilot: development evidence - 2026-10-27
+
+- Published an [illustrated pilot report](PALO_CopilotPilot.html), a [configuration and development record](docs/palo-azure-copilot-pilot.html), actual pilot captures, an English 120-second video and a public evidence summary.
+- Documented the local workspace redesign, Entra roles and delegated scopes, federated connector authentication without a client secret, HTTPS runtime, MCP request boundary and reviewer access.
+- Recorded a real Copilot catalogue read at price 100/version 1, denial of proposal 151, and review-required proposal 120 expiring without execution.
+- Repaired expired-request withdrawal and verified one reviewer withdrawal with zero executions and zero target writes. The same 89-test suite passed locally and on Azure Linux.
+- Published intended benefits, KPI definitions and open qualification gates. Full approval, execution and replay remain unqualified; the two identities are operated by one person. The private connector is not a Marketplace release or Microsoft-certified product.
+- This documentation and media publication does not activate services, renew mandates or change the public Governance Hub's illustrative status. Core framework versions are unchanged.
 
 ## 2026-10-22 - PALO AI FinOps 1.3
 
@@ -30,24 +82,35 @@ and this project follows Semantic Versioning where practical.
 - Added scoped evidence ceilings, freshness checks, conservative profiles, critical-gap priorities, historical comparison, local JSON/Markdown exchange and draft Case File snapshots. Missing evidence remains unresolved; no national ranking, certification or runtime authorization is produced.
 - Connected the module to the homepage, Assessment Path, Platform Map, Documentation Library, release feed and sitemap. The independent PALO rubric remains experimental and requires empirical pilot validation.
 
+
+## Source review follow-up - 2026-10-12
+
+- Substantively reviewed the six overdue NIST, EU and Rogue AI Tracker references. The dated review record preserves prior entries, source editions, acquisition evidence and revised deadlines; the separate OWASP entry remains unknown.
+- Clarified Article 50 control-pack questions and timely, accessible disclosures, and distinguished PALO's competence assessments from the amended Article 4 literacy provision.
+- Added a public source-review addendum and refreshed current source, control-pack and integrity records. Earlier catalogue data and PDF remain historical snapshots. This follows the metadata-only reconciliation below and does not change runtime admission or ontology versions.
+
+## Documentation maintenance - 2026-10-12
+
+- Added dedicated taxonomy/dictionary and ontology/verification sections, a searchable 65-schema catalogue and the complete technical PDF.
+- Added PolicyWatcher batch, operational registry and browser-local review ledger vocabulary; preserved transport, review and action-authority boundaries.
+- Published an explicit correspondence between five historical PALO-AM activities and six canonical phases; separated the CECR meanings and aligned matrix and simulator on "Redesign required".
+- Reconciled source-review metadata and both semantic/Knowledge Reader integrity manifests. Review deadlines retain their original verification dates.
+- Added a publication inventory and a separate deployment receipt. Core ontology versions, runtime maturity and production admission remain unchanged.
+
+
+
 ## [Unreleased]
 
-- Archived elapsed August/September activation windows, clarified historical radar counts, and recorded that the official OWASP risk index still names the 2025 edition; the supplied 2026-labelled artifact remains informative.
 
-- Corrected mobile wrapping in the comparison-tool header and poisoning-study footer; made privacy tables keyboard-scrollable within the viewport.
+### PALO Mobile 3.0 release candidate
 
-- Reviewed public maturity statements on 17 September 2026. Published a dated comparison of the ANS SDK bridge and the separate swarm source snapshot, six scoped matrix entries, source-bound swarm verification metadata and implementation guides. The published runtime still has 21 contracts and 45 tools; swarm snapshot counts are explicitly separate. Updated Regulatory Watch with the Article 50(2) transition and consolidated legal source.
+Mobile 3.0.0-rc.2 retains canonical control assignment, guarded gate decisions, Case File exchange and saved assistant drafts from RC1. It adds a scene-based iOS lifecycle, adaptive Observatory/research panes, a guarded iOS 27.1 reserved-region bridge for iPhone Duo, and structured PolicyWatcher research requests with explicit payload confirmation and local provenance. Intake receipts are not running scans: discovery and publication require the existing authenticated operator workflow. Features, changelog and Italian/English store descriptions are updated in `deliverables/palo-mobile-3.0-20260920/duo-policywatcher-rc2/`. The framework remains 3.1.0. The mobile candidate is not published: Xcode 27.1 beta and its iOS 27.1 Duo runtime are now installed. iOS development build 30005 compiles the reserved-region branch and launches on Duo/iOS 27.1 and iPhone/iOS 27.0; posture, visual and device qualification, distribution signing, assistant evaluation and PolicyWatcher end-to-end qualification remain release gates. See `deliverables/palo-mobile-3.0-20260920/duo-sdk-qualification/README.md` for this additional verification.
+
 
 ### Added
 
-- Published the experimental ANS SDK integration guide with an eight-scenario offline demo, separate enterprise delegation and explicit hosted-service and production qualification gaps.
+- Added a swarm-governance reference implementation with immutable mandates, atomic shared-exposure budgets, signed event chains, revision-bound member admission/removal and five tenant-bound MCP tools. An opt-in dispatcher coordinates remote workers through authenticated leases and single-use starts, with durable cancellation requests, authoritative stop observations and reconciliation. Multi-process tests and demos cover shared budgets, crashes, partitions and late effects. Controller HA and production assurance remain unavailable.
 
-- Added Fabrizio Degni's doctoral thesis in Computer Science at EIMT to Recognition, with the full title, submission committee and a direct link from the Community creator profile.
-- Published the 14 September 2026 Observatory review with three dated, primary-source monitoring briefs, homepage and Case 001 follow-up links, and an RSS entry.
-- Added explicit project attribution to Fabrizio Degni across the homepage, Community profile, Recognition, toolkits and generated documentation.
-
-- Added the first-class Ask PALO Governance Hub view and a separate production-capable Knowledge Copilot BFF with OIDC/PKCE sessions, in-memory CSRF handling, PostgreSQL session durability, Reader client credentials, exact six-tool MCP validation, stateless model synthesis, canonical citation validation and explicit insufficient-evidence results.
-- Added a hardened standalone Ask PALO deployment profile with a pinned non-root Distroless image, read-only filesystem, loopback-only Compose port, file-mounted secrets, TLS/nginx rate limits, query-free OIDC access logging, deployment smoke tests and an exact-digest live qualification checklist.
 - Added a permanent Observatory index connecting the AI Incident Observatory, Regulatory Watch, 2026 Tech Trends and Human Agency Risk Map through explicit Gold Case, Monitoring Brief and Candidate Under Review publication states.
 - Added an AI incident investigation route to Platform Map, plus exact Knowledge Reader and Knowledge Curator maturity boundaries and the disabled-by-default external incident provider state.
 - Added a dedicated stateless PALO Knowledge Reader production candidate: exact six-tool server, canonical-only content, fail-closed release digests, strict OIDC/HTTPS admission, request and rate limits, non-root minimal image, volume-free Compose profiles and deployment-specific live qualification gates.
@@ -57,14 +120,6 @@ and this project follows Semantic Versioning where practical.
 
 ### Changed
 
-- Completed the public sitemap from the indexable page inventory, added bidirectional coverage validation, corrected four Italian document language declarations and repaired the n8n license reference.
-- Refreshed the validated PolicyWatcher registry and rebuilt the Governance Hub from the same snapshot for the website publication.
-
-- Aligned the homepage, Regulatory Watch and FRIA review dates; updated GPAI enforcement and the AI Omnibus timeline against the Commission's current overview.
-- Wrapped FRIA header actions on narrow screens so Template, Import and Export remain within the viewport.
-
-- Updated root and Governance Hub dependency locks to patched compatible releases; both npm audit scopes report zero known vulnerabilities at implementation time.
-- Published cache-safe, versioned Case 001 stylesheet, texture and PNG paths, plus non-transformed full-resolution PNG ZIP downloads, while retaining the previous asset names as compatibility copies.
 - Migrated Community to the shared PALO 3.1 visual system, removed third-party style and font dependencies, reconciled shared navigation around the Observatory index and corrected public changelog routes to the generated HTML view.
 - Remote OIDC MCP listeners now fail closed unless explicit client and tenant allowlists are configured, and every listener must use the exact host validated when its app was created. Loopback evaluation compatibility covers IPv4 127/8 plus canonical and expanded IPv6 loopback forms, while IdP audience identifiers distinct from the public resource URL remain supported.
 - Redacted deployment identifiers, account addresses, credential rotation details and billing state from public Knowledge Reader documentation while preserving control design and qualification status.

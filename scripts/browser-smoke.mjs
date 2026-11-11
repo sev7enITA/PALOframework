@@ -514,15 +514,17 @@ try {
   for (const state of ["Implemented", "Foundation", "Research"]) {
     if (!await page.locator(".state-badge", { hasText: state }).first().isVisible()) failures.push(`Platform Map: ${state} state is missing`);
   }
-  if (await page.locator("[data-map-route]").count() !== 16 || await page.locator("[data-map-row]").count() !== 16) failures.push("Platform Map: topology and table must both contain 16 routes");
+  const mapRouteCount = await page.locator("[data-map-route]").count();
+  const reviewRouteCount = await page.locator('[data-map-route][data-evidence-class="human-review-required"]').count();
+  if (mapRouteCount < 16 || await page.locator("[data-map-row]").count() !== mapRouteCount) failures.push("Platform Map: topology and table must contain the same complete route set");
   await page.locator("#map-stakeholder").selectOption("risk");
   await page.waitForFunction(() => document.documentElement.getAttribute("data-platform-map-results") === "3");
   if (await page.locator("[data-map-route]:visible").count() !== 3 || await page.locator("[data-map-row]:visible").count() !== 3) failures.push("Platform Map: visual and table filters are not synchronized");
   await page.locator("#map-reset").click();
-  await page.waitForFunction(() => document.documentElement.getAttribute("data-platform-map-results") === "16");
+  await page.waitForFunction((count) => document.documentElement.getAttribute("data-platform-map-results") === String(count), mapRouteCount);
   await page.locator("#map-evidence-class").selectOption("human-review-required");
-  await page.waitForFunction(() => document.documentElement.getAttribute("data-platform-map-results") === "3");
-  if (await page.locator('[data-map-route][data-evidence-class="human-review-required"]:visible').count() !== 3 || await page.locator('[data-map-row][data-evidence-class="human-review-required"]:visible').count() !== 3) failures.push("Platform Map: evidence/authority filter is not synchronized");
+  await page.waitForFunction((count) => document.documentElement.getAttribute("data-platform-map-results") === String(count), reviewRouteCount);
+  if (await page.locator('[data-map-route][data-evidence-class="human-review-required"]:visible').count() !== reviewRouteCount || await page.locator('[data-map-row][data-evidence-class="human-review-required"]:visible').count() !== reviewRouteCount) failures.push("Platform Map: evidence/authority filter is not synchronized");
   await page.locator("#map-reset").click();
   const mapPolicyLink = page.locator('[data-route-id="route-monitor"] a[href="https://www.policywatcher.online/"]').first();
   if (!await mapPolicyLink.isVisible()) failures.push("Platform Map: live PolicyWatcher destination is missing from Receive monitoring signals");

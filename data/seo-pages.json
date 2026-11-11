@@ -5,7 +5,7 @@
       "title": "Changelog | PALO Documentation",
       "description": "Track PALO releases, governance tools, evidence contracts and documented changes, with a clear distinction between released features and preview work.",
       "lang": "en",
-      "dateModified": "2026-10-12",
+      "dateModified": "2026-11-11",
       "type": "TechArticle",
       "image": "assets/seo/palo-governance.png"
     },
@@ -21,7 +21,7 @@
       "title": "AI Agent Governance for n8n and MCP | PALO-AI",
       "description": "Explore policy gates, human approval, governed execution and outcome evidence for AI agents with the PALO-AI developer preview.",
       "lang": "en",
-      "dateModified": "2026-09-25",
+      "dateModified": "2026-10-23",
       "image": "assets/seo/palo-agentic-governance.png",
       "breadcrumbLabel": "PALO-AI governance"
     },
@@ -64,7 +64,7 @@
       "title": "Agentic AI Governance and Delegated Authority | PALO-AM",
       "description": "Govern AI agent identity, delegated authority, autonomy, oversight and reversibility with PALO-AM, the agentic governance modality of PALO Framework.",
       "lang": "en",
-      "dateModified": "2026-10-12",
+      "dateModified": "2026-10-23",
       "image": "assets/seo/palo-agentic-governance.png",
       "breadcrumbLabel": "Agentic governance"
     },
@@ -92,10 +92,10 @@
       "image": "assets/seo/palo-governance.png"
     },
     "PALO_Community.html": {
-      "title": "Fabrizio Degni and the PALO Framework Community",
-      "description": "Meet Fabrizio Degni, creator and maintainer of PALO Framework, and explore open contribution, research and evidence-based AI governance collaboration.",
+      "title": "Community & Beyond PALO | People, Research & Collaboration",
+      "description": "Meet the PALO team. Join universities, independent researchers, auditors and developers building open, evidence-based AI governance.",
       "lang": "en",
-      "dateModified": "2026-09-23",
+      "dateModified": "2026-10-27",
       "image": "assets/seo/palo-governance.png"
     },
     "PALO_CompanionApp.html": {
@@ -125,7 +125,7 @@
       "title": "AI Governance Guides and Templates | PALO Documentation",
       "description": "Find PALO guides, worked cases, governance templates, semantic contracts and integration examples by role, task and evidence status.",
       "lang": "en",
-      "dateModified": "2026-10-12",
+      "dateModified": "2026-10-27",
       "image": "assets/seo/palo-governance.png",
       "breadcrumbLabel": "Documentation Library"
     },
@@ -223,7 +223,7 @@
       "title": "Platform Map | PALO Framework",
       "description": "Operational atlas of PALO v3.1 and the independently versioned PALO-AI v2.7 developer preview, with lifecycle routes, public artifacts, release evidence and authority boundaries.",
       "lang": "en",
-      "dateModified": "2026-09-23",
+      "dateModified": "2026-11-11",
       "image": "assets/seo/palo-governance.png"
     },
     "PALO_PoisoningStudy.html": {
@@ -844,7 +844,7 @@
       "title": "PALO Framework | Open-Source AI Governance Toolkit",
       "description": "Assess AI risks, document fundamental-rights impacts and build reviewable evidence with PALO's open-source governance toolkit by Fabrizio Degni.",
       "lang": "en",
-      "dateModified": "2026-09-25",
+      "dateModified": "2026-11-11",
       "image": "assets/seo/palo-governance.png"
     },
     "media/README.html": {
@@ -977,9 +977,9 @@
     },
     "docs/ai-governance-evidence-worked-example.html": {
       "title": "AI Governance Evidence: A Worked Example | PALO",
-      "description": "Follow a fictional invoice-agent case from authority boundaries to expected effects, review conditions and a locally exported PALO evidence bundle.",
+      "description": "Inspect a fictional invoice agent's authority, expected effects and evidence gaps, with a field-by-field review checklist and downloadable PALO Case File.",
       "lang": "en",
-      "dateModified": "2026-09-25",
+      "dateModified": "2026-10-23",
       "type": "TechArticle",
       "image": "assets/seo/palo-governance.png"
     },
@@ -1040,7 +1040,7 @@
       "title": "Agentic governance taxonomy and dictionaries | PALO",
       "description": "Detailed PALO classifications for lifecycle, authority, delegation, actions, evidence, controls and external policy signals, with exact schema dictionaries.",
       "lang": "en",
-      "dateModified": "2026-10-12",
+      "dateModified": "2026-11-11",
       "type": "TechArticle",
       "image": "assets/seo/palo-governance.png"
     },
@@ -1048,7 +1048,7 @@
       "title": "Agentic governance ontologies and verification | PALO",
       "description": "PALO RDF and OWL classes, SHACL constraints, draft stack relationships and their connection to reference execution contracts and verification.",
       "lang": "en",
-      "dateModified": "2026-10-12",
+      "dateModified": "2026-11-11",
       "type": "TechArticle",
       "image": "assets/seo/palo-governance.png"
     },
@@ -1056,7 +1056,7 @@
       "title": "Agentic governance semantic catalogues | PALO",
       "description": "Search the PALO JSON Schema dictionary, controlled values, RDF inventory and versioned governance registries.",
       "lang": "en",
-      "dateModified": "2026-10-12",
+      "dateModified": "2026-11-11",
       "type": "TechArticle",
       "image": "assets/seo/palo-governance.png"
     },
@@ -1083,6 +1083,50 @@
       "lang": "en",
       "type": "TechArticle",
       "image": "assets/seo/palo-governance.png"
+    },
+    "PALO_ChatGPTPlugin.html": {
+      "title": "PALO Governance for ChatGPT: Development and Evidence | PALO",
+      "description": "Six PALO governance skills, a read-only MCP Reader draft, actual screenshots, code, tests and an English press kit. Integration and public review remain pending.",
+      "lang": "en",
+      "type": "TechArticle",
+      "image": "media/chatgpt-plugin/slide-01.png",
+      "dateModified": "2026-10-27",
+      "breadcrumbLabel": "ChatGPT plugin development"
+    },
+    "PALO_CopilotPilot.html": {
+      "title": "PALO with Copilot Studio and Azure: Pilot and Evidence | PALO",
+      "description": "Explore PALO's private Copilot Studio and Azure pilot: real reads, denied changes, recovery, architecture, screenshots and a two-minute film.",
+      "lang": "en",
+      "dateModified": "2026-10-27",
+      "type": "TechArticle",
+      "image": "media/copilot-pilot/cover.jpg",
+      "breadcrumbLabel": "Copilot Studio and Azure pilot"
+    },
+    "docs/palo-azure-copilot-pilot.html": {
+      "title": "Copilot Studio and Azure Pilot Development Record | PALO Documentation",
+      "description": "Implemented configuration, observed tool calls, expiry recovery, operational lessons, KPI plan and remaining qualification gates for the private PALO pilot.",
+      "lang": "en",
+      "dateModified": "2026-10-27",
+      "type": "TechArticle",
+      "image": "media/copilot-pilot/cover.jpg",
+      "breadcrumbLabel": "Copilot pilot development record"
+    },
+    "PALO_DocumentWorkbench.html": {
+      "title": "PALO Document Workbench: Mac Pilot and 100 MB Benchmarks",
+      "description": "Measured local processing of three public PDF repositories above 100 MB, reviewed blueprint exports, quality audit and engineering candidate limitations.",
+      "lang": "en",
+      "dateModified": "2026-11-10",
+      "type": "SoftwareApplication",
+      "image": "media/document-workbench/setup-reuse.png",
+      "breadcrumbLabel": "Document Workbench pilot"
+    },
+    "PALO_BlueprintBench.html": {
+      "title": "PALO Blueprint Index | BlueprintBench",
+      "description": "Compare model configurations, explore diagnostic results and contribute to business blueprint evaluation. Open research pilot; PBI specification in development.",
+      "lang": "en",
+      "dateModified": "2026-11-11",
+      "type": "CollectionPage",
+      "breadcrumbLabel": "BlueprintBench"
     }
   }
 }

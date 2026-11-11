@@ -14,7 +14,7 @@
     "semantic:validate": "node scripts/validate-semantic.mjs",
     "semantic:release": "node scripts/generate-semantic-release.mjs",
     "semantic:release:check": "node scripts/generate-semantic-release.mjs --check",
-    "validate:text-style": "node scripts/validate-text-style.mjs --tracked",
+    "validate:text-style": "node --test scripts/text-style-policy.test.mjs && node scripts/validate-text-style.mjs --tracked",
     "evidence:validate": "node scripts/evidence-validate.mjs",
     "evidence:test": "node --test scripts/evidence-pack.test.mjs",
     "external-evidence:validate": "node scripts/validate-external-evidence.mjs",

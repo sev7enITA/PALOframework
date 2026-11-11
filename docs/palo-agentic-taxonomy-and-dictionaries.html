@@ -1,0 +1,766 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Agentic governance taxonomy and dictionaries | PALO</title>
+  <link rel="icon" type="image/webp" href="../assets/logo.webp">
+  <link rel="stylesheet" href="../assets/palo-icons.css?v=3.1.0-2140f91eb421cb89">
+  <link rel="stylesheet" href="../assets/palo-v21.css?v=3.1.0-dffc45de998d7015">
+  <link rel="stylesheet" href="../assets/palo-docs.css?v=3.1.0-ddd04330b05868ab">
+  <script src="../assets/palo-icons.js?v=3.1.0-c07be8daa6f1971f" defer></script>
+  <script src="../assets/palo-v21.js?v=3.1.0-46dec1ba310fa4e3" defer></script>
+  <script src="../assets/palo-docs.js?v=3.1.0-ab530e5da828995e" defer></script>
+    <link rel="stylesheet" href="../assets/palo-authorship.css?v=3.1.0-5d2afd7a8195555d" data-palo-authorship-style="true">
+    <meta name="description" content="Detailed PALO classifications for lifecycle, authority, delegation, actions, evidence, controls and external policy signals, with exact schema dictionaries.">
+    <meta name="author" content="Fabrizio Degni">
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <link rel="canonical" href="https://paloframework.org/docs/palo-agentic-taxonomy-and-dictionaries.html">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Agentic governance taxonomy and dictionaries | PALO">
+    <meta property="og:description" content="Detailed PALO classifications for lifecycle, authority, delegation, actions, evidence, controls and external policy signals, with exact schema dictionaries.">
+    <meta property="og:url" content="https://paloframework.org/docs/palo-agentic-taxonomy-and-dictionaries.html">
+    <meta property="og:site_name" content="PALO Framework">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:image" content="https://paloframework.org/assets/seo/palo-governance.png">
+    <meta property="og:image:alt" content="Agentic governance taxonomy and dictionaries | PALO - PALO Framework">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:type" content="image/png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Agentic governance taxonomy and dictionaries | PALO">
+    <meta name="twitter:description" content="Detailed PALO classifications for lifecycle, authority, delegation, actions, evidence, controls and external policy signals, with exact schema dictionaries.">
+    <meta name="twitter:image" content="https://paloframework.org/assets/seo/palo-governance.png">
+    <meta name="twitter:image:alt" content="Agentic governance taxonomy and dictionaries | PALO - PALO Framework">
+    <script type="application/ld+json" id="palo-seo-graph">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://paloframework.org/PALO_Community.html#creator",
+      "name": "Fabrizio Degni",
+      "url": "https://paloframework.org/PALO_Community.html#creator",
+      "description": "Creator and maintainer of PALO Framework, its AI governance methodology, software and documentation.",
+      "sameAs": [
+        "https://www.linkedin.com/in/fdegni/"
+      ]
+    },
+    {
+      "@type": "CreativeWork",
+      "@id": "https://paloframework.org/#framework",
+      "name": "PALO Framework",
+      "alternateName": "Principled AI Lifecycle Orchestration",
+      "url": "https://paloframework.org/",
+      "creator": {
+        "@id": "https://paloframework.org/PALO_Community.html#creator"
+      },
+      "description": "An open-source AI governance framework connecting lifecycle decisions, risk and impact assessment, controls, indicators and reviewable evidence.",
+      "sameAs": [
+        "https://github.com/sev7enITA/PALOframework"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://paloframework.org/#website",
+      "url": "https://paloframework.org/",
+      "name": "PALO Framework",
+      "alternateName": "PALO",
+      "publisher": {
+        "@id": "https://paloframework.org/PALO_Community.html#creator"
+      },
+      "about": {
+        "@id": "https://paloframework.org/#framework"
+      },
+      "inLanguage": [
+        "en",
+        "it"
+      ]
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://paloframework.org/docs/palo-agentic-taxonomy-and-dictionaries.html#webpage",
+      "url": "https://paloframework.org/docs/palo-agentic-taxonomy-and-dictionaries.html",
+      "name": "Agentic governance taxonomy and dictionaries | PALO",
+      "description": "Detailed PALO classifications for lifecycle, authority, delegation, actions, evidence, controls and external policy signals, with exact schema dictionaries.",
+      "inLanguage": "en",
+      "isPartOf": {
+        "@id": "https://paloframework.org/#website"
+      },
+      "about": {
+        "@id": "https://paloframework.org/#framework"
+      },
+      "author": {
+        "@id": "https://paloframework.org/PALO_Community.html#creator"
+      },
+      "dateModified": "2026-10-12",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://paloframework.org/assets/seo/palo-governance.png"
+      },
+      "breadcrumb": {
+        "@id": "https://paloframework.org/docs/palo-agentic-taxonomy-and-dictionaries.html#breadcrumb"
+      }
+    },
+    {
+      "@type": "TechArticle",
+      "@id": "https://paloframework.org/docs/palo-agentic-taxonomy-and-dictionaries.html#article",
+      "headline": "Agentic governance taxonomy and dictionaries | PALO",
+      "description": "Detailed PALO classifications for lifecycle, authority, delegation, actions, evidence, controls and external policy signals, with exact schema dictionaries.",
+      "inLanguage": "en",
+      "dateModified": "2026-10-12",
+      "author": {
+        "@id": "https://paloframework.org/PALO_Community.html#creator"
+      },
+      "publisher": {
+        "@id": "https://paloframework.org/PALO_Community.html#creator"
+      },
+      "about": {
+        "@id": "https://paloframework.org/#framework"
+      },
+      "mainEntityOfPage": {
+        "@id": "https://paloframework.org/docs/palo-agentic-taxonomy-and-dictionaries.html#webpage"
+      },
+      "image": "https://paloframework.org/assets/seo/palo-governance.png"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://paloframework.org/docs/palo-agentic-taxonomy-and-dictionaries.html#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "PALO Framework",
+          "item": "https://paloframework.org/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Documentation Library",
+          "item": "https://paloframework.org/PALO_DocumentationLibrary.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Agentic governance taxonomy and dictionaries | PALO",
+          "item": "https://paloframework.org/docs/palo-agentic-taxonomy-and-dictionaries.html"
+        }
+      ]
+    }
+  ]
+}
+    </script>
+</head>
+<body class="palo-v21 palo-doc-page" data-doc-source="docs/palo-agentic-taxonomy-and-dictionaries.md">
+  <a class="palo-skip-link" href="#main-content">Skip to main content</a>
+  <header class="palo-site-header"><div class="palo-shell palo-header-inner">
+    <a class="palo-brand" href="../"><img src="../assets/logo.webp" alt="PALO">PALO FRAMEWORK</a>
+    <button class="palo-menu-toggle" type="button" data-palo-menu-toggle aria-expanded="false" aria-controls="palo-primary-nav" aria-label="Open navigation"><span data-palo-icon="menu" aria-hidden="true"></span></button>
+    <nav class="palo-nav" id="palo-primary-nav" aria-label="Primary navigation"><a href="../designs/theory-to-practice-infographic/">Start</a><a href="../PALO_AIGovernance.html">Agentic Governance</a><a href="../governance-hub/">Governance Hub</a><a href="../#guided-journeys">Tools</a><a href="../PALO_DocumentationLibrary.html" aria-current="page">Documentation</a><a href="../PALO_AIProductionReadiness.html">Readiness</a></nav>
+  </div></header>
+  <main id="main-content" class="palo-doc-main"><p class="palo-tri-graph-discovery"><a href="../PALO_TriGraphGovernance.html">Tri-Graph Governance: knowledge, context and guarded procedures</a>  |  Explore the linked ontology, taxonomy and dictionary, inspect decision checks and review the evidence limits of the additive reference profile.</p>
+
+    <div class="palo-shell">
+      <nav class="palo-doc-breadcrumb" aria-label="Breadcrumb"><a href="../">PALO Framework</a><span aria-hidden="true">/</span><a href="../PALO_DocumentationLibrary.html">Documentation Library</a><span aria-hidden="true">/</span><span aria-current="page">PALO taxonomy and controlled dictionaries for agentic governance</span></nav>
+      <header class="palo-doc-hero"><p class="palo-eyebrow">Start and adoption | Public documentation</p><h1>PALO taxonomy and controlled dictionaries for agentic governance</h1><p class="palo-lead">Detailed PALO classifications for lifecycle, authority, delegation, actions, evidence, controls and external policy signals, with exact schema dictionaries.</p><p class="palo-small">By <a href="../PALO_Community.html#creator">Fabrizio Degni</a> | <time datetime="2026-11-11">2026-11-11</time></p><div class="palo-doc-facts"><span><small>Level</small><strong>reference</strong></span><span><small>Audience</small><strong>governance | technical | builder</strong></span><span><small>Product</small><strong>PALO-AI</strong></span><span><small>Status</small><strong>Current Guidance</strong></span><span><small>Lifecycle</small><strong>Current</strong></span><span><small>Read</small><strong>25 min</strong></span></div><p class="palo-doc-source">Published HTML view | Source: <code>docs/palo-agentic-taxonomy-and-dictionaries.md</code></p><div class="palo-actions"><button class="palo-btn" type="button" data-doc-copy-link>Copy link</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-share>Share page</button><button class="palo-btn palo-btn-secondary" type="button" data-doc-print>Print</button></div><p class="palo-action-status" data-doc-action-status role="status" aria-live="polite"></p></header>
+      <details class="palo-doc-mobile-toc"><summary>On this page</summary><ol><li class="depth-3"><a href="#sintesi-italiana">Sintesi italiana</a></li><li class="depth-3"><a href="#reading-the-implementation-status">Reading the implementation status</a></li><li class="depth-3"><a href="#verified-inventory">Verified inventory</a></li><li class="depth-3"><a href="#11-what-palo-classifies-and-why">1.1 What PALO classifies and why</a></li><li class="depth-3"><a href="#12-framework-layers-and-their-authority">1.2 Framework layers and their authority</a></li><li class="depth-3"><a href="#13-the-lifecycle-taxonomy">1.3 The lifecycle taxonomy</a></li><li class="depth-3"><a href="#14-the-five-palo-am-operational-objects">1.4 The five PALO-AM operational objects</a></li><li class="depth-3"><a href="#15-action-space-autonomy-and-the-exact-routing-matrix">1.5 Action space, autonomy and the exact routing matrix</a></li><li class="depth-3"><a href="#16-identity-authority-and-delegation-dictionaries">1.6 Identity, authority and delegation dictionaries</a></li><li class="depth-3"><a href="#17-the-action-and-assurance-dictionary">1.7 The action and assurance dictionary</a></li><li class="depth-3"><a href="#18-state-vocabularies-must-remain-separate">1.8 State vocabularies must remain separate</a></li><li class="depth-3"><a href="#19-data-and-information-disclosure-taxonomy">1.9 Data and information disclosure taxonomy</a></li><li class="depth-3"><a href="#110-controls-indicators-and-applicability-dictionaries">1.10 Controls, indicators and applicability dictionaries</a></li><li class="depth-3"><a href="#111-evidence-mappings-and-versioned-meaning">1.11 Evidence, mappings and versioned meaning</a></li><li class="depth-3"><a href="#112-a-reviewable-dictionary-entry-and-maintenance-process">1.12 A reviewable dictionary entry and maintenance process</a></li><li class="depth-3"><a href="#113-policywatcher-transport-and-review-dictionaries">1.13 PolicyWatcher transport and review dictionaries</a></li><li class="depth-2"><a href="#sources-and-accompanying-catalogues">Sources and accompanying catalogues</a></li></ol></details>
+      <div class="palo-doc-layout"><aside class="palo-doc-sidebar" aria-label="On this page"><strong>On this page</strong><ol><li class="depth-3"><a href="#sintesi-italiana">Sintesi italiana</a></li><li class="depth-3"><a href="#reading-the-implementation-status">Reading the implementation status</a></li><li class="depth-3"><a href="#verified-inventory">Verified inventory</a></li><li class="depth-3"><a href="#11-what-palo-classifies-and-why">1.1 What PALO classifies and why</a></li><li class="depth-3"><a href="#12-framework-layers-and-their-authority">1.2 Framework layers and their authority</a></li><li class="depth-3"><a href="#13-the-lifecycle-taxonomy">1.3 The lifecycle taxonomy</a></li><li class="depth-3"><a href="#14-the-five-palo-am-operational-objects">1.4 The five PALO-AM operational objects</a></li><li class="depth-3"><a href="#15-action-space-autonomy-and-the-exact-routing-matrix">1.5 Action space, autonomy and the exact routing matrix</a></li><li class="depth-3"><a href="#16-identity-authority-and-delegation-dictionaries">1.6 Identity, authority and delegation dictionaries</a></li><li class="depth-3"><a href="#17-the-action-and-assurance-dictionary">1.7 The action and assurance dictionary</a></li><li class="depth-3"><a href="#18-state-vocabularies-must-remain-separate">1.8 State vocabularies must remain separate</a></li><li class="depth-3"><a href="#19-data-and-information-disclosure-taxonomy">1.9 Data and information disclosure taxonomy</a></li><li class="depth-3"><a href="#110-controls-indicators-and-applicability-dictionaries">1.10 Controls, indicators and applicability dictionaries</a></li><li class="depth-3"><a href="#111-evidence-mappings-and-versioned-meaning">1.11 Evidence, mappings and versioned meaning</a></li><li class="depth-3"><a href="#112-a-reviewable-dictionary-entry-and-maintenance-process">1.12 A reviewable dictionary entry and maintenance process</a></li><li class="depth-3"><a href="#113-policywatcher-transport-and-review-dictionaries">1.13 PolicyWatcher transport and review dictionaries</a></li><li class="depth-2"><a href="#sources-and-accompanying-catalogues">Sources and accompanying catalogues</a></li></ol></aside><article class="palo-doc-content"><h2 id="blueprintbench-taxonomy-and-dictionary-11-november-2026">BlueprintBench taxonomy and dictionary · 11 November 2026</h2>
+<p>PALO BlueprintBench is the evaluation programme. PALO Blueprint Index (PBI) is its proposed aggregate index. Document Workbench is an application evaluated by the programme. These are separate concepts and are not additional PALO governance modules.</p>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Evaluation programme</td>
+<td>Protocol, tasks, governance and publication rules.</td>
+</tr>
+<tr>
+<td>Model configuration</td>
+<td>Model revision, provider/runtime, quantisation, reasoning, context and pipeline settings.</td>
+</tr>
+<tr>
+<td>Evaluation cohort</td>
+<td>Declared source families, tasks, split and revision.</td>
+</tr>
+<tr>
+<td>Evaluation run</td>
+<td>Recorded execution including failures, retries and resource conditions.</td>
+</tr>
+<tr>
+<td>Metric result</td>
+<td>Observation with scope, unit, denominator and missing-value rule.</td>
+</tr>
+<tr>
+<td>PALO Blueprint Index</td>
+<td>Proposed aggregate specification; formula and weights remain to be defined and validated.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="evaluation-dimensions">Evaluation dimensions</h3>
+<table>
+<thead>
+<tr>
+<th>Dimension</th>
+<th>Scope</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Document fidelity</td>
+<td>Faithfulness of extracted text, tables, formulas and layout to source documents.</td>
+</tr>
+<tr>
+<td>Semantic faithfulness</td>
+<td>Preservation of meaning, ownership, negation, conditions and obligations.</td>
+</tr>
+<tr>
+<td>Coverage and uncertainty</td>
+<td>Coverage of required facts and appropriate abstention where evidence is insufficient.</td>
+</tr>
+<tr>
+<td>ER, dictionary and ontology</td>
+<td>Correct entities, attributes, definitions, types and relationships.</td>
+</tr>
+<tr>
+<td>Process fidelity</td>
+<td>Preservation of actors, branches, permissions and exceptions.</td>
+</tr>
+<tr>
+<td>Governance controls</td>
+<td>Review states, permitted actions and evidence of boundary enforcement.</td>
+</tr>
+<tr>
+<td>Reliability</td>
+<td>Completion, failures, recovery and repeatability under declared conditions.</td>
+</tr>
+<tr>
+<td>Human effort and FinOps</td>
+<td>Review and correction effort, resource use, charges and cost coverage.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="evidence-classification">Evidence classification</h3>
+<p>Evidence provenance uses <code>self-reported</code>, <code>maintainer-reproduced</code> and <code>independently-reproduced</code>. Qualification uses <code>development</code>, <code>pending-review</code> and <code>qualified</code>. Index availability uses <code>unavailable</code> and <code>available</code>. These axes remain separate from call completion, transport errors and blueprint review state. A missing value is not zero, and independent reproduction alone does not establish qualification.</p>
+<p>The current explorer contains development diagnostics. PBI has no assigned score. The <a href="../data/blueprintbench-vocabulary.json">versioned dictionary</a> and <a href="../formal/palo-blueprintbench-taxonomy.ttl">SKOS taxonomy</a> define this additive vocabulary. See the <a href="../PALO_BlueprintBench.html#explorer">model comparison</a> and <a href="../downloads/blueprintbench/palo-blueprint-index.md">index proposal</a>.</p><span id="palo-taxonomy-and-controlled-dictionaries-for-agentic-governance" class="palo-doc-heading-anchor" aria-hidden="true"></span><p>Subsequent source maintenance: the <a href="source-review-2026-10-12.html">six-source review of 12 October 2026</a> updates the live source registry and clarifies two control packs. The catalogue and PDF remain the inspected earlier snapshot.</p>
+<p><a href="palo-agentic-taxonomy-and-dictionaries.html">Taxonomy and dictionaries</a> · <a href="palo-agentic-ontologies.html">Ontologies and operational grounding</a> · <a href="../semantic-catalogues/">Searchable technical catalogues</a> · <a href="../assets/PALO_Agentic_Governance_Semantic_Deep_Dive_EN.pdf">Complete PDF</a></p>
+<p>Technical deep dive for the follow-up discussion with the European Commission</p>
+<p>Fabrizio Degni · PALO Framework · Evidence snapshot 12 October 2026</p>
+<p>PALO provides a versioned vocabulary for connecting lifecycle governance, delegated authority, controls, evidence and accountable decisions. Its semantic implementation comprises a released foundation, structured agentic contracts and a draft extension for dependencies and policy impact. These layers have different purposes and maturity. The central contribution is the explicit separation of what a system is, what an agent is authorised to attempt, what actually happened, what evidence supports that account and who accepts the resulting decision.</p>
+<p>The two sections below explain <strong>taxonomy and controlled dictionaries</strong>, followed by <strong>ontologies and their operational grounding</strong>. The accompanying catalogues expose every schema entry and enumeration in the inspected schema set, together with the actual RDF classes, properties and shapes. They make the analysis inspectable beyond the narrative.</p>
+<p>The scope is semantic design and evidence contracts. PALO-AI remains a developer-preview reference runtime. A coherent vocabulary, a valid record or a passing fixture does not establish legal conformity, deployment admission or operating effectiveness in an adopting organisation. The positive meeting response reported by the author is not used as evidence of institutional endorsement.</p>
+<h3 id="sintesi-italiana">Sintesi italiana<a class="palo-doc-anchor" href="#sintesi-italiana" aria-label="Link to Sintesi italiana">#</a></h3><p>PALO dispone di una base semantica concreta: un registro di concetti e relazioni, definizioni versionate del ciclo di vita, schemi per le evidenze e le decisioni, un’ontologia RDF/OWL e vincoli SHACL. La governance agentica aggiunge contratti operativi per identità, autorità delegata, richieste di azione, approvazioni, capacità esecutive, effetti attesi, ricevute, verifica degli esiti, idoneità dei dati e divulgazione delle informazioni.</p>
+<p>Il punto da presentare alla Commissione è la continuità tra significato, decisione e prova: una regola di governance è collegata al caso concreto, alla versione applicabile, alle evidenze e all’autorità che decide. Occorre però distinguere ciò che è già rappresentato in OWL da ciò che oggi è formalizzato soprattutto in JSON Schema e nel runtime. L’estensione del grafo dello stack è dichiarata draft e non va presentata come una seconda ontologia già stabilizzata.</p>
+<p>Le verifiche su questo snapshot hanno confermato 65 schemi leggibili, 61 fixture JSON con esito atteso, 40 corrispondenze su 40 tra file e digest del manifest, una fixture RDF valida e una invalida correttamente respinta. Sono controlli dei contratti acquisiti, non una nuova qualificazione dell’intero runtime. La riconciliazione aggiunge una corrispondenza esplicita fra le cinque attività storiche e le sei fasi canoniche, distingue i due significati precedentemente associati a CECR e uniforma l’esito di routing a “Redesign required”. Tre ulteriori schemi PolicyWatcher completano il corpus. Le proposte di estensione ontologica restano separate dalle modifiche editoriali effettive.</p>
+<h3 id="reading-the-implementation-status">Reading the implementation status<a class="palo-doc-anchor" href="#reading-the-implementation-status" aria-label="Link to Reading the implementation status">#</a></h3><div class="palo-doc-table-wrap" tabindex="0" aria-label="Scrollable documentation table"><table>
+<thead>
+<tr>
+<th>Status used here</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Released foundation</td>
+<td>Artifact present in the PALO 3.1 semantic release and, where listed, bound by its manifest.</td>
+</tr>
+<tr>
+<td>Executable reference contract</td>
+<td>JSON Schema and associated reference code or fixtures exist; deployment effectiveness requires separate evidence.</td>
+</tr>
+<tr>
+<td>Draft extension</td>
+<td>The artifact explicitly identifies itself as an additive draft or preview.</td>
+</tr>
+<tr>
+<td>Documented design</td>
+<td>A narrative or UI definition exists, without assuming a corresponding OWL class or runtime guarantee.</td>
+</tr>
+<tr>
+<td>Proposed next step</td>
+<td>Analysis in this dossier; it has not amended the canonical PALO model.</td>
+</tr>
+<tr>
+<td>TBFV</td>
+<td>To Be Verified: an assertion requiring additional evidence before stronger use.</td>
+</tr>
+</tbody></table></div>
+<h3 id="verified-inventory">Verified inventory<a class="palo-doc-anchor" href="#verified-inventory" aria-label="Link to Verified inventory">#</a></h3><div class="palo-doc-table-wrap" tabindex="0" aria-label="Scrollable documentation table"><table>
+<thead>
+<tr>
+<th>Artifact family</th>
+<th>Snapshot result</th>
+<th>Interpretation</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Semantic spine 3.1.0</td>
+<td>46 nodes, 48 links, 8 node types</td>
+<td>A framework and navigation graph, not a count of all domain concepts.</td>
+</tr>
+<tr>
+<td>Lifecycle</td>
+<td>6 phase definitions, 6 gate definitions</td>
+<td>Frame, Classify, Assess, Control, Measure, Prove.</td>
+</tr>
+<tr>
+<td>Control plane</td>
+<td>12 domains, 31 controls, 38 indicators</td>
+<td>Tailoring contracts; thresholds and control effectiveness remain contextual.</td>
+</tr>
+<tr>
+<td>Mapping registry</td>
+<td>409 atomic mappings</td>
+<td>101 conditional and 308 supporting; no current mapping asserts total coverage.</td>
+</tr>
+<tr>
+<td>Core OWL vocabulary</td>
+<td>27 classes, 18 object properties, 18 datatype properties, 163 triples</td>
+<td>Lightweight formal vocabulary.</td>
+</tr>
+<tr>
+<td>Core SHACL</td>
+<td>12 node shapes, 231 triples</td>
+<td>Constraints on selected records and inherited semantic categories.</td>
+</tr>
+<tr>
+<td>Stack model 0.1.0</td>
+<td>25 entity types, 31 relationship types</td>
+<td>Draft model reusing 7 foundation entity types.</td>
+</tr>
+<tr>
+<td>Stack RDF and SHACL</td>
+<td>18 declared classes, 25 object properties; 4 shapes</td>
+<td>New declarations, not 25 additional classes or 31 additional properties.</td>
+</tr>
+<tr>
+<td>JSON Schema corpus</td>
+<td>65 schema files; 2,408 schema entries; 204 enum declarations</td>
+<td>Entries include objects, branches and definitions; counts are not distinct business concepts.</td>
+</tr>
+<tr>
+<td>Verification</td>
+<td>61/61 JSON fixture expectations; 40/40 release item digests</td>
+<td>Scoped checks described in Section 2.11.</td>
+</tr>
+</tbody></table></div>
+<p>Sources: [P01], [P02], [P03], [P04], [P05], [P06], [P07], [P08], [P09], [P10], [V01].</p>
+<h3 id="11-what-palo-classifies-and-why">1.1 What PALO classifies and why<a class="palo-doc-anchor" href="#11-what-palo-classifies-and-why" aria-label="Link to 1.1 What PALO classifies and why">#</a></h3><p>For this deep dive, <strong>taxonomy</strong> means the organised classification of governance concepts; a <strong>controlled dictionary</strong> specifies the permitted terms, identifiers, values and intended meanings; an <strong>ontology</strong> states formal classes and relationships; a <strong>schema</strong> constrains a record’s structure; and an <strong>executable policy</strong> evaluates an action against current rules and inputs. These are complementary mechanisms. An <code>allowed</code> value has a defined lexical meaning, but only a valid decision process can give that value authority for a particular action.</p>
+<p>PALO’s taxonomy is best described as a set of connected facets. The lifecycle answers when governance work occurs. The agentic modality asks who acts, under whose authority, on which resources and with what autonomy. The evidence model asks which assertion is being made, what supports it and how it was evaluated. The stack extension adds technical dependency and policy-change context. No single tree captures all these dimensions without collapsing material distinctions. [P01], [P02], [P10], [P11]</p>
+<p>The present implementation distributes its dictionaries across JSON registries, JSON Schema enumerations, RDF terms, JSON-LD contexts, source records and UI labels. It does not contain a single reviewed SKOS concept scheme unifying all these terms. A SKOS export is therefore an interoperability proposal, not a description of an existing PALO deliverable. [P01], [P07], [P08], [W01]</p>
+<h3 id="12-framework-layers-and-their-authority">1.2 Framework layers and their authority<a class="palo-doc-anchor" href="#12-framework-layers-and-their-authority" aria-label="Link to 1.2 Framework layers and their authority">#</a></h3><p>The December 2025 founding document supplies the conceptual roots: fairness/non-discrimination; transparency/explainability; accountability/responsibility; privacy/data governance; safety/robustness; human agency/oversight; and societal/environmental well-being. It evaluates use cases across ethical integrity, technical robustness/safety, business value/feasibility, legal/regulatory conformity and socio-environmental impact. These are normative evaluation dimensions and objectives, not assertions that a system has achieved them. The later semantic spine and agentic contracts turn parts of this conceptual structure into versioned identifiers and evidence requirements. [H01]</p>
+<div class="palo-doc-table-wrap" tabindex="0" aria-label="Scrollable documentation table"><table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Governance subject</th>
+<th>Concrete representation</th>
+<th>Boundary</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>PALO</td>
+<td>Lifecycle, ownership, assessment, controls, measurement and proof</td>
+<td>Spine, gates, control packs, evidence schemas</td>
+<td>Framework definitions do not authorise a deployment.</td>
+</tr>
+<tr>
+<td>PALO-AM</td>
+<td>Delegated action and human agency</td>
+<td>Five operational object cards, authority/action-space matrix, simulator</td>
+<td>A routing model is not a legal risk classification.</td>
+</tr>
+<tr>
+<td>PALO-AI</td>
+<td>Selected checks at the action boundary</td>
+<td>Profiles, Action Claims, policy evaluation, approval, capabilities and receipts</td>
+<td>Developer preview; deployment admission remains separate.</td>
+</tr>
+<tr>
+<td>Stack governance extension</td>
+<td>Dependencies from providers and services to systems, controls and cases</td>
+<td>Typed dependency graph, RDF vocabulary and impact query</td>
+<td>Draft extension; graph impact produces review work.</td>
+</tr>
+<tr>
+<td>PolicyWatcher input</td>
+<td>Observed changes in external public policies</td>
+<td>Source-bound signals and applicability review</td>
+<td>A change signal cannot independently decide applicability.</td>
+</tr>
+</tbody></table></div>
+<p>This distinction is part of the semantic design, not just product naming. The core ontology explicitly separates <code>RegimeDefinition</code>, <code>GovernanceFrameworkDefinition</code> and <code>EnforcementAdapterDefinition</code>, with pairwise disjointness axioms. However, declaring classes does not automatically classify every UI label or component as an instance of them. [P07], [P10], [P11], [P12]</p>
+<p>The spine has four evidence/authority classes: <code>canonical-definition</code>, <code>source-backed-context</code>, <code>illustrative-local-preview</code> and <code>human-review-required</code>. The first is authoritative <strong>as a PALO definition</strong>. None of the four, merely by classification, grants legal authority or changes the state of a case. The <code>authoritative: true</code> flag on canonical definitions must always be read within this scope. [P01], [P02]</p>
+<p>The public semantic catalog, case workspace and assurance review are three workspaces. “Executive” and “Technical” are presentation lenses, not authenticated identities or access-control roles. Delivery maturity is another axis: the capability matrix distinguishes <code>specified</code>, <code>prototype</code>, <code>implemented</code> and <code>production-ready</code>. These values must not be merged with evidence authority or legal status. [P01], [P02], [P13]</p>
+<h3 id="13-the-lifecycle-taxonomy">1.3 The lifecycle taxonomy<a class="palo-doc-anchor" href="#13-the-lifecycle-taxonomy" aria-label="Link to 1.3 The lifecycle taxonomy">#</a></h3><div class="palo-doc-table-wrap" tabindex="0" aria-label="Scrollable documentation table"><table>
+<thead>
+<tr>
+<th>Canonical phase and gate</th>
+<th>Main question</th>
+<th>Typical output</th>
+<th>Agentic interpretation</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Frame</td>
+<td>What problem, purpose, population and accountable owner define the case?</td>
+<td>Use-case brief</td>
+<td>Justify delegated action and identify alternatives with less authority.</td>
+</tr>
+<tr>
+<td>Classify</td>
+<td>Which route and scrutiny apply?</td>
+<td>Risk route</td>
+<td>Classify action space, autonomy, data sensitivity and relevant obligations.</td>
+</tr>
+<tr>
+<td>Assess</td>
+<td>Which impacts and failure modes matter?</td>
+<td>Impact assessment</td>
+<td>Evaluate authority misuse, tool errors, delegation, human oversight and downstream effects.</td>
+</tr>
+<tr>
+<td>Control</td>
+<td>Which owned safeguards address the findings?</td>
+<td>Control plan</td>
+<td>Define allow-lists, policy checks, approval conditions, effect contracts and safe states.</td>
+</tr>
+<tr>
+<td>Measure</td>
+<td>How will performance and exposure be observed?</td>
+<td>KPI/KRI register</td>
+<td>Measure errors, interventions, drift, disclosure, unresolved outcomes and control performance.</td>
+</tr>
+<tr>
+<td>Prove</td>
+<td>What evidence supports the decision and next review?</td>
+<td>Evidence bundle and gate decision</td>
+<td>Reconstruct authority, execution, observation, exceptions and accountable acceptance.</td>
+</tr>
+</tbody></table></div>
+<p>Gate definitions list <code>proceed</code>, <code>proceed-with-conditions</code>, <code>hold</code>, <code>redesign</code> and <code>stop</code>. The Gate Decision Record additionally permits <code>unresolved</code>, preserving the difference between a concluded routing choice and a recorded undecided state. A conditional decision requires conditions; decisions after sequence 1 require the preceding decision identifier and digest. [P03], [P14]</p>
+<p>The PALO-AM page also retains a five-phase historical presentation: ideation and screening; assessment and planning; development and validation; ethical deployment and monitoring; continuous improvement and decommissioning. This is not the same list as the canonical six-phase lifecycle. The editorial glossary and agentic page publish the following explanatory correspondence: historical phase 1 mainly informs Frame/Classify; phase 2 informs Classify/Assess/Control; phase 3 informs Control/Measure; phase 4 informs Measure/Prove; phase 5 informs Prove and the next cycle. That correspondence is a versioned interpretation for readers, not a one-to-one migration mapping or an executable gate rule. [P35] Canonical identifiers should remain the six current phases. [P03], [P11]</p>
+<h3 id="14-the-five-palo-am-operational-objects">1.4 The five PALO-AM operational objects<a class="palo-doc-anchor" href="#14-the-five-palo-am-operational-objects" aria-label="Link to 1.4 The five PALO-AM operational objects">#</a></h3><p><strong>Agent Identity Profile</strong> describes the agent and its provenance, owner and operating context. The narrative includes credential lifecycle, topology, clearance and revocation. The concrete Agent Profile schema represents <code>agentId</code>, <code>profileVersion</code>, role, lineage, base model and <code>systemPromptHash</code>, with optional temperature. Status can be <code>active</code>, <code>suspended</code> or <code>retired</code>. A prompt hash binds bytes; it does not prove that the model followed the prompt or retained all conversational requirements. [P11], [P15]</p>
+<p><strong>Agent Authority Profile</strong> describes permitted activity. The schema supplies tool allow-lists, operation types, read/write scopes, external-network permission, optional host constraints, argument schemas and a Vibe Gate requirement. Identity and authority coexist in the Agent Profile but remain conceptually distinct. A recognised agent is not automatically authorised to use every tool. [P15]</p>
+<p><strong>Agentic Risk Matrix</strong> routes a configuration using action-space impact and autonomy, modified by reversibility, sensitivity and potential impact. Narrative considerations additionally include third-party dependency, speed/volume and multi-agent complexity. Those additional considerations are not independent inputs to the inspected five-field simulator. [P11], [P16]</p>
+<p><strong>Agentic Control Layer</strong> describes the technical and organisational controls surrounding model proposals: policy evaluation, tool schemas, scoped credentials, approval checkpoints, observability, circuit breakers and change management. The presence of a control in this taxonomy is a governance expectation. Whether it is implemented and non-bypassable must be established for the actual connector and deployment. [P11], [P12]</p>
+<p><strong>Agentic Evidence Layer</strong> records proposals, tool calls, structured inputs/outputs, policy decisions, approvals, incidents, measures and retirement evidence. It does not require disclosure of a model’s private chain of thought. The object cards are useful operational domains; they are not five correspondingly named OWL classes in the core vocabulary. [P07], [P11]</p>
+<h3 id="15-action-space-autonomy-and-the-exact-routing-matrix">1.5 Action space, autonomy and the exact routing matrix<a class="palo-doc-anchor" href="#15-action-space-autonomy-and-the-exact-routing-matrix" aria-label="Link to 1.5 Action space, autonomy and the exact routing matrix">#</a></h3><div class="palo-doc-table-wrap" tabindex="0" aria-label="Scrollable documentation table"><table>
+<thead>
+<tr>
+<th>Facet</th>
+<th>Controlled values in the simulator</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Action space</td>
+<td><code>read</code>, <code>internal</code>, <code>cross-system</code>, <code>critical</code></td>
+<td>Read only; internal write; cross-system action; financial, safety, legal or physical action.</td>
+</tr>
+<tr>
+<td>Autonomy</td>
+<td><code>supervised</code>, <code>low</code>, <code>medium</code>, <code>high</code></td>
+<td>Human executes; agent proposes and human approves; agent acts within bounded rules; agent selects and executes independently.</td>
+</tr>
+<tr>
+<td>Reversibility</td>
+<td><code>reversible</code>, <code>partial</code>, <code>irreversible</code></td>
+<td>Fully reversible; partially reversible; irreversible or hard to remedy.</td>
+</tr>
+<tr>
+<td>Data sensitivity</td>
+<td><code>public</code>, <code>internal</code>, <code>sensitive</code>, <code>restricted</code></td>
+<td>Public/synthetic; internal; personal/commercially sensitive; special-category, secret or highly restricted.</td>
+</tr>
+<tr>
+<td>Potential impact</td>
+<td><code>low</code>, <code>moderate</code>, <code>high</code>, <code>severe</code></td>
+<td>Localised through consequential rights, safety, livelihood or systemic impact.</td>
+</tr>
+</tbody></table></div>
+<p>The implemented base matrix is reproduced below. Lower numbered positive tiers demand stronger controls. <code>0</code> means redesign required in the simulator. [P16]</p>
+<div class="palo-doc-table-wrap" tabindex="0" aria-label="Scrollable documentation table"><table>
+<thead>
+<tr>
+<th>Autonomy</th>
+<th>Read</th>
+<th>Internal write</th>
+<th>Cross-system</th>
+<th>Critical</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Supervised</td>
+<td>4</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+</tr>
+<tr>
+<td>Low</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Medium</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>High</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+</tbody></table></div>
+<p>Tier 1 is “Maximum controls”; Tier 2 “Controlled”; Tier 3 “Supervised”; Tier 4 “Monitored”. If at least one of irreversible action, restricted data or severe impact is present, a positive base tier is escalated by <strong>one tier only</strong>, with a floor of Tier 1. The three escalation triggers do not accumulate into three tier changes. High autonomy plus critical action remains <code>0</code>. Partial reversibility changes recommended controls/evidence but does not itself trigger the tier escalation. These details matter if a third party reimplements the taxonomy. [P16]</p>
+<p>The reconciled static matrix and simulator both label the high-autonomy/critical combination “Redesign required”. The former static label “PROHIBITED” is retained only as a deprecated display alias in the editorial glossary. This is a PALO design rule and must not be equated with a prohibited practice under the EU AI Act. [P35] A legal classification would require a separate source-specific analysis. “Supervised” also appears both as an autonomy input and a tier label; these are different fields and should be qualified when exported. [P11], [P16]</p>
+<h3 id="16-identity-authority-and-delegation-dictionaries">1.6 Identity, authority and delegation dictionaries<a class="palo-doc-anchor" href="#16-identity-authority-and-delegation-dictionaries" aria-label="Link to 1.6 Identity, authority and delegation dictionaries">#</a></h3><p>The Agent Profile permits six operation values: <code>read</code>, <code>create</code>, <code>update</code>, <code>delete</code>, <code>execute</code>, <code>delegate</code>. Action Claims use the same operation vocabulary, while network intent is separately classified as <code>none</code>, <code>read</code>, <code>write</code> or <code>bidirectional</code>. An operation token is intentionally broad. The exact tool, resource, canonical path and argument schema determine what the action actually means. [P15], [P17]</p>
+<p>Delegation uses a maximum depth, maximum subagent count, permitted subagent roles and a human-validation requirement. The profile schema allows a depth from 0 to 20 and a maximum subagent count from 0 to 1,000. These are schema bounds, not recommended safe operating settings. An adopting organisation must choose substantially narrower limits where appropriate and test enforcement. [P15]</p>
+<p>Action Claim authority context distinguishes the human principal, agent identity, workload identity, delegation chain and tenant. Workload proof types include <code>mtls</code>, <code>dpop</code>, <code>http-message-signature</code> and <code>spiffe-svid</code>; the enumeration lists accepted representation categories and does not establish universal interoperability with every implementation of those technologies. ANS integration is upstream identity/status evidence and does not itself establish permission, data fitness or successful effect. [P17], [P18]</p>
+<p>The swarm mandate extends the scope to a named owner, objective, coordinator, members, tenant/case, validity interval, budget and concurrency limit. Budget rules bind tool, operation, resource and path; the prototype’s narrative requires one unambiguous matching rule, a non-negative integer charge and a per-action maximum. Membership changes carry an expected membership digest and reason. A natural-language objective records an accountable intention; it is not a machine proof of goal alignment. [P19]</p>
+<p>This yields a useful delegation taxonomy: principal versus agent versus workload; profile versus one-action authority; parent versus descendant; individual limit versus shared exposure; permission revocation versus confirmed interruption. Revoking future authority must not be described as undoing an action already executed or proving cancellation of an in-flight external effect. [P18], [P19]</p>
+<h3 id="17-the-action-and-assurance-dictionary">1.7 The action and assurance dictionary<a class="palo-doc-anchor" href="#17-the-action-and-assurance-dictionary" aria-label="Link to 1.7 The action and assurance dictionary">#</a></h3><div class="palo-doc-table-wrap" tabindex="0" aria-label="Scrollable documentation table"><table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Concrete meaning and key binding</th>
+<th>Common misinterpretation to avoid</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Agent Profile</td>
+<td>Versioned identity, authority, delegation and evidence configuration</td>
+<td>A profile is not a permit for a particular action.</td>
+</tr>
+<tr>
+<td>Action Claim</td>
+<td>A specific proposed action bound to agent, case, arguments, scopes, time, replay controls and, for newer versions, authority/effect/data contracts</td>
+<td>A proposal does not establish permission.</td>
+</tr>
+<tr>
+<td>Policy Decision</td>
+<td><code>allowed</code>, <code>denied</code> or <code>pending_approval</code>, with reasons, versions and claim digest</td>
+<td><code>allowed</code> does not mean executed or compliant.</td>
+</tr>
+<tr>
+<td>Approval</td>
+<td>Human decision concerning the exact claim digest and an expiry</td>
+<td>Approval of changed arguments is a different decision.</td>
+</tr>
+<tr>
+<td>Execution Capability</td>
+<td>Short-lived, single-use reference authority bound to claim, decision, executor, verifier and target</td>
+<td>It is distinct from an architectural capability in the stack graph.</td>
+</tr>
+<tr>
+<td>Effect Contract</td>
+<td>Resource selector, preconditions, expected and forbidden effects, verification and recovery policy</td>
+<td>It verifies declared predicates, not every unstated expectation.</td>
+</tr>
+<tr>
+<td>Execution Receipt</td>
+<td>Signed reference record of execution status and request/result/pre-state digests</td>
+<td><code>succeeded</code> does not prove the intended business outcome.</td>
+</tr>
+<tr>
+<td>Outcome Attestation</td>
+<td>Verifier result against the effect contract and observed state</td>
+<td><code>verified</code> is scoped to these predicates and evidence.</td>
+</tr>
+<tr>
+<td>Assurance Incident</td>
+<td>Record connecting an adverse or unresolved assurance result to response/review</td>
+<td>It is not automatically a legally reportable serious incident.</td>
+</tr>
+<tr>
+<td>Compensating action</td>
+<td>A new action proposed to address a previous effect</td>
+<td>It needs its own authority cycle and is not a magical rollback.</td>
+</tr>
+</tbody></table></div>
+<p>The reference sequence is <strong>Propose → Authorize → Approve when required → Capability → Execute → Receipt → Observe → Verify → Escalate when required</strong>. This is a governance/assurance sequence, not a replacement for the six lifecycle phases. Approval is conditional; it should not be depicted as necessarily occurring in every action. [P12], [P17], [P20]</p>
+<p>Action Claim versions 1.1.0 through 1.4.0 are represented in the schema. Version-specific conditions matter: 1.3 introduces the identity-bound authority context; 1.4 additionally binds the Data Fitness Decision and Disclosure Contract by identifier and digest, subject and purpose. An integration must evaluate the actual schema branch rather than treating <code>schemaVersion</code> as decorative metadata. [P17], [P21]</p>
+<h3 id="18-state-vocabularies-must-remain-separate">1.8 State vocabularies must remain separate<a class="palo-doc-anchor" href="#18-state-vocabularies-must-remain-separate" aria-label="Link to 1.8 State vocabularies must remain separate">#</a></h3><div class="palo-doc-table-wrap" tabindex="0" aria-label="Scrollable documentation table"><table>
+<thead>
+<tr>
+<th>Record or field</th>
+<th>Exact values in the inspected contracts</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Profile status</td>
+<td><code>active</code>, <code>suspended</code>, <code>retired</code></td>
+</tr>
+<tr>
+<td>Policy decision status</td>
+<td><code>allowed</code>, <code>denied</code>, <code>pending_approval</code></td>
+</tr>
+<tr>
+<td>Approval status</td>
+<td><code>pending</code>, <code>approved</code>, <code>denied</code>, <code>expired</code>, <code>cancelled</code></td>
+</tr>
+<tr>
+<td>Execution capability status</td>
+<td><code>issued</code>, <code>consumed</code>, <code>expired</code>, <code>revoked</code></td>
+</tr>
+<tr>
+<td>Execution receipt status</td>
+<td><code>succeeded</code>, <code>failed</code>, <code>unknown</code></td>
+</tr>
+<tr>
+<td>Outcome attestation status</td>
+<td><code>verified</code>, <code>mismatch</code>, <code>inconclusive</code></td>
+</tr>
+<tr>
+<td>Predicate check</td>
+<td><code>pass</code>, <code>fail</code>, <code>unknown</code></td>
+</tr>
+<tr>
+<td>Data fitness decision</td>
+<td><code>allowed</code>, <code>denied</code>, <code>review_required</code></td>
+</tr>
+<tr>
+<td>Disclosure contract</td>
+<td><code>active</code>, <code>revoked</code></td>
+</tr>
+<tr>
+<td>Disclosure receipt</td>
+<td><code>verified</code>, <code>mismatch</code>, <code>inconclusive</code></td>
+</tr>
+<tr>
+<td>Evidence claim</td>
+<td><code>asserted</code>, <code>under-review</code>, <code>accepted</code>, <code>rejected</code>, <code>superseded</code></td>
+</tr>
+<tr>
+<td>Evidence evaluation</td>
+<td><code>sufficient</code>, <code>partial</code>, <code>insufficient</code>, <code>unverified</code></td>
+</tr>
+<tr>
+<td>Mapping approval</td>
+<td><code>draft</code>, <code>in-review</code>, <code>approved</code>, <code>rejected</code>, <code>superseded</code></td>
+</tr>
+<tr>
+<td>Mapping coverage</td>
+<td><code>total</code>, <code>partial</code>, <code>conditional</code>, <code>supporting</code></td>
+</tr>
+<tr>
+<td>Gate decision outcome</td>
+<td><code>proceed</code>, <code>proceed-with-conditions</code>, <code>hold</code>, <code>redesign</code>, <code>stop</code>, <code>unresolved</code></td>
+</tr>
+</tbody></table></div>
+<p>These values are not interchangeable booleans. An approved mapping is a publication/review assertion; an approved action is a particular human approval; an accepted evidence claim has still a distinct evaluation record. Likewise, <code>unknown</code>, <code>unverified</code>, <code>inconclusive</code> and <code>unresolved</code> preserve different kinds of missing knowledge. The catalogue keeps each enum attached to its schema and field path instead of deduplicating words that only look similar. [P14], [P17], [P20], [P21], [P22], [P23], [C01]</p>
+<p>A notable implementation detail is the effect evaluator’s aggregate precedence: a check with <code>unknown</code> makes the aggregate <code>inconclusive</code> before the code considers failing checks. Therefore a record may contain both a failed predicate and an inconclusive aggregate. Consumers must retain and inspect per-predicate results rather than hiding an observed failure behind the aggregate label. This is an observation of the inspected reference code, not a proposed alteration. [P24]</p>
+<h3 id="19-data-and-information-disclosure-taxonomy">1.9 Data and information disclosure taxonomy<a class="palo-doc-anchor" href="#19-data-and-information-disclosure-taxonomy" aria-label="Link to 1.9 Data and information disclosure taxonomy">#</a></h3><p>The data-assurance contracts classify the governed subject as <code>dataset</code>, <code>data-product</code>, <code>model</code>, <code>ai-system</code>, <code>agent</code>, <code>tool</code>, <code>access-entitlement</code> or <code>other</code>. They connect the subject and tenant to a purpose, source references, quality and lineage assertions, access state, source authority, approval, freshness and incident context. External metadata is evidence to be evaluated; importing it does not independently attest its truth. [P21], [P25]</p>
+<p><strong>Data fitness</strong> means suitability for a stated use under a particular policy and current evidence. The reference evaluator supports quality thresholds, age limits, source authority, ownership/approval, lineage, access, incidents, prohibited classifications and permitted purposes. Missing evidence has explicit deny/review handling. Conflicting current evidence is evaluated conservatively rather than selecting the most favourable assertion. This remains a rule-based fitness decision, not a universal numerical quality score. [P21]</p>
+<p><strong>Disclosure</strong> is separately governed because appropriate access does not imply appropriate transmission. The Disclosure Contract classifies egress as <code>zero-row</code>, <code>aggregated</code> or <code>row-level</code>; trace modes as <code>disabled</code>, <code>metadata-only</code> or <code>redacted-payload</code>; and binds fields, row limits, redactions, destinations, provider/model/region/host, retention, export and output schema. Aggregation does not automatically establish anonymity. [P21], [P25]</p>
+<p>The lawful-basis field permits <code>consent</code>, <code>contract</code>, <code>legal-obligation</code>, <code>vital-interests</code>, <code>public-task</code>, <code>legitimate-interests</code>, <code>not-applicable</code> and <code>pending-review</code>. These tokens record a classification supplied to the governance process. They do not determine whether a basis is legally available. The documented active-contract rule excludes <code>pending-review</code> and requires an approver; that runtime condition is stronger than simply observing that the string exists in a schema enum. [P21], [P25]</p>
+<p>An observation records actual fields/rows read and disclosed, sensitive categories, redactions, destination, trace behaviour and digests. The Disclosure Receipt compares that observation with the contract. Missing trustworthy observation remains inconclusive. Because the reference executor and signing material share an in-process boundary, its signed observation is not independent proof that all external network activity was observed. [P21]</p>
+<h3 id="110-controls-indicators-and-applicability-dictionaries">1.10 Controls, indicators and applicability dictionaries<a class="palo-doc-anchor" href="#110-controls-indicators-and-applicability-dictionaries" aria-label="Link to 1.10 Controls, indicators and applicability dictionaries">#</a></h3><p>The 12 governance-control domains are fairness and subgroup testing; system cards and explanations; notice, appeal, review and remedy; Article 50 transparency; data lifecycle; GPAI and systemic risk; serious incidents and decommissioning; accessibility; environmental performance; AI-literacy effectiveness; ISO/IEC 42001 AIMS overlay; and PALO-AI production boundary. Each domain names its objective, applicability questions, controls, indicators, gates, evidence contracts, completion criteria, stop conditions and residual boundary. [P04]</p>
+<p>The control library classifies controls as <code>directive</code>, <code>preventive</code>, <code>detective</code> or <code>corrective</code>. It includes purpose boundaries, provenance, meaningful review, supplier due diligence, adversarial testing, incident response, material change gates, decision traceability and agentic authority, alongside the domain-specific additions. “Not applicable” must be supported by a reasoned accountable decision; omission is not an applicability outcome. [P04], [P05]</p>
+<p>The 38 registered KPI/KRI definitions carry formula, cadence, direction, thresholds, linked controls/gates/sources and caveats. Their source explicitly labels thresholds as illustrative. A metric can indicate documentation coverage while saying little about substantive correctness. For example, provenance coverage does not establish permission or fitness, and completed reviews do not establish that reviewers had enough time or independence. [P06]</p>
+<p>The agentic page adds 11 named indicators: HOR, RTD, ABI, TCER, AISI, MACR, MTTI, CECR, AIRT, TDS and PVR. These are not 11 automatically additional canonical registry entries: some overlap with registry concepts, and others remain narrative definitions. ABI and TDS lack a fully specified numerical protocol in that page. The earlier CECR collision is resolved in the editorial glossary: <code>palo-am:cascading-error-containment-rate</code> retains CECR, while <code>palo-am:simulator-control-effectiveness-coverage</code> names the separate simulator recommendation without that abbreviation. The latter still needs a numerical protocol before it can be treated as an operational metric. The glossary does not add either concept to the canonical KPI/KRI registry. [P35] [P11], [P16]</p>
+<p>Oversight and bias crosswalks in the briefing are separate research artefacts. Their relationship to the core should be expressed as versioned, source-scoped mappings, retaining draft-source status, clause interpretation and reviewer responsibility. They should not be counted among the 409 core mappings merely because they also use the word crosswalk. Private draft source documents are not required for the public dictionary export. [P26]</p>
+<h3 id="111-evidence-mappings-and-versioned-meaning">1.11 Evidence, mappings and versioned meaning<a class="palo-doc-anchor" href="#111-evidence-mappings-and-versioned-meaning" aria-label="Link to 1.11 Evidence, mappings and versioned meaning">#</a></h3><p>The atomic evidence model distinguishes an <strong>artifact</strong>, an <strong>evidence claim</strong>, an <strong>evaluation</strong> and a <strong>bundle manifest</strong>. The artifact identifies content and provenance. The claim states a falsifiable assertion about one target in one case scope. The evaluation records the reviewer, assessment-run context, outcome, rationale and quality dimensions. The bundle composes digest-bound records. This prevents a document’s presence from being mistaken for successful evaluation of the proposition it is meant to support. [P22], [P23], [P27]</p>
+<p>Evidence Evaluation quality values separately cover relevance, integrity, recency and independence, each in the range 0–1. The schema bounds the values but does not supply a universally valid scoring method. A consumer should preserve the method and rationale and avoid treating a mean of four values as proof of assurance. [P23]</p>
+<p>Each core mapping is atomic: one source version, one target version, mapping type, coverage, conditions, rationale, basis, approval and provenance. The 409 records comprise 101 control-to-gate, 55 control-to-indicator, 72 control-to-source, 11 gate-to-source, 106 indicator-to-gate and 64 indicator-to-source relationships. Every control-to-gate record is conditional; all other current records are supporting. Although the schema permits <code>total</code> and <code>partial</code>, those values do not occur in this inspected registry. [P09]</p>
+<p>These mapping counts measure authored relationships, not coverage of 409 legal obligations. The mapped source version is a PALO registry reference, not a statement that every clause of an external standard is represented. A mapping’s <code>approved</code> publication state must not be transformed into a conformity assertion. [P09], [P28]</p>
+<h3 id="112-a-reviewable-dictionary-entry-and-maintenance-process">1.12 A reviewable dictionary entry and maintenance process<a class="palo-doc-anchor" href="#112-a-reviewable-dictionary-entry-and-maintenance-process" aria-label="Link to 1.12 A reviewable dictionary entry and maintenance process">#</a></h3><p>For an interoperable exchange, a dictionary entry should contain a stable concept IRI, preferred label, definition, scope note, aliases/acronyms, broader/related concepts, schema and field paths, allowed values, version, status, owner/reviewer, provenance and change history. Language labels should use explicit tags. Semantic identity should remain stable across translation; an English label and its Italian translation are not different control concepts.</p>
+<p>PALO already supplies substantial ingredients, especially identifiers, versions, source references, authority boundaries, schemas and mappings. The accompanying extraction preserves these machine-level facts. Additional bilingual definitions, ownership and synonym resolution are a <strong>proposed curated layer</strong>, not fields assumed to be populated in every existing artifact. [P01], [P02], [C01]</p>
+<p>The maintenance sequence should be: propose term; identify existing meanings; choose reuse or a new identifier; attach source and scope; review consequences for schemas, policies and user interfaces; test representative and adversarial records; approve a version; publish a digest-bound release; preserve old identifiers or explicit migration. Major meaning or cardinality changes require the existing change-impact and migration process. A wording clarification should not silently change what actions a policy permits. [P28], [P29]</p>
+<h3 id="113-policywatcher-transport-and-review-dictionaries">1.13 PolicyWatcher transport and review dictionaries<a class="palo-doc-anchor" href="#113-policywatcher-transport-and-review-dictionaries" aria-label="Link to 1.13 PolicyWatcher transport and review dictionaries">#</a></h3><p>Three additional JSON contracts make external-policy signals more precise. They complement the individual PolicyWatcher signal contract and the draft dependency graph; none grants policy applicability or action authority. [P34]</p>
+<div class="palo-doc-table-wrap" tabindex="0" aria-label="Scrollable documentation table"><table>
+<thead>
+<tr>
+<th>Contract</th>
+<th>Exact controlled vocabulary and bindings</th>
+<th>Governance interpretation</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Signal Batch</td>
+<td><code>mode = complete-active-snapshot</code>; <code>locale = en</code> or <code>it</code>; count and limit up to 25; <code>hasMore</code>, nullable <code>nextCursor</code>, individual signal schema reference</td>
+<td>A page is one part of a snapshot. Completeness cannot be inferred from the first page or a successful HTTP response.</td>
+</tr>
+<tr>
+<td>Operational Signal Registry</td>
+<td>Transport state: <code>not-synchronized</code>, <code>healthy</code>, <code>degraded</code>, <code>unavailable</code>; complete-traversal and stale flags; last attempted and successful sync; collection and signal digests; active and revoked entries</td>
+<td>Transport health, freshness and signal status remain separate. A valid or accepted import is not an accepted governance finding.</td>
+</tr>
+<tr>
+<td>Browser-local Review Ledger</td>
+<td><code>localOnly = true</code>; source-registry and signal digests; transport status <code>active</code> or <code>revoked</code>; review state <code>pending-human-review</code>, <code>in-review</code>, <code>routed-to-case-file</code>, <code>reviewed-no-action</code>, <code>rejected</code></td>
+<td>A local review state records triage. Routing to a Case File is not a signed gate decision or a production approval.</td>
+</tr>
+</tbody></table></div>
+<p>The registry separately names error codes <code>network-error</code>, <code>http-error</code>, <code>schema-error</code>, <code>response-too-large</code>, <code>pagination-error</code> and <code>capacity-exceeded</code>. Those classifications preserve the reason a snapshot cannot be relied on as complete. Registry statistics count received, accepted, rejected, changed, active and revoked signals; the schema fields must accompany the number, because “accepted” here describes the import process.</p>
+<p>The review ledger binds an assessment to the imported signal digest and source-registry digest. If the transport later reports revocation or a different digest, the prior local review must remain attributable to the version actually seen. The JSON contract supplies those bindings; an adopting implementation must enforce reconciliation, reviewer identity and persistence. Browser-local data must not be represented as an organisation-wide authoritative review log.</p>
+<p>The complete schema catalogue now includes the union of the inspected agentic and semantic contracts, these three transport/review schemas, and three explicitly draft or local extension schemas. Equal counts in two repositories do not imply identical memberships. The published field dictionary therefore includes the schema filename, path and constraints for every entry rather than presenting an undifferentiated list of terms.</p>
+<h2 id="sources-and-accompanying-catalogues">Sources and accompanying catalogues<a class="palo-doc-anchor" href="#sources-and-accompanying-catalogues" aria-label="Link to Sources and accompanying catalogues">#</a></h2><p>PALO artifact links resolve to public source locations where available. The research snapshot and validation records preserve the inspected bytes. Linked living pages may subsequently change.</p>
+<ul>
+<li>[P01] <a href="https://paloframework.org/docs/palo-v3-semantic-foundation.md" target="_blank" rel="noopener noreferrer">PALO semantic foundation</a>.</li>
+<li>[H01] Fabrizio Degni, <em>The PALO Framework A Paradigm for Principled AI Lifecycle Orchestration in Business</em>, December 2025, 67-page local founding document under <code>framework/</code>. Core principles: pp. 13–15; five-phase lifecycle: pp. 18–22; evaluation dimensions: pp. 22–23. Page numbers refer to the PDF page sequence. Extract retained in the research record.</li>
+<li>[P02] <a href="https://paloframework.org/data/semantic-spine.json" target="_blank" rel="noopener noreferrer">Semantic spine</a>.</li>
+<li>[P03] <a href="https://paloframework.org/data/lifecycle-core.json" target="_blank" rel="noopener noreferrer">Lifecycle definitions</a>.</li>
+<li>[P04] <a href="https://paloframework.org/data/governance-control-packs.json" target="_blank" rel="noopener noreferrer">Governance control packs</a>.</li>
+<li>[P05] <a href="https://paloframework.org/data/control-library.json" target="_blank" rel="noopener noreferrer">Control library</a>.</li>
+<li>[P06] <a href="https://paloframework.org/data/kpi-kri-registry.json" target="_blank" rel="noopener noreferrer">KPI and KRI registry</a>.</li>
+<li>[P07] <a href="https://paloframework.org/formal/palo-ontology-v3.ttl" target="_blank" rel="noopener noreferrer">Core ontology</a>.</li>
+<li>[P08] <a href="https://paloframework.org/formal/palo-ontology-v3.shacl.ttl" target="_blank" rel="noopener noreferrer">Core SHACL profile</a>.</li>
+<li>[P09] <a href="https://paloframework.org/data/semantic-mappings.json" target="_blank" rel="noopener noreferrer">Semantic mappings</a>.</li>
+<li>[P10] <a href="https://paloframework.org/docs/palo-stack-policywatcher-graph.md" target="_blank" rel="noopener noreferrer">Stack and policy impact graph</a> and <a href="https://paloframework.org/data/stack-governance-model.json" target="_blank" rel="noopener noreferrer">stack model</a>.</li>
+<li>[P11] <a href="https://paloframework.org/PALO_AgenticGovernance.html" target="_blank" rel="noopener noreferrer">PALO-AM operational model</a>.</li>
+<li>[P12] <a href="https://paloframework.org/docs/palo-ai-full-cycle-assurance.md" target="_blank" rel="noopener noreferrer">Full-cycle assurance</a>.</li>
+<li>[P13] <a href="https://paloframework.org/agentic/capability-matrix.json" target="_blank" rel="noopener noreferrer">Agentic capability matrix</a>.</li>
+<li>[P14] <a href="https://paloframework.org/schemas/palo-gate-decision-record.schema.json" target="_blank" rel="noopener noreferrer">Gate Decision Record schema</a>.</li>
+<li>[P15] <a href="https://paloframework.org/schemas/palo-agentic-interface.schema.json" target="_blank" rel="noopener noreferrer">Agent Profile schema</a>.</li>
+<li>[P16] <a href="https://paloframework.org/assets/palo-am-simulator.js" target="_blank" rel="noopener noreferrer">PALO-AM simulator source</a>.</li>
+<li>[P17] <a href="https://paloframework.org/schemas/palo-agentic-action-claim.schema.json" target="_blank" rel="noopener noreferrer">Action Claim schema</a>.</li>
+<li>[P18] <a href="https://paloframework.org/docs/palo-ai-ans-integration.md" target="_blank" rel="noopener noreferrer">ANS integration</a>.</li>
+<li>[P19] <a href="https://paloframework.org/docs/palo-swarm-governance-local-prototype.md" target="_blank" rel="noopener noreferrer">Swarm prototype</a>, <a href="https://paloframework.org/docs/palo-swarm-distributed-execution.md" target="_blank" rel="noopener noreferrer">distributed extension</a> and <a href="https://paloframework.org/schemas/palo-swarm-mandate.schema.json" target="_blank" rel="noopener noreferrer">mandate schema</a>.</li>
+<li>[P20] <a href="https://paloframework.org/schemas/palo-agentic-effect-contract.schema.json" target="_blank" rel="noopener noreferrer">Effect Contract</a>, <a href="https://paloframework.org/schemas/palo-agentic-execution-capability.schema.json" target="_blank" rel="noopener noreferrer">Execution Capability</a>, <a href="https://paloframework.org/schemas/palo-agentic-execution-receipt.schema.json" target="_blank" rel="noopener noreferrer">Execution Receipt</a>, <a href="https://paloframework.org/schemas/palo-agentic-outcome-attestation.schema.json" target="_blank" rel="noopener noreferrer">Outcome Attestation</a>, <a href="https://paloframework.org/schemas/palo-agentic-policy-decision.schema.json" target="_blank" rel="noopener noreferrer">Policy Decision</a>, <a href="https://paloframework.org/schemas/palo-agentic-approval.schema.json" target="_blank" rel="noopener noreferrer">Approval</a>.</li>
+<li>[P21] <a href="https://paloframework.org/docs/palo-data-assurance-control-plane.md" target="_blank" rel="noopener noreferrer">Data assurance control plane</a>.</li>
+<li>[P22] <a href="https://paloframework.org/schemas/palo-evidence-claim.schema.json" target="_blank" rel="noopener noreferrer">Evidence Claim schema</a>.</li>
+<li>[P23] <a href="https://paloframework.org/schemas/palo-evidence-evaluation.schema.json" target="_blank" rel="noopener noreferrer">Evidence Evaluation schema</a>.</li>
+<li>[P24] Inspected local source <code>packages/palo-mcp-server/core.js</code>, preserved with digest in the research snapshot; public project <a href="https://github.com/sev7enITA/PALOframework" target="_blank" rel="noopener noreferrer">PALOframework</a>. Local working-tree code is not assumed to equal the published Git HEAD.</li>
+<li>[P25] <a href="https://paloframework.org/schemas/palo-data-disclosure-contract.schema.json" target="_blank" rel="noopener noreferrer">Disclosure Contract</a>, <a href="https://paloframework.org/schemas/palo-data-disclosure-observation.schema.json" target="_blank" rel="noopener noreferrer">Disclosure Observation</a>, <a href="https://paloframework.org/schemas/palo-data-disclosure-receipt.schema.json" target="_blank" rel="noopener noreferrer">Disclosure Receipt</a>, <a href="https://paloframework.org/schemas/palo-data-fitness-decision.schema.json" target="_blank" rel="noopener noreferrer">Data Fitness Decision</a>.</li>
+<li>[P26] <a href="https://paloframework.org/briefing/presentation/future-ready/oversight-crosswalk.json" target="_blank" rel="noopener noreferrer">Oversight crosswalk</a> and <a href="https://paloframework.org/briefing/presentation/future-ready/bias-crosswalk.json" target="_blank" rel="noopener noreferrer">bias crosswalk</a>.</li>
+<li>[P27] <a href="https://paloframework.org/schemas/palo-evidence-artifact.schema.json" target="_blank" rel="noopener noreferrer">Evidence Artifact</a> and <a href="https://paloframework.org/schemas/palo-evidence-bundle-manifest.schema.json" target="_blank" rel="noopener noreferrer">Evidence Bundle Manifest</a>.</li>
+<li>[P28] <a href="https://paloframework.org/data/semantic-release-manifest.json" target="_blank" rel="noopener noreferrer">Semantic Release Manifest</a> and <a href="https://github.com/sev7enITA/PALOframework/blob/42d17508ddc836ae37076d9320cbbc672ea268cc/scripts/generate-semantic-release.mjs" target="_blank" rel="noopener noreferrer">pinned public release generator</a>.</li>
+<li>[P29] <a href="https://paloframework.org/data/semantic-change-impact-v3.json" target="_blank" rel="noopener noreferrer">Semantic change-impact register</a>.</li>
+<li>[P30] <a href="https://paloframework.org/formal/palo-stack-governance.ttl" target="_blank" rel="noopener noreferrer">Stack ontology</a>, <a href="https://paloframework.org/formal/palo-stack-governance.shacl.ttl" target="_blank" rel="noopener noreferrer">stack SHACL</a>, <a href="https://paloframework.org/data/palo-stack-context.jsonld" target="_blank" rel="noopener noreferrer">stack JSON-LD context</a> and <a href="https://paloframework.org/data/palo-semantic-context.jsonld" target="_blank" rel="noopener noreferrer">core JSON-LD context</a>.</li>
+<li>[P31] <a href="https://github.com/sev7enITA/PALOframework/blob/42d17508ddc836ae37076d9320cbbc672ea268cc/scripts/validate-semantic.mjs" target="_blank" rel="noopener noreferrer">Pinned public semantic validator</a>.</li>
+<li>[P32] <a href="https://paloframework.org/data/semantic-invariants.json" target="_blank" rel="noopener noreferrer">Semantic invariants</a>.</li>
+<li>[P33] <a href="https://paloframework.org/schemas/palo-agentic-evidence-envelope.schema.json" target="_blank" rel="noopener noreferrer">Evidence-envelope schema</a> and <a href="https://github.com/sev7enITA/PALOframework/blob/42d17508ddc836ae37076d9320cbbc672ea268cc/packages/palo-mcp-server/assurance-foundation.js" target="_blank" rel="noopener noreferrer">pinned assurance foundation implementation</a>.</li>
+<li>[P34] <a href="https://paloframework.org/schemas/policywatcher-signal-batch.schema.json" target="_blank" rel="noopener noreferrer">PolicyWatcher Signal Batch</a>, <a href="https://paloframework.org/schemas/palo-policywatcher-signal-registry.schema.json" target="_blank" rel="noopener noreferrer">Operational Signal Registry</a> and <a href="https://paloframework.org/schemas/palo-policywatcher-review-ledger.schema.json" target="_blank" rel="noopener noreferrer">Browser-local Review Ledger</a>. Acquired from Git commit <code>42d17508ddc836ae37076d9320cbbc672ea268cc</code>.</li>
+<li>[P35] <a href="https://paloframework.org/data/agentic-semantic-glossary.json" target="_blank" rel="noopener noreferrer">Agentic editorial glossary and historical lifecycle correspondence</a>, version 1.0.0. Separate from the canonical ontology and KPI/KRI registry.</li>
+<li>[P36] <a href="https://paloframework.org/data/semantic-publication-2026-10-12.json" target="_blank" rel="noopener noreferrer">Semantic publication inventory</a>. This records the editorial release; deployment evidence is a separate receipt.</li>
+<li>[W01] <a href="https://www.w3.org/2009/08/skos-reference/skos.html" target="_blank" rel="noopener noreferrer">W3C SKOS vocabulary</a>.</li>
+<li>[W02] <a href="https://www.w3.org/TR/owl2-primer/" target="_blank" rel="noopener noreferrer">W3C OWL 2 Primer</a>.</li>
+<li>[W03] <a href="https://www.w3.org/TR/shacl/" target="_blank" rel="noopener noreferrer">W3C SHACL Recommendation</a>.</li>
+<li>[W04] <a href="https://www.w3.org/TR/prov-o/" target="_blank" rel="noopener noreferrer">W3C PROV-O</a>.</li>
+<li>[W05] <a href="https://www.w3.org/TR/odrl-model/" target="_blank" rel="noopener noreferrer">W3C ODRL Information Model</a>.</li>
+<li>[W06] <a href="https://w3id.org/dpv/" target="_blank" rel="noopener noreferrer">Data Privacy Vocabulary</a>. DPV 2.3 identifies itself as a Final Community Group Report and explicitly states that it is not a W3C Standard or on the W3C Standards Track.</li>
+<li>[W07] <a href="https://www.w3.org/TR/vocab-dcat-3/" target="_blank" rel="noopener noreferrer">W3C DCAT 3</a>.</li>
+<li>[W08] <a href="https://www.w3.org/TR/json-ld11/" target="_blank" rel="noopener noreferrer">W3C JSON-LD 1.1</a>.</li>
+<li>[C01] <a href="../semantic-catalogues/schema-index.json">Schema index</a>, <a href="../semantic-catalogues/field-dictionary.json">field dictionary JSON</a>, <a href="../semantic-catalogues/field-dictionary.csv">field dictionary CSV</a> and <a href="../semantic-catalogues/controlled-vocabularies.json">controlled values</a>.</li>
+<li>[C02] <a href="../semantic-catalogues/rdf-inventory.json">RDF inventory</a> and <a href="../semantic-catalogues/">searchable catalogue</a>.</li>
+<li>[V01] <a href="../semantic-catalogues/validation-results.json">Snapshot verification results</a> and <a href="../semantic-catalogues/source-inventory.json">source inventory</a>. The reproducible audit script and complete acquired source snapshot are retained in the local review package. Verification date: 12 October 2026.</li>
+</ul>
+</article></div>
+      <aside class="palo-doc-next"><div><small>Prerequisite</small><strong>No specialist prerequisite stated</strong></div><div><small>Recommended next step</small><strong>Return to the Documentation Library</strong></div></aside>
+      <section class="palo-doc-feedback" aria-labelledby="feedback-title"><p class="palo-eyebrow">Privacy-first feedback</p><h2 id="feedback-title">Help improve this guide</h2><p>Your feedback stays in your browser until you explicitly copy it, download it, or open an email draft. Do not include secrets, personal data, credentials or production identifiers.</p><form data-doc-feedback><div class="palo-form-grid"><div class="palo-field"><label for="feedback-role">Your role</label><select id="feedback-role" name="role"><option>Executive / governance owner</option><option>Platform or security engineer</option><option>No-code / low-code builder</option><option>External reviewer</option></select></div><div class="palo-field"><label for="feedback-category">Category</label><select id="feedback-category" name="category"><option>Clarity</option><option>Technical accuracy</option><option>Missing guidance</option><option>Accessibility</option></select></div><div class="palo-field palo-field-full"><label for="feedback-message">Feedback</label><textarea id="feedback-message" name="message" maxlength="3000" required placeholder="Describe the non-sensitive improvement you recommend."></textarea></div><div class="palo-form-actions"><button class="palo-btn" type="button" data-feedback-copy>Copy feedback</button><button class="palo-btn palo-btn-secondary" type="button" data-feedback-download>Download JSON</button><button class="palo-btn palo-btn-secondary" type="button" data-feedback-email>Email draft</button></div></div><p class="palo-action-status" data-feedback-status role="status" aria-live="polite"></p></form></section>
+    </div>
+  </main>
+  <footer class="palo-footer" data-palo-authorship-container="true">
+<p class="palo-authorship-footer" data-palo-authorship="footer">PALO Framework: conceived, created and maintained by <a href="../PALO_Community.html#creator">Fabrizio Degni</a>.</p>
+<div class="palo-shell"><p>PALO public documentation. Developer preview boundaries apply.</p><div class="palo-footer-links"><a href="../PALO_AIGovernance.html">PALO-AI</a><a href="../governance-hub/">Governance Hub</a><a href="../PALO_AgenticCapabilityMatrix.html">Capability Matrix</a><a href="../PALO_AIProductionReadiness.html">Production Readiness</a><a href="../privacy-policy.html">Privacy</a></div></div></footer>
+</body></html>

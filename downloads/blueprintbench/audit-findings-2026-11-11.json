@@ -1,0 +1,749 @@
+{
+  "audit_date": "2026-11-11",
+  "audited_commit": "be55efc",
+  "status": "maintainer response; no finding independently closed",
+  "repair_branch": "codex/audit-20261111-evaluator",
+  "severity_counts": {
+    "critical": 3,
+    "high": 17,
+    "medium": 22,
+    "low": 21
+  },
+  "findings": [
+    {
+      "id": "EV-01",
+      "severity": "critical",
+      "title": "Substantive text hidden as non-claim",
+      "status": "repair_candidate",
+      "independently_closed": false,
+      "evidence": [
+        "evaluator/blueprintbench.py",
+        "evaluator/evidence.schema.json",
+        "evaluator/test_audit_regressions.py",
+        "docs/evaluator-0.3-draft.md"
+      ],
+      "remaining": "Draft 0.3 contract and regression checks implemented; independent human review and merge remain pending. Semantic annotations and identities are not externally verified."
+    },
+    {
+      "id": "EV-02",
+      "severity": "high",
+      "title": "Forbidden and alternative gold mappings",
+      "status": "repair_candidate",
+      "independently_closed": false,
+      "evidence": [
+        "evaluator/blueprintbench.py",
+        "evaluator/evidence.schema.json",
+        "evaluator/test_audit_regressions.py",
+        "docs/evaluator-0.3-draft.md"
+      ],
+      "remaining": "Draft 0.3 contract and regression checks implemented; independent human review and merge remain pending. Semantic annotations and identities are not externally verified."
+    },
+    {
+      "id": "EV-03",
+      "severity": "high",
+      "title": "Run, family and domain aggregates",
+      "status": "partial",
+      "independently_closed": false,
+      "evidence": [
+        "evaluator/blueprintbench.py",
+        "evaluator/test_audit_regressions.py"
+      ],
+      "remaining": "Descriptive run/family/domain/repetition totals implemented. Family-level uncertainty and a real procurement run remain open."
+    },
+    {
+      "id": "EV-04",
+      "severity": "high",
+      "title": "Real procurement output through the span contract",
+      "status": "open",
+      "independently_closed": false,
+      "evidence": [],
+      "remaining": "No closure is claimed. See the supplied audit criterion."
+    },
+    {
+      "id": "EV-05",
+      "severity": "high",
+      "title": "Verified reviewer identity and role separation",
+      "status": "repair_candidate",
+      "independently_closed": false,
+      "evidence": [
+        "evaluator/blueprintbench.py",
+        "evaluator/evidence.schema.json",
+        "evaluator/test_audit_regressions.py",
+        "docs/evaluator-0.3-draft.md"
+      ],
+      "remaining": "Draft 0.3 contract and regression checks implemented; independent human review and merge remain pending. Semantic annotations and identities are not externally verified."
+    },
+    {
+      "id": "EV-06",
+      "severity": "medium",
+      "title": "Externally anchored registration",
+      "status": "partial",
+      "independently_closed": false,
+      "evidence": [
+        "docs/evaluator-0.3-draft.md"
+      ],
+      "remaining": "Output explicitly states external verification is not implemented; no trusted timestamp or signature verification has been added."
+    },
+    {
+      "id": "EV-07",
+      "severity": "medium",
+      "title": "Required configuration identity",
+      "status": "repair_candidate",
+      "independently_closed": false,
+      "evidence": [
+        "evaluator/blueprintbench.py",
+        "evaluator/evidence.schema.json",
+        "evaluator/test_audit_regressions.py",
+        "docs/evaluator-0.3-draft.md"
+      ],
+      "remaining": "Draft 0.3 contract and regression checks implemented; independent human review and merge remain pending. Semantic annotations and identities are not externally verified."
+    },
+    {
+      "id": "EV-08",
+      "severity": "medium",
+      "title": "Temporal and elapsed-time consistency",
+      "status": "repair_candidate",
+      "independently_closed": false,
+      "evidence": [
+        "evaluator/blueprintbench.py",
+        "evaluator/evidence.schema.json",
+        "evaluator/test_audit_regressions.py",
+        "docs/evaluator-0.3-draft.md"
+      ],
+      "remaining": "Draft 0.3 contract and regression checks implemented; independent human review and merge remain pending. Semantic annotations and identities are not externally verified."
+    },
+    {
+      "id": "EV-09",
+      "severity": "medium",
+      "title": "Request identity and repeated outputs",
+      "status": "repair_candidate",
+      "independently_closed": false,
+      "evidence": [
+        "evaluator/blueprintbench.py",
+        "evaluator/evidence.schema.json",
+        "evaluator/test_audit_regressions.py",
+        "docs/evaluator-0.3-draft.md"
+      ],
+      "remaining": "Draft 0.3 contract and regression checks implemented; independent human review and merge remain pending. Semantic annotations and identities are not externally verified."
+    },
+    {
+      "id": "EV-10",
+      "severity": "medium",
+      "title": "Equivalence across repetitions",
+      "status": "repair_candidate",
+      "independently_closed": false,
+      "evidence": [
+        "evaluator/blueprintbench.py",
+        "evaluator/evidence.schema.json",
+        "evaluator/test_audit_regressions.py",
+        "docs/evaluator-0.3-draft.md"
+      ],
+      "remaining": "Draft 0.3 contract and regression checks implemented; independent human review and merge remain pending. Semantic annotations and identities are not externally verified."
+    },
+    {
+      "id": "EV-11",
+      "severity": "medium",
+      "title": "Trivial success thresholds",
+      "status": "repair_candidate",
+      "independently_closed": false,
+      "evidence": [
+        "evaluator/blueprintbench.py",
+        "evaluator/evidence.schema.json",
+        "evaluator/test_audit_regressions.py",
+        "docs/evaluator-0.3-draft.md"
+      ],
+      "remaining": "Draft 0.3 contract and regression checks implemented; independent human review and merge remain pending. Semantic annotations and identities are not externally verified."
+    },
+    {
+      "id": "EV-12",
+      "severity": "low",
+      "title": "Exact UTF-8 and CRLF span coordinates",
+      "status": "repair_candidate",
+      "independently_closed": false,
+      "evidence": [
+        "evaluator/blueprintbench.py",
+        "evaluator/evidence.schema.json",
+        "evaluator/test_audit_regressions.py",
+        "docs/evaluator-0.3-draft.md"
+      ],
+      "remaining": "Draft 0.3 contract and regression checks implemented; independent human review and merge remain pending. Semantic annotations and identities are not externally verified."
+    },
+    {
+      "id": "EV-13",
+      "severity": "low",
+      "title": "Reasons for zero reported charges",
+      "status": "repair_candidate",
+      "independently_closed": false,
+      "evidence": [
+        "evaluator/blueprintbench.py",
+        "evaluator/evidence.schema.json",
+        "evaluator/test_audit_regressions.py",
+        "docs/evaluator-0.3-draft.md"
+      ],
+      "remaining": "Draft 0.3 contract and regression checks implemented; independent human review and merge remain pending. Semantic annotations and identities are not externally verified."
+    },
+    {
+      "id": "EV-14",
+      "severity": "low",
+      "title": "Canonicalisation reference vectors",
+      "status": "repair_candidate",
+      "independently_closed": false,
+      "evidence": [
+        "evaluator/blueprintbench.py",
+        "evaluator/evidence.schema.json",
+        "evaluator/test_audit_regressions.py",
+        "docs/evaluator-0.3-draft.md"
+      ],
+      "remaining": "Draft 0.3 contract and regression checks implemented; independent human review and merge remain pending. Semantic annotations and identities are not externally verified."
+    },
+    {
+      "id": "EV-15",
+      "severity": "low",
+      "title": "Critical error categories and source-rule denominator",
+      "status": "repair_candidate",
+      "independently_closed": false,
+      "evidence": [
+        "evaluator/blueprintbench.py",
+        "evaluator/evidence.schema.json",
+        "evaluator/test_audit_regressions.py",
+        "docs/evaluator-0.3-draft.md"
+      ],
+      "remaining": "Draft 0.3 contract and regression checks implemented; independent human review and merge remain pending. Semantic annotations and identities are not externally verified."
+    },
+    {
+      "id": "EV-16",
+      "severity": "low",
+      "title": "Review attestations instead of constant booleans",
+      "status": "open",
+      "independently_closed": false,
+      "evidence": [],
+      "remaining": "No closure is claimed. See the supplied audit criterion."
+    },
+    {
+      "id": "EV-17",
+      "severity": "low",
+      "title": "CLI, acquisition and adversarial tests",
+      "status": "partial",
+      "independently_closed": false,
+      "evidence": [
+        "evaluator/test_audit_regressions.py",
+        "evaluator/test_acquire.py"
+      ],
+      "remaining": "Adversarial and CLI tests added. Acquisition uses mocked HTTPS responses; a local-server integration test, systematic fuzzing and independent review remain open."
+    },
+    {
+      "id": "EV-18",
+      "severity": "low",
+      "title": "Probability-sampled assessment scope",
+      "status": "documented_limit",
+      "independently_closed": false,
+      "evidence": [
+        "docs/evaluator-0.3-draft.md"
+      ],
+      "remaining": "Full bounded annotation only; probability-sampled scoring not implemented."
+    },
+    {
+      "id": "MS-01",
+      "severity": "critical",
+      "title": "Structural checks confused with model quality",
+      "status": "partial",
+      "independently_closed": false,
+      "evidence": [
+        "tools/audit_historical.py",
+        "evaluator/test_adapter_contract.py",
+        "web/PALO_BlueprintBench.html"
+      ],
+      "remaining": "Removed model scatter/ranking; pooled type/cause charts published. Frozen relationship contract satisfiable in a synthetic three-candidate test, which also exposes semantic blindness. No model-quality measure validated."
+    },
+    {
+      "id": "MS-02",
+      "severity": "high",
+      "title": "Gold-fixed recall and proposal denominator",
+      "status": "partial",
+      "independently_closed": false,
+      "evidence": [
+        "docs/audit-response-2026-11-11.md",
+        "web/PALO_BlueprintBench.html"
+      ],
+      "remaining": "Public material now says adapter smoke tests, not model quality. Fixed independent gold, repetitions and comparable procurement campaigns remain open."
+    },
+    {
+      "id": "MS-03",
+      "severity": "high",
+      "title": "Comparable configurations and repetitions",
+      "status": "partial",
+      "independently_closed": false,
+      "evidence": [
+        "docs/audit-response-2026-11-11.md",
+        "web/PALO_BlueprintBench.html"
+      ],
+      "remaining": "Public material now says adapter smoke tests, not model quality. Fixed independent gold, repetitions and comparable procurement campaigns remain open."
+    },
+    {
+      "id": "MS-04",
+      "severity": "high",
+      "title": "Historical passages do not test specification fidelity",
+      "status": "partial",
+      "independently_closed": false,
+      "evidence": [
+        "docs/audit-response-2026-11-11.md",
+        "web/PALO_BlueprintBench.html"
+      ],
+      "remaining": "Public material now says adapter smoke tests, not model quality. Fixed independent gold, repetitions and comparable procurement campaigns remain open."
+    },
+    {
+      "id": "MS-05",
+      "severity": "high",
+      "title": "Sampling unit, power and uncertainty",
+      "status": "open",
+      "independently_closed": false,
+      "evidence": [],
+      "remaining": "No closure is claimed. See the supplied audit criterion."
+    },
+    {
+      "id": "MS-06",
+      "severity": "high",
+      "title": "Severity rubric, blind labels and agreement",
+      "status": "open",
+      "independently_closed": false,
+      "evidence": [],
+      "remaining": "No closure is claimed. See the supplied audit criterion."
+    },
+    {
+      "id": "MS-07",
+      "severity": "medium",
+      "title": "Critical-rule selection and seeded-defect calibration",
+      "status": "open",
+      "independently_closed": false,
+      "evidence": [],
+      "remaining": "No closure is claimed. See the supplied audit criterion."
+    },
+    {
+      "id": "MS-08",
+      "severity": "medium",
+      "title": "Operational contamination controls",
+      "status": "open",
+      "independently_closed": false,
+      "evidence": [],
+      "remaining": "No closure is claimed. See the supplied audit criterion."
+    },
+    {
+      "id": "MS-09",
+      "severity": "medium",
+      "title": "Comparable frontier baseline",
+      "status": "open",
+      "independently_closed": false,
+      "evidence": [],
+      "remaining": "No closure is claimed. See the supplied audit criterion."
+    },
+    {
+      "id": "MS-10",
+      "severity": "low",
+      "title": "Unique errors and correction occurrences",
+      "status": "repair_candidate",
+      "independently_closed": false,
+      "evidence": [
+        "evaluator/blueprintbench.py",
+        "docs/evaluator-0.3-draft.md"
+      ],
+      "remaining": "Both unique errors and occurrences retained in descriptive summaries; measured human repair time remains unavailable."
+    },
+    {
+      "id": "DT-01",
+      "severity": "high",
+      "title": "Historical cost reconciliation",
+      "status": "partial",
+      "independently_closed": false,
+      "evidence": [
+        "docs/historical-ledger-correction.json",
+        "docs/historical-audit-2026-11-11.json",
+        "tools/audit_historical.py"
+      ],
+      "remaining": "Sanitised local ledger reconstructs former explorer totals; independently attested invoices and original response bytes remain unavailable. Costs remain withdrawn from ranking."
+    },
+    {
+      "id": "DT-02",
+      "severity": "high",
+      "title": "Assigned tasks for blocked configurations",
+      "status": "published_correction",
+      "independently_closed": false,
+      "evidence": [
+        "docs/audit-response-2026-11-11.md",
+        "web/assets/blueprintbench/explorer-data.json",
+        "web/PALO_BlueprintBench.html"
+      ],
+      "remaining": "Correction published on main at 0aafacc. Independent re-audit remains pending; original archives and release tags are preserved."
+    },
+    {
+      "id": "DT-03",
+      "severity": "high",
+      "title": "Passage provenance and redistribution rights",
+      "status": "open",
+      "independently_closed": false,
+      "evidence": [],
+      "remaining": "No closure is claimed. See the supplied audit criterion."
+    },
+    {
+      "id": "DT-04",
+      "severity": "medium",
+      "title": "Unsupported historical assessments",
+      "status": "published_correction",
+      "independently_closed": false,
+      "evidence": [
+        "docs/audit-response-2026-11-11.md",
+        "web/assets/blueprintbench/explorer-data.json",
+        "web/PALO_BlueprintBench.html"
+      ],
+      "remaining": "Correction published on main at 0aafacc. Independent re-audit remains pending; original archives and release tags are preserved."
+    },
+    {
+      "id": "DT-05",
+      "severity": "medium",
+      "title": "Original response bytes and replay limits",
+      "status": "documented_limit",
+      "independently_closed": false,
+      "evidence": [
+        "docs/audit-response-2026-11-11.md"
+      ],
+      "remaining": "Determinism is distinguished from provenance. Missing original response bytes have not been reconstructed or invented."
+    },
+    {
+      "id": "DT-06",
+      "severity": "medium",
+      "title": "Independent source-family selection",
+      "status": "partial",
+      "independently_closed": false,
+      "evidence": [
+        "web/PALO_BlueprintBench.html"
+      ],
+      "remaining": "Candidate sources are labelled feasibility materials, not a qualified held-out set. External custodian must choose new families."
+    },
+    {
+      "id": "DT-07",
+      "severity": "medium",
+      "title": "Acquisition links, rights and expected hashes",
+      "status": "partial",
+      "independently_closed": false,
+      "evidence": [
+        "evaluator/acquire.py",
+        "evaluator/test_acquire.py"
+      ],
+      "remaining": "Optional expected SHA-256 checked; failed downloads retained as failures. Source rights and current live acquisition remain unresolved."
+    },
+    {
+      "id": "DT-08",
+      "severity": "low",
+      "title": "Unverified model metadata",
+      "status": "published_correction",
+      "independently_closed": false,
+      "evidence": [
+        "docs/audit-response-2026-11-11.md",
+        "web/assets/blueprintbench/explorer-data.json",
+        "web/PALO_BlueprintBench.html"
+      ],
+      "remaining": "Correction published on main at 0aafacc. Independent re-audit remains pending; original archives and release tags are preserved."
+    },
+    {
+      "id": "DT-09",
+      "severity": "low",
+      "title": "Unpublished reference-item count",
+      "status": "repair_candidate",
+      "independently_closed": false,
+      "evidence": [
+        "docs/protocol.md"
+      ],
+      "remaining": "Unpublished reference-item count removed from the current protocol; historical archives preserved."
+    },
+    {
+      "id": "DT-10",
+      "severity": "low",
+      "title": "Ambiguous historical release-status files",
+      "status": "open",
+      "independently_closed": false,
+      "evidence": [],
+      "remaining": "No closure is claimed. See the supplied audit criterion."
+    },
+    {
+      "id": "GV-01",
+      "severity": "critical",
+      "title": "External custodian and independent gold",
+      "status": "external_or_method_gate",
+      "independently_closed": false,
+      "evidence": [
+        "docs/audit-response-2026-11-11.md"
+      ],
+      "remaining": "No independent custodian, gold, reviewers, validated study, separate organisation/domain or DOI is claimed. These gates require actual decisions, people or evidence."
+    },
+    {
+      "id": "GV-02",
+      "severity": "high",
+      "title": "Product and measurement governance separation",
+      "status": "external_or_method_gate",
+      "independently_closed": false,
+      "evidence": [
+        "docs/audit-response-2026-11-11.md"
+      ],
+      "remaining": "No independent custodian, gold, reviewers, validated study, separate organisation/domain or DOI is claimed. These gates require actual decisions, people or evidence."
+    },
+    {
+      "id": "GV-03",
+      "severity": "high",
+      "title": "Independent human methodological review",
+      "status": "external_or_method_gate",
+      "independently_closed": false,
+      "evidence": [
+        "docs/audit-response-2026-11-11.md"
+      ],
+      "remaining": "No independent custodian, gold, reviewers, validated study, separate organisation/domain or DOI is claimed. These gates require actual decisions, people or evidence."
+    },
+    {
+      "id": "GV-04",
+      "severity": "high",
+      "title": "Signed releases and independent review gate",
+      "status": "partial",
+      "independently_closed": false,
+      "evidence": [
+        "docs/evaluator-0.3-draft.md",
+        ".github/CODEOWNERS"
+      ],
+      "remaining": "Scoring repair kept on a review branch; no new scoring release or independent approval claimed. Signed identities/tags and required external review not established."
+    },
+    {
+      "id": "GV-05",
+      "severity": "medium",
+      "title": "Participant privacy, consent and contribution rights",
+      "status": "external_or_method_gate",
+      "independently_closed": false,
+      "evidence": [
+        "docs/audit-response-2026-11-11.md"
+      ],
+      "remaining": "No independent custodian, gold, reviewers, validated study, separate organisation/domain or DOI is claimed. These gates require actual decisions, people or evidence."
+    },
+    {
+      "id": "GV-06",
+      "severity": "medium",
+      "title": "Private vulnerability reporting and appeals",
+      "status": "partial",
+      "independently_closed": false,
+      "evidence": [
+        "SECURITY.md",
+        "CODE_OF_CONDUCT.md",
+        ".github/CODEOWNERS"
+      ],
+      "remaining": "Private maintainer email documented; no independent arbiter, response SLA or installable package implemented."
+    },
+    {
+      "id": "GV-07",
+      "severity": "medium",
+      "title": "Submission, embargo and withdrawal policy",
+      "status": "external_or_method_gate",
+      "independently_closed": false,
+      "evidence": [
+        "docs/audit-response-2026-11-11.md"
+      ],
+      "remaining": "No independent custodian, gold, reviewers, validated study, separate organisation/domain or DOI is claimed. These gates require actual decisions, people or evidence."
+    },
+    {
+      "id": "GV-08",
+      "severity": "low",
+      "title": "Data and vocabulary licensing",
+      "status": "external_or_method_gate",
+      "independently_closed": false,
+      "evidence": [
+        "docs/audit-response-2026-11-11.md"
+      ],
+      "remaining": "No independent custodian, gold, reviewers, validated study, separate organisation/domain or DOI is claimed. These gates require actual decisions, people or evidence."
+    },
+    {
+      "id": "GV-09",
+      "severity": "low",
+      "title": "DOI and calibration paper",
+      "status": "external_or_method_gate",
+      "independently_closed": false,
+      "evidence": [
+        "docs/audit-response-2026-11-11.md"
+      ],
+      "remaining": "No independent custodian, gold, reviewers, validated study, separate organisation/domain or DOI is claimed. These gates require actual decisions, people or evidence."
+    },
+    {
+      "id": "WB-01",
+      "severity": "high",
+      "title": "Actual passage size in headline",
+      "status": "published_correction",
+      "independently_closed": false,
+      "evidence": [
+        "docs/audit-response-2026-11-11.md",
+        "web/assets/blueprintbench/explorer-data.json",
+        "web/PALO_BlueprintBench.html"
+      ],
+      "remaining": "Correction published on main at 0aafacc. Independent re-audit remains pending; original archives and release tags are preserved."
+    },
+    {
+      "id": "WB-02",
+      "severity": "high",
+      "title": "Live deployment byte alignment",
+      "status": "partial",
+      "independently_closed": false,
+      "evidence": [
+        "docs/site-verification-2026-11-11.json"
+      ],
+      "remaining": "Eleven deployed files verified by cache-busted HTTPS with response headers from publishing environment. Independent external-network check remains open."
+    },
+    {
+      "id": "WB-03",
+      "severity": "medium",
+      "title": "Metric sorting implies a ranking",
+      "status": "published_correction",
+      "independently_closed": false,
+      "evidence": [
+        "docs/audit-response-2026-11-11.md",
+        "web/assets/blueprintbench/explorer-data.json",
+        "web/PALO_BlueprintBench.html"
+      ],
+      "remaining": "Correction published on main at 0aafacc. Independent re-audit remains pending; original archives and release tags are preserved."
+    },
+    {
+      "id": "WB-04",
+      "severity": "medium",
+      "title": "Accurate accessible announcement",
+      "status": "published_correction",
+      "independently_closed": false,
+      "evidence": [
+        "docs/audit-response-2026-11-11.md",
+        "web/assets/blueprintbench/explorer-data.json",
+        "web/PALO_BlueprintBench.html"
+      ],
+      "remaining": "Correction published on main at 0aafacc. Independent re-audit remains pending; original archives and release tags are preserved."
+    },
+    {
+      "id": "WB-05",
+      "severity": "medium",
+      "title": "Project naming collision",
+      "status": "open",
+      "independently_closed": false,
+      "evidence": [],
+      "remaining": "No closure is claimed. See the supplied audit criterion."
+    },
+    {
+      "id": "WB-06",
+      "severity": "low",
+      "title": "README dependency and positioning wording",
+      "status": "previous_correction",
+      "independently_closed": false,
+      "evidence": [
+        "README.md"
+      ],
+      "remaining": "Dependency wording and CI badge were added after audited commit in 8cd2b8f. This does not establish independent review or a scoring release."
+    },
+    {
+      "id": "WB-07",
+      "severity": "low",
+      "title": "Overlapping method documents",
+      "status": "partial",
+      "independently_closed": false,
+      "evidence": [
+        "docs/proposal.md",
+        "docs/protocol.md"
+      ],
+      "remaining": "Proposal is now a pointer to the protocol. Related-work sources retain their separate historical and comparison roles."
+    },
+    {
+      "id": "WB-08",
+      "severity": "low",
+      "title": "HTTP Content Security Policy",
+      "status": "open",
+      "independently_closed": false,
+      "evidence": [],
+      "remaining": "No closure is claimed. See the supplied audit criterion."
+    },
+    {
+      "id": "RP-01",
+      "severity": "medium",
+      "title": "Visible CI evidence",
+      "status": "previous_correction",
+      "independently_closed": false,
+      "evidence": [
+        "README.md"
+      ],
+      "remaining": "Dependency wording and CI badge were added after audited commit in 8cd2b8f. This does not establish independent review or a scoring release."
+    },
+    {
+      "id": "RP-02",
+      "severity": "medium",
+      "title": "Transitive dependency locks and hashes",
+      "status": "open",
+      "independently_closed": false,
+      "evidence": [],
+      "remaining": "No closure is claimed. See the supplied audit criterion."
+    },
+    {
+      "id": "RP-03",
+      "severity": "medium",
+      "title": "Supported operating-system matrix",
+      "status": "repair_candidate",
+      "independently_closed": false,
+      "evidence": [
+        ".github/workflows/verify.yml"
+      ],
+      "remaining": "CI matrix extended to Linux, macOS and Windows; run outcomes must be inspected before support is claimed."
+    },
+    {
+      "id": "RP-04",
+      "severity": "low",
+      "title": "Community files and installable package",
+      "status": "partial",
+      "independently_closed": false,
+      "evidence": [
+        "SECURITY.md",
+        "CODE_OF_CONDUCT.md",
+        ".github/CODEOWNERS"
+      ],
+      "remaining": "Private maintainer email documented; no independent arbiter, response SLA or installable package implemented."
+    },
+    {
+      "id": "RP-05",
+      "severity": "low",
+      "title": "Readable checker and replay sources",
+      "status": "open",
+      "independently_closed": false,
+      "evidence": [],
+      "remaining": "No closure is claimed. See the supplied audit criterion."
+    },
+    {
+      "id": "RP-06",
+      "severity": "low",
+      "title": "Manifest coverage scope",
+      "status": "documented_limit",
+      "independently_closed": false,
+      "evidence": [
+        "tools/build_public.py"
+      ],
+      "remaining": "Manifest scope now explicitly lists exclusions; it is not represented as a whole-repository attestation."
+    },
+    {
+      "id": "RP-07",
+      "severity": "low",
+      "title": "Vocabulary verification scope",
+      "status": "repair_candidate",
+      "independently_closed": false,
+      "evidence": [
+        "semantic/verification.json"
+      ],
+      "remaining": "Verification claim narrowed to the three provenance codes; complete schema-enumeration mapping remains open."
+    },
+    {
+      "id": "RP-08",
+      "severity": "low",
+      "title": "Internal-branch and duplicate-write residues",
+      "status": "repair_candidate",
+      "independently_closed": false,
+      "evidence": [
+        "docs/versioning.md",
+        "evaluator/acquire.py"
+      ],
+      "remaining": "Internal branch reference and repeated end-of-loop write removed; acquisition receipt is written once after processing."
+    }
+  ],
+  "repair_pull_request": "https://github.com/sev7enITA/PALO-BlueprintBench/pull/1",
+  "evidence_paths_ref": "codex/audit-20261111-evaluator"
+}

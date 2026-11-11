@@ -1,0 +1,5 @@
+Options -Indexes
+Require all denied
+<IfModule mod_headers.c>
+Header always set X-Robots-Tag "noindex, nofollow, noarchive"
+</IfModule>

@@ -4,6 +4,8 @@ import path from "node:path";
 import process from "node:process";
 import { fileURLToPath } from "node:url";
 
+import { usesResearchTypography, researchForbiddenCharacters } from "./text-style-policy.mjs";
+
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const rootIndex = process.argv.indexOf("--root");
 const scanTracked = process.argv.includes("--tracked");
@@ -127,7 +129,7 @@ for (const relativePath of files) {
   const absolutePath = scanTracked ? path.join(projectRoot, relativePath) : path.join(scanRoot, relativePath);
   const characterSet = isIncidentObservatoryFile(relativePath)
     ? incidentObservatoryForbiddenCharacters
-    : forbiddenCharacters;
+    : usesResearchTypography(relativePath) ? researchForbiddenCharacters : forbiddenCharacters;
   violations.push(...findViolations(relativePath, readFileSync(absolutePath, "utf8"), characterSet));
 }
 

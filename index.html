@@ -1,45 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html class="scroll-smooth" lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PALO Framework | Principled AI Lifecycle Orchestration</title>
-    <meta name="description"
-        content="PALO Framework - A comprehensive methodology for Principled AI Lifecycle Orchestration in Business. Aligning AI governance with ISO 42001, EU AI Act, and OECD principles for responsible AI.">
+    <title>PALO Framework | Open-Source AI Governance Toolkit</title>
 
-    <!-- SEO and Trust Meta Tags -->
-    <meta name="keywords"
-        content="AI governance, AI ethics, responsible AI, ISO 42001, EU AI Act, OECD AI principles, AI lifecycle, AI risk management, PALO framework, AI compliance">
-    <meta name="author" content="PALO Framework">
-    <meta name="robots" content="index, follow">
-    <meta name="googlebot" content="index, follow">
-    <link rel="canonical" href="https://paloframework.org/">
-
-    <!-- Organization/Business Identity -->
-    <meta name="classification" content="Business, Technology, AI Governance">
-    <meta name="category" content="Technology/Software/AI Ethics">
-    <meta name="rating" content="General">
-    <meta name="distribution" content="Global">
-    <meta name="revisit-after" content="7 days">
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://paloframework.org/">
-    <meta property="og:title" content="PALO Framework | Principled AI Lifecycle Orchestration">
-    <meta property="og:description"
-        content="A comprehensive methodology for responsible AI governance aligned with ISO 42001, EU AI Act, and OECD principles.">
-    <meta property="og:image" content="https://paloframework.org/assets/logo.webp">
-    <meta property="og:site_name" content="PALO Framework">
-    <meta property="og:locale" content="en_US">
-
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
+    <!-- Canonical search and social metadata are generated from data/seo-pages.json. -->
     <meta name="twitter:url" content="https://paloframework.org/">
-    <meta name="twitter:title" content="PALO Framework | Principled AI Lifecycle Orchestration">
-    <meta name="twitter:description"
-        content="A comprehensive methodology for responsible AI governance aligned with ISO 42001, EU AI Act, and OECD principles.">
-    <meta name="twitter:image" content="https://paloframework.org/assets/logo.webp">
 
     <!-- Referrer policy is valid in markup; response security headers live in _headers. -->
     <meta name="referrer" content="strict-origin-when-cross-origin">
@@ -53,48 +21,14 @@
         href="https://paloframework.org/feed.xml">
 
     <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://paloframework.org/assets/palo-home-utilities.css?v=3.1.0-04c9ea22904f5821">
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <!-- Local Inter fonts with non-blocking font swap. -->
+    <link rel="stylesheet" href="https://paloframework.org/assets/palo-home-fonts.css?v=3.1.0-09d40ffab5cdecc6">
 
-    <!-- Font Awesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Icons use the local PALO SVG sprite. -->
 
-    <!-- Custom Config for Tailwind colors matching PALO identity -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        palo: {
-                            teal: '#0d9488', // Teal-600
-                            dark: '#0f172a', // Slate-900
-                            light: '#f1f5f9', // Slate-100
-                            accent: '#f59e0b', // Amber-500
-                        }
-                    },
-                    animation: {
-                        'float': 'float 6s ease-in-out infinite',
-                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
-                    },
-                    keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-20px)' },
-                        },
-                        fadeInUp: {
-                            '0%': { opacity: '0', transform: 'translateY(20px)' },
-                            '100%': { opacity: '1', transform: 'translateY(0)' },
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+
 
     <style>
         /* Custom Scrollbar */
@@ -148,11 +82,36 @@
                 transition-duration: 0.01ms !important;
             }
         }
-    </style>
-    <link rel="stylesheet" href="assets/palo-icons.css">
-    <link rel="stylesheet" href="assets/palo-v21.css?v=3.1.0">
-    <script src="assets/palo-icons.js"></script>
+    #governance-practice .palo-card a{color:#14616d;font-weight:700;text-decoration:underline;text-underline-offset:3px}
+</style>
+    <link rel="stylesheet" href="assets/palo-icons.css?v=3.1.0-2140f91eb421cb89">
+    <link rel="stylesheet" href="assets/palo-v21.css?v=3.1.0-dffc45de998d7015">
+    <script src="assets/palo-icons.js?v=3.1.0-c07be8daa6f1971f"></script>
     <script src="assets/palo-v21.js?v=3.1.0-46dec1ba310fa4e3"></script>
+    <link rel="stylesheet" href="assets/palo-authorship.css?v=3.1.0-5d2afd7a8195555d" data-palo-authorship-style="true">
+    <link rel="stylesheet" href="https://paloframework.org/assets/palo-discovery.css?v=3.1.0-b2049a08c2e8bf59">
+    <script src="https://paloframework.org/assets/palo-video-facade.js?v=3.1.0-70c060a93017a6b5" defer></script>
+    <meta name="description" content="Assess AI risks, document fundamental-rights impacts and build reviewable evidence with PALO's open-source governance toolkit by Fabrizio Degni.">
+    <meta name="author" content="Fabrizio Degni">
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <link rel="canonical" href="https://paloframework.org/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="PALO Framework | Open-Source AI Governance Toolkit">
+    <meta property="og:description" content="Assess AI risks, document fundamental-rights impacts and build reviewable evidence with PALO's open-source governance toolkit by Fabrizio Degni.">
+    <meta property="og:url" content="https://paloframework.org/">
+    <meta property="og:site_name" content="PALO Framework">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:image" content="https://paloframework.org/assets/seo/palo-governance.png">
+    <meta property="og:image:alt" content="PALO Framework | Open-Source AI Governance Toolkit - PALO Framework">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:type" content="image/png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="PALO Framework | Open-Source AI Governance Toolkit">
+    <meta name="twitter:description" content="Assess AI risks, document fundamental-rights impacts and build reviewable evidence with PALO's open-source governance toolkit by Fabrizio Degni.">
+    <meta name="twitter:image" content="https://paloframework.org/assets/seo/palo-governance.png">
+    <meta name="twitter:image:alt" content="PALO Framework | Open-Source AI Governance Toolkit - PALO Framework">
+    <script type="application/ld+json" id="palo-seo-graph">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://paloframework.org/PALO_Community.html#creator","name":"Fabrizio Degni","url":"https://paloframework.org/PALO_Community.html#creator","description":"Creator and maintainer of PALO Framework, its AI governance methodology, software and documentation.","sameAs":["https://www.linkedin.com/in/fdegni/"]},{"@type":"CreativeWork","@id":"https://paloframework.org/#framework","name":"PALO Framework","alternateName":"Principled AI Lifecycle Orchestration","url":"https://paloframework.org/","creator":{"@id":"https://paloframework.org/PALO_Community.html#creator"},"description":"An open-source AI governance framework connecting lifecycle decisions, risk and impact assessment, controls, indicators and reviewable evidence.","sameAs":["https://github.com/sev7enITA/PALOframework"]},{"@type":"WebSite","@id":"https://paloframework.org/#website","url":"https://paloframework.org/","name":"PALO Framework","alternateName":"PALO","publisher":{"@id":"https://paloframework.org/PALO_Community.html#creator"},"about":{"@id":"https://paloframework.org/#framework"},"inLanguage":["en","it"],"image":{"@id":"https://paloframework.org/#palo-logo"}},{"@type":"WebPage","@id":"https://paloframework.org/#webpage","url":"https://paloframework.org/","name":"PALO Framework | Open-Source AI Governance Toolkit","description":"Assess AI risks, document fundamental-rights impacts and build reviewable evidence with PALO's open-source governance toolkit by Fabrizio Degni.","inLanguage":"en","isPartOf":{"@id":"https://paloframework.org/#website"},"about":{"@id":"https://paloframework.org/#framework"},"author":{"@id":"https://paloframework.org/PALO_Community.html#creator"},"dateModified":"2026-11-11","primaryImageOfPage":{"@type":"ImageObject","url":"https://paloframework.org/assets/seo/palo-governance.png"},"hasPart":[{"@type":"CollectionPage","name":"PALO BlueprintBench internal results","url":"https://paloframework.org/PALO_BlueprintBench_Leaderboard.html","creativeWorkStatus":"Internal tests with assistant-draft labels; independent validation pending"}]},{"@type":"ImageObject","@id":"https://paloframework.org/#palo-logo","name":"PALO Framework logo","contentUrl":"https://paloframework.org/assets/logo.webp","encodingFormat":"image/webp"}]}</script>
 </head>
 
 <body class="palo-home text-slate-800 bg-white font-sans antialiased">
@@ -191,10 +150,16 @@
         <section class="palo-home-hero">
             <div class="palo-shell palo-home-hero-grid">
                 <div class="palo-home-hero-copy">
-                    <p class="palo-eyebrow">PALO Evidence Pack | Local-first</p>
-                    <h1>Allowed is not verified.</h1>
+                    <p class="palo-eyebrow">Open-source AI governance | PALO Framework</p>
+                    <h1>AI governance,<br>from principles to evidence.</h1>
+                    <p class="palo-small"><a href="PALO_BlueprintBench.html">11 November: PALO BlueprintBench research launch and independent participation</a></p>
+                    <p class="palo-small"><a href="https://paloframework.org/PALO_DocumentWorkbench.html">8 November: join the PALO Document Workbench controlled Mac pilot</a></p>
+
+                    <p class="palo-small"><a href="https://paloframework.org/PALO_CopilotPilot.html">28 October: completed Copilot case and customer-tenant evaluation candidate</a></p>
+<p class="palo-small"><a href="https://paloframework.org/PALO_ChatGPTPlugin.html">30 October: PALO Governance API pilot, results and release steps</a></p>
                     <p class="palo-small"><a href="docs/palo-status-2026-09-17.html">17 September update: ANS, agent swarms and the evidence boundary</a></p>
-                    <p class="palo-home-hero-lead">Give PALO one AI use case. Leave with a traceable, reviewable evidence dossier in less than ten minutes.</p>
+                    <p class="palo-home-hero-lead">Assess AI risks, document fundamental-rights impacts and connect controls to evidence. Start with one use case and build a reviewable dossier using PALO's local-first governance tools.</p>
+                    <p class="palo-authorship-byline" data-palo-authorship="hero">PALO Framework is an open-source project conceived, created and maintained by <a href="PALO_Community.html#creator">Fabrizio Degni</a>.</p>
                     <div class="palo-actions">
                         <a class="palo-btn" href="PALO_AssessmentPath.html?sample=agentic-invoice#assessment-form"><span data-palo-icon="clipboard" aria-hidden="true"></span>Run the 10-minute evidence case</a>
                         <a class="palo-btn palo-btn-secondary" href="PALO_Guide.html"><span data-palo-icon="target" aria-hidden="true"></span>Find my route</a>
@@ -214,6 +179,33 @@
                     <div class="palo-cognitive-output"><small>Local artifact</small><strong>A reviewable evidence bundle with explicit boundaries and next actions</strong></div>
                     <div class="palo-home-workspace-foot"><span data-palo-icon="shield" aria-hidden="true"></span><span>Local processing</span><span>Not certification</span></div>
                 </aside>
+            </div>
+        </section>
+
+        <section class="palo-section" id="blueprintbench" aria-labelledby="blueprintbench-title">
+            <div class="palo-shell">
+                <p class="palo-eyebrow">PALO BlueprintBench / Open research release</p>
+                <h2 id="blueprintbench-title">PALO BlueprintBench</h2><img src="assets/blueprintbench/brand/blueprintbench-logo.jpg" alt="BlueprintBench research identity" width="300" height="100" loading="lazy" style="max-width:100%;height:auto">
+                <p class="palo-lead">Does the meaning survive when AI turns business documents into a software specification? Explore our open benchmark for specification fidelity.</p>
+                <p>Explore 18 model IDs across internal procurement tests and separate historical adapter diagnostics. Inspect raw outputs and reproducible checks. The first planned study focuses on procurement: obligations, permissions, exceptions and the human work needed to correct a blueprint.</p>
+                <div class="palo-actions"><a class="palo-btn" href="PALO_BlueprintBench_Leaderboard.html">Explore 18 model IDs</a><a class="palo-btn palo-btn-secondary" href="PALO_BlueprintBench.html#participate">Contribute to the benchmark</a><a class="palo-btn palo-btn-secondary" href="https://github.com/sev7enITA/PALO-BlueprintBench">Research repository</a></div>
+                <p class="palo-small">Research release v0.3.0-pilot.1: 42 evaluator tests pass and 26 historical attempts replay offline. Qualified held-out results: 0. Independent validation and PALO Blueprint Index scoring remain open.</p>
+            </div>
+        <p class="palo-small">Updated internal cohort: 18 model IDs, 324 assigned slots and 299 complete responses. Internal tests with assistant-draft labels. Independent qualification remains open. <a href="https://github.com/sev7enITA/PALO-BlueprintBench/blob/3effa4c/docs/brand-usage.md">Testing badge and evidence requirements</a>.</p>
+</section>
+
+        <!-- PALO Document Workbench controlled pilot -->
+        <section class="palo-section" id="document-workbench-pilot" aria-labelledby="document-workbench-pilot-title">
+            <div class="palo-shell">
+                <p class="palo-eyebrow">Document Workbench 0.2.0 / Controlled Mac pilot</p>
+                <h2 id="document-workbench-pilot-title">Join the Human Agency.</h2>
+                <p class="palo-lead">Turn PDF and Excel processes into a blueprint you review before coding. Local AI, source-linked candidates, an ER graph and an explicit review before export.</p>
+                <p>Build with AI. Keep humans in command. The signed, Apple-notarised preview is for Apple Silicon Macs. The first full model download and explicit cancellation/retry passed on the test Mac; clean-machine and minimum-hardware qualification remain open.</p>
+                <div class="palo-actions">
+                    <a class="palo-btn" href="https://paloframework.org/PALO_DocumentWorkbench.html">Explore the app and join the pilot</a>
+                    <a class="palo-btn palo-btn-secondary" href="https://paloframework.org/PALO_DocumentWorkbench.html#screens">See real app screenshots</a>
+                </div>
+                <p class="palo-small">Start with synthetic documents and follow your organisation's policy. PALO does not intercept uploads to coding tools or certify the exported business logic.</p>
             </div>
         </section>
 
@@ -275,8 +267,8 @@
             </div>
         </section>
 
-<section class="palo-section palo-agentic-feature" id="finops-local-learning" aria-labelledby="finops-learning-title"><div class="palo-shell palo-agentic-feature-grid"><div><p class="palo-eyebrow">PALO FinOps 1.3 | Experimental local workspace</p><h2 id="finops-learning-title">When does learning locally justify its full cost?</h2><p class="palo-lead">Compare external-only, static hybrid and distilled hybrid workflows on the same task cohort. Review training investment, accepted outcomes, latency and conditional future costs together.</p><div class="palo-actions"><a class="palo-btn" href="PALO_FinOps.html#local-learning">Explore Local learning</a><a class="palo-btn palo-btn-secondary" href="docs/palo-finops-local-learning-research.html">Research and reproducibility</a><a class="palo-btn palo-btn-secondary" href="docs/palo-finops.md#who-uses-the-module">Find your role</a></div></div><aside class="palo-card"><p class="palo-card-kicker">What you can verify</p><p>Seven synthetic scenarios, explicit cost coverage, quality and latency gates, and replayable reports. A conditional cost advantage is a result to investigate, not permission to deploy or spend.</p><p><strong>Available now:</strong> offline comparison and evidence export. Model training, adaptive sidecar enforcement and measured production savings remain outside this release.</p></aside></div></section>
-        <section class="palo-section palo-guided-journeys" id="guided-journeys" aria-labelledby="guided-journeys-title">
+        <section class="palo-section palo-agentic-feature" id="finops-local-learning" aria-labelledby="finops-learning-title"><div class="palo-shell palo-agentic-feature-grid"><div><p class="palo-eyebrow">PALO FinOps 1.3 | Experimental local workspace</p><h2 id="finops-learning-title">When does learning locally justify its full cost?</h2><p class="palo-lead">Compare external-only, static hybrid and distilled hybrid workflows on the same task cohort. Review training investment, accepted outcomes, latency and conditional future costs together.</p><div class="palo-actions"><a class="palo-btn" href="PALO_FinOps.html#local-learning">Explore Local learning</a><a class="palo-btn palo-btn-secondary" href="docs/palo-finops-local-learning-research.html">Research and reproducibility</a><a class="palo-btn palo-btn-secondary" href="docs/palo-finops.html">Find your role</a></div></div><aside class="palo-card"><p class="palo-card-kicker">What you can verify</p><p>Seven synthetic scenarios, explicit cost coverage, quality and latency gates, and replayable reports. A conditional cost advantage is a result to investigate, not permission to deploy or spend.</p><p><strong>Available now:</strong> offline comparison and evidence export. Model training, adaptive sidecar enforcement and measured production savings remain outside this release.</p></aside></div></section>
+<section class="palo-section palo-guided-journeys" id="guided-journeys" aria-labelledby="guided-journeys-title">
             <div class="palo-shell">
                 <p class="palo-eyebrow">Guided journeys already available</p>
                 <h2 id="guided-journeys-title">Start from an outcome. Leave with an artifact.</h2>
@@ -297,7 +289,9 @@
             </div>
         </section>
 
-        <details class="palo-home-background" data-palo-progressive-background>
+                <section class="palo-section" id="governance-practice" aria-labelledby="governance-practice-title"><div class="palo-shell"><p class="palo-eyebrow">Understand, apply, review</p><h2 id="governance-practice-title">Put AI governance into practice</h2><div class="palo-grid"><article class="palo-card"><h3>Build a reviewable evidence record</h3><p>Follow a fictional invoice agent through its authority boundary, expected effects and human review conditions.</p><a href="https://paloframework.org/docs/ai-governance-evidence-worked-example.html">Read the worked governance case</a></article><article class="palo-card"><h3>Choose indicators that support decisions</h3><p>Define a useful KPI or KRI with a denominator, evidence source, accountable owner and review action.</p><a href="https://paloframework.org/docs/ai-governance-kpi-kri-examples.html">Explore KPI and KRI examples</a></article><article class="palo-card"><h3>Trace the research behind PALO</h3><p>Read the publications, doctoral-thesis context and source record maintained by Fabrizio Degni.</p><a href="PALO_Recognition.html">Research and preferred citation</a></article></div></div></section>
+
+<details class="palo-home-background" data-palo-progressive-background>
             <summary>
                 <span>Explore framework background and specialist modules</span>
                 <small>History, principles, complementary lifecycle context and the full module catalogue</small>
@@ -402,6 +396,16 @@
         </section>
 
         <!-- PALO v2.2 Guided Entry -->
+        <section class="palo-section" id="eu-agentic-proposal">
+            <div class="palo-shell">
+                <p class="palo-eyebrow">European policy contribution / September 2026</p>
+                <h2>Governing delegated AI action in Europe</h2>
+                <p class="palo-lead">Explore PALO's complementary proposal for the AI Act and enacted Digital Omnibus: accountable mandates, bounded agent actions, verified effects and a proportionate institutional pathway.</p>
+                <div class="palo-actions"><a class="palo-btn" href="https://paloframework.org/PALO_EUAgenticGovernance.html">Read the EU proposal and use the review toolkit</a></div>
+                <p>Independent discussion proposal. PALO-AI remains a developer preview; no EU endorsement is implied.</p>
+            </div>
+        </section>
+
         <section id="start-here" class="palo-section">
             <div class="palo-shell">
                 <p class="palo-eyebrow">PALO v3.1.0</p>
@@ -436,7 +440,7 @@
                     <article class="palo-card">
                         <p class="palo-card-kicker">Regulatory Watch 2026</p>
                         <h2>Dates with sources</h2>
-                        <p>Article 4 literacy, Article 50 transparency, GPAI enforcement and the high-risk timeline, with official sources reviewed on 14 September 2026.</p>
+                        <p>Article 4 literacy, Article 50 transparency, GPAI enforcement and the high-risk timeline, with official sources reviewed on 22 September 2026.</p>
                         <div class="palo-actions"><a class="palo-btn" href="PALO_RegulatoryWatch.html"><span data-palo-icon="scale" aria-hidden="true"></span>Open Regulatory Watch</a></div>
                     </article>
                     <article class="palo-card">
@@ -463,11 +467,17 @@
                         <p>Review the source revision, CI run, validation totals, negative-test coverage, tagged artifact checksum and current maturity limits.</p>
                         <div class="palo-actions"><a class="palo-btn" href="PALO_VerificationNote.html"><span data-palo-icon="clipboard" aria-hidden="true"></span>Open release record</a></div>
                     </article>
+                    <article class="palo-card" id="community-beyond-invitation">
+<p class="palo-card-kicker">Community &amp; Beyond PALO</p>
+<h2>Help shape what comes next.</h2>
+<p>Meet Fabrizio Degni, Alessandro Simonetta and Maria Cristina Paoletti. Bring your research, engineering or review expertise: universities, independent researchers, auditors and development supporters are welcome.</p>
+<div class="palo-actions"><a class="palo-btn" href="PALO_Community.html">Meet the team</a><a class="palo-btn palo-btn-secondary" href="PALO_Community.html#contribute">Find your contribution</a></div>
+</article>
                     <article class="palo-card">
                         <p class="palo-card-kicker">Proof and Community</p>
                         <h2>See the public record</h2>
                         <p>Review public references, the Human Economic Forum context, app store links, source notes, and the media kit. PolicyWatcher adds an external policy-monitoring companion.</p>
-                        <div class="palo-actions"><a class="palo-btn" href="PALO_Recognition.html"><span data-palo-icon="trophy" aria-hidden="true"></span>Open Recognition</a><a class="palo-btn palo-btn-secondary" href="PALO_Community.html">Community</a><a class="palo-btn palo-btn-secondary" href="https://www.policywatcher.online/" target="_blank" rel="noopener noreferrer">PolicyWatcher</a></div>
+                        <div class="palo-actions"><a class="palo-btn" href="PALO_Recognition.html"><span data-palo-icon="trophy" aria-hidden="true"></span>Open Recognition</a><a class="palo-btn palo-btn-secondary" href="PALO_Community.html">Community &amp; Beyond</a><a class="palo-btn palo-btn-secondary" href="https://www.policywatcher.online/" target="_blank" rel="noopener noreferrer">PolicyWatcher</a></div>
                     </article>
                 </div>
             </div>
@@ -485,7 +495,7 @@
                             <div class="flex items-center mb-6">
                                 <div
                                     class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center text-red-500 text-2xl mr-4">
-                                    <i class="fa-solid fa-glasses"></i>
+                                    <span data-palo-icon="eye" aria-hidden="true"></span>
                                 </div>
                                 <h2 class="text-2xl font-bold text-slate-800">The Problem: "ROI Myopia"</h2>
                             </div>
@@ -496,15 +506,15 @@
                             </p>
                             <ul class="space-y-3">
                                 <li class="flex items-start">
-                                    <i class="fa-solid fa-xmark text-red-500 mt-1 mr-3"></i>
+                                    <span data-palo-icon="x" aria-hidden="true" class="text-red-500 mt-1 mr-3"></span>
                                     <span class="text-slate-700">Ignoring long-term ethical debt</span>
                                 </li>
                                 <li class="flex items-start">
-                                    <i class="fa-solid fa-xmark text-red-500 mt-1 mr-3"></i>
+                                    <span data-palo-icon="x" aria-hidden="true" class="text-red-500 mt-1 mr-3"></span>
                                     <span class="text-slate-700">Lack of standardized governance</span>
                                 </li>
                                 <li class="flex items-start">
-                                    <i class="fa-solid fa-xmark text-red-500 mt-1 mr-3"></i>
+                                    <span data-palo-icon="x" aria-hidden="true" class="text-red-500 mt-1 mr-3"></span>
                                     <span class="text-slate-700">Reactive instead of proactive compliance</span>
                                 </li>
                             </ul>
@@ -546,6 +556,7 @@
                 <div class="text-center mb-12">
                     <span class="text-palo-teal font-bold tracking-wider uppercase text-sm">See It In Action</span>
                     <h2 class="text-3xl md:text-4xl font-bold mt-2">The Framework Explained</h2>
+                    <p class="palo-video-note">The YouTube player loads when you select Play. <a href="PALO_Guide.html">Read the framework guide</a>.</p>
                     <p class="mt-4 text-slate-600 max-w-2xl mx-auto">Discover how PALO integrates ancient wisdom with
                         modern
                         AI governance.</p>
@@ -555,13 +566,11 @@
                     <!-- Video Container -->
                     <div
                         class="rounded-2xl overflow-hidden shadow-2xl border border-slate-700 transform hover:scale-[1.01] transition-transform duration-300">
-                        <div class="relative pb-[56.25%] h-0">
-                            <iframe class="absolute top-0 left-0 w-full h-full"
-                                src="https://www.youtube.com/embed/7Zvq78Pc8zU?rel=0"
-                                title="The PALO Framework Feature Trailer" frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
-                            </iframe>
+                        <div class="palo-video-facade" data-palo-video="7Zvq78Pc8zU">
+                            <a href="https://www.youtube.com/watch?v=7Zvq78Pc8zU" data-palo-video-play aria-label="Play The PALO Framework Feature Trailer on YouTube">
+                                <img src="assets/seo/palo-governance.png" alt="" width="1200" height="630" loading="lazy" decoding="async">
+                                <span class="palo-video-play"><span aria-hidden="true">&#9654;</span> Play the PALO trailer</span>
+                            </a>
                         </div>
                     </div>
 
@@ -621,7 +630,7 @@
                         class="group p-8 rounded-2xl bg-white border border-slate-100 shadow-lg hover:shadow-xl hover:border-teal-200 transition-all duration-300">
                         <div
                             class="w-14 h-14 bg-teal-50 rounded-xl flex items-center justify-center text-palo-teal text-2xl mb-6 group-hover:bg-palo-teal group-hover:text-white transition-colors">
-                            <i class="fa-solid fa-scale-balanced"></i>
+                            <span data-palo-icon="scale" aria-hidden="true"></span>
                         </div>
                         <h3 class="text-xl font-bold text-slate-800 mb-3">Fairness & Non-Discrimination</h3>
                         <p class="text-slate-600 leading-relaxed">
@@ -636,7 +645,7 @@
                         class="group p-8 rounded-2xl bg-white border border-slate-100 shadow-lg hover:shadow-xl hover:border-teal-200 transition-all duration-300">
                         <div
                             class="w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600 text-2xl mb-6 group-hover:bg-blue-600 group-hover:text-white transition-colors">
-                            <i class="fa-solid fa-users-viewfinder"></i>
+                            <span data-palo-icon="users" aria-hidden="true"></span>
                         </div>
                         <h3 class="text-xl font-bold text-slate-800 mb-3">Human Agency & Oversight</h3>
                         <p class="text-slate-600 leading-relaxed">
@@ -650,7 +659,7 @@
                         class="group p-8 rounded-2xl bg-white border border-slate-100 shadow-lg hover:shadow-xl hover:border-teal-200 transition-all duration-300">
                         <div
                             class="w-14 h-14 bg-amber-50 rounded-xl flex items-center justify-center text-amber-500 text-2xl mb-6 group-hover:bg-amber-600 group-hover:text-white transition-colors">
-                            <i class="fa-solid fa-leaf"></i>
+                            <span data-palo-icon="plant" aria-hidden="true"></span>
                         </div>
                         <h3 class="text-xl font-bold text-slate-800 mb-3">Societal & Environmental Well-being</h3>
                         <p class="text-slate-600 leading-relaxed">
@@ -781,7 +790,7 @@
                 <div class="text-center">
                     <a href="PALO_ModelCanvasAI.html"
                         class="inline-flex items-center bg-white text-teal-800 font-bold text-lg px-8 py-4 rounded-full hover:bg-teal-50 hover:scale-105 transition-all shadow-2xl">
-                        <i class="fa-solid fa-rocket mr-3"></i>
+                        <span data-palo-icon="rocket" aria-hidden="true" class="mr-3"></span>
                         Launch Model Canvas
                     </a>
                     <p class="mt-4 text-teal-200 text-sm">Free to use - No registration required - Export your analysis
@@ -891,7 +900,7 @@
                 <div class="text-center">
                     <a href="PALO_FRIA.html"
                         class="inline-flex items-center bg-amber-500 text-slate-900 font-bold text-lg px-8 py-4 rounded-full hover:bg-amber-400 hover:scale-105 transition-all shadow-2xl">
-                        <i class="fa-solid fa-shield-halved mr-3"></i> Start FRIA Assessment
+                        <span data-palo-icon="shield" aria-hidden="true" class="mr-3"></span> Start FRIA Assessment
                     </a>
                     <p class="mt-4 text-slate-600 text-sm">Free online tool - Client-side processing - Your data stays
                         local
@@ -999,7 +1008,7 @@
                                 class="group flex flex-col items-center p-10 bg-slate-50 rounded-2xl border border-slate-200 hover:border-palo-teal hover:shadow-lg transition-all duration-300">
                                 <div
                                     class="w-16 h-16 bg-white rounded-full flex items-center justify-center text-3xl text-palo-teal shadow-sm mb-6 group-hover:scale-110 transition-transform">
-                                    <i class="fa-solid fa-envelope"></i>
+                                    <span data-palo-icon="mail" aria-hidden="true"></span>
                                 </div>
                                 <h3 class="text-xl font-bold text-slate-800 mb-2">Email Us</h3>
                                 <p class="text-slate-500 mb-4 text-sm">For general inquiries and implementation support.
@@ -1013,13 +1022,12 @@
                                 class="group flex flex-col items-center p-10 bg-slate-50 rounded-2xl border border-slate-200 hover:border-[#0077b5] hover:shadow-lg transition-all duration-300">
                                 <div
                                     class="w-16 h-16 bg-white rounded-full flex items-center justify-center text-3xl text-[#0077b5] shadow-sm mb-6 group-hover:scale-110 transition-transform">
-                                    <i class="fa-brands fa-linkedin"></i>
+                                    <span data-palo-icon="user" aria-hidden="true"></span>
                                 </div>
                                 <h3 class="text-xl font-bold text-slate-800 mb-2">Connect on LinkedIn</h3>
                                 <p class="text-slate-500 mb-4 text-sm">Follow Fabrizio Degni for updates and insights.
                                 </p>
-                                <span class="text-[#0077b5] font-bold group-hover:underline">View Profile <i
-                                        class="fa-solid fa-arrow-up-right-from-square ml-1 text-xs"></i></span>
+                                <span class="text-[#0077b5] font-bold group-hover:underline">View Profile <span data-palo-icon="arrow-right" aria-hidden="true" class="ml-1 text-xs"></span></span>
                             </a>
                         </div>
                     </div>
@@ -1032,7 +1040,7 @@
                             <h2 class="text-3xl font-extrabold text-slate-800 mb-4"><span data-palo-icon=clipboard class=palo-icon-inline></span>Changelog</h2>
                             <p class="text-slate-600">Recent updates and new features. Platform releases and independently versioned components remain distinct.</p>
                             <div class="palo-actions justify-center mt-5">
-                                <a class="palo-btn palo-btn-secondary" href="CHANGELOG.md">Full changelog</a>
+                                <a class="palo-btn palo-btn-secondary" href="CHANGELOG.html">Full changelog</a>
                                 <a class="palo-btn palo-btn-secondary" href="release-manifest.json">Version inventory</a>
                                 <a class="palo-btn palo-btn-secondary" href="PALO_VerificationNote.html">Release verification</a>
                                 <a class="palo-btn palo-btn-secondary" href="feed.xml">Release RSS</a>
@@ -1040,8 +1048,22 @@
                         </div>
 
                         <div class="space-y-6">
-<div class="bg-white rounded-xl p-6 shadow-sm border-2 border-teal-200"><p class="palo-eyebrow">22 October 2026 | Independently versioned module</p><h3>PALO FinOps 1.3: Local learning economics</h3><p>Evaluate three frozen configurations with complete cost coverage, paired outcome checks and conditional crossover analysis. Seven synthetic scenarios are reproducible offline; no real-workload savings are claimed.</p><div class="palo-actions"><a class="palo-btn" href="PALO_FinOps.html#local-learning">Open the workspace</a><a class="palo-btn palo-btn-secondary" href="docs/palo-finops-local-learning-research.html">Read the research update</a></div></div>
-                            <!-- August 2026 Entry -->
+<div class="bg-white rounded-xl p-6 shadow-sm border-2 border-teal-200" id="update-copilot-pilot-20261027">
+<p class="palo-eyebrow">28 October 2026 | Customer-tenant evaluation candidate</p>
+<h3 class="text-lg font-bold text-slate-800">One approved action. One verified effect.</h3>
+<p class="text-slate-600">The bounded Copilot/Azure case now includes authenticated review, execution, separate target readback and a replay with no second write. Download the customer-tenant source candidate, installation guide, SBOM and test inventory.</p>
+<p class="palo-small">Synthetic evaluation release 0.1.0-rc.1; production qualification remains open. Two identities, one operator. No Marketplace certification or measured ROI.</p>
+<div class="palo-actions"><a class="palo-btn" href="https://paloframework.org/PALO_CopilotPilot.html">Inspect the completed case</a><a class="palo-btn palo-btn-secondary" href="https://paloframework.org/docs/palo-customer-tenant-installation.html">Installation guide and downloads</a></div></div>
+
+<div class="bg-white rounded-xl p-6 shadow-sm border-2 border-teal-200" id="update-chatgpt-plugin-20261027">
+<p class="palo-eyebrow">27 October 2026 | Plugin development</p>
+<h3 class="text-lg font-bold text-slate-800">PALO Governance for ChatGPT: six skills and a connected draft</h3>
+<p class="text-slate-600">Six documentation workflows, local reference snapshots, a read-only MCP Reader configuration, GLM and Gemini critiques, and recorded local test outcomes. All six portal skill checks passed. OAuth and connected testing remain incomplete; the candidate is not submitted or published.</p>
+<div class="palo-actions mt-5"><a class="palo-btn palo-btn-primary" href="https://paloframework.org/PALO_ChatGPTPlugin.html">Development record and screenshots</a><a class="palo-btn palo-btn-secondary" href="https://paloframework.org/media/chatgpt-plugin/PALO-English-Press-and-Media-Kit.zip">English press and media kit</a></div>
+</div>
+
+                            <div class="bg-white rounded-xl p-6 shadow-sm border-2 border-teal-200"><p class="palo-eyebrow">22 October 2026 | Independently versioned module</p><h3>PALO FinOps 1.3: Local learning economics</h3><p>Evaluate three frozen configurations with complete cost coverage, paired outcome checks and conditional crossover analysis. Seven synthetic scenarios are reproducible offline; no real-workload savings are claimed.</p><div class="palo-actions"><a class="palo-btn" href="PALO_FinOps.html#local-learning">Open the workspace</a><a class="palo-btn palo-btn-secondary" href="docs/palo-finops-local-learning-research.html">Read the research update</a></div></div>
+<!-- August 2026 Entry -->
                             <div class="bg-white rounded-xl p-6 shadow-sm border-2 border-teal-200">
                                 <div class="flex items-center gap-3 mb-4">
                                     <span class="bg-teal-700 text-white text-xs font-bold px-3 py-1 rounded-full">RELEASE</span>
@@ -1305,11 +1327,14 @@
                 </section>
             </div>
         </details>
-    <p class="palo-tri-graph-discovery"><a href="PALO_TriGraphGovernance.html">Tri-Graph Governance: knowledge, context and guarded procedures</a>  |  Explore the linked ontology, taxonomy and dictionary, inspect decision checks and review the evidence limits of the additive reference profile.</p>
+    <div class="palo-shell palo-resource-note"><a href="PALO_DataCatalog.html">Download governance datasets and worked indicator examples</a></div>
+<p class="palo-tri-graph-discovery"><a href="PALO_TriGraphGovernance.html">Tri-Graph Governance: knowledge, context and guarded procedures</a>  |  Explore the linked ontology, taxonomy and dictionary, inspect decision checks and review the evidence limits of the additive reference profile.</p>
 </main>
 
     <!-- Footer -->
-    <footer class="palo-home-footer" role="contentinfo">
+    <footer class="palo-home-footer" role="contentinfo" data-palo-authorship-container="true">
+<p class="palo-authorship-footer" data-palo-authorship="footer">PALO Framework: conceived, created and maintained by <a href="PALO_Community.html#creator">Fabrizio Degni</a>.</p>
+
         <div class="palo-home-footer-inner">
             <div class="palo-home-footer-row">
                 <div class="palo-home-footer-brand">
@@ -1372,49 +1397,8 @@
         });
     </script>
     <!-- JSON-LD Structured Data for Organization -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "PALO Framework",
-        "alternateName": "Principled AI Lifecycle Orchestration",
-        "url": "https://paloframework.org",
-        "logo": "https://paloframework.org/assets/logo.webp",
-        "description": "PALO Framework provides a comprehensive methodology for responsible AI governance, aligning AI lifecycle management with ISO 42001, EU AI Act, and OECD AI principles.",
-        "sameAs": [],
-        "contactPoint": {
-            "@type": "ContactPoint",
-            "contactType": "customer support",
-            "email": "info@paloframework.org",
-            "availableLanguage": ["English", "Italian"]
-        },
-        "foundingDate": "2025",
-        "knowsAbout": [
-            "AI Governance",
-            "AI Ethics",
-            "ISO 42001",
-            "EU AI Act",
-            "OECD AI Principles",
-            "Responsible AI",
-            "AI Risk Management"
-        ]
-    }
-    </script>
 
     <!-- JSON-LD for WebSite -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "PALO Framework",
-        "url": "https://paloframework.org",
-        "potentialAction": {
-            "@type": "SearchAction",
-            "target": "https://paloframework.org/?q={search_term_string}",
-            "query-input": "required name=search_term_string"
-        }
-    }
-    </script>
 </body>
 
 </html>

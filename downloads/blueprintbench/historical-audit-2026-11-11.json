@@ -1,0 +1,192 @@
+{
+  "scope": "Historical adapter smoke tests; no semantic gold or model ranking",
+  "passages": [
+    {
+      "file": "maintenance-probe-request.json",
+      "source_units": 2,
+      "characters": 1649,
+      "utf8_bytes": 1649,
+      "request_sha256": "66a74cd3a29f35020beb0c526eae4f36240dfecc1a9636efece7ec336965bfb9"
+    },
+    {
+      "file": "redevelopment-probe-request.json",
+      "source_units": 2,
+      "characters": 1665,
+      "utf8_bytes": 1675,
+      "request_sha256": "32178100e3c24e81a3e660e2f0c2ffcf4655bdd8dc6392daaf1bb58664cfe0e3"
+    },
+    {
+      "file": "restoration-probe-request.json",
+      "source_units": 2,
+      "characters": 1664,
+      "utf8_bytes": 1670,
+      "request_sha256": "1d63f2d5ef4edbb6369d3995c5607cae6978f75f2c32c4d95502e2d20e8eca62"
+    }
+  ],
+  "total_passage_utf8_bytes": 4994,
+  "by_kind": {
+    "attribute": {
+      "proposed": 41,
+      "passed": 6
+    },
+    "entity": {
+      "proposed": 37,
+      "passed": 26
+    },
+    "relationship": {
+      "proposed": 43,
+      "passed": 0
+    },
+    "rule": {
+      "proposed": 42,
+      "passed": 22
+    },
+    "step": {
+      "proposed": 29,
+      "passed": 13
+    },
+    "term": {
+      "proposed": 18,
+      "passed": 7
+    }
+  },
+  "rejection_causes": {
+    "both": 35,
+    "contract_only": 76,
+    "source_only": 25
+  },
+  "models": {
+    "reflection/beam-1.0-501b-a23b": {
+      "assigned": 3,
+      "attempted": 3,
+      "proposed": 33,
+      "passed": 17,
+      "archive_cost_usd": "0.00969065",
+      "attempts_without_cost": 0,
+      "ledger_reported_microusd": 9692,
+      "ledger_known_attempts": 3,
+      "ledger_unknown_attempts": 0,
+      "ledger_status": "reconstructible local accounting; not invoice reconciliation",
+      "not_run": 0
+    },
+    "cohere/command-a-plus": {
+      "assigned": 3,
+      "attempted": 1,
+      "proposed": 0,
+      "passed": 0,
+      "archive_cost_usd": "0",
+      "attempts_without_cost": 1,
+      "ledger_reported_microusd": 0,
+      "ledger_known_attempts": 0,
+      "ledger_unknown_attempts": 1,
+      "ledger_status": "reconstructible local accounting; not invoice reconciliation",
+      "not_run": 2
+    },
+    "baidu/ernie-5.5-flash-preview": {
+      "assigned": 3,
+      "attempted": 3,
+      "proposed": 24,
+      "passed": 6,
+      "archive_cost_usd": "0.003989772",
+      "attempts_without_cost": 1,
+      "ledger_reported_microusd": 13206,
+      "ledger_known_attempts": 3,
+      "ledger_unknown_attempts": 0,
+      "ledger_status": "reconstructible local accounting; not invoice reconciliation",
+      "not_run": 0
+    },
+    "sakana/fugu-max": {
+      "assigned": 3,
+      "attempted": 1,
+      "proposed": 0,
+      "passed": 0,
+      "archive_cost_usd": "0",
+      "attempts_without_cost": 1,
+      "ledger_reported_microusd": 0,
+      "ledger_known_attempts": 0,
+      "ledger_unknown_attempts": 1,
+      "ledger_status": "reconstructible local accounting; not invoice reconciliation",
+      "not_run": 2
+    },
+    "tencent/hy4": {
+      "assigned": 3,
+      "attempted": 3,
+      "proposed": 44,
+      "passed": 19,
+      "archive_cost_usd": "0.0037128955",
+      "attempts_without_cost": 0,
+      "ledger_reported_microusd": 3714,
+      "ledger_known_attempts": 3,
+      "ledger_unknown_attempts": 0,
+      "ledger_status": "reconstructible local accounting; not invoice reconciliation",
+      "not_run": 0
+    },
+    "mistralai/mistral-large-4-0": {
+      "assigned": 3,
+      "attempted": 3,
+      "proposed": 29,
+      "passed": 12,
+      "archive_cost_usd": "0.03266109",
+      "attempts_without_cost": 1,
+      "ledger_reported_microusd": 51872,
+      "ledger_known_attempts": 3,
+      "ledger_unknown_attempts": 0,
+      "ledger_status": "reconstructible local accounting; not invoice reconciliation",
+      "not_run": 0
+    },
+    "nex-agi/nex-n2.6": {
+      "assigned": 3,
+      "attempted": 3,
+      "proposed": 28,
+      "passed": 15,
+      "archive_cost_usd": "0.004225384",
+      "attempts_without_cost": 0,
+      "ledger_reported_microusd": 4227,
+      "ledger_known_attempts": 3,
+      "ledger_unknown_attempts": 0,
+      "ledger_status": "reconstructible local accounting; not invoice reconciliation",
+      "not_run": 0
+    },
+    "inference-net/schematron-v2-small": {
+      "assigned": 3,
+      "attempted": 3,
+      "proposed": 12,
+      "passed": 0,
+      "archive_cost_usd": "0.00029961",
+      "attempts_without_cost": 1,
+      "ledger_reported_microusd": 2179,
+      "ledger_known_attempts": 3,
+      "ledger_unknown_attempts": 0,
+      "ledger_status": "reconstructible local accounting; not invoice reconciliation",
+      "not_run": 0
+    },
+    "upstage/solar-mini4": {
+      "assigned": 3,
+      "attempted": 3,
+      "proposed": 29,
+      "passed": 0,
+      "archive_cost_usd": "0.00061195",
+      "attempts_without_cost": 0,
+      "ledger_reported_microusd": 614,
+      "ledger_known_attempts": 3,
+      "ledger_unknown_attempts": 0,
+      "ledger_status": "reconstructible local accounting; not invoice reconciliation",
+      "not_run": 0
+    },
+    "prism-ml/ternary-bonsai-2-9b": {
+      "assigned": 3,
+      "attempted": 3,
+      "proposed": 31,
+      "passed": 5,
+      "archive_cost_usd": "0.00260833",
+      "attempts_without_cost": 0,
+      "ledger_reported_microusd": 2610,
+      "ledger_known_attempts": 3,
+      "ledger_unknown_attempts": 0,
+      "ledger_status": "reconstructible local accounting; not invoice reconciliation",
+      "not_run": 0
+    }
+  },
+  "cost_limit": "Archived recorded-audit.cost_usd only. Missing costs remain unknown. Provider accounting and former explorer totals are not invoice reconciliation.",
+  "replay_limit": "Replays frozen checker counts; original HTTP response bytes and trusted production time are not established."
+}
