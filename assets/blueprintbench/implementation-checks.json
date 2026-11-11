@@ -1,0 +1,27 @@
+{
+  "status": "implementation_checks_complete_not_independent_evaluation",
+  "files": [
+    "PALO_BlueprintBench.html",
+    "assets/blueprintbench/blueprintbench.css",
+    "assets/blueprintbench/blueprintbench.js"
+  ],
+  "single_h1": true,
+  "unique_ids": true,
+  "internal_anchors_valid": true,
+  "diagnostic_rows": 10,
+  "em_dash_count": 0,
+  "javascript_syntax": "node --check passed",
+  "desktop_visual": "Hero and participation section inspected in Vivaldi via CUA",
+  "filter_checks": [
+    "Mistral: 1 of 10",
+    "unmatched query: zero-results message",
+    "clear: 10 of 10",
+    "model details expand"
+  ],
+  "participation_check": "Role, domain and availability encoded correctly into mailto; no email sent",
+  "mobile_layout": "390x844 DOM: scrollWidth390, innerWidth390, headline350; screenshot capture unreliable during responsive override, independent visual check still needed",
+  "viewport_override": "reset",
+  "preview_url": "http://127.0.0.1:58616/PALO_BlueprintBench.html",
+  "downloads": "Provided by parent; final availability check belongs to publication",
+  "deployment": "not deployed"
+}

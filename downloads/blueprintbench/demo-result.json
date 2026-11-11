@@ -1,0 +1,93 @@
+{
+  "tool_version": "0.1.0",
+  "run_id": "synthetic-example",
+  "campaign_sha256": "e33209ecd3c2b087dee034a562f09caa9fb3720cffffafbb7c3dd3ce1b7e587e",
+  "subject_id": "fixture",
+  "split": "synthetic",
+  "track": "interpretation",
+  "evidence_status_declared": "self_reported",
+  "identity_and_independence_verified": false,
+  "assigned_attempts": 3,
+  "recorded_attempts": 3,
+  "missing_attempts": [],
+  "reported_passed": 1,
+  "reported_completion_rate": 0.3333333333333333,
+  "critical_errors": 1,
+  "known_reported_cost_usd": 0,
+  "cost_complete": true,
+  "cost_per_success_usd": 0.0,
+  "record_comparable_candidate": false,
+  "comparability_blocks": [
+    "development_or_synthetic_data",
+    "fewer_than_three_repetitions",
+    "independent_human_gold_or_assessment_missing"
+  ],
+  "qualified": false,
+  "qualification_reason": "Independent evidence review is not automated by this tool.",
+  "rows": [
+    {
+      "task_id": "faithful",
+      "repetition": 1,
+      "family": "synthetic-purchasing",
+      "domain": "procurement",
+      "state": "pass",
+      "emitted": 2,
+      "supported": 2,
+      "gold": 2,
+      "recovered": 2,
+      "critical_errors": 0,
+      "unique_propositions": 2,
+      "precision": 1.0,
+      "recall": 1.0,
+      "elapsed_seconds": 0,
+      "cost": {
+        "status": "not_incurred",
+        "usd": 0,
+        "reason": "Synthetic fixture, no inference"
+      }
+    },
+    {
+      "task_id": "inverted_rule",
+      "repetition": 1,
+      "family": "synthetic-purchasing",
+      "domain": "procurement",
+      "state": "fail",
+      "emitted": 2,
+      "supported": 1,
+      "gold": 2,
+      "recovered": 1,
+      "critical_errors": 1,
+      "unique_propositions": 2,
+      "precision": 0.5,
+      "recall": 0.5,
+      "elapsed_seconds": 0,
+      "cost": {
+        "status": "not_incurred",
+        "usd": 0,
+        "reason": "Synthetic fixture, no inference"
+      }
+    },
+    {
+      "task_id": "empty",
+      "repetition": 1,
+      "family": "synthetic-purchasing",
+      "domain": "procurement",
+      "state": "abstain",
+      "emitted": 0,
+      "supported": 0,
+      "gold": 2,
+      "recovered": 0,
+      "critical_errors": 0,
+      "unique_propositions": 0,
+      "precision": null,
+      "recall": 0.0,
+      "elapsed_seconds": 0,
+      "cost": {
+        "status": "not_incurred",
+        "usd": 0,
+        "reason": "Synthetic fixture, no inference"
+      }
+    }
+  ],
+  "note": "Scoped annotation scores; not full-corpus precision/recall, human usability, or a model ranking."
+}

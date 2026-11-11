@@ -1,0 +1,17 @@
+{
+  "as_of": "2026-11-10T22:07:24.204639+00:00",
+  "tool_version": "0.1.0",
+  "test_count": 17,
+  "test_result": "passed",
+  "test_scope": "evidence integrity and scoped synthetic accounting, not model or app qualification",
+  "qualified_heldout_entries": 0,
+  "source_candidates": 6,
+  "downloaded_seed_documents": 2,
+  "new_100mb_corpora_qualified": 0,
+  "publication_scope": "protocol, initial evaluator, diagnostic catalogue and participation kit",
+  "current_workbench_qualification": "not_completed",
+  "original_cases": "development_only",
+  "explorer_updated": "2026-11-11",
+  "explorer_version": "0.2.0",
+  "explorer_scope": "Historical diagnostic charts, combinable property filters, up to four selected models, CSV export. No semantic ranking."
+}

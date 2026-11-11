@@ -1,0 +1,19 @@
+{
+  "status": "passed",
+  "test_count": 17,
+  "archive_sha256": "fe6ddf6aa92203464564b84d6e68fde7521c0338e3d88ee64937056cfc87140b",
+  "tested_commands": [
+    "python3 -m unittest -v test_blueprintbench",
+    "python3 demo.py NEW_DIRECTORY",
+    "python3 blueprintbench.py evaluate CAMPAIGN_LOCK RUN --evidence-root EVIDENCE --output NEW_RESULT"
+  ],
+  "synthetic_fixture_outcomes": {
+    "faithful_precision": 1,
+    "inverted_precision": 0.5,
+    "empty_precision": null,
+    "empty_recall": 0
+  },
+  "qualified": false,
+  "scope": "Packaged toolkit reproducibility only; no model or Workbench qualification.",
+  "packaging_note": "Repository MIT licence added after tests; tested source entries unchanged."
+}
