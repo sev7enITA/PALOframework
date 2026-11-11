@@ -179,7 +179,7 @@
     const allModels = [...data.models.map(m=>({...m,evidenceCohort:'internal'})),...shared.historical.models.map(m=>({...m,evidenceCohort:'historical'}))].sort((a,b)=>displayName(a).localeCompare(displayName(b)));
     document.getElementById('overview-model-count').textContent=new Set(allModels.map(m=>m.id||m.model)).size;
     document.getElementById('overview-configuration-count').textContent=allModels.length;
-    document.getElementById('overview-call-count').textContent=data.assigned_calls;
+    document.getElementById('overview-call-count').textContent=data.assigned_calls;document.getElementById('overview-complete-count').textContent=data.completed_calls;
     const catalogueSearch=document.getElementById('catalogue-search'),catalogueCohort=document.getElementById('catalogue-cohort');
     const renderCatalogue=()=>{
       const q=catalogueSearch.value.toLowerCase(),cohort=catalogueCohort.value;
@@ -196,7 +196,7 @@
       const dimension = dimensionFilter.value;
       const assigned = cases.reduce((sum,c) => sum + (dimension === 'all' ? Object.values(c.dimensions).reduce((a,b)=>a+b,0) : c.dimensions[dimension] || 0),0) * data.repetitions;
       summary.textContent = `${data.recorded_calls} of ${data.assigned_calls} assignment records retained. ${data.attempted_calls??data.records.filter(r=>r.state!=='not_run').length} provider requests dispatched; ${data.completed_calls} complete, ${data.failed_calls} failed / incomplete, ${data.not_run} not run. Internal tests; no qualified score. Showing ${assigned} assigned verification statements per model.`;
-      box.innerHTML = [...data.models].sort((a,b)=>a.name.localeCompare(b.name)).map(m => {
+      const tableRows = [...data.models].sort((a,b)=>a.name.localeCompare(b.name)).map(m => {
         const rows = data.verification_rows.filter(r => r.model === m.id && cases.some(c=>c.id===r.case));
         const judgments = rows.flatMap(r=>r.judgments).filter(j=>dimension==='all'||j.dimension===dimension);
         const correct = judgments.filter(j=>j.correct).length;
@@ -205,8 +205,10 @@
         const disputed = data.verification_rows.filter(r => r.model === m.id && r.case === data.label_challenge.case).flatMap(r => r.judgments).filter(j => j.id === data.label_challenge.probe_id && !j.correct).length;
         const noCall=!data.records.some(r=>r.model===m.id&&r.state!=='not_run');
         const cost = m.provider_reported_cost_usd.toFixed(4) + (m.unknown_cost_calls ? ' + unknown' : '') + (noCall?' (no provider call)':m.not_run?' (partial coverage)':'');
-        return `<article class="internal-card"><p class="eyebrow">${escape(m.pinned_provider)}</p><h3>${escape(m.name)}</h3><div class="internal-count">${correct} / ${assigned}</div><p>Agreement with draft labels / assigned statements</p><div class="internal-bar" role="img" aria-label="${correct} label matches, ${wrong} label disagreements, ${missing} missing"><span class="internal-correct" style="width:${width(correct)}%"></span><span class="internal-wrong" style="width:${width(wrong)}%"></span><span class="internal-missing" style="width:${width(missing)}%"></span></div><p>${correct} label matches · ${wrong} disagreements · ${missing} missing</p><dl><dt>Completed requests</dt><dd>${m.completed_calls} / ${m.assigned_calls}</dd><dt>Known charges, USD</dt><dd>${escape(cost)}</dd><dt>Median request time</dt><dd>${noCall?'N/A':Number.isFinite(m.latency_median_seconds)?m.latency_median_seconds.toFixed(1)+' s':'Unknown'}</dd></dl>${disputed ? `<p class="internal-warning">${disputed} cohort disagreements concern the same contested expected label. They are not adjudicated model errors; see the report.</p>` : ''}${m.unknown_cost_calls ? '<p class="internal-warning">Unresolved provider charges remain separate from known charges and retain their budget reservation.</p>' : ''}</article>`;
+        const url='PALO_BlueprintBench_Leaderboard.html?cohort=internal&q='+encodeURIComponent(m.id)+'#workspace';
+        return `<tr><th scope="row"><a href="${escape(url)}">${escape(m.name.replace(/^[^:]+:\s*/,''))}</a><small>${escape(m.pinned_provider)}</small></th><td>${correct} / ${assigned}</td><td class="${wrong?'internal-disputed':''}">${wrong}</td><td>${missing}</td><td>${m.completed_calls} / ${m.assigned_calls}</td><td>${escape(cost)}</td><td>${noCall?'N/A':Number.isFinite(m.latency_median_seconds)?m.latency_median_seconds.toFixed(1)+' s':'Unknown'}</td><td><a href="${escape(url)}">Inspect ↗</a></td></tr>`;
       }).join('');
+      box.innerHTML='<div class="overview-results-table" role="region" aria-label="Internal procurement results; scroll horizontally for all columns" tabindex="0"><table><caption>Internal tests · Frozen assistant-draft labels</caption><thead><tr><th scope="col">Model / provider</th><th scope="col">Label matches / assigned</th><th scope="col">Disagreements</th><th scope="col">Missing</th><th scope="col">Complete calls</th><th scope="col">Known USD</th><th scope="col">Median time</th><th scope="col">Explore</th></tr></thead><tbody>'+tableRows+'</tbody></table></div>';
     };
     caseFilter.addEventListener('change',render); dimensionFilter.addEventListener('change',render);render();
   } catch (error) {

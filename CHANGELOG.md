@@ -1,10 +1,17 @@
 # Changelog
 
+## BlueprintBench interactive results dashboard · 2026-11-11
+
+Added verification-only Pareto views, case-specific label agreement, repetition variability, latest test timestamps and an interactive evidence workflow. Results retain fixed denominators, draft-label status and missing-cost boundaries. Result challenges open a prefilled GitHub issue for the visitor to review. Public presentation access is withdrawn; Markdown references open rendered GitHub documents.
+
+[Open the leaderboard](PALO_BlueprintBench_Leaderboard.html)
+
+
 ## BlueprintBench identity and internal cohort · 2026-11-11
 
-The overview and leaderboard share 18 model IDs and 28 cohort/configuration records. Internal procurement tests retain 324 assigned slots, 306 dispatched requests, 299 complete responses, 7 failed or incomplete responses and 18 pre-call blocks. Added the BlueprintBench identity, an evidence-linked Internal testing badge and the updated fifteen-slide presentation with real interface captures. Independent qualification and PBI remain open.
+The overview and leaderboard share 18 model IDs and 28 cohort/configuration records. Internal procurement tests retain 324 assigned slots, 306 dispatched requests, 299 complete responses, 7 failed or incomplete responses and 18 pre-call blocks. Added the BlueprintBench identity, an evidence-linked Internal testing badge and revised result exploration. Independent qualification and PBI remain open.
 
-[Leaderboard](PALO_BlueprintBench_Leaderboard.html) · [Presentation](downloads/blueprintbench/presentation/index.html) · [Badge usage](downloads/blueprintbench/brand-usage.md)
+[Leaderboard](PALO_BlueprintBench_Leaderboard.html) · [Badge usage](https://github.com/sev7enITA/PALO-BlueprintBench/blob/3effa4c/docs/brand-usage.md)
 
 
 ## PALO BlueprintBench research release v0.3.0-pilot.1 · 2026-11-11
