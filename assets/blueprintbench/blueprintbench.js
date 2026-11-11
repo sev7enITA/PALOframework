@@ -160,3 +160,42 @@
   adaptFilters(); mobile.addEventListener('change',adaptFilters);
   load();
 })();
+
+// Independent internal cohort. Historical adapter observations remain separate.
+(async () => {
+  const box = document.getElementById('internal-cards');
+  if (!box) return;
+  const summary = document.getElementById('internal-summary');
+  const caseFilter = document.getElementById('internal-case');
+  const dimensionFilter = document.getElementById('internal-dimension');
+  const escape = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  try {
+    const response = await fetch('downloads/blueprintbench/internal-tests-results.json', {cache:'no-cache'});
+    if (!response.ok) throw new Error('Data request failed');
+    const data = await response.json();
+    if (data.status !== 'internal_tests' || data.qualified !== false) throw new Error('Unexpected qualification state');
+    for (const c of data.case_metadata) caseFilter.add(new Option(c.name, c.id));
+    const dimensions = [...new Set(data.case_metadata.flatMap(c => Object.keys(c.dimensions)))].sort();
+    for (const d of dimensions) dimensionFilter.add(new Option(d.replaceAll('_',' '), d));
+    const render = () => {
+      const cases = data.case_metadata.filter(c => caseFilter.value === 'all' || c.id === caseFilter.value);
+      const dimension = dimensionFilter.value;
+      const assigned = cases.reduce((sum,c) => sum + (dimension === 'all' ? Object.values(c.dimensions).reduce((a,b)=>a+b,0) : c.dimensions[dimension] || 0),0) * data.repetitions;
+      summary.textContent = `${data.recorded_calls} of ${data.assigned_calls} requests recorded. ${data.completed_calls} returned complete text; ${data.failed_calls} failed. Internal tests; no qualified score. Showing ${assigned} assigned verification statements per model.`;
+      box.innerHTML = [...data.models].sort((a,b)=>a.name.localeCompare(b.name)).map(m => {
+        const rows = data.verification_rows.filter(r => r.model === m.id && cases.some(c=>c.id===r.case));
+        const judgments = rows.flatMap(r=>r.judgments).filter(j=>dimension==='all'||j.dimension===dimension);
+        const correct = judgments.filter(j=>j.correct).length;
+        const classified = judgments.length, wrong = classified-correct, missing = assigned-classified;
+        const width = value => assigned ? Math.max(0,Math.min(100,100*value/assigned)) : 0;
+        const disputed = data.verification_rows.filter(r => r.model === m.id && r.case === data.label_challenge.case).flatMap(r => r.judgments).filter(j => j.id === data.label_challenge.probe_id && !j.correct).length;
+        const cost = m.provider_reported_cost_usd.toFixed(4) + (m.unknown_cost_calls ? ' + unknown' : '');
+        return `<article class="internal-card"><p class="eyebrow">${escape(m.pinned_provider)}</p><h3>${escape(m.name)}</h3><div class="internal-count">${correct} / ${assigned}</div><p>Agreement with draft labels / assigned statements</p><div class="internal-bar" role="img" aria-label="${correct} label matches, ${wrong} label disagreements, ${missing} missing"><span class="internal-correct" style="width:${width(correct)}%"></span><span class="internal-wrong" style="width:${width(wrong)}%"></span><span class="internal-missing" style="width:${width(missing)}%"></span></div><p>${correct} label matches · ${wrong} disagreements · ${missing} missing</p><dl><dt>Completed requests</dt><dd>${m.completed_calls} / ${m.assigned_calls}</dd><dt>Known charges, USD</dt><dd>${escape(cost)}</dd><dt>Median request time</dt><dd>${m.latency_median_seconds.toFixed(1)} s</dd></dl>${disputed ? `<p class="internal-warning">${disputed} cohort disagreements concern the same contested expected label. They are not adjudicated model errors; see the report.</p>` : ''}${m.unknown_cost_calls ? '<p class="internal-warning">One provider failure has an unresolved charge. Its full reservation remains accounted for.</p>' : ''}</article>`;
+      }).join('');
+    };
+    caseFilter.addEventListener('change',render); dimensionFilter.addEventListener('change',render);render();
+  } catch (error) {
+    summary.textContent = 'Internal results could not be loaded. Read the report or download the evidence; no placeholder scores are shown.';
+    summary.setAttribute('role','alert');
+  }
+})();
