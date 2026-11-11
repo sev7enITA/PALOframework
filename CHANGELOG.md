@@ -1,5 +1,9 @@
 # Changelog
 
+## 11 November 2026: internal cross-model review
+
+Published GLM, Gemini and local Qwen countertests: 96/108 assigned judgments on 36 selected items, three observed disagreements, 12 GLM capacity-blocked judgments, disclosed Qwen format projection. Primary scores unchanged; internal testing, not independent validation. [Inspect evidence](https://paloframework.org/PALO_BlueprintBench_Leaderboard.html#adversarial-review).
+
 ## BlueprintBench interactive results dashboard · 2026-11-11
 
 Added verification-only Pareto views, case-specific label agreement, repetition variability, latest test timestamps and an interactive evidence workflow. Results retain fixed denominators, draft-label status and missing-cost boundaries. Result challenges open a prefilled GitHub issue for the visitor to review. Public presentation access is withdrawn; Markdown references open rendered GitHub documents.

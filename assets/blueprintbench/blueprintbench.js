@@ -217,3 +217,16 @@
     document.getElementById('catalogue-summary').textContent='The shared catalogue could not be loaded. No placeholder models are shown.';
   }
 })();
+
+(async function adversarialOverview(){
+  const status=document.getElementById('adversarial-overview-status');
+  if(!status)return;
+  try{
+    const response=await fetch('downloads/blueprintbench/adversarial-tests.json',{cache:'no-store'});
+    if(!response.ok)throw new Error('Unavailable');
+    const data=await response.json();
+    if(data.qualified!==false||!Array.isArray(data.items)||!Array.isArray(data.reviewers))throw new Error('Unexpected state');
+    const assigned=data.items.length*data.reviewers.length,completed=data.summary?.valid_review_records??data.items.reduce((n,item)=>n+Object.values(item.reviewers||{}).filter(r=>r.status==='valid').length,0);
+    status.textContent=`${data.items.length} selected items · ${data.reviewers.length} model reviewers · ${completed} of ${assigned} review decisions available.${Number.isInteger(data.summary?.strict_envelope_valid_batches)?' '+data.summary.strict_envelope_valid_batches+' of '+data.summary.expected_batches+' raw batches match the requested JSON envelope.':''}`;
+  }catch{status.textContent='Retained countertest records are not available in this snapshot. No outcomes are substituted.';}
+})();
