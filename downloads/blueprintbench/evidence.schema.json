@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://paloframework.org/downloads/blueprintbench/evidence.schema.json",
-  "title": "PALO BlueprintBench evidence contract 0.2.0",
+  "$id": "https://paloframework.org/downloads/blueprintbench/evidence-v0.3-draft.schema.json",
+  "title": "PALO BlueprintBench evidence contract 0.3.0",
   "$defs": {
     "artifact": {
       "type": "object",
@@ -26,23 +26,141 @@
       "properties": {
         "model": {
           "type": "object",
-          "minProperties": 1
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "revision": {
+              "type": "string",
+              "minLength": 1
+            },
+            "quantisation": {
+              "type": "string",
+              "minLength": 1
+            },
+            "unavailable_reason": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "id",
+            "revision",
+            "quantisation"
+          ],
+          "additionalProperties": false
         },
         "provider_runtime": {
           "type": "object",
-          "minProperties": 1
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "revision": {
+              "type": "string",
+              "minLength": 1
+            },
+            "unavailable_reason": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "id",
+            "revision"
+          ],
+          "additionalProperties": false
         },
         "settings": {
           "type": "object",
-          "minProperties": 1
+          "properties": {
+            "reasoning": {
+              "type": "string",
+              "minLength": 1
+            },
+            "temperature": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "seed": {
+              "type": [
+                "integer",
+                "null"
+              ]
+            },
+            "max_output_tokens": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 1
+            },
+            "unavailable_reason": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "reasoning",
+            "temperature",
+            "seed",
+            "max_output_tokens"
+          ],
+          "additionalProperties": false
         },
         "pipeline": {
           "type": "object",
-          "minProperties": 1
+          "properties": {
+            "version": {
+              "type": "string",
+              "minLength": 1
+            },
+            "adapter_revision": {
+              "type": "string",
+              "minLength": 1
+            },
+            "prompt_sha256": {
+              "type": "string",
+              "minLength": 1
+            },
+            "schema_sha256": {
+              "type": "string",
+              "minLength": 1
+            },
+            "unavailable_reason": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "version",
+            "adapter_revision",
+            "prompt_sha256",
+            "schema_sha256"
+          ],
+          "additionalProperties": false
         },
         "environment": {
           "type": "object",
-          "minProperties": 1
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "runtime_version": {
+              "type": "string",
+              "minLength": 1
+            },
+            "unavailable_reason": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "id",
+            "runtime_version"
+          ],
+          "additionalProperties": false
         }
       },
       "required": [
@@ -130,16 +248,53 @@
           "additionalProperties": {
             "type": "array",
             "items": {
-              "type": "string",
-              "minLength": 1
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "text": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "id",
+                "text"
+              ],
+              "additionalProperties": false
             }
           }
         },
         "forbidden_inferences": {
           "type": "array",
           "items": {
-            "type": "string",
-            "minLength": 1
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "text": {
+                "type": "string",
+                "minLength": 1
+              },
+              "violated_gold": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "uniqueItems": true
+              }
+            },
+            "required": [
+              "id",
+              "text",
+              "violated_gold"
+            ],
+            "additionalProperties": false
           }
         },
         "critical_rule_ids": {
@@ -184,7 +339,7 @@
           "minLength": 1
         },
         "benchmark_version": {
-          "const": "0.2.0"
+          "const": "0.3.0"
         },
         "split": {
           "enum": [
@@ -417,11 +572,13 @@
         },
         "started_at": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "format": "date-time"
         },
         "finished_at": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "format": "date-time"
         },
         "evidence_status": {
           "enum": [
@@ -435,6 +592,30 @@
           "items": {
             "$ref": "#/$defs/attempt"
           }
+        },
+        "submitter_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "execution": {
+          "type": "object",
+          "properties": {
+            "mode": {
+              "enum": [
+                "serial",
+                "parallel"
+              ]
+            },
+            "max_concurrency": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          "required": [
+            "mode",
+            "max_concurrency"
+          ],
+          "additionalProperties": false
         }
       },
       "required": [
@@ -445,7 +626,9 @@
         "started_at",
         "finished_at",
         "evidence_status",
-        "attempts"
+        "attempts",
+        "submitter_id",
+        "execution"
       ],
       "additionalProperties": false
     },
@@ -548,6 +731,33 @@
             ],
             "additionalProperties": false
           }
+        },
+        "request_identity": {
+          "type": "object",
+          "properties": {
+            "provider_request_id": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "request_sha256": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            "unavailable_reason": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "provider_request_id",
+            "request_sha256",
+            "unavailable_reason"
+          ],
+          "additionalProperties": false
         }
       },
       "required": [
@@ -559,7 +769,8 @@
         "artifacts",
         "claims_artifact",
         "raw_output",
-        "non_claim_spans"
+        "non_claim_spans",
+        "request_identity"
       ],
       "additionalProperties": false
     },
@@ -610,6 +821,30 @@
         "mapping_rationale": {
           "type": "string",
           "minLength": 1
+        },
+        "matches_forbidden": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "matches_alternatives": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "error_category": {
+          "enum": [
+            "none",
+            "source_rule_inversion",
+            "unsupported_addition",
+            "other_noncritical"
+          ]
         }
       },
       "required": [
@@ -619,7 +854,10 @@
         "verdict",
         "matches_gold",
         "critical",
-        "violated_gold"
+        "violated_gold",
+        "matches_forbidden",
+        "matches_alternatives",
+        "error_category"
       ],
       "additionalProperties": false
     },

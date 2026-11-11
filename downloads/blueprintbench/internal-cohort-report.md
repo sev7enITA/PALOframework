@@ -1,8 +1,8 @@
 # Internal procurement tests and model catalogue
 
-Revision 2026-11-11.2. Internal tests; independent qualification pending.
+Publication revision 2026-11-11.3; frozen dataset revision 2026-11-11.2. Internal tests; independent qualification pending.
 
-Both the [launch page](https://paloframework.org/PALO_BlueprintBench.html) and [leaderboard](https://paloframework.org/PALO_BlueprintBench_Leaderboard.html) use this evidence dataset. The internal view contains **18 distinct model IDs**, with the original ten historical identities preserved in a separate adapter-diagnostics view. A model with two evidence cohorts has two configuration rows; they are not two different models.
+Both the [launch page](https://paloframework.org/PALO_BlueprintBench.html) and [internal test results](https://paloframework.org/PALO_BlueprintBench_Leaderboard.html) use this evidence dataset. The internal view contains **18 distinct model IDs**, with the original ten historical identities preserved in a separate adapter-diagnostics view. A model with two evidence cohorts has two configuration rows; they are not two different models.
 
 ## Execution scope
 

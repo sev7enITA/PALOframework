@@ -1,7 +1,7 @@
 {
-  "tool_version": "0.2.0",
+  "tool_version": "0.3.0",
   "run_id": "synthetic-example",
-  "campaign_sha256": "f731c5cad9b6e0c362afd73f070e333900e28969242bf9892601895cc0d05680",
+  "campaign_sha256": "c0d42c57fbcefd0d81507cccadd3931992d960cbad02dc073ace89043e2e786d",
   "subject_id": "fixture",
   "split": "synthetic",
   "track": "interpretation",
@@ -28,10 +28,88 @@
   "record_comparable_candidate": false,
   "comparability_blocks": [
     "external_preregistration_not_verified",
+    "independent_human_gold_or_assessment_missing",
+    "identity_and_independence_not_verified",
+    "request_identity_incomplete",
     "development_or_synthetic_data",
-    "fewer_than_three_repetitions",
-    "independent_human_gold_or_assessment_missing"
+    "fewer_than_three_repetitions"
   ],
+  "comparability_status": "external_verification_not_implemented",
+  "human_review_declared_complete": false,
+  "policy_is_trivial": false,
+  "warnings": [
+    {
+      "code": "request_identity_unavailable",
+      "task_id": "faithful",
+      "repetition": 1
+    },
+    {
+      "code": "request_identity_unavailable",
+      "task_id": "inverted_rule",
+      "repetition": 1
+    },
+    {
+      "code": "request_identity_unavailable",
+      "task_id": "empty",
+      "repetition": 1
+    }
+  ],
+  "aggregates": {
+    "run": {
+      "assigned_attempts": 3,
+      "recorded_attempts": 3,
+      "assessed_nonempty_attempts": 2,
+      "accepted_tasks": 1,
+      "critical_unique_errors_summed_over_attempts": 1,
+      "critical_occurrences": 1,
+      "observed_inverted_source_rules": 1,
+      "assessed_critical_rule_opportunities": 4,
+      "inversions_per_100_rules": null,
+      "uncertainty": "not_estimated; descriptive audit totals only"
+    },
+    "family": {
+      "synthetic-purchasing": {
+        "assigned_attempts": 3,
+        "recorded_attempts": 3,
+        "assessed_nonempty_attempts": 2,
+        "accepted_tasks": 1,
+        "critical_unique_errors_summed_over_attempts": 1,
+        "critical_occurrences": 1,
+        "observed_inverted_source_rules": 1,
+        "assessed_critical_rule_opportunities": 4,
+        "inversions_per_100_rules": null,
+        "uncertainty": "not_estimated; descriptive audit totals only"
+      }
+    },
+    "domain": {
+      "procurement": {
+        "assigned_attempts": 3,
+        "recorded_attempts": 3,
+        "assessed_nonempty_attempts": 2,
+        "accepted_tasks": 1,
+        "critical_unique_errors_summed_over_attempts": 1,
+        "critical_occurrences": 1,
+        "observed_inverted_source_rules": 1,
+        "assessed_critical_rule_opportunities": 4,
+        "inversions_per_100_rules": null,
+        "uncertainty": "not_estimated; descriptive audit totals only"
+      }
+    },
+    "repetitions": {
+      "1": {
+        "assigned_attempts": 3,
+        "recorded_attempts": 3,
+        "assessed_nonempty_attempts": 2,
+        "accepted_tasks": 1,
+        "critical_unique_errors_summed_over_attempts": 1,
+        "critical_occurrences": 1,
+        "observed_inverted_source_rules": 1,
+        "assessed_critical_rule_opportunities": 4,
+        "inversions_per_100_rules": null,
+        "uncertainty": "not_estimated; descriptive audit totals only"
+      }
+    }
+  },
   "qualified": false,
   "qualification_reason": "Independent evidence review is not automated by this tool.",
   "rows": [
@@ -47,6 +125,7 @@
       "recovered": 2,
       "critical_errors": 0,
       "critical_error_occurrences": 0,
+      "critical_unsupported_additions": 0,
       "critical_source_rule_inversions": 0,
       "critical_source_rules": 2,
       "critical_inversions_per_100_rules": 0.0,
@@ -74,6 +153,7 @@
       "recovered": 1,
       "critical_errors": 1,
       "critical_error_occurrences": 1,
+      "critical_unsupported_additions": 0,
       "critical_source_rule_inversions": 1,
       "critical_source_rules": 2,
       "critical_inversions_per_100_rules": 50.0,
@@ -101,9 +181,10 @@
       "recovered": 0,
       "critical_errors": 0,
       "critical_error_occurrences": 0,
+      "critical_unsupported_additions": 0,
       "critical_source_rule_inversions": 0,
       "critical_source_rules": 2,
-      "critical_inversions_per_100_rules": 0.0,
+      "critical_inversions_per_100_rules": null,
       "accepted_task": false,
       "termination_reason": "completed",
       "unique_propositions": 0,

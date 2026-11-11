@@ -1,0 +1,4 @@
+# Internal-testing badges are withdrawn. Project logos remain public.
+<FilesMatch "^internal-testing-badge\.(jpg|png)$">
+  Require all denied
+</FilesMatch>

@@ -2,13 +2,14 @@
 (() => {
   'use strict';
   const $ = id => document.getElementById(id);
+  const publicationRevision = document.querySelector('meta[name="palo-publication-revision"]').content;
   const escape = value => String(value ?? '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
   const title = value => String(value).replaceAll('-',' ').replaceAll('_',' ').replace(/\b\w/g,c=>c.toUpperCase());
   const number = value => Number.isFinite(value) ? value.toLocaleString('en-GB') : 'Not recorded';
   const money = value => Number.isFinite(value) ? value.toFixed(6) : 'Unknown';
   const shortName = model => String(model.name || model.catalogue_name || model.id || model.model).replace(/^[^:]+:\s*/, '');
   const idOf = model => model.id || model.model;
-  const defaults = () => ({cohort:'internal',sort:'rank',direction:'asc',rankMetric:'matches',country:'all',columns:'summary',minimum:0,missingOnly:false,knownOnly:false,selectedOnly:false,view:'verification',case:'all',dimension:'all',lens:'primary',provider:'all',q:'',selected:[],failures:false,copy:'all'});
+  const defaults = () => ({cohort:'internal',sort:'name',direction:'asc',country:'all',columns:'summary',minimum:0,missingOnly:false,knownOnly:false,selectedOnly:false,view:'verification',case:'all',dimension:'all',lens:'primary',provider:'all',q:'',selected:[],failures:false,copy:'all'});
   let state = defaults(), data, previousFocus, toastTimer, searchTimer;
   const internal = () => state.cohort === 'internal';
   const catalogue = () => [...data.internal.models.map(m=>({...m,evidenceCohort:'internal'})),...data.historical.models.map(m=>({...m,evidenceCohort:'historical'}))];
@@ -20,11 +21,10 @@
     if(key==='name')return shortName(m).toLowerCase();
     if(key==='provider')return String(providerOf(m)||'').toLowerCase();
     if(key==='country')return countriesOf(m).length?countryLabel(m).toLowerCase():null;
-    if(key==='rank')return internal()?rankings().get(idOf(m))?.rank:null;
     if(key==='evidence')return m.evidenceCohort||state.cohort;
     if(!internal())return null;
     const c=metrics(idOf(m));
-    return {matches:c.assigned?c.matched/c.assigned:null,disagreements:c.disagreed,missing:c.missing,calls:m.assigned_calls?m.completed_calls/m.assigned_calls:null,cost:comparableCharge(m),coverage:c.assigned?c.classified/c.assigned:null,input:operationalKPIs(m).input,output:operationalKPIs(m).output,costpercall:operationalKPIs(m).costpercall,time:attemptedRecords(m.id).length?m.latency_median_seconds:null}[key];
+    return {matches:c.assigned?c.matched/c.assigned:null,agreement:c.classified?c.matched/c.classified:null,disagreements:c.disagreed,missing:c.missing,calls:m.assigned_calls?m.completed_calls/m.assigned_calls:null,cost:comparableCharge(m),coverage:c.assigned?c.classified/c.assigned:null,input:operationalKPIs(m).input,output:operationalKPIs(m).output,costpercall:operationalKPIs(m).costpercall,time:attemptedRecords(m.id).length?m.latency_median_seconds:null}[key];
   }
   function sortModels(items) {
     return items.sort((a,b)=>{const av=sortValue(a,state.sort),bv=sortValue(b,state.sort),an=av==null||Number.isNaN(av),bn=bv==null||Number.isNaN(bv);if(an!==bn)return an?1:-1;if(an&&bn)return shortName(a).localeCompare(shortName(b));const result=typeof av==='string'?av.localeCompare(bv):av-bv;return result*(state.direction==='desc'?-1:1)||shortName(a).localeCompare(shortName(b));});
@@ -68,16 +68,6 @@
     }
     return {assigned,matched,disagreed:judgments.length-matched,missing:assigned-judgments.length,unexecuted,unclassified:assigned-judgments.length-unexecuted,classified:judgments.length};
   }
-  const rankingMetrics = {
-    matches: {label:'Label agreement', direction:'desc', scope:'Selected case, dimension and label lens'},
-    coverage: {label:'Classification coverage', direction:'desc', scope:'Selected case, dimension and label lens'},
-    calls: {label:'Call completion', direction:'desc', scope:'Both tasks and all cases'},
-    missing: {label:'Missing classifications', direction:'asc', scope:'Selected case, dimension and label lens'},
-    disagreements: {label:'Draft-label disagreements', direction:'asc', scope:'Selected semantic scope; complete classifications only'},
-    cost: {label:'Reported charge', direction:'asc', scope:'Both tasks and all cases; fully complete, reconciled runs only'},
-    time: {label:'Median call time', direction:'asc', scope:'Both tasks and all cases; fully complete runs only'},
-    costpercall: {label:'Cost per complete call', direction:'asc', scope:'Both tasks and all cases; fully complete, reconciled runs only'}
-  };
   let originData = {makers:[]}, originAvailable = false;
   function originOf(model) {
     const id = idOf(model).split('/')[0];
@@ -108,48 +98,14 @@
       allComplete
     };
   }
-  function rankingValue(model, metric = state.rankMetric) {
-    const c = metrics(model.id), ops = operationalKPIs(model);
-    const relevant = ownRecords(model.id).filter(r=>r.track==='verification' && r.state!=='not_run' && (state.case==='all'||r.case===state.case));
-    const semantic = ['matches','coverage','missing','disagreements'].includes(metric);
-    if (!(semantic ? relevant.length : attemptedRecords(model.id).length)) return {value:null,reason:'No dispatched request in the ranking scope'};
-    if (semantic && !c.assigned) return {value:null,reason:'No assigned statements in the selected scope'};
-    if (metric === 'disagreements' && c.classified !== c.assigned) return {value:null,reason:'Incomplete classifications; not eligible for disagreement ranking'};
-    if (['cost','time','costpercall'].includes(metric) && !ops.allComplete) return {value:null,reason:'All assigned calls must complete for this operational ranking'};
-    if (['cost','costpercall'].includes(metric) && !chargeCoverageComplete(model)) return {value:null,reason:'Incomplete cost accounting'};
-    const values = {
-      matches:c.matched/c.assigned, coverage:c.classified/c.assigned,
-      missing:c.missing/c.assigned, disagreements:c.disagreed/c.assigned,
-      calls:model.completed_calls/model.assigned_calls, cost:comparableCharge(model),
-      time:model.latency_median_seconds, costpercall:ops.costpercall
-    };
-    return Number.isFinite(values[metric]) ? {value:values[metric],reason:null} : {value:null,reason:'Metric value is not recorded'};
-  }
-  function rankings() {
-    if (!internal()) return new Map();
-    const rows = data.internal.models.map(model=>({id:model.id,...rankingValue(model)}));
-    const direction = rankingMetrics[state.rankMetric].direction === 'desc' ? -1 : 1;
-    const eligible = rows.filter(r=>r.value !== null).sort((a,b)=>(a.value-b.value)*direction);
-    let previousValue, rank;
-    eligible.forEach((row,index)=>{if(index===0 || row.value!==previousValue)rank=index+1;previousValue=row.value;row.rank=rank;});
-    return new Map(rows.map(row=>[row.id,{...row,rank:row.rank??null,tied:row.rank!=null&&eligible.filter(r=>r.rank===row.rank).length>1}]));
-  }
-  function rankCell(model, ranks) {
-    const row = ranks.get(model.id);
-    return row?.rank != null ? `<span class="rank-number">${row.rank}</span>${row.tied?'<span class="number-note">Tie</span>':''}` : `<span class="rank-na" title="${escape(row?.reason || 'No rank in this cohort')}">N/A</span><span class="rank-reason">${escape(row?.reason || 'No rank in this cohort')}</span>`;
-  }
-  function rankingSummary(ranks) {
-    const eligible = [...ranks.values()].filter(r=>r.rank!=null).length, definition = rankingMetrics[state.rankMetric];
-    return `<div class="ranking-summary"><div><span class="eyebrow">Metric ranking · internal tests</span><strong>${escape(definition.label)}</strong><span>${eligible} eligible of ${data.internal.models.length} configurations · ${definition.direction==='desc'?'Higher':'Lower'} is better</span></div><details><summary>Rank and KPI definitions</summary><p>Positions use all eligible internal configurations under the chosen metric scope. Country, provider, search and selection filters do not renumber them. Ties use competition ranks (1, 1, 3) from unrounded values. Rank is an exploratory metric position, not an independently validated PALO Blueprint Index.</p><p>Ranking scope: ${escape(definition.scope)}. Semantic case, dimension and label-lens controls apply to label agreement, coverage, missing classifications and disagreements. Completion, charges, time and tokens cover both tasks and all cases.</p><p>Country means a documented business or operating base of the developer organisation, not an exhaustive list of its offices. It does not identify the serving provider’s country or data residency. Unknown values remain unranked where required and sort last. A blocked configuration is never awarded a rank.</p></details></div>`;
-  }
-  function exportModel(model, ranks) {
-    const id = idOf(model), maker = originOf(model), semantic = internal(), c = semantic ? metrics(id) : null, op = semantic ? operationalKPIs(model) : null, ranked = semantic ? ranks.get(id) : null;
+  function exportModel(model) {
+    const id = idOf(model), maker = originOf(model), semantic = internal(), c = semantic ? metrics(id) : null, op = semantic ? operationalKPIs(model) : null;
     return {
       model:id, name:shortName(model), provider:providerOf(model), evidence_cohort:model.evidenceCohort||state.cohort,
       developer_organisation:maker.name, developer_countries:countriesOf(model), country_status:originAvailable?maker.status:'metadata_unavailable', country_basis:maker.basis||null, country_sources:maker.sources||[],
-      rank:ranked?.rank??null, rank_eligible:ranked?.rank!=null, rank_ineligibility_reason:ranked?.reason||(semantic?null:'Cohort is not ranked'), rank_tied:ranked?.tied||false,
-      ranking_metric:semantic?state.rankMetric:null, ranking_direction:semantic?rankingMetrics[state.rankMetric].direction:null, ranking_value:ranked?.value??null,
       label_matches:c?.matched??null, disagreements:c?.disagreed??null, missing:c?.missing??null, assigned:c?.assigned??null,
+      conditional_label_agreement:c?.classified?c.matched/c.classified:null,
+      classified:c?.classified??null,
       classification_coverage:c?.assigned?c.classified/c.assigned:null,
       complete_calls:model.completed_calls??model.completed, assigned_calls:model.assigned_calls??model.assigned,
       known_charge_usd:semantic&&attemptedRecords(id).length?model.provider_reported_cost_usd:null,
@@ -161,13 +117,13 @@
     };
   }
   function downloadJSON() {
-    const visible=visibleModels(), ranks=rankings();
+    const visible=visibleModels();
     let records=[];
     if(internal()&&state.view==='operations')records=data.internal.records.filter(r=>visible.some(m=>m.id===r.model)&&(state.case==='all'||r.case===state.case)&&(!state.failures||r.state!=='completed')).sort((a,b)=>a.started_at.localeCompare(b.started_at));
     if(internal()&&state.view==='translation')records=(data.internal.translation_examples||[]).filter(e=>visible.some(m=>m.id===e.model)&&(state.case==='all'||e.case===state.case)&&copyMatches(e));
-    const payload={dataset_version:data.version,origin_metadata_version:originData.version||null,qualified:false,status:'internal_tests_or_historical_diagnostics',view_url:location.href,filters:{...state},rank_population:'All eligible internal configurations under the ranking scope; display filters do not renumber',tie_policy:'competition: 1, 1, 3; unrounded values',ranking_scope:internal()?rankingMetrics[state.rankMetric].scope:null,models:visible.map(m=>exportModel(m,ranks)),records};
+    const payload={dataset_version:data.version,origin_metadata_version:originData.version||null,qualified:false,status:'internal_tests_or_historical_diagnostics',view_url:location.href,filters:{...state},publication_revision:publicationRevision,measurement_scope:'Descriptive observations; no numerical model ranks. Semantic case, dimension and label lens preserve fixed assignments.',models:visible.map(m=>exportModel(m)),records};
     const link=document.createElement('a'),url=URL.createObjectURL(new Blob([JSON.stringify(payload,null,2)+'\n'],{type:'application/json'}));
-    link.href=url;link.download=`blueprintbench-${state.cohort}-${state.view}.json`;link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);toast('Current view exported as JSON with ranks, country sources and metric scope.');
+    link.href=url;link.download=`blueprintbench-${state.cohort}-${state.view}.json`;link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);toast('Current view exported as JSON with counts, country sources and measurement scope.');
   }
 
   function toast(text,copyValue) {
@@ -184,11 +140,10 @@
     if(p.get('lens')==='sensitivity')next.lens='sensitivity';
     next.q=(p.get('q')||'').slice(0,160);
     const pool=next.cohort==='all'?catalogue():next.cohort==='historical'?data.historical.models:data.internal.models;
-    const sorts=next.cohort==='internal'?['rank','name','country','provider','matches','coverage','disagreements','missing','calls','cost','time','input','output','costpercall']:['name','country','provider','evidence'];
+    const sorts=next.cohort==='internal'?['name','country','provider','matches','agreement','coverage','disagreements','missing','calls','cost','time','input','output','costpercall']:['name','country','provider','evidence'];
     if(sorts.includes(p.get('sort')))next.sort=p.get('sort');
     if(p.get('direction')==='desc')next.direction='desc';
     if(!sorts.includes(next.sort))next.sort='name';
-    if(Object.hasOwn(rankingMetrics,p.get('rankMetric')))next.rankMetric=p.get('rankMetric');
     if(['summary','operations','all'].includes(p.get('columns')))next.columns=p.get('columns');
     if(p.get('country')==='unknown'||originData.makers.some(m=>(m.countries||[]).some(c=>c.code===p.get('country'))))next.country=p.get('country');
     next.minimum=[0,50,90,95,100].includes(Number(p.get('minimum')))?Number(p.get('minimum')):0;
@@ -202,7 +157,7 @@
   function updateURL(replace=false) {
     const p=new URLSearchParams();
     for(const [key,value] of new URLSearchParams(location.search))if(key.startsWith('time_'))p.set(key,value);
-    for(const key of ['cohort','view','case','dimension','lens','provider','country','rankMetric','columns','q','copy','sort','direction','minimum'])if(state[key]!==defaults()[key])p.set(key,state[key]);
+    for(const key of ['cohort','view','case','dimension','lens','provider','country','columns','q','copy','sort','direction','minimum'])if(state[key]!==defaults()[key])p.set(key,state[key]);
     if(state.selected.length)p.set('compare',state.selected.join(','));
     if(state.failures)p.set('failures','1');
     for(const key of ['missingOnly','knownOnly','selectedOnly'])if(state[key])p.set(key,'1');
@@ -220,14 +175,14 @@
     $('provider-filter').value=state.provider;
     const countries=[...new Map(originData.makers.filter(m=>m.status==='verified').flatMap(m=>m.countries||[]).map(c=>[c.code,c])).values()].sort((a,b)=>a.name.localeCompare(b.name));
     $('country-filter').innerHTML='<option value="all">All developer countries</option>'+countries.map(c=>`<option value="${escape(c.code)}">${escape(c.name)}</option>`).join('')+'<option value="unknown">Unknown / unavailable</option>';
-    $('country-filter').value=state.country;$('rank-metric').value=state.rankMetric;$('kpi-columns').value=state.columns;
+    $('country-filter').value=state.country;$('kpi-columns').value=state.columns;
     $('case-filter').innerHTML='<option value="all">All cases</option>'+data.internal.case_metadata.map(c=>`<option value="${escape(c.id)}">${escape(c.name)}</option>`).join('');
     $('case-filter').value=state.case;
     const dimensions=[...new Set(data.internal.case_metadata.flatMap(c=>Object.keys(c.dimensions)))].sort();
     $('dimension-filter').innerHTML='<option value="all">All dimensions</option>'+dimensions.map(d=>`<option value="${escape(d)}">${escape(title(d))}</option>`).join('');
     $('dimension-filter').value=state.dimension;$('label-lens').value=state.lens;
     document.querySelectorAll('.internal-control').forEach(el=>el.hidden=!internal());
-    $('rank-controls').hidden=!internal()||state.view!=='verification';
+    $('kpi-controls').hidden=!internal()||state.view!=='verification';
     $('dimension-filter').disabled=!internal()||state.view!=='verification';
     $('label-lens').disabled=!internal()||state.view!=='verification';
     $('track-toolbar').hidden=!internal();
@@ -247,21 +202,31 @@
     if(!attempted)return `N/A<span class="number-note">No provider call</span>${!chargeCoverageComplete(m)?'<span class="number-note">Not run</span>':''}`;
     return `${money(m.provider_reported_cost_usd)}${m.unknown_cost_calls?`<br><span class="unknown-tag">+ ${m.unknown_cost_calls} unknown charge(s)</span>`:''}${!chargeCoverageComplete(m)?'<span class="number-note">Partial accounting</span>':''}`;
   }
+  function missingCause(model, counts) {
+    if (!counts.missing) return '';
+    const relevant = ownRecords(model.id).filter(r=>r.track==='verification'&&(state.case==='all'||r.case===state.case));
+    const codes = [...new Set(relevant.filter(r=>Number(r.http_status)>=400).map(r=>r.http_status))];
+    const causes = codes.map(code=>'HTTP '+code);
+    if (counts.unexecuted) causes.push('Not dispatched');
+    if (!causes.length) causes.push('Missing classifications in received output');
+    return `<span class="number-note">${escape(causes.join('; '))}</span>`;
+  }
   function verificationTable(visible) {
-    const ranks=rankings(), operations=state.columns!=='summary', semantic=state.columns!=='operations';
-    const heads=[['rank','Rank'],['name','Model / serving provider'],['country','Developer country']];
-    if(semantic)heads.push(['matches','Label matches / assigned'],['coverage','Coverage'],['disagreements','Disagreements'],['missing','Missing']);
+    const operations=state.columns!=='summary', semantic=state.columns!=='operations';
+    const heads=[['name','Model / serving provider']];
+    if(operations)heads.push(['country','Developer country']);
+    if(semantic)heads.push(['matches','Matches / assigned'],['agreement','Agreement / received'],['coverage','Coverage'],['disagreements','Disagreements'],['missing','Missing']);
     heads.push(['calls','Complete calls¹'],['cost','Known USD¹'],['time','Median time¹']);
     if(operations)heads.push(['input','Input tokens¹'],['output','Completion tokens¹'],['costpercall','USD / complete call¹']);
     const rows=visible.map(m=>{
       const c=metrics(m.id), op=operationalKPIs(m);
-      let cells=`<td>${checkCell(m)}</td><td class="rank-cell">${rankCell(m,ranks)}</td><td>${modelCell(m)}</td><td>${countryCell(m)}</td>`;
-      if(semantic)cells+=`<td><span class="count-strong">${c.matched}</span><span class="count-denom"> / ${c.assigned}</span></td><td>${c.assigned?(100*c.classified/c.assigned).toFixed(1)+'%':'N/A'}</td><td class="${c.disagreed?'disputed':''}">${c.disagreed}</td><td class="${c.missing?'missing':''}">${c.missing}${c.unexecuted?'<span class="number-note">'+c.unexecuted+' not run</span>':''}${c.unclassified?'<span class="number-note">'+c.unclassified+' unclassified</span>':''}</td>`;
+      let cells=`<td>${checkCell(m)}</td><td>${modelCell(m)}</td>${operations?`<td>${countryCell(m)}</td>`:''}`;
+      if(semantic)cells+=`<td><span class="count-strong">${c.matched}</span><span class="count-denom"> / ${c.assigned}</span></td><td>${c.classified?(100*c.matched/c.classified).toFixed(1)+'%':'N/A'}<span class="number-note">${c.matched} / ${c.classified} received</span></td><td>${c.assigned?(100*c.classified/c.assigned).toFixed(1)+'%':'N/A'}</td><td class="${c.disagreed?'disputed':''}">${c.disagreed}</td><td class="${c.missing?'missing':''}">${c.missing}${c.unexecuted?'<span class="number-note">'+c.unexecuted+' not run</span>':''}${c.unclassified?'<span class="number-note">'+c.unclassified+' unclassified</span>':''}${missingCause(m,c)}</td>`;
       cells+=`<td>${m.completed_calls} / ${m.assigned_calls}<span class="number-note">${(100*m.completed_calls/m.assigned_calls).toFixed(1)}% complete</span>${configOf(m.id)?.precall_blocked?'<span class="number-note missing">Pre-call blocked</span>':''}</td><td>${costCell(m)}</td><td>${!attemptedRecords(m.id).length?'N/A':Number.isFinite(m.latency_median_seconds)?m.latency_median_seconds.toFixed(1)+' s':'Unknown'}</td>`;
       if(operations)cells+=`<td>${op.input==null?'Unknown':number(op.input)}</td><td>${op.output==null?'Unknown':number(op.output)}<span class="number-note">Includes reasoning</span></td><td>${op.costpercall==null?'N/A':money(op.costpercall)}</td>`;
-      return `<tr data-model="${escape(m.id)}" data-rank="${ranks.get(m.id)?.rank??''}">${cells}<td><button class="inspect-button" data-inspect="${escape(m.id)}" type="button" aria-label="Inspect ${escape(shortName(m))}">Inspect ↗</button></td></tr>`;
+      return `<tr data-model="${escape(m.id)}">${cells}<td><button class="inspect-button" data-inspect="${escape(m.id)}" type="button" aria-label="Inspect ${escape(shortName(m))}">Inspect ↗</button></td></tr>`;
     }).join('');
-    return rankingSummary(ranks)+`<div class="table-wrap ranked-table-wrap"><table class="evidence-table ranked-table" id="model-table"><caption>INTERNAL TESTS · ${state.lens==='primary'?'FROZEN DRAFT LABELS':'POST-HOC EXCLUSION OF P002'} · METRIC-SPECIFIC RANK</caption><thead><tr><th scope="col">Compare</th>${heads.map(([key,label])=>sortHeader(key,label)).join('')}<th scope="col"><span class="sr-only">Inspect</span></th></tr></thead><tbody>${rows}</tbody></table></div><div class="table-footnote"><p>¹ Calls, charges, time and tokens cover both tasks and all cases, independent of semantic filters. Token totals require complete reporting across dispatched calls. Cost per complete call requires every assigned call to complete and fully reported charges. Unknown values sort last.</p><span>Select up to 3 configurations to compare.</span></div>`;
+    return `<p class="measurement-summary">Agreement uses received classifications; coverage uses all assigned statements. Matches / assigned retains delivery failures in a separate end-to-end count. No response is not a semantic error. Sortable values describe this campaign and do not establish model superiority.</p>`+`<div class="table-wrap descriptive-table-wrap"><table class="evidence-table descriptive-table" id="model-table"><caption>INTERNAL TESTS · ${state.lens==='primary'?'FROZEN DRAFT LABELS':'POST-HOC EXCLUSION OF P002'} · DESCRIPTIVE OBSERVATIONS</caption><thead><tr><th scope="col">Compare</th>${heads.map(([key,label])=>sortHeader(key,label)).join('')}<th scope="col"><span class="sr-only">Inspect</span></th></tr></thead><tbody>${rows}</tbody></table></div><div class="table-footnote"><p>¹ Calls, charges, time and tokens cover both tasks and all cases, independent of semantic filters. Token totals require complete reporting across dispatched calls. Cost per complete call requires every assigned call to complete and fully reported charges. Unknown values sort last.</p><span>Select up to 3 configurations to compare.</span></div>`;
   }
   function catalogueView(visible) {
     return `<div class="table-wrap"><table class="evidence-table catalogue-table" id="catalogue-table"><caption>MODEL CONFIGURATIONS · COHORTS RETAIN THEIR OWN TASKS AND METRICS</caption><thead><tr>${sortHeader('name','Model')}${sortHeader('provider','Serving provider')}${sortHeader('country','Developer country')}${sortHeader('evidence','Evidence cohort')}<th scope="col">Task / recorded coverage</th><th scope="col">Explore</th></tr></thead><tbody>${visible.map(m=>{const semantic=m.evidenceCohort==='internal';return `<tr data-model="${escape(idOf(m))}"><td><button class="model-button" type="button" data-inspect="${escape(idOf(m))}" data-inspect-cohort="${m.evidenceCohort}">${escape(shortName(m))}</button><span class="catalogue-note">${escape(idOf(m))}</span></td><td>${escape(providerOf(m))}</td><td>${countryCell(m)}</td><td><span class="catalogue-badge ${semantic?'':'historical'}">${semantic?'Internal procurement':'Historical diagnostics'}</span></td><td>${semantic?'Translation + verification':'Adapter contract checks'}<span class="catalogue-note">${semantic?`${m.completed_calls} / ${m.assigned_calls} complete calls${configOf(m.id)?.precall_blocked?' · blocked before inference':m.not_run?' · '+m.not_run+' not run':' · 3 repeats'}`:`${m.completed} / ${m.assigned} complete calls · ${m.not_run} not run`}</span></td><td><button type="button" class="catalogue-action" data-open-cohort="${m.evidenceCohort}" data-open-model="${escape(idOf(m))}">Open evidence ↗</button></td></tr>`;}).join('')}</tbody></table></div><p class="table-footnote">Registered configurations can be blocked before inference; zero completed calls is not a measured quality result. The same model may have more than one configuration or evidence cohort. Procurement label agreement and historical structural checks have different denominators and are never combined into one score.</p>`;
@@ -350,7 +315,7 @@
     let exportView={};
     const rows=explorationRows(), models=[...data.internal.models].sort((a,b)=>shortName(a).localeCompare(shortName(b)));
     if(!exploreState.model)exploreState.model=models[0].id;
-    const tabs=[['pareto','Pareto frontier'],['repetitions','Repetition trends'],['leaders','Top 10 by use case'],['latest','Latest tested'],['workflow','Evidence workflow']];
+    const tabs=[['pareto','Pareto frontier'],['repetitions','Repetition trends'],['leaders','Results by use case'],['latest','Latest tested'],['workflow','Evidence workflow']];
     let html=`<div class="section-heading"><div><p class="eyebrow">Explore the cohort</p><h2>Cohort analysis</h2></div><p>Verification records from the internal procurement suite. Each view keeps its task, denominator and evidence scope explicit.</p></div><div class="explore-tabs" role="tablist" aria-label="Analytical view">${tabs.map(([key,label])=>`<button role="tab" id="explore-tab-${key}" data-explore-tab="${key}" aria-controls="explore-panel" aria-selected="${exploreState.tab===key}">${label}</button>`).join('')}</div><div class="explore-filters">`;
     if(['pareto','repetitions','leaders'].includes(exploreState.tab))html+=`<label>Use case<select id="explore-case"><option value="all">All three cases</option>${data.internal.case_metadata.map(c=>`<option value="${escape(c.id)}" ${exploreState.case===c.id?'selected':''}>${escape(c.name)}</option>`).join('')}</select></label>`;
     if(exploreState.tab==='pareto')html+=`<label>Resource axis<select id="explore-axis"><option value="cost" ${exploreState.axis==='cost'?'selected':''}>Verification cost (USD)</option><option value="time" ${exploreState.axis==='time'?'selected':''}>Median verification call (seconds)</option></select></label>`;
@@ -367,9 +332,9 @@
       html+=explorerTable(['Configuration','Matches / assigned','Verification USD','Median verification seconds','Observed frontier'],points.map(r=>[shortName(r.model),`${r.matches}/${r.assigned}`,r.cost===null?'N/A':r.cost.toFixed(6),r.time===null?'N/A':r.time.toFixed(2),r.frontier?'Yes':'No']));
       html+='<details class="explore-method"><summary>How to read the frontier</summary><p>Descriptive observations within the selected internal verification scope. Reasoning settings and serving providers differ; equal settings do not mean equal compute. Unknown cost and blocked requests are excluded, not priced at zero. The Y axis uses frozen assistant-draft labels, not independently validated model accuracy. Small differences do not establish statistical superiority. Translation costs are excluded.</p></details>';
     } else if(exploreState.tab==='leaders'){
-      const sorted=[...rows].sort((a,b)=>b.rate-a.rate||shortName(a.model).localeCompare(shortName(b.model))),cut=sorted[Math.min(9,sorted.length-1)]?.rate,shown=sorted.filter(r=>r.rate>=cut);
-      html+=`<p class="explore-caption">Top 10 by agreement with assistant-draft labels, including every tie at the tenth boundary (${shown.length} configurations shown). Probe judgements matched / assigned, per model; three repetitions. Tied results share a group; these counts do not establish independently validated superiority.</p><div class="case-leaders">${shown.map(r=>`<div class="case-leader"><a href="?cohort=internal&amp;q=${encodeURIComponent(r.model.id)}#workspace">${escape(shortName(r.model))}</a><div class="leader-bar"><span style="width:${100*r.rate}%"></span></div><strong>${r.matches} / ${r.assigned}</strong><small>${sorted.filter(x=>x.rate===r.rate).length>1?'Tied group':'Observed value'}</small></div>`).join('')}</div>`;
-      exportView={tie_policy:'Include all configurations tied at the tenth boundary',models:shown.map(r=>({model:r.model.id,matches:r.matches,assigned:r.assigned,missing:r.assigned-r.classified}))};
+      const shown=[...rows].sort((a,b)=>shortName(a.model).localeCompare(shortName(b.model)));
+      html+=`<p class="explore-caption">All ${shown.length} configurations in alphabetical order. Bars show matches to assistant-draft labels divided by fixed assignments. Missing classifications remain separate in the data table; these observations do not establish a quality order.</p><div class="case-leaders">${shown.map(r=>`<div class="case-leader"><a href="?cohort=internal&amp;q=${encodeURIComponent(r.model.id)}#workspace">${escape(shortName(r.model))}</a><div class="leader-bar"><span style="width:${100*r.rate}%"></span></div><strong>${r.matches} / ${r.assigned}</strong><small>${r.assigned-r.classified} missing</small></div>`).join('')}</div>`;
+      exportView={display_order:'Alphabetical; no model ranks',models:shown.map(r=>({model:r.model.id,matches:r.matches,assigned:r.assigned,missing:r.assigned-r.classified}))};
       html+=explorerTable(['Configuration','Matches','Assigned','Missing'],shown.map(r=>[shortName(r.model),r.matches,r.assigned,r.assigned-r.classified]));
     } else if(exploreState.tab==='repetitions'){
       const selected=rows.find(r=>r.model.id===exploreState.model),caseIds=data.internal.case_metadata.filter(c=>exploreState.case==='all'||c.id===exploreState.case).map(c=>c.id),assigned=selected.assigned/data.internal.repetitions;
@@ -395,7 +360,7 @@
     host.querySelectorAll('[data-workflow-step]').forEach(b=>b.addEventListener('click',()=>{exploreState.step=b.dataset.workflowStep;renderExploration();host.querySelector(`[data-workflow-step="${exploreState.step}"]`).focus();}));
   }
 
-  const sourceCommit = '3effa4c';
+  const sourceCommit = document.querySelector('meta[name="palo-release-tag"]').content;
   function challengeURL(model, cohort=state.cohort) {
     const id=model ? idOf(model) : 'Dataset / result';
     const text=[
@@ -463,11 +428,11 @@
       headers=[...context,'model','provider','complete_calls','assigned_passages','proposed_candidates','contract_accepted_candidates','not_run','reasoning','cost_status','output_limit'];
       rows=visible.map(m=>[...base,m.model,m.provider,m.completed,m.assigned,m.raw_claims,m.mechanically_valid,m.not_run,m.reasoning,'unreconciled',m.max_output_tokens]);
     }
-    const exportedRank=rankings(), modelColumn=headers.indexOf('model');
-    headers.push('metric_rank','rank_metric','rank_direction','rank_eligible','rank_ineligibility_reason','rank_tied','tie_policy','developer_organisation','developer_country_codes','developer_countries','country_status','country_sources','classification_coverage','input_tokens_whole_cohort','completion_tokens_including_reasoning_whole_cohort','cost_per_complete_call_usd','country_filter','kpi_columns','rank_population','country_basis','origin_metadata_version','rank_scope','rank_case','rank_dimension','rank_lens');
+    const modelColumn=headers.indexOf('model');
+    headers.push('developer_organisation','developer_country_codes','developer_countries','country_status','country_sources','conditional_label_agreement','classified','classification_coverage','input_tokens_whole_cohort','completion_tokens_including_reasoning_whole_cohort','cost_per_complete_call_usd','country_filter','kpi_columns','country_basis','origin_metadata_version','publication_revision','measurement_scope');
     rows=rows.map(row=>{
-      const model=visible.find(m=>idOf(m)===row[modelColumn]), e=exportModel(model,exportedRank);
-      return [...row,e.rank,e.ranking_metric,e.ranking_direction,e.rank_eligible,e.rank_ineligibility_reason,e.rank_tied,'competition: 1, 1, 3; unrounded values',e.developer_organisation,e.developer_countries.map(c=>c.code).join('|'),e.developer_countries.map(c=>c.name).join('|'),e.country_status,JSON.stringify(e.country_sources),e.classification_coverage,e.input_tokens,e.completion_tokens_including_reasoning,e.cost_per_complete_call_usd,state.country,state.columns,'All eligible internal configurations; display filters do not renumber',e.country_basis,originData.version||'',internal()?rankingMetrics[state.rankMetric].scope:'',internal()?state.case:'',internal()?state.dimension:'',internal()?state.lens:''];
+      const model=visible.find(m=>idOf(m)===row[modelColumn]), e=exportModel(model);
+      return [...row,e.developer_organisation,e.developer_countries.map(c=>c.code).join('|'),e.developer_countries.map(c=>c.name).join('|'),e.country_status,JSON.stringify(e.country_sources),e.conditional_label_agreement,e.classified,e.classification_coverage,e.input_tokens,e.completion_tokens_including_reasoning,e.cost_per_complete_call_usd,state.country,state.columns,e.country_basis,originData.version||'',publicationRevision,'Descriptive observations; fixed assigned denominator; no numerical model ranks'];
     });
     headers.push('sort_by','sort_direction','minimum_match_percentage','missing_only','known_charge_only','selected_only','view_url');
     rows=rows.map(row=>[...row,state.sort,state.direction,state.minimum,state.missingOnly,state.knownOnly,state.selectedOnly,location.href]);
@@ -482,7 +447,7 @@
       const value=await response.json();if(value.qualified_count!==0||value.internal.qualified!==false||value.internal.status!=='internal_tests'||!Array.isArray(value.internal.records))throw new Error('Unexpected evidence contract');
       data=value;
       try {const origins=await fetch('downloads/blueprintbench/model-origins.json',{cache:'no-cache'});if(!origins.ok)throw new Error('Country metadata unavailable');const parsed=await origins.json();if(!Array.isArray(parsed.makers))throw new Error('Invalid country metadata');originData=parsed;originAvailable=true;}catch(_){originData={makers:[]};originAvailable=false;}
-      window.dispatchEvent(new CustomEvent('blueprintbench:data',{detail:data}));readURL();$('revision-label').textContent='Revision '+data.version;$('stat-models').textContent=new Set(catalogue().map(idOf)).size;$('stat-configurations').textContent=catalogue().length;
+      window.dispatchEvent(new CustomEvent('blueprintbench:data',{detail:data}));readURL();$('revision-label').textContent='Publication '+publicationRevision+' · Frozen data '+data.version;$('stat-models').textContent=new Set(catalogue().map(idOf)).size;$('stat-configurations').textContent=catalogue().length;
       for(const cohort of ['all','internal','historical'])document.querySelector('#tab-'+cohort+' span').textContent=String(cohort==='all'?new Set(catalogue().map(idOf)).size:cohort==='internal'?data.internal.models.length:data.historical.models.length);$('challenge-dataset').href=challengeURL();$('stat-calls').textContent=data.internal.assigned_calls;$('stat-complete').textContent=data.internal.completed_calls;$('stat-dispatched').textContent=data.internal.attempted_calls;renderExploration();$('stat-failures').textContent=data.internal.records.filter(r=>!['completed','not_run'].includes(r.state)).length;
       const unexecuted=data.internal.assigned_calls-data.internal.records.filter(r=>r.state!=='not_run').length;
       const blocked=data.internal.models.filter(m=>configOf(m.id)?.precall_blocked).reduce((sum,m)=>sum+m.assigned_calls-attemptedRecords(m.id).length,0);
@@ -503,14 +468,13 @@
     if(event.target.id==='copy-filter')setState({copy:event.target.value});
     if(event.target.id==='failed-only')setState({failures:event.target.checked});
     if(event.target.id==='sort-select')setState({sort:event.target.value,direction:'asc'});
-    if(event.target.id==='rank-metric')setState({rankMetric:event.target.value,sort:'rank',direction:'asc'});
     if(event.target.id==='kpi-columns')setState({columns:event.target.value});
     if(event.target.id==='minimum-matches')setState({minimum:Number(event.target.value)});
     const checks={'missing-only':'missingOnly','known-only':'knownOnly','selected-only':'selectedOnly'};if(checks[event.target.id])setState({[checks[event.target.id]]:event.target.checked});
   });
   $('model-search').addEventListener('input',event=>{clearTimeout(searchTimer);const value=event.target.value;searchTimer=setTimeout(()=>setState({q:value.slice(0,160)},true),180);});
   [['country-filter','country'],['provider-filter','provider'],['case-filter','case'],['dimension-filter','dimension'],['label-lens','lens']].forEach(([id,key])=>$(id).addEventListener('change',event=>setState({[key]:event.target.value})));
-  $('reset-filters').addEventListener('click',()=>setState({provider:'all',q:'',case:'all',dimension:'all',lens:'primary',failures:false,copy:'all',minimum:0,missingOnly:false,knownOnly:false,selectedOnly:false,country:'all',rankMetric:'matches',columns:'summary',sort:'rank',direction:'asc'}));
+  $('reset-filters').addEventListener('click',()=>setState({provider:'all',q:'',case:'all',dimension:'all',lens:'primary',failures:false,copy:'all',minimum:0,missingOnly:false,knownOnly:false,selectedOnly:false,country:'all',columns:'summary',sort:'name',direction:'asc'}));
   $('clear-comparison').addEventListener('click',()=>setState({selected:[],selectedOnly:false}));
   $('show-qualified').addEventListener('click',()=>{if(data)setState({cohort:'qualified',selected:[]});});
   $('show-calls').addEventListener('click',()=>{if(data){setState({...defaults(),cohort:'internal',view:'operations'});$('workspace').scrollIntoView();}});
@@ -524,73 +488,6 @@
   window.addEventListener('resize',()=>requestAnimationFrame(updateScrollCues));
   $('retry-load').addEventListener('click',load);window.addEventListener('popstate',()=>{if(data){readURL();render();}});
   load();
-})();
-
-/* Retained adversarial records are an additional internal evidence layer. */
-(async function adversarialReview(){
-  const host=document.getElementById('adversarial-content');
-  if(!host)return;
-  const esc=value=>String(value??'').replace(/[\u2013\u2014]/g,' - ').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  const label=value=>String(value??'unavailable').replaceAll('_',' ').replaceAll('-',' ');
-  const safeLink=value=>{if(typeof value!=='string'||!value.trim())return null;try{const url=new URL(value,location.href);return ['http:','https:'].includes(url.protocol)?url.href:null;}catch{return null;}};
-  const link=(url,text)=>{const target=safeLink(url);return target?`<a href="${esc(target)}" target="_blank" rel="noopener">${esc(text)} ↗</a>`:'';};
-  const filters={case:'all',task:'all',status:'all'};
-  let documentData,selectedId=null;
-  const reviewFor=(item,reviewer)=>item.reviews.find(r=>r.reviewer_id===reviewer.id);
-  const recordState=review=>review?.status||'not_run';
-  const consensus=item=>item.consensus||'incomplete';
-  const visibleItems=()=>documentData.items.filter(item=>(filters.case==='all'||item.case===filters.case)&&(filters.task==='all'||item.task===filters.task)&&(filters.status==='all'||(filters.status==='observed_disagreement'?item.observed_pairwise_disagreement===true:consensus(item)===filters.status)));
-  const statusClass=status=>String(status).includes('diverg')?'divergent':String(status).includes('uncertain')?'uncertain':/incomplete|not_run|pending|invalid|missing|blocked/.test(status)?'incomplete':'';
-  const badge=status=>`<span class="review-status ${statusClass(status)}">${esc(status==='valid'?'Recorded':label(status))}</span>`;
-  function exportSelection(format){
-    const items=visibleItems();let content,type;
-    if(format==='json'){
-      content=JSON.stringify({version:documentData.version,status:'internal_adversarial_tests',qualified:false,filters:{...filters},primary_results_unchanged:true,reviewers:documentData.reviewers,protocol:documentData.protocol_url,source_revision:documentData.source_revision,data_source_sha256:documentData.data_source_sha256,format_accounting:{strict_envelope_valid_batches:documentData.summary.strict_envelope_valid_batches??null,expected_batches:documentData.summary.expected_batches??null,projected_review_records:documentData.summary.projected_review_records??null,scope:'Whole countertest campaign, not filtered selection'},items},null,2)+'\n';type='application/json';
-    }else{
-      const quote=value=>'"'+String(value??'').replace(/^[=+@-]/,"'$&").replaceAll('"','""')+'"';
-      const rows=[['item_id','case','task','author_model','frozen_label','item_consensus','observed_pairwise_disagreement','reviewer_id','review_status','format_projection','response_evidence_url','receipt_url','relation','uncertain','source_ids','reason','independently_qualified']];
-      for(const item of items)for(const reviewer of documentData.reviewers){const review=reviewFor(item,reviewer);rows.push([item.id,item.case,item.task,item.author_model,item.frozen_label,consensus(item),item.observed_pairwise_disagreement===true,reviewer.id,recordState(review),review?.projection??'',review?.evidence_url??'',review?.receipt_url??'',review?.relation??'',review?.uncertain??'',JSON.stringify(review?.source_ids??[]),review?.reason??'',false]);}
-      content=rows.map(row=>row.map(quote).join(',')).join('\r\n')+'\r\n';type='text/csv;charset=utf-8';
-    }
-    const url=URL.createObjectURL(new Blob([content],{type})),anchor=document.createElement('a');anchor.href=url;anchor.download='blueprintbench-adversarial-'+filters.case+'-'+filters.task+'.'+format;anchor.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
-  }
-  function details(item){
-    const corpus=documentData.cases.find(c=>c.id===item.case);
-    const sources=(corpus?.source||[]).map(source=>`${source.id}: ${source.text}`).join('\n\n');
-    return `<section class="adversarial-detail" id="adversarial-item-detail" tabindex="-1" aria-labelledby="review-item-title"><button class="text-button detail-close" id="close-adversarial-detail">Close ×</button><p class="eyebrow">${esc(item.id)}</p><h3 id="review-item-title">${esc(corpus?.name||label(item.case))}: ${esc(label(item.task))}</h3><p class="adversarial-scope">${item.author_model?'Output author: '+esc(item.author_model)+'. ':''}${item.frozen_label?'Frozen draft label: '+esc(label(item.frozen_label))+'. ':''}Author identity and previous labels were withheld from the reviewer prompt. Long dashes are normalised for display; original evidence and exports remain unchanged.</p><div class="review-evidence"><section><h4>Case source rules</h4><pre>${esc(sources||'Source text is unavailable in this record.')}</pre></section><section><h4>${item.task==='verification'?'Verification proposition':'Recorded draft translation'}</h4><pre>${esc(item.text)}</pre><div class="adversarial-record-links">${link(item.evidence_url,'Original output evidence')}</div></section></div>${documentData.reviewers.map(reviewer=>{const review=reviewFor(item,reviewer);return `<article class="judge-record"><h4>${esc(reviewer.name)}</h4><dl><dt>Record</dt><dd>${badge(recordState(review))}</dd><dt>Source relation</dt><dd>${esc(review?.relation?label(review.relation):'No valid decision recorded')}</dd><dt>Uncertain</dt><dd>${review?.status==='valid'?(review.relation==='uncertain'?'Yes':'No'):'Not recorded'}</dd><dt>Response envelope</dt><dd>${review?.projection==='array_to_items_object'?'Array projected to items object; original response retained':review?.status==='valid'?'No projection recorded':'Not available'}</dd></dl><p>${esc(review?.reason||'No complete reviewer rationale is recorded. This assignment remains incomplete.')}</p><p>Source references: ${esc((review?.source_ids||[]).join(', ')||'Not supplied; citation coverage is missing, but an empty list is permitted by this rubric.')} ${item.self_family_reviewers?.includes(reviewer.id)?'This reviewer shares the author model family.':''}</p><div class="adversarial-record-links">${link(review?.evidence_url,'Original reviewer response')}${link(review?.receipt_url,'Request receipt')}</div></article>`;}).join('')}</section>`;
-  }
-  function replayTables(){
-    const reviewers=documentData.reviewers;
-    return `<details class="method-details"><summary>Reviewer batch availability by case</summary><div class="table-wrap" tabindex="0" role="region" aria-label="Reviewer batch availability"><table class="adversarial-table"><thead><tr><th scope="col">Reviewer</th><th scope="col">Case</th><th scope="col">Batch status</th><th scope="col">Usable decisions / assigned</th></tr></thead><tbody>${reviewers.flatMap(reviewer=>(reviewer.cases||[]).map(batch=>`<tr><td>${esc(reviewer.name)}</td><td>${esc(label(batch.case))}</td><td>${badge(batch.status)}</td><td>${batch.valid} / ${batch.assigned}</td></tr>`)).join('')}</tbody></table></div></details><details class="method-details adversarial-replay"><summary>Selected-probe replay: ${documentData.model_replay.length} tested models</summary><p class="adversarial-scope">Full targeted sample: 18 probes repeated three times, 54 prediction slots per model. This table is not changed by the matrix filters. It compares retained predictions with each model reviewer and preserves missing predictions, missing reviews and uncertain reviews separately. Original leaderboard scores are unchanged.</p><div class="table-wrap" tabindex="0" role="region" aria-label="Selected probe replay by model and reviewer"><table class="adversarial-table"><thead><tr><th scope="col">Tested model</th><th scope="col">Original draft-label matches</th>${reviewers.map(r=>`<th scope="col">${esc(r.name)}</th>`).join('')}</tr></thead><tbody>${documentData.model_replay.map(m=>`<tr><td>${esc(m.name)}<small>${esc(m.model)}</small></td><td>${m.original_draft_matches} / ${m.assigned}<small>${m.recorded_predictions} predictions recorded</small></td>${reviewers.map(r=>{const v=m.reviewers[r.id];return `<td>${v.matches} / ${m.assigned} matches<small>${v.disagreements} disagreements<br>${v.missing_predictions} missing predictions<br>${v.missing_reviews} missing reviews<br>${v.uncertain_reviews} uncertain reviews${v.self_family?'<br>Same model family':''}</small></td>`;}).join('')}</tr>`).join('')}</tbody></table></div></details><details class="method-details"><summary>Pairwise review and original-label comparisons</summary><p class="adversarial-scope">Full targeted sample. Pairwise counts describe agreement among model reviewers. They do not adjudicate ground truth.</p><div class="table-wrap"><table class="adversarial-table"><thead><tr><th scope="col">Reviewer pair</th><th scope="col">Assigned items</th><th scope="col">Agreement</th><th scope="col">Divergence</th><th scope="col">Uncertain</th><th scope="col">Missing</th></tr></thead><tbody>${documentData.pairwise.map(row=>`<tr><td>${esc(reviewers.find(r=>r.id===row.a)?.name||row.a)} / ${esc(reviewers.find(r=>r.id===row.b)?.name||row.b)}</td><td>${row.assigned}</td><td>${row.agree}</td><td>${row.differ}</td><td>${row.uncertain}</td><td>${row.missing}</td></tr>`).join('')}</tbody></table></div><div class="table-wrap"><table class="adversarial-table"><thead><tr><th scope="col">Reviewer against original draft labels</th><th scope="col">Assigned probes</th><th scope="col">Agreement</th><th scope="col">Difference</th><th scope="col">Uncertain</th><th scope="col">Missing</th></tr></thead><tbody>${documentData.label_comparison.map(row=>`<tr><td>${esc(reviewers.find(r=>r.id===row.reviewer)?.name||row.reviewer)}</td><td>${row.assigned}</td><td>${row.agree}</td><td>${row.differ}</td><td>${row.uncertain}</td><td>${row.missing}</td></tr>`).join('')}</tbody></table></div></details><details class="method-details"><summary>Translation coverage and excluded configurations</summary><p class="adversarial-scope">${documentData.translation_scope.items} source-bound translation items from ${documentData.translation_scope.source_bound_models} tested models. No translation output is fabricated for excluded models.</p><ul class="excluded-configurations">${documentData.translation_scope.excluded.map(row=>`<li><span>${esc(row.model)}</span><span>${esc(row.reason)}</span></li>`).join('')}</ul></details>`;
-  }
-
-  function render(){
-    const items=visibleItems(),summary=documentData.summary||{},statuses=['unanimous','divergent','uncertain','incomplete'];
-    const completed=summary.valid_review_records??documentData.items.reduce((n,item)=>n+item.reviews.filter(r=>r.status==='valid').length,0),assigned=documentData.items.length*documentData.reviewers.length;
-    const strictFormat=Number.isInteger(summary.strict_envelope_valid_batches)&&Number.isInteger(summary.expected_batches)?`<div><strong>${summary.strict_envelope_valid_batches} / ${summary.expected_batches}</strong><span>raw batches matching requested JSON envelope</span></div>`:'';
-    const projected=Number.isInteger(summary.projected_review_records)?summary.projected_review_records:documentData.items.reduce((count,item)=>count+item.reviews.filter(r=>r.projection==='array_to_items_object').length,0);
-    const blockedCases=documentData.reviewers.flatMap(reviewer=>(reviewer.cases||[]).filter(batch=>batch.status==='provider_capacity_blocked'&&(filters.case==='all'||filters.case===batch.case)).map(batch=>({reviewer,batch})));
-    const capacityNote=blockedCases.length?`<div class="adversarial-format-note" role="status"><strong>Provider capacity block.</strong> ${blockedCases.map(({reviewer,batch})=>`${esc(reviewer.name)} could not return the ${esc(label(batch.case))} batch because the provider reported peak capacity. ${batch.assigned-batch.valid} review assignments remain missing. No retry or model switch was used.`).join(' ')}</div>`:'';
-    const projectionNote=projected?`<p class="adversarial-format-note"><strong>Qwen response format.</strong> ${projected} usable decisions came from bare JSON arrays instead of the requested object with an items field. An array-to-items projection makes these records inspectable. No substantive answers were changed and no retry was used. Raw response-format compliance remains separate from decision availability.</p>`:'';
-    host.innerHTML=`<div class="adversarial-counts"><div><strong>${documentData.items.length}</strong><span>selected items</span></div><div><strong>${documentData.reviewers.length}</strong><span>model reviewers</span></div><div><strong>${completed} / ${assigned}</strong><span>usable review decisions</span></div><div><strong>${assigned-completed}</strong><span>incomplete assignments</span></div>${strictFormat}</div>${capacityNote}${projectionNote}<div class="adversarial-outcomes" aria-label="Agreement outcomes for the visible items">${statuses.map(status=>`<span>${badge(status)} <strong>${items.filter(item=>consensus(item)===status).length}</strong> items</span>`).join('')}<span><span class="review-status divergent">Observed disagreement</span> <strong>${items.filter(item=>item.observed_pairwise_disagreement===true).length}</strong> items, including incomplete reviews</span></div><div class="adversarial-toolbar"><label>Procurement case<select id="adversarial-case"><option value="all">All three cases</option>${documentData.cases.map(c=>`<option value="${esc(c.id)}" ${filters.case===c.id?'selected':''}>${esc(c.name||label(c.id))}</option>`).join('')}</select></label><label>Task<select id="adversarial-task"><option value="all">Both tasks</option><option value="verification" ${filters.task==='verification'?'selected':''}>Verification probes</option><option value="translation" ${filters.task==='translation'?'selected':''}>Draft translations</option></select></label><label>Reviewer agreement<select id="adversarial-status"><option value="all">All outcomes</option><option value="observed_disagreement" ${filters.status==='observed_disagreement'?'selected':''}>Any observed disagreement</option>${statuses.map(status=>`<option value="${esc(status)}" ${filters.status===status?'selected':''}>${esc(label(status))}</option>`).join('')}</select></label><button type="button" class="button quiet" id="adversarial-export-csv">Export selection CSV ↓</button><button type="button" class="button quiet" id="adversarial-export-json">Export selection JSON ↓</button></div><p class="adversarial-scope" role="status">${items.length} of ${documentData.items.length} selected items shown. Scroll the matrix to inspect all items and reviewer columns. Recorded means a usable review decision was retained. Raw response-format compliance is reported separately; neither status establishes correctness. Uncertainty and missing reviews remain separate. Three-way divergence counts only complete triads; observed disagreement also includes conflicts between two available reviewers.</p>${items.length?`<div class="table-wrap" tabindex="0" role="region" aria-label="Adversarial review matrix; scroll horizontally for reviewer columns"><table class="adversarial-table"><caption class="sr-only">Internal countertest review matrix</caption><thead><tr><th scope="col">Item / task</th><th scope="col">Frozen draft label</th>${documentData.reviewers.map(r=>`<th scope="col">${esc(r.name)}<small>${esc(r.interface||'')}<br>${esc(r.actual_model||'')}<br>${esc(r.setting||'')}${Number.isInteger(r.strict_envelope_valid_batches)?'<br>Requested envelope: '+r.strict_envelope_valid_batches+' / '+r.expected_batches+' batches':''}</small></th>`).join('')}<th scope="col">Three-reviewer outcome</th><th scope="col">Evidence</th></tr></thead><tbody>${items.map(item=>`<tr><td><strong>${esc(item.id)}</strong><small>${esc(label(item.task))} · ${esc(label(item.case))}</small></td><td>${esc(item.frozen_label?label(item.frozen_label):'No semantic gold assigned')}</td>${documentData.reviewers.map(reviewer=>{const review=reviewFor(item,reviewer);return `<td>${badge(recordState(review))}<small>${esc(review?.relation?label(review.relation):'No valid decision')}${review?.uncertain===true?' · uncertain':''}</small></td>`;}).join('')}<td>${badge(consensus(item))}${item.observed_pairwise_disagreement?'<small class="observed-disagreement">Observed pairwise disagreement</small>':''}</td><td><button class="review-inspect" data-review-item="${esc(item.id)}">Inspect ↗</button></td></tr>`).join('')}</tbody></table></div>`:'<p class="adversarial-empty">No retained items match these filters.</p>'}${selectedId&&items.some(i=>i.id===selectedId)?details(items.find(i=>i.id===selectedId)):''}${replayTables()}<div class="adversarial-record-links"><a href="downloads/blueprintbench/adversarial-tests.json" download>Complete countertest data (JSON) ↓</a>${link(documentData.protocol_url,'Frozen review protocol')}</div>`;
-    for(const key of ['case','task','status'])host.querySelector('#adversarial-'+key).addEventListener('change',event=>{filters[key]=event.target.value;selectedId=null;render();document.getElementById('adversarial-'+key).focus();});
-    host.querySelectorAll('[data-review-item]').forEach(button=>button.addEventListener('click',()=>{selectedId=button.dataset.reviewItem;render();const detail=document.getElementById('adversarial-item-detail');detail.focus();detail.scrollIntoView({block:'start',behavior:'instant'});}));
-    document.getElementById('close-adversarial-detail')?.addEventListener('click',()=>{const previous=selectedId;selectedId=null;render();host.querySelector(`[data-review-item="${CSS.escape(previous)}"]`)?.focus();});
-    document.getElementById('adversarial-export-csv').addEventListener('click',()=>exportSelection('csv'));
-    document.getElementById('adversarial-export-json').addEventListener('click',()=>exportSelection('json'));
-  }
-  try{
-    const response=await fetch('downloads/blueprintbench/adversarial-tests.json',{cache:'no-store'});
-    if(!response.ok)throw new Error('Review evidence unavailable');
-    documentData=await response.json();
-    if(documentData.qualified!==false||documentData.primary_scores_unchanged!==true||!Array.isArray(documentData.items)||!Array.isArray(documentData.reviewers)||documentData.items.some(item=>!item.reviewers||!Array.isArray(item.source_rules)))throw new Error('Unexpected internal-review contract');
-    documentData.reviewers=documentData.reviewers.map(reviewer=>({...reviewer,name:reviewer.label}));
-    documentData.cases=[...new Set(documentData.items.map(item=>item.case))].map(id=>({id,name:label(id),source:documentData.items.find(item=>item.case===id).source_rules}));
-    documentData.items=documentData.items.map(item=>({...item,frozen_label:item.original_draft_label,consensus:item.agreement,reviews:Object.entries(item.reviewers).map(([reviewer_id,review])=>({reviewer_id,...review,uncertain:review.status==='valid'?review.relation==='uncertain':null}))}));
-    render();
-  }catch{
-    host.innerHTML='<p class="adversarial-empty" role="status">The retained countertest records are not available in this page snapshot. No review outcomes are substituted. Original internal results remain available above.</p>';
-  }
 })();
 
 /* UTC observation chart. Dates are retained request starts, not model releases. */
@@ -823,7 +720,7 @@
       providers = [
         ...new Set(doc.internal.models.map((m) => m.pinned_provider)),
       ].sort();
-    host.innerHTML = `<div class="section-heading"><div><p class="eyebrow">Observed results · Internal tests</p><h2 id="temporal-title">Model results over time</h2></div><p>Compare each configuration at its recorded test time. Select a marker or model to inspect the underlying counts.</p></div><div class="temporal-controls"><label>Metric<select id="temporal-metric"><option value="agreement" ${scope.metric === "agreement" ? "selected" : ""}>Draft-label agreement</option><option value="completion" ${scope.metric === "completion" ? "selected" : ""}>Verification call completion</option></select></label><label>Procurement case<select id="temporal-case"><option value="all">All three cases</option>${doc.internal.case_metadata.map((c) => `<option value="${esc(c.id)}" ${scope.case === c.id ? "selected" : ""}>${esc(c.name)}</option>`).join("")}</select></label><label>Serving provider<select id="temporal-provider"><option value="all">All providers</option>${providers.map((v) => `<option ${scope.provider === v ? "selected" : ""} value="${esc(v)}">${esc(v)}</option>`).join("")}</select></label><label>Model<select id="temporal-model"><option value="all">All models</option>${doc.internal.models.map((m) => `<option ${scope.model === m.id ? "selected" : ""} value="${esc(m.id)}">${esc(name(m))}</option>`).join("")}</select></label></div><div class="temporal-chart-layout"><div><div class="temporal-chart-region" tabindex="0" role="region" aria-label="Model results chart; scroll horizontally on narrow screens">${points.length ? chartMarkup() : '<p class="temporal-empty">No dispatched, dated verification records in this selection.</p>'}</div><p class="temporal-scroll-hint">Swipe the plot horizontally or use the arrow keys. Select a model below to bring its marker into view.</p><p class="temporal-caption">Recorded test time (UTC). Internal tests; collection order does not measure model improvement.</p></div><aside class="temporal-detail" aria-label="Selected model observation">${chosen ? detail(chosen) : "<h3>No plotted observation</h3><p>Blocked assignments stay outside the time axis.</p>"}</aside></div><div class="temporal-bottom"><p class="temporal-count" role="status">${points.length} model observations shown${omitted.length ? " · " + omitted.length + " excluded without a dispatched, dated verification request" : ""}. <span>Colours identify model makers. Select any model below to reveal overlapping markers.</span></p><div class="temporal-actions"><button class="button quiet" id="temporal-csv" ${!points.length ? "disabled" : ""}>Export CSV ↓</button><button class="button quiet" id="temporal-svg-export" ${!points.length ? "disabled" : ""}>Export SVG ↓</button></div></div><div class="temporal-model-key" role="group" aria-label="Select a plotted model">${points.map((r) => `<button data-time-select="${esc(r.model)}" aria-pressed="${r.model === selected}" style="--model-color:${p.get(r.maker)}"><span class="temporal-marker-key"></span>${esc(r.name)}</button>`).join("")}</div>${omitted.length ? `<p class="temporal-excluded">Excluded: ${omitted.map((r) => esc(r.name) + " (" + (r.dispatched ? "missing request timestamp" : "no dispatched verification request") + ")").join("; ")}. Assigned denominators remain in the leaderboard.</p>` : ""}<details class="temporal-data"><summary>Exact values and measurement scope</summary><p>One point per model. X is its last included verification request start; the first and last times delimit the collection window. Y uses all fixed assignments, including missing or failed responses. Only the selected metric and case filters apply here. Model settings differ. This chart uses one dated synthetic source family and frozen assistant-draft labels, not independently validated accuracy. No longitudinal progress line or confidence interval is inferred.</p><div class="table-wrap"><table><thead><tr><th>Model</th><th>First request UTC</th><th>Last request UTC</th><th>Matches / assigned</th><th>Complete / assigned calls</th><th>Missing labels</th></tr></thead><tbody>${points.map((r) => `<tr><td>${esc(r.name)}</td><td>${clock(r.first)}</td><td>${clock(r.last)}</td><td>${r.matches} / ${r.assigned}</td><td>${r.completed} / ${r.assigned_calls}</td><td>${r.missing}</td></tr>`).join("")}</tbody></table></div></details>`;
+    host.innerHTML = `<div class="section-heading"><div><p class="eyebrow">Observed results · Internal tests</p><h2 id="temporal-title">Model results over time</h2></div><p>Compare each configuration at its recorded test time. Select a marker or model to inspect the underlying counts.</p></div><div class="temporal-controls"><label>Metric<select id="temporal-metric"><option value="agreement" ${scope.metric === "agreement" ? "selected" : ""}>Matches / assigned</option><option value="completion" ${scope.metric === "completion" ? "selected" : ""}>Verification call completion</option></select></label><label>Procurement case<select id="temporal-case"><option value="all">All three cases</option>${doc.internal.case_metadata.map((c) => `<option value="${esc(c.id)}" ${scope.case === c.id ? "selected" : ""}>${esc(c.name)}</option>`).join("")}</select></label><label>Serving provider<select id="temporal-provider"><option value="all">All providers</option>${providers.map((v) => `<option ${scope.provider === v ? "selected" : ""} value="${esc(v)}">${esc(v)}</option>`).join("")}</select></label><label>Model<select id="temporal-model"><option value="all">All models</option>${doc.internal.models.map((m) => `<option ${scope.model === m.id ? "selected" : ""} value="${esc(m.id)}">${esc(name(m))}</option>`).join("")}</select></label></div><div class="temporal-chart-layout"><div><div class="temporal-chart-region" tabindex="0" role="region" aria-label="Model results chart; scroll horizontally on narrow screens">${points.length ? chartMarkup() : '<p class="temporal-empty">No dispatched, dated verification records in this selection.</p>'}</div><p class="temporal-scroll-hint">Swipe the plot horizontally or use the arrow keys. Select a model below to bring its marker into view.</p><p class="temporal-caption">Recorded test time (UTC). Internal tests; collection order does not measure model improvement.</p></div><aside class="temporal-detail" aria-label="Selected model observation">${chosen ? detail(chosen) : "<h3>No plotted observation</h3><p>Blocked assignments stay outside the time axis.</p>"}</aside></div><div class="temporal-bottom"><p class="temporal-count" role="status">${points.length} model observations shown${omitted.length ? " · " + omitted.length + " excluded without a dispatched, dated verification request" : ""}. <span>Colours identify model makers. Select any model below to reveal overlapping markers.</span></p><div class="temporal-actions"><button class="button quiet" id="temporal-csv" ${!points.length ? "disabled" : ""}>Export CSV ↓</button><button class="button quiet" id="temporal-svg-export" ${!points.length ? "disabled" : ""}>Export SVG ↓</button></div></div><div class="temporal-model-key" role="group" aria-label="Select a plotted model">${points.map((r) => `<button data-time-select="${esc(r.model)}" aria-pressed="${r.model === selected}" style="--model-color:${p.get(r.maker)}"><span class="temporal-marker-key"></span>${esc(r.name)}</button>`).join("")}</div>${omitted.length ? `<p class="temporal-excluded">Excluded: ${omitted.map((r) => esc(r.name) + " (" + (r.dispatched ? "missing request timestamp" : "no dispatched verification request") + ")").join("; ")}. Assigned denominators remain in the results workspace.</p>` : ""}<details class="temporal-data"><summary>Exact values and measurement scope</summary><p>One point per model. X is its last included verification request start; the first and last times delimit the collection window. Y uses all fixed assignments, including missing or failed responses. Only the selected metric and case filters apply here. Model settings differ. This chart uses one dated synthetic source family and frozen assistant-draft labels, not independently validated accuracy. No longitudinal progress line or confidence interval is inferred.</p><div class="table-wrap"><table><thead><tr><th>Model</th><th>First request UTC</th><th>Last request UTC</th><th>Matches / assigned</th><th>Complete / assigned calls</th><th>Missing labels</th></tr></thead><tbody>${points.map((r) => `<tr><td>${esc(r.name)}</td><td>${clock(r.first)}</td><td>${clock(r.last)}</td><td>${r.matches} / ${r.assigned}</td><td>${r.completed} / ${r.assigned_calls}</td><td>${r.missing}</td></tr>`).join("")}</tbody></table></div></details>`;
     for (const key of ["metric", "case", "provider", "model"])
       host.querySelector("#temporal-" + key).addEventListener("change", (e) => {
         scope[key] = e.target.value;
