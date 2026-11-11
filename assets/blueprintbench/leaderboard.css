@@ -26,3 +26,9 @@
 
 /* Final cross-page type and column alignment. */
 :root{--mono:ui-monospace,SFMono-Regular,Consolas,"Liberation Mono",monospace}.qualification-count strong,.qualified-empty .big-zero,.model-mark{font-family:var(--sans)}#model-table{table-layout:fixed;min-width:1180px}#model-table th:nth-child(1){width:5%}#model-table th:nth-child(2){width:20%}#model-table th:nth-child(3){width:15%}#model-table th:nth-child(4){width:10%}#model-table th:nth-child(5){width:9%}#model-table th:nth-child(6){width:10%}#model-table th:nth-child(7){width:12%}#model-table th:nth-child(8){width:9%}#model-table th:nth-child(9){width:10%}#model-table td{min-width:0}#model-table .number-note{white-space:normal}#model-table td:nth-child(2){white-space:normal}#model-table .model-button{line-height:1.4}.metric-strip .strip-link .mobile-stat-separator{display:inline}@media(max-width:760px){.metric-strip .strip-link .mobile-stat-separator{display:inline}.cohort-tabs{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}.cohort-tabs button{text-align:left;padding-inline:0;white-space:normal;font-size:11px}.metric-strip{gap:0}.metric-strip .strip-link{font-size:10px}.metric-strip .strip-link span{font-size:10px}}
+
+/* Shared research identity, 11 November 2026. */
+.brand img.benchmark-wordmark{width:192px;height:64px;object-fit:contain;border-radius:0;flex-shrink:0}
+.brand-resources{max-width:1320px;margin:40px auto;padding:32px 28px;border-top:1px solid #294252;display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:40px;align-items:center;color:#b7c8d8}
+.brand-resources h2{color:#edf5fa;font-size:28px}.brand-resources p{line-height:1.65}.brand-resources a{color:#5ee9d7}.brand-resources img{max-width:100%;height:auto}
+@media(max-width:680px){.brand img.benchmark-wordmark{width:153px;height:51px}.brand-resources{grid-template-columns:1fr;gap:18px}.brand-resources img{width:180px}}

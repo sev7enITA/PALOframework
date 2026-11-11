@@ -1,0 +1,96 @@
+{
+  "edition": "2026-11-11",
+  "qualification": "Internal testing, independent qualification pending",
+  "slides": [
+    {
+      "slide": 1,
+      "file": "slide-1.jpg",
+      "title": "Specification fidelity research",
+      "sha256": "7fd8747e45592ecf4168816f7b605b9baab8129df704efeefcd623772bcb0f9f"
+    },
+    {
+      "slide": 2,
+      "file": "slide-2.jpg",
+      "title": "Business blueprint evaluation",
+      "sha256": "adb099717ba8a30240db1cd94162a1b4ad11e6d5ee9fec3cbbacd408d0fdf810"
+    },
+    {
+      "slide": 3,
+      "file": "slide-3.jpg",
+      "title": "Research dimensions",
+      "sha256": "a31a7d39e29f0b678fab8701e690ba066523e24c9f95b2e888a0c8a52a4a4dbf"
+    },
+    {
+      "slide": 4,
+      "file": "slide-4.jpg",
+      "title": "Local inference",
+      "sha256": "479cf49783316800987657afe27865f67a4f9064d9ffa2b556df8fc5d1ca93c6"
+    },
+    {
+      "slide": 5,
+      "file": "slide-5.jpg",
+      "title": "Enterprise configuration",
+      "sha256": "856e6c23aa87016f8f273877f468af1a7f30967727a468812e59f3443b4e87b0"
+    },
+    {
+      "slide": 6,
+      "file": "slide-6.jpg",
+      "title": "AI FinOps",
+      "sha256": "d3e366d046dedfbf11820d82af8bc716758016a310c8734c454466320e86a942"
+    },
+    {
+      "slide": 7,
+      "file": "slide-7.jpg",
+      "title": "Source and run provenance",
+      "sha256": "726937ac1cbb70614b31bba107df9bfa5c7cec633085910f311e3c18860240eb"
+    },
+    {
+      "slide": 8,
+      "file": "slide-8.jpg",
+      "title": "Entity relationship graph",
+      "sha256": "b5fc9854e1964d20e3441f5f2f846cca68c15d84c87aeeb431a37cae6128d465"
+    },
+    {
+      "slide": 9,
+      "file": "slide-9.jpg",
+      "title": "Data dictionary and process model",
+      "sha256": "9e2b70ed8e53d409eb2bd50cc3a674a866b77da29285962541b89c660f9f3758"
+    },
+    {
+      "slide": 10,
+      "file": "slide-10.jpg",
+      "title": "PALO governance modules",
+      "sha256": "375541d12437f89e6a2821004cff4285d4335ec82c7c6b5de166a8a1496e6b3a"
+    },
+    {
+      "slide": 11,
+      "file": "slide-11.jpg",
+      "title": "Blueprint review and export",
+      "sha256": "66e671a56516389e3a083607c6955d3f39281cd1a25725014864859104c2a0de"
+    },
+    {
+      "slide": 12,
+      "file": "slide-12.jpg",
+      "title": "Large-repository case studies",
+      "sha256": "026c3fd47f9970b6574fd28d12b10b11fd73ce300e2e9caf67f3bdba8648a4e7"
+    },
+    {
+      "slide": 13,
+      "file": "slide-13.jpg",
+      "title": "PALO Blueprint Index",
+      "sha256": "50dfbc333b0192d42999d96763f9246b066535262faa7444cbfe0df41ec5f100"
+    },
+    {
+      "slide": 14,
+      "file": "slide-14.jpg",
+      "title": "Model comparison",
+      "sha256": "5caa3e17d8f551b57965693349ae2290df15b62e283fb91be073a4bad2a4dc50"
+    },
+    {
+      "slide": 15,
+      "file": "slide-15.jpg",
+      "title": "Research participation",
+      "sha256": "82fd8fafe97ceaeb92574410b7514ec36e36d42e085abfdc8f796af028714d09"
+    }
+  ]
+}

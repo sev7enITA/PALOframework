@@ -19,3 +19,7 @@ Model-ranking ItemLists, rating/review/certification types, awards and model pos
 The metadata is descriptive of a research programme. It is not independent validation, a quality certificate or a PALO Blueprint Index.
 
 References: [Schema.org CollectionPage](https://schema.org/CollectionPage), [Schema.org Dataset](https://schema.org/Dataset), [Google Dataset guidance](https://developers.google.com/search/docs/appearance/structured-data/dataset).
+
+## Identity update, 11 November 2026
+
+Both CollectionPage nodes now reference the published BlueprintBench image. Dataset counts, qualification status and model identifiers remain unchanged. Local validation checks 211 property/domain pairs against the cached Schema.org vocabulary with no errors. This does not establish search eligibility, indexing or independent validation. The testing badge is artwork accompanied by scope text, not Certification or Rating markup.

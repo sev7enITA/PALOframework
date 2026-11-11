@@ -1,5 +1,12 @@
 # Changelog
 
+## BlueprintBench identity and internal cohort · 2026-11-11
+
+The overview and leaderboard share 18 model IDs and 28 cohort/configuration records. Internal procurement tests retain 324 assigned slots, 306 dispatched requests, 299 complete responses, 7 failed or incomplete responses and 18 pre-call blocks. Added the BlueprintBench identity, an evidence-linked Internal testing badge and the updated fifteen-slide presentation with real interface captures. Independent qualification and PBI remain open.
+
+[Leaderboard](PALO_BlueprintBench_Leaderboard.html) · [Presentation](downloads/blueprintbench/presentation/index.html) · [Badge usage](downloads/blueprintbench/brand-usage.md)
+
+
 ## PALO BlueprintBench research release v0.3.0-pilot.1 · 2026-11-11
 
 - Published research release v0.3.0-pilot.1, explorer 0.3.0 and evaluator/evidence contract 0.2.0 for specification fidelity; the first planned study focuses on procurement.
