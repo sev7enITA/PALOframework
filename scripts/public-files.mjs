@@ -32,6 +32,8 @@ export const PUBLIC_FILES = [
   "downloads/blueprintbench/diagnostic-model-comparison.json",
   "downloads/blueprintbench/local-review-public.json",
   "downloads/blueprintbench/protocol.md",
+  "downloads/blueprintbench/internal-cohort-report.md",
+  "downloads/blueprintbench/internal-expansion-evidence.zip",
   "PALO_BlueprintBench_Leaderboard.html",
   "assets/blueprintbench/leaderboard.css",
   "assets/blueprintbench/leaderboard.js",
