@@ -93,6 +93,7 @@
   }
   function updateURL(replace=false) {
     const p=new URLSearchParams();
+    for(const [key,value] of new URLSearchParams(location.search))if(key.startsWith('time_'))p.set(key,value);
     for(const key of ['cohort','view','case','dimension','lens','provider','q','copy','sort','direction','minimum'])if(state[key]!==defaults()[key])p.set(key,state[key]);
     if(state.selected.length)p.set('compare',state.selected.join(','));
     if(state.failures)p.set('failures','1');
@@ -347,13 +348,13 @@
     try{
       const response=await fetch('downloads/blueprintbench/leaderboard-data.json',{cache:'no-cache'});if(!response.ok)throw new Error('Unable to load data');
       const value=await response.json();if(value.qualified_count!==0||value.internal.qualified!==false||value.internal.status!=='internal_tests'||!Array.isArray(value.internal.records))throw new Error('Unexpected evidence contract');
-      data=value;readURL();$('revision-label').textContent='Revision '+data.version;$('stat-models').textContent=new Set(catalogue().map(idOf)).size;$('stat-configurations').textContent=catalogue().length;
+      data=value;window.dispatchEvent(new CustomEvent('blueprintbench:data',{detail:data}));readURL();$('revision-label').textContent='Revision '+data.version;$('stat-models').textContent=new Set(catalogue().map(idOf)).size;$('stat-configurations').textContent=catalogue().length;
       for(const cohort of ['all','internal','historical'])document.querySelector('#tab-'+cohort+' span').textContent=String(cohort==='all'?new Set(catalogue().map(idOf)).size:cohort==='internal'?data.internal.models.length:data.historical.models.length);$('challenge-dataset').href=challengeURL();$('stat-calls').textContent=data.internal.assigned_calls;$('stat-complete').textContent=data.internal.completed_calls;$('stat-dispatched').textContent=data.internal.attempted_calls;renderExploration();$('stat-failures').textContent=data.internal.records.filter(r=>!['completed','not_run'].includes(r.state)).length;
       const unexecuted=data.internal.assigned_calls-data.internal.records.filter(r=>r.state!=='not_run').length;
       const blocked=data.internal.models.filter(m=>configOf(m.id)?.precall_blocked).reduce((sum,m)=>sum+m.assigned_calls-attemptedRecords(m.id).length,0);
       $('stat-not-run').textContent=unexecuted;$('stat-blocked').textContent=blocked;
       $('cohort-content').hidden=false;$('load-status').hidden=true;render();
-    }catch(error){$('load-status').hidden=true;$('load-error').hidden=false;$('cohort-content').hidden=true;}
+    }catch(error){window.dispatchEvent(new Event('blueprintbench:data-error'));$('load-status').hidden=true;$('load-error').hidden=false;$('cohort-content').hidden=true;}
   }
   document.addEventListener('click',event=>{
     const cohort=event.target.closest('[data-cohort]');if(cohort&&data){setState({...defaults(),cohort:cohort.dataset.cohort});return;}
@@ -453,4 +454,338 @@
   }catch{
     host.innerHTML='<p class="adversarial-empty" role="status">The retained countertest records are not available in this page snapshot. No review outcomes are substituted. Original internal results remain available above.</p>';
   }
+})();
+
+/* UTC observation chart. Dates are retained request starts, not model releases. */
+(function temporalModelChart() {
+  "use strict";
+  const host = document.getElementById("temporal-model-results");
+  if (!host) return;
+  const esc = (v) =>
+    String(v ?? "")
+      .replace(/[\u2013\u2014]/g, " - ")
+      .replace(
+        /[&<>"']/g,
+        (c) =>
+          ({
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#39;",
+          })[c],
+      );
+  const name = (m) => m.name.replace(/^[^:]+:\s*/, ""),
+    stamp = (v) => new Date(v).toISOString(),
+    clock = (v) => stamp(v).slice(11, 19),
+    pct = (v) => (v * 100).toFixed(1) + "%";
+  const colors = [
+    "#64e8f3",
+    "#ffab8f",
+    "#aeb5ff",
+    "#82ddaf",
+    "#e6ca7d",
+    "#e9a8d6",
+    "#9bc7ff",
+    "#c5d894",
+    "#f6b76e",
+    "#beabf2",
+    "#a2d7d7",
+    "#f0b7c3",
+    "#a7c9a4",
+    "#d5c7b6",
+    "#7fd2c3",
+  ];
+  let doc,
+    scope = { case: "all", metric: "agreement", provider: "all", model: "all" },
+    selected = "",
+    points = [],
+    omitted = [],
+    allRows = [];
+  function readState() {
+    const p = new URLSearchParams(location.search);
+    scope = { case: "all", metric: "agreement", provider: "all", model: "all" };
+    if (doc.internal.case_metadata.some((c) => c.id === p.get("time_case")))
+      scope.case = p.get("time_case");
+    if (p.get("time_metric") === "completion") scope.metric = "completion";
+    if (
+      doc.internal.models.some(
+        (m) => m.pinned_provider === p.get("time_provider"),
+      )
+    )
+      scope.provider = p.get("time_provider");
+    if (doc.internal.models.some((m) => m.id === p.get("time_model")))
+      scope.model = p.get("time_model");
+    selected = p.get("time_selected") || "";
+  }
+  function writeState() {
+    const u = new URL(location.href);
+    for (const [k, v] of Object.entries(scope)) {
+      u.searchParams.delete("time_" + k);
+      if (v !== "all" && !(k === "metric" && v === "agreement"))
+        u.searchParams.set("time_" + k, v);
+    }
+    if (selected) u.searchParams.set("time_selected", selected);
+    else u.searchParams.delete("time_selected");
+    history.replaceState({}, "", u.pathname + u.search + u.hash);
+  }
+  const palette = () =>
+    new Map(
+      [...new Set(doc.internal.models.map((m) => m.id.split("/")[0]))]
+        .sort()
+        .map((s, i) => [s, colors[i % colors.length]]),
+    );
+  function rows() {
+    const cases = doc.internal.case_metadata.filter(
+        (c) => scope.case === "all" || c.id === scope.case,
+      ),
+      ids = cases.map((c) => c.id);
+    const assigned =
+        cases.reduce(
+          (a, c) => a + Object.values(c.dimensions).reduce((x, y) => x + y, 0),
+          0,
+        ) * doc.internal.repetitions,
+      assignedCalls = cases.length * doc.internal.repetitions;
+    return doc.internal.models
+      .map((m) => {
+        const calls = doc.internal.records.filter(
+            (r) =>
+              r.model === m.id &&
+              r.track === "verification" &&
+              ids.includes(r.case),
+          ),
+          attempts = calls.filter((r) => r.state !== "not_run"),
+          dated = attempts.filter(
+            (r) => r.started_at && Number.isFinite(Date.parse(r.started_at)),
+          ),
+          judged = doc.internal.verification_rows.filter(
+            (r) => r.model === m.id && ids.includes(r.case),
+          ),
+          matches = judged.reduce((a, r) => a + r.correct, 0),
+          classified = judged.reduce((a, r) => a + r.classified, 0),
+          complete = calls.filter((r) => r.state === "completed").length;
+        return {
+          model: m.id,
+          name: name(m),
+          provider: m.pinned_provider,
+          maker: m.id.split("/")[0],
+          campaign: m.campaign_id,
+          evidence: m.evidence_base,
+          matches,
+          assigned,
+          classified,
+          missing: assigned - classified,
+          completed: complete,
+          assigned_calls: assignedCalls,
+          dispatched: attempts.length,
+          dated: dated.length,
+          first: dated.length
+            ? Math.min(...dated.map((r) => Date.parse(r.started_at)))
+            : null,
+          last: dated.length
+            ? Math.max(...dated.map((r) => Date.parse(r.started_at)))
+            : null,
+          value:
+            scope.metric === "agreement"
+              ? matches / assigned
+              : complete / assignedCalls,
+        };
+      })
+      .sort(
+        (a, b) =>
+          (a.last ?? Infinity) - (b.last ?? Infinity) ||
+          a.name.localeCompare(b.name),
+      );
+  }
+  function download(body, type, extension) {
+    const url = URL.createObjectURL(new Blob([body], { type })),
+      a = document.createElement("a");
+    a.href = url;
+    a.download =
+      "blueprintbench-test-timeline-" +
+      scope.metric +
+      "-" +
+      scope.case +
+      "." +
+      extension;
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  }
+  function detail(row) {
+    return `<div class="temporal-selection-title"><span style="--model-color:${palette().get(row.maker)}" class="temporal-marker-key"></span><h3>${esc(row.name)}</h3></div><p class="temporal-value">${pct(row.value)}<small>${scope.metric === "agreement" ? row.matches + " / " + row.assigned + " draft-label matches" : row.completed + " / " + row.assigned_calls + " verification calls complete"}</small></p><dl><dt>Last request start</dt><dd>${clock(row.last)} UTC</dd><dt>First request start</dt><dd>${clock(row.first)} UTC</dd><dt>Serving provider</dt><dd>${esc(row.provider)}</dd><dt>Missing classifications</dt><dd>${row.missing} / ${row.assigned}</dd><dt>Dispatched requests</dt><dd>${row.dispatched} / ${row.assigned_calls}</dd></dl><a href="?cohort=internal&amp;q=${encodeURIComponent(row.model)}#workspace">Inspect configuration ↗</a><p class="temporal-small">Three repetitions. Frozen primary labels. ${esc(scope.case === "all" ? "All three procurement cases" : scope.case.replaceAll("-", " "))}.</p>`;
+  }
+  function select(id, focus = false) {
+    const row = points.find((r) => r.model === id);
+    if (!row) return;
+    selected = id;
+    writeState();
+    render(focus ? "temporal-model" : null);
+    const plot = host.querySelector(".temporal-chart-region"),
+      mark = host.querySelector(`[data-time-point="${CSS.escape(id)}"] circle`),
+      svg = host.querySelector("#temporal-svg");
+    if (plot && mark && svg && plot.scrollWidth > plot.clientWidth)
+      plot.scrollLeft =
+        (Number(mark.getAttribute("cx")) * svg.clientWidth) / 1000 -
+        plot.clientWidth / 2;
+  }
+  function chartMarkup() {
+    const width = 1000,
+      left = 64,
+      right = 965,
+      top = 48,
+      bottom = 328,
+      min = Math.min(...points.map((r) => r.last)),
+      max = Math.max(...points.map((r) => r.last)),
+      pad = Math.max((max - min) * 0.055, 30000),
+      lo = min - pad,
+      hi = max + pad,
+      x = (v) => left + ((v - lo) / (hi - lo)) * (right - left),
+      y = (v) => bottom - v * (bottom - top),
+      p = palette();
+    const chosen = points.find((r) => r.model === selected);
+    let svg = `<svg id="temporal-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 410" role="group" aria-labelledby="temporal-svg-title temporal-svg-desc"><title id="temporal-svg-title">Model results by recorded test time</title><desc id="temporal-svg-desc">${esc(scope.metric === "agreement" ? "Frozen draft-label matches divided by assigned probes" : "Completed verification requests divided by assigned verification requests")}. Every marker is a model aggregate at its last included verification request start. Coordinates use actual UTC timestamps. No connecting progress line. The model buttons and accessible table expose overlapping points.</desc><rect width="1000" height="410" fill="#0b1525"/><text x="${left}" y="24" fill="#c4d3e6" font-size="13" font-family="sans-serif">${scope.metric === "agreement" ? "Draft-label agreement (%)" : "Verification call completion (%)"}</text>`;
+    for (const v of [0, 0.2, 0.4, 0.6, 0.8, 1])
+      svg += `<line x1="${left}" x2="${right}" y1="${y(v)}" y2="${y(v)}" stroke="#2b3d54" stroke-dasharray="3 6"/><text x="${left - 13}" y="${y(v) + 4}" text-anchor="end" fill="#aabed5" font-size="12" font-family="sans-serif">${100 * v}</text>`;
+    for (let i = 0; i < 5; i++) {
+      const t = lo + ((hi - lo) * i) / 4;
+      svg += `<line x1="${x(t)}" x2="${x(t)}" y1="${top}" y2="${bottom}" stroke="#203047" stroke-dasharray="3 6"/><text x="${x(t)}" y="359" text-anchor="middle" fill="#aabed5" font-size="12" font-family="sans-serif">${clock(t).slice(0, 5)}</text>`;
+    }
+    svg += `<text x="${left}" y="392" fill="#e4eefb" font-size="13" font-family="sans-serif">${new Date(min).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" })}</text><text x="${right}" y="392" text-anchor="end" fill="#aabed5" font-size="12" font-family="sans-serif">Last included verification request start · UTC</text>`;
+    if (chosen)
+      svg += `<line x1="${x(chosen.last)}" x2="${x(chosen.last)}" y1="${top}" y2="${bottom}" stroke="${p.get(chosen.maker)}" stroke-opacity=".45" stroke-dasharray="4 4"/>`;
+    const ordered = points
+      .filter((r) => r.model !== selected)
+      .concat(chosen ? [chosen] : []);
+    for (const r of ordered) {
+      const active = r.model === selected,
+        c = p.get(r.maker),
+        cx = x(r.last),
+        cy = y(r.value);
+      svg += `<g data-time-point="${esc(r.model)}" data-time-timestamp="${stamp(r.last)}" data-time-value="${r.value}" tabindex="0" role="button" aria-pressed="${active}" aria-label="${esc(r.name)}, ${pct(r.value)}, ${clock(r.last)} UTC"><title>${esc(r.name)}: ${pct(r.value)} at ${clock(r.last)} UTC</title><circle cx="${cx}" cy="${cy}" r="${active ? 13 : 9}" fill="#0b1525" stroke="${c}" stroke-width="${active ? 3 : 2}"/><circle cx="${cx}" cy="${cy}" r="${active ? 4 : 2.5}" fill="${c}"/></g>`;
+      if (active) {
+        const tx = Math.max(left + 4, Math.min(right - 170, cx + 18)),
+          ty = cy < 90 ? cy + 35 : cy - 21;
+        svg += `<path d="M${cx},${cy + (cy < 90 ? 12 : -12)} L${tx - 5},${ty - 5}" stroke="${c}" fill="none"/><text x="${tx}" y="${ty}" fill="${c}" font-family="sans-serif" font-size="13" font-weight="600">${esc(r.name.length > 24 ? r.name.slice(0, 23) + "…" : r.name)} · ${pct(r.value)}</text>`;
+      }
+    }
+    return svg + "</svg>";
+  }
+  function render(focusId) {
+    allRows = rows();
+    const filtered = allRows.filter(
+      (r) =>
+        (scope.provider === "all" || r.provider === scope.provider) &&
+        (scope.model === "all" || r.model === scope.model),
+    );
+    points = filtered.filter((r) => r.dated > 0);
+    omitted = filtered.filter((r) => !r.dated);
+    if (!points.some((r) => r.model === selected))
+      selected = points[0]?.model || "";
+    const chosen = points.find((r) => r.model === selected),
+      p = palette(),
+      providers = [
+        ...new Set(doc.internal.models.map((m) => m.pinned_provider)),
+      ].sort();
+    host.innerHTML = `<div class="section-heading"><div><p class="eyebrow">Observed results · Internal tests</p><h2 id="temporal-title">Model results over time</h2></div><p>Compare each configuration at its recorded test time. Select a marker or model to inspect the underlying counts.</p></div><div class="temporal-controls"><label>Metric<select id="temporal-metric"><option value="agreement" ${scope.metric === "agreement" ? "selected" : ""}>Draft-label agreement</option><option value="completion" ${scope.metric === "completion" ? "selected" : ""}>Verification call completion</option></select></label><label>Procurement case<select id="temporal-case"><option value="all">All three cases</option>${doc.internal.case_metadata.map((c) => `<option value="${esc(c.id)}" ${scope.case === c.id ? "selected" : ""}>${esc(c.name)}</option>`).join("")}</select></label><label>Serving provider<select id="temporal-provider"><option value="all">All providers</option>${providers.map((v) => `<option ${scope.provider === v ? "selected" : ""} value="${esc(v)}">${esc(v)}</option>`).join("")}</select></label><label>Model<select id="temporal-model"><option value="all">All models</option>${doc.internal.models.map((m) => `<option ${scope.model === m.id ? "selected" : ""} value="${esc(m.id)}">${esc(name(m))}</option>`).join("")}</select></label></div><div class="temporal-chart-layout"><div><div class="temporal-chart-region" tabindex="0" role="region" aria-label="Model results chart; scroll horizontally on narrow screens">${points.length ? chartMarkup() : '<p class="temporal-empty">No dispatched, dated verification records in this selection.</p>'}</div><p class="temporal-scroll-hint">Swipe the plot horizontally or use the arrow keys. Select a model below to bring its marker into view.</p><p class="temporal-caption">Recorded test time (UTC). Internal tests; collection order does not measure model improvement.</p></div><aside class="temporal-detail" aria-label="Selected model observation">${chosen ? detail(chosen) : "<h3>No plotted observation</h3><p>Blocked assignments stay outside the time axis.</p>"}</aside></div><div class="temporal-bottom"><p class="temporal-count" role="status">${points.length} model observations shown${omitted.length ? " · " + omitted.length + " excluded without a dispatched, dated verification request" : ""}. <span>Colours identify model makers. Select any model below to reveal overlapping markers.</span></p><div class="temporal-actions"><button class="button quiet" id="temporal-csv" ${!points.length ? "disabled" : ""}>Export CSV ↓</button><button class="button quiet" id="temporal-svg-export" ${!points.length ? "disabled" : ""}>Export SVG ↓</button></div></div><div class="temporal-model-key" role="group" aria-label="Select a plotted model">${points.map((r) => `<button data-time-select="${esc(r.model)}" aria-pressed="${r.model === selected}" style="--model-color:${p.get(r.maker)}"><span class="temporal-marker-key"></span>${esc(r.name)}</button>`).join("")}</div>${omitted.length ? `<p class="temporal-excluded">Excluded: ${omitted.map((r) => esc(r.name) + " (" + (r.dispatched ? "missing request timestamp" : "no dispatched verification request") + ")").join("; ")}. Assigned denominators remain in the leaderboard.</p>` : ""}<details class="temporal-data"><summary>Exact values and measurement scope</summary><p>One point per model. X is its last included verification request start; the first and last times delimit the collection window. Y uses all fixed assignments, including missing or failed responses. Only the selected metric and case filters apply here. Model settings differ. This chart uses one dated synthetic source family and frozen assistant-draft labels, not independently validated accuracy. No longitudinal progress line or confidence interval is inferred.</p><div class="table-wrap"><table><thead><tr><th>Model</th><th>First request UTC</th><th>Last request UTC</th><th>Matches / assigned</th><th>Complete / assigned calls</th><th>Missing labels</th></tr></thead><tbody>${points.map((r) => `<tr><td>${esc(r.name)}</td><td>${clock(r.first)}</td><td>${clock(r.last)}</td><td>${r.matches} / ${r.assigned}</td><td>${r.completed} / ${r.assigned_calls}</td><td>${r.missing}</td></tr>`).join("")}</tbody></table></div></details>`;
+    for (const key of ["metric", "case", "provider", "model"])
+      host.querySelector("#temporal-" + key).addEventListener("change", (e) => {
+        scope[key] = e.target.value;
+        selected = "";
+        writeState();
+        render("temporal-" + key);
+      });
+    host.querySelectorAll("[data-time-select]").forEach((b) =>
+      b.addEventListener("click", () => {
+        select(b.dataset.timeSelect);
+        host
+          .querySelector(`[data-time-select="${CSS.escape(selected)}"]`)
+          ?.focus();
+      }),
+    );
+    host.querySelectorAll("[data-time-point]").forEach((b) => {
+      b.addEventListener("click", () => select(b.dataset.timePoint));
+      b.addEventListener("keydown", (e) => {
+        if (["Enter", " "].includes(e.key)) {
+          e.preventDefault();
+          select(b.dataset.timePoint);
+          host
+            .querySelector(`[data-time-point="${CSS.escape(selected)}"]`)
+            ?.focus();
+        }
+      });
+    });
+    host.querySelector("#temporal-csv").addEventListener("click", () => {
+      const q = (v) =>
+        '"' +
+        String(v ?? "")
+          .replace(/^[=+@-]/, "'$&")
+          .replaceAll('"', '""') +
+        '"';
+      const fields = [
+        "model",
+        "provider",
+        "case",
+        "metric",
+        "value_percent",
+        "matches",
+        "assigned",
+        "classified",
+        "completed",
+        "assigned_calls",
+        "first_request_start_utc",
+        "last_request_start_utc",
+        "timestamp_meaning",
+        "qualified",
+      ];
+      const lines = points.map((r) => [
+        r.model,
+        r.provider,
+        scope.case,
+        scope.metric,
+        r.value * 100,
+        r.matches,
+        r.assigned,
+        r.classified,
+        r.completed,
+        r.assigned_calls,
+        stamp(r.first),
+        stamp(r.last),
+        "Recorded verification request start, not release date",
+        false,
+      ]);
+      download(
+        [fields, ...lines].map((row) => row.map(q).join(",")).join("\r\n") +
+          "\r\n",
+        "text/csv;charset=utf-8",
+        "csv",
+      );
+    });
+    host.querySelector("#temporal-svg-export").addEventListener("click", () => {
+      let svg = host.querySelector("#temporal-svg").outerHTML;
+      svg = svg
+        .replace('viewBox="0 0 1000 410"', 'viewBox="0 0 1000 455"')
+        .replace(
+          "</svg>",
+          `<text x="64" y="434" fill="#c4d3e6" font-family="sans-serif" font-size="12">${points.length} plotted models; ${omitted.length} excluded without dispatched timestamps · Internal tests · ${esc(scope.case === "all" ? "All three procurement cases" : scope.case)} · Frozen primary labels</text><text x="64" y="452" fill="#aabed5" font-family="sans-serif" font-size="11">Recorded test time, not model release or improvement. Source: paloframework.org/PALO_BlueprintBench_Leaderboard.html</text></svg>`,
+        )
+        .replace('height="410" fill="#0b1525"', 'height="455" fill="#0b1525"');
+      download(svg, "image/svg+xml", "svg");
+    });
+    if (focusId) host.querySelector("#" + focusId)?.focus();
+  }
+  window.addEventListener("blueprintbench:data-error", () => {
+    host.innerHTML =
+      '<p class="load-error">The chart data could not be loaded. Use the results workspace retry control below.</p>';
+  });
+  window.addEventListener("blueprintbench:data", (event) => {
+    doc = event.detail;
+    readState();
+    render();
+  });
+  window.addEventListener("popstate", () => {
+    if (doc) {
+      readState();
+      render();
+    }
+  });
 })();

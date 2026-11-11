@@ -33,6 +33,7 @@ export const PUBLIC_FILES = [
   "downloads/blueprintbench/local-review-public.json",
   "downloads/blueprintbench/protocol.md",
 
+
   "downloads/blueprintbench/adversarial-tests.json",
   "downloads/blueprintbench/.htaccess",
   "downloads/blueprintbench/presentation/.htaccess",

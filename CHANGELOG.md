@@ -1,5 +1,9 @@
 # Changelog
 
+## 11 November 2026: temporal model results
+
+Interactive timestamp scatter chart with model, provider, case and metric controls, source-bound timestamps and CSV/SVG exports. Collection order does not measure model improvement. Internal-test scores unchanged. [Open chart](https://paloframework.org/PALO_BlueprintBench_Leaderboard.html#temporal-model-results).
+
 ## 11 November 2026: internal cross-model review
 
 Published GLM, Gemini and local Qwen countertests: 96/108 assigned judgments on 36 selected items, three observed disagreements, 12 GLM capacity-blocked judgments, disclosed Qwen format projection. Primary scores unchanged; internal testing, not independent validation. [Inspect evidence](https://paloframework.org/PALO_BlueprintBench_Leaderboard.html#adversarial-review).
