@@ -1,21 +1,14 @@
-# Launch announcement
+# Specification-fidelity research programme
 
-𝗪𝗵𝗲𝗻 𝗔𝗜 𝘁𝘂𝗿𝗻𝘀 𝗱𝗼𝗰𝘂𝗺𝗲𝗻𝘁𝘀 𝗶𝗻𝘁𝗼 𝘀𝗼𝗳𝘁𝘄𝗮𝗿𝗲 𝘀𝗽𝗲𝗰𝗶𝗳𝗶𝗰𝗮𝘁𝗶𝗼𝗻𝘀, 𝗱𝗼𝗲𝘀 𝘁𝗵𝗲 𝗺𝗲𝗮𝗻𝗶𝗻𝗴 𝘀𝘂𝗿𝘃𝗶𝘃𝗲?
+PALO BlueprintBench is an open research programme studying whether obligations, permissions, ownership and exceptions survive the translation from documents to software specifications.
 
-A permission can become an obligation. An exception can disappear. A responsibility can move to the wrong person. The output may still be valid JSON, with a genuine source citation.
+The current archive contains 26 attempted calls across ten configurations: eight configurations produced outputs and two were blocked. There are 21 completed outputs. Each configuration was assigned three passages; unexecuted tasks remain in the assigned denominator. The passages contain 4,994 UTF-8 bytes of document text in total. These are adapter smoke tests, not procurement benchmark results or evaluations over 100 MB repositories.
 
-Today I am launching 𝗣𝗔𝗟𝗢 𝗕𝗹𝘂𝗲𝗽𝗿𝗶𝗻𝘁𝗕𝗲𝗻𝗰𝗵, an open benchmark initiative focused on 𝘀𝗽𝗲𝗰𝗶𝗳𝗶𝗰𝗮𝘁𝗶𝗼𝗻 𝗳𝗶𝗱𝗲𝗹𝗶𝘁𝘆: preserving business meaning when AI translates documents into development blueprints.
+An audit found a substantive flaw in evaluator 0.2: a submitter could exclude an incorrect assertion as a non-claim. Its acceptance outputs must not be used for qualification. Repairs, regression evidence and remaining limitations will be documented for review. Historical cost totals are unreconciled and no model ranking is presented.
 
-The research release includes the evaluation protocol, an executable evidence validator and scorer, a filterable explorer, and historical outputs from ten model configurations with prompts, schemas and an offline structural-check replay. The first planned study focuses on procurement, measuring critical rule inversions, coverage and the human effort needed to correct a blueprint.
+There are no qualified results, independent adjudicated gold set or appointed external custodian. The first proposed study concerns procurement specification fidelity. It requires independent domain experts, a validated error rubric, repeated trials and family-level uncertainty before a result can be claimed.
 
-𝗜𝗻𝗱𝗲𝗽𝗲𝗻𝗱𝗲𝗻𝘁 𝘃𝗮𝗹𝗶𝗱𝗮𝘁𝗶𝗼𝗻 𝗶𝘀 𝗼𝗽𝗲𝗻. The published model observations are development diagnostics. Qualified held-out results are currently zero; the future PALO Blueprint Index has no assigned score. I maintain both PALO and this initiative, and that conflict is disclosed.
+The product and research programme share a maintainer. That conflict remains unresolved by a declaration alone. Expressions of interest in independent custody and methodological review are welcome; they do not constitute enrolment or independence verification.
 
-I am inviting procurement and process experts, independent annotators, technical reproducers and organisations willing to discuss external reference custody. Competing implementations are welcome. PALO remains free.
-
-𝗝𝗼𝗶𝗻 𝘁𝗵𝗲 𝗛𝘂𝗺𝗮𝗻 𝗔𝗴𝗲𝗻𝗰𝘆.
-Build with AI. Keep humans in command.
-
-Explore the benchmark and contribute:
+Method, evidence and audit response:
 https://paloframework.org/PALO_BlueprintBench.html
-
-#AIGovernance #VibeCoding #HumanAgency #ShadowAI #SoftwareEngineering #Procurement #AIEvaluation

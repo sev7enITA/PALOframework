@@ -1,5 +1,7 @@
 # PALO BlueprintBench evaluator 0.2.0
 
+> **Audit warning, 11 November 2026:** Version 0.2 accepts substantive content hidden in non-claim spans. Do not use its acceptance outputs for submission qualification. This version is retained for audit reproduction; independent human review and scoring repairs remain required.
+
 An executable evidence contract and scoped semantic scorer. Python 3.10+ with pinned `jsonschema`; no model calls, paid APIs or weight downloads. It consumes already-adjudicated references and output annotations. It does not generate reference truth or qualify a model independently.
 
 ## Reproduce
