@@ -10,7 +10,7 @@ The actual inference material comprises three passages, six source units and 4,9
 
 Every configuration has three assigned tasks. Cohere and Sakana each retain one actual attempted call and two not-run tasks, with zero completions out of three assigned tasks. We have not fabricated additional requests.
 
-Former explorer cost totals are preserved as historical, unreconciled figures in the JSON, excluded from cost comparison. The reproducible report sums the archive's recorded cost field and counts missing values. Missing charges are unknown, not zero. Small discrepancies are not attributed to rounding without evidence.
+Former explorer cost totals are preserved as historical, unreconciled figures in the JSON, excluded from cost comparison. The reproducible report sums the archive's recorded cost field and counts missing values. Missing charges are unknown, not zero. A subsequent local-ledger inspection supplied the missing accounting records. The [sanitised ledger](historical-ledger-correction.json) reconstructs former totals and records per-attempt upward rounding to whole micro-USD. It is not independently attested or invoice-reconciled.
 
 Unsupported semantic assessments and unverified country, family and Hugging Face identifiers have been withdrawn from current explorer filtering and CSV export. The announcement now distinguishes eight configurations with outputs from two blocked configurations and uses ordinary accessible text.
 
@@ -18,7 +18,7 @@ Unsupported semantic assessments and unverified country, family and Hugging Face
 
 EV-01 is confirmed by code inspection: evaluator 0.2 accepts receipt-defined non-claim spans without checking their content. Do not use its acceptance outputs to qualify a submission. Its historical code and tagged release remain available for audit reproducibility.
 
-A versioned repair will restrict exclusions, retain independent-identity blockers, and add adversarial regression tests. Passing those tests will establish only the tested behaviour. A second person's review, neutral real-output ingestion, independently adjudicated gold and calibration are separate requirements. No scoring release is qualified by this notice.
+A versioned [0.3 draft repair](https://github.com/sev7enITA/PALO-BlueprintBench/pull/1) now restricts exclusions, retains independent-identity blockers and adds adversarial regression tests. It has 76 passing local tests and is awaiting human review; it has not replaced the published 0.2 toolkit. Passing those tests will establish only the tested behaviour. A second person's review, neutral real-output ingestion, independently adjudicated gold and calibration are separate requirements. No scoring release is qualified by this notice.
 
 ## Requirements that remain open
 
@@ -33,3 +33,7 @@ The audit's remaining EV, MS, DT, GV, WB and RP findings remain open unless a da
 Run `python tools/audit_historical.py` to reconstruct counts, passage sizes, rejection buckets and available archived charges. Compare its JSON with `docs/historical-audit-2026-11-11.json`. The frozen historical archive is unchanged.
 
 Live deployment receipts record exact HTTPS bytes and response headers from the publishing environment. They do not establish what a separate external network or a stale browser cache received.
+
+## Finding register and deployment receipt
+
+The [63-finding register](audit-findings-2026-11-11.md) separates published corrections, draft repairs, partial work and external gates. No finding is represented as independently closed. The [HTTPS receipt](https://github.com/sev7enITA/PALO-BlueprintBench/blob/main/evidence/publication-2026-11-11/https-verification.json) records the files checked after publication from this environment.
