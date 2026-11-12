@@ -1,8 +1,12 @@
 # Changelog
 
-## 11 November 2026: research pages and real-document generation
+## 12 November 2026: benchmark track terminology
 
-Presentation revision 2026-11-11.6 separates the introductory overview, 3-text synthetic test, 6-process synthetic test, real-document generation, corpus register and research method. Shared navigation and a dark PALO palette make the input, task, model configuration, repetitions and execution channel explicit. Historical adapter diagnostics remain separate from synthetic tests.
+Standardise the Policy Interpretation, Process Interpretation and Specification Generation labels across the research pages and structured data. Study scope, observations and qualification status are unchanged.
+
+## 11 November 2026: research pages and Specification Generation
+
+Presentation revision 2026-11-11.6 separates the introductory overview, Policy Interpretation, Process Interpretation, Specification Generation, corpus register and research method. Shared navigation and a dark PALO palette make the input, task, model configuration, repetitions and execution channel explicit. Historical adapter diagnostics remain separate from synthetic tests.
 
 The new development study assigns 27 calls across three public procurement documents, 200 supplied pages, three model configurations and three repetitions. Completion, failed captures, draft-reference disagreements and unknown charges are reported in the [generation results](PALO_BlueprintBench_Generation.html), with source-linked drafts and filtered CSV/JSON exports. The v1.1 mechanical quote check corrects PDF hyphen-linewrap matching while preserving source text, model answers, draft labels and the original v1.0 evidence. A separate advisory note documents an unresolved FEMA input/key ambiguity. No independent validation, quality ranks or PALO Blueprint Index are assigned.
 
