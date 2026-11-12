@@ -1,0 +1,61 @@
+{
+  "version": "0.1.0",
+  "scope": "Five current internal studies. Record presence and reported reason are checked; this does not verify billing, semantic quality or independent validation.",
+  "studies": {
+    "frontier": {
+      "assigned": 54,
+      "record_files": 54,
+      "completed": 53,
+      "not_run": 0,
+      "incomplete_or_failed": 1,
+      "unaccounted_assignments": 0,
+      "exceptions_without_reason": [],
+      "accounted": true
+    },
+    "expansion": {
+      "assigned": 216,
+      "record_files": 216,
+      "completed": 211,
+      "not_run": 0,
+      "incomplete_or_failed": 5,
+      "unaccounted_assignments": 0,
+      "exceptions_without_reason": [],
+      "accounted": true
+    },
+    "legacy-extension": {
+      "assigned": 54,
+      "record_files": 54,
+      "completed": 35,
+      "not_run": 18,
+      "incomplete_or_failed": 1,
+      "unaccounted_assignments": 0,
+      "exceptions_without_reason": [],
+      "accounted": true
+    },
+    "next-cycle": {
+      "assigned": 60,
+      "record_files": 60,
+      "completed": 60,
+      "not_run": 0,
+      "incomplete_or_failed": 0,
+      "unaccounted_assignments": 0,
+      "exceptions_without_reason": [],
+      "accounted": true
+    },
+    "real-procurement": {
+      "assigned": 27,
+      "record_files": 27,
+      "completed": 14,
+      "not_run": 8,
+      "incomplete_or_failed": 5,
+      "unaccounted_assignments": 0,
+      "exceptions_without_reason": [],
+      "accounted": true
+    }
+  },
+  "historical_adapter": {
+    "recorded_attempts": 26,
+    "offline_replay": "26 of 26 retained attempts reproduced",
+    "limitations": "Original HTTP response bytes and complete provider ledger are unavailable; blocked assignments are documented separately in historical corrections."
+  }
+}

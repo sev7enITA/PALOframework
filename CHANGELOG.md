@@ -1,5 +1,9 @@
 # Changelog
 
+## 12 November 2026: study closure and connectivity review
+
+Close the Specification Generation study as incomplete and publish its assignment accounting, advisory workflow connectivity checks and draft source-silence rubric for external review. Existing evaluator packages and historical observations remain unchanged.
+
 ## 12 November 2026: benchmark track terminology
 
 Standardise the Policy Interpretation, Process Interpretation and Specification Generation labels across the research pages and structured data. Study scope, observations and qualification status are unchanged.
