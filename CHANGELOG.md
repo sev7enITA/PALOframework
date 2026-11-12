@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-11-12: BlueprintBench validation documentation
+
+- Align generation-study assignment counts and closure status; publish the measurement protocol and current validation gates. Existing results remain internal and unqualified.
+
 ## 12 November 2026: benchmark terminology
 
 Standardise research page headings and annotation terminology. Evaluation data, qualification status and historical releases remain unchanged.
