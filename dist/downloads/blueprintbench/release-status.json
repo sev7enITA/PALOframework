@@ -1,0 +1,27 @@
+{
+  "presentation_revision": "2026-11-11.6",
+  "observation_revision": "2026-11-11.4",
+  "current_evidence_release": "study-2026-11-11-six-scenario.1",
+  "as_of": "2026-11-11",
+  "release": "v0.3.0-internal.1",
+  "content_revision": "2026-11-11.3",
+  "tool_version": "0.3.0",
+  "evidence_contract": "0.3.0",
+  "test_count": 76,
+  "test_result": "passed",
+  "test_scope": "Automated synthetic integrity, annotation consistency, exclusion attacks, forbidden mappings, time/configuration/accounting checks; not held-out accuracy or independent human review",
+  "qualified_heldout_entries": 0,
+  "independent_human_review": false,
+  "new_100mb_corpora_qualified": 0,
+  "current_workbench_qualification": "not_completed",
+  "original_cases": "development_only",
+  "explorer_version": "2026-11-11.3",
+  "explorer_scope": "Descriptive internal results and separate historical diagnostics; no numerical ranks or independently qualified scores.",
+  "publication_scope": "Corrective evaluator internal-test release, descriptive dashboard and next-cycle adjudication materials",
+  "known_vulnerable_release": {
+    "tag": "v0.3.0-pilot.1",
+    "evaluator_version": "0.2.0",
+    "finding": "EV-01",
+    "notice": "Substantive assertions can be hidden in non-claim spans. Do not use acceptance outputs for qualification."
+  }
+}

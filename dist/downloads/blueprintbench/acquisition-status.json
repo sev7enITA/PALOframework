@@ -1,0 +1,68 @@
+{
+  "version": "0.1.0",
+  "status": "seeds_only_not_corpora",
+  "results": [
+    {
+      "family": "world-bank-procurement",
+      "url": "https://pubdocs.worldbank.org/en/663621519334519385/Procurement-Guidance-Negotiation-and-Best-Final-Offer.pdf",
+      "status": "seed_downloaded",
+      "rights_status": "pending",
+      "heldout": false,
+      "final_url": "https://thedocs.worldbank.org/en/doc/663621519334519385-0290022018/original/ProcurementGuidanceNegotiationandBestFinalOffer.pdf",
+      "content_type": "application/pdf",
+      "bytes": 1406330,
+      "sha256": "a5892c3b8a91ccc5cbf1c82808c62ef849beb02211bbb4d7d4ec0ef00bc14a53",
+      "format": "pdf",
+      "downloaded_at": "2026-11-10T22:01:52.569636+00:00",
+      "local_filename": "world-bank-procurement.pdf"
+    },
+    {
+      "family": "ebrd-procurement",
+      "url": "https://www.ebrd.com/content/dam/ebrd_dxp/assets/pdfs/project-procurement/directives-and-guidances/20260901_PPR%202026_ENG_Final.pdf",
+      "status": "seed_downloaded",
+      "rights_status": "pending",
+      "heldout": false,
+      "final_url": "https://www.ebrd.com/content/dam/ebrd_dxp/assets/pdfs/project-procurement/directives-and-guidances/20260901_PPR%202026_ENG_Final.pdf",
+      "content_type": "application/pdf",
+      "bytes": 488532,
+      "sha256": "1767bc0ed6a6c5188596f0031462130d265952da0c2e5824da250def01ce42cf",
+      "format": "pdf",
+      "downloaded_at": "2026-11-10T22:01:53.093666+00:00",
+      "local_filename": "ebrd-procurement.pdf"
+    },
+    {
+      "family": "fda-traceability",
+      "url": "https://www.fda.gov/media/179616/download",
+      "status": "download_failed",
+      "rights_status": "pending",
+      "heldout": false,
+      "error_type": "HTTPError",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "family": "gs1-traceability",
+      "url": "https://www.gs1.org/sites/default/files/docs/traceability/GS1_Global_Traceability_Standard_i2.pdf",
+      "status": "download_failed",
+      "rights_status": "pending",
+      "heldout": false,
+      "error_type": "HTTPError",
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "family": "fta-reporting",
+      "url": "https://www.transit.dot.gov/sites/fta.dot.gov/files/2025-08/2025-NTD-Full-Policy-Manual.pdf",
+      "status": "download_failed",
+      "rights_status": "pending",
+      "heldout": false,
+      "error_type": "HTTPError",
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "family": "dft-travel-survey",
+      "url": null,
+      "status": "not_selected",
+      "rights_status": "pending",
+      "heldout": false
+    }
+  ]
+}

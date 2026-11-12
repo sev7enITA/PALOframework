@@ -1,0 +1,74 @@
+{
+  "revision": "2026-11-11.6",
+  "status": "qualification_protocol_with_real_document_development_collection_started",
+  "independently_qualified": false,
+  "numerical_ranks_enabled": false,
+  "current_evidence_release": "study-2026-11-11-six-scenario.1",
+  "gates": [
+    {
+      "id": "documents",
+      "title": "Real procurement document families",
+      "state": "development_inputs_prepared",
+      "status_label": "3 public documents, 200 supplied pages; development-exposed",
+      "requirement": "Build licensed, source-hashed procurement packs spanning tens of pages, with amendments, precedence, exceptions and cross-document conflicts. Use 60\u201385% only as a development difficulty diagnostic after the metric is valid; never tune or select the sealed test to force that range.",
+      "acceptance_evidence_received": false
+    },
+    {
+      "id": "generation",
+      "title": "Document-to-specification generation",
+      "state": "real_document_collection_started",
+      "status_label": "27 assigned calls; collection stopped; completion reported in generation results",
+      "requirement": "Make open generation from documents the primary task. Assess atomic rules, actors, guards, exceptions, data constraints, provenance and omissions against expert gold. Seeded-statement classification remains a secondary diagnostic.",
+      "acceptance_evidence_received": false
+    },
+    {
+      "id": "human_gold",
+      "title": "Blind domain annotation and adjudication",
+      "state": "external_roles_unfilled",
+      "status_label": "Two annotators and a third adjudicator needed",
+      "requirement": "Freeze the contradiction versus not-established rubric first. Two procurement experts annotate independently without model outputs or identities; a third adjudicates. Retain pre-adjudication labels and publish per-category agreement, disagreement and unresolved cases.",
+      "acceptance_evidence_received": false
+    },
+    {
+      "id": "custody",
+      "title": "External selection and sealed custody",
+      "state": "external_roles_unfilled",
+      "status_label": "No external custodian appointed",
+      "requirement": "An external custodian selects new source families and controls sealed gold and access. Everything already public or inspected during development remains development material. Publish verified role and conflict disclosures, dated commitments and access receipts.",
+      "acceptance_evidence_received": false
+    },
+    {
+      "id": "metric",
+      "title": "Seeded-defect measurement validation",
+      "state": "internal_diagnostics_only",
+      "status_label": "Independent metric-validation study not executed",
+      "requirement": "Run a preregistered study with human-adjudicated faithful controls and semantic defects. Report detection TP/(TP+FN), false alarms FP/(FP+TN), abstentions, parsing failures and missingness separately, with uncertainty by source family and error category.",
+      "acceptance_evidence_received": false
+    },
+    {
+      "id": "comparison",
+      "title": "Replicated comparisons and uncertainty bands",
+      "state": "not_eligible",
+      "status_label": "No qualified bands or ranks",
+      "requirement": "Freeze comparable resource conditions, model/provider versions, full serving settings and retry rules before calls; collect at least three repetitions. Aggregate by independent document family, estimate paired uncertainty and keep missing responses separate. Assign an ordering only after preregistered practical-effect and multiplicity-controlled uncertainty criteria are met; otherwise show unresolved comparison bands, not forced ranks.",
+      "acceptance_evidence_received": false
+    }
+  ],
+  "qualification_rule": "All independent gates require externally verifiable evidence and completed scientific review; self-declared JSON booleans cannot confer qualification.",
+  "current_development_study": {
+    "page": "https://paloframework.org/PALO_BlueprintBench_Generation.html",
+    "evidence_path": "internal_tests/2026-11-11-real-procurement",
+    "state": "collection_started",
+    "documents": 3,
+    "supplied_pages": 200,
+    "model_configurations": 4,
+    "assigned_calls": 36,
+    "assigned_repetitions": 3,
+    "labels": "pre_output_assistant_drafts",
+    "qualification": "not_independently_validated",
+    "completion_status_source": "web/downloads/blueprintbench/generation-results.json",
+    "model_ids": 3,
+    "original_assignments": 27,
+    "supplemental_assignments": 0
+  }
+}

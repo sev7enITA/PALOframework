@@ -1,5 +1,14 @@
 import { TRI_GRAPH_PUBLIC_FILES } from './tri-graph-public-files.mjs';
 export const PUBLIC_FILES = [
+  "PALO_BlueprintBench_Method.html",
+  "PALO_BlueprintBench_Corpus.html",
+  "PALO_BlueprintBench_Generation.html",
+  "assets/blueprintbench/site-architecture.css",
+  "assets/blueprintbench/generation.css",
+  "assets/blueprintbench/generation.js",
+  "downloads/blueprintbench/generation-results.json",
+  "downloads/blueprintbench/generation-evidence.zip",
+
   "PALO_BlueprintBench.html",
   "PALO_BlueprintBench_Diagnostics.html",
   "PALO_BlueprintBench_NextCycle.html",

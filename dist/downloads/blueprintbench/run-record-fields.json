@@ -1,0 +1,8 @@
+{
+  "contract_version": "0.3.0-dev.1",
+  "status": "schema navigation; no parallel field specification",
+  "repository_schema": "../evaluator/evidence.schema.json",
+  "download_schema": "evidence.schema.json",
+  "definition": "$defs/run",
+  "historical_proposal": "run-record-fields-0.1-historical.json"
+}

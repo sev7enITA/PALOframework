@@ -80,8 +80,12 @@
   <url><loc>https://paloframework.org/PALO_AIWhy.html</loc><lastmod>2026-09-23</lastmod></url>
   <url><loc>https://paloframework.org/PALO_AssessmentPath.html</loc><lastmod>2026-09-25</lastmod></url>
   <url><loc>https://paloframework.org/PALO_AuditBench.html</loc><lastmod>2026-09-23</lastmod></url>
+  <url><loc>https://paloframework.org/PALO_BlueprintBench_Corpus.html</loc><lastmod>2026-11-11</lastmod></url>
   <url><loc>https://paloframework.org/PALO_BlueprintBench_Diagnostics.html</loc><lastmod>2026-11-11</lastmod></url>
+  <url><loc>https://paloframework.org/PALO_BlueprintBench_Generation.html</loc><lastmod>2026-11-11</lastmod></url>
   <url><loc>https://paloframework.org/PALO_BlueprintBench_Leaderboard.html</loc><lastmod>2026-11-11</lastmod></url>
+  <url><loc>https://paloframework.org/PALO_BlueprintBench_Method.html</loc><lastmod>2026-11-11</lastmod></url>
+  <url><loc>https://paloframework.org/PALO_BlueprintBench_NextCycle.html</loc><lastmod>2026-11-11</lastmod></url>
   <url><loc>https://paloframework.org/PALO_BlueprintBench.html</loc><lastmod>2026-11-11</lastmod></url>
   <url><loc>https://paloframework.org/PALO_Community.html</loc><lastmod>2026-10-27</lastmod></url>
   <url><loc>https://paloframework.org/PALO_CompanionApp.html</loc><lastmod>2026-09-23</lastmod></url>
@@ -116,5 +120,4 @@
   <url><loc>https://paloframework.org/templates/incident-response.html</loc><lastmod>2026-09-23</lastmod></url>
   <url><loc>https://paloframework.org/templates/procurement.html</loc><lastmod>2026-09-23</lastmod></url>
   <url><loc>https://paloframework.org/templates/red-team-evidence.html</loc><lastmod>2026-09-23</lastmod></url>
-  <url><loc>https://paloframework.org/PALO_BlueprintBench_NextCycle.html</loc><lastmod>2026-11-11</lastmod></url>
 </urlset>

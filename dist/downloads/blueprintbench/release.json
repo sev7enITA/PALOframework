@@ -1,0 +1,27 @@
+{
+  "release_tag": "v0.3.0-internal.1",
+  "release_date": "2026-11-11",
+  "evaluator_version": "0.3.0",
+  "evidence_contract": "0.3.0",
+  "content_revision": "2026-11-11.3",
+  "leaderboard_revision": "2026-11-11.3",
+  "release_kind": "internal-test prerelease",
+  "qualification": "internal_tests_only",
+  "independently_qualified_results": 0,
+  "independent_human_review": false,
+  "known_vulnerable_release": {
+    "tag": "v0.3.0-pilot.1",
+    "evaluator_version": "0.2.0",
+    "finding": "EV-01",
+    "notice": "Substantive assertions can be hidden in non-claim spans. Do not use acceptance outputs for qualification."
+  },
+  "authorship": {
+    "source_and_label_author": "engineering assistant under maintainer direction",
+    "author_model_id": "unavailable",
+    "author_model_revision": "unavailable",
+    "unavailability_reason": "The retained original corpus manifest did not record the authoring model or revision. No identity is inferred from the current assistant or tested cohort."
+  },
+  "frozen_dataset_revision": "2026-11-11.2",
+  "source_dataset_sha256": "7d7554ab2a402b4d8dfd2bbc40d728a725602b8cf4b9fe0bf11a32497712c090",
+  "dataset_revision_policy": "The raw internal/historical observation snapshot is frozen at .2; publication .3 changes presentation and release metadata, not evidence bytes or labels."
+}

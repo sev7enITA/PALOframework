@@ -3,6 +3,9 @@
 // while retaining evidence text and diagram labels byte-for-byte.
 const researchPages = new Set([
   'PALO_BlueprintBench.html',
+  'PALO_BlueprintBench_Method.html',
+  'PALO_BlueprintBench_Corpus.html',
+  'PALO_BlueprintBench_Generation.html',
   'PALO_BlueprintBench_Diagnostics.html',
   'PALO_BlueprintBench_NextCycle.html',
   'PALO_BlueprintBench_Leaderboard.html',
