@@ -24,7 +24,7 @@
   "frozen_dataset_revision": "2026-11-11.2",
   "source_dataset_sha256": "7d7554ab2a402b4d8dfd2bbc40d728a725602b8cf4b9fe0bf11a32497712c090",
   "dataset_revision_policy": "The raw internal/historical observation snapshot is frozen at .2; publication .3 changes presentation and release metadata, not evidence bytes or labels.",
-  "presentation_revision": "2026-11-11.6",
+  "presentation_revision": "2026-11-11.7",
   "presentation_terminology_update": "2026-11-12",
   "revision_scope": "content_revision and leaderboard_revision identify the evaluator release-era content; presentation_revision identifies the currently published pages. Evaluator tag and frozen observations remain unchanged.",
   "current_studies": {

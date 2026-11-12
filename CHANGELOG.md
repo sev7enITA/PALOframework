@@ -1,8 +1,12 @@
 # Changelog
 
+## 12 November 2026: benchmark terminology
+
+Standardise research page headings and annotation terminology. Evaluation data, qualification status and historical releases remain unchanged.
+
 ## 12 November 2026: study closure and connectivity review
 
-Close the Specification Generation study as incomplete and publish its assignment accounting, advisory workflow connectivity checks and draft source-silence rubric for external review. Existing evaluator packages and historical observations remain unchanged.
+Close the Specification Generation study as incomplete and publish its assignment accounting, advisory workflow connectivity checks and draft annotation guidelines for external review. Existing evaluator packages and historical observations remain unchanged.
 
 ## 12 November 2026: benchmark track terminology
 
