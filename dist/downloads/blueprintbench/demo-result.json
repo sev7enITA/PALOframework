@@ -1,0 +1,202 @@
+{
+  "tool_version": "0.3.0",
+  "run_id": "synthetic-example",
+  "campaign_sha256": "c0d42c57fbcefd0d81507cccadd3931992d960cbad02dc073ace89043e2e786d",
+  "subject_id": "fixture",
+  "split": "synthetic",
+  "track": "interpretation",
+  "evidence_status_declared": "self_reported",
+  "identity_and_independence_verified": false,
+  "assigned_attempts": 3,
+  "recorded_attempts": 3,
+  "missing_attempts": [],
+  "reported_passed": 1,
+  "reported_completion_rate": 0.3333333333333333,
+  "accepted_tasks": 1,
+  "accepted_task_rate": 0.3333333333333333,
+  "critical_errors": 1,
+  "known_reported_cost_usd": 0,
+  "cost_known_attempts": 3,
+  "unresolved_reserved_usd": 0,
+  "registration_provenance": "self_declared",
+  "external_registration_verified": false,
+  "human_effort_status": "not_measured",
+  "qualification_decision": null,
+  "cost_complete": true,
+  "cost_per_accepted_task_usd": 0.0,
+  "cost_per_reported_completion_usd": 0.0,
+  "record_comparable_candidate": false,
+  "comparability_blocks": [
+    "external_preregistration_not_verified",
+    "independent_human_gold_or_assessment_missing",
+    "identity_and_independence_not_verified",
+    "request_identity_incomplete",
+    "development_or_synthetic_data",
+    "fewer_than_three_repetitions"
+  ],
+  "comparability_status": "external_verification_not_implemented",
+  "human_review_declared_complete": false,
+  "policy_is_trivial": false,
+  "warnings": [
+    {
+      "code": "request_identity_unavailable",
+      "task_id": "faithful",
+      "repetition": 1
+    },
+    {
+      "code": "request_identity_unavailable",
+      "task_id": "inverted_rule",
+      "repetition": 1
+    },
+    {
+      "code": "request_identity_unavailable",
+      "task_id": "empty",
+      "repetition": 1
+    }
+  ],
+  "aggregates": {
+    "run": {
+      "assigned_attempts": 3,
+      "recorded_attempts": 3,
+      "assessed_nonempty_attempts": 2,
+      "accepted_tasks": 1,
+      "critical_unique_errors_summed_over_attempts": 1,
+      "critical_occurrences": 1,
+      "observed_inverted_source_rules": 1,
+      "assessed_critical_rule_opportunities": 4,
+      "inversions_per_100_rules": null,
+      "uncertainty": "not_estimated; descriptive audit totals only"
+    },
+    "family": {
+      "synthetic-purchasing": {
+        "assigned_attempts": 3,
+        "recorded_attempts": 3,
+        "assessed_nonempty_attempts": 2,
+        "accepted_tasks": 1,
+        "critical_unique_errors_summed_over_attempts": 1,
+        "critical_occurrences": 1,
+        "observed_inverted_source_rules": 1,
+        "assessed_critical_rule_opportunities": 4,
+        "inversions_per_100_rules": null,
+        "uncertainty": "not_estimated; descriptive audit totals only"
+      }
+    },
+    "domain": {
+      "procurement": {
+        "assigned_attempts": 3,
+        "recorded_attempts": 3,
+        "assessed_nonempty_attempts": 2,
+        "accepted_tasks": 1,
+        "critical_unique_errors_summed_over_attempts": 1,
+        "critical_occurrences": 1,
+        "observed_inverted_source_rules": 1,
+        "assessed_critical_rule_opportunities": 4,
+        "inversions_per_100_rules": null,
+        "uncertainty": "not_estimated; descriptive audit totals only"
+      }
+    },
+    "repetitions": {
+      "1": {
+        "assigned_attempts": 3,
+        "recorded_attempts": 3,
+        "assessed_nonempty_attempts": 2,
+        "accepted_tasks": 1,
+        "critical_unique_errors_summed_over_attempts": 1,
+        "critical_occurrences": 1,
+        "observed_inverted_source_rules": 1,
+        "assessed_critical_rule_opportunities": 4,
+        "inversions_per_100_rules": null,
+        "uncertainty": "not_estimated; descriptive audit totals only"
+      }
+    }
+  },
+  "qualified": false,
+  "qualification_reason": "Independent evidence review is not automated by this tool.",
+  "rows": [
+    {
+      "task_id": "faithful",
+      "repetition": 1,
+      "family": "synthetic-purchasing",
+      "domain": "procurement",
+      "state": "pass",
+      "emitted": 2,
+      "supported": 2,
+      "gold": 2,
+      "recovered": 2,
+      "critical_errors": 0,
+      "critical_error_occurrences": 0,
+      "critical_unsupported_additions": 0,
+      "critical_source_rule_inversions": 0,
+      "critical_source_rules": 2,
+      "critical_inversions_per_100_rules": 0.0,
+      "accepted_task": true,
+      "termination_reason": "completed",
+      "unique_propositions": 2,
+      "precision": 1.0,
+      "recall": 1.0,
+      "elapsed_seconds": 0,
+      "cost": {
+        "status": "not_incurred",
+        "usd": 0,
+        "reason": "Synthetic fixture, no inference"
+      }
+    },
+    {
+      "task_id": "inverted_rule",
+      "repetition": 1,
+      "family": "synthetic-purchasing",
+      "domain": "procurement",
+      "state": "fail",
+      "emitted": 2,
+      "supported": 1,
+      "gold": 2,
+      "recovered": 1,
+      "critical_errors": 1,
+      "critical_error_occurrences": 1,
+      "critical_unsupported_additions": 0,
+      "critical_source_rule_inversions": 1,
+      "critical_source_rules": 2,
+      "critical_inversions_per_100_rules": 50.0,
+      "accepted_task": false,
+      "termination_reason": "completed",
+      "unique_propositions": 2,
+      "precision": 0.5,
+      "recall": 0.5,
+      "elapsed_seconds": 0,
+      "cost": {
+        "status": "not_incurred",
+        "usd": 0,
+        "reason": "Synthetic fixture, no inference"
+      }
+    },
+    {
+      "task_id": "empty",
+      "repetition": 1,
+      "family": "synthetic-purchasing",
+      "domain": "procurement",
+      "state": "abstain",
+      "emitted": 0,
+      "supported": 0,
+      "gold": 2,
+      "recovered": 0,
+      "critical_errors": 0,
+      "critical_error_occurrences": 0,
+      "critical_unsupported_additions": 0,
+      "critical_source_rule_inversions": 0,
+      "critical_source_rules": 2,
+      "critical_inversions_per_100_rules": null,
+      "accepted_task": false,
+      "termination_reason": "completed",
+      "unique_propositions": 0,
+      "precision": null,
+      "recall": 0.0,
+      "elapsed_seconds": 0,
+      "cost": {
+        "status": "not_incurred",
+        "usd": 0,
+        "reason": "Synthetic fixture, no inference"
+      }
+    }
+  ],
+  "note": "Scoped annotation scores; not full-corpus precision/recall, human usability, or a model ranking."
+}

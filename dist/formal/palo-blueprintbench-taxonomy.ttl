@@ -1,0 +1,27 @@
+@prefix bb: <https://paloframework.org/semantic/blueprintbench/> .
+@prefix palo: <https://paloframework.org/semantic/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+bb:evaluation-dimension a skos:ConceptScheme ; skos:prefLabel "Evaluation Dimension"@en ; owl:versionInfo "0.1.1" .
+bb:document-fidelity a skos:Concept ; skos:inScheme bb:evaluation-dimension ; skos:topConceptOf bb:evaluation-dimension ; skos:prefLabel "Document fidelity"@en ; skos:definition "Faithfulness of extracted text, tables, formulas and layout to source documents."@en .
+bb:semantic-faithfulness a skos:Concept ; skos:inScheme bb:evaluation-dimension ; skos:topConceptOf bb:evaluation-dimension ; skos:prefLabel "Semantic faithfulness"@en ; skos:definition "Preservation of meaning, ownership, negation, conditions and obligations."@en .
+bb:coverage-uncertainty a skos:Concept ; skos:inScheme bb:evaluation-dimension ; skos:topConceptOf bb:evaluation-dimension ; skos:prefLabel "Coverage and uncertainty"@en ; skos:definition "Coverage of required facts and appropriate abstention where evidence is insufficient."@en .
+bb:er-dictionary-ontology a skos:Concept ; skos:inScheme bb:evaluation-dimension ; skos:topConceptOf bb:evaluation-dimension ; skos:prefLabel "ER, dictionary and ontology"@en ; skos:definition "Correct entities, attributes, definitions, types and relationships."@en .
+bb:process-fidelity a skos:Concept ; skos:inScheme bb:evaluation-dimension ; skos:topConceptOf bb:evaluation-dimension ; skos:prefLabel "Process fidelity"@en ; skos:definition "Preservation of actors, branches, permissions and exceptions."@en .
+bb:governance-controls a skos:Concept ; skos:inScheme bb:evaluation-dimension ; skos:topConceptOf bb:evaluation-dimension ; skos:prefLabel "Governance controls"@en ; skos:definition "Review states, permitted actions and evidence of boundary enforcement."@en .
+bb:reliability a skos:Concept ; skos:inScheme bb:evaluation-dimension ; skos:topConceptOf bb:evaluation-dimension ; skos:prefLabel "Reliability"@en ; skos:definition "Completion, failures, recovery and repeatability under declared conditions."@en .
+bb:human-effort-finops a skos:Concept ; skos:inScheme bb:evaluation-dimension ; skos:topConceptOf bb:evaluation-dimension ; skos:prefLabel "Human effort and FinOps"@en ; skos:definition "Review and correction effort, resource use, charges and cost coverage."@en .
+bb:evidence-provenance a skos:ConceptScheme ; skos:prefLabel "Evidence Provenance"@en ; owl:versionInfo "0.1.1" .
+bb:self-reported a skos:Concept ; skos:notation "self_reported" ; skos:inScheme bb:evidence-provenance ; skos:topConceptOf bb:evidence-provenance ; skos:prefLabel "Self-reported"@en ; skos:definition "Evidence supplied by the participant; independent reproduction is not implied."@en .
+bb:maintainer-reproduced a skos:Concept ; skos:notation "maintainer_reproduced" ; skos:inScheme bb:evidence-provenance ; skos:topConceptOf bb:evidence-provenance ; skos:prefLabel "Maintainer-reproduced"@en ; skos:definition "Execution reproduced or directly checked by a benchmark maintainer."@en .
+bb:independently-reproduced a skos:Concept ; skos:notation "independently_reproduced" ; skos:inScheme bb:evidence-provenance ; skos:topConceptOf bb:evidence-provenance ; skos:prefLabel "Independently reproduced"@en ; skos:definition "Execution reproduced by an independent party with a traceable record."@en .
+bb:qualification-state a skos:ConceptScheme ; skos:prefLabel "Qualification State"@en ; owl:versionInfo "0.1.1" .
+bb:development a skos:Concept ; skos:inScheme bb:qualification-state ; skos:topConceptOf bb:qualification-state ; skos:prefLabel "Development"@en ; skos:definition "Evidence from cases used during system development."@en .
+bb:pending-review a skos:Concept ; skos:inScheme bb:qualification-state ; skos:topConceptOf bb:qualification-state ; skos:prefLabel "Pending review"@en ; skos:definition "Evidence awaiting the declared qualification process."@en .
+bb:qualified a skos:Concept ; skos:inScheme bb:qualification-state ; skos:topConceptOf bb:qualification-state ; skos:prefLabel "Qualified"@en ; skos:definition "Evidence satisfying a specified protocol and review decision within a declared scope."@en .
+bb:index-availability a skos:ConceptScheme ; skos:prefLabel "Index Availability"@en ; owl:versionInfo "0.1.1" .
+bb:unavailable a skos:Concept ; skos:inScheme bb:index-availability ; skos:topConceptOf bb:index-availability ; skos:prefLabel "Unavailable"@en ; skos:definition "No eligible index result is available; do not replace with zero."@en .
+bb:available a skos:Concept ; skos:inScheme bb:index-availability ; skos:topConceptOf bb:index-availability ; skos:prefLabel "Available"@en ; skos:definition "An index result exists with an identified definition, run and qualification decision."@en .

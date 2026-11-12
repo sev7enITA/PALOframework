@@ -1,0 +1,135 @@
+{
+  "version": "0.1.0",
+  "as_of": "2026-11-10",
+  "status": "candidate_discovery_not_heldout",
+  "independence_not_established": true,
+  "note": "Different institutions do not establish independent document families. Shared templates and standards require curator review. No candidate is yet a 100MB-qualified corpus.",
+  "families": [
+    {
+      "id": "world-bank-procurement",
+      "domain": "procurement",
+      "publisher": "World Bank",
+      "landing_url": "https://www.worldbank.org/ext/en/what-we-do/project-procurement/framework",
+      "seed_download_url": "https://pubdocs.worldbank.org/en/663621519334519385/Procurement-Guidance-Negotiation-and-Best-Final-Offer.pdf",
+      "rights_status": "pending_per_file_review",
+      "redistribution": "not_authorised_by_this_registry",
+      "gold_status": "not_created",
+      "exposure": "Landing pages and selected source metadata inspected by PALO engineering agent; no held-out status asserted.",
+      "scope_status": "candidate_only",
+      "scale_bytes": null,
+      "admission_gates": [
+        "coherent_business_scope",
+        "rights_review",
+        "template_and_near_duplicate_audit",
+        "source_hashes_and_edition",
+        "independent_gold_annotation",
+        "sealed_tasks_before_model_runs"
+      ]
+    },
+    {
+      "id": "ebrd-procurement",
+      "domain": "procurement",
+      "publisher": "EBRD",
+      "landing_url": "https://www.ebrd.com/home/work-with-us/project-procurement.suppliers-hub.html",
+      "seed_download_url": "https://www.ebrd.com/content/dam/ebrd_dxp/assets/pdfs/project-procurement/directives-and-guidances/20260901_PPR%202026_ENG_Final.pdf",
+      "rights_status": "pending_per_file_review",
+      "redistribution": "not_authorised_by_this_registry",
+      "gold_status": "not_created",
+      "exposure": "Public source landing page and initial PDF text observed by engineering agent; not sealed.",
+      "scope_status": "candidate_only",
+      "scale_bytes": null,
+      "admission_gates": [
+        "coherent_business_scope",
+        "rights_review",
+        "template_and_near_duplicate_audit",
+        "source_hashes_and_edition",
+        "independent_gold_annotation",
+        "sealed_tasks_before_model_runs"
+      ]
+    },
+    {
+      "id": "fda-traceability",
+      "domain": "traceability",
+      "publisher": "FDA",
+      "landing_url": "https://www.fda.gov/food/food-safety-modernization-act-fsma/frequently-asked-questions-fsma-food-traceability-rule",
+      "seed_download_url": "https://www.fda.gov/media/179616/download",
+      "rights_status": "pending_per_file_review",
+      "redistribution": "not_authorised_by_this_registry",
+      "gold_status": "not_created",
+      "exposure": "Landing pages and selected source metadata inspected by PALO engineering agent; no held-out status asserted.",
+      "scope_status": "candidate_only",
+      "scale_bytes": null,
+      "admission_gates": [
+        "coherent_business_scope",
+        "rights_review",
+        "template_and_near_duplicate_audit",
+        "source_hashes_and_edition",
+        "independent_gold_annotation",
+        "sealed_tasks_before_model_runs"
+      ]
+    },
+    {
+      "id": "gs1-traceability",
+      "domain": "traceability",
+      "publisher": "GS1",
+      "landing_url": "https://ref.gs1.org/guidelines/",
+      "seed_download_url": "https://www.gs1.org/sites/default/files/docs/traceability/GS1_Global_Traceability_Standard_i2.pdf",
+      "rights_status": "pending_per_file_review",
+      "redistribution": "not_authorised_by_this_registry",
+      "gold_status": "not_created",
+      "exposure": "Landing pages and selected source metadata inspected by PALO engineering agent; no held-out status asserted.",
+      "scope_status": "candidate_only",
+      "scale_bytes": null,
+      "admission_gates": [
+        "coherent_business_scope",
+        "rights_review",
+        "template_and_near_duplicate_audit",
+        "source_hashes_and_edition",
+        "independent_gold_annotation",
+        "sealed_tasks_before_model_runs"
+      ]
+    },
+    {
+      "id": "fta-reporting",
+      "domain": "transport",
+      "publisher": "FTA",
+      "landing_url": "https://www.transit.dot.gov/ntd/manuals",
+      "seed_download_url": "https://www.transit.dot.gov/sites/fta.dot.gov/files/2025-08/2025-NTD-Full-Policy-Manual.pdf",
+      "rights_status": "pending_per_file_review",
+      "redistribution": "not_authorised_by_this_registry",
+      "gold_status": "not_created",
+      "exposure": "Landing pages and selected source metadata inspected by PALO engineering agent; no held-out status asserted.",
+      "scope_status": "candidate_only",
+      "scale_bytes": null,
+      "admission_gates": [
+        "coherent_business_scope",
+        "rights_review",
+        "template_and_near_duplicate_audit",
+        "source_hashes_and_edition",
+        "independent_gold_annotation",
+        "sealed_tasks_before_model_runs"
+      ]
+    },
+    {
+      "id": "dft-travel-survey",
+      "domain": "transport",
+      "publisher": "UK DfT",
+      "landing_url": "https://www.gov.uk/government/statistics/national-travel-survey-technical-reports",
+      "seed_download_url": null,
+      "rights_status": "pending_per_file_review",
+      "redistribution": "not_authorised_by_this_registry",
+      "gold_status": "not_created",
+      "exposure": "Landing pages and selected source metadata inspected by PALO engineering agent; no held-out status asserted.",
+      "scope_status": "candidate_only",
+      "scale_bytes": null,
+      "admission_gates": [
+        "coherent_business_scope",
+        "rights_review",
+        "template_and_near_duplicate_audit",
+        "source_hashes_and_edition",
+        "independent_gold_annotation",
+        "sealed_tasks_before_model_runs"
+      ]
+    }
+  ]
+}

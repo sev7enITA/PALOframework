@@ -1,0 +1,102 @@
+{
+  "checked_on": "2026-11-11",
+  "measurement": "GitHub API repository snapshots; not usage, correctness, or social-media reach",
+  "repositories": [
+    {
+      "full_name": "idavidrein/gpqa",
+      "html_url": "https://github.com/idavidrein/gpqa",
+      "stargazers_count": 548,
+      "forks_count": 60,
+      "archived": false,
+      "pushed_at": "2024-09-30T21:12:05Z",
+      "default_branch": "main",
+      "status": "retrieved",
+      "api_source": "https://api.github.com/repos/idavidrein/gpqa",
+      "checked_on": "2026-11-11"
+    },
+    {
+      "full_name": "TIGER-AI-Lab/MMLU-Pro",
+      "html_url": "https://github.com/TIGER-AI-Lab/MMLU-Pro",
+      "stargazers_count": 432,
+      "forks_count": 60,
+      "archived": false,
+      "pushed_at": "2026-03-18T03:57:33Z",
+      "default_branch": "main",
+      "status": "retrieved",
+      "api_source": "https://api.github.com/repos/TIGER-AI-Lab/MMLU-Pro",
+      "checked_on": "2026-11-11"
+    },
+    {
+      "full_name": "LiveCodeBench/LiveCodeBench",
+      "html_url": "https://github.com/LiveCodeBench/LiveCodeBench",
+      "stargazers_count": 974,
+      "forks_count": 208,
+      "archived": false,
+      "pushed_at": "2025-07-16T00:58:38Z",
+      "default_branch": "main",
+      "status": "retrieved",
+      "api_source": "https://api.github.com/repos/LiveCodeBench/LiveCodeBench",
+      "checked_on": "2026-11-11"
+    },
+    {
+      "full_name": "scaleapi/SWE-bench_Pro-os",
+      "html_url": "https://github.com/scaleapi/SWE-bench_Pro-os",
+      "stargazers_count": 559,
+      "forks_count": 104,
+      "archived": false,
+      "pushed_at": "2026-09-22T21:02:03Z",
+      "default_branch": "main",
+      "status": "retrieved",
+      "api_source": "https://api.github.com/repos/scaleapi/SWE-bench_Pro-os",
+      "checked_on": "2026-11-11"
+    },
+    {
+      "full_name": "Ayanami0730/deep_research_bench",
+      "html_url": "https://github.com/Ayanami0730/deep_research_bench",
+      "stargazers_count": 849,
+      "forks_count": 88,
+      "archived": false,
+      "pushed_at": "2026-09-29T11:17:31Z",
+      "default_branch": "main",
+      "status": "retrieved",
+      "api_source": "https://api.github.com/repos/Ayanami0730/deep_research_bench",
+      "checked_on": "2026-11-11"
+    },
+    {
+      "full_name": "sierra-research/tau2-bench",
+      "html_url": "https://github.com/sierra-research/tau2-bench",
+      "stargazers_count": 2434,
+      "forks_count": 636,
+      "archived": false,
+      "pushed_at": "2026-11-10T20:51:09Z",
+      "default_branch": "main",
+      "status": "retrieved",
+      "api_source": "https://api.github.com/repos/sierra-research/tau2-bench",
+      "checked_on": "2026-11-11"
+    },
+    {
+      "full_name": "ShishirPatil/gorilla",
+      "html_url": "https://github.com/ShishirPatil/gorilla",
+      "stargazers_count": 13069,
+      "forks_count": 1424,
+      "archived": false,
+      "pushed_at": "2026-10-17T06:06:24Z",
+      "default_branch": "main",
+      "status": "retrieved",
+      "api_source": "https://api.github.com/repos/ShishirPatil/gorilla",
+      "checked_on": "2026-11-11"
+    },
+    {
+      "full_name": "xlang-ai/OSWorld",
+      "html_url": "https://github.com/xlang-ai/OSWorld",
+      "stargazers_count": 3258,
+      "forks_count": 558,
+      "archived": false,
+      "pushed_at": "2026-11-10T17:30:17Z",
+      "default_branch": "main",
+      "status": "retrieved",
+      "api_source": "https://api.github.com/repos/xlang-ai/OSWorld",
+      "checked_on": "2026-11-11"
+    }
+  ]
+}

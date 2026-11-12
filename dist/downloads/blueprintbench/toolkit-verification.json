@@ -1,0 +1,26 @@
+{
+  "date": "2026-11-11",
+  "release_tag": "v0.3.0-internal.1",
+  "content_revision": "2026-11-11.3",
+  "evaluator_version": "0.3.0",
+  "evidence_contract": "0.3.0",
+  "tests_passed": 76,
+  "command": "python -m unittest discover -s evaluator -p 'test_*.py'",
+  "python_version": "3.14.6",
+  "test_scope": "Automated synthetic integrity, annotation consistency, exclusion attacks, forbidden mappings, time/configuration/accounting checks; not held-out accuracy or independent human review",
+  "historical_replay": {
+    "mode": "offline checker replay; no inference",
+    "recorded_attempts": 26,
+    "replayed_attempts": 26,
+    "differences": [],
+    "counts_match": true
+  },
+  "qualified_heldout_entries": 0,
+  "independent_human_review": false,
+  "independent_registration_verified": false,
+  "app_qualified_by_this_release": false,
+  "ci_receipt": "Published separately by release workflow; local test result does not establish CI or deployment",
+  "tag_signature_status": "Must be checked on the published tag; not asserted by this local receipt",
+  "package_test_scope": "Standalone toolkit passed 73 tests after extraction. Three historical-adapter tests require the separate evidence archive and remain in the 76-test repository suite.",
+  "standalone_package_tests_passed": 73
+}

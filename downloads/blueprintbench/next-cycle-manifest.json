@@ -429,15 +429,15 @@
     "study/next-cycle/validate.py": "dea3d36db8def4a1c3263ded81865bfe431f64a8a6b899bab1cf28edce013498",
     "study/next-cycle/workflow-tasks.json": "5971e490bf3c7666a47e933251d5f3cd77a38f3a393da865996e1cd6390ca055"
   },
-  "presentation_revision": "2026-11-11.5",
+  "presentation_revision": "2026-11-11.6",
   "publication_kind": "page_only_internal_feasibility",
   "evaluator_release": "v0.3.0-internal.1",
   "original_18_model_results_modified": false,
   "public_files": {
     "downloads/blueprintbench/next-cycle-results.json": "0b1f65edda85da62107f03a8a91034c036657e31dcf424bb5205bf14e2ab3f81",
-    "PALO_BlueprintBench_NextCycle.html": "6e78e347ccabc0b6f156e5f216f20f0c58dc30344327f73968d8be12dd3f4645",
+    "PALO_BlueprintBench_NextCycle.html": "138493070f530a692dc0a44e2e509b92dee6cc5bdc8e302f5c55cb8881420bb2",
     "downloads/blueprintbench/next-cycle-evidence.zip": "7f504e621541760cf57a117b460705a2ccdd4812bd8ae0d528613ef6f41c7244",
-    "assets/blueprintbench/next-cycle.js": "f726b10bfa5dad83f2361ee870356e333277f6f453efb02c9314680053724f48",
+    "assets/blueprintbench/next-cycle.js": "e8f6bda26769a18ba7d1dce38db4859d74da01894a1a3df354445e9cb0823201",
     "assets/blueprintbench/next-cycle.css": "7bc6c9adc34f22907efab7e2c30bfeeccec0ea94112e3f1d147aac7b9b4a6bb5"
   }
 }

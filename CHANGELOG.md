@@ -1,5 +1,11 @@
 # Changelog
 
+## 11 November 2026: research pages and real-document generation
+
+Presentation revision 2026-11-11.6 separates the introductory overview, 3-text synthetic test, 6-process synthetic test, real-document generation, corpus register and research method. Shared navigation and a dark PALO palette make the input, task, model configuration, repetitions and execution channel explicit. Historical adapter diagnostics remain separate from synthetic tests.
+
+The new development study assigns 27 calls across three public procurement documents, 200 supplied pages, three model configurations and three repetitions. Completion, failed captures, draft-reference disagreements and unknown charges are reported in the [generation results](PALO_BlueprintBench_Generation.html), with source-linked drafts and filtered CSV/JSON exports. The v1.1 mechanical quote check corrects PDF hyphen-linewrap matching while preserving source text, model answers, draft labels and the original v1.0 evidence. A separate advisory note documents an unresolved FEMA input/key ambiguity. No independent validation, quality ranks or PALO Blueprint Index are assigned.
+
 ## 11 November 2026: structured data and qualification protocol
 
 Presentation revision 2026-11-11.5 aligns the overview, dashboard and six-scenario metadata with the immutable internal evidence release. It records 6 fictional scenarios, 48 draft propositions, 60 completed requests and 17 of 18 workflow drafts passing structural checks. The [qualification protocol](PALO_BlueprintBench_NextCycle.html#qualification-plan) sets acceptance gates for real document families, generation, blind human gold, external custody, seeded-defect measurement and replicated comparisons. The gates remain open. Frozen observations, evaluator packages and model results are unchanged; no independent validation or numerical ranks are assigned.

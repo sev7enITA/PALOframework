@@ -1,0 +1,266 @@
+{
+  "format": "palo-blueprintbench-vocabulary",
+  "version": "0.1.1",
+  "updatedAt": "2026-11-11",
+  "status": "research-pilot-extension",
+  "namespace": "https://paloframework.org/semantic/blueprintbench/",
+  "scope": "Additive vocabulary for BlueprintBench. Core PALO 3.1 release and its digest-bound artifacts retain their existing versions.",
+  "programme": {
+    "id": "BlueprintBench",
+    "label": "PALO BlueprintBench",
+    "type": "EvaluationProgramme",
+    "status": "research-pilot"
+  },
+  "index": {
+    "id": "PALOBlueprintIndex",
+    "label": "PALO Blueprint Index",
+    "abbreviation": "PBI",
+    "type": "IndexDefinition",
+    "status": "proposed",
+    "formula": null,
+    "weights": null,
+    "currentResult": null
+  },
+  "classes": [
+    {
+      "id": "EvaluationProgramme",
+      "label": "Evaluation programme",
+      "coreParent": "CanonicalDefinition",
+      "definition": "A versioned programme that defines evaluation tasks, protocols and publication rules."
+    },
+    {
+      "id": "IndexDefinition",
+      "label": "Index definition",
+      "coreParent": "CanonicalDefinition",
+      "definition": "A proposed or adopted specification for an aggregate index, including eligibility, formula and version."
+    },
+    {
+      "id": "EvaluationCohort",
+      "label": "Evaluation cohort",
+      "coreParent": "CanonicalDefinition",
+      "definition": "A declared set of source families and tasks with a split, revision and reuse conditions."
+    },
+    {
+      "id": "SourceRepository",
+      "label": "Source repository",
+      "coreParent": "EvidenceArtifact",
+      "definition": "A coherent source collection identified by provenance, size and content fingerprints."
+    },
+    {
+      "id": "ModelConfiguration",
+      "label": "Model configuration",
+      "coreParent": "CanonicalDefinition",
+      "definition": "Model revision, provider/runtime, quantisation, reasoning, context and pipeline settings bound to a run."
+    },
+    {
+      "id": "EvaluationRun",
+      "label": "Evaluation run",
+      "coreParent": "AssessmentRun",
+      "definition": "A recorded execution under one declared configuration and cohort; failures remain in the record."
+    },
+    {
+      "id": "MetricDefinition",
+      "label": "Metric definition",
+      "coreParent": "CanonicalDefinition",
+      "definition": "Versioned metric semantics with scope, unit, denominator and missing-value rules."
+    },
+    {
+      "id": "MetricResult",
+      "label": "Metric result",
+      "coreParent": "MetricObservation",
+      "definition": "An observation for one metric and run; an unavailable value is not a zero."
+    },
+    {
+      "id": "BusinessBlueprint",
+      "label": "Business blueprint",
+      "coreParent": "EvidenceArtifact",
+      "definition": "A versioned data and process representation with source references and review state."
+    },
+    {
+      "id": "ReviewRecord",
+      "label": "Review record",
+      "coreParent": "EvidenceEvaluation",
+      "definition": "A scoped review with reviewer role, provenance, decisions and unresolved disagreements."
+    },
+    {
+      "id": "IndexResult",
+      "label": "Index result",
+      "coreParent": "MetricObservation",
+      "definition": "An aggregate result bound to an index definition and an eligible run; no current PBI result is asserted."
+    }
+  ],
+  "relationships": [
+    {
+      "id": "runProgramme",
+      "domain": "EvaluationRun",
+      "range": "EvaluationProgramme",
+      "label": "Evaluation programme for this run"
+    },
+    {
+      "id": "runConfiguration",
+      "domain": "EvaluationRun",
+      "range": "ModelConfiguration",
+      "label": "Exact configuration used by the run"
+    },
+    {
+      "id": "runCohort",
+      "domain": "EvaluationRun",
+      "range": "EvaluationCohort",
+      "label": "Cohort evaluated by the run"
+    },
+    {
+      "id": "hasSourceRepository",
+      "domain": "EvaluationCohort",
+      "range": "SourceRepository",
+      "label": "Source collection included in the cohort"
+    },
+    {
+      "id": "runOutput",
+      "domain": "EvaluationRun",
+      "range": "BusinessBlueprint",
+      "label": "Blueprint produced by this run, where present"
+    },
+    {
+      "id": "hasMeasurement",
+      "domain": "EvaluationRun",
+      "range": "MetricResult",
+      "label": "Metric observation for the run"
+    },
+    {
+      "id": "metricDefinition",
+      "domain": "MetricResult",
+      "range": "MetricDefinition",
+      "label": "Definition governing the measurement"
+    },
+    {
+      "id": "reviewedRun",
+      "domain": "ReviewRecord",
+      "range": "EvaluationRun",
+      "label": "Run examined by a review"
+    },
+    {
+      "id": "definesIndex",
+      "domain": "EvaluationProgramme",
+      "range": "IndexDefinition",
+      "label": "Index specification associated with a programme"
+    },
+    {
+      "id": "indexDefinition",
+      "domain": "IndexResult",
+      "range": "IndexDefinition",
+      "label": "Index definition applied to a result"
+    },
+    {
+      "id": "indexForRun",
+      "domain": "IndexResult",
+      "range": "EvaluationRun",
+      "label": "Eligible run described by an index result"
+    }
+  ],
+  "conceptSchemes": {
+    "evaluation-dimension": [
+      {
+        "id": "document-fidelity",
+        "label": "Document fidelity",
+        "definition": "Faithfulness of extracted text, tables, formulas and layout to source documents."
+      },
+      {
+        "id": "semantic-faithfulness",
+        "label": "Semantic faithfulness",
+        "definition": "Preservation of meaning, ownership, negation, conditions and obligations."
+      },
+      {
+        "id": "coverage-uncertainty",
+        "label": "Coverage and uncertainty",
+        "definition": "Coverage of required facts and appropriate abstention where evidence is insufficient."
+      },
+      {
+        "id": "er-dictionary-ontology",
+        "label": "ER, dictionary and ontology",
+        "definition": "Correct entities, attributes, definitions, types and relationships."
+      },
+      {
+        "id": "process-fidelity",
+        "label": "Process fidelity",
+        "definition": "Preservation of actors, branches, permissions and exceptions."
+      },
+      {
+        "id": "governance-controls",
+        "label": "Governance controls",
+        "definition": "Review states, permitted actions and evidence of boundary enforcement."
+      },
+      {
+        "id": "reliability",
+        "label": "Reliability",
+        "definition": "Completion, failures, recovery and repeatability under declared conditions."
+      },
+      {
+        "id": "human-effort-finops",
+        "label": "Human effort and FinOps",
+        "definition": "Review and correction effort, resource use, charges and cost coverage."
+      }
+    ],
+    "evidence-provenance": [
+      {
+        "id": "self-reported",
+        "label": "Self-reported",
+        "definition": "Evidence supplied by the participant; independent reproduction is not implied.",
+        "evaluatorCode": "self_reported"
+      },
+      {
+        "id": "maintainer-reproduced",
+        "label": "Maintainer-reproduced",
+        "definition": "Execution reproduced or directly checked by a benchmark maintainer.",
+        "evaluatorCode": "maintainer_reproduced"
+      },
+      {
+        "id": "independently-reproduced",
+        "label": "Independently reproduced",
+        "definition": "Execution reproduced by an independent party with a traceable record.",
+        "evaluatorCode": "independently_reproduced"
+      }
+    ],
+    "qualification-state": [
+      {
+        "id": "development",
+        "label": "Development",
+        "definition": "Evidence from cases used during system development."
+      },
+      {
+        "id": "pending-review",
+        "label": "Pending review",
+        "definition": "Evidence awaiting the declared qualification process."
+      },
+      {
+        "id": "qualified",
+        "label": "Qualified",
+        "definition": "Evidence satisfying a specified protocol and review decision within a declared scope."
+      }
+    ],
+    "index-availability": [
+      {
+        "id": "unavailable",
+        "label": "Unavailable",
+        "definition": "No eligible index result is available; do not replace with zero."
+      },
+      {
+        "id": "available",
+        "label": "Available",
+        "definition": "An index result exists with an identified definition, run and qualification decision."
+      }
+    ]
+  },
+  "interpretationRules": [
+    "Evidence provenance, run completion and qualification are separate axes.",
+    "Independent reproduction does not by itself qualify a result.",
+    "Structural checks do not measure semantic correctness.",
+    "No PBI formula, weights, thresholds or results are assigned by this vocabulary.",
+    "OWL and SKOS describe terms and relations; they do not execute admission or qualification checks."
+  ],
+  "references": [
+    "PALO_BlueprintBench.html",
+    "downloads/blueprintbench/protocol.md",
+    "downloads/blueprintbench/palo-blueprint-index.md",
+    "https://github.com/sev7enITA/PALO-BlueprintBench"
+  ]
+}

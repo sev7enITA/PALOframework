@@ -1,0 +1,34 @@
+@prefix bb: <https://paloframework.org/semantic/blueprintbench/> .
+@prefix palo: <https://paloframework.org/semantic/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+bb:ontology a owl:Ontology ; owl:versionInfo "0.1.0" ; dcterms:title "PALO BlueprintBench ontology"@en ; rdfs:comment "Additive research-pilot vocabulary. Terms do not execute qualification or imply a validated PBI score."@en .
+
+bb:EvaluationProgramme a owl:Class ; rdfs:subClassOf palo:CanonicalDefinition ; rdfs:label "Evaluation programme"@en ; rdfs:comment "A versioned programme that defines evaluation tasks, protocols and publication rules."@en .
+bb:IndexDefinition a owl:Class ; rdfs:subClassOf palo:CanonicalDefinition ; rdfs:label "Index definition"@en ; rdfs:comment "A proposed or adopted specification for an aggregate index, including eligibility, formula and version."@en .
+bb:EvaluationCohort a owl:Class ; rdfs:subClassOf palo:CanonicalDefinition ; rdfs:label "Evaluation cohort"@en ; rdfs:comment "A declared set of source families and tasks with a split, revision and reuse conditions."@en .
+bb:SourceRepository a owl:Class ; rdfs:subClassOf palo:EvidenceArtifact ; rdfs:label "Source repository"@en ; rdfs:comment "A coherent source collection identified by provenance, size and content fingerprints."@en .
+bb:ModelConfiguration a owl:Class ; rdfs:subClassOf palo:CanonicalDefinition ; rdfs:label "Model configuration"@en ; rdfs:comment "Model revision, provider/runtime, quantisation, reasoning, context and pipeline settings bound to a run."@en .
+bb:EvaluationRun a owl:Class ; rdfs:subClassOf palo:AssessmentRun ; rdfs:label "Evaluation run"@en ; rdfs:comment "A recorded execution under one declared configuration and cohort; failures remain in the record."@en .
+bb:MetricDefinition a owl:Class ; rdfs:subClassOf palo:CanonicalDefinition ; rdfs:label "Metric definition"@en ; rdfs:comment "Versioned metric semantics with scope, unit, denominator and missing-value rules."@en .
+bb:MetricResult a owl:Class ; rdfs:subClassOf palo:MetricObservation ; rdfs:label "Metric result"@en ; rdfs:comment "An observation for one metric and run; an unavailable value is not a zero."@en .
+bb:BusinessBlueprint a owl:Class ; rdfs:subClassOf palo:EvidenceArtifact ; rdfs:label "Business blueprint"@en ; rdfs:comment "A versioned data and process representation with source references and review state."@en .
+bb:ReviewRecord a owl:Class ; rdfs:subClassOf palo:EvidenceEvaluation ; rdfs:label "Review record"@en ; rdfs:comment "A scoped review with reviewer role, provenance, decisions and unresolved disagreements."@en .
+bb:IndexResult a owl:Class ; rdfs:subClassOf palo:MetricObservation ; rdfs:label "Index result"@en ; rdfs:comment "An aggregate result bound to an index definition and an eligible run; no current PBI result is asserted."@en .
+bb:runProgramme a owl:ObjectProperty ; rdfs:domain bb:EvaluationRun ; rdfs:range bb:EvaluationProgramme ; rdfs:label "Evaluation programme for this run"@en .
+bb:runConfiguration a owl:ObjectProperty ; rdfs:domain bb:EvaluationRun ; rdfs:range bb:ModelConfiguration ; rdfs:label "Exact configuration used by the run"@en .
+bb:runCohort a owl:ObjectProperty ; rdfs:domain bb:EvaluationRun ; rdfs:range bb:EvaluationCohort ; rdfs:label "Cohort evaluated by the run"@en .
+bb:hasSourceRepository a owl:ObjectProperty ; rdfs:domain bb:EvaluationCohort ; rdfs:range bb:SourceRepository ; rdfs:label "Source collection included in the cohort"@en .
+bb:runOutput a owl:ObjectProperty ; rdfs:domain bb:EvaluationRun ; rdfs:range bb:BusinessBlueprint ; rdfs:label "Blueprint produced by this run, where present"@en .
+bb:hasMeasurement a owl:ObjectProperty ; rdfs:domain bb:EvaluationRun ; rdfs:range bb:MetricResult ; rdfs:label "Metric observation for the run"@en .
+bb:metricDefinition a owl:ObjectProperty ; rdfs:domain bb:MetricResult ; rdfs:range bb:MetricDefinition ; rdfs:label "Definition governing the measurement"@en .
+bb:reviewedRun a owl:ObjectProperty ; rdfs:domain bb:ReviewRecord ; rdfs:range bb:EvaluationRun ; rdfs:label "Run examined by a review"@en .
+bb:definesIndex a owl:ObjectProperty ; rdfs:domain bb:EvaluationProgramme ; rdfs:range bb:IndexDefinition ; rdfs:label "Index specification associated with a programme"@en .
+bb:indexDefinition a owl:ObjectProperty ; rdfs:domain bb:IndexResult ; rdfs:range bb:IndexDefinition ; rdfs:label "Index definition applied to a result"@en .
+bb:indexForRun a owl:ObjectProperty ; rdfs:domain bb:IndexResult ; rdfs:range bb:EvaluationRun ; rdfs:label "Eligible run described by an index result"@en .
+
+bb:BlueprintBench a bb:EvaluationProgramme ; rdfs:label "PALO BlueprintBench"@en ; bb:definesIndex bb:PALOBlueprintIndex .
+bb:PALOBlueprintIndex a bb:IndexDefinition ; rdfs:label "PALO Blueprint Index"@en ; rdfs:comment "Proposed index; formula, weights and qualification gates require preregistration and independent validation. No IndexResult is currently asserted."@en .

@@ -1,0 +1,33 @@
+{
+  "status": "completed_design_review_not_software_validation",
+  "observed_model": "qwen3.8-27b-uncensored",
+  "requested_model": "qwen3.8-27b-uncensored",
+  "identity_limit": "LM Studio model identifier; weights and lineage not independently verified in this review",
+  "runtime": "LM Studio localhost:1234",
+  "reasoning": "server preset, not overridden",
+  "max_tokens": 8192,
+  "seconds": 160.57876725000096,
+  "finish_reason": "stop",
+  "usage": {
+    "prompt_tokens": 229,
+    "completion_tokens": 3400,
+    "total_tokens": 3629,
+    "completion_tokens_details": {
+      "reasoning_tokens": 3069
+    }
+  },
+  "content": "- Define denominators as auditable gold units\u2014entities, edges, rules, blueprints per document family\u2014and report precision/recall only over in-scope units, with N/A for absent types and explicit false-positive/false-negative counts for ownership, negation, and process exceptions.\n\n- Add anti-gaming controls: sealed heldout families, versioned schemas, blind independent annotators, contamination checks against the three 100MB dev repos, separate fixed-harness model runs from end-to-end system runs, and a defined recovery protocol so UI/postprocessing cannot hide failures.\n\n- Make human gold subgraphs auditable: require inter-annotator agreement thresholds, adjudication logs, source-span evidence, and negative examples; \u201cindependent\u201d must mean annotators do not see PALO outputs or business-user edits, otherwise the gold is contaminated by the system under test.\n\n- Ship a practical first release: 2\u20133 heldout document families with a fixed small corpus, one sealed gold subgraph set, one governance-fault suite, and raw per-task tables for semantic precision/recall, graph consistency, traceability, recovery, actual business-user edit time per accepted correction, and total billed cost including failures.\n\n- Compare only by task role, not borrowed scores: HELM-style multi-metric transparency, OfficeQA document QA, DABstep data-analysis workflows, SWE-bench repo repair; do not claim parity or import current results, and make cost/edit-time denominators explicit per completed run or accepted correction.",
+  "prior_attempts": [
+    {
+      "outcome": "timeout",
+      "seconds": 300,
+      "max_tokens": 6000
+    },
+    {
+      "outcome": "length_limit_no_final_answer",
+      "seconds": 65.240453291,
+      "max_tokens": 1800
+    }
+  ],
+  "note": "Earlier attempts are retained as delivery failures, not counted as substantive independent reviews."
+}

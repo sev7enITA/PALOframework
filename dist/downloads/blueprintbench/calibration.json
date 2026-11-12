@@ -1,0 +1,1395 @@
+{
+  "version": "internal-calibration-1",
+  "status": "internal_tests",
+  "qualified": false,
+  "primary_scores_unchanged": true,
+  "protocol": {
+    "version": "internal-calibration-1",
+    "status": "internal_tests",
+    "qualified": false,
+    "independent_source_families": 1,
+    "cases": 3,
+    "rules": 6,
+    "assigned_per_reviewer": 18,
+    "mutations": 6,
+    "faithful_controls": 12,
+    "reviewers": [
+      "fable",
+      "glm",
+      "gemini"
+    ],
+    "repetitions": 1,
+    "blinding": "Expected labels, variant class and other reviewer answers omitted from the common prompt. Reviewer sees source and candidate. This is not human double-blinding.",
+    "reuse": "All six source rules already exposed to PALO development; new candidates are same-family calibration. No independent holdout claim.",
+    "scoring": "Detection is altered calls on six mutations; false alarms are altered calls on twelve faithful controls. Missing, uncertain and invalid answers remain in fixed assigned denominators and have separate counts. No majority vote replaces reference labels.",
+    "uncertainty": "No confidence intervals or model ranking: one authored family and one reviewer pass cannot support population inference.",
+    "pipeline": "Frozen inputs -> model review -> strict response validation -> draft-label comparison -> source-bound review export -> publication. This is the calibration harness, not an application ingestion/performance test.",
+    "cost_policy": "No more than USD 40 cumulative account usage plus unknown reserve; initial Fable request bounded below USD 1; web subscriptions excluded from marginal API accounting."
+  },
+  "lexical_baseline": {
+    "name": "Exact string equality",
+    "rule": "faithful iff candidate bytes equal source bytes; otherwise altered. Post-hoc diagnostic suggested by reviewers, not a preregistered comparator.",
+    "counts": {
+      "assigned": 18,
+      "classified": 18,
+      "missing": 0,
+      "invalid": 0,
+      "uncertain": 0,
+      "mutations": 6,
+      "detected": 6,
+      "faithful_controls": 12,
+      "false_alarms": 6,
+      "missed_mutations": 0,
+      "mutations_unresolved": 0,
+      "controls_unresolved": 0,
+      "detection_assigned_ratio": 1.0,
+      "false_alarm_assigned_ratio": 0.5,
+      "false_alarm_rate_interpretable": true
+    }
+  },
+  "source_eligibility": {
+    "purchase-approval:R03": {
+      "qualified": false,
+      "blockers": [
+        "independent_identity_and_custody_not_verified",
+        "source_exposed_to_engineering",
+        "labels_not_human_adjudicated"
+      ]
+    },
+    "purchase-approval:R04": {
+      "qualified": false,
+      "blockers": [
+        "independent_identity_and_custody_not_verified",
+        "source_exposed_to_engineering",
+        "labels_not_human_adjudicated"
+      ]
+    },
+    "supplier-onboarding:R02": {
+      "qualified": false,
+      "blockers": [
+        "independent_identity_and_custody_not_verified",
+        "source_exposed_to_engineering",
+        "labels_not_human_adjudicated"
+      ]
+    },
+    "supplier-onboarding:R08": {
+      "qualified": false,
+      "blockers": [
+        "independent_identity_and_custody_not_verified",
+        "source_exposed_to_engineering",
+        "labels_not_human_adjudicated"
+      ]
+    },
+    "supplier-onboarding:R05": {
+      "qualified": false,
+      "blockers": [
+        "independent_identity_and_custody_not_verified",
+        "source_exposed_to_engineering",
+        "labels_not_human_adjudicated"
+      ]
+    },
+    "invoice-matching:R01": {
+      "qualified": false,
+      "blockers": [
+        "independent_identity_and_custody_not_verified",
+        "source_exposed_to_engineering",
+        "labels_not_human_adjudicated"
+      ]
+    }
+  },
+  "results": [
+    {
+      "reviewer": "fable",
+      "strict_envelope_valid": true,
+      "structural_error": null,
+      "semantic_status": "assessed_against_draft_labels",
+      "review_complete": true,
+      "review_determinate": true,
+      "counts": {
+        "assigned": 18,
+        "classified": 18,
+        "missing": 0,
+        "invalid": 0,
+        "uncertain": 0,
+        "mutations": 6,
+        "detected": 6,
+        "faithful_controls": 12,
+        "false_alarms": 0,
+        "missed_mutations": 0,
+        "mutations_unresolved": 0,
+        "controls_unresolved": 0,
+        "detection_assigned_ratio": 1.0,
+        "false_alarm_assigned_ratio": 0.0,
+        "false_alarm_rate_interpretable": true
+      },
+      "by_case": {
+        "invoice-matching": {
+          "assigned": 3,
+          "classified": 3,
+          "missing": 0,
+          "invalid": 0,
+          "uncertain": 0,
+          "mutations": 1,
+          "detected": 1,
+          "faithful_controls": 2,
+          "false_alarms": 0,
+          "missed_mutations": 0,
+          "mutations_unresolved": 0,
+          "controls_unresolved": 0,
+          "detection_assigned_ratio": 1.0,
+          "false_alarm_assigned_ratio": 0.0,
+          "false_alarm_rate_interpretable": true
+        },
+        "purchase-approval": {
+          "assigned": 6,
+          "classified": 6,
+          "missing": 0,
+          "invalid": 0,
+          "uncertain": 0,
+          "mutations": 2,
+          "detected": 2,
+          "faithful_controls": 4,
+          "false_alarms": 0,
+          "missed_mutations": 0,
+          "mutations_unresolved": 0,
+          "controls_unresolved": 0,
+          "detection_assigned_ratio": 1.0,
+          "false_alarm_assigned_ratio": 0.0,
+          "false_alarm_rate_interpretable": true
+        },
+        "supplier-onboarding": {
+          "assigned": 9,
+          "classified": 9,
+          "missing": 0,
+          "invalid": 0,
+          "uncertain": 0,
+          "mutations": 3,
+          "detected": 3,
+          "faithful_controls": 6,
+          "false_alarms": 0,
+          "missed_mutations": 0,
+          "mutations_unresolved": 0,
+          "controls_unresolved": 0,
+          "detection_assigned_ratio": 1.0,
+          "false_alarm_assigned_ratio": 0.0,
+          "false_alarm_rate_interpretable": true
+        }
+      },
+      "by_dimension": {
+        "condition": {
+          "assigned": 3,
+          "classified": 3,
+          "missing": 0,
+          "invalid": 0,
+          "uncertain": 0,
+          "mutations": 1,
+          "detected": 1,
+          "faithful_controls": 2,
+          "false_alarms": 0,
+          "missed_mutations": 0,
+          "mutations_unresolved": 0,
+          "controls_unresolved": 0,
+          "detection_assigned_ratio": 1.0,
+          "false_alarm_assigned_ratio": 0.0,
+          "false_alarm_rate_interpretable": true
+        },
+        "exception": {
+          "assigned": 3,
+          "classified": 3,
+          "missing": 0,
+          "invalid": 0,
+          "uncertain": 0,
+          "mutations": 1,
+          "detected": 1,
+          "faithful_controls": 2,
+          "false_alarms": 0,
+          "missed_mutations": 0,
+          "mutations_unresolved": 0,
+          "controls_unresolved": 0,
+          "detection_assigned_ratio": 1.0,
+          "false_alarm_assigned_ratio": 0.0,
+          "false_alarm_rate_interpretable": true
+        },
+        "modality": {
+          "assigned": 3,
+          "classified": 3,
+          "missing": 0,
+          "invalid": 0,
+          "uncertain": 0,
+          "mutations": 1,
+          "detected": 1,
+          "faithful_controls": 2,
+          "false_alarms": 0,
+          "missed_mutations": 0,
+          "mutations_unresolved": 0,
+          "controls_unresolved": 0,
+          "detection_assigned_ratio": 1.0,
+          "false_alarm_assigned_ratio": 0.0,
+          "false_alarm_rate_interpretable": true
+        },
+        "negation": {
+          "assigned": 3,
+          "classified": 3,
+          "missing": 0,
+          "invalid": 0,
+          "uncertain": 0,
+          "mutations": 1,
+          "detected": 1,
+          "faithful_controls": 2,
+          "false_alarms": 0,
+          "missed_mutations": 0,
+          "mutations_unresolved": 0,
+          "controls_unresolved": 0,
+          "detection_assigned_ratio": 1.0,
+          "false_alarm_assigned_ratio": 0.0,
+          "false_alarm_rate_interpretable": true
+        },
+        "ownership": {
+          "assigned": 3,
+          "classified": 3,
+          "missing": 0,
+          "invalid": 0,
+          "uncertain": 0,
+          "mutations": 1,
+          "detected": 1,
+          "faithful_controls": 2,
+          "false_alarms": 0,
+          "missed_mutations": 0,
+          "mutations_unresolved": 0,
+          "controls_unresolved": 0,
+          "detection_assigned_ratio": 1.0,
+          "false_alarm_assigned_ratio": 0.0,
+          "false_alarm_rate_interpretable": true
+        },
+        "threshold": {
+          "assigned": 3,
+          "classified": 3,
+          "missing": 0,
+          "invalid": 0,
+          "uncertain": 0,
+          "mutations": 1,
+          "detected": 1,
+          "faithful_controls": 2,
+          "false_alarms": 0,
+          "missed_mutations": 0,
+          "mutations_unresolved": 0,
+          "controls_unresolved": 0,
+          "detection_assigned_ratio": 1.0,
+          "false_alarm_assigned_ratio": 0.0,
+          "false_alarm_rate_interpretable": true
+        }
+      },
+      "by_family": {
+        "synthetic-procurement-author-1": {
+          "assigned": 18,
+          "classified": 18,
+          "missing": 0,
+          "invalid": 0,
+          "uncertain": 0,
+          "mutations": 6,
+          "detected": 6,
+          "faithful_controls": 12,
+          "false_alarms": 0,
+          "missed_mutations": 0,
+          "mutations_unresolved": 0,
+          "controls_unresolved": 0,
+          "detection_assigned_ratio": 1.0,
+          "false_alarm_assigned_ratio": 0.0,
+          "false_alarm_rate_interpretable": true
+        }
+      },
+      "review": {
+        "verdict": "The plan is sound as internal engineering hygiene and worth building, but it does not by itself support any qualified, independent or validated claim. It makes results traceable; it does not validate the proposition bank, the judge or the calibration set. The findings below block a qualified claim, not the implementation.",
+        "blocking_findings": [
+          "The calibration packet is too easy to mean much. Its 18 pairs are 6 source rules, each with one verbatim copy, one paraphrase and one blatant reversal (polarity, role swap, and/or, may/must, boundary). A judge using lexical overlap plus negation detection would score near-perfectly, and the one-of-each layout per source is guessable. There are no subtle negatives such as a dropped condition, narrowed scope, added exception or changed actor, and only one genuinely ambiguous item (C10). Agreement here is a smoke test, not evidence of semantic judging ability.",
+          "The 18 pairs are 6 clusters from one procurement family, not 18 independent observations. Skipping the bootstrap for one family is right, but per-item percentages or intervals would still overstate the evidence, and nothing generalises beyond this family.",
+          "The proposition bank is itself unvalidated and is a tuning surface. 'Allowed alternatives' can be widened after seeing model outputs until a favoured model passes. If the same engineers or the same LLM write the bank, the candidates and the judge, agreement is circular. The plan states no freeze-before-scoring rule and no audit trail for bank edits.",
+          "The hash binding is underspecified. It does not say what is hashed (raw bytes or normalised text) or whether the bank version, judge prompt, judge model and decoding settings are bound in the same manifest. Attack: change '70 or more' to '70 or over 70' or edit a threshold while the bank still points at the old proposition. Second attack: swap the judge prompt and leave the source hash valid.",
+          "Fixed denominators can still be gamed unless the handling of each class is frozen. A judge that returns 'uncertain' on hard items inflates agreement among decided items. A model that abstains on everything must not look safe. A correct abstention on an unanswerable item must not be counted as a failure. The plan does not say whether missing, invalid and uncertain count as failures or are reported separately.",
+          "Structural and semantic separation breaks if the parser is lenient. Silently stripping Markdown fences, repairing JSON or de-duplicating IDs leaks structural failures into semantic credit. Semantic status for structurally invalid output must be 'not assessed', never pass and never silently zero.",
+          "Strict ID and schema checks do not check content. A schema-valid export can carry a reason that quotes text not in the source, or a verdict steered by instruction-like text embedded in a source or candidate. Exported LLM drafts also anchor human reviewers: decisions made after seeing drafts are not independent.",
+          "The exposure registry is self-reported and 'exposure' is undefined. It should cover prompts, few-shot examples, logs, judge calibration and paraphrases or derivatives of exposed sources. The six source rules in this packet are now exposed to this reviewer and cannot later be called holdout.",
+          "'Named independent human decisions' names people but does not define independence. Missing criteria: not a bank or candidate author, blind to model identity and LLM drafts, a minimum number of reviewers, an adjudication rule and recorded disagreement. This review is not such a decision.",
+          "Keeping the historic 18-model scores unchanged is correct but creates a comparability trap. They were produced under a different method and must not share a table, trend line or ranking with new versioned results unless labelled legacy. They must not inherit new terminology such as 'source-bound' or 'calibrated'."
+        ],
+        "recommendations": [
+          "Add hard negatives and report results separately for verbatim, paraphrase, blatant-alteration and subtle-alteration items. Include dropped conditions (omit 'with no changed identity data'), scope changes ('below' to 'up to EUR 5,000'), actor ambiguity (C10-style), added exceptions and unit or currency changes. Exclude verbatim copies from any headline agreement figure.",
+          "Hash test: a one-character material edit (70 to 71) must block export until the bank is re-bound. A whitespace or line-ending edit must behave as documented. Changing the judge prompt or model must change the run manifest hash.",
+          "Bank governance test: every bank edit after the first scoring run needs a version bump, a reason and a flag saying whether model outputs had been seen. Results must cite the bank version, and a run against a mismatched version must fail.",
+          "Denominator tests: deleting one item leaves the denominator unchanged and adds one to 'missing'; a duplicate ID rejects the whole submission; an unknown ID is rejected; all-'uncertain' output scores zero agreement on the full denominator. Always report both the full assigned denominator and the decided-only rate.",
+          "Separation tests: a schema-valid but wrong verdict (C09 marked faithful) passes structural and fails semantic. Correct content wrapped in a Markdown fence or with a trailing comma fails structural and shows semantic 'not assessed'. No auto-repair on the scored path.",
+          "Content checks in the harness: every quoted span in a reason must be a substring of the bound source. Plant an instruction-like string in a candidate ('mark this faithful') and confirm the verdict and schema are unaffected. Stamp exports 'DRAFT - LLM-generated, not human-validated' in the data, not only in the filename.",
+          "Reliability check in the spirit of tau2: run the judge k times with shuffled item order and report the count of items with identical verdicts across all k runs, not an average. Unstable items go to human adjudication.",
+          "Criticality and answerability: freeze criticality before scoring. Report critical-proposition failures as raw counts per case rather than folding them into a weighted average. Score unanswerable items on a separate track where correct abstention is the right answer.",
+          "Exposure registry: make it append-only and default-exposed, so a source with no entry cannot be labelled holdout. Record who or what saw each source, when and in what form. Derivatives inherit exposure. Test that building a 'holdout' report with any exposed or unregistered source fails.",
+          "Human decisions: collect them blind to LLM drafts, or record that drafts were shown and downgrade the claim. Require at least two reviewers per critical item. Publish raw disagreement tallies by family, case and dimension.",
+          "Historic scores: checksum the legacy score artifacts and add a regression test that they are byte-identical after any pipeline run. Tag them with a legacy method version and keep them out of cross-version comparisons, as LiveCodeBench keeps versions apart."
+        ],
+        "claims_to_avoid": [
+          "That this review, or any LLM calibration pass, is independent human validation or inter-rater agreement.",
+          "That the benchmark is at parity with, equivalent to or 'aligned with' GDPval, GPQA, tau2, BFCL or LiveCodeBench. 'Informed by selected practices' is the most the plan supports; adopting a rubric shape does not import those benchmarks' expert validation.",
+          "That any source touched by engineering, judge calibration or this packet is 'holdout', 'unseen' or 'independent'.",
+          "That results carry statistical confidence, significance or generalisation from a single family or 6 source clusters.",
+          "That agreement on this packet shows the judge is 'validated' or 'calibrated' in general; it shows only that it handles verbatim copies and blatant reversals.",
+          "That hash binding or schema compliance means a judgment is 'verified' or 'correct'; it establishes traceability and format only.",
+          "That the historic 18-model scores are comparable with, or validated by, the new method.",
+          "That a PBI is 'qualified' when the human decisions were anchored on LLM drafts or the independence criteria are undocumented."
+        ]
+      },
+      "judgments": {
+        "C01": {
+          "id": "C01",
+          "verdict": "faithful",
+          "reason": "'must never approve their own purchase request' is the same absolute prohibition as 'No requester is permitted to approve their own'."
+        },
+        "C02": {
+          "id": "C02",
+          "verdict": "faithful",
+          "reason": "'exempt from repeating identity verification' equals 'need not repeat'; the conditions 'existing supplier' and 'no changed identity data' are both kept."
+        },
+        "C03": {
+          "id": "C03",
+          "verdict": "faithful",
+          "reason": "Verbatim copy: 'The Compliance officer performs identity verification; the buyer does not perform it.'"
+        },
+        "C04": {
+          "id": "C04",
+          "verdict": "faithful",
+          "reason": "'requires both an existing purchase order and a receipt record' is preserved as a conjunction by 'as well as'; 'before automatic payment' is kept."
+        },
+        "C05": {
+          "id": "C05",
+          "verdict": "faithful",
+          "reason": "Verbatim copy: 'exempt from repeating identity verification' under the same conditions."
+        },
+        "C06": {
+          "id": "C06",
+          "verdict": "faithful",
+          "reason": "Verbatim copy: 'must never approve their own purchase request'."
+        },
+        "C07": {
+          "id": "C07",
+          "verdict": "faithful",
+          "reason": "Verbatim copy: 'may approve it but is not obliged to do so'."
+        },
+        "C08": {
+          "id": "C08",
+          "verdict": "faithful",
+          "reason": "Verbatim copy: 'requires both an existing purchase order and a receipt record'."
+        },
+        "C09": {
+          "id": "C09",
+          "verdict": "altered",
+          "reason": "Source 'requires both ... and ...' is a conjunction; the candidate's 'either ... or ...; either alone suffices' turns it into a disjunction and weakens the control."
+        },
+        "C10": {
+          "id": "C10",
+          "verdict": "faithful",
+          "reason": "'may approve it but is not obliged to do so' is permission without obligation, which 'optional' captures. This is the lowest-confidence item: the passive 'approval ... is optional' drops the duty-bearer and could be misread as 'the purchase may proceed without approval', which the source does not say. A strict panel could defensibly mark it uncertain."
+        },
+        "C11": {
+          "id": "C11",
+          "verdict": "faithful",
+          "reason": "Verbatim copy: 'A risk score of 70 or more is classified as high risk.'"
+        },
+        "C12": {
+          "id": "C12",
+          "verdict": "faithful",
+          "reason": "'70 or more' equals 'greater than or equal to 70'; the boundary value 70 stays high risk."
+        },
+        "C13": {
+          "id": "C13",
+          "verdict": "altered",
+          "reason": "Source 'must never approve their own' is a prohibition; the candidate's 'is permitted to approve their own' reverses it."
+        },
+        "C14": {
+          "id": "C14",
+          "verdict": "faithful",
+          "reason": "'The Compliance officer performs ...; the buyer does not perform it' keeps the same role assignment and exclusion in 'by the Compliance officer, not by the buyer'."
+        },
+        "C15": {
+          "id": "C15",
+          "verdict": "altered",
+          "reason": "Source 'may approve it but is not obliged to do so' is discretionary; the candidate's 'must approve them' imposes an obligation."
+        },
+        "C16": {
+          "id": "C16",
+          "verdict": "altered",
+          "reason": "Source '70 or more' includes exactly 70 as high risk; the candidate excludes 70 ('greater than 70') and adds a 'low risk' classification that is not in the source."
+        },
+        "C17": {
+          "id": "C17",
+          "verdict": "altered",
+          "reason": "Source 'The Compliance officer performs identity verification; the buyer does not' has its roles swapped in the candidate."
+        },
+        "C18": {
+          "id": "C18",
+          "verdict": "altered",
+          "reason": "Source 'is exempt from repeating identity verification' becomes 'must repeat identity verification', turning an exemption into an obligation."
+        }
+      },
+      "receipt": {
+        "model": "anthropic/claude-fable-5.2",
+        "provider": "Anthropic",
+        "generation_id": "gen-1794416191-rnkXIiDI10UkMvsAMxH6",
+        "reasoning": "high",
+        "started_at": "2026-11-11T16:56:31.049529+00:00",
+        "elapsed_seconds": 88.01965062499221,
+        "finish_reason": "stop",
+        "usage": {
+          "prompt_tokens": 1887,
+          "completion_tokens": 8254,
+          "total_tokens": 10141,
+          "cost": 0.345256,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.345256,
+            "upstream_inference_prompt_cost": 0.015096,
+            "upstream_inference_completions_cost": 0.33016
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 4473,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "prompt_sha256": "673371ec1e08cdceae43daf1d2d0ac9920357a86c3aecee9b9aa6a0fb2b3cf8a",
+        "raw_text_sha256": "0bb64385bc596d5d05942831482c0bce25cebf00edf36ce46c7e6dbc7e5fe1e9",
+        "capture": "provider API response bytes preserved",
+        "attempts": 1
+      }
+    },
+    {
+      "reviewer": "glm",
+      "strict_envelope_valid": false,
+      "structural_error": "Expecting ':' delimiter: line 1 column 8457 (char 8456)",
+      "semantic_status": "not_assessed",
+      "review_complete": false,
+      "review_determinate": false,
+      "counts": {
+        "assigned": 18,
+        "classified": 0,
+        "missing": 0,
+        "invalid": 18,
+        "uncertain": 0,
+        "mutations": 6,
+        "detected": 0,
+        "faithful_controls": 12,
+        "false_alarms": 0,
+        "missed_mutations": 0,
+        "mutations_unresolved": 6,
+        "controls_unresolved": 12,
+        "detection_assigned_ratio": null,
+        "false_alarm_assigned_ratio": null,
+        "false_alarm_rate_interpretable": false
+      },
+      "by_case": {
+        "invoice-matching": {
+          "assigned": 3,
+          "classified": 0,
+          "missing": 0,
+          "invalid": 3,
+          "uncertain": 0,
+          "mutations": 1,
+          "detected": 0,
+          "faithful_controls": 2,
+          "false_alarms": 0,
+          "missed_mutations": 0,
+          "mutations_unresolved": 1,
+          "controls_unresolved": 2,
+          "detection_assigned_ratio": null,
+          "false_alarm_assigned_ratio": null,
+          "false_alarm_rate_interpretable": false
+        },
+        "purchase-approval": {
+          "assigned": 6,
+          "classified": 0,
+          "missing": 0,
+          "invalid": 6,
+          "uncertain": 0,
+          "mutations": 2,
+          "detected": 0,
+          "faithful_controls": 4,
+          "false_alarms": 0,
+          "missed_mutations": 0,
+          "mutations_unresolved": 2,
+          "controls_unresolved": 4,
+          "detection_assigned_ratio": null,
+          "false_alarm_assigned_ratio": null,
+          "false_alarm_rate_interpretable": false
+        },
+        "supplier-onboarding": {
+          "assigned": 9,
+          "classified": 0,
+          "missing": 0,
+          "invalid": 9,
+          "uncertain": 0,
+          "mutations": 3,
+          "detected": 0,
+          "faithful_controls": 6,
+          "false_alarms": 0,
+          "missed_mutations": 0,
+          "mutations_unresolved": 3,
+          "controls_unresolved": 6,
+          "detection_assigned_ratio": null,
+          "false_alarm_assigned_ratio": null,
+          "false_alarm_rate_interpretable": false
+        }
+      },
+      "by_dimension": {
+        "condition": {
+          "assigned": 3,
+          "classified": 0,
+          "missing": 0,
+          "invalid": 3,
+          "uncertain": 0,
+          "mutations": 1,
+          "detected": 0,
+          "faithful_controls": 2,
+          "false_alarms": 0,
+          "missed_mutations": 0,
+          "mutations_unresolved": 1,
+          "controls_unresolved": 2,
+          "detection_assigned_ratio": null,
+          "false_alarm_assigned_ratio": null,
+          "false_alarm_rate_interpretable": false
+        },
+        "exception": {
+          "assigned": 3,
+          "classified": 0,
+          "missing": 0,
+          "invalid": 3,
+          "uncertain": 0,
+          "mutations": 1,
+          "detected": 0,
+          "faithful_controls": 2,
+          "false_alarms": 0,
+          "missed_mutations": 0,
+          "mutations_unresolved": 1,
+          "controls_unresolved": 2,
+          "detection_assigned_ratio": null,
+          "false_alarm_assigned_ratio": null,
+          "false_alarm_rate_interpretable": false
+        },
+        "modality": {
+          "assigned": 3,
+          "classified": 0,
+          "missing": 0,
+          "invalid": 3,
+          "uncertain": 0,
+          "mutations": 1,
+          "detected": 0,
+          "faithful_controls": 2,
+          "false_alarms": 0,
+          "missed_mutations": 0,
+          "mutations_unresolved": 1,
+          "controls_unresolved": 2,
+          "detection_assigned_ratio": null,
+          "false_alarm_assigned_ratio": null,
+          "false_alarm_rate_interpretable": false
+        },
+        "negation": {
+          "assigned": 3,
+          "classified": 0,
+          "missing": 0,
+          "invalid": 3,
+          "uncertain": 0,
+          "mutations": 1,
+          "detected": 0,
+          "faithful_controls": 2,
+          "false_alarms": 0,
+          "missed_mutations": 0,
+          "mutations_unresolved": 1,
+          "controls_unresolved": 2,
+          "detection_assigned_ratio": null,
+          "false_alarm_assigned_ratio": null,
+          "false_alarm_rate_interpretable": false
+        },
+        "ownership": {
+          "assigned": 3,
+          "classified": 0,
+          "missing": 0,
+          "invalid": 3,
+          "uncertain": 0,
+          "mutations": 1,
+          "detected": 0,
+          "faithful_controls": 2,
+          "false_alarms": 0,
+          "missed_mutations": 0,
+          "mutations_unresolved": 1,
+          "controls_unresolved": 2,
+          "detection_assigned_ratio": null,
+          "false_alarm_assigned_ratio": null,
+          "false_alarm_rate_interpretable": false
+        },
+        "threshold": {
+          "assigned": 3,
+          "classified": 0,
+          "missing": 0,
+          "invalid": 3,
+          "uncertain": 0,
+          "mutations": 1,
+          "detected": 0,
+          "faithful_controls": 2,
+          "false_alarms": 0,
+          "missed_mutations": 0,
+          "mutations_unresolved": 1,
+          "controls_unresolved": 2,
+          "detection_assigned_ratio": null,
+          "false_alarm_assigned_ratio": null,
+          "false_alarm_rate_interpretable": false
+        }
+      },
+      "by_family": {
+        "synthetic-procurement-author-1": {
+          "assigned": 18,
+          "classified": 0,
+          "missing": 0,
+          "invalid": 18,
+          "uncertain": 0,
+          "mutations": 6,
+          "detected": 0,
+          "faithful_controls": 12,
+          "false_alarms": 0,
+          "missed_mutations": 0,
+          "mutations_unresolved": 6,
+          "controls_unresolved": 12,
+          "detection_assigned_ratio": null,
+          "false_alarm_assigned_ratio": null,
+          "false_alarm_rate_interpretable": false
+        }
+      },
+      "review": null,
+      "judgments": {},
+      "receipt": {
+        "model": "GLM-5.3",
+        "reasoning": "Max",
+        "interface": "ZCode desktop",
+        "observed_completed_at": "2026-11-11T17:09:14.207Z",
+        "prompt_sha256": "673371ec1e08cdceae43daf1d2d0ac9920357a86c3aecee9b9aa6a0fb2b3cf8a",
+        "submitted_prompt_sha256": "e6a6ef019014fb046f7125223c4a20bbd8a74fece1e66c9ec591625a086b5978",
+        "raw_text_sha256": "03f72b80630b588183a19caf3adfd9956966ea82c4dd67974bf3bfc3a2a48db1",
+        "capture": "Native Copy button, pasted into unsent input and read from full accessibility Value. Input then cleared; no answer edits.",
+        "prompt_difference": "Common packet plus read-only/no-tools desktop safety instruction.",
+        "web_attempt": "Blocked by security verification, no usable response captured; desktop used at user request.",
+        "openrouter_calls": 0
+      }
+    },
+    {
+      "reviewer": "gemini",
+      "strict_envelope_valid": false,
+      "structural_error": "Expecting ',' delimiter: line 1 column 109 (char 108)",
+      "semantic_status": "not_assessed",
+      "review_complete": false,
+      "review_determinate": false,
+      "counts": {
+        "assigned": 18,
+        "classified": 0,
+        "missing": 0,
+        "invalid": 18,
+        "uncertain": 0,
+        "mutations": 6,
+        "detected": 0,
+        "faithful_controls": 12,
+        "false_alarms": 0,
+        "missed_mutations": 0,
+        "mutations_unresolved": 6,
+        "controls_unresolved": 12,
+        "detection_assigned_ratio": null,
+        "false_alarm_assigned_ratio": null,
+        "false_alarm_rate_interpretable": false
+      },
+      "by_case": {
+        "invoice-matching": {
+          "assigned": 3,
+          "classified": 0,
+          "missing": 0,
+          "invalid": 3,
+          "uncertain": 0,
+          "mutations": 1,
+          "detected": 0,
+          "faithful_controls": 2,
+          "false_alarms": 0,
+          "missed_mutations": 0,
+          "mutations_unresolved": 1,
+          "controls_unresolved": 2,
+          "detection_assigned_ratio": null,
+          "false_alarm_assigned_ratio": null,
+          "false_alarm_rate_interpretable": false
+        },
+        "purchase-approval": {
+          "assigned": 6,
+          "classified": 0,
+          "missing": 0,
+          "invalid": 6,
+          "uncertain": 0,
+          "mutations": 2,
+          "detected": 0,
+          "faithful_controls": 4,
+          "false_alarms": 0,
+          "missed_mutations": 0,
+          "mutations_unresolved": 2,
+          "controls_unresolved": 4,
+          "detection_assigned_ratio": null,
+          "false_alarm_assigned_ratio": null,
+          "false_alarm_rate_interpretable": false
+        },
+        "supplier-onboarding": {
+          "assigned": 9,
+          "classified": 0,
+          "missing": 0,
+          "invalid": 9,
+          "uncertain": 0,
+          "mutations": 3,
+          "detected": 0,
+          "faithful_controls": 6,
+          "false_alarms": 0,
+          "missed_mutations": 0,
+          "mutations_unresolved": 3,
+          "controls_unresolved": 6,
+          "detection_assigned_ratio": null,
+          "false_alarm_assigned_ratio": null,
+          "false_alarm_rate_interpretable": false
+        }
+      },
+      "by_dimension": {
+        "condition": {
+          "assigned": 3,
+          "classified": 0,
+          "missing": 0,
+          "invalid": 3,
+          "uncertain": 0,
+          "mutations": 1,
+          "detected": 0,
+          "faithful_controls": 2,
+          "false_alarms": 0,
+          "missed_mutations": 0,
+          "mutations_unresolved": 1,
+          "controls_unresolved": 2,
+          "detection_assigned_ratio": null,
+          "false_alarm_assigned_ratio": null,
+          "false_alarm_rate_interpretable": false
+        },
+        "exception": {
+          "assigned": 3,
+          "classified": 0,
+          "missing": 0,
+          "invalid": 3,
+          "uncertain": 0,
+          "mutations": 1,
+          "detected": 0,
+          "faithful_controls": 2,
+          "false_alarms": 0,
+          "missed_mutations": 0,
+          "mutations_unresolved": 1,
+          "controls_unresolved": 2,
+          "detection_assigned_ratio": null,
+          "false_alarm_assigned_ratio": null,
+          "false_alarm_rate_interpretable": false
+        },
+        "modality": {
+          "assigned": 3,
+          "classified": 0,
+          "missing": 0,
+          "invalid": 3,
+          "uncertain": 0,
+          "mutations": 1,
+          "detected": 0,
+          "faithful_controls": 2,
+          "false_alarms": 0,
+          "missed_mutations": 0,
+          "mutations_unresolved": 1,
+          "controls_unresolved": 2,
+          "detection_assigned_ratio": null,
+          "false_alarm_assigned_ratio": null,
+          "false_alarm_rate_interpretable": false
+        },
+        "negation": {
+          "assigned": 3,
+          "classified": 0,
+          "missing": 0,
+          "invalid": 3,
+          "uncertain": 0,
+          "mutations": 1,
+          "detected": 0,
+          "faithful_controls": 2,
+          "false_alarms": 0,
+          "missed_mutations": 0,
+          "mutations_unresolved": 1,
+          "controls_unresolved": 2,
+          "detection_assigned_ratio": null,
+          "false_alarm_assigned_ratio": null,
+          "false_alarm_rate_interpretable": false
+        },
+        "ownership": {
+          "assigned": 3,
+          "classified": 0,
+          "missing": 0,
+          "invalid": 3,
+          "uncertain": 0,
+          "mutations": 1,
+          "detected": 0,
+          "faithful_controls": 2,
+          "false_alarms": 0,
+          "missed_mutations": 0,
+          "mutations_unresolved": 1,
+          "controls_unresolved": 2,
+          "detection_assigned_ratio": null,
+          "false_alarm_assigned_ratio": null,
+          "false_alarm_rate_interpretable": false
+        },
+        "threshold": {
+          "assigned": 3,
+          "classified": 0,
+          "missing": 0,
+          "invalid": 3,
+          "uncertain": 0,
+          "mutations": 1,
+          "detected": 0,
+          "faithful_controls": 2,
+          "false_alarms": 0,
+          "missed_mutations": 0,
+          "mutations_unresolved": 1,
+          "controls_unresolved": 2,
+          "detection_assigned_ratio": null,
+          "false_alarm_assigned_ratio": null,
+          "false_alarm_rate_interpretable": false
+        }
+      },
+      "by_family": {
+        "synthetic-procurement-author-1": {
+          "assigned": 18,
+          "classified": 0,
+          "missing": 0,
+          "invalid": 18,
+          "uncertain": 0,
+          "mutations": 6,
+          "detected": 0,
+          "faithful_controls": 12,
+          "false_alarms": 0,
+          "missed_mutations": 0,
+          "mutations_unresolved": 6,
+          "controls_unresolved": 12,
+          "detection_assigned_ratio": null,
+          "false_alarm_assigned_ratio": null,
+          "false_alarm_rate_interpretable": false
+        }
+      },
+      "review": null,
+      "judgments": {},
+      "receipt": {
+        "model": "Gemini 4 Argon",
+        "reasoning": "High",
+        "interface": "Gemini web",
+        "observed_completed_at": "2026-11-11T17:04:02.639Z",
+        "prompt_sha256": "673371ec1e08cdceae43daf1d2d0ac9920357a86c3aecee9b9aa6a0fb2b3cf8a",
+        "raw_text_sha256": "c25048c1cd33afdad9b0014631338be06fa7a7a621fe088edcf80ac59333c4f3",
+        "capture": "Response Copy control text; not provider API bytes. Unescaped quotation marks retained without repair.",
+        "attempts": 2,
+        "prior_attempt": "Operator accidentally interrupted first browser generation before visible answer; same prompt resubmitted; no response available for first attempt.",
+        "openrouter_calls": 0
+      }
+    }
+  ],
+  "review_export": [
+    {
+      "id": "C01",
+      "source": "A requester must never approve their own purchase request.",
+      "candidate": "No requester is permitted to approve their own purchase request.",
+      "rule_id": "purchase-approval:R04",
+      "expected": "faithful",
+      "variant": "paraphrase",
+      "dimension": "negation",
+      "case": "purchase-approval",
+      "source_sha256": "15ae2f6e0dc08e6d9118059df20bed6f77828b93386f140d605c623e0fc0398c",
+      "reuse_key": "d0d7549efadf1fd9c8707e616fb79bb9ef923e831995dd8ffc781fb11da72f1f",
+      "label_status": "assistant_draft",
+      "reviews": {
+        "fable": {
+          "id": "C01",
+          "verdict": "faithful",
+          "reason": "'must never approve their own purchase request' is the same absolute prohibition as 'No requester is permitted to approve their own'."
+        },
+        "glm": null,
+        "gemini": null
+      },
+      "vote_counts": {
+        "faithful": 1
+      },
+      "has_dissent": false,
+      "agreement": "incomplete"
+    },
+    {
+      "id": "C02",
+      "source": "A renewal for an existing supplier with no changed identity data is exempt from repeating identity verification.",
+      "candidate": "Existing suppliers renewing with unchanged identity data need not repeat identity verification.",
+      "rule_id": "supplier-onboarding:R05",
+      "expected": "faithful",
+      "variant": "paraphrase",
+      "dimension": "exception",
+      "case": "supplier-onboarding",
+      "source_sha256": "49040698f59f852ab8ef0d9b19b4ef1a9719886c9c3c8d439ff50a4ad6255ff8",
+      "reuse_key": "5b86fe8f393adc1575dbb0f271963388f59a359ef89b56d566487f75cc91df1c",
+      "label_status": "assistant_draft",
+      "reviews": {
+        "fable": {
+          "id": "C02",
+          "verdict": "faithful",
+          "reason": "'exempt from repeating identity verification' equals 'need not repeat'; the conditions 'existing supplier' and 'no changed identity data' are both kept."
+        },
+        "glm": null,
+        "gemini": null
+      },
+      "vote_counts": {
+        "faithful": 1
+      },
+      "has_dissent": false,
+      "agreement": "incomplete"
+    },
+    {
+      "id": "C03",
+      "source": "The Compliance officer performs identity verification; the buyer does not perform it.",
+      "candidate": "The Compliance officer performs identity verification; the buyer does not perform it.",
+      "rule_id": "supplier-onboarding:R02",
+      "expected": "faithful",
+      "variant": "unchanged",
+      "dimension": "ownership",
+      "case": "supplier-onboarding",
+      "source_sha256": "761b0da40884b9fd03fa50dc39c34fe17515be2e3a49eaddc7e659bab0339aa0",
+      "reuse_key": "4f919b0bdfe1b8a2f7c42e922e6a0c965d39528d88210c472b66022c61dfccdd",
+      "label_status": "assistant_draft",
+      "reviews": {
+        "fable": {
+          "id": "C03",
+          "verdict": "faithful",
+          "reason": "Verbatim copy: 'The Compliance officer performs identity verification; the buyer does not perform it.'"
+        },
+        "glm": null,
+        "gemini": null
+      },
+      "vote_counts": {
+        "faithful": 1
+      },
+      "has_dissent": false,
+      "agreement": "incomplete"
+    },
+    {
+      "id": "C04",
+      "source": "An invoice requires both an existing purchase order and a receipt record before automatic payment.",
+      "candidate": "Before automatic payment, an invoice needs an existing purchase order as well as a receipt record.",
+      "rule_id": "invoice-matching:R01",
+      "expected": "faithful",
+      "variant": "paraphrase",
+      "dimension": "condition",
+      "case": "invoice-matching",
+      "source_sha256": "51f06c206ba1a94737f9122ba4b3d469aff09d2f7654725be215f52017066caa",
+      "reuse_key": "301e23961753a0beb080893d767d823efda2be69428824cff120122b57fa74fe",
+      "label_status": "assistant_draft",
+      "reviews": {
+        "fable": {
+          "id": "C04",
+          "verdict": "faithful",
+          "reason": "'requires both an existing purchase order and a receipt record' is preserved as a conjunction by 'as well as'; 'before automatic payment' is kept."
+        },
+        "glm": null,
+        "gemini": null
+      },
+      "vote_counts": {
+        "faithful": 1
+      },
+      "has_dissent": false,
+      "agreement": "incomplete"
+    },
+    {
+      "id": "C05",
+      "source": "A renewal for an existing supplier with no changed identity data is exempt from repeating identity verification.",
+      "candidate": "A renewal for an existing supplier with no changed identity data is exempt from repeating identity verification.",
+      "rule_id": "supplier-onboarding:R05",
+      "expected": "faithful",
+      "variant": "unchanged",
+      "dimension": "exception",
+      "case": "supplier-onboarding",
+      "source_sha256": "49040698f59f852ab8ef0d9b19b4ef1a9719886c9c3c8d439ff50a4ad6255ff8",
+      "reuse_key": "586d98821e23e3c003a76e25634a2a2565349d1f4a94d62025d883a2c2fe1ded",
+      "label_status": "assistant_draft",
+      "reviews": {
+        "fable": {
+          "id": "C05",
+          "verdict": "faithful",
+          "reason": "Verbatim copy: 'exempt from repeating identity verification' under the same conditions."
+        },
+        "glm": null,
+        "gemini": null
+      },
+      "vote_counts": {
+        "faithful": 1
+      },
+      "has_dissent": false,
+      "agreement": "incomplete"
+    },
+    {
+      "id": "C06",
+      "source": "A requester must never approve their own purchase request.",
+      "candidate": "A requester must never approve their own purchase request.",
+      "rule_id": "purchase-approval:R04",
+      "expected": "faithful",
+      "variant": "unchanged",
+      "dimension": "negation",
+      "case": "purchase-approval",
+      "source_sha256": "15ae2f6e0dc08e6d9118059df20bed6f77828b93386f140d605c623e0fc0398c",
+      "reuse_key": "a2a318d4b56f97f319b8f36bca3757a9ab9c0b5f9cbc89c116c9111c78a4cdb7",
+      "label_status": "assistant_draft",
+      "reviews": {
+        "fable": {
+          "id": "C06",
+          "verdict": "faithful",
+          "reason": "Verbatim copy: 'must never approve their own purchase request'."
+        },
+        "glm": null,
+        "gemini": null
+      },
+      "vote_counts": {
+        "faithful": 1
+      },
+      "has_dissent": false,
+      "agreement": "incomplete"
+    },
+    {
+      "id": "C07",
+      "source": "For a purchase below EUR 5,000, the department manager may approve it but is not obliged to do so.",
+      "candidate": "For a purchase below EUR 5,000, the department manager may approve it but is not obliged to do so.",
+      "rule_id": "purchase-approval:R03",
+      "expected": "faithful",
+      "variant": "unchanged",
+      "dimension": "modality",
+      "case": "purchase-approval",
+      "source_sha256": "80161055123d3856982b2e5d5046a8d06544a43759c0c6043667d495ed60818b",
+      "reuse_key": "2417c400c8b1b65455e6ff80e29b0b8f9f5bcb1caa168cc5d0f82d5b1893a7ea",
+      "label_status": "assistant_draft",
+      "reviews": {
+        "fable": {
+          "id": "C07",
+          "verdict": "faithful",
+          "reason": "Verbatim copy: 'may approve it but is not obliged to do so'."
+        },
+        "glm": null,
+        "gemini": null
+      },
+      "vote_counts": {
+        "faithful": 1
+      },
+      "has_dissent": false,
+      "agreement": "incomplete"
+    },
+    {
+      "id": "C08",
+      "source": "An invoice requires both an existing purchase order and a receipt record before automatic payment.",
+      "candidate": "An invoice requires both an existing purchase order and a receipt record before automatic payment.",
+      "rule_id": "invoice-matching:R01",
+      "expected": "faithful",
+      "variant": "unchanged",
+      "dimension": "condition",
+      "case": "invoice-matching",
+      "source_sha256": "51f06c206ba1a94737f9122ba4b3d469aff09d2f7654725be215f52017066caa",
+      "reuse_key": "49de0fb221c71b0a9f7b3143598b55d7469c1e51325d3dc7043659783288e0b0",
+      "label_status": "assistant_draft",
+      "reviews": {
+        "fable": {
+          "id": "C08",
+          "verdict": "faithful",
+          "reason": "Verbatim copy: 'requires both an existing purchase order and a receipt record'."
+        },
+        "glm": null,
+        "gemini": null
+      },
+      "vote_counts": {
+        "faithful": 1
+      },
+      "has_dissent": false,
+      "agreement": "incomplete"
+    },
+    {
+      "id": "C09",
+      "source": "An invoice requires both an existing purchase order and a receipt record before automatic payment.",
+      "candidate": "Before automatic payment, an invoice needs either an existing purchase order or a receipt record; either alone suffices.",
+      "rule_id": "invoice-matching:R01",
+      "expected": "altered",
+      "variant": "mutation",
+      "dimension": "condition",
+      "case": "invoice-matching",
+      "source_sha256": "51f06c206ba1a94737f9122ba4b3d469aff09d2f7654725be215f52017066caa",
+      "reuse_key": "c4d3becce192bde1a6315ddbe1319f12e03c3d705440d77921399d0efbf8510d",
+      "label_status": "assistant_draft",
+      "reviews": {
+        "fable": {
+          "id": "C09",
+          "verdict": "altered",
+          "reason": "Source 'requires both ... and ...' is a conjunction; the candidate's 'either ... or ...; either alone suffices' turns it into a disjunction and weakens the control."
+        },
+        "glm": null,
+        "gemini": null
+      },
+      "vote_counts": {
+        "altered": 1
+      },
+      "has_dissent": false,
+      "agreement": "incomplete"
+    },
+    {
+      "id": "C10",
+      "source": "For a purchase below EUR 5,000, the department manager may approve it but is not obliged to do so.",
+      "candidate": "For purchases below EUR 5,000, approval by the department manager is optional.",
+      "rule_id": "purchase-approval:R03",
+      "expected": "faithful",
+      "variant": "paraphrase",
+      "dimension": "modality",
+      "case": "purchase-approval",
+      "source_sha256": "80161055123d3856982b2e5d5046a8d06544a43759c0c6043667d495ed60818b",
+      "reuse_key": "773d1137985faa273e454de111ad16e78a2febee789b3ad9a189584dd4f00fbe",
+      "label_status": "assistant_draft",
+      "reviews": {
+        "fable": {
+          "id": "C10",
+          "verdict": "faithful",
+          "reason": "'may approve it but is not obliged to do so' is permission without obligation, which 'optional' captures. This is the lowest-confidence item: the passive 'approval ... is optional' drops the duty-bearer and could be misread as 'the purchase may proceed without approval', which the source does not say. A strict panel could defensibly mark it uncertain."
+        },
+        "glm": null,
+        "gemini": null
+      },
+      "vote_counts": {
+        "faithful": 1
+      },
+      "has_dissent": false,
+      "agreement": "incomplete"
+    },
+    {
+      "id": "C11",
+      "source": "A risk score of 70 or more is classified as high risk.",
+      "candidate": "A risk score of 70 or more is classified as high risk.",
+      "rule_id": "supplier-onboarding:R08",
+      "expected": "faithful",
+      "variant": "unchanged",
+      "dimension": "threshold",
+      "case": "supplier-onboarding",
+      "source_sha256": "7d3e73894c971f44248566fa8813056f4bbbf0847c8c7dc468b0243d5a6d4e2f",
+      "reuse_key": "c78708174c4a0093f28e4d9f0716a8ecd0cc8414f62b8fcb926fcada31c29bf3",
+      "label_status": "assistant_draft",
+      "reviews": {
+        "fable": {
+          "id": "C11",
+          "verdict": "faithful",
+          "reason": "Verbatim copy: 'A risk score of 70 or more is classified as high risk.'"
+        },
+        "glm": null,
+        "gemini": null
+      },
+      "vote_counts": {
+        "faithful": 1
+      },
+      "has_dissent": false,
+      "agreement": "incomplete"
+    },
+    {
+      "id": "C12",
+      "source": "A risk score of 70 or more is classified as high risk.",
+      "candidate": "A risk score greater than or equal to 70 is high risk.",
+      "rule_id": "supplier-onboarding:R08",
+      "expected": "faithful",
+      "variant": "paraphrase",
+      "dimension": "threshold",
+      "case": "supplier-onboarding",
+      "source_sha256": "7d3e73894c971f44248566fa8813056f4bbbf0847c8c7dc468b0243d5a6d4e2f",
+      "reuse_key": "e13f0f886b0065682b2b7c5b7cd9d6b14c62322bf4a004f191f5b542c6869a27",
+      "label_status": "assistant_draft",
+      "reviews": {
+        "fable": {
+          "id": "C12",
+          "verdict": "faithful",
+          "reason": "'70 or more' equals 'greater than or equal to 70'; the boundary value 70 stays high risk."
+        },
+        "glm": null,
+        "gemini": null
+      },
+      "vote_counts": {
+        "faithful": 1
+      },
+      "has_dissent": false,
+      "agreement": "incomplete"
+    },
+    {
+      "id": "C13",
+      "source": "A requester must never approve their own purchase request.",
+      "candidate": "A requester is permitted to approve their own purchase request.",
+      "rule_id": "purchase-approval:R04",
+      "expected": "altered",
+      "variant": "mutation",
+      "dimension": "negation",
+      "case": "purchase-approval",
+      "source_sha256": "15ae2f6e0dc08e6d9118059df20bed6f77828b93386f140d605c623e0fc0398c",
+      "reuse_key": "458d962574b693aca1f6ce2cf594374d9e12c206af6ac33396421c1a05086d6e",
+      "label_status": "assistant_draft",
+      "reviews": {
+        "fable": {
+          "id": "C13",
+          "verdict": "altered",
+          "reason": "Source 'must never approve their own' is a prohibition; the candidate's 'is permitted to approve their own' reverses it."
+        },
+        "glm": null,
+        "gemini": null
+      },
+      "vote_counts": {
+        "altered": 1
+      },
+      "has_dissent": false,
+      "agreement": "incomplete"
+    },
+    {
+      "id": "C14",
+      "source": "The Compliance officer performs identity verification; the buyer does not perform it.",
+      "candidate": "Identity verification is carried out by the Compliance officer, not by the buyer.",
+      "rule_id": "supplier-onboarding:R02",
+      "expected": "faithful",
+      "variant": "paraphrase",
+      "dimension": "ownership",
+      "case": "supplier-onboarding",
+      "source_sha256": "761b0da40884b9fd03fa50dc39c34fe17515be2e3a49eaddc7e659bab0339aa0",
+      "reuse_key": "09c9322afbf6b81146f5e7f7df1bdd1da4b069f48b13af64b846441a06037ec3",
+      "label_status": "assistant_draft",
+      "reviews": {
+        "fable": {
+          "id": "C14",
+          "verdict": "faithful",
+          "reason": "'The Compliance officer performs ...; the buyer does not perform it' keeps the same role assignment and exclusion in 'by the Compliance officer, not by the buyer'."
+        },
+        "glm": null,
+        "gemini": null
+      },
+      "vote_counts": {
+        "faithful": 1
+      },
+      "has_dissent": false,
+      "agreement": "incomplete"
+    },
+    {
+      "id": "C15",
+      "source": "For a purchase below EUR 5,000, the department manager may approve it but is not obliged to do so.",
+      "candidate": "For purchases below EUR 5,000, the department manager must approve them.",
+      "rule_id": "purchase-approval:R03",
+      "expected": "altered",
+      "variant": "mutation",
+      "dimension": "modality",
+      "case": "purchase-approval",
+      "source_sha256": "80161055123d3856982b2e5d5046a8d06544a43759c0c6043667d495ed60818b",
+      "reuse_key": "54b16642c79513b1cefb3b32c43d0a40b3a8e8880bcf0dc678ec7da97f4db9af",
+      "label_status": "assistant_draft",
+      "reviews": {
+        "fable": {
+          "id": "C15",
+          "verdict": "altered",
+          "reason": "Source 'may approve it but is not obliged to do so' is discretionary; the candidate's 'must approve them' imposes an obligation."
+        },
+        "glm": null,
+        "gemini": null
+      },
+      "vote_counts": {
+        "altered": 1
+      },
+      "has_dissent": false,
+      "agreement": "incomplete"
+    },
+    {
+      "id": "C16",
+      "source": "A risk score of 70 or more is classified as high risk.",
+      "candidate": "A risk score greater than 70 is high risk; a score of exactly 70 is low risk.",
+      "rule_id": "supplier-onboarding:R08",
+      "expected": "altered",
+      "variant": "mutation",
+      "dimension": "threshold",
+      "case": "supplier-onboarding",
+      "source_sha256": "7d3e73894c971f44248566fa8813056f4bbbf0847c8c7dc468b0243d5a6d4e2f",
+      "reuse_key": "6a70f063251e5de22f715149f19750fba7f1984ce3e562fb068024c3aa289335",
+      "label_status": "assistant_draft",
+      "reviews": {
+        "fable": {
+          "id": "C16",
+          "verdict": "altered",
+          "reason": "Source '70 or more' includes exactly 70 as high risk; the candidate excludes 70 ('greater than 70') and adds a 'low risk' classification that is not in the source."
+        },
+        "glm": null,
+        "gemini": null
+      },
+      "vote_counts": {
+        "altered": 1
+      },
+      "has_dissent": false,
+      "agreement": "incomplete"
+    },
+    {
+      "id": "C17",
+      "source": "The Compliance officer performs identity verification; the buyer does not perform it.",
+      "candidate": "Identity verification is carried out by the buyer, not by the Compliance officer.",
+      "rule_id": "supplier-onboarding:R02",
+      "expected": "altered",
+      "variant": "mutation",
+      "dimension": "ownership",
+      "case": "supplier-onboarding",
+      "source_sha256": "761b0da40884b9fd03fa50dc39c34fe17515be2e3a49eaddc7e659bab0339aa0",
+      "reuse_key": "afcf60b402bc6cf1ff869fb63945d330ceaa8b779a3456d81591d8f07650385d",
+      "label_status": "assistant_draft",
+      "reviews": {
+        "fable": {
+          "id": "C17",
+          "verdict": "altered",
+          "reason": "Source 'The Compliance officer performs identity verification; the buyer does not' has its roles swapped in the candidate."
+        },
+        "glm": null,
+        "gemini": null
+      },
+      "vote_counts": {
+        "altered": 1
+      },
+      "has_dissent": false,
+      "agreement": "incomplete"
+    },
+    {
+      "id": "C18",
+      "source": "A renewal for an existing supplier with no changed identity data is exempt from repeating identity verification.",
+      "candidate": "Existing suppliers renewing with unchanged identity data must repeat identity verification.",
+      "rule_id": "supplier-onboarding:R05",
+      "expected": "altered",
+      "variant": "mutation",
+      "dimension": "exception",
+      "case": "supplier-onboarding",
+      "source_sha256": "49040698f59f852ab8ef0d9b19b4ef1a9719886c9c3c8d439ff50a4ad6255ff8",
+      "reuse_key": "ba33014c17c701def3265b70a64c441edaef8aa0692e9dbf6df0c0952c48c28e",
+      "label_status": "assistant_draft",
+      "reviews": {
+        "fable": {
+          "id": "C18",
+          "verdict": "altered",
+          "reason": "Source 'is exempt from repeating identity verification' becomes 'must repeat identity verification', turning an exemption into an obligation."
+        },
+        "glm": null,
+        "gemini": null
+      },
+      "vote_counts": {
+        "altered": 1
+      },
+      "has_dissent": false,
+      "agreement": "incomplete"
+    }
+  ],
+  "agreement": {
+    "incomplete": 18
+  },
+  "input_manifest_sha256": "cbf40fdc2cb7788639600c7031524a299e3c531848d450dac428c521a90f3ca5",
+  "draft_status": "LLM-generated internal diagnostics; not human-validated",
+  "capture_lock_sha256": "8d6b75589eb14ebe86c5b71271bdfbdc2fe59258b9b8821922c5ed42aced648f",
+  "blind_annotation_packet": "annotation-packet.json"
+}
