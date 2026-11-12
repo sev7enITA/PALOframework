@@ -1,7 +1,7 @@
 {
   "revision": "2026-11-11.6",
   "title": "Specification Generation",
-  "evidence_status": "Internal tests; assistant-draft reference outcomes; no independent validation",
+  "evidence_status": "Closed incomplete; internal tests; assistant-draft reference outcomes; no independent validation",
   "analysis": {
     "title": "Real-document generation",
     "status": "internal_development_generation_study",

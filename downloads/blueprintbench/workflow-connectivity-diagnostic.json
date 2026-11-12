@@ -1,0 +1,924 @@
+{
+  "version": "0.1.0",
+  "status": "posthoc_internal_diagnostic",
+  "qualified": false,
+  "method": "Weak connectivity on explicitly represented dependency steps or transition endpoints; isolated states omitted by a model cannot be observed. No required initial or terminal state is supplied. Connectivity does not establish correct branches, reachability under guards, source fidelity or completeness. Disconnected components require review and are not automatic failures.",
+  "historical_scores_changed": false,
+  "rows": [
+    {
+      "study": "2026-11-11-real-procurement",
+      "id": "far15-m0-r1",
+      "original_structural_valid": true,
+      "output_sha256": "485101921fd1e0fc3addf3f2b081c267ef9bfffd22d42ddda509ded3a2440ba1",
+      "connectivity": {
+        "status": "connected",
+        "nodes": 13,
+        "edges": 18,
+        "components": [
+          [
+            "P01",
+            "P02",
+            "P03",
+            "P04",
+            "P05",
+            "P06",
+            "P07",
+            "P08",
+            "P09",
+            "P10",
+            "P11",
+            "P12",
+            "P13"
+          ]
+        ]
+      }
+    },
+    {
+      "study": "2026-11-11-real-procurement",
+      "id": "far15-m1-r1",
+      "original_structural_valid": true,
+      "output_sha256": "1131e8a7202d0143b50829993745695e2da8ab6b5412d1f41d69f25011c68659",
+      "connectivity": {
+        "status": "connected",
+        "nodes": 14,
+        "edges": 17,
+        "components": [
+          [
+            "P01",
+            "P02",
+            "P03",
+            "P04",
+            "P05",
+            "P06",
+            "P07",
+            "P08",
+            "P09",
+            "P10",
+            "P11",
+            "P12",
+            "P13",
+            "P14"
+          ]
+        ]
+      }
+    },
+    {
+      "study": "2026-11-11-real-procurement",
+      "id": "far15-m2-r1",
+      "original_structural_valid": false,
+      "output_sha256": "018e026a3289edc3bf0f6eb67964a6e914b9418599883ad02bc26f40218d3061",
+      "connectivity": {
+        "status": "unassessed",
+        "reason": "no complete captured output"
+      }
+    },
+    {
+      "study": "2026-11-11-real-procurement",
+      "id": "fta-m0-r1",
+      "original_structural_valid": true,
+      "output_sha256": "b42196d6de315729312fbe61febd0ec392ab6d8877d59e92bb7d0f44260f9eb3",
+      "connectivity": {
+        "status": "connected",
+        "nodes": 12,
+        "edges": 16,
+        "components": [
+          [
+            "P01",
+            "P02",
+            "P03",
+            "P04",
+            "P05",
+            "P06",
+            "P07",
+            "P08",
+            "P09",
+            "P10",
+            "P11",
+            "P12"
+          ]
+        ]
+      }
+    },
+    {
+      "study": "2026-11-11-real-procurement",
+      "id": "fta-m1-r1",
+      "original_structural_valid": true,
+      "output_sha256": "4c40943310e32f3e6086a9b7f39da5445aed552385c6c49f49e7558ebb816705",
+      "connectivity": {
+        "status": "connected",
+        "nodes": 13,
+        "edges": 12,
+        "components": [
+          [
+            "P01",
+            "P02",
+            "P03",
+            "P04",
+            "P05",
+            "P06",
+            "P07",
+            "P08",
+            "P09",
+            "P10",
+            "P11",
+            "P12",
+            "P13"
+          ]
+        ]
+      }
+    },
+    {
+      "study": "2026-11-11-real-procurement",
+      "id": "fta-m2-r1",
+      "original_structural_valid": false,
+      "output_sha256": "018e026a3289edc3bf0f6eb67964a6e914b9418599883ad02bc26f40218d3061",
+      "connectivity": {
+        "status": "unassessed",
+        "reason": "no complete captured output"
+      }
+    },
+    {
+      "study": "2026-11-11-real-procurement",
+      "id": "fema-m0-r1",
+      "original_structural_valid": true,
+      "output_sha256": "f657bc65222a4ae1e4957088453d2490759a79eccc42331ab66c2e37cde0169f",
+      "connectivity": {
+        "status": "connected",
+        "nodes": 15,
+        "edges": 17,
+        "components": [
+          [
+            "P01_establish_draft_scope",
+            "P02_use_supplied_case_facts",
+            "P03_evaluate_termination",
+            "P04_apply_davis_bacon_program_exception",
+            "P05_evaluate_remaining_davis_bacon_conditions",
+            "P06_apply_work_hours_exclusions",
+            "P07_evaluate_remaining_work_hours_conditions",
+            "P08_evaluate_clean_air_water",
+            "P09_prepare_termination_provision",
+            "P10_prepare_davis_bacon_solicitation_and_award",
+            "P11_prepare_davis_bacon_contract_and_flowdown",
+            "P12_prepare_work_hours_contract_and_flowdown",
+            "P13_review_additional_work_hours_clause",
+            "P14_prepare_clean_air_water_provision",
+            "P15_review_and_release_scoped_draft"
+          ]
+        ]
+      }
+    },
+    {
+      "study": "2026-11-11-real-procurement",
+      "id": "fema-m1-r1",
+      "original_structural_valid": true,
+      "output_sha256": "7b93195dc063ce48e7fc86c71984afe1d29b7c31f34e4de633e343eec4f8e5f6",
+      "connectivity": {
+        "status": "connected",
+        "nodes": 10,
+        "edges": 12,
+        "components": [
+          [
+            "P1",
+            "P10",
+            "P2",
+            "P3",
+            "P4",
+            "P5",
+            "P6",
+            "P7",
+            "P8",
+            "P9"
+          ]
+        ]
+      }
+    },
+    {
+      "study": "2026-11-11-real-procurement",
+      "id": "fema-m2-r1",
+      "original_structural_valid": false,
+      "output_sha256": null,
+      "connectivity": {
+        "status": "unassessed",
+        "reason": "no complete captured output"
+      }
+    },
+    {
+      "study": "2026-11-11-real-procurement",
+      "id": "far15-m1-r2",
+      "original_structural_valid": true,
+      "output_sha256": "22334d4300d03d92fd3960b7ba294b806f14d8fea39df91a853a58afade83301",
+      "connectivity": {
+        "status": "disconnected",
+        "nodes": 18,
+        "edges": 20,
+        "components": [
+          [
+            "P01",
+            "P02",
+            "P03",
+            "P04",
+            "P05",
+            "P06",
+            "P07",
+            "P08",
+            "P09",
+            "P10",
+            "P11",
+            "P12",
+            "P13",
+            "P14",
+            "P15",
+            "P16"
+          ],
+          [
+            "P17",
+            "P18"
+          ]
+        ]
+      }
+    },
+    {
+      "study": "2026-11-11-real-procurement",
+      "id": "far15-m2-r2",
+      "original_structural_valid": false,
+      "output_sha256": null,
+      "connectivity": {
+        "status": "unassessed",
+        "reason": "no complete captured output"
+      }
+    },
+    {
+      "study": "2026-11-11-real-procurement",
+      "id": "far15-m0-r2",
+      "original_structural_valid": true,
+      "output_sha256": "77309616948e953259bdbe61acb0364be1658309c82b57a5d42fdb98ee3d85f4",
+      "connectivity": {
+        "status": "connected",
+        "nodes": 10,
+        "edges": 10,
+        "components": [
+          [
+            "P01",
+            "P02",
+            "P03",
+            "P04",
+            "P05",
+            "P06",
+            "P07",
+            "P08",
+            "P09",
+            "P10"
+          ]
+        ]
+      }
+    },
+    {
+      "study": "2026-11-11-real-procurement",
+      "id": "fta-m1-r2",
+      "original_structural_valid": true,
+      "output_sha256": "09f1cc1f1099742a4bb175ba7a9aa7201d9e79ea1025d8392f5cfb6a0c1f3211",
+      "connectivity": {
+        "status": "connected",
+        "nodes": 11,
+        "edges": 10,
+        "components": [
+          [
+            "P01",
+            "P02",
+            "P03",
+            "P04",
+            "P05",
+            "P06",
+            "P07",
+            "P08",
+            "P09",
+            "P10",
+            "P11"
+          ]
+        ]
+      }
+    },
+    {
+      "study": "2026-11-11-real-procurement",
+      "id": "fta-m2-r2",
+      "original_structural_valid": false,
+      "output_sha256": null,
+      "connectivity": {
+        "status": "unassessed",
+        "reason": "no complete captured output"
+      }
+    },
+    {
+      "study": "2026-11-11-real-procurement",
+      "id": "fta-m0-r2",
+      "original_structural_valid": true,
+      "output_sha256": "ed9e679836a105d2e68c957e231f26510afdb92c5c949c1ef336991972cabd64",
+      "connectivity": {
+        "status": "connected",
+        "nodes": 12,
+        "edges": 14,
+        "components": [
+          [
+            "P01",
+            "P02",
+            "P03",
+            "P04",
+            "P05",
+            "P06",
+            "P07",
+            "P08",
+            "P09",
+            "P10",
+            "P11",
+            "P12"
+          ]
+        ]
+      }
+    },
+    {
+      "study": "2026-11-11-real-procurement",
+      "id": "fema-m1-r2",
+      "original_structural_valid": true,
+      "output_sha256": "c1c9bc73d3f3cec71e1dc0a42558e955d2d836a29d10eaa54a8e79bab6f53345",
+      "connectivity": {
+        "status": "connected",
+        "nodes": 13,
+        "edges": 15,
+        "components": [
+          [
+            "P1",
+            "P10",
+            "P11",
+            "P12",
+            "P13",
+            "P2",
+            "P3",
+            "P4",
+            "P5",
+            "P6",
+            "P7",
+            "P8",
+            "P9"
+          ]
+        ]
+      }
+    },
+    {
+      "study": "2026-11-11-real-procurement",
+      "id": "fema-m2-r2",
+      "original_structural_valid": false,
+      "output_sha256": null,
+      "connectivity": {
+        "status": "unassessed",
+        "reason": "no complete captured output"
+      }
+    },
+    {
+      "study": "2026-11-11-real-procurement",
+      "id": "fema-m0-r2",
+      "original_structural_valid": true,
+      "output_sha256": "ea4fe0d1fa32a3aa27a9c2a9ad230e3519690c3d13f436087e2d6ab42f5a706a",
+      "connectivity": {
+        "status": "connected",
+        "nodes": 13,
+        "edges": 16,
+        "components": [
+          [
+            "P01",
+            "P02",
+            "P03",
+            "P04",
+            "P05",
+            "P06",
+            "P07",
+            "P08",
+            "P09",
+            "P10",
+            "P11",
+            "P12",
+            "P13"
+          ]
+        ]
+      }
+    },
+    {
+      "study": "2026-11-11-real-procurement",
+      "id": "far15-m2-r3",
+      "original_structural_valid": false,
+      "output_sha256": null,
+      "connectivity": {
+        "status": "unassessed",
+        "reason": "no complete captured output"
+      }
+    },
+    {
+      "study": "2026-11-11-real-procurement",
+      "id": "far15-m0-r3",
+      "original_structural_valid": true,
+      "output_sha256": "58f7b2a474d4cecabb81c9bd50a93af59a3a9e250d1f806dac9c92ac1418fde9",
+      "connectivity": {
+        "status": "connected",
+        "nodes": 12,
+        "edges": 15,
+        "components": [
+          [
+            "P01",
+            "P02",
+            "P03",
+            "P04",
+            "P05",
+            "P06",
+            "P07",
+            "P08",
+            "P09",
+            "P10",
+            "P11",
+            "P12"
+          ]
+        ]
+      }
+    },
+    {
+      "study": "2026-11-11-real-procurement",
+      "id": "far15-m1-r3",
+      "original_structural_valid": true,
+      "output_sha256": "b290509698d53452fad9ca76e70972d6b96899e33a47815bdc6bf66481dfa319",
+      "connectivity": {
+        "status": "connected",
+        "nodes": 16,
+        "edges": 20,
+        "components": [
+          [
+            "P01",
+            "P02",
+            "P03",
+            "P04",
+            "P05",
+            "P06",
+            "P07",
+            "P08",
+            "P09",
+            "P10",
+            "P11",
+            "P12",
+            "P13",
+            "P14",
+            "P15",
+            "P16"
+          ]
+        ]
+      }
+    },
+    {
+      "study": "2026-11-11-real-procurement",
+      "id": "fta-m2-r3",
+      "original_structural_valid": false,
+      "output_sha256": null,
+      "connectivity": {
+        "status": "unassessed",
+        "reason": "no complete captured output"
+      }
+    },
+    {
+      "study": "2026-11-11-real-procurement",
+      "id": "fta-m0-r3",
+      "original_structural_valid": false,
+      "output_sha256": null,
+      "connectivity": {
+        "status": "unassessed",
+        "reason": "no complete captured output"
+      }
+    },
+    {
+      "study": "2026-11-11-real-procurement",
+      "id": "fta-m1-r3",
+      "original_structural_valid": false,
+      "output_sha256": null,
+      "connectivity": {
+        "status": "unassessed",
+        "reason": "no complete captured output"
+      }
+    },
+    {
+      "study": "2026-11-11-real-procurement",
+      "id": "fema-m2-r3",
+      "original_structural_valid": false,
+      "output_sha256": null,
+      "connectivity": {
+        "status": "unassessed",
+        "reason": "no complete captured output"
+      }
+    },
+    {
+      "study": "2026-11-11-real-procurement",
+      "id": "fema-m0-r3",
+      "original_structural_valid": false,
+      "output_sha256": null,
+      "connectivity": {
+        "status": "unassessed",
+        "reason": "no complete captured output"
+      }
+    },
+    {
+      "study": "2026-11-11-real-procurement",
+      "id": "fema-m1-r3",
+      "original_structural_valid": false,
+      "output_sha256": null,
+      "connectivity": {
+        "status": "unassessed",
+        "reason": "no complete captured output"
+      }
+    },
+    {
+      "study": "2026-11-11-next-cycle",
+      "id": "004-workflow-emergency-spares-anthropic__claude-opus-5.5",
+      "original_structural_valid": false,
+      "output_sha256": "636fdeded0a8eb193948f9cca0edaa59485a39daf0d338f0d8ee886f439e1e86",
+      "connectivity": {
+        "status": "connected",
+        "nodes": 5,
+        "edges": 5,
+        "components": [
+          [
+            "DirectorApproved",
+            "Draft",
+            "JustificationRecorded",
+            "OrderIssued",
+            "QuotationRequirementMet"
+          ]
+        ]
+      }
+    },
+    {
+      "study": "2026-11-11-next-cycle",
+      "id": "005-workflow-emergency-spares-google__gemini-4-argon",
+      "original_structural_valid": true,
+      "output_sha256": "80c4d913b31665bf8fd55ca2eaa93bf940360bd89c27387333a48e5918aaf509",
+      "connectivity": {
+        "status": "connected",
+        "nodes": 6,
+        "edges": 6,
+        "components": [
+          [
+            "approved_or_cleared",
+            "issuance_blocked",
+            "order_issued",
+            "outage_justification_recorded",
+            "outage_order_issued_pending_justification",
+            "request_submitted"
+          ]
+        ]
+      }
+    },
+    {
+      "study": "2026-11-11-next-cycle",
+      "id": "006-workflow-emergency-spares-openai__gpt-6.1-sol",
+      "original_structural_valid": true,
+      "output_sha256": "ee8d847b34b43dd43f862af008f55686c938b2325e854525ea86dd169b822f77",
+      "connectivity": {
+        "status": "connected",
+        "nodes": 3,
+        "edges": 3,
+        "components": [
+          [
+            "draft_order_issued",
+            "draft_outage_justification_recorded",
+            "draft_pre_issue"
+          ]
+        ]
+      }
+    },
+    {
+      "study": "2026-11-11-next-cycle",
+      "id": "010-workflow-framework-calloffs-openai__gpt-6.1-sol",
+      "original_structural_valid": true,
+      "output_sha256": "b8d971426f85731071a4168c94a7079873752e25fbe81f690202c31c5bb81386",
+      "connectivity": {
+        "status": "disconnected",
+        "nodes": 5,
+        "edges": 3,
+        "components": [
+          [
+            "Amount-threshold assessment pending (proposed analytical state)",
+            "New competition required by amount threshold (proposed analytical state)",
+            "No new competition required by the equality amount trigger (proposed analytical state)"
+          ],
+          [
+            "Automatic-merge assessment pending (proposed analytical state)",
+            "Automatic-merge disposition not established (proposed analytical state)"
+          ]
+        ]
+      }
+    },
+    {
+      "study": "2026-11-11-next-cycle",
+      "id": "011-workflow-framework-calloffs-anthropic__claude-opus-5.5",
+      "original_structural_valid": true,
+      "output_sha256": "5f4cb7471acb7dab980d5e92ead891a77d8106c7fa9b873d992539a84e646f48",
+      "connectivity": {
+        "status": "connected",
+        "nodes": 4,
+        "edges": 3,
+        "components": [
+          [
+            "call_off_request_recorded",
+            "merge_decision_not_established",
+            "new_competition_not_triggered_by_threshold",
+            "new_competition_required"
+          ]
+        ]
+      }
+    },
+    {
+      "study": "2026-11-11-next-cycle",
+      "id": "012-workflow-framework-calloffs-google__gemini-4-argon",
+      "original_structural_valid": true,
+      "output_sha256": "22970493bf508fdf1691418d422486ab7b0cee287986b25825098ddcb6397f20",
+      "connectivity": {
+        "status": "connected",
+        "nodes": 4,
+        "edges": 3,
+        "components": [
+          [
+            "call_off_request_received",
+            "new_competition_not_triggered_by_threshold",
+            "new_competition_triggered_by_threshold",
+            "order_merge_disposition_unestablished"
+          ]
+        ]
+      }
+    },
+    {
+      "study": "2026-11-11-next-cycle",
+      "id": "016-workflow-bank-change-google__gemini-4-argon",
+      "original_structural_valid": true,
+      "output_sha256": "2bcaaac70310dc8278ce4e24e6103d248b06e43550012374bdc37605c10c4bed",
+      "connectivity": {
+        "status": "disconnected",
+        "nodes": 6,
+        "edges": 4,
+        "components": [
+          [
+            "ChangeEntered",
+            "NewDestinationProhibited",
+            "NewDestinationUsable",
+            "TreasuryVerified"
+          ],
+          [
+            "OutageDeclared",
+            "PreviouslyVerifiedAccountPaymentAuthorised"
+          ]
+        ]
+      }
+    },
+    {
+      "study": "2026-11-11-next-cycle",
+      "id": "017-workflow-bank-change-openai__gpt-6.1-sol",
+      "original_structural_valid": true,
+      "output_sha256": "67889d494ff824cfe22234f138a0ad1e4b2720a49b95a612f8491207f64fe86c",
+      "connectivity": {
+        "status": "disconnected",
+        "nodes": 6,
+        "edges": 4,
+        "components": [
+          [
+            "proposed:approval_pending"
+          ],
+          [
+            "proposed:new_destination_use_blocked",
+            "proposed:new_details_under_control_review",
+            "proposed:stated_minimum_controls_established"
+          ],
+          [
+            "proposed:prior_account_payment_authorised_by_lead",
+            "proposed:prior_account_payment_not_authorised_by_lead"
+          ]
+        ]
+      }
+    },
+    {
+      "study": "2026-11-11-next-cycle",
+      "id": "018-workflow-bank-change-anthropic__claude-opus-5.5",
+      "original_structural_valid": true,
+      "output_sha256": "fda072b59703010e00e26767e7c5d802af4a364e99aab00751461224d728d31f",
+      "connectivity": {
+        "status": "disconnected",
+        "nodes": 6,
+        "edges": 4,
+        "components": [
+          [
+            "authorised_to_previous_account",
+            "outage_payment_pending"
+          ],
+          [
+            "blocked",
+            "entered",
+            "usable",
+            "verified"
+          ]
+        ]
+      }
+    },
+    {
+      "study": "2026-11-11-next-cycle",
+      "id": "022-workflow-policy-transition-anthropic__claude-opus-5.5",
+      "original_structural_valid": true,
+      "output_sha256": "edf6b04008d0636185187dcdb91ed6823a378f21958908e5d3e56daf605f6caf",
+      "connectivity": {
+        "status": "disconnected",
+        "nodes": 5,
+        "edges": 5,
+        "components": [
+          [
+            "FinanceApprovalNotRequiredByAmountThreshold (proposed state name)",
+            "FinanceApprovalRequired (proposed state name)",
+            "RequisitionCreated (proposed state name)"
+          ],
+          [
+            "ReceiptRetained (proposed state name)",
+            "RetentionPeriodUndetermined_ConflictEscalation (proposed state name)"
+          ]
+        ]
+      }
+    },
+    {
+      "study": "2026-11-11-next-cycle",
+      "id": "023-workflow-policy-transition-google__gemini-4-argon",
+      "original_structural_valid": true,
+      "output_sha256": "0d7574fa66cd49ea24363c050b2a135d0f9ebff0013a516cff87c6a7f8efd21f",
+      "connectivity": {
+        "status": "disconnected",
+        "nodes": 5,
+        "edges": 3,
+        "components": [
+          [
+            "ProposedState_Finance_Approval_Not_Required_Under_Amount_Threshold",
+            "ProposedState_Finance_Approval_Required_Under_Amount_Threshold",
+            "ProposedState_Requisition_Created"
+          ],
+          [
+            "ProposedState_Receipt_Retention_Check_Pending",
+            "ProposedState_Receipt_Retention_Unresolved_Conflict"
+          ]
+        ]
+      }
+    },
+    {
+      "study": "2026-11-11-next-cycle",
+      "id": "024-workflow-policy-transition-openai__gpt-6.1-sol",
+      "original_structural_valid": true,
+      "output_sha256": "e4808775a58070f4ebfa5fc1c22bd524f79e9e6a58770085eac36e24b40c0f63",
+      "connectivity": {
+        "status": "disconnected",
+        "nodes": 5,
+        "edges": 3,
+        "components": [
+          [
+            "proposed_amount_rule_unevaluated",
+            "proposed_finance_approval_not_required_by_amount",
+            "proposed_finance_approval_required_by_amount"
+          ],
+          [
+            "proposed_receipt_retention_unevaluated",
+            "proposed_receipt_retention_unresolved_conflict"
+          ]
+        ]
+      }
+    },
+    {
+      "study": "2026-11-11-next-cycle",
+      "id": "028-workflow-currency-approval-openai__gpt-6.1-sol",
+      "original_structural_valid": true,
+      "output_sha256": "b120a3761e454daf85b0b10937150a14e609ced248e3b6d461143ed8177492a5",
+      "connectivity": {
+        "status": "connected",
+        "nodes": 4,
+        "edges": 3,
+        "components": [
+          [
+            "approval_amount_calculated",
+            "no_named_director_approval_trigger",
+            "project_director_approval_required",
+            "request_available"
+          ]
+        ]
+      }
+    },
+    {
+      "study": "2026-11-11-next-cycle",
+      "id": "029-workflow-currency-approval-anthropic__claude-opus-5.5",
+      "original_structural_valid": true,
+      "output_sha256": "c1f0589a6922a05417b1407e2871d8c19a550f2f0decef4495f751ec6085d884",
+      "connectivity": {
+        "status": "connected",
+        "nodes": 5,
+        "edges": 4,
+        "components": [
+          [
+            "AwaitingProjectDirectorApproval",
+            "BelowDirectorApprovalTrigger (subsequent handling not specified)",
+            "Converted",
+            "ProjectDirectorApproved (downstream steps not specified)",
+            "Submitted"
+          ]
+        ]
+      }
+    },
+    {
+      "study": "2026-11-11-next-cycle",
+      "id": "030-workflow-currency-approval-google__gemini-4-argon",
+      "original_structural_valid": true,
+      "output_sha256": "701598f926d29a4daaa2e708bccdf77ea6186dc4f0cde4ee3d7365546e901fa2",
+      "connectivity": {
+        "status": "connected",
+        "nodes": 5,
+        "edges": 4,
+        "components": [
+          [
+            "below_project_director_trigger",
+            "eur_conversion_prepared",
+            "project_director_approval_required",
+            "project_director_approved",
+            "usd_request_received"
+          ]
+        ]
+      }
+    },
+    {
+      "study": "2026-11-11-next-cycle",
+      "id": "034-workflow-service-acceptance-google__gemini-4-argon",
+      "original_structural_valid": true,
+      "output_sha256": "4742e49c675b7ae3f4ef9056da49254378f57aacdb812ed72fd8dcaed16e2558",
+      "connectivity": {
+        "status": "disconnected",
+        "nodes": 7,
+        "edges": 5,
+        "components": [
+          [
+            "Milestone_Accepted_Missing_Purchase_Order",
+            "Milestone_Billed_Pending_Prerequisites",
+            "Milestone_Payment_Eligible"
+          ],
+          [
+            "Payment_Clock_Active",
+            "Payment_Clock_Paused_By_Dispute",
+            "Payment_Clock_Resumed_At_Prior_Elapsed_Value",
+            "Payment_Due_Day_Threshold_Unestablished"
+          ]
+        ]
+      }
+    },
+    {
+      "study": "2026-11-11-next-cycle",
+      "id": "035-workflow-service-acceptance-openai__gpt-6.1-sol",
+      "original_structural_valid": true,
+      "output_sha256": "7fdd8f4e36c3e6926c6c2ef1811876d86c6d6520ab067543f83d5f9512a3f700",
+      "connectivity": {
+        "status": "disconnected",
+        "nodes": 8,
+        "edges": 4,
+        "components": [
+          [
+            "proposed: acceptance awaiting signature",
+            "proposed: acceptance signed for the identified milestone"
+          ],
+          [
+            "proposed: milestone payment clock accruing",
+            "proposed: same milestone payment clock paused"
+          ],
+          [
+            "proposed: milestone payment clock paused",
+            "proposed: milestone payment clock resumed at prior elapsed value"
+          ],
+          [
+            "proposed: payment blocked by missing purchase order",
+            "proposed: payment eligibility unevaluated"
+          ]
+        ]
+      }
+    },
+    {
+      "study": "2026-11-11-next-cycle",
+      "id": "036-workflow-service-acceptance-anthropic__claude-opus-5.5",
+      "original_structural_valid": true,
+      "output_sha256": "bdbdba8b5da8b66b9ff3ae87e27f7bcc97eb538728a55370d65d8fc8bd906e2a",
+      "connectivity": {
+        "status": "disconnected",
+        "nodes": 6,
+        "edges": 5,
+        "components": [
+          [
+            "Acceptance.signed",
+            "Acceptance.unsigned",
+            "Payment.eligible",
+            "Payment.not_eligible_awaiting_purchase_order"
+          ],
+          [
+            "PaymentClock.paused",
+            "PaymentClock.running"
+          ]
+        ]
+      }
+    }
+  ]
+}

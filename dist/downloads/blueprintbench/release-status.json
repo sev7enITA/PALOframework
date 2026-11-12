@@ -1,7 +1,22 @@
 {
   "presentation_revision": "2026-11-11.6",
   "observation_revision": "2026-11-11.4",
-  "current_evidence_release": "study-2026-11-11-six-scenario.1",
+  "current_evidence_release": "study-2026-11-12-real-document.1",
+  "current_studies": {
+    "process_interpretation": {
+      "tag": "study-2026-11-11-six-scenario.1",
+      "status": "internal_observations"
+    },
+    "specification_generation": {
+      "tag": "study-2026-11-12-real-document.1",
+      "status": "closed_incomplete",
+      "assigned": 27,
+      "completed": 14,
+      "incomplete": 5,
+      "not_dispatched": 8,
+      "independently_validated": false
+    }
+  },
   "as_of": "2026-11-11",
   "release": "v0.3.0-internal.1",
   "content_revision": "2026-11-11.3",

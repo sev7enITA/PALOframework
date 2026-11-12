@@ -21,6 +21,8 @@ export const PUBLIC_FILES = [
   "assets/blueprintbench/reviewer-diagnostics.js",
   "assets/blueprintbench/brand/.htaccess",
   "downloads/blueprintbench/release.json",
+  "downloads/blueprintbench/study-accountability.json",
+  "downloads/blueprintbench/workflow-connectivity-diagnostic.json",
   "assets/blueprintbench/blueprintbench.css",
   "assets/blueprintbench/blueprintbench.js",
   "assets/blueprintbench/explorer-data.json",

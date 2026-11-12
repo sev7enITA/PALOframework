@@ -1,6 +1,6 @@
 {
   "revision": "2026-11-11.6",
-  "status": "qualification_protocol_with_real_document_development_collection_started",
+  "status": "qualification_protocol_with_development_study_closed_incomplete",
   "independently_qualified": false,
   "numerical_ranks_enabled": false,
   "current_evidence_release": "study-2026-11-11-six-scenario.1",
@@ -16,8 +16,8 @@
     {
       "id": "generation",
       "title": "Document-to-specification generation",
-      "state": "real_document_collection_started",
-      "status_label": "27 assigned calls; collection stopped; completion reported in generation results",
+      "state": "development_study_closed_incomplete",
+      "status_label": "Closed incomplete: 27 assigned, 14 completed, 5 incomplete, 8 not dispatched",
       "requirement": "Make open generation from documents the primary task. Assess atomic rules, actors, guards, exceptions, data constraints, provenance and omissions against expert gold. Seeded-statement classification remains a secondary diagnostic.",
       "acceptance_evidence_received": false
     },
