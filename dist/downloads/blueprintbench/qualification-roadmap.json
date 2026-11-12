@@ -1,5 +1,5 @@
 {
-  "revision": "2026-11-11.7",
+  "revision": "2026-11-11.8",
   "status": "qualification_protocol_with_development_study_closed_incomplete",
   "independently_qualified": false,
   "numerical_ranks_enabled": false,
@@ -58,11 +58,11 @@
   "current_development_study": {
     "page": "https://paloframework.org/PALO_BlueprintBench_Generation.html",
     "evidence_path": "internal_tests/2026-11-11-real-procurement",
-    "state": "collection_started",
+    "state": "closed_incomplete",
     "documents": 3,
     "supplied_pages": 200,
-    "model_configurations": 4,
-    "assigned_calls": 36,
+    "model_configurations": 3,
+    "assigned_calls": 27,
     "assigned_repetitions": 3,
     "labels": "pre_output_assistant_drafts",
     "qualification": "not_independently_validated",
