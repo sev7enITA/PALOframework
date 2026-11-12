@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-11-12: BlueprintBench local validation agent
+
+- Add a model-assisted local review agent with retained evidence and internal calibration diagnostics. External qualification remains open.
+
 ## 2026-11-12: BlueprintBench validation documentation
 
 - Align generation-study assignment counts and closure status; publish the measurement protocol and current validation gates. Existing results remain internal and unqualified.
