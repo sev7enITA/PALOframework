@@ -11,6 +11,10 @@ export const PUBLIC_FILES = [
 
   "PALO_BlueprintBench.html",
   "PALO_BlueprintBench_Diagnostics.html",
+  "PALO_BlueprintBench_AgentDiagnostics.html",
+  "assets/blueprintbench/agent-diagnostics.css",
+  "assets/blueprintbench/agent-diagnostics.js",
+  "downloads/blueprintbench/local-agent-diagnostics.json",
   "PALO_BlueprintBench_NextCycle.html",
   "assets/blueprintbench/next-cycle.js",
   "assets/blueprintbench/next-cycle.css",

@@ -15,9 +15,16 @@
       "incomplete": 5,
       "not_dispatched": 8,
       "independently_validated": false
+    },
+    "local_advisory_agent_diagnostics": {
+      "status": "internal_development",
+      "recorded_date": "2026-11-12",
+      "independently_validated": false,
+      "evidence": "internal_tests/2026-11-12-local-agent",
+      "observation_revision": "2026-11-12.1"
     }
   },
-  "as_of": "2026-11-11",
+  "as_of": "2026-11-12",
   "release": "v0.3.0-internal.1",
   "content_revision": "2026-11-11.3",
   "tool_version": "0.3.0",

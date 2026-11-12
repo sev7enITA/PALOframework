@@ -40,6 +40,13 @@
       "incomplete": 5,
       "not_dispatched": 8,
       "independently_validated": false
+    },
+    "local_advisory_agent_diagnostics": {
+      "status": "internal_development",
+      "recorded_date": "2026-11-12",
+      "independently_validated": false,
+      "evidence": "internal_tests/2026-11-12-local-agent",
+      "observation_revision": "2026-11-12.1"
     }
   },
   "presentation_updated_on": "2026-11-12"

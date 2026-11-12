@@ -1,0 +1,409 @@
+{
+  "title": "Local advisory challenge agent diagnostics",
+  "date": "2026-11-12",
+  "status": "internal_development",
+  "summary": "Source-fidelity advisory classification experiments with local model configurations. Rows include one post-hoc adaptation with no new calls.",
+  "limitations": [
+    "Previously exposed development examples; no independent adjudicated gold, qualified ranking or PALO Blueprint Index.",
+    "Agreement is against previous Qwen outputs, not accuracy against expert gold. Output contract checks and exact quotation substrings do not establish entailment.",
+    "Medians use complete responses only; failed and unrun assignments stay in the denominator and are recorded individually.",
+    "Saved request objects are retained as JSON; exact HTTP wire serialization was not preserved for every run. Response bytes are retained and hashed.",
+    "Model variants, output caps, response-format settings, prompt versions and hardware differ. The post-hoc schema adaptation reuses existing outputs and does not add calls.",
+    "Only endpoint and local-catalog metadata were inspected; file hashes on the server, hardware offload, energy, and per-call costs were not independently measured.",
+    "The three process cases use synthetic and public materials. FEMA source provenance was recorded but not independently verified.",
+    "The individual runs called the model endpoint with the advisory-agent prompt and validator; they do not demonstrate end-to-end execution of the agent application."
+  ],
+  "runs": [
+    {
+      "id": "q6-mtp-apple-m3-max",
+      "model": "Qwen3.8 27B Uncensored",
+      "variant": "Q6_K; MTP",
+      "runtime": "LM Studio; llama.cpp runtime version and per-attempt offload not independently verified",
+      "hardware": "Apple M3 Max (40-core GPU, 64 GB unified memory; LM Studio server)",
+      "context_tokens": 8192,
+      "mtp": "enabled",
+      "suite": "Source-fidelity advisory classification, unconstrained JSON",
+      "reference": "Previous Qwen output, not independently adjudicated gold",
+      "recorded_date": "2026-11-12",
+      "cases": [
+        {
+          "case_id": "C01",
+          "case_name": "Self-approval prohibition",
+          "assigned": 3,
+          "completed": 3,
+          "contract_valid": 3,
+          "median_seconds": 33.342,
+          "median_completion_tokens": 308,
+          "labels": [
+            "supported"
+          ],
+          "reference_label": "supported",
+          "agreement_count": 3,
+          "output_cap_tokens": 512,
+          "prompt_version": "sha256:a71533c3fe0ff8c1f468839cc3ef1aaf03d6ec6ce083b0d4dca5a2aed1c32ada",
+          "evidence_url": "https://github.com/sev7enITA/PALO-BlueprintBench/tree/main/internal_tests/2026-11-12-local-agent/raw/q6-mtp-apple-m3-max"
+        },
+        {
+          "case_id": "C13",
+          "case_name": "Self-approval prohibition reversal",
+          "assigned": 3,
+          "completed": 3,
+          "contract_valid": 3,
+          "median_seconds": 28.394,
+          "median_completion_tokens": 266,
+          "labels": [
+            "contradicted"
+          ],
+          "reference_label": "contradicted",
+          "agreement_count": 3,
+          "output_cap_tokens": 512,
+          "prompt_version": "sha256:a71533c3fe0ff8c1f468839cc3ef1aaf03d6ec6ce083b0d4dca5a2aed1c32ada",
+          "evidence_url": "https://github.com/sev7enITA/PALO-BlueprintBench/tree/main/internal_tests/2026-11-12-local-agent/raw/q6-mtp-apple-m3-max"
+        }
+      ]
+    },
+    {
+      "id": "q6-nomtp-intel-a5500",
+      "model": "Qwen3.8 27B Uncensored",
+      "variant": "Q6_K; noMTP",
+      "runtime": "LM Studio; llama.cpp runtime version and per-attempt offload not independently verified",
+      "hardware": "Intel Core i7-12850HX + NVIDIA RTX A5500 Laptop GPU (16 GiB VRAM, 64 GB RAM; LM Studio server)",
+      "context_tokens": 8192,
+      "mtp": "disabled",
+      "suite": "Source-fidelity advisory classification, unconstrained JSON",
+      "reference": "Previous Qwen output, not independently adjudicated gold",
+      "recorded_date": "2026-11-12",
+      "cases": [
+        {
+          "case_id": "C01",
+          "case_name": "Self-approval prohibition",
+          "assigned": 3,
+          "completed": 3,
+          "contract_valid": 3,
+          "median_seconds": 171.674,
+          "median_completion_tokens": 502,
+          "labels": [
+            "supported"
+          ],
+          "reference_label": "supported",
+          "agreement_count": 3,
+          "output_cap_tokens": 512,
+          "prompt_version": "sha256:a71533c3fe0ff8c1f468839cc3ef1aaf03d6ec6ce083b0d4dca5a2aed1c32ada",
+          "evidence_url": "https://github.com/sev7enITA/PALO-BlueprintBench/tree/main/internal_tests/2026-11-12-local-agent/raw/q6-nomtp-intel-a5500"
+        },
+        {
+          "case_id": "C13",
+          "case_name": "Self-approval prohibition reversal",
+          "assigned": 3,
+          "completed": 3,
+          "contract_valid": 3,
+          "median_seconds": 102.473,
+          "median_completion_tokens": 297,
+          "labels": [
+            "contradicted"
+          ],
+          "reference_label": "contradicted",
+          "agreement_count": 3,
+          "output_cap_tokens": 512,
+          "prompt_version": "sha256:a71533c3fe0ff8c1f468839cc3ef1aaf03d6ec6ce083b0d4dca5a2aed1c32ada",
+          "evidence_url": "https://github.com/sev7enITA/PALO-BlueprintBench/tree/main/internal_tests/2026-11-12-local-agent/raw/q6-nomtp-intel-a5500"
+        }
+      ]
+    },
+    {
+      "id": "qwen-heretic-mtp-intel-a5500",
+      "model": "Qwen3.8 27B Ultimate Heretic Turbo Brilliance 50x AGI NEO MTP VERY LOW",
+      "variant": "MTP; filename states NVFP4, not verified",
+      "runtime": "LM Studio; llama.cpp runtime version and per-attempt offload not independently verified",
+      "hardware": "Intel Core i7-12850HX + NVIDIA RTX A5500 Laptop GPU (16 GiB VRAM, 64 GB RAM; LM Studio server)",
+      "context_tokens": 8192,
+      "mtp": "enabled",
+      "suite": "Source-fidelity advisory classification, unconstrained JSON",
+      "reference": "Previous Qwen output, not independently adjudicated gold",
+      "recorded_date": "2026-11-12",
+      "cases": [
+        {
+          "case_id": "C01",
+          "case_name": "Self-approval prohibition",
+          "assigned": 3,
+          "completed": 3,
+          "contract_valid": 3,
+          "median_seconds": 160.411,
+          "median_completion_tokens": 208,
+          "labels": [
+            "supported"
+          ],
+          "reference_label": "supported",
+          "agreement_count": 3,
+          "output_cap_tokens": 512,
+          "prompt_version": "sha256:a71533c3fe0ff8c1f468839cc3ef1aaf03d6ec6ce083b0d4dca5a2aed1c32ada",
+          "evidence_url": "https://github.com/sev7enITA/PALO-BlueprintBench/tree/main/internal_tests/2026-11-12-local-agent/raw/qwen-heretic-mtp-intel-a5500"
+        },
+        {
+          "case_id": "C13",
+          "case_name": "Self-approval prohibition reversal",
+          "assigned": 3,
+          "completed": 3,
+          "contract_valid": 3,
+          "median_seconds": 111.822,
+          "median_completion_tokens": 162,
+          "labels": [
+            "contradicted"
+          ],
+          "reference_label": "contradicted",
+          "agreement_count": 3,
+          "output_cap_tokens": 512,
+          "prompt_version": "sha256:a71533c3fe0ff8c1f468839cc3ef1aaf03d6ec6ce083b0d4dca5a2aed1c32ada",
+          "evidence_url": "https://github.com/sev7enITA/PALO-BlueprintBench/tree/main/internal_tests/2026-11-12-local-agent/raw/qwen-heretic-mtp-intel-a5500"
+        },
+        {
+          "case_id": "ITEM-B",
+          "case_name": "P013: request aggregation (timeout at 600 s)",
+          "assigned": 1,
+          "completed": 0,
+          "contract_valid": 0,
+          "median_seconds": null,
+          "median_completion_tokens": null,
+          "labels": [],
+          "reference_label": "not_established",
+          "agreement_count": null,
+          "output_cap_tokens": 4096,
+          "prompt_version": "sha256:01eb6bee051f44a4f6e599be08a65c0086fafb07a85d46e1c602cd43a000d309",
+          "evidence_url": "https://github.com/sev7enITA/PALO-BlueprintBench/tree/main/internal_tests/2026-11-12-local-agent/raw/qwen-heretic-mtp-intel-a5500"
+        },
+        {
+          "case_id": "ITEM-C",
+          "case_name": "P036: correction and portal (timeout at 600 s)",
+          "assigned": 1,
+          "completed": 0,
+          "contract_valid": 0,
+          "median_seconds": null,
+          "median_completion_tokens": null,
+          "labels": [],
+          "reference_label": "mixed_or_compound",
+          "agreement_count": null,
+          "output_cap_tokens": 4096,
+          "prompt_version": "sha256:01eb6bee051f44a4f6e599be08a65c0086fafb07a85d46e1c602cd43a000d309",
+          "evidence_url": "https://github.com/sev7enITA/PALO-BlueprintBench/tree/main/internal_tests/2026-11-12-local-agent/raw/qwen-heretic-mtp-intel-a5500"
+        },
+        {
+          "case_id": "DAVIS_BACON",
+          "case_name": "Davis-Bacon applicability (timeout at 600 s)",
+          "assigned": 1,
+          "completed": 0,
+          "contract_valid": 0,
+          "median_seconds": null,
+          "median_completion_tokens": null,
+          "labels": [],
+          "reference_label": "unknown",
+          "agreement_count": null,
+          "output_cap_tokens": 4096,
+          "prompt_version": "sha256:a71533c3fe0ff8c1f468839cc3ef1aaf03d6ec6ce083b0d4dca5a2aed1c32ada",
+          "evidence_url": "https://github.com/sev7enITA/PALO-BlueprintBench/tree/main/internal_tests/2026-11-12-local-agent/raw/qwen-heretic-mtp-intel-a5500"
+        }
+      ]
+    },
+    {
+      "id": "gemma-e4b-raw-intel-a5500",
+      "model": "Gemma 4 E4B",
+      "variant": "Q4_K_M; raw unconstrained response",
+      "runtime": "LM Studio; llama.cpp runtime version and per-attempt offload not independently verified",
+      "hardware": "Intel Core i7-12850HX + NVIDIA RTX A5500 Laptop GPU (16 GiB VRAM, 64 GB RAM; LM Studio server)",
+      "context_tokens": 8192,
+      "mtp": "disabled",
+      "suite": "Source-fidelity advisory classification, unconstrained JSON",
+      "reference": "Previous Qwen output, not independently adjudicated gold",
+      "recorded_date": "2026-11-12",
+      "cases": [
+        {
+          "case_id": "C01",
+          "case_name": "Self-approval prohibition",
+          "assigned": 1,
+          "completed": 1,
+          "contract_valid": 0,
+          "median_seconds": 54.141,
+          "median_completion_tokens": 586,
+          "labels": [],
+          "reference_label": "supported",
+          "agreement_count": null,
+          "output_cap_tokens": 4096,
+          "prompt_version": "sha256:a71533c3fe0ff8c1f468839cc3ef1aaf03d6ec6ce083b0d4dca5a2aed1c32ada",
+          "evidence_url": "https://github.com/sev7enITA/PALO-BlueprintBench/tree/main/internal_tests/2026-11-12-local-agent/raw/gemma-e4b-raw-intel-a5500"
+        },
+        {
+          "case_id": "C13",
+          "case_name": "Self-approval prohibition reversal",
+          "assigned": 1,
+          "completed": 1,
+          "contract_valid": 0,
+          "median_seconds": 40.171,
+          "median_completion_tokens": 450,
+          "labels": [],
+          "reference_label": "contradicted",
+          "agreement_count": null,
+          "output_cap_tokens": 4096,
+          "prompt_version": "sha256:a71533c3fe0ff8c1f468839cc3ef1aaf03d6ec6ce083b0d4dca5a2aed1c32ada",
+          "evidence_url": "https://github.com/sev7enITA/PALO-BlueprintBench/tree/main/internal_tests/2026-11-12-local-agent/raw/gemma-e4b-raw-intel-a5500"
+        },
+        {
+          "case_id": "ITEM-B",
+          "case_name": "P013: request aggregation",
+          "assigned": 1,
+          "completed": 1,
+          "contract_valid": 0,
+          "median_seconds": 62.239,
+          "median_completion_tokens": 620,
+          "labels": [],
+          "reference_label": "not_established",
+          "agreement_count": null,
+          "output_cap_tokens": 4096,
+          "prompt_version": "sha256:01eb6bee051f44a4f6e599be08a65c0086fafb07a85d46e1c602cd43a000d309",
+          "evidence_url": "https://github.com/sev7enITA/PALO-BlueprintBench/tree/main/internal_tests/2026-11-12-local-agent/raw/gemma-e4b-raw-intel-a5500"
+        },
+        {
+          "case_id": "ITEM-C",
+          "case_name": "P036: correction and portal",
+          "assigned": 1,
+          "completed": 1,
+          "contract_valid": 0,
+          "median_seconds": 131.669,
+          "median_completion_tokens": 910,
+          "labels": [],
+          "reference_label": "mixed_or_compound",
+          "agreement_count": null,
+          "output_cap_tokens": 4096,
+          "prompt_version": "sha256:01eb6bee051f44a4f6e599be08a65c0086fafb07a85d46e1c602cd43a000d309",
+          "evidence_url": "https://github.com/sev7enITA/PALO-BlueprintBench/tree/main/internal_tests/2026-11-12-local-agent/raw/gemma-e4b-raw-intel-a5500"
+        },
+        {
+          "case_id": "DAVIS_BACON",
+          "case_name": "Davis-Bacon applicability",
+          "assigned": 1,
+          "completed": 1,
+          "contract_valid": 0,
+          "median_seconds": 169.048,
+          "median_completion_tokens": 875,
+          "labels": [],
+          "reference_label": "unknown",
+          "agreement_count": null,
+          "output_cap_tokens": 4096,
+          "prompt_version": "sha256:a71533c3fe0ff8c1f468839cc3ef1aaf03d6ec6ce083b0d4dca5a2aed1c32ada",
+          "evidence_url": "https://github.com/sev7enITA/PALO-BlueprintBench/tree/main/internal_tests/2026-11-12-local-agent/raw/gemma-e4b-raw-intel-a5500"
+        }
+      ]
+    },
+    {
+      "id": "gemma-e4b-schema-intel-a5500",
+      "model": "Gemma 4 E4B",
+      "variant": "Q4_K_M; JSON-schema constrained",
+      "runtime": "LM Studio; llama.cpp runtime version and per-attempt offload not independently verified",
+      "hardware": "Intel Core i7-12850HX + NVIDIA RTX A5500 Laptop GPU (16 GiB VRAM, 64 GB RAM; LM Studio server)",
+      "context_tokens": 8192,
+      "mtp": "disabled",
+      "suite": "Source-fidelity advisory classification, JSON-schema constrained",
+      "reference": "Previous Qwen output, not independently adjudicated gold",
+      "recorded_date": "2026-11-12",
+      "cases": [
+        {
+          "case_id": "ITEM-B",
+          "case_name": "P013: request aggregation",
+          "assigned": 1,
+          "completed": 1,
+          "contract_valid": 1,
+          "median_seconds": 116.043,
+          "median_completion_tokens": 540,
+          "labels": [
+            "unknown"
+          ],
+          "reference_label": "not_established",
+          "agreement_count": 0,
+          "output_cap_tokens": 4096,
+          "prompt_version": "sha256:01eb6bee051f44a4f6e599be08a65c0086fafb07a85d46e1c602cd43a000d309",
+          "evidence_url": "https://github.com/sev7enITA/PALO-BlueprintBench/tree/main/internal_tests/2026-11-12-local-agent/raw/gemma-e4b-schema-intel-a5500"
+        },
+        {
+          "case_id": "ITEM-C",
+          "case_name": "P036: correction and portal",
+          "assigned": 1,
+          "completed": 1,
+          "contract_valid": 1,
+          "median_seconds": 161.28,
+          "median_completion_tokens": 900,
+          "labels": [
+            "contradicted"
+          ],
+          "reference_label": "mixed_or_compound",
+          "agreement_count": 0,
+          "output_cap_tokens": 4096,
+          "prompt_version": "sha256:01eb6bee051f44a4f6e599be08a65c0086fafb07a85d46e1c602cd43a000d309",
+          "evidence_url": "https://github.com/sev7enITA/PALO-BlueprintBench/tree/main/internal_tests/2026-11-12-local-agent/raw/gemma-e4b-schema-intel-a5500"
+        },
+        {
+          "case_id": "DAVIS_BACON",
+          "case_name": "Davis-Bacon applicability",
+          "assigned": 1,
+          "completed": 1,
+          "contract_valid": 1,
+          "median_seconds": 159.328,
+          "median_completion_tokens": 923,
+          "labels": [
+            "unresolved_conflict"
+          ],
+          "reference_label": "unknown",
+          "agreement_count": 0,
+          "output_cap_tokens": 4096,
+          "prompt_version": "sha256:a71533c3fe0ff8c1f468839cc3ef1aaf03d6ec6ce083b0d4dca5a2aed1c32ada",
+          "evidence_url": "https://github.com/sev7enITA/PALO-BlueprintBench/tree/main/internal_tests/2026-11-12-local-agent/raw/gemma-e4b-schema-intel-a5500"
+        }
+      ]
+    },
+    {
+      "id": "gemma-e4b-posthoc-intel-a5500",
+      "model": "Gemma 4 E4B",
+      "variant": "Q4_K_M; post-hoc schema adaptation",
+      "runtime": "LM Studio; llama.cpp runtime version and per-attempt offload not independently verified",
+      "hardware": "Intel Core i7-12850HX + NVIDIA RTX A5500 Laptop GPU (16 GiB VRAM, 64 GB RAM; LM Studio server)",
+      "context_tokens": 8192,
+      "mtp": "disabled",
+      "suite": "Post-hoc adaptation of existing responses; no new model call",
+      "reference": "Previous Qwen output, not independently adjudicated gold",
+      "recorded_date": "2026-11-12",
+      "cases": [
+        {
+          "case_id": "C01",
+          "case_name": "Self-approval prohibition",
+          "assigned": 1,
+          "completed": 1,
+          "contract_valid": 1,
+          "median_seconds": null,
+          "median_completion_tokens": null,
+          "labels": [
+            "supported"
+          ],
+          "reference_label": "supported",
+          "agreement_count": 1,
+          "output_cap_tokens": 4096,
+          "prompt_version": "sha256:a71533c3fe0ff8c1f468839cc3ef1aaf03d6ec6ce083b0d4dca5a2aed1c32ada",
+          "evidence_url": "https://github.com/sev7enITA/PALO-BlueprintBench/tree/main/internal_tests/2026-11-12-local-agent/raw/gemma-e4b-posthoc-intel-a5500"
+        },
+        {
+          "case_id": "C13",
+          "case_name": "Self-approval prohibition reversal",
+          "assigned": 1,
+          "completed": 1,
+          "contract_valid": 1,
+          "median_seconds": null,
+          "median_completion_tokens": null,
+          "labels": [
+            "contradicted"
+          ],
+          "reference_label": "contradicted",
+          "agreement_count": 1,
+          "output_cap_tokens": 4096,
+          "prompt_version": "sha256:a71533c3fe0ff8c1f468839cc3ef1aaf03d6ec6ce083b0d4dca5a2aed1c32ada",
+          "evidence_url": "https://github.com/sev7enITA/PALO-BlueprintBench/tree/main/internal_tests/2026-11-12-local-agent/raw/gemma-e4b-posthoc-intel-a5500"
+        }
+      ]
+    }
+  ]
+}

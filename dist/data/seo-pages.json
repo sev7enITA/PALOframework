@@ -1083,6 +1083,22 @@
       "lang": "en",
       "type": "TechArticle",
       "image": "assets/seo/palo-governance.png"
+    },
+    "PALO_BlueprintBench.html": {
+      "title": "PALO BlueprintBench | Document-to-specification research",
+      "description": "Evaluation of how AI systems preserve business requirements when transforming documents into structured specifications.",
+      "lang": "en",
+      "dateModified": "2026-11-12",
+      "type": "WebPage",
+      "breadcrumbLabel": "BlueprintBench"
+    },
+    "PALO_BlueprintBench_AgentDiagnostics.html": {
+      "title": "Local Review Agent Diagnostics | PALO BlueprintBench",
+      "description": "Explore local advisory source-fidelity review tests using the agent prompt and validator, model configurations, hardware and retained evidence. Independent validation pending.",
+      "lang": "en",
+      "dateModified": "2026-11-12",
+      "type": "CollectionPage",
+      "breadcrumbLabel": "Local Review Agent Diagnostics"
     }
   }
 }
