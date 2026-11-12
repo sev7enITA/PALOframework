@@ -124,6 +124,33 @@ try {
     return content;
   }
 
+  // Local advisory-agent charts use recorded calls rather than ranking models.
+  await page.goto(`${baseUrl}/PALO_BlueprintBench_AgentDiagnostics.html`, { waitUntil: "load" });
+  await page.waitForFunction(() => document.querySelector("#result-status")?.textContent.includes("Showing"));
+  const agentData = await page.evaluate(async () => {
+    const response = await fetch("downloads/blueprintbench/local-agent-diagnostics.json");
+    return response.json();
+  });
+  const agentRows = agentData.runs.flatMap((run) => run.cases.map((item) => ({ ...item, replay: run.is_replay })));
+  const inferenceRows = agentRows.filter((row) => row.replay === false);
+  const expectedPoints = inferenceRows.filter((row) => row.completed > 0 && Number.isFinite(row.median_seconds) && Number.isFinite(row.median_completion_tokens));
+  if (await page.locator("#composition-chart .comparison-row").count() !== inferenceRows.length) failures.push("Local agent charts: inference composition count mismatch");
+  if (await page.locator("#scatter-chart .scatter-point").count() !== expectedPoints.length) failures.push("Local agent charts: scatter point count mismatch");
+  const expectedTimeouts = inferenceRows.reduce((sum, row) => sum + (Number.isInteger(row.timeout_count) ? row.timeout_count : 0), 0);
+  if (!(await page.locator("#scatter-status").innerText()).includes(`Recorded timeout calls: ${expectedTimeouts}`)) failures.push("Local agent charts: timeout count mismatch");
+  const chartCase = inferenceRows[0]?.case_id;
+  if (chartCase) {
+    await page.selectOption("#case-filter", chartCase);
+    if (await page.locator("#composition-chart .comparison-row").count() !== inferenceRows.filter((row) => row.case_id === chartCase).length) failures.push("Local agent charts: case filter mismatch");
+    const filteredJson = JSON.parse(await captureDownload(page.locator("#json-export"), "Local agent charts JSON"));
+    if (!filteredJson.observations.every((row) => row.case_id === chartCase && "is_replay" in row && "invalid_counts" in row)) failures.push("Local agent charts: filtered export metadata mismatch");
+  }
+  await page.locator("#reset").click();
+  await page.setViewportSize({ width: 375, height: 812 });
+  const agentDimensions = await page.evaluate(() => ({ width: document.documentElement.clientWidth, scrollWidth: document.documentElement.scrollWidth }));
+  if (agentDimensions.scrollWidth > agentDimensions.width + 1) failures.push("Local agent charts: mobile page overflow");
+  await page.setViewportSize({ width: 1280, height: 800 });
+
   await page.goto(`${baseUrl}/PALO_AIIncidentObservatory.html`, { waitUntil: "domcontentloaded" });
   await page.waitForFunction(() => document.documentElement.getAttribute("data-incident-observatory") === "ready");
   if (!await page.getByRole("heading", { name: "What if the July 2026 agentic incident had been governed through PALO?" }).isVisible()) failures.push("AI Incident Observatory: primary title did not render");

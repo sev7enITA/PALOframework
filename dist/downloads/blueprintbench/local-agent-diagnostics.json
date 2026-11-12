@@ -23,7 +23,8 @@
       "context_tokens": 8192,
       "mtp": "enabled",
       "suite": "Source-fidelity advisory classification, unconstrained JSON",
-      "reference": "Previous Qwen output, not independently adjudicated gold",
+      "is_replay": false,
+      "reference": "Previous qwen3.8-27b-uncensored output; configuration not fully frozen; not independently adjudicated gold",
       "recorded_date": "2026-11-12",
       "cases": [
         {
@@ -32,6 +33,8 @@
           "assigned": 3,
           "completed": 3,
           "contract_valid": 3,
+          "timeout_count": 0,
+          "timeout_seconds": null,
           "median_seconds": 33.342,
           "median_completion_tokens": 308,
           "labels": [
@@ -49,6 +52,8 @@
           "assigned": 3,
           "completed": 3,
           "contract_valid": 3,
+          "timeout_count": 0,
+          "timeout_seconds": null,
           "median_seconds": 28.394,
           "median_completion_tokens": 266,
           "labels": [
@@ -71,7 +76,8 @@
       "context_tokens": 8192,
       "mtp": "disabled",
       "suite": "Source-fidelity advisory classification, unconstrained JSON",
-      "reference": "Previous Qwen output, not independently adjudicated gold",
+      "is_replay": false,
+      "reference": "Previous qwen3.8-27b-uncensored output; configuration not fully frozen; not independently adjudicated gold",
       "recorded_date": "2026-11-12",
       "cases": [
         {
@@ -80,6 +86,8 @@
           "assigned": 3,
           "completed": 3,
           "contract_valid": 3,
+          "timeout_count": 0,
+          "timeout_seconds": null,
           "median_seconds": 171.674,
           "median_completion_tokens": 502,
           "labels": [
@@ -97,6 +105,8 @@
           "assigned": 3,
           "completed": 3,
           "contract_valid": 3,
+          "timeout_count": 0,
+          "timeout_seconds": null,
           "median_seconds": 102.473,
           "median_completion_tokens": 297,
           "labels": [
@@ -119,7 +129,8 @@
       "context_tokens": 8192,
       "mtp": "enabled",
       "suite": "Source-fidelity advisory classification, unconstrained JSON",
-      "reference": "Previous Qwen output, not independently adjudicated gold",
+      "is_replay": false,
+      "reference": "Previous qwen3.8-27b-uncensored output; configuration not fully frozen; not independently adjudicated gold",
       "recorded_date": "2026-11-12",
       "cases": [
         {
@@ -128,6 +139,8 @@
           "assigned": 3,
           "completed": 3,
           "contract_valid": 3,
+          "timeout_count": 0,
+          "timeout_seconds": null,
           "median_seconds": 160.411,
           "median_completion_tokens": 208,
           "labels": [
@@ -145,6 +158,8 @@
           "assigned": 3,
           "completed": 3,
           "contract_valid": 3,
+          "timeout_count": 0,
+          "timeout_seconds": null,
           "median_seconds": 111.822,
           "median_completion_tokens": 162,
           "labels": [
@@ -162,6 +177,8 @@
           "assigned": 1,
           "completed": 0,
           "contract_valid": 0,
+          "timeout_count": 1,
+          "timeout_seconds": 600,
           "median_seconds": null,
           "median_completion_tokens": null,
           "labels": [],
@@ -177,6 +194,8 @@
           "assigned": 1,
           "completed": 0,
           "contract_valid": 0,
+          "timeout_count": 1,
+          "timeout_seconds": 600,
           "median_seconds": null,
           "median_completion_tokens": null,
           "labels": [],
@@ -192,6 +211,8 @@
           "assigned": 1,
           "completed": 0,
           "contract_valid": 0,
+          "timeout_count": 1,
+          "timeout_seconds": 600,
           "median_seconds": null,
           "median_completion_tokens": null,
           "labels": [],
@@ -212,7 +233,8 @@
       "context_tokens": 8192,
       "mtp": "disabled",
       "suite": "Source-fidelity advisory classification, unconstrained JSON",
-      "reference": "Previous Qwen output, not independently adjudicated gold",
+      "is_replay": false,
+      "reference": "Previous qwen3.8-27b-uncensored output; configuration not fully frozen; not independently adjudicated gold",
       "recorded_date": "2026-11-12",
       "cases": [
         {
@@ -221,6 +243,8 @@
           "assigned": 1,
           "completed": 1,
           "contract_valid": 0,
+          "timeout_count": 0,
+          "timeout_seconds": null,
           "median_seconds": 54.141,
           "median_completion_tokens": 586,
           "labels": [],
@@ -236,6 +260,8 @@
           "assigned": 1,
           "completed": 1,
           "contract_valid": 0,
+          "timeout_count": 0,
+          "timeout_seconds": null,
           "median_seconds": 40.171,
           "median_completion_tokens": 450,
           "labels": [],
@@ -251,6 +277,8 @@
           "assigned": 1,
           "completed": 1,
           "contract_valid": 0,
+          "timeout_count": 0,
+          "timeout_seconds": null,
           "median_seconds": 62.239,
           "median_completion_tokens": 620,
           "labels": [],
@@ -266,6 +294,8 @@
           "assigned": 1,
           "completed": 1,
           "contract_valid": 0,
+          "timeout_count": 0,
+          "timeout_seconds": null,
           "median_seconds": 131.669,
           "median_completion_tokens": 910,
           "labels": [],
@@ -281,6 +311,8 @@
           "assigned": 1,
           "completed": 1,
           "contract_valid": 0,
+          "timeout_count": 0,
+          "timeout_seconds": null,
           "median_seconds": 169.048,
           "median_completion_tokens": 875,
           "labels": [],
@@ -301,7 +333,8 @@
       "context_tokens": 8192,
       "mtp": "disabled",
       "suite": "Source-fidelity advisory classification, JSON-schema constrained",
-      "reference": "Previous Qwen output, not independently adjudicated gold",
+      "is_replay": false,
+      "reference": "Previous qwen3.8-27b-uncensored output; configuration not fully frozen; not independently adjudicated gold",
       "recorded_date": "2026-11-12",
       "cases": [
         {
@@ -310,6 +343,8 @@
           "assigned": 1,
           "completed": 1,
           "contract_valid": 1,
+          "timeout_count": 0,
+          "timeout_seconds": null,
           "median_seconds": 116.043,
           "median_completion_tokens": 540,
           "labels": [
@@ -327,6 +362,8 @@
           "assigned": 1,
           "completed": 1,
           "contract_valid": 1,
+          "timeout_count": 0,
+          "timeout_seconds": null,
           "median_seconds": 161.28,
           "median_completion_tokens": 900,
           "labels": [
@@ -344,6 +381,8 @@
           "assigned": 1,
           "completed": 1,
           "contract_valid": 1,
+          "timeout_count": 0,
+          "timeout_seconds": null,
           "median_seconds": 159.328,
           "median_completion_tokens": 923,
           "labels": [
@@ -366,7 +405,8 @@
       "context_tokens": 8192,
       "mtp": "disabled",
       "suite": "Post-hoc adaptation of existing responses; no new model call",
-      "reference": "Previous Qwen output, not independently adjudicated gold",
+      "is_replay": true,
+      "reference": "Previous qwen3.8-27b-uncensored output; configuration not fully frozen; not independently adjudicated gold",
       "recorded_date": "2026-11-12",
       "cases": [
         {
@@ -375,6 +415,8 @@
           "assigned": 1,
           "completed": 1,
           "contract_valid": 1,
+          "timeout_count": 0,
+          "timeout_seconds": null,
           "median_seconds": null,
           "median_completion_tokens": null,
           "labels": [
@@ -392,6 +434,8 @@
           "assigned": 1,
           "completed": 1,
           "contract_valid": 1,
+          "timeout_count": 0,
+          "timeout_seconds": null,
           "median_seconds": null,
           "median_completion_tokens": null,
           "labels": [
