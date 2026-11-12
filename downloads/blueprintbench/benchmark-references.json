@@ -824,7 +824,7 @@
       "action": "Test document import, interpretation, human correction and blueprint export with repeated runs, environment identity, failure states and cost/time accounting."
     },
     {
-      "title": "Separate structural and semantic evidence",
+      "title": "Structural and Semantic Assessment",
       "references": [
         "bfcl",
         "swebench-pro",
