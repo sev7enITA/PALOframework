@@ -92,6 +92,7 @@ export const PUBLIC_FILES = [
   "llms.txt",
   "data/seo-pages.json",
   "PALO_FinOps.html",
+  "finops/star/index.html",
   "assets/palo-finops-learning.js",
   "assets/palo-finops-learning-demo.js",
   "assets/palo-finops-learning-ui.js",
