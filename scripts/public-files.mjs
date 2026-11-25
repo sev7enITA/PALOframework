@@ -93,6 +93,7 @@ export const PUBLIC_FILES = [
   "data/seo-pages.json",
   "PALO_FinOps.html",
   "finops/star/index.html",
+  "finops/the-price-of-ai/index.html",
   "assets/palo-finops-learning.js",
   "assets/palo-finops-learning-demo.js",
   "assets/palo-finops-learning-ui.js",
