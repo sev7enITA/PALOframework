@@ -396,6 +396,10 @@ Generative and agentic routes now carry this source-backed lens through PALO Gui
 
 ## Related Ecosystem
 
+[PALO Framework](https://paloframework.org/), [PolicyWatcher](https://policywatcher.online/) and [OnToGraPh](https://www.fabriziodegni.com/OnToGraPh/#ecosystem) form one governance hub with three complementary frameworks. PALO sets the authority, controls and decision gates from the top down. PolicyWatcher supplies verifiable public policy changes from the bottom up. OnToGraPh is their spin-off and the hub's semantic change and verification engine. Its offline reference turns a reviewed source into a governed release and records what applications do after release or withdrawal. Exported observations can inform PALO review and PolicyWatcher follow-up. The two live services keep their current signal exchange. Automated feedback through OnToGraPh remains pilot work.
+
+[See the three-framework map](https://paloframework.org/PALO_PlatformMap.html#three-frameworks)
+
 [PolicyWatcher](https://www.policywatcher.online/) is a separate civic-tech portal by Fabrizio Degni for monitoring public privacy policies and terms of service, mapping policy changes, and exposing methodology and source-quality context. It complements the PALO lifecycle at Deployment and Monitoring, but it is not a PALO module, legal certification, or replacement for official sources.
 
 Assessment Path can import a versioned `palo-policywatcher-signal` JSON file locally. The complete observation is preserved as a non-authoritative monitoring source pending human review; no assessment or Case File data is submitted to PolicyWatcher.
